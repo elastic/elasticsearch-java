@@ -121,6 +121,14 @@ public class TextEmbeddingResponse implements JsonpSerializable {
 			return this.valueBody(fn.apply(new TextEmbeddingInferenceResult.Builder()).build());
 		}
 
+		/**
+		 * Required - Response value.
+		 */
+		public final Builder valueBody(TextEmbeddingInferenceResultVariant value) {
+			this.valueBody = value._toTextEmbeddingInferenceResult();
+			return this;
+		}
+
 		@Override
 		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
 

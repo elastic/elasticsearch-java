@@ -56,6 +56,8 @@ public enum RuntimeFieldType implements JsonEnum {
 
 	GeoPoint("geo_point"),
 
+	GeoShape("geo_shape"),
+
 	Ip("ip"),
 
 	Keyword("keyword"),

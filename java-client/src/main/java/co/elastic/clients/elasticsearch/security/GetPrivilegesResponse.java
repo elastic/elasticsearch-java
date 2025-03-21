@@ -64,13 +64,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GetPrivilegesResponse implements JsonpSerializable {
-	private final Map<String, Map<String, Actions>> result;
+	private final Map<String, Map<String, Actions>> privileges;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetPrivilegesResponse(Builder builder) {
 
-		this.result = ApiTypeHelper.unmodifiableRequired(builder.result, this, "result");
+		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
 
 	}
 
@@ -81,15 +81,15 @@ public class GetPrivilegesResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final Map<String, Map<String, Actions>> result() {
-		return this.result;
+	public final Map<String, Map<String, Actions>> privileges() {
+		return this.privileges;
 	}
 
 	/**
-	 * Get an element of {@code result}.
+	 * Get an element of {@code privileges}.
 	 */
 	public final @Nullable Map<String, Actions> get(String key) {
-		return this.result.get(key);
+		return this.privileges.get(key);
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class GetPrivilegesResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		for (Map.Entry<String, Map<String, Actions>> item0 : this.result.entrySet()) {
+		for (Map.Entry<String, Map<String, Actions>> item0 : this.privileges.entrySet()) {
 			generator.writeKey(item0.getKey());
 			generator.writeStartObject();
 			if (item0.getValue() != null) {
@@ -128,25 +128,25 @@ public class GetPrivilegesResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetPrivilegesResponse> {
-		private Map<String, Map<String, Actions>> result = new HashMap<>();
+		private Map<String, Map<String, Actions>> privileges = new HashMap<>();
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>result</code>.
+		 * Adds all entries of <code>map</code> to <code>privileges</code>.
 		 */
-		public final Builder result(Map<String, Map<String, Actions>> map) {
-			this.result = _mapPutAll(this.result, map);
+		public final Builder privileges(Map<String, Map<String, Actions>> map) {
+			this.privileges = _mapPutAll(this.privileges, map);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code>.
+		 * Adds an entry to <code>privileges</code>.
 		 */
-		public final Builder result(String key, Map<String, Actions> value) {
-			this.result = _mapPut(this.result, key, value);
+		public final Builder privileges(String key, Map<String, Actions> value) {
+			this.privileges = _mapPut(this.privileges, key, value);
 			return this;
 		}
 
@@ -157,7 +157,7 @@ public class GetPrivilegesResponse implements JsonpSerializable {
 			Map<String, Map<String, Actions>> value = (Map<String, Map<String, Actions>>) JsonpDeserializer
 					.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(Actions._DESERIALIZER))
 					.deserialize(parser, mapper);
-			return this.result(value);
+			return this.privileges(value);
 		}
 
 		@Override
@@ -185,7 +185,7 @@ public class GetPrivilegesResponse implements JsonpSerializable {
 				.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(Actions._DESERIALIZER));
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.result(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.privileges(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

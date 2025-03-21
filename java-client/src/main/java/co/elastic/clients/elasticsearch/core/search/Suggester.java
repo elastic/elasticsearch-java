@@ -162,6 +162,16 @@ public class Suggester implements JsonpSerializable {
 		/**
 		 * The named suggesters
 		 * <p>
+		 * Adds an entry to <code>suggesters</code>.
+		 */
+		public final Builder suggesters(String key, FieldSuggesterVariant value) {
+			this.suggesters = _mapPut(this.suggesters, key, value._toFieldSuggester());
+			return this;
+		}
+
+		/**
+		 * The named suggesters
+		 * <p>
 		 * Adds an entry to <code>suggesters</code> using a builder lambda.
 		 */
 		public final Builder suggesters(String key,

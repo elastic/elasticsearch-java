@@ -252,6 +252,16 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Required - Query you wish to run on nested objects in the path.
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(QueryVariant value) {
+			this.query = value._toQuery();
+			return this;
+		}
+
+		/**
 		 * How scores for matching child objects affect the root parent document’s
 		 * relevance score.
 		 * <p>

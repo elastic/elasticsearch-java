@@ -23,6 +23,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.indices.update_aliases.Action;
+import co.elastic.clients.elasticsearch.indices.update_aliases.ActionVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -183,6 +184,21 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		 */
 		public final Builder actions(Action value, Action... values) {
 			this.actions = _listAdd(this.actions, value, values);
+			return this;
+		}
+
+		/**
+		 * Actions to perform.
+		 * <p>
+		 * API name: {@code actions}
+		 * <p>
+		 * Adds one or more values to <code>actions</code>.
+		 */
+		public final Builder actions(ActionVariant value, ActionVariant... values) {
+			this.actions = _listAdd(this.actions, value._toAction());
+			for (ActionVariant v : values) {
+				_listAdd(this.actions, v._toAction());
+			}
 			return this;
 		}
 

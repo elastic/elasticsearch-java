@@ -77,6 +77,9 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 	@Nullable
 	private final Boolean allowAutoCreate;
 
+	@Nullable
+	private final String cause;
+
 	private final List<String> composedOf;
 
 	@Nullable
@@ -116,6 +119,7 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.allowAutoCreate = builder.allowAutoCreate;
+		this.cause = builder.cause;
 		this.composedOf = ApiTypeHelper.unmodifiable(builder.composedOf);
 		this.create = builder.create;
 		this.dataStream = builder.dataStream;
@@ -158,6 +162,17 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 	@Nullable
 	public final Boolean allowAutoCreate() {
 		return this.allowAutoCreate;
+	}
+
+	/**
+	 * User defined reason for dry-run creating the new template for simulation
+	 * purposes
+	 * <p>
+	 * API name: {@code cause}
+	 */
+	@Nullable
+	public final String cause() {
+		return this.cause;
 	}
 
 	/**
@@ -398,6 +413,9 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 		private Boolean allowAutoCreate;
 
 		@Nullable
+		private String cause;
+
+		@Nullable
 		private List<String> composedOf;
 
 		@Nullable
@@ -471,6 +489,17 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 		 */
 		public final Builder allowAutoCreate(@Nullable Boolean value) {
 			this.allowAutoCreate = value;
+			return this;
+		}
+
+		/**
+		 * User defined reason for dry-run creating the new template for simulation
+		 * purposes
+		 * <p>
+		 * API name: {@code cause}
+		 */
+		public final Builder cause(@Nullable String value) {
+			this.cause = value;
 			return this;
 		}
 
@@ -806,6 +835,9 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 				}
 				if (request.create != null) {
 					params.put("create", String.valueOf(request.create));
+				}
+				if (request.cause != null) {
+					params.put("cause", request.cause);
 				}
 				if (request.includeDefaults != null) {
 					params.put("include_defaults", String.valueOf(request.includeDefaults));

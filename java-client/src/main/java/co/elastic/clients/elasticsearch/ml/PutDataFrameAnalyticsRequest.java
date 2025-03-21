@@ -472,6 +472,18 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
+		 * Required - The analysis configuration, which contains the information
+		 * necessary to perform one of the following types of analysis: classification,
+		 * outlier detection, or regression.
+		 * <p>
+		 * API name: {@code analysis}
+		 */
+		public final Builder analysis(DataframeAnalysisVariant value) {
+			this.analysis = value._toDataframeAnalysis();
+			return this;
+		}
+
+		/**
 		 * Specifies <code>includes</code> and/or <code>excludes</code> patterns to
 		 * select which fields will be included in the analysis. The patterns specified
 		 * in <code>excludes</code> are applied last, therefore <code>excludes</code>

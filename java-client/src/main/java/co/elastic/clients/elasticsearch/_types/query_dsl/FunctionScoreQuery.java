@@ -269,6 +269,22 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		 * <p>
 		 * API name: {@code functions}
 		 * <p>
+		 * Adds one or more values to <code>functions</code>.
+		 */
+		public final Builder functions(FunctionScoreVariant value, FunctionScoreVariant... values) {
+			this.functions = _listAdd(this.functions, value._toFunctionScore());
+			for (FunctionScoreVariant v : values) {
+				_listAdd(this.functions, v._toFunctionScore());
+			}
+			return this;
+		}
+
+		/**
+		 * One or more functions that compute a new score for each document returned by
+		 * the query.
+		 * <p>
+		 * API name: {@code functions}
+		 * <p>
 		 * Adds a value to <code>functions</code> using a builder lambda.
 		 */
 		public final Builder functions(Function<FunctionScore.Builder, ObjectBuilder<FunctionScore>> fn) {
@@ -312,6 +328,16 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * A query that determines the documents for which a new score is computed.
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(QueryVariant value) {
+			this.query = value._toQuery();
+			return this;
 		}
 
 		/**
@@ -359,7 +385,7 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::scoreMode, FunctionScoreMode._DESERIALIZER, "score_mode");
 
-		op.shortcutProperty("functions", true);
+		op.shortcutProperty("functions");
 
 	}
 

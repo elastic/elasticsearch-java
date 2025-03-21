@@ -62,13 +62,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GetTemplateResponse implements JsonpSerializable {
-	private final Map<String, TemplateMapping> result;
+	private final Map<String, TemplateMapping> templates;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetTemplateResponse(Builder builder) {
 
-		this.result = ApiTypeHelper.unmodifiableRequired(builder.result, this, "result");
+		this.templates = ApiTypeHelper.unmodifiableRequired(builder.templates, this, "templates");
 
 	}
 
@@ -79,15 +79,15 @@ public class GetTemplateResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final Map<String, TemplateMapping> result() {
-		return this.result;
+	public final Map<String, TemplateMapping> templates() {
+		return this.templates;
 	}
 
 	/**
-	 * Get an element of {@code result}.
+	 * Get an element of {@code templates}.
 	 */
 	public final @Nullable TemplateMapping get(String key) {
-		return this.result.get(key);
+		return this.templates.get(key);
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class GetTemplateResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		for (Map.Entry<String, TemplateMapping> item0 : this.result.entrySet()) {
+		for (Map.Entry<String, TemplateMapping> item0 : this.templates.entrySet()) {
 			generator.writeKey(item0.getKey());
 			item0.getValue().serialize(generator, mapper);
 
@@ -118,35 +118,36 @@ public class GetTemplateResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetTemplateResponse> {
-		private Map<String, TemplateMapping> result = new HashMap<>();
+		private Map<String, TemplateMapping> templates = new HashMap<>();
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>result</code>.
+		 * Adds all entries of <code>map</code> to <code>templates</code>.
 		 */
-		public final Builder result(Map<String, TemplateMapping> map) {
-			this.result = _mapPutAll(this.result, map);
+		public final Builder templates(Map<String, TemplateMapping> map) {
+			this.templates = _mapPutAll(this.templates, map);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code>.
+		 * Adds an entry to <code>templates</code>.
 		 */
-		public final Builder result(String key, TemplateMapping value) {
-			this.result = _mapPut(this.result, key, value);
+		public final Builder templates(String key, TemplateMapping value) {
+			this.templates = _mapPut(this.templates, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code> using a builder lambda.
+		 * Adds an entry to <code>templates</code> using a builder lambda.
 		 */
-		public final Builder result(String key, Function<TemplateMapping.Builder, ObjectBuilder<TemplateMapping>> fn) {
-			return result(key, fn.apply(new TemplateMapping.Builder()).build());
+		public final Builder templates(String key,
+				Function<TemplateMapping.Builder, ObjectBuilder<TemplateMapping>> fn) {
+			return templates(key, fn.apply(new TemplateMapping.Builder()).build());
 		}
 
 		@Override
@@ -155,7 +156,7 @@ public class GetTemplateResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			Map<String, TemplateMapping> value = (Map<String, TemplateMapping>) JsonpDeserializer
 					.stringMapDeserializer(TemplateMapping._DESERIALIZER).deserialize(parser, mapper);
-			return this.result(value);
+			return this.templates(value);
 		}
 
 		@Override
@@ -183,7 +184,7 @@ public class GetTemplateResponse implements JsonpSerializable {
 				.stringMapDeserializer(TemplateMapping._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.result(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.templates(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

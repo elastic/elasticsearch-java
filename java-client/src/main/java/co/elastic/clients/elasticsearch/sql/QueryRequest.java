@@ -24,6 +24,7 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.elasticsearch.sql.query.SqlFormat;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -618,6 +619,16 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.filter(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * The Elasticsearch query DSL for additional filtering.
+		 * <p>
+		 * API name: {@code filter}
+		 */
+		public final Builder filter(QueryVariant value) {
+			this.filter = value._toQuery();
+			return this;
 		}
 
 		/**

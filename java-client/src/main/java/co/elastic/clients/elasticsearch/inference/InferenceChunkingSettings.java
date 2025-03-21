@@ -87,10 +87,9 @@ public class InferenceChunkingSettings extends InferenceEndpoint {
 	}
 
 	/**
-	 * Specifies the maximum size of a chunk in words This value cannot be higher
-	 * than <code>300</code> or lower than <code>20</code> (for
-	 * <code>sentence</code> strategy) or <code>10</code> (for <code>word</code>
-	 * strategy)
+	 * The maximum size of a chunk in words. This value cannot be higher than
+	 * <code>300</code> or lower than <code>20</code> (for <code>sentence</code>
+	 * strategy) or <code>10</code> (for <code>word</code> strategy).
 	 * <p>
 	 * API name: {@code max_chunk_size}
 	 */
@@ -100,9 +99,9 @@ public class InferenceChunkingSettings extends InferenceEndpoint {
 	}
 
 	/**
-	 * Specifies the number of overlapping words for chunks Only for
-	 * <code>word</code> chunking strategy This value cannot be higher than the half
-	 * of <code>max_chunk_size</code>
+	 * The number of overlapping words for chunks. It is applicable only to a
+	 * <code>word</code> chunking strategy. This value cannot be higher than half
+	 * the <code>max_chunk_size</code> value.
 	 * <p>
 	 * API name: {@code overlap}
 	 */
@@ -112,9 +111,9 @@ public class InferenceChunkingSettings extends InferenceEndpoint {
 	}
 
 	/**
-	 * Specifies the number of overlapping sentences for chunks Only for
-	 * <code>sentence</code> chunking strategy It can be either <code>1</code> or
-	 * <code>0</code>
+	 * The number of overlapping sentences for chunks. It is applicable only for a
+	 * <code>sentence</code> chunking strategy. It can be either <code>1</code> or
+	 * <code>0</code>.
 	 * <p>
 	 * API name: {@code sentence_overlap}
 	 */
@@ -124,8 +123,7 @@ public class InferenceChunkingSettings extends InferenceEndpoint {
 	}
 
 	/**
-	 * Specifies the chunking strategy It could be either <code>sentence</code> or
-	 * <code>word</code>
+	 * The chunking strategy: <code>sentence</code> or <code>word</code>.
 	 * <p>
 	 * API name: {@code strategy}
 	 */
@@ -182,10 +180,9 @@ public class InferenceChunkingSettings extends InferenceEndpoint {
 		private String strategy;
 
 		/**
-		 * Specifies the maximum size of a chunk in words This value cannot be higher
-		 * than <code>300</code> or lower than <code>20</code> (for
-		 * <code>sentence</code> strategy) or <code>10</code> (for <code>word</code>
-		 * strategy)
+		 * The maximum size of a chunk in words. This value cannot be higher than
+		 * <code>300</code> or lower than <code>20</code> (for <code>sentence</code>
+		 * strategy) or <code>10</code> (for <code>word</code> strategy).
 		 * <p>
 		 * API name: {@code max_chunk_size}
 		 */
@@ -195,9 +192,9 @@ public class InferenceChunkingSettings extends InferenceEndpoint {
 		}
 
 		/**
-		 * Specifies the number of overlapping words for chunks Only for
-		 * <code>word</code> chunking strategy This value cannot be higher than the half
-		 * of <code>max_chunk_size</code>
+		 * The number of overlapping words for chunks. It is applicable only to a
+		 * <code>word</code> chunking strategy. This value cannot be higher than half
+		 * the <code>max_chunk_size</code> value.
 		 * <p>
 		 * API name: {@code overlap}
 		 */
@@ -207,9 +204,9 @@ public class InferenceChunkingSettings extends InferenceEndpoint {
 		}
 
 		/**
-		 * Specifies the number of overlapping sentences for chunks Only for
-		 * <code>sentence</code> chunking strategy It can be either <code>1</code> or
-		 * <code>0</code>
+		 * The number of overlapping sentences for chunks. It is applicable only for a
+		 * <code>sentence</code> chunking strategy. It can be either <code>1</code> or
+		 * <code>0</code>.
 		 * <p>
 		 * API name: {@code sentence_overlap}
 		 */
@@ -219,8 +216,7 @@ public class InferenceChunkingSettings extends InferenceEndpoint {
 		}
 
 		/**
-		 * Specifies the chunking strategy It could be either <code>sentence</code> or
-		 * <code>word</code>
+		 * The chunking strategy: <code>sentence</code> or <code>word</code>.
 		 * <p>
 		 * API name: {@code strategy}
 		 */

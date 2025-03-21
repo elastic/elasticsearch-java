@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -304,6 +305,16 @@ public class FrequentItemSetsAggregation implements AggregationVariant, JsonpSer
 		 */
 		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.filter(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * Query that filters documents from analysis.
+		 * <p>
+		 * API name: {@code filter}
+		 */
+		public final Builder filter(QueryVariant value) {
+			this.filter = value._toQuery();
+			return this;
 		}
 
 		@Override

@@ -62,13 +62,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GetUserResponse implements JsonpSerializable {
-	private final Map<String, User> result;
+	private final Map<String, User> users;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetUserResponse(Builder builder) {
 
-		this.result = ApiTypeHelper.unmodifiableRequired(builder.result, this, "result");
+		this.users = ApiTypeHelper.unmodifiableRequired(builder.users, this, "users");
 
 	}
 
@@ -79,15 +79,15 @@ public class GetUserResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final Map<String, User> result() {
-		return this.result;
+	public final Map<String, User> users() {
+		return this.users;
 	}
 
 	/**
-	 * Get an element of {@code result}.
+	 * Get an element of {@code users}.
 	 */
 	public final @Nullable User get(String key) {
-		return this.result.get(key);
+		return this.users.get(key);
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class GetUserResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		for (Map.Entry<String, User> item0 : this.result.entrySet()) {
+		for (Map.Entry<String, User> item0 : this.users.entrySet()) {
 			generator.writeKey(item0.getKey());
 			item0.getValue().serialize(generator, mapper);
 
@@ -116,35 +116,35 @@ public class GetUserResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GetUserResponse> {
-		private Map<String, User> result = new HashMap<>();
+		private Map<String, User> users = new HashMap<>();
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>result</code>.
+		 * Adds all entries of <code>map</code> to <code>users</code>.
 		 */
-		public final Builder result(Map<String, User> map) {
-			this.result = _mapPutAll(this.result, map);
+		public final Builder users(Map<String, User> map) {
+			this.users = _mapPutAll(this.users, map);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code>.
+		 * Adds an entry to <code>users</code>.
 		 */
-		public final Builder result(String key, User value) {
-			this.result = _mapPut(this.result, key, value);
+		public final Builder users(String key, User value) {
+			this.users = _mapPut(this.users, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code> using a builder lambda.
+		 * Adds an entry to <code>users</code> using a builder lambda.
 		 */
-		public final Builder result(String key, Function<User.Builder, ObjectBuilder<User>> fn) {
-			return result(key, fn.apply(new User.Builder()).build());
+		public final Builder users(String key, Function<User.Builder, ObjectBuilder<User>> fn) {
+			return users(key, fn.apply(new User.Builder()).build());
 		}
 
 		@Override
@@ -153,7 +153,7 @@ public class GetUserResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			Map<String, User> value = (Map<String, User>) JsonpDeserializer.stringMapDeserializer(User._DESERIALIZER)
 					.deserialize(parser, mapper);
-			return this.result(value);
+			return this.users(value);
 		}
 
 		@Override
@@ -181,7 +181,7 @@ public class GetUserResponse implements JsonpSerializable {
 				.stringMapDeserializer(User._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.result(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.users(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

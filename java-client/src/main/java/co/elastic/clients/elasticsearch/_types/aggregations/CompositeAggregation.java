@@ -239,6 +239,58 @@ public class CompositeAggregation extends BucketAggregationBase
 		 * <p>
 		 * API name: {@code after}
 		 * <p>
+		 * Adds an entry to <code>after</code>.
+		 */
+		public final Builder after(String key, String value) {
+			this.after = _mapPut(this.after, key, FieldValue.of(value));
+			return this;
+		}
+
+		/**
+		 * When paginating, use the <code>after_key</code> value returned in the
+		 * previous response to retrieve the next page.
+		 * <p>
+		 * API name: {@code after}
+		 * <p>
+		 * Adds an entry to <code>after</code>.
+		 */
+		public final Builder after(String key, long value) {
+			this.after = _mapPut(this.after, key, FieldValue.of(value));
+			return this;
+		}
+
+		/**
+		 * When paginating, use the <code>after_key</code> value returned in the
+		 * previous response to retrieve the next page.
+		 * <p>
+		 * API name: {@code after}
+		 * <p>
+		 * Adds an entry to <code>after</code>.
+		 */
+		public final Builder after(String key, double value) {
+			this.after = _mapPut(this.after, key, FieldValue.of(value));
+			return this;
+		}
+
+		/**
+		 * When paginating, use the <code>after_key</code> value returned in the
+		 * previous response to retrieve the next page.
+		 * <p>
+		 * API name: {@code after}
+		 * <p>
+		 * Adds an entry to <code>after</code>.
+		 */
+		public final Builder after(String key, boolean value) {
+			this.after = _mapPut(this.after, key, FieldValue.of(value));
+			return this;
+		}
+
+		/**
+		 * When paginating, use the <code>after_key</code> value returned in the
+		 * previous response to retrieve the next page.
+		 * <p>
+		 * API name: {@code after}
+		 * <p>
 		 * Adds an entry to <code>after</code> using a builder lambda.
 		 */
 		public final Builder after(String key, Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {

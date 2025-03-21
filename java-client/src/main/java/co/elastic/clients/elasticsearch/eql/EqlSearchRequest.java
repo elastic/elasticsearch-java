@@ -26,6 +26,7 @@ import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.elasticsearch.eql.search.ResultPosition;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -693,6 +694,22 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder filter(Query value, Query... values) {
 			this.filter = _listAdd(this.filter, value, values);
+			return this;
+		}
+
+		/**
+		 * Query, written in Query DSL, used to filter the events on which the EQL query
+		 * runs.
+		 * <p>
+		 * API name: {@code filter}
+		 * <p>
+		 * Adds one or more values to <code>filter</code>.
+		 */
+		public final Builder filter(QueryVariant value, QueryVariant... values) {
+			this.filter = _listAdd(this.filter, value._toQuery());
+			for (QueryVariant v : values) {
+				_listAdd(this.filter, v._toQuery());
+			}
 			return this;
 		}
 

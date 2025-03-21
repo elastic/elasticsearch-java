@@ -247,6 +247,17 @@ public class PinnedQuery extends QueryBase
 			return this.organic(fn.apply(new Query.Builder()).build());
 		}
 
+		/**
+		 * Required - Any choice of query used to rank documents which will be ranked
+		 * below the &quot;pinned&quot; documents.
+		 * <p>
+		 * API name: {@code organic}
+		 */
+		public final Builder organic(QueryVariant value) {
+			this.organic = value._toQuery();
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -289,6 +300,17 @@ public class PinnedQuery extends QueryBase
 			 */
 			public final ContainerBuilder organic(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 				return this.organic(fn.apply(new Query.Builder()).build());
+			}
+
+			/**
+			 * Required - Any choice of query used to rank documents which will be ranked
+			 * below the &quot;pinned&quot; documents.
+			 * <p>
+			 * API name: {@code organic}
+			 */
+			public final ContainerBuilder organic(QueryVariant value) {
+				Builder.this.organic = value._toQuery();
+				return this;
 			}
 
 			public PinnedQuery build() {

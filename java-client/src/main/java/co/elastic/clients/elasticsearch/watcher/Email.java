@@ -506,6 +506,16 @@ public class Email implements JsonpSerializable {
 		/**
 		 * API name: {@code attachments}
 		 * <p>
+		 * Adds an entry to <code>attachments</code>.
+		 */
+		public final BuilderT attachments(String key, EmailAttachmentVariant value) {
+			this.attachments = _mapPut(this.attachments, key, value._toEmailAttachment());
+			return self();
+		}
+
+		/**
+		 * API name: {@code attachments}
+		 * <p>
 		 * Adds an entry to <code>attachments</code> using a builder lambda.
 		 */
 		public final BuilderT attachments(String key,

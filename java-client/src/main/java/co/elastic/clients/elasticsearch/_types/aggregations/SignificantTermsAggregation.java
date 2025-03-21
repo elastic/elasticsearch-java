@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.EmptyObject;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -472,6 +473,17 @@ public class SignificantTermsAggregation extends BucketAggregationBase
 		 */
 		public final Builder backgroundFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.backgroundFilter(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * A background filter that can be used to focus in on significant terms within
+		 * a narrower context, instead of the entire index.
+		 * <p>
+		 * API name: {@code background_filter}
+		 */
+		public final Builder backgroundFilter(QueryVariant value) {
+			this.backgroundFilter = value._toQuery();
+			return this;
 		}
 
 		/**

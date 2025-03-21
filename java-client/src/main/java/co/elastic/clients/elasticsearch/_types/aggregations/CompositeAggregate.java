@@ -154,6 +154,46 @@ public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket
 		/**
 		 * API name: {@code after_key}
 		 * <p>
+		 * Adds an entry to <code>afterKey</code>.
+		 */
+		public final Builder afterKey(String key, String value) {
+			this.afterKey = _mapPut(this.afterKey, key, FieldValue.of(value));
+			return this;
+		}
+
+		/**
+		 * API name: {@code after_key}
+		 * <p>
+		 * Adds an entry to <code>afterKey</code>.
+		 */
+		public final Builder afterKey(String key, long value) {
+			this.afterKey = _mapPut(this.afterKey, key, FieldValue.of(value));
+			return this;
+		}
+
+		/**
+		 * API name: {@code after_key}
+		 * <p>
+		 * Adds an entry to <code>afterKey</code>.
+		 */
+		public final Builder afterKey(String key, double value) {
+			this.afterKey = _mapPut(this.afterKey, key, FieldValue.of(value));
+			return this;
+		}
+
+		/**
+		 * API name: {@code after_key}
+		 * <p>
+		 * Adds an entry to <code>afterKey</code>.
+		 */
+		public final Builder afterKey(String key, boolean value) {
+			this.afterKey = _mapPut(this.afterKey, key, FieldValue.of(value));
+			return this;
+		}
+
+		/**
+		 * API name: {@code after_key}
+		 * <p>
 		 * Adds an entry to <code>afterKey</code> using a builder lambda.
 		 */
 		public final Builder afterKey(String key, Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {

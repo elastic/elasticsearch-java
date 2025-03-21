@@ -105,6 +105,9 @@ public class DataStream implements JsonpSerializable {
 
 	private final DataStreamTimestampField timestampField;
 
+	@Nullable
+	private final IndexMode indexMode;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DataStream(Builder builder) {
@@ -127,6 +130,7 @@ public class DataStream implements JsonpSerializable {
 		this.system = builder.system;
 		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
 		this.timestampField = ApiTypeHelper.requireNonNull(builder.timestampField, this, "timestampField");
+		this.indexMode = builder.indexMode;
 
 	}
 
@@ -316,6 +320,17 @@ public class DataStream implements JsonpSerializable {
 	}
 
 	/**
+	 * The index mode for the data stream that will be used for newly created
+	 * backing indices.
+	 * <p>
+	 * API name: {@code index_mode}
+	 */
+	@Nullable
+	public final IndexMode indexMode() {
+		return this.indexMode;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -402,6 +417,11 @@ public class DataStream implements JsonpSerializable {
 		generator.writeKey("timestamp_field");
 		this.timestampField.serialize(generator, mapper);
 
+		if (this.indexMode != null) {
+			generator.writeKey("index_mode");
+			this.indexMode.serialize(generator, mapper);
+		}
+
 	}
 
 	@Override
@@ -456,6 +476,9 @@ public class DataStream implements JsonpSerializable {
 		private String template;
 
 		private DataStreamTimestampField timestampField;
+
+		@Nullable
+		private IndexMode indexMode;
 
 		/**
 		 * Custom metadata for the stream, copied from the <code>_meta</code> object of
@@ -724,6 +747,17 @@ public class DataStream implements JsonpSerializable {
 			return this.timestampField(fn.apply(new DataStreamTimestampField.Builder()).build());
 		}
 
+		/**
+		 * The index mode for the data stream that will be used for newly created
+		 * backing indices.
+		 * <p>
+		 * API name: {@code index_mode}
+		 */
+		public final Builder indexMode(@Nullable IndexMode value) {
+			this.indexMode = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -769,6 +803,7 @@ public class DataStream implements JsonpSerializable {
 		op.add(Builder::system, JsonpDeserializer.booleanDeserializer(), "system");
 		op.add(Builder::template, JsonpDeserializer.stringDeserializer(), "template");
 		op.add(Builder::timestampField, DataStreamTimestampField._DESERIALIZER, "timestamp_field");
+		op.add(Builder::indexMode, IndexMode._DESERIALIZER, "index_mode");
 
 	}
 

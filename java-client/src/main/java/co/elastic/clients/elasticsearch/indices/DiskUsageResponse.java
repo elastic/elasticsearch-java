@@ -60,13 +60,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class DiskUsageResponse implements JsonpSerializable {
-	private final JsonData valueBody;
+	private final JsonData diskUsage;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private DiskUsageResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
+		this.diskUsage = ApiTypeHelper.requireNonNull(builder.diskUsage, this, "diskUsage");
 
 	}
 
@@ -77,15 +77,15 @@ public class DiskUsageResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final JsonData valueBody() {
-		return this.valueBody;
+	public final JsonData diskUsage() {
+		return this.diskUsage;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.valueBody.serialize(generator, mapper);
+		this.diskUsage.serialize(generator, mapper);
 
 	}
 
@@ -101,13 +101,13 @@ public class DiskUsageResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DiskUsageResponse> {
-		private JsonData valueBody;
+		private JsonData diskUsage;
 
 		/**
 		 * Required - Response value.
 		 */
-		public final Builder valueBody(JsonData value) {
-			this.valueBody = value;
+		public final Builder diskUsage(JsonData value) {
+			this.diskUsage = value;
 			return this;
 		}
 
@@ -116,7 +116,7 @@ public class DiskUsageResponse implements JsonpSerializable {
 
 			@SuppressWarnings("unchecked")
 			JsonData value = (JsonData) JsonData._DESERIALIZER.deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.diskUsage(value);
 		}
 
 		@Override
@@ -143,7 +143,7 @@ public class DiskUsageResponse implements JsonpSerializable {
 		JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.diskUsage(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

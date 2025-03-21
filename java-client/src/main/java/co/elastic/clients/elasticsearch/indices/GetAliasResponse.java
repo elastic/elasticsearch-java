@@ -63,13 +63,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GetAliasResponse implements JsonpSerializable {
-	private final Map<String, IndexAliases> result;
+	private final Map<String, IndexAliases> aliases;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetAliasResponse(Builder builder) {
 
-		this.result = ApiTypeHelper.unmodifiableRequired(builder.result, this, "result");
+		this.aliases = ApiTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
 
 	}
 
@@ -80,15 +80,15 @@ public class GetAliasResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final Map<String, IndexAliases> result() {
-		return this.result;
+	public final Map<String, IndexAliases> aliases() {
+		return this.aliases;
 	}
 
 	/**
-	 * Get an element of {@code result}.
+	 * Get an element of {@code aliases}.
 	 */
 	public final @Nullable IndexAliases get(String key) {
-		return this.result.get(key);
+		return this.aliases.get(key);
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class GetAliasResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		for (Map.Entry<String, IndexAliases> item0 : this.result.entrySet()) {
+		for (Map.Entry<String, IndexAliases> item0 : this.aliases.entrySet()) {
 			generator.writeKey(item0.getKey());
 			item0.getValue().serialize(generator, mapper);
 
@@ -117,35 +117,35 @@ public class GetAliasResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GetAliasResponse> {
-		private Map<String, IndexAliases> result = new HashMap<>();
+		private Map<String, IndexAliases> aliases = new HashMap<>();
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>result</code>.
+		 * Adds all entries of <code>map</code> to <code>aliases</code>.
 		 */
-		public final Builder result(Map<String, IndexAliases> map) {
-			this.result = _mapPutAll(this.result, map);
+		public final Builder aliases(Map<String, IndexAliases> map) {
+			this.aliases = _mapPutAll(this.aliases, map);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code>.
+		 * Adds an entry to <code>aliases</code>.
 		 */
-		public final Builder result(String key, IndexAliases value) {
-			this.result = _mapPut(this.result, key, value);
+		public final Builder aliases(String key, IndexAliases value) {
+			this.aliases = _mapPut(this.aliases, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code> using a builder lambda.
+		 * Adds an entry to <code>aliases</code> using a builder lambda.
 		 */
-		public final Builder result(String key, Function<IndexAliases.Builder, ObjectBuilder<IndexAliases>> fn) {
-			return result(key, fn.apply(new IndexAliases.Builder()).build());
+		public final Builder aliases(String key, Function<IndexAliases.Builder, ObjectBuilder<IndexAliases>> fn) {
+			return aliases(key, fn.apply(new IndexAliases.Builder()).build());
 		}
 
 		@Override
@@ -154,7 +154,7 @@ public class GetAliasResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			Map<String, IndexAliases> value = (Map<String, IndexAliases>) JsonpDeserializer
 					.stringMapDeserializer(IndexAliases._DESERIALIZER).deserialize(parser, mapper);
-			return this.result(value);
+			return this.aliases(value);
 		}
 
 		@Override
@@ -182,7 +182,7 @@ public class GetAliasResponse implements JsonpSerializable {
 				.stringMapDeserializer(IndexAliases._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.result(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.aliases(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

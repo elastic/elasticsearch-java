@@ -26,8 +26,10 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
+import co.elastic.clients.elasticsearch._types.aggregations.AggregationVariant;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -292,8 +294,8 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 
 	/**
 	 * An array of index names. Wildcards are supported. If any of the indices are
-	 * in remote clusters, the machine learning nodes must have the
-	 * <code>remote_cluster_client</code> role.
+	 * in remote clusters, the master nodes and the machine learning nodes must have
+	 * the <code>remote_cluster_client</code> role.
 	 * <p>
 	 * API name: {@code indices}
 	 */
@@ -614,6 +616,19 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code aggregations}
 		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(String key, AggregationVariant value) {
+			this.aggregations = _mapPut(this.aggregations, key, value._toAggregation());
+			return this;
+		}
+
+		/**
+		 * If set, the datafeed performs aggregation searches. Support for aggregations
+		 * is limited and should be used only with low cardinality data.
+		 * <p>
+		 * API name: {@code aggregations}
+		 * <p>
 		 * Adds an entry to <code>aggregations</code> using a builder lambda.
 		 */
 		public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
@@ -808,8 +823,8 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 
 		/**
 		 * An array of index names. Wildcards are supported. If any of the indices are
-		 * in remote clusters, the machine learning nodes must have the
-		 * <code>remote_cluster_client</code> role.
+		 * in remote clusters, the master nodes and the machine learning nodes must have
+		 * the <code>remote_cluster_client</code> role.
 		 * <p>
 		 * API name: {@code indices}
 		 * <p>
@@ -822,8 +837,8 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 
 		/**
 		 * An array of index names. Wildcards are supported. If any of the indices are
-		 * in remote clusters, the machine learning nodes must have the
-		 * <code>remote_cluster_client</code> role.
+		 * in remote clusters, the master nodes and the machine learning nodes must have
+		 * the <code>remote_cluster_client</code> role.
 		 * <p>
 		 * API name: {@code indices}
 		 * <p>
@@ -902,6 +917,19 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * The Elasticsearch query domain-specific language (DSL). This value
+		 * corresponds to the query object in an Elasticsearch search POST body. All the
+		 * options that are supported by Elasticsearch can be used, as this object is
+		 * passed verbatim to Elasticsearch.
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(QueryVariant value) {
+			this.query = value._toQuery();
+			return this;
 		}
 
 		/**
