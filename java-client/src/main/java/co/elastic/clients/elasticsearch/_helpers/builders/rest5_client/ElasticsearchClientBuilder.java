@@ -17,20 +17,20 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._helpers.builders;
+package co.elastic.clients.elasticsearch._helpers.builders.rest5_client;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
-import co.elastic.clients.transport.rest_client.RestClientOptions;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
+import co.elastic.clients.transport.rest5_client.RestClientOptions;
+import co.elastic.clients.transport.rest5_client.RestClientTransport;
+import co.elastic.clients.transport.rest5_client.low_level.RestClient;
+import co.elastic.clients.transport.rest5_client.low_level.RestClientBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
-import org.apache.http.Header;
-import org.apache.http.HttpHost;
-import org.apache.http.message.BasicHeader;
-import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestClientBuilder;
+import org.apache.hc.core5.http.Header;
+import org.apache.hc.core5.http.HttpHost;
+import org.apache.hc.core5.http.message.BasicHeader;
 
 import javax.net.ssl.SSLContext;
 import java.net.URISyntaxException;
@@ -90,7 +90,11 @@ public class ElasticsearchClientBuilder {
 
         // defaulting to localhost
         if (this.host == null) {
-            this.host = HttpHost.create("http://localhost:9200");
+            try {
+                this.host = HttpHost.create("http://localhost:9200");
+            } catch (URISyntaxException e) {
+                // can't throw
+            }
         }
 
         RestClientBuilder restClientBuilder = RestClient.builder(host);
@@ -121,8 +125,7 @@ public class ElasticsearchClientBuilder {
             this.mapper = new JacksonJsonpMapper(mapper);
         }
 
-        RestClientTransport transport = new RestClientTransport(restClientBuilder.build(), mapper,
-            transportOptions);
+        RestClientTransport transport = new RestClientTransport(restClientBuilder.build(), mapper, transportOptions);
         return new ElasticsearchClient(transport);
     }
 }
