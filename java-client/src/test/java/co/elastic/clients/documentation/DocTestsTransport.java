@@ -21,6 +21,7 @@ package co.elastic.clients.documentation;
 
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
+import co.elastic.clients.transport.BackoffPolicy;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.TransportOptions;
@@ -70,9 +71,15 @@ public class DocTestsTransport implements ElasticsearchTransport {
         }
 
         @Override
+        public BackoffPolicy backoffPolicy() {
+            return BackoffPolicy.noBackoff();
+        }
+
+        @Override
         public Builder toBuilder() {
             return null;
         }
+
     };
 
     public void setResult(Object result) {

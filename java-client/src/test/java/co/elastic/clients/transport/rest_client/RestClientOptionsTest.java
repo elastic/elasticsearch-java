@@ -22,6 +22,7 @@ package co.elastic.clients.transport.rest_client;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.SimpleJsonpMapper;
+import co.elastic.clients.transport.BackoffPolicy;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
@@ -192,7 +193,7 @@ class RestClientOptionsTest extends Assertions {
             new HttpHost(httpServer.getAddress().getHostString(), httpServer.getAddress().getPort(), "http")
         ).build();
 
-        ElasticsearchTransport transport = newRestClientTransport(llrc, new SimpleJsonpMapper(), new RestClientOptions(options,false));
+        ElasticsearchTransport transport = newRestClientTransport(llrc, new SimpleJsonpMapper(), new RestClientOptions(options,false, BackoffPolicy.noBackoff()));
         ElasticsearchClient esClient = new ElasticsearchClient(transport);
         // Should not override client meta
         String id = checkHeaders(esClient);
