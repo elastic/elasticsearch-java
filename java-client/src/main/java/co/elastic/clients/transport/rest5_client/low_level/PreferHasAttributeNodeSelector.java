@@ -17,9 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.transport.rest5_client.low_level.node.selector;
-
-import co.elastic.clients.transport.rest5_client.low_level.node.Node;
+package co.elastic.clients.transport.rest5_client.low_level;
 
 import java.util.Iterator;
 import java.util.List;
@@ -27,27 +25,56 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * A {@link NodeSelector} that selects nodes that have a particular value
- * for an attribute.
+ * Both {@link PreferHasAttributeNodeSelector} and {@link HasAttributeNodeSelector} will work the same
+ * if there is a {@link Node} with particular attribute in the attributes,
+ * but {@link PreferHasAttributeNodeSelector} will select another {@link Node}s even if there is no
+ * {@link Node}
+ * with particular attribute in the attributes.
  */
-public final class HasAttributeNodeSelector implements NodeSelector {
+public final class PreferHasAttributeNodeSelector implements NodeSelector {
     private final String key;
     private final String value;
 
-    public HasAttributeNodeSelector(String key, String value) {
+    public PreferHasAttributeNodeSelector(String key, String value) {
         this.key = key;
         this.value = value;
     }
 
     @Override
     public void select(Iterable<Node> nodes) {
-        Iterator<Node> itr = nodes.iterator();
-        while (itr.hasNext()) {
-            Map<String, List<String>> allAttributes = itr.next().getAttributes();
-            if (allAttributes == null) continue;
-            List<String> values = allAttributes.get(key);
-            if (values == null || !values.contains(value)) {
-                itr.remove();
+        boolean foundAtLeastOne = false;
+
+        for (Node node : nodes) {
+            Map<String, List<String>> attributes = node.getAttributes();
+
+            if (attributes == null) {
+                continue;
+            }
+
+            List<String> values = attributes.get(key);
+
+            if (values == null) {
+                continue;
+            }
+
+            if (values.contains(value)) {
+                foundAtLeastOne = true;
+                break;
+            }
+        }
+
+        if (foundAtLeastOne) {
+            Iterator<Node> itr = nodes.iterator();
+            while (itr.hasNext()) {
+                Map<String, List<String>> attributes = itr.next().getAttributes();
+                if (attributes == null) {
+                    continue;
+                }
+                List<String> values = attributes.get(key);
+
+                if (values == null || !values.contains(value)) {
+                    itr.remove();
+                }
             }
         }
     }
@@ -60,7 +87,7 @@ public final class HasAttributeNodeSelector implements NodeSelector {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        HasAttributeNodeSelector that = (HasAttributeNodeSelector) o;
+        PreferHasAttributeNodeSelector that = (PreferHasAttributeNodeSelector) o;
         return Objects.equals(key, that.key) && Objects.equals(value, that.value);
     }
 

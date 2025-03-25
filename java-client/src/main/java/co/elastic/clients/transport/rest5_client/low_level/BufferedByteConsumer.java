@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package co.elastic.clients.transport.rest5_client.low_level.consumer;
+package co.elastic.clients.transport.rest5_client.low_level;
 
 import org.apache.hc.core5.http.ContentTooLongException;
 import org.apache.hc.core5.http.ContentType;
@@ -26,7 +26,7 @@ import org.apache.hc.core5.util.ByteArrayBuffer;
 
 import java.nio.ByteBuffer;
 
-import static co.elastic.clients.transport.rest5_client.low_level.utils.Constants.DEFAULT_BUFFER_INITIAL_CAPACITY;
+import static co.elastic.clients.transport.rest5_client.low_level.Constants.DEFAULT_BUFFER_INITIAL_CAPACITY;
 
 public class BufferedByteConsumer extends AbstractBinAsyncEntityConsumer<ByteArrayEntity> {
 

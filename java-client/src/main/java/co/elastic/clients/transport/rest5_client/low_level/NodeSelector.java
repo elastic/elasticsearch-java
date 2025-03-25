@@ -17,11 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.transport.rest5_client.low_level.node.selector;
-
-import co.elastic.clients.transport.rest5_client.low_level.RestClient;
-import co.elastic.clients.transport.rest5_client.low_level.RestClientBuilder;
-import co.elastic.clients.transport.rest5_client.low_level.node.Node;
+package co.elastic.clients.transport.rest5_client.low_level;
 
 import java.util.Iterator;
 

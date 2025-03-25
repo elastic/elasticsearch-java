@@ -19,7 +19,6 @@
 
 package co.elastic.clients.transport.rest5_client.low_level;
 
-import co.elastic.clients.transport.rest5_client.low_level.node.Node;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hc.client5.http.classic.methods.HttpUriRequest;
