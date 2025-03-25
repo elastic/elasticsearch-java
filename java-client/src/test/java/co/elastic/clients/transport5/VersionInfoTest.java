@@ -17,24 +17,16 @@
  * under the License.
  */
 
-package co.elastic.clients.transport.rest_client;
+package co.elastic.clients.transport5;
 
-import co.elastic.clients.transport.TransportHttpClientTest;
-import co.elastic.clients.transport.rest5_client.RestClientHttpClient;
-import org.apache.http.HttpHost;
-import org.elasticsearch.client.RestClient;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class RestTransportClientTest extends TransportHttpClientTest<RestClientHttpClient> {
+public class VersionInfoTest {
 
-    public RestTransportClientTest() {
-        super(createClient());
-    }
-
-    private static RestClientHttpClient createClient() {
-        RestClient restClient = RestClient.builder(
-            new HttpHost(server.getAddress().getAddress(), server.getAddress().getPort(), "http")
-        ).build();
-
-        return new RestClientHttpClient(restClient);
+    @Test
+    public void testClientMeta() {
+        String version = VersionInfo.VERSION;
+        Assertions.assertTrue(ElasticsearchTransportBase.getClientMeta().startsWith("es=" + version + ",jv="));
     }
 }

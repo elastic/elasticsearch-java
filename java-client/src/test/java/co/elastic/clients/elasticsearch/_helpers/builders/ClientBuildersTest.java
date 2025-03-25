@@ -20,9 +20,8 @@
 package co.elastic.clients.elasticsearch._helpers.builders;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch.core.SearchRequest;
-import co.elastic.clients.transport.rest_client.RestClientOptions;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
+import co.elastic.clients.transport.rest5_client.RestClientOptions;
+import co.elastic.clients.transport.rest5_client.RestClientTransport;
 import org.elasticsearch.client.RequestOptions;
 import org.junit.jupiter.api.Test;
 
