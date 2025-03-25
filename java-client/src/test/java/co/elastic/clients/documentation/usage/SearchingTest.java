@@ -167,7 +167,7 @@ public class SearchingTest {
             .id("query-script") // <1>
             .script(s -> s
                 .lang("mustache")
-                .source(so -> so.scriptString("{\"query\":{\"match\":{\"{{field}}\":\"{{value}}\"}}}"))
+                .source("{\"query\":{\"match\":{\"{{field}}\":\"{{value}}\"}}}")
             ));
         //end::search-template-script
 

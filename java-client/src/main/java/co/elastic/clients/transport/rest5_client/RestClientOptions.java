@@ -22,12 +22,12 @@ package co.elastic.clients.transport.rest5_client;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.http.HeaderMap;
+import co.elastic.clients.transport.rest5_client.low_level.RequestOptions;
+import co.elastic.clients.transport.rest5_client.low_level.WarningsHandler;
 import co.elastic.clients.util.LanguageRuntimeVersions;
 import co.elastic.clients.util.VisibleForTesting;
 import org.apache.hc.client5.http.impl.async.HttpAsyncClientBuilder;
 import org.apache.hc.core5.util.VersionInfo;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.WarningsHandler;
 
 import javax.annotation.Nullable;
 import java.util.AbstractMap;

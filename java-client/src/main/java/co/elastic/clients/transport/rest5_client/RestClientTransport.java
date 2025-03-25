@@ -22,7 +22,7 @@ package co.elastic.clients.transport.rest5_client;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransportBase;
 import co.elastic.clients.transport.instrumentation.Instrumentation;
-import org.elasticsearch.client.RestClient;
+import co.elastic.clients.transport.rest5_client.low_level.RestClient;
 
 public class RestClientTransport extends ElasticsearchTransportBase {
 

@@ -208,6 +208,8 @@ dependencies {
     // https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html
     api("org.elasticsearch.client", "elasticsearch-rest-client", elasticsearchVersion)
 
+    api("org.apache.httpcomponents.client5","httpclient5","5.4")
+
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
     api("com.google.code.findbugs:jsr305:3.0.2")
