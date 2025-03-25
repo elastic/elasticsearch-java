@@ -16,25 +16,26 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+package co.elastic.clients.transport.rest5_client.low_level_client;
 
-package co.elastic.clients.transport.rest_client;
+import org.apache.hc.client5.http.classic.methods.HttpDelete;
+import org.apache.hc.client5.http.classic.methods.HttpUriRequestBase;
 
-import co.elastic.clients.transport.TransportHttpClientTest;
-import co.elastic.clients.transport.rest5_client.RestClientHttpClient;
-import org.apache.http.HttpHost;
-import org.elasticsearch.client.RestClient;
+import java.net.URI;
 
-public class RestTransportClientTest extends TransportHttpClientTest<RestClientHttpClient> {
+/**
+ * Allows to send DELETE requests providing a body (not supported out of the box)
+ */
+final class HttpDeleteWithEntity extends HttpUriRequestBase {
 
-    public RestTransportClientTest() {
-        super(createClient());
+    static final String METHOD_NAME = HttpDelete.METHOD_NAME;
+
+    public HttpDeleteWithEntity(URI requestUri) {
+        super(METHOD_NAME, requestUri);
     }
 
-    private static RestClientHttpClient createClient() {
-        RestClient restClient = RestClient.builder(
-            new HttpHost(server.getAddress().getAddress(), server.getAddress().getPort(), "http")
-        ).build();
-
-        return new RestClientHttpClient(restClient);
+    @Override
+    public String getMethod() {
+        return METHOD_NAME;
     }
 }

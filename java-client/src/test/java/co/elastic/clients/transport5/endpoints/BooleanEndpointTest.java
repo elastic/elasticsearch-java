@@ -17,24 +17,21 @@
  * under the License.
  */
 
-package co.elastic.clients.transport.rest_client;
+package co.elastic.clients.transport5.endpoints;
 
-import co.elastic.clients.transport.TransportHttpClientTest;
-import co.elastic.clients.transport.rest5_client.RestClientHttpClient;
-import org.apache.http.HttpHost;
-import org.elasticsearch.client.RestClient;
+import co.elastic.clients.elasticsearch.core.ExistsRequest;
+import co.elastic.clients.elasticsearch.security.SamlCompleteLogoutRequest;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class RestTransportClientTest extends TransportHttpClientTest<RestClientHttpClient> {
+public class BooleanEndpointTest extends Assertions {
 
-    public RestTransportClientTest() {
-        super(createClient());
-    }
+    @Test
+    public void testHasRequestBody() {
+        ExistsRequest er = ExistsRequest.of(r -> r.index("foo").id("1"));
+        assertNull(ExistsRequest._ENDPOINT.body(er));
 
-    private static RestClientHttpClient createClient() {
-        RestClient restClient = RestClient.builder(
-            new HttpHost(server.getAddress().getAddress(), server.getAddress().getPort(), "http")
-        ).build();
-
-        return new RestClientHttpClient(restClient);
+        SamlCompleteLogoutRequest sclr = SamlCompleteLogoutRequest.of(r -> r.ids("1").realm("r"));
+        assertNotNull(SamlCompleteLogoutRequest._ENDPOINT.body(sclr));
     }
 }
