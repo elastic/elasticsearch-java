@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package clients.rest5_client.documentation.usage;
+package co.elastic.clients.rest5_client.documentation.usage;
 
 public class Product {
     private String sku;

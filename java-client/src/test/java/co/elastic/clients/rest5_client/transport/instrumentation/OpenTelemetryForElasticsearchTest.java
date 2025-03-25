@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package clients.rest5_client.transport.instrumentation;
+package co.elastic.clients.rest5_client.transport.instrumentation;
 
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;

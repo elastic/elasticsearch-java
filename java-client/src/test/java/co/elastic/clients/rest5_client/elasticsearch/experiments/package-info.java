@@ -20,4 +20,4 @@
 /**
  * Experiments for the design of high-level client classes and usage illustration of the XContent-related classes.
  */
-package clients.rest5_client.elasticsearch.experiments;
+package co.elastic.clients.rest5_client.elasticsearch.experiments;

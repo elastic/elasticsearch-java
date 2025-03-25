@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package clients.rest5_client.transport.endpoints;
+package co.elastic.clients.rest5_client.transport.endpoints;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.CountResponse;

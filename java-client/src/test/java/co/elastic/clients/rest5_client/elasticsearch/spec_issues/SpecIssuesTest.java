@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package clients.rest5_client.elasticsearch.spec_issues;
+package co.elastic.clients.rest5_client.elasticsearch.spec_issues;
 
 import co.elastic.clients.documentation.usage.Product;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;

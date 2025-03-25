@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package clients.rest5_client.documentation.api_conventions;
+package co.elastic.clients.rest5_client.documentation.api_conventions;
 
 import co.elastic.clients.documentation.DocTestsTransport;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;

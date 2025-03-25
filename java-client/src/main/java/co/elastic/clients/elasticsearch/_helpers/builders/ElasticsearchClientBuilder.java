@@ -110,11 +110,15 @@ public class ElasticsearchClientBuilder {
             });
         }
 
-        try {
-            restClientBuilder.setSslContext(Optional.ofNullable(sslContext).orElse(SSLContext.getDefault()));
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
+        restClientBuilder.setHttpClientConfigCallback(hc -> {
+                try {
+                    return hc
+                        .setSSLContext(Optional.ofNullable(sslContext).orElse(SSLContext.getDefault()));
+                } catch (NoSuchAlgorithmException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        );
 
         if (this.mapper == null) {
             ObjectMapper mapper = JsonMapper.builder().build();
