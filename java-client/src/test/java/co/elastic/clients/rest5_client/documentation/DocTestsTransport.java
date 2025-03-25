@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package clients.rest5_client.documentation;
+package co.elastic.clients.rest5_client.documentation;
 
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;

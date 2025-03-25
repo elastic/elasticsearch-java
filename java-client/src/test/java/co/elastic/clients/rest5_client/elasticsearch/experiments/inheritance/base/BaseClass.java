@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package clients.rest5_client.elasticsearch.experiments.inheritance.base;
+package co.elastic.clients.rest5_client.elasticsearch.experiments.inheritance.base;
 
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;

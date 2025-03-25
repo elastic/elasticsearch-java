@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package clients.rest5_client.elasticsearch.experiments.containers;
+package co.elastic.clients.rest5_client.elasticsearch.experiments.containers;
 
 import co.elastic.clients.elasticsearch.experiments.containers.SomeUnionVariant;
 import co.elastic.clients.json.JsonpDeserializable;

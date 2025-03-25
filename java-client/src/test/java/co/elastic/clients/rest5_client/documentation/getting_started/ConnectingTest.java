@@ -18,7 +18,7 @@
  */
 
 //TODO rewrite
-package clients.rest5_client.documentation.getting_started;
+package co.elastic.clients.rest5_client.documentation.getting_started;
 
 public class ConnectingTest {
 

@@ -21,4 +21,4 @@
  * Tests that verify correct types and serialization/deserialization of the API specification model using API
  * structures that cover the various model features
  */
-package clients.rest5_client.elasticsearch.model;
+package co.elastic.clients.rest5_client.elasticsearch.model;

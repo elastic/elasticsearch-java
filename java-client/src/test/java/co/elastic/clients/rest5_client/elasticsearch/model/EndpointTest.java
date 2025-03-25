@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package clients.rest5_client.elasticsearch.model;
+package co.elastic.clients.rest5_client.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch.core.ExistsRequest;

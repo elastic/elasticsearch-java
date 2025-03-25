@@ -17,17 +17,17 @@
  * under the License.
  */
 
-package clients.rest5_client.transport;
+package co.elastic.clients.rest5_client.transport;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
+import co.elastic.clients.rest5_client.elasticsearch.ElasticsearchTestServer;
 import co.elastic.clients.json.SimpleJsonpMapper;
 import co.elastic.clients.transport.TransportUtils;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
+import co.elastic.clients.transport.rest5_client.low_level.RestClient;
+import co.elastic.clients.transport.rest5_client.RestClientTransport;
 import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.message.BasicHeader;
-import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.elasticsearch.ElasticsearchContainer;

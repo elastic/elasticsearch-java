@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package clients.rest5_client.transport.http;
+package co.elastic.clients.rest5_client.transport.http;
 
 import co.elastic.clients.transport.http.HeaderMap;
 import org.junit.jupiter.api.Assertions;

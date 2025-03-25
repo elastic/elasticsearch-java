@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package clients.rest5_client.elasticsearch._helpers.builders;
+package co.elastic.clients.rest5_client.elasticsearch._helpers.builders;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._helpers.builders.ElasticsearchClientBuilder;

@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package clients.rest5_client.elasticsearch.experiments.inheritance;
+package co.elastic.clients.rest5_client.elasticsearch.experiments.inheritance;
 
 import co.elastic.clients.elasticsearch.experiments.inheritance.child.ChildClass;
 import co.elastic.clients.elasticsearch.experiments.inheritance.final_.FinalClass;

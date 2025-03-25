@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package clients.rest5_client.documentation.troubleshooting;
+package co.elastic.clients.rest5_client.documentation.troubleshooting;
 
 import co.elastic.clients.documentation.DocTestsTransport;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;

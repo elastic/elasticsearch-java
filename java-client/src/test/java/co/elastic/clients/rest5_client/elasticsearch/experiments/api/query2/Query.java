@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package clients.rest5_client.elasticsearch.experiments.api.query2;
+package co.elastic.clients.rest5_client.elasticsearch.experiments.api.query2;
 
 import co.elastic.clients.elasticsearch.experiments.UnionVariant;
 import co.elastic.clients.elasticsearch.experiments.api.query2.BoolQuery;

@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package clients.rest5_client.transport.rest_client;
+package co.elastic.clients.rest5_client.transport.rest_client;
 
 import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
