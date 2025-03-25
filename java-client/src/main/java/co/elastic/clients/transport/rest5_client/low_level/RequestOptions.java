@@ -19,7 +19,6 @@
 
 package co.elastic.clients.transport.rest5_client.low_level;
 
-import co.elastic.clients.transport.rest5_client.low_level.consumer.HttpAsyncResponseConsumerFactory;
 import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.message.BasicHeader;

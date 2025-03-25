@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.transport.rest5_client.low_level.consumer;
+package co.elastic.clients.transport.rest5_client.low_level;
 
 
 import org.apache.hc.core5.http.ClassicHttpResponse;

@@ -1,4 +1,4 @@
-package co.elastic.clients.transport.rest5_client.low_level.utils;
+package co.elastic.clients.transport.rest5_client.low_level;
 
 public class Constants {
     // default buffer limit is 100MB

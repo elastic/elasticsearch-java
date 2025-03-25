@@ -18,9 +18,6 @@
  */
 package co.elastic.clients.transport.rest5_client.low_level;
 
-import co.elastic.clients.transport.rest5_client.low_level.node.Node;
-import co.elastic.clients.transport.rest5_client.low_level.node.selector.NodeSelector;
-import co.elastic.clients.transport.rest5_client.low_level.producer.BasicAsyncEntityProducer;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hc.client5.http.ClientProtocolException;

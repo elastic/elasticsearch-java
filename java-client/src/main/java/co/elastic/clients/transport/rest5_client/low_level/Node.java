@@ -17,9 +17,8 @@
  * under the License.
  */
 
-package co.elastic.clients.transport.rest5_client.low_level.node;
+package co.elastic.clients.transport.rest5_client.low_level;
 
-import co.elastic.clients.transport.rest5_client.low_level.node.selector.NodeSelector;
 import org.apache.hc.core5.http.HttpHost;
 
 import java.util.List;

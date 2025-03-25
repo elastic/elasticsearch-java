@@ -20,8 +20,6 @@
 package co.elastic.clients.transport.rest5_client.low_level;
 
 
-import co.elastic.clients.transport.rest5_client.low_level.node.Node;
-import co.elastic.clients.transport.rest5_client.low_level.node.selector.NodeSelector;
 import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.client5.http.impl.DefaultAuthenticationStrategy;
 import org.apache.hc.client5.http.impl.async.CloseableHttpAsyncClient;

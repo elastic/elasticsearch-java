@@ -1,4 +1,4 @@
-package co.elastic.clients.transport.rest5_client.low_level.producer;
+package co.elastic.clients.transport.rest5_client.low_level;
 
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.nio.AsyncEntityProducer;
@@ -13,7 +13,7 @@ import java.nio.channels.ReadableByteChannel;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static co.elastic.clients.transport.rest5_client.low_level.utils.Constants.DEFAULT_BUFFER_INITIAL_CAPACITY;
+import static co.elastic.clients.transport.rest5_client.low_level.Constants.DEFAULT_BUFFER_INITIAL_CAPACITY;
 
 /**
  * Basic implementation of {@link AsyncEntityProducer}

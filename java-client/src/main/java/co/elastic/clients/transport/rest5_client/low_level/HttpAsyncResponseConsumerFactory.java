@@ -16,13 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package co.elastic.clients.transport.rest5_client.low_level.consumer;
+package co.elastic.clients.transport.rest5_client.low_level;
 
 import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.nio.AsyncResponseConsumer;
 import org.apache.hc.core5.http.nio.support.AbstractAsyncResponseConsumer;
 
-import static co.elastic.clients.transport.rest5_client.low_level.utils.Constants.DEFAULT_BUFFER_LIMIT;
+import static co.elastic.clients.transport.rest5_client.low_level.Constants.DEFAULT_BUFFER_LIMIT;
 
 /**
  * Factory used to create instances of {@link AsyncResponseConsumer}. Each request retry needs its own
