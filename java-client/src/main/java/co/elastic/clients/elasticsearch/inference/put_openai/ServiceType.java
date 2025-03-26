@@ -17,7 +17,11 @@
  * under the License.
  */
 
+<<<<<<<< HEAD:java-client/src/main/java/co/elastic/clients/elasticsearch/inference/put_voyageai/ServiceType.java
+package co.elastic.clients.elasticsearch.inference.put_voyageai;
+========
 package co.elastic.clients.elasticsearch.inference.put_openai;
+>>>>>>>> c86960dc6 (regen from latest spec):java-client/src/main/java/co/elastic/clients/elasticsearch/inference/put_openai/ServiceType.java
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -41,12 +45,20 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
+<<<<<<<< HEAD:java-client/src/main/java/co/elastic/clients/elasticsearch/inference/put_voyageai/ServiceType.java
+ *      "../../doc-files/api-spec.html#inference.put_voyageai.ServiceType">API
+========
  *      "../../doc-files/api-spec.html#inference.put_openai.ServiceType">API
+>>>>>>>> c86960dc6 (regen from latest spec):java-client/src/main/java/co/elastic/clients/elasticsearch/inference/put_openai/ServiceType.java
  *      specification</a>
  */
 @JsonpDeserializable
 public enum ServiceType implements JsonEnum {
+<<<<<<<< HEAD:java-client/src/main/java/co/elastic/clients/elasticsearch/inference/put_voyageai/ServiceType.java
+	Voyageai("voyageai"),
+========
 	Openai("openai"),
+>>>>>>>> c86960dc6 (regen from latest spec):java-client/src/main/java/co/elastic/clients/elasticsearch/inference/put_openai/ServiceType.java
 
 	;
 

@@ -39,6 +39,7 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -81,6 +82,9 @@ public class TransformSummary implements JsonpSerializable {
 	private final Long createTime;
 
 	@Nullable
+	private final DateTime createTimeString;
+
+	@Nullable
 	private final String description;
 
 	private final Destination dest;
@@ -118,6 +122,7 @@ public class TransformSummary implements JsonpSerializable {
 
 		this.authorization = builder.authorization;
 		this.createTime = builder.createTime;
+		this.createTimeString = builder.createTimeString;
 		this.description = builder.description;
 		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
 		this.frequency = builder.frequency;
@@ -157,6 +162,14 @@ public class TransformSummary implements JsonpSerializable {
 	@Nullable
 	public final Long createTime() {
 		return this.createTime;
+	}
+
+	/**
+	 * API name: {@code create_time_string}
+	 */
+	@Nullable
+	public final DateTime createTimeString() {
+		return this.createTimeString;
 	}
 
 	/**
@@ -287,6 +300,10 @@ public class TransformSummary implements JsonpSerializable {
 			generator.write(this.createTime);
 
 		}
+		if (this.createTimeString != null) {
+			generator.writeKey("create_time_string");
+			this.createTimeString.serialize(generator, mapper);
+		}
 		if (this.description != null) {
 			generator.writeKey("description");
 			generator.write(this.description);
@@ -369,6 +386,9 @@ public class TransformSummary implements JsonpSerializable {
 		private Long createTime;
 
 		@Nullable
+		private DateTime createTimeString;
+
+		@Nullable
 		private String description;
 
 		private Destination dest;
@@ -432,6 +452,14 @@ public class TransformSummary implements JsonpSerializable {
 		 */
 		public final Builder createTime(@Nullable Long value) {
 			this.createTime = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code create_time_string}
+		 */
+		public final Builder createTimeString(@Nullable DateTime value) {
+			this.createTimeString = value;
 			return this;
 		}
 
@@ -672,6 +700,7 @@ public class TransformSummary implements JsonpSerializable {
 
 		op.add(Builder::authorization, TransformAuthorization._DESERIALIZER, "authorization");
 		op.add(Builder::createTime, JsonpDeserializer.longDeserializer(), "create_time");
+		op.add(Builder::createTimeString, DateTime._DESERIALIZER, "create_time_string");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::dest, Destination._DESERIALIZER, "dest");
 		op.add(Builder::frequency, Time._DESERIALIZER, "frequency");

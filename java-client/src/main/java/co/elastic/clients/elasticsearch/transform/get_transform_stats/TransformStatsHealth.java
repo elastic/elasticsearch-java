@@ -31,6 +31,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -62,11 +63,14 @@ import javax.annotation.Nullable;
 public class TransformStatsHealth implements JsonpSerializable {
 	private final HealthStatus status;
 
+	private final List<TransformHealthIssue> issues;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private TransformStatsHealth(Builder builder) {
 
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.issues = ApiTypeHelper.unmodifiable(builder.issues);
 
 	}
 
@@ -82,6 +86,16 @@ public class TransformStatsHealth implements JsonpSerializable {
 	}
 
 	/**
+	 * If a non-healthy status is returned, contains a list of issues of the
+	 * transform.
+	 * <p>
+	 * API name: {@code issues}
+	 */
+	public final List<TransformHealthIssue> issues() {
+		return this.issues;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -94,6 +108,16 @@ public class TransformStatsHealth implements JsonpSerializable {
 
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.issues)) {
+			generator.writeKey("issues");
+			generator.writeStartArray();
+			for (TransformHealthIssue item0 : this.issues) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -113,12 +137,53 @@ public class TransformStatsHealth implements JsonpSerializable {
 				ObjectBuilder<TransformStatsHealth> {
 		private HealthStatus status;
 
+		@Nullable
+		private List<TransformHealthIssue> issues;
+
 		/**
 		 * Required - API name: {@code status}
 		 */
 		public final Builder status(HealthStatus value) {
 			this.status = value;
 			return this;
+		}
+
+		/**
+		 * If a non-healthy status is returned, contains a list of issues of the
+		 * transform.
+		 * <p>
+		 * API name: {@code issues}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>issues</code>.
+		 */
+		public final Builder issues(List<TransformHealthIssue> list) {
+			this.issues = _listAddAll(this.issues, list);
+			return this;
+		}
+
+		/**
+		 * If a non-healthy status is returned, contains a list of issues of the
+		 * transform.
+		 * <p>
+		 * API name: {@code issues}
+		 * <p>
+		 * Adds one or more values to <code>issues</code>.
+		 */
+		public final Builder issues(TransformHealthIssue value, TransformHealthIssue... values) {
+			this.issues = _listAdd(this.issues, value, values);
+			return this;
+		}
+
+		/**
+		 * If a non-healthy status is returned, contains a list of issues of the
+		 * transform.
+		 * <p>
+		 * API name: {@code issues}
+		 * <p>
+		 * Adds a value to <code>issues</code> using a builder lambda.
+		 */
+		public final Builder issues(Function<TransformHealthIssue.Builder, ObjectBuilder<TransformHealthIssue>> fn) {
+			return issues(fn.apply(new TransformHealthIssue.Builder()).build());
 		}
 
 		@Override
@@ -150,6 +215,7 @@ public class TransformStatsHealth implements JsonpSerializable {
 	protected static void setupTransformStatsHealthDeserializer(ObjectDeserializer<TransformStatsHealth.Builder> op) {
 
 		op.add(Builder::status, HealthStatus._DESERIALIZER, "status");
+		op.add(Builder::issues, JsonpDeserializer.arrayDeserializer(TransformHealthIssue._DESERIALIZER), "issues");
 
 	}
 

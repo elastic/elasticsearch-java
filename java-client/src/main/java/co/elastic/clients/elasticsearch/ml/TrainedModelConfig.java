@@ -118,6 +118,9 @@ public class TrainedModelConfig implements JsonpSerializable {
 	private final TrainedModelLocation location;
 
 	@Nullable
+	private final String platformArchitecture;
+
+	@Nullable
 	private final TrainedModelPrefixStrings prefixStrings;
 
 	// ---------------------------------------------------------------------------------------------
@@ -143,6 +146,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 		this.modelSizeBytes = builder.modelSizeBytes;
 		this.modelPackage = builder.modelPackage;
 		this.location = builder.location;
+		this.platformArchitecture = builder.platformArchitecture;
 		this.prefixStrings = builder.prefixStrings;
 
 	}
@@ -335,6 +339,14 @@ public class TrainedModelConfig implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code platform_architecture}
+	 */
+	@Nullable
+	public final String platformArchitecture() {
+		return this.platformArchitecture;
+	}
+
+	/**
 	 * API name: {@code prefix_strings}
 	 */
 	@Nullable
@@ -453,6 +465,11 @@ public class TrainedModelConfig implements JsonpSerializable {
 			this.location.serialize(generator, mapper);
 
 		}
+		if (this.platformArchitecture != null) {
+			generator.writeKey("platform_architecture");
+			generator.write(this.platformArchitecture);
+
+		}
 		if (this.prefixStrings != null) {
 			generator.writeKey("prefix_strings");
 			this.prefixStrings.serialize(generator, mapper);
@@ -549,6 +566,9 @@ public class TrainedModelConfig implements JsonpSerializable {
 
 		@Nullable
 		private TrainedModelLocation location;
+
+		@Nullable
+		private String platformArchitecture;
 
 		@Nullable
 		private TrainedModelPrefixStrings prefixStrings;
@@ -831,6 +851,14 @@ public class TrainedModelConfig implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code platform_architecture}
+		 */
+		public final BuilderT platformArchitecture(@Nullable String value) {
+			this.platformArchitecture = value;
+			return self();
+		}
+
+		/**
 		 * API name: {@code prefix_strings}
 		 */
 		public final BuilderT prefixStrings(@Nullable TrainedModelPrefixStrings value) {
@@ -883,6 +911,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 		op.add(AbstractBuilder::modelSizeBytes, JsonpDeserializer.stringDeserializer(), "model_size_bytes");
 		op.add(AbstractBuilder::modelPackage, ModelPackageConfig._DESERIALIZER, "model_package");
 		op.add(AbstractBuilder::location, TrainedModelLocation._DESERIALIZER, "location");
+		op.add(AbstractBuilder::platformArchitecture, JsonpDeserializer.stringDeserializer(), "platform_architecture");
 		op.add(AbstractBuilder::prefixStrings, TrainedModelPrefixStrings._DESERIALIZER, "prefix_strings");
 
 	}

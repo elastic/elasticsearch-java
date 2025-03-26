@@ -76,7 +76,7 @@ public class OpenAITaskSettings implements JsonpSerializable {
 
 	/**
 	 * For a <code>completion</code> or <code>text_embedding</code> task, specify
-	 * the user issuing the request. This informaiton can be used for abuse
+	 * the user issuing the request. This information can be used for abuse
 	 * detection.
 	 * <p>
 	 * API name: {@code user}
@@ -124,7 +124,7 @@ public class OpenAITaskSettings implements JsonpSerializable {
 
 		/**
 		 * For a <code>completion</code> or <code>text_embedding</code> task, specify
-		 * the user issuing the request. This informaiton can be used for abuse
+		 * the user issuing the request. This information can be used for abuse
 		 * detection.
 		 * <p>
 		 * API name: {@code user}

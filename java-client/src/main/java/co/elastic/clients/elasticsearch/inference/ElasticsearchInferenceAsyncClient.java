@@ -213,6 +213,45 @@ public class ElasticsearchInferenceAsyncClient
 				GetInferenceRequest._ENDPOINT, this.transportOptions);
 	}
 
+	// ----- Endpoint: inference.post_eis_chat_completion
+
+	/**
+	 * Perform a chat completion task through the Elastic Inference Service (EIS).
+	 * <p>
+	 * Perform a chat completion inference task with the <code>elastic</code>
+	 * service.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-post-eis-chat-completion">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<BinaryResponse> postEisChatCompletion(PostEisChatCompletionRequest request) {
+		@SuppressWarnings("unchecked")
+		Endpoint<PostEisChatCompletionRequest, BinaryResponse, ErrorResponse> endpoint = (Endpoint<PostEisChatCompletionRequest, BinaryResponse, ErrorResponse>) PostEisChatCompletionRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Perform a chat completion task through the Elastic Inference Service (EIS).
+	 * <p>
+	 * Perform a chat completion inference task with the <code>elastic</code>
+	 * service.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PostEisChatCompletionRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-post-eis-chat-completion">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<BinaryResponse> postEisChatCompletion(
+			Function<PostEisChatCompletionRequest.Builder, ObjectBuilder<PostEisChatCompletionRequest>> fn) {
+		return postEisChatCompletion(fn.apply(new PostEisChatCompletionRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: inference.put
 
 	/**

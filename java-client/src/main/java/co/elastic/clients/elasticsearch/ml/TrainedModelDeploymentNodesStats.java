@@ -98,9 +98,9 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 	private final long peakThroughputPerMinute;
 
 	@Nullable
-	private final Integer rejectionExecutionCount;
+	private final Integer rejectedExecutionCount;
 
-	private final TrainedModelAssignmentRoutingTable routingState;
+	private final TrainedModelAssignmentRoutingStateAndReason routingState;
 
 	@Nullable
 	private final Long startTime;
@@ -130,7 +130,7 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		this.numberOfPendingRequests = builder.numberOfPendingRequests;
 		this.peakThroughputPerMinute = ApiTypeHelper.requireNonNull(builder.peakThroughputPerMinute, this,
 				"peakThroughputPerMinute");
-		this.rejectionExecutionCount = builder.rejectionExecutionCount;
+		this.rejectedExecutionCount = builder.rejectedExecutionCount;
 		this.routingState = ApiTypeHelper.requireNonNull(builder.routingState, this, "routingState");
 		this.startTime = builder.startTime;
 		this.threadsPerAllocation = builder.threadsPerAllocation;
@@ -261,11 +261,11 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 	 * The number of inference requests that were not processed because the queue
 	 * was full.
 	 * <p>
-	 * API name: {@code rejection_execution_count}
+	 * API name: {@code rejected_execution_count}
 	 */
 	@Nullable
-	public final Integer rejectionExecutionCount() {
-		return this.rejectionExecutionCount;
+	public final Integer rejectedExecutionCount() {
+		return this.rejectedExecutionCount;
 	}
 
 	/**
@@ -274,7 +274,7 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code routing_state}
 	 */
-	public final TrainedModelAssignmentRoutingTable routingState() {
+	public final TrainedModelAssignmentRoutingStateAndReason routingState() {
 		return this.routingState;
 	}
 
@@ -384,9 +384,9 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		generator.writeKey("peak_throughput_per_minute");
 		generator.write(this.peakThroughputPerMinute);
 
-		if (this.rejectionExecutionCount != null) {
-			generator.writeKey("rejection_execution_count");
-			generator.write(this.rejectionExecutionCount);
+		if (this.rejectedExecutionCount != null) {
+			generator.writeKey("rejected_execution_count");
+			generator.write(this.rejectedExecutionCount);
 
 		}
 		generator.writeKey("routing_state");
@@ -463,9 +463,9 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		private Long peakThroughputPerMinute;
 
 		@Nullable
-		private Integer rejectionExecutionCount;
+		private Integer rejectedExecutionCount;
 
-		private TrainedModelAssignmentRoutingTable routingState;
+		private TrainedModelAssignmentRoutingStateAndReason routingState;
 
 		@Nullable
 		private Long startTime;
@@ -604,10 +604,10 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		 * The number of inference requests that were not processed because the queue
 		 * was full.
 		 * <p>
-		 * API name: {@code rejection_execution_count}
+		 * API name: {@code rejected_execution_count}
 		 */
-		public final Builder rejectionExecutionCount(@Nullable Integer value) {
-			this.rejectionExecutionCount = value;
+		public final Builder rejectedExecutionCount(@Nullable Integer value) {
+			this.rejectedExecutionCount = value;
 			return this;
 		}
 
@@ -617,7 +617,7 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code routing_state}
 		 */
-		public final Builder routingState(TrainedModelAssignmentRoutingTable value) {
+		public final Builder routingState(TrainedModelAssignmentRoutingStateAndReason value) {
 			this.routingState = value;
 			return this;
 		}
@@ -629,8 +629,8 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		 * API name: {@code routing_state}
 		 */
 		public final Builder routingState(
-				Function<TrainedModelAssignmentRoutingTable.Builder, ObjectBuilder<TrainedModelAssignmentRoutingTable>> fn) {
-			return this.routingState(fn.apply(new TrainedModelAssignmentRoutingTable.Builder()).build());
+				Function<TrainedModelAssignmentRoutingStateAndReason.Builder, ObjectBuilder<TrainedModelAssignmentRoutingStateAndReason>> fn) {
+			return this.routingState(fn.apply(new TrainedModelAssignmentRoutingStateAndReason.Builder()).build());
 		}
 
 		/**
@@ -715,8 +715,8 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		op.add(Builder::numberOfAllocations, JsonpDeserializer.integerDeserializer(), "number_of_allocations");
 		op.add(Builder::numberOfPendingRequests, JsonpDeserializer.integerDeserializer(), "number_of_pending_requests");
 		op.add(Builder::peakThroughputPerMinute, JsonpDeserializer.longDeserializer(), "peak_throughput_per_minute");
-		op.add(Builder::rejectionExecutionCount, JsonpDeserializer.integerDeserializer(), "rejection_execution_count");
-		op.add(Builder::routingState, TrainedModelAssignmentRoutingTable._DESERIALIZER, "routing_state");
+		op.add(Builder::rejectedExecutionCount, JsonpDeserializer.integerDeserializer(), "rejected_execution_count");
+		op.add(Builder::routingState, TrainedModelAssignmentRoutingStateAndReason._DESERIALIZER, "routing_state");
 		op.add(Builder::startTime, JsonpDeserializer.longDeserializer(), "start_time");
 		op.add(Builder::threadsPerAllocation, JsonpDeserializer.integerDeserializer(), "threads_per_allocation");
 		op.add(Builder::throughputLastMinute, JsonpDeserializer.integerDeserializer(), "throughput_last_minute");

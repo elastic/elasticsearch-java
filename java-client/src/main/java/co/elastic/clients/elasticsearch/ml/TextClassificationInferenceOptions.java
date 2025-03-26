@@ -74,6 +74,9 @@ public class TextClassificationInferenceOptions implements InferenceConfigCreate
 
 	private final List<String> classificationLabels;
 
+	@Nullable
+	private final Vocabulary vocabulary;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private TextClassificationInferenceOptions(Builder builder) {
@@ -82,6 +85,7 @@ public class TextClassificationInferenceOptions implements InferenceConfigCreate
 		this.tokenization = builder.tokenization;
 		this.resultsField = builder.resultsField;
 		this.classificationLabels = ApiTypeHelper.unmodifiable(builder.classificationLabels);
+		this.vocabulary = builder.vocabulary;
 
 	}
 
@@ -140,6 +144,14 @@ public class TextClassificationInferenceOptions implements InferenceConfigCreate
 	}
 
 	/**
+	 * API name: {@code vocabulary}
+	 */
+	@Nullable
+	public final Vocabulary vocabulary() {
+		return this.vocabulary;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -175,6 +187,11 @@ public class TextClassificationInferenceOptions implements InferenceConfigCreate
 			generator.writeEnd();
 
 		}
+		if (this.vocabulary != null) {
+			generator.writeKey("vocabulary");
+			this.vocabulary.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -203,6 +220,9 @@ public class TextClassificationInferenceOptions implements InferenceConfigCreate
 
 		@Nullable
 		private List<String> classificationLabels;
+
+		@Nullable
+		private Vocabulary vocabulary;
 
 		/**
 		 * Specifies the number of top class predictions to return. Defaults to 0.
@@ -280,6 +300,21 @@ public class TextClassificationInferenceOptions implements InferenceConfigCreate
 			return this;
 		}
 
+		/**
+		 * API name: {@code vocabulary}
+		 */
+		public final Builder vocabulary(@Nullable Vocabulary value) {
+			this.vocabulary = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code vocabulary}
+		 */
+		public final Builder vocabulary(Function<Vocabulary.Builder, ObjectBuilder<Vocabulary>> fn) {
+			return this.vocabulary(fn.apply(new Vocabulary.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -315,6 +350,7 @@ public class TextClassificationInferenceOptions implements InferenceConfigCreate
 		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");
 		op.add(Builder::classificationLabels,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "classification_labels");
+		op.add(Builder::vocabulary, Vocabulary._DESERIALIZER, "vocabulary");
 
 	}
 

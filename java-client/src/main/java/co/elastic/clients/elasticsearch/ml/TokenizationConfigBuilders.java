@@ -120,4 +120,23 @@ public class TokenizationConfigBuilders {
 		return builder.build();
 	}
 
+	/**
+	 * Creates a builder for the {@link XlmRobertaTokenizationConfig xlm_roberta}
+	 * {@code TokenizationConfig} variant.
+	 */
+	public static XlmRobertaTokenizationConfig.Builder xlmRoberta() {
+		return new XlmRobertaTokenizationConfig.Builder();
+	}
+
+	/**
+	 * Creates a TokenizationConfig of the {@link XlmRobertaTokenizationConfig
+	 * xlm_roberta} {@code TokenizationConfig} variant.
+	 */
+	public static TokenizationConfig xlmRoberta(
+			Function<XlmRobertaTokenizationConfig.Builder, ObjectBuilder<XlmRobertaTokenizationConfig>> fn) {
+		TokenizationConfig.Builder builder = new TokenizationConfig.Builder();
+		builder.xlmRoberta(fn.apply(new XlmRobertaTokenizationConfig.Builder()).build());
+		return builder.build();
+	}
+
 }
