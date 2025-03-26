@@ -161,7 +161,7 @@ public final class Rest5ClientBuilder {
      *
      * @throws NullPointerException if {@code httpAsyncClient} is {@code null}.
      */
-    public RestClientBuilder setHttpClient(CloseableHttpAsyncClient httpAsyncClient) {
+    public Rest5ClientBuilder setHttpClient(CloseableHttpAsyncClient httpAsyncClient) {
         Objects.requireNonNull(httpAsyncClient, "custom rest client must not be null");
         this.httpClient = httpAsyncClient;
         return this;
@@ -172,7 +172,7 @@ public final class Rest5ClientBuilder {
      *
      * @throws NullPointerException if {@code httpAsyncClient} is {@code null}.
      */
-    public RestClientBuilder setSSLContext(SSLContext sslContext) {
+    public Rest5ClientBuilder setSSLContext(SSLContext sslContext) {
         Objects.requireNonNull(sslContext, "ssl context must not be null");
         this.sslContext = sslContext;
         return this;
