@@ -21,6 +21,13 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+<<<<<<< HEAD
+=======
+import co.elastic.clients.elasticsearch.inference.put_azureaistudio.AzureAiStudioServiceSettings;
+import co.elastic.clients.elasticsearch.inference.put_azureaistudio.AzureAiStudioTaskSettings;
+import co.elastic.clients.elasticsearch.inference.put_azureaistudio.AzureAiStudioTaskType;
+import co.elastic.clients.elasticsearch.inference.put_azureaistudio.ServiceType;
+>>>>>>> 03828daff (regen from latest spec)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -84,7 +91,11 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 	@Nullable
 	private final InferenceChunkingSettings chunkingSettings;
 
+<<<<<<< HEAD
 	private final AzureAiStudioServiceType service;
+=======
+	private final ServiceType service;
+>>>>>>> 03828daff (regen from latest spec)
 
 	private final AzureAiStudioServiceSettings serviceSettings;
 
@@ -136,7 +147,11 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 	 * <p>
 	 * API name: {@code service}
 	 */
+<<<<<<< HEAD
 	public final AzureAiStudioServiceType service() {
+=======
+	public final ServiceType service() {
+>>>>>>> 03828daff (regen from latest spec)
 		return this.service;
 	}
 
@@ -213,7 +228,11 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 		@Nullable
 		private InferenceChunkingSettings chunkingSettings;
 
+<<<<<<< HEAD
 		private AzureAiStudioServiceType service;
+=======
+		private ServiceType service;
+>>>>>>> 03828daff (regen from latest spec)
 
 		private AzureAiStudioServiceSettings serviceSettings;
 
@@ -258,7 +277,11 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code service}
 		 */
+<<<<<<< HEAD
 		public final Builder service(AzureAiStudioServiceType value) {
+=======
+		public final Builder service(ServiceType value) {
+>>>>>>> 03828daff (regen from latest spec)
 			this.service = value;
 			return this;
 		}
@@ -347,7 +370,11 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 			ObjectDeserializer<PutAzureaistudioRequest.Builder> op) {
 
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
+<<<<<<< HEAD
 		op.add(Builder::service, AzureAiStudioServiceType._DESERIALIZER, "service");
+=======
+		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
+>>>>>>> 03828daff (regen from latest spec)
 		op.add(Builder::serviceSettings, AzureAiStudioServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, AzureAiStudioTaskSettings._DESERIALIZER, "task_settings");
 

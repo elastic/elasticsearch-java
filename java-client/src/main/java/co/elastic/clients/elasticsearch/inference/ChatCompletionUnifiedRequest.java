@@ -20,12 +20,9 @@
 package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -35,7 +32,10 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+<<<<<<< HEAD
 import jakarta.json.stream.JsonParser;
+=======
+>>>>>>> 03828daff (regen from latest spec)
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -68,22 +68,29 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSerializable {
+public class ChatCompletionUnifiedRequest extends RequestChatCompletionBase {
 	private final String inferenceId;
 
 	@Nullable
 	private final Time timeout;
 
+<<<<<<< HEAD
 	private final RequestChatCompletion chatCompletionRequest;
 
+=======
+>>>>>>> 03828daff (regen from latest spec)
 	// ---------------------------------------------------------------------------------------------
 
 	private ChatCompletionUnifiedRequest(Builder builder) {
+		super(builder);
 
 		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.timeout = builder.timeout;
+<<<<<<< HEAD
 		this.chatCompletionRequest = ApiTypeHelper.requireNonNull(builder.chatCompletionRequest, this,
 				"chatCompletionRequest");
+=======
+>>>>>>> 03828daff (regen from latest spec)
 
 	}
 
@@ -110,6 +117,7 @@ public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSe
 		return this.timeout;
 	}
 
+<<<<<<< HEAD
 	/**
 	 * Required - Request body.
 	 */
@@ -125,13 +133,15 @@ public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSe
 
 	}
 
+=======
+>>>>>>> 03828daff (regen from latest spec)
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link ChatCompletionUnifiedRequest}.
 	 */
 
-	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+	public static class Builder extends RequestChatCompletionBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ChatCompletionUnifiedRequest> {
 		private String inferenceId;
@@ -139,8 +149,11 @@ public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSe
 		@Nullable
 		private Time timeout;
 
+<<<<<<< HEAD
 		private RequestChatCompletion chatCompletionRequest;
 
+=======
+>>>>>>> 03828daff (regen from latest spec)
 		/**
 		 * Required - The inference Id
 		 * <p>
@@ -170,6 +183,7 @@ public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSe
 			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
+<<<<<<< HEAD
 		/**
 		 * Required - Request body.
 		 */
@@ -195,6 +209,8 @@ public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSe
 			return this.chatCompletionRequest(value);
 		}
 
+=======
+>>>>>>> 03828daff (regen from latest spec)
 		@Override
 		protected Builder self() {
 			return this;
@@ -216,7 +232,19 @@ public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSe
 	public static final JsonpDeserializer<ChatCompletionUnifiedRequest> _DESERIALIZER = createChatCompletionUnifiedRequestDeserializer();
 	protected static JsonpDeserializer<ChatCompletionUnifiedRequest> createChatCompletionUnifiedRequestDeserializer() {
 
+<<<<<<< HEAD
 		JsonpDeserializer<RequestChatCompletion> valueDeserializer = RequestChatCompletion._DESERIALIZER;
+=======
+	/**
+	 * Json deserializer for {@link ChatCompletionUnifiedRequest}
+	 */
+	public static final JsonpDeserializer<ChatCompletionUnifiedRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ChatCompletionUnifiedRequest::setupChatCompletionUnifiedRequestDeserializer);
+
+	protected static void setupChatCompletionUnifiedRequestDeserializer(
+			ObjectDeserializer<ChatCompletionUnifiedRequest.Builder> op) {
+		RequestChatCompletionBase.setupRequestChatCompletionBaseDeserializer(op);
+>>>>>>> 03828daff (regen from latest spec)
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
 				.chatCompletionRequest(valueDeserializer.deserialize(parser, mapper, event)).build());

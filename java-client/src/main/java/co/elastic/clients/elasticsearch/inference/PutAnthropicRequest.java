@@ -21,6 +21,13 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+<<<<<<< HEAD
+=======
+import co.elastic.clients.elasticsearch.inference.put_anthropic.AnthropicServiceSettings;
+import co.elastic.clients.elasticsearch.inference.put_anthropic.AnthropicTaskSettings;
+import co.elastic.clients.elasticsearch.inference.put_anthropic.AnthropicTaskType;
+import co.elastic.clients.elasticsearch.inference.put_anthropic.ServiceType;
+>>>>>>> 03828daff (regen from latest spec)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -83,7 +90,11 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	private final InferenceChunkingSettings chunkingSettings;
 
+<<<<<<< HEAD
 	private final AnthropicServiceType service;
+=======
+	private final ServiceType service;
+>>>>>>> 03828daff (regen from latest spec)
 
 	private final AnthropicServiceSettings serviceSettings;
 
@@ -135,7 +146,11 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code service}
 	 */
+<<<<<<< HEAD
 	public final AnthropicServiceType service() {
+=======
+	public final ServiceType service() {
+>>>>>>> 03828daff (regen from latest spec)
 		return this.service;
 	}
 
@@ -213,7 +228,11 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private InferenceChunkingSettings chunkingSettings;
 
+<<<<<<< HEAD
 		private AnthropicServiceType service;
+=======
+		private ServiceType service;
+>>>>>>> 03828daff (regen from latest spec)
 
 		private AnthropicServiceSettings serviceSettings;
 
@@ -258,7 +277,11 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code service}
 		 */
+<<<<<<< HEAD
 		public final Builder service(AnthropicServiceType value) {
+=======
+		public final Builder service(ServiceType value) {
+>>>>>>> 03828daff (regen from latest spec)
 			this.service = value;
 			return this;
 		}
@@ -347,7 +370,11 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 	protected static void setupPutAnthropicRequestDeserializer(ObjectDeserializer<PutAnthropicRequest.Builder> op) {
 
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
+<<<<<<< HEAD
 		op.add(Builder::service, AnthropicServiceType._DESERIALIZER, "service");
+=======
+		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
+>>>>>>> 03828daff (regen from latest spec)
 		op.add(Builder::serviceSettings, AnthropicServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, AnthropicTaskSettings._DESERIALIZER, "task_settings");
 

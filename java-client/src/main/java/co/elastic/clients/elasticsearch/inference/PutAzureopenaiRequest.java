@@ -21,6 +21,13 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+<<<<<<< HEAD
+=======
+import co.elastic.clients.elasticsearch.inference.put_azureopenai.AzureOpenAIServiceSettings;
+import co.elastic.clients.elasticsearch.inference.put_azureopenai.AzureOpenAITaskSettings;
+import co.elastic.clients.elasticsearch.inference.put_azureopenai.AzureOpenAITaskType;
+import co.elastic.clients.elasticsearch.inference.put_azureopenai.ServiceType;
+>>>>>>> 03828daff (regen from latest spec)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -99,7 +106,11 @@ public class PutAzureopenaiRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	private final InferenceChunkingSettings chunkingSettings;
 
+<<<<<<< HEAD
 	private final AzureOpenAIServiceType service;
+=======
+	private final ServiceType service;
+>>>>>>> 03828daff (regen from latest spec)
 
 	private final AzureOpenAIServiceSettings serviceSettings;
 
@@ -151,7 +162,11 @@ public class PutAzureopenaiRequest extends RequestBase implements JsonpSerializa
 	 * <p>
 	 * API name: {@code service}
 	 */
+<<<<<<< HEAD
 	public final AzureOpenAIServiceType service() {
+=======
+	public final ServiceType service() {
+>>>>>>> 03828daff (regen from latest spec)
 		return this.service;
 	}
 
@@ -230,7 +245,11 @@ public class PutAzureopenaiRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private InferenceChunkingSettings chunkingSettings;
 
+<<<<<<< HEAD
 		private AzureOpenAIServiceType service;
+=======
+		private ServiceType service;
+>>>>>>> 03828daff (regen from latest spec)
 
 		private AzureOpenAIServiceSettings serviceSettings;
 
@@ -275,7 +294,11 @@ public class PutAzureopenaiRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code service}
 		 */
+<<<<<<< HEAD
 		public final Builder service(AzureOpenAIServiceType value) {
+=======
+		public final Builder service(ServiceType value) {
+>>>>>>> 03828daff (regen from latest spec)
 			this.service = value;
 			return this;
 		}
@@ -365,7 +388,11 @@ public class PutAzureopenaiRequest extends RequestBase implements JsonpSerializa
 	protected static void setupPutAzureopenaiRequestDeserializer(ObjectDeserializer<PutAzureopenaiRequest.Builder> op) {
 
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
+<<<<<<< HEAD
 		op.add(Builder::service, AzureOpenAIServiceType._DESERIALIZER, "service");
+=======
+		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
+>>>>>>> 03828daff (regen from latest spec)
 		op.add(Builder::serviceSettings, AzureOpenAIServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, AzureOpenAITaskSettings._DESERIALIZER, "task_settings");
 

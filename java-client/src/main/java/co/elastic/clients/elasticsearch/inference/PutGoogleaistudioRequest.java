@@ -21,6 +21,12 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+<<<<<<< HEAD
+=======
+import co.elastic.clients.elasticsearch.inference.put_googleaistudio.GoogleAiStudioServiceSettings;
+import co.elastic.clients.elasticsearch.inference.put_googleaistudio.GoogleAiStudioTaskType;
+import co.elastic.clients.elasticsearch.inference.put_googleaistudio.ServiceType;
+>>>>>>> 03828daff (regen from latest spec)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -84,7 +90,11 @@ public class PutGoogleaistudioRequest extends RequestBase implements JsonpSerial
 
 	private final String googleaistudioInferenceId;
 
+<<<<<<< HEAD
 	private final GoogleAiServiceType service;
+=======
+	private final ServiceType service;
+>>>>>>> 03828daff (regen from latest spec)
 
 	private final GoogleAiStudioServiceSettings serviceSettings;
 
@@ -132,7 +142,11 @@ public class PutGoogleaistudioRequest extends RequestBase implements JsonpSerial
 	 * <p>
 	 * API name: {@code service}
 	 */
+<<<<<<< HEAD
 	public final GoogleAiServiceType service() {
+=======
+	public final ServiceType service() {
+>>>>>>> 03828daff (regen from latest spec)
 		return this.service;
 	}
 
@@ -192,7 +206,11 @@ public class PutGoogleaistudioRequest extends RequestBase implements JsonpSerial
 
 		private String googleaistudioInferenceId;
 
+<<<<<<< HEAD
 		private GoogleAiServiceType service;
+=======
+		private ServiceType service;
+>>>>>>> 03828daff (regen from latest spec)
 
 		private GoogleAiStudioServiceSettings serviceSettings;
 
@@ -234,7 +252,11 @@ public class PutGoogleaistudioRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code service}
 		 */
+<<<<<<< HEAD
 		public final Builder service(GoogleAiServiceType value) {
+=======
+		public final Builder service(ServiceType value) {
+>>>>>>> 03828daff (regen from latest spec)
 			this.service = value;
 			return this;
 		}
@@ -301,7 +323,11 @@ public class PutGoogleaistudioRequest extends RequestBase implements JsonpSerial
 			ObjectDeserializer<PutGoogleaistudioRequest.Builder> op) {
 
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
+<<<<<<< HEAD
 		op.add(Builder::service, GoogleAiServiceType._DESERIALIZER, "service");
+=======
+		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
+>>>>>>> 03828daff (regen from latest spec)
 		op.add(Builder::serviceSettings, GoogleAiStudioServiceSettings._DESERIALIZER, "service_settings");
 
 	}

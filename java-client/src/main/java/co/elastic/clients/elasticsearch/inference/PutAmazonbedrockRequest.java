@@ -21,6 +21,13 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+<<<<<<< HEAD
+=======
+import co.elastic.clients.elasticsearch.inference.put_amazonbedrock.AmazonBedrockServiceSettings;
+import co.elastic.clients.elasticsearch.inference.put_amazonbedrock.AmazonBedrockTaskSettings;
+import co.elastic.clients.elasticsearch.inference.put_amazonbedrock.AmazonBedrockTaskType;
+import co.elastic.clients.elasticsearch.inference.put_amazonbedrock.ServiceType;
+>>>>>>> 03828daff (regen from latest spec)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -93,7 +100,11 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 	@Nullable
 	private final InferenceChunkingSettings chunkingSettings;
 
+<<<<<<< HEAD
 	private final AmazonBedrockServiceType service;
+=======
+	private final ServiceType service;
+>>>>>>> 03828daff (regen from latest spec)
 
 	private final AmazonBedrockServiceSettings serviceSettings;
 
@@ -145,7 +156,11 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 	 * <p>
 	 * API name: {@code service}
 	 */
+<<<<<<< HEAD
 	public final AmazonBedrockServiceType service() {
+=======
+	public final ServiceType service() {
+>>>>>>> 03828daff (regen from latest spec)
 		return this.service;
 	}
 
@@ -222,7 +237,11 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 		@Nullable
 		private InferenceChunkingSettings chunkingSettings;
 
+<<<<<<< HEAD
 		private AmazonBedrockServiceType service;
+=======
+		private ServiceType service;
+>>>>>>> 03828daff (regen from latest spec)
 
 		private AmazonBedrockServiceSettings serviceSettings;
 
@@ -267,7 +286,11 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code service}
 		 */
+<<<<<<< HEAD
 		public final Builder service(AmazonBedrockServiceType value) {
+=======
+		public final Builder service(ServiceType value) {
+>>>>>>> 03828daff (regen from latest spec)
 			this.service = value;
 			return this;
 		}
@@ -356,7 +379,11 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 			ObjectDeserializer<PutAmazonbedrockRequest.Builder> op) {
 
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
+<<<<<<< HEAD
 		op.add(Builder::service, AmazonBedrockServiceType._DESERIALIZER, "service");
+=======
+		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
+>>>>>>> 03828daff (regen from latest spec)
 		op.add(Builder::serviceSettings, AmazonBedrockServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, AmazonBedrockTaskSettings._DESERIALIZER, "task_settings");
 

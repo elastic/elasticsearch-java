@@ -21,6 +21,12 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+<<<<<<< HEAD
+=======
+import co.elastic.clients.elasticsearch.inference.put_hugging_face.HuggingFaceServiceSettings;
+import co.elastic.clients.elasticsearch.inference.put_hugging_face.HuggingFaceTaskType;
+import co.elastic.clients.elasticsearch.inference.put_hugging_face.ServiceType;
+>>>>>>> 03828daff (regen from latest spec)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -102,7 +108,11 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 
 	private final String huggingfaceInferenceId;
 
+<<<<<<< HEAD
 	private final HuggingFaceServiceType service;
+=======
+	private final ServiceType service;
+>>>>>>> 03828daff (regen from latest spec)
 
 	private final HuggingFaceServiceSettings serviceSettings;
 
@@ -150,7 +160,11 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 	 * <p>
 	 * API name: {@code service}
 	 */
+<<<<<<< HEAD
 	public final HuggingFaceServiceType service() {
+=======
+	public final ServiceType service() {
+>>>>>>> 03828daff (regen from latest spec)
 		return this.service;
 	}
 
@@ -210,7 +224,11 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 
 		private String huggingfaceInferenceId;
 
+<<<<<<< HEAD
 		private HuggingFaceServiceType service;
+=======
+		private ServiceType service;
+>>>>>>> 03828daff (regen from latest spec)
 
 		private HuggingFaceServiceSettings serviceSettings;
 
@@ -252,7 +270,11 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code service}
 		 */
+<<<<<<< HEAD
 		public final Builder service(HuggingFaceServiceType value) {
+=======
+		public final Builder service(ServiceType value) {
+>>>>>>> 03828daff (regen from latest spec)
 			this.service = value;
 			return this;
 		}
@@ -318,7 +340,11 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 	protected static void setupPutHuggingFaceRequestDeserializer(ObjectDeserializer<PutHuggingFaceRequest.Builder> op) {
 
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
+<<<<<<< HEAD
 		op.add(Builder::service, HuggingFaceServiceType._DESERIALIZER, "service");
+=======
+		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
+>>>>>>> 03828daff (regen from latest spec)
 		op.add(Builder::serviceSettings, HuggingFaceServiceSettings._DESERIALIZER, "service_settings");
 
 	}

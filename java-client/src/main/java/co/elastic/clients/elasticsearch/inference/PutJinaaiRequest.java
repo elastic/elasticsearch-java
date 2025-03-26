@@ -21,6 +21,13 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+<<<<<<< HEAD
+=======
+import co.elastic.clients.elasticsearch.inference.put_jinaai.JinaAIServiceSettings;
+import co.elastic.clients.elasticsearch.inference.put_jinaai.JinaAITaskSettings;
+import co.elastic.clients.elasticsearch.inference.put_jinaai.JinaAITaskType;
+import co.elastic.clients.elasticsearch.inference.put_jinaai.ServiceType;
+>>>>>>> 03828daff (regen from latest spec)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -88,7 +95,11 @@ public class PutJinaaiRequest extends RequestBase implements JsonpSerializable {
 
 	private final String jinaaiInferenceId;
 
+<<<<<<< HEAD
 	private final JinaAIServiceType service;
+=======
+	private final ServiceType service;
+>>>>>>> 03828daff (regen from latest spec)
 
 	private final JinaAIServiceSettings serviceSettings;
 
@@ -139,7 +150,11 @@ public class PutJinaaiRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code service}
 	 */
+<<<<<<< HEAD
 	public final JinaAIServiceType service() {
+=======
+	public final ServiceType service() {
+>>>>>>> 03828daff (regen from latest spec)
 		return this.service;
 	}
 
@@ -216,7 +231,11 @@ public class PutJinaaiRequest extends RequestBase implements JsonpSerializable {
 
 		private String jinaaiInferenceId;
 
+<<<<<<< HEAD
 		private JinaAIServiceType service;
+=======
+		private ServiceType service;
+>>>>>>> 03828daff (regen from latest spec)
 
 		private JinaAIServiceSettings serviceSettings;
 
@@ -261,7 +280,11 @@ public class PutJinaaiRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code service}
 		 */
+<<<<<<< HEAD
 		public final Builder service(JinaAIServiceType value) {
+=======
+		public final Builder service(ServiceType value) {
+>>>>>>> 03828daff (regen from latest spec)
 			this.service = value;
 			return this;
 		}
@@ -348,7 +371,11 @@ public class PutJinaaiRequest extends RequestBase implements JsonpSerializable {
 	protected static void setupPutJinaaiRequestDeserializer(ObjectDeserializer<PutJinaaiRequest.Builder> op) {
 
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
+<<<<<<< HEAD
 		op.add(Builder::service, JinaAIServiceType._DESERIALIZER, "service");
+=======
+		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
+>>>>>>> 03828daff (regen from latest spec)
 		op.add(Builder::serviceSettings, JinaAIServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, JinaAITaskSettings._DESERIALIZER, "task_settings");
 
