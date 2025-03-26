@@ -104,8 +104,7 @@ public class RestClientOptions implements TransportOptions {
 
     @Override
     public void updateToken(String token) {
-        // TODO not many choices here
-        throw new UnsupportedOperationException("Operation unsupported, use rest5 client");
+        throw new UnsupportedOperationException("Operation unsupported in the legacy client, use rest5 client");
     }
 
     @Override
