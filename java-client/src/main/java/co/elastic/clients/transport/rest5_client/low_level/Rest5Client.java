@@ -349,8 +349,8 @@ public class Rest5Client implements Closeable {
             Header encoding = null;
             try {
                 encoding = httpResponse.getHeader(CONTENT_ENCODING);
-            } catch (ProtocolException e) { // TODO 99% sure this will never get thrown. can suppress?
-                throw new RuntimeException("Couldn't retrieve content encoding: " + e);
+            } catch (ProtocolException e) {
+                throw new IOException("Couldn't retrieve content encoding: " + e);
             }
             if (encoding != null && "gzip".equals(encoding.getValue())) {
                 // Decompress and cleanup response headers
@@ -677,8 +677,8 @@ public class Rest5Client implements Closeable {
     }
 
     private static boolean canHaveBody(HttpRequest httpRequest) {
-        return httpRequest.getMethod().contains("PUT") || httpRequest.getMethod().contains("POST") ||
-            httpRequest.getMethod().contains("PATCH") ||
+        return httpRequest.getMethod().equals("PUT") || httpRequest.getMethod().equals("POST") ||
+            httpRequest.getMethod().equals("PATCH") ||
             httpRequest instanceof HttpDeleteWithEntity || httpRequest instanceof HttpGetWithEntity;
     }
 

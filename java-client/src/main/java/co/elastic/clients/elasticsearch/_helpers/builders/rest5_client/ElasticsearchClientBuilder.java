@@ -115,7 +115,7 @@ public class ElasticsearchClientBuilder {
         }
 
         try {
-            restClientBuilder.setSslContext(Optional.ofNullable(sslContext).orElse(SSLContext.getDefault()));
+            restClientBuilder.setSSLContext(Optional.ofNullable(sslContext).orElse(SSLContext.getDefault()));
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }

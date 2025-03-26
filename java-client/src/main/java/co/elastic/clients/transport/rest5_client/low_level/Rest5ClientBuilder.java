@@ -156,11 +156,12 @@ public final class Rest5ClientBuilder {
 
     /**
      * Advanced setting, sets the rest client that will be used to handle requests.
-     * The rest client has to be fully configured, as it will be used as provided.
+     * The rest client has to be fully configured, as it will be used as provided,
+     * also this will overwrite all builder setters.
      *
      * @throws NullPointerException if {@code httpAsyncClient} is {@code null}.
      */
-    public Rest5ClientBuilder setCustomRestClient(CloseableHttpAsyncClient httpAsyncClient) {
+    public RestClientBuilder setHttpClient(CloseableHttpAsyncClient httpAsyncClient) {
         Objects.requireNonNull(httpAsyncClient, "custom rest client must not be null");
         this.httpClient = httpAsyncClient;
         return this;
@@ -171,7 +172,7 @@ public final class Rest5ClientBuilder {
      *
      * @throws NullPointerException if {@code httpAsyncClient} is {@code null}.
      */
-    public Rest5ClientBuilder setSslContext(SSLContext sslContext) {
+    public RestClientBuilder setSSLContext(SSLContext sslContext) {
         Objects.requireNonNull(sslContext, "ssl context must not be null");
         this.sslContext = sslContext;
         return this;
@@ -344,10 +345,8 @@ public final class Rest5ClientBuilder {
         // otherwise, creating a default instance of CloseableHttpAsyncClient
         // default timeouts are all infinite
         RequestConfig.Builder requestConfigBuilder = RequestConfig.custom()
-            //.setConnectionRequestTimeout() new name for socket timeout
-            .setConnectTimeout(Timeout.of(DEFAULT_CONNECT_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS));
-        //.setSocketTimeout(DEFAULT_SOCKET_TIMEOUT_MILLIS); TODO needed? check discussions, which one we
-        // should remove
+            .setConnectionRequestTimeout(Timeout.of(DEFAULT_SOCKET_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS))
+            .setConnectTimeout(Timeout.of(DEFAULT_CONNECT_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS)); //TODO deprecated need to change
 
         try {
 

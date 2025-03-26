@@ -93,7 +93,7 @@ public class TransportUtilsTest extends Assertions {
 
         Rest5Client restClient = Rest5Client.builder(new HttpHost("https", "localhost",
                 container.getMappedPort(9200)))
-            .setSslContext(Optional.ofNullable(sslContext).orElse(SSLContext.getDefault()))
+            .setSSLContext(Optional.ofNullable(sslContext).orElse(SSLContext.getDefault()))
             .setDefaultHeaders(new Header[]{
                 new BasicHeader("Authorization", "Basic " + creds)
             }).build();
