@@ -21,6 +21,8 @@ package co.elastic.clients.elasticsearch._helpers;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._helpers.builders.ElasticsearchClientBuilder;
+import co.elastic.clients.transport.rest5_client.Rest5ClientOptions;
+import co.elastic.clients.transport.rest5_client.Rest5ClientTransport;
 import co.elastic.clients.transport.rest_client.RestClientOptions;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import org.elasticsearch.client.RequestOptions;
@@ -31,12 +33,13 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
 
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 public class ClientBuildersTest {
 
     @Test
-    public void build() throws IOException, URISyntaxException, NoSuchAlgorithmException {
+    public void buildLegacy() throws IOException, URISyntaxException, NoSuchAlgorithmException {
 
         // create client with helper
         ElasticsearchClient client = new ElasticsearchClientBuilder()
@@ -54,7 +57,29 @@ public class ClientBuildersTest {
         assertTrue(client._transportOptions().keepResponseBodyOnException());
         assertTrue(client._transportOptions().headers().size() == 3);
 
-        //assertTrue(client._transport().options().keepResponseBodyOnException()); TODO ?
+        // token update utility
+        ElasticsearchClient finalClient = client;
+        assertThrows(UnsupportedOperationException.class, () -> finalClient._transportOptions().updateToken("token"));
+    }
+
+    @Test
+    public void buildRest5() throws IOException, URISyntaxException, NoSuchAlgorithmException {
+
+        // create client with helper
+        ElasticsearchClient client = new co.elastic.clients.elasticsearch._helpers.builders.rest5_client.ElasticsearchClientBuilder()
+            .host("url")
+            .usernameAndPassword("elastic", "changeme")
+            .sslContext(SSLContext.getDefault())
+            .build();
+
+        Rest5ClientOptions options = new Rest5ClientOptions(co.elastic.clients.transport.rest5_client.low_level.RequestOptions.DEFAULT, true);
+
+        client = client.withTransportOptions(options);
+
+        // checking options correctness
+        assertTrue(client._transport().getClass().equals(Rest5ClientTransport.class));
+        assertTrue(client._transportOptions().keepResponseBodyOnException());
+        assertTrue(client._transportOptions().headers().size() == 3);
 
         // token update utility
 
