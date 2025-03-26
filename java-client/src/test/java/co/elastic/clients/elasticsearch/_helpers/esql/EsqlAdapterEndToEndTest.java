@@ -25,6 +25,9 @@ import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
 import co.elastic.clients.elasticsearch._helpers.esql.jdbc.ResultSetEsqlAdapter;
 import co.elastic.clients.elasticsearch._helpers.esql.objects.ObjectsEsqlAdapter;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
+import co.elastic.clients.transport.rest5_client.Rest5ClientTransport;
+import co.elastic.clients.transport.rest5_client.low_level.ESRequest;
+import co.elastic.clients.transport.rest5_client.low_level.Rest5Client;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
@@ -55,18 +58,33 @@ public class EsqlAdapterEndToEndTest extends Assertions {
     @BeforeAll
     public static void setup() throws Exception {
         ElasticsearchClient global = ElasticsearchTestServer.global().client();
-        RestClient restClient = ((RestClientTransport) global._transport()).restClient();
-        esClient = new ElasticsearchClient(new RestClientTransport(restClient, new JacksonJsonpMapper()));
+        if (global._transport() instanceof RestClientTransport) {
+            RestClient restClient = ((RestClientTransport) global._transport()).restClient();
+            esClient = new ElasticsearchClient(new RestClientTransport(restClient, new JacksonJsonpMapper()));
 
-        esClient.indices().delete(d -> d.index("employees").ignoreUnavailable(true));
+            esClient.indices().delete(d -> d.index("employees").ignoreUnavailable(true));
 
-        Request request = new Request("POST", "/employees/_bulk?refresh=true");
+            Request request = new Request("POST", "/employees/_bulk?refresh=true");
 
-        InputStream resourceAsStream = EsqlAdapterTest.class.getResourceAsStream("employees.ndjson");
-        byte[] bytes = IOUtils.toByteArray(resourceAsStream);
-        request.setEntity(new ByteArrayEntity(bytes, ContentType.APPLICATION_JSON));
+            InputStream resourceAsStream = EsqlAdapterTest.class.getResourceAsStream("employees.ndjson");
+            byte[] bytes = IOUtils.toByteArray(resourceAsStream);
+            request.setEntity(new ByteArrayEntity(bytes, ContentType.APPLICATION_JSON));
 
-        restClient.performRequest(request);
+            restClient.performRequest(request);
+        } else if (global._transport() instanceof Rest5ClientTransport) {
+            Rest5Client restClient = ((Rest5ClientTransport) global._transport()).restClient();
+            esClient = new ElasticsearchClient(new Rest5ClientTransport(restClient, new JacksonJsonpMapper()));
+
+            esClient.indices().delete(d -> d.index("employees").ignoreUnavailable(true));
+
+            ESRequest request = new ESRequest("POST", "/employees/_bulk?refresh=true");
+
+            InputStream resourceAsStream = EsqlAdapterTest.class.getResourceAsStream("employees.ndjson");
+            byte[] bytes = IOUtils.toByteArray(resourceAsStream);
+            request.setEntity(new org.apache.hc.core5.http.io.entity.ByteArrayEntity(bytes, org.apache.hc.core5.http.ContentType.APPLICATION_JSON));
+
+            restClient.performRequest(request);
+        }
     }
 
     @Test
@@ -74,7 +92,8 @@ public class EsqlAdapterEndToEndTest extends Assertions {
 
         ResultSet rs = esClient.esql().query(
             ResultSetEsqlAdapter.INSTANCE,
-            "FROM employees | WHERE emp_no == ? or emp_no == ? | KEEP emp_no, job_positions, hire_date | SORT emp_no | LIMIT 300",
+            "FROM employees | WHERE emp_no == ? or emp_no == ? | KEEP emp_no, job_positions, hire_date | " +
+                "SORT emp_no | LIMIT 300",
             // Testing parameters. Note that FROM and LIMIT do not accept parameters
             "10042", "10002"
         );
@@ -116,7 +135,8 @@ public class EsqlAdapterEndToEndTest extends Assertions {
     public void objectsTest() throws Exception {
         Iterable<EmpData> result = esClient.esql().query(
             ObjectsEsqlAdapter.of(EmpData.class),
-            "FROM employees | WHERE emp_no == ? or emp_no == ? | KEEP emp_no, job_positions, hire_date | SORT emp_no | LIMIT 300",
+            "FROM employees | WHERE emp_no == ? or emp_no == ? | KEEP emp_no, job_positions, hire_date | " +
+                "SORT emp_no | LIMIT 300",
             // Testing parameters. Note that FROM and LIMIT do not accept parameters
             "10042", "10002"
         );
@@ -152,12 +172,14 @@ public class EsqlAdapterEndToEndTest extends Assertions {
     @Test
     public void asyncObjects() throws Exception {
 
-        ElasticsearchAsyncClient asyncClient = new ElasticsearchAsyncClient(esClient._transport(), esClient._transportOptions());
+        ElasticsearchAsyncClient asyncClient = new ElasticsearchAsyncClient(esClient._transport(),
+            esClient._transportOptions());
 
 
         CompletableFuture<Iterable<EmpData>> future = asyncClient.esql().query(
             ObjectsEsqlAdapter.of(EmpData.class),
-            "FROM employees | WHERE emp_no == ? or emp_no == ? | KEEP emp_no, job_positions, hire_date | SORT emp_no | LIMIT 300",
+            "FROM employees | WHERE emp_no == ? or emp_no == ? | KEEP emp_no, job_positions, hire_date | " +
+                "SORT emp_no | LIMIT 300",
             // Testing parameters. Note that FROM and LIMIT do not accept parameters
             "10042", "10002"
         );
@@ -169,7 +191,8 @@ public class EsqlAdapterEndToEndTest extends Assertions {
                     EmpData emp = it.next();
                     assertEquals("10002", emp.empNo);
                     List<String> jobPositions = emp.jobPositions;
-                    // In addition to the value, this tests that single strings are correctly deserialized as a list
+                    // In addition to the value, this tests that single strings are correctly deserialized
+                    // as a list
                     assertEquals(Arrays.asList("Senior Team Lead"), emp.jobPositions);
                 }
 
@@ -183,7 +206,8 @@ public class EsqlAdapterEndToEndTest extends Assertions {
                     assertTrue(emp.jobPositions.contains("Junior Developer"));
 
                     assertEquals("1993-03-21T00:00:00Z[UTC]",
-                        DateTimeFormatter.ISO_DATE_TIME.format(emp.hireDate.toInstant().atZone(ZoneId.of("UTC")))
+                        DateTimeFormatter.ISO_DATE_TIME.format(emp.hireDate.toInstant().atZone(ZoneId.of(
+                            "UTC")))
                     );
                 }
 
