@@ -22,21 +22,10 @@ package co.elastic.clients.elasticsearch;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
-import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.endpoints.DelegatingJsonEndpoint;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
 import org.apache.commons.io.FileUtils;
-import org.apache.hc.core5.http.Header;
-import org.apache.hc.core5.http.message.BasicHeader;
-import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.elasticsearch.client.RestClient;
 import org.testcontainers.elasticsearch.ElasticsearchContainer;
 import org.testcontainers.images.builder.ImageFromDockerfile;
 import org.testcontainers.shaded.org.apache.commons.io.IOUtils;
@@ -53,13 +42,12 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Base64;
-import java.util.Optional;
+import java.util.Random;
 
 public class ElasticsearchTestServer implements AutoCloseable {
 
     private final String[] plugins;
     private volatile ElasticsearchContainer container;
-    private final JsonpMapper mapper = new JsonbJsonpMapper();
     private ElasticsearchClient client;
 
     private static ElasticsearchTestServer global;
@@ -103,55 +91,11 @@ public class ElasticsearchTestServer implements AutoCloseable {
         this.plugins = plugins;
     }
 
-    public ElasticsearchClient createRest4Client(String url, SSLContext sslContext) {
-        BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
-        credsProv.setCredentials(
-            AuthScope.ANY, new UsernamePasswordCredentials("elastic", "changeme")
-        );
-        var restClient = RestClient.builder(HttpHost.create(url))
-            .setHttpClientConfigCallback(hc -> hc
-                .setDefaultCredentialsProvider(credsProv)
-                .setSSLContext(sslContext)
-            )
-            .build();
-        var transport = new RestClientTransport(restClient, mapper);
-        return new ElasticsearchClient(transport);
-    }
-
-//    protected void setup(String url, SSLContext sslContext) {
-//        try {
-//            org.apache.hc.core5.http.HttpHost host = org.apache.hc.core5.http.HttpHost.create(url);
-//
-//            var pwd = Base64.getEncoder().encodeToString("elastic:changeme".getBytes());
-//
-//
-//            restClient = Rest5Client.builder(org.apache.hc.core5.http.HttpHost.create(url))
-//                .setSslContext(Optional.ofNullable(sslContext).orElse(SSLContext.getDefault()))
-//                .setDefaultHeaders(new Header[]{
-//                    new BasicHeader("Authorization", "Basic " + pwd)
-//                })
-//                //.setCompressionEnabled(true)
-//                .build();
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//        transport = new Rest5ClientTransport(restClient, mapper);
-//        client = new ElasticsearchClient(transport);
-//    }
+    // Same value for all tests in a test run
+    private static final int RAND = new Random().nextInt(100);
 
     protected void setup(String url, SSLContext sslContext) {
-        BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
-        credsProv.setCredentials(
-            AuthScope.ANY, new UsernamePasswordCredentials("elastic", "changeme")
-        );
-        var restClient = RestClient.builder(HttpHost.create(url))
-            .setHttpClientConfigCallback(hc -> hc
-                .setDefaultCredentialsProvider(credsProv)
-                .setSSLContext(sslContext)
-            )
-            .build();
-        var transport = new RestClientTransport(restClient, mapper);
-        client = new ElasticsearchClient(transport);
+        this.client = ElasticsearchTestClient.createClient(url, null, sslContext);
     }
 
     private Version selectLatestVersion(Version version, String info) {
@@ -298,10 +242,6 @@ public class ElasticsearchTestServer implements AutoCloseable {
 
     public ElasticsearchContainer container() {
         return this.container;
-    }
-
-    public JsonpMapper mapper() {
-        return mapper;
     }
 
     public ElasticsearchClient client() {
