@@ -33,7 +33,7 @@ public interface ResponseListener {
     /**
      * Method invoked if the request yielded a successful response
      */
-    void onSuccess(ESResponse response);
+    void onSuccess(Response response);
 
     /**
      * Method invoked if the request failed. There are two main categories of failures: connection failures (usually

@@ -37,13 +37,13 @@ import java.util.regex.Pattern;
  * Holds an elasticsearch response. It wraps the {@link BasicClassicHttpResponse} returned and associates
  * it with its corresponding {@link RequestLine} and {@link HttpHost}.
  */
-public class ESResponse {
+public class Response {
 
     private final RequestLine requestLine;
     private final HttpHost host;
     private final ClassicHttpResponse response;
 
-    ESResponse(RequestLine requestLine, HttpHost host, ClassicHttpResponse response) {
+    Response(RequestLine requestLine, HttpHost host, ClassicHttpResponse response) {
         Objects.requireNonNull(requestLine, "requestLine cannot be null");
         Objects.requireNonNull(host, "host cannot be null");
         Objects.requireNonNull(response, "response cannot be null");

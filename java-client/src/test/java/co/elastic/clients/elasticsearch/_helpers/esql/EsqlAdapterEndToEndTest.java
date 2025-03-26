@@ -26,7 +26,7 @@ import co.elastic.clients.elasticsearch._helpers.esql.jdbc.ResultSetEsqlAdapter;
 import co.elastic.clients.elasticsearch._helpers.esql.objects.ObjectsEsqlAdapter;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.rest5_client.Rest5ClientTransport;
-import co.elastic.clients.transport.rest5_client.low_level.ESRequest;
+import co.elastic.clients.transport.rest5_client.low_level.Request;
 import co.elastic.clients.transport.rest5_client.low_level.Rest5Client;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -35,7 +35,6 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.ContentType;
-import org.elasticsearch.client.Request;
 import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -64,7 +63,7 @@ public class EsqlAdapterEndToEndTest extends Assertions {
 
             esClient.indices().delete(d -> d.index("employees").ignoreUnavailable(true));
 
-            Request request = new Request("POST", "/employees/_bulk?refresh=true");
+            org.elasticsearch.client.Request request = new org.elasticsearch.client.Request("POST", "/employees/_bulk?refresh=true");
 
             InputStream resourceAsStream = EsqlAdapterTest.class.getResourceAsStream("employees.ndjson");
             byte[] bytes = IOUtils.toByteArray(resourceAsStream);
@@ -77,7 +76,7 @@ public class EsqlAdapterEndToEndTest extends Assertions {
 
             esClient.indices().delete(d -> d.index("employees").ignoreUnavailable(true));
 
-            ESRequest request = new ESRequest("POST", "/employees/_bulk?refresh=true");
+            Request request = new Request("POST", "/employees/_bulk?refresh=true");
 
             InputStream resourceAsStream = EsqlAdapterTest.class.getResourceAsStream("employees.ndjson");
             byte[] bytes = IOUtils.toByteArray(resourceAsStream);

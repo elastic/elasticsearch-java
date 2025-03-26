@@ -33,7 +33,7 @@ import static java.util.Collections.unmodifiableMap;
 /**
  * HTTP Request to Elasticsearch.
  */
-public final class ESRequest {
+public final class Request {
     private final String method;
     private final String endpoint;
     private final Map<String, String> parameters = new HashMap<>();
@@ -42,11 +42,11 @@ public final class ESRequest {
     private RequestOptions options = RequestOptions.DEFAULT;
 
     /**
-     * Create the {@linkplain ESRequest}.
+     * Create the {@linkplain Request}.
      * @param method the HTTP method
      * @param endpoint the path of the request (without scheme, host, port, or prefix)
      */
-    public ESRequest(String method, String endpoint) {
+    public Request(String method, String endpoint) {
         this.method = Objects.requireNonNull(method, "method cannot be null");
         this.endpoint = Objects.requireNonNull(endpoint, "endpoint cannot be null");
     }
@@ -173,7 +173,7 @@ public final class ESRequest {
             return true;
         }
 
-        ESRequest other = (ESRequest) obj;
+        Request other = (Request) obj;
         return method.equals(other.method)
             && endpoint.equals(other.endpoint)
             && parameters.equals(other.parameters)

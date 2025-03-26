@@ -26,7 +26,7 @@ import java.util.concurrent.CancellationException;
 /**
  * Represents an operation that can be cancelled.
  * Returned when executing async requests through
- * {@link Rest5Client#performRequestAsync(ESRequest, ResponseListener)}, so that the request
+ * {@link Rest5Client#performRequestAsync(Request, ResponseListener)}, so that the request
  * can be cancelled if needed. Cancelling a request will result in calling
  * {@link HttpUriRequestBase#abort()} on the underlying
  * request object, which will in turn cancel its corresponding {@link java.util.concurrent.Future}.
