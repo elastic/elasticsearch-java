@@ -27,8 +27,10 @@ import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.message.BasicHeader;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Base64;
 
 import static org.hamcrest.Matchers.containsString;
@@ -40,6 +42,7 @@ import static org.junit.Assert.fail;
 
 public class RestClientBuilderTests extends RestClientTestCase {
 
+    @Test
     public void testBuild() throws IOException {
         try {
             Rest5Client.builder((HttpHost[]) null);
@@ -153,16 +156,17 @@ public class RestClientBuilderTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testBuildCloudId() throws IOException {
         String host = "us-east-1.aws.found.io";
         String esId = "elasticsearch";
         String kibanaId = "kibana";
         String toEncode = host + "$" + esId + "$" + kibanaId;
-        String encodedId = Base64.getEncoder().encodeToString(toEncode.getBytes(UTF8));
+        String encodedId = Base64.getEncoder().encodeToString(toEncode.getBytes(Charset.defaultCharset()));
         assertNotNull(Rest5Client.builder(encodedId));
         assertNotNull(Rest5Client.builder("humanReadable:" + encodedId));
 
-        String badId = Base64.getEncoder().encodeToString("foo$bar".getBytes(UTF8));
+        String badId = Base64.getEncoder().encodeToString("foo$bar".getBytes(Charset.defaultCharset()));
         try {
             Rest5Client.builder(badId);
             fail("should have failed");
@@ -187,13 +191,14 @@ public class RestClientBuilderTests extends RestClientTestCase {
         client.close();
     }
 
+    @Test
     public void testBuildCloudIdWithPort() throws IOException {
         String host = "us-east-1.aws.found.io";
         String esId = "elasticsearch";
         String kibanaId = "kibana";
         String port = "9443";
         String toEncode = host + ":" + port + "$" + esId + "$" + kibanaId;
-        String encodedId = Base64.getEncoder().encodeToString(toEncode.getBytes(UTF8));
+        String encodedId = Base64.getEncoder().encodeToString(toEncode.getBytes(Charset.defaultCharset()));
 
         Rest5Client client = Rest5Client.builder("humanReadable:" + encodedId).build();
         assertThat(client.getNodes().size(), equalTo(1));
@@ -203,7 +208,7 @@ public class RestClientBuilderTests extends RestClientTestCase {
         client.close();
 
         toEncode = host + ":" + "123:foo" + "$" + esId + "$" + kibanaId;
-        encodedId = Base64.getEncoder().encodeToString(toEncode.getBytes(UTF8));
+        encodedId = Base64.getEncoder().encodeToString(toEncode.getBytes(Charset.defaultCharset()));
 
         try {
             Rest5Client.builder("humanReadable:" + encodedId);
@@ -213,6 +218,7 @@ public class RestClientBuilderTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testSetPathPrefixNull() {
         try {
             Rest5Client.builder(new HttpHost("localhost", 9200)).setPathPrefix(null);
@@ -222,10 +228,12 @@ public class RestClientBuilderTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testSetPathPrefixEmpty() {
         assertSetPathPrefixThrows("");
     }
 
+    @Test
     public void testSetPathPrefixMalformed() {
         assertSetPathPrefixThrows("//");
         assertSetPathPrefixThrows("base/path//");
@@ -245,6 +253,7 @@ public class RestClientBuilderTests extends RestClientTestCase {
      * causes problems.
      * See https://github.com/elastic/elasticsearch/issues/24069
      */
+    @Test
     public void testDefaultConnectionRequestTimeout() throws IOException {
         Rest5ClientBuilder builder = Rest5Client.builder(new HttpHost("localhost", 9200));
 

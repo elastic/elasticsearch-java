@@ -27,9 +27,10 @@ import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 import org.elasticsearch.mocksocket.MockHttpServer;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -49,14 +50,14 @@ public class RestClientGzipCompressionTests extends RestClientTestCase {
 
     private static HttpServer httpServer;
 
-    @BeforeClass
+    @BeforeAll
     public static void startHttpServer() throws Exception {
         httpServer = MockHttpServer.createHttp(new InetSocketAddress(InetAddress.getLoopbackAddress(), 0), 0);
         httpServer.createContext("/", new GzipResponseHandler());
         httpServer.start();
     }
 
-    @AfterClass
+    @AfterAll
     public static void stopHttpServers() throws IOException {
         httpServer.stop(0);
         httpServer = null;
@@ -128,6 +129,7 @@ public class RestClientGzipCompressionTests extends RestClientTestCase {
             .build();
     }
 
+    @Test
     public void testUncompressedSync() throws Exception {
         Rest5Client restClient = createClient(false);
 
@@ -144,6 +146,7 @@ public class RestClientGzipCompressionTests extends RestClientTestCase {
         restClient.close();
     }
 
+    @Test
     public void testGzipHeaderSync() throws Exception {
         Rest5Client restClient = createClient(false);
 
@@ -162,6 +165,7 @@ public class RestClientGzipCompressionTests extends RestClientTestCase {
         restClient.close();
     }
 
+    @Test
     public void testGzipHeaderAsync() throws Exception {
         Rest5Client restClient = createClient(false);
 
@@ -180,6 +184,7 @@ public class RestClientGzipCompressionTests extends RestClientTestCase {
         restClient.close();
     }
 
+    @Test
     public void testCompressingClientSync() throws Exception {
         Rest5Client restClient = createClient(true);
 
@@ -194,6 +199,7 @@ public class RestClientGzipCompressionTests extends RestClientTestCase {
         restClient.close();
     }
 
+    @Test
     public void testCompressingClientAsync() throws Exception {
         InetSocketAddress address = httpServer.getAddress();
         Rest5Client restClient = Rest5Client.builder(new HttpHost("http", address.getHostString(),

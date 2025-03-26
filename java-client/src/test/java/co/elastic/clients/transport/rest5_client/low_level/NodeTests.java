@@ -20,6 +20,7 @@
 package co.elastic.clients.transport.rest5_client.low_level;
 
 import org.apache.hc.core5.http.HttpHost;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -37,6 +38,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class NodeTests extends RestClientTestCase {
+
+    @Test
     public void testToString() {
         Map<String, List<String>> attributes = new HashMap<>();
         attributes.put("foo", singletonList("bar"));
@@ -72,6 +75,7 @@ public class NodeTests extends RestClientTestCase {
         );
     }
 
+    @Test
     public void testEqualsAndHashCode() {
         HttpHost host = new HttpHost(randomAsciiAlphanumOfLength(5));
         Node node = new Node(
@@ -148,6 +152,7 @@ public class NodeTests extends RestClientTestCase {
         );
     }
 
+    @Test
     public void testDataRole() {
         Node.Roles roles = new Node.Roles(new TreeSet<>(Arrays.asList("data_hot")));
         assertTrue(roles.hasDataHotRole());

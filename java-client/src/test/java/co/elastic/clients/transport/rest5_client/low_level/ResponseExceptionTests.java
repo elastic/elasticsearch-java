@@ -30,6 +30,7 @@ import org.apache.hc.core5.http.io.entity.InputStreamEntity;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 import org.apache.hc.core5.http.message.BasicClassicHttpResponse;
 import org.apache.hc.core5.http.message.RequestLine;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -42,15 +43,17 @@ import static org.junit.Assert.assertSame;
 
 public class ResponseExceptionTests extends RestClientTestCase {
 
+
+    @Test
     public void testResponseException() throws IOException, ParseException {
         ProtocolVersion protocolVersion = new ProtocolVersion("http", 1, 1);
         BasicClassicHttpResponse httpResponse = new BasicClassicHttpResponse(500, "Internal Server Error");
 
         String responseBody = "{\"error\":{\"root_cause\": {}}}";
-        boolean hasBody = getRandom().nextBoolean();
+        boolean hasBody = randomBoolean();
         if (hasBody) {
             HttpEntity entity;
-            if (getRandom().nextBoolean()) {
+            if (randomBoolean()) {
                 entity = new StringEntity(responseBody, ContentType.APPLICATION_JSON);
             } else {
                 // test a non repeatable entity

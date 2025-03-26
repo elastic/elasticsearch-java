@@ -22,6 +22,7 @@ package co.elastic.clients.transport.rest5_client.low_level;
 import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.util.Timeout;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,6 +38,8 @@ import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 
 public class RequestOptionsTests extends RestClientTestCase {
+
+    @Test
     public void testDefault() {
         assertEquals(Collections.<Header>emptyList(), RequestOptions.DEFAULT.getHeaders());
         assertEquals(Collections.<String, String>emptyMap(), RequestOptions.DEFAULT.getParameters());
@@ -45,6 +48,7 @@ public class RequestOptionsTests extends RestClientTestCase {
         assertEquals(RequestOptions.DEFAULT, RequestOptions.DEFAULT.toBuilder().build());
     }
 
+    @Test
     public void testAddHeader() {
         try {
             randomBuilder().addHeader(null, randomAsciiLettersOfLengthBetween(3, 10));
@@ -61,7 +65,7 @@ public class RequestOptionsTests extends RestClientTestCase {
         }
 
         RequestOptions.Builder builder = RequestOptions.DEFAULT.toBuilder();
-        int numHeaders = between(0, 5);
+        int numHeaders = randomIntBetween(0, 5);
         List<Header> headers = new ArrayList<>();
         for (int i = 0; i < numHeaders; i++) {
             Header header = new RequestOptions.ReqHeader(randomAsciiAlphanumOfLengthBetween(5, 10),
@@ -82,6 +86,7 @@ public class RequestOptionsTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testSetHttpAsyncResponseConsumerFactory() {
         try {
             RequestOptions.DEFAULT.toBuilder().setHttpAsyncResponseConsumerFactory(null);
@@ -97,6 +102,7 @@ public class RequestOptionsTests extends RestClientTestCase {
         assertSame(factory, options.getHttpAsyncResponseConsumerFactory());
     }
 
+    @Test
     public void testAddParameters() {
         try {
             randomBuilder().addParameter(null, randomAsciiLettersOfLengthBetween(3, 10));
@@ -113,7 +119,7 @@ public class RequestOptionsTests extends RestClientTestCase {
         }
 
         RequestOptions.Builder builder = RequestOptions.DEFAULT.toBuilder();
-        int numParameters = between(0, 5);
+        int numParameters = randomIntBetween(0, 5);
         Map<String, String> parameters = new HashMap<>();
         for (int i = 0; i < numParameters; i++) {
             String key = randomAsciiAlphanumOfLengthBetween(5, 10);
@@ -126,6 +132,7 @@ public class RequestOptionsTests extends RestClientTestCase {
         assertEquals(parameters, options.getParameters());
     }
 
+    @Test
     public void testSetRequestBuilder() {
         RequestOptions.Builder builder = RequestOptions.DEFAULT.toBuilder();
 
@@ -142,6 +149,7 @@ public class RequestOptionsTests extends RestClientTestCase {
         assertEquals(options.getRequestConfig().getConnectTimeout(), Timeout.ofMilliseconds(connectTimeout));
     }
 
+    @Test
     public void testEqualsAndHashCode() {
         RequestOptions request = randomBuilder().build();
         assertEquals(request, request);
@@ -160,7 +168,7 @@ public class RequestOptionsTests extends RestClientTestCase {
         RequestOptions.Builder builder = RequestOptions.DEFAULT.toBuilder();
 
         if (randomBoolean()) {
-            int headerCount = between(1, 5);
+            int headerCount = randomIntBetween(1, 5);
             for (int i = 0; i < headerCount; i++) {
                 builder.addHeader(randomAsciiAlphanumOfLength(3), randomAsciiAlphanumOfLength(3));
             }
@@ -187,7 +195,7 @@ public class RequestOptionsTests extends RestClientTestCase {
 
     private static RequestOptions mutate(RequestOptions options) {
         RequestOptions.Builder mutant = options.toBuilder();
-        int mutationType = between(0, 2);
+        int mutationType = randomIntBetween(0, 2);
         switch (mutationType) {
             case 0:
                 mutant.addHeader("extra", "m");

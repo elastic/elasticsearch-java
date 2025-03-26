@@ -26,6 +26,7 @@ import org.apache.hc.client5.http.impl.auth.BasicScheme;
 import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.reactor.IOReactorStatus;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.URI;
@@ -57,6 +58,7 @@ import static org.mockito.Mockito.when;
 
 public class RestClientTests extends RestClientTestCase {
 
+    @Test
     public void testCloseIsIdempotent() throws IOException {
         List<Node> nodes = singletonList(new Node(new HttpHost("localhost", 9200)));
         CloseableHttpAsyncClient closeableHttpAsyncClient = mock(CloseableHttpAsyncClient.class);
@@ -70,6 +72,7 @@ public class RestClientTests extends RestClientTestCase {
         verify(closeableHttpAsyncClient, times(3)).close();
     }
 
+    @Test
     public void testPerformAsyncWithUnsupportedMethod() throws Exception {
         final CountDownLatch latch = new CountDownLatch(1);
         try (Rest5Client restClient = createRestClient()) {
@@ -95,6 +98,7 @@ public class RestClientTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testPerformAsyncWithWrongEndpoint() throws Exception {
         final CountDownLatch latch = new CountDownLatch(1);
         try (Rest5Client restClient = createRestClient()) {
@@ -119,6 +123,7 @@ public class RestClientTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testBuildUriLeavesPathUntouched() {
         final Map<String, String> emptyMap = Collections.emptyMap();
         {
@@ -157,6 +162,7 @@ public class RestClientTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testSetNodesWrongArguments() throws IOException {
         try (Rest5Client restClient = createRestClient()) {
             restClient.setNodes(null);
@@ -185,6 +191,7 @@ public class RestClientTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testSetNodesPreservesOrdering() throws Exception {
         try (Rest5Client restClient = createRestClient()) {
             List<Node> nodes = randomNodes();
@@ -202,6 +209,7 @@ public class RestClientTests extends RestClientTestCase {
         return nodes;
     }
 
+    @Test
     public void testSetNodesDuplicatedHosts() throws Exception {
         try (Rest5Client restClient = createRestClient()) {
             int numNodes = randomIntBetween(1, 10);
@@ -216,6 +224,7 @@ public class RestClientTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testSelectHosts() throws IOException {
         Node n1 = new Node(new HttpHost("1"), null, null, "1", null, null);
         Node n2 = new Node(new HttpHost("2"), null, null, "2", null, null);
@@ -375,6 +384,7 @@ public class RestClientTests extends RestClientTestCase {
             , false, false, false);
     }
 
+    @Test
     public void testRoundRobin() throws IOException {
         int numNodes = randomIntBetween(2, 10);
         AuthCache authCache = new BasicAuthCache();
@@ -403,6 +413,7 @@ public class RestClientTests extends RestClientTestCase {
         assertEquals(Integer.MIN_VALUE + 50, lastNodeIndex.get());
     }
 
+    @Test
     public void testIsRunning() {
         List<Node> nodes = Collections.singletonList(new Node(new HttpHost("localhost", 9200)));
         CloseableHttpAsyncClient client = mock(CloseableHttpAsyncClient.class);

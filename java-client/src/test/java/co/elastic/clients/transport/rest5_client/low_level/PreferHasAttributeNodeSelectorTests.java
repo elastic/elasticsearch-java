@@ -20,6 +20,7 @@
 package co.elastic.clients.transport.rest5_client.low_level;
 
 import org.apache.hc.core5.http.HttpHost;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,6 +35,8 @@ import static java.util.Collections.singletonMap;
 import static org.junit.Assert.assertEquals;
 
 public class PreferHasAttributeNodeSelectorTests extends RestClientTestCase {
+
+    @Test
     public void testFoundPreferHasAttribute() {
         Node hasAttributeValue = dummyNode(singletonMap("attr", singletonList("val")));
         Node hasAttributeButNotValue = dummyNode(singletonMap("attr", singletonList("notval")));
@@ -51,6 +54,7 @@ public class PreferHasAttributeNodeSelectorTests extends RestClientTestCase {
         assertEquals(expected, nodes);
     }
 
+    @Test
     public void testNotFoundPreferHasAttribute() {
         Node notHasAttribute = dummyNode(singletonMap("notattr", singletonList("val")));
         List<Node> nodes = new ArrayList<>();

@@ -24,10 +24,10 @@ import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpsConfigurator;
 import com.sun.net.httpserver.HttpsServer;
 import org.apache.hc.core5.http.HttpHost;
-import org.elasticsearch.client.RestClient;
 import org.elasticsearch.mocksocket.MockHttpServer;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Test;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
@@ -55,6 +55,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.junit.Assume.assumeFalse;
 
 /**
  * Integration test to validate the builder builds a client with the correct configuration
@@ -62,8 +63,9 @@ import static org.junit.Assert.fail;
 public class RestClientBuilderIntegTests extends RestClientTestCase {
 
     private static HttpsServer httpsServer;
+    private static String resourcePath = "/co/elastic/clients/transport/rest5_client/low_level";
 
-    @BeforeClass
+    @BeforeAll
     public static void startHttpServer() throws Exception {
         httpsServer = MockHttpServer.createHttps(new InetSocketAddress(InetAddress.getLoopbackAddress(), 0)
             , 0);
@@ -80,12 +82,13 @@ public class RestClientBuilderIntegTests extends RestClientTestCase {
         }
     }
 
-    @AfterClass
+    @AfterAll
     public static void stopHttpServers() throws IOException {
         httpsServer.stop(0);
         httpsServer = null;
     }
 
+    @Test
     public void testBuilderUsesDefaultSSLContext() throws Exception {
         assumeFalse("https://github.com/elastic/elasticsearch/issues/49094", inFipsJvm());
         final SSLContext defaultSSLContext = SSLContext.getDefault();
@@ -109,6 +112,7 @@ public class RestClientBuilderIntegTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testBuilderSetsThreadName() throws Exception {
         assumeFalse("https://github.com/elastic/elasticsearch/issues/49094", inFipsJvm());
         final SSLContext defaultSSLContext = SSLContext.getDefault();
@@ -151,9 +155,9 @@ public class RestClientBuilderIntegTests extends RestClientTestCase {
     private static SSLContext getSslContext() throws Exception {
         SSLContext sslContext = SSLContext.getInstance(getProtocol());
         try (
-            InputStream certFile = RestClientBuilderIntegTests.class.getResourceAsStream("/test.crt");
+            InputStream certFile = RestClientBuilderIntegTests.class.getResourceAsStream(resourcePath + "/test.crt");
             InputStream keyStoreFile = RestClientBuilderIntegTests.class.getResourceAsStream(
-                "/test_truststore.jks")
+                resourcePath + "/test_truststore.jks")
         ) {
             // Build a keystore of default type programmatically since we can't use JKS keystores to
             // init a KeyManagerFactory in FIPS 140 JVMs.
@@ -161,7 +165,7 @@ public class RestClientBuilderIntegTests extends RestClientTestCase {
             keyStore.load(null, "password".toCharArray());
             CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
             PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(
-                Files.readAllBytes(Paths.get(RestClientBuilderIntegTests.class.getResource("/test.der").toURI()))
+                Files.readAllBytes(Paths.get(RestClientBuilderIntegTests.class.getResource(resourcePath + "/test.der").toURI()))
             );
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             keyStore.setKeyEntry(

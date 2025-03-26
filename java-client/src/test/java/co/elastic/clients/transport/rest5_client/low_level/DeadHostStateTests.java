@@ -19,6 +19,8 @@
 
 package co.elastic.clients.transport.rest5_client.low_level;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -36,6 +38,7 @@ public class DeadHostStateTests extends RestClientTestCase {
     private static long[] EXPECTED_TIMEOUTS_SECONDS = new long[]{60, 84, 120, 169, 240, 339, 480, 678, 960,
         1357, 1800};
 
+    @Test
     public void testInitialDeadHostStateDefaultTimeSupplier() {
         DeadHostState deadHostState = new DeadHostState(DeadHostState.DEFAULT_TIME_SUPPLIER);
         long currentTime = System.nanoTime();
@@ -43,6 +46,7 @@ public class DeadHostStateTests extends RestClientTestCase {
         assertThat(deadHostState.getFailedAttempts(), equalTo(1));
     }
 
+    @Test
     public void testDeadHostStateFromPreviousDefaultTimeSupplier() {
         DeadHostState previous = new DeadHostState(DeadHostState.DEFAULT_TIME_SUPPLIER);
         int iters = randomIntBetween(5, 30);
@@ -54,6 +58,7 @@ public class DeadHostStateTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testCompareToTimeSupplier() {
         int numObjects = randomIntBetween(EXPECTED_TIMEOUTS_SECONDS.length, 30);
         DeadHostState[] deadHostStates = new DeadHostState[numObjects];
@@ -77,6 +82,7 @@ public class DeadHostStateTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testCompareToDifferingTimeSupplier() {
         try {
             new DeadHostState(DeadHostState.DEFAULT_TIME_SUPPLIER).compareTo(new DeadHostState(() -> 0L));
@@ -90,6 +96,7 @@ public class DeadHostStateTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testShallBeRetried() {
         final AtomicLong time = new AtomicLong(0);
         DeadHostState deadHostState = null;
@@ -112,6 +119,7 @@ public class DeadHostStateTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testDeadHostStateTimeouts() {
         DeadHostState previous = new DeadHostState(() -> 0L);
         for (long expectedTimeoutsSecond : EXPECTED_TIMEOUTS_SECONDS) {
