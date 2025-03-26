@@ -48,8 +48,9 @@ import org.apache.hc.core5.http.nio.AsyncDataProducer;
 import org.apache.hc.core5.http.nio.AsyncRequestProducer;
 import org.apache.hc.core5.http.nio.AsyncResponseConsumer;
 import org.apache.hc.core5.net.URIBuilder;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.stubbing.Answer;
 
@@ -113,10 +114,10 @@ public class RestClientSingleHostTests extends RestClientTestCase {
     private HostsTrackingFailureListener failureListener;
     private boolean strictDeprecationMode;
 
-    @Before
+    @BeforeEach
     public void createRestClient() {
         httpClient = mockHttpClient(exec);
-        defaultHeaders = RestClientTestUtil.randomHeaders(getRandom(), "Header-default");
+        defaultHeaders = RestClientTestUtil.randomHeaders("Header-default");
         node = new Node(new HttpHost("localhost", 9200));
         failureListener = new HostsTrackingFailureListener();
         strictDeprecationMode = randomBoolean();
@@ -224,7 +225,7 @@ public class RestClientSingleHostTests extends RestClientTestCase {
     /**
      * Shutdown the executor so we don't leak threads into other test runs.
      */
-    @After
+    @AfterEach
     public void shutdownExec() {
         exec.shutdown();
     }
@@ -234,6 +235,7 @@ public class RestClientSingleHostTests extends RestClientTestCase {
      * http client
      */
     @SuppressWarnings("unchecked")
+    @Test
     public void testInternalHttpRequest() throws Exception {
         ArgumentCaptor<AsyncRequestProducer> requestArgumentCaptor = ArgumentCaptor.forClass
             (AsyncRequestProducer.class);
@@ -266,6 +268,7 @@ public class RestClientSingleHostTests extends RestClientTestCase {
     /**
      * End to end test for ok status codes
      */
+    @Test
     public void testOkStatusCodes() throws Exception {
         for (String method : getHttpMethods()) {
             for (int okStatusCode : getOkStatusCodes()) {
@@ -280,6 +283,7 @@ public class RestClientSingleHostTests extends RestClientTestCase {
     /**
      * End to end test for error status codes: they should cause an exception to be thrown
      */
+    @Test
     public void testErrorStatusCodes() throws Exception {
         for (String method : getHttpMethods()) {
             // error status codes should cause an exception to be thrown
@@ -296,6 +300,7 @@ public class RestClientSingleHostTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testPerformRequestIOExceptions() throws Exception {
         for (String method : getHttpMethods()) {
             // IOExceptions should be let bubble up
@@ -342,6 +347,7 @@ public class RestClientSingleHostTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testPerformRequestRuntimeExceptions() throws Exception {
         for (String method : getHttpMethods()) {
             try {
@@ -355,6 +361,7 @@ public class RestClientSingleHostTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testPerformRequestExceptions() throws Exception {
         for (String method : getHttpMethods()) {
             try {
@@ -373,6 +380,7 @@ public class RestClientSingleHostTests extends RestClientTestCase {
      * End to end test for request and response body. Exercises the mock http client ability to send back
      * whatever body it has received.
      */
+    @Test
     public void testBody() throws Exception {
         String body = "{ \"field\": \"value\" }";
         StringEntity entity = new StringEntity(body, ContentType.APPLICATION_JSON);
@@ -399,7 +407,7 @@ public class RestClientSingleHostTests extends RestClientTestCase {
             }
         }
         for (String method : Arrays.asList("HEAD", "OPTIONS", "TRACE")) {
-            Request request = new Request(method, "/" + randomStatusCode(getRandom()));
+            Request request = new Request(method, "/" + randomStatusCode());
             request.setEntity(entity);
             try {
                 performRequestSyncOrAsync(restClient, request);
@@ -414,10 +422,11 @@ public class RestClientSingleHostTests extends RestClientTestCase {
      * End to end test for request and response headers. Exercises the mock http client ability to send back
      * whatever headers it has received.
      */
+    @Test
     public void testHeaders() throws Exception {
         for (String method : getHttpMethods()) {
-            final Header[] requestHeaders = RestClientTestUtil.randomHeaders(getRandom(), "Header");
-            final int statusCode = randomStatusCode(getRandom());
+            final Header[] requestHeaders = RestClientTestUtil.randomHeaders( "Header");
+            final int statusCode = randomStatusCode();
             Request request = new Request(method, "/" + statusCode);
             RequestOptions.Builder options = request.getOptions().toBuilder();
             for (Header requestHeader : requestHeaders) {
@@ -437,6 +446,7 @@ public class RestClientSingleHostTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testDeprecationWarnings() throws Exception {
         String chars = randomAsciiAlphanumOfLength(5);
         assertDeprecationWarnings(singletonList("poorly formatted " + chars), singletonList("poorly " +
@@ -549,7 +559,7 @@ public class RestClientSingleHostTests extends RestClientTestCase {
     }
 
     private HttpUriRequest performRandomRequest(String method) throws Exception {
-        String uriAsString = "/" + randomStatusCode(getRandom());
+        String uriAsString = "/" + randomStatusCode();
         Request request = new Request(method, uriAsString);
         URIBuilder uriBuilder = new URIBuilder(uriAsString);
         if (randomBoolean()) {
@@ -593,7 +603,7 @@ public class RestClientSingleHostTests extends RestClientTestCase {
                 throw new UnsupportedOperationException("method not supported: " + method);
         }
 
-        if (canHaveBody(expectedRequest) && getRandom().nextBoolean()) {
+        if (canHaveBody(expectedRequest) && randomBoolean()) {
             HttpEntity entity = new StringEntity(randomAsciiAlphanumOfLengthBetween(10, 100),
                 ContentType.APPLICATION_JSON);
             (expectedRequest).setEntity(entity);
@@ -602,7 +612,7 @@ public class RestClientSingleHostTests extends RestClientTestCase {
 
         final Set<String> uniqueNames = new HashSet<>();
         if (randomBoolean()) {
-            Header[] headers = RestClientTestUtil.randomHeaders(getRandom(), "Header");
+            Header[] headers = RestClientTestUtil.randomHeaders("Header");
             RequestOptions.Builder options = request.getOptions().toBuilder();
             for (Header header : headers) {
                 options.addHeader(header.getName(), header.getValue());

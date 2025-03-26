@@ -23,6 +23,7 @@ import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.ProtocolVersion;
 import org.apache.hc.core5.http.message.BasicClassicHttpResponse;
 import org.apache.hc.core5.http.message.RequestLine;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -33,6 +34,7 @@ import static org.junit.Assert.assertSame;
 
 public class FailureTrackingResponseListenerTests extends RestClientTestCase {
 
+    @Test
     public void testOnSuccess() {
         MockResponseListener responseListener = new MockResponseListener();
         Rest5Client.FailureTrackingResponseListener listener =
@@ -44,6 +46,7 @@ public class FailureTrackingResponseListenerTests extends RestClientTestCase {
         assertNull(responseListener.lastException.get());
     }
 
+    @Test
     public void testOnFailure() {
         MockResponseListener responseListener = new MockResponseListener();
         Rest5Client.FailureTrackingResponseListener listener =

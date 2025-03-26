@@ -20,19 +20,23 @@
 package co.elastic.clients.transport.rest5_client.low_level;
 
 import org.apache.hc.core5.http.HttpHost;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
 import static org.junit.Assert.assertEquals;
 
 public class NodeSelectorTests extends RestClientTestCase {
+
+    @Test
     public void testAny() {
         List<Node> nodes = new ArrayList<>();
-        int size = between(2, 5);
+        int size = randomIntBetween(2, 5);
         for (int i = 0; i < size; i++) {
             nodes.add(dummyNode(randomBoolean(), randomBoolean(), randomBoolean()));
         }
@@ -41,6 +45,7 @@ public class NodeSelectorTests extends RestClientTestCase {
         assertEquals(expected, nodes);
     }
 
+    @Test
     public void testNotMasterOnly() {
         Node masterOnly = dummyNode(true, false, false);
         Node all = dummyNode(true, true, true);
@@ -67,7 +72,7 @@ public class NodeSelectorTests extends RestClientTestCase {
         nodes.add(dataWarm);
         nodes.add(dataCold);
         nodes.add(dataFrozen);
-        Collections.shuffle(nodes, getRandom());
+        Collections.shuffle(nodes, new Random());
         List<Node> expected = new ArrayList<>(nodes);
         expected.remove(masterOnly);
         NodeSelector.SKIP_DEDICATED_MASTERS.select(nodes);

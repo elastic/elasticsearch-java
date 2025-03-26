@@ -19,18 +19,7 @@
 
 package co.elastic.clients.transport.rest5_client.low_level;
 
-import com.carrotsearch.randomizedtesting.JUnit3MethodProvider;
-import com.carrotsearch.randomizedtesting.MixWithSuiteName;
-import com.carrotsearch.randomizedtesting.RandomizedTest;
-import com.carrotsearch.randomizedtesting.annotations.SeedDecorators;
-import com.carrotsearch.randomizedtesting.annotations.TestMethodProviders;
-import com.carrotsearch.randomizedtesting.annotations.ThreadLeakAction;
-import com.carrotsearch.randomizedtesting.annotations.ThreadLeakFilters;
-import com.carrotsearch.randomizedtesting.annotations.ThreadLeakGroup;
-import com.carrotsearch.randomizedtesting.annotations.ThreadLeakLingering;
-import com.carrotsearch.randomizedtesting.annotations.ThreadLeakScope;
-import com.carrotsearch.randomizedtesting.annotations.ThreadLeakZombies;
-import com.carrotsearch.randomizedtesting.annotations.TimeoutSuite;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.hc.core5.http.Header;
 
 import java.util.ArrayList;
@@ -38,32 +27,26 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-@TestMethodProviders({ JUnit3MethodProvider.class })
-@SeedDecorators({ MixWithSuiteName.class }) // See LUCENE-3995 for rationale.
-@ThreadLeakScope(ThreadLeakScope.Scope.SUITE)
-@ThreadLeakGroup(ThreadLeakGroup.Group.MAIN)
-@ThreadLeakAction({ ThreadLeakAction.Action.WARN, ThreadLeakAction.Action.INTERRUPT })
-@ThreadLeakZombies(ThreadLeakZombies.Consequence.IGNORE_REMAINING_TESTS)
-@ThreadLeakLingering(linger = 5000) // 5 sec lingering
-@ThreadLeakFilters(filters = { ClientsGraalVMThreadsFilter.class })
-@TimeoutSuite(millis = 2 * 60 * 60 * 1000)
-public abstract class RestClientTestCase extends RandomizedTest {
+public abstract class RestClientTestCase {
 
     /**
-     * Assert that the actual headers are the expected ones given the original default and request headers. Some headers can be ignored,
+     * Assert that the actual headers are the expected ones given the original default and request headers.
+     * Some headers can be ignored,
      * for instance in case the http client is adding its own automatically.
      *
      * @param defaultHeaders the default headers set to the REST client instance
      * @param requestHeaders the request headers sent with a particular request
-     * @param actualHeaders the actual headers as a result of the provided default and request headers
-     * @param ignoreHeaders header keys to be ignored as they are not part of default nor request headers, yet they
-     *                      will be part of the actual ones
+     * @param actualHeaders  the actual headers as a result of the provided default and request headers
+     * @param ignoreHeaders  header keys to be ignored as they are not part of default nor request headers,
+     *                       yet they
+     *                       will be part of the actual ones
      */
     protected static void assertHeaders(
         final Header[] defaultHeaders,
@@ -94,17 +77,21 @@ public abstract class RestClientTestCase extends RandomizedTest {
             }
             final String value = responseHeader.getValue();
             final List<String> values = expectedHeaders.get(name);
-            assertNotNull("found response header [" + name + "] that wasn't originally sent: " + value, values);
+            assertNotNull("found response header [" + name + "] that wasn't originally sent: " + value,
+                values);
             assertTrue("found incorrect response header [" + name + "]: " + value, values.remove(value));
             if (values.isEmpty()) {
                 expectedHeaders.remove(name);
             }
         }
-        assertEquals("some headers meant to be ignored were not part of the actual headers", ignoreHeaders, actualIgnoredHeaders);
-        assertTrue("some headers that were sent weren't returned " + expectedHeaders, expectedHeaders.isEmpty());
+        assertEquals("some headers meant to be ignored were not part of the actual headers", ignoreHeaders,
+            actualIgnoredHeaders);
+        assertTrue("some headers that were sent weren't returned " + expectedHeaders,
+            expectedHeaders.isEmpty());
     }
 
-    private static void addValueToListEntry(final Map<String, List<String>> map, final String name, final String value) {
+    private static void addValueToListEntry(final Map<String, List<String>> map, final String name,
+                                            final String value) {
         List<String> values = map.get(name);
         if (values == null) {
             values = new ArrayList<>();
@@ -115,5 +102,47 @@ public abstract class RestClientTestCase extends RandomizedTest {
 
     public static boolean inFipsJvm() {
         return Boolean.parseBoolean(System.getProperty("tests.fips.enabled"));
+    }
+
+    public static int randomIntBetween(int min, int max) {
+        return new Random().ints(min, max)
+            .findFirst()
+            .getAsInt();
+    }
+
+    public static boolean randomBoolean() {
+        return randomIntBetween(0, 1) == 0;
+    }
+
+    public static String randomAsciiAlphanumOfLength(int length) {
+        return RandomStringUtils.randomAlphanumeric(length);
+    }
+
+    public static String randomAsciiAlphanumOfLengthBetween(int min, int max) {
+        return RandomStringUtils.randomAlphanumeric(min, max);
+    }
+
+    public static String randomAsciiLettersOfLength(int lentgh) {
+        return RandomStringUtils.randomAlphabetic(lentgh);
+    }
+
+    public static String randomAsciiLettersOfLengthBetween(int min, int max) {
+        return RandomStringUtils.randomAlphabetic(min, max);
+    }
+
+    public static <T> T randomFrom(T[] array) {
+        int index = randomIntBetween(0, array.length);
+        return array[index];
+    }
+
+    public static <T> T randomFrom(List<T> list) {
+        int index = randomIntBetween(0, list.size());
+        return list.get(index);
+    }
+
+    public static byte[] randomBytesOfLength(int length) {
+        byte[] b = new byte[length];
+        new Random().nextBytes(b);
+        return b;
     }
 }

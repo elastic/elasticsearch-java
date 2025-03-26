@@ -36,10 +36,10 @@ import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 import org.apache.hc.core5.http.message.BasicHeader;
-import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.mocksocket.MockHttpServer;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -83,13 +83,13 @@ public class RestClientSingleHostIntegTests extends RestClientTestCase {
     private Header[] defaultHeaders;
     private WaitForCancelHandler waitForCancelHandler;
 
-    @Before
+    @BeforeEach
     public void startHttpServer() throws Exception {
         // set version.properties, just for testing, version won't be updated
         System.setProperty("versions.elasticsearch","8.17.0");
         pathPrefix = randomBoolean() ? "/testPathPrefix/" + randomAsciiLettersOfLengthBetween(1, 5) : "";
         httpServer = createHttpServer();
-        defaultHeaders = RestClientTestUtil.randomHeaders(getRandom(), "Header-default");
+        defaultHeaders = RestClientTestUtil.randomHeaders("Header-default");
         restClient = createRestClient(false, true, true);
     }
 
@@ -195,7 +195,7 @@ public class RestClientSingleHostIntegTests extends RestClientTestCase {
         return restClientBuilder.build();
     }
 
-    @After
+    @AfterEach
     public void stopHttpServers() throws IOException {
         restClient.close();
         restClient = null;
@@ -207,7 +207,7 @@ public class RestClientSingleHostIntegTests extends RestClientTestCase {
      * Tests sending a bunch of async requests works well (e.g. no TimeoutException from the leased pool)
      * See https://github.com/elastic/elasticsearch/issues/24069
      */
-
+    @Test
     public void testManyAsyncRequests() throws Exception {
         int iters = randomIntBetween(500, 1000);
         final CountDownLatch latch = new CountDownLatch(iters);
@@ -241,8 +241,9 @@ public class RestClientSingleHostIntegTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testCancelAsyncRequest() throws Exception {
-        Request request = new Request(randomHttpMethod(getRandom()), "/wait");
+        Request request = new Request(randomHttpMethod(), "/wait");
         CountDownLatch requestLatch = new CountDownLatch(1);
         AtomicReference<Exception> error = new AtomicReference<>();
         Cancellable cancellable = restClient.performRequestAsync(request, new ResponseListener() {
@@ -273,6 +274,7 @@ public class RestClientSingleHostIntegTests extends RestClientTestCase {
      * to set the future ref to the request properly so that when abort is called, the proper future gets
      * cancelled.
      */
+    @Test
     public void testRequestResetAndAbort() throws Exception {
         try (CloseableHttpAsyncClient client = HttpAsyncClientBuilder.create().build()) {
             client.start();
@@ -331,6 +333,7 @@ public class RestClientSingleHostIntegTests extends RestClientTestCase {
      * out of the box by {@link HttpAsyncClients}.
      * Exercises the test http server ability to send back whatever body it received.
      */
+    @Test
     public void testDeleteWithBody() throws Exception {
         bodyTest("DELETE");
     }
@@ -340,10 +343,12 @@ public class RestClientSingleHostIntegTests extends RestClientTestCase {
      * out of the box by {@link HttpAsyncClients}.
      * Exercises the test http server ability to send back whatever body it received.
      */
+    @Test
     public void testGetWithBody() throws Exception {
         bodyTest("GET");
     }
 
+    @Test
     public void testEncodeParams() throws Exception {
         {
             Request request = new Request("PUT", "/200");
@@ -401,6 +406,7 @@ public class RestClientSingleHostIntegTests extends RestClientTestCase {
      * Verify that credentials are sent on the first request with preemptive auth enabled (default when
      * provided with credentials).
      */
+    @Test
     public void testPreemptiveAuthEnabled() throws Exception {
         final String[] methods = {"POST", "PUT", "GET", "DELETE"};
 
@@ -418,7 +424,7 @@ public class RestClientSingleHostIntegTests extends RestClientTestCase {
     }
 
     private Response bodyTest(final Rest5Client client, final String method) throws Exception {
-        int statusCode = randomStatusCode(getRandom());
+        int statusCode = randomStatusCode();
         return bodyTest(client, method, statusCode, new Header[0]);
     }
 

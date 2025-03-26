@@ -23,6 +23,7 @@ import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.io.entity.ByteArrayEntity;
 import org.apache.hc.core5.http.io.entity.StringEntity;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -36,6 +37,8 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.fail;
 
 public class RequestTests extends RestClientTestCase {
+
+    @Test
     public void testConstructor() {
         final String method = randomFrom(new String[] { "GET", "PUT", "POST", "HEAD", "DELETE" });
         final String endpoint = randomAsciiLettersOfLengthBetween(1, 10);
@@ -59,10 +62,11 @@ public class RequestTests extends RestClientTestCase {
         assertEquals(endpoint, request.getEndpoint());
     }
 
+    @Test
     public void testAddParameters() {
         final String method = randomFrom(new String[] { "GET", "PUT", "POST", "HEAD", "DELETE" });
         final String endpoint = randomAsciiLettersOfLengthBetween(1, 10);
-        int parametersCount = between(1, 3);
+        int parametersCount = randomIntBetween(1, 3);
         final Map<String, String> parameters = new HashMap<>(parametersCount);
         while (parameters.size() < parametersCount) {
             parameters.put(randomAsciiLettersOfLength(5), randomAsciiLettersOfLength(5));
@@ -97,6 +101,7 @@ public class RequestTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testSetEntity() {
         final String method = randomFrom(new String[] { "GET", "PUT", "POST", "HEAD", "DELETE" });
         final String endpoint = randomAsciiLettersOfLengthBetween(1, 10);
@@ -109,6 +114,7 @@ public class RequestTests extends RestClientTestCase {
         assertEquals(entity, request.getEntity());
     }
 
+    @Test
     public void testSetJsonEntity() throws IOException {
         final String method = randomFrom(new String[] { "GET", "PUT", "POST", "HEAD", "DELETE" });
         final String endpoint = randomAsciiLettersOfLengthBetween(1, 10);
@@ -124,6 +130,7 @@ public class RequestTests extends RestClientTestCase {
         assertEquals(json, new String(os.toByteArray(), ContentType.APPLICATION_JSON.getCharset()));
     }
 
+    @Test
     public void testSetOptions() {
         final String method = randomFrom(new String[] { "GET", "PUT", "POST", "HEAD", "DELETE" });
         final String endpoint = randomAsciiLettersOfLengthBetween(1, 10);
@@ -153,6 +160,7 @@ public class RequestTests extends RestClientTestCase {
         assertSame(options, request.getOptions());
     }
 
+    @Test
     public void testEqualsAndHashCode() {
         Request request = randomRequest();
         assertEquals(request, request);
@@ -173,7 +181,7 @@ public class RequestTests extends RestClientTestCase {
             randomAsciiAlphanumOfLength(5)
         );
 
-        int parameterCount = between(0, 5);
+        int parameterCount = randomIntBetween(0, 5);
         for (int i = 0; i < parameterCount; i++) {
             request.addParameter(randomAsciiAlphanumOfLength(i), randomAsciiLettersOfLength(3));
         }
@@ -217,7 +225,7 @@ public class RequestTests extends RestClientTestCase {
             return mutant;
         }
         Request mutant = copy(request);
-        int mutationType = between(0, 2);
+        int mutationType = randomIntBetween(0, 2);
         switch (mutationType) {
             case 0:
                 mutant.addParameter(randomAsciiAlphanumOfLength(mutant.getParameters().size() + 4), "extra");

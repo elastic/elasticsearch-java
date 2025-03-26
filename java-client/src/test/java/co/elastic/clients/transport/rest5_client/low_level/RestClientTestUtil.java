@@ -19,9 +19,6 @@
 
 package co.elastic.clients.transport.rest5_client.low_level;
 
-import com.carrotsearch.randomizedtesting.generators.RandomNumbers;
-import com.carrotsearch.randomizedtesting.generators.RandomPicks;
-import com.carrotsearch.randomizedtesting.generators.RandomStrings;
 import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpRequest;
 import org.apache.hc.core5.http.message.BasicHeader;
@@ -30,6 +27,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+
+import static co.elastic.clients.transport.rest5_client.low_level.RestClientTestCase.randomAsciiLettersOfLengthBetween;
+import static co.elastic.clients.transport.rest5_client.low_level.RestClientTestCase.randomBoolean;
+import static co.elastic.clients.transport.rest5_client.low_level.RestClientTestCase.randomFrom;
+import static co.elastic.clients.transport.rest5_client.low_level.RestClientTestCase.randomIntBetween;
 
 final class RestClientTestUtil {
 
@@ -62,24 +64,24 @@ final class RestClientTestUtil {
         return HTTP_METHODS;
     }
 
-    static String randomHttpMethod(Random random) {
-        return RandomPicks.randomFrom(random, HTTP_METHODS);
+    static String randomHttpMethod() {
+        return randomFrom(HTTP_METHODS);
     }
 
-    static int randomStatusCode(Random random) {
-        return RandomPicks.randomFrom(random, ALL_STATUS_CODES);
+    static int randomStatusCode() {
+        return randomFrom(ALL_STATUS_CODES);
     }
 
-    static int randomOkStatusCode(Random random) {
-        return RandomPicks.randomFrom(random, OK_STATUS_CODES);
+    static int randomOkStatusCode() {
+        return  randomFrom(OK_STATUS_CODES);
     }
 
-    static int randomErrorNoRetryStatusCode(Random random) {
-        return RandomPicks.randomFrom(random, List.of(500,501));
+    static int randomErrorNoRetryStatusCode() {
+        return  randomFrom(List.of(500,501));
     }
 
-    static int randomErrorRetryStatusCode(Random random) {
-        return RandomPicks.randomFrom(random, ERROR_RETRY_STATUS_CODES);
+    static int randomErrorRetryStatusCode() {
+        return  randomFrom(ERROR_RETRY_STATUS_CODES);
     }
 
     static List<Integer> getOkStatusCodes() {
@@ -100,17 +102,16 @@ final class RestClientTestUtil {
      * {@code baseName} so that the
      * we test also support for multiple headers with same key and different values.
      */
-    static Header[] randomHeaders(Random random, final String baseName) {
-        int numHeaders = RandomNumbers.randomIntBetween(random, 0, 5);
+    static Header[] randomHeaders(final String baseName) {
+        int numHeaders = randomIntBetween(0, 5);
         final Header[] headers = new Header[numHeaders];
         for (int i = 0; i < numHeaders; i++) {
             String headerName = baseName;
             // randomly exercise the code path that supports multiple headers with same key
-            if (random.nextBoolean()) {
+            if (randomBoolean()) {
                 headerName = headerName + i;
             }
-            headers[i] = new BasicHeader(headerName, RandomStrings.randomAsciiLettersOfLengthBetween(random
-                , 3, 10));
+            headers[i] = new BasicHeader(headerName, randomAsciiLettersOfLengthBetween(3, 10));
         }
         return headers;
     }

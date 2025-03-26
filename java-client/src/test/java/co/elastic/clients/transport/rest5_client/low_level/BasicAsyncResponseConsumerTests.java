@@ -28,6 +28,7 @@ import org.apache.hc.core5.http.nio.AsyncResponseConsumer;
 import org.apache.hc.core5.http.nio.ContentDecoder;
 import org.apache.hc.core5.http.protocol.HttpContext;
 import org.junit.Assert;
+import org.junit.jupiter.api.Test;
 
 import java.nio.ByteBuffer;
 
@@ -38,6 +39,7 @@ public class BasicAsyncResponseConsumerTests extends RestClientTestCase {
     // maximum buffer that this test ends up allocating is 50MB
     private static final int MAX_TEST_BUFFER_SIZE = 50 * 1024 * 1024;
 
+    @Test
     public void testResponseProcessing() throws Exception {
         ContentDecoder contentDecoder = mock(ContentDecoder.class);
         HttpContext httpContext = mock(HttpContext.class);
@@ -55,6 +57,7 @@ public class BasicAsyncResponseConsumerTests extends RestClientTestCase {
         consumer.consume(ByteBuffer.wrap("test".getBytes()));
     }
 
+    @Test
     public void testBufferLimit() throws Exception {
         HttpContext httpContext = mock(HttpContext.class);
 

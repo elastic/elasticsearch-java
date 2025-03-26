@@ -19,11 +19,11 @@
 
 package co.elastic.clients.transport.rest5_client.low_level;
 
-import com.carrotsearch.randomizedtesting.generators.RandomNumbers;
 import org.apache.hc.client5.http.impl.async.CloseableHttpAsyncClient;
 import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpHost;
 import org.junit.After;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -60,7 +60,7 @@ public class RestClientMultipleHostsTests extends RestClientTestCase {
 
     public Rest5Client createRestClient(NodeSelector nodeSelector) {
         CloseableHttpAsyncClient httpClient = RestClientSingleHostTests.mockHttpClient(exec);
-        int numNodes = RandomNumbers.randomIntBetween(getRandom(), 2, 5);
+        int numNodes = randomIntBetween(2, 5);
         nodes = new ArrayList<>(numNodes);
         for (int i = 0; i < numNodes; i++) {
             nodes.add(new Node(new HttpHost("localhost", 9200 + i)));
@@ -78,16 +78,17 @@ public class RestClientMultipleHostsTests extends RestClientTestCase {
         exec.shutdown();
     }
 
+    @Test
     public void testRoundRobinOkStatusCodes() throws Exception {
         Rest5Client restClient = createRestClient(NodeSelector.ANY);
-        int numIters = RandomNumbers.randomIntBetween(getRandom(), 1, 5);
+        int numIters = randomIntBetween(1, 5);
         for (int i = 0; i < numIters; i++) {
             Set<HttpHost> hostsSet = hostsSet();
             for (int j = 0; j < nodes.size(); j++) {
-                int statusCode = randomOkStatusCode(getRandom());
+                int statusCode = randomOkStatusCode();
                 Response response = RestClientSingleHostTests.performRequestSyncOrAsync(
                     restClient,
-                    new Request(randomHttpMethod(getRandom()), "/" + statusCode)
+                    new Request(randomHttpMethod(), "/" + statusCode)
                 );
                 assertEquals(statusCode, response.getStatusCode());
                 assertTrue("host not found: " + response.getHost(), hostsSet.remove(response.getHost()));
@@ -97,14 +98,15 @@ public class RestClientMultipleHostsTests extends RestClientTestCase {
         failureListener.assertNotCalled();
     }
 
+    @Test
     public void testRoundRobinNoRetryErrors() throws Exception {
         Rest5Client restClient = createRestClient(NodeSelector.ANY);
-        int numIters = RandomNumbers.randomIntBetween(getRandom(), 1, 5);
+        int numIters = randomIntBetween(1, 5);
         for (int i = 0; i < numIters; i++) {
             Set<HttpHost> hostsSet = hostsSet();
             for (int j = 0; j < nodes.size(); j++) {
-                String method = randomHttpMethod(getRandom());
-                int statusCode = randomErrorNoRetryStatusCode(getRandom());
+                String method = randomHttpMethod();
+                int statusCode = randomErrorNoRetryStatusCode();
                 try {
                     Response response = RestClientSingleHostTests.performRequestSyncOrAsync(
                         restClient,
@@ -133,11 +135,12 @@ public class RestClientMultipleHostsTests extends RestClientTestCase {
         failureListener.assertNotCalled();
     }
 
+    @Test
     public void testRoundRobinRetryErrors() throws Exception {
         Rest5Client restClient = createRestClient(NodeSelector.ANY);
         String retryEndpoint = randomErrorRetryEndpoint();
         try {
-            RestClientSingleHostTests.performRequestSyncOrAsync(restClient, new Request(randomHttpMethod(getRandom()), retryEndpoint));
+            RestClientSingleHostTests.performRequestSyncOrAsync(restClient, new Request(randomHttpMethod(), retryEndpoint));
             fail("request should have failed");
         } catch (ResponseException e) {
             Set<HttpHost> hostsSet = hostsSet();
@@ -179,7 +182,7 @@ public class RestClientMultipleHostsTests extends RestClientTestCase {
             assertEquals("every host should have been used but some weren't: " + hostsSet, 0, hostsSet.size());
         }
 
-        int numIters = RandomNumbers.randomIntBetween(getRandom(), 2, 5);
+        int numIters = randomIntBetween(2, 5);
         for (int i = 1; i <= numIters; i++) {
             // check that one different host is resurrected at each new attempt
             Set<HttpHost> hostsSet = hostsSet();
@@ -188,7 +191,7 @@ public class RestClientMultipleHostsTests extends RestClientTestCase {
                 try {
                     RestClientSingleHostTests.performRequestSyncOrAsync(
                         restClient,
-                        new Request(randomHttpMethod(getRandom()), retryEndpoint)
+                        new Request(randomHttpMethod(), retryEndpoint)
                     );
                     fail("request should have failed");
                 } catch (ResponseException e) {
@@ -210,17 +213,17 @@ public class RestClientMultipleHostsTests extends RestClientTestCase {
                 }
             }
             assertEquals("every host should have been used but some weren't: " + hostsSet, 0, hostsSet.size());
-            if (getRandom().nextBoolean()) {
+            if (randomBoolean()) {
                 // mark one host back alive through a successful request and check that all requests after that are sent to it
                 HttpHost selectedHost = null;
-                int iters = RandomNumbers.randomIntBetween(getRandom(), 2, 10);
+                int iters = randomIntBetween(2, 10);
                 for (int y = 0; y < iters; y++) {
-                    int statusCode = randomErrorNoRetryStatusCode(getRandom());
+                    int statusCode = randomErrorNoRetryStatusCode();
                     Response response;
                     try {
                         response = RestClientSingleHostTests.performRequestSyncOrAsync(
                             restClient,
-                            new Request(randomHttpMethod(getRandom()), "/" + statusCode)
+                            new Request(randomHttpMethod(), "/" + statusCode)
                         );
                     } catch (ResponseException e) {
                         response = e.getResponse();
@@ -240,7 +243,7 @@ public class RestClientMultipleHostsTests extends RestClientTestCase {
                     try {
                         RestClientSingleHostTests.performRequestSyncOrAsync(
                             restClient,
-                            new Request(randomHttpMethod(getRandom()), retryEndpoint)
+                            new Request(randomHttpMethod(), retryEndpoint)
                         );
                         fail("request should have failed");
                     } catch (ResponseException e) {
@@ -258,6 +261,7 @@ public class RestClientMultipleHostsTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testNodeSelector() throws Exception {
         NodeSelector firstPositionOnly = restClientNodes -> {
             boolean found = false;
@@ -271,7 +275,7 @@ public class RestClientMultipleHostsTests extends RestClientTestCase {
             assertTrue(found);
         };
         Rest5Client restClient = createRestClient(firstPositionOnly);
-        int rounds = between(1, 10);
+        int rounds = randomIntBetween(1, 10);
         for (int i = 0; i < rounds; i++) {
             /*
              * Run the request more than once to verify that the
@@ -283,6 +287,7 @@ public class RestClientMultipleHostsTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testSetNodes() throws Exception {
         Rest5Client restClient = createRestClient(NodeSelector.SKIP_DEDICATED_MASTERS);
         List<Node> newNodes = new ArrayList<>(nodes.size());
@@ -293,7 +298,7 @@ public class RestClientMultipleHostsTests extends RestClientTestCase {
             newNodes.add(new Node(nodes.get(i).getHost(), null, null, null, roles, null));
         }
         restClient.setNodes(newNodes);
-        int rounds = between(1, 10);
+        int rounds = randomIntBetween(1, 10);
         for (int i = 0; i < rounds; i++) {
             /*
              * Run the request more than once to verify that the
@@ -306,9 +311,9 @@ public class RestClientMultipleHostsTests extends RestClientTestCase {
     }
 
     private static String randomErrorRetryEndpoint() {
-        switch (RandomNumbers.randomIntBetween(getRandom(), 0, 3)) {
+        switch (randomIntBetween(0, 3)) {
             case 0:
-                return "/" + randomErrorRetryStatusCode(getRandom());
+                return "/" + randomErrorRetryStatusCode();
             case 1:
                 return "/coe";
             case 2:

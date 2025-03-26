@@ -39,6 +39,7 @@ import org.apache.hc.core5.http.io.entity.InputStreamEntity;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 import org.apache.hc.core5.http.message.BasicClassicHttpResponse;
 import org.apache.hc.core5.http.message.BasicHeader;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -53,6 +54,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class RequestLoggerTests extends RestClientTestCase {
+
+    @Test
     public void testTraceRequest() throws IOException, URISyntaxException, ParseException {
         HttpHost host = new HttpHost(randomBoolean() ? "http" : "https", "localhost", 9200);
         String expectedEndpoint = "/index/type/_api";
@@ -104,6 +107,7 @@ public class RequestLoggerTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testTraceResponse() throws IOException, ParseException {
         int statusCode = randomIntBetween(200, 599);
         String reasonPhrase = "REASON";
@@ -115,7 +119,7 @@ public class RequestLoggerTests extends RestClientTestCase {
             expected += "\n# header" + i + ": value";
         }
         expected += "\n#";
-        boolean hasBody = getRandom().nextBoolean();
+        boolean hasBody = randomBoolean();
         String responseBody = "{\n  \"field\": \"value\"\n}";
         if (hasBody) {
             expected += "\n# {";
@@ -152,6 +156,7 @@ public class RequestLoggerTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testResponseWarnings() throws Exception {
         HttpHost host = new HttpHost("localhost", 9200);
         HttpUriRequest request = randomHttpRequest(new URI("/index/type/_api"));

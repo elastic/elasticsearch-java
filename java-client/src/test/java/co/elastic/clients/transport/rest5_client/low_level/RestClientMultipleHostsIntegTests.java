@@ -24,10 +24,11 @@ import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import org.apache.hc.core5.http.HttpHost;
 import org.elasticsearch.mocksocket.MockHttpServer;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -67,7 +68,7 @@ public class RestClientMultipleHostsIntegTests extends RestClientTestCase {
     private static String pathPrefix;
     private static Rest5Client restClient;
 
-    @BeforeClass
+    @BeforeAll
     public static void startHttpServer() throws Exception {
         if (randomBoolean()) {
             pathPrefixWithoutLeadingSlash = "testPathPrefix/" + randomAsciiLettersOfLengthBetween(1, 5);
@@ -175,7 +176,7 @@ public class RestClientMultipleHostsIntegTests extends RestClientTestCase {
         }
     }
 
-    @AfterClass
+    @AfterAll
     public static void stopHttpServers() throws IOException {
         restClient.close();
         restClient = null;
@@ -185,7 +186,7 @@ public class RestClientMultipleHostsIntegTests extends RestClientTestCase {
         httpServers = null;
     }
 
-    @Before
+    @BeforeEach
     public void stopRandomHost() {
         // verify that shutting down some hosts doesn't matter as long as one working host is left behind
         if (httpServers.length > 1 && randomBoolean()) {
@@ -206,12 +207,13 @@ public class RestClientMultipleHostsIntegTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testSyncRequests() throws IOException {
         int numRequests = randomIntBetween(5, 20);
         for (int i = 0; i < numRequests; i++) {
-            final String method = RestClientTestUtil.randomHttpMethod(getRandom());
+            final String method = RestClientTestUtil.randomHttpMethod();
             // we don't test status codes that are subject to retries as they interfere with hosts being stopped
-            final int statusCode = randomBoolean() ? randomOkStatusCode(getRandom()) : randomErrorNoRetryStatusCode(getRandom());
+            final int statusCode = randomBoolean() ? randomOkStatusCode() : randomErrorNoRetryStatusCode();
             Response response;
             try {
                 response = restClient.performRequest(new Request(method, "/" + statusCode));
@@ -224,14 +226,15 @@ public class RestClientMultipleHostsIntegTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testAsyncRequests() throws Exception {
         int numRequests = randomIntBetween(5, 20);
         final CountDownLatch latch = new CountDownLatch(numRequests);
         final List<TestResponse> responses = new CopyOnWriteArrayList<>();
         for (int i = 0; i < numRequests; i++) {
-            final String method = RestClientTestUtil.randomHttpMethod(getRandom());
+            final String method = RestClientTestUtil.randomHttpMethod();
             // we don't test status codes that are subject to retries as they interfere with hosts being stopped
-            final int statusCode = randomBoolean() ? randomOkStatusCode(getRandom()) : randomErrorNoRetryStatusCode(getRandom());
+            final int statusCode = randomBoolean() ? randomOkStatusCode() : randomErrorNoRetryStatusCode();
             restClient.performRequestAsync(new Request(method, "/" + statusCode), new ResponseListener() {
                 @Override
                 public void onSuccess(Response response) {
@@ -257,6 +260,7 @@ public class RestClientMultipleHostsIntegTests extends RestClientTestCase {
         }
     }
 
+    @Test
     public void testCancelAsyncRequests() throws Exception {
         int numRequests = randomIntBetween(5, 20);
         final List<Response> responses = new CopyOnWriteArrayList<>();
@@ -297,10 +301,11 @@ public class RestClientMultipleHostsIntegTests extends RestClientTestCase {
      * Test host selector against a real server <strong>and</strong>
      * test what happens after calling
      */
+    @Test
     public void testNodeSelector() throws Exception {
         try (Rest5Client restClient = buildRestClient(firstPositionNodeSelector())) {
             Request request = new Request("GET", "/200");
-            int rounds = between(1, 10);
+            int rounds = randomIntBetween(1, 10);
             for (int i = 0; i < rounds; i++) {
                 /*
                  * Run the request more than once to verify that the
@@ -324,7 +329,8 @@ public class RestClientMultipleHostsIntegTests extends RestClientTestCase {
         }
     }
 
-    @Ignore("https://github.com/elastic/elasticsearch/issues/87314")
+    @Disabled("https://github.com/elastic/elasticsearch/issues/87314")
+    @Test
     public void testNonRetryableException() throws Exception {
         RequestOptions.Builder options = RequestOptions.DEFAULT.toBuilder();
         options.setHttpAsyncResponseConsumerFactory(
