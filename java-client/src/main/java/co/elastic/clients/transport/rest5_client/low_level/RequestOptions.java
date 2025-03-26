@@ -111,7 +111,7 @@ public final class RequestOptions {
     /**
      * How this request should handle warnings. If null (the default) then
      * this request will default to the behavior dictacted by
-     * {@link RestClientBuilder#setStrictDeprecationMode}.
+     * {@link Rest5ClientBuilder#setStrictDeprecationMode}.
      * <p>
      * This can be set to {@link WarningsHandler#PERMISSIVE} if the client
      * should ignore all warnings which is the same behavior as setting
@@ -274,7 +274,7 @@ public final class RequestOptions {
         /**
          * How this request should handle warnings. If null (the default) then
          * this request will default to the behavior dictacted by
-         * {@link RestClientBuilder#setStrictDeprecationMode}.
+         * {@link Rest5ClientBuilder#setStrictDeprecationMode}.
          * <p>
          * This can be set to {@link WarningsHandler#PERMISSIVE} if the client
          * should ignore all warnings which is the same behavior as setting

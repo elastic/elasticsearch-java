@@ -24,7 +24,7 @@ import java.util.Iterator;
 /**
  * Selects nodes that can receive requests. Used to keep requests away
  * from master nodes or to send them to nodes with a particular attribute.
- * Use with {@link RestClientBuilder#setNodeSelector(NodeSelector)}.
+ * Use with {@link Rest5ClientBuilder#setNodeSelector(NodeSelector)}.
  */
 public interface NodeSelector {
     /**
@@ -37,7 +37,7 @@ public interface NodeSelector {
      * This may be called twice per request: first for "living" nodes that
      * have not been blacklisted by previous errors. If the selector removes
      * all nodes from the list or if there aren't any living nodes then the
-     * {@link RestClient} will call this method with a list of "dead" nodes.
+     * {@link Rest5Client} will call this method with a list of "dead" nodes.
      * <p>
      * Implementers should not rely on the ordering of the nodes.
      */

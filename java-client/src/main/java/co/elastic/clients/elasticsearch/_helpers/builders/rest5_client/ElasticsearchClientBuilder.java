@@ -22,10 +22,10 @@ package co.elastic.clients.elasticsearch._helpers.builders.rest5_client;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
-import co.elastic.clients.transport.rest5_client.RestClientOptions;
-import co.elastic.clients.transport.rest5_client.RestClientTransport;
-import co.elastic.clients.transport.rest5_client.low_level.RestClient;
-import co.elastic.clients.transport.rest5_client.low_level.RestClientBuilder;
+import co.elastic.clients.transport.rest5_client.Rest5ClientOptions;
+import co.elastic.clients.transport.rest5_client.Rest5ClientTransport;
+import co.elastic.clients.transport.rest5_client.low_level.Rest5Client;
+import co.elastic.clients.transport.rest5_client.low_level.Rest5ClientBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.apache.hc.core5.http.Header;
@@ -48,7 +48,7 @@ public class ElasticsearchClientBuilder {
     private String apiKey;
     private SSLContext sslContext;
     private JsonpMapper mapper;
-    private RestClientOptions transportOptions;
+    private Rest5ClientOptions transportOptions;
 
     public ElasticsearchClientBuilder host(String url) throws URISyntaxException {
         this.host = HttpHost.create(url);
@@ -81,7 +81,7 @@ public class ElasticsearchClientBuilder {
         return this;
     }
 
-    public ElasticsearchClientBuilder transportOptions(RestClientOptions transportOptions) {
+    public ElasticsearchClientBuilder transportOptions(Rest5ClientOptions transportOptions) {
         this.transportOptions = transportOptions;
         return this;
     }
@@ -97,7 +97,7 @@ public class ElasticsearchClientBuilder {
             }
         }
 
-        RestClientBuilder restClientBuilder = RestClient.builder(host);
+        Rest5ClientBuilder restClientBuilder = Rest5Client.builder(host);
 
         if (this.username != null && this.password != null) {
             var cred = Base64.getEncoder().encodeToString((username + ":" + password).getBytes());
@@ -125,7 +125,7 @@ public class ElasticsearchClientBuilder {
             this.mapper = new JacksonJsonpMapper(mapper);
         }
 
-        RestClientTransport transport = new RestClientTransport(restClientBuilder.build(), mapper, transportOptions);
+        Rest5ClientTransport transport = new Rest5ClientTransport(restClientBuilder.build(), mapper, transportOptions);
         return new ElasticsearchClient(transport);
     }
 }
