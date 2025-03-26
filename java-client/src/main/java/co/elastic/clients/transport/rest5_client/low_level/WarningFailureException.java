@@ -25,8 +25,8 @@ import static co.elastic.clients.transport.rest5_client.low_level.ResponseExcept
 
 /**
  * This exception is used to indicate that one or more {@link ESResponse#getWarnings()} exist
- * and is typically used when the {@link RestClient} is set to fail by setting
- * {@link RestClientBuilder#setStrictDeprecationMode(boolean)} to `true`.
+ * and is typically used when the {@link Rest5Client} is set to fail by setting
+ * {@link Rest5ClientBuilder#setStrictDeprecationMode(boolean)} to `true`.
  */
 // This class extends RuntimeException in order to deal with wrapping that is done in FutureUtils on exception.
 // if the exception is not of type ElasticsearchException or RuntimeException it will be wrapped in a UncategorizedExecutionException

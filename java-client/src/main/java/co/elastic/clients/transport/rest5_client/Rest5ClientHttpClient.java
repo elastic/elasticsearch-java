@@ -17,21 +17,24 @@
  * under the License.
  */
 
-package co.elastic.clients.transport.rest_client;
+package co.elastic.clients.transport.rest5_client;
 
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.http.HeaderMap;
 import co.elastic.clients.transport.http.TransportHttpClient;
+import co.elastic.clients.transport.rest5_client.low_level.Cancellable;
+import co.elastic.clients.transport.rest5_client.low_level.ESRequest;
+import co.elastic.clients.transport.rest5_client.low_level.ESResponse;
+import co.elastic.clients.transport.rest5_client.low_level.ResponseListener;
+import co.elastic.clients.transport.rest5_client.low_level.Rest5Client;
 import co.elastic.clients.util.BinaryData;
 import co.elastic.clients.util.NoCopyByteArrayOutputStream;
-import org.apache.http.Header;
-import org.apache.http.HeaderElement;
-import org.apache.http.HttpEntity;
-import org.apache.http.entity.ContentType;
-import org.apache.http.util.EntityUtils;
-import org.elasticsearch.client.Cancellable;
-import org.elasticsearch.client.ResponseListener;
-import org.elasticsearch.client.RestClient;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.Header;
+import org.apache.hc.core5.http.HeaderElement;
+import org.apache.hc.core5.http.HttpEntity;
+import org.apache.hc.core5.http.io.entity.EntityUtils;
+import org.apache.hc.core5.http.message.BasicHeaderValueParser;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
@@ -45,7 +48,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class RestClientHttpClient implements TransportHttpClient {
+public class Rest5ClientHttpClient implements TransportHttpClient {
 
     private static final ConcurrentHashMap<String, ContentType> ContentTypeCache = new ConcurrentHashMap<>();
 
@@ -66,30 +69,30 @@ public class RestClientHttpClient implements TransportHttpClient {
         }
     }
 
-    private final RestClient restClient;
+    private final Rest5Client restClient;
 
-    public RestClientHttpClient(RestClient restClient) {
+    public Rest5ClientHttpClient(Rest5Client restClient) {
         this.restClient = restClient;
     }
 
     /**
      * Returns the underlying low level Rest Client used by this transport.
      */
-    public RestClient restClient() {
+    public Rest5Client restClient() {
         return this.restClient;
     }
 
     @Override
-    public RestClientOptions createOptions(@Nullable TransportOptions options) {
-        return RestClientOptions.of(options);
+    public Rest5ClientOptions createOptions(@Nullable TransportOptions options) {
+        return Rest5ClientOptions.of(options);
     }
 
     @Override
     public Response performRequest(String endpointId, @Nullable Node node, Request request,
                                    TransportOptions options) throws IOException {
-        RestClientOptions rcOptions = RestClientOptions.of(options);
-        org.elasticsearch.client.Request restRequest = createRestRequest(request, rcOptions);
-        org.elasticsearch.client.Response restResponse = restClient.performRequest(restRequest);
+        Rest5ClientOptions rcOptions = Rest5ClientOptions.of(options);
+        ESRequest restRequest = createRestRequest(request, rcOptions);
+        ESResponse restResponse = restClient.performRequest(restRequest);
         return new RestResponse(restResponse);
     }
 
@@ -99,10 +102,10 @@ public class RestClientHttpClient implements TransportHttpClient {
     ) {
 
         RequestFuture<Response> future = new RequestFuture<>();
-        org.elasticsearch.client.Request restRequest;
+        ESRequest restRequest;
 
         try {
-            RestClientOptions rcOptions = RestClientOptions.of(options);
+            Rest5ClientOptions rcOptions = Rest5ClientOptions.of(options);
             restRequest = createRestRequest(request, rcOptions);
         } catch (Throwable thr) {
             // Terminate early
@@ -112,7 +115,7 @@ public class RestClientHttpClient implements TransportHttpClient {
 
         future.cancellable = restClient.performRequestAsync(restRequest, new ResponseListener() {
             @Override
-            public void onSuccess(org.elasticsearch.client.Response response) {
+            public void onSuccess(ESResponse response) {
                 future.complete(new RestResponse(response));
             }
 
@@ -130,8 +133,8 @@ public class RestClientHttpClient implements TransportHttpClient {
         this.restClient.close();
     }
 
-    private org.elasticsearch.client.Request createRestRequest(Request request, RestClientOptions options) {
-        org.elasticsearch.client.Request clientReq = new org.elasticsearch.client.Request(
+    private ESRequest createRestRequest(Request request, Rest5ClientOptions options) {
+        ESRequest clientReq = new ESRequest(
             request.method(), request.path()
         );
 
@@ -143,10 +146,10 @@ public class RestClientHttpClient implements TransportHttpClient {
             int headerCount = requestHeaders.size();
             if ((body == null && headerCount != 3) || headerCount != 4) {
                 if (options == null) {
-                    options = RestClientOptions.initialOptions();
+                    options = Rest5ClientOptions.initialOptions();
                 }
 
-                RestClientOptions.Builder builder = options.toBuilder();
+                Rest5ClientOptions.Builder builder = options.toBuilder();
                 for (Map.Entry<String, String> header : requestHeaders.entrySet()) {
                     builder.setHeader(header.getKey(), header.getValue());
                 }
@@ -173,15 +176,13 @@ public class RestClientHttpClient implements TransportHttpClient {
             clientReq.setEntity(new MultiBufferEntity(body, ct));
         }
 
-        // Request parameter intercepted by LLRC
-        clientReq.addParameter("ignore", "400,401,403,404,405");
         return clientReq;
     }
 
     static class RestResponse implements Response {
-        private final org.elasticsearch.client.Response restResponse;
+        private final ESResponse restResponse;
 
-        RestResponse(org.elasticsearch.client.Response restResponse) {
+        RestResponse(ESResponse restResponse) {
             this.restResponse = restResponse;
         }
 
@@ -192,7 +193,7 @@ public class RestClientHttpClient implements TransportHttpClient {
 
         @Override
         public int statusCode() {
-            return restResponse.getStatusLine().getStatusCode();
+            return restResponse.getStatusCode();
         }
 
         @Override
@@ -206,8 +207,9 @@ public class RestClientHttpClient implements TransportHttpClient {
             for (int i = 0; i < headers.length; i++) {
                 Header header = headers[i];
                 if (header.getName().equalsIgnoreCase(name)) {
-                    HeaderElement[] elements = header.getElements();
-                    return new AbstractList<String>() {
+                    BasicHeaderValueParser elementParser = new BasicHeaderValueParser();
+                    HeaderElement[] elements = elementParser.parseElements(header.getValue(), null);
+                    return new AbstractList<>() {
                         @Override
                         public String get(int index) {
                             return elements[index].getValue();
@@ -232,7 +234,7 @@ public class RestClientHttpClient implements TransportHttpClient {
 
         @Nullable
         @Override
-        public org.elasticsearch.client.Response originalResponse() {
+        public ESResponse originalResponse() {
             return this.restResponse;
         }
 
@@ -251,8 +253,8 @@ public class RestClientHttpClient implements TransportHttpClient {
 
         @Override
         public String contentType() {
-            Header h = entity.getContentType();
-            return h == null ? "application/octet-stream" : h.getValue();
+            String h = entity.getContentType();
+            return h == null ? "application/octet-stream" : h;
         }
 
         @Override

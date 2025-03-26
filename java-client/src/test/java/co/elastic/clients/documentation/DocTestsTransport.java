@@ -73,6 +73,10 @@ public class DocTestsTransport implements ElasticsearchTransport {
         public Builder toBuilder() {
             return null;
         }
+
+        @Override
+        public void updateToken(String token) {
+        }
     };
 
     public void setResult(Object result) {
