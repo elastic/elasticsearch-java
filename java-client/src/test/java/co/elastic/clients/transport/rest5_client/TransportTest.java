@@ -25,7 +25,7 @@ import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.TransportException;
 import co.elastic.clients.transport.http.RepeatableBodyResponse;
 import co.elastic.clients.transport.http.TransportHttpClient;
-import co.elastic.clients.transport.rest5_client.low_level.ESResponse;
+import co.elastic.clients.transport.rest5_client.low_level.Response;
 import co.elastic.clients.transport.rest5_client.low_level.RequestOptions;
 import co.elastic.clients.transport.rest5_client.low_level.Rest5Client;
 import co.elastic.clients.util.BinaryData;
@@ -81,7 +81,7 @@ public class TransportTest extends Assertions {
         assertEquals("es/cat.indices", ex.endpointId());
 
         // Original response is transport-dependent
-        ESResponse restClientResponse = (ESResponse) ex.response().originalResponse();
+        Response restClientResponse = (Response) ex.response().originalResponse();
         assertEquals(401, restClientResponse.getStatusCode());
     }
 

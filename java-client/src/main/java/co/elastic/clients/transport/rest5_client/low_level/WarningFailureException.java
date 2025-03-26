@@ -24,7 +24,7 @@ import java.io.IOException;
 import static co.elastic.clients.transport.rest5_client.low_level.ResponseException.buildMessage;
 
 /**
- * This exception is used to indicate that one or more {@link ESResponse#getWarnings()} exist
+ * This exception is used to indicate that one or more {@link Response#getWarnings()} exist
  * and is typically used when the {@link Rest5Client} is set to fail by setting
  * {@link Rest5ClientBuilder#setStrictDeprecationMode(boolean)} to `true`.
  */
@@ -32,9 +32,9 @@ import static co.elastic.clients.transport.rest5_client.low_level.ResponseExcept
 // if the exception is not of type ElasticsearchException or RuntimeException it will be wrapped in a UncategorizedExecutionException
 public final class WarningFailureException extends RuntimeException {
 
-    private final ESResponse response;
+    private final Response response;
 
-    public WarningFailureException(ESResponse response) throws IOException {
+    public WarningFailureException(Response response) throws IOException {
         super(buildMessage(response));
         this.response = response;
     }
@@ -50,9 +50,9 @@ public final class WarningFailureException extends RuntimeException {
     }
 
     /**
-     * Returns the {@link ESResponse} that caused this exception to be thrown.
+     * Returns the {@link Response} that caused this exception to be thrown.
      */
-    public ESResponse getResponse() {
+    public Response getResponse() {
         return response;
     }
 }

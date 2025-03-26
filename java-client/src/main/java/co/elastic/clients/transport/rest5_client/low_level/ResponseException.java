@@ -33,14 +33,14 @@ import java.util.Locale;
  */
 public final class ResponseException extends IOException {
 
-    private final ESResponse response;
+    private final Response response;
 
-    public ResponseException(ESResponse response) throws IOException {
+    public ResponseException(Response response) throws IOException {
         super(buildMessage(response));
         this.response = response;
     }
 
-    static String buildMessage(ESResponse response) throws IOException {
+    static String buildMessage(Response response) throws IOException {
         String message = String.format(
             Locale.ROOT,
             "method [%s], host [%s], URI [%s], status line [%s]",
@@ -70,9 +70,9 @@ public final class ResponseException extends IOException {
     }
 
     /**
-     * Returns the {@link ESResponse} that caused this exception to be thrown.
+     * Returns the {@link Response} that caused this exception to be thrown.
      */
-    public ESResponse getResponse() {
+    public Response getResponse() {
         return response;
     }
 }

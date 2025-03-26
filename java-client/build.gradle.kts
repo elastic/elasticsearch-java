@@ -273,6 +273,20 @@ dependencies {
     // Apache-2.0
     // https://github.com/awaitility/awaitility
     testImplementation("org.awaitility", "awaitility", "4.2.0")
+
+    // MIT
+    // https://github.com/mockito/mockito
+    testImplementation("org.mockito","mockito-core","5.12.0")
+
+    // Apache-2.0
+    // https://github.com/randomizedtesting/randomizedtesting
+    testImplementation("com.carrotsearch.randomizedtesting","randomizedtesting-runner","2.8.1")
+
+    // Apache-2.0
+    // https://github.com/elastic/mocksocket
+    testImplementation("org.elasticsearch","mocksocket","1.2")
+
+
 }
 
 

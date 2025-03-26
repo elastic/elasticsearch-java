@@ -95,7 +95,7 @@ import static org.apache.hc.core5.http.HttpHeaders.CONTENT_LENGTH;
  * The hosts that are part of the cluster need to be provided at creation time, but can also be replaced later
  * by calling {@link #setNodes(Collection)}.
  * <p>
- * The method {@link #performRequest(ESRequest)} allows to send a request to the cluster. When
+ * The method {@link #performRequest(Request)} allows to send a request to the cluster. When
  * sending a request, a host gets selected out of the provided ones in a round-robin fashion. Failing hosts
  * are marked dead and
  * retried after a certain amount of time (minimum 1 minute, maximum 30 minutes), depending on how many
@@ -296,13 +296,13 @@ public class Rest5Client implements Closeable {
      * @throws ResponseException       in case Elasticsearch responded with a status code that indicated an
      *                                 error
      */
-    public ESResponse performRequest(ESRequest request) throws IOException {
+    public Response performRequest(Request request) throws IOException {
         InternalRequest internalRequest = new InternalRequest(request);
         return performRequest(nextNodes(), internalRequest, null);
     }
 
-    private ESResponse performRequest(final Iterator<Node> nodes, final InternalRequest request,
-                                      Exception previousException)
+    private Response performRequest(final Iterator<Node> nodes, final InternalRequest request,
+                                    Exception previousException)
         throws IOException {
         RequestContext context = request.createContextForNextAttempt(nodes.next());
         ClassicHttpResponse httpResponse;
@@ -360,7 +360,7 @@ public class Rest5Client implements Closeable {
             }
         }
 
-        ESResponse response = new ESResponse(new RequestLine(request.httpRequest), node.getHost(), httpResponse);
+        Response response = new Response(new RequestLine(request.httpRequest), node.getHost(), httpResponse);
         if (isCorrectServerResponse(statusCode)) {
             onResponse(node);
             if (request.warningsHandler.warningsShouldFailRequest(response.getWarnings())) {
@@ -395,7 +395,7 @@ public class Rest5Client implements Closeable {
      * @param responseListener the {@link ResponseListener} to notify when the
      *                         request is completed or fails
      */
-    public Cancellable performRequestAsync(ESRequest request, ResponseListener responseListener) {
+    public Cancellable performRequestAsync(Request request, ResponseListener responseListener) {
         try {
             FailureTrackingResponseListener failureTrackingResponseListener =
                 new FailureTrackingResponseListener(responseListener);
@@ -726,7 +726,7 @@ public class Rest5Client implements Closeable {
         /**
          * Notifies the caller of a response through the wrapped listener
          */
-        void onSuccess(ESResponse response) {
+        void onSuccess(Response response) {
             responseListener.onSuccess(response);
         }
 
@@ -812,12 +812,12 @@ public class Rest5Client implements Closeable {
     }
 
     private class InternalRequest {
-        private final ESRequest request;
+        private final Request request;
         private final HttpUriRequestBase httpRequest;
         private final Cancellable cancellable;
         private final WarningsHandler warningsHandler;
 
-        InternalRequest(ESRequest request) {
+        InternalRequest(Request request) {
             this.request = request;
             Map<String, String> params = new HashMap<>(request.getParameters());
             params.putAll(request.getOptions().getParameters());
@@ -897,10 +897,10 @@ public class Rest5Client implements Closeable {
     }
 
     private static class ResponseOrResponseException {
-        private final ESResponse response;
+        private final Response response;
         private final ResponseException responseException;
 
-        ResponseOrResponseException(ESResponse response) {
+        ResponseOrResponseException(Response response) {
             this.response = Objects.requireNonNull(response);
             this.responseException = null;
         }

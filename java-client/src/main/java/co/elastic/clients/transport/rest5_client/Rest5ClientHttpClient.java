@@ -23,8 +23,6 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.http.HeaderMap;
 import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.transport.rest5_client.low_level.Cancellable;
-import co.elastic.clients.transport.rest5_client.low_level.ESRequest;
-import co.elastic.clients.transport.rest5_client.low_level.ESResponse;
 import co.elastic.clients.transport.rest5_client.low_level.ResponseListener;
 import co.elastic.clients.transport.rest5_client.low_level.Rest5Client;
 import co.elastic.clients.util.BinaryData;
@@ -91,8 +89,8 @@ public class Rest5ClientHttpClient implements TransportHttpClient {
     public Response performRequest(String endpointId, @Nullable Node node, Request request,
                                    TransportOptions options) throws IOException {
         Rest5ClientOptions rcOptions = Rest5ClientOptions.of(options);
-        ESRequest restRequest = createRestRequest(request, rcOptions);
-        ESResponse restResponse = restClient.performRequest(restRequest);
+        co.elastic.clients.transport.rest5_client.low_level.Request restRequest = createRestRequest(request, rcOptions);
+        co.elastic.clients.transport.rest5_client.low_level.Response restResponse = restClient.performRequest(restRequest);
         return new RestResponse(restResponse);
     }
 
@@ -102,7 +100,7 @@ public class Rest5ClientHttpClient implements TransportHttpClient {
     ) {
 
         RequestFuture<Response> future = new RequestFuture<>();
-        ESRequest restRequest;
+        co.elastic.clients.transport.rest5_client.low_level.Request restRequest;
 
         try {
             Rest5ClientOptions rcOptions = Rest5ClientOptions.of(options);
@@ -115,7 +113,7 @@ public class Rest5ClientHttpClient implements TransportHttpClient {
 
         future.cancellable = restClient.performRequestAsync(restRequest, new ResponseListener() {
             @Override
-            public void onSuccess(ESResponse response) {
+            public void onSuccess(co.elastic.clients.transport.rest5_client.low_level.Response response) {
                 future.complete(new RestResponse(response));
             }
 
@@ -133,8 +131,8 @@ public class Rest5ClientHttpClient implements TransportHttpClient {
         this.restClient.close();
     }
 
-    private ESRequest createRestRequest(Request request, Rest5ClientOptions options) {
-        ESRequest clientReq = new ESRequest(
+    private co.elastic.clients.transport.rest5_client.low_level.Request createRestRequest(Request request, Rest5ClientOptions options) {
+        co.elastic.clients.transport.rest5_client.low_level.Request clientReq = new co.elastic.clients.transport.rest5_client.low_level.Request(
             request.method(), request.path()
         );
 
@@ -180,9 +178,9 @@ public class Rest5ClientHttpClient implements TransportHttpClient {
     }
 
     static class RestResponse implements Response {
-        private final ESResponse restResponse;
+        private final co.elastic.clients.transport.rest5_client.low_level.Response restResponse;
 
-        RestResponse(ESResponse restResponse) {
+        RestResponse(co.elastic.clients.transport.rest5_client.low_level.Response restResponse) {
             this.restResponse = restResponse;
         }
 
@@ -234,7 +232,7 @@ public class Rest5ClientHttpClient implements TransportHttpClient {
 
         @Nullable
         @Override
-        public ESResponse originalResponse() {
+        public co.elastic.clients.transport.rest5_client.low_level.Response originalResponse() {
             return this.restResponse;
         }
 
