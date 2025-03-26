@@ -62,8 +62,8 @@ public final class ResponseException extends IOException {
             }
             try {
                 message += "\n" + EntityUtils.toString(entity);
-            } catch (ParseException e) {  // TODO 99% sure this will never get thrown. can suppress?
-                throw new RuntimeException("Could not parse headers: " + e);
+            } catch (ParseException e) {
+                throw new IOException("Could not parse headers: " + e);
             }
         }
         return message;
