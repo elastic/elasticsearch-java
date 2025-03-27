@@ -26,6 +26,7 @@ import javax.annotation.Nullable;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
 
 /**
  * The transport layer that allows {@link ApiClient}s to send requests.
@@ -51,4 +52,24 @@ public interface Transport extends Closeable {
      * {@link #performRequestAsync(Object, Endpoint, TransportOptions)};
      */
     TransportOptions options();
+
+    /**
+     * Clone this transport with new options.
+     *
+     * @throws UnsupportedOperationException
+     */
+    default Transport withOptions(@Nullable TransportOptions options) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Clone this transport with additional options. The lambda expression is provided an options builder
+     * initialized with the transport's current options.
+     *
+     * @param fn a lambda expression that takes the current options as input
+     * @throws UnsupportedOperationException
+     */
+    default Transport withOptions(Function<TransportOptions.Builder, TransportOptions.Builder> fn) {
+        return withOptions(fn.apply(options().toBuilder()).build());
+    }
 }

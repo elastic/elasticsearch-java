@@ -154,50 +154,14 @@ public class Rest5Client implements Closeable {
 
     /**
      * Returns a new {@link Rest5ClientBuilder} to help with {@link Rest5Client} creation.
-     * Creates a new builder instance and sets the nodes that the client will send requests to.
-     *
-     * @param cloudId a valid elastic cloud cloudId that will route to a cluster. The cloudId is located in
-     *                the user console https://cloud.elastic.co and will resemble a string like the following
-     *                optionalHumanReadableName:dXMtZWFzdC0xLmF3cy5mb3VuZC5pbyRlbGFzdGljc2VhcmNoJGtpYmFuYQ==
+     * Creates a new builder instance and sets the hosts that the client will send requests to.
      */
-    public static Rest5ClientBuilder builder(String cloudId) {
-        // there is an optional first portion of the cloudId that is a human readable string, but it is not
-        // used.
-        if (cloudId.contains(":")) {
-            if (cloudId.indexOf(':') == cloudId.length() - 1) {
-                throw new IllegalStateException("cloudId " + cloudId + " must begin with a human readable " +
-                    "identifier followed by a colon");
-            }
-            cloudId = cloudId.substring(cloudId.indexOf(':') + 1);
+    public static Rest5ClientBuilder builder(URI... uris) {
+        if (uris == null || uris.length == 0) {
+            throw new IllegalArgumentException("uris must not be null nor empty");
         }
-
-        String decoded = new String(Base64.getDecoder().decode(cloudId), UTF_8);
-        // once decoded the parts are separated by a $ character.
-        // they are respectively domain name and optional port, elasticsearch id, kibana id
-        String[] decodedParts = decoded.split("\\$");
-        if (decodedParts.length != 3) {
-            throw new IllegalStateException("cloudId " + cloudId + " did not decode to a cluster identifier" +
-                " correctly");
-        }
-
-        // domain name and optional port
-        String[] domainAndMaybePort = decodedParts[0].split(":", 2);
-        String domain = domainAndMaybePort[0];
-        int port;
-
-        if (domainAndMaybePort.length == 2) {
-            try {
-                port = Integer.parseInt(domainAndMaybePort[1]);
-            } catch (NumberFormatException nfe) {
-                throw new IllegalStateException("cloudId " + cloudId + " does not contain a valid port " +
-                    "number");
-            }
-        } else {
-            port = 443;
-        }
-
-        String url = decodedParts[1] + "." + domain;
-        return builder(new HttpHost("https", url, port));
+        List<Node> nodes = Arrays.stream(uris).map(u -> new Node(HttpHost.create(u))).toList();
+        return new Rest5ClientBuilder(nodes);
     }
 
     /**

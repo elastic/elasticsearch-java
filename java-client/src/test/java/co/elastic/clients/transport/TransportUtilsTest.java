@@ -19,18 +19,10 @@
 
 package co.elastic.clients.transport;
 
-import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.ElasticsearchTestClient;
 import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
-import co.elastic.clients.json.SimpleJsonpMapper;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
-import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.testcontainers.elasticsearch.ElasticsearchContainer;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLHandshakeException;
@@ -86,22 +78,8 @@ public class TransportUtilsTest extends Assertions {
     }
 
     private void checkConnection(SSLContext sslContext) throws Exception {
-        ElasticsearchContainer container = ElasticsearchTestServer.global().container();
-
-        BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
-        credsProv.setCredentials(
-            AuthScope.ANY, new UsernamePasswordCredentials("elastic", "changeme")
-        );
-
-        RestClient restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200), "https"))
-            .setHttpClientConfigCallback(c -> c
-                .setSSLContext(sslContext)
-                .setDefaultCredentialsProvider(credsProv)
-            )
-            .build();
-
-        RestClientTransport transport = new RestClientTransport(restClient, SimpleJsonpMapper.INSTANCE);
-        ElasticsearchClient esClient = new ElasticsearchClient(transport);
+        var server = ElasticsearchTestServer.global();
+        var esClient = ElasticsearchTestClient.createClient(server.url(), null, sslContext);
 
         assertNotNull(esClient.info());
     }

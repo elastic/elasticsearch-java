@@ -24,6 +24,7 @@ import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import co.elastic.clients.transport.rest5_client.Rest5ClientTransport;
 import co.elastic.clients.transport.rest5_client.low_level.Rest5Client;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
+import com.sun.net.httpserver.HttpServer;
 import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.message.BasicHeader;
 import org.apache.http.HttpHost;
@@ -35,26 +36,35 @@ import org.elasticsearch.client.RestClient;
 import javax.annotation.Nullable;
 import javax.net.ssl.SSLContext;
 import java.net.URI;
+import java.security.SecureRandom;
 import java.util.Base64;
-import java.util.Random;
 
 public class ElasticsearchTestClient {
 
+    protected enum ClientImpl { Rest4, Rest5 }
+
     // Same value for all tests in a test run
-    private static final int RAND = new Random().nextInt(100);
+    private static final ClientImpl flavor;
+    static {
+        var flavors = ClientImpl.values();
+        flavor = flavors[new SecureRandom().nextInt(flavors.length)];
+    }
 
     private static JsonpMapper mapper(JsonpMapper mapper) {
         return mapper != null ? mapper : new JsonbJsonpMapper();
     }
 
     public static ElasticsearchClient createClient(String url, @Nullable JsonpMapper mapper, @Nullable SSLContext sslContext) {
-        if(RAND % 2 == 0) {
-            System.out.println("Using a Rest4 client");
-            return createRest4Client(url, mapper, sslContext);
-        } else {
-            System.out.println("Using a Rest5 client");
-            return createRest5Client(url, mapper, sslContext);
-        }
+        System.out.println("Using a " + flavor + " client");
+        return switch (flavor) {
+            case Rest4 -> createRest4Client(url, mapper, sslContext);
+            case Rest5 -> createRest5Client(url, mapper, sslContext);
+        };
+    }
+
+    public static ElasticsearchClient createClient(HttpServer server, @Nullable JsonpMapper mapper) {
+        var address = server.getAddress();
+        return createClient("http://" + address.getHostString() + ":" + address.getPort(), mapper, null);
     }
 
     public static ElasticsearchClient createRest4Client(String url, @Nullable JsonpMapper mapper, @Nullable SSLContext sslContext) {

@@ -21,11 +21,12 @@ package co.elastic.clients.transport.instrumentation;
 
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.ElasticsearchTestClient;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.jackson.JacksonJsonpMapper;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
+import co.elastic.clients.transport.ElasticsearchTransportBase;
+import co.elastic.clients.transport.TransportTest;
 import com.sun.net.httpserver.HttpServer;
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.common.AttributeKey;
@@ -39,8 +40,6 @@ import io.opentelemetry.sdk.trace.export.SimpleSpanProcessor;
 import io.opentelemetry.sdk.trace.export.SpanExporter;
 import io.opentelemetry.semconv.resource.attributes.ResourceAttributes;
 import io.opentelemetry.semconv.trace.attributes.SemanticAttributes;
-import org.apache.http.HttpHost;
-import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -110,8 +109,6 @@ public class OpenTelemetryForElasticsearchTest {
     private static HttpServer httpServer;
     private static MockSpanExporter spanExporter;
     private static OpenTelemetry openTelemetry;
-    private static RestClient restClient;
-    private static RestClientTransport transport;
     private static ElasticsearchClient client;
     private static ElasticsearchAsyncClient asyncClient;
 
@@ -125,16 +122,15 @@ public class OpenTelemetryForElasticsearchTest {
     @AfterAll
     public static void cleanUp() throws IOException {
         httpServer.stop(0);
-        transport.close();
+        client.close();
     }
 
     private static void setupClient() {
-        restClient =
-                RestClient.builder(new HttpHost(httpServer.getAddress().getAddress(), httpServer.getAddress().getPort())).build();
 
         Instrumentation instrumentation = new OpenTelemetryForElasticsearch(openTelemetry, false);
 
-        transport = new RestClientTransport(restClient, new JacksonJsonpMapper(), null, instrumentation);
+        var transport = (ElasticsearchTransportBase) ElasticsearchTestClient.createClient(httpServer, null)._transport();
+        transport = TransportTest.cloneTransportWith(transport, null, null, instrumentation);
 
         client = new ElasticsearchClient(transport);
         asyncClient = new ElasticsearchAsyncClient(transport);
@@ -195,10 +191,10 @@ public class OpenTelemetryForElasticsearchTest {
         Assertions.assertEquals("GET", span.getAttributes().get(AttributeKey.stringKey(HTTP_REQUEST_METHOD)));
         Assertions.assertEquals("elasticsearch", span.getAttributes().get(SemanticAttributes.DB_SYSTEM));
 
-        String url = "http://" + httpServer.getAddress().getHostName() + ":" + httpServer.getAddress().getPort() +
+        String url = "http://" + httpServer.getAddress().getHostString() + ":" + httpServer.getAddress().getPort() +
             "/" + INDEX + "/_doc/" + DOC_ID + "?refresh=true";
         Assertions.assertEquals(url, span.getAttributes().get(AttributeKey.stringKey(URL_FULL)));
-        Assertions.assertEquals(httpServer.getAddress().getHostName(), span.getAttributes().get(AttributeKey.stringKey(SERVER_ADDRESS)));
+        Assertions.assertEquals(httpServer.getAddress().getHostString(), span.getAttributes().get(AttributeKey.stringKey(SERVER_ADDRESS)));
         Assertions.assertEquals(httpServer.getAddress().getPort(), span.getAttributes().get(AttributeKey.longKey(SERVER_PORT)));
 
         // Path parts
@@ -208,9 +204,10 @@ public class OpenTelemetryForElasticsearchTest {
     @Test
     public void testSearchRequest() throws IOException, InterruptedException {
         // A client that will capture requests
-        ElasticsearchClient client = new ElasticsearchClient(new RestClientTransport(
-            restClient, this.client._jsonpMapper(), null, new OpenTelemetryForElasticsearch(openTelemetry, true))
-        );
+        var transport = (ElasticsearchTransportBase) client._transport();
+        transport = TransportTest.cloneTransportWith(transport, null, null, new OpenTelemetryForElasticsearch(openTelemetry, true));
+        client = new ElasticsearchClient(transport);
+
         SearchRequest req = SearchRequest.of(r -> r.index(INDEX).query(q -> q.term(t -> t.field("x").value("y"))));
         String queryAsString = JsonpUtils.toJsonString(req, client._jsonpMapper());
         client.search(req, Object.class);

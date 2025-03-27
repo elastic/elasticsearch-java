@@ -37,7 +37,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
 /**
- * A transport implementation that always returns the same result. Used for doc snippets where we can to check
+ * A transport implementation that always returns the same result. Used for doc snippets where we can check
  * compilation and do very simple tests.
  */
 public class DocTestsTransport implements ElasticsearchTransport {

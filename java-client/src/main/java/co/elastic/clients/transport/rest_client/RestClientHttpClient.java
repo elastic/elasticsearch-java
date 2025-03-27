@@ -227,7 +227,7 @@ public class RestClientHttpClient implements TransportHttpClient {
         @Override
         public BinaryData body() throws IOException {
             HttpEntity entity = restResponse.getEntity();
-            return entity == null ? null : new HttpEntityBinaryData(restResponse.getEntity());
+            return entity == null ? null : new HttpEntityBinaryData(entity);
         }
 
         @Nullable
