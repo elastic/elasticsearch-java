@@ -21,8 +21,12 @@ package co.elastic.clients.transport.rest_client;
 
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransportBase;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.instrumentation.Instrumentation;
 import org.elasticsearch.client.RestClient;
+
+import javax.annotation.Nullable;
 
 public class RestClientTransport extends ElasticsearchTransportBase {
 
@@ -44,5 +48,22 @@ public class RestClientTransport extends ElasticsearchTransportBase {
 
     public RestClient restClient() {
         return this.restClient;
+    }
+
+
+    @Override
+    public Transport withOptions(@Nullable TransportOptions options) {
+        return new RestClientTransport(restClient, mapper, RestClientOptions.of(options), instrumentation);
+    }
+
+    /** INTERNAL, used only for tests. */
+    @Override
+    protected ElasticsearchTransportBase cloneWith(TransportOptions options, JsonpMapper mapper, Instrumentation instrumentation) {
+        return new RestClientTransport(
+            restClient,
+            mapper != null ? mapper : this.mapper,
+            RestClientOptions.of(options != null ? options : this.transportOptions),
+            instrumentation != null ? instrumentation : this.instrumentation
+        );
     }
 }

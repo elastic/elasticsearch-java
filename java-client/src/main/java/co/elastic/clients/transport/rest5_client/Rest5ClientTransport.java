@@ -21,8 +21,12 @@ package co.elastic.clients.transport.rest5_client;
 
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransportBase;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.instrumentation.Instrumentation;
 import co.elastic.clients.transport.rest5_client.low_level.Rest5Client;
+
+import javax.annotation.Nullable;
 
 public class Rest5ClientTransport extends ElasticsearchTransportBase {
 
@@ -44,5 +48,21 @@ public class Rest5ClientTransport extends ElasticsearchTransportBase {
 
     public Rest5Client restClient() {
         return this.restClient;
+    }
+
+    @Override
+    public Transport withOptions(@Nullable TransportOptions options) {
+        return new Rest5ClientTransport(restClient, mapper, Rest5ClientOptions.of(options), instrumentation);
+    }
+
+    /** INTERNAL, used only for tests. */
+    @Override
+    protected ElasticsearchTransportBase cloneWith(TransportOptions options, JsonpMapper mapper, Instrumentation instrumentation) {
+        return new Rest5ClientTransport(
+            restClient,
+            mapper != null ? mapper : this.mapper,
+            Rest5ClientOptions.of(options != null ? options : this.transportOptions),
+            instrumentation != null ? instrumentation : this.instrumentation
+        );
     }
 }

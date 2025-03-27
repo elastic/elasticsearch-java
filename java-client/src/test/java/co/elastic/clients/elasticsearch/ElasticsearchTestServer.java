@@ -48,6 +48,8 @@ public class ElasticsearchTestServer implements AutoCloseable {
 
     private final String[] plugins;
     private volatile ElasticsearchContainer container;
+    private String url;
+    private SSLContext sslContext;
     private ElasticsearchClient client;
 
     private static ElasticsearchTestServer global;
@@ -95,6 +97,8 @@ public class ElasticsearchTestServer implements AutoCloseable {
     private static final int RAND = new Random().nextInt(100);
 
     protected void setup(String url, SSLContext sslContext) {
+        this.url = url;
+        this.sslContext = sslContext;
         this.client = ElasticsearchTestClient.createClient(url, null, sslContext);
     }
 
@@ -242,6 +246,14 @@ public class ElasticsearchTestServer implements AutoCloseable {
 
     public ElasticsearchContainer container() {
         return this.container;
+    }
+
+    public String url() {
+        return url;
+    }
+
+    public SSLContext sslContext() {
+        return sslContext;
     }
 
     public ElasticsearchClient client() {

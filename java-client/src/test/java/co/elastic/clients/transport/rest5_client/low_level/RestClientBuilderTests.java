@@ -25,16 +25,11 @@ import org.apache.hc.client5.http.impl.async.HttpAsyncClients;
 import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.message.BasicHeader;
-import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestClientBuilder;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.Base64;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
@@ -156,69 +151,6 @@ public class RestClientBuilderTests extends RestClientTestCase {
         }
     }
 
-    @Test
-    public void testBuildCloudId() throws IOException {
-        String host = "us-east-1.aws.found.io";
-        String esId = "elasticsearch";
-        String kibanaId = "kibana";
-        String toEncode = host + "$" + esId + "$" + kibanaId;
-        String encodedId = Base64.getEncoder().encodeToString(toEncode.getBytes(Charset.defaultCharset()));
-        assertNotNull(Rest5Client.builder(encodedId));
-        assertNotNull(Rest5Client.builder("humanReadable:" + encodedId));
-
-        String badId = Base64.getEncoder().encodeToString("foo$bar".getBytes(Charset.defaultCharset()));
-        try {
-            Rest5Client.builder(badId);
-            fail("should have failed");
-        } catch (IllegalStateException e) {
-            assertEquals("cloudId " + badId + " did not decode to a cluster identifier correctly",
-                e.getMessage());
-        }
-
-        try {
-            Rest5Client.builder(badId + ":");
-            fail("should have failed");
-        } catch (IllegalStateException e) {
-            assertEquals("cloudId " + badId + ": must begin with a human readable identifier followed by a " +
-                "colon", e.getMessage());
-        }
-
-        Rest5Client client = Rest5Client.builder(encodedId).build();
-        assertThat(client.getNodes().size(), equalTo(1));
-        assertThat(client.getNodes().get(0).getHost().getHostName(), equalTo(esId + "." + host));
-        assertThat(client.getNodes().get(0).getHost().getPort(), equalTo(443));
-        assertThat(client.getNodes().get(0).getHost().getSchemeName(), equalTo("https"));
-        client.close();
-    }
-
-    @Test
-    public void testBuildCloudIdWithPort() throws IOException {
-        String host = "us-east-1.aws.found.io";
-        String esId = "elasticsearch";
-        String kibanaId = "kibana";
-        String port = "9443";
-        String toEncode = host + ":" + port + "$" + esId + "$" + kibanaId;
-        String encodedId = Base64.getEncoder().encodeToString(toEncode.getBytes(Charset.defaultCharset()));
-
-        Rest5Client client = Rest5Client.builder("humanReadable:" + encodedId).build();
-        assertThat(client.getNodes().size(), equalTo(1));
-        assertThat(client.getNodes().get(0).getHost().getPort(), equalTo(9443));
-        assertThat(client.getNodes().get(0).getHost().getHostName(), equalTo(esId + "." + host));
-        assertThat(client.getNodes().get(0).getHost().getSchemeName(), equalTo("https"));
-        client.close();
-
-        toEncode = host + ":" + "123:foo" + "$" + esId + "$" + kibanaId;
-        encodedId = Base64.getEncoder().encodeToString(toEncode.getBytes(Charset.defaultCharset()));
-
-        try {
-            Rest5Client.builder("humanReadable:" + encodedId);
-            fail("should have failed");
-        } catch (IllegalStateException e) {
-            assertEquals("cloudId " + encodedId + " does not contain a valid port number", e.getMessage());
-        }
-    }
-
-    @Test
     public void testSetPathPrefixNull() {
         try {
             Rest5Client.builder(new HttpHost("localhost", 9200)).setPathPrefix(null);

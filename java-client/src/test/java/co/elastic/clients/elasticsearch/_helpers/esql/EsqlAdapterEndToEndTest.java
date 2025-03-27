@@ -21,26 +21,23 @@ package co.elastic.clients.elasticsearch._helpers.esql;
 
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.ElasticsearchTestClient;
 import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
 import co.elastic.clients.elasticsearch._helpers.esql.jdbc.ResultSetEsqlAdapter;
 import co.elastic.clients.elasticsearch._helpers.esql.objects.ObjectsEsqlAdapter;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
-import co.elastic.clients.transport.rest5_client.Rest5ClientTransport;
-import co.elastic.clients.transport.rest5_client.low_level.Request;
-import co.elastic.clients.transport.rest5_client.low_level.Rest5Client;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
+import co.elastic.clients.transport.ElasticsearchTransportBase;
+import co.elastic.clients.transport.http.TransportHttpClient;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import org.apache.commons.io.IOUtils;
-import org.apache.http.entity.ByteArrayEntity;
-import org.apache.http.entity.ContentType;
-import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.time.ZoneId;
@@ -48,6 +45,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public class EsqlAdapterEndToEndTest extends Assertions {
@@ -56,33 +54,31 @@ public class EsqlAdapterEndToEndTest extends Assertions {
 
     @BeforeAll
     public static void setup() throws Exception {
-        ElasticsearchClient global = ElasticsearchTestServer.global().client();
-        if (global._transport() instanceof RestClientTransport) {
-            RestClient restClient = ((RestClientTransport) global._transport()).restClient();
-            esClient = new ElasticsearchClient(new RestClientTransport(restClient, new JacksonJsonpMapper()));
+        var server = ElasticsearchTestServer.global();
+        esClient = ElasticsearchTestClient.createClient(server.url(), new JacksonJsonpMapper(), server.sslContext());
 
-            esClient.indices().delete(d -> d.index("employees").ignoreUnavailable(true));
+        // Make sure index is empty
+        esClient.indices().delete(d -> d.index("employees").ignoreUnavailable(true));
 
-            org.elasticsearch.client.Request request = new org.elasticsearch.client.Request("POST", "/employees/_bulk?refresh=true");
+        // Upload bulk data
+        TransportHttpClient httpClient = ((ElasticsearchTransportBase)esClient._transport()).httpClient();
+        ByteBuffer body;
+        try (InputStream data = EsqlAdapterTest.class.getResourceAsStream("employees.ndjson")) {
+            body = ByteBuffer.wrap(data.readAllBytes());
+        }
 
-            InputStream resourceAsStream = EsqlAdapterTest.class.getResourceAsStream("employees.ndjson");
-            byte[] bytes = IOUtils.toByteArray(resourceAsStream);
-            request.setEntity(new ByteArrayEntity(bytes, ContentType.APPLICATION_JSON));
+        TransportHttpClient.Request request = new TransportHttpClient.Request(
+            "POST", "/employees/_bulk",
+            Map.of("refresh", "true"),
+            Map.of("Content-Type", "application/vnd.elasticsearch+json; compatible-with=9" /*, "Accept", "application/json"*/),
+            List.of(body)
+        );
 
-            restClient.performRequest(request);
-        } else if (global._transport() instanceof Rest5ClientTransport) {
-            Rest5Client restClient = ((Rest5ClientTransport) global._transport()).restClient();
-            esClient = new ElasticsearchClient(new Rest5ClientTransport(restClient, new JacksonJsonpMapper()));
+        var response = httpClient.performRequest("bulk", null, request, null);
 
-            esClient.indices().delete(d -> d.index("employees").ignoreUnavailable(true));
-
-            Request request = new Request("POST", "/employees/_bulk?refresh=true");
-
-            InputStream resourceAsStream = EsqlAdapterTest.class.getResourceAsStream("employees.ndjson");
-            byte[] bytes = IOUtils.toByteArray(resourceAsStream);
-            request.setEntity(new org.apache.hc.core5.http.io.entity.ByteArrayEntity(bytes, org.apache.hc.core5.http.ContentType.APPLICATION_JSON));
-
-            restClient.performRequest(request);
+        if (response.statusCode() != 200) {
+            fail("Unexpected response code: " + response.statusCode() + " - "
+                + new String(response.body().asByteBuffer().array(), StandardCharsets.UTF_8));
         }
     }
 
