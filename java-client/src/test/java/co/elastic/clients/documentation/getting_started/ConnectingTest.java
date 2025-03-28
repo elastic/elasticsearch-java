@@ -24,19 +24,10 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
-import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.TransportUtils;
 import co.elastic.clients.transport.instrumentation.OpenTelemetryForElasticsearch;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.sdk.OpenTelemetrySdk;
-import org.apache.http.Header;
-import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.message.BasicHeader;
-import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -53,20 +44,12 @@ public class ConnectingTest {
         String serverUrl = "https://localhost:9200";
         String apiKey = "VnVhQ2ZHY0JDZGJrU...";
 
-        // Create the low-level client
-        RestClient restClient = RestClient
-            .builder(HttpHost.create(serverUrl))
-            .setDefaultHeaders(new Header[]{
-                new BasicHeader("Authorization", "ApiKey " + apiKey)
-            })
-            .build();
-
-        // Create the transport with a Jackson mapper
-        ElasticsearchTransport transport = new RestClientTransport(
-            restClient, new JacksonJsonpMapper());
-
-        // And create the API client
-        ElasticsearchClient esClient = new ElasticsearchClient(transport);
+        ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
+            .host(serverUrl)
+            .apiKey(apiKey)
+            // Use the Jackson mapper to deserialize JSON to application objects
+            .jsonMapper(new JacksonJsonpMapper())
+        );
 
         // Use the client...
 
@@ -98,13 +81,6 @@ public class ConnectingTest {
         String serverUrl = "https://localhost:9200";
         String apiKey = "VnVhQ2ZHY0JDZGJrU...";
 
-        // Create the low-level client
-        RestClient restClient = RestClient
-            .builder(HttpHost.create(serverUrl))
-            .setDefaultHeaders(new Header[]{
-                    new BasicHeader("Authorization", "ApiKey " + apiKey)
-            })
-            .build();
         // Create and configure custom OpenTelemetry instance
         OpenTelemetry customOtel = OpenTelemetrySdk.builder().build();
 
@@ -113,13 +89,11 @@ public class ConnectingTest {
         OpenTelemetryForElasticsearch esOtelInstrumentation =
             new OpenTelemetryForElasticsearch(customOtel, false);
 
-        // Create the transport with the custom Instrumentation instance
-        ElasticsearchTransport transport = new RestClientTransport(
-            restClient, new JacksonJsonpMapper(), null, esOtelInstrumentation
+        ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
+            .host(serverUrl)
+            .apiKey(apiKey)
+            .instrumentation(esOtelInstrumentation)
         );
-
-        // And create the API client
-        ElasticsearchClient esClient = new ElasticsearchClient(transport);
 
         // Use the client...
 
@@ -132,9 +106,7 @@ public class ConnectingTest {
     @Test
     public void createSecureClientCert() throws Exception {
 
-        // Create the low-level client
-        String host = "localhost";
-        int port = 9200;
+        String url = "https://localhost:9200";
         String login = "elastic";
         String password = "changeme";
 
@@ -144,22 +116,11 @@ public class ConnectingTest {
         SSLContext sslContext = TransportUtils
             .sslContextFromHttpCaCrt(certFile); // <1>
 
-        BasicCredentialsProvider credsProv = new BasicCredentialsProvider(); // <2>
-        credsProv.setCredentials(
-            AuthScope.ANY, new UsernamePasswordCredentials(login, password)
+        ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
+            .host(url) // <3>
+            .usernameAndPassword(login, password) // <2>
+            .sslContext(sslContext) // <4>
         );
-
-        RestClient restClient = RestClient
-            .builder(new HttpHost(host, port, "https")) // <3>
-            .setHttpClientConfigCallback(hc -> hc
-                .setSSLContext(sslContext) // <4>
-                .setDefaultCredentialsProvider(credsProv)
-            )
-            .build();
-
-        // Create the transport and the API client
-        ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
-        ElasticsearchClient esClient = new ElasticsearchClient(transport);
 
         // Use the client...
 
@@ -172,9 +133,7 @@ public class ConnectingTest {
     @Test
     public void createSecureClientFingerPrint() throws Exception {
 
-        // Create the low-level client
-        String host = "localhost";
-        int port = 9200;
+        String url = "https://localhost:9200";
         String login = "elastic";
         String password = "changeme";
 
@@ -184,22 +143,11 @@ public class ConnectingTest {
         SSLContext sslContext = TransportUtils
             .sslContextFromCaFingerprint(fingerprint); // <1>
 
-        BasicCredentialsProvider credsProv = new BasicCredentialsProvider(); // <2>
-        credsProv.setCredentials(
-            AuthScope.ANY, new UsernamePasswordCredentials(login, password)
+        ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
+            .host(url) // <3>
+            .usernameAndPassword(login, password) // <2>
+            .sslContext(sslContext) // <4>
         );
-
-        RestClient restClient = RestClient
-            .builder(new HttpHost(host, port, "https")) // <3>
-            .setHttpClientConfigCallback(hc -> hc
-                .setSSLContext(sslContext) // <4>
-                .setDefaultCredentialsProvider(credsProv)
-            )
-            .build();
-
-        // Create the transport and the API client
-        ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
-        ElasticsearchClient esClient = new ElasticsearchClient(transport);
 
         // Use the client...
 

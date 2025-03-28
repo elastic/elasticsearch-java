@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch;
 
 import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._helpers.builders.ElasticsearchClientBuilderBase;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch.async_search.ElasticsearchAsyncSearchAsyncClient;
 import co.elastic.clients.elasticsearch.autoscaling.ElasticsearchAutoscalingAsyncClient;
@@ -178,6 +179,17 @@ import javax.annotation.Nullable;
  * Client for the namespace.
  */
 public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, ElasticsearchAsyncClient> {
+	public static class Builder extends ElasticsearchClientBuilderBase<ElasticsearchAsyncClient> {
+		@Override
+		public ElasticsearchAsyncClient build() {
+			return ElasticsearchClientBuilderBase.buildAsync(this);
+		}
+	}
+
+	public static ElasticsearchAsyncClient of(
+			Function<ElasticsearchClientBuilderBase, ElasticsearchClientBuilderBase> fn) {
+		return ElasticsearchClientBuilderBase.buildAsync(fn.apply(new ElasticsearchAsyncClient.Builder()));
+	}
 
 	public ElasticsearchAsyncClient(ElasticsearchTransport transport) {
 		super(transport, null);
