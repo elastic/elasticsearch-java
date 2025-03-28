@@ -20,7 +20,6 @@
 package co.elastic.clients.elasticsearch._helpers;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch._helpers.builders.ElasticsearchClientBuilder;
 import co.elastic.clients.transport.rest5_client.Rest5ClientOptions;
 import co.elastic.clients.transport.rest5_client.Rest5ClientTransport;
 import co.elastic.clients.transport.rest_client.RestClientOptions;
@@ -28,24 +27,19 @@ import co.elastic.clients.transport.rest_client.RestClientTransport;
 import org.elasticsearch.client.RequestOptions;
 import org.junit.jupiter.api.Test;
 
-import javax.net.ssl.SSLContext;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.security.NoSuchAlgorithmException;
-
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 public class ClientBuildersTest {
 
     @Test
-    public void buildLegacy() throws IOException, URISyntaxException, NoSuchAlgorithmException {
+    public void buildLegacy() {
 
         // create client with helper
-        ElasticsearchClient client = new ElasticsearchClientBuilder()
-            .host("url")
+        ElasticsearchClient client = new ElasticsearchClient.Builder()
+            .host("http://example.com")
             .usernameAndPassword("elastic", "changeme")
-            .sslContext(SSLContext.getDefault())
+            .useLegacyTransport(true)
             .build();
 
         RestClientOptions options = new RestClientOptions(RequestOptions.DEFAULT, true);
@@ -57,19 +51,18 @@ public class ClientBuildersTest {
         assertTrue(client._transportOptions().keepResponseBodyOnException());
         assertTrue(client._transportOptions().headers().size() == 3);
 
-        // token update utility
+        // token update utility: not supported on legacy transport
         ElasticsearchClient finalClient = client;
         assertThrows(UnsupportedOperationException.class, () -> finalClient._transportOptions().updateToken("token"));
     }
 
     @Test
-    public void buildRest5() throws IOException, URISyntaxException, NoSuchAlgorithmException {
+    public void buildRest5() {
 
         // create client with helper
-        ElasticsearchClient client = new co.elastic.clients.elasticsearch._helpers.builders.rest5_client.ElasticsearchClientBuilder()
-            .host("url")
+        ElasticsearchClient client = new ElasticsearchClient.Builder()
+            .host("http://example.com")
             .usernameAndPassword("elastic", "changeme")
-            .sslContext(SSLContext.getDefault())
             .build();
 
         Rest5ClientOptions options = new Rest5ClientOptions(co.elastic.clients.transport.rest5_client.low_level.RequestOptions.DEFAULT, true);
@@ -81,17 +74,10 @@ public class ClientBuildersTest {
         assertTrue(client._transportOptions().keepResponseBodyOnException());
         assertTrue(client._transportOptions().headers().size() == 3);
 
-        // token update utility
-
+        // token update utility: supported on new transport
         client._transportOptions().updateToken("token");
         assertTrue(client._transportOptions().headers().size() == 4);
         assertTrue(client._transportOptions().headers().stream().anyMatch(h -> h.getKey().equals(
             "Authorization")));
-    }
-
-    @Test
-    public void altSearchBuild() {
-        // Standard search
-
     }
 }

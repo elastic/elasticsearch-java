@@ -49,7 +49,7 @@ public class Rest5ClientOptions implements TransportOptions {
     @VisibleForTesting
     static final String USER_AGENT_VALUE = getUserAgent();
 
-    static Rest5ClientOptions of(@Nullable TransportOptions options) {
+    public static Rest5ClientOptions of(@Nullable TransportOptions options) {
         if (options == null) {
             return initialOptions();
         }

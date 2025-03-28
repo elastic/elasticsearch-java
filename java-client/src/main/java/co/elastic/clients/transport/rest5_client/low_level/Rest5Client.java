@@ -167,6 +167,23 @@ public class Rest5Client implements Closeable {
     /**
      * Returns a new {@link Rest5ClientBuilder} to help with {@link Rest5Client} creation.
      * Creates a new builder instance and sets the hosts that the client will send requests to.
+     */
+    public static Rest5ClientBuilder builder(List<URI> uris) {
+        if (uris == null || uris.isEmpty()) {
+            throw new IllegalArgumentException("uris must not be null nor empty");
+        }
+        List<Node> nodes = uris.stream().map(u -> {
+            if (!u.isAbsolute()) {
+                throw new IllegalArgumentException("Expecting an absolute url: [" + u + "]");
+            }
+            return new Node(HttpHost.create(u));
+        }).toList();
+        return new Rest5ClientBuilder(nodes);
+    }
+
+    /**
+     * Returns a new {@link Rest5ClientBuilder} to help with {@link Rest5Client} creation.
+     * Creates a new builder instance and sets the hosts that the client will send requests to.
      * <p>
      * Prefer this to {@link #builder(HttpHost...)} if you have metadata up front about the nodes.
      * If you don't either one is fine.

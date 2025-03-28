@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch;
 
 import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._helpers.builders.ElasticsearchClientBuilderBase;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch.async_search.ElasticsearchAsyncSearchClient;
@@ -179,6 +180,16 @@ import javax.annotation.Nullable;
  * Client for the namespace.
  */
 public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, ElasticsearchClient> {
+	public static class Builder extends ElasticsearchClientBuilderBase<ElasticsearchClient> {
+		@Override
+		public ElasticsearchClient build() {
+			return ElasticsearchClientBuilderBase.buildSync(this);
+		}
+	}
+
+	public static ElasticsearchClient of(Function<ElasticsearchClientBuilderBase, ElasticsearchClientBuilderBase> fn) {
+		return ElasticsearchClientBuilderBase.buildSync(fn.apply(new ElasticsearchClient.Builder()));
+	}
 
 	public ElasticsearchClient(ElasticsearchTransport transport) {
 		super(transport, null);

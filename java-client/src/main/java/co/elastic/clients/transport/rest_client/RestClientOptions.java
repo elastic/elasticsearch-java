@@ -49,7 +49,7 @@ public class RestClientOptions implements TransportOptions {
     @VisibleForTesting
     static final String USER_AGENT_VALUE = getUserAgent();
 
-    static RestClientOptions of(@Nullable TransportOptions options) {
+    public static RestClientOptions of(@Nullable TransportOptions options) {
         if (options == null) {
             return initialOptions();
         }
