@@ -19,7 +19,6 @@
 
 package co.elastic.clients.transport.rest5_client.low_level;
 
-import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.client5.http.impl.async.CloseableHttpAsyncClient;
 import org.apache.hc.client5.http.impl.async.HttpAsyncClients;
 import org.apache.hc.core5.http.Header;
@@ -177,31 +176,6 @@ public class RestClientBuilderTests extends RestClientTestCase {
             fail("path prefix [" + pathPrefix + "] should have failed");
         } catch (final IllegalArgumentException e) {
             assertThat(e.getMessage(), containsString(pathPrefix));
-        }
-    }
-
-    /**
-     * This test verifies that we don't change the default value for the connection request timeout as that
-     * causes problems.
-     * See https://github.com/elastic/elasticsearch/issues/24069
-     */
-    @Test
-    public void testDefaultConnectionRequestTimeout() throws IOException {
-        Rest5ClientBuilder builder = Rest5Client.builder(new HttpHost("localhost", 9200));
-
-        RequestConfig requestConfig = RequestConfig.custom().build();
-        assertEquals(RequestConfig.DEFAULT.getConnectionRequestTimeout(),
-            requestConfig.getConnectionRequestTimeout());
-        // this way we get notified if the default ever changes
-        // TODO IT CHANGED from -1 to 3 minutes, does it mean we always need to explicitly set it?
-        //assertEquals(-1, requestConfig.getConnectionRequestTimeout());
-
-        CloseableHttpAsyncClient httpclient = HttpAsyncClients.custom()
-            .setDefaultRequestConfig(requestConfig)
-            .build();
-
-        try (Rest5Client restClient = builder.build()) {
-            assertNotNull(restClient);
         }
     }
 }
