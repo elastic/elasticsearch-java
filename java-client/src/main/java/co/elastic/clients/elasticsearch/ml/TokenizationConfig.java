@@ -82,6 +82,8 @@ public class TokenizationConfig implements TaggedUnion<TokenizationConfig.Kind, 
 
 		Roberta("roberta"),
 
+		XlmRoberta("xlm_roberta"),
+
 		;
 
 		private final String jsonValue;
@@ -195,6 +197,23 @@ public class TokenizationConfig implements TaggedUnion<TokenizationConfig.Kind, 
 		return TaggedUnionUtils.get(this, Kind.Roberta);
 	}
 
+	/**
+	 * Is this variant instance of kind {@code xlm_roberta}?
+	 */
+	public boolean isXlmRoberta() {
+		return _kind == Kind.XlmRoberta;
+	}
+
+	/**
+	 * Get the {@code xlm_roberta} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code xlm_roberta} kind.
+	 */
+	public XlmRobertaTokenizationConfig xlmRoberta() {
+		return TaggedUnionUtils.get(this, Kind.XlmRoberta);
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -269,6 +288,17 @@ public class TokenizationConfig implements TaggedUnion<TokenizationConfig.Kind, 
 			return this.roberta(fn.apply(new NlpRobertaTokenizationConfig.Builder()).build());
 		}
 
+		public ObjectBuilder<TokenizationConfig> xlmRoberta(XlmRobertaTokenizationConfig v) {
+			this._kind = Kind.XlmRoberta;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<TokenizationConfig> xlmRoberta(
+				Function<XlmRobertaTokenizationConfig.Builder, ObjectBuilder<XlmRobertaTokenizationConfig>> fn) {
+			return this.xlmRoberta(fn.apply(new XlmRobertaTokenizationConfig.Builder()).build());
+		}
+
 		public TokenizationConfig build() {
 			_checkSingleUse();
 			return new TokenizationConfig(this);
@@ -282,6 +312,7 @@ public class TokenizationConfig implements TaggedUnion<TokenizationConfig.Kind, 
 		op.add(Builder::bertJa, NlpBertTokenizationConfig._DESERIALIZER, "bert_ja");
 		op.add(Builder::mpnet, NlpBertTokenizationConfig._DESERIALIZER, "mpnet");
 		op.add(Builder::roberta, NlpRobertaTokenizationConfig._DESERIALIZER, "roberta");
+		op.add(Builder::xlmRoberta, XlmRobertaTokenizationConfig._DESERIALIZER, "xlm_roberta");
 
 	}
 

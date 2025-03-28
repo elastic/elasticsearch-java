@@ -63,14 +63,14 @@ public class ExecutePolicyResponse implements JsonpSerializable {
 	private final ExecuteEnrichPolicyStatus status;
 
 	@Nullable
-	private final String taskId;
+	private final String task;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ExecutePolicyResponse(Builder builder) {
 
 		this.status = builder.status;
-		this.taskId = builder.taskId;
+		this.task = builder.task;
 
 	}
 
@@ -87,11 +87,11 @@ public class ExecutePolicyResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code task_id}
+	 * API name: {@code task}
 	 */
 	@Nullable
-	public final String taskId() {
-		return this.taskId;
+	public final String task() {
+		return this.task;
 	}
 
 	/**
@@ -110,9 +110,9 @@ public class ExecutePolicyResponse implements JsonpSerializable {
 			this.status.serialize(generator, mapper);
 
 		}
-		if (this.taskId != null) {
-			generator.writeKey("task_id");
-			generator.write(this.taskId);
+		if (this.task != null) {
+			generator.writeKey("task");
+			generator.write(this.task);
 
 		}
 
@@ -136,7 +136,7 @@ public class ExecutePolicyResponse implements JsonpSerializable {
 		private ExecuteEnrichPolicyStatus status;
 
 		@Nullable
-		private String taskId;
+		private String task;
 
 		/**
 		 * API name: {@code status}
@@ -155,10 +155,10 @@ public class ExecutePolicyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code task_id}
+		 * API name: {@code task}
 		 */
-		public final Builder taskId(@Nullable String value) {
-			this.taskId = value;
+		public final Builder task(@Nullable String value) {
+			this.task = value;
 			return this;
 		}
 
@@ -191,7 +191,7 @@ public class ExecutePolicyResponse implements JsonpSerializable {
 	protected static void setupExecutePolicyResponseDeserializer(ObjectDeserializer<ExecutePolicyResponse.Builder> op) {
 
 		op.add(Builder::status, ExecuteEnrichPolicyStatus._DESERIALIZER, "status");
-		op.add(Builder::taskId, JsonpDeserializer.stringDeserializer(), "task_id");
+		op.add(Builder::task, JsonpDeserializer.stringDeserializer(), "task");
 
 	}
 
