@@ -20,6 +20,7 @@
 package co.elastic.clients.transport.rest5_client.low_level;
 
 
+import org.apache.hc.client5.http.config.ConnectionConfig;
 import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.client5.http.impl.DefaultAuthenticationStrategy;
 import org.apache.hc.client5.http.impl.async.CloseableHttpAsyncClient;
@@ -55,6 +56,7 @@ import static co.elastic.clients.transport.rest5_client.low_level.LanguageRuntim
 public final class Rest5ClientBuilder {
     public static final int DEFAULT_CONNECT_TIMEOUT_MILLIS = 1000;
     public static final int DEFAULT_SOCKET_TIMEOUT_MILLIS = 30000;
+    public static final int DEFAULT_RESPONSE_TIMEOUT_MILLIS = 0; // meaning infinite
     public static final int DEFAULT_MAX_CONN_PER_ROUTE = 10;
     public static final int DEFAULT_MAX_CONN_TOTAL = 30;
 
@@ -343,24 +345,30 @@ public final class Rest5ClientBuilder {
             return this.httpClient;
         }
         // otherwise, creating a default instance of CloseableHttpAsyncClient
-        // default timeouts are all infinite
-        RequestConfig.Builder requestConfigBuilder = RequestConfig.custom()
+        // default timeouts are all 3 mins
+        RequestConfig requestConfigBuilder = RequestConfig.custom()
             .setConnectionRequestTimeout(Timeout.of(DEFAULT_SOCKET_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS))
-            .setConnectTimeout(Timeout.of(DEFAULT_CONNECT_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS)); //TODO deprecated need to change
+            .setResponseTimeout(Timeout.of(DEFAULT_RESPONSE_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS))
+            .build();
 
         try {
 
             SSLContext sslContext = this.sslContext != null ? this.sslContext : SSLContext.getDefault();
 
+            ConnectionConfig connectionConfig = ConnectionConfig.custom()
+                .setConnectTimeout(Timeout.of(DEFAULT_CONNECT_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS))
+                .build();
+
             PoolingAsyncClientConnectionManager defaultConnectionManager =
                 PoolingAsyncClientConnectionManagerBuilder.create()
+                    .setDefaultConnectionConfig(connectionConfig)
                     .setMaxConnPerRoute(DEFAULT_MAX_CONN_PER_ROUTE)
                     .setMaxConnTotal(DEFAULT_MAX_CONN_TOTAL)
                     .setTlsStrategy(new BasicClientTlsStrategy(sslContext))
                     .build();
 
             HttpAsyncClientBuilder httpClientBuilder = HttpAsyncClientBuilder.create()
-                .setDefaultRequestConfig(requestConfigBuilder.build())
+                .setDefaultRequestConfig(requestConfigBuilder)
                 .setConnectionManager(defaultConnectionManager)
                 .setUserAgent(USER_AGENT_HEADER_VALUE)
                 .setTargetAuthenticationStrategy(new DefaultAuthenticationStrategy())
