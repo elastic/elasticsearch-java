@@ -207,7 +207,8 @@ public class RestClientSingleHostTests extends RestClientTestCase {
         }
     }
 
-    private static Optional<HttpEntity> retrieveEntity(AsyncDataProducer requestProducer) throws NoSuchFieldException, IllegalAccessException {
+    private static Optional<HttpEntity> retrieveEntity(AsyncDataProducer requestProducer)
+        throws NoSuchFieldException, IllegalAccessException {
         // entity is in the dataProducer field, both are private
         Field dataProducerField = requestProducer.getClass().getDeclaredField("dataProducer");
         dataProducerField.setAccessible(true);

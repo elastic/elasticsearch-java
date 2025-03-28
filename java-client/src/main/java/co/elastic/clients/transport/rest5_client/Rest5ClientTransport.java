@@ -41,7 +41,8 @@ public class Rest5ClientTransport extends ElasticsearchTransportBase {
         this.restClient = restClient;
     }
 
-    public Rest5ClientTransport(Rest5Client restClient, JsonpMapper jsonpMapper, Rest5ClientOptions options, Instrumentation instrumentation) {
+    public Rest5ClientTransport(Rest5Client restClient, JsonpMapper jsonpMapper, Rest5ClientOptions options,
+                                Instrumentation instrumentation) {
         super(new Rest5ClientHttpClient(restClient), options, jsonpMapper, instrumentation);
         this.restClient = restClient;
     }

@@ -65,7 +65,8 @@ public class ClientBuildersTest {
             .usernameAndPassword("elastic", "changeme")
             .build();
 
-        Rest5ClientOptions options = new Rest5ClientOptions(co.elastic.clients.transport.rest5_client.low_level.RequestOptions.DEFAULT, true);
+        Rest5ClientOptions options = new Rest5ClientOptions(co.elastic.clients.transport.rest5_client.low_level.RequestOptions.DEFAULT,
+            true);
 
         client = client.withTransportOptions(options);
 
