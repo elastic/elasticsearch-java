@@ -29,7 +29,7 @@ import org.apache.hc.core5.http.nio.entity.AbstractBinAsyncEntityConsumer;
 import org.apache.hc.core5.http.nio.support.AbstractAsyncResponseConsumer;
 import org.apache.hc.core5.http.protocol.HttpContext;
 
-public class BasicAsyncResponseConsumer extends AbstractAsyncResponseConsumer<ClassicHttpResponse,
+class BasicAsyncResponseConsumer extends AbstractAsyncResponseConsumer<ClassicHttpResponse,
     ByteArrayEntity> {
 
     private volatile BasicClassicHttpResponse finalResponse;
@@ -39,7 +39,7 @@ public class BasicAsyncResponseConsumer extends AbstractAsyncResponseConsumer<Cl
     /**
      * Creates a new instance of this consumer with the provided buffer limit
      */
-    public BasicAsyncResponseConsumer(AbstractBinAsyncEntityConsumer consumer) {
+    BasicAsyncResponseConsumer(AbstractBinAsyncEntityConsumer consumer) {
         super(consumer);
     }
 

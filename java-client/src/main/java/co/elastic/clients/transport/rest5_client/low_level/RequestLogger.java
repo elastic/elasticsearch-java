@@ -43,7 +43,7 @@ import java.nio.charset.StandardCharsets;
  */
 final class RequestLogger {
 
-    private static final Log tracer = LogFactory.getLog("tracer");
+    private static final Log tracer = LogFactory.getLog(Request.class);
 
     private RequestLogger() {
     }
