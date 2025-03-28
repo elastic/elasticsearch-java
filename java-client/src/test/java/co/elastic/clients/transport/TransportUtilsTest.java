@@ -77,6 +77,10 @@ public class TransportUtilsTest extends Assertions {
         );
     }
 
+    @Test void testInsecureContext() throws Exception {
+        checkConnection(TransportUtils.insecureSSLContext());
+    }
+
     private void checkConnection(SSLContext sslContext) throws Exception {
         var server = ElasticsearchTestServer.global();
         var esClient = ElasticsearchTestClient.createClient(server.url(), null, sslContext);
