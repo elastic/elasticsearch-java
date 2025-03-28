@@ -219,7 +219,7 @@ public class Rest5Client implements Closeable {
     /**
      * Replaces the nodes with which the client communicates.
      */
-    public synchronized void setNodes(Collection<Node> nodes) { // TODO why the whole method synchronized?
+    public synchronized void setNodes(Collection<Node> nodes) {
         if (nodes == null || nodes.isEmpty()) {
             throw new IllegalArgumentException("node list must not be null or empty");
         }
@@ -227,8 +227,7 @@ public class Rest5Client implements Closeable {
         Map<HttpHost, Node> nodesByHost = new LinkedHashMap<>();
         for (Node node : nodes) {
             Objects.requireNonNull(node, "node cannot be null");
-            nodesByHost.put(node.getHost(), node); // TODO same host twice will be overwritten. should
-            // throw exception?
+            nodesByHost.put(node.getHost(), node);
         }
         this.nodes = new ArrayList<>(nodesByHost.values());
         this.blacklist.clear();
