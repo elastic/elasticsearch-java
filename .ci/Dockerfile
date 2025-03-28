@@ -20,7 +20,7 @@
 # Build a Docker image that has Gradle and all project dependencies ready.
 # Needs to be run with .git and java-client/src mounted under /elasticsearch-java.
 
-FROM openjdk:17
+FROM eclipse-temurin:17
 
 # Default UID/GID to 1000
 # it can be overridden at build time
@@ -31,7 +31,8 @@ ARG BUILDER_GID=1000
 RUN (getent group ${BUILDER_GID} || groupadd -g ${BUILDER_GID} elastic) \
     && (getent passwd ${BUILDER_UID} || useradd -u ${BUILDER_UID} -g ${BUILDER_GID} elastic) \
     && mkdir -p /elasticsearch-java/build \
-    && chown -R ${BUILDER_UID}:${BUILDER_GID} /elasticsearch-java
+    && chown -R ${BUILDER_UID}:${BUILDER_GID} /elasticsearch-java \
+    && chown -R ${BUILDER_UID}:${BUILDER_GID} /home
 
 WORKDIR /elasticsearch-java/
 USER ${BUILDER_UID}:${BUILDER_GID}
