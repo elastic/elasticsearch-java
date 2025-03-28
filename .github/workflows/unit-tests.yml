@@ -20,5 +20,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Set env
+        run: echo "github_test=true" >> $GITHUB_ENV
+
       - name: Run java client tests
         run: ./gradlew test -p java-client

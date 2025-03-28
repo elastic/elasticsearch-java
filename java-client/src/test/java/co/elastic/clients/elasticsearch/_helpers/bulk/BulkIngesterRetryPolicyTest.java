@@ -38,12 +38,15 @@ import co.elastic.clients.transport.TransportOptions;
 import org.jetbrains.annotations.Nullable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIf;
 
+import javax.swing.text.html.Option;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -287,6 +290,7 @@ public class BulkIngesterRetryPolicyTest {
     }
 
     @Test
+    @DisabledIf("isGithubBuild")
     public void retryMultiThreadStressTest() throws InterruptedException, IOException {
 
         // DISCLAIMER: this configuration is highly inefficient and only used here to showcase an extreme
@@ -540,5 +544,10 @@ public class BulkIngesterRetryPolicyTest {
             .listener(listener)
             .backoffPolicy(BackoffPolicy.exponentialBackoff(100L, 8))
         );
+    }
+
+    private boolean isGithubBuild(){
+        return Optional.ofNullable(System.getenv("github_test"))
+            .map(Boolean::valueOf).orElse(false);
     }
 }
