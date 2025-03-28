@@ -54,6 +54,8 @@ public enum EnrichPolicyPhase implements JsonEnum {
 
 	Failed("FAILED"),
 
+	Cancelled("CANCELLED"),
+
 	;
 
 	private final String jsonValue;
