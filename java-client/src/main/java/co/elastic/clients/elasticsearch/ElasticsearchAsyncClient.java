@@ -121,7 +121,6 @@ import co.elastic.clients.elasticsearch.fleet.ElasticsearchFleetAsyncClient;
 import co.elastic.clients.elasticsearch.graph.ElasticsearchGraphAsyncClient;
 import co.elastic.clients.elasticsearch.ilm.ElasticsearchIlmAsyncClient;
 import co.elastic.clients.elasticsearch.indices.ElasticsearchIndicesAsyncClient;
-import co.elastic.clients.elasticsearch.inference.ElasticsearchInferenceAsyncClient;
 import co.elastic.clients.elasticsearch.ingest.ElasticsearchIngestAsyncClient;
 import co.elastic.clients.elasticsearch.license.ElasticsearchLicenseAsyncClient;
 import co.elastic.clients.elasticsearch.logstash.ElasticsearchLogstashAsyncClient;
@@ -264,10 +263,6 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 
 	public ElasticsearchIndicesAsyncClient indices() {
 		return new ElasticsearchIndicesAsyncClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchInferenceAsyncClient inference() {
-		return new ElasticsearchInferenceAsyncClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchIngestAsyncClient ingest() {
