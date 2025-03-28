@@ -620,7 +620,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 * at the time of update and runs with those privileges.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-update-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -648,7 +648,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-update-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -683,7 +683,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 * cluster backup prior to the upgrade.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/upgrade-transforms.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-upgrade-transforms">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -721,7 +721,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpgradeTransformsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/upgrade-transforms.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-upgrade-transforms">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -754,7 +754,7 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	 * cluster backup prior to the upgrade.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/upgrade-transforms.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-upgrade-transforms">Documentation
 	 *      on elastic.co</a>
 	 */
 

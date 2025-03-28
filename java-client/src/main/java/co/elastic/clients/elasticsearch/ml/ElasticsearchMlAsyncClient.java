@@ -3055,7 +3055,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Update a data frame analytics job.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-dfanalytics.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3074,7 +3074,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateDataFrameAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-dfanalytics.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3233,7 +3233,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Update a trained model deployment.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-trained-model-deployment.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-trained-model-deployment">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3252,7 +3252,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateTrainedModelDeploymentRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-trained-model-deployment.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-trained-model-deployment">Documentation
 	 *      on elastic.co</a>
 	 */
 

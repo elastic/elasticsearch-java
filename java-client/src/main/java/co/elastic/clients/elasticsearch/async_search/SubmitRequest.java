@@ -54,6 +54,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.NamedValue;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -164,7 +165,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<String> index;
 
-	private final List<Map<String, Double>> indicesBoost;
+	private final List<NamedValue<Double>> indicesBoost;
 
 	@Nullable
 	private final Time keepAlive;
@@ -544,7 +545,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code indices_boost}
 	 */
-	public final List<Map<String, Double>> indicesBoost() {
+	public final List<NamedValue<Double>> indicesBoost() {
 		return this.indicesBoost;
 	}
 
@@ -964,15 +965,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.indicesBoost)) {
 			generator.writeKey("indices_boost");
 			generator.writeStartArray();
-			for (Map<String, Double> item0 : this.indicesBoost) {
+			for (NamedValue<Double> item0 : this.indicesBoost) {
 				generator.writeStartObject();
-				if (item0 != null) {
-					for (Map.Entry<String, Double> item1 : item0.entrySet()) {
-						generator.writeKey(item1.getKey());
-						generator.write(item1.getValue());
+				generator.writeKey(item0.name());
+				generator.write(item0.value());
 
-					}
-				}
 				generator.writeEnd();
 
 			}
@@ -1211,7 +1208,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		private List<String> index;
 
 		@Nullable
-		private List<Map<String, Double>> indicesBoost;
+		private List<NamedValue<Double>> indicesBoost;
 
 		@Nullable
 		private Time keepAlive;
@@ -1694,7 +1691,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indicesBoost</code>.
 		 */
-		public final Builder indicesBoost(List<Map<String, Double>> list) {
+		public final Builder indicesBoost(List<NamedValue<Double>> list) {
 			this.indicesBoost = _listAddAll(this.indicesBoost, list);
 			return this;
 		}
@@ -1706,7 +1703,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>indicesBoost</code>.
 		 */
-		public final Builder indicesBoost(Map<String, Double> value, Map<String, Double>... values) {
+		public final Builder indicesBoost(NamedValue<Double> value, NamedValue<Double>... values) {
 			this.indicesBoost = _listAdd(this.indicesBoost, value, values);
 			return this;
 		}
@@ -2423,10 +2420,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "fields");
 		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
 		op.add(Builder::highlight, Highlight._DESERIALIZER, "highlight");
-		op.add(Builder::indicesBoost,
-				JsonpDeserializer.arrayDeserializer(
-						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer())),
-				"indices_boost");
+		op.add(Builder::indicesBoost, JsonpDeserializer.arrayDeserializer(
+				NamedValue.deserializer(() -> JsonpDeserializer.doubleDeserializer())), "indices_boost");
 		op.add(Builder::knn, JsonpDeserializer.arrayDeserializer(KnnSearch._DESERIALIZER), "knn");
 		op.add(Builder::minScore, JsonpDeserializer.doubleDeserializer(), "min_score");
 		op.add(Builder::pit, PointInTimeReference._DESERIALIZER, "pit");

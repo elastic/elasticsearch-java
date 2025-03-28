@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.elasticsearch.indices.NumericFielddata;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -70,6 +71,18 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
 	@Nullable
 	private final Boolean nullValue;
 
+	@Nullable
+	private final Boolean ignoreMalformed;
+
+	@Nullable
+	private final Script script;
+
+	@Nullable
+	private final OnScriptError onScriptError;
+
+	@Nullable
+	private final Boolean timeSeriesDimension;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private BooleanProperty(Builder builder) {
@@ -79,6 +92,10 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
 		this.fielddata = builder.fielddata;
 		this.index = builder.index;
 		this.nullValue = builder.nullValue;
+		this.ignoreMalformed = builder.ignoreMalformed;
+		this.script = builder.script;
+		this.onScriptError = builder.onScriptError;
+		this.timeSeriesDimension = builder.timeSeriesDimension;
 
 	}
 
@@ -126,6 +143,41 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
 		return this.nullValue;
 	}
 
+	/**
+	 * API name: {@code ignore_malformed}
+	 */
+	@Nullable
+	public final Boolean ignoreMalformed() {
+		return this.ignoreMalformed;
+	}
+
+	/**
+	 * API name: {@code script}
+	 */
+	@Nullable
+	public final Script script() {
+		return this.script;
+	}
+
+	/**
+	 * API name: {@code on_script_error}
+	 */
+	@Nullable
+	public final OnScriptError onScriptError() {
+		return this.onScriptError;
+	}
+
+	/**
+	 * For internal use by Elastic only. Marks the field as a time series dimension.
+	 * Defaults to false.
+	 * <p>
+	 * API name: {@code time_series_dimension}
+	 */
+	@Nullable
+	public final Boolean timeSeriesDimension() {
+		return this.timeSeriesDimension;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "boolean");
@@ -148,6 +200,25 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
 		if (this.nullValue != null) {
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
+
+		}
+		if (this.ignoreMalformed != null) {
+			generator.writeKey("ignore_malformed");
+			generator.write(this.ignoreMalformed);
+
+		}
+		if (this.script != null) {
+			generator.writeKey("script");
+			this.script.serialize(generator, mapper);
+
+		}
+		if (this.onScriptError != null) {
+			generator.writeKey("on_script_error");
+			this.onScriptError.serialize(generator, mapper);
+		}
+		if (this.timeSeriesDimension != null) {
+			generator.writeKey("time_series_dimension");
+			generator.write(this.timeSeriesDimension);
 
 		}
 
@@ -173,6 +244,18 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
 
 		@Nullable
 		private Boolean nullValue;
+
+		@Nullable
+		private Boolean ignoreMalformed;
+
+		@Nullable
+		private Script script;
+
+		@Nullable
+		private OnScriptError onScriptError;
+
+		@Nullable
+		private Boolean timeSeriesDimension;
 
 		/**
 		 * API name: {@code boost}
@@ -213,6 +296,48 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
 			return this;
 		}
 
+		/**
+		 * API name: {@code ignore_malformed}
+		 */
+		public final Builder ignoreMalformed(@Nullable Boolean value) {
+			this.ignoreMalformed = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(@Nullable Script value) {
+			this.script = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code on_script_error}
+		 */
+		public final Builder onScriptError(@Nullable OnScriptError value) {
+			this.onScriptError = value;
+			return this;
+		}
+
+		/**
+		 * For internal use by Elastic only. Marks the field as a time series dimension.
+		 * Defaults to false.
+		 * <p>
+		 * API name: {@code time_series_dimension}
+		 */
+		public final Builder timeSeriesDimension(@Nullable Boolean value) {
+			this.timeSeriesDimension = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -245,6 +370,10 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
 		op.add(Builder::fielddata, NumericFielddata._DESERIALIZER, "fielddata");
 		op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");
 		op.add(Builder::nullValue, JsonpDeserializer.booleanDeserializer(), "null_value");
+		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
+		op.add(Builder::onScriptError, OnScriptError._DESERIALIZER, "on_script_error");
+		op.add(Builder::timeSeriesDimension, JsonpDeserializer.booleanDeserializer(), "time_series_dimension");
 
 		op.ignore("type");
 	}

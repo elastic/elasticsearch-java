@@ -178,7 +178,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * voting configuration exclusion list.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/voting-config-exclusions.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-post-voting-config-exclusions">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -198,7 +198,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteVotingConfigExclusionsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/voting-config-exclusions.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-post-voting-config-exclusions">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -213,7 +213,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * voting configuration exclusion list.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/voting-config-exclusions.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-post-voting-config-exclusions">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -594,7 +594,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * half of the master-eligible nodes.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/voting-config-exclusions.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-post-voting-config-exclusions">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -648,7 +648,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PostVotingConfigExclusionsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/voting-config-exclusions.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-post-voting-config-exclusions">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -697,7 +697,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * half of the master-eligible nodes.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/voting-config-exclusions.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-post-voting-config-exclusions">Documentation
 	 *      on elastic.co</a>
 	 */
 
