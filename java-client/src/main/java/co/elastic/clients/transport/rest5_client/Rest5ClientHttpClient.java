@@ -21,6 +21,7 @@ package co.elastic.clients.transport.rest5_client;
 
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.http.HeaderMap;
+import co.elastic.clients.transport.http.Node;
 import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.transport.rest5_client.low_level.Cancellable;
 import co.elastic.clients.transport.rest5_client.low_level.ResponseListener;
