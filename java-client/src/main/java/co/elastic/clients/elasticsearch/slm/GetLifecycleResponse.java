@@ -62,13 +62,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GetLifecycleResponse implements JsonpSerializable {
-	private final Map<String, SnapshotLifecycle> result;
+	private final Map<String, SnapshotLifecycle> lifecycles;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetLifecycleResponse(Builder builder) {
 
-		this.result = ApiTypeHelper.unmodifiableRequired(builder.result, this, "result");
+		this.lifecycles = ApiTypeHelper.unmodifiableRequired(builder.lifecycles, this, "lifecycles");
 
 	}
 
@@ -79,15 +79,15 @@ public class GetLifecycleResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final Map<String, SnapshotLifecycle> result() {
-		return this.result;
+	public final Map<String, SnapshotLifecycle> lifecycles() {
+		return this.lifecycles;
 	}
 
 	/**
-	 * Get an element of {@code result}.
+	 * Get an element of {@code lifecycles}.
 	 */
 	public final @Nullable SnapshotLifecycle get(String key) {
-		return this.result.get(key);
+		return this.lifecycles.get(key);
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class GetLifecycleResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		for (Map.Entry<String, SnapshotLifecycle> item0 : this.result.entrySet()) {
+		for (Map.Entry<String, SnapshotLifecycle> item0 : this.lifecycles.entrySet()) {
 			generator.writeKey(item0.getKey());
 			item0.getValue().serialize(generator, mapper);
 
@@ -118,36 +118,36 @@ public class GetLifecycleResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetLifecycleResponse> {
-		private Map<String, SnapshotLifecycle> result = new HashMap<>();
+		private Map<String, SnapshotLifecycle> lifecycles = new HashMap<>();
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>result</code>.
+		 * Adds all entries of <code>map</code> to <code>lifecycles</code>.
 		 */
-		public final Builder result(Map<String, SnapshotLifecycle> map) {
-			this.result = _mapPutAll(this.result, map);
+		public final Builder lifecycles(Map<String, SnapshotLifecycle> map) {
+			this.lifecycles = _mapPutAll(this.lifecycles, map);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code>.
+		 * Adds an entry to <code>lifecycles</code>.
 		 */
-		public final Builder result(String key, SnapshotLifecycle value) {
-			this.result = _mapPut(this.result, key, value);
+		public final Builder lifecycles(String key, SnapshotLifecycle value) {
+			this.lifecycles = _mapPut(this.lifecycles, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code> using a builder lambda.
+		 * Adds an entry to <code>lifecycles</code> using a builder lambda.
 		 */
-		public final Builder result(String key,
+		public final Builder lifecycles(String key,
 				Function<SnapshotLifecycle.Builder, ObjectBuilder<SnapshotLifecycle>> fn) {
-			return result(key, fn.apply(new SnapshotLifecycle.Builder()).build());
+			return lifecycles(key, fn.apply(new SnapshotLifecycle.Builder()).build());
 		}
 
 		@Override
@@ -156,7 +156,7 @@ public class GetLifecycleResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			Map<String, SnapshotLifecycle> value = (Map<String, SnapshotLifecycle>) JsonpDeserializer
 					.stringMapDeserializer(SnapshotLifecycle._DESERIALIZER).deserialize(parser, mapper);
-			return this.result(value);
+			return this.lifecycles(value);
 		}
 
 		@Override
@@ -184,7 +184,7 @@ public class GetLifecycleResponse implements JsonpSerializable {
 				.stringMapDeserializer(SnapshotLifecycle._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.result(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.lifecycles(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

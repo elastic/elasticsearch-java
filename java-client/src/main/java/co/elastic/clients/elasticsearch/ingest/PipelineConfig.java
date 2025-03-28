@@ -219,6 +219,22 @@ public class PipelineConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code processors}
 		 * <p>
+		 * Adds one or more values to <code>processors</code>.
+		 */
+		public final Builder processors(ProcessorVariant value, ProcessorVariant... values) {
+			this.processors = _listAdd(this.processors, value._toProcessor());
+			for (ProcessorVariant v : values) {
+				_listAdd(this.processors, v._toProcessor());
+			}
+			return this;
+		}
+
+		/**
+		 * Required - Processors used to perform transformations on documents before
+		 * indexing. Processors run sequentially in the order specified.
+		 * <p>
+		 * API name: {@code processors}
+		 * <p>
 		 * Adds a value to <code>processors</code> using a builder lambda.
 		 */
 		public final Builder processors(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {

@@ -471,6 +471,14 @@ public class UpdateTransformResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code retention_policy}
+		 */
+		public final Builder retentionPolicy(RetentionPolicyVariant value) {
+			this.retentionPolicy = value._toRetentionPolicy();
+			return this;
+		}
+
+		/**
 		 * Required - API name: {@code settings}
 		 */
 		public final Builder settings(Settings value) {
@@ -513,6 +521,14 @@ public class UpdateTransformResponse implements JsonpSerializable {
 		 */
 		public final Builder sync(Function<Sync.Builder, ObjectBuilder<Sync>> fn) {
 			return this.sync(fn.apply(new Sync.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code sync}
+		 */
+		public final Builder sync(SyncVariant value) {
+			this.sync = value._toSync();
+			return this;
 		}
 
 		/**

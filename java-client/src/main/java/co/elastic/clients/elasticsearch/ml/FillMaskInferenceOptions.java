@@ -264,6 +264,16 @@ public class FillMaskInferenceOptions implements InferenceConfigCreateVariant, J
 		}
 
 		/**
+		 * The tokenization options to update when inferring
+		 * <p>
+		 * API name: {@code tokenization}
+		 */
+		public final Builder tokenization(TokenizationConfigVariant value) {
+			this.tokenization = value._toTokenizationConfig();
+			return this;
+		}
+
+		/**
 		 * The field that is added to incoming documents to contain the inference
 		 * prediction. Defaults to predicted_value.
 		 * <p>

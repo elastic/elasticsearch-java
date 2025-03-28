@@ -283,6 +283,16 @@ public class DataframeAnalytics implements JsonpSerializable {
 		}
 
 		/**
+		 * An object containing information about the analysis job.
+		 * <p>
+		 * API name: {@code analysis_stats}
+		 */
+		public final Builder analysisStats(DataframeAnalyticsStatsVariant value) {
+			this.analysisStats = value._toDataframeAnalyticsStats();
+			return this;
+		}
+
+		/**
 		 * For running jobs only, contains messages relating to the selection of a node
 		 * to run the job.
 		 * <p>

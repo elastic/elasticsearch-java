@@ -140,6 +140,18 @@ public class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, Q
 			return this.match(fn.apply(new Query.Builder()).build());
 		}
 
+		/**
+		 * Required - Should be a multi term query (one of <code>wildcard</code>,
+		 * <code>fuzzy</code>, <code>prefix</code>, <code>range</code>, or
+		 * <code>regexp</code> query).
+		 * <p>
+		 * API name: {@code match}
+		 */
+		public final Builder match(QueryVariant value) {
+			this.match = value._toQuery();
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;

@@ -63,13 +63,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GetRoleMappingResponse implements JsonpSerializable {
-	private final Map<String, RoleMapping> result;
+	private final Map<String, RoleMapping> roleMappings;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetRoleMappingResponse(Builder builder) {
 
-		this.result = ApiTypeHelper.unmodifiableRequired(builder.result, this, "result");
+		this.roleMappings = ApiTypeHelper.unmodifiableRequired(builder.roleMappings, this, "roleMappings");
 
 	}
 
@@ -80,15 +80,15 @@ public class GetRoleMappingResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final Map<String, RoleMapping> result() {
-		return this.result;
+	public final Map<String, RoleMapping> roleMappings() {
+		return this.roleMappings;
 	}
 
 	/**
-	 * Get an element of {@code result}.
+	 * Get an element of {@code roleMappings}.
 	 */
 	public final @Nullable RoleMapping get(String key) {
-		return this.result.get(key);
+		return this.roleMappings.get(key);
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class GetRoleMappingResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		for (Map.Entry<String, RoleMapping> item0 : this.result.entrySet()) {
+		for (Map.Entry<String, RoleMapping> item0 : this.roleMappings.entrySet()) {
 			generator.writeKey(item0.getKey());
 			item0.getValue().serialize(generator, mapper);
 
@@ -119,35 +119,35 @@ public class GetRoleMappingResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetRoleMappingResponse> {
-		private Map<String, RoleMapping> result = new HashMap<>();
+		private Map<String, RoleMapping> roleMappings = new HashMap<>();
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>result</code>.
+		 * Adds all entries of <code>map</code> to <code>roleMappings</code>.
 		 */
-		public final Builder result(Map<String, RoleMapping> map) {
-			this.result = _mapPutAll(this.result, map);
+		public final Builder roleMappings(Map<String, RoleMapping> map) {
+			this.roleMappings = _mapPutAll(this.roleMappings, map);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code>.
+		 * Adds an entry to <code>roleMappings</code>.
 		 */
-		public final Builder result(String key, RoleMapping value) {
-			this.result = _mapPut(this.result, key, value);
+		public final Builder roleMappings(String key, RoleMapping value) {
+			this.roleMappings = _mapPut(this.roleMappings, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code> using a builder lambda.
+		 * Adds an entry to <code>roleMappings</code> using a builder lambda.
 		 */
-		public final Builder result(String key, Function<RoleMapping.Builder, ObjectBuilder<RoleMapping>> fn) {
-			return result(key, fn.apply(new RoleMapping.Builder()).build());
+		public final Builder roleMappings(String key, Function<RoleMapping.Builder, ObjectBuilder<RoleMapping>> fn) {
+			return roleMappings(key, fn.apply(new RoleMapping.Builder()).build());
 		}
 
 		@Override
@@ -156,7 +156,7 @@ public class GetRoleMappingResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			Map<String, RoleMapping> value = (Map<String, RoleMapping>) JsonpDeserializer
 					.stringMapDeserializer(RoleMapping._DESERIALIZER).deserialize(parser, mapper);
-			return this.result(value);
+			return this.roleMappings(value);
 		}
 
 		@Override
@@ -184,7 +184,7 @@ public class GetRoleMappingResponse implements JsonpSerializable {
 				.stringMapDeserializer(RoleMapping._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.result(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.roleMappings(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

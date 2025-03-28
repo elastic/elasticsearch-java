@@ -158,6 +158,14 @@ public class RuleQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Required - API name: {@code organic}
+		 */
+		public final Builder organic(QueryVariant value) {
+			this.organic = value._toQuery();
+			return this;
+		}
+
+		/**
 		 * Required - API name: {@code ruleset_ids}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>rulesetIds</code>.

@@ -581,6 +581,18 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		}
 
 		/**
+		 * The smoothing model used to balance weight between infrequent grams (grams
+		 * (shingles) are not existing in the index) and frequent grams (appear at least
+		 * once in the index). The default model is Stupid Backoff.
+		 * <p>
+		 * API name: {@code smoothing}
+		 */
+		public final Builder smoothing(SmoothingModelVariant value) {
+			this.smoothing = value._toSmoothingModel();
+			return this;
+		}
+
+		/**
 		 * The text/query to provide suggestions for.
 		 * <p>
 		 * API name: {@code text}

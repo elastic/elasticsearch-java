@@ -159,6 +159,14 @@ public class TriggerEventResult implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - API name: {@code manual}
+		 */
+		public final Builder manual(TriggerEventVariant value) {
+			this.manual = value._toTriggerEvent();
+			return this;
+		}
+
+		/**
 		 * Required - API name: {@code triggered_time}
 		 */
 		public final Builder triggeredTime(DateTime value) {

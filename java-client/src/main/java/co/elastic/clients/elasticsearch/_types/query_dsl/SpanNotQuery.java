@@ -234,6 +234,16 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 		}
 
 		/**
+		 * Required - Span query whose matches must not overlap those returned.
+		 * <p>
+		 * API name: {@code exclude}
+		 */
+		public final Builder exclude(SpanQueryVariant value) {
+			this.exclude = value._toSpanQuery();
+			return this;
+		}
+
+		/**
 		 * Required - Span query whose matches are filtered.
 		 * <p>
 		 * API name: {@code include}
@@ -250,6 +260,16 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 		 */
 		public final Builder include(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {
 			return this.include(fn.apply(new SpanQuery.Builder()).build());
+		}
+
+		/**
+		 * Required - Span query whose matches are filtered.
+		 * <p>
+		 * API name: {@code include}
+		 */
+		public final Builder include(SpanQueryVariant value) {
+			this.include = value._toSpanQuery();
+			return this;
 		}
 
 		/**

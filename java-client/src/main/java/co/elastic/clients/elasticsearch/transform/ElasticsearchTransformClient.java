@@ -239,6 +239,29 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
+	 * Overload of {@link #previewTransform(PreviewTransformRequest, Class)}, where
+	 * Class is defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public PreviewTransformResponse<Void> previewTransform(PreviewTransformRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PreviewTransformRequest, PreviewTransformResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<PreviewTransformRequest, PreviewTransformResponse<Void>, ErrorResponse>) PreviewTransformRequest._ENDPOINT;
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Overload of {@link #previewTransform(Function, Class)}, where Class is
+	 * defined as Void, meaning the documents will not be deserialized.
+	 */
+
+	public final PreviewTransformResponse<Void> previewTransform(
+			Function<PreviewTransformRequest.Builder, ObjectBuilder<PreviewTransformRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return previewTransform(fn.apply(new PreviewTransformRequest.Builder()).build(), Void.class);
+	}
+
+	/**
 	 * Preview a transform. Generates a preview of the results that you will get
 	 * when you create a transform with the same configuration.
 	 * <p>

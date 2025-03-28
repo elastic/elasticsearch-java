@@ -188,6 +188,16 @@ public class ForeachProcessor extends ProcessorBase implements ProcessorVariant 
 			return this.processor(fn.apply(new Processor.Builder()).build());
 		}
 
+		/**
+		 * Required - Ingest processor to run on each element.
+		 * <p>
+		 * API name: {@code processor}
+		 */
+		public final Builder processor(ProcessorVariant value) {
+			this.processor = value._toProcessor();
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;

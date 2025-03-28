@@ -1,13 +1,11 @@
 ---
-navigation_title: "Elasticsearch Java Client"
+navigation_title: "Breaking changes"
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/breaking-changes-policy.html
 ---
 
 # Elasticsearch Java Client breaking changes [elasticsearch-java-client-breaking-changes]
-Before you upgrade, carefully review the Elasticsearch Java Client breaking changes and take the necessary steps to mitigate any issues. 
-
-To learn how to upgrade, check out <uprade docs>.
+Breaking changes can impact your Elastic applications, potentially disrupting normal operations. Before you upgrade, carefully review the Elasticsearch Java Client breaking changes and take the necessary steps to mitigate any issues. To learn how to upgrade, check [Upgrade](docs-content://deploy-manage/upgrade.md).
 
 ## Breaking changes policy [elasticsearch-java-client-breaking-changes-policy]
 The Java API Client source code is generated from a [formal specification of the Elasticsearch API](https://github.com/elastic/elasticsearch-specification). This API specification is large, and although it is tested against hundreds of Elasticsearch test files, it may have discrepancies with the actual API that result in issues in the Java API Client.
@@ -31,7 +29,6 @@ Major releases (e.g. 7.x → 8.x) can include larger refactorings of the API spe
 All Elasticsearch APIs have stability indicators, which imply potential changes. If an API is `stable` only additional non-breaking changes are added. In case of `experimental` APIs, breaking changes can be introduced any time, which means that these changes, will also be reflected in the Java API Client.
 
 % ## Next version [elasticsearch-java-client-versionnext-breaking-changes]
-% **Release date:** Month day, year
 
 % ::::{dropdown} Title of breaking change 
 % Description of the breaking change.
@@ -41,7 +38,6 @@ All Elasticsearch APIs have stability indicators, which imply potential changes.
 % ::::
 
 % ## 9.0.0 [elasticsearch-java-client-900-breaking-changes]
-% **Release date:** March 25, 2025
 
 % ::::{dropdown} Title of breaking change 
 % Description of the breaking change.

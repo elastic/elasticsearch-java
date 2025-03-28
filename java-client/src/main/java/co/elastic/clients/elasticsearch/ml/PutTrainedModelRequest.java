@@ -497,6 +497,19 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
+		 * The default configuration for inference. This can be either a regression or
+		 * classification configuration. It must match the underlying
+		 * definition.trained_model's target_type. For pre-packaged models such as ELSER
+		 * the config is not required.
+		 * <p>
+		 * API name: {@code inference_config}
+		 */
+		public final Builder inferenceConfig(InferenceConfigCreateVariant value) {
+			this.inferenceConfig = value._toInferenceConfigCreate();
+			return this;
+		}
+
+		/**
 		 * The input field names for the model definition.
 		 * <p>
 		 * API name: {@code input}

@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.security;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.util.ObjectBuilder;
 import java.util.function.Function;
 
@@ -40,31 +41,13 @@ import java.util.function.Function;
 /**
  * Builders for {@link RoleMappingRule} variants.
  * <p>
- * Variants <code>any</code>, <code>all</code> are not available here as they
- * don't have a dedicated class. Use {@link RoleMappingRule}'s builder for
- * these.
+ * Variants <code>any</code>, <code>all</code>, <code>field</code> are not
+ * available here as they don't have a dedicated class. Use
+ * {@link RoleMappingRule}'s builder for these.
  * 
  */
 public class RoleMappingRuleBuilders {
 	private RoleMappingRuleBuilders() {
-	}
-
-	/**
-	 * Creates a builder for the {@link FieldRule field} {@code RoleMappingRule}
-	 * variant.
-	 */
-	public static FieldRule.Builder field() {
-		return new FieldRule.Builder();
-	}
-
-	/**
-	 * Creates a RoleMappingRule of the {@link FieldRule field}
-	 * {@code RoleMappingRule} variant.
-	 */
-	public static RoleMappingRule field(Function<FieldRule.Builder, ObjectBuilder<FieldRule>> fn) {
-		RoleMappingRule.Builder builder = new RoleMappingRule.Builder();
-		builder.field(fn.apply(new FieldRule.Builder()).build());
-		return builder.build();
 	}
 
 	/**

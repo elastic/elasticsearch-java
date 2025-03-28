@@ -17,9 +17,8 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.nodes;
+package co.elastic.clients.elasticsearch.inference.put_openai;
 
-import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -27,7 +26,6 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -51,46 +49,41 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: nodes._types.NodeReloadError
+// typedef: inference.put_openai.OpenAITaskSettings
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#nodes._types.NodeReloadError">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#inference.put_openai.OpenAITaskSettings">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class NodeReloadError implements JsonpSerializable {
-	private final String name;
-
+public class OpenAITaskSettings implements JsonpSerializable {
 	@Nullable
-	private final ErrorCause reloadException;
+	private final String user;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private NodeReloadError(Builder builder) {
+	private OpenAITaskSettings(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.reloadException = builder.reloadException;
+		this.user = builder.user;
 
 	}
 
-	public static NodeReloadError of(Function<Builder, ObjectBuilder<NodeReloadError>> fn) {
+	public static OpenAITaskSettings of(Function<Builder, ObjectBuilder<OpenAITaskSettings>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
-	}
-
-	/**
-	 * API name: {@code reload_exception}
+	 * For a <code>completion</code> or <code>text_embedding</code> task, specify
+	 * the user issuing the request. This informaiton can be used for abuse
+	 * detection.
+	 * <p>
+	 * API name: {@code user}
 	 */
 	@Nullable
-	public final ErrorCause reloadException() {
-		return this.reloadException;
+	public final String user() {
+		return this.user;
 	}
 
 	/**
@@ -104,12 +97,9 @@ public class NodeReloadError implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
-
-		if (this.reloadException != null) {
-			generator.writeKey("reload_exception");
-			this.reloadException.serialize(generator, mapper);
+		if (this.user != null) {
+			generator.writeKey("user");
+			generator.write(this.user);
 
 		}
 
@@ -123,36 +113,25 @@ public class NodeReloadError implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link NodeReloadError}.
+	 * Builder for {@link OpenAITaskSettings}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeReloadError> {
-		private String name;
-
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<OpenAITaskSettings> {
 		@Nullable
-		private ErrorCause reloadException;
+		private String user;
 
 		/**
-		 * Required - API name: {@code name}
+		 * For a <code>completion</code> or <code>text_embedding</code> task, specify
+		 * the user issuing the request. This informaiton can be used for abuse
+		 * detection.
+		 * <p>
+		 * API name: {@code user}
 		 */
-		public final Builder name(String value) {
-			this.name = value;
+		public final Builder user(@Nullable String value) {
+			this.user = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code reload_exception}
-		 */
-		public final Builder reloadException(@Nullable ErrorCause value) {
-			this.reloadException = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code reload_exception}
-		 */
-		public final Builder reloadException(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.reloadException(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		@Override
@@ -161,30 +140,29 @@ public class NodeReloadError implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link NodeReloadError}.
+		 * Builds a {@link OpenAITaskSettings}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public NodeReloadError build() {
+		public OpenAITaskSettings build() {
 			_checkSingleUse();
 
-			return new NodeReloadError(this);
+			return new OpenAITaskSettings(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link NodeReloadError}
+	 * Json deserializer for {@link OpenAITaskSettings}
 	 */
-	public static final JsonpDeserializer<NodeReloadError> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeReloadError::setupNodeReloadErrorDeserializer);
+	public static final JsonpDeserializer<OpenAITaskSettings> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, OpenAITaskSettings::setupOpenAITaskSettingsDeserializer);
 
-	protected static void setupNodeReloadErrorDeserializer(ObjectDeserializer<NodeReloadError.Builder> op) {
+	protected static void setupOpenAITaskSettingsDeserializer(ObjectDeserializer<OpenAITaskSettings.Builder> op) {
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::reloadException, ErrorCause._DESERIALIZER, "reload_exception");
+		op.add(Builder::user, JsonpDeserializer.stringDeserializer(), "user");
 
 	}
 

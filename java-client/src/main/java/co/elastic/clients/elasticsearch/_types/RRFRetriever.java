@@ -192,6 +192,22 @@ public class RRFRetriever extends RetrieverBase implements RetrieverVariant {
 		 * <p>
 		 * API name: {@code retrievers}
 		 * <p>
+		 * Adds one or more values to <code>retrievers</code>.
+		 */
+		public final Builder retrievers(RetrieverVariant value, RetrieverVariant... values) {
+			this.retrievers = _listAdd(this.retrievers, value._toRetriever());
+			for (RetrieverVariant v : values) {
+				_listAdd(this.retrievers, v._toRetriever());
+			}
+			return this;
+		}
+
+		/**
+		 * Required - A list of child retrievers to specify which sets of returned top
+		 * documents will have the RRF formula applied to them.
+		 * <p>
+		 * API name: {@code retrievers}
+		 * <p>
 		 * Adds a value to <code>retrievers</code> using a builder lambda.
 		 */
 		public final Builder retrievers(Function<Retriever.Builder, ObjectBuilder<Retriever>> fn) {

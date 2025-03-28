@@ -150,6 +150,21 @@ public class SpanOrQuery extends QueryBase implements SpanQueryVariant, QueryVar
 		 * <p>
 		 * API name: {@code clauses}
 		 * <p>
+		 * Adds one or more values to <code>clauses</code>.
+		 */
+		public final Builder clauses(SpanQueryVariant value, SpanQueryVariant... values) {
+			this.clauses = _listAdd(this.clauses, value._toSpanQuery());
+			for (SpanQueryVariant v : values) {
+				_listAdd(this.clauses, v._toSpanQuery());
+			}
+			return this;
+		}
+
+		/**
+		 * Required - Array of one or more other span type queries.
+		 * <p>
+		 * API name: {@code clauses}
+		 * <p>
 		 * Adds a value to <code>clauses</code> using a builder lambda.
 		 */
 		public final Builder clauses(Function<SpanQuery.Builder, ObjectBuilder<SpanQuery>> fn) {

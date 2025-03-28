@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
 /**
  * Create a Watsonx inference endpoint.
  * <p>
- * Creates an inference endpoint to perform an inference task with the
+ * Create an inference endpoint to perform an inference task with the
  * <code>watsonxai</code> service. You need an IBM Cloud Databases for
  * Elasticsearch deployment to use the <code>watsonxai</code> inference service.
  * You can provision one through the IBM catalog, the Cloud Databases CLI
