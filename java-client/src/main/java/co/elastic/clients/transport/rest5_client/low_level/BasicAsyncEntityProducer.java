@@ -37,7 +37,7 @@ import static co.elastic.clients.transport.rest5_client.low_level.Constants.DEFA
 /**
  * Basic implementation of {@link AsyncEntityProducer}
  */
-public class BasicAsyncEntityProducer implements AsyncEntityProducer {
+class BasicAsyncEntityProducer implements AsyncEntityProducer {
 
     private final HttpEntity entity;
     private final ByteBuffer buffer;
@@ -50,7 +50,7 @@ public class BasicAsyncEntityProducer implements AsyncEntityProducer {
     /**
      * Create new basic entity producer
      */
-    public BasicAsyncEntityProducer(final HttpEntity entity, final int bufferSize) {
+    BasicAsyncEntityProducer(final HttpEntity entity, final int bufferSize) {
         this.entity = Args.notNull(entity, "Http Entity");
         this.buffer = ByteBuffer.allocate(bufferSize);
         this.channelRef = new AtomicReference<>();
@@ -62,7 +62,7 @@ public class BasicAsyncEntityProducer implements AsyncEntityProducer {
     /**
      * Create new basic entity producer with default buffer limit of 100MB
      */
-    public BasicAsyncEntityProducer(final HttpEntity entity) {
+    BasicAsyncEntityProducer(final HttpEntity entity) {
         this(entity, DEFAULT_BUFFER_INITIAL_CAPACITY);
     }
 
