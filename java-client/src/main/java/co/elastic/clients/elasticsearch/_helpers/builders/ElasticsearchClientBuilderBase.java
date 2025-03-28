@@ -121,10 +121,17 @@ public abstract class ElasticsearchClientBuilderBase<T> {
 
     /**
      * Set the SSL context. See {@link co.elastic.clients.transport.TransportUtils} to create it
-     * from certificate files or fingerprint.
+     * from certificate files or a certificate fingerprint.
+     *
+     * @see co.elastic.clients.transport.TransportUtils
      */
     public ElasticsearchClientBuilderBase<T> sslContext(SSLContext sslContext) {
         this.sslContext = sslContext;
+        return this;
+    }
+
+    public ElasticsearchClientBuilderBase<T> setHosts(List<URI> hosts) {
+        this.hosts = hosts;
         return this;
     }
 

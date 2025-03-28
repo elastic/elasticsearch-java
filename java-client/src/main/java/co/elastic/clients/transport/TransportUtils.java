@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.GeneralSecurityException;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -143,5 +144,41 @@ public class TransportUtils {
             // Exceptions that should normally not occur
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * Returns an <b>insecure</b> SSLContext that will accept any server certificate.
+     * <p>
+     * <b>Use with care as it allows man-in-the-middle attacks.</b>
+     */
+    public static SSLContext insecureSSLContext() {
+        SSLContext result;
+
+        X509TrustManager trustManager = new X509TrustManager() {
+            @Override
+            public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                // Accept anything
+            }
+
+            @Override
+            public void  checkServerTrusted(X509Certificate[] certs, String authType) {
+                // Accept anything
+            }
+
+            @Override
+            public X509Certificate[] getAcceptedIssuers() {
+                return new X509Certificate[0];
+            }
+        };
+
+        try {
+            result = SSLContext.getInstance("SSL");
+            result.init(null, new X509TrustManager[] { trustManager }, null);
+        } catch (GeneralSecurityException e) {
+            // An exception here means SSL is not supported, which is unlikely
+            throw new RuntimeException(e);
+        }
+
+        return result;
     }
 }
