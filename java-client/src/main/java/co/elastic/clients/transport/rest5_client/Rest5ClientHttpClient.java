@@ -132,9 +132,8 @@ public class Rest5ClientHttpClient implements TransportHttpClient {
     }
 
     private co.elastic.clients.transport.rest5_client.low_level.Request createRestRequest(Request request, Rest5ClientOptions options) {
-        co.elastic.clients.transport.rest5_client.low_level.Request clientReq = new co.elastic.clients.transport.rest5_client.low_level.Request(
-            request.method(), request.path()
-        );
+        co.elastic.clients.transport.rest5_client.low_level.Request clientReq =
+            new co.elastic.clients.transport.rest5_client.low_level.Request(request.method(), request.path());
 
         Iterable<ByteBuffer> body = request.body();
 

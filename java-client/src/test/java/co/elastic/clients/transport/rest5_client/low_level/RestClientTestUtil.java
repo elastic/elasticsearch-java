@@ -26,7 +26,6 @@ import org.apache.hc.core5.http.message.BasicHeader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import static co.elastic.clients.transport.rest5_client.low_level.RestClientTestCase.randomAsciiLettersOfLengthBetween;
 import static co.elastic.clients.transport.rest5_client.low_level.RestClientTestCase.randomBoolean;

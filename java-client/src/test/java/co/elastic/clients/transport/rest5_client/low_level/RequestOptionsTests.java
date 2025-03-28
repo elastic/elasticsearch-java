@@ -139,7 +139,8 @@ public class RequestOptionsTests extends RestClientTestCase {
         RequestConfig.Builder requestConfigBuilder = RequestConfig.custom();
         int socketTimeout = 10000;
         int connectTimeout = 100;
-        requestConfigBuilder.setConnectionRequestTimeout(Timeout.ofMilliseconds(socketTimeout)).setConnectTimeout(Timeout.ofMilliseconds(connectTimeout));
+        requestConfigBuilder.setConnectionRequestTimeout(Timeout.ofMilliseconds(socketTimeout))
+            .setConnectTimeout(Timeout.ofMilliseconds(connectTimeout));
         RequestConfig requestConfig = requestConfigBuilder.build();
 
         builder.setRequestConfig(requestConfig);
