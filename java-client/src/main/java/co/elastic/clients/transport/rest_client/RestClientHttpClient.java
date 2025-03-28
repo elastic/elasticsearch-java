@@ -21,6 +21,7 @@ package co.elastic.clients.transport.rest_client;
 
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.http.HeaderMap;
+import co.elastic.clients.transport.http.Node;
 import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.util.BinaryData;
 import co.elastic.clients.util.NoCopyByteArrayOutputStream;

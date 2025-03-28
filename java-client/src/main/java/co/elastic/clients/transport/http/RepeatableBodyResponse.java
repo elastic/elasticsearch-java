@@ -45,7 +45,7 @@ public class RepeatableBodyResponse implements TransportHttpClient.Response {
     }
 
     @Override
-    public TransportHttpClient.Node node() {
+    public Node node() {
         return response.node();
     }
 

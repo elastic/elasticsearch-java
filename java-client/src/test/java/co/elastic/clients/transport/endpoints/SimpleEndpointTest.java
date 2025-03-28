@@ -26,6 +26,7 @@ import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.ElasticsearchTransportBase;
 import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.http.Node;
 import co.elastic.clients.transport.http.TransportHttpClient;
 import org.jetbrains.annotations.Nullable;
 import org.junit.jupiter.api.Test;
