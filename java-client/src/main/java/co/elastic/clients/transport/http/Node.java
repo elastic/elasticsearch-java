@@ -21,7 +21,6 @@ package co.elastic.clients.transport.http;
 
 import javax.annotation.Nullable;
 import java.net.URI;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -35,7 +34,6 @@ public class Node {
     private final String version;
     private final Set<String> roles;
     private final Map<String, String> attributes;
-    private final List<String> boundHosts;
 
     /**
      * Create a node with its URI, roles and attributes.
@@ -45,17 +43,15 @@ public class Node {
      * @param uri        the node's URI
      * @param name       the node name/identifier
      * @param version    the node's version, if known
-     * @param roles      the node's roles (such as "master", "ingest", etc).
+     * @param roles      the node's roles, such as "master", "ingest", etc.
      * @param attributes the node's attributes. This can be used for routing decisions by multi-node implementations.
-     * @param boundHosts addresses on which the node is listening. Useful to find a host based on any address it's listening to.
      */
     public Node(
         URI uri,
         @Nullable String name,
         @Nullable String version,
         @Nullable Set<String> roles,
-        @Nullable Map<String, String> attributes,
-        @Nullable List<String> boundHosts
+        @Nullable Map<String, String> attributes
     ) {
 
         if (!uri.isAbsolute()) {
@@ -71,15 +67,14 @@ public class Node {
         this.version = version;
         this.roles = roles;
         this.attributes = attributes;
-        this.boundHosts = boundHosts;
     }
 
     public Node(URI uri) {
-        this(uri, null, null, null, null, null);
+        this(uri, null, null, null, null);
     }
 
     public Node(String uri) {
-        this(URI.create(uri), null, null, null, null, null);
+        this(URI.create(uri), null, null, null, null);
     }
 
     /**
@@ -110,11 +105,6 @@ public class Node {
     @Nullable
     public Map<String, String> attributes() {
         return attributes;
-    }
-
-    @Nullable
-    public List<String> boundHosts() {
-        return boundHosts;
     }
 
     @Override
