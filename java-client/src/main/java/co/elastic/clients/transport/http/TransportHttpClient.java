@@ -26,9 +26,12 @@ import co.elastic.clients.util.BinaryData;
 import javax.annotation.Nullable;
 import java.io.Closeable;
 import java.io.IOException;
+import java.net.URI;
 import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -181,5 +184,111 @@ public interface TransportHttpClient {
          * Close this response, freeing its associated resources if needed, such as consuming the response body.
          */
         void close() throws IOException;
+    }
+
+    /**
+     * A node/host to send requests to.
+     */
+    class Node {
+        private final URI uri;
+        private final String name;
+        private final String version;
+        private final Set<String> roles;
+        private final Map<String, String> attributes;
+
+        /**
+         * Create a node with its URI, roles and attributes.
+         * <p>
+         * If the URI doesn't end with a '{@code /}', then one is added.
+         *
+         * @param uri        the node's URI
+         * @param name       the node name/identifier
+         * @param version    the node's version, if known
+         * @param roles      the node's roles, such as "master", "ingest", etc.
+         * @param attributes the node's attributes. This can be used for routing decisions by multi-node implementations.
+         */
+        public Node(
+            URI uri,
+            @Nullable String name,
+            @Nullable String version,
+            @Nullable Set<String> roles,
+            @Nullable Map<String, String> attributes
+        ) {
+
+            if (!uri.isAbsolute()) {
+                throw new IllegalArgumentException("Node URIs must be absolute: " + uri);
+            }
+
+            if (!uri.getRawPath().endsWith("/")) {
+                uri = uri.resolve(uri.getRawPath() + "/");
+            }
+
+            this.uri = uri;
+            this.name = name;
+            this.version = version;
+            this.roles = roles;
+            this.attributes = attributes;
+        }
+
+        public Node(URI uri) {
+            this(uri, null, null, null, null);
+        }
+
+        public Node(String uri) {
+            this(URI.create(uri), null, null, null, null);
+        }
+
+        /**
+         * The URI of this node. This is an absolute URL with a path ending with a "/".
+         */
+        public URI uri() {
+            return this.uri;
+        }
+
+        /**
+         * The node name/identifier
+         */
+        @Nullable
+        public String name() {
+            return name;
+        }
+
+        @Nullable
+        public String version() {
+            return version;
+        }
+
+        @Nullable
+        public Set<String> roles() {
+            return roles;
+        }
+
+        @Nullable
+        public Map<String, String> attributes() {
+            return attributes;
+        }
+
+        @Override
+        public String toString() {
+            return uri.toString();
+        }
+
+        /**
+         * Two nodes are considered equal if their URIs are equal. Other properties are ignored.
+         */
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof Node node)) return false;
+            return Objects.equals(uri, node.uri);
+        }
+
+        /**
+         * A node's hash code is that of its URI. Other properties are ignored.
+         */
+        @Override
+        public int hashCode() {
+            return Objects.hash(uri);
+        }
     }
 }

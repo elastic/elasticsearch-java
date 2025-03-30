@@ -24,7 +24,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransportBase;
 import co.elastic.clients.transport.TransportException;
 import co.elastic.clients.transport.TransportOptions;
-import co.elastic.clients.transport.http.Node;
 import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.util.BinaryData;
 import org.jetbrains.annotations.Nullable;
