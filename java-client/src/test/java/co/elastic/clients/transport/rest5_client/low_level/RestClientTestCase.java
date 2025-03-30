@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -104,10 +105,20 @@ public abstract class RestClientTestCase {
         return Boolean.parseBoolean(System.getProperty("tests.fips.enabled"));
     }
 
+    public static Random getRandom() {
+        return ThreadLocalRandom.current();
+    }
+
     public static int randomIntBetween(int min, int max) {
-        return new Random().ints(min, max)
+        return getRandom().ints(min, max)
             .findFirst()
             .getAsInt();
+    }
+
+    public static long randomLongBetween(long min, long max) {
+        return getRandom().longs(min, max)
+            .findFirst()
+            .getAsLong();
     }
 
     public static boolean randomBoolean() {
@@ -131,6 +142,7 @@ public abstract class RestClientTestCase {
     }
 
     public static <T> T randomFrom(T[] array) {
+        checkZeroLength(array.length);
         int index = randomIntBetween(0, array.length);
         return array[index];
     }
@@ -144,5 +156,19 @@ public abstract class RestClientTestCase {
         byte[] b = new byte[length];
         new Random().nextBytes(b);
         return b;
+    }
+
+    public static boolean rarely() {
+        return randomIntBetween(0, 100) >= 90;
+    }
+
+    public static boolean frequently() {
+        return !rarely();
+    }
+
+    private static void checkZeroLength(int length) {
+        if (length == 0) {
+            throw new IllegalArgumentException("Can't pick a random object from an empty array.");
+        }
     }
 }
