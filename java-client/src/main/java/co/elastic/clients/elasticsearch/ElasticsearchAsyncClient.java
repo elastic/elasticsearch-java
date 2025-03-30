@@ -20,7 +20,6 @@
 package co.elastic.clients.elasticsearch;
 
 import co.elastic.clients.ApiClient;
-import co.elastic.clients.elasticsearch._helpers.builders.ElasticsearchClientBuilderBase;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch.async_search.ElasticsearchAsyncSearchAsyncClient;
 import co.elastic.clients.elasticsearch.autoscaling.ElasticsearchAutoscalingAsyncClient;
@@ -146,6 +145,7 @@ import co.elastic.clients.elasticsearch.transform.ElasticsearchTransformAsyncCli
 import co.elastic.clients.elasticsearch.watcher.ElasticsearchWatcherAsyncClient;
 import co.elastic.clients.elasticsearch.xpack.ElasticsearchXpackAsyncClient;
 import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.ElasticsearchTransportConfig;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
@@ -178,16 +178,15 @@ import javax.annotation.Nullable;
  * Client for the namespace.
  */
 public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, ElasticsearchAsyncClient> {
-	public static class Builder extends ElasticsearchClientBuilderBase<ElasticsearchAsyncClient> {
-		@Override
-		public ElasticsearchAsyncClient build() {
-			return ElasticsearchClientBuilderBase.buildAsync(this);
-		}
-	}
 
 	public static ElasticsearchAsyncClient of(
-			Function<ElasticsearchClientBuilderBase, ElasticsearchClientBuilderBase> fn) {
-		return ElasticsearchClientBuilderBase.buildAsync(fn.apply(new ElasticsearchAsyncClient.Builder()));
+			Function<ElasticsearchTransportConfig.Builder, ElasticsearchTransportConfig.Builder> fn) {
+		return new ElasticsearchAsyncClient(
+				fn.apply(new ElasticsearchTransportConfig.Builder()).build().buildTransport());
+	}
+
+	public ElasticsearchAsyncClient(ElasticsearchTransportConfig config) {
+		this(config.buildTransport());
 	}
 
 	public ElasticsearchAsyncClient(ElasticsearchTransport transport) {

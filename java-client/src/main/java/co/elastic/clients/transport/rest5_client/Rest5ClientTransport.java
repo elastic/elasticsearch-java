@@ -20,17 +20,38 @@
 package co.elastic.clients.transport.rest5_client;
 
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.ElasticsearchTransportBase;
 import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.ElasticsearchTransportConfig;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.instrumentation.Instrumentation;
 import co.elastic.clients.transport.rest5_client.low_level.Rest5Client;
+import co.elastic.clients.transport.rest5_client.low_level.Rest5ClientBuilder;
+import org.apache.hc.core5.http.Header;
+import org.apache.hc.core5.http.message.BasicHeader;
 
 import javax.annotation.Nullable;
+import java.util.Base64;
+import java.util.function.Function;
 
 public class Rest5ClientTransport extends ElasticsearchTransportBase {
 
+    /**
+     * Factory function to be used for {@link ElasticsearchTransportConfig#transportFactory()}.
+     */
+    public static final Function<ElasticsearchTransportConfig, ElasticsearchTransport> FACTORY = Rest5ClientTransport::new;
+
     private final Rest5Client restClient;
+
+    public Rest5ClientTransport(ElasticsearchTransportConfig config) {
+        this(
+            buildRest5Client(config),
+            config.mapper(),
+            Rest5ClientOptions.of(config.transportOptions()),
+            config.instrumentation()
+        );
+    }
 
     public Rest5ClientTransport(Rest5Client restClient, JsonpMapper jsonpMapper) {
         this(restClient, jsonpMapper, null);
@@ -45,6 +66,31 @@ public class Rest5ClientTransport extends ElasticsearchTransportBase {
                                 Instrumentation instrumentation) {
         super(new Rest5ClientHttpClient(restClient), options, jsonpMapper, instrumentation);
         this.restClient = restClient;
+    }
+
+    private static Rest5Client buildRest5Client(ElasticsearchTransportConfig config) {
+        Rest5ClientBuilder restClientBuilder = Rest5Client.builder(config.hosts());
+
+        if (config.username() != null && config.password() != null) {
+            var cred = Base64.getEncoder().encodeToString((config.username() + ":" + config.password()).getBytes());
+            restClientBuilder.setDefaultHeaders(new Header[]{
+                new BasicHeader("Authorization", "Basic " + cred)
+            });
+        } else if (config.apiKey() != null) {
+            restClientBuilder.setDefaultHeaders(new Header[]{
+                new BasicHeader("Authorization", "ApiKey " + config.apiKey())
+            });
+        } else if (config.token() != null) {
+            restClientBuilder.setDefaultHeaders(new Header[]{
+                new BasicHeader("Authorization", "Bearer " + config.token())
+            });
+        }
+
+        if (config.sslContext() != null) {
+            restClientBuilder.setSSLContext(config.sslContext());
+        }
+
+        return restClientBuilder.build();
     }
 
     public Rest5Client restClient() {

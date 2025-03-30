@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._helpers;
+package co.elastic.clients.transport;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.transport.rest5_client.Rest5ClientOptions;
@@ -30,17 +30,17 @@ import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
-public class ClientBuildersTest {
+public class ElasticsearchTransportConfigTest {
 
     @Test
     public void buildLegacy() {
 
         // create client with helper
-        ElasticsearchClient client = new ElasticsearchClient.Builder()
+        ElasticsearchClient client = ElasticsearchClient.of(b -> b
             .host("http://example.com")
             .usernameAndPassword("elastic", "changeme")
             .useLegacyTransport(true)
-            .build();
+        );
 
         RestClientOptions options = new RestClientOptions(RequestOptions.DEFAULT, true);
 
@@ -60,10 +60,10 @@ public class ClientBuildersTest {
     public void buildRest5() {
 
         // create client with helper
-        ElasticsearchClient client = new ElasticsearchClient.Builder()
+        ElasticsearchClient client = ElasticsearchClient.of(b -> b
             .host("http://example.com")
             .usernameAndPassword("elastic", "changeme")
-            .build();
+        );
 
         Rest5ClientOptions options = new Rest5ClientOptions(co.elastic.clients.transport.rest5_client.low_level.RequestOptions.DEFAULT,
             true);

@@ -21,27 +21,30 @@ package co.elastic.clients.elasticsearch;
 
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.ElasticsearchTransportConfig;
 import co.elastic.clients.transport.rest5_client.Rest5ClientTransport;
-import co.elastic.clients.transport.rest5_client.low_level.Rest5Client;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import com.sun.net.httpserver.HttpServer;
-import org.apache.hc.core5.http.Header;
-import org.apache.hc.core5.http.message.BasicHeader;
-import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.elasticsearch.client.RestClient;
 
 import javax.annotation.Nullable;
 import javax.net.ssl.SSLContext;
-import java.net.URI;
 import java.security.SecureRandom;
-import java.util.Base64;
+import java.util.function.Function;
 
 public class ElasticsearchTestClient {
 
-    protected enum ClientImpl { Rest4, Rest5 }
+    protected enum ClientImpl {
+        Rest4,
+        Rest5;
+
+        Function<ElasticsearchTransportConfig, ElasticsearchTransport> transportFactory() {
+            return switch (this) {
+                case Rest4 -> RestClientTransport::new;
+                case Rest5 -> Rest5ClientTransport::new;
+            };
+        }
+    }
 
     // Same value for all tests in a test run
     private static final ClientImpl flavor;
@@ -56,44 +59,18 @@ public class ElasticsearchTestClient {
 
     public static ElasticsearchClient createClient(String url, @Nullable JsonpMapper mapper, @Nullable SSLContext sslContext) {
         System.out.println("Using a " + flavor + " client");
-        return switch (flavor) {
-            case Rest4 -> createRest4Client(url, mapper, sslContext);
-            case Rest5 -> createRest5Client(url, mapper, sslContext);
-        };
+
+        return ElasticsearchClient.of(b -> b
+            .host(url)
+            .jsonMapper(mapper(mapper))
+            .usernameAndPassword("elastic", "changeme")
+            .sslContext(sslContext)
+            .transportFactory(flavor.transportFactory())
+        );
     }
 
     public static ElasticsearchClient createClient(HttpServer server, @Nullable JsonpMapper mapper) {
         var address = server.getAddress();
         return createClient("http://" + address.getHostString() + ":" + address.getPort(), mapper, null);
-    }
-
-    public static ElasticsearchClient createRest4Client(String url, @Nullable JsonpMapper mapper, @Nullable SSLContext sslContext) {
-        BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
-        credsProv.setCredentials(
-            AuthScope.ANY, new UsernamePasswordCredentials("elastic", "changeme")
-        );
-        var restClient = RestClient.builder(HttpHost.create(url))
-            .setHttpClientConfigCallback(hc -> hc
-                .setDefaultCredentialsProvider(credsProv)
-                .setSSLContext(sslContext)
-            )
-            .build();
-        var transport = new RestClientTransport(restClient, mapper(mapper));
-        return new ElasticsearchClient(transport);
-    }
-
-    public static ElasticsearchClient createRest5Client(String url, @Nullable JsonpMapper mapper, @Nullable SSLContext sslContext) {
-        var pwd = Base64.getEncoder().encodeToString("elastic:changeme".getBytes());
-        var restClientBuilder = Rest5Client.builder(org.apache.hc.core5.http.HttpHost.create(URI.create(url)))
-            .setDefaultHeaders(new Header[]{
-                new BasicHeader("Authorization", "Basic " + pwd)
-            });
-
-        if (sslContext != null) {
-            restClientBuilder.setSSLContext(sslContext);
-        }
-
-        var transport = new Rest5ClientTransport(restClientBuilder.build(), mapper(mapper));
-        return new ElasticsearchClient(transport);
     }
 }

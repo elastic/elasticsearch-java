@@ -137,8 +137,9 @@ public class SnifferTests extends RestClientTestCase {
      * Simulates the ordinary behaviour of {@link Sniffer} when sniffing on failure is not enabled.
      * The {@link CountingNodesSniffer} doesn't make any network connection but may throw exception or return no nodes, which makes
      * it possible to verify that errors are properly handled and don't affect subsequent runs and their scheduling.
-     * The {@link Sniffer.Scheduler} implementation submits rather than scheduling tasks, meaning that it doesn't respect the requested sniff
-     * delays while allowing to assert that the requested delays for each requested run and the following one are the expected values.
+     * The {@link Sniffer.Scheduler} implementation submits rather than scheduling tasks, meaning that it doesn't respect the
+     * requested sniff delays while allowing to assert that the requested delays for each requested run and the following one are the
+     * expected values.
      */
     @Test
     public void testOrdinarySniffRounds() throws Exception {
