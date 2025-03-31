@@ -22,9 +22,12 @@ package co.elastic.clients.elasticsearch.inference;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -57,7 +60,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class InferenceChunkingSettings extends InferenceEndpoint {
+public class InferenceChunkingSettings implements JsonpSerializable {
 	@Nullable
 	private final Integer maxChunkSize;
 
@@ -73,7 +76,6 @@ public class InferenceChunkingSettings extends InferenceEndpoint {
 	// ---------------------------------------------------------------------------------------------
 
 	private InferenceChunkingSettings(Builder builder) {
-		super(builder);
 
 		this.maxChunkSize = builder.maxChunkSize;
 		this.overlap = builder.overlap;
@@ -132,9 +134,17 @@ public class InferenceChunkingSettings extends InferenceEndpoint {
 		return this.strategy;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		if (this.maxChunkSize != null) {
 			generator.writeKey("max_chunk_size");
 			generator.write(this.maxChunkSize);
@@ -158,13 +168,18 @@ public class InferenceChunkingSettings extends InferenceEndpoint {
 
 	}
 
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link InferenceChunkingSettings}.
 	 */
 
-	public static class Builder extends InferenceEndpoint.AbstractBuilder<Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<InferenceChunkingSettings> {
 		@Nullable
@@ -253,7 +268,7 @@ public class InferenceChunkingSettings extends InferenceEndpoint {
 
 	protected static void setupInferenceChunkingSettingsDeserializer(
 			ObjectDeserializer<InferenceChunkingSettings.Builder> op) {
-		InferenceEndpoint.setupInferenceEndpointDeserializer(op);
+
 		op.add(Builder::maxChunkSize, JsonpDeserializer.integerDeserializer(), "max_chunk_size");
 		op.add(Builder::overlap, JsonpDeserializer.integerDeserializer(), "overlap");
 		op.add(Builder::sentenceOverlap, JsonpDeserializer.integerDeserializer(), "sentence_overlap");

@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class MlTrainedModelsResponse implements JsonpSerializable {
-	private final List<TrainedModelsRecord> valueBody;
+	private final List<TrainedModelsRecord> trainedModels;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private MlTrainedModelsResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.trainedModels = ApiTypeHelper.unmodifiableRequired(builder.trainedModels, this, "trainedModels");
 
 	}
 
@@ -78,8 +78,8 @@ public class MlTrainedModelsResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<TrainedModelsRecord> valueBody() {
-		return this.valueBody;
+	public final List<TrainedModelsRecord> trainedModels() {
+		return this.trainedModels;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class MlTrainedModelsResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (TrainedModelsRecord item0 : this.valueBody) {
+		for (TrainedModelsRecord item0 : this.trainedModels) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -109,35 +109,36 @@ public class MlTrainedModelsResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<MlTrainedModelsResponse> {
-		private List<TrainedModelsRecord> valueBody;
+		private List<TrainedModelsRecord> trainedModels;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>trainedModels</code>.
 		 */
-		public final Builder valueBody(List<TrainedModelsRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder trainedModels(List<TrainedModelsRecord> list) {
+			this.trainedModels = _listAddAll(this.trainedModels, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>trainedModels</code>.
 		 */
-		public final Builder valueBody(TrainedModelsRecord value, TrainedModelsRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder trainedModels(TrainedModelsRecord value, TrainedModelsRecord... values) {
+			this.trainedModels = _listAdd(this.trainedModels, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>trainedModels</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<TrainedModelsRecord.Builder, ObjectBuilder<TrainedModelsRecord>> fn) {
-			return valueBody(fn.apply(new TrainedModelsRecord.Builder()).build());
+		public final Builder trainedModels(
+				Function<TrainedModelsRecord.Builder, ObjectBuilder<TrainedModelsRecord>> fn) {
+			return trainedModels(fn.apply(new TrainedModelsRecord.Builder()).build());
 		}
 
 		@Override
@@ -146,7 +147,7 @@ public class MlTrainedModelsResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<TrainedModelsRecord> value = (List<TrainedModelsRecord>) JsonpDeserializer
 					.arrayDeserializer(TrainedModelsRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.trainedModels(value);
 		}
 
 		@Override
@@ -174,7 +175,7 @@ public class MlTrainedModelsResponse implements JsonpSerializable {
 				.arrayDeserializer(TrainedModelsRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.trainedModels(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

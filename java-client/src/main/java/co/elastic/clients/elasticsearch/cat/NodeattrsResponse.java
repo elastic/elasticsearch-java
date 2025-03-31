@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class NodeattrsResponse implements JsonpSerializable {
-	private final List<NodeAttributesRecord> valueBody;
+	private final List<NodeAttributesRecord> nodeAttributes;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private NodeattrsResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.nodeAttributes = ApiTypeHelper.unmodifiableRequired(builder.nodeAttributes, this, "nodeAttributes");
 
 	}
 
@@ -78,8 +78,8 @@ public class NodeattrsResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<NodeAttributesRecord> valueBody() {
-		return this.valueBody;
+	public final List<NodeAttributesRecord> nodeAttributes() {
+		return this.nodeAttributes;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class NodeattrsResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (NodeAttributesRecord item0 : this.valueBody) {
+		for (NodeAttributesRecord item0 : this.nodeAttributes) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -107,35 +107,36 @@ public class NodeattrsResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeattrsResponse> {
-		private List<NodeAttributesRecord> valueBody;
+		private List<NodeAttributesRecord> nodeAttributes;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>nodeAttributes</code>.
 		 */
-		public final Builder valueBody(List<NodeAttributesRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder nodeAttributes(List<NodeAttributesRecord> list) {
+			this.nodeAttributes = _listAddAll(this.nodeAttributes, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>nodeAttributes</code>.
 		 */
-		public final Builder valueBody(NodeAttributesRecord value, NodeAttributesRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder nodeAttributes(NodeAttributesRecord value, NodeAttributesRecord... values) {
+			this.nodeAttributes = _listAdd(this.nodeAttributes, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>nodeAttributes</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<NodeAttributesRecord.Builder, ObjectBuilder<NodeAttributesRecord>> fn) {
-			return valueBody(fn.apply(new NodeAttributesRecord.Builder()).build());
+		public final Builder nodeAttributes(
+				Function<NodeAttributesRecord.Builder, ObjectBuilder<NodeAttributesRecord>> fn) {
+			return nodeAttributes(fn.apply(new NodeAttributesRecord.Builder()).build());
 		}
 
 		@Override
@@ -144,7 +145,7 @@ public class NodeattrsResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<NodeAttributesRecord> value = (List<NodeAttributesRecord>) JsonpDeserializer
 					.arrayDeserializer(NodeAttributesRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.nodeAttributes(value);
 		}
 
 		@Override
@@ -172,7 +173,7 @@ public class NodeattrsResponse implements JsonpSerializable {
 				.arrayDeserializer(NodeAttributesRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.nodeAttributes(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

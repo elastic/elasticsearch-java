@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class PendingTasksResponse implements JsonpSerializable {
-	private final List<PendingTasksRecord> valueBody;
+	private final List<PendingTasksRecord> pendingTasks;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private PendingTasksResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.pendingTasks = ApiTypeHelper.unmodifiableRequired(builder.pendingTasks, this, "pendingTasks");
 
 	}
 
@@ -78,8 +78,8 @@ public class PendingTasksResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<PendingTasksRecord> valueBody() {
-		return this.valueBody;
+	public final List<PendingTasksRecord> pendingTasks() {
+		return this.pendingTasks;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class PendingTasksResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (PendingTasksRecord item0 : this.valueBody) {
+		for (PendingTasksRecord item0 : this.pendingTasks) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -109,35 +109,35 @@ public class PendingTasksResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<PendingTasksResponse> {
-		private List<PendingTasksRecord> valueBody;
+		private List<PendingTasksRecord> pendingTasks;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>pendingTasks</code>.
 		 */
-		public final Builder valueBody(List<PendingTasksRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder pendingTasks(List<PendingTasksRecord> list) {
+			this.pendingTasks = _listAddAll(this.pendingTasks, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>pendingTasks</code>.
 		 */
-		public final Builder valueBody(PendingTasksRecord value, PendingTasksRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder pendingTasks(PendingTasksRecord value, PendingTasksRecord... values) {
+			this.pendingTasks = _listAdd(this.pendingTasks, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>pendingTasks</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<PendingTasksRecord.Builder, ObjectBuilder<PendingTasksRecord>> fn) {
-			return valueBody(fn.apply(new PendingTasksRecord.Builder()).build());
+		public final Builder pendingTasks(Function<PendingTasksRecord.Builder, ObjectBuilder<PendingTasksRecord>> fn) {
+			return pendingTasks(fn.apply(new PendingTasksRecord.Builder()).build());
 		}
 
 		@Override
@@ -146,7 +146,7 @@ public class PendingTasksResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<PendingTasksRecord> value = (List<PendingTasksRecord>) JsonpDeserializer
 					.arrayDeserializer(PendingTasksRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.pendingTasks(value);
 		}
 
 		@Override
@@ -174,7 +174,7 @@ public class PendingTasksResponse implements JsonpSerializable {
 				.arrayDeserializer(PendingTasksRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.pendingTasks(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

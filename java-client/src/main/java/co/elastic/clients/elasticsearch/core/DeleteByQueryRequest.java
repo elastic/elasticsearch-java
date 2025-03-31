@@ -429,7 +429,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Starting offset (default: 0)
+	 * Skips the specified number of documents.
 	 * <p>
 	 * API name: {@code from}
 	 */
@@ -942,7 +942,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Starting offset (default: 0)
+		 * Skips the specified number of documents.
 		 * <p>
 		 * API name: {@code from}
 		 */

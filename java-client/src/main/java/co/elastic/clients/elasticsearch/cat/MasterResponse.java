@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class MasterResponse implements JsonpSerializable {
-	private final List<MasterRecord> valueBody;
+	private final List<MasterRecord> masters;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private MasterResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.masters = ApiTypeHelper.unmodifiableRequired(builder.masters, this, "masters");
 
 	}
 
@@ -78,8 +78,8 @@ public class MasterResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<MasterRecord> valueBody() {
-		return this.valueBody;
+	public final List<MasterRecord> masters() {
+		return this.masters;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class MasterResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (MasterRecord item0 : this.valueBody) {
+		for (MasterRecord item0 : this.masters) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -107,35 +107,35 @@ public class MasterResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<MasterResponse> {
-		private List<MasterRecord> valueBody;
+		private List<MasterRecord> masters;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>masters</code>.
 		 */
-		public final Builder valueBody(List<MasterRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder masters(List<MasterRecord> list) {
+			this.masters = _listAddAll(this.masters, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>masters</code>.
 		 */
-		public final Builder valueBody(MasterRecord value, MasterRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder masters(MasterRecord value, MasterRecord... values) {
+			this.masters = _listAdd(this.masters, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>masters</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<MasterRecord.Builder, ObjectBuilder<MasterRecord>> fn) {
-			return valueBody(fn.apply(new MasterRecord.Builder()).build());
+		public final Builder masters(Function<MasterRecord.Builder, ObjectBuilder<MasterRecord>> fn) {
+			return masters(fn.apply(new MasterRecord.Builder()).build());
 		}
 
 		@Override
@@ -144,7 +144,7 @@ public class MasterResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<MasterRecord> value = (List<MasterRecord>) JsonpDeserializer
 					.arrayDeserializer(MasterRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.masters(value);
 		}
 
 		@Override
@@ -172,7 +172,7 @@ public class MasterResponse implements JsonpSerializable {
 				.arrayDeserializer(MasterRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.masters(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

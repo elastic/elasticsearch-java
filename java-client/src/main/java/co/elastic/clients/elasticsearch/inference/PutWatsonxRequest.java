@@ -21,9 +21,6 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch.inference.put_watsonx.ServiceType;
-import co.elastic.clients.elasticsearch.inference.put_watsonx.WatsonxServiceSettings;
-import co.elastic.clients.elasticsearch.inference.put_watsonx.WatsonxTaskType;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -84,7 +81,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class PutWatsonxRequest extends RequestBase implements JsonpSerializable {
-	private final ServiceType service;
+	private final WatsonxServiceType service;
 
 	private final WatsonxServiceSettings serviceSettings;
 
@@ -113,7 +110,7 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 	 * <p>
 	 * API name: {@code service}
 	 */
-	public final ServiceType service() {
+	public final WatsonxServiceType service() {
 		return this.service;
 	}
 
@@ -173,7 +170,7 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutWatsonxRequest> {
-		private ServiceType service;
+		private WatsonxServiceType service;
 
 		private WatsonxServiceSettings serviceSettings;
 
@@ -187,7 +184,7 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code service}
 		 */
-		public final Builder service(ServiceType value) {
+		public final Builder service(WatsonxServiceType value) {
 			this.service = value;
 			return this;
 		}
@@ -263,7 +260,7 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 
 	protected static void setupPutWatsonxRequestDeserializer(ObjectDeserializer<PutWatsonxRequest.Builder> op) {
 
-		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
+		op.add(Builder::service, WatsonxServiceType._DESERIALIZER, "service");
 		op.add(Builder::serviceSettings, WatsonxServiceSettings._DESERIALIZER, "service_settings");
 
 	}

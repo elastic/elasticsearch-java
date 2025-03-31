@@ -142,6 +142,25 @@ public class InferenceConfigCreateBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link LearningToRankConfig learning_to_rank}
+	 * {@code InferenceConfigCreate} variant.
+	 */
+	public static LearningToRankConfig.Builder learningToRank() {
+		return new LearningToRankConfig.Builder();
+	}
+
+	/**
+	 * Creates a InferenceConfigCreate of the {@link LearningToRankConfig
+	 * learning_to_rank} {@code InferenceConfigCreate} variant.
+	 */
+	public static InferenceConfigCreate learningToRank(
+			Function<LearningToRankConfig.Builder, ObjectBuilder<LearningToRankConfig>> fn) {
+		InferenceConfigCreate.Builder builder = new InferenceConfigCreate.Builder();
+		builder.learningToRank(fn.apply(new LearningToRankConfig.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link NerInferenceOptions ner}
 	 * {@code InferenceConfigCreate} variant.
 	 */

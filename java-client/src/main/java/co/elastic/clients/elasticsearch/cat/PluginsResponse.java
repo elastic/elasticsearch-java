@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class PluginsResponse implements JsonpSerializable {
-	private final List<PluginsRecord> valueBody;
+	private final List<PluginsRecord> plugins;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private PluginsResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.plugins = ApiTypeHelper.unmodifiableRequired(builder.plugins, this, "plugins");
 
 	}
 
@@ -78,8 +78,8 @@ public class PluginsResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<PluginsRecord> valueBody() {
-		return this.valueBody;
+	public final List<PluginsRecord> plugins() {
+		return this.plugins;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class PluginsResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (PluginsRecord item0 : this.valueBody) {
+		for (PluginsRecord item0 : this.plugins) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -107,35 +107,35 @@ public class PluginsResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<PluginsResponse> {
-		private List<PluginsRecord> valueBody;
+		private List<PluginsRecord> plugins;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>plugins</code>.
 		 */
-		public final Builder valueBody(List<PluginsRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder plugins(List<PluginsRecord> list) {
+			this.plugins = _listAddAll(this.plugins, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>plugins</code>.
 		 */
-		public final Builder valueBody(PluginsRecord value, PluginsRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder plugins(PluginsRecord value, PluginsRecord... values) {
+			this.plugins = _listAdd(this.plugins, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>plugins</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<PluginsRecord.Builder, ObjectBuilder<PluginsRecord>> fn) {
-			return valueBody(fn.apply(new PluginsRecord.Builder()).build());
+		public final Builder plugins(Function<PluginsRecord.Builder, ObjectBuilder<PluginsRecord>> fn) {
+			return plugins(fn.apply(new PluginsRecord.Builder()).build());
 		}
 
 		@Override
@@ -144,7 +144,7 @@ public class PluginsResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<PluginsRecord> value = (List<PluginsRecord>) JsonpDeserializer
 					.arrayDeserializer(PluginsRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.plugins(value);
 		}
 
 		@Override
@@ -172,7 +172,7 @@ public class PluginsResponse implements JsonpSerializable {
 				.arrayDeserializer(PluginsRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.plugins(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

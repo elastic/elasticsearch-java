@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -61,11 +62,15 @@ import javax.annotation.Nullable;
 public class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 	private final EnrichPolicyPhase phase;
 
+	@Nullable
+	private final String step;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ExecuteEnrichPolicyStatus(Builder builder) {
 
 		this.phase = ApiTypeHelper.requireNonNull(builder.phase, this, "phase");
+		this.step = builder.step;
 
 	}
 
@@ -81,6 +86,14 @@ public class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code step}
+	 */
+	@Nullable
+	public final String step() {
+		return this.step;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -93,6 +106,11 @@ public class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 
 		generator.writeKey("phase");
 		this.phase.serialize(generator, mapper);
+		if (this.step != null) {
+			generator.writeKey("step");
+			generator.write(this.step);
+
+		}
 
 	}
 
@@ -112,11 +130,22 @@ public class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 				ObjectBuilder<ExecuteEnrichPolicyStatus> {
 		private EnrichPolicyPhase phase;
 
+		@Nullable
+		private String step;
+
 		/**
 		 * Required - API name: {@code phase}
 		 */
 		public final Builder phase(EnrichPolicyPhase value) {
 			this.phase = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code step}
+		 */
+		public final Builder step(@Nullable String value) {
+			this.step = value;
 			return this;
 		}
 
@@ -150,6 +179,7 @@ public class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 			ObjectDeserializer<ExecuteEnrichPolicyStatus.Builder> op) {
 
 		op.add(Builder::phase, EnrichPolicyPhase._DESERIALIZER, "phase");
+		op.add(Builder::step, JsonpDeserializer.stringDeserializer(), "step");
 
 	}
 

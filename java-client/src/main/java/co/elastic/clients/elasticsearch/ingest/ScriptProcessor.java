@@ -19,6 +19,8 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
+import co.elastic.clients.elasticsearch._types.ScriptLanguage;
+import co.elastic.clients.elasticsearch._types.ScriptSource;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -67,7 +69,7 @@ public class ScriptProcessor extends ProcessorBase implements ProcessorVariant {
 	private final Map<String, JsonData> params;
 
 	@Nullable
-	private final String source;
+	private final ScriptSource source;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -130,7 +132,7 @@ public class ScriptProcessor extends ProcessorBase implements ProcessorVariant {
 	 * API name: {@code source}
 	 */
 	@Nullable
-	public final String source() {
+	public final ScriptSource source() {
 		return this.source;
 	}
 
@@ -160,7 +162,7 @@ public class ScriptProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 		if (this.source != null) {
 			generator.writeKey("source");
-			generator.write(this.source);
+			this.source.serialize(generator, mapper);
 
 		}
 
@@ -185,7 +187,7 @@ public class ScriptProcessor extends ProcessorBase implements ProcessorVariant {
 		private Map<String, JsonData> params;
 
 		@Nullable
-		private String source;
+		private ScriptSource source;
 
 		/**
 		 * ID of a stored script. If no <code>source</code> is specified, this parameter
@@ -205,6 +207,16 @@ public class ScriptProcessor extends ProcessorBase implements ProcessorVariant {
 		 */
 		public final Builder lang(@Nullable String value) {
 			this.lang = value;
+			return this;
+		}
+
+		/**
+		 * Script language.
+		 * <p>
+		 * API name: {@code lang}
+		 */
+		public final Builder lang(@Nullable ScriptLanguage value) {
+			this.lang = value == null ? null : value.jsonValue();
 			return this;
 		}
 
@@ -238,9 +250,19 @@ public class ScriptProcessor extends ProcessorBase implements ProcessorVariant {
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public final Builder source(@Nullable String value) {
+		public final Builder source(@Nullable ScriptSource value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * Inline script. If no <code>id</code> is specified, this parameter is
+		 * required.
+		 * <p>
+		 * API name: {@code source}
+		 */
+		public final Builder source(Function<ScriptSource.Builder, ObjectBuilder<ScriptSource>> fn) {
+			return this.source(fn.apply(new ScriptSource.Builder()).build());
 		}
 
 		@Override
@@ -274,7 +296,7 @@ public class ScriptProcessor extends ProcessorBase implements ProcessorVariant {
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
 		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
-		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
+		op.add(Builder::source, ScriptSource._DESERIALIZER, "source");
 
 	}
 

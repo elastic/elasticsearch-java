@@ -21,10 +21,6 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch.inference.put_openai.OpenAIServiceSettings;
-import co.elastic.clients.elasticsearch.inference.put_openai.OpenAITaskSettings;
-import co.elastic.clients.elasticsearch.inference.put_openai.OpenAITaskType;
-import co.elastic.clients.elasticsearch.inference.put_openai.ServiceType;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -87,7 +83,7 @@ public class PutOpenaiRequest extends RequestBase implements JsonpSerializable {
 
 	private final String openaiInferenceId;
 
-	private final ServiceType service;
+	private final OpenAIServiceType service;
 
 	private final OpenAIServiceSettings serviceSettings;
 
@@ -138,7 +134,7 @@ public class PutOpenaiRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code service}
 	 */
-	public final ServiceType service() {
+	public final OpenAIServiceType service() {
 		return this.service;
 	}
 
@@ -217,7 +213,7 @@ public class PutOpenaiRequest extends RequestBase implements JsonpSerializable {
 
 		private String openaiInferenceId;
 
-		private ServiceType service;
+		private OpenAIServiceType service;
 
 		private OpenAIServiceSettings serviceSettings;
 
@@ -262,7 +258,7 @@ public class PutOpenaiRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code service}
 		 */
-		public final Builder service(ServiceType value) {
+		public final Builder service(OpenAIServiceType value) {
 			this.service = value;
 			return this;
 		}
@@ -351,7 +347,7 @@ public class PutOpenaiRequest extends RequestBase implements JsonpSerializable {
 	protected static void setupPutOpenaiRequestDeserializer(ObjectDeserializer<PutOpenaiRequest.Builder> op) {
 
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
-		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
+		op.add(Builder::service, OpenAIServiceType._DESERIALIZER, "service");
 		op.add(Builder::serviceSettings, OpenAIServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, OpenAITaskSettings._DESERIALIZER, "task_settings");
 

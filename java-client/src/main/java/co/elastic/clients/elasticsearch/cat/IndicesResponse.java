@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class IndicesResponse implements JsonpSerializable {
-	private final List<IndicesRecord> valueBody;
+	private final List<IndicesRecord> indices;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private IndicesResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}
 
@@ -78,8 +78,8 @@ public class IndicesResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<IndicesRecord> valueBody() {
-		return this.valueBody;
+	public final List<IndicesRecord> indices() {
+		return this.indices;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class IndicesResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (IndicesRecord item0 : this.valueBody) {
+		for (IndicesRecord item0 : this.indices) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -107,35 +107,35 @@ public class IndicesResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndicesResponse> {
-		private List<IndicesRecord> valueBody;
+		private List<IndicesRecord> indices;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder valueBody(List<IndicesRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder indices(List<IndicesRecord> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder valueBody(IndicesRecord value, IndicesRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder indices(IndicesRecord value, IndicesRecord... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<IndicesRecord.Builder, ObjectBuilder<IndicesRecord>> fn) {
-			return valueBody(fn.apply(new IndicesRecord.Builder()).build());
+		public final Builder indices(Function<IndicesRecord.Builder, ObjectBuilder<IndicesRecord>> fn) {
+			return indices(fn.apply(new IndicesRecord.Builder()).build());
 		}
 
 		@Override
@@ -144,7 +144,7 @@ public class IndicesResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<IndicesRecord> value = (List<IndicesRecord>) JsonpDeserializer
 					.arrayDeserializer(IndicesRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.indices(value);
 		}
 
 		@Override
@@ -172,7 +172,7 @@ public class IndicesResponse implements JsonpSerializable {
 				.arrayDeserializer(IndicesRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.indices(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

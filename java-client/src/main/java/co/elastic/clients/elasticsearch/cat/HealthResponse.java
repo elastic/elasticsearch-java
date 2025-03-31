@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class HealthResponse implements JsonpSerializable {
-	private final List<HealthRecord> valueBody;
+	private final List<HealthRecord> healthRecords;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private HealthResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.healthRecords = ApiTypeHelper.unmodifiableRequired(builder.healthRecords, this, "healthRecords");
 
 	}
 
@@ -78,8 +78,8 @@ public class HealthResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<HealthRecord> valueBody() {
-		return this.valueBody;
+	public final List<HealthRecord> healthRecords() {
+		return this.healthRecords;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class HealthResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (HealthRecord item0 : this.valueBody) {
+		for (HealthRecord item0 : this.healthRecords) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -107,35 +107,35 @@ public class HealthResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<HealthResponse> {
-		private List<HealthRecord> valueBody;
+		private List<HealthRecord> healthRecords;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>healthRecords</code>.
 		 */
-		public final Builder valueBody(List<HealthRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder healthRecords(List<HealthRecord> list) {
+			this.healthRecords = _listAddAll(this.healthRecords, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>healthRecords</code>.
 		 */
-		public final Builder valueBody(HealthRecord value, HealthRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder healthRecords(HealthRecord value, HealthRecord... values) {
+			this.healthRecords = _listAdd(this.healthRecords, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>healthRecords</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<HealthRecord.Builder, ObjectBuilder<HealthRecord>> fn) {
-			return valueBody(fn.apply(new HealthRecord.Builder()).build());
+		public final Builder healthRecords(Function<HealthRecord.Builder, ObjectBuilder<HealthRecord>> fn) {
+			return healthRecords(fn.apply(new HealthRecord.Builder()).build());
 		}
 
 		@Override
@@ -144,7 +144,7 @@ public class HealthResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<HealthRecord> value = (List<HealthRecord>) JsonpDeserializer
 					.arrayDeserializer(HealthRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.healthRecords(value);
 		}
 
 		@Override
@@ -172,7 +172,7 @@ public class HealthResponse implements JsonpSerializable {
 				.arrayDeserializer(HealthRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.healthRecords(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }
