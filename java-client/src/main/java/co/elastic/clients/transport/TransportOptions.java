@@ -47,6 +47,8 @@ public interface TransportOptions {
 
     Builder toBuilder();
 
+    BackoffPolicy backoffPolicy();
+
     default TransportOptions with(Consumer<Builder> fn) {
         Builder builder = toBuilder();
         fn.accept(builder);
@@ -73,5 +75,7 @@ public interface TransportOptions {
          * streamed by the http library.
          */
         Builder keepResponseBodyOnException(boolean value);
+
+        Builder backoffPolicy(BackoffPolicy policy);
     }
 }

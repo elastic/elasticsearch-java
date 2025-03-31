@@ -19,6 +19,7 @@
 
 package co.elastic.clients.transport.rest_client;
 
+import co.elastic.clients.transport.BackoffPolicy;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.http.HeaderMap;
@@ -44,6 +45,8 @@ public class RestClientOptions implements TransportOptions {
 
     boolean keepResponseBodyOnException;
 
+    BackoffPolicy backoffPolicy;
+
     @VisibleForTesting
     static final String CLIENT_META_VALUE = getClientMeta();
     @VisibleForTesting
@@ -65,8 +68,9 @@ public class RestClientOptions implements TransportOptions {
         return builder.build();
     }
 
-    public RestClientOptions(RequestOptions options, boolean keepResponseBodyOnException) {
+    public RestClientOptions(RequestOptions options, boolean keepResponseBodyOnException, BackoffPolicy backoffPolicy) {
         this.keepResponseBodyOnException = keepResponseBodyOnException;
+        this.backoffPolicy = backoffPolicy;
         this.options = addBuiltinHeaders(options.toBuilder()).build();
     }
 
@@ -108,6 +112,11 @@ public class RestClientOptions implements TransportOptions {
     }
 
     @Override
+    public BackoffPolicy backoffPolicy() {
+        return backoffPolicy;
+    }
+
+    @Override
     public Builder toBuilder() {
         return new Builder(options.toBuilder());
     }
@@ -117,6 +126,8 @@ public class RestClientOptions implements TransportOptions {
         private RequestOptions.Builder builder;
 
         private boolean keepResponseBodyOnException;
+
+        private BackoffPolicy backoffPolicy;
 
         public Builder(RequestOptions.Builder builder) {
             this.builder = builder;
@@ -198,13 +209,19 @@ public class RestClientOptions implements TransportOptions {
         }
 
         @Override
+        public TransportOptions.Builder backoffPolicy(BackoffPolicy policy) {
+            this.backoffPolicy = policy;
+            return this;
+        }
+
+        @Override
         public RestClientOptions build() {
-            return new RestClientOptions(addBuiltinHeaders(builder).build(), keepResponseBodyOnException);
+            return new RestClientOptions(addBuiltinHeaders(builder).build(), keepResponseBodyOnException, backoffPolicy);
         }
     }
 
     static RestClientOptions initialOptions() {
-        return new RestClientOptions(SafeResponseConsumer.DEFAULT_REQUEST_OPTIONS, false);
+        return new RestClientOptions(SafeResponseConsumer.DEFAULT_REQUEST_OPTIONS, false, BackoffPolicy.noBackoff());
     }
 
     private static RequestOptions.Builder addBuiltinHeaders(RequestOptions.Builder builder) {
