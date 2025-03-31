@@ -35,17 +35,7 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 import jakarta.json.stream.JsonParser;
-=======
->>>>>>> 03828daff (regen from latest spec)
-=======
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-import jakarta.json.stream.JsonParser;
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -84,38 +74,16 @@ public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSe
 	@Nullable
 	private final Time timeout;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 	private final RequestChatCompletion chatCompletionRequest;
 
-=======
->>>>>>> 03828daff (regen from latest spec)
-=======
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-	private final RequestChatCompletion chatCompletionRequest;
-
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	// ---------------------------------------------------------------------------------------------
 
 	private ChatCompletionUnifiedRequest(Builder builder) {
 
 		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.timeout = builder.timeout;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 		this.chatCompletionRequest = ApiTypeHelper.requireNonNull(builder.chatCompletionRequest, this,
 				"chatCompletionRequest");
-=======
->>>>>>> 03828daff (regen from latest spec)
-=======
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		this.chatCompletionRequest = ApiTypeHelper.requireNonNull(builder.chatCompletionRequest, this,
-				"chatCompletionRequest");
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 	}
 
@@ -142,11 +110,6 @@ public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSe
 		return this.timeout;
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	/**
 	 * Required - Request body.
 	 */
@@ -162,13 +125,6 @@ public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSe
 
 	}
 
-<<<<<<< HEAD
-=======
->>>>>>> 03828daff (regen from latest spec)
-=======
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -183,19 +139,8 @@ public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSe
 		@Nullable
 		private Time timeout;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 		private RequestChatCompletion chatCompletionRequest;
 
-=======
->>>>>>> 03828daff (regen from latest spec)
-=======
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		private RequestChatCompletion chatCompletionRequest;
-
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		/**
 		 * Required - The inference Id
 		 * <p>
@@ -225,11 +170,6 @@ public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSe
 			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		/**
 		 * Required - Request body.
 		 */
@@ -255,13 +195,6 @@ public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSe
 			return this.chatCompletionRequest(value);
 		}
 
-<<<<<<< HEAD
-=======
->>>>>>> 03828daff (regen from latest spec)
-=======
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		@Override
 		protected Builder self() {
 			return this;
@@ -280,36 +213,6 @@ public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSe
 		}
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-	public static final JsonpDeserializer<ChatCompletionUnifiedRequest> _DESERIALIZER = createChatCompletionUnifiedRequestDeserializer();
-	protected static JsonpDeserializer<ChatCompletionUnifiedRequest> createChatCompletionUnifiedRequestDeserializer() {
-
-<<<<<<< HEAD
-		JsonpDeserializer<RequestChatCompletion> valueDeserializer = RequestChatCompletion._DESERIALIZER;
-=======
-=======
-	// ---------------------------------------------------------------------------------------------
-
->>>>>>> c49af58dc (Revert "temp rebase fix")
-	/**
-	 * Json deserializer for {@link ChatCompletionUnifiedRequest}
-	 */
-	public static final JsonpDeserializer<ChatCompletionUnifiedRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ChatCompletionUnifiedRequest::setupChatCompletionUnifiedRequestDeserializer);
-
-	protected static void setupChatCompletionUnifiedRequestDeserializer(
-			ObjectDeserializer<ChatCompletionUnifiedRequest.Builder> op) {
-		RequestChatCompletionBase.setupRequestChatCompletionBaseDeserializer(op);
-<<<<<<< HEAD
->>>>>>> 03828daff (regen from latest spec)
-
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.chatCompletionRequest(valueDeserializer.deserialize(parser, mapper, event)).build());
-=======
-
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
 	public static final JsonpDeserializer<ChatCompletionUnifiedRequest> _DESERIALIZER = createChatCompletionUnifiedRequestDeserializer();
 	protected static JsonpDeserializer<ChatCompletionUnifiedRequest> createChatCompletionUnifiedRequestDeserializer() {
 
@@ -317,7 +220,6 @@ public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSe
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
 				.chatCompletionRequest(valueDeserializer.deserialize(parser, mapper, event)).build());
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	}
 
 	// ---------------------------------------------------------------------------------------------

@@ -21,22 +21,6 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> c49af58dc (Revert "temp rebase fix")
-import co.elastic.clients.elasticsearch.inference.put_alibabacloud.AlibabaCloudServiceSettings;
-import co.elastic.clients.elasticsearch.inference.put_alibabacloud.AlibabaCloudTaskSettings;
-import co.elastic.clients.elasticsearch.inference.put_alibabacloud.AlibabaCloudTaskType;
-import co.elastic.clients.elasticsearch.inference.put_alibabacloud.ServiceType;
-<<<<<<< HEAD
->>>>>>> 03828daff (regen from latest spec)
-=======
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -100,19 +84,7 @@ public class PutAlibabacloudRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	private final InferenceChunkingSettings chunkingSettings;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 	private final AlibabaCloudServiceType service;
-=======
-	private final ServiceType service;
->>>>>>> 03828daff (regen from latest spec)
-=======
-	private final ServiceType service;
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-	private final AlibabaCloudServiceType service;
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 	private final AlibabaCloudServiceSettings serviceSettings;
 
@@ -164,19 +136,7 @@ public class PutAlibabacloudRequest extends RequestBase implements JsonpSerializ
 	 * <p>
 	 * API name: {@code service}
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 	public final AlibabaCloudServiceType service() {
-=======
-	public final ServiceType service() {
->>>>>>> 03828daff (regen from latest spec)
-=======
-	public final ServiceType service() {
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-	public final AlibabaCloudServiceType service() {
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		return this.service;
 	}
 
@@ -253,19 +213,7 @@ public class PutAlibabacloudRequest extends RequestBase implements JsonpSerializ
 		@Nullable
 		private InferenceChunkingSettings chunkingSettings;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 		private AlibabaCloudServiceType service;
-=======
-		private ServiceType service;
->>>>>>> 03828daff (regen from latest spec)
-=======
-		private ServiceType service;
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		private AlibabaCloudServiceType service;
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 		private AlibabaCloudServiceSettings serviceSettings;
 
@@ -310,19 +258,7 @@ public class PutAlibabacloudRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code service}
 		 */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 		public final Builder service(AlibabaCloudServiceType value) {
-=======
-		public final Builder service(ServiceType value) {
->>>>>>> 03828daff (regen from latest spec)
-=======
-		public final Builder service(ServiceType value) {
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		public final Builder service(AlibabaCloudServiceType value) {
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 			this.service = value;
 			return this;
 		}
@@ -411,19 +347,7 @@ public class PutAlibabacloudRequest extends RequestBase implements JsonpSerializ
 			ObjectDeserializer<PutAlibabacloudRequest.Builder> op) {
 
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 		op.add(Builder::service, AlibabaCloudServiceType._DESERIALIZER, "service");
-=======
-		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
->>>>>>> 03828daff (regen from latest spec)
-=======
-		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		op.add(Builder::service, AlibabaCloudServiceType._DESERIALIZER, "service");
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		op.add(Builder::serviceSettings, AlibabaCloudServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, AlibabaCloudTaskSettings._DESERIALIZER, "task_settings");
 

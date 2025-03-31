@@ -21,16 +21,6 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import co.elastic.clients.elasticsearch.inference.put_voyageai.ServiceType;
-import co.elastic.clients.elasticsearch.inference.put_voyageai.VoyageAIServiceSettings;
-import co.elastic.clients.elasticsearch.inference.put_voyageai.VoyageAITaskSettings;
-import co.elastic.clients.elasticsearch.inference.put_voyageai.VoyageAITaskType;
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -84,15 +74,7 @@ public class PutVoyageaiRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	private final InferenceChunkingSettings chunkingSettings;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 	private final VoyageAIServiceType service;
-=======
-	private final ServiceType service;
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-	private final VoyageAIServiceType service;
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 	private final VoyageAIServiceSettings serviceSettings;
 
@@ -137,15 +119,7 @@ public class PutVoyageaiRequest extends RequestBase implements JsonpSerializable
 	 * <p>
 	 * API name: {@code service}
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
 	public final VoyageAIServiceType service() {
-=======
-	public final ServiceType service() {
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-	public final VoyageAIServiceType service() {
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		return this.service;
 	}
 
@@ -229,15 +203,7 @@ public class PutVoyageaiRequest extends RequestBase implements JsonpSerializable
 		@Nullable
 		private InferenceChunkingSettings chunkingSettings;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 		private VoyageAIServiceType service;
-=======
-		private ServiceType service;
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		private VoyageAIServiceType service;
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 		private VoyageAIServiceSettings serviceSettings;
 
@@ -274,15 +240,7 @@ public class PutVoyageaiRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code service}
 		 */
-<<<<<<< HEAD
-<<<<<<< HEAD
 		public final Builder service(VoyageAIServiceType value) {
-=======
-		public final Builder service(ServiceType value) {
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		public final Builder service(VoyageAIServiceType value) {
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 			this.service = value;
 			return this;
 		}
@@ -380,15 +338,7 @@ public class PutVoyageaiRequest extends RequestBase implements JsonpSerializable
 	protected static void setupPutVoyageaiRequestDeserializer(ObjectDeserializer<PutVoyageaiRequest.Builder> op) {
 
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
-<<<<<<< HEAD
-<<<<<<< HEAD
 		op.add(Builder::service, VoyageAIServiceType._DESERIALIZER, "service");
-=======
-		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		op.add(Builder::service, VoyageAIServiceType._DESERIALIZER, "service");
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		op.add(Builder::serviceSettings, VoyageAIServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, VoyageAITaskSettings._DESERIALIZER, "task_settings");
 

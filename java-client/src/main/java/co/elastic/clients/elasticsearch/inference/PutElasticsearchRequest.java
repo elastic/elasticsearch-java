@@ -21,22 +21,6 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> c49af58dc (Revert "temp rebase fix")
-import co.elastic.clients.elasticsearch.inference.put_elasticsearch.ElasticsearchServiceSettings;
-import co.elastic.clients.elasticsearch.inference.put_elasticsearch.ElasticsearchTaskSettings;
-import co.elastic.clients.elasticsearch.inference.put_elasticsearch.ElasticsearchTaskType;
-import co.elastic.clients.elasticsearch.inference.put_elasticsearch.ServiceType;
-<<<<<<< HEAD
->>>>>>> 03828daff (regen from latest spec)
-=======
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -117,19 +101,7 @@ public class PutElasticsearchRequest extends RequestBase implements JsonpSeriali
 
 	private final String elasticsearchInferenceId;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 	private final ElasticsearchServiceType service;
-=======
-	private final ServiceType service;
->>>>>>> 03828daff (regen from latest spec)
-=======
-	private final ServiceType service;
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-	private final ElasticsearchServiceType service;
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 	private final ElasticsearchServiceSettings serviceSettings;
 
@@ -182,19 +154,7 @@ public class PutElasticsearchRequest extends RequestBase implements JsonpSeriali
 	 * <p>
 	 * API name: {@code service}
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 	public final ElasticsearchServiceType service() {
-=======
-	public final ServiceType service() {
->>>>>>> 03828daff (regen from latest spec)
-=======
-	public final ServiceType service() {
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-	public final ElasticsearchServiceType service() {
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		return this.service;
 	}
 
@@ -271,19 +231,7 @@ public class PutElasticsearchRequest extends RequestBase implements JsonpSeriali
 
 		private String elasticsearchInferenceId;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 		private ElasticsearchServiceType service;
-=======
-		private ServiceType service;
->>>>>>> 03828daff (regen from latest spec)
-=======
-		private ServiceType service;
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		private ElasticsearchServiceType service;
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 		private ElasticsearchServiceSettings serviceSettings;
 
@@ -329,19 +277,7 @@ public class PutElasticsearchRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code service}
 		 */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 		public final Builder service(ElasticsearchServiceType value) {
-=======
-		public final Builder service(ServiceType value) {
->>>>>>> 03828daff (regen from latest spec)
-=======
-		public final Builder service(ServiceType value) {
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		public final Builder service(ElasticsearchServiceType value) {
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 			this.service = value;
 			return this;
 		}
@@ -430,19 +366,7 @@ public class PutElasticsearchRequest extends RequestBase implements JsonpSeriali
 			ObjectDeserializer<PutElasticsearchRequest.Builder> op) {
 
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 		op.add(Builder::service, ElasticsearchServiceType._DESERIALIZER, "service");
-=======
-		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
->>>>>>> 03828daff (regen from latest spec)
-=======
-		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		op.add(Builder::service, ElasticsearchServiceType._DESERIALIZER, "service");
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		op.add(Builder::serviceSettings, ElasticsearchServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, ElasticsearchTaskSettings._DESERIALIZER, "task_settings");
 

@@ -21,22 +21,6 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> c49af58dc (Revert "temp rebase fix")
-import co.elastic.clients.elasticsearch.inference.put_anthropic.AnthropicServiceSettings;
-import co.elastic.clients.elasticsearch.inference.put_anthropic.AnthropicTaskSettings;
-import co.elastic.clients.elasticsearch.inference.put_anthropic.AnthropicTaskType;
-import co.elastic.clients.elasticsearch.inference.put_anthropic.ServiceType;
-<<<<<<< HEAD
->>>>>>> 03828daff (regen from latest spec)
-=======
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -99,19 +83,7 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	private final InferenceChunkingSettings chunkingSettings;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 	private final AnthropicServiceType service;
-=======
-	private final ServiceType service;
->>>>>>> 03828daff (regen from latest spec)
-=======
-	private final ServiceType service;
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-	private final AnthropicServiceType service;
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 	private final AnthropicServiceSettings serviceSettings;
 
@@ -163,19 +135,7 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code service}
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 	public final AnthropicServiceType service() {
-=======
-	public final ServiceType service() {
->>>>>>> 03828daff (regen from latest spec)
-=======
-	public final ServiceType service() {
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-	public final AnthropicServiceType service() {
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		return this.service;
 	}
 
@@ -253,19 +213,7 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private InferenceChunkingSettings chunkingSettings;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 		private AnthropicServiceType service;
-=======
-		private ServiceType service;
->>>>>>> 03828daff (regen from latest spec)
-=======
-		private ServiceType service;
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		private AnthropicServiceType service;
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 		private AnthropicServiceSettings serviceSettings;
 
@@ -310,19 +258,7 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code service}
 		 */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 		public final Builder service(AnthropicServiceType value) {
-=======
-		public final Builder service(ServiceType value) {
->>>>>>> 03828daff (regen from latest spec)
-=======
-		public final Builder service(ServiceType value) {
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		public final Builder service(AnthropicServiceType value) {
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 			this.service = value;
 			return this;
 		}
@@ -411,19 +347,7 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 	protected static void setupPutAnthropicRequestDeserializer(ObjectDeserializer<PutAnthropicRequest.Builder> op) {
 
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 		op.add(Builder::service, AnthropicServiceType._DESERIALIZER, "service");
-=======
-		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
->>>>>>> 03828daff (regen from latest spec)
-=======
-		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		op.add(Builder::service, AnthropicServiceType._DESERIALIZER, "service");
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		op.add(Builder::serviceSettings, AnthropicServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, AnthropicTaskSettings._DESERIALIZER, "task_settings");
 

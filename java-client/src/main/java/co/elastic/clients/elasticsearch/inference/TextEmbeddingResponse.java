@@ -60,29 +60,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TextEmbeddingResponse implements JsonpSerializable {
-<<<<<<< HEAD
-<<<<<<< HEAD
 	private final TextEmbeddingInferenceResult inferenceResult;
-=======
-	private final TextEmbeddingInferenceResult valueBody;
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-	private final TextEmbeddingInferenceResult inferenceResult;
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 	// ---------------------------------------------------------------------------------------------
 
 	private TextEmbeddingResponse(Builder builder) {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 		this.inferenceResult = ApiTypeHelper.requireNonNull(builder.inferenceResult, this, "inferenceResult");
-=======
-		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		this.inferenceResult = ApiTypeHelper.requireNonNull(builder.inferenceResult, this, "inferenceResult");
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 	}
 
@@ -93,33 +77,15 @@ public class TextEmbeddingResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
 	public final TextEmbeddingInferenceResult inferenceResult() {
 		return this.inferenceResult;
-=======
-	public final TextEmbeddingInferenceResult valueBody() {
-		return this.valueBody;
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-	public final TextEmbeddingInferenceResult inferenceResult() {
-		return this.inferenceResult;
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-<<<<<<< HEAD
-<<<<<<< HEAD
 		this.inferenceResult.serialize(generator, mapper);
-=======
-		this.valueBody.serialize(generator, mapper);
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		this.inferenceResult.serialize(generator, mapper);
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 	}
 
@@ -137,69 +103,29 @@ public class TextEmbeddingResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<TextEmbeddingResponse> {
-<<<<<<< HEAD
-<<<<<<< HEAD
 		private TextEmbeddingInferenceResult inferenceResult;
-=======
-		private TextEmbeddingInferenceResult valueBody;
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		private TextEmbeddingInferenceResult inferenceResult;
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 		/**
 		 * Required - Response value.
 		 */
-<<<<<<< HEAD
-<<<<<<< HEAD
 		public final Builder inferenceResult(TextEmbeddingInferenceResult value) {
 			this.inferenceResult = value;
-=======
-		public final Builder valueBody(TextEmbeddingInferenceResult value) {
-			this.valueBody = value;
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		public final Builder inferenceResult(TextEmbeddingInferenceResult value) {
-			this.inferenceResult = value;
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 */
-<<<<<<< HEAD
-<<<<<<< HEAD
 		public final Builder inferenceResult(
 				Function<TextEmbeddingInferenceResult.Builder, ObjectBuilder<TextEmbeddingInferenceResult>> fn) {
 			return this.inferenceResult(fn.apply(new TextEmbeddingInferenceResult.Builder()).build());
-=======
-		public final Builder valueBody(
-				Function<TextEmbeddingInferenceResult.Builder, ObjectBuilder<TextEmbeddingInferenceResult>> fn) {
-			return this.valueBody(fn.apply(new TextEmbeddingInferenceResult.Builder()).build());
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		public final Builder inferenceResult(
-				Function<TextEmbeddingInferenceResult.Builder, ObjectBuilder<TextEmbeddingInferenceResult>> fn) {
-			return this.inferenceResult(fn.apply(new TextEmbeddingInferenceResult.Builder()).build());
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		}
 
 		/**
 		 * Required - Response value.
 		 */
-<<<<<<< HEAD
-<<<<<<< HEAD
 		public final Builder inferenceResult(TextEmbeddingInferenceResultVariant value) {
 			this.inferenceResult = value._toTextEmbeddingInferenceResult();
-=======
-		public final Builder valueBody(TextEmbeddingInferenceResultVariant value) {
-			this.valueBody = value._toTextEmbeddingInferenceResult();
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-		public final Builder inferenceResult(TextEmbeddingInferenceResultVariant value) {
-			this.inferenceResult = value._toTextEmbeddingInferenceResult();
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 			return this;
 		}
 
@@ -209,15 +135,7 @@ public class TextEmbeddingResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			TextEmbeddingInferenceResult value = (TextEmbeddingInferenceResult) TextEmbeddingInferenceResult._DESERIALIZER
 					.deserialize(parser, mapper);
-<<<<<<< HEAD
-<<<<<<< HEAD
 			return this.inferenceResult(value);
-=======
-			return this.valueBody(value);
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-			return this.inferenceResult(value);
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		}
 
 		@Override
@@ -244,15 +162,7 @@ public class TextEmbeddingResponse implements JsonpSerializable {
 		JsonpDeserializer<TextEmbeddingInferenceResult> valueDeserializer = TextEmbeddingInferenceResult._DESERIALIZER;
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-<<<<<<< HEAD
-<<<<<<< HEAD
 				.inferenceResult(valueDeserializer.deserialize(parser, mapper, event)).build());
-=======
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
->>>>>>> c49af58dc (Revert "temp rebase fix")
-=======
-				.inferenceResult(valueDeserializer.deserialize(parser, mapper, event)).build());
->>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	}
 
 }
