@@ -20,20 +20,21 @@
 package co.elastic.clients.transport.rest_client;
 
 import co.elastic.clients.transport.TransportHttpClientTest;
+import co.elastic.clients.transport.rest5_client.Rest5ClientHttpClient;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 
-public class RestTransportClientTest extends TransportHttpClientTest<RestClientHttpClient> {
+public class RestTransportClientTest extends TransportHttpClientTest<Rest5ClientHttpClient> {
 
     public RestTransportClientTest() {
         super(createClient());
     }
 
-    private static RestClientHttpClient createClient() {
+    private static Rest5ClientHttpClient createClient() {
         RestClient restClient = RestClient.builder(
             new HttpHost(server.getAddress().getAddress(), server.getAddress().getPort(), "http")
         ).build();
 
-        return new RestClientHttpClient(restClient);
+        return new Rest5ClientHttpClient(restClient);
     }
 }

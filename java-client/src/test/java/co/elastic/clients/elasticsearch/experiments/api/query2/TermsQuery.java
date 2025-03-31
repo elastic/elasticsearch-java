@@ -32,7 +32,7 @@ public class TermsQuery implements JsonpSerializable, Query.Variant {
     private final String field;
     private final String term;
 
-    public TermsQuery(TermsQuery.Builder builder) {
+    public TermsQuery(Builder builder) {
         this.field = builder.field;
         this.term = builder.term;
     }

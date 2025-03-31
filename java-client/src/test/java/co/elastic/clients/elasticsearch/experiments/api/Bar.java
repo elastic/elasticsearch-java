@@ -38,7 +38,7 @@ public class Bar implements JsonpSerializable {
     return this.name;
   }
 
-  public Bar(Bar.Builder builder) {
+  public Bar(Builder builder) {
     this.name = builder.name;
   }
 
@@ -56,7 +56,7 @@ public class Bar implements JsonpSerializable {
   public static class Builder implements ObjectBuilder<Bar> {
     private String name;
 
-    public Bar.Builder name(@Nullable String name) {
+    public Builder name(@Nullable String name) {
       this.name = name;
       return this;
     }

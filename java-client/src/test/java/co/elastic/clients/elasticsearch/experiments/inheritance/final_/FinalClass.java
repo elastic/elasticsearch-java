@@ -54,7 +54,7 @@ public final class FinalClass extends ChildClass {
     //---------------------------------------------------------------------------------------------
 
     public static class Builder
-        extends ChildClass.AbstractBuilder<Builder>
+        extends AbstractBuilder<Builder>
         implements ObjectBuilder<FinalClass> {
 
         private String finalField;

@@ -51,7 +51,7 @@ public class RestClientHttpClient implements TransportHttpClient {
 
     /**
      * The {@code Future} implementation returned by async requests.
-     * It wraps the RestClient's cancellable and propagates cancellation.
+     * It wraps the Rest5Client's cancellable and propagates cancellation.
      */
     private static class RequestFuture<T> extends CompletableFuture<T> {
         private volatile Cancellable cancellable;
@@ -227,7 +227,7 @@ public class RestClientHttpClient implements TransportHttpClient {
         @Override
         public BinaryData body() throws IOException {
             HttpEntity entity = restResponse.getEntity();
-            return entity == null ? null : new HttpEntityBinaryData(restResponse.getEntity());
+            return entity == null ? null : new HttpEntityBinaryData(entity);
         }
 
         @Nullable

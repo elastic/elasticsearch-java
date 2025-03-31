@@ -20,15 +20,12 @@
 package co.elastic.clients.transport.endpoints;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.ElasticsearchTestClient;
 import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
-import co.elastic.clients.json.SimpleJsonpMapper;
 import co.elastic.clients.transport.TransportOptions;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
 import com.sun.net.httpserver.HttpServer;
 import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpHost;
-import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -71,12 +68,7 @@ public class BinaryEndpointTest extends Assertions {
 
     @Test
     public void testMvtSearch() throws IOException {
-        RestClient llrc = RestClient.builder(
-            new HttpHost(httpServer.getAddress().getHostString(), httpServer.getAddress().getPort(), "http")
-        ).build();
-
-        RestClientTransport transport = new RestClientTransport(llrc, new SimpleJsonpMapper());
-        ElasticsearchClient esClient = new ElasticsearchClient(transport);
+        var esClient = ElasticsearchTestClient.createClient(httpServer, null);
 
         BinaryResponse resp = esClient.searchMvt(s -> s
             .index("foo")

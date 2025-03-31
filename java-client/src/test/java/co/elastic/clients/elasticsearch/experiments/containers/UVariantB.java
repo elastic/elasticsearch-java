@@ -45,7 +45,7 @@ public class UVariantB implements SomeUnionVariant, JsonpSerializable {
         return this.number;
     }
 
-    public UVariantB(UVariantB.Builder builder) {
+    public UVariantB(Builder builder) {
         this.number = builder.number;
     }
 
@@ -74,8 +74,8 @@ public class UVariantB implements SomeUnionVariant, JsonpSerializable {
     public static final JsonpDeserializer<UVariantB> _DESERIALIZER;
 
     static {
-        ObjectDeserializer<Builder> op = new ObjectDeserializer<>(UVariantB.Builder::new);
-        op.add(UVariantB.Builder::number, JsonpDeserializer.integerDeserializer(), "number");
+        ObjectDeserializer<Builder> op = new ObjectDeserializer<>(Builder::new);
+        op.add(Builder::number, JsonpDeserializer.integerDeserializer(), "number");
         op.ignore("type");
         _DESERIALIZER = new ObjectBuilderDeserializer<>(op);
     }

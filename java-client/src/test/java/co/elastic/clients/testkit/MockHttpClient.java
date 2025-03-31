@@ -69,7 +69,7 @@ public class MockHttpClient implements TransportHttpClient {
 
     @Override
     public Response performRequest(
-        String endpointId, @Nullable TransportHttpClient.Node node, Request request, TransportOptions option
+        String endpointId, @Nullable Node node, Request request, TransportOptions option
     ) throws IOException {
         Response response = responses.get(request.path());
 
@@ -82,7 +82,7 @@ public class MockHttpClient implements TransportHttpClient {
 
     @Override
     public CompletableFuture<Response> performRequestAsync(
-        String endpointId, @Nullable TransportHttpClient.Node node, Request request, TransportOptions options
+        String endpointId, @Nullable Node node, Request request, TransportOptions options
     ) {
         CompletableFuture<Response> result = new CompletableFuture<>();
         try {
@@ -98,7 +98,7 @@ public class MockHttpClient implements TransportHttpClient {
     public void close() throws IOException {
     }
 
-    private static class MockResponse implements TransportHttpClient.Response {
+    private static class MockResponse implements Response {
 
         private final int statusCode;
         private final BinaryData body;
