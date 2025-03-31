@@ -297,6 +297,7 @@ class SpdxReporter(val dest: File) : ReportRenderer {
             "The Apache License, Version 2.0" to "Apache-2.0",
             "Apache License, Version 2.0" to "Apache-2.0",
             "The Apache Software License, Version 2.0" to "Apache-2.0",
+            "MIT License" to "MIT",
             "BSD Zero Clause License" to "0BSD",
             "Eclipse Public License 2.0" to "EPL-2.0",
             "Eclipse Public License v. 2.0" to "EPL-2.0",
@@ -323,7 +324,11 @@ class SpdxReporter(val dest: File) : ReportRenderer {
                 val depName = dep.group + ":" + dep.name
 
                 val info = LicenseDataCollector.multiModuleLicenseInfo(dep)
-                val depUrl = info.moduleUrls.first()
+                val depUrl = if (depName.startsWith("org.apache.httpcomponents")) {
+                    "https://hc.apache.org/"
+                } else {
+                    info.moduleUrls.first()
+                }
 
                 val licenseIds = info.licenses.mapNotNull { license ->
                     license.name?.let {
