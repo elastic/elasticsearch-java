@@ -38,7 +38,7 @@ public class BoolQuery implements Query.Variant, JsonpSerializable {
     private final Collection<Query> must;
     private final Union2<Integer, String> minimumShouldMatch;
 
-    public BoolQuery(BoolQuery.Builder builder) {
+    public BoolQuery(Builder builder) {
         this.should = builder.should;
         this.must = builder.must;
         this.minimumShouldMatch = builder.minimumShouldMatch;
@@ -97,49 +97,49 @@ public class BoolQuery implements Query.Variant, JsonpSerializable {
         private Collection<Query> must;
         private Union2<Integer, String> minimumShouldMatch;
 
-        public BoolQuery.Builder should(Collection<Query> v) {
+        public Builder should(Collection<Query> v) {
             this.should = v;
             return this;
         }
 
-        public BoolQuery.Builder add_should(@Nullable Query v) {
+        public Builder add_should(@Nullable Query v) {
             if (v == null) return this;
             if (this.should == null) this.should = new ArrayList<>();
             this.should.add(v);
             return this;
         }
 
-        public BoolQuery.Builder add_should(Function<Query.Builder, ObjectBuilder<Query>> v) {
+        public Builder add_should(Function<Query.Builder, ObjectBuilder<Query>> v) {
             return add_should(v.apply(new Query.Builder()).build());
         }
 
-        public BoolQuery.Builder must(Collection<Query> v) {
+        public Builder must(Collection<Query> v) {
             this.must = v;
             return this;
         }
 
-        public BoolQuery.Builder add_must(@Nullable Query v) {
+        public Builder add_must(@Nullable Query v) {
             if (v == null) return this;
             if (this.must == null) this.must = new ArrayList<>();
             this.must.add(v);
             return this;
         }
 
-        public BoolQuery.Builder add_must(Function<Query.Builder, ObjectBuilder<Query>> v) {
+        public Builder add_must(Function<Query.Builder, ObjectBuilder<Query>> v) {
             return add_must(v.apply(new Query.Builder()).build());
         }
 
         // Expand all union members
         // TODO: check unions with nested structures and fluent builders
-        public BoolQuery.Builder minimumShouldMatch(int v) {
+        public Builder minimumShouldMatch(int v) {
             return minimumShouldMatch(Union2.ofA(v));
         }
 
-        public BoolQuery.Builder minimumShouldMatch(String v) {
+        public Builder minimumShouldMatch(String v) {
             return minimumShouldMatch(Union2.ofB(v));
         }
 
-        public BoolQuery.Builder minimumShouldMatch(Union2<Integer, String> v) {
+        public Builder minimumShouldMatch(Union2<Integer, String> v) {
             this.minimumShouldMatch = v;
             return this;
         }

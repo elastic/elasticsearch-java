@@ -49,6 +49,9 @@ public class MigrateHlrcTest {
 
     @Test
     public void migrate() {
+        // Note: we keep the legacy client on purpose here since this is to illustrate
+        // the co-existence of HLRC and the Java client
+
         //tag::migrate
         // Create the low-level client
         RestClient httpClient = RestClient.builder(

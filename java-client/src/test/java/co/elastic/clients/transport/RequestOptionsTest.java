@@ -20,14 +20,10 @@
 package co.elastic.clients.transport;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
+import co.elastic.clients.elasticsearch.ElasticsearchTestClient;
 import com.sun.net.httpserver.HttpServer;
-import org.apache.http.HttpHost;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
-import org.elasticsearch.client.ResponseException;
-import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,10 +39,13 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
+/**
+ * Request options tests independent of the transport implementation.
+ */
 public class RequestOptionsTest extends Assertions {
 
     private static HttpServer httpServer;
-    private static RestClient restClient;
+    private static ElasticsearchClient client;
 
     @BeforeEach
     public void classSetup() throws IOException {
@@ -59,9 +58,10 @@ public class RequestOptionsTest extends Assertions {
             }
 
             // Call to info()
-            // Send back all request headers with a 418 that will cause an exception where we can access the LLRC response
+            // Send back all request headers with a non-json content type that will cause an exception where we can access the raw response
+            ex.getResponseHeaders().put("Content-Type", List.of("application/octet-stream"));
             ex.getResponseHeaders().putAll(ex.getRequestHeaders());
-            ex.sendResponseHeaders(418, 0);
+            ex.sendResponseHeaders(200, 0);
             OutputStreamWriter out = new OutputStreamWriter(ex.getResponseBody(), StandardCharsets.UTF_8);
             for (Map.Entry<String, List<String>> header: ex.getRequestHeaders().entrySet()) {
                 out.write("header-");
@@ -81,29 +81,32 @@ public class RequestOptionsTest extends Assertions {
         });
 
         httpServer.start();
-        InetSocketAddress address = httpServer.getAddress();
-        restClient = RestClient.builder(new HttpHost(address.getHostString(), address.getPort(), "http"))
-            .build();
+        client = ElasticsearchTestClient.createClient(httpServer, null);
+
+        // We need to buffer the response body on exception to retrieve it.
+        var transport = (ElasticsearchTransport) client._transport()
+            .withOptions(opt -> opt.keepResponseBodyOnException(true));
+        client = new ElasticsearchClient(transport, null);
     }
 
     @AfterEach
     public void classTearDown() throws IOException {
         httpServer.stop(0);
-        restClient.close();
+        httpServer = null;
+        client.close();
+        client = null;
     }
 
     private Properties getProps(ElasticsearchClient client) throws IOException {
-        ResponseException ex = assertThrows(ResponseException.class, client::info);
-        assertEquals(418, ex.getResponse().getStatusLine().getStatusCode());
+        TransportException ex = assertThrows(TransportException.class, client::info);
         Properties result = new Properties();
-        result.load(ex.getResponse().getEntity().getContent());
+        result.load(ex.response().body().asInputStream());
         return result;
     }
 
     @Test
     public void testNonNullClientOptions() {
-        final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
-        final ElasticsearchClient client = new ElasticsearchClient(trsp);
+        final ElasticsearchTransport trsp = client._transport();
 
         assertNotNull(client._transportOptions());
         assertSame(trsp.options(), client._transportOptions());
@@ -111,9 +114,6 @@ public class RequestOptionsTest extends Assertions {
 
     @Test
     public void testDefaultHeaders() throws IOException {
-        final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
-        final ElasticsearchClient client = new ElasticsearchClient(trsp);
-
         Properties props = getProps(client);
 
         assertTrue(props.getProperty("header-user-agent").startsWith("elastic-java/" + Version.VERSION.toString()));
@@ -127,21 +127,21 @@ public class RequestOptionsTest extends Assertions {
 
     @Test
     public void testClientHeader() throws IOException {
-        final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
-        final ElasticsearchClient client = new ElasticsearchClient(trsp)
+        final ElasticsearchClient newClient = client
             .withTransportOptions(b -> b
                 .addHeader("X-Foo", "Bar")
                 .addHeader("uSer-agEnt", "MegaClient/1.2.3")
             );
 
-        Properties props = getProps(client);
+        Properties props = getProps(newClient);
         assertEquals("Bar", props.getProperty("header-x-foo"));
         assertEquals("MegaClient/1.2.3", props.getProperty("header-user-agent"));
     }
 
     @Test
     public void testQueryParameter() throws IOException {
-        final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
+        final ElasticsearchTransport trsp = client._transport();
+
         final ElasticsearchClient client = new ElasticsearchClient(trsp)
             .withTransportOptions(trsp.options().with(
                     b -> b.setParameter("format", "pretty")
@@ -154,9 +154,6 @@ public class RequestOptionsTest extends Assertions {
 
     @Test
     public void testMissingProductHeader() {
-        final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
-        final ElasticsearchClient client = new ElasticsearchClient(trsp);
-
         final TransportException ex = assertThrows(TransportException.class, client::ping);
         assertTrue(ex.getMessage().contains("Missing [X-Elastic-Product] header"));
     }

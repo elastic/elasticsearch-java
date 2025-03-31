@@ -22,19 +22,10 @@ package co.elastic.clients.elasticsearch;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
-import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.endpoints.DelegatingJsonEndpoint;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
 import org.apache.commons.io.FileUtils;
-import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.elasticsearch.client.RestClient;
 import org.testcontainers.elasticsearch.ElasticsearchContainer;
 import org.testcontainers.images.builder.ImageFromDockerfile;
 import org.testcontainers.shaded.org.apache.commons.io.IOUtils;
@@ -51,14 +42,14 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Base64;
+import java.util.Random;
 
 public class ElasticsearchTestServer implements AutoCloseable {
 
     private final String[] plugins;
     private volatile ElasticsearchContainer container;
-    private final JsonpMapper mapper = new JsonbJsonpMapper();
-    private RestClient restClient;
-    private ElasticsearchTransport transport;
+    private String url;
+    private SSLContext sslContext;
     private ElasticsearchClient client;
 
     private static ElasticsearchTestServer global;
@@ -102,19 +93,13 @@ public class ElasticsearchTestServer implements AutoCloseable {
         this.plugins = plugins;
     }
 
+    // Same value for all tests in a test run
+    private static final int RAND = new Random().nextInt(100);
+
     protected void setup(String url, SSLContext sslContext) {
-        BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
-        credsProv.setCredentials(
-            AuthScope.ANY, new UsernamePasswordCredentials("elastic", "changeme")
-        );
-        restClient = RestClient.builder(HttpHost.create(url))
-            .setHttpClientConfigCallback(hc -> hc
-                .setDefaultCredentialsProvider(credsProv)
-                .setSSLContext(sslContext)
-            )
-            .build();
-        transport = new RestClientTransport(restClient, mapper);
-        client = new ElasticsearchClient(transport);
+        this.url = url;
+        this.sslContext = sslContext;
+        this.client = ElasticsearchTestClient.createClient(url, null, sslContext);
     }
 
     private Version selectLatestVersion(Version version, String info) {
@@ -263,16 +248,12 @@ public class ElasticsearchTestServer implements AutoCloseable {
         return this.container;
     }
 
-    public RestClient restClient() {
-        return restClient;
+    public String url() {
+        return url;
     }
 
-    public ElasticsearchTransport transport() {
-        return transport;
-    }
-
-    public JsonpMapper mapper() {
-        return mapper;
+    public SSLContext sslContext() {
+        return sslContext;
     }
 
     public ElasticsearchClient client() {
