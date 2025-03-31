@@ -259,8 +259,8 @@ public class RequestTest extends Assertions {
         NodesResponse nodes = client.cat().nodes(_0 -> _0);
         System.out.println(ModelTestCase.toJson(nodes, client._transport().jsonpMapper()));
 
-        assertEquals(1, nodes.valueBody().size());
-        assertEquals("*", nodes.valueBody().get(0).master());
+        assertEquals(1, nodes.nodes().size());
+        assertEquals("*", nodes.nodes().get(0).master());
     }
 
     @Test

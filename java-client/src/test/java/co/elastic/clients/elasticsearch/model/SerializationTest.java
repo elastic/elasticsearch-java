@@ -86,15 +86,15 @@ public class SerializationTest extends ModelTestCase {
     public void testArrayValueBody() {
 
         NodesResponse nr = NodesResponse.of(_0 -> _0
-            .valueBody(_1 -> _1.bulkTotalOperations("1"))
-            .valueBody(_1 -> _1.bulkTotalOperations("2"))
+            .nodes(_1 -> _1.bulkTotalOperations("1"))
+            .nodes(_1 -> _1.bulkTotalOperations("2"))
         );
 
         checkJsonRoundtrip(nr, "[{\"bulk.total_operations\":\"1\"},{\"bulk.total_operations\":\"2\"}]");
 
-        assertEquals(2, nr.valueBody().size());
-        assertEquals("1", nr.valueBody().get(0).bulkTotalOperations());
-        assertEquals("2", nr.valueBody().get(1).bulkTotalOperations());
+        assertEquals(2, nr.nodes().size());
+        assertEquals("1", nr.nodes().get(0).bulkTotalOperations());
+        assertEquals("2", nr.nodes().get(1).bulkTotalOperations());
     }
 
     @Test

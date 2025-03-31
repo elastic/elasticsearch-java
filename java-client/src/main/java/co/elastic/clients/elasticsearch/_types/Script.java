@@ -354,7 +354,7 @@ public class Script implements IntervalsFilterVariant, JsonpSerializable {
 		op.add(Builder::options, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"options");
 
-		op.shortcutProperty("source", true);
+		op.shortcutProperty("source");
 
 	}
 
