@@ -20,16 +20,12 @@
 package co.elastic.clients.transport;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.json.jackson.JacksonJsonpMapper;
+import co.elastic.clients.elasticsearch.ElasticsearchTestClient;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.transport.http.RepeatableBodyResponse;
-import co.elastic.clients.transport.rest_client.RestClientOptions;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
+import co.elastic.clients.transport.instrumentation.Instrumentation;
 import co.elastic.clients.util.BinaryData;
 import com.sun.net.httpserver.HttpServer;
-import org.apache.http.HttpHost;
-import org.elasticsearch.client.RequestOptions;
-import org.elasticsearch.client.Response;
-import org.elasticsearch.client.RestClient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -44,6 +40,16 @@ import java.util.Collections;
 import static co.elastic.clients.util.ContentType.APPLICATION_JSON;
 
 public class TransportTest extends Assertions {
+
+    // Make the protected method publicly visible in tests
+    public static ElasticsearchTransportBase cloneTransportWith(
+        ElasticsearchTransportBase transport,
+        TransportOptions options,
+        JsonpMapper mapper,
+        Instrumentation instrumentation
+    ) {
+        return transport.cloneWith(options, mapper, instrumentation);
+    }
 
     @Test
     public void testXMLResponse() throws Exception {
@@ -60,14 +66,8 @@ public class TransportTest extends Assertions {
         });
 
         httpServer.start();
-        InetSocketAddress address = httpServer.getAddress();
 
-        RestClient restClient = RestClient
-            .builder(new HttpHost(address.getHostString(), address.getPort(), "http"))
-            .build();
-
-        ElasticsearchClient esClient = new ElasticsearchClient(new RestClientTransport(restClient,
-            new JacksonJsonpMapper()));
+        ElasticsearchClient esClient = ElasticsearchTestClient.createClient(httpServer, null);
 
         TransportException ex = Assertions.assertThrows(
             TransportException.class,
@@ -78,12 +78,7 @@ public class TransportTest extends Assertions {
 
         assertEquals(401, ex.statusCode());
         assertEquals("es/cat.indices", ex.endpointId());
-
-        // Original response is transport-dependent
-        Response restClientResponse = (Response) ex.response().originalResponse();
-        assertEquals(401, restClientResponse.getStatusLine().getStatusCode());
     }
-
 
     @Test
     public void testOriginalJsonBodyRetrievalException() throws Exception {
@@ -105,13 +100,7 @@ public class TransportTest extends Assertions {
         httpServer.start();
         InetSocketAddress address = httpServer.getAddress();
 
-        RestClient restClient = RestClient
-            .builder(new HttpHost(address.getHostString(), address.getPort(), "http"))
-            .build();
-
-        // no transport options, response is not RepeatableBodyResponse, original body cannot be retrieved
-        ElasticsearchClient esClient = new ElasticsearchClient(new RestClientTransport(restClient,
-            new JacksonJsonpMapper()));
+        var esClient = ElasticsearchTestClient.createClient(httpServer, null);
 
         TransportException ex = Assertions.assertThrows(
             TransportException.class,
@@ -122,12 +111,8 @@ public class TransportTest extends Assertions {
         assertNotEquals(RepeatableBodyResponse.class, ex.response().getClass());
 
         // setting transport option
-        RestClientOptions options = new RestClientOptions(RequestOptions.DEFAULT, true);
-
-        ElasticsearchTransport transport = new RestClientTransport(
-            restClient, new JacksonJsonpMapper(), options);
-
-        ElasticsearchClient esClientOptions = new ElasticsearchClient(transport);
+        var transport = (ElasticsearchTransport) esClient._transport().withOptions(o -> o.keepResponseBodyOnException(true));
+        ElasticsearchClient esClientOptions = new ElasticsearchClient(transport, null);
 
         ex = Assertions.assertThrows(
             TransportException.class,
@@ -137,18 +122,18 @@ public class TransportTest extends Assertions {
         httpServer.stop(0);
 
         assertEquals(200, ex.statusCode());
-        assertEquals(RepeatableBodyResponse.class, ex.response().getClass());
 
-        try (RepeatableBodyResponse repeatableResponse = (RepeatableBodyResponse) ex.response()){
-            BinaryData body = repeatableResponse.body();
-                StringBuilder sb = new StringBuilder();
-                BufferedReader br = new BufferedReader(new InputStreamReader(body.asInputStream()));
-                String read;
+        try (var response = ex.response()){
+            BinaryData body = response.body();
+            assertTrue(body.isRepeatable());
+            StringBuilder sb = new StringBuilder();
+            BufferedReader br = new BufferedReader(new InputStreamReader(body.asInputStream()));
+            String read;
 
-                while ((read = br.readLine()) != null) {
-                    sb.append(read);
-                }
-                br.close();
+            while ((read = br.readLine()) != null) {
+                sb.append(read);
+            }
+            br.close();
             assertEquals("definitely not json",sb.toString());
         }
     }
