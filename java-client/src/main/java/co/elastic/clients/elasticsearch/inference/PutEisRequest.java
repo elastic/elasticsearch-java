@@ -21,9 +21,6 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch.inference.put_eis.EisServiceSettings;
-import co.elastic.clients.elasticsearch.inference.put_eis.EisTaskType;
-import co.elastic.clients.elasticsearch.inference.put_eis.ServiceType;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -73,7 +70,7 @@ import javax.annotation.Nullable;
 public class PutEisRequest extends RequestBase implements JsonpSerializable {
 	private final String eisInferenceId;
 
-	private final ServiceType service;
+	private final EisServiceType service;
 
 	private final EisServiceSettings serviceSettings;
 
@@ -109,7 +106,7 @@ public class PutEisRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code service}
 	 */
-	public final ServiceType service() {
+	public final EisServiceType service() {
 		return this.service;
 	}
 
@@ -161,7 +158,7 @@ public class PutEisRequest extends RequestBase implements JsonpSerializable {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<PutEisRequest> {
 		private String eisInferenceId;
 
-		private ServiceType service;
+		private EisServiceType service;
 
 		private EisServiceSettings serviceSettings;
 
@@ -183,7 +180,7 @@ public class PutEisRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code service}
 		 */
-		public final Builder service(ServiceType value) {
+		public final Builder service(EisServiceType value) {
 			this.service = value;
 			return this;
 		}
@@ -250,7 +247,7 @@ public class PutEisRequest extends RequestBase implements JsonpSerializable {
 
 	protected static void setupPutEisRequestDeserializer(ObjectDeserializer<PutEisRequest.Builder> op) {
 
-		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
+		op.add(Builder::service, EisServiceType._DESERIALIZER, "service");
 		op.add(Builder::serviceSettings, EisServiceSettings._DESERIALIZER, "service_settings");
 
 	}

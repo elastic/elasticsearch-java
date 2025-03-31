@@ -60,13 +60,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class StateResponse implements JsonpSerializable {
-	private final JsonData valueBody;
+	private final JsonData state;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private StateResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 
 	}
 
@@ -77,15 +77,15 @@ public class StateResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final JsonData valueBody() {
-		return this.valueBody;
+	public final JsonData state() {
+		return this.state;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.valueBody.serialize(generator, mapper);
+		this.state.serialize(generator, mapper);
 
 	}
 
@@ -101,13 +101,13 @@ public class StateResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<StateResponse> {
-		private JsonData valueBody;
+		private JsonData state;
 
 		/**
 		 * Required - Response value.
 		 */
-		public final Builder valueBody(JsonData value) {
-			this.valueBody = value;
+		public final Builder state(JsonData value) {
+			this.state = value;
 			return this;
 		}
 
@@ -116,7 +116,7 @@ public class StateResponse implements JsonpSerializable {
 
 			@SuppressWarnings("unchecked")
 			JsonData value = (JsonData) JsonData._DESERIALIZER.deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.state(value);
 		}
 
 		@Override
@@ -143,7 +143,7 @@ public class StateResponse implements JsonpSerializable {
 		JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.state(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

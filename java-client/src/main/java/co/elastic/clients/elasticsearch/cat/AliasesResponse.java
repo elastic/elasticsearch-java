@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class AliasesResponse implements JsonpSerializable {
-	private final List<AliasesRecord> valueBody;
+	private final List<AliasesRecord> aliases;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private AliasesResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.aliases = ApiTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
 
 	}
 
@@ -78,8 +78,8 @@ public class AliasesResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<AliasesRecord> valueBody() {
-		return this.valueBody;
+	public final List<AliasesRecord> aliases() {
+		return this.aliases;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class AliasesResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (AliasesRecord item0 : this.valueBody) {
+		for (AliasesRecord item0 : this.aliases) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -107,35 +107,35 @@ public class AliasesResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AliasesResponse> {
-		private List<AliasesRecord> valueBody;
+		private List<AliasesRecord> aliases;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>aliases</code>.
 		 */
-		public final Builder valueBody(List<AliasesRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder aliases(List<AliasesRecord> list) {
+			this.aliases = _listAddAll(this.aliases, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>aliases</code>.
 		 */
-		public final Builder valueBody(AliasesRecord value, AliasesRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder aliases(AliasesRecord value, AliasesRecord... values) {
+			this.aliases = _listAdd(this.aliases, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>aliases</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<AliasesRecord.Builder, ObjectBuilder<AliasesRecord>> fn) {
-			return valueBody(fn.apply(new AliasesRecord.Builder()).build());
+		public final Builder aliases(Function<AliasesRecord.Builder, ObjectBuilder<AliasesRecord>> fn) {
+			return aliases(fn.apply(new AliasesRecord.Builder()).build());
 		}
 
 		@Override
@@ -144,7 +144,7 @@ public class AliasesResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<AliasesRecord> value = (List<AliasesRecord>) JsonpDeserializer
 					.arrayDeserializer(AliasesRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.aliases(value);
 		}
 
 		@Override
@@ -172,7 +172,7 @@ public class AliasesResponse implements JsonpSerializable {
 				.arrayDeserializer(AliasesRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.aliases(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

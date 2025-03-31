@@ -21,10 +21,6 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch.inference.put_voyageai.ServiceType;
-import co.elastic.clients.elasticsearch.inference.put_voyageai.VoyageAIServiceSettings;
-import co.elastic.clients.elasticsearch.inference.put_voyageai.VoyageAITaskSettings;
-import co.elastic.clients.elasticsearch.inference.put_voyageai.VoyageAITaskType;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -78,7 +74,7 @@ public class PutVoyageaiRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	private final InferenceChunkingSettings chunkingSettings;
 
-	private final ServiceType service;
+	private final VoyageAIServiceType service;
 
 	private final VoyageAIServiceSettings serviceSettings;
 
@@ -123,7 +119,7 @@ public class PutVoyageaiRequest extends RequestBase implements JsonpSerializable
 	 * <p>
 	 * API name: {@code service}
 	 */
-	public final ServiceType service() {
+	public final VoyageAIServiceType service() {
 		return this.service;
 	}
 
@@ -207,7 +203,7 @@ public class PutVoyageaiRequest extends RequestBase implements JsonpSerializable
 		@Nullable
 		private InferenceChunkingSettings chunkingSettings;
 
-		private ServiceType service;
+		private VoyageAIServiceType service;
 
 		private VoyageAIServiceSettings serviceSettings;
 
@@ -244,7 +240,7 @@ public class PutVoyageaiRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code service}
 		 */
-		public final Builder service(ServiceType value) {
+		public final Builder service(VoyageAIServiceType value) {
 			this.service = value;
 			return this;
 		}
@@ -342,7 +338,7 @@ public class PutVoyageaiRequest extends RequestBase implements JsonpSerializable
 	protected static void setupPutVoyageaiRequestDeserializer(ObjectDeserializer<PutVoyageaiRequest.Builder> op) {
 
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
-		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
+		op.add(Builder::service, VoyageAIServiceType._DESERIALIZER, "service");
 		op.add(Builder::serviceSettings, VoyageAIServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, VoyageAITaskSettings._DESERIALIZER, "task_settings");
 

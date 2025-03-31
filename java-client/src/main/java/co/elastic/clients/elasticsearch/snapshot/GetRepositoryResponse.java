@@ -63,13 +63,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GetRepositoryResponse implements JsonpSerializable {
-	private final Map<String, Repository> result;
+	private final Map<String, Repository> repositories;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetRepositoryResponse(Builder builder) {
 
-		this.result = ApiTypeHelper.unmodifiableRequired(builder.result, this, "result");
+		this.repositories = ApiTypeHelper.unmodifiableRequired(builder.repositories, this, "repositories");
 
 	}
 
@@ -80,15 +80,15 @@ public class GetRepositoryResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final Map<String, Repository> result() {
-		return this.result;
+	public final Map<String, Repository> repositories() {
+		return this.repositories;
 	}
 
 	/**
-	 * Get an element of {@code result}.
+	 * Get an element of {@code repositories}.
 	 */
 	public final @Nullable Repository get(String key) {
-		return this.result.get(key);
+		return this.repositories.get(key);
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class GetRepositoryResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartObject();
-		for (Map.Entry<String, Repository> item0 : this.result.entrySet()) {
+		for (Map.Entry<String, Repository> item0 : this.repositories.entrySet()) {
 			generator.writeKey(item0.getKey());
 			item0.getValue().serialize(generator, mapper);
 
@@ -119,35 +119,35 @@ public class GetRepositoryResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetRepositoryResponse> {
-		private Map<String, Repository> result = new HashMap<>();
+		private Map<String, Repository> repositories = new HashMap<>();
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>result</code>.
+		 * Adds all entries of <code>map</code> to <code>repositories</code>.
 		 */
-		public final Builder result(Map<String, Repository> map) {
-			this.result = _mapPutAll(this.result, map);
+		public final Builder repositories(Map<String, Repository> map) {
+			this.repositories = _mapPutAll(this.repositories, map);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code>.
+		 * Adds an entry to <code>repositories</code>.
 		 */
-		public final Builder result(String key, Repository value) {
-			this.result = _mapPut(this.result, key, value);
+		public final Builder repositories(String key, Repository value) {
+			this.repositories = _mapPut(this.repositories, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds an entry to <code>result</code> using a builder lambda.
+		 * Adds an entry to <code>repositories</code> using a builder lambda.
 		 */
-		public final Builder result(String key, Function<Repository.Builder, ObjectBuilder<Repository>> fn) {
-			return result(key, fn.apply(new Repository.Builder()).build());
+		public final Builder repositories(String key, Function<Repository.Builder, ObjectBuilder<Repository>> fn) {
+			return repositories(key, fn.apply(new Repository.Builder()).build());
 		}
 
 		@Override
@@ -156,7 +156,7 @@ public class GetRepositoryResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			Map<String, Repository> value = (Map<String, Repository>) JsonpDeserializer
 					.stringMapDeserializer(Repository._DESERIALIZER).deserialize(parser, mapper);
-			return this.result(value);
+			return this.repositories(value);
 		}
 
 		@Override
@@ -184,7 +184,7 @@ public class GetRepositoryResponse implements JsonpSerializable {
 				.stringMapDeserializer(Repository._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.result(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.repositories(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

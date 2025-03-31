@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class RepositoriesResponse implements JsonpSerializable {
-	private final List<RepositoriesRecord> valueBody;
+	private final List<RepositoriesRecord> repositories;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private RepositoriesResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.repositories = ApiTypeHelper.unmodifiableRequired(builder.repositories, this, "repositories");
 
 	}
 
@@ -78,8 +78,8 @@ public class RepositoriesResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<RepositoriesRecord> valueBody() {
-		return this.valueBody;
+	public final List<RepositoriesRecord> repositories() {
+		return this.repositories;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class RepositoriesResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (RepositoriesRecord item0 : this.valueBody) {
+		for (RepositoriesRecord item0 : this.repositories) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -109,35 +109,35 @@ public class RepositoriesResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<RepositoriesResponse> {
-		private List<RepositoriesRecord> valueBody;
+		private List<RepositoriesRecord> repositories;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>repositories</code>.
 		 */
-		public final Builder valueBody(List<RepositoriesRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder repositories(List<RepositoriesRecord> list) {
+			this.repositories = _listAddAll(this.repositories, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>repositories</code>.
 		 */
-		public final Builder valueBody(RepositoriesRecord value, RepositoriesRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder repositories(RepositoriesRecord value, RepositoriesRecord... values) {
+			this.repositories = _listAdd(this.repositories, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>repositories</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<RepositoriesRecord.Builder, ObjectBuilder<RepositoriesRecord>> fn) {
-			return valueBody(fn.apply(new RepositoriesRecord.Builder()).build());
+		public final Builder repositories(Function<RepositoriesRecord.Builder, ObjectBuilder<RepositoriesRecord>> fn) {
+			return repositories(fn.apply(new RepositoriesRecord.Builder()).build());
 		}
 
 		@Override
@@ -146,7 +146,7 @@ public class RepositoriesResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<RepositoriesRecord> value = (List<RepositoriesRecord>) JsonpDeserializer
 					.arrayDeserializer(RepositoriesRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.repositories(value);
 		}
 
 		@Override
@@ -174,7 +174,7 @@ public class RepositoriesResponse implements JsonpSerializable {
 				.arrayDeserializer(RepositoriesRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.repositories(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

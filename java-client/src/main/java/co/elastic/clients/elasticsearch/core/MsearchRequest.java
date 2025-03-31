@@ -37,6 +37,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
@@ -110,10 +111,10 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	private final List<String> index;
 
 	@Nullable
-	private final Long maxConcurrentSearches;
+	private final Integer maxConcurrentSearches;
 
 	@Nullable
-	private final Long maxConcurrentShardRequests;
+	private final Integer maxConcurrentShardRequests;
 
 	@Nullable
 	private final Long preFilterShardSize;
@@ -220,11 +221,13 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 
 	/**
 	 * Maximum number of concurrent searches the multi search API can execute.
+	 * Defaults to
+	 * <code>max(1, (# of data nodes * min(search thread pool size, 10)))</code>.
 	 * <p>
 	 * API name: {@code max_concurrent_searches}
 	 */
 	@Nullable
-	public final Long maxConcurrentSearches() {
+	public final Integer maxConcurrentSearches() {
 		return this.maxConcurrentSearches;
 	}
 
@@ -235,7 +238,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	 * API name: {@code max_concurrent_shard_requests}
 	 */
 	@Nullable
-	public final Long maxConcurrentShardRequests() {
+	public final Integer maxConcurrentShardRequests() {
 		return this.maxConcurrentShardRequests;
 	}
 
@@ -321,10 +324,10 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		private List<String> index;
 
 		@Nullable
-		private Long maxConcurrentSearches;
+		private Integer maxConcurrentSearches;
 
 		@Nullable
-		private Long maxConcurrentShardRequests;
+		private Integer maxConcurrentShardRequests;
 
 		@Nullable
 		private Long preFilterShardSize;
@@ -436,10 +439,12 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 
 		/**
 		 * Maximum number of concurrent searches the multi search API can execute.
+		 * Defaults to
+		 * <code>max(1, (# of data nodes * min(search thread pool size, 10)))</code>.
 		 * <p>
 		 * API name: {@code max_concurrent_searches}
 		 */
-		public final Builder maxConcurrentSearches(@Nullable Long value) {
+		public final Builder maxConcurrentSearches(@Nullable Integer value) {
 			this.maxConcurrentSearches = value;
 			return this;
 		}
@@ -450,7 +455,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		 * <p>
 		 * API name: {@code max_concurrent_shard_requests}
 		 */
-		public final Builder maxConcurrentShardRequests(@Nullable Long value) {
+		public final Builder maxConcurrentShardRequests(@Nullable Integer value) {
 			this.maxConcurrentShardRequests = value;
 			return this;
 		}

@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class Script implements IntervalsFilterVariant, JsonpSerializable {
 	@Nullable
-	private final String source;
+	private final ScriptSource source;
 
 	@Nullable
 	private final String id;
@@ -105,7 +105,7 @@ public class Script implements IntervalsFilterVariant, JsonpSerializable {
 	 * API name: {@code source}
 	 */
 	@Nullable
-	public final String source() {
+	public final ScriptSource source() {
 		return this.source;
 	}
 
@@ -159,7 +159,7 @@ public class Script implements IntervalsFilterVariant, JsonpSerializable {
 
 		if (this.source != null) {
 			generator.writeKey("source");
-			generator.write(this.source);
+			this.source.serialize(generator, mapper);
 
 		}
 		if (this.id != null) {
@@ -210,7 +210,7 @@ public class Script implements IntervalsFilterVariant, JsonpSerializable {
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Script> {
 		@Nullable
-		private String source;
+		private ScriptSource source;
 
 		@Nullable
 		private String id;
@@ -229,9 +229,18 @@ public class Script implements IntervalsFilterVariant, JsonpSerializable {
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public final Builder source(@Nullable String value) {
+		public final Builder source(@Nullable ScriptSource value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * The script source.
+		 * <p>
+		 * API name: {@code source}
+		 */
+		public final Builder source(Function<ScriptSource.Builder, ObjectBuilder<ScriptSource>> fn) {
+			return this.source(fn.apply(new ScriptSource.Builder()).build());
 		}
 
 		/**
@@ -338,14 +347,14 @@ public class Script implements IntervalsFilterVariant, JsonpSerializable {
 
 	protected static void setupScriptDeserializer(ObjectDeserializer<Script.Builder> op) {
 
-		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
+		op.add(Builder::source, ScriptSource._DESERIALIZER, "source");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
 		op.add(Builder::options, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"options");
 
-		op.shortcutProperty("source");
+		op.shortcutProperty("source", true);
 
 	}
 

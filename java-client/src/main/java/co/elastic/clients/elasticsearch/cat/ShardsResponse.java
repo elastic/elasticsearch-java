@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ShardsResponse implements JsonpSerializable {
-	private final List<ShardsRecord> valueBody;
+	private final List<ShardsRecord> shards;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ShardsResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
 
 	}
 
@@ -78,8 +78,8 @@ public class ShardsResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<ShardsRecord> valueBody() {
-		return this.valueBody;
+	public final List<ShardsRecord> shards() {
+		return this.shards;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class ShardsResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (ShardsRecord item0 : this.valueBody) {
+		for (ShardsRecord item0 : this.shards) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -107,35 +107,35 @@ public class ShardsResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ShardsResponse> {
-		private List<ShardsRecord> valueBody;
+		private List<ShardsRecord> shards;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>shards</code>.
 		 */
-		public final Builder valueBody(List<ShardsRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder shards(List<ShardsRecord> list) {
+			this.shards = _listAddAll(this.shards, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>shards</code>.
 		 */
-		public final Builder valueBody(ShardsRecord value, ShardsRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder shards(ShardsRecord value, ShardsRecord... values) {
+			this.shards = _listAdd(this.shards, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>shards</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<ShardsRecord.Builder, ObjectBuilder<ShardsRecord>> fn) {
-			return valueBody(fn.apply(new ShardsRecord.Builder()).build());
+		public final Builder shards(Function<ShardsRecord.Builder, ObjectBuilder<ShardsRecord>> fn) {
+			return shards(fn.apply(new ShardsRecord.Builder()).build());
 		}
 
 		@Override
@@ -144,7 +144,7 @@ public class ShardsResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<ShardsRecord> value = (List<ShardsRecord>) JsonpDeserializer
 					.arrayDeserializer(ShardsRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.shards(value);
 		}
 
 		@Override
@@ -172,7 +172,7 @@ public class ShardsResponse implements JsonpSerializable {
 				.arrayDeserializer(ShardsRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.shards(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class RepositoryVerifyIntegrityResponse implements JsonpSerializable {
-	private final JsonData valueBody;
+	private final JsonData result;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private RepositoryVerifyIntegrityResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
+		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
 
 	}
 
@@ -79,15 +79,15 @@ public class RepositoryVerifyIntegrityResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final JsonData valueBody() {
-		return this.valueBody;
+	public final JsonData result() {
+		return this.result;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.valueBody.serialize(generator, mapper);
+		this.result.serialize(generator, mapper);
 
 	}
 
@@ -105,13 +105,13 @@ public class RepositoryVerifyIntegrityResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<RepositoryVerifyIntegrityResponse> {
-		private JsonData valueBody;
+		private JsonData result;
 
 		/**
 		 * Required - Response value.
 		 */
-		public final Builder valueBody(JsonData value) {
-			this.valueBody = value;
+		public final Builder result(JsonData value) {
+			this.result = value;
 			return this;
 		}
 
@@ -120,7 +120,7 @@ public class RepositoryVerifyIntegrityResponse implements JsonpSerializable {
 
 			@SuppressWarnings("unchecked")
 			JsonData value = (JsonData) JsonData._DESERIALIZER.deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.result(value);
 		}
 
 		@Override
@@ -147,7 +147,7 @@ public class RepositoryVerifyIntegrityResponse implements JsonpSerializable {
 		JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.result(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

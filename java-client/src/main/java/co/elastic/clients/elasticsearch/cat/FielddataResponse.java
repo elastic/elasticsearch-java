@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class FielddataResponse implements JsonpSerializable {
-	private final List<FielddataRecord> valueBody;
+	private final List<FielddataRecord> fielddataRecords;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private FielddataResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.fielddataRecords = ApiTypeHelper.unmodifiableRequired(builder.fielddataRecords, this, "fielddataRecords");
 
 	}
 
@@ -78,8 +78,8 @@ public class FielddataResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<FielddataRecord> valueBody() {
-		return this.valueBody;
+	public final List<FielddataRecord> fielddataRecords() {
+		return this.fielddataRecords;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class FielddataResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (FielddataRecord item0 : this.valueBody) {
+		for (FielddataRecord item0 : this.fielddataRecords) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -107,35 +107,35 @@ public class FielddataResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FielddataResponse> {
-		private List<FielddataRecord> valueBody;
+		private List<FielddataRecord> fielddataRecords;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>fielddataRecords</code>.
 		 */
-		public final Builder valueBody(List<FielddataRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder fielddataRecords(List<FielddataRecord> list) {
+			this.fielddataRecords = _listAddAll(this.fielddataRecords, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>fielddataRecords</code>.
 		 */
-		public final Builder valueBody(FielddataRecord value, FielddataRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder fielddataRecords(FielddataRecord value, FielddataRecord... values) {
+			this.fielddataRecords = _listAdd(this.fielddataRecords, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>fielddataRecords</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<FielddataRecord.Builder, ObjectBuilder<FielddataRecord>> fn) {
-			return valueBody(fn.apply(new FielddataRecord.Builder()).build());
+		public final Builder fielddataRecords(Function<FielddataRecord.Builder, ObjectBuilder<FielddataRecord>> fn) {
+			return fielddataRecords(fn.apply(new FielddataRecord.Builder()).build());
 		}
 
 		@Override
@@ -144,7 +144,7 @@ public class FielddataResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<FielddataRecord> value = (List<FielddataRecord>) JsonpDeserializer
 					.arrayDeserializer(FielddataRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.fielddataRecords(value);
 		}
 
 		@Override
@@ -172,7 +172,7 @@ public class FielddataResponse implements JsonpSerializable {
 				.arrayDeserializer(FielddataRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.fielddataRecords(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

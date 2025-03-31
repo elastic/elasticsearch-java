@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TransformsResponse implements JsonpSerializable {
-	private final List<TransformsRecord> valueBody;
+	private final List<TransformsRecord> transforms;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private TransformsResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.transforms = ApiTypeHelper.unmodifiableRequired(builder.transforms, this, "transforms");
 
 	}
 
@@ -78,8 +78,8 @@ public class TransformsResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<TransformsRecord> valueBody() {
-		return this.valueBody;
+	public final List<TransformsRecord> transforms() {
+		return this.transforms;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class TransformsResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (TransformsRecord item0 : this.valueBody) {
+		for (TransformsRecord item0 : this.transforms) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -109,35 +109,35 @@ public class TransformsResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<TransformsResponse> {
-		private List<TransformsRecord> valueBody;
+		private List<TransformsRecord> transforms;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>transforms</code>.
 		 */
-		public final Builder valueBody(List<TransformsRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder transforms(List<TransformsRecord> list) {
+			this.transforms = _listAddAll(this.transforms, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>transforms</code>.
 		 */
-		public final Builder valueBody(TransformsRecord value, TransformsRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder transforms(TransformsRecord value, TransformsRecord... values) {
+			this.transforms = _listAdd(this.transforms, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>transforms</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<TransformsRecord.Builder, ObjectBuilder<TransformsRecord>> fn) {
-			return valueBody(fn.apply(new TransformsRecord.Builder()).build());
+		public final Builder transforms(Function<TransformsRecord.Builder, ObjectBuilder<TransformsRecord>> fn) {
+			return transforms(fn.apply(new TransformsRecord.Builder()).build());
 		}
 
 		@Override
@@ -146,7 +146,7 @@ public class TransformsResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<TransformsRecord> value = (List<TransformsRecord>) JsonpDeserializer
 					.arrayDeserializer(TransformsRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.transforms(value);
 		}
 
 		@Override
@@ -174,7 +174,7 @@ public class TransformsResponse implements JsonpSerializable {
 				.arrayDeserializer(TransformsRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.transforms(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

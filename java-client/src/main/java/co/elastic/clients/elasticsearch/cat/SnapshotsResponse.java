@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class SnapshotsResponse implements JsonpSerializable {
-	private final List<SnapshotsRecord> valueBody;
+	private final List<SnapshotsRecord> snapshots;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private SnapshotsResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.snapshots = ApiTypeHelper.unmodifiableRequired(builder.snapshots, this, "snapshots");
 
 	}
 
@@ -78,8 +78,8 @@ public class SnapshotsResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<SnapshotsRecord> valueBody() {
-		return this.valueBody;
+	public final List<SnapshotsRecord> snapshots() {
+		return this.snapshots;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class SnapshotsResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (SnapshotsRecord item0 : this.valueBody) {
+		for (SnapshotsRecord item0 : this.snapshots) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -107,35 +107,35 @@ public class SnapshotsResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SnapshotsResponse> {
-		private List<SnapshotsRecord> valueBody;
+		private List<SnapshotsRecord> snapshots;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>snapshots</code>.
 		 */
-		public final Builder valueBody(List<SnapshotsRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder snapshots(List<SnapshotsRecord> list) {
+			this.snapshots = _listAddAll(this.snapshots, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>snapshots</code>.
 		 */
-		public final Builder valueBody(SnapshotsRecord value, SnapshotsRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder snapshots(SnapshotsRecord value, SnapshotsRecord... values) {
+			this.snapshots = _listAdd(this.snapshots, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>snapshots</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<SnapshotsRecord.Builder, ObjectBuilder<SnapshotsRecord>> fn) {
-			return valueBody(fn.apply(new SnapshotsRecord.Builder()).build());
+		public final Builder snapshots(Function<SnapshotsRecord.Builder, ObjectBuilder<SnapshotsRecord>> fn) {
+			return snapshots(fn.apply(new SnapshotsRecord.Builder()).build());
 		}
 
 		@Override
@@ -144,7 +144,7 @@ public class SnapshotsResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<SnapshotsRecord> value = (List<SnapshotsRecord>) JsonpDeserializer
 					.arrayDeserializer(SnapshotsRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.snapshots(value);
 		}
 
 		@Override
@@ -172,7 +172,7 @@ public class SnapshotsResponse implements JsonpSerializable {
 				.arrayDeserializer(SnapshotsRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.snapshots(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }
