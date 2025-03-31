@@ -33,9 +33,12 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import jakarta.json.stream.JsonParser;
 =======
 >>>>>>> 03828daff (regen from latest spec)
+=======
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -75,10 +78,13 @@ public class ChatCompletionUnifiedRequest extends RequestChatCompletionBase {
 	private final Time timeout;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private final RequestChatCompletion chatCompletionRequest;
 
 =======
 >>>>>>> 03828daff (regen from latest spec)
+=======
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 	// ---------------------------------------------------------------------------------------------
 
 	private ChatCompletionUnifiedRequest(Builder builder) {
@@ -87,10 +93,13 @@ public class ChatCompletionUnifiedRequest extends RequestChatCompletionBase {
 		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.timeout = builder.timeout;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		this.chatCompletionRequest = ApiTypeHelper.requireNonNull(builder.chatCompletionRequest, this,
 				"chatCompletionRequest");
 =======
 >>>>>>> 03828daff (regen from latest spec)
+=======
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 
 	}
 
@@ -118,6 +127,7 @@ public class ChatCompletionUnifiedRequest extends RequestChatCompletionBase {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/**
 	 * Required - Request body.
 	 */
@@ -135,6 +145,8 @@ public class ChatCompletionUnifiedRequest extends RequestChatCompletionBase {
 
 =======
 >>>>>>> 03828daff (regen from latest spec)
+=======
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -150,10 +162,13 @@ public class ChatCompletionUnifiedRequest extends RequestChatCompletionBase {
 		private Time timeout;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		private RequestChatCompletion chatCompletionRequest;
 
 =======
 >>>>>>> 03828daff (regen from latest spec)
+=======
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 		/**
 		 * Required - The inference Id
 		 * <p>
@@ -184,6 +199,7 @@ public class ChatCompletionUnifiedRequest extends RequestChatCompletionBase {
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		/**
 		 * Required - Request body.
 		 */
@@ -211,6 +227,8 @@ public class ChatCompletionUnifiedRequest extends RequestChatCompletionBase {
 
 =======
 >>>>>>> 03828daff (regen from latest spec)
+=======
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 		@Override
 		protected Builder self() {
 			return this;
@@ -229,12 +247,17 @@ public class ChatCompletionUnifiedRequest extends RequestChatCompletionBase {
 		}
 	}
 
+<<<<<<< HEAD
 	public static final JsonpDeserializer<ChatCompletionUnifiedRequest> _DESERIALIZER = createChatCompletionUnifiedRequestDeserializer();
 	protected static JsonpDeserializer<ChatCompletionUnifiedRequest> createChatCompletionUnifiedRequestDeserializer() {
 
 <<<<<<< HEAD
 		JsonpDeserializer<RequestChatCompletion> valueDeserializer = RequestChatCompletion._DESERIALIZER;
 =======
+=======
+	// ---------------------------------------------------------------------------------------------
+
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 	/**
 	 * Json deserializer for {@link ChatCompletionUnifiedRequest}
 	 */
@@ -244,10 +267,14 @@ public class ChatCompletionUnifiedRequest extends RequestChatCompletionBase {
 	protected static void setupChatCompletionUnifiedRequestDeserializer(
 			ObjectDeserializer<ChatCompletionUnifiedRequest.Builder> op) {
 		RequestChatCompletionBase.setupRequestChatCompletionBaseDeserializer(op);
+<<<<<<< HEAD
 >>>>>>> 03828daff (regen from latest spec)
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
 				.chatCompletionRequest(valueDeserializer.deserialize(parser, mapper, event)).build());
+=======
+
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 	}
 
 	// ---------------------------------------------------------------------------------------------

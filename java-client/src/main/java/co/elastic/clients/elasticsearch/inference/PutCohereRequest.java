@@ -22,12 +22,18 @@ package co.elastic.clients.elasticsearch.inference;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 import co.elastic.clients.elasticsearch.inference.put_cohere.CohereServiceSettings;
 import co.elastic.clients.elasticsearch.inference.put_cohere.CohereTaskSettings;
 import co.elastic.clients.elasticsearch.inference.put_cohere.CohereTaskType;
 import co.elastic.clients.elasticsearch.inference.put_cohere.ServiceType;
+<<<<<<< HEAD
 >>>>>>> 03828daff (regen from latest spec)
+=======
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -91,10 +97,14 @@ public class PutCohereRequest extends RequestBase implements JsonpSerializable {
 	private final String cohereInferenceId;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private final CohereServiceType service;
 =======
 	private final ServiceType service;
 >>>>>>> 03828daff (regen from latest spec)
+=======
+	private final ServiceType service;
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 
 	private final CohereServiceSettings serviceSettings;
 
@@ -146,10 +156,14 @@ public class PutCohereRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code service}
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public final CohereServiceType service() {
 =======
 	public final ServiceType service() {
 >>>>>>> 03828daff (regen from latest spec)
+=======
+	public final ServiceType service() {
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 		return this.service;
 	}
 
@@ -227,10 +241,14 @@ public class PutCohereRequest extends RequestBase implements JsonpSerializable {
 		private String cohereInferenceId;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		private CohereServiceType service;
 =======
 		private ServiceType service;
 >>>>>>> 03828daff (regen from latest spec)
+=======
+		private ServiceType service;
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 
 		private CohereServiceSettings serviceSettings;
 
@@ -276,10 +294,14 @@ public class PutCohereRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code service}
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		public final Builder service(CohereServiceType value) {
 =======
 		public final Builder service(ServiceType value) {
 >>>>>>> 03828daff (regen from latest spec)
+=======
+		public final Builder service(ServiceType value) {
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 			this.service = value;
 			return this;
 		}
@@ -367,10 +389,14 @@ public class PutCohereRequest extends RequestBase implements JsonpSerializable {
 
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		op.add(Builder::service, CohereServiceType._DESERIALIZER, "service");
 =======
 		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
 >>>>>>> 03828daff (regen from latest spec)
+=======
+		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 		op.add(Builder::serviceSettings, CohereServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, CohereTaskSettings._DESERIALIZER, "task_settings");
 

@@ -22,12 +22,18 @@ package co.elastic.clients.elasticsearch.inference;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 import co.elastic.clients.elasticsearch.inference.put_azureopenai.AzureOpenAIServiceSettings;
 import co.elastic.clients.elasticsearch.inference.put_azureopenai.AzureOpenAITaskSettings;
 import co.elastic.clients.elasticsearch.inference.put_azureopenai.AzureOpenAITaskType;
 import co.elastic.clients.elasticsearch.inference.put_azureopenai.ServiceType;
+<<<<<<< HEAD
 >>>>>>> 03828daff (regen from latest spec)
+=======
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -107,10 +113,14 @@ public class PutAzureopenaiRequest extends RequestBase implements JsonpSerializa
 	private final InferenceChunkingSettings chunkingSettings;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private final AzureOpenAIServiceType service;
 =======
 	private final ServiceType service;
 >>>>>>> 03828daff (regen from latest spec)
+=======
+	private final ServiceType service;
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 
 	private final AzureOpenAIServiceSettings serviceSettings;
 
@@ -163,10 +173,14 @@ public class PutAzureopenaiRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code service}
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public final AzureOpenAIServiceType service() {
 =======
 	public final ServiceType service() {
 >>>>>>> 03828daff (regen from latest spec)
+=======
+	public final ServiceType service() {
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 		return this.service;
 	}
 
@@ -246,10 +260,14 @@ public class PutAzureopenaiRequest extends RequestBase implements JsonpSerializa
 		private InferenceChunkingSettings chunkingSettings;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		private AzureOpenAIServiceType service;
 =======
 		private ServiceType service;
 >>>>>>> 03828daff (regen from latest spec)
+=======
+		private ServiceType service;
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 
 		private AzureOpenAIServiceSettings serviceSettings;
 
@@ -295,10 +313,14 @@ public class PutAzureopenaiRequest extends RequestBase implements JsonpSerializa
 		 * API name: {@code service}
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		public final Builder service(AzureOpenAIServiceType value) {
 =======
 		public final Builder service(ServiceType value) {
 >>>>>>> 03828daff (regen from latest spec)
+=======
+		public final Builder service(ServiceType value) {
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 			this.service = value;
 			return this;
 		}
@@ -389,10 +411,14 @@ public class PutAzureopenaiRequest extends RequestBase implements JsonpSerializa
 
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		op.add(Builder::service, AzureOpenAIServiceType._DESERIALIZER, "service");
 =======
 		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
 >>>>>>> 03828daff (regen from latest spec)
+=======
+		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 		op.add(Builder::serviceSettings, AzureOpenAIServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, AzureOpenAITaskSettings._DESERIALIZER, "task_settings");
 

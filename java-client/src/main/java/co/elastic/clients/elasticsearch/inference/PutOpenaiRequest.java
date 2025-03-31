@@ -21,6 +21,13 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+<<<<<<< HEAD
+=======
+import co.elastic.clients.elasticsearch.inference.put_openai.OpenAIServiceSettings;
+import co.elastic.clients.elasticsearch.inference.put_openai.OpenAITaskSettings;
+import co.elastic.clients.elasticsearch.inference.put_openai.OpenAITaskType;
+import co.elastic.clients.elasticsearch.inference.put_openai.ServiceType;
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -83,7 +90,11 @@ public class PutOpenaiRequest extends RequestBase implements JsonpSerializable {
 
 	private final String openaiInferenceId;
 
+<<<<<<< HEAD
 	private final OpenAIServiceType service;
+=======
+	private final ServiceType service;
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 
 	private final OpenAIServiceSettings serviceSettings;
 
@@ -134,7 +145,11 @@ public class PutOpenaiRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code service}
 	 */
+<<<<<<< HEAD
 	public final OpenAIServiceType service() {
+=======
+	public final ServiceType service() {
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 		return this.service;
 	}
 
@@ -213,7 +228,11 @@ public class PutOpenaiRequest extends RequestBase implements JsonpSerializable {
 
 		private String openaiInferenceId;
 
+<<<<<<< HEAD
 		private OpenAIServiceType service;
+=======
+		private ServiceType service;
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 
 		private OpenAIServiceSettings serviceSettings;
 
@@ -258,7 +277,11 @@ public class PutOpenaiRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code service}
 		 */
+<<<<<<< HEAD
 		public final Builder service(OpenAIServiceType value) {
+=======
+		public final Builder service(ServiceType value) {
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 			this.service = value;
 			return this;
 		}
@@ -347,7 +370,11 @@ public class PutOpenaiRequest extends RequestBase implements JsonpSerializable {
 	protected static void setupPutOpenaiRequestDeserializer(ObjectDeserializer<PutOpenaiRequest.Builder> op) {
 
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
+<<<<<<< HEAD
 		op.add(Builder::service, OpenAIServiceType._DESERIALIZER, "service");
+=======
+		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 		op.add(Builder::serviceSettings, OpenAIServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, OpenAITaskSettings._DESERIALIZER, "task_settings");
 

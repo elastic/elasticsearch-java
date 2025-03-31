@@ -22,11 +22,17 @@ package co.elastic.clients.elasticsearch.inference;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import co.elastic.clients.elasticsearch.inference.put_elser.ElserServiceSettings;
 import co.elastic.clients.elasticsearch.inference.put_elser.ElserTaskType;
 import co.elastic.clients.elasticsearch.inference.put_elser.ServiceType;
 >>>>>>> 03828daff (regen from latest spec)
+=======
+import co.elastic.clients.elasticsearch.inference.put_elser.ElserServiceSettings;
+import co.elastic.clients.elasticsearch.inference.put_elser.ElserTaskType;
+import co.elastic.clients.elasticsearch.inference.put_elser.ServiceType;
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -111,10 +117,14 @@ public class PutElserRequest extends RequestBase implements JsonpSerializable {
 	private final String elserInferenceId;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private final ElserServiceType service;
 =======
 	private final ServiceType service;
 >>>>>>> 03828daff (regen from latest spec)
+=======
+	private final ServiceType service;
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 
 	private final ElserServiceSettings serviceSettings;
 
@@ -162,10 +172,14 @@ public class PutElserRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code service}
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public final ElserServiceType service() {
 =======
 	public final ServiceType service() {
 >>>>>>> 03828daff (regen from latest spec)
+=======
+	public final ServiceType service() {
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 		return this.service;
 	}
 
@@ -224,10 +238,14 @@ public class PutElserRequest extends RequestBase implements JsonpSerializable {
 		private String elserInferenceId;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		private ElserServiceType service;
 =======
 		private ServiceType service;
 >>>>>>> 03828daff (regen from latest spec)
+=======
+		private ServiceType service;
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 
 		private ElserServiceSettings serviceSettings;
 
@@ -270,10 +288,14 @@ public class PutElserRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code service}
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		public final Builder service(ElserServiceType value) {
 =======
 		public final Builder service(ServiceType value) {
 >>>>>>> 03828daff (regen from latest spec)
+=======
+		public final Builder service(ServiceType value) {
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 			this.service = value;
 			return this;
 		}
@@ -340,10 +362,14 @@ public class PutElserRequest extends RequestBase implements JsonpSerializable {
 
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		op.add(Builder::service, ElserServiceType._DESERIALIZER, "service");
 =======
 		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
 >>>>>>> 03828daff (regen from latest spec)
+=======
+		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
+>>>>>>> c49af58dc (Revert "temp rebase fix")
 		op.add(Builder::serviceSettings, ElserServiceSettings._DESERIALIZER, "service_settings");
 
 	}
