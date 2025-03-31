@@ -58,13 +58,7 @@ public class JsonpUtilsTest extends ModelTestCase {
         ClassLoader savedLoader = Thread.currentThread().getContextClassLoader();
         try {
             Thread.currentThread().setContextClassLoader(emptyLoader);
-
-            assertThrows(JsonException.class, () -> {
-                assertNotNull(JsonProvider.provider());
-            });
-
             assertNotNull(JsonpUtils.provider());
-
         } finally {
             Thread.currentThread().setContextClassLoader(savedLoader);
         }

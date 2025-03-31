@@ -90,7 +90,7 @@ public class SimpleJsonpMapper extends JsonpMapperBase {
 
     @Override
     public JsonProvider jsonProvider() {
-        return JsonpUtils.provider();
+        return JsonpUtils.systemProvider();
     }
 
     @Override

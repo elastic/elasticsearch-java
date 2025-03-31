@@ -198,15 +198,16 @@ signing {
 }
 
 dependencies {
-    // Compile and test with the last 7.x version to make sure transition scenarios where
-    // the Java API client coexists with a 7.x HLRC work fine
+    // Compile and test with the last 8.x version to make sure transition scenarios where
+    // the Java API client coexists with a 8.x HLRC work fine
     val elasticsearchVersion = "8.17.0"
-    val jacksonVersion = "2.17.0"
+    val jacksonVersion = "2.18.3"
     val openTelemetryVersion = "1.29.0"
 
     // Apache 2.0
     // https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html
-    api("org.elasticsearch.client", "elasticsearch-rest-client", elasticsearchVersion)
+    compileOnly("org.elasticsearch.client", "elasticsearch-rest-client", elasticsearchVersion)
+    testImplementation("org.elasticsearch.client", "elasticsearch-rest-client", elasticsearchVersion)
 
     api("org.apache.httpcomponents.client5","httpclient5","5.4")
 
@@ -216,12 +217,12 @@ dependencies {
 
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/jsonp
-    api("jakarta.json:jakarta.json-api:2.0.1")
+    api("jakarta.json:jakarta.json-api:2.1.3")
 
     // Needed even if using Jackson to have an implementation of the Jsonp object model
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/parsson
-    api("org.eclipse.parsson:parsson:1.0.5")
+    api("org.eclipse.parsson:parsson:1.1.7")
 
     // OpenTelemetry API for native instrumentation of the client.
     // Apache 2.0
@@ -229,25 +230,21 @@ dependencies {
     implementation("io.opentelemetry", "opentelemetry-api", openTelemetryVersion)
     // Use it once it's stable (see Instrumentation.java). Limited to tests for now.
     testImplementation("io.opentelemetry", "opentelemetry-semconv", "$openTelemetryVersion-alpha")
+    testImplementation("io.opentelemetry", "opentelemetry-sdk", openTelemetryVersion)
 
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/jsonb-api
-    compileOnly("jakarta.json.bind", "jakarta.json.bind-api", "2.0.0")
-    testImplementation("jakarta.json.bind", "jakarta.json.bind-api", "2.0.0")
+    compileOnly("jakarta.json.bind", "jakarta.json.bind-api", "3.0.1")
+    testImplementation("jakarta.json.bind", "jakarta.json.bind-api", "3.0.1")
 
     // Apache 2.0
     // https://github.com/FasterXML/jackson
-    compileOnly("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
-    compileOnly("com.fasterxml.jackson.core", "jackson-databind", jacksonVersion)
-    testImplementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
-    testImplementation("com.fasterxml.jackson.core", "jackson-databind", jacksonVersion)
+    implementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
+    implementation("com.fasterxml.jackson.core", "jackson-databind", jacksonVersion)
 
     // EPL-2.0 OR BSD-3-Clause
     // https://eclipse-ee4j.github.io/yasson/
-    testImplementation("org.eclipse", "yasson", "2.0.4") {
-        // Exclude Glassfish as we use Parsson (basically Glassfish renamed in the Jakarta namespace).
-        exclude(group = "org.glassfish", module = "jakarta.json")
-    }
+    testImplementation("org.eclipse", "yasson", "3.0.4")
 
     // Apache-2.0
     testImplementation("commons-io:commons-io:2.17.0")
@@ -267,8 +264,6 @@ dependencies {
     testImplementation("org.testcontainers", "elasticsearch", "1.17.3")
     // updating transitive dependency from testcontainers
     testImplementation("org.apache.commons","commons-compress","1.26.1")
-
-    testImplementation("io.opentelemetry", "opentelemetry-sdk", openTelemetryVersion)
 
     // Apache-2.0
     // https://github.com/awaitility/awaitility

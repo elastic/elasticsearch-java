@@ -19,6 +19,7 @@
 
 package co.elastic.clients.json;
 
+import co.elastic.clients.json.jackson.JacksonJsonProvider;
 import co.elastic.clients.util.AllowForbiddenApis;
 import jakarta.json.JsonException;
 import jakarta.json.JsonObject;
@@ -43,6 +44,7 @@ import java.util.stream.Collectors;
 public class JsonpUtils {
 
     private static JsonProvider systemJsonProvider = null;
+    private static JsonProvider defaultJsonProvider = null;
 
     /**
      * Get a <code>JsonProvider</code> instance. This method first calls the standard `JsonProvider.provider()` that is based on
@@ -50,16 +52,48 @@ public class JsonpUtils {
      * value is cached for subsequent calls.
      */
     public static JsonProvider provider() {
-        JsonProvider result = systemJsonProvider;
+        JsonProvider result = defaultJsonProvider;
         if (result == null) {
             result = findProvider();
+            defaultJsonProvider = result;
+        }
+        return result;
+    }
+
+    /**
+     * Sets the <code>JsonProvider</code> that will be returned by {@link JsonProvider}.
+     */
+    public static void setProvider(JsonProvider provider) {
+        defaultJsonProvider = provider;
+    }
+
+    static JsonProvider findProvider() {
+        try {
+            // Default to Jackson
+            return new JacksonJsonProvider();
+        } catch (NoClassDefFoundError e) {
+            // Ignore
+        }
+        return findSystemProvider();
+    }
+
+    /**
+     * Get the system's <code>JsonProvider</code> instance return by {@code ServiceLoader}. First calls the standard
+     * `JsonProvider.provider()` that is based on the current thread's context classloader, and in case of failure tries to
+     * find a provider in other classloaders. The value is cached for subsequent calls.
+     */
+    public static JsonProvider systemProvider() {
+        JsonProvider result = systemJsonProvider;
+        if (result == null) {
+            result = findSystemProvider();
             systemJsonProvider = result;
         }
         return result;
     }
 
     @AllowForbiddenApis("Implementation of the JsonProvider lookup")
-    static JsonProvider findProvider() {
+    static JsonProvider findSystemProvider() {
+
         RuntimeException exception;
         try {
             return JsonProvider.provider();

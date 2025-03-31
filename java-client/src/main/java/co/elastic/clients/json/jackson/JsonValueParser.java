@@ -40,11 +40,11 @@ import java.math.BigInteger;
  * object (e.g. START_OBJECT, VALUE_NUMBER, etc).
  */
 class JsonValueParser {
-    private final JsonProvider provider = JsonpUtils.provider();
+    private final JsonProvider systemProvider = JsonpUtils.systemProvider();
 
     public JsonObject parseObject(JsonParser parser) throws IOException {
 
-        JsonObjectBuilder ob = provider.createObjectBuilder();
+        JsonObjectBuilder ob = systemProvider.createObjectBuilder();
 
         JsonToken token;
         while((token = parser.nextToken()) != JsonToken.END_OBJECT) {
@@ -59,7 +59,7 @@ class JsonValueParser {
     }
 
     public JsonArray parseArray(JsonParser parser) throws IOException {
-        JsonArrayBuilder ab = provider.createArrayBuilder();
+        JsonArrayBuilder ab = systemProvider.createArrayBuilder();
 
         while(parser.nextToken() != JsonToken.END_ARRAY) {
             ab.add(parseValue(parser));
@@ -86,23 +86,23 @@ class JsonValueParser {
                 return JsonValue.NULL;
 
             case VALUE_STRING:
-                return provider.createValue(parser.getText());
+                return systemProvider.createValue(parser.getText());
 
             case VALUE_NUMBER_FLOAT:
             case VALUE_NUMBER_INT:
                 switch(parser.getNumberType()) {
                     case INT:
-                        return provider.createValue(parser.getIntValue());
+                        return systemProvider.createValue(parser.getIntValue());
                     case LONG:
-                        return provider.createValue(parser.getLongValue());
+                        return systemProvider.createValue(parser.getLongValue());
                     case FLOAT:
                     case DOUBLE:
                         // Use double also for floats, as JSON-P has no support for float
                         return new DoubleNumber(parser.getDoubleValue());
                     case BIG_DECIMAL:
-                        return provider.createValue(parser.getDecimalValue());
+                        return systemProvider.createValue(parser.getDecimalValue());
                     case BIG_INTEGER:
-                        return provider.createValue(parser.getBigIntegerValue());
+                        return systemProvider.createValue(parser.getBigIntegerValue());
                 }
 
             default:
