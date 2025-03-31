@@ -26,7 +26,6 @@ import co.elastic.clients.elasticsearch.security.IndicesPrivileges;
 import co.elastic.clients.elasticsearch.security.RoleTemplateScript;
 import co.elastic.clients.elasticsearch.security.UserIndicesPrivileges;
 import co.elastic.clients.util.AllowForbiddenApis;
-import jakarta.json.JsonException;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
