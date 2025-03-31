@@ -43,13 +43,13 @@ public class UnionTests extends ModelTestCase {
 
     @Test
     public void testScriptDeserializer() {
-        // A union discriminated by its field names (source -> inline, id -> stored)
+        // the source field in script is both a shortcut and an externally tagged union
         {
             Script s = Script.of(_1 -> _1
-                    .source("a script")
+                    .source(_2 -> _2.scriptString("a script"))
             );
             s = checkJsonRoundtrip(s, "{\"source\":\"a script\"}");
-            assertEquals("a script", s.source());
+            assertEquals("a script", s.source().scriptString());
         }
 
         {
@@ -63,7 +63,7 @@ public class UnionTests extends ModelTestCase {
         {
             // Test shortcut property
             Script s = fromJson("\"a script\"", Script.class);
-            assertEquals("a script", s.source());
+            assertEquals("a script", s.source().scriptString());
         }
     }
 
