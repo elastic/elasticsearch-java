@@ -23,6 +23,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import co.elastic.clients.elasticsearch.inference.put_mistral.MistralServiceSettings;
 import co.elastic.clients.elasticsearch.inference.put_mistral.MistralTaskType;
@@ -33,6 +34,8 @@ import co.elastic.clients.elasticsearch.inference.put_mistral.MistralServiceSett
 import co.elastic.clients.elasticsearch.inference.put_mistral.MistralTaskType;
 import co.elastic.clients.elasticsearch.inference.put_mistral.ServiceType;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -97,6 +100,7 @@ public class PutMistralRequest extends RequestBase implements JsonpSerializable 
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private final MistralServiceType service;
 =======
 	private final ServiceType service;
@@ -104,6 +108,9 @@ public class PutMistralRequest extends RequestBase implements JsonpSerializable 
 =======
 	private final ServiceType service;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	private final MistralServiceType service;
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 	private final MistralServiceSettings serviceSettings;
 
@@ -152,6 +159,7 @@ public class PutMistralRequest extends RequestBase implements JsonpSerializable 
 	 */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public final MistralServiceType service() {
 =======
 	public final ServiceType service() {
@@ -159,6 +167,9 @@ public class PutMistralRequest extends RequestBase implements JsonpSerializable 
 =======
 	public final ServiceType service() {
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	public final MistralServiceType service() {
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		return this.service;
 	}
 
@@ -221,6 +232,7 @@ public class PutMistralRequest extends RequestBase implements JsonpSerializable 
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		private MistralServiceType service;
 =======
 		private ServiceType service;
@@ -228,6 +240,9 @@ public class PutMistralRequest extends RequestBase implements JsonpSerializable 
 =======
 		private ServiceType service;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		private MistralServiceType service;
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 		private MistralServiceSettings serviceSettings;
 
@@ -271,6 +286,7 @@ public class PutMistralRequest extends RequestBase implements JsonpSerializable 
 		 */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		public final Builder service(MistralServiceType value) {
 =======
 		public final Builder service(ServiceType value) {
@@ -278,6 +294,9 @@ public class PutMistralRequest extends RequestBase implements JsonpSerializable 
 =======
 		public final Builder service(ServiceType value) {
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		public final Builder service(MistralServiceType value) {
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 			this.service = value;
 			return this;
 		}
@@ -346,6 +365,7 @@ public class PutMistralRequest extends RequestBase implements JsonpSerializable 
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		op.add(Builder::service, MistralServiceType._DESERIALIZER, "service");
 =======
 		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
@@ -353,6 +373,9 @@ public class PutMistralRequest extends RequestBase implements JsonpSerializable 
 =======
 		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		op.add(Builder::service, MistralServiceType._DESERIALIZER, "service");
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		op.add(Builder::serviceSettings, MistralServiceSettings._DESERIALIZER, "service_settings");
 
 	}

@@ -22,11 +22,14 @@ package co.elastic.clients.elasticsearch.inference;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import co.elastic.clients.elasticsearch.inference.put_watsonx.ServiceType;
 import co.elastic.clients.elasticsearch.inference.put_watsonx.WatsonxServiceSettings;
 import co.elastic.clients.elasticsearch.inference.put_watsonx.WatsonxTaskType;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -88,10 +91,14 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class PutWatsonxRequest extends RequestBase implements JsonpSerializable {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private final WatsonxServiceType service;
 =======
 	private final ServiceType service;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	private final WatsonxServiceType service;
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 	private final WatsonxServiceSettings serviceSettings;
 
@@ -121,10 +128,14 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 	 * API name: {@code service}
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public final WatsonxServiceType service() {
 =======
 	public final ServiceType service() {
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	public final WatsonxServiceType service() {
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		return this.service;
 	}
 
@@ -185,10 +196,14 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 			implements
 				ObjectBuilder<PutWatsonxRequest> {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		private WatsonxServiceType service;
 =======
 		private ServiceType service;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		private WatsonxServiceType service;
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 		private WatsonxServiceSettings serviceSettings;
 
@@ -203,10 +218,14 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 		 * API name: {@code service}
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		public final Builder service(WatsonxServiceType value) {
 =======
 		public final Builder service(ServiceType value) {
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		public final Builder service(WatsonxServiceType value) {
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 			this.service = value;
 			return this;
 		}
@@ -283,10 +302,14 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 	protected static void setupPutWatsonxRequestDeserializer(ObjectDeserializer<PutWatsonxRequest.Builder> op) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		op.add(Builder::service, WatsonxServiceType._DESERIALIZER, "service");
 =======
 		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		op.add(Builder::service, WatsonxServiceType._DESERIALIZER, "service");
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		op.add(Builder::serviceSettings, WatsonxServiceSettings._DESERIALIZER, "service_settings");
 
 	}

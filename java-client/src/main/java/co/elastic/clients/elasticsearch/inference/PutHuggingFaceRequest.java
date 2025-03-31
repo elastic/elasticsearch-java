@@ -23,6 +23,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import co.elastic.clients.elasticsearch.inference.put_hugging_face.HuggingFaceServiceSettings;
 import co.elastic.clients.elasticsearch.inference.put_hugging_face.HuggingFaceTaskType;
@@ -33,6 +34,8 @@ import co.elastic.clients.elasticsearch.inference.put_hugging_face.HuggingFaceSe
 import co.elastic.clients.elasticsearch.inference.put_hugging_face.HuggingFaceTaskType;
 import co.elastic.clients.elasticsearch.inference.put_hugging_face.ServiceType;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -116,6 +119,7 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private final HuggingFaceServiceType service;
 =======
 	private final ServiceType service;
@@ -123,6 +127,9 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 =======
 	private final ServiceType service;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	private final HuggingFaceServiceType service;
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 	private final HuggingFaceServiceSettings serviceSettings;
 
@@ -172,6 +179,7 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 	 */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public final HuggingFaceServiceType service() {
 =======
 	public final ServiceType service() {
@@ -179,6 +187,9 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 =======
 	public final ServiceType service() {
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	public final HuggingFaceServiceType service() {
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		return this.service;
 	}
 
@@ -240,6 +251,7 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		private HuggingFaceServiceType service;
 =======
 		private ServiceType service;
@@ -247,6 +259,9 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 =======
 		private ServiceType service;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		private HuggingFaceServiceType service;
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 		private HuggingFaceServiceSettings serviceSettings;
 
@@ -290,6 +305,7 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 		 */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		public final Builder service(HuggingFaceServiceType value) {
 =======
 		public final Builder service(ServiceType value) {
@@ -297,6 +313,9 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 =======
 		public final Builder service(ServiceType value) {
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		public final Builder service(HuggingFaceServiceType value) {
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 			this.service = value;
 			return this;
 		}
@@ -364,6 +383,7 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		op.add(Builder::service, HuggingFaceServiceType._DESERIALIZER, "service");
 =======
 		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
@@ -371,6 +391,9 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 =======
 		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		op.add(Builder::service, HuggingFaceServiceType._DESERIALIZER, "service");
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		op.add(Builder::serviceSettings, HuggingFaceServiceSettings._DESERIALIZER, "service_settings");
 
 	}

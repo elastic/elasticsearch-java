@@ -23,6 +23,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> c49af58dc (Revert "temp rebase fix")
@@ -34,6 +35,8 @@ import co.elastic.clients.elasticsearch.inference.put_amazonbedrock.ServiceType;
 >>>>>>> 03828daff (regen from latest spec)
 =======
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -108,6 +111,7 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private final AmazonBedrockServiceType service;
 =======
 	private final ServiceType service;
@@ -115,6 +119,9 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 =======
 	private final ServiceType service;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	private final AmazonBedrockServiceType service;
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 	private final AmazonBedrockServiceSettings serviceSettings;
 
@@ -168,6 +175,7 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 	 */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public final AmazonBedrockServiceType service() {
 =======
 	public final ServiceType service() {
@@ -175,6 +183,9 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 =======
 	public final ServiceType service() {
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	public final AmazonBedrockServiceType service() {
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		return this.service;
 	}
 
@@ -253,6 +264,7 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		private AmazonBedrockServiceType service;
 =======
 		private ServiceType service;
@@ -260,6 +272,9 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 =======
 		private ServiceType service;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		private AmazonBedrockServiceType service;
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 		private AmazonBedrockServiceSettings serviceSettings;
 
@@ -306,6 +321,7 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 		 */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		public final Builder service(AmazonBedrockServiceType value) {
 =======
 		public final Builder service(ServiceType value) {
@@ -313,6 +329,9 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 =======
 		public final Builder service(ServiceType value) {
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		public final Builder service(AmazonBedrockServiceType value) {
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 			this.service = value;
 			return this;
 		}
@@ -403,6 +422,7 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		op.add(Builder::service, AmazonBedrockServiceType._DESERIALIZER, "service");
 =======
 		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
@@ -410,6 +430,9 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 =======
 		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		op.add(Builder::service, AmazonBedrockServiceType._DESERIALIZER, "service");
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		op.add(Builder::serviceSettings, AmazonBedrockServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, AmazonBedrockTaskSettings._DESERIALIZER, "task_settings");
 

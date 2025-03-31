@@ -23,6 +23,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> c49af58dc (Revert "temp rebase fix")
@@ -34,6 +35,8 @@ import co.elastic.clients.elasticsearch.inference.put_alibabacloud.ServiceType;
 >>>>>>> 03828daff (regen from latest spec)
 =======
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -99,6 +102,7 @@ public class PutAlibabacloudRequest extends RequestBase implements JsonpSerializ
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private final AlibabaCloudServiceType service;
 =======
 	private final ServiceType service;
@@ -106,6 +110,9 @@ public class PutAlibabacloudRequest extends RequestBase implements JsonpSerializ
 =======
 	private final ServiceType service;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	private final AlibabaCloudServiceType service;
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 	private final AlibabaCloudServiceSettings serviceSettings;
 
@@ -159,6 +166,7 @@ public class PutAlibabacloudRequest extends RequestBase implements JsonpSerializ
 	 */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public final AlibabaCloudServiceType service() {
 =======
 	public final ServiceType service() {
@@ -166,6 +174,9 @@ public class PutAlibabacloudRequest extends RequestBase implements JsonpSerializ
 =======
 	public final ServiceType service() {
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	public final AlibabaCloudServiceType service() {
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		return this.service;
 	}
 
@@ -244,6 +255,7 @@ public class PutAlibabacloudRequest extends RequestBase implements JsonpSerializ
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		private AlibabaCloudServiceType service;
 =======
 		private ServiceType service;
@@ -251,6 +263,9 @@ public class PutAlibabacloudRequest extends RequestBase implements JsonpSerializ
 =======
 		private ServiceType service;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		private AlibabaCloudServiceType service;
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 		private AlibabaCloudServiceSettings serviceSettings;
 
@@ -297,6 +312,7 @@ public class PutAlibabacloudRequest extends RequestBase implements JsonpSerializ
 		 */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		public final Builder service(AlibabaCloudServiceType value) {
 =======
 		public final Builder service(ServiceType value) {
@@ -304,6 +320,9 @@ public class PutAlibabacloudRequest extends RequestBase implements JsonpSerializ
 =======
 		public final Builder service(ServiceType value) {
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		public final Builder service(AlibabaCloudServiceType value) {
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 			this.service = value;
 			return this;
 		}
@@ -394,6 +413,7 @@ public class PutAlibabacloudRequest extends RequestBase implements JsonpSerializ
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		op.add(Builder::service, AlibabaCloudServiceType._DESERIALIZER, "service");
 =======
 		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
@@ -401,6 +421,9 @@ public class PutAlibabacloudRequest extends RequestBase implements JsonpSerializ
 =======
 		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		op.add(Builder::service, AlibabaCloudServiceType._DESERIALIZER, "service");
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		op.add(Builder::serviceSettings, AlibabaCloudServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, AlibabaCloudTaskSettings._DESERIALIZER, "task_settings");
 

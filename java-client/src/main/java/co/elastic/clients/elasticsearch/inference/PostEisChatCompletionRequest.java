@@ -22,11 +22,15 @@ package co.elastic.clients.elasticsearch.inference;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+<<<<<<< HEAD
 =======
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,6 +39,8 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -46,11 +52,15 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import jakarta.json.stream.JsonParser;
 =======
 >>>>>>> 03828daff (regen from latest spec)
 =======
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+import jakarta.json.stream.JsonParser;
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
@@ -89,6 +99,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 public class PostEisChatCompletionRequest extends RequestBase implements JsonpSerializable {
 	private final String eisInferenceId;
 
@@ -105,18 +116,27 @@ public class PostEisChatCompletionRequest extends RequestBase implements JsonpSe
 =======
 >>>>>>> c49af58dc (Revert "temp rebase fix")
 public class PostEisChatCompletionRequest extends RequestChatCompletionBase {
+=======
+public class PostEisChatCompletionRequest extends RequestBase implements JsonpSerializable {
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	private final String eisInferenceId;
+
+	private final RequestChatCompletion chatCompletionRequest;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private PostEisChatCompletionRequest(Builder builder) {
-		super(builder);
 
 		this.eisInferenceId = ApiTypeHelper.requireNonNull(builder.eisInferenceId, this, "eisInferenceId");
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 03828daff (regen from latest spec)
 =======
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		this.chatCompletionRequest = ApiTypeHelper.requireNonNull(builder.chatCompletionRequest, this,
+				"chatCompletionRequest");
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 	}
 
@@ -135,6 +155,9 @@ public class PostEisChatCompletionRequest extends RequestChatCompletionBase {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	/**
 	 * Required - Request body.
 	 */
@@ -150,16 +173,20 @@ public class PostEisChatCompletionRequest extends RequestChatCompletionBase {
 
 	}
 
+<<<<<<< HEAD
 =======
 >>>>>>> 03828daff (regen from latest spec)
 =======
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link PostEisChatCompletionRequest}.
 	 */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
@@ -169,10 +196,14 @@ public class PostEisChatCompletionRequest extends RequestChatCompletionBase {
 =======
 	public static class Builder extends RequestChatCompletionBase.AbstractBuilder<Builder>
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 			implements
 				ObjectBuilder<PostEisChatCompletionRequest> {
 		private String eisInferenceId;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 		private RequestChatCompletion chatCompletionRequest;
@@ -181,6 +212,10 @@ public class PostEisChatCompletionRequest extends RequestChatCompletionBase {
 >>>>>>> 03828daff (regen from latest spec)
 =======
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		private RequestChatCompletion chatCompletionRequest;
+
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		/**
 		 * Required - The unique identifier of the inference endpoint.
 		 * <p>
@@ -193,6 +228,9 @@ public class PostEisChatCompletionRequest extends RequestChatCompletionBase {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		/**
 		 * Required - Request body.
 		 */
@@ -218,10 +256,13 @@ public class PostEisChatCompletionRequest extends RequestChatCompletionBase {
 			return this.chatCompletionRequest(value);
 		}
 
+<<<<<<< HEAD
 =======
 >>>>>>> 03828daff (regen from latest spec)
 =======
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		@Override
 		protected Builder self() {
 			return this;
@@ -242,6 +283,7 @@ public class PostEisChatCompletionRequest extends RequestChatCompletionBase {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public static final JsonpDeserializer<PostEisChatCompletionRequest> _DESERIALIZER = createPostEisChatCompletionRequestDeserializer();
 	protected static JsonpDeserializer<PostEisChatCompletionRequest> createPostEisChatCompletionRequestDeserializer() {
 
@@ -253,21 +295,22 @@ public class PostEisChatCompletionRequest extends RequestChatCompletionBase {
 =======
 >>>>>>> c49af58dc (Revert "temp rebase fix")
 	// ---------------------------------------------------------------------------------------------
+=======
+	public static final JsonpDeserializer<PostEisChatCompletionRequest> _DESERIALIZER = createPostEisChatCompletionRequestDeserializer();
+	protected static JsonpDeserializer<PostEisChatCompletionRequest> createPostEisChatCompletionRequestDeserializer() {
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
-	/**
-	 * Json deserializer for {@link PostEisChatCompletionRequest}
-	 */
-	public static final JsonpDeserializer<PostEisChatCompletionRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PostEisChatCompletionRequest::setupPostEisChatCompletionRequestDeserializer);
+		JsonpDeserializer<RequestChatCompletion> valueDeserializer = RequestChatCompletion._DESERIALIZER;
 
-	protected static void setupPostEisChatCompletionRequestDeserializer(
-			ObjectDeserializer<PostEisChatCompletionRequest.Builder> op) {
-		RequestChatCompletionBase.setupRequestChatCompletionBaseDeserializer(op);
-
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 03828daff (regen from latest spec)
 =======
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.chatCompletionRequest(valueDeserializer.deserialize(parser, mapper, event)).build());
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	}
 
 	// ---------------------------------------------------------------------------------------------

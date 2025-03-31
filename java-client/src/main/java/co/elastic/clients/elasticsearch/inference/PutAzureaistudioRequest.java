@@ -23,6 +23,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> c49af58dc (Revert "temp rebase fix")
@@ -34,6 +35,8 @@ import co.elastic.clients.elasticsearch.inference.put_azureaistudio.ServiceType;
 >>>>>>> 03828daff (regen from latest spec)
 =======
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -99,6 +102,7 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private final AzureAiStudioServiceType service;
 =======
 	private final ServiceType service;
@@ -106,6 +110,9 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 =======
 	private final ServiceType service;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	private final AzureAiStudioServiceType service;
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 	private final AzureAiStudioServiceSettings serviceSettings;
 
@@ -159,6 +166,7 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 	 */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public final AzureAiStudioServiceType service() {
 =======
 	public final ServiceType service() {
@@ -166,6 +174,9 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 =======
 	public final ServiceType service() {
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	public final AzureAiStudioServiceType service() {
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		return this.service;
 	}
 
@@ -244,6 +255,7 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		private AzureAiStudioServiceType service;
 =======
 		private ServiceType service;
@@ -251,6 +263,9 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 =======
 		private ServiceType service;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		private AzureAiStudioServiceType service;
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 		private AzureAiStudioServiceSettings serviceSettings;
 
@@ -297,6 +312,7 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 		 */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		public final Builder service(AzureAiStudioServiceType value) {
 =======
 		public final Builder service(ServiceType value) {
@@ -304,6 +320,9 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 =======
 		public final Builder service(ServiceType value) {
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		public final Builder service(AzureAiStudioServiceType value) {
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 			this.service = value;
 			return this;
 		}
@@ -394,6 +413,7 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		op.add(Builder::service, AzureAiStudioServiceType._DESERIALIZER, "service");
 =======
 		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
@@ -401,6 +421,9 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 =======
 		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		op.add(Builder::service, AzureAiStudioServiceType._DESERIALIZER, "service");
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		op.add(Builder::serviceSettings, AzureAiStudioServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, AzureAiStudioTaskSettings._DESERIALIZER, "task_settings");
 

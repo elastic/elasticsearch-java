@@ -22,11 +22,14 @@ package co.elastic.clients.elasticsearch.inference;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import co.elastic.clients.elasticsearch.inference.put_eis.EisServiceSettings;
 import co.elastic.clients.elasticsearch.inference.put_eis.EisTaskType;
 import co.elastic.clients.elasticsearch.inference.put_eis.ServiceType;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -77,10 +80,14 @@ public class PutEisRequest extends RequestBase implements JsonpSerializable {
 	private final String eisInferenceId;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private final EisServiceType service;
 =======
 	private final ServiceType service;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	private final EisServiceType service;
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 	private final EisServiceSettings serviceSettings;
 
@@ -117,10 +124,14 @@ public class PutEisRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code service}
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public final EisServiceType service() {
 =======
 	public final ServiceType service() {
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	public final EisServiceType service() {
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		return this.service;
 	}
 
@@ -173,10 +184,14 @@ public class PutEisRequest extends RequestBase implements JsonpSerializable {
 		private String eisInferenceId;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		private EisServiceType service;
 =======
 		private ServiceType service;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		private EisServiceType service;
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 		private EisServiceSettings serviceSettings;
 
@@ -199,10 +214,14 @@ public class PutEisRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code service}
 		 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 		public final Builder service(EisServiceType value) {
 =======
 		public final Builder service(ServiceType value) {
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		public final Builder service(EisServiceType value) {
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 			this.service = value;
 			return this;
 		}
@@ -270,10 +289,14 @@ public class PutEisRequest extends RequestBase implements JsonpSerializable {
 	protected static void setupPutEisRequestDeserializer(ObjectDeserializer<PutEisRequest.Builder> op) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		op.add(Builder::service, EisServiceType._DESERIALIZER, "service");
 =======
 		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		op.add(Builder::service, EisServiceType._DESERIALIZER, "service");
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		op.add(Builder::serviceSettings, EisServiceSettings._DESERIALIZER, "service_settings");
 
 	}

@@ -23,6 +23,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> c49af58dc (Revert "temp rebase fix")
@@ -34,6 +35,8 @@ import co.elastic.clients.elasticsearch.inference.put_anthropic.ServiceType;
 >>>>>>> 03828daff (regen from latest spec)
 =======
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -98,6 +101,7 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private final AnthropicServiceType service;
 =======
 	private final ServiceType service;
@@ -105,6 +109,9 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 =======
 	private final ServiceType service;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	private final AnthropicServiceType service;
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 	private final AnthropicServiceSettings serviceSettings;
 
@@ -158,6 +165,7 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 	 */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public final AnthropicServiceType service() {
 =======
 	public final ServiceType service() {
@@ -165,6 +173,9 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 =======
 	public final ServiceType service() {
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	public final AnthropicServiceType service() {
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		return this.service;
 	}
 
@@ -244,6 +255,7 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		private AnthropicServiceType service;
 =======
 		private ServiceType service;
@@ -251,6 +263,9 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 =======
 		private ServiceType service;
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		private AnthropicServiceType service;
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 
 		private AnthropicServiceSettings serviceSettings;
 
@@ -297,6 +312,7 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 		 */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		public final Builder service(AnthropicServiceType value) {
 =======
 		public final Builder service(ServiceType value) {
@@ -304,6 +320,9 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 =======
 		public final Builder service(ServiceType value) {
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		public final Builder service(AnthropicServiceType value) {
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 			this.service = value;
 			return this;
 		}
@@ -394,6 +413,7 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		op.add(Builder::service, AnthropicServiceType._DESERIALIZER, "service");
 =======
 		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
@@ -401,6 +421,9 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 =======
 		op.add(Builder::service, ServiceType._DESERIALIZER, "service");
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+		op.add(Builder::service, AnthropicServiceType._DESERIALIZER, "service");
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 		op.add(Builder::serviceSettings, AnthropicServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, AnthropicTaskSettings._DESERIALIZER, "task_settings");
 

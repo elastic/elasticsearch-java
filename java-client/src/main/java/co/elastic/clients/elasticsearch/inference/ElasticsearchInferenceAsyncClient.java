@@ -321,6 +321,9 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	// ----- Endpoint: inference.put_alibabacloud
 
 	/**
@@ -723,8 +726,11 @@ public class ElasticsearchInferenceAsyncClient
 		return putCohere(fn.apply(new PutCohereRequest.Builder()).build());
 	}
 
+<<<<<<< HEAD
 =======
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	// ----- Endpoint: inference.put_eis
 
 	/**
@@ -735,10 +741,14 @@ public class ElasticsearchInferenceAsyncClient
 	 * 
 	 * @see <a href=
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-eis">Documentation
 =======
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/infer-service-eis.html">Documentation
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-eis">Documentation
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	 *      on elastic.co</a>
 	 */
 
@@ -760,10 +770,14 @@ public class ElasticsearchInferenceAsyncClient
 	 *            {@link PutEisRequest}
 	 * @see <a href=
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-eis">Documentation
 =======
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/infer-service-eis.html">Documentation
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-eis">Documentation
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	 *      on elastic.co</a>
 	 */
 
@@ -773,6 +787,9 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	// ----- Endpoint: inference.put_elasticsearch
 
 	/**
@@ -1300,8 +1317,11 @@ public class ElasticsearchInferenceAsyncClient
 		return putMistral(fn.apply(new PutMistralRequest.Builder()).build());
 	}
 
+<<<<<<< HEAD
 =======
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	// ----- Endpoint: inference.put_openai
 
 	/**
@@ -1309,10 +1329,14 @@ public class ElasticsearchInferenceAsyncClient
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * <code>openai</code> service or <code>openai</code> compatible APIs.
 =======
 	 * <code>openai</code> service.
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	 * <code>openai</code> service or <code>openai</code> compatible APIs.
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	 * <p>
 	 * When you create an inference endpoint, the associated machine learning model
 	 * is automatically deployed if it is not already running. After creating the
@@ -1326,10 +1350,14 @@ public class ElasticsearchInferenceAsyncClient
 	 * 
 	 * @see <a href=
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-openai">Documentation
 =======
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/infer-service-openai.html">Documentation
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-openai">Documentation
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	 *      on elastic.co</a>
 	 */
 
@@ -1345,10 +1373,14 @@ public class ElasticsearchInferenceAsyncClient
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 * <code>openai</code> service or <code>openai</code> compatible APIs.
 =======
 	 * <code>openai</code> service.
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	 * <code>openai</code> service or <code>openai</code> compatible APIs.
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	 * <p>
 	 * When you create an inference endpoint, the associated machine learning model
 	 * is automatically deployed if it is not already running. After creating the
@@ -1365,10 +1397,14 @@ public class ElasticsearchInferenceAsyncClient
 	 *            {@link PutOpenaiRequest}
 	 * @see <a href=
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-openai">Documentation
 =======
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/infer-service-openai.html">Documentation
 >>>>>>> c49af58dc (Revert "temp rebase fix")
+=======
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-openai">Documentation
+>>>>>>> b5f478d93 ([codegen] update to latest spec and generator)
 	 *      on elastic.co</a>
 	 */
 

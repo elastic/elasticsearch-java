@@ -180,12 +180,19 @@ import javax.annotation.Nullable;
  */
 public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, ElasticsearchAsyncClient> {
 
+	/**
+	 * Creates a client from a {@link ElasticsearchTransportConfig.Default}}
+	 * configuration created with an inline lambda expression.
+	 */
 	public static ElasticsearchAsyncClient of(
 			Function<ElasticsearchTransportConfig.Builder, ElasticsearchTransportConfig.Builder> fn) {
 		return new ElasticsearchAsyncClient(
 				fn.apply(new ElasticsearchTransportConfig.Builder()).build().buildTransport());
 	}
 
+	/**
+	 * Creates a client from an {@link ElasticsearchTransportConfig}.
+	 */
 	public ElasticsearchAsyncClient(ElasticsearchTransportConfig config) {
 		this(config.buildTransport());
 	}
