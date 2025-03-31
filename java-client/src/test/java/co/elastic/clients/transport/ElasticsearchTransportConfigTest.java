@@ -25,12 +25,10 @@ import co.elastic.clients.transport.rest5_client.Rest5ClientTransport;
 import co.elastic.clients.transport.rest_client.RestClientOptions;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import org.elasticsearch.client.RequestOptions;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertThrows;
-import static org.junit.Assert.assertTrue;
-
-public class ElasticsearchTransportConfigTest {
+public class ElasticsearchTransportConfigTest extends Assertions {
 
     @Test
     public void buildLegacy() {
@@ -47,9 +45,9 @@ public class ElasticsearchTransportConfigTest {
         client = client.withTransportOptions(options);
 
         // checking options correctness
-        assertTrue(client._transport().getClass().equals(RestClientTransport.class));
+        assertEquals(client._transport().getClass(), RestClientTransport.class);
         assertTrue(client._transportOptions().keepResponseBodyOnException());
-        assertTrue(client._transportOptions().headers().size() == 3);
+        assertEquals(3, client._transportOptions().headers().size());
 
         // token update utility: not supported on legacy transport
         ElasticsearchClient finalClient = client;
@@ -71,14 +69,67 @@ public class ElasticsearchTransportConfigTest {
         client = client.withTransportOptions(options);
 
         // checking options correctness
-        assertTrue(client._transport().getClass().equals(Rest5ClientTransport.class));
+        assertInstanceOf(Rest5ClientTransport.class, client._transport());
         assertTrue(client._transportOptions().keepResponseBodyOnException());
-        assertTrue(client._transportOptions().headers().size() == 3);
+        assertEquals(3, client._transportOptions().headers().size());
 
         // token update utility: supported on new transport
         client._transportOptions().updateToken("token");
-        assertTrue(client._transportOptions().headers().size() == 4);
+        assertEquals(4, client._transportOptions().headers().size());
         assertTrue(client._transportOptions().headers().stream().anyMatch(h -> h.getKey().equals(
             "Authorization")));
+    }
+
+    @Test
+    public void credentialCombinations() {
+
+        // Bare minimum is a host URL
+        new ElasticsearchTransportConfig.Builder()
+            .host("http://example.com")
+            .build();
+
+        assertThrows(IllegalArgumentException.class, () -> new ElasticsearchTransportConfig.Builder()
+            .host("http://example.com")
+            .usernameAndPassword("elastic", null)
+            .build()
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> new ElasticsearchTransportConfig.Builder()
+            .host("http://example.com")
+            .usernameAndPassword(null, "password")
+            .build()
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> new ElasticsearchTransportConfig.Builder()
+            .host("http://example.com")
+            .usernameAndPassword("elastic", "password")
+            .token("token")
+            .build()
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> new ElasticsearchTransportConfig.Builder()
+            .host("http://example.com")
+            .usernameAndPassword("elastic", "password")
+            .apiKey("api_key")
+            .build()
+        );
+
+        assertThrows(IllegalArgumentException.class, () -> new ElasticsearchTransportConfig.Builder()
+            .host("http://example.com")
+            .apiKey("api_key")
+            .token("token")
+            .build()
+        );
+    }
+
+    @Test
+    public void checkDefaultConfig() throws Exception {
+        ElasticsearchTransportConfig.Default config = new ElasticsearchTransportConfig.Builder()
+            .host("http://example.com")
+            .build();
+
+        try (var transport = config.buildTransport()) {
+            assertInstanceOf(Rest5ClientTransport.class, transport);
+        }
     }
 }

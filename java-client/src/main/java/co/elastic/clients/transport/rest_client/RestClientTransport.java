@@ -20,7 +20,6 @@
 package co.elastic.clients.transport.rest_client;
 
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.ElasticsearchTransportBase;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.ElasticsearchTransportConfig;
@@ -32,15 +31,8 @@ import org.elasticsearch.client.RestClientBuilder;
 
 import javax.annotation.Nullable;
 import java.util.Base64;
-import java.util.function.Function;
 
 public class RestClientTransport extends ElasticsearchTransportBase {
-
-    /**
-     * Factory function to be used for {@link ElasticsearchTransportConfig#transportFactory()}.
-     */
-    public static final Function<ElasticsearchTransportConfig, ElasticsearchTransport> FACTORY = RestClientTransport::new;
-
 
     private final RestClient restClient;
 
@@ -90,6 +82,8 @@ public class RestClientTransport extends ElasticsearchTransportBase {
         if (config.sslContext() != null) {
             restClientBuilder.setHttpClientConfigCallback(hc -> hc.setSSLContext(config.sslContext()));
         }
+
+        restClientBuilder.setCompressionEnabled(config.useCompression());
 
         return restClientBuilder.build();
     }
