@@ -19,6 +19,5 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-
       - name: Run java client tests
         run: ./gradlew test -p java-client
