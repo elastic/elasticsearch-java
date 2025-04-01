@@ -319,10 +319,15 @@ class SpdxReporter(val dest: File) : ReportRenderer {
                 val depName = dep.group + ":" + dep.name
 
                 val info = LicenseDataCollector.multiModuleLicenseInfo(dep)
-                val depUrl = if (depName.startsWith("org.apache.httpcomponents")) {
-                    "https://hc.apache.org/"
-                } else {
-                    info.moduleUrls.first()
+                val depUrl = when(dep.group) {
+                    "org.apache.httpcomponents.client5" -> "https://hc.apache.org/"
+                    "org.apache.httpcomponents.core5" -> "https://hc.apache.org/"
+                    "com.fasterxml.jackson" -> "https://github.com/FasterXML/jackson"
+                    else -> if (info.moduleUrls.isEmpty()) {
+                                throw RuntimeException("No URL found for module '$depName'")
+                            } else {
+                                info.moduleUrls.first()
+                            }
                 }
 
                 val licenseIds = info.licenses.mapNotNull { license ->
