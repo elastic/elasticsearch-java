@@ -214,6 +214,47 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 				this.transportOptions);
 	}
 
+	// ----- Endpoint: inference.post_eis_chat_completion
+
+	/**
+	 * Perform a chat completion task through the Elastic Inference Service (EIS).
+	 * <p>
+	 * Perform a chat completion inference task with the <code>elastic</code>
+	 * service.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-post-eis-chat-completion">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public BinaryResponse postEisChatCompletion(PostEisChatCompletionRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		Endpoint<PostEisChatCompletionRequest, BinaryResponse, ErrorResponse> endpoint = (Endpoint<PostEisChatCompletionRequest, BinaryResponse, ErrorResponse>) PostEisChatCompletionRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Perform a chat completion task through the Elastic Inference Service (EIS).
+	 * <p>
+	 * Perform a chat completion inference task with the <code>elastic</code>
+	 * service.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PostEisChatCompletionRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-post-eis-chat-completion">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final BinaryResponse postEisChatCompletion(
+			Function<PostEisChatCompletionRequest.Builder, ObjectBuilder<PostEisChatCompletionRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return postEisChatCompletion(fn.apply(new PostEisChatCompletionRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: inference.put
 
 	/**
@@ -283,6 +324,417 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 		return put(fn.apply(new PutRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: inference.put_alibabacloud
+
+	/**
+	 * Create an AlibabaCloud AI Search inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>alibabacloud-ai-search</code> service.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-alibabacloud">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutAlibabacloudResponse putAlibabacloud(PutAlibabacloudRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutAlibabacloudRequest, PutAlibabacloudResponse, ErrorResponse> endpoint = (JsonEndpoint<PutAlibabacloudRequest, PutAlibabacloudResponse, ErrorResponse>) PutAlibabacloudRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create an AlibabaCloud AI Search inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>alibabacloud-ai-search</code> service.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutAlibabacloudRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-alibabacloud">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutAlibabacloudResponse putAlibabacloud(
+			Function<PutAlibabacloudRequest.Builder, ObjectBuilder<PutAlibabacloudRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putAlibabacloud(fn.apply(new PutAlibabacloudRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_amazonbedrock
+
+	/**
+	 * Create an Amazon Bedrock inference endpoint.
+	 * <p>
+	 * Creates an inference endpoint to perform an inference task with the
+	 * <code>amazonbedrock</code> service. <blockquote>
+	 * <p>
+	 * info You need to provide the access and secret keys only once, during the
+	 * inference model creation. The get inference API does not retrieve your access
+	 * or secret keys. After creating the inference model, you cannot change the
+	 * associated key pairs. If you want to use a different access and secret key
+	 * pair, delete the inference model and recreate it with the same name and the
+	 * updated keys.
+	 * </p>
+	 * </blockquote>
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-amazonbedrock">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutAmazonbedrockResponse putAmazonbedrock(PutAmazonbedrockRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutAmazonbedrockRequest, PutAmazonbedrockResponse, ErrorResponse> endpoint = (JsonEndpoint<PutAmazonbedrockRequest, PutAmazonbedrockResponse, ErrorResponse>) PutAmazonbedrockRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create an Amazon Bedrock inference endpoint.
+	 * <p>
+	 * Creates an inference endpoint to perform an inference task with the
+	 * <code>amazonbedrock</code> service. <blockquote>
+	 * <p>
+	 * info You need to provide the access and secret keys only once, during the
+	 * inference model creation. The get inference API does not retrieve your access
+	 * or secret keys. After creating the inference model, you cannot change the
+	 * associated key pairs. If you want to use a different access and secret key
+	 * pair, delete the inference model and recreate it with the same name and the
+	 * updated keys.
+	 * </p>
+	 * </blockquote>
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutAmazonbedrockRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-amazonbedrock">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutAmazonbedrockResponse putAmazonbedrock(
+			Function<PutAmazonbedrockRequest.Builder, ObjectBuilder<PutAmazonbedrockRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putAmazonbedrock(fn.apply(new PutAmazonbedrockRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_anthropic
+
+	/**
+	 * Create an Anthropic inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>anthropic</code> service.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-anthropic">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutAnthropicResponse putAnthropic(PutAnthropicRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutAnthropicRequest, PutAnthropicResponse, ErrorResponse> endpoint = (JsonEndpoint<PutAnthropicRequest, PutAnthropicResponse, ErrorResponse>) PutAnthropicRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create an Anthropic inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>anthropic</code> service.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutAnthropicRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-anthropic">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutAnthropicResponse putAnthropic(
+			Function<PutAnthropicRequest.Builder, ObjectBuilder<PutAnthropicRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putAnthropic(fn.apply(new PutAnthropicRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_azureaistudio
+
+	/**
+	 * Create an Azure AI studio inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>azureaistudio</code> service.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-azureaistudio">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutAzureaistudioResponse putAzureaistudio(PutAzureaistudioRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutAzureaistudioRequest, PutAzureaistudioResponse, ErrorResponse> endpoint = (JsonEndpoint<PutAzureaistudioRequest, PutAzureaistudioResponse, ErrorResponse>) PutAzureaistudioRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create an Azure AI studio inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>azureaistudio</code> service.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutAzureaistudioRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-azureaistudio">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutAzureaistudioResponse putAzureaistudio(
+			Function<PutAzureaistudioRequest.Builder, ObjectBuilder<PutAzureaistudioRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putAzureaistudio(fn.apply(new PutAzureaistudioRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_azureopenai
+
+	/**
+	 * Create an Azure OpenAI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>azureopenai</code> service.
+	 * <p>
+	 * The list of chat completion models that you can choose from in your Azure
+	 * OpenAI deployment include:
+	 * <ul>
+	 * <li><a href=
+	 * "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#gpt-4-and-gpt-4-turbo-models">GPT-4
+	 * and GPT-4 Turbo models</a></li>
+	 * <li><a href=
+	 * "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#gpt-35">GPT-3.5</a></li>
+	 * </ul>
+	 * <p>
+	 * The list of embeddings models that you can choose from in your deployment can
+	 * be found in the <a href=
+	 * "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#embeddings">Azure
+	 * models documentation</a>.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-azureopenai">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutAzureopenaiResponse putAzureopenai(PutAzureopenaiRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutAzureopenaiRequest, PutAzureopenaiResponse, ErrorResponse> endpoint = (JsonEndpoint<PutAzureopenaiRequest, PutAzureopenaiResponse, ErrorResponse>) PutAzureopenaiRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create an Azure OpenAI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>azureopenai</code> service.
+	 * <p>
+	 * The list of chat completion models that you can choose from in your Azure
+	 * OpenAI deployment include:
+	 * <ul>
+	 * <li><a href=
+	 * "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#gpt-4-and-gpt-4-turbo-models">GPT-4
+	 * and GPT-4 Turbo models</a></li>
+	 * <li><a href=
+	 * "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#gpt-35">GPT-3.5</a></li>
+	 * </ul>
+	 * <p>
+	 * The list of embeddings models that you can choose from in your deployment can
+	 * be found in the <a href=
+	 * "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#embeddings">Azure
+	 * models documentation</a>.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutAzureopenaiRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-azureopenai">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutAzureopenaiResponse putAzureopenai(
+			Function<PutAzureopenaiRequest.Builder, ObjectBuilder<PutAzureopenaiRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putAzureopenai(fn.apply(new PutAzureopenaiRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_cohere
+
+	/**
+	 * Create a Cohere inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>cohere</code> service.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-cohere">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutCohereResponse putCohere(PutCohereRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutCohereRequest, PutCohereResponse, ErrorResponse> endpoint = (JsonEndpoint<PutCohereRequest, PutCohereResponse, ErrorResponse>) PutCohereRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create a Cohere inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>cohere</code> service.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutCohereRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-cohere">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutCohereResponse putCohere(Function<PutCohereRequest.Builder, ObjectBuilder<PutCohereRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putCohere(fn.apply(new PutCohereRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: inference.put_eis
 
 	/**
@@ -292,7 +744,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * Inference Service (EIS).
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/infer-service-eis.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-eis">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -313,7 +765,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutEisRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/infer-service-eis.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-eis">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -322,13 +774,201 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 		return putEis(fn.apply(new PutEisRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: inference.put_openai
+	// ----- Endpoint: inference.put_elasticsearch
 
 	/**
-	 * Create an OpenAI inference endpoint.
+	 * Create an Elasticsearch inference endpoint.
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
-	 * <code>openai</code> service.
+	 * <code>elasticsearch</code> service. <blockquote>
+	 * <p>
+	 * info Your Elasticsearch deployment contains preconfigured ELSER and E5
+	 * inference endpoints, you only need to create the enpoints using the API if
+	 * you want to customize the settings.
+	 * </p>
+	 * </blockquote>
+	 * <p>
+	 * If you use the ELSER or the E5 model through the <code>elasticsearch</code>
+	 * service, the API request will automatically download and deploy the model if
+	 * it isn't downloaded yet. <blockquote>
+	 * <p>
+	 * info You might see a 502 bad gateway error in the response when using the
+	 * Kibana Console. This error usually just reflects a timeout, while the model
+	 * downloads in the background. You can check the download progress in the
+	 * Machine Learning UI. If using the Python client, you can set the timeout
+	 * parameter to a higher value.
+	 * </p>
+	 * </blockquote>
+	 * <p>
+	 * After creating the endpoint, wait for the model deployment to complete before
+	 * using it. To verify the deployment status, use the get trained model
+	 * statistics API. Look for
+	 * <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the response
+	 * and ensure that the <code>&quot;allocation_count&quot;</code> matches the
+	 * <code>&quot;target_allocation_count&quot;</code>. Avoid creating multiple
+	 * endpoints for the same model unless required, as each endpoint consumes
+	 * significant resources.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-elasticsearch">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutElasticsearchResponse putElasticsearch(PutElasticsearchRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutElasticsearchRequest, PutElasticsearchResponse, ErrorResponse> endpoint = (JsonEndpoint<PutElasticsearchRequest, PutElasticsearchResponse, ErrorResponse>) PutElasticsearchRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create an Elasticsearch inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>elasticsearch</code> service. <blockquote>
+	 * <p>
+	 * info Your Elasticsearch deployment contains preconfigured ELSER and E5
+	 * inference endpoints, you only need to create the enpoints using the API if
+	 * you want to customize the settings.
+	 * </p>
+	 * </blockquote>
+	 * <p>
+	 * If you use the ELSER or the E5 model through the <code>elasticsearch</code>
+	 * service, the API request will automatically download and deploy the model if
+	 * it isn't downloaded yet. <blockquote>
+	 * <p>
+	 * info You might see a 502 bad gateway error in the response when using the
+	 * Kibana Console. This error usually just reflects a timeout, while the model
+	 * downloads in the background. You can check the download progress in the
+	 * Machine Learning UI. If using the Python client, you can set the timeout
+	 * parameter to a higher value.
+	 * </p>
+	 * </blockquote>
+	 * <p>
+	 * After creating the endpoint, wait for the model deployment to complete before
+	 * using it. To verify the deployment status, use the get trained model
+	 * statistics API. Look for
+	 * <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the response
+	 * and ensure that the <code>&quot;allocation_count&quot;</code> matches the
+	 * <code>&quot;target_allocation_count&quot;</code>. Avoid creating multiple
+	 * endpoints for the same model unless required, as each endpoint consumes
+	 * significant resources.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutElasticsearchRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-elasticsearch">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutElasticsearchResponse putElasticsearch(
+			Function<PutElasticsearchRequest.Builder, ObjectBuilder<PutElasticsearchRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putElasticsearch(fn.apply(new PutElasticsearchRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_elser
+
+	/**
+	 * Create an ELSER inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>elser</code> service. You can also deploy ELSER by using the
+	 * Elasticsearch inference integration. <blockquote>
+	 * <p>
+	 * info Your Elasticsearch deployment contains a preconfigured ELSER inference
+	 * endpoint, you only need to create the enpoint using the API if you want to
+	 * customize the settings.
+	 * </p>
+	 * </blockquote>
+	 * <p>
+	 * The API request will automatically download and deploy the ELSER model if it
+	 * isn't already downloaded. <blockquote>
+	 * <p>
+	 * info You might see a 502 bad gateway error in the response when using the
+	 * Kibana Console. This error usually just reflects a timeout, while the model
+	 * downloads in the background. You can check the download progress in the
+	 * Machine Learning UI. If using the Python client, you can set the timeout
+	 * parameter to a higher value.
+	 * </p>
+	 * </blockquote>
+	 * <p>
+	 * After creating the endpoint, wait for the model deployment to complete before
+	 * using it. To verify the deployment status, use the get trained model
+	 * statistics API. Look for
+	 * <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the response
+	 * and ensure that the <code>&quot;allocation_count&quot;</code> matches the
+	 * <code>&quot;target_allocation_count&quot;</code>. Avoid creating multiple
+	 * endpoints for the same model unless required, as each endpoint consumes
+	 * significant resources.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-elser">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutElserResponse putElser(PutElserRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutElserRequest, PutElserResponse, ErrorResponse> endpoint = (JsonEndpoint<PutElserRequest, PutElserResponse, ErrorResponse>) PutElserRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create an ELSER inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>elser</code> service. You can also deploy ELSER by using the
+	 * Elasticsearch inference integration. <blockquote>
+	 * <p>
+	 * info Your Elasticsearch deployment contains a preconfigured ELSER inference
+	 * endpoint, you only need to create the enpoint using the API if you want to
+	 * customize the settings.
+	 * </p>
+	 * </blockquote>
+	 * <p>
+	 * The API request will automatically download and deploy the ELSER model if it
+	 * isn't already downloaded. <blockquote>
+	 * <p>
+	 * info You might see a 502 bad gateway error in the response when using the
+	 * Kibana Console. This error usually just reflects a timeout, while the model
+	 * downloads in the background. You can check the download progress in the
+	 * Machine Learning UI. If using the Python client, you can set the timeout
+	 * parameter to a higher value.
+	 * </p>
+	 * </blockquote>
+	 * <p>
+	 * After creating the endpoint, wait for the model deployment to complete before
+	 * using it. To verify the deployment status, use the get trained model
+	 * statistics API. Look for
+	 * <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the response
+	 * and ensure that the <code>&quot;allocation_count&quot;</code> matches the
+	 * <code>&quot;target_allocation_count&quot;</code>. Avoid creating multiple
+	 * endpoints for the same model unless required, as each endpoint consumes
+	 * significant resources.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutElserRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-elser">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutElserResponse putElser(Function<PutElserRequest.Builder, ObjectBuilder<PutElserRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putElser(fn.apply(new PutElserRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_googleaistudio
+
+	/**
+	 * Create an Google AI Studio inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>googleaistudio</code> service.
 	 * <p>
 	 * When you create an inference endpoint, the associated machine learning model
 	 * is automatically deployed if it is not already running. After creating the
@@ -341,7 +981,354 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * consumes significant resources.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/infer-service-openai.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-googleaistudio">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutGoogleaistudioResponse putGoogleaistudio(PutGoogleaistudioRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutGoogleaistudioRequest, PutGoogleaistudioResponse, ErrorResponse> endpoint = (JsonEndpoint<PutGoogleaistudioRequest, PutGoogleaistudioResponse, ErrorResponse>) PutGoogleaistudioRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create an Google AI Studio inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>googleaistudio</code> service.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutGoogleaistudioRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-googleaistudio">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutGoogleaistudioResponse putGoogleaistudio(
+			Function<PutGoogleaistudioRequest.Builder, ObjectBuilder<PutGoogleaistudioRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putGoogleaistudio(fn.apply(new PutGoogleaistudioRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_googlevertexai
+
+	/**
+	 * Create a Google Vertex AI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>googlevertexai</code> service.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-googlevertexai">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutGooglevertexaiResponse putGooglevertexai(PutGooglevertexaiRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutGooglevertexaiRequest, PutGooglevertexaiResponse, ErrorResponse> endpoint = (JsonEndpoint<PutGooglevertexaiRequest, PutGooglevertexaiResponse, ErrorResponse>) PutGooglevertexaiRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create a Google Vertex AI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>googlevertexai</code> service.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutGooglevertexaiRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-googlevertexai">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutGooglevertexaiResponse putGooglevertexai(
+			Function<PutGooglevertexaiRequest.Builder, ObjectBuilder<PutGooglevertexaiRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putGooglevertexai(fn.apply(new PutGooglevertexaiRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_hugging_face
+
+	/**
+	 * Create a Hugging Face inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>hugging_face</code> service.
+	 * <p>
+	 * You must first create an inference endpoint on the Hugging Face endpoint page
+	 * to get an endpoint URL. Select the model you want to use on the new endpoint
+	 * creation page (for example <code>intfloat/e5-small-v2</code>), then select
+	 * the sentence embeddings task under the advanced configuration section. Create
+	 * the endpoint and copy the URL after the endpoint initialization has been
+	 * finished.
+	 * <p>
+	 * The following models are recommended for the Hugging Face service:
+	 * <ul>
+	 * <li><code>all-MiniLM-L6-v2</code></li>
+	 * <li><code>all-MiniLM-L12-v2</code></li>
+	 * <li><code>all-mpnet-base-v2</code></li>
+	 * <li><code>e5-base-v2</code></li>
+	 * <li><code>e5-small-v2</code></li>
+	 * <li><code>multilingual-e5-base</code></li>
+	 * <li><code>multilingual-e5-small</code></li>
+	 * </ul>
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-hugging-face">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutHuggingFaceResponse putHuggingFace(PutHuggingFaceRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutHuggingFaceRequest, PutHuggingFaceResponse, ErrorResponse> endpoint = (JsonEndpoint<PutHuggingFaceRequest, PutHuggingFaceResponse, ErrorResponse>) PutHuggingFaceRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create a Hugging Face inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>hugging_face</code> service.
+	 * <p>
+	 * You must first create an inference endpoint on the Hugging Face endpoint page
+	 * to get an endpoint URL. Select the model you want to use on the new endpoint
+	 * creation page (for example <code>intfloat/e5-small-v2</code>), then select
+	 * the sentence embeddings task under the advanced configuration section. Create
+	 * the endpoint and copy the URL after the endpoint initialization has been
+	 * finished.
+	 * <p>
+	 * The following models are recommended for the Hugging Face service:
+	 * <ul>
+	 * <li><code>all-MiniLM-L6-v2</code></li>
+	 * <li><code>all-MiniLM-L12-v2</code></li>
+	 * <li><code>all-mpnet-base-v2</code></li>
+	 * <li><code>e5-base-v2</code></li>
+	 * <li><code>e5-small-v2</code></li>
+	 * <li><code>multilingual-e5-base</code></li>
+	 * <li><code>multilingual-e5-small</code></li>
+	 * </ul>
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutHuggingFaceRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-hugging-face">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutHuggingFaceResponse putHuggingFace(
+			Function<PutHuggingFaceRequest.Builder, ObjectBuilder<PutHuggingFaceRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putHuggingFace(fn.apply(new PutHuggingFaceRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_jinaai
+
+	/**
+	 * Create an JinaAI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>jinaai</code> service.
+	 * <p>
+	 * To review the available <code>rerank</code> models, refer to
+	 * <a href="https://jina.ai/reranker">https://jina.ai/reranker</a>. To review
+	 * the available <code>text_embedding</code> models, refer to the
+	 * <a href="https://jina.ai/embeddings/">https://jina.ai/embeddings/</a>.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-jinaai">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutJinaaiResponse putJinaai(PutJinaaiRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutJinaaiRequest, PutJinaaiResponse, ErrorResponse> endpoint = (JsonEndpoint<PutJinaaiRequest, PutJinaaiResponse, ErrorResponse>) PutJinaaiRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create an JinaAI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>jinaai</code> service.
+	 * <p>
+	 * To review the available <code>rerank</code> models, refer to
+	 * <a href="https://jina.ai/reranker">https://jina.ai/reranker</a>. To review
+	 * the available <code>text_embedding</code> models, refer to the
+	 * <a href="https://jina.ai/embeddings/">https://jina.ai/embeddings/</a>.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutJinaaiRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-jinaai">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutJinaaiResponse putJinaai(Function<PutJinaaiRequest.Builder, ObjectBuilder<PutJinaaiRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putJinaai(fn.apply(new PutJinaaiRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_mistral
+
+	/**
+	 * Create a Mistral inference endpoint.
+	 * <p>
+	 * Creates an inference endpoint to perform an inference task with the
+	 * <code>mistral</code> service.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-mistral">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutMistralResponse putMistral(PutMistralRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutMistralRequest, PutMistralResponse, ErrorResponse> endpoint = (JsonEndpoint<PutMistralRequest, PutMistralResponse, ErrorResponse>) PutMistralRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create a Mistral inference endpoint.
+	 * <p>
+	 * Creates an inference endpoint to perform an inference task with the
+	 * <code>mistral</code> service.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutMistralRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-mistral">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutMistralResponse putMistral(Function<PutMistralRequest.Builder, ObjectBuilder<PutMistralRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putMistral(fn.apply(new PutMistralRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_openai
+
+	/**
+	 * Create an OpenAI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>openai</code> service or <code>openai</code> compatible APIs.
+	 * <p>
+	 * When you create an inference endpoint, the associated machine learning model
+	 * is automatically deployed if it is not already running. After creating the
+	 * endpoint, wait for the model deployment to complete before using it. To
+	 * verify the deployment status, use the get trained model statistics API. Look
+	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
+	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
+	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
+	 * multiple endpoints for the same model unless required, as each endpoint
+	 * consumes significant resources.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-openai">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -356,7 +1343,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * Create an OpenAI inference endpoint.
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
-	 * <code>openai</code> service.
+	 * <code>openai</code> service or <code>openai</code> compatible APIs.
 	 * <p>
 	 * When you create an inference endpoint, the associated machine learning model
 	 * is automatically deployed if it is not already running. After creating the
@@ -372,7 +1359,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutOpenaiRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/infer-service-openai.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-openai">Documentation
 	 *      on elastic.co</a>
 	 */
 

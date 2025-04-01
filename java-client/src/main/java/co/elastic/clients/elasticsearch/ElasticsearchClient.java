@@ -147,6 +147,7 @@ import co.elastic.clients.elasticsearch.transform.ElasticsearchTransformClient;
 import co.elastic.clients.elasticsearch.watcher.ElasticsearchWatcherClient;
 import co.elastic.clients.elasticsearch.xpack.ElasticsearchXpackClient;
 import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.ElasticsearchTransportConfig;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
@@ -179,6 +180,22 @@ import javax.annotation.Nullable;
  * Client for the namespace.
  */
 public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, ElasticsearchClient> {
+
+	/**
+	 * Creates a client from a {@link ElasticsearchTransportConfig.Default}}
+	 * configuration created with an inline lambda expression.
+	 */
+	public static ElasticsearchClient of(
+			Function<ElasticsearchTransportConfig.Builder, ElasticsearchTransportConfig.Builder> fn) {
+		return new ElasticsearchClient(fn.apply(new ElasticsearchTransportConfig.Builder()).build().buildTransport());
+	}
+
+	/**
+	 * Creates a client from an {@link ElasticsearchTransportConfig}.
+	 */
+	public ElasticsearchClient(ElasticsearchTransportConfig config) {
+		this(config.buildTransport());
+	}
 
 	public ElasticsearchClient(ElasticsearchTransport transport) {
 		super(transport, null);

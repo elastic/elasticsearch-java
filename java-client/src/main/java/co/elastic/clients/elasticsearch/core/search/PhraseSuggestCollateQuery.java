@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.elasticsearch._types.ScriptSource;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -63,7 +64,7 @@ public class PhraseSuggestCollateQuery implements JsonpSerializable {
 	private final String id;
 
 	@Nullable
-	private final String source;
+	private final ScriptSource source;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -94,7 +95,7 @@ public class PhraseSuggestCollateQuery implements JsonpSerializable {
 	 * API name: {@code source}
 	 */
 	@Nullable
-	public final String source() {
+	public final ScriptSource source() {
 		return this.source;
 	}
 
@@ -116,7 +117,7 @@ public class PhraseSuggestCollateQuery implements JsonpSerializable {
 		}
 		if (this.source != null) {
 			generator.writeKey("source");
-			generator.write(this.source);
+			this.source.serialize(generator, mapper);
 
 		}
 
@@ -140,7 +141,7 @@ public class PhraseSuggestCollateQuery implements JsonpSerializable {
 		private String id;
 
 		@Nullable
-		private String source;
+		private ScriptSource source;
 
 		/**
 		 * The search template ID.
@@ -157,9 +158,18 @@ public class PhraseSuggestCollateQuery implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public final Builder source(@Nullable String value) {
+		public final Builder source(@Nullable ScriptSource value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * The query source.
+		 * <p>
+		 * API name: {@code source}
+		 */
+		public final Builder source(Function<ScriptSource.Builder, ObjectBuilder<ScriptSource>> fn) {
+			return this.source(fn.apply(new ScriptSource.Builder()).build());
 		}
 
 		@Override
@@ -192,7 +202,7 @@ public class PhraseSuggestCollateQuery implements JsonpSerializable {
 			ObjectDeserializer<PhraseSuggestCollateQuery.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
+		op.add(Builder::source, ScriptSource._DESERIALIZER, "source");
 
 	}
 

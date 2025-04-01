@@ -64,7 +64,7 @@ public class StoredScript implements JsonpSerializable {
 
 	private final Map<String, String> options;
 
-	private final String source;
+	private final ScriptSource source;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -81,7 +81,7 @@ public class StoredScript implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The language the script is written in. For serach templates, use
+	 * Required - The language the script is written in. For search templates, use
 	 * <code>mustache</code>.
 	 * <p>
 	 * API name: {@code lang}
@@ -103,7 +103,7 @@ public class StoredScript implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code source}
 	 */
-	public final String source() {
+	public final ScriptSource source() {
 		return this.source;
 	}
 
@@ -133,7 +133,7 @@ public class StoredScript implements JsonpSerializable {
 
 		}
 		generator.writeKey("source");
-		generator.write(this.source);
+		this.source.serialize(generator, mapper);
 
 	}
 
@@ -154,10 +154,10 @@ public class StoredScript implements JsonpSerializable {
 		@Nullable
 		private Map<String, String> options;
 
-		private String source;
+		private ScriptSource source;
 
 		/**
-		 * Required - The language the script is written in. For serach templates, use
+		 * Required - The language the script is written in. For search templates, use
 		 * <code>mustache</code>.
 		 * <p>
 		 * API name: {@code lang}
@@ -168,7 +168,7 @@ public class StoredScript implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The language the script is written in. For serach templates, use
+		 * Required - The language the script is written in. For search templates, use
 		 * <code>mustache</code>.
 		 * <p>
 		 * API name: {@code lang}
@@ -204,9 +204,19 @@ public class StoredScript implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public final Builder source(String value) {
+		public final Builder source(ScriptSource value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * Required - The script source. For search templates, an object containing the
+		 * search template.
+		 * <p>
+		 * API name: {@code source}
+		 */
+		public final Builder source(Function<ScriptSource.Builder, ObjectBuilder<ScriptSource>> fn) {
+			return this.source(fn.apply(new ScriptSource.Builder()).build());
 		}
 
 		@Override
@@ -240,7 +250,7 @@ public class StoredScript implements JsonpSerializable {
 		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
 		op.add(Builder::options, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"options");
-		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
+		op.add(Builder::source, ScriptSource._DESERIALIZER, "source");
 
 	}
 

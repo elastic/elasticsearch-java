@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.ScriptSource;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -77,7 +78,7 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 	private final Map<String, JsonData> params;
 
 	@Nullable
-	private final String source;
+	private final ScriptSource source;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -135,7 +136,7 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 	 * API name: {@code source}
 	 */
 	@Nullable
-	public final String source() {
+	public final ScriptSource source() {
 		return this.source;
 	}
 
@@ -173,7 +174,7 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 		}
 		if (this.source != null) {
 			generator.writeKey("source");
-			generator.write(this.source);
+			this.source.serialize(generator, mapper);
 
 		}
 
@@ -198,7 +199,7 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 		private Map<String, JsonData> params;
 
 		@Nullable
-		private String source;
+		private ScriptSource source;
 
 		/**
 		 * API name: {@code file}
@@ -256,9 +257,21 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public final Builder source(@Nullable String value) {
+		public final Builder source(@Nullable ScriptSource value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * An inline search template. It supports the same parameters as the search
+		 * API's request body. These parameters also support Mustache variables. If no
+		 * <code>id</code> or <code>&lt;templated-id&gt;</code> is specified, this
+		 * parameter is required.
+		 * <p>
+		 * API name: {@code source}
+		 */
+		public final Builder source(Function<ScriptSource.Builder, ObjectBuilder<ScriptSource>> fn) {
+			return this.source(fn.apply(new ScriptSource.Builder()).build());
 		}
 
 		@Override
@@ -293,7 +306,7 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 		op.add(Builder::file, JsonpDeserializer.stringDeserializer(), "file");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
-		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
+		op.add(Builder::source, ScriptSource._DESERIALIZER, "source");
 
 	}
 

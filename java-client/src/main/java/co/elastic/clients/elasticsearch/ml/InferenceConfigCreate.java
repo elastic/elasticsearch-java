@@ -84,6 +84,8 @@ public class InferenceConfigCreate implements TaggedUnion<InferenceConfigCreate.
 
 		FillMask("fill_mask"),
 
+		LearningToRank("learning_to_rank"),
+
 		Ner("ner"),
 
 		PassThrough("pass_through"),
@@ -224,6 +226,24 @@ public class InferenceConfigCreate implements TaggedUnion<InferenceConfigCreate.
 	 */
 	public FillMaskInferenceOptions fillMask() {
 		return TaggedUnionUtils.get(this, Kind.FillMask);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code learning_to_rank}?
+	 */
+	public boolean isLearningToRank() {
+		return _kind == Kind.LearningToRank;
+	}
+
+	/**
+	 * Get the {@code learning_to_rank} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code learning_to_rank}
+	 *             kind.
+	 */
+	public LearningToRankConfig learningToRank() {
+		return TaggedUnionUtils.get(this, Kind.LearningToRank);
 	}
 
 	/**
@@ -397,6 +417,17 @@ public class InferenceConfigCreate implements TaggedUnion<InferenceConfigCreate.
 			return this.fillMask(fn.apply(new FillMaskInferenceOptions.Builder()).build());
 		}
 
+		public ObjectBuilder<InferenceConfigCreate> learningToRank(LearningToRankConfig v) {
+			this._kind = Kind.LearningToRank;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<InferenceConfigCreate> learningToRank(
+				Function<LearningToRankConfig.Builder, ObjectBuilder<LearningToRankConfig>> fn) {
+			return this.learningToRank(fn.apply(new LearningToRankConfig.Builder()).build());
+		}
+
 		public ObjectBuilder<InferenceConfigCreate> ner(NerInferenceOptions v) {
 			this._kind = Kind.Ner;
 			this._value = v;
@@ -467,6 +498,7 @@ public class InferenceConfigCreate implements TaggedUnion<InferenceConfigCreate.
 		op.add(Builder::zeroShotClassification, ZeroShotClassificationInferenceOptions._DESERIALIZER,
 				"zero_shot_classification");
 		op.add(Builder::fillMask, FillMaskInferenceOptions._DESERIALIZER, "fill_mask");
+		op.add(Builder::learningToRank, LearningToRankConfig._DESERIALIZER, "learning_to_rank");
 		op.add(Builder::ner, NerInferenceOptions._DESERIALIZER, "ner");
 		op.add(Builder::passThrough, PassThroughInferenceOptions._DESERIALIZER, "pass_through");
 		op.add(Builder::textEmbedding, TextEmbeddingInferenceOptions._DESERIALIZER, "text_embedding");

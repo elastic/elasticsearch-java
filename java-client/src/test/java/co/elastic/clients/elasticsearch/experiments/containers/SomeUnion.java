@@ -140,12 +140,12 @@ public class SomeUnion implements TaggedUnion<SomeUnion.Kind, SomeUnionVariant>,
         }
     }
 
-    public static final JsonpDeserializer<SomeUnion> _DESERIALIZER = ObjectBuilderDeserializer.lazy(SomeUnion.Builder::new,
-        SomeUnion::setupSomeUnionDeserializer, SomeUnion.Builder::build);
+    public static final JsonpDeserializer<SomeUnion> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+        SomeUnion::setupSomeUnionDeserializer, Builder::build);
 
     protected static void setupSomeUnionDeserializer(ObjectDeserializer<Builder> op) {
-        op.add(SomeUnion.Builder::variantA, UVariantA._DESERIALIZER, "variant_a");
-        op.add(SomeUnion.Builder::variantB, UVariantB._DESERIALIZER, "variant_b");
+        op.add(Builder::variantA, UVariantA._DESERIALIZER, "variant_a");
+        op.add(Builder::variantB, UVariantB._DESERIALIZER, "variant_b");
 
         op.setTypeProperty("type", null);
     }

@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.ScriptSource;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonData;
@@ -111,7 +112,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	private final SearchType searchType;
 
 	@Nullable
-	private final String source;
+	private final ScriptSource source;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -307,7 +308,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code source}
 	 */
 	@Nullable
-	public final String source() {
+	public final ScriptSource source() {
 		return this.source;
 	}
 
@@ -350,7 +351,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		}
 		if (this.source != null) {
 			generator.writeKey("source");
-			generator.write(this.source);
+			this.source.serialize(generator, mapper);
 
 		}
 
@@ -408,7 +409,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		private SearchType searchType;
 
 		@Nullable
-		private String source;
+		private ScriptSource source;
 
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
@@ -639,9 +640,20 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public final Builder source(@Nullable String value) {
+		public final Builder source(@Nullable ScriptSource value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * An inline search template. Supports the same parameters as the search API's
+		 * request body. It also supports Mustache variables. If no <code>id</code> is
+		 * specified, this parameter is required.
+		 * <p>
+		 * API name: {@code source}
+		 */
+		public final Builder source(Function<ScriptSource.Builder, ObjectBuilder<ScriptSource>> fn) {
+			return this.source(fn.apply(new ScriptSource.Builder()).build());
 		}
 
 		@Override
@@ -676,7 +688,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
-		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
+		op.add(Builder::source, ScriptSource._DESERIALIZER, "source");
 
 	}
 

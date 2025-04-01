@@ -77,15 +77,9 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         }
     }
 
-    private final TransportHttpClient httpClient;
-    private final Instrumentation instrumentation;
-
-    @Override
-    public void close() throws IOException {
-        httpClient.close();
-    }
-
-    private final JsonpMapper mapper;
+    protected final TransportHttpClient httpClient;
+    protected final Instrumentation instrumentation;
+    protected final JsonpMapper mapper;
     protected final TransportOptions transportOptions;
 
     public ElasticsearchTransportBase(TransportHttpClient httpClient, TransportOptions options,
@@ -113,6 +107,20 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         this.instrumentation = instrumentation;
     }
 
+    /** INTERNAL, used only for tests. */
+    protected ElasticsearchTransportBase cloneWith(
+        @Nullable TransportOptions options,
+        @Nullable JsonpMapper mapper,
+        @Nullable Instrumentation instrumentation
+    ) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void close() throws IOException {
+        httpClient.close();
+    }
+
     @Override
     public final JsonpMapper jsonpMapper() {
         return mapper;
@@ -121,6 +129,10 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
     @Override
     public final TransportOptions options() {
         return transportOptions;
+    }
+
+    public TransportHttpClient httpClient() {
+        return httpClient;
     }
 
     @Override

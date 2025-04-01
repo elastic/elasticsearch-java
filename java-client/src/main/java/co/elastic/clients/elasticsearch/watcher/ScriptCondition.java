@@ -19,6 +19,8 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.elasticsearch._types.ScriptLanguage;
+import co.elastic.clients.elasticsearch._types.ScriptSource;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -67,7 +69,7 @@ public class ScriptCondition implements ConditionVariant, JsonpSerializable {
 	private final Map<String, JsonData> params;
 
 	@Nullable
-	private final String source;
+	private final ScriptSource source;
 
 	@Nullable
 	private final String id;
@@ -114,7 +116,7 @@ public class ScriptCondition implements ConditionVariant, JsonpSerializable {
 	 * API name: {@code source}
 	 */
 	@Nullable
-	public final String source() {
+	public final ScriptSource source() {
 		return this.source;
 	}
 
@@ -155,7 +157,7 @@ public class ScriptCondition implements ConditionVariant, JsonpSerializable {
 		}
 		if (this.source != null) {
 			generator.writeKey("source");
-			generator.write(this.source);
+			this.source.serialize(generator, mapper);
 
 		}
 		if (this.id != null) {
@@ -185,7 +187,7 @@ public class ScriptCondition implements ConditionVariant, JsonpSerializable {
 		private Map<String, JsonData> params;
 
 		@Nullable
-		private String source;
+		private ScriptSource source;
 
 		@Nullable
 		private String id;
@@ -195,6 +197,14 @@ public class ScriptCondition implements ConditionVariant, JsonpSerializable {
 		 */
 		public final Builder lang(@Nullable String value) {
 			this.lang = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code lang}
+		 */
+		public final Builder lang(@Nullable ScriptLanguage value) {
+			this.lang = value == null ? null : value.jsonValue();
 			return this;
 		}
 
@@ -221,9 +231,16 @@ public class ScriptCondition implements ConditionVariant, JsonpSerializable {
 		/**
 		 * API name: {@code source}
 		 */
-		public final Builder source(@Nullable String value) {
+		public final Builder source(@Nullable ScriptSource value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code source}
+		 */
+		public final Builder source(Function<ScriptSource.Builder, ObjectBuilder<ScriptSource>> fn) {
+			return this.source(fn.apply(new ScriptSource.Builder()).build());
 		}
 
 		/**
@@ -264,7 +281,7 @@ public class ScriptCondition implements ConditionVariant, JsonpSerializable {
 
 		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
 		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
-		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
+		op.add(Builder::source, ScriptSource._DESERIALIZER, "source");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 
 	}

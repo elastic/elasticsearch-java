@@ -128,7 +128,7 @@ public class WithJsonTest extends ModelTestCase {
             .withJson(new StringReader(json))
         );
 
-        assertEquals("return doc;", is.source());
+        assertEquals("return doc;", is.source().scriptString());
     }
 
     @Test

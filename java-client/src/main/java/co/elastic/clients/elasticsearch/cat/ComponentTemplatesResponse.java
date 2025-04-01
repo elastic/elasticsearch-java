@@ -62,13 +62,14 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ComponentTemplatesResponse implements JsonpSerializable {
-	private final List<ComponentTemplate> valueBody;
+	private final List<ComponentTemplate> componentTemplates;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ComponentTemplatesResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.componentTemplates = ApiTypeHelper.unmodifiableRequired(builder.componentTemplates, this,
+				"componentTemplates");
 
 	}
 
@@ -79,8 +80,8 @@ public class ComponentTemplatesResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<ComponentTemplate> valueBody() {
-		return this.valueBody;
+	public final List<ComponentTemplate> componentTemplates() {
+		return this.componentTemplates;
 	}
 
 	/**
@@ -88,7 +89,7 @@ public class ComponentTemplatesResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (ComponentTemplate item0 : this.valueBody) {
+		for (ComponentTemplate item0 : this.componentTemplates) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -110,35 +111,36 @@ public class ComponentTemplatesResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<ComponentTemplatesResponse> {
-		private List<ComponentTemplate> valueBody;
+		private List<ComponentTemplate> componentTemplates;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>componentTemplates</code>.
 		 */
-		public final Builder valueBody(List<ComponentTemplate> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder componentTemplates(List<ComponentTemplate> list) {
+			this.componentTemplates = _listAddAll(this.componentTemplates, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>componentTemplates</code>.
 		 */
-		public final Builder valueBody(ComponentTemplate value, ComponentTemplate... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder componentTemplates(ComponentTemplate value, ComponentTemplate... values) {
+			this.componentTemplates = _listAdd(this.componentTemplates, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>componentTemplates</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<ComponentTemplate.Builder, ObjectBuilder<ComponentTemplate>> fn) {
-			return valueBody(fn.apply(new ComponentTemplate.Builder()).build());
+		public final Builder componentTemplates(
+				Function<ComponentTemplate.Builder, ObjectBuilder<ComponentTemplate>> fn) {
+			return componentTemplates(fn.apply(new ComponentTemplate.Builder()).build());
 		}
 
 		@Override
@@ -147,7 +149,7 @@ public class ComponentTemplatesResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<ComponentTemplate> value = (List<ComponentTemplate>) JsonpDeserializer
 					.arrayDeserializer(ComponentTemplate._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.componentTemplates(value);
 		}
 
 		@Override
@@ -175,7 +177,7 @@ public class ComponentTemplatesResponse implements JsonpSerializable {
 				.arrayDeserializer(ComponentTemplate._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.componentTemplates(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

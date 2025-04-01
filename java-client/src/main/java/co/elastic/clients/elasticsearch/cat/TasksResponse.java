@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TasksResponse implements JsonpSerializable {
-	private final List<TasksRecord> valueBody;
+	private final List<TasksRecord> tasks;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private TasksResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.tasks = ApiTypeHelper.unmodifiableRequired(builder.tasks, this, "tasks");
 
 	}
 
@@ -78,8 +78,8 @@ public class TasksResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<TasksRecord> valueBody() {
-		return this.valueBody;
+	public final List<TasksRecord> tasks() {
+		return this.tasks;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class TasksResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (TasksRecord item0 : this.valueBody) {
+		for (TasksRecord item0 : this.tasks) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -107,35 +107,35 @@ public class TasksResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TasksResponse> {
-		private List<TasksRecord> valueBody;
+		private List<TasksRecord> tasks;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>tasks</code>.
 		 */
-		public final Builder valueBody(List<TasksRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder tasks(List<TasksRecord> list) {
+			this.tasks = _listAddAll(this.tasks, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>tasks</code>.
 		 */
-		public final Builder valueBody(TasksRecord value, TasksRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder tasks(TasksRecord value, TasksRecord... values) {
+			this.tasks = _listAdd(this.tasks, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>tasks</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<TasksRecord.Builder, ObjectBuilder<TasksRecord>> fn) {
-			return valueBody(fn.apply(new TasksRecord.Builder()).build());
+		public final Builder tasks(Function<TasksRecord.Builder, ObjectBuilder<TasksRecord>> fn) {
+			return tasks(fn.apply(new TasksRecord.Builder()).build());
 		}
 
 		@Override
@@ -144,7 +144,7 @@ public class TasksResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<TasksRecord> value = (List<TasksRecord>) JsonpDeserializer.arrayDeserializer(TasksRecord._DESERIALIZER)
 					.deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.tasks(value);
 		}
 
 		@Override
@@ -172,7 +172,7 @@ public class TasksResponse implements JsonpSerializable {
 				.arrayDeserializer(TasksRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.tasks(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }
