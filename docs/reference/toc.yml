@@ -1,9 +1,6 @@
 toc:
   - file: index.md
-  # TO DO: Do we want these to be separate pages?
   - file: getting-started.md
-  - file: getting-started-serverless.md
-  # - file: elasticsearch/serverless/getting-started-3.md
   - file: setup.md
     children:
       - file: installation.md
