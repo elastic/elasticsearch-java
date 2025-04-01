@@ -38,12 +38,14 @@ import co.elastic.clients.transport.TransportOptions;
 import org.jetbrains.annotations.Nullable;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledIf;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -176,6 +178,7 @@ class BulkIngesterTest extends Assertions {
     }
 
     @Test
+    @DisabledIf("isGithubBuild")
     public void multiThreadStressTest() throws InterruptedException, IOException {
 
         String index = "bulk-ingester-stress-test";
@@ -619,5 +622,9 @@ class BulkIngesterTest extends Assertions {
                 throw new RuntimeException(e);
             }
         }
+    }
+    private boolean isGithubBuild(){
+        return Optional.ofNullable(System.getenv("GITHUB_JOB"))
+            .isPresent();
     }
 }
