@@ -160,6 +160,9 @@ publishing {
                 }
 
                 withXml {
+                    // Note: org.elasticsearch.client is now an optional dependency, so the below is no more useful.
+                    // It's kept in case it ever comes back as a required dependency.
+
                     // Set the version of dependencies of the org.elasticsearch.client group to the one that we are building.
                     // Since the unified release process releases everything at once, this ensures all published artifacts depend
                     // on the exact same version. This assumes of course that the binary API and the behavior of these dependencies
@@ -169,20 +172,13 @@ publishing {
                             .compile("/project/dependencies/dependency[groupId/text() = 'org.elasticsearch.client']")
                     val versionSelector = xPathFactory.newXPath().compile("version")
 
-                    var foundVersion = false;
-
                     val deps = depSelector.evaluate(asElement().ownerDocument, javax.xml.xpath.XPathConstants.NODESET)
                             as org.w3c.dom.NodeList
 
                     for (i in 0 until deps.length) {
                         val dep = deps.item(i)
                         val version = versionSelector.evaluate(dep, javax.xml.xpath.XPathConstants.NODE) as org.w3c.dom.Element
-                        foundVersion = true;
                         version.textContent = project.version.toString()
-                    }
-
-                    if (!foundVersion) {
-                        throw GradleException("Could not find a 'org.elasticsearch.client' to update dependency version in the POM.")
                     }
                 }
             }
