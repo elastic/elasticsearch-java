@@ -356,6 +356,34 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
         }
     }
 
+    // Used for fields such as matched_queries, which can be either an array or a dictionary, where the array
+    // value type is the same as the dictionary key type
+    static class StringArrayMapUnionDeserializer<T> extends JsonpDeserializerBase<Map<String, T>> {
+        private final JsonpDeserializer<T> itemDeserializer;
+
+        protected StringArrayMapUnionDeserializer(JsonpDeserializer<T> itemDeserializer) {
+            super(EnumSet.of(Event.START_OBJECT,Event.START_ARRAY));
+            this.itemDeserializer = itemDeserializer;
+        }
+
+        @Override
+        public Map<String, T> deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            Map<String, T> result = new HashMap<>();
+            String key = null;
+            try {
+                while ((event = parser.next()) != Event.END_OBJECT) {
+                    JsonpUtils.expectEvent(parser, Event.KEY_NAME, event);
+                    key = parser.getString();
+                    T value = itemDeserializer.deserialize(parser, mapper);
+                    result.put(key, value);
+                }
+            } catch (Exception e) {
+                throw JsonpMappingException.from(e, null, key, parser);
+            }
+            return result;
+        }
+    }
+
     static class EnumMapDeserializer<K, V> extends JsonpDeserializerBase<Map<K, V>> {
         private final JsonpDeserializer<K> keyDeserializer;
         private final JsonpDeserializer<V> valueDeserializer;
