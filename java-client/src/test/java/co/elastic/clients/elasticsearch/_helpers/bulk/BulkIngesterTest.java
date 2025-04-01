@@ -624,7 +624,7 @@ class BulkIngesterTest extends Assertions {
         }
     }
     private boolean isGithubBuild(){
-        return Optional.ofNullable(System.getenv("github_test"))
-            .map(Boolean::valueOf).orElse(false);
+        return Optional.ofNullable(System.getenv("GITHUB_JOB"))
+            .isPresent();
     }
 }
