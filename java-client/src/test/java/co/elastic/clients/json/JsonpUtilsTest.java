@@ -20,6 +20,7 @@
 package co.elastic.clients.json;
 
 import co.elastic.clients.elasticsearch.core.search.Hit;
+import co.elastic.clients.json.jackson.JacksonJsonProvider;
 import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.elasticsearch.security.IndexPrivilege;
 import co.elastic.clients.elasticsearch.security.IndicesPrivileges;
@@ -82,6 +83,15 @@ public class JsonpUtilsTest extends ModelTestCase {
             .id("id1")
         );
         assertEquals("Hit: {\"_index\":\"idx\",\"_id\":\"id1\",\"_source\":\"Some user data\"}", hit.toString());
+    }
+
+    @Test
+    public void testDefaultProvider() {
+        // Provider defaults to Jackson
+        assertTrue(JsonpUtils.provider() instanceof JacksonJsonProvider);
+
+        // System provider uses service lookup
+        assertFalse(JsonpUtils.systemProvider() instanceof JacksonJsonProvider);
     }
 
     private static class SomeUserData {

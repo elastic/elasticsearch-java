@@ -70,11 +70,11 @@ public class JsonpUtils {
     static JsonProvider findProvider() {
         try {
             // Default to Jackson
+            Class.forName("com.fasterxml.jackson.databind.ObjectMapper");
             return new JacksonJsonProvider();
-        } catch (NoClassDefFoundError e) {
-            // Ignore
+        } catch (ClassNotFoundException e) {
+            return findSystemProvider();
         }
-        return findSystemProvider();
     }
 
     /**
