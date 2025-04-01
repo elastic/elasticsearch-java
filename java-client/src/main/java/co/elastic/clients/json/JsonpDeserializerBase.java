@@ -371,11 +371,20 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
             Map<String, T> result = new HashMap<>();
             String key = null;
             try {
-                while ((event = parser.next()) != Event.END_OBJECT) {
-                    JsonpUtils.expectEvent(parser, Event.KEY_NAME, event);
-                    key = parser.getString();
-                    T value = itemDeserializer.deserialize(parser, mapper);
-                    result.put(key, value);
+                // Array case, deserializing it into a map with null values
+                if (event == Event.START_ARRAY) {
+                    while ((event = parser.next()) != Event.END_ARRAY) {
+                        JsonpUtils.ensureAccepts(itemDeserializer, parser, event);
+                        result.put(parser.getString(),null);
+                    }
+                } else {
+                    // Dictionary case
+                    while ((event = parser.next()) != Event.END_OBJECT) {
+                        JsonpUtils.expectEvent(parser, Event.KEY_NAME, event);
+                        key = parser.getString();
+                        T value = itemDeserializer.deserialize(parser, mapper);
+                        result.put(key, value);
+                    }
                 }
             } catch (Exception e) {
                 throw JsonpMappingException.from(e, null, key, parser);
