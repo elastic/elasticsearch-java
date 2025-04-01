@@ -49,7 +49,7 @@ public class RestClientOptions implements TransportOptions {
     @VisibleForTesting
     static final String USER_AGENT_VALUE = getUserAgent();
 
-    static RestClientOptions of(@Nullable TransportOptions options) {
+    public static RestClientOptions of(@Nullable TransportOptions options) {
         if (options == null) {
             return initialOptions();
         }
@@ -100,6 +100,11 @@ public class RestClientOptions implements TransportOptions {
         }
 
         return warnings -> options.getWarningsHandler().warningsShouldFailRequest(warnings);
+    }
+
+    @Override
+    public void updateToken(String token) {
+        throw new UnsupportedOperationException("Operation unsupported in the legacy client, use rest5 client");
     }
 
     @Override

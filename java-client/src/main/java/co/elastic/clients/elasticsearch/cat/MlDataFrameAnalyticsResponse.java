@@ -62,13 +62,14 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class MlDataFrameAnalyticsResponse implements JsonpSerializable {
-	private final List<DataFrameAnalyticsRecord> valueBody;
+	private final List<DataFrameAnalyticsRecord> dataFrameAnalytics;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private MlDataFrameAnalyticsResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.dataFrameAnalytics = ApiTypeHelper.unmodifiableRequired(builder.dataFrameAnalytics, this,
+				"dataFrameAnalytics");
 
 	}
 
@@ -79,8 +80,8 @@ public class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<DataFrameAnalyticsRecord> valueBody() {
-		return this.valueBody;
+	public final List<DataFrameAnalyticsRecord> dataFrameAnalytics() {
+		return this.dataFrameAnalytics;
 	}
 
 	/**
@@ -88,7 +89,7 @@ public class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (DataFrameAnalyticsRecord item0 : this.valueBody) {
+		for (DataFrameAnalyticsRecord item0 : this.dataFrameAnalytics) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -110,36 +111,36 @@ public class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<MlDataFrameAnalyticsResponse> {
-		private List<DataFrameAnalyticsRecord> valueBody;
+		private List<DataFrameAnalyticsRecord> dataFrameAnalytics;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>dataFrameAnalytics</code>.
 		 */
-		public final Builder valueBody(List<DataFrameAnalyticsRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder dataFrameAnalytics(List<DataFrameAnalyticsRecord> list) {
+			this.dataFrameAnalytics = _listAddAll(this.dataFrameAnalytics, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>dataFrameAnalytics</code>.
 		 */
-		public final Builder valueBody(DataFrameAnalyticsRecord value, DataFrameAnalyticsRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder dataFrameAnalytics(DataFrameAnalyticsRecord value, DataFrameAnalyticsRecord... values) {
+			this.dataFrameAnalytics = _listAdd(this.dataFrameAnalytics, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>dataFrameAnalytics</code> using a builder lambda.
 		 */
-		public final Builder valueBody(
+		public final Builder dataFrameAnalytics(
 				Function<DataFrameAnalyticsRecord.Builder, ObjectBuilder<DataFrameAnalyticsRecord>> fn) {
-			return valueBody(fn.apply(new DataFrameAnalyticsRecord.Builder()).build());
+			return dataFrameAnalytics(fn.apply(new DataFrameAnalyticsRecord.Builder()).build());
 		}
 
 		@Override
@@ -148,7 +149,7 @@ public class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<DataFrameAnalyticsRecord> value = (List<DataFrameAnalyticsRecord>) JsonpDeserializer
 					.arrayDeserializer(DataFrameAnalyticsRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.dataFrameAnalytics(value);
 		}
 
 		@Override
@@ -176,7 +177,7 @@ public class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 				.arrayDeserializer(DataFrameAnalyticsRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.dataFrameAnalytics(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class MlDatafeedsResponse implements JsonpSerializable {
-	private final List<DatafeedsRecord> valueBody;
+	private final List<DatafeedsRecord> datafeeds;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private MlDatafeedsResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.datafeeds = ApiTypeHelper.unmodifiableRequired(builder.datafeeds, this, "datafeeds");
 
 	}
 
@@ -78,8 +78,8 @@ public class MlDatafeedsResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<DatafeedsRecord> valueBody() {
-		return this.valueBody;
+	public final List<DatafeedsRecord> datafeeds() {
+		return this.datafeeds;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class MlDatafeedsResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (DatafeedsRecord item0 : this.valueBody) {
+		for (DatafeedsRecord item0 : this.datafeeds) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -109,35 +109,35 @@ public class MlDatafeedsResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<MlDatafeedsResponse> {
-		private List<DatafeedsRecord> valueBody;
+		private List<DatafeedsRecord> datafeeds;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>datafeeds</code>.
 		 */
-		public final Builder valueBody(List<DatafeedsRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder datafeeds(List<DatafeedsRecord> list) {
+			this.datafeeds = _listAddAll(this.datafeeds, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>datafeeds</code>.
 		 */
-		public final Builder valueBody(DatafeedsRecord value, DatafeedsRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder datafeeds(DatafeedsRecord value, DatafeedsRecord... values) {
+			this.datafeeds = _listAdd(this.datafeeds, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>datafeeds</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<DatafeedsRecord.Builder, ObjectBuilder<DatafeedsRecord>> fn) {
-			return valueBody(fn.apply(new DatafeedsRecord.Builder()).build());
+		public final Builder datafeeds(Function<DatafeedsRecord.Builder, ObjectBuilder<DatafeedsRecord>> fn) {
+			return datafeeds(fn.apply(new DatafeedsRecord.Builder()).build());
 		}
 
 		@Override
@@ -146,7 +146,7 @@ public class MlDatafeedsResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<DatafeedsRecord> value = (List<DatafeedsRecord>) JsonpDeserializer
 					.arrayDeserializer(DatafeedsRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.datafeeds(value);
 		}
 
 		@Override
@@ -174,7 +174,7 @@ public class MlDatafeedsResponse implements JsonpSerializable {
 				.arrayDeserializer(DatafeedsRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.datafeeds(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

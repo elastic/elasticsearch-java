@@ -67,7 +67,7 @@ public class ScriptTransform implements TransformVariant, JsonpSerializable {
 	private final Map<String, JsonData> params;
 
 	@Nullable
-	private final String source;
+	private final ScriptSource source;
 
 	@Nullable
 	private final String id;
@@ -114,7 +114,7 @@ public class ScriptTransform implements TransformVariant, JsonpSerializable {
 	 * API name: {@code source}
 	 */
 	@Nullable
-	public final String source() {
+	public final ScriptSource source() {
 		return this.source;
 	}
 
@@ -155,7 +155,7 @@ public class ScriptTransform implements TransformVariant, JsonpSerializable {
 		}
 		if (this.source != null) {
 			generator.writeKey("source");
-			generator.write(this.source);
+			this.source.serialize(generator, mapper);
 
 		}
 		if (this.id != null) {
@@ -185,7 +185,7 @@ public class ScriptTransform implements TransformVariant, JsonpSerializable {
 		private Map<String, JsonData> params;
 
 		@Nullable
-		private String source;
+		private ScriptSource source;
 
 		@Nullable
 		private String id;
@@ -221,9 +221,16 @@ public class ScriptTransform implements TransformVariant, JsonpSerializable {
 		/**
 		 * API name: {@code source}
 		 */
-		public final Builder source(@Nullable String value) {
+		public final Builder source(@Nullable ScriptSource value) {
 			this.source = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code source}
+		 */
+		public final Builder source(Function<ScriptSource.Builder, ObjectBuilder<ScriptSource>> fn) {
+			return this.source(fn.apply(new ScriptSource.Builder()).build());
 		}
 
 		/**
@@ -264,7 +271,7 @@ public class ScriptTransform implements TransformVariant, JsonpSerializable {
 
 		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
 		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
-		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
+		op.add(Builder::source, ScriptSource._DESERIALIZER, "source");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 
 	}

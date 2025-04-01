@@ -21,12 +21,29 @@ package co.elastic.clients.transport.rest_client;
 
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransportBase;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.ElasticsearchTransportConfig;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.instrumentation.Instrumentation;
+import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestClientBuilder;
+
+import javax.annotation.Nullable;
+import java.util.Base64;
 
 public class RestClientTransport extends ElasticsearchTransportBase {
 
     private final RestClient restClient;
+
+    public RestClientTransport(ElasticsearchTransportConfig config) {
+        this(
+            buildRestClient(config),
+            config.mapper(),
+            RestClientOptions.of(config.transportOptions()),
+            config.instrumentation()
+        );
+    }
 
     public RestClientTransport(RestClient restClient, JsonpMapper jsonpMapper) {
         this(restClient, jsonpMapper, null);
@@ -42,7 +59,53 @@ public class RestClientTransport extends ElasticsearchTransportBase {
         this.restClient = restClient;
     }
 
+    private static RestClient buildRestClient(ElasticsearchTransportConfig config) {
+        RestClientBuilder restClientBuilder = RestClient.builder(config.hosts().stream()
+            .map(h -> HttpHost.create(h.toString())).toArray(HttpHost[]::new)
+        );
+
+        if (config.username() != null && config.password() != null) {
+            var cred = Base64.getEncoder().encodeToString((config.username() + ":" + config.password()).getBytes());
+            restClientBuilder.setDefaultHeaders(new org.apache.http.Header[]{
+                new org.apache.http.message.BasicHeader("Authorization", "Basic " + cred)
+            });
+        } else if (config.apiKey() != null) {
+            restClientBuilder.setDefaultHeaders(new org.apache.http.Header[]{
+                new org.apache.http.message.BasicHeader("Authorization", "ApiKey " + config.apiKey())
+            });
+        } else if (config.token() != null) {
+            restClientBuilder.setDefaultHeaders(new org.apache.http.Header[]{
+                new org.apache.http.message.BasicHeader("Authorization", "Bearer " + config.token())
+            });
+        }
+
+        if (config.sslContext() != null) {
+            restClientBuilder.setHttpClientConfigCallback(hc -> hc.setSSLContext(config.sslContext()));
+        }
+
+        restClientBuilder.setCompressionEnabled(config.useCompression());
+
+        return restClientBuilder.build();
+    }
+
     public RestClient restClient() {
         return this.restClient;
+    }
+
+
+    @Override
+    public Transport withOptions(@Nullable TransportOptions options) {
+        return new RestClientTransport(restClient, mapper, RestClientOptions.of(options), instrumentation);
+    }
+
+    /** INTERNAL, used only for tests. */
+    @Override
+    protected ElasticsearchTransportBase cloneWith(TransportOptions options, JsonpMapper mapper, Instrumentation instrumentation) {
+        return new RestClientTransport(
+            restClient,
+            mapper != null ? mapper : this.mapper,
+            RestClientOptions.of(options != null ? options : this.transportOptions),
+            instrumentation != null ? instrumentation : this.instrumentation
+        );
     }
 }

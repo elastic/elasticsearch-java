@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class SegmentsResponse implements JsonpSerializable {
-	private final List<SegmentsRecord> valueBody;
+	private final List<SegmentsRecord> segments;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private SegmentsResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.segments = ApiTypeHelper.unmodifiableRequired(builder.segments, this, "segments");
 
 	}
 
@@ -78,8 +78,8 @@ public class SegmentsResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<SegmentsRecord> valueBody() {
-		return this.valueBody;
+	public final List<SegmentsRecord> segments() {
+		return this.segments;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class SegmentsResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (SegmentsRecord item0 : this.valueBody) {
+		for (SegmentsRecord item0 : this.segments) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -107,35 +107,35 @@ public class SegmentsResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SegmentsResponse> {
-		private List<SegmentsRecord> valueBody;
+		private List<SegmentsRecord> segments;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>segments</code>.
 		 */
-		public final Builder valueBody(List<SegmentsRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder segments(List<SegmentsRecord> list) {
+			this.segments = _listAddAll(this.segments, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>segments</code>.
 		 */
-		public final Builder valueBody(SegmentsRecord value, SegmentsRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder segments(SegmentsRecord value, SegmentsRecord... values) {
+			this.segments = _listAdd(this.segments, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>segments</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<SegmentsRecord.Builder, ObjectBuilder<SegmentsRecord>> fn) {
-			return valueBody(fn.apply(new SegmentsRecord.Builder()).build());
+		public final Builder segments(Function<SegmentsRecord.Builder, ObjectBuilder<SegmentsRecord>> fn) {
+			return segments(fn.apply(new SegmentsRecord.Builder()).build());
 		}
 
 		@Override
@@ -144,7 +144,7 @@ public class SegmentsResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<SegmentsRecord> value = (List<SegmentsRecord>) JsonpDeserializer
 					.arrayDeserializer(SegmentsRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.segments(value);
 		}
 
 		@Override
@@ -172,7 +172,7 @@ public class SegmentsResponse implements JsonpSerializable {
 				.arrayDeserializer(SegmentsRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.segments(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

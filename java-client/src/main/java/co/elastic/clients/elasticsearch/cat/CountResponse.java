@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class CountResponse implements JsonpSerializable {
-	private final List<CountRecord> valueBody;
+	private final List<CountRecord> countRecords;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private CountResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.countRecords = ApiTypeHelper.unmodifiableRequired(builder.countRecords, this, "countRecords");
 
 	}
 
@@ -78,8 +78,8 @@ public class CountResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<CountRecord> valueBody() {
-		return this.valueBody;
+	public final List<CountRecord> countRecords() {
+		return this.countRecords;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class CountResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (CountRecord item0 : this.valueBody) {
+		for (CountRecord item0 : this.countRecords) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -107,35 +107,35 @@ public class CountResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CountResponse> {
-		private List<CountRecord> valueBody;
+		private List<CountRecord> countRecords;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>countRecords</code>.
 		 */
-		public final Builder valueBody(List<CountRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder countRecords(List<CountRecord> list) {
+			this.countRecords = _listAddAll(this.countRecords, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>countRecords</code>.
 		 */
-		public final Builder valueBody(CountRecord value, CountRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder countRecords(CountRecord value, CountRecord... values) {
+			this.countRecords = _listAdd(this.countRecords, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>countRecords</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<CountRecord.Builder, ObjectBuilder<CountRecord>> fn) {
-			return valueBody(fn.apply(new CountRecord.Builder()).build());
+		public final Builder countRecords(Function<CountRecord.Builder, ObjectBuilder<CountRecord>> fn) {
+			return countRecords(fn.apply(new CountRecord.Builder()).build());
 		}
 
 		@Override
@@ -144,7 +144,7 @@ public class CountResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<CountRecord> value = (List<CountRecord>) JsonpDeserializer.arrayDeserializer(CountRecord._DESERIALIZER)
 					.deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.countRecords(value);
 		}
 
 		@Override
@@ -172,7 +172,7 @@ public class CountResponse implements JsonpSerializable {
 				.arrayDeserializer(CountRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.countRecords(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

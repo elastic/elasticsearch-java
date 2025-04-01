@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class NodesResponse implements JsonpSerializable {
-	private final List<NodesRecord> valueBody;
+	private final List<NodesRecord> nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private NodesResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
@@ -78,8 +78,8 @@ public class NodesResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<NodesRecord> valueBody() {
-		return this.valueBody;
+	public final List<NodesRecord> nodes() {
+		return this.nodes;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class NodesResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (NodesRecord item0 : this.valueBody) {
+		for (NodesRecord item0 : this.nodes) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -107,35 +107,35 @@ public class NodesResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodesResponse> {
-		private List<NodesRecord> valueBody;
+		private List<NodesRecord> nodes;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>nodes</code>.
 		 */
-		public final Builder valueBody(List<NodesRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder nodes(List<NodesRecord> list) {
+			this.nodes = _listAddAll(this.nodes, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>nodes</code>.
 		 */
-		public final Builder valueBody(NodesRecord value, NodesRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder nodes(NodesRecord value, NodesRecord... values) {
+			this.nodes = _listAdd(this.nodes, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>nodes</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<NodesRecord.Builder, ObjectBuilder<NodesRecord>> fn) {
-			return valueBody(fn.apply(new NodesRecord.Builder()).build());
+		public final Builder nodes(Function<NodesRecord.Builder, ObjectBuilder<NodesRecord>> fn) {
+			return nodes(fn.apply(new NodesRecord.Builder()).build());
 		}
 
 		@Override
@@ -144,7 +144,7 @@ public class NodesResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<NodesRecord> value = (List<NodesRecord>) JsonpDeserializer.arrayDeserializer(NodesRecord._DESERIALIZER)
 					.deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.nodes(value);
 		}
 
 		@Override
@@ -172,7 +172,7 @@ public class NodesResponse implements JsonpSerializable {
 				.arrayDeserializer(NodesRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.nodes(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

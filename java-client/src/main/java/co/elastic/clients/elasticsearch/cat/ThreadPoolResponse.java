@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ThreadPoolResponse implements JsonpSerializable {
-	private final List<ThreadPoolRecord> valueBody;
+	private final List<ThreadPoolRecord> threadPools;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ThreadPoolResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.threadPools = ApiTypeHelper.unmodifiableRequired(builder.threadPools, this, "threadPools");
 
 	}
 
@@ -78,8 +78,8 @@ public class ThreadPoolResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<ThreadPoolRecord> valueBody() {
-		return this.valueBody;
+	public final List<ThreadPoolRecord> threadPools() {
+		return this.threadPools;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class ThreadPoolResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (ThreadPoolRecord item0 : this.valueBody) {
+		for (ThreadPoolRecord item0 : this.threadPools) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -109,35 +109,35 @@ public class ThreadPoolResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<ThreadPoolResponse> {
-		private List<ThreadPoolRecord> valueBody;
+		private List<ThreadPoolRecord> threadPools;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>threadPools</code>.
 		 */
-		public final Builder valueBody(List<ThreadPoolRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder threadPools(List<ThreadPoolRecord> list) {
+			this.threadPools = _listAddAll(this.threadPools, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>threadPools</code>.
 		 */
-		public final Builder valueBody(ThreadPoolRecord value, ThreadPoolRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder threadPools(ThreadPoolRecord value, ThreadPoolRecord... values) {
+			this.threadPools = _listAdd(this.threadPools, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>threadPools</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<ThreadPoolRecord.Builder, ObjectBuilder<ThreadPoolRecord>> fn) {
-			return valueBody(fn.apply(new ThreadPoolRecord.Builder()).build());
+		public final Builder threadPools(Function<ThreadPoolRecord.Builder, ObjectBuilder<ThreadPoolRecord>> fn) {
+			return threadPools(fn.apply(new ThreadPoolRecord.Builder()).build());
 		}
 
 		@Override
@@ -146,7 +146,7 @@ public class ThreadPoolResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<ThreadPoolRecord> value = (List<ThreadPoolRecord>) JsonpDeserializer
 					.arrayDeserializer(ThreadPoolRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.threadPools(value);
 		}
 
 		@Override
@@ -174,7 +174,7 @@ public class ThreadPoolResponse implements JsonpSerializable {
 				.arrayDeserializer(ThreadPoolRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.threadPools(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class CertificatesResponse implements JsonpSerializable {
-	private final List<CertificateInformation> valueBody;
+	private final List<CertificateInformation> certificates;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private CertificatesResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.certificates = ApiTypeHelper.unmodifiableRequired(builder.certificates, this, "certificates");
 
 	}
 
@@ -78,8 +78,8 @@ public class CertificatesResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<CertificateInformation> valueBody() {
-		return this.valueBody;
+	public final List<CertificateInformation> certificates() {
+		return this.certificates;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class CertificatesResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (CertificateInformation item0 : this.valueBody) {
+		for (CertificateInformation item0 : this.certificates) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -109,36 +109,36 @@ public class CertificatesResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<CertificatesResponse> {
-		private List<CertificateInformation> valueBody;
+		private List<CertificateInformation> certificates;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>certificates</code>.
 		 */
-		public final Builder valueBody(List<CertificateInformation> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder certificates(List<CertificateInformation> list) {
+			this.certificates = _listAddAll(this.certificates, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>certificates</code>.
 		 */
-		public final Builder valueBody(CertificateInformation value, CertificateInformation... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder certificates(CertificateInformation value, CertificateInformation... values) {
+			this.certificates = _listAdd(this.certificates, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>certificates</code> using a builder lambda.
 		 */
-		public final Builder valueBody(
+		public final Builder certificates(
 				Function<CertificateInformation.Builder, ObjectBuilder<CertificateInformation>> fn) {
-			return valueBody(fn.apply(new CertificateInformation.Builder()).build());
+			return certificates(fn.apply(new CertificateInformation.Builder()).build());
 		}
 
 		@Override
@@ -147,7 +147,7 @@ public class CertificatesResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<CertificateInformation> value = (List<CertificateInformation>) JsonpDeserializer
 					.arrayDeserializer(CertificateInformation._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.certificates(value);
 		}
 
 		@Override
@@ -175,7 +175,7 @@ public class CertificatesResponse implements JsonpSerializable {
 				.arrayDeserializer(CertificateInformation._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.certificates(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

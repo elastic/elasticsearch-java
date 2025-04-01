@@ -38,8 +38,8 @@ checkstyle {
 }
 
 java {
-    targetCompatibility = JavaVersion.VERSION_1_8
-    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_17
 
     withJavadocJar()
     withSourcesJar()
@@ -200,13 +200,15 @@ signing {
 dependencies {
     // Compile and test with the last 7.x version to make sure transition scenarios where
     // the Java API client coexists with a 7.x HLRC work fine
-    val elasticsearchVersion = "8.10.0"
+    val elasticsearchVersion = "8.17.0"
     val jacksonVersion = "2.17.0"
     val openTelemetryVersion = "1.29.0"
 
     // Apache 2.0
     // https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html
     api("org.elasticsearch.client", "elasticsearch-rest-client", elasticsearchVersion)
+
+    api("org.apache.httpcomponents.client5","httpclient5","5.4")
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
@@ -271,6 +273,16 @@ dependencies {
     // Apache-2.0
     // https://github.com/awaitility/awaitility
     testImplementation("org.awaitility", "awaitility", "4.2.0")
+
+    // MIT
+    // https://github.com/mockito/mockito
+    testImplementation("org.mockito","mockito-core","5.12.0")
+
+    // Apache-2.0
+    // https://github.com/elastic/mocksocket
+    testImplementation("org.elasticsearch","mocksocket","1.2")
+
+
 }
 
 
@@ -285,6 +297,7 @@ class SpdxReporter(val dest: File) : ReportRenderer {
             "The Apache License, Version 2.0" to "Apache-2.0",
             "Apache License, Version 2.0" to "Apache-2.0",
             "The Apache Software License, Version 2.0" to "Apache-2.0",
+            "MIT License" to "MIT",
             "BSD Zero Clause License" to "0BSD",
             "Eclipse Public License 2.0" to "EPL-2.0",
             "Eclipse Public License v. 2.0" to "EPL-2.0",
@@ -311,7 +324,11 @@ class SpdxReporter(val dest: File) : ReportRenderer {
                 val depName = dep.group + ":" + dep.name
 
                 val info = LicenseDataCollector.multiModuleLicenseInfo(dep)
-                val depUrl = info.moduleUrls.first()
+                val depUrl = if (depName.startsWith("org.apache.httpcomponents")) {
+                    "https://hc.apache.org/"
+                } else {
+                    info.moduleUrls.first()
+                }
 
                 val licenseIds = info.licenses.mapNotNull { license ->
                     license.name?.let {

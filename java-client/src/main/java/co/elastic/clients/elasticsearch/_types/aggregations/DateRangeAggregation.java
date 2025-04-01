@@ -77,7 +77,7 @@ public class DateRangeAggregation extends BucketAggregationBase
 	@Nullable
 	private final FieldValue missing;
 
-	private final List<DateRangeExpression> ranges;
+	private final List<DateAggregationRange> ranges;
 
 	@Nullable
 	private final String timeZone;
@@ -155,7 +155,7 @@ public class DateRangeAggregation extends BucketAggregationBase
 	 * <p>
 	 * API name: {@code ranges}
 	 */
-	public final List<DateRangeExpression> ranges() {
+	public final List<DateAggregationRange> ranges() {
 		return this.ranges;
 	}
 
@@ -209,7 +209,7 @@ public class DateRangeAggregation extends BucketAggregationBase
 		if (ApiTypeHelper.isDefined(this.ranges)) {
 			generator.writeKey("ranges");
 			generator.writeStartArray();
-			for (DateRangeExpression item0 : this.ranges) {
+			for (DateAggregationRange item0 : this.ranges) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -253,7 +253,7 @@ public class DateRangeAggregation extends BucketAggregationBase
 		private FieldValue missing;
 
 		@Nullable
-		private List<DateRangeExpression> ranges;
+		private List<DateAggregationRange> ranges;
 
 		@Nullable
 		private String timeZone;
@@ -354,7 +354,7 @@ public class DateRangeAggregation extends BucketAggregationBase
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ranges</code>.
 		 */
-		public final Builder ranges(List<DateRangeExpression> list) {
+		public final Builder ranges(List<DateAggregationRange> list) {
 			this.ranges = _listAddAll(this.ranges, list);
 			return this;
 		}
@@ -366,7 +366,7 @@ public class DateRangeAggregation extends BucketAggregationBase
 		 * <p>
 		 * Adds one or more values to <code>ranges</code>.
 		 */
-		public final Builder ranges(DateRangeExpression value, DateRangeExpression... values) {
+		public final Builder ranges(DateAggregationRange value, DateAggregationRange... values) {
 			this.ranges = _listAdd(this.ranges, value, values);
 			return this;
 		}
@@ -378,8 +378,8 @@ public class DateRangeAggregation extends BucketAggregationBase
 		 * <p>
 		 * Adds a value to <code>ranges</code> using a builder lambda.
 		 */
-		public final Builder ranges(Function<DateRangeExpression.Builder, ObjectBuilder<DateRangeExpression>> fn) {
-			return ranges(fn.apply(new DateRangeExpression.Builder()).build());
+		public final Builder ranges(Function<DateAggregationRange.Builder, ObjectBuilder<DateAggregationRange>> fn) {
+			return ranges(fn.apply(new DateAggregationRange.Builder()).build());
 		}
 
 		/**
@@ -434,7 +434,7 @@ public class DateRangeAggregation extends BucketAggregationBase
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::missing, FieldValue._DESERIALIZER, "missing");
-		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(DateRangeExpression._DESERIALIZER), "ranges");
+		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(DateAggregationRange._DESERIALIZER), "ranges");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
 

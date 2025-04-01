@@ -19,18 +19,20 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.UnionDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
+import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Double;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -59,23 +61,71 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class AggregationRange implements JsonpSerializable {
-	@Nullable
-	private final Double from;
+public class AggregationRange
+		implements
+			TaggedUnion<AggregationRange.Kind, AggregationRangeVariant>,
+			JsonpSerializable {
 
-	@Nullable
-	private final String key;
+	/**
+	 * {@link AggregationRange} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../../doc-files/api-spec.html#_types.aggregations.AggregationRange">API
+	 *      specification</a>
+	 */
 
-	@Nullable
-	private final Double to;
+	public enum Kind implements JsonEnum {
+		Date("date"),
 
-	// ---------------------------------------------------------------------------------------------
+		Number("number"),
+
+		Term("term"),
+
+		Untyped("untyped"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
+	private final AggregationRangeVariant _value;
+
+	@Override
+	public final Kind _kind() {
+		return _kind;
+	}
+
+	@Override
+	public final AggregationRangeVariant _get() {
+		return _value;
+	}
+
+	public AggregationRange(AggregationRangeVariant value) {
+
+		this._kind = ApiTypeHelper.requireNonNull(value._aggregationRangeKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+
+	}
+
+	private AggregationRange(Kind kind, AggregationRangeVariant value) {
+		this._kind = kind;
+		this._value = value;
+	}
 
 	private AggregationRange(Builder builder) {
 
-		this.from = builder.from;
-		this.key = builder.key;
-		this.to = builder.to;
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
@@ -84,61 +134,77 @@ public class AggregationRange implements JsonpSerializable {
 	}
 
 	/**
-	 * Start of the range (inclusive).
-	 * <p>
-	 * API name: {@code from}
+	 * Is this variant instance of kind {@code date}?
 	 */
-	@Nullable
-	public final Double from() {
-		return this.from;
+	public boolean isDate() {
+		return _kind == Kind.Date;
 	}
 
 	/**
-	 * Custom key to return the range with.
-	 * <p>
-	 * API name: {@code key}
+	 * Get the {@code date} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code date} kind.
 	 */
-	@Nullable
-	public final String key() {
-		return this.key;
+	public DateAggregationRange date() {
+		return TaggedUnionUtils.get(this, Kind.Date);
 	}
 
 	/**
-	 * End of the range (exclusive).
-	 * <p>
-	 * API name: {@code to}
+	 * Is this variant instance of kind {@code number}?
 	 */
-	@Nullable
-	public final Double to() {
-		return this.to;
+	public boolean isNumber() {
+		return _kind == Kind.Number;
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Get the {@code number} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code number} kind.
 	 */
+	public NumberAggregationRange number() {
+		return TaggedUnionUtils.get(this, Kind.Number);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code term}?
+	 */
+	public boolean isTerm() {
+		return _kind == Kind.Term;
+	}
+
+	/**
+	 * Get the {@code term} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code term} kind.
+	 */
+	public TermAggregationRange term() {
+		return TaggedUnionUtils.get(this, Kind.Term);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code untyped}?
+	 */
+	public boolean isUntyped() {
+		return _kind == Kind.Untyped;
+	}
+
+	/**
+	 * Get the {@code untyped} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code untyped} kind.
+	 */
+	public UntypedAggregationRange untyped() {
+		return TaggedUnionUtils.get(this, Kind.Untyped);
+	}
+
+	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		if (this.from != null) {
-			generator.writeKey("from");
-			generator.write(this.from);
-
-		}
-		if (this.key != null) {
-			generator.writeKey("key");
-			generator.write(this.key);
-
-		}
-		if (this.to != null) {
-			generator.writeKey("to");
-			generator.write(this.to);
-
-		}
+		mapper.serialize(_value, generator);
 
 	}
 
@@ -147,84 +213,66 @@ public class AggregationRange implements JsonpSerializable {
 		return JsonpUtils.toString(this);
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AggregationRange> {
+		private Kind _kind;
+		private AggregationRangeVariant _value;
 
-	/**
-	 * Builder for {@link AggregationRange}.
-	 */
-
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AggregationRange> {
-		@Nullable
-		private Double from;
-
-		@Nullable
-		private String key;
-
-		@Nullable
-		private Double to;
-
-		/**
-		 * Start of the range (inclusive).
-		 * <p>
-		 * API name: {@code from}
-		 */
-		public final Builder from(@Nullable Double value) {
-			this.from = value;
+		public ObjectBuilder<AggregationRange> date(DateAggregationRange v) {
+			this._kind = Kind.Date;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * Custom key to return the range with.
-		 * <p>
-		 * API name: {@code key}
-		 */
-		public final Builder key(@Nullable String value) {
-			this.key = value;
+		public ObjectBuilder<AggregationRange> date(
+				Function<DateAggregationRange.Builder, ObjectBuilder<DateAggregationRange>> fn) {
+			return this.date(fn.apply(new DateAggregationRange.Builder()).build());
+		}
+
+		public ObjectBuilder<AggregationRange> number(NumberAggregationRange v) {
+			this._kind = Kind.Number;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * End of the range (exclusive).
-		 * <p>
-		 * API name: {@code to}
-		 */
-		public final Builder to(@Nullable Double value) {
-			this.to = value;
+		public ObjectBuilder<AggregationRange> number(
+				Function<NumberAggregationRange.Builder, ObjectBuilder<NumberAggregationRange>> fn) {
+			return this.number(fn.apply(new NumberAggregationRange.Builder()).build());
+		}
+
+		public ObjectBuilder<AggregationRange> term(TermAggregationRange v) {
+			this._kind = Kind.Term;
+			this._value = v;
 			return this;
 		}
 
-		@Override
-		protected Builder self() {
+		public ObjectBuilder<AggregationRange> term(
+				Function<TermAggregationRange.Builder, ObjectBuilder<TermAggregationRange>> fn) {
+			return this.term(fn.apply(new TermAggregationRange.Builder()).build());
+		}
+
+		public ObjectBuilder<AggregationRange> untyped(UntypedAggregationRange v) {
+			this._kind = Kind.Untyped;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * Builds a {@link AggregationRange}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
+		public ObjectBuilder<AggregationRange> untyped(
+				Function<UntypedAggregationRange.Builder, ObjectBuilder<UntypedAggregationRange>> fn) {
+			return this.untyped(fn.apply(new UntypedAggregationRange.Builder()).build());
+		}
+
 		public AggregationRange build() {
 			_checkSingleUse();
-
 			return new AggregationRange(this);
 		}
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for {@link AggregationRange}
-	 */
-	public static final JsonpDeserializer<AggregationRange> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AggregationRange::setupAggregationRangeDeserializer);
-
-	protected static void setupAggregationRangeDeserializer(ObjectDeserializer<AggregationRange.Builder> op) {
-
-		op.add(Builder::from, JsonpDeserializer.doubleDeserializer(), "from");
-		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
-		op.add(Builder::to, JsonpDeserializer.doubleDeserializer(), "to");
 
 	}
 
+	private static JsonpDeserializer<AggregationRange> buildAggregationRangeDeserializer() {
+		return new UnionDeserializer.Builder<AggregationRange, Kind, AggregationRangeVariant>(AggregationRange::new,
+				false).addMember(Kind.Untyped, UntypedAggregationRange._DESERIALIZER).build();
+	}
+
+	public static final JsonpDeserializer<AggregationRange> _DESERIALIZER = JsonpDeserializer
+			.lazy(AggregationRange::buildAggregationRangeDeserializer);
 }

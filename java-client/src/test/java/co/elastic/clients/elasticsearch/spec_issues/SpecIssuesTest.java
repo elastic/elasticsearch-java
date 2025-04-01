@@ -98,7 +98,7 @@ public class SpecIssuesTest extends ModelTestCase {
         RuntimeField runtimeField = RuntimeField.of(rf -> rf
             .type(RuntimeFieldType.Double)
             .script(Script.of(s -> s
-                .source("emit(doc['price'].value * 1.19)")
+                .source(so -> so.scriptString("emit(doc['price'].value * 1.19)"))
             ))
         );
 
@@ -302,7 +302,7 @@ public class SpecIssuesTest extends ModelTestCase {
             .nodes().info().nodes().entrySet().forEach(node ->
                 assertNotNull(node.getValue().version()));
     }
-    
+
     private <T> T loadRsrc(String res, JsonpDeserializer<T> deser) {
         InputStream is = this.getClass().getResourceAsStream(res);
         assertNotNull(is, "Resource not found: " + res);

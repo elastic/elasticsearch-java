@@ -60,13 +60,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TextEmbeddingResponse implements JsonpSerializable {
-	private final TextEmbeddingInferenceResult valueBody;
+	private final TextEmbeddingInferenceResult inferenceResult;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private TextEmbeddingResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
+		this.inferenceResult = ApiTypeHelper.requireNonNull(builder.inferenceResult, this, "inferenceResult");
 
 	}
 
@@ -77,15 +77,15 @@ public class TextEmbeddingResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final TextEmbeddingInferenceResult valueBody() {
-		return this.valueBody;
+	public final TextEmbeddingInferenceResult inferenceResult() {
+		return this.inferenceResult;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.valueBody.serialize(generator, mapper);
+		this.inferenceResult.serialize(generator, mapper);
 
 	}
 
@@ -103,29 +103,29 @@ public class TextEmbeddingResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<TextEmbeddingResponse> {
-		private TextEmbeddingInferenceResult valueBody;
+		private TextEmbeddingInferenceResult inferenceResult;
 
 		/**
 		 * Required - Response value.
 		 */
-		public final Builder valueBody(TextEmbeddingInferenceResult value) {
-			this.valueBody = value;
+		public final Builder inferenceResult(TextEmbeddingInferenceResult value) {
+			this.inferenceResult = value;
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 */
-		public final Builder valueBody(
+		public final Builder inferenceResult(
 				Function<TextEmbeddingInferenceResult.Builder, ObjectBuilder<TextEmbeddingInferenceResult>> fn) {
-			return this.valueBody(fn.apply(new TextEmbeddingInferenceResult.Builder()).build());
+			return this.inferenceResult(fn.apply(new TextEmbeddingInferenceResult.Builder()).build());
 		}
 
 		/**
 		 * Required - Response value.
 		 */
-		public final Builder valueBody(TextEmbeddingInferenceResultVariant value) {
-			this.valueBody = value._toTextEmbeddingInferenceResult();
+		public final Builder inferenceResult(TextEmbeddingInferenceResultVariant value) {
+			this.inferenceResult = value._toTextEmbeddingInferenceResult();
 			return this;
 		}
 
@@ -135,7 +135,7 @@ public class TextEmbeddingResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			TextEmbeddingInferenceResult value = (TextEmbeddingInferenceResult) TextEmbeddingInferenceResult._DESERIALIZER
 					.deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.inferenceResult(value);
 		}
 
 		@Override
@@ -162,7 +162,7 @@ public class TextEmbeddingResponse implements JsonpSerializable {
 		JsonpDeserializer<TextEmbeddingInferenceResult> valueDeserializer = TextEmbeddingInferenceResult._DESERIALIZER;
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.inferenceResult(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

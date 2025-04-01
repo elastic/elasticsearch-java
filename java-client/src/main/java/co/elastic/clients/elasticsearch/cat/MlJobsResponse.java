@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class MlJobsResponse implements JsonpSerializable {
-	private final List<JobsRecord> valueBody;
+	private final List<JobsRecord> jobs;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private MlJobsResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.jobs = ApiTypeHelper.unmodifiableRequired(builder.jobs, this, "jobs");
 
 	}
 
@@ -78,8 +78,8 @@ public class MlJobsResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<JobsRecord> valueBody() {
-		return this.valueBody;
+	public final List<JobsRecord> jobs() {
+		return this.jobs;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class MlJobsResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (JobsRecord item0 : this.valueBody) {
+		for (JobsRecord item0 : this.jobs) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -107,35 +107,35 @@ public class MlJobsResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<MlJobsResponse> {
-		private List<JobsRecord> valueBody;
+		private List<JobsRecord> jobs;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>jobs</code>.
 		 */
-		public final Builder valueBody(List<JobsRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder jobs(List<JobsRecord> list) {
+			this.jobs = _listAddAll(this.jobs, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>jobs</code>.
 		 */
-		public final Builder valueBody(JobsRecord value, JobsRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder jobs(JobsRecord value, JobsRecord... values) {
+			this.jobs = _listAdd(this.jobs, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>jobs</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<JobsRecord.Builder, ObjectBuilder<JobsRecord>> fn) {
-			return valueBody(fn.apply(new JobsRecord.Builder()).build());
+		public final Builder jobs(Function<JobsRecord.Builder, ObjectBuilder<JobsRecord>> fn) {
+			return jobs(fn.apply(new JobsRecord.Builder()).build());
 		}
 
 		@Override
@@ -144,7 +144,7 @@ public class MlJobsResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<JobsRecord> value = (List<JobsRecord>) JsonpDeserializer.arrayDeserializer(JobsRecord._DESERIALIZER)
 					.deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.jobs(value);
 		}
 
 		@Override
@@ -172,7 +172,7 @@ public class MlJobsResponse implements JsonpSerializable {
 				.arrayDeserializer(JobsRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.jobs(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

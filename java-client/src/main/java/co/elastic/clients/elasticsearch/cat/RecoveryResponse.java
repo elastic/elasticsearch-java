@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class RecoveryResponse implements JsonpSerializable {
-	private final List<RecoveryRecord> valueBody;
+	private final List<RecoveryRecord> recoveryRecords;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private RecoveryResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.recoveryRecords = ApiTypeHelper.unmodifiableRequired(builder.recoveryRecords, this, "recoveryRecords");
 
 	}
 
@@ -78,8 +78,8 @@ public class RecoveryResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<RecoveryRecord> valueBody() {
-		return this.valueBody;
+	public final List<RecoveryRecord> recoveryRecords() {
+		return this.recoveryRecords;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class RecoveryResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (RecoveryRecord item0 : this.valueBody) {
+		for (RecoveryRecord item0 : this.recoveryRecords) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -107,35 +107,35 @@ public class RecoveryResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RecoveryResponse> {
-		private List<RecoveryRecord> valueBody;
+		private List<RecoveryRecord> recoveryRecords;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>recoveryRecords</code>.
 		 */
-		public final Builder valueBody(List<RecoveryRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder recoveryRecords(List<RecoveryRecord> list) {
+			this.recoveryRecords = _listAddAll(this.recoveryRecords, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>recoveryRecords</code>.
 		 */
-		public final Builder valueBody(RecoveryRecord value, RecoveryRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder recoveryRecords(RecoveryRecord value, RecoveryRecord... values) {
+			this.recoveryRecords = _listAdd(this.recoveryRecords, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>recoveryRecords</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<RecoveryRecord.Builder, ObjectBuilder<RecoveryRecord>> fn) {
-			return valueBody(fn.apply(new RecoveryRecord.Builder()).build());
+		public final Builder recoveryRecords(Function<RecoveryRecord.Builder, ObjectBuilder<RecoveryRecord>> fn) {
+			return recoveryRecords(fn.apply(new RecoveryRecord.Builder()).build());
 		}
 
 		@Override
@@ -144,7 +144,7 @@ public class RecoveryResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<RecoveryRecord> value = (List<RecoveryRecord>) JsonpDeserializer
 					.arrayDeserializer(RecoveryRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.recoveryRecords(value);
 		}
 
 		@Override
@@ -172,7 +172,7 @@ public class RecoveryResponse implements JsonpSerializable {
 				.arrayDeserializer(RecoveryRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.recoveryRecords(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

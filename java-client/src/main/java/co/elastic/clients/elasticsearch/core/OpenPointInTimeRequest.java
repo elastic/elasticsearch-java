@@ -37,6 +37,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
@@ -143,6 +144,9 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 	private final Time keepAlive;
 
 	@Nullable
+	private final Integer maxConcurrentShardRequests;
+
+	@Nullable
 	private final String preference;
 
 	@Nullable
@@ -158,6 +162,7 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.indexFilter = builder.indexFilter;
 		this.keepAlive = ApiTypeHelper.requireNonNull(builder.keepAlive, this, "keepAlive");
+		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.preference = builder.preference;
 		this.routing = builder.routing;
 
@@ -237,6 +242,17 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
+	 * Maximum number of concurrent shard requests that each sub-search request
+	 * executes per node.
+	 * <p>
+	 * API name: {@code max_concurrent_shard_requests}
+	 */
+	@Nullable
+	public final Integer maxConcurrentShardRequests() {
+		return this.maxConcurrentShardRequests;
+	}
+
+	/**
 	 * The node or shard the operation should be performed on. By default, it is
 	 * random.
 	 * <p>
@@ -300,6 +316,9 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		private Query indexFilter;
 
 		private Time keepAlive;
+
+		@Nullable
+		private Integer maxConcurrentShardRequests;
 
 		@Nullable
 		private String preference;
@@ -444,6 +463,17 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
+		 * Maximum number of concurrent shard requests that each sub-search request
+		 * executes per node.
+		 * <p>
+		 * API name: {@code max_concurrent_shard_requests}
+		 */
+		public final Builder maxConcurrentShardRequests(@Nullable Integer value) {
+			this.maxConcurrentShardRequests = value;
+			return this;
+		}
+
+		/**
 		 * The node or shard the operation should be performed on. By default, it is
 		 * random.
 		 * <p>
@@ -550,6 +580,9 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 				Map<String, String> params = new HashMap<>();
 				if (request.routing != null) {
 					params.put("routing", request.routing);
+				}
+				if (request.maxConcurrentShardRequests != null) {
+					params.put("max_concurrent_shard_requests", String.valueOf(request.maxConcurrentShardRequests));
 				}
 				if (request.allowPartialSearchResults != null) {
 					params.put("allow_partial_search_results", String.valueOf(request.allowPartialSearchResults));

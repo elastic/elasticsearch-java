@@ -61,13 +61,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class AllocationResponse implements JsonpSerializable {
-	private final List<AllocationRecord> valueBody;
+	private final List<AllocationRecord> allocations;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private AllocationResponse(Builder builder) {
 
-		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
+		this.allocations = ApiTypeHelper.unmodifiableRequired(builder.allocations, this, "allocations");
 
 	}
 
@@ -78,8 +78,8 @@ public class AllocationResponse implements JsonpSerializable {
 	/**
 	 * Required - Response value.
 	 */
-	public final List<AllocationRecord> valueBody() {
-		return this.valueBody;
+	public final List<AllocationRecord> allocations() {
+		return this.allocations;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class AllocationResponse implements JsonpSerializable {
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (AllocationRecord item0 : this.valueBody) {
+		for (AllocationRecord item0 : this.allocations) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -109,35 +109,35 @@ public class AllocationResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<AllocationResponse> {
-		private List<AllocationRecord> valueBody;
+		private List<AllocationRecord> allocations;
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
+		 * Adds all elements of <code>list</code> to <code>allocations</code>.
 		 */
-		public final Builder valueBody(List<AllocationRecord> list) {
-			this.valueBody = _listAddAll(this.valueBody, list);
+		public final Builder allocations(List<AllocationRecord> list) {
+			this.allocations = _listAddAll(this.allocations, list);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds one or more values to <code>valueBody</code>.
+		 * Adds one or more values to <code>allocations</code>.
 		 */
-		public final Builder valueBody(AllocationRecord value, AllocationRecord... values) {
-			this.valueBody = _listAdd(this.valueBody, value, values);
+		public final Builder allocations(AllocationRecord value, AllocationRecord... values) {
+			this.allocations = _listAdd(this.allocations, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * Adds a value to <code>valueBody</code> using a builder lambda.
+		 * Adds a value to <code>allocations</code> using a builder lambda.
 		 */
-		public final Builder valueBody(Function<AllocationRecord.Builder, ObjectBuilder<AllocationRecord>> fn) {
-			return valueBody(fn.apply(new AllocationRecord.Builder()).build());
+		public final Builder allocations(Function<AllocationRecord.Builder, ObjectBuilder<AllocationRecord>> fn) {
+			return allocations(fn.apply(new AllocationRecord.Builder()).build());
 		}
 
 		@Override
@@ -146,7 +146,7 @@ public class AllocationResponse implements JsonpSerializable {
 			@SuppressWarnings("unchecked")
 			List<AllocationRecord> value = (List<AllocationRecord>) JsonpDeserializer
 					.arrayDeserializer(AllocationRecord._DESERIALIZER).deserialize(parser, mapper);
-			return this.valueBody(value);
+			return this.allocations(value);
 		}
 
 		@Override
@@ -174,7 +174,7 @@ public class AllocationResponse implements JsonpSerializable {
 				.arrayDeserializer(AllocationRecord._DESERIALIZER);
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.allocations(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

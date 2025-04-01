@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.core.msearch;
 
+import co.elastic.clients.elasticsearch.core.search.SearchRequestBody;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -63,7 +64,7 @@ import javax.annotation.Nullable;
 public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 	private final MultisearchHeader header;
 
-	private final MultisearchBody body;
+	private final SearchRequestBody body;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -93,7 +94,7 @@ public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 	/**
 	 * Required - API name: {@code body}
 	 */
-	public final MultisearchBody body() {
+	public final SearchRequestBody body() {
 		return this.body;
 	}
 
@@ -130,7 +131,7 @@ public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RequestItem> {
 		private MultisearchHeader header;
 
-		private MultisearchBody body;
+		private SearchRequestBody body;
 
 		/**
 		 * Required - API name: {@code header}
@@ -150,7 +151,7 @@ public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 		/**
 		 * Required - API name: {@code body}
 		 */
-		public final Builder body(MultisearchBody value) {
+		public final Builder body(SearchRequestBody value) {
 			this.body = value;
 			return this;
 		}
@@ -158,8 +159,8 @@ public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 		/**
 		 * Required - API name: {@code body}
 		 */
-		public final Builder body(Function<MultisearchBody.Builder, ObjectBuilder<MultisearchBody>> fn) {
-			return this.body(fn.apply(new MultisearchBody.Builder()).build());
+		public final Builder body(Function<SearchRequestBody.Builder, ObjectBuilder<SearchRequestBody>> fn) {
+			return this.body(fn.apply(new SearchRequestBody.Builder()).build());
 		}
 
 		/**
