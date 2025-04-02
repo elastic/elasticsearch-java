@@ -374,7 +374,7 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
                 // Array case, deserializing it into a map with null values
                 if (event == Event.START_ARRAY) {
                     while ((event = parser.next()) != Event.END_ARRAY) {
-                        JsonpUtils.ensureAccepts(itemDeserializer, parser, event);
+                        JsonpUtils.expectEvent(parser, Event.VALUE_STRING, event);
                         result.put(parser.getString(),null);
                     }
                 } else {
