@@ -18,7 +18,6 @@ Releases are hosted on [Maven Central](https://search.maven.org/search?q=g:co.el
 ```groovy
 dependencies {
     implementation 'co.elastic.clients:elasticsearch-java:9.0.0-beta1'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
 }
 ```
 
@@ -35,12 +34,6 @@ In the `pom.xml` of your project, add the following repository definition and de
       <groupId>co.elastic.clients</groupId>
       <artifactId>elasticsearch-java</artifactId>
       <version>9.0.0-beta1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.17.0</version>
     </dependency>
 
   </dependencies>
