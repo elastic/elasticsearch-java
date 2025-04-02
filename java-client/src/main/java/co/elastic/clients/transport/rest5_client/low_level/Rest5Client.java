@@ -155,11 +155,7 @@ public class Rest5Client implements Closeable {
      * Creates a new builder instance and sets the hosts that the client will send requests to.
      */
     public static Rest5ClientBuilder builder(URI... uris) {
-        if (uris == null || uris.length == 0) {
-            throw new IllegalArgumentException("uris must not be null nor empty");
-        }
-        List<Node> nodes = Arrays.stream(uris).map(u -> new Node(HttpHost.create(u))).toList();
-        return new Rest5ClientBuilder(nodes);
+        return builder(Arrays.asList(uris));
     }
 
     /**
@@ -170,13 +166,27 @@ public class Rest5Client implements Closeable {
         if (uris == null || uris.isEmpty()) {
             throw new IllegalArgumentException("uris must not be null nor empty");
         }
+        String prefix = uris.get(0).getPath();
+
         List<Node> nodes = uris.stream().map(u -> {
             if (!u.isAbsolute()) {
                 throw new IllegalArgumentException("Expecting an absolute url: [" + u + "]");
             }
+            if (!Objects.equals(u.getPath(), prefix)) {
+                throw new IllegalArgumentException(
+                    "All hosts must have the same URL path (" +
+                        uris.get(0) + " and " + u + ")"
+                );
+            }
             return new Node(HttpHost.create(u));
         }).toList();
-        return new Rest5ClientBuilder(nodes);
+
+        Rest5ClientBuilder result = new Rest5ClientBuilder(nodes);
+
+        if (prefix != null && !prefix.isEmpty()) {
+            result.setPathPrefix(prefix);
+        }
+        return result;
     }
 
     /**

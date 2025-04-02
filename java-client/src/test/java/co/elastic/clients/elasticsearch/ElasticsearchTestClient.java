@@ -73,4 +73,9 @@ public class ElasticsearchTestClient {
         var address = server.getAddress();
         return createClient("http://" + address.getHostString() + ":" + address.getPort(), mapper, null);
     }
+
+    public static Function<ElasticsearchTransportConfig, ElasticsearchTransport> transportFactory() {
+        System.out.println("Using a " + flavor + " client");
+        return flavor.transportFactory();
+    }
 }
