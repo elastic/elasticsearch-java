@@ -31,6 +31,7 @@ import org.elasticsearch.client.RestClientBuilder;
 
 import javax.annotation.Nullable;
 import java.util.Base64;
+import java.util.Objects;
 
 public class RestClientTransport extends ElasticsearchTransportBase {
 
@@ -61,8 +62,24 @@ public class RestClientTransport extends ElasticsearchTransportBase {
 
     private static RestClient buildRestClient(ElasticsearchTransportConfig config) {
         RestClientBuilder restClientBuilder = RestClient.builder(config.hosts().stream()
-            .map(h -> HttpHost.create(h.toString())).toArray(HttpHost[]::new)
+            .map(h -> new HttpHost(h.getHost(), h.getPort(), h.getScheme())).toArray(HttpHost[]::new)
         );
+
+        String prefix = config.hosts().get(0).getPath();
+        if (config.hosts().size() > 1) {
+            for (var host : config.hosts()) {
+                if (!Objects.equals(host.getPath(), prefix)) {
+                    throw new IllegalArgumentException(
+                        "All hosts must have the same URL path (" +
+                        config.hosts().get(0) + " and " + host + ")"
+                    );
+                }
+            }
+        }
+
+        if (prefix != null && !prefix.isEmpty()) {
+            restClientBuilder.setPathPrefix(prefix);
+        }
 
         if (config.username() != null && config.password() != null) {
             var cred = Base64.getEncoder().encodeToString((config.username() + ":" + config.password()).getBytes());
