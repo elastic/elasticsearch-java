@@ -35,7 +35,6 @@ import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
 import co.elastic.clients.elasticsearch.connector.UpdateIndexNameRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.rank_eval.RankEvalQuery;
-import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.elasticsearch.core.search.SourceFilter;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.LazyDeserializer;
@@ -378,7 +377,7 @@ public class BehaviorsTest extends ModelTestCase {
             "        \"_source\": {\n" +
             "          \"id\": \"park_rocky-mountain\",\n" +
             "          \"title\": \"Rocky Mountain\",\n" +
-            "          \"description\": \"Bisected north to south by the Continental Divide, this portion of the Rockies has ecosystems varying from over 150 riparian lakes to montane and subalpine forests to treeless alpine tundra.\"\n" +
+            "          \"description\": \"description\"\n" +
             "        },\n" +
             "        \"matched_queries\": [\n" +
             "          \"test\"\n" +
@@ -419,7 +418,7 @@ public class BehaviorsTest extends ModelTestCase {
             "        \"_source\": {\n" +
             "          \"id\": \"park_rocky-mountain\",\n" +
             "          \"title\": \"Rocky Mountain\",\n" +
-            "          \"description\": \"Bisected north to south by the Continental Divide, this portion of the Rockies has ecosystems varying from over 150 riparian lakes to montane and subalpine forests to treeless alpine tundra.\"\n" +
+            "          \"description\": \"description\"\n" +
             "        },\n" +
             "        \"matched_queries\": {\n" +
             "          \"test\": 1\n" +
