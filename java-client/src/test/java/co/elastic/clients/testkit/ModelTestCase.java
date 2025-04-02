@@ -50,7 +50,7 @@ public abstract class ModelTestCase extends Assertions {
     protected final JsonpMapper mapper;
 
     private static JsonImpl chooseJsonImpl(EnumSet<JsonImpl> jsonImplCandidates, int rand) {
-        // Converting an EnumSet to an array always uses the same order.
+        // Converting an EnumSet an array always uses the same order.
         return jsonImplCandidates.toArray(new JsonImpl[jsonImplCandidates.size()])[rand % jsonImplCandidates.size()];
     }
 

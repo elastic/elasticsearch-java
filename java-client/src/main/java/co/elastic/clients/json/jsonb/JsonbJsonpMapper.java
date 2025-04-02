@@ -52,7 +52,8 @@ public class JsonbJsonpMapper extends JsonpMapperBase {
     }
 
     public JsonbJsonpMapper() {
-        this(JsonpUtils.provider(), JsonbProvider.provider());
+        // Use a native JSON-P/JSON-B implementations.
+        this(JsonpUtils.systemProvider(), JsonbProvider.provider());
     }
 
     @Override
