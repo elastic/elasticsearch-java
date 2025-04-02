@@ -20,13 +20,21 @@
 package co.elastic.clients.transport;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.ElasticsearchTestClient;
+import co.elastic.clients.elasticsearch.indices.GetAliasResponse;
 import co.elastic.clients.transport.rest5_client.Rest5ClientOptions;
 import co.elastic.clients.transport.rest5_client.Rest5ClientTransport;
 import co.elastic.clients.transport.rest_client.RestClientOptions;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
+import com.sun.net.httpserver.HttpServer;
 import org.elasticsearch.client.RequestOptions;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.nio.charset.StandardCharsets;
 
 public class ElasticsearchTransportConfigTest extends Assertions {
 
@@ -131,5 +139,46 @@ public class ElasticsearchTransportConfigTest extends Assertions {
         try (var transport = config.buildTransport()) {
             assertInstanceOf(Rest5ClientTransport.class, transport);
         }
+    }
+
+    @Test
+    public void testPathPrefix() throws IOException {
+        HttpServer server = com.sun.net.httpserver.HttpServer.create(new InetSocketAddress(InetAddress.getLoopbackAddress(), 0), 0);
+
+        server.createContext("/path-prefix/_alias", exchange -> {
+            exchange.getResponseHeaders().set("X-Elastic-Product", "Elasticsearch");
+            exchange.getResponseHeaders().set("Content-Type", "application/json");
+            exchange.sendResponseHeaders(200, 0);
+
+            exchange.getResponseBody().write("{\"foo\":{\"aliases\":{}}}".getBytes(StandardCharsets.UTF_8));
+            exchange.close();
+        });
+
+        server.start();
+
+        var address = server.getAddress();
+        var url = "http://" + address.getHostName() + ":" + address.getPort() + "/path-prefix";
+
+        // No trailing slash
+        try(var esClient = ElasticsearchClient.of(b -> b
+            .host(url)
+            .transportFactory(ElasticsearchTestClient.transportFactory())
+        )) {
+            GetAliasResponse alias = esClient.indices().getAlias();
+            assertEquals(1, alias.aliases().size());
+            assertNotNull(alias.aliases().get("foo"));
+        }
+
+        // Trailing slash
+        try(var esClient = ElasticsearchClient.of(b -> b
+            .host(url + "/")
+            .transportFactory(ElasticsearchTestClient.transportFactory())
+        )) {
+            GetAliasResponse alias = esClient.indices().getAlias();
+            assertEquals(1, alias.aliases().size());
+            assertNotNull(alias.aliases().get("foo"));
+        }
+
+        server.stop(0);
     }
 }
