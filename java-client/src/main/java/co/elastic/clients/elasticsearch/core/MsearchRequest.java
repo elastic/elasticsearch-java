@@ -108,6 +108,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
+	@Nullable
+	private final Boolean includeNamedQueriesScore;
+
 	private final List<String> index;
 
 	@Nullable
@@ -136,6 +139,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.includeNamedQueriesScore = builder.includeNamedQueriesScore;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.maxConcurrentSearches = builder.maxConcurrentSearches;
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
@@ -208,6 +212,22 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	@Nullable
 	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * Indicates whether hit.matched_queries should be rendered as a map that
+	 * includes the name of the matched query associated with its score (true) or as
+	 * an array containing the name of the matched queries (false) This
+	 * functionality reruns each named query on every hit in a search response.
+	 * Typically, this adds a small overhead to a request. However, using
+	 * computationally expensive named queries on a large number of hits may add
+	 * significant overhead.
+	 * <p>
+	 * API name: {@code include_named_queries_score}
+	 */
+	@Nullable
+	public final Boolean includeNamedQueriesScore() {
+		return this.includeNamedQueriesScore;
 	}
 
 	/**
@@ -321,6 +341,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		private Boolean ignoreUnavailable;
 
 		@Nullable
+		private Boolean includeNamedQueriesScore;
+
+		@Nullable
 		private List<String> index;
 
 		@Nullable
@@ -410,6 +433,22 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		 */
 		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * Indicates whether hit.matched_queries should be rendered as a map that
+		 * includes the name of the matched query associated with its score (true) or as
+		 * an array containing the name of the matched queries (false) This
+		 * functionality reruns each named query on every hit in a search response.
+		 * Typically, this adds a small overhead to a request. However, using
+		 * computationally expensive named queries on a large number of hits may add
+		 * significant overhead.
+		 * <p>
+		 * API name: {@code include_named_queries_score}
+		 */
+		public final Builder includeNamedQueriesScore(@Nullable Boolean value) {
+			this.includeNamedQueriesScore = value;
 			return this;
 		}
 
@@ -612,6 +651,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
+				if (request.includeNamedQueriesScore != null) {
+					params.put("include_named_queries_score", String.valueOf(request.includeNamedQueriesScore));
 				}
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.jsonValue());
