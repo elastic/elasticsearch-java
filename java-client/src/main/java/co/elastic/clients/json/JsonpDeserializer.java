@@ -221,6 +221,10 @@ public interface JsonpDeserializer<V> {
         return new JsonpDeserializerBase.StringMapDeserializer<T>(itemDeserializer);
     }
 
+    static <T> JsonpDeserializer<Map<String, T>> stringArrayMapUnionDeserializer(JsonpDeserializer<T> itemDeserializer) {
+        return new JsonpDeserializerBase.StringArrayMapUnionDeserializer<T>(itemDeserializer);
+    }
+
     static <K extends JsonEnum, V> JsonpDeserializer<Map<K, V>> enumMapDeserializer(
         JsonpDeserializer<K> keyDeserializer, JsonpDeserializer<V> valueDeserializer
     ) {

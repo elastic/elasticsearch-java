@@ -184,6 +184,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
+	@Nullable
+	private final Boolean includeNamedQueriesScore;
+
 	private final List<String> index;
 
 	private final List<NamedValue<Double>> indicesBoost;
@@ -304,6 +307,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		this.highlight = builder.highlight;
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.includeNamedQueriesScore = builder.includeNamedQueriesScore;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.indicesBoost = ApiTypeHelper.unmodifiable(builder.indicesBoost);
 		this.knn = ApiTypeHelper.unmodifiable(builder.knn);
@@ -596,6 +600,22 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * If <code>true</code>, the response includes the score contribution from any
+	 * named queries.
+	 * <p>
+	 * This functionality reruns each named query on every hit in a search response.
+	 * Typically, this adds a small overhead to a request. However, using
+	 * computationally expensive named queries on a large number of hits may add
+	 * significant overhead.
+	 * <p>
+	 * API name: {@code include_named_queries_score}
+	 */
+	@Nullable
+	public final Boolean includeNamedQueriesScore() {
+		return this.includeNamedQueriesScore;
 	}
 
 	/**
@@ -1364,6 +1384,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		private Boolean ignoreUnavailable;
 
 		@Nullable
+		private Boolean includeNamedQueriesScore;
+
+		@Nullable
 		private List<String> index;
 
 		@Nullable
@@ -1880,6 +1903,22 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the response includes the score contribution from any
+		 * named queries.
+		 * <p>
+		 * This functionality reruns each named query on every hit in a search response.
+		 * Typically, this adds a small overhead to a request. However, using
+		 * computationally expensive named queries on a large number of hits may add
+		 * significant overhead.
+		 * <p>
+		 * API name: {@code include_named_queries_score}
+		 */
+		public final Builder includeNamedQueriesScore(@Nullable Boolean value) {
+			this.includeNamedQueriesScore = value;
 			return this;
 		}
 
@@ -2908,6 +2947,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.forceSyntheticSource != null) {
 					params.put("force_synthetic_source", String.valueOf(request.forceSyntheticSource));
+				}
+				if (request.includeNamedQueriesScore != null) {
+					params.put("include_named_queries_score", String.valueOf(request.includeNamedQueriesScore));
 				}
 				if (request.lenient != null) {
 					params.put("lenient", String.valueOf(request.lenient));

@@ -33,6 +33,7 @@ import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.ShapeQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
 import co.elastic.clients.elasticsearch.connector.UpdateIndexNameRequest;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.rank_eval.RankEvalQuery;
 import co.elastic.clients.elasticsearch.core.search.SourceFilter;
 import co.elastic.clients.json.JsonData;
@@ -41,6 +42,8 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.util.MapBuilder;
 import org.junit.jupiter.api.Test;
+
+import java.io.StringReader;
 
 import static co.elastic.clients.elasticsearch._types.query_dsl.Query.Kind.MatchAll;
 
@@ -345,5 +348,92 @@ public class BehaviorsTest extends ModelTestCase {
 
         assertEquals(jsonValue,toJson(updateValue));
         assertEquals(jsonNull,toJson(updateNull));
+    }
+
+    @Test
+    public void testArrayToMapHitMatchedQueries() {
+
+        // matched_queries has a special deserialization because it can be either an array or a map
+        String jsonValueArray = "{\n" +
+            "  \"took\": 0,\n" +
+            "  \"timed_out\": false,\n" +
+            "  \"_shards\": {\n" +
+            "    \"total\": 1,\n" +
+            "    \"successful\": 1,\n" +
+            "    \"skipped\": 0,\n" +
+            "    \"failed\": 0\n" +
+            "  },\n" +
+            "  \"hits\": {\n" +
+            "    \"total\": {\n" +
+            "      \"value\": 1,\n" +
+            "      \"relation\": \"eq\"\n" +
+            "    },\n" +
+            "    \"max_score\": 1,\n" +
+            "    \"hits\": [\n" +
+            "      {\n" +
+            "        \"_index\": \"my-index\",\n" +
+            "        \"_id\": \"N6V065UBHxF3EsAetzcl\",\n" +
+            "        \"_score\": 1,\n" +
+            "        \"_source\": {\n" +
+            "          \"id\": \"park_rocky-mountain\",\n" +
+            "          \"title\": \"Rocky Mountain\",\n" +
+            "          \"description\": \"description\"\n" +
+            "        },\n" +
+            "        \"matched_queries\": [\n" +
+            "          \"test\"\n" +
+            "        ]\n" +
+            "      }\n" +
+            "    ]\n" +
+            "  }\n" +
+            "}";
+
+        SearchResponse<Void> arrayResp = SearchResponse.of(s -> s.withJson(new StringReader(jsonValueArray)));
+
+        String roundtripArray = arrayResp.toString();
+        assertTrue(roundtripArray.contains("\"matched_queries\":[\"test\"]"));
+
+        assertTrue(arrayResp.hits().hits().get(0).matchedQueries().containsKey("test"));
+        assertTrue(arrayResp.hits().hits().get(0).matchedQueries().get("test") == null);
+
+        String jsonValueMap = "{\n" +
+            "  \"took\": 1,\n" +
+            "  \"timed_out\": false,\n" +
+            "  \"_shards\": {\n" +
+            "    \"total\": 1,\n" +
+            "    \"successful\": 1,\n" +
+            "    \"skipped\": 0,\n" +
+            "    \"failed\": 0\n" +
+            "  },\n" +
+            "  \"hits\": {\n" +
+            "    \"total\": {\n" +
+            "      \"value\": 1,\n" +
+            "      \"relation\": \"eq\"\n" +
+            "    },\n" +
+            "    \"max_score\": 1,\n" +
+            "    \"hits\": [\n" +
+            "      {\n" +
+            "        \"_index\": \"my-index\",\n" +
+            "        \"_id\": \"N6V065UBHxF3EsAetzcl\",\n" +
+            "        \"_score\": 1,\n" +
+            "        \"_source\": {\n" +
+            "          \"id\": \"park_rocky-mountain\",\n" +
+            "          \"title\": \"Rocky Mountain\",\n" +
+            "          \"description\": \"description\"\n" +
+            "        },\n" +
+            "        \"matched_queries\": {\n" +
+            "          \"test\": 1\n" +
+            "        }\n" +
+            "      }\n" +
+            "    ]\n" +
+            "  }\n" +
+            "}";
+
+        SearchResponse<Void> mapResp = SearchResponse.of(s -> s.withJson(new StringReader(jsonValueMap)));
+
+        String roundtripMap = mapResp.toString();
+        assertTrue(roundtripMap.contains("\"matched_queries\":{\"test\":1.0}"));
+
+        assertTrue(mapResp.hits().hits().get(0).matchedQueries().containsKey("test"));
+        assertTrue(mapResp.hits().hits().get(0).matchedQueries().get("test").equals(1D));
     }
 }
