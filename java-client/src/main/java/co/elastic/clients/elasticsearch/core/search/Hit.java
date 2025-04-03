@@ -87,7 +87,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 
 	private final Map<String, InnerHitsResult> innerHits;
 
-	private final List<String> matchedQueries;
+	private final Map<String, Double> matchedQueries;
 
 	@Nullable
 	private final NestedIdentity nested;
@@ -212,7 +212,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 	/**
 	 * API name: {@code matched_queries}
 	 */
-	public final List<String> matchedQueries() {
+	public final Map<String, Double> matchedQueries() {
 		return this.matchedQueries;
 	}
 
@@ -380,12 +380,21 @@ public class Hit<TDocument> implements JsonpSerializable {
 		}
 		if (ApiTypeHelper.isDefined(this.matchedQueries)) {
 			generator.writeKey("matched_queries");
-			generator.writeStartArray();
-			for (String item0 : this.matchedQueries) {
-				generator.write(item0);
+			if (this.matchedQueries.values().stream().allMatch(Objects::isNull)) {
+				generator.writeStartArray();
+				for (String item0 : this.matchedQueries.keySet()) {
+					generator.write(item0);
+				}
+				generator.writeEnd();
+			} else {
+				generator.writeStartObject();
+				for (Map.Entry<String, Double> item0 : this.matchedQueries.entrySet()) {
+					generator.writeKey(item0.getKey());
+					generator.write(item0.getValue());
 
+				}
+				generator.writeEnd();
 			}
-			generator.writeEnd();
 
 		}
 		if (this.nested != null) {
@@ -509,7 +518,7 @@ public class Hit<TDocument> implements JsonpSerializable {
 		private Map<String, InnerHitsResult> innerHits;
 
 		@Nullable
-		private List<String> matchedQueries;
+		private Map<String, Double> matchedQueries;
 
 		@Nullable
 		private NestedIdentity nested;
@@ -662,20 +671,20 @@ public class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code matched_queries}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>matchedQueries</code>.
+		 * Adds all entries of <code>map</code> to <code>matchedQueries</code>.
 		 */
-		public final Builder<TDocument> matchedQueries(List<String> list) {
-			this.matchedQueries = _listAddAll(this.matchedQueries, list);
+		public final Builder<TDocument> matchedQueries(Map<String, Double> map) {
+			this.matchedQueries = _mapPutAll(this.matchedQueries, map);
 			return this;
 		}
 
 		/**
 		 * API name: {@code matched_queries}
 		 * <p>
-		 * Adds one or more values to <code>matchedQueries</code>.
+		 * Adds an entry to <code>matchedQueries</code>.
 		 */
-		public final Builder<TDocument> matchedQueries(String value, String... values) {
-			this.matchedQueries = _listAdd(this.matchedQueries, value, values);
+		public final Builder<TDocument> matchedQueries(String key, Double value) {
+			this.matchedQueries = _mapPut(this.matchedQueries, key, value);
 			return this;
 		}
 
@@ -937,7 +946,8 @@ public class Hit<TDocument> implements JsonpSerializable {
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "highlight");
 		op.add(Builder::innerHits, JsonpDeserializer.stringMapDeserializer(InnerHitsResult._DESERIALIZER),
 				"inner_hits");
-		op.add(Builder::matchedQueries, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+		op.add(Builder::matchedQueries,
+				JsonpDeserializer.stringArrayMapUnionDeserializer(JsonpDeserializer.doubleDeserializer()),
 				"matched_queries");
 		op.add(Builder::nested, NestedIdentity._DESERIALIZER, "_nested");
 		op.add(Builder::ignored, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
