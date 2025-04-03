@@ -80,8 +80,8 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 
 	private DataframeAnalyticsFieldSelection(Builder builder) {
 
-		this.isIncluded = ApiTypeHelper.requireNonNull(builder.isIncluded, this, "isIncluded");
-		this.isRequired = ApiTypeHelper.requireNonNull(builder.isRequired, this, "isRequired");
+		this.isIncluded = ApiTypeHelper.requireNonNull(builder.isIncluded, this, "isIncluded", false);
+		this.isRequired = ApiTypeHelper.requireNonNull(builder.isRequired, this, "isRequired", false);
 		this.featureType = builder.featureType;
 		this.mappingTypes = ApiTypeHelper.unmodifiableRequired(builder.mappingTypes, this, "mappingTypes");
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");

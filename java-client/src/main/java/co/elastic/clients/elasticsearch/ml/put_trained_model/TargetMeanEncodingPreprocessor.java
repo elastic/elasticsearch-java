@@ -77,7 +77,7 @@ public class TargetMeanEncodingPreprocessor implements PreprocessorVariant, Json
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
 		this.targetMap = ApiTypeHelper.unmodifiableRequired(builder.targetMap, this, "targetMap");
-		this.defaultValue = ApiTypeHelper.requireNonNull(builder.defaultValue, this, "defaultValue");
+		this.defaultValue = ApiTypeHelper.requireNonNull(builder.defaultValue, this, "defaultValue", 0);
 
 	}
 

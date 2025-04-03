@@ -67,8 +67,8 @@ public class AutoscalingResources implements JsonpSerializable {
 
 	private AutoscalingResources(Builder builder) {
 
-		this.storage = ApiTypeHelper.requireNonNull(builder.storage, this, "storage");
-		this.memory = ApiTypeHelper.requireNonNull(builder.memory, this, "memory");
+		this.storage = ApiTypeHelper.requireNonNull(builder.storage, this, "storage", 0);
+		this.memory = ApiTypeHelper.requireNonNull(builder.memory, this, "memory", 0);
 
 	}
 

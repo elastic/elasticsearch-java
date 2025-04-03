@@ -83,7 +83,7 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 
 	private DeleteDanglingIndexRequest(Builder builder) {
 
-		this.acceptDataLoss = ApiTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss");
+		this.acceptDataLoss = ApiTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss", false);
 		this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;

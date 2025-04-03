@@ -102,25 +102,27 @@ public class TransformIndexerStats implements JsonpSerializable {
 	private TransformIndexerStats(Builder builder) {
 
 		this.deleteTimeInMs = builder.deleteTimeInMs;
-		this.documentsIndexed = ApiTypeHelper.requireNonNull(builder.documentsIndexed, this, "documentsIndexed");
+		this.documentsIndexed = ApiTypeHelper.requireNonNull(builder.documentsIndexed, this, "documentsIndexed", 0);
 		this.documentsDeleted = builder.documentsDeleted;
-		this.documentsProcessed = ApiTypeHelper.requireNonNull(builder.documentsProcessed, this, "documentsProcessed");
-		this.exponentialAvgCheckpointDurationMs = ApiTypeHelper
-				.requireNonNull(builder.exponentialAvgCheckpointDurationMs, this, "exponentialAvgCheckpointDurationMs");
+		this.documentsProcessed = ApiTypeHelper.requireNonNull(builder.documentsProcessed, this, "documentsProcessed",
+				0);
+		this.exponentialAvgCheckpointDurationMs = ApiTypeHelper.requireNonNull(
+				builder.exponentialAvgCheckpointDurationMs, this, "exponentialAvgCheckpointDurationMs", 0);
 		this.exponentialAvgDocumentsIndexed = ApiTypeHelper.requireNonNull(builder.exponentialAvgDocumentsIndexed, this,
-				"exponentialAvgDocumentsIndexed");
+				"exponentialAvgDocumentsIndexed", 0);
 		this.exponentialAvgDocumentsProcessed = ApiTypeHelper.requireNonNull(builder.exponentialAvgDocumentsProcessed,
-				this, "exponentialAvgDocumentsProcessed");
-		this.indexFailures = ApiTypeHelper.requireNonNull(builder.indexFailures, this, "indexFailures");
-		this.indexTimeInMs = ApiTypeHelper.requireNonNull(builder.indexTimeInMs, this, "indexTimeInMs");
-		this.indexTotal = ApiTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal");
-		this.pagesProcessed = ApiTypeHelper.requireNonNull(builder.pagesProcessed, this, "pagesProcessed");
-		this.processingTimeInMs = ApiTypeHelper.requireNonNull(builder.processingTimeInMs, this, "processingTimeInMs");
-		this.processingTotal = ApiTypeHelper.requireNonNull(builder.processingTotal, this, "processingTotal");
-		this.searchFailures = ApiTypeHelper.requireNonNull(builder.searchFailures, this, "searchFailures");
-		this.searchTimeInMs = ApiTypeHelper.requireNonNull(builder.searchTimeInMs, this, "searchTimeInMs");
-		this.searchTotal = ApiTypeHelper.requireNonNull(builder.searchTotal, this, "searchTotal");
-		this.triggerCount = ApiTypeHelper.requireNonNull(builder.triggerCount, this, "triggerCount");
+				this, "exponentialAvgDocumentsProcessed", 0);
+		this.indexFailures = ApiTypeHelper.requireNonNull(builder.indexFailures, this, "indexFailures", 0);
+		this.indexTimeInMs = ApiTypeHelper.requireNonNull(builder.indexTimeInMs, this, "indexTimeInMs", 0);
+		this.indexTotal = ApiTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal", 0);
+		this.pagesProcessed = ApiTypeHelper.requireNonNull(builder.pagesProcessed, this, "pagesProcessed", 0);
+		this.processingTimeInMs = ApiTypeHelper.requireNonNull(builder.processingTimeInMs, this, "processingTimeInMs",
+				0);
+		this.processingTotal = ApiTypeHelper.requireNonNull(builder.processingTotal, this, "processingTotal", 0);
+		this.searchFailures = ApiTypeHelper.requireNonNull(builder.searchFailures, this, "searchFailures", 0);
+		this.searchTimeInMs = ApiTypeHelper.requireNonNull(builder.searchTimeInMs, this, "searchTimeInMs", 0);
+		this.searchTotal = ApiTypeHelper.requireNonNull(builder.searchTotal, this, "searchTotal", 0);
+		this.triggerCount = ApiTypeHelper.requireNonNull(builder.triggerCount, this, "triggerCount", 0);
 
 	}
 

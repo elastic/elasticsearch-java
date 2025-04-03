@@ -68,7 +68,7 @@ public class OpenJobResponse implements JsonpSerializable {
 
 	private OpenJobResponse(Builder builder) {
 
-		this.opened = ApiTypeHelper.requireNonNull(builder.opened, this, "opened");
+		this.opened = ApiTypeHelper.requireNonNull(builder.opened, this, "opened", false);
 		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
 
 	}

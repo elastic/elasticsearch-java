@@ -75,12 +75,12 @@ public class StandardDeviationBounds implements JsonpSerializable {
 
 	private StandardDeviationBounds(Builder builder) {
 
-		this.upper = ApiTypeHelper.requireNonNull(builder.upper, this, "upper");
-		this.lower = ApiTypeHelper.requireNonNull(builder.lower, this, "lower");
-		this.upperPopulation = ApiTypeHelper.requireNonNull(builder.upperPopulation, this, "upperPopulation");
-		this.lowerPopulation = ApiTypeHelper.requireNonNull(builder.lowerPopulation, this, "lowerPopulation");
-		this.upperSampling = ApiTypeHelper.requireNonNull(builder.upperSampling, this, "upperSampling");
-		this.lowerSampling = ApiTypeHelper.requireNonNull(builder.lowerSampling, this, "lowerSampling");
+		this.upper = ApiTypeHelper.requireNonNull(builder.upper, this, "upper", 0);
+		this.lower = ApiTypeHelper.requireNonNull(builder.lower, this, "lower", 0);
+		this.upperPopulation = ApiTypeHelper.requireNonNull(builder.upperPopulation, this, "upperPopulation", 0);
+		this.lowerPopulation = ApiTypeHelper.requireNonNull(builder.lowerPopulation, this, "lowerPopulation", 0);
+		this.upperSampling = ApiTypeHelper.requireNonNull(builder.upperSampling, this, "upperSampling", 0);
+		this.lowerSampling = ApiTypeHelper.requireNonNull(builder.lowerSampling, this, "lowerSampling", 0);
 
 	}
 

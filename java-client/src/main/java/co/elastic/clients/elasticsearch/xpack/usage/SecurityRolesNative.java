@@ -70,9 +70,9 @@ public class SecurityRolesNative implements JsonpSerializable {
 
 	private SecurityRolesNative(Builder builder) {
 
-		this.dls = ApiTypeHelper.requireNonNull(builder.dls, this, "dls");
-		this.fls = ApiTypeHelper.requireNonNull(builder.fls, this, "fls");
-		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size");
+		this.dls = ApiTypeHelper.requireNonNull(builder.dls, this, "dls", false);
+		this.fls = ApiTypeHelper.requireNonNull(builder.fls, this, "fls", false);
+		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size", 0);
 
 	}
 

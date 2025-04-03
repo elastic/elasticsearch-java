@@ -65,7 +65,7 @@ public class DataStreamTimestamp implements JsonpSerializable {
 
 	private DataStreamTimestamp(Builder builder) {
 
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
 
 	}
 

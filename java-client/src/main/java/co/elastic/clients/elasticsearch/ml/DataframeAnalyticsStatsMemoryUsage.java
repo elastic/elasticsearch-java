@@ -76,7 +76,7 @@ public class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializable {
 	private DataframeAnalyticsStatsMemoryUsage(Builder builder) {
 
 		this.memoryReestimateBytes = builder.memoryReestimateBytes;
-		this.peakUsageBytes = ApiTypeHelper.requireNonNull(builder.peakUsageBytes, this, "peakUsageBytes");
+		this.peakUsageBytes = ApiTypeHelper.requireNonNull(builder.peakUsageBytes, this, "peakUsageBytes", 0);
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.timestamp = builder.timestamp;
 

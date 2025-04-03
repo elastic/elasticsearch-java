@@ -96,10 +96,10 @@ public class ModelSnapshot implements JsonpSerializable {
 		this.latestResultTimeStamp = builder.latestResultTimeStamp;
 		this.minVersion = ApiTypeHelper.requireNonNull(builder.minVersion, this, "minVersion");
 		this.modelSizeStats = builder.modelSizeStats;
-		this.retain = ApiTypeHelper.requireNonNull(builder.retain, this, "retain");
-		this.snapshotDocCount = ApiTypeHelper.requireNonNull(builder.snapshotDocCount, this, "snapshotDocCount");
+		this.retain = ApiTypeHelper.requireNonNull(builder.retain, this, "retain", false);
+		this.snapshotDocCount = ApiTypeHelper.requireNonNull(builder.snapshotDocCount, this, "snapshotDocCount", 0);
 		this.snapshotId = ApiTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
-		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp", 0);
 
 	}
 

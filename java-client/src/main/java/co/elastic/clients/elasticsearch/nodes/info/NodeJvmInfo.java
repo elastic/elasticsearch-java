@@ -95,13 +95,13 @@ public class NodeJvmInfo implements JsonpSerializable {
 		this.gcCollectors = ApiTypeHelper.unmodifiableRequired(builder.gcCollectors, this, "gcCollectors");
 		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
 		this.memoryPools = ApiTypeHelper.unmodifiableRequired(builder.memoryPools, this, "memoryPools");
-		this.pid = ApiTypeHelper.requireNonNull(builder.pid, this, "pid");
-		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.pid = ApiTypeHelper.requireNonNull(builder.pid, this, "pid", 0);
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis", 0);
 		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.vmName = ApiTypeHelper.requireNonNull(builder.vmName, this, "vmName");
 		this.vmVendor = ApiTypeHelper.requireNonNull(builder.vmVendor, this, "vmVendor");
 		this.vmVersion = ApiTypeHelper.requireNonNull(builder.vmVersion, this, "vmVersion");
-		this.usingBundledJdk = ApiTypeHelper.requireNonNull(builder.usingBundledJdk, this, "usingBundledJdk");
+		this.usingBundledJdk = ApiTypeHelper.requireNonNull(builder.usingBundledJdk, this, "usingBundledJdk", false);
 		this.usingCompressedOrdinaryObjectPointers = builder.usingCompressedOrdinaryObjectPointers;
 		this.inputArguments = ApiTypeHelper.unmodifiableRequired(builder.inputArguments, this, "inputArguments");
 

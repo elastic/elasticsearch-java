@@ -90,20 +90,21 @@ public class AggregationBreakdown implements JsonpSerializable {
 
 	private AggregationBreakdown(Builder builder) {
 
-		this.buildAggregation = ApiTypeHelper.requireNonNull(builder.buildAggregation, this, "buildAggregation");
+		this.buildAggregation = ApiTypeHelper.requireNonNull(builder.buildAggregation, this, "buildAggregation", 0);
 		this.buildAggregationCount = ApiTypeHelper.requireNonNull(builder.buildAggregationCount, this,
-				"buildAggregationCount");
-		this.buildLeafCollector = ApiTypeHelper.requireNonNull(builder.buildLeafCollector, this, "buildLeafCollector");
+				"buildAggregationCount", 0);
+		this.buildLeafCollector = ApiTypeHelper.requireNonNull(builder.buildLeafCollector, this, "buildLeafCollector",
+				0);
 		this.buildLeafCollectorCount = ApiTypeHelper.requireNonNull(builder.buildLeafCollectorCount, this,
-				"buildLeafCollectorCount");
-		this.collect = ApiTypeHelper.requireNonNull(builder.collect, this, "collect");
-		this.collectCount = ApiTypeHelper.requireNonNull(builder.collectCount, this, "collectCount");
-		this.initialize = ApiTypeHelper.requireNonNull(builder.initialize, this, "initialize");
-		this.initializeCount = ApiTypeHelper.requireNonNull(builder.initializeCount, this, "initializeCount");
+				"buildLeafCollectorCount", 0);
+		this.collect = ApiTypeHelper.requireNonNull(builder.collect, this, "collect", 0);
+		this.collectCount = ApiTypeHelper.requireNonNull(builder.collectCount, this, "collectCount", 0);
+		this.initialize = ApiTypeHelper.requireNonNull(builder.initialize, this, "initialize", 0);
+		this.initializeCount = ApiTypeHelper.requireNonNull(builder.initializeCount, this, "initializeCount", 0);
 		this.postCollection = builder.postCollection;
 		this.postCollectionCount = builder.postCollectionCount;
-		this.reduce = ApiTypeHelper.requireNonNull(builder.reduce, this, "reduce");
-		this.reduceCount = ApiTypeHelper.requireNonNull(builder.reduceCount, this, "reduceCount");
+		this.reduce = ApiTypeHelper.requireNonNull(builder.reduce, this, "reduce", 0);
+		this.reduceCount = ApiTypeHelper.requireNonNull(builder.reduceCount, this, "reduceCount", 0);
 
 	}
 

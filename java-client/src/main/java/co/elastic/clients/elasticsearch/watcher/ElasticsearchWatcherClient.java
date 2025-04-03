@@ -725,8 +725,14 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	/**
 	 * Update Watcher index settings. Update settings for the Watcher internal index
 	 * (<code>.watches</code>). Only a subset of settings can be modified. This
-	 * includes <code>index.auto_expand_replicas</code> and
-	 * <code>index.number_of_replicas</code>.
+	 * includes <code>index.auto_expand_replicas</code>,
+	 * <code>index.number_of_replicas</code>,
+	 * <code>index.routing.allocation.exclude.*</code>,
+	 * <code>index.routing.allocation.include.*</code> and
+	 * <code>index.routing.allocation.require.*</code>. Modification of
+	 * <code>index.routing.allocation.include._tier_preference</code> is an
+	 * exception and is not allowed as the Watcher shards must always be in the
+	 * <code>data_content</code> tier.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/watcher-api-update-settings.html">Documentation
@@ -744,8 +750,14 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	/**
 	 * Update Watcher index settings. Update settings for the Watcher internal index
 	 * (<code>.watches</code>). Only a subset of settings can be modified. This
-	 * includes <code>index.auto_expand_replicas</code> and
-	 * <code>index.number_of_replicas</code>.
+	 * includes <code>index.auto_expand_replicas</code>,
+	 * <code>index.number_of_replicas</code>,
+	 * <code>index.routing.allocation.exclude.*</code>,
+	 * <code>index.routing.allocation.include.*</code> and
+	 * <code>index.routing.allocation.require.*</code>. Modification of
+	 * <code>index.routing.allocation.include._tier_preference</code> is an
+	 * exception and is not allowed as the Watcher shards must always be in the
+	 * <code>data_content</code> tier.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -764,8 +776,14 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	/**
 	 * Update Watcher index settings. Update settings for the Watcher internal index
 	 * (<code>.watches</code>). Only a subset of settings can be modified. This
-	 * includes <code>index.auto_expand_replicas</code> and
-	 * <code>index.number_of_replicas</code>.
+	 * includes <code>index.auto_expand_replicas</code>,
+	 * <code>index.number_of_replicas</code>,
+	 * <code>index.routing.allocation.exclude.*</code>,
+	 * <code>index.routing.allocation.include.*</code> and
+	 * <code>index.routing.allocation.require.*</code>. Modification of
+	 * <code>index.routing.allocation.include._tier_preference</code> is an
+	 * exception and is not allowed as the Watcher shards must always be in the
+	 * <code>data_content</code> tier.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/watcher-api-update-settings.html">Documentation

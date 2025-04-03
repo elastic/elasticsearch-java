@@ -100,15 +100,16 @@ public class ExtendedStatsAggregate extends StatsAggregate implements AggregateV
 	protected ExtendedStatsAggregate(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.sumOfSquares = ApiTypeHelper.requireNonNull(builder.sumOfSquares, this, "sumOfSquares");
-		this.variance = ApiTypeHelper.requireNonNull(builder.variance, this, "variance");
-		this.variancePopulation = ApiTypeHelper.requireNonNull(builder.variancePopulation, this, "variancePopulation");
-		this.varianceSampling = ApiTypeHelper.requireNonNull(builder.varianceSampling, this, "varianceSampling");
-		this.stdDeviation = ApiTypeHelper.requireNonNull(builder.stdDeviation, this, "stdDeviation");
+		this.sumOfSquares = ApiTypeHelper.requireNonNull(builder.sumOfSquares, this, "sumOfSquares", 0);
+		this.variance = ApiTypeHelper.requireNonNull(builder.variance, this, "variance", 0);
+		this.variancePopulation = ApiTypeHelper.requireNonNull(builder.variancePopulation, this, "variancePopulation",
+				0);
+		this.varianceSampling = ApiTypeHelper.requireNonNull(builder.varianceSampling, this, "varianceSampling", 0);
+		this.stdDeviation = ApiTypeHelper.requireNonNull(builder.stdDeviation, this, "stdDeviation", 0);
 		this.stdDeviationPopulation = ApiTypeHelper.requireNonNull(builder.stdDeviationPopulation, this,
-				"stdDeviationPopulation");
+				"stdDeviationPopulation", 0);
 		this.stdDeviationSampling = ApiTypeHelper.requireNonNull(builder.stdDeviationSampling, this,
-				"stdDeviationSampling");
+				"stdDeviationSampling", 0);
 		this.stdDeviationBounds = builder.stdDeviationBounds;
 		this.sumOfSquaresAsString = builder.sumOfSquaresAsString;
 		this.varianceAsString = builder.varianceAsString;

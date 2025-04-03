@@ -74,7 +74,7 @@ public class CommandMoveAction implements JsonpSerializable {
 	private CommandMoveAction(Builder builder) {
 
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard", 0);
 		this.fromNode = ApiTypeHelper.requireNonNull(builder.fromNode, this, "fromNode");
 		this.toNode = ApiTypeHelper.requireNonNull(builder.toNode, this, "toNode");
 

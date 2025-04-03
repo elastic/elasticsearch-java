@@ -81,7 +81,7 @@ public class AggregationProfile implements JsonpSerializable {
 
 		this.breakdown = ApiTypeHelper.requireNonNull(builder.breakdown, this, "breakdown");
 		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
-		this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
+		this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos", 0);
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.debug = builder.debug;
 		this.children = ApiTypeHelper.unmodifiable(builder.children);

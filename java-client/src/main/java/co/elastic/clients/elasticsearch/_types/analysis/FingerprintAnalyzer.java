@@ -82,8 +82,8 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	private FingerprintAnalyzer(Builder builder) {
 
 		this.version = builder.version;
-		this.maxOutputSize = ApiTypeHelper.requireNonNull(builder.maxOutputSize, this, "maxOutputSize");
-		this.preserveOriginal = ApiTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
+		this.maxOutputSize = ApiTypeHelper.requireNonNull(builder.maxOutputSize, this, "maxOutputSize", 0);
+		this.preserveOriginal = ApiTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal", false);
 		this.separator = ApiTypeHelper.requireNonNull(builder.separator, this, "separator");
 		this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
 		this.stopwordsPath = builder.stopwordsPath;

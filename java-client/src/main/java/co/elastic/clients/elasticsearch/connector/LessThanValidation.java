@@ -65,7 +65,7 @@ public class LessThanValidation implements ValidationVariant, JsonpSerializable 
 
 	private LessThanValidation(Builder builder) {
 
-		this.constraint = ApiTypeHelper.requireNonNull(builder.constraint, this, "constraint");
+		this.constraint = ApiTypeHelper.requireNonNull(builder.constraint, this, "constraint", 0);
 
 	}
 

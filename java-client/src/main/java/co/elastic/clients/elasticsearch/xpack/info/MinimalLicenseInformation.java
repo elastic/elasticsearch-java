@@ -77,7 +77,8 @@ public class MinimalLicenseInformation implements JsonpSerializable {
 
 	private MinimalLicenseInformation(Builder builder) {
 
-		this.expiryDateInMillis = ApiTypeHelper.requireNonNull(builder.expiryDateInMillis, this, "expiryDateInMillis");
+		this.expiryDateInMillis = ApiTypeHelper.requireNonNull(builder.expiryDateInMillis, this, "expiryDateInMillis",
+				0);
 		this.mode = ApiTypeHelper.requireNonNull(builder.mode, this, "mode");
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");

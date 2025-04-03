@@ -80,15 +80,15 @@ public class IngestStats implements JsonpSerializable {
 
 	private IngestStats(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
-		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
+		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current", 0);
+		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed", 0);
 		this.processors = ApiTypeHelper.unmodifiableRequired(builder.processors, this, "processors");
-		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
+		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis", 0);
 		this.ingestedAsFirstPipelineInBytes = ApiTypeHelper.requireNonNull(builder.ingestedAsFirstPipelineInBytes, this,
-				"ingestedAsFirstPipelineInBytes");
+				"ingestedAsFirstPipelineInBytes", 0);
 		this.producedAsFirstPipelineInBytes = ApiTypeHelper.requireNonNull(builder.producedAsFirstPipelineInBytes, this,
-				"producedAsFirstPipelineInBytes");
+				"producedAsFirstPipelineInBytes", 0);
 
 	}
 

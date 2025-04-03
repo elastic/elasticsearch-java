@@ -77,13 +77,13 @@ public class CoordinatorStats implements JsonpSerializable {
 	private CoordinatorStats(Builder builder) {
 
 		this.executedSearchesTotal = ApiTypeHelper.requireNonNull(builder.executedSearchesTotal, this,
-				"executedSearchesTotal");
+				"executedSearchesTotal", 0);
 		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
-		this.queueSize = ApiTypeHelper.requireNonNull(builder.queueSize, this, "queueSize");
+		this.queueSize = ApiTypeHelper.requireNonNull(builder.queueSize, this, "queueSize", 0);
 		this.remoteRequestsCurrent = ApiTypeHelper.requireNonNull(builder.remoteRequestsCurrent, this,
-				"remoteRequestsCurrent");
+				"remoteRequestsCurrent", 0);
 		this.remoteRequestsTotal = ApiTypeHelper.requireNonNull(builder.remoteRequestsTotal, this,
-				"remoteRequestsTotal");
+				"remoteRequestsTotal", 0);
 
 	}
 

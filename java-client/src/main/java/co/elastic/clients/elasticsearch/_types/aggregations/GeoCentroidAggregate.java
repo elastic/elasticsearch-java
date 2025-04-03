@@ -68,7 +68,7 @@ public class GeoCentroidAggregate extends AggregateBase implements AggregateVari
 	private GeoCentroidAggregate(Builder builder) {
 		super(builder);
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.location = builder.location;
 
 	}

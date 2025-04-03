@@ -80,11 +80,11 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 	private GetAsyncStatusResponse(Builder builder) {
 
 		this.expirationTimeInMillis = ApiTypeHelper.requireNonNull(builder.expirationTimeInMillis, this,
-				"expirationTimeInMillis");
+				"expirationTimeInMillis", 0);
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.isRunning = ApiTypeHelper.requireNonNull(builder.isRunning, this, "isRunning");
-		this.isPartial = ApiTypeHelper.requireNonNull(builder.isPartial, this, "isPartial");
-		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.isRunning = ApiTypeHelper.requireNonNull(builder.isRunning, this, "isRunning", false);
+		this.isPartial = ApiTypeHelper.requireNonNull(builder.isPartial, this, "isPartial", false);
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis", 0);
 		this.completionStatus = builder.completionStatus;
 
 	}

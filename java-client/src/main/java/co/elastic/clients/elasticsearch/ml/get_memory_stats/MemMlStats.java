@@ -92,18 +92,18 @@ public class MemMlStats implements JsonpSerializable {
 
 		this.anomalyDetectors = builder.anomalyDetectors;
 		this.anomalyDetectorsInBytes = ApiTypeHelper.requireNonNull(builder.anomalyDetectorsInBytes, this,
-				"anomalyDetectorsInBytes");
+				"anomalyDetectorsInBytes", 0);
 		this.dataFrameAnalytics = builder.dataFrameAnalytics;
 		this.dataFrameAnalyticsInBytes = ApiTypeHelper.requireNonNull(builder.dataFrameAnalyticsInBytes, this,
-				"dataFrameAnalyticsInBytes");
+				"dataFrameAnalyticsInBytes", 0);
 		this.max = builder.max;
-		this.maxInBytes = ApiTypeHelper.requireNonNull(builder.maxInBytes, this, "maxInBytes");
+		this.maxInBytes = ApiTypeHelper.requireNonNull(builder.maxInBytes, this, "maxInBytes", 0);
 		this.nativeCodeOverhead = builder.nativeCodeOverhead;
 		this.nativeCodeOverheadInBytes = ApiTypeHelper.requireNonNull(builder.nativeCodeOverheadInBytes, this,
-				"nativeCodeOverheadInBytes");
+				"nativeCodeOverheadInBytes", 0);
 		this.nativeInference = builder.nativeInference;
 		this.nativeInferenceInBytes = ApiTypeHelper.requireNonNull(builder.nativeInferenceInBytes, this,
-				"nativeInferenceInBytes");
+				"nativeInferenceInBytes", 0);
 
 	}
 

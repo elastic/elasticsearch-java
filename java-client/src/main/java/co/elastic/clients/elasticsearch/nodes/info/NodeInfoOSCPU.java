@@ -81,12 +81,12 @@ public class NodeInfoOSCPU implements JsonpSerializable {
 	private NodeInfoOSCPU(Builder builder) {
 
 		this.cacheSize = ApiTypeHelper.requireNonNull(builder.cacheSize, this, "cacheSize");
-		this.cacheSizeInBytes = ApiTypeHelper.requireNonNull(builder.cacheSizeInBytes, this, "cacheSizeInBytes");
-		this.coresPerSocket = ApiTypeHelper.requireNonNull(builder.coresPerSocket, this, "coresPerSocket");
-		this.mhz = ApiTypeHelper.requireNonNull(builder.mhz, this, "mhz");
+		this.cacheSizeInBytes = ApiTypeHelper.requireNonNull(builder.cacheSizeInBytes, this, "cacheSizeInBytes", 0);
+		this.coresPerSocket = ApiTypeHelper.requireNonNull(builder.coresPerSocket, this, "coresPerSocket", 0);
+		this.mhz = ApiTypeHelper.requireNonNull(builder.mhz, this, "mhz", 0);
 		this.model = ApiTypeHelper.requireNonNull(builder.model, this, "model");
-		this.totalCores = ApiTypeHelper.requireNonNull(builder.totalCores, this, "totalCores");
-		this.totalSockets = ApiTypeHelper.requireNonNull(builder.totalSockets, this, "totalSockets");
+		this.totalCores = ApiTypeHelper.requireNonNull(builder.totalCores, this, "totalCores", 0);
+		this.totalSockets = ApiTypeHelper.requireNonNull(builder.totalSockets, this, "totalSockets", 0);
 		this.vendor = ApiTypeHelper.requireNonNull(builder.vendor, this, "vendor");
 
 	}

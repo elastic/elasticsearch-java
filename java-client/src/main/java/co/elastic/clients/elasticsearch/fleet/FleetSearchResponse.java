@@ -117,8 +117,8 @@ public class FleetSearchResponse<TDocument> implements JsonpSerializable {
 
 	private FleetSearchResponse(Builder<TDocument> builder) {
 
-		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
-		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took", 0);
+		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut", false);
 		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
 		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);

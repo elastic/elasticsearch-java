@@ -75,7 +75,7 @@ public class UpdateNativeRequest extends RequestBase implements JsonpSerializabl
 	private UpdateNativeRequest(Builder builder) {
 
 		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
-		this.isNative = ApiTypeHelper.requireNonNull(builder.isNative, this, "isNative");
+		this.isNative = ApiTypeHelper.requireNonNull(builder.isNative, this, "isNative", false);
 
 	}
 

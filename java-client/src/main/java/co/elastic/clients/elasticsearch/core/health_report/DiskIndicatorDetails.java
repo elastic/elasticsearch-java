@@ -74,15 +74,15 @@ public class DiskIndicatorDetails implements JsonpSerializable {
 	private DiskIndicatorDetails(Builder builder) {
 
 		this.indicesWithReadonlyBlock = ApiTypeHelper.requireNonNull(builder.indicesWithReadonlyBlock, this,
-				"indicesWithReadonlyBlock");
+				"indicesWithReadonlyBlock", 0);
 		this.nodesWithEnoughDiskSpace = ApiTypeHelper.requireNonNull(builder.nodesWithEnoughDiskSpace, this,
-				"nodesWithEnoughDiskSpace");
+				"nodesWithEnoughDiskSpace", 0);
 		this.nodesOverHighWatermark = ApiTypeHelper.requireNonNull(builder.nodesOverHighWatermark, this,
-				"nodesOverHighWatermark");
+				"nodesOverHighWatermark", 0);
 		this.nodesOverFloodStageWatermark = ApiTypeHelper.requireNonNull(builder.nodesOverFloodStageWatermark, this,
-				"nodesOverFloodStageWatermark");
+				"nodesOverFloodStageWatermark", 0);
 		this.nodesWithUnknownDiskStatus = ApiTypeHelper.requireNonNull(builder.nodesWithUnknownDiskStatus, this,
-				"nodesWithUnknownDiskStatus");
+				"nodesWithUnknownDiskStatus", 0);
 
 	}
 

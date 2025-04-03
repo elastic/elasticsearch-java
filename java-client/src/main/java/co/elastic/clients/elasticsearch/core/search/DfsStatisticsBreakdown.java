@@ -80,16 +80,16 @@ public class DfsStatisticsBreakdown implements JsonpSerializable {
 	private DfsStatisticsBreakdown(Builder builder) {
 
 		this.collectionStatistics = ApiTypeHelper.requireNonNull(builder.collectionStatistics, this,
-				"collectionStatistics");
+				"collectionStatistics", 0);
 		this.collectionStatisticsCount = ApiTypeHelper.requireNonNull(builder.collectionStatisticsCount, this,
-				"collectionStatisticsCount");
-		this.createWeight = ApiTypeHelper.requireNonNull(builder.createWeight, this, "createWeight");
-		this.createWeightCount = ApiTypeHelper.requireNonNull(builder.createWeightCount, this, "createWeightCount");
-		this.rewrite = ApiTypeHelper.requireNonNull(builder.rewrite, this, "rewrite");
-		this.rewriteCount = ApiTypeHelper.requireNonNull(builder.rewriteCount, this, "rewriteCount");
-		this.termStatistics = ApiTypeHelper.requireNonNull(builder.termStatistics, this, "termStatistics");
+				"collectionStatisticsCount", 0);
+		this.createWeight = ApiTypeHelper.requireNonNull(builder.createWeight, this, "createWeight", 0);
+		this.createWeightCount = ApiTypeHelper.requireNonNull(builder.createWeightCount, this, "createWeightCount", 0);
+		this.rewrite = ApiTypeHelper.requireNonNull(builder.rewrite, this, "rewrite", 0);
+		this.rewriteCount = ApiTypeHelper.requireNonNull(builder.rewriteCount, this, "rewriteCount", 0);
+		this.termStatistics = ApiTypeHelper.requireNonNull(builder.termStatistics, this, "termStatistics", 0);
 		this.termStatisticsCount = ApiTypeHelper.requireNonNull(builder.termStatisticsCount, this,
-				"termStatisticsCount");
+				"termStatisticsCount", 0);
 
 	}
 

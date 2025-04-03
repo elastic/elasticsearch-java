@@ -76,7 +76,7 @@ public class LearningToRankConfig implements InferenceConfigCreateVariant, Jsonp
 		this.defaultParams = ApiTypeHelper.unmodifiable(builder.defaultParams);
 		this.featureExtractors = ApiTypeHelper.unmodifiable(builder.featureExtractors);
 		this.numTopFeatureImportanceValues = ApiTypeHelper.requireNonNull(builder.numTopFeatureImportanceValues, this,
-				"numTopFeatureImportanceValues");
+				"numTopFeatureImportanceValues", 0);
 
 	}
 

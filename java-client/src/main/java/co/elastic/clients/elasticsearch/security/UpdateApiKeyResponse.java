@@ -65,7 +65,7 @@ public class UpdateApiKeyResponse implements JsonpSerializable {
 
 	private UpdateApiKeyResponse(Builder builder) {
 
-		this.updated = ApiTypeHelper.requireNonNull(builder.updated, this, "updated");
+		this.updated = ApiTypeHelper.requireNonNull(builder.updated, this, "updated", false);
 
 	}
 

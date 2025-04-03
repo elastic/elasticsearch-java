@@ -92,12 +92,12 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 
 		this.arch = ApiTypeHelper.requireNonNull(builder.arch, this, "arch");
 		this.availableProcessors = ApiTypeHelper.requireNonNull(builder.availableProcessors, this,
-				"availableProcessors");
+				"availableProcessors", 0);
 		this.allocatedProcessors = builder.allocatedProcessors;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.prettyName = ApiTypeHelper.requireNonNull(builder.prettyName, this, "prettyName");
 		this.refreshIntervalInMillis = ApiTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this,
-				"refreshIntervalInMillis");
+				"refreshIntervalInMillis", 0);
 		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.cpu = builder.cpu;
 		this.mem = builder.mem;

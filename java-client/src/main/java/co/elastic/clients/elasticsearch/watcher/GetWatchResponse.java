@@ -85,7 +85,7 @@ public class GetWatchResponse implements JsonpSerializable {
 
 	private GetWatchResponse(Builder builder) {
 
-		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found", false);
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.status = builder.status;
 		this.watch = builder.watch;

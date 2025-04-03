@@ -65,7 +65,7 @@ public class GreaterThanValidation implements ValidationVariant, JsonpSerializab
 
 	private GreaterThanValidation(Builder builder) {
 
-		this.constraint = ApiTypeHelper.requireNonNull(builder.constraint, this, "constraint");
+		this.constraint = ApiTypeHelper.requireNonNull(builder.constraint, this, "constraint", 0);
 
 	}
 

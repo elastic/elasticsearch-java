@@ -70,7 +70,7 @@ public class DeleteJobResponse implements AcknowledgedResponse, JsonpSerializabl
 
 	private DeleteJobResponse(Builder builder) {
 
-		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged", false);
 		this.taskFailures = ApiTypeHelper.unmodifiable(builder.taskFailures);
 
 	}

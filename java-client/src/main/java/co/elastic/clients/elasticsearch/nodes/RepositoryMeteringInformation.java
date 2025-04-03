@@ -92,9 +92,9 @@ public class RepositoryMeteringInformation implements JsonpSerializable {
 		this.repositoryEphemeralId = ApiTypeHelper.requireNonNull(builder.repositoryEphemeralId, this,
 				"repositoryEphemeralId");
 		this.repositoryStartedAt = ApiTypeHelper.requireNonNull(builder.repositoryStartedAt, this,
-				"repositoryStartedAt");
+				"repositoryStartedAt", 0);
 		this.repositoryStoppedAt = builder.repositoryStoppedAt;
-		this.archived = ApiTypeHelper.requireNonNull(builder.archived, this, "archived");
+		this.archived = ApiTypeHelper.requireNonNull(builder.archived, this, "archived", false);
 		this.clusterVersion = builder.clusterVersion;
 		this.requestCounts = ApiTypeHelper.requireNonNull(builder.requestCounts, this, "requestCounts");
 

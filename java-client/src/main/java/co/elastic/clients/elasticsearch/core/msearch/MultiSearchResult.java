@@ -73,7 +73,7 @@ public abstract class MultiSearchResult<TDocument> implements JsonpSerializable 
 
 	protected MultiSearchResult(AbstractBuilder<TDocument, ?> builder) {
 
-		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took", 0);
 		this.responses = ApiTypeHelper.unmodifiableRequired(builder.responses, this, "responses");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 

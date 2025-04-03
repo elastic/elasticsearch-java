@@ -82,7 +82,7 @@ public class UserIndicesPrivileges implements JsonpSerializable {
 		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
 		this.query = ApiTypeHelper.unmodifiable(builder.query);
 		this.allowRestrictedIndices = ApiTypeHelper.requireNonNull(builder.allowRestrictedIndices, this,
-				"allowRestrictedIndices");
+				"allowRestrictedIndices", false);
 
 	}
 

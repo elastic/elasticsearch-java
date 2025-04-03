@@ -68,7 +68,7 @@ public class CountResponse implements JsonpSerializable {
 
 	private CountResponse(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}

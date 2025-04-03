@@ -80,7 +80,7 @@ public class ShardFailure implements JsonpSerializable {
 		this.index = builder.index;
 		this.node = builder.node;
 		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
-		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard", 0);
 		this.status = builder.status;
 
 	}

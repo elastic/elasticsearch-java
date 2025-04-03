@@ -73,7 +73,7 @@ public class DocumentRating implements JsonpSerializable {
 
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.rating = ApiTypeHelper.requireNonNull(builder.rating, this, "rating");
+		this.rating = ApiTypeHelper.requireNonNull(builder.rating, this, "rating", 0);
 
 	}
 

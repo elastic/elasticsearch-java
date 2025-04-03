@@ -65,7 +65,7 @@ public class DataframeEvaluationValue implements JsonpSerializable {
 
 	protected DataframeEvaluationValue(AbstractBuilder<?> builder) {
 
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value", 0);
 
 	}
 

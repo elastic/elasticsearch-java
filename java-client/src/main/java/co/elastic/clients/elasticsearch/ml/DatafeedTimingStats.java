@@ -81,13 +81,13 @@ public class DatafeedTimingStats implements JsonpSerializable {
 
 	private DatafeedTimingStats(Builder builder) {
 
-		this.bucketCount = ApiTypeHelper.requireNonNull(builder.bucketCount, this, "bucketCount");
+		this.bucketCount = ApiTypeHelper.requireNonNull(builder.bucketCount, this, "bucketCount", 0);
 		this.exponentialAverageSearchTimePerHourMs = ApiTypeHelper.requireNonNull(
-				builder.exponentialAverageSearchTimePerHourMs, this, "exponentialAverageSearchTimePerHourMs");
+				builder.exponentialAverageSearchTimePerHourMs, this, "exponentialAverageSearchTimePerHourMs", 0);
 		this.exponentialAverageCalculationContext = builder.exponentialAverageCalculationContext;
 		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.searchCount = ApiTypeHelper.requireNonNull(builder.searchCount, this, "searchCount");
-		this.totalSearchTimeMs = ApiTypeHelper.requireNonNull(builder.totalSearchTimeMs, this, "totalSearchTimeMs");
+		this.searchCount = ApiTypeHelper.requireNonNull(builder.searchCount, this, "searchCount", 0);
+		this.totalSearchTimeMs = ApiTypeHelper.requireNonNull(builder.totalSearchTimeMs, this, "totalSearchTimeMs", 0);
 		this.averageSearchTimePerBucketMs = builder.averageSearchTimePerBucketMs;
 
 	}

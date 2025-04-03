@@ -70,10 +70,10 @@ public class IngestTotal implements JsonpSerializable {
 
 	private IngestTotal(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
-		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
-		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
+		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current", 0);
+		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed", 0);
+		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis", 0);
 
 	}
 

@@ -130,7 +130,7 @@ public class Job implements JsonpSerializable {
 
 	private Job(Builder builder) {
 
-		this.allowLazyOpen = ApiTypeHelper.requireNonNull(builder.allowLazyOpen, this, "allowLazyOpen");
+		this.allowLazyOpen = ApiTypeHelper.requireNonNull(builder.allowLazyOpen, this, "allowLazyOpen", false);
 		this.analysisConfig = ApiTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
 		this.analysisLimits = builder.analysisLimits;
 		this.backgroundPersistInterval = builder.backgroundPersistInterval;
@@ -150,7 +150,7 @@ public class Job implements JsonpSerializable {
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelSnapshotId = builder.modelSnapshotId;
 		this.modelSnapshotRetentionDays = ApiTypeHelper.requireNonNull(builder.modelSnapshotRetentionDays, this,
-				"modelSnapshotRetentionDays");
+				"modelSnapshotRetentionDays", 0);
 		this.renormalizationWindowDays = builder.renormalizationWindowDays;
 		this.resultsIndexName = ApiTypeHelper.requireNonNull(builder.resultsIndexName, this, "resultsIndexName");
 		this.resultsRetentionDays = builder.resultsRetentionDays;

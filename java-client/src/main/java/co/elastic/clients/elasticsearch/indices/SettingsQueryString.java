@@ -65,7 +65,7 @@ public class SettingsQueryString implements JsonpSerializable {
 
 	private SettingsQueryString(Builder builder) {
 
-		this.lenient = ApiTypeHelper.requireNonNull(builder.lenient, this, "lenient");
+		this.lenient = ApiTypeHelper.requireNonNull(builder.lenient, this, "lenient", false);
 
 	}
 

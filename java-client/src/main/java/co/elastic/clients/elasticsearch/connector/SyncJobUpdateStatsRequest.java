@@ -100,11 +100,11 @@ public class SyncJobUpdateStatsRequest extends RequestBase implements JsonpSeria
 
 		this.connectorSyncJobId = ApiTypeHelper.requireNonNull(builder.connectorSyncJobId, this, "connectorSyncJobId");
 		this.deletedDocumentCount = ApiTypeHelper.requireNonNull(builder.deletedDocumentCount, this,
-				"deletedDocumentCount");
+				"deletedDocumentCount", 0);
 		this.indexedDocumentCount = ApiTypeHelper.requireNonNull(builder.indexedDocumentCount, this,
-				"indexedDocumentCount");
+				"indexedDocumentCount", 0);
 		this.indexedDocumentVolume = ApiTypeHelper.requireNonNull(builder.indexedDocumentVolume, this,
-				"indexedDocumentVolume");
+				"indexedDocumentVolume", 0);
 		this.lastSeen = builder.lastSeen;
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.totalDocumentCount = builder.totalDocumentCount;

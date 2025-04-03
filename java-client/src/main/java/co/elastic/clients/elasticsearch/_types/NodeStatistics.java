@@ -74,9 +74,9 @@ public class NodeStatistics implements JsonpSerializable {
 	private NodeStatistics(Builder builder) {
 
 		this.failures = ApiTypeHelper.unmodifiable(builder.failures);
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-		this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
-		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
+		this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful", 0);
+		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed", 0);
 
 	}
 

@@ -109,9 +109,9 @@ public class ApiKey implements JsonpSerializable {
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-		this.creation = ApiTypeHelper.requireNonNull(builder.creation, this, "creation");
+		this.creation = ApiTypeHelper.requireNonNull(builder.creation, this, "creation", 0);
 		this.expiration = builder.expiration;
-		this.invalidated = ApiTypeHelper.requireNonNull(builder.invalidated, this, "invalidated");
+		this.invalidated = ApiTypeHelper.requireNonNull(builder.invalidated, this, "invalidated", false);
 		this.invalidation = builder.invalidation;
 		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 		this.realm = ApiTypeHelper.requireNonNull(builder.realm, this, "realm");
