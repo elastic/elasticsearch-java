@@ -72,9 +72,9 @@ public class DataStreamLifecycleDetails implements JsonpSerializable {
 	private DataStreamLifecycleDetails(Builder builder) {
 
 		this.stagnatingBackingIndicesCount = ApiTypeHelper.requireNonNull(builder.stagnatingBackingIndicesCount, this,
-				"stagnatingBackingIndicesCount");
+				"stagnatingBackingIndicesCount", 0);
 		this.totalBackingIndicesInError = ApiTypeHelper.requireNonNull(builder.totalBackingIndicesInError, this,
-				"totalBackingIndicesInError");
+				"totalBackingIndicesInError", 0);
 		this.stagnatingBackingIndices = ApiTypeHelper.unmodifiable(builder.stagnatingBackingIndices);
 
 	}

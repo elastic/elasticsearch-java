@@ -84,10 +84,10 @@ public class PutTrainedModelDefinitionPartRequest extends RequestBase implements
 
 		this.definition = ApiTypeHelper.requireNonNull(builder.definition, this, "definition");
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.part = ApiTypeHelper.requireNonNull(builder.part, this, "part");
+		this.part = ApiTypeHelper.requireNonNull(builder.part, this, "part", 0);
 		this.totalDefinitionLength = ApiTypeHelper.requireNonNull(builder.totalDefinitionLength, this,
-				"totalDefinitionLength");
-		this.totalParts = ApiTypeHelper.requireNonNull(builder.totalParts, this, "totalParts");
+				"totalDefinitionLength", 0);
+		this.totalParts = ApiTypeHelper.requireNonNull(builder.totalParts, this, "totalParts", 0);
 
 	}
 

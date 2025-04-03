@@ -70,7 +70,7 @@ public class DataframeClassificationSummaryAccuracy implements JsonpSerializable
 	private DataframeClassificationSummaryAccuracy(Builder builder) {
 
 		this.classes = ApiTypeHelper.unmodifiableRequired(builder.classes, this, "classes");
-		this.overallAccuracy = ApiTypeHelper.requireNonNull(builder.overallAccuracy, this, "overallAccuracy");
+		this.overallAccuracy = ApiTypeHelper.requireNonNull(builder.overallAccuracy, this, "overallAccuracy", 0);
 
 	}
 

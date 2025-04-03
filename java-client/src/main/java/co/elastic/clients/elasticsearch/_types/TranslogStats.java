@@ -82,15 +82,15 @@ public class TranslogStats implements JsonpSerializable {
 	private TranslogStats(Builder builder) {
 
 		this.earliestLastModifiedAge = ApiTypeHelper.requireNonNull(builder.earliestLastModifiedAge, this,
-				"earliestLastModifiedAge");
-		this.operations = ApiTypeHelper.requireNonNull(builder.operations, this, "operations");
+				"earliestLastModifiedAge", 0);
+		this.operations = ApiTypeHelper.requireNonNull(builder.operations, this, "operations", 0);
 		this.size = builder.size;
-		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes", 0);
 		this.uncommittedOperations = ApiTypeHelper.requireNonNull(builder.uncommittedOperations, this,
-				"uncommittedOperations");
+				"uncommittedOperations", 0);
 		this.uncommittedSize = builder.uncommittedSize;
 		this.uncommittedSizeInBytes = ApiTypeHelper.requireNonNull(builder.uncommittedSizeInBytes, this,
-				"uncommittedSizeInBytes");
+				"uncommittedSizeInBytes", 0);
 
 	}
 

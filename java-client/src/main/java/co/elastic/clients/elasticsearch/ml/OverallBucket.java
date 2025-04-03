@@ -83,12 +83,12 @@ public class OverallBucket implements JsonpSerializable {
 
 	private OverallBucket(Builder builder) {
 
-		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
-		this.isInterim = ApiTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
+		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan", 0);
+		this.isInterim = ApiTypeHelper.requireNonNull(builder.isInterim, this, "isInterim", false);
 		this.jobs = ApiTypeHelper.unmodifiableRequired(builder.jobs, this, "jobs");
-		this.overallScore = ApiTypeHelper.requireNonNull(builder.overallScore, this, "overallScore");
+		this.overallScore = ApiTypeHelper.requireNonNull(builder.overallScore, this, "overallScore", 0);
 		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
-		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp", 0);
 		this.timestampString = builder.timestampString;
 
 	}

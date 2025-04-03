@@ -72,7 +72,7 @@ public class TaskFailure implements JsonpSerializable {
 
 	private TaskFailure(Builder builder) {
 
-		this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
+		this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId", 0);
 		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");

@@ -87,8 +87,9 @@ public class License implements JsonpSerializable {
 
 	private License(Builder builder) {
 
-		this.expiryDateInMillis = ApiTypeHelper.requireNonNull(builder.expiryDateInMillis, this, "expiryDateInMillis");
-		this.issueDateInMillis = ApiTypeHelper.requireNonNull(builder.issueDateInMillis, this, "issueDateInMillis");
+		this.expiryDateInMillis = ApiTypeHelper.requireNonNull(builder.expiryDateInMillis, this, "expiryDateInMillis",
+				0);
+		this.issueDateInMillis = ApiTypeHelper.requireNonNull(builder.issueDateInMillis, this, "issueDateInMillis", 0);
 		this.startDateInMillis = builder.startDateInMillis;
 		this.issuedTo = ApiTypeHelper.requireNonNull(builder.issuedTo, this, "issuedTo");
 		this.issuer = ApiTypeHelper.requireNonNull(builder.issuer, this, "issuer");

@@ -63,7 +63,7 @@ public class KuromojiReadingFormTokenFilter extends TokenFilterBase implements T
 	private KuromojiReadingFormTokenFilter(Builder builder) {
 		super(builder);
 
-		this.useRomaji = ApiTypeHelper.requireNonNull(builder.useRomaji, this, "useRomaji");
+		this.useRomaji = ApiTypeHelper.requireNonNull(builder.useRomaji, this, "useRomaji", false);
 
 	}
 

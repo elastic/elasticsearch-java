@@ -91,7 +91,7 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 	private StringStatsAggregate(Builder builder) {
 		super(builder);
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.minLength = builder.minLength;
 		this.maxLength = builder.maxLength;
 		this.avgLength = builder.avgLength;

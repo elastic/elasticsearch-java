@@ -74,11 +74,11 @@ public class IndexDetails implements JsonpSerializable {
 
 	private IndexDetails(Builder builder) {
 
-		this.shardCount = ApiTypeHelper.requireNonNull(builder.shardCount, this, "shardCount");
+		this.shardCount = ApiTypeHelper.requireNonNull(builder.shardCount, this, "shardCount", 0);
 		this.size = builder.size;
-		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes", 0);
 		this.maxSegmentsPerShard = ApiTypeHelper.requireNonNull(builder.maxSegmentsPerShard, this,
-				"maxSegmentsPerShard");
+				"maxSegmentsPerShard", 0);
 
 	}
 

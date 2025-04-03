@@ -79,7 +79,7 @@ public class CustomScheduling implements JsonpSerializable {
 
 		this.configurationOverrides = ApiTypeHelper.requireNonNull(builder.configurationOverrides, this,
 				"configurationOverrides");
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
 		this.interval = ApiTypeHelper.requireNonNull(builder.interval, this, "interval");
 		this.lastSynced = builder.lastSynced;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");

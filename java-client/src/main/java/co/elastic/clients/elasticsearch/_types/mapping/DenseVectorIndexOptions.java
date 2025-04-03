@@ -116,8 +116,8 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	 * The number of candidates to track while assembling the list of nearest
 	 * neighbors for each new node.
 	 * <p>
-	 * Only applicable to <code>hnsw</code>, <code>int8_hnsw</code>, and
-	 * <code>int4_hnsw</code> index types.
+	 * Only applicable to <code>hnsw</code>, <code>int8_hnsw</code>,
+	 * <code>bbq_hnsw</code>, and <code>int4_hnsw</code> index types.
 	 * <p>
 	 * API name: {@code ef_construction}
 	 */
@@ -129,8 +129,8 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	/**
 	 * The number of neighbors each node will be connected to in the HNSW graph.
 	 * <p>
-	 * Only applicable to <code>hnsw</code>, <code>int8_hnsw</code>, and
-	 * <code>int4_hnsw</code> index types.
+	 * Only applicable to <code>hnsw</code>, <code>int8_hnsw</code>,
+	 * <code>bbq_hnsw</code>, and <code>int4_hnsw</code> index types.
 	 * <p>
 	 * API name: {@code m}
 	 */
@@ -233,8 +233,8 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		 * The number of candidates to track while assembling the list of nearest
 		 * neighbors for each new node.
 		 * <p>
-		 * Only applicable to <code>hnsw</code>, <code>int8_hnsw</code>, and
-		 * <code>int4_hnsw</code> index types.
+		 * Only applicable to <code>hnsw</code>, <code>int8_hnsw</code>,
+		 * <code>bbq_hnsw</code>, and <code>int4_hnsw</code> index types.
 		 * <p>
 		 * API name: {@code ef_construction}
 		 */
@@ -246,8 +246,8 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		/**
 		 * The number of neighbors each node will be connected to in the HNSW graph.
 		 * <p>
-		 * Only applicable to <code>hnsw</code>, <code>int8_hnsw</code>, and
-		 * <code>int4_hnsw</code> index types.
+		 * Only applicable to <code>hnsw</code>, <code>int8_hnsw</code>,
+		 * <code>bbq_hnsw</code>, and <code>int4_hnsw</code> index types.
 		 * <p>
 		 * API name: {@code m}
 		 */

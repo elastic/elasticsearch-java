@@ -73,7 +73,7 @@ public class InProgress implements JsonpSerializable {
 	private InProgress(Builder builder) {
 
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.startTimeMillis = ApiTypeHelper.requireNonNull(builder.startTimeMillis, this, "startTimeMillis");
+		this.startTimeMillis = ApiTypeHelper.requireNonNull(builder.startTimeMillis, this, "startTimeMillis", 0);
 		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 		this.uuid = ApiTypeHelper.requireNonNull(builder.uuid, this, "uuid");
 

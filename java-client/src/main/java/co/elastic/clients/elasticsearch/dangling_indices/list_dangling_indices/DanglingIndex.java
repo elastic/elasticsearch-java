@@ -76,7 +76,8 @@ public class DanglingIndex implements JsonpSerializable {
 
 		this.indexName = ApiTypeHelper.requireNonNull(builder.indexName, this, "indexName");
 		this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
-		this.creationDateMillis = ApiTypeHelper.requireNonNull(builder.creationDateMillis, this, "creationDateMillis");
+		this.creationDateMillis = ApiTypeHelper.requireNonNull(builder.creationDateMillis, this, "creationDateMillis",
+				0);
 		this.nodeIds = ApiTypeHelper.unmodifiableRequired(builder.nodeIds, this, "nodeIds");
 
 	}

@@ -71,8 +71,9 @@ public class ShrinkResponse implements AcknowledgedResponse, JsonpSerializable {
 
 	private ShrinkResponse(Builder builder) {
 
-		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
-		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged", false);
+		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged",
+				false);
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}

@@ -70,7 +70,7 @@ public class ConfusionMatrixPrediction implements JsonpSerializable {
 	private ConfusionMatrixPrediction(Builder builder) {
 
 		this.predictedClass = ApiTypeHelper.requireNonNull(builder.predictedClass, this, "predictedClass");
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 
 	}
 

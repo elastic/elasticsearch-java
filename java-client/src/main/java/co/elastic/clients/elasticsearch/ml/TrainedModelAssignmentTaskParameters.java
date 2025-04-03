@@ -91,15 +91,15 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 		this.deploymentId = ApiTypeHelper.requireNonNull(builder.deploymentId, this, "deploymentId");
 		this.cacheSize = builder.cacheSize;
 		this.numberOfAllocations = ApiTypeHelper.requireNonNull(builder.numberOfAllocations, this,
-				"numberOfAllocations");
+				"numberOfAllocations", 0);
 		this.priority = ApiTypeHelper.requireNonNull(builder.priority, this, "priority");
 		this.perDeploymentMemoryBytes = ApiTypeHelper.requireNonNull(builder.perDeploymentMemoryBytes, this,
 				"perDeploymentMemoryBytes");
 		this.perAllocationMemoryBytes = ApiTypeHelper.requireNonNull(builder.perAllocationMemoryBytes, this,
 				"perAllocationMemoryBytes");
-		this.queueCapacity = ApiTypeHelper.requireNonNull(builder.queueCapacity, this, "queueCapacity");
+		this.queueCapacity = ApiTypeHelper.requireNonNull(builder.queueCapacity, this, "queueCapacity", 0);
 		this.threadsPerAllocation = ApiTypeHelper.requireNonNull(builder.threadsPerAllocation, this,
-				"threadsPerAllocation");
+				"threadsPerAllocation", 0);
 
 	}
 

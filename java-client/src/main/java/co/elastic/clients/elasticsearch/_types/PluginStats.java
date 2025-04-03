@@ -89,11 +89,11 @@ public class PluginStats implements JsonpSerializable {
 				"elasticsearchVersion");
 		this.extendedPlugins = ApiTypeHelper.unmodifiableRequired(builder.extendedPlugins, this, "extendedPlugins");
 		this.hasNativeController = ApiTypeHelper.requireNonNull(builder.hasNativeController, this,
-				"hasNativeController");
+				"hasNativeController", false);
 		this.javaVersion = ApiTypeHelper.requireNonNull(builder.javaVersion, this, "javaVersion");
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
-		this.licensed = ApiTypeHelper.requireNonNull(builder.licensed, this, "licensed");
+		this.licensed = ApiTypeHelper.requireNonNull(builder.licensed, this, "licensed", false);
 
 	}
 

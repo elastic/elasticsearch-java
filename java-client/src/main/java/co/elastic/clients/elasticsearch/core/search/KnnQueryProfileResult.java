@@ -87,7 +87,7 @@ public class KnnQueryProfileResult implements JsonpSerializable {
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
 		this.time = builder.time;
-		this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
+		this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos", 0);
 		this.breakdown = ApiTypeHelper.requireNonNull(builder.breakdown, this, "breakdown");
 		this.debug = ApiTypeHelper.unmodifiable(builder.debug);
 		this.children = ApiTypeHelper.unmodifiable(builder.children);

@@ -129,8 +129,8 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 		this.suggest = ApiTypeHelper.unmodifiable(builder.suggest);
 		this.terminatedEarly = builder.terminatedEarly;
-		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
-		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
+		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut", false);
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took", 0);
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}

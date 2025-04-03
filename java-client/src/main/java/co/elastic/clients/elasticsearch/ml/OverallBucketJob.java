@@ -69,7 +69,7 @@ public class OverallBucketJob implements JsonpSerializable {
 	private OverallBucketJob(Builder builder) {
 
 		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.maxAnomalyScore = ApiTypeHelper.requireNonNull(builder.maxAnomalyScore, this, "maxAnomalyScore");
+		this.maxAnomalyScore = ApiTypeHelper.requireNonNull(builder.maxAnomalyScore, this, "maxAnomalyScore", 0);
 
 	}
 

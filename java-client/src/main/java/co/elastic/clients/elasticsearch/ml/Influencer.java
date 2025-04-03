@@ -89,19 +89,19 @@ public class Influencer implements JsonpSerializable {
 
 	private Influencer(Builder builder) {
 
-		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
-		this.influencerScore = ApiTypeHelper.requireNonNull(builder.influencerScore, this, "influencerScore");
+		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan", 0);
+		this.influencerScore = ApiTypeHelper.requireNonNull(builder.influencerScore, this, "influencerScore", 0);
 		this.influencerFieldName = ApiTypeHelper.requireNonNull(builder.influencerFieldName, this,
 				"influencerFieldName");
 		this.influencerFieldValue = ApiTypeHelper.requireNonNull(builder.influencerFieldValue, this,
 				"influencerFieldValue");
 		this.initialInfluencerScore = ApiTypeHelper.requireNonNull(builder.initialInfluencerScore, this,
-				"initialInfluencerScore");
-		this.isInterim = ApiTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
+				"initialInfluencerScore", 0);
+		this.isInterim = ApiTypeHelper.requireNonNull(builder.isInterim, this, "isInterim", false);
 		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.probability = ApiTypeHelper.requireNonNull(builder.probability, this, "probability");
+		this.probability = ApiTypeHelper.requireNonNull(builder.probability, this, "probability", 0);
 		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
-		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp", 0);
 		this.foo = builder.foo;
 
 	}

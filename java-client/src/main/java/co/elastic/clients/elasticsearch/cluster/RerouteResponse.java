@@ -74,7 +74,7 @@ public class RerouteResponse implements AcknowledgedResponse, JsonpSerializable 
 
 	private RerouteResponse(Builder builder) {
 
-		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged", false);
 		this.explanations = ApiTypeHelper.unmodifiable(builder.explanations);
 		this.state = builder.state;
 

@@ -76,7 +76,7 @@ public class ClearRepositoriesMeteringArchiveRequest extends RequestBase {
 
 	private ClearRepositoriesMeteringArchiveRequest(Builder builder) {
 
-		this.maxArchiveVersion = ApiTypeHelper.requireNonNull(builder.maxArchiveVersion, this, "maxArchiveVersion");
+		this.maxArchiveVersion = ApiTypeHelper.requireNonNull(builder.maxArchiveVersion, this, "maxArchiveVersion", 0);
 		this.nodeId = ApiTypeHelper.unmodifiableRequired(builder.nodeId, this, "nodeId");
 
 	}

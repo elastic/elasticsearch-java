@@ -80,13 +80,13 @@ public class JvmStats implements JsonpSerializable {
 	private JvmStats(Builder builder) {
 
 		this.heapMax = builder.heapMax;
-		this.heapMaxInBytes = ApiTypeHelper.requireNonNull(builder.heapMaxInBytes, this, "heapMaxInBytes");
+		this.heapMaxInBytes = ApiTypeHelper.requireNonNull(builder.heapMaxInBytes, this, "heapMaxInBytes", 0);
 		this.javaInference = builder.javaInference;
 		this.javaInferenceInBytes = ApiTypeHelper.requireNonNull(builder.javaInferenceInBytes, this,
-				"javaInferenceInBytes");
+				"javaInferenceInBytes", 0);
 		this.javaInferenceMax = builder.javaInferenceMax;
 		this.javaInferenceMaxInBytes = ApiTypeHelper.requireNonNull(builder.javaInferenceMaxInBytes, this,
-				"javaInferenceMaxInBytes");
+				"javaInferenceMaxInBytes", 0);
 
 	}
 

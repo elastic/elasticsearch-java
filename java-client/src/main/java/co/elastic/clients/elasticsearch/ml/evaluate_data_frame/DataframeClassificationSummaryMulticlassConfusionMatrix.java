@@ -71,7 +71,7 @@ public class DataframeClassificationSummaryMulticlassConfusionMatrix implements 
 
 		this.confusionMatrix = ApiTypeHelper.unmodifiableRequired(builder.confusionMatrix, this, "confusionMatrix");
 		this.otherActualClassCount = ApiTypeHelper.requireNonNull(builder.otherActualClassCount, this,
-				"otherActualClassCount");
+				"otherActualClassCount", 0);
 
 	}
 

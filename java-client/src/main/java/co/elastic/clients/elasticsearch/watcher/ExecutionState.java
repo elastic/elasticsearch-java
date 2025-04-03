@@ -72,7 +72,7 @@ public class ExecutionState implements JsonpSerializable {
 
 	private ExecutionState(Builder builder) {
 
-		this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
+		this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful", false);
 		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 		this.reason = builder.reason;
 

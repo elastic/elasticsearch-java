@@ -79,15 +79,16 @@ public class PipelineSettings implements JsonpSerializable {
 
 	private PipelineSettings(Builder builder) {
 
-		this.pipelineWorkers = ApiTypeHelper.requireNonNull(builder.pipelineWorkers, this, "pipelineWorkers");
-		this.pipelineBatchSize = ApiTypeHelper.requireNonNull(builder.pipelineBatchSize, this, "pipelineBatchSize");
-		this.pipelineBatchDelay = ApiTypeHelper.requireNonNull(builder.pipelineBatchDelay, this, "pipelineBatchDelay");
+		this.pipelineWorkers = ApiTypeHelper.requireNonNull(builder.pipelineWorkers, this, "pipelineWorkers", 0);
+		this.pipelineBatchSize = ApiTypeHelper.requireNonNull(builder.pipelineBatchSize, this, "pipelineBatchSize", 0);
+		this.pipelineBatchDelay = ApiTypeHelper.requireNonNull(builder.pipelineBatchDelay, this, "pipelineBatchDelay",
+				0);
 		this.queueType = ApiTypeHelper.requireNonNull(builder.queueType, this, "queueType");
 		this.queueMaxBytesNumber = ApiTypeHelper.requireNonNull(builder.queueMaxBytesNumber, this,
-				"queueMaxBytesNumber");
+				"queueMaxBytesNumber", 0);
 		this.queueMaxBytesUnits = ApiTypeHelper.requireNonNull(builder.queueMaxBytesUnits, this, "queueMaxBytesUnits");
 		this.queueCheckpointWrites = ApiTypeHelper.requireNonNull(builder.queueCheckpointWrites, this,
-				"queueCheckpointWrites");
+				"queueCheckpointWrites", 0);
 
 	}
 

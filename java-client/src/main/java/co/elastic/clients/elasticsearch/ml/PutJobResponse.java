@@ -117,14 +117,14 @@ public class PutJobResponse implements JsonpSerializable {
 
 	private PutJobResponse(Builder builder) {
 
-		this.allowLazyOpen = ApiTypeHelper.requireNonNull(builder.allowLazyOpen, this, "allowLazyOpen");
+		this.allowLazyOpen = ApiTypeHelper.requireNonNull(builder.allowLazyOpen, this, "allowLazyOpen", false);
 		this.analysisConfig = ApiTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
 		this.analysisLimits = ApiTypeHelper.requireNonNull(builder.analysisLimits, this, "analysisLimits");
 		this.backgroundPersistInterval = builder.backgroundPersistInterval;
 		this.createTime = ApiTypeHelper.requireNonNull(builder.createTime, this, "createTime");
 		this.customSettings = builder.customSettings;
 		this.dailyModelSnapshotRetentionAfterDays = ApiTypeHelper.requireNonNull(
-				builder.dailyModelSnapshotRetentionAfterDays, this, "dailyModelSnapshotRetentionAfterDays");
+				builder.dailyModelSnapshotRetentionAfterDays, this, "dailyModelSnapshotRetentionAfterDays", 0);
 		this.dataDescription = ApiTypeHelper.requireNonNull(builder.dataDescription, this, "dataDescription");
 		this.datafeedConfig = builder.datafeedConfig;
 		this.description = builder.description;
@@ -135,7 +135,7 @@ public class PutJobResponse implements JsonpSerializable {
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelSnapshotId = builder.modelSnapshotId;
 		this.modelSnapshotRetentionDays = ApiTypeHelper.requireNonNull(builder.modelSnapshotRetentionDays, this,
-				"modelSnapshotRetentionDays");
+				"modelSnapshotRetentionDays", 0);
 		this.renormalizationWindowDays = builder.renormalizationWindowDays;
 		this.resultsIndexName = ApiTypeHelper.requireNonNull(builder.resultsIndexName, this, "resultsIndexName");
 		this.resultsRetentionDays = builder.resultsRetentionDays;

@@ -74,9 +74,9 @@ public class ShardCommit implements JsonpSerializable {
 
 	private ShardCommit(Builder builder) {
 
-		this.generation = ApiTypeHelper.requireNonNull(builder.generation, this, "generation");
+		this.generation = ApiTypeHelper.requireNonNull(builder.generation, this, "generation", 0);
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.numDocs = ApiTypeHelper.requireNonNull(builder.numDocs, this, "numDocs");
+		this.numDocs = ApiTypeHelper.requireNonNull(builder.numDocs, this, "numDocs", 0);
 		this.userData = ApiTypeHelper.unmodifiableRequired(builder.userData, this, "userData");
 
 	}

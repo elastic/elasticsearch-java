@@ -66,8 +66,8 @@ public class Base implements JsonpSerializable {
 
 	protected Base(AbstractBuilder<?> builder) {
 
-		this.available = ApiTypeHelper.requireNonNull(builder.available, this, "available");
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.available = ApiTypeHelper.requireNonNull(builder.available, this, "available", false);
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
 
 	}
 

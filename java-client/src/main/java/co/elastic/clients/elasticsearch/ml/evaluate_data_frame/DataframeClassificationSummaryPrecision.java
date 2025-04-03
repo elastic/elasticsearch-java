@@ -70,7 +70,7 @@ public class DataframeClassificationSummaryPrecision implements JsonpSerializabl
 	private DataframeClassificationSummaryPrecision(Builder builder) {
 
 		this.classes = ApiTypeHelper.unmodifiableRequired(builder.classes, this, "classes");
-		this.avgPrecision = ApiTypeHelper.requireNonNull(builder.avgPrecision, this, "avgPrecision");
+		this.avgPrecision = ApiTypeHelper.requireNonNull(builder.avgPrecision, this, "avgPrecision", 0);
 
 	}
 

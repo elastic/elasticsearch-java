@@ -96,12 +96,12 @@ public class FieldCapability implements JsonpSerializable {
 
 	private FieldCapability(Builder builder) {
 
-		this.aggregatable = ApiTypeHelper.requireNonNull(builder.aggregatable, this, "aggregatable");
+		this.aggregatable = ApiTypeHelper.requireNonNull(builder.aggregatable, this, "aggregatable", false);
 		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.nonAggregatableIndices = ApiTypeHelper.unmodifiable(builder.nonAggregatableIndices);
 		this.nonSearchableIndices = ApiTypeHelper.unmodifiable(builder.nonSearchableIndices);
-		this.searchable = ApiTypeHelper.requireNonNull(builder.searchable, this, "searchable");
+		this.searchable = ApiTypeHelper.requireNonNull(builder.searchable, this, "searchable", false);
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.metadataField = builder.metadataField;
 		this.timeSeriesDimension = builder.timeSeriesDimension;

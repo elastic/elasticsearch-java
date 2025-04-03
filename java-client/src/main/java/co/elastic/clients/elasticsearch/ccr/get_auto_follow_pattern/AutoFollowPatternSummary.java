@@ -80,7 +80,7 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 
 	private AutoFollowPatternSummary(Builder builder) {
 
-		this.active = ApiTypeHelper.requireNonNull(builder.active, this, "active");
+		this.active = ApiTypeHelper.requireNonNull(builder.active, this, "active", false);
 		this.remoteCluster = ApiTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
 		this.followIndexPattern = builder.followIndexPattern;
 		this.leaderIndexPatterns = ApiTypeHelper.unmodifiableRequired(builder.leaderIndexPatterns, this,
@@ -88,7 +88,7 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 		this.leaderIndexExclusionPatterns = ApiTypeHelper.unmodifiableRequired(builder.leaderIndexExclusionPatterns,
 				this, "leaderIndexExclusionPatterns");
 		this.maxOutstandingReadRequests = ApiTypeHelper.requireNonNull(builder.maxOutstandingReadRequests, this,
-				"maxOutstandingReadRequests");
+				"maxOutstandingReadRequests", 0);
 
 	}
 

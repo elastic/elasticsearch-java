@@ -98,7 +98,7 @@ public class Authentication implements JsonpSerializable {
 		this.email = builder.email;
 		this.token = ApiTypeHelper.unmodifiable(builder.token);
 		this.metadata = ApiTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
 		this.authenticationRealm = ApiTypeHelper.requireNonNull(builder.authenticationRealm, this,
 				"authenticationRealm");
 		this.lookupRealm = ApiTypeHelper.requireNonNull(builder.lookupRealm, this, "lookupRealm");

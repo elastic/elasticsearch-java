@@ -104,7 +104,7 @@ public class AuthenticateResponse implements JsonpSerializable {
 		this.metadata = ApiTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
 		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
 		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
 		this.authenticationType = ApiTypeHelper.requireNonNull(builder.authenticationType, this, "authenticationType");
 		this.token = builder.token;
 

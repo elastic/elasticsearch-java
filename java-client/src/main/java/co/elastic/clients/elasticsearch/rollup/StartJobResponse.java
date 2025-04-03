@@ -64,7 +64,7 @@ public class StartJobResponse implements JsonpSerializable {
 
 	private StartJobResponse(Builder builder) {
 
-		this.started = ApiTypeHelper.requireNonNull(builder.started, this, "started");
+		this.started = ApiTypeHelper.requireNonNull(builder.started, this, "started", false);
 
 	}
 

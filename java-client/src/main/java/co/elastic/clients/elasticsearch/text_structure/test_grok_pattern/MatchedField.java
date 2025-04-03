@@ -72,8 +72,8 @@ public class MatchedField implements JsonpSerializable {
 	private MatchedField(Builder builder) {
 
 		this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match");
-		this.offset = ApiTypeHelper.requireNonNull(builder.offset, this, "offset");
-		this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length");
+		this.offset = ApiTypeHelper.requireNonNull(builder.offset, this, "offset", 0);
+		this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length", 0);
 
 	}
 

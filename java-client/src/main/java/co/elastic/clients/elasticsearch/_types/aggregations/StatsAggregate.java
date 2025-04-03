@@ -93,11 +93,11 @@ public class StatsAggregate extends AggregateBase implements AggregateVariant {
 	protected StatsAggregate(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.min = builder.min;
 		this.max = builder.max;
 		this.avg = builder.avg;
-		this.sum = ApiTypeHelper.requireNonNull(builder.sum, this, "sum");
+		this.sum = ApiTypeHelper.requireNonNull(builder.sum, this, "sum", 0);
 		this.minAsString = builder.minAsString;
 		this.maxAsString = builder.maxAsString;
 		this.avgAsString = builder.avgAsString;

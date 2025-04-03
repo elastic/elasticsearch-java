@@ -70,7 +70,7 @@ public class ExecutionResultCondition implements JsonpSerializable {
 
 	private ExecutionResultCondition(Builder builder) {
 
-		this.met = ApiTypeHelper.requireNonNull(builder.met, this, "met");
+		this.met = ApiTypeHelper.requireNonNull(builder.met, this, "met", false);
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 

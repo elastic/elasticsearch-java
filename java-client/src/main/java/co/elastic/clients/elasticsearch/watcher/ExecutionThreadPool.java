@@ -67,8 +67,8 @@ public class ExecutionThreadPool implements JsonpSerializable {
 
 	private ExecutionThreadPool(Builder builder) {
 
-		this.maxSize = ApiTypeHelper.requireNonNull(builder.maxSize, this, "maxSize");
-		this.queueSize = ApiTypeHelper.requireNonNull(builder.queueSize, this, "queueSize");
+		this.maxSize = ApiTypeHelper.requireNonNull(builder.maxSize, this, "maxSize", 0);
+		this.queueSize = ApiTypeHelper.requireNonNull(builder.queueSize, this, "queueSize", 0);
 
 	}
 
