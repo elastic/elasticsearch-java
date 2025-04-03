@@ -78,6 +78,16 @@ public class ApiTypeHelper {
         return value;
     }
 
+    public static <T> T requireNonNullWithDefault(T value, Object obj, String name, T defaultValue) {
+        if (value == null && !requiredPropertiesCheckDisabled()) {
+            throw new MissingRequiredPropertyException(obj, name);
+        }
+        else if (value == null && requiredPropertiesCheckDisabled()){
+            return defaultValue;
+        }
+        return value;
+    }
+
     //----- Lists
 
     /** Immutable empty list implementation so that we can create marker list objects */
