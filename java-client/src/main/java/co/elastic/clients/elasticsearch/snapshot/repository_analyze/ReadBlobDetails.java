@@ -94,8 +94,9 @@ public class ReadBlobDetails implements JsonpSerializable {
 		this.elapsed = builder.elapsed;
 		this.elapsedNanos = builder.elapsedNanos;
 		this.firstByteTime = builder.firstByteTime;
-		this.firstByteTimeNanos = ApiTypeHelper.requireNonNull(builder.firstByteTimeNanos, this, "firstByteTimeNanos");
-		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+		this.firstByteTimeNanos = ApiTypeHelper.requireNonNull(builder.firstByteTimeNanos, this, "firstByteTimeNanos",
+				0);
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found", false);
 		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
 		this.throttled = builder.throttled;
 		this.throttledNanos = builder.throttledNanos;

@@ -83,16 +83,16 @@ public class AnalyticsStatistics implements JsonpSerializable {
 
 	private AnalyticsStatistics(Builder builder) {
 
-		this.boxplotUsage = ApiTypeHelper.requireNonNull(builder.boxplotUsage, this, "boxplotUsage");
+		this.boxplotUsage = ApiTypeHelper.requireNonNull(builder.boxplotUsage, this, "boxplotUsage", 0);
 		this.cumulativeCardinalityUsage = ApiTypeHelper.requireNonNull(builder.cumulativeCardinalityUsage, this,
-				"cumulativeCardinalityUsage");
-		this.stringStatsUsage = ApiTypeHelper.requireNonNull(builder.stringStatsUsage, this, "stringStatsUsage");
-		this.topMetricsUsage = ApiTypeHelper.requireNonNull(builder.topMetricsUsage, this, "topMetricsUsage");
-		this.tTestUsage = ApiTypeHelper.requireNonNull(builder.tTestUsage, this, "tTestUsage");
+				"cumulativeCardinalityUsage", 0);
+		this.stringStatsUsage = ApiTypeHelper.requireNonNull(builder.stringStatsUsage, this, "stringStatsUsage", 0);
+		this.topMetricsUsage = ApiTypeHelper.requireNonNull(builder.topMetricsUsage, this, "topMetricsUsage", 0);
+		this.tTestUsage = ApiTypeHelper.requireNonNull(builder.tTestUsage, this, "tTestUsage", 0);
 		this.movingPercentilesUsage = ApiTypeHelper.requireNonNull(builder.movingPercentilesUsage, this,
-				"movingPercentilesUsage");
-		this.normalizeUsage = ApiTypeHelper.requireNonNull(builder.normalizeUsage, this, "normalizeUsage");
-		this.rateUsage = ApiTypeHelper.requireNonNull(builder.rateUsage, this, "rateUsage");
+				"movingPercentilesUsage", 0);
+		this.normalizeUsage = ApiTypeHelper.requireNonNull(builder.normalizeUsage, this, "normalizeUsage", 0);
+		this.rateUsage = ApiTypeHelper.requireNonNull(builder.rateUsage, this, "rateUsage", 0);
 		this.multiTermsUsage = builder.multiTermsUsage;
 
 	}

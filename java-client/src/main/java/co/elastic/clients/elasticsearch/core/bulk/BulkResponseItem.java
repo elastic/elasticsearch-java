@@ -112,7 +112,7 @@ public class BulkResponseItem implements JsonpSerializable {
 
 		this.id = builder.id;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status", 0);
 		this.failureStore = builder.failureStore;
 		this.error = builder.error;
 		this.primaryTerm = builder.primaryTerm;

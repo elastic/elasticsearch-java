@@ -114,10 +114,11 @@ public class FindMessageStructureResponse implements JsonpSerializable {
 		this.ingestPipeline = ApiTypeHelper.requireNonNull(builder.ingestPipeline, this, "ingestPipeline");
 		this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
 		this.multilineStartPattern = builder.multilineStartPattern;
-		this.needClientTimezone = ApiTypeHelper.requireNonNull(builder.needClientTimezone, this, "needClientTimezone");
-		this.numLinesAnalyzed = ApiTypeHelper.requireNonNull(builder.numLinesAnalyzed, this, "numLinesAnalyzed");
+		this.needClientTimezone = ApiTypeHelper.requireNonNull(builder.needClientTimezone, this, "needClientTimezone",
+				false);
+		this.numLinesAnalyzed = ApiTypeHelper.requireNonNull(builder.numLinesAnalyzed, this, "numLinesAnalyzed", 0);
 		this.numMessagesAnalyzed = ApiTypeHelper.requireNonNull(builder.numMessagesAnalyzed, this,
-				"numMessagesAnalyzed");
+				"numMessagesAnalyzed", 0);
 		this.sampleStart = ApiTypeHelper.requireNonNull(builder.sampleStart, this, "sampleStart");
 		this.timestampField = builder.timestampField;
 

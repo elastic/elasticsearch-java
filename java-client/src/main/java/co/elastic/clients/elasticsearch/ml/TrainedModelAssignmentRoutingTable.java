@@ -76,8 +76,9 @@ public class TrainedModelAssignmentRoutingTable implements JsonpSerializable {
 
 		this.reason = builder.reason;
 		this.routingState = ApiTypeHelper.requireNonNull(builder.routingState, this, "routingState");
-		this.currentAllocations = ApiTypeHelper.requireNonNull(builder.currentAllocations, this, "currentAllocations");
-		this.targetAllocations = ApiTypeHelper.requireNonNull(builder.targetAllocations, this, "targetAllocations");
+		this.currentAllocations = ApiTypeHelper.requireNonNull(builder.currentAllocations, this, "currentAllocations",
+				0);
+		this.targetAllocations = ApiTypeHelper.requireNonNull(builder.targetAllocations, this, "targetAllocations", 0);
 
 	}
 

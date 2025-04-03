@@ -70,7 +70,7 @@ public class BulkError implements JsonpSerializable {
 
 	private BulkError(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.details = ApiTypeHelper.unmodifiableRequired(builder.details, this, "details");
 
 	}

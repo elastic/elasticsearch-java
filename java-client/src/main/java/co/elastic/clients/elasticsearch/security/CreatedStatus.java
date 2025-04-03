@@ -64,7 +64,7 @@ public class CreatedStatus implements JsonpSerializable {
 
 	private CreatedStatus(Builder builder) {
 
-		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
+		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created", false);
 
 	}
 

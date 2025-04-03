@@ -85,7 +85,7 @@ public class CurrentNode implements JsonpSerializable {
 		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
 		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
 		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
-		this.weightRanking = ApiTypeHelper.requireNonNull(builder.weightRanking, this, "weightRanking");
+		this.weightRanking = ApiTypeHelper.requireNonNull(builder.weightRanking, this, "weightRanking", 0);
 
 	}
 

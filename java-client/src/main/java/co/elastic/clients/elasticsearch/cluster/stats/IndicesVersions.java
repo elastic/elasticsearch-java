@@ -74,9 +74,9 @@ public class IndicesVersions implements JsonpSerializable {
 
 	private IndicesVersions(Builder builder) {
 
-		this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
-		this.primaryShardCount = ApiTypeHelper.requireNonNull(builder.primaryShardCount, this, "primaryShardCount");
-		this.totalPrimaryBytes = ApiTypeHelper.requireNonNull(builder.totalPrimaryBytes, this, "totalPrimaryBytes");
+		this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount", 0);
+		this.primaryShardCount = ApiTypeHelper.requireNonNull(builder.primaryShardCount, this, "primaryShardCount", 0);
+		this.totalPrimaryBytes = ApiTypeHelper.requireNonNull(builder.totalPrimaryBytes, this, "totalPrimaryBytes", 0);
 		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}

@@ -70,7 +70,7 @@ public class ClusterOperatingSystemArchitecture implements JsonpSerializable {
 	private ClusterOperatingSystemArchitecture(Builder builder) {
 
 		this.arch = ApiTypeHelper.requireNonNull(builder.arch, this, "arch");
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 
 	}
 

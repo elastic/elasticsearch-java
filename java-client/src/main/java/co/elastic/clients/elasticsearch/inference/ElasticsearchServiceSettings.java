@@ -82,7 +82,7 @@ public class ElasticsearchServiceSettings implements JsonpSerializable {
 		this.deploymentId = builder.deploymentId;
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.numAllocations = builder.numAllocations;
-		this.numThreads = ApiTypeHelper.requireNonNull(builder.numThreads, this, "numThreads");
+		this.numThreads = ApiTypeHelper.requireNonNull(builder.numThreads, this, "numThreads", 0);
 
 	}
 

@@ -94,7 +94,7 @@ public class ClusterIndices implements JsonpSerializable {
 
 		this.analysis = ApiTypeHelper.requireNonNull(builder.analysis, this, "analysis");
 		this.completion = ApiTypeHelper.requireNonNull(builder.completion, this, "completion");
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.docs = ApiTypeHelper.requireNonNull(builder.docs, this, "docs");
 		this.fielddata = ApiTypeHelper.requireNonNull(builder.fielddata, this, "fielddata");
 		this.queryCache = ApiTypeHelper.requireNonNull(builder.queryCache, this, "queryCache");

@@ -99,14 +99,14 @@ public class PutDataFrameAnalyticsResponse implements JsonpSerializable {
 	private PutDataFrameAnalyticsResponse(Builder builder) {
 
 		this.authorization = builder.authorization;
-		this.allowLazyStart = ApiTypeHelper.requireNonNull(builder.allowLazyStart, this, "allowLazyStart");
+		this.allowLazyStart = ApiTypeHelper.requireNonNull(builder.allowLazyStart, this, "allowLazyStart", false);
 		this.analysis = ApiTypeHelper.requireNonNull(builder.analysis, this, "analysis");
 		this.analyzedFields = builder.analyzedFields;
-		this.createTime = ApiTypeHelper.requireNonNull(builder.createTime, this, "createTime");
+		this.createTime = ApiTypeHelper.requireNonNull(builder.createTime, this, "createTime", 0);
 		this.description = builder.description;
 		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.maxNumThreads = ApiTypeHelper.requireNonNull(builder.maxNumThreads, this, "maxNumThreads");
+		this.maxNumThreads = ApiTypeHelper.requireNonNull(builder.maxNumThreads, this, "maxNumThreads", 0);
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.modelMemoryLimit = ApiTypeHelper.requireNonNull(builder.modelMemoryLimit, this, "modelMemoryLimit");
 		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");

@@ -72,9 +72,9 @@ public class ClusterJvm implements JsonpSerializable {
 
 	private ClusterJvm(Builder builder) {
 
-		this.maxUptimeInMillis = ApiTypeHelper.requireNonNull(builder.maxUptimeInMillis, this, "maxUptimeInMillis");
+		this.maxUptimeInMillis = ApiTypeHelper.requireNonNull(builder.maxUptimeInMillis, this, "maxUptimeInMillis", 0);
 		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
-		this.threads = ApiTypeHelper.requireNonNull(builder.threads, this, "threads");
+		this.threads = ApiTypeHelper.requireNonNull(builder.threads, this, "threads", 0);
 		this.versions = ApiTypeHelper.unmodifiableRequired(builder.versions, this, "versions");
 
 	}

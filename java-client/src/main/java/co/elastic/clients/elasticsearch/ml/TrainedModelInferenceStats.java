@@ -74,12 +74,12 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 
 	private TrainedModelInferenceStats(Builder builder) {
 
-		this.cacheMissCount = ApiTypeHelper.requireNonNull(builder.cacheMissCount, this, "cacheMissCount");
-		this.failureCount = ApiTypeHelper.requireNonNull(builder.failureCount, this, "failureCount");
-		this.inferenceCount = ApiTypeHelper.requireNonNull(builder.inferenceCount, this, "inferenceCount");
+		this.cacheMissCount = ApiTypeHelper.requireNonNull(builder.cacheMissCount, this, "cacheMissCount", 0);
+		this.failureCount = ApiTypeHelper.requireNonNull(builder.failureCount, this, "failureCount", 0);
+		this.inferenceCount = ApiTypeHelper.requireNonNull(builder.inferenceCount, this, "inferenceCount", 0);
 		this.missingAllFieldsCount = ApiTypeHelper.requireNonNull(builder.missingAllFieldsCount, this,
-				"missingAllFieldsCount");
-		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+				"missingAllFieldsCount", 0);
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp", 0);
 
 	}
 

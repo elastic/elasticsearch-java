@@ -73,8 +73,8 @@ public class InferenceTopClassEntry implements JsonpSerializable {
 	private InferenceTopClassEntry(Builder builder) {
 
 		this.className = ApiTypeHelper.requireNonNull(builder.className, this, "className");
-		this.classProbability = ApiTypeHelper.requireNonNull(builder.classProbability, this, "classProbability");
-		this.classScore = ApiTypeHelper.requireNonNull(builder.classScore, this, "classScore");
+		this.classProbability = ApiTypeHelper.requireNonNull(builder.classProbability, this, "classProbability", 0);
+		this.classScore = ApiTypeHelper.requireNonNull(builder.classScore, this, "classScore", 0);
 
 	}
 

@@ -504,9 +504,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 		this.trackTotalHits = builder.trackTotalHits;
 		this.withLabels = builder.withLabels;
-		this.x = ApiTypeHelper.requireNonNull(builder.x, this, "x");
-		this.y = ApiTypeHelper.requireNonNull(builder.y, this, "y");
-		this.zoom = ApiTypeHelper.requireNonNull(builder.zoom, this, "zoom");
+		this.x = ApiTypeHelper.requireNonNull(builder.x, this, "x", 0);
+		this.y = ApiTypeHelper.requireNonNull(builder.y, this, "y", 0);
+		this.zoom = ApiTypeHelper.requireNonNull(builder.zoom, this, "zoom", 0);
 
 	}
 

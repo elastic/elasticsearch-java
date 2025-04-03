@@ -87,18 +87,20 @@ public class RollupJobStats implements JsonpSerializable {
 
 	private RollupJobStats(Builder builder) {
 
-		this.documentsProcessed = ApiTypeHelper.requireNonNull(builder.documentsProcessed, this, "documentsProcessed");
-		this.indexFailures = ApiTypeHelper.requireNonNull(builder.indexFailures, this, "indexFailures");
-		this.indexTimeInMs = ApiTypeHelper.requireNonNull(builder.indexTimeInMs, this, "indexTimeInMs");
-		this.indexTotal = ApiTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal");
-		this.pagesProcessed = ApiTypeHelper.requireNonNull(builder.pagesProcessed, this, "pagesProcessed");
-		this.rollupsIndexed = ApiTypeHelper.requireNonNull(builder.rollupsIndexed, this, "rollupsIndexed");
-		this.searchFailures = ApiTypeHelper.requireNonNull(builder.searchFailures, this, "searchFailures");
-		this.searchTimeInMs = ApiTypeHelper.requireNonNull(builder.searchTimeInMs, this, "searchTimeInMs");
-		this.searchTotal = ApiTypeHelper.requireNonNull(builder.searchTotal, this, "searchTotal");
-		this.triggerCount = ApiTypeHelper.requireNonNull(builder.triggerCount, this, "triggerCount");
-		this.processingTimeInMs = ApiTypeHelper.requireNonNull(builder.processingTimeInMs, this, "processingTimeInMs");
-		this.processingTotal = ApiTypeHelper.requireNonNull(builder.processingTotal, this, "processingTotal");
+		this.documentsProcessed = ApiTypeHelper.requireNonNull(builder.documentsProcessed, this, "documentsProcessed",
+				0);
+		this.indexFailures = ApiTypeHelper.requireNonNull(builder.indexFailures, this, "indexFailures", 0);
+		this.indexTimeInMs = ApiTypeHelper.requireNonNull(builder.indexTimeInMs, this, "indexTimeInMs", 0);
+		this.indexTotal = ApiTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal", 0);
+		this.pagesProcessed = ApiTypeHelper.requireNonNull(builder.pagesProcessed, this, "pagesProcessed", 0);
+		this.rollupsIndexed = ApiTypeHelper.requireNonNull(builder.rollupsIndexed, this, "rollupsIndexed", 0);
+		this.searchFailures = ApiTypeHelper.requireNonNull(builder.searchFailures, this, "searchFailures", 0);
+		this.searchTimeInMs = ApiTypeHelper.requireNonNull(builder.searchTimeInMs, this, "searchTimeInMs", 0);
+		this.searchTotal = ApiTypeHelper.requireNonNull(builder.searchTotal, this, "searchTotal", 0);
+		this.triggerCount = ApiTypeHelper.requireNonNull(builder.triggerCount, this, "triggerCount", 0);
+		this.processingTimeInMs = ApiTypeHelper.requireNonNull(builder.processingTimeInMs, this, "processingTimeInMs",
+				0);
+		this.processingTotal = ApiTypeHelper.requireNonNull(builder.processingTotal, this, "processingTotal", 0);
 
 	}
 

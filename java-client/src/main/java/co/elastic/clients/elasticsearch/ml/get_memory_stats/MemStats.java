@@ -78,9 +78,9 @@ public class MemStats implements JsonpSerializable {
 
 		this.adjustedTotal = builder.adjustedTotal;
 		this.adjustedTotalInBytes = ApiTypeHelper.requireNonNull(builder.adjustedTotalInBytes, this,
-				"adjustedTotalInBytes");
+				"adjustedTotalInBytes", 0);
 		this.total = builder.total;
-		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes", 0);
 		this.ml = ApiTypeHelper.requireNonNull(builder.ml, this, "ml");
 
 	}

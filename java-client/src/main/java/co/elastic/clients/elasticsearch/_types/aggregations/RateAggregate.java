@@ -68,7 +68,7 @@ public class RateAggregate extends AggregateBase implements AggregateVariant {
 	private RateAggregate(Builder builder) {
 		super(builder);
 
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value", 0);
 		this.valueAsString = builder.valueAsString;
 
 	}

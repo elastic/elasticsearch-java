@@ -89,12 +89,13 @@ public class ReindexTask implements JsonpSerializable {
 	private ReindexTask(Builder builder) {
 
 		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
-		this.cancellable = ApiTypeHelper.requireNonNull(builder.cancellable, this, "cancellable");
+		this.cancellable = ApiTypeHelper.requireNonNull(builder.cancellable, this, "cancellable", false);
 		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id", 0);
 		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
-		this.runningTimeInNanos = ApiTypeHelper.requireNonNull(builder.runningTimeInNanos, this, "runningTimeInNanos");
-		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.runningTimeInNanos = ApiTypeHelper.requireNonNull(builder.runningTimeInNanos, this, "runningTimeInNanos",
+				0);
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis", 0);
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.headers = ApiTypeHelper.unmodifiableRequired(builder.headers, this, "headers");

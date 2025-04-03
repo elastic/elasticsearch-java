@@ -87,10 +87,10 @@ public class DetailsInfo implements JsonpSerializable {
 		this.overwriteElapsed = builder.overwriteElapsed;
 		this.overwriteElapsedNanos = builder.overwriteElapsedNanos;
 		this.writeElapsed = ApiTypeHelper.requireNonNull(builder.writeElapsed, this, "writeElapsed");
-		this.writeElapsedNanos = ApiTypeHelper.requireNonNull(builder.writeElapsedNanos, this, "writeElapsedNanos");
+		this.writeElapsedNanos = ApiTypeHelper.requireNonNull(builder.writeElapsedNanos, this, "writeElapsedNanos", 0);
 		this.writeThrottled = ApiTypeHelper.requireNonNull(builder.writeThrottled, this, "writeThrottled");
 		this.writeThrottledNanos = ApiTypeHelper.requireNonNull(builder.writeThrottledNanos, this,
-				"writeThrottledNanos");
+				"writeThrottledNanos", 0);
 		this.writerNode = ApiTypeHelper.requireNonNull(builder.writerNode, this, "writerNode");
 
 	}

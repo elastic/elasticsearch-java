@@ -69,7 +69,7 @@ public class UpdateModelSnapshotResponse implements AcknowledgedResponse, JsonpS
 
 	private UpdateModelSnapshotResponse(Builder builder) {
 
-		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged", false);
 		this.model = ApiTypeHelper.requireNonNull(builder.model, this, "model");
 
 	}

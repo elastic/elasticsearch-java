@@ -90,7 +90,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
 		this.seqNo = builder.seqNo;
 		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version", 0);
 		this.forcedRefresh = builder.forcedRefresh;
 
 	}

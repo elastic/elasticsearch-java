@@ -75,7 +75,7 @@ public class GetTasksResponse implements JsonpSerializable {
 
 	private GetTasksResponse(Builder builder) {
 
-		this.completed = ApiTypeHelper.requireNonNull(builder.completed, this, "completed");
+		this.completed = ApiTypeHelper.requireNonNull(builder.completed, this, "completed", false);
 		this.task = ApiTypeHelper.requireNonNull(builder.task, this, "task");
 		this.response = builder.response;
 		this.error = builder.error;

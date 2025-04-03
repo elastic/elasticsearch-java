@@ -83,20 +83,22 @@ public class ShardsAvailabilityIndicatorDetails implements JsonpSerializable {
 
 	private ShardsAvailabilityIndicatorDetails(Builder builder) {
 
-		this.creatingPrimaries = ApiTypeHelper.requireNonNull(builder.creatingPrimaries, this, "creatingPrimaries");
-		this.creatingReplicas = ApiTypeHelper.requireNonNull(builder.creatingReplicas, this, "creatingReplicas");
+		this.creatingPrimaries = ApiTypeHelper.requireNonNull(builder.creatingPrimaries, this, "creatingPrimaries", 0);
+		this.creatingReplicas = ApiTypeHelper.requireNonNull(builder.creatingReplicas, this, "creatingReplicas", 0);
 		this.initializingPrimaries = ApiTypeHelper.requireNonNull(builder.initializingPrimaries, this,
-				"initializingPrimaries");
+				"initializingPrimaries", 0);
 		this.initializingReplicas = ApiTypeHelper.requireNonNull(builder.initializingReplicas, this,
-				"initializingReplicas");
+				"initializingReplicas", 0);
 		this.restartingPrimaries = ApiTypeHelper.requireNonNull(builder.restartingPrimaries, this,
-				"restartingPrimaries");
-		this.restartingReplicas = ApiTypeHelper.requireNonNull(builder.restartingReplicas, this, "restartingReplicas");
-		this.startedPrimaries = ApiTypeHelper.requireNonNull(builder.startedPrimaries, this, "startedPrimaries");
-		this.startedReplicas = ApiTypeHelper.requireNonNull(builder.startedReplicas, this, "startedReplicas");
+				"restartingPrimaries", 0);
+		this.restartingReplicas = ApiTypeHelper.requireNonNull(builder.restartingReplicas, this, "restartingReplicas",
+				0);
+		this.startedPrimaries = ApiTypeHelper.requireNonNull(builder.startedPrimaries, this, "startedPrimaries", 0);
+		this.startedReplicas = ApiTypeHelper.requireNonNull(builder.startedReplicas, this, "startedReplicas", 0);
 		this.unassignedPrimaries = ApiTypeHelper.requireNonNull(builder.unassignedPrimaries, this,
-				"unassignedPrimaries");
-		this.unassignedReplicas = ApiTypeHelper.requireNonNull(builder.unassignedReplicas, this, "unassignedReplicas");
+				"unassignedPrimaries", 0);
+		this.unassignedReplicas = ApiTypeHelper.requireNonNull(builder.unassignedReplicas, this, "unassignedReplicas",
+				0);
 
 	}
 

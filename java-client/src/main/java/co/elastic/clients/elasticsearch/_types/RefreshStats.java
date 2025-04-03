@@ -76,13 +76,13 @@ public class RefreshStats implements JsonpSerializable {
 
 	private RefreshStats(Builder builder) {
 
-		this.externalTotal = ApiTypeHelper.requireNonNull(builder.externalTotal, this, "externalTotal");
+		this.externalTotal = ApiTypeHelper.requireNonNull(builder.externalTotal, this, "externalTotal", 0);
 		this.externalTotalTimeInMillis = ApiTypeHelper.requireNonNull(builder.externalTotalTimeInMillis, this,
-				"externalTotalTimeInMillis");
-		this.listeners = ApiTypeHelper.requireNonNull(builder.listeners, this, "listeners");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+				"externalTotalTimeInMillis", 0);
+		this.listeners = ApiTypeHelper.requireNonNull(builder.listeners, this, "listeners", 0);
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis", 0);
 
 	}
 

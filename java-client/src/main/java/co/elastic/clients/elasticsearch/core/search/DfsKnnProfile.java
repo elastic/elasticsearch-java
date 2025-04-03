@@ -76,7 +76,7 @@ public class DfsKnnProfile implements JsonpSerializable {
 
 		this.vectorOperationsCount = builder.vectorOperationsCount;
 		this.query = ApiTypeHelper.unmodifiableRequired(builder.query, this, "query");
-		this.rewriteTime = ApiTypeHelper.requireNonNull(builder.rewriteTime, this, "rewriteTime");
+		this.rewriteTime = ApiTypeHelper.requireNonNull(builder.rewriteTime, this, "rewriteTime", 0);
 		this.collector = ApiTypeHelper.unmodifiableRequired(builder.collector, this, "collector");
 
 	}

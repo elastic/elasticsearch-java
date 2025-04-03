@@ -94,7 +94,7 @@ public class ShardProfile implements JsonpSerializable {
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
 		this.searches = ApiTypeHelper.unmodifiableRequired(builder.searches, this, "searches");
-		this.shardId = ApiTypeHelper.requireNonNull(builder.shardId, this, "shardId");
+		this.shardId = ApiTypeHelper.requireNonNull(builder.shardId, this, "shardId", 0);
 
 	}
 

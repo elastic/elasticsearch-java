@@ -87,7 +87,7 @@ public class CertificateInformation implements JsonpSerializable {
 		this.alias = builder.alias;
 		this.expiry = ApiTypeHelper.requireNonNull(builder.expiry, this, "expiry");
 		this.format = ApiTypeHelper.requireNonNull(builder.format, this, "format");
-		this.hasPrivateKey = ApiTypeHelper.requireNonNull(builder.hasPrivateKey, this, "hasPrivateKey");
+		this.hasPrivateKey = ApiTypeHelper.requireNonNull(builder.hasPrivateKey, this, "hasPrivateKey", false);
 		this.issuer = builder.issuer;
 		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
 		this.serialNumber = ApiTypeHelper.requireNonNull(builder.serialNumber, this, "serialNumber");

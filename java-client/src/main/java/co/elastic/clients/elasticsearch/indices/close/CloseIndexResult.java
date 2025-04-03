@@ -70,7 +70,7 @@ public class CloseIndexResult implements JsonpSerializable {
 
 	private CloseIndexResult(Builder builder) {
 
-		this.closed = ApiTypeHelper.requireNonNull(builder.closed, this, "closed");
+		this.closed = ApiTypeHelper.requireNonNull(builder.closed, this, "closed", false);
 		this.shards = ApiTypeHelper.unmodifiable(builder.shards);
 
 	}

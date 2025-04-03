@@ -158,14 +158,14 @@ public class Connector implements JsonpSerializable {
 		this.apiKeySecretId = builder.apiKeySecretId;
 		this.configuration = ApiTypeHelper.unmodifiableRequired(builder.configuration, this, "configuration");
 		this.customScheduling = ApiTypeHelper.unmodifiableRequired(builder.customScheduling, this, "customScheduling");
-		this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted");
+		this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted", false);
 		this.description = builder.description;
 		this.error = builder.error;
 		this.features = builder.features;
 		this.filtering = ApiTypeHelper.unmodifiableRequired(builder.filtering, this, "filtering");
 		this.id = builder.id;
 		this.indexName = builder.indexName;
-		this.isNative = ApiTypeHelper.requireNonNull(builder.isNative, this, "isNative");
+		this.isNative = ApiTypeHelper.requireNonNull(builder.isNative, this, "isNative", false);
 		this.language = builder.language;
 		this.lastAccessControlSyncError = builder.lastAccessControlSyncError;
 		this.lastAccessControlSyncScheduledAt = builder.lastAccessControlSyncScheduledAt;
@@ -184,7 +184,7 @@ public class Connector implements JsonpSerializable {
 		this.serviceType = builder.serviceType;
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.syncCursor = builder.syncCursor;
-		this.syncNow = ApiTypeHelper.requireNonNull(builder.syncNow, this, "syncNow");
+		this.syncNow = ApiTypeHelper.requireNonNull(builder.syncNow, this, "syncNow", false);
 
 	}
 

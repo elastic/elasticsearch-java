@@ -102,25 +102,26 @@ public class MergesStats implements JsonpSerializable {
 
 	private MergesStats(Builder builder) {
 
-		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
-		this.currentDocs = ApiTypeHelper.requireNonNull(builder.currentDocs, this, "currentDocs");
+		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current", 0);
+		this.currentDocs = ApiTypeHelper.requireNonNull(builder.currentDocs, this, "currentDocs", 0);
 		this.currentSize = builder.currentSize;
-		this.currentSizeInBytes = ApiTypeHelper.requireNonNull(builder.currentSizeInBytes, this, "currentSizeInBytes");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.currentSizeInBytes = ApiTypeHelper.requireNonNull(builder.currentSizeInBytes, this, "currentSizeInBytes",
+				0);
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
 		this.totalAutoThrottle = builder.totalAutoThrottle;
 		this.totalAutoThrottleInBytes = ApiTypeHelper.requireNonNull(builder.totalAutoThrottleInBytes, this,
-				"totalAutoThrottleInBytes");
-		this.totalDocs = ApiTypeHelper.requireNonNull(builder.totalDocs, this, "totalDocs");
+				"totalAutoThrottleInBytes", 0);
+		this.totalDocs = ApiTypeHelper.requireNonNull(builder.totalDocs, this, "totalDocs", 0);
 		this.totalSize = builder.totalSize;
-		this.totalSizeInBytes = ApiTypeHelper.requireNonNull(builder.totalSizeInBytes, this, "totalSizeInBytes");
+		this.totalSizeInBytes = ApiTypeHelper.requireNonNull(builder.totalSizeInBytes, this, "totalSizeInBytes", 0);
 		this.totalStoppedTime = builder.totalStoppedTime;
 		this.totalStoppedTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalStoppedTimeInMillis, this,
-				"totalStoppedTimeInMillis");
+				"totalStoppedTimeInMillis", 0);
 		this.totalThrottledTime = builder.totalThrottledTime;
 		this.totalThrottledTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalThrottledTimeInMillis, this,
-				"totalThrottledTimeInMillis");
+				"totalThrottledTimeInMillis", 0);
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis", 0);
 
 	}
 

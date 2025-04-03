@@ -65,7 +65,7 @@ public class FieldNamesField implements JsonpSerializable {
 
 	private FieldNamesField(Builder builder) {
 
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
 
 	}
 

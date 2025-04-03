@@ -79,7 +79,7 @@ public class ValidateQueryResponse implements JsonpSerializable {
 
 		this.explanations = ApiTypeHelper.unmodifiable(builder.explanations);
 		this.shards = builder.shards;
-		this.valid = ApiTypeHelper.requireNonNull(builder.valid, this, "valid");
+		this.valid = ApiTypeHelper.requireNonNull(builder.valid, this, "valid", false);
 		this.error = builder.error;
 
 	}

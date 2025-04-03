@@ -71,7 +71,7 @@ public class SlackAttachmentField implements JsonpSerializable {
 
 	private SlackAttachmentField(Builder builder) {
 
-		this.short_ = ApiTypeHelper.requireNonNull(builder.short_, this, "short_");
+		this.short_ = ApiTypeHelper.requireNonNull(builder.short_, this, "short_", false);
 		this.title = ApiTypeHelper.requireNonNull(builder.title, this, "title");
 		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 

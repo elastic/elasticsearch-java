@@ -73,7 +73,7 @@ public class MlInferenceDeployments implements JsonpSerializable {
 
 	private MlInferenceDeployments(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.inferenceCounts = ApiTypeHelper.requireNonNull(builder.inferenceCounts, this, "inferenceCounts");
 		this.modelSizesBytes = ApiTypeHelper.requireNonNull(builder.modelSizesBytes, this, "modelSizesBytes");
 		this.timeMs = ApiTypeHelper.requireNonNull(builder.timeMs, this, "timeMs");

@@ -93,21 +93,21 @@ public class ClusterNodeCount implements JsonpSerializable {
 
 	private ClusterNodeCount(Builder builder) {
 
-		this.coordinatingOnly = ApiTypeHelper.requireNonNull(builder.coordinatingOnly, this, "coordinatingOnly");
-		this.data = ApiTypeHelper.requireNonNull(builder.data, this, "data");
-		this.dataCold = ApiTypeHelper.requireNonNull(builder.dataCold, this, "dataCold");
-		this.dataContent = ApiTypeHelper.requireNonNull(builder.dataContent, this, "dataContent");
+		this.coordinatingOnly = ApiTypeHelper.requireNonNull(builder.coordinatingOnly, this, "coordinatingOnly", 0);
+		this.data = ApiTypeHelper.requireNonNull(builder.data, this, "data", 0);
+		this.dataCold = ApiTypeHelper.requireNonNull(builder.dataCold, this, "dataCold", 0);
+		this.dataContent = ApiTypeHelper.requireNonNull(builder.dataContent, this, "dataContent", 0);
 		this.dataFrozen = builder.dataFrozen;
-		this.dataHot = ApiTypeHelper.requireNonNull(builder.dataHot, this, "dataHot");
-		this.dataWarm = ApiTypeHelper.requireNonNull(builder.dataWarm, this, "dataWarm");
-		this.ingest = ApiTypeHelper.requireNonNull(builder.ingest, this, "ingest");
-		this.master = ApiTypeHelper.requireNonNull(builder.master, this, "master");
-		this.ml = ApiTypeHelper.requireNonNull(builder.ml, this, "ml");
+		this.dataHot = ApiTypeHelper.requireNonNull(builder.dataHot, this, "dataHot", 0);
+		this.dataWarm = ApiTypeHelper.requireNonNull(builder.dataWarm, this, "dataWarm", 0);
+		this.ingest = ApiTypeHelper.requireNonNull(builder.ingest, this, "ingest", 0);
+		this.master = ApiTypeHelper.requireNonNull(builder.master, this, "master", 0);
+		this.ml = ApiTypeHelper.requireNonNull(builder.ml, this, "ml", 0);
 		this.remoteClusterClient = ApiTypeHelper.requireNonNull(builder.remoteClusterClient, this,
-				"remoteClusterClient");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-		this.transform = ApiTypeHelper.requireNonNull(builder.transform, this, "transform");
-		this.votingOnly = ApiTypeHelper.requireNonNull(builder.votingOnly, this, "votingOnly");
+				"remoteClusterClient", 0);
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
+		this.transform = ApiTypeHelper.requireNonNull(builder.transform, this, "transform", 0);
+		this.votingOnly = ApiTypeHelper.requireNonNull(builder.votingOnly, this, "votingOnly", 0);
 
 	}
 

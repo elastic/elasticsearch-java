@@ -75,7 +75,7 @@ public class CommandAllocateReplicaAction implements JsonpSerializable {
 	private CommandAllocateReplicaAction(Builder builder) {
 
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard", 0);
 		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
 
 	}

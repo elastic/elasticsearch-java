@@ -85,7 +85,7 @@ public class TransformHealthIssue implements JsonpSerializable {
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.issue = ApiTypeHelper.requireNonNull(builder.issue, this, "issue");
 		this.details = builder.details;
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.firstOccurrence = builder.firstOccurrence;
 		this.firstOccurenceString = builder.firstOccurenceString;
 

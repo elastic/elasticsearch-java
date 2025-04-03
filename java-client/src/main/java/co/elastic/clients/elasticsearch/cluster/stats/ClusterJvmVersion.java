@@ -80,9 +80,9 @@ public class ClusterJvmVersion implements JsonpSerializable {
 
 	private ClusterJvmVersion(Builder builder) {
 
-		this.bundledJdk = ApiTypeHelper.requireNonNull(builder.bundledJdk, this, "bundledJdk");
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.usingBundledJdk = ApiTypeHelper.requireNonNull(builder.usingBundledJdk, this, "usingBundledJdk");
+		this.bundledJdk = ApiTypeHelper.requireNonNull(builder.bundledJdk, this, "bundledJdk", false);
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
+		this.usingBundledJdk = ApiTypeHelper.requireNonNull(builder.usingBundledJdk, this, "usingBundledJdk", false);
 		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.vmName = ApiTypeHelper.requireNonNull(builder.vmName, this, "vmName");
 		this.vmVendor = ApiTypeHelper.requireNonNull(builder.vmVendor, this, "vmVendor");

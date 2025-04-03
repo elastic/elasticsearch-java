@@ -32,6 +32,7 @@ import co.elastic.clients.elasticsearch._types.query_dsl.MultiValueMode;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.ShapeQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
+import co.elastic.clients.elasticsearch.cluster.HealthResponse;
 import co.elastic.clients.elasticsearch.connector.UpdateIndexNameRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.rank_eval.RankEvalQuery;
@@ -40,6 +41,7 @@ import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.LazyDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.testkit.ModelTestCase;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.MapBuilder;
 import org.junit.jupiter.api.Test;
 
@@ -435,5 +437,35 @@ public class BehaviorsTest extends ModelTestCase {
 
         assertTrue(mapResp.hits().hits().get(0).matchedQueries().containsKey("test"));
         assertTrue(mapResp.hits().hits().get(0).matchedQueries().get("test").equals(1D));
+    }
+
+    @Test
+    public void testDangerousDisablePropertyCheckPrimitive(){
+        try (ApiTypeHelper.DisabledChecksHandle h =
+                 ApiTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(true)) {
+            HealthResponse healthResponse = HealthResponse.of(hr -> hr.withJson(new StringReader("{\n" +
+                "  \"cluster_name\" : \"6f47f6476fb04820aeaae5cfabf3c3f7\",\n" +
+                "  \"status\" : \"green\",\n" +
+                "  \"timed_out\" : false,\n" +
+                "  \"number_of_nodes\" : 3,\n" +
+                "  \"number_of_data_nodes\" : 2,\n" +
+                "  \"active_primary_shards\" : 88,\n" +
+                "  \"active_shards\" : 176,\n" +
+                "  \"relocating_shards\" : 0,\n" +
+                "  \"initializing_shards\" : 0,\n" +
+                "  \"unassigned_shards\" : 0,\n" +
+                "  \"delayed_unassigned_shards\" : 0,\n" +
+                "  \"number_of_pending_tasks\" : 0,\n" +
+                "  \"number_of_in_flight_fetch\" : 0,\n" +
+                "  \"task_max_waiting_in_queue_millis\" : 0,\n" +
+                "  \"active_shards_percent_as_number\" : 100.0\n" +
+                "}")));
+
+            // checking that a required, but missing property has its default value assigned
+            assertTrue(healthResponse.unassignedShards()==0);
+
+            // checking that roundtrip works
+            assertTrue(healthResponse.toString()!=null);
+        }
     }
 }

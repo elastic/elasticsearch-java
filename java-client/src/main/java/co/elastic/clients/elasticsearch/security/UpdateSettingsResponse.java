@@ -66,7 +66,7 @@ public class UpdateSettingsResponse implements AcknowledgedResponse, JsonpSerial
 
 	private UpdateSettingsResponse(Builder builder) {
 
-		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged", false);
 
 	}
 

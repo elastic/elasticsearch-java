@@ -65,7 +65,7 @@ public class LaplaceSmoothingModel implements SmoothingModelVariant, JsonpSerial
 
 	private LaplaceSmoothingModel(Builder builder) {
 
-		this.alpha = ApiTypeHelper.requireNonNull(builder.alpha, this, "alpha");
+		this.alpha = ApiTypeHelper.requireNonNull(builder.alpha, this, "alpha", 0);
 
 	}
 

@@ -85,18 +85,18 @@ public class AllField implements JsonpSerializable {
 	private AllField(Builder builder) {
 
 		this.analyzer = ApiTypeHelper.requireNonNull(builder.analyzer, this, "analyzer");
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
-		this.omitNorms = ApiTypeHelper.requireNonNull(builder.omitNorms, this, "omitNorms");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
+		this.omitNorms = ApiTypeHelper.requireNonNull(builder.omitNorms, this, "omitNorms", false);
 		this.searchAnalyzer = ApiTypeHelper.requireNonNull(builder.searchAnalyzer, this, "searchAnalyzer");
 		this.similarity = ApiTypeHelper.requireNonNull(builder.similarity, this, "similarity");
-		this.store = ApiTypeHelper.requireNonNull(builder.store, this, "store");
+		this.store = ApiTypeHelper.requireNonNull(builder.store, this, "store", false);
 		this.storeTermVectorOffsets = ApiTypeHelper.requireNonNull(builder.storeTermVectorOffsets, this,
-				"storeTermVectorOffsets");
+				"storeTermVectorOffsets", false);
 		this.storeTermVectorPayloads = ApiTypeHelper.requireNonNull(builder.storeTermVectorPayloads, this,
-				"storeTermVectorPayloads");
+				"storeTermVectorPayloads", false);
 		this.storeTermVectorPositions = ApiTypeHelper.requireNonNull(builder.storeTermVectorPositions, this,
-				"storeTermVectorPositions");
-		this.storeTermVectors = ApiTypeHelper.requireNonNull(builder.storeTermVectors, this, "storeTermVectors");
+				"storeTermVectorPositions", false);
+		this.storeTermVectors = ApiTypeHelper.requireNonNull(builder.storeTermVectors, this, "storeTermVectors", false);
 
 	}
 

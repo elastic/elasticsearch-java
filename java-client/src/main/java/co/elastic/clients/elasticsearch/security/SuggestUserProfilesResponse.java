@@ -73,7 +73,7 @@ public class SuggestUserProfilesResponse implements JsonpSerializable {
 	private SuggestUserProfilesResponse(Builder builder) {
 
 		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took", 0);
 		this.profiles = ApiTypeHelper.unmodifiableRequired(builder.profiles, this, "profiles");
 
 	}
