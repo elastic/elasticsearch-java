@@ -72,10 +72,44 @@ public class ApiTypeHelper {
     }
 
     public static <T> T requireNonNull(T value, Object obj, String name) {
+        checkNotNull(value, obj, name);
+        return value;
+    }
+
+    private static <T> void checkNotNull(T value, Object obj, String name) {
         if (value == null && !requiredPropertiesCheckDisabled()) {
             throw new MissingRequiredPropertyException(obj, name);
         }
-        return value;
+    }
+
+    public static <T> T requireNonNull(T value, Object obj, String name, T defaultValue) {
+        checkNotNull(value, obj, name);
+        return value == null ? defaultValue : value;
+    }
+
+    public static int requireNonNull(Integer value, Object obj, String name, int defaultValue) {
+        checkNotNull(value, obj, name );
+        return value == null ? defaultValue : value;
+    }
+
+    public static double requireNonNull(Double value, Object obj, String name, double defaultValue) {
+        checkNotNull(value, obj, name );
+        return value == null ? defaultValue : value;
+    }
+
+    public static long requireNonNull(Long value, Object obj, String name, long defaultValue) {
+        checkNotNull(value, obj, name );
+        return value == null ? defaultValue : value;
+    }
+
+    public static float requireNonNull(Float value, Object obj, String name, float defaultValue) {
+        checkNotNull(value, obj, name );
+        return value == null ? defaultValue : value;
+    }
+
+    public static boolean requireNonNull(Boolean value, Object obj, String name, boolean defaultValue) {
+        checkNotNull(value, obj, name );
+        return value == null ? defaultValue : value;
     }
 
     //----- Lists
