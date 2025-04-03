@@ -86,7 +86,7 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 		this.buildDate = ApiTypeHelper.requireNonNull(builder.buildDate, this, "buildDate");
 		this.buildFlavor = ApiTypeHelper.requireNonNull(builder.buildFlavor, this, "buildFlavor");
 		this.buildHash = ApiTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
-		this.buildSnapshot = ApiTypeHelper.requireNonNull(builder.buildSnapshot, this, "buildSnapshot");
+		this.buildSnapshot = ApiTypeHelper.requireNonNull(builder.buildSnapshot, this, "buildSnapshot", false);
 		this.buildType = ApiTypeHelper.requireNonNull(builder.buildType, this, "buildType");
 		this.luceneVersion = ApiTypeHelper.requireNonNull(builder.luceneVersion, this, "luceneVersion");
 		this.minimumIndexCompatibilityVersion = ApiTypeHelper.requireNonNull(builder.minimumIndexCompatibilityVersion,

@@ -83,7 +83,7 @@ public class ClusterDetails implements JsonpSerializable {
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.indices = ApiTypeHelper.requireNonNull(builder.indices, this, "indices");
 		this.took = builder.took;
-		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
+		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut", false);
 		this.shards = builder.shards;
 		this.failures = ApiTypeHelper.unmodifiable(builder.failures);
 

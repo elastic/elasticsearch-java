@@ -89,18 +89,18 @@ public class GetStatsResponse implements JsonpSerializable {
 		this.retentionDeletionTime = ApiTypeHelper.requireNonNull(builder.retentionDeletionTime, this,
 				"retentionDeletionTime");
 		this.retentionDeletionTimeMillis = ApiTypeHelper.requireNonNull(builder.retentionDeletionTimeMillis, this,
-				"retentionDeletionTimeMillis");
-		this.retentionFailed = ApiTypeHelper.requireNonNull(builder.retentionFailed, this, "retentionFailed");
-		this.retentionRuns = ApiTypeHelper.requireNonNull(builder.retentionRuns, this, "retentionRuns");
-		this.retentionTimedOut = ApiTypeHelper.requireNonNull(builder.retentionTimedOut, this, "retentionTimedOut");
+				"retentionDeletionTimeMillis", 0);
+		this.retentionFailed = ApiTypeHelper.requireNonNull(builder.retentionFailed, this, "retentionFailed", 0);
+		this.retentionRuns = ApiTypeHelper.requireNonNull(builder.retentionRuns, this, "retentionRuns", 0);
+		this.retentionTimedOut = ApiTypeHelper.requireNonNull(builder.retentionTimedOut, this, "retentionTimedOut", 0);
 		this.totalSnapshotsDeleted = ApiTypeHelper.requireNonNull(builder.totalSnapshotsDeleted, this,
-				"totalSnapshotsDeleted");
+				"totalSnapshotsDeleted", 0);
 		this.totalSnapshotDeletionFailures = ApiTypeHelper.requireNonNull(builder.totalSnapshotDeletionFailures, this,
-				"totalSnapshotDeletionFailures");
+				"totalSnapshotDeletionFailures", 0);
 		this.totalSnapshotsFailed = ApiTypeHelper.requireNonNull(builder.totalSnapshotsFailed, this,
-				"totalSnapshotsFailed");
+				"totalSnapshotsFailed", 0);
 		this.totalSnapshotsTaken = ApiTypeHelper.requireNonNull(builder.totalSnapshotsTaken, this,
-				"totalSnapshotsTaken");
+				"totalSnapshotsTaken", 0);
 		this.policyStats = ApiTypeHelper.unmodifiableRequired(builder.policyStats, this, "policyStats");
 
 	}

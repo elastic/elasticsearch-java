@@ -78,12 +78,12 @@ public class AnomalyDetectors implements JsonpSerializable {
 		this.categorizationAnalyzer = ApiTypeHelper.requireNonNull(builder.categorizationAnalyzer, this,
 				"categorizationAnalyzer");
 		this.categorizationExamplesLimit = ApiTypeHelper.requireNonNull(builder.categorizationExamplesLimit, this,
-				"categorizationExamplesLimit");
+				"categorizationExamplesLimit", 0);
 		this.modelMemoryLimit = ApiTypeHelper.requireNonNull(builder.modelMemoryLimit, this, "modelMemoryLimit");
 		this.modelSnapshotRetentionDays = ApiTypeHelper.requireNonNull(builder.modelSnapshotRetentionDays, this,
-				"modelSnapshotRetentionDays");
+				"modelSnapshotRetentionDays", 0);
 		this.dailyModelSnapshotRetentionAfterDays = ApiTypeHelper.requireNonNull(
-				builder.dailyModelSnapshotRetentionAfterDays, this, "dailyModelSnapshotRetentionAfterDays");
+				builder.dailyModelSnapshotRetentionAfterDays, this, "dailyModelSnapshotRetentionAfterDays", 0);
 
 	}
 

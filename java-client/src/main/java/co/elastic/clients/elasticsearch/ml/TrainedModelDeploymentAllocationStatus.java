@@ -70,10 +70,10 @@ public class TrainedModelDeploymentAllocationStatus implements JsonpSerializable
 
 	private TrainedModelDeploymentAllocationStatus(Builder builder) {
 
-		this.allocationCount = ApiTypeHelper.requireNonNull(builder.allocationCount, this, "allocationCount");
+		this.allocationCount = ApiTypeHelper.requireNonNull(builder.allocationCount, this, "allocationCount", 0);
 		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 		this.targetAllocationCount = ApiTypeHelper.requireNonNull(builder.targetAllocationCount, this,
-				"targetAllocationCount");
+				"targetAllocationCount", 0);
 
 	}
 

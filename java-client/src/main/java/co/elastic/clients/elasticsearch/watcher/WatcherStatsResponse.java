@@ -77,7 +77,7 @@ public class WatcherStatsResponse implements JsonpSerializable {
 
 		this.nodeStats = ApiTypeHelper.requireNonNull(builder.nodeStats, this, "nodeStats");
 		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
-		this.manuallyStopped = ApiTypeHelper.requireNonNull(builder.manuallyStopped, this, "manuallyStopped");
+		this.manuallyStopped = ApiTypeHelper.requireNonNull(builder.manuallyStopped, this, "manuallyStopped", false);
 		this.stats = ApiTypeHelper.unmodifiableRequired(builder.stats, this, "stats");
 
 	}

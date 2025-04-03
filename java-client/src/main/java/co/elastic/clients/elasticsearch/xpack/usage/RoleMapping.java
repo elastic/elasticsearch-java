@@ -66,8 +66,8 @@ public class RoleMapping implements JsonpSerializable {
 
 	private RoleMapping(Builder builder) {
 
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
-		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", 0);
+		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size", 0);
 
 	}
 

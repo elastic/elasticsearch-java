@@ -115,7 +115,7 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.indexPattern = ApiTypeHelper.requireNonNull(builder.indexPattern, this, "indexPattern");
 		this.metrics = ApiTypeHelper.unmodifiable(builder.metrics);
-		this.pageSize = ApiTypeHelper.requireNonNull(builder.pageSize, this, "pageSize");
+		this.pageSize = ApiTypeHelper.requireNonNull(builder.pageSize, this, "pageSize", 0);
 		this.rollupIndex = ApiTypeHelper.requireNonNull(builder.rollupIndex, this, "rollupIndex");
 		this.timeout = builder.timeout;
 

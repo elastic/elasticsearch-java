@@ -80,8 +80,8 @@ public class PostStartBasicResponse implements AcknowledgedResponse, JsonpSerial
 
 	private PostStartBasicResponse(Builder builder) {
 
-		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
-		this.basicWasStarted = ApiTypeHelper.requireNonNull(builder.basicWasStarted, this, "basicWasStarted");
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged", false);
+		this.basicWasStarted = ApiTypeHelper.requireNonNull(builder.basicWasStarted, this, "basicWasStarted", false);
 		this.errorMessage = builder.errorMessage;
 		this.type = builder.type;
 		this.acknowledge = ApiTypeHelper.unmodifiable(builder.acknowledge);

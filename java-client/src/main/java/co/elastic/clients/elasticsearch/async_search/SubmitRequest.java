@@ -613,7 +613,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * Minimum _score for matching documents. Documents with a lower _score are not
-	 * included in the search results.
+	 * included in search results and results collected by aggregations.
 	 * <p>
 	 * API name: {@code min_score}
 	 */
@@ -1808,7 +1808,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * Minimum _score for matching documents. Documents with a lower _score are not
-		 * included in the search results.
+		 * included in search results and results collected by aggregations.
 		 * <p>
 		 * API name: {@code min_score}
 		 */

@@ -69,7 +69,7 @@ public class ConnectorScheduling implements JsonpSerializable {
 
 	private ConnectorScheduling(Builder builder) {
 
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
 		this.interval = ApiTypeHelper.requireNonNull(builder.interval, this, "interval");
 
 	}

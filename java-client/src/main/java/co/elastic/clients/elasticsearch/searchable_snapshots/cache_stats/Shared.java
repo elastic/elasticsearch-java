@@ -82,13 +82,13 @@ public class Shared implements JsonpSerializable {
 
 	private Shared(Builder builder) {
 
-		this.reads = ApiTypeHelper.requireNonNull(builder.reads, this, "reads");
+		this.reads = ApiTypeHelper.requireNonNull(builder.reads, this, "reads", 0);
 		this.bytesReadInBytes = ApiTypeHelper.requireNonNull(builder.bytesReadInBytes, this, "bytesReadInBytes");
-		this.writes = ApiTypeHelper.requireNonNull(builder.writes, this, "writes");
+		this.writes = ApiTypeHelper.requireNonNull(builder.writes, this, "writes", 0);
 		this.bytesWrittenInBytes = ApiTypeHelper.requireNonNull(builder.bytesWrittenInBytes, this,
 				"bytesWrittenInBytes");
-		this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions");
-		this.numRegions = ApiTypeHelper.requireNonNull(builder.numRegions, this, "numRegions");
+		this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions", 0);
+		this.numRegions = ApiTypeHelper.requireNonNull(builder.numRegions, this, "numRegions", 0);
 		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
 		this.regionSizeInBytes = ApiTypeHelper.requireNonNull(builder.regionSizeInBytes, this, "regionSizeInBytes");
 

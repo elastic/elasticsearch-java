@@ -112,28 +112,30 @@ public class RepositoryAnalyzeResponse implements JsonpSerializable {
 
 	private RepositoryAnalyzeResponse(Builder builder) {
 
-		this.blobCount = ApiTypeHelper.requireNonNull(builder.blobCount, this, "blobCount");
+		this.blobCount = ApiTypeHelper.requireNonNull(builder.blobCount, this, "blobCount", 0);
 		this.blobPath = ApiTypeHelper.requireNonNull(builder.blobPath, this, "blobPath");
-		this.concurrency = ApiTypeHelper.requireNonNull(builder.concurrency, this, "concurrency");
+		this.concurrency = ApiTypeHelper.requireNonNull(builder.concurrency, this, "concurrency", 0);
 		this.coordinatingNode = ApiTypeHelper.requireNonNull(builder.coordinatingNode, this, "coordinatingNode");
 		this.deleteElapsed = ApiTypeHelper.requireNonNull(builder.deleteElapsed, this, "deleteElapsed");
-		this.deleteElapsedNanos = ApiTypeHelper.requireNonNull(builder.deleteElapsedNanos, this, "deleteElapsedNanos");
+		this.deleteElapsedNanos = ApiTypeHelper.requireNonNull(builder.deleteElapsedNanos, this, "deleteElapsedNanos",
+				0);
 		this.details = ApiTypeHelper.requireNonNull(builder.details, this, "details");
-		this.earlyReadNodeCount = ApiTypeHelper.requireNonNull(builder.earlyReadNodeCount, this, "earlyReadNodeCount");
+		this.earlyReadNodeCount = ApiTypeHelper.requireNonNull(builder.earlyReadNodeCount, this, "earlyReadNodeCount",
+				0);
 		this.issuesDetected = ApiTypeHelper.unmodifiableRequired(builder.issuesDetected, this, "issuesDetected");
 		this.listingElapsed = ApiTypeHelper.requireNonNull(builder.listingElapsed, this, "listingElapsed");
 		this.listingElapsedNanos = ApiTypeHelper.requireNonNull(builder.listingElapsedNanos, this,
-				"listingElapsedNanos");
+				"listingElapsedNanos", 0);
 		this.maxBlobSize = ApiTypeHelper.requireNonNull(builder.maxBlobSize, this, "maxBlobSize");
-		this.maxBlobSizeBytes = ApiTypeHelper.requireNonNull(builder.maxBlobSizeBytes, this, "maxBlobSizeBytes");
+		this.maxBlobSizeBytes = ApiTypeHelper.requireNonNull(builder.maxBlobSizeBytes, this, "maxBlobSizeBytes", 0);
 		this.maxTotalDataSize = ApiTypeHelper.requireNonNull(builder.maxTotalDataSize, this, "maxTotalDataSize");
 		this.maxTotalDataSizeBytes = ApiTypeHelper.requireNonNull(builder.maxTotalDataSizeBytes, this,
-				"maxTotalDataSizeBytes");
+				"maxTotalDataSizeBytes", 0);
 		this.rareActionProbability = ApiTypeHelper.requireNonNull(builder.rareActionProbability, this,
-				"rareActionProbability");
-		this.readNodeCount = ApiTypeHelper.requireNonNull(builder.readNodeCount, this, "readNodeCount");
+				"rareActionProbability", 0);
+		this.readNodeCount = ApiTypeHelper.requireNonNull(builder.readNodeCount, this, "readNodeCount", 0);
 		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
-		this.seed = ApiTypeHelper.requireNonNull(builder.seed, this, "seed");
+		this.seed = ApiTypeHelper.requireNonNull(builder.seed, this, "seed", 0);
 		this.summary = ApiTypeHelper.requireNonNull(builder.summary, this, "summary");
 
 	}

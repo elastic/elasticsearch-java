@@ -69,7 +69,8 @@ public class ShardsCapacityIndicatorTierDetail implements JsonpSerializable {
 
 	private ShardsCapacityIndicatorTierDetail(Builder builder) {
 
-		this.maxShardsInCluster = ApiTypeHelper.requireNonNull(builder.maxShardsInCluster, this, "maxShardsInCluster");
+		this.maxShardsInCluster = ApiTypeHelper.requireNonNull(builder.maxShardsInCluster, this, "maxShardsInCluster",
+				0);
 		this.currentUsedShards = builder.currentUsedShards;
 
 	}

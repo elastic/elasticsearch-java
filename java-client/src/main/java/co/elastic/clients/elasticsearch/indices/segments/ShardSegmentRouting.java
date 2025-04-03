@@ -72,7 +72,7 @@ public class ShardSegmentRouting implements JsonpSerializable {
 	private ShardSegmentRouting(Builder builder) {
 
 		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
-		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
+		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary", false);
 		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 
 	}

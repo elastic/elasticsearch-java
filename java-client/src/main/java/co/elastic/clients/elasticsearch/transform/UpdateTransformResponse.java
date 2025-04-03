@@ -106,7 +106,7 @@ public class UpdateTransformResponse implements JsonpSerializable {
 	private UpdateTransformResponse(Builder builder) {
 
 		this.authorization = builder.authorization;
-		this.createTime = ApiTypeHelper.requireNonNull(builder.createTime, this, "createTime");
+		this.createTime = ApiTypeHelper.requireNonNull(builder.createTime, this, "createTime", 0);
 		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
 		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
 		this.frequency = builder.frequency;

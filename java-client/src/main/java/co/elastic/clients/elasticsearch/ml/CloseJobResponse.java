@@ -64,7 +64,7 @@ public class CloseJobResponse implements JsonpSerializable {
 
 	private CloseJobResponse(Builder builder) {
 
-		this.closed = ApiTypeHelper.requireNonNull(builder.closed, this, "closed");
+		this.closed = ApiTypeHelper.requireNonNull(builder.closed, this, "closed", false);
 
 	}
 

@@ -74,7 +74,7 @@ public class TotalHits implements JsonpSerializable {
 	private TotalHits(Builder builder) {
 
 		this.relation = ApiTypeHelper.requireNonNull(builder.relation, this, "relation");
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value", 0);
 
 	}
 

@@ -112,8 +112,8 @@ public class ConnectorConfigProperties implements JsonpSerializable {
 		this.options = ApiTypeHelper.unmodifiableRequired(builder.options, this, "options");
 		this.order = builder.order;
 		this.placeholder = builder.placeholder;
-		this.required = ApiTypeHelper.requireNonNull(builder.required, this, "required");
-		this.sensitive = ApiTypeHelper.requireNonNull(builder.sensitive, this, "sensitive");
+		this.required = ApiTypeHelper.requireNonNull(builder.required, this, "required", false);
+		this.sensitive = ApiTypeHelper.requireNonNull(builder.sensitive, this, "sensitive", false);
 		this.tooltip = builder.tooltip;
 		this.type = builder.type;
 		this.uiRestrictions = ApiTypeHelper.unmodifiable(builder.uiRestrictions);

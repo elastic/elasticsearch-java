@@ -94,15 +94,15 @@ public class GetMigrateReindexStatusResponse implements JsonpSerializable {
 	private GetMigrateReindexStatusResponse(Builder builder) {
 
 		this.startTime = builder.startTime;
-		this.startTimeMillis = ApiTypeHelper.requireNonNull(builder.startTimeMillis, this, "startTimeMillis");
-		this.complete = ApiTypeHelper.requireNonNull(builder.complete, this, "complete");
+		this.startTimeMillis = ApiTypeHelper.requireNonNull(builder.startTimeMillis, this, "startTimeMillis", 0);
+		this.complete = ApiTypeHelper.requireNonNull(builder.complete, this, "complete", false);
 		this.totalIndicesInDataStream = ApiTypeHelper.requireNonNull(builder.totalIndicesInDataStream, this,
-				"totalIndicesInDataStream");
+				"totalIndicesInDataStream", 0);
 		this.totalIndicesRequiringUpgrade = ApiTypeHelper.requireNonNull(builder.totalIndicesRequiringUpgrade, this,
-				"totalIndicesRequiringUpgrade");
-		this.successes = ApiTypeHelper.requireNonNull(builder.successes, this, "successes");
+				"totalIndicesRequiringUpgrade", 0);
+		this.successes = ApiTypeHelper.requireNonNull(builder.successes, this, "successes", 0);
 		this.inProgress = ApiTypeHelper.unmodifiableRequired(builder.inProgress, this, "inProgress");
-		this.pending = ApiTypeHelper.requireNonNull(builder.pending, this, "pending");
+		this.pending = ApiTypeHelper.requireNonNull(builder.pending, this, "pending", 0);
 		this.errors = ApiTypeHelper.unmodifiableRequired(builder.errors, this, "errors");
 		this.exception = builder.exception;
 

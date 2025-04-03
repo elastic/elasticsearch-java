@@ -70,10 +70,10 @@ public class CoordsGeoBounds implements JsonpSerializable {
 
 	private CoordsGeoBounds(Builder builder) {
 
-		this.top = ApiTypeHelper.requireNonNull(builder.top, this, "top");
-		this.bottom = ApiTypeHelper.requireNonNull(builder.bottom, this, "bottom");
-		this.left = ApiTypeHelper.requireNonNull(builder.left, this, "left");
-		this.right = ApiTypeHelper.requireNonNull(builder.right, this, "right");
+		this.top = ApiTypeHelper.requireNonNull(builder.top, this, "top", 0);
+		this.bottom = ApiTypeHelper.requireNonNull(builder.bottom, this, "bottom", 0);
+		this.left = ApiTypeHelper.requireNonNull(builder.left, this, "left", 0);
+		this.right = ApiTypeHelper.requireNonNull(builder.right, this, "right", 0);
 
 	}
 

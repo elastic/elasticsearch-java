@@ -75,7 +75,7 @@ public class InvalidateApiKeyResponse implements JsonpSerializable {
 
 	private InvalidateApiKeyResponse(Builder builder) {
 
-		this.errorCount = ApiTypeHelper.requireNonNull(builder.errorCount, this, "errorCount");
+		this.errorCount = ApiTypeHelper.requireNonNull(builder.errorCount, this, "errorCount", 0);
 		this.errorDetails = ApiTypeHelper.unmodifiable(builder.errorDetails);
 		this.invalidatedApiKeys = ApiTypeHelper.unmodifiableRequired(builder.invalidatedApiKeys, this,
 				"invalidatedApiKeys");

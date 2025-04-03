@@ -73,9 +73,9 @@ public class IpPrefixBucket extends MultiBucketBase {
 	private IpPrefixBucket(Builder builder) {
 		super(builder);
 
-		this.isIpv6 = ApiTypeHelper.requireNonNull(builder.isIpv6, this, "isIpv6");
+		this.isIpv6 = ApiTypeHelper.requireNonNull(builder.isIpv6, this, "isIpv6", false);
 		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
-		this.prefixLength = ApiTypeHelper.requireNonNull(builder.prefixLength, this, "prefixLength");
+		this.prefixLength = ApiTypeHelper.requireNonNull(builder.prefixLength, this, "prefixLength", 0);
 		this.netmask = builder.netmask;
 
 	}

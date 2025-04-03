@@ -47,6 +47,23 @@ import co.elastic.clients.json.JsonpDeserializer;
 @JsonpDeserializable
 public enum DenseVectorIndexOptionsType implements JsonEnum {
 	/**
+	 * This utilizes a brute-force search algorithm in addition to automatically
+	 * quantizing to binary vectors. Only supports <code>element_type</code> of
+	 * <code>float</code>.
+	 */
+	BbqFlat("bbq_flat"),
+
+	/**
+	 * This utilizes the HNSW algorithm in addition to automatic binary quantization
+	 * for scalable approximate kNN search with <code>element_type</code> of
+	 * <code>float</code>.
+	 * <p>
+	 * This can reduce the memory footprint by nearly 32x at the cost of some
+	 * accuracy.
+	 */
+	BbqHnsw("bbq_hnsw"),
+
+	/**
 	 * This utilizes a brute-force search algorithm for exact kNN search. This
 	 * supports all <code>element_type</code> values.
 	 */

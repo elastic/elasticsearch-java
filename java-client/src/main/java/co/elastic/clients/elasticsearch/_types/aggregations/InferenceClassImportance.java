@@ -70,7 +70,7 @@ public class InferenceClassImportance implements JsonpSerializable {
 	private InferenceClassImportance(Builder builder) {
 
 		this.className = ApiTypeHelper.requireNonNull(builder.className, this, "className");
-		this.importance = ApiTypeHelper.requireNonNull(builder.importance, this, "importance");
+		this.importance = ApiTypeHelper.requireNonNull(builder.importance, this, "importance", 0);
 
 	}
 

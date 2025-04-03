@@ -78,7 +78,7 @@ public class HasPrivilegesResponse implements JsonpSerializable {
 
 		this.application = ApiTypeHelper.unmodifiableRequired(builder.application, this, "application");
 		this.cluster = ApiTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
-		this.hasAllRequested = ApiTypeHelper.requireNonNull(builder.hasAllRequested, this, "hasAllRequested");
+		this.hasAllRequested = ApiTypeHelper.requireNonNull(builder.hasAllRequested, this, "hasAllRequested", false);
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 

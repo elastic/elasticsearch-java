@@ -69,7 +69,7 @@ public class TestResponse implements JsonpSerializable {
 
 	private TestResponse(Builder builder) {
 
-		this.totalMatchedRules = ApiTypeHelper.requireNonNull(builder.totalMatchedRules, this, "totalMatchedRules");
+		this.totalMatchedRules = ApiTypeHelper.requireNonNull(builder.totalMatchedRules, this, "totalMatchedRules", 0);
 		this.matchedRules = ApiTypeHelper.unmodifiableRequired(builder.matchedRules, this, "matchedRules");
 
 	}

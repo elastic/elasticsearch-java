@@ -83,15 +83,15 @@ public class IndexingPressureMemorySummary implements JsonpSerializable {
 
 	private IndexingPressureMemorySummary(Builder builder) {
 
-		this.allInBytes = ApiTypeHelper.requireNonNull(builder.allInBytes, this, "allInBytes");
+		this.allInBytes = ApiTypeHelper.requireNonNull(builder.allInBytes, this, "allInBytes", 0);
 		this.combinedCoordinatingAndPrimaryInBytes = ApiTypeHelper.requireNonNull(
-				builder.combinedCoordinatingAndPrimaryInBytes, this, "combinedCoordinatingAndPrimaryInBytes");
+				builder.combinedCoordinatingAndPrimaryInBytes, this, "combinedCoordinatingAndPrimaryInBytes", 0);
 		this.coordinatingInBytes = ApiTypeHelper.requireNonNull(builder.coordinatingInBytes, this,
-				"coordinatingInBytes");
+				"coordinatingInBytes", 0);
 		this.coordinatingRejections = builder.coordinatingRejections;
-		this.primaryInBytes = ApiTypeHelper.requireNonNull(builder.primaryInBytes, this, "primaryInBytes");
+		this.primaryInBytes = ApiTypeHelper.requireNonNull(builder.primaryInBytes, this, "primaryInBytes", 0);
 		this.primaryRejections = builder.primaryRejections;
-		this.replicaInBytes = ApiTypeHelper.requireNonNull(builder.replicaInBytes, this, "replicaInBytes");
+		this.replicaInBytes = ApiTypeHelper.requireNonNull(builder.replicaInBytes, this, "replicaInBytes", 0);
 		this.replicaRejections = builder.replicaRejections;
 
 	}

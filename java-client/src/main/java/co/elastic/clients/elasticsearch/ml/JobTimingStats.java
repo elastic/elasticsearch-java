@@ -86,14 +86,14 @@ public class JobTimingStats implements JsonpSerializable {
 	private JobTimingStats(Builder builder) {
 
 		this.averageBucketProcessingTimeMs = builder.averageBucketProcessingTimeMs;
-		this.bucketCount = ApiTypeHelper.requireNonNull(builder.bucketCount, this, "bucketCount");
+		this.bucketCount = ApiTypeHelper.requireNonNull(builder.bucketCount, this, "bucketCount", 0);
 		this.exponentialAverageBucketProcessingTimeMs = builder.exponentialAverageBucketProcessingTimeMs;
 		this.exponentialAverageBucketProcessingTimePerHourMs = ApiTypeHelper.requireNonNull(
 				builder.exponentialAverageBucketProcessingTimePerHourMs, this,
-				"exponentialAverageBucketProcessingTimePerHourMs");
+				"exponentialAverageBucketProcessingTimePerHourMs", 0);
 		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.totalBucketProcessingTimeMs = ApiTypeHelper.requireNonNull(builder.totalBucketProcessingTimeMs, this,
-				"totalBucketProcessingTimeMs");
+				"totalBucketProcessingTimeMs", 0);
 		this.maximumBucketProcessingTimeMs = builder.maximumBucketProcessingTimeMs;
 		this.minimumBucketProcessingTimeMs = builder.minimumBucketProcessingTimeMs;
 

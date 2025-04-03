@@ -77,7 +77,7 @@ public class ExecutionResult implements JsonpSerializable {
 
 		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
 		this.condition = ApiTypeHelper.requireNonNull(builder.condition, this, "condition");
-		this.executionDuration = ApiTypeHelper.requireNonNull(builder.executionDuration, this, "executionDuration");
+		this.executionDuration = ApiTypeHelper.requireNonNull(builder.executionDuration, this, "executionDuration", 0);
 		this.executionTime = ApiTypeHelper.requireNonNull(builder.executionTime, this, "executionTime");
 		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
 

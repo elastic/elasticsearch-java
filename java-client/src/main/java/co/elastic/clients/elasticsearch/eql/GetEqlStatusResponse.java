@@ -82,8 +82,8 @@ public class GetEqlStatusResponse implements JsonpSerializable {
 	private GetEqlStatusResponse(Builder builder) {
 
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.isPartial = ApiTypeHelper.requireNonNull(builder.isPartial, this, "isPartial");
-		this.isRunning = ApiTypeHelper.requireNonNull(builder.isRunning, this, "isRunning");
+		this.isPartial = ApiTypeHelper.requireNonNull(builder.isPartial, this, "isPartial", false);
+		this.isRunning = ApiTypeHelper.requireNonNull(builder.isRunning, this, "isRunning", false);
 		this.startTimeInMillis = builder.startTimeInMillis;
 		this.expirationTimeInMillis = builder.expirationTimeInMillis;
 		this.completionStatus = builder.completionStatus;

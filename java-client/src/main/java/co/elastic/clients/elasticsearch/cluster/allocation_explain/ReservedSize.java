@@ -76,7 +76,7 @@ public class ReservedSize implements JsonpSerializable {
 
 		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
 		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
 		this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
 
 	}

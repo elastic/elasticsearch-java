@@ -67,8 +67,8 @@ public class ShardsStatsSummaryItem implements JsonpSerializable {
 
 	private ShardsStatsSummaryItem(Builder builder) {
 
-		this.fileCount = ApiTypeHelper.requireNonNull(builder.fileCount, this, "fileCount");
-		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+		this.fileCount = ApiTypeHelper.requireNonNull(builder.fileCount, this, "fileCount", 0);
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes", 0);
 
 	}
 

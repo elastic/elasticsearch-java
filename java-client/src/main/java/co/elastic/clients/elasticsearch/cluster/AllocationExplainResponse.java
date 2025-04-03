@@ -161,11 +161,11 @@ public class AllocationExplainResponse implements JsonpSerializable {
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.moveExplanation = builder.moveExplanation;
 		this.nodeAllocationDecisions = ApiTypeHelper.unmodifiable(builder.nodeAllocationDecisions);
-		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
+		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary", false);
 		this.rebalanceExplanation = builder.rebalanceExplanation;
 		this.remainingDelay = builder.remainingDelay;
 		this.remainingDelayInMillis = builder.remainingDelayInMillis;
-		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard", 0);
 		this.unassignedInfo = builder.unassignedInfo;
 		this.note = builder.note;
 

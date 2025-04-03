@@ -75,7 +75,7 @@ public class BulkIndexByScrollFailure implements JsonpSerializable {
 		this.cause = ApiTypeHelper.requireNonNull(builder.cause, this, "cause");
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status", 0);
 
 	}
 

@@ -76,8 +76,8 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 	private DataframeAnalyticsStatsHyperparameters(Builder builder) {
 
 		this.hyperparameters = ApiTypeHelper.requireNonNull(builder.hyperparameters, this, "hyperparameters");
-		this.iteration = ApiTypeHelper.requireNonNull(builder.iteration, this, "iteration");
-		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.iteration = ApiTypeHelper.requireNonNull(builder.iteration, this, "iteration", 0);
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp", 0);
 		this.timingStats = ApiTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
 		this.validationLoss = ApiTypeHelper.requireNonNull(builder.validationLoss, this, "validationLoss");
 

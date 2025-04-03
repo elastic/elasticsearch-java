@@ -71,7 +71,7 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 	private DataframeAnalyticsStatsOutlierDetection(Builder builder) {
 
 		this.parameters = ApiTypeHelper.requireNonNull(builder.parameters, this, "parameters");
-		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp", 0);
 		this.timingStats = ApiTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
 
 	}

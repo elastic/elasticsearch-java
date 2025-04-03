@@ -76,10 +76,10 @@ public class ConfusionMatrixItem implements JsonpSerializable {
 
 		this.actualClass = ApiTypeHelper.requireNonNull(builder.actualClass, this, "actualClass");
 		this.actualClassDocCount = ApiTypeHelper.requireNonNull(builder.actualClassDocCount, this,
-				"actualClassDocCount");
+				"actualClassDocCount", 0);
 		this.predictedClasses = ApiTypeHelper.unmodifiableRequired(builder.predictedClasses, this, "predictedClasses");
 		this.otherPredictedClassDocCount = ApiTypeHelper.requireNonNull(builder.otherPredictedClassDocCount, this,
-				"otherPredictedClassDocCount");
+				"otherPredictedClassDocCount", 0);
 
 	}
 

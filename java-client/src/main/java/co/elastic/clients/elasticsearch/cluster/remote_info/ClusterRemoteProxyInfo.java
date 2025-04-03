@@ -84,16 +84,16 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 
 	private ClusterRemoteProxyInfo(Builder builder) {
 
-		this.connected = ApiTypeHelper.requireNonNull(builder.connected, this, "connected");
+		this.connected = ApiTypeHelper.requireNonNull(builder.connected, this, "connected", false);
 		this.initialConnectTimeout = ApiTypeHelper.requireNonNull(builder.initialConnectTimeout, this,
 				"initialConnectTimeout");
-		this.skipUnavailable = ApiTypeHelper.requireNonNull(builder.skipUnavailable, this, "skipUnavailable");
+		this.skipUnavailable = ApiTypeHelper.requireNonNull(builder.skipUnavailable, this, "skipUnavailable", false);
 		this.proxyAddress = ApiTypeHelper.requireNonNull(builder.proxyAddress, this, "proxyAddress");
 		this.serverName = ApiTypeHelper.requireNonNull(builder.serverName, this, "serverName");
 		this.numProxySocketsConnected = ApiTypeHelper.requireNonNull(builder.numProxySocketsConnected, this,
-				"numProxySocketsConnected");
+				"numProxySocketsConnected", 0);
 		this.maxProxySocketConnections = ApiTypeHelper.requireNonNull(builder.maxProxySocketConnections, this,
-				"maxProxySocketConnections");
+				"maxProxySocketConnections", 0);
 		this.clusterCredentials = builder.clusterCredentials;
 
 	}

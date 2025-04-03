@@ -70,9 +70,9 @@ public class FieldStatistics implements JsonpSerializable {
 
 	private FieldStatistics(Builder builder) {
 
-		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
-		this.sumDocFreq = ApiTypeHelper.requireNonNull(builder.sumDocFreq, this, "sumDocFreq");
-		this.sumTtf = ApiTypeHelper.requireNonNull(builder.sumTtf, this, "sumTtf");
+		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount", 0);
+		this.sumDocFreq = ApiTypeHelper.requireNonNull(builder.sumDocFreq, this, "sumDocFreq", 0);
+		this.sumTtf = ApiTypeHelper.requireNonNull(builder.sumTtf, this, "sumTtf", 0);
 
 	}
 

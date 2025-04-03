@@ -65,9 +65,9 @@ public class Ccr extends Base {
 		super(builder);
 
 		this.autoFollowPatternsCount = ApiTypeHelper.requireNonNull(builder.autoFollowPatternsCount, this,
-				"autoFollowPatternsCount");
+				"autoFollowPatternsCount", 0);
 		this.followerIndicesCount = ApiTypeHelper.requireNonNull(builder.followerIndicesCount, this,
-				"followerIndicesCount");
+				"followerIndicesCount", 0);
 
 	}
 

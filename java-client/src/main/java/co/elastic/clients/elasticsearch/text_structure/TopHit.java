@@ -68,7 +68,7 @@ public class TopHit implements JsonpSerializable {
 
 	private TopHit(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}

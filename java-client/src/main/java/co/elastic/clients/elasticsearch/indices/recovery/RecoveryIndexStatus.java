@@ -92,12 +92,12 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size");
 		this.sourceThrottleTime = builder.sourceThrottleTime;
 		this.sourceThrottleTimeInMillis = ApiTypeHelper.requireNonNull(builder.sourceThrottleTimeInMillis, this,
-				"sourceThrottleTimeInMillis");
+				"sourceThrottleTimeInMillis", 0);
 		this.targetThrottleTime = builder.targetThrottleTime;
 		this.targetThrottleTimeInMillis = ApiTypeHelper.requireNonNull(builder.targetThrottleTimeInMillis, this,
-				"targetThrottleTimeInMillis");
+				"targetThrottleTimeInMillis", 0);
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis", 0);
 
 	}
 

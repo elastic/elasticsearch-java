@@ -69,7 +69,7 @@ public class SearchApplication extends SearchApplicationParameters {
 		super(builder);
 
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.updatedAtMillis = ApiTypeHelper.requireNonNull(builder.updatedAtMillis, this, "updatedAtMillis");
+		this.updatedAtMillis = ApiTypeHelper.requireNonNull(builder.updatedAtMillis, this, "updatedAtMillis", 0);
 
 	}
 

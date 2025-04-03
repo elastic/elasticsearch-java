@@ -314,8 +314,9 @@ public class MultisearchBody implements JsonpSerializable {
 	}
 
 	/**
-	 * Minimum _score for matching documents. Documents with a lower _score are not
-	 * included in the search results.
+	 * The minimum <code>_score</code> for matching documents. Documents with a
+	 * lower <code>_score</code> are not included in search results and results
+	 * collected by aggregations.
 	 * <p>
 	 * API name: {@code min_score}
 	 */
@@ -1133,8 +1134,9 @@ public class MultisearchBody implements JsonpSerializable {
 		}
 
 		/**
-		 * Minimum _score for matching documents. Documents with a lower _score are not
-		 * included in the search results.
+		 * The minimum <code>_score</code> for matching documents. Documents with a
+		 * lower <code>_score</code> are not included in search results and results
+		 * collected by aggregations.
 		 * <p>
 		 * API name: {@code min_score}
 		 */

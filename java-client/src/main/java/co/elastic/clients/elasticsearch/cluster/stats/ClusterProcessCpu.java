@@ -65,7 +65,7 @@ public class ClusterProcessCpu implements JsonpSerializable {
 
 	private ClusterProcessCpu(Builder builder) {
 
-		this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
+		this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent", 0);
 
 	}
 

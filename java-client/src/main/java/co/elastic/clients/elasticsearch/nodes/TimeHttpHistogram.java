@@ -71,7 +71,7 @@ public class TimeHttpHistogram implements JsonpSerializable {
 
 	private TimeHttpHistogram(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.geMillis = builder.geMillis;
 		this.ltMillis = builder.ltMillis;
 

@@ -93,12 +93,12 @@ public class ExplainAnalyzeToken implements JsonpSerializable {
 		this.attributes = ApiTypeHelper.unmodifiable(builder.attributes);
 
 		this.bytes = ApiTypeHelper.requireNonNull(builder.bytes, this, "bytes");
-		this.endOffset = ApiTypeHelper.requireNonNull(builder.endOffset, this, "endOffset");
+		this.endOffset = ApiTypeHelper.requireNonNull(builder.endOffset, this, "endOffset", 0);
 		this.keyword = builder.keyword;
-		this.position = ApiTypeHelper.requireNonNull(builder.position, this, "position");
-		this.positionlength = ApiTypeHelper.requireNonNull(builder.positionlength, this, "positionlength");
-		this.startOffset = ApiTypeHelper.requireNonNull(builder.startOffset, this, "startOffset");
-		this.termfrequency = ApiTypeHelper.requireNonNull(builder.termfrequency, this, "termfrequency");
+		this.position = ApiTypeHelper.requireNonNull(builder.position, this, "position", 0);
+		this.positionlength = ApiTypeHelper.requireNonNull(builder.positionlength, this, "positionlength", 0);
+		this.startOffset = ApiTypeHelper.requireNonNull(builder.startOffset, this, "startOffset", 0);
+		this.termfrequency = ApiTypeHelper.requireNonNull(builder.termfrequency, this, "termfrequency", 0);
 		this.token = ApiTypeHelper.requireNonNull(builder.token, this, "token");
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 

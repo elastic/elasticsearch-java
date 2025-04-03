@@ -75,8 +75,8 @@ public class GetSnapshotResponse implements JsonpSerializable {
 
 		this.responses = ApiTypeHelper.unmodifiable(builder.responses);
 		this.snapshots = ApiTypeHelper.unmodifiable(builder.snapshots);
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-		this.remaining = ApiTypeHelper.requireNonNull(builder.remaining, this, "remaining");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
+		this.remaining = ApiTypeHelper.requireNonNull(builder.remaining, this, "remaining", 0);
 
 	}
 

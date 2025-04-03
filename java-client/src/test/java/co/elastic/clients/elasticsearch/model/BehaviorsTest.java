@@ -350,7 +350,7 @@ public class BehaviorsTest extends ModelTestCase {
         assertEquals(jsonValue,toJson(updateValue));
         assertEquals(jsonNull,toJson(updateNull));
     }
-    
+
     @Test
     public void testDangerousDisablePropertyCheckPrimitive(){
         try (ApiTypeHelper.DisabledChecksHandle h =

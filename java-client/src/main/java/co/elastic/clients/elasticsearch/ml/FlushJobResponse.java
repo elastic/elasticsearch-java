@@ -69,7 +69,7 @@ public class FlushJobResponse implements JsonpSerializable {
 
 	private FlushJobResponse(Builder builder) {
 
-		this.flushed = ApiTypeHelper.requireNonNull(builder.flushed, this, "flushed");
+		this.flushed = ApiTypeHelper.requireNonNull(builder.flushed, this, "flushed", false);
 		this.lastFinalizedBucketEnd = builder.lastFinalizedBucketEnd;
 
 	}

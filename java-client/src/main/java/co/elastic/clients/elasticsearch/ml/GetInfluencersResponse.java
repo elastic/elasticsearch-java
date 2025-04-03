@@ -68,7 +68,7 @@ public class GetInfluencersResponse implements JsonpSerializable {
 
 	private GetInfluencersResponse(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.influencers = ApiTypeHelper.unmodifiableRequired(builder.influencers, this, "influencers");
 
 	}

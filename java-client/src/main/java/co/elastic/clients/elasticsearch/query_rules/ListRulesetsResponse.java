@@ -70,7 +70,7 @@ public class ListRulesetsResponse implements JsonpSerializable {
 
 	private ListRulesetsResponse(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.results = ApiTypeHelper.unmodifiableRequired(builder.results, this, "results");
 
 	}

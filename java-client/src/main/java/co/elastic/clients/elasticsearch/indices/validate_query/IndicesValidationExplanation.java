@@ -78,7 +78,7 @@ public class IndicesValidationExplanation implements JsonpSerializable {
 		this.error = builder.error;
 		this.explanation = builder.explanation;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.valid = ApiTypeHelper.requireNonNull(builder.valid, this, "valid");
+		this.valid = ApiTypeHelper.requireNonNull(builder.valid, this, "valid", false);
 
 	}
 

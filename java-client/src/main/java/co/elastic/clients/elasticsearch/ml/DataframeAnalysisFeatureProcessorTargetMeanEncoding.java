@@ -78,7 +78,7 @@ public class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 
 	private DataframeAnalysisFeatureProcessorTargetMeanEncoding(Builder builder) {
 
-		this.defaultValue = ApiTypeHelper.requireNonNull(builder.defaultValue, this, "defaultValue");
+		this.defaultValue = ApiTypeHelper.requireNonNull(builder.defaultValue, this, "defaultValue", 0);
 		this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.targetMap = ApiTypeHelper.unmodifiableRequired(builder.targetMap, this, "targetMap");

@@ -74,7 +74,7 @@ public class ExponentialAverageCalculationContext implements JsonpSerializable {
 	private ExponentialAverageCalculationContext(Builder builder) {
 
 		this.incrementalMetricValueMs = ApiTypeHelper.requireNonNull(builder.incrementalMetricValueMs, this,
-				"incrementalMetricValueMs");
+				"incrementalMetricValueMs", 0);
 		this.latestTimestamp = builder.latestTimestamp;
 		this.previousExponentialAverageMs = builder.previousExponentialAverageMs;
 

@@ -71,7 +71,7 @@ public class RuleCondition implements JsonpSerializable {
 
 		this.appliesTo = ApiTypeHelper.requireNonNull(builder.appliesTo, this, "appliesTo");
 		this.operator = ApiTypeHelper.requireNonNull(builder.operator, this, "operator");
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value", 0);
 
 	}
 
