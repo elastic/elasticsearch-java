@@ -73,8 +73,8 @@ public class ShardLease implements JsonpSerializable {
 	private ShardLease(Builder builder) {
 
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.retainingSeqNo = ApiTypeHelper.requireNonNull(builder.retainingSeqNo, this, "retainingSeqNo");
-		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.retainingSeqNo = ApiTypeHelper.requireNonNull(builder.retainingSeqNo, this, "retainingSeqNo", 0);
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp", 0);
 		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}

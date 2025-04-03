@@ -105,19 +105,19 @@ public class ShardRecovery implements JsonpSerializable {
 
 	private ShardRecovery(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id", 0);
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
+		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary", false);
 		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.stage = ApiTypeHelper.requireNonNull(builder.stage, this, "stage");
 		this.start = builder.start;
 		this.startTime = builder.startTime;
-		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis", 0);
 		this.stopTime = builder.stopTime;
 		this.stopTimeInMillis = builder.stopTimeInMillis;
 		this.target = ApiTypeHelper.requireNonNull(builder.target, this, "target");
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis", 0);
 		this.translog = ApiTypeHelper.requireNonNull(builder.translog, this, "translog");
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.verifyIndex = ApiTypeHelper.requireNonNull(builder.verifyIndex, this, "verifyIndex");

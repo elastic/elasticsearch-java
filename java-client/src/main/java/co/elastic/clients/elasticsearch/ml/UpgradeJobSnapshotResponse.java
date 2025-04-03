@@ -70,7 +70,7 @@ public class UpgradeJobSnapshotResponse implements JsonpSerializable {
 	private UpgradeJobSnapshotResponse(Builder builder) {
 
 		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
-		this.completed = ApiTypeHelper.requireNonNull(builder.completed, this, "completed");
+		this.completed = ApiTypeHelper.requireNonNull(builder.completed, this, "completed", false);
 
 	}
 

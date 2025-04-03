@@ -83,7 +83,7 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 		this.indices = ApiTypeHelper.requireNonNull(builder.indices, this, "indices");
 		this.nodes = ApiTypeHelper.requireNonNull(builder.nodes, this, "nodes");
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
-		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp", 0);
 
 	}
 

@@ -85,7 +85,7 @@ public class NodeShutdownStatus implements JsonpSerializable {
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 		this.shutdownStartedmillis = ApiTypeHelper.requireNonNull(builder.shutdownStartedmillis, this,
-				"shutdownStartedmillis");
+				"shutdownStartedmillis", 0);
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.shardMigration = ApiTypeHelper.requireNonNull(builder.shardMigration, this, "shardMigration");
 		this.persistentTasks = ApiTypeHelper.requireNonNull(builder.persistentTasks, this, "persistentTasks");

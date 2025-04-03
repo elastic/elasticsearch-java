@@ -117,7 +117,7 @@ public class ModelSizeStats implements JsonpSerializable {
 	private ModelSizeStats(Builder builder) {
 
 		this.bucketAllocationFailuresCount = ApiTypeHelper.requireNonNull(builder.bucketAllocationFailuresCount, this,
-				"bucketAllocationFailuresCount");
+				"bucketAllocationFailuresCount", 0);
 		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.logTime = ApiTypeHelper.requireNonNull(builder.logTime, this, "logTime");
 		this.memoryStatus = ApiTypeHelper.requireNonNull(builder.memoryStatus, this, "memoryStatus");
@@ -128,22 +128,23 @@ public class ModelSizeStats implements JsonpSerializable {
 		this.peakModelBytes = builder.peakModelBytes;
 		this.assignmentMemoryBasis = builder.assignmentMemoryBasis;
 		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
-		this.totalByFieldCount = ApiTypeHelper.requireNonNull(builder.totalByFieldCount, this, "totalByFieldCount");
+		this.totalByFieldCount = ApiTypeHelper.requireNonNull(builder.totalByFieldCount, this, "totalByFieldCount", 0);
 		this.totalOverFieldCount = ApiTypeHelper.requireNonNull(builder.totalOverFieldCount, this,
-				"totalOverFieldCount");
+				"totalOverFieldCount", 0);
 		this.totalPartitionFieldCount = ApiTypeHelper.requireNonNull(builder.totalPartitionFieldCount, this,
-				"totalPartitionFieldCount");
+				"totalPartitionFieldCount", 0);
 		this.categorizationStatus = ApiTypeHelper.requireNonNull(builder.categorizationStatus, this,
 				"categorizationStatus");
 		this.categorizedDocCount = ApiTypeHelper.requireNonNull(builder.categorizedDocCount, this,
-				"categorizedDocCount");
-		this.deadCategoryCount = ApiTypeHelper.requireNonNull(builder.deadCategoryCount, this, "deadCategoryCount");
+				"categorizedDocCount", 0);
+		this.deadCategoryCount = ApiTypeHelper.requireNonNull(builder.deadCategoryCount, this, "deadCategoryCount", 0);
 		this.failedCategoryCount = ApiTypeHelper.requireNonNull(builder.failedCategoryCount, this,
-				"failedCategoryCount");
+				"failedCategoryCount", 0);
 		this.frequentCategoryCount = ApiTypeHelper.requireNonNull(builder.frequentCategoryCount, this,
-				"frequentCategoryCount");
-		this.rareCategoryCount = ApiTypeHelper.requireNonNull(builder.rareCategoryCount, this, "rareCategoryCount");
-		this.totalCategoryCount = ApiTypeHelper.requireNonNull(builder.totalCategoryCount, this, "totalCategoryCount");
+				"frequentCategoryCount", 0);
+		this.rareCategoryCount = ApiTypeHelper.requireNonNull(builder.rareCategoryCount, this, "rareCategoryCount", 0);
+		this.totalCategoryCount = ApiTypeHelper.requireNonNull(builder.totalCategoryCount, this, "totalCategoryCount",
+				0);
 		this.timestamp = builder.timestamp;
 
 	}

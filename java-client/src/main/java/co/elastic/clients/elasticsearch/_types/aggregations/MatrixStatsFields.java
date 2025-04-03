@@ -84,11 +84,11 @@ public class MatrixStatsFields implements JsonpSerializable {
 	private MatrixStatsFields(Builder builder) {
 
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.mean = ApiTypeHelper.requireNonNull(builder.mean, this, "mean");
-		this.variance = ApiTypeHelper.requireNonNull(builder.variance, this, "variance");
-		this.skewness = ApiTypeHelper.requireNonNull(builder.skewness, this, "skewness");
-		this.kurtosis = ApiTypeHelper.requireNonNull(builder.kurtosis, this, "kurtosis");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
+		this.mean = ApiTypeHelper.requireNonNull(builder.mean, this, "mean", 0);
+		this.variance = ApiTypeHelper.requireNonNull(builder.variance, this, "variance", 0);
+		this.skewness = ApiTypeHelper.requireNonNull(builder.skewness, this, "skewness", 0);
+		this.kurtosis = ApiTypeHelper.requireNonNull(builder.kurtosis, this, "kurtosis", 0);
 		this.covariance = ApiTypeHelper.unmodifiableRequired(builder.covariance, this, "covariance");
 		this.correlation = ApiTypeHelper.unmodifiableRequired(builder.correlation, this, "correlation");
 

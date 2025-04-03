@@ -71,7 +71,7 @@ public class SamlInvalidateResponse implements JsonpSerializable {
 
 	private SamlInvalidateResponse(Builder builder) {
 
-		this.invalidated = ApiTypeHelper.requireNonNull(builder.invalidated, this, "invalidated");
+		this.invalidated = ApiTypeHelper.requireNonNull(builder.invalidated, this, "invalidated", 0);
 		this.realm = ApiTypeHelper.requireNonNull(builder.realm, this, "realm");
 		this.redirect = ApiTypeHelper.requireNonNull(builder.redirect, this, "redirect");
 

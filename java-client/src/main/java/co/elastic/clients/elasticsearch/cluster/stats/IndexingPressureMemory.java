@@ -71,7 +71,7 @@ public class IndexingPressureMemory implements JsonpSerializable {
 	private IndexingPressureMemory(Builder builder) {
 
 		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
-		this.limitInBytes = ApiTypeHelper.requireNonNull(builder.limitInBytes, this, "limitInBytes");
+		this.limitInBytes = ApiTypeHelper.requireNonNull(builder.limitInBytes, this, "limitInBytes", 0);
 		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}

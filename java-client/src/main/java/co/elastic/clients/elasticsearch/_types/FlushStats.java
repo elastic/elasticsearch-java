@@ -72,10 +72,10 @@ public class FlushStats implements JsonpSerializable {
 
 	private FlushStats(Builder builder) {
 
-		this.periodic = ApiTypeHelper.requireNonNull(builder.periodic, this, "periodic");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.periodic = ApiTypeHelper.requireNonNull(builder.periodic, this, "periodic", 0);
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis", 0);
 
 	}
 

@@ -87,18 +87,18 @@ public class FollowerIndexParameters implements JsonpSerializable {
 	private FollowerIndexParameters(Builder builder) {
 
 		this.maxOutstandingReadRequests = ApiTypeHelper.requireNonNull(builder.maxOutstandingReadRequests, this,
-				"maxOutstandingReadRequests");
+				"maxOutstandingReadRequests", 0);
 		this.maxOutstandingWriteRequests = ApiTypeHelper.requireNonNull(builder.maxOutstandingWriteRequests, this,
-				"maxOutstandingWriteRequests");
+				"maxOutstandingWriteRequests", 0);
 		this.maxReadRequestOperationCount = ApiTypeHelper.requireNonNull(builder.maxReadRequestOperationCount, this,
-				"maxReadRequestOperationCount");
+				"maxReadRequestOperationCount", 0);
 		this.maxReadRequestSize = ApiTypeHelper.requireNonNull(builder.maxReadRequestSize, this, "maxReadRequestSize");
 		this.maxRetryDelay = ApiTypeHelper.requireNonNull(builder.maxRetryDelay, this, "maxRetryDelay");
 		this.maxWriteBufferCount = ApiTypeHelper.requireNonNull(builder.maxWriteBufferCount, this,
-				"maxWriteBufferCount");
+				"maxWriteBufferCount", 0);
 		this.maxWriteBufferSize = ApiTypeHelper.requireNonNull(builder.maxWriteBufferSize, this, "maxWriteBufferSize");
 		this.maxWriteRequestOperationCount = ApiTypeHelper.requireNonNull(builder.maxWriteRequestOperationCount, this,
-				"maxWriteRequestOperationCount");
+				"maxWriteRequestOperationCount", 0);
 		this.maxWriteRequestSize = ApiTypeHelper.requireNonNull(builder.maxWriteRequestSize, this,
 				"maxWriteRequestSize");
 		this.readPollTimeout = ApiTypeHelper.requireNonNull(builder.readPollTimeout, this, "readPollTimeout");

@@ -89,8 +89,8 @@ public class FieldStat implements JsonpSerializable {
 
 	private FieldStat(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.cardinality = ApiTypeHelper.requireNonNull(builder.cardinality, this, "cardinality");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
+		this.cardinality = ApiTypeHelper.requireNonNull(builder.cardinality, this, "cardinality", 0);
 		this.topHits = ApiTypeHelper.unmodifiableRequired(builder.topHits, this, "topHits");
 		this.meanValue = builder.meanValue;
 		this.medianValue = builder.medianValue;

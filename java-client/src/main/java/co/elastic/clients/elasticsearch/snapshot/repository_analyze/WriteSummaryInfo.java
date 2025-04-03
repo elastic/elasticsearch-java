@@ -81,14 +81,14 @@ public class WriteSummaryInfo implements JsonpSerializable {
 
 	private WriteSummaryInfo(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.totalElapsed = ApiTypeHelper.requireNonNull(builder.totalElapsed, this, "totalElapsed");
-		this.totalElapsedNanos = ApiTypeHelper.requireNonNull(builder.totalElapsedNanos, this, "totalElapsedNanos");
+		this.totalElapsedNanos = ApiTypeHelper.requireNonNull(builder.totalElapsedNanos, this, "totalElapsedNanos", 0);
 		this.totalSize = ApiTypeHelper.requireNonNull(builder.totalSize, this, "totalSize");
-		this.totalSizeBytes = ApiTypeHelper.requireNonNull(builder.totalSizeBytes, this, "totalSizeBytes");
+		this.totalSizeBytes = ApiTypeHelper.requireNonNull(builder.totalSizeBytes, this, "totalSizeBytes", 0);
 		this.totalThrottled = ApiTypeHelper.requireNonNull(builder.totalThrottled, this, "totalThrottled");
 		this.totalThrottledNanos = ApiTypeHelper.requireNonNull(builder.totalThrottledNanos, this,
-				"totalThrottledNanos");
+				"totalThrottledNanos", 0);
 
 	}
 

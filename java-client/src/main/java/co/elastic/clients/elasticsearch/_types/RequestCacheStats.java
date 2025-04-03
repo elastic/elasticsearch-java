@@ -75,11 +75,11 @@ public class RequestCacheStats implements JsonpSerializable {
 
 	private RequestCacheStats(Builder builder) {
 
-		this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions");
-		this.hitCount = ApiTypeHelper.requireNonNull(builder.hitCount, this, "hitCount");
+		this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions", 0);
+		this.hitCount = ApiTypeHelper.requireNonNull(builder.hitCount, this, "hitCount", 0);
 		this.memorySize = builder.memorySize;
-		this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
-		this.missCount = ApiTypeHelper.requireNonNull(builder.missCount, this, "missCount");
+		this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes", 0);
+		this.missCount = ApiTypeHelper.requireNonNull(builder.missCount, this, "missCount", 0);
 
 	}
 

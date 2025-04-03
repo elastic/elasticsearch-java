@@ -71,10 +71,10 @@ public class Connection implements JsonpSerializable {
 
 	private Connection(Builder builder) {
 
-		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
-		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
-		this.target = ApiTypeHelper.requireNonNull(builder.target, this, "target");
-		this.weight = ApiTypeHelper.requireNonNull(builder.weight, this, "weight");
+		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount", 0);
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source", 0);
+		this.target = ApiTypeHelper.requireNonNull(builder.target, this, "target", 0);
+		this.weight = ApiTypeHelper.requireNonNull(builder.weight, this, "weight", 0);
 
 	}
 

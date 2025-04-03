@@ -77,7 +77,7 @@ public class SamlAuthenticateResponse implements JsonpSerializable {
 
 		this.accessToken = ApiTypeHelper.requireNonNull(builder.accessToken, this, "accessToken");
 		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
-		this.expiresIn = ApiTypeHelper.requireNonNull(builder.expiresIn, this, "expiresIn");
+		this.expiresIn = ApiTypeHelper.requireNonNull(builder.expiresIn, this, "expiresIn", 0);
 		this.refreshToken = ApiTypeHelper.requireNonNull(builder.refreshToken, this, "refreshToken");
 		this.realm = ApiTypeHelper.requireNonNull(builder.realm, this, "realm");
 

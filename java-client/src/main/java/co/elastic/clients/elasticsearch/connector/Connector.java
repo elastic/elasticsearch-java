@@ -162,7 +162,7 @@ public class Connector implements JsonpSerializable {
 		this.filtering = ApiTypeHelper.unmodifiableRequired(builder.filtering, this, "filtering");
 		this.id = builder.id;
 		this.indexName = builder.indexName;
-		this.isNative = ApiTypeHelper.requireNonNull(builder.isNative, this, "isNative");
+		this.isNative = ApiTypeHelper.requireNonNull(builder.isNative, this, "isNative", false);
 		this.language = builder.language;
 		this.lastAccessControlSyncError = builder.lastAccessControlSyncError;
 		this.lastAccessControlSyncScheduledAt = builder.lastAccessControlSyncScheduledAt;
@@ -181,7 +181,7 @@ public class Connector implements JsonpSerializable {
 		this.serviceType = builder.serviceType;
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.syncCursor = builder.syncCursor;
-		this.syncNow = ApiTypeHelper.requireNonNull(builder.syncNow, this, "syncNow");
+		this.syncNow = ApiTypeHelper.requireNonNull(builder.syncNow, this, "syncNow", false);
 
 	}
 

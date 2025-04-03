@@ -68,7 +68,7 @@ public class VertexInclude implements JsonpSerializable {
 
 	private VertexInclude(Builder builder) {
 
-		this.boost = ApiTypeHelper.requireNonNull(builder.boost, this, "boost");
+		this.boost = ApiTypeHelper.requireNonNull(builder.boost, this, "boost", 0);
 		this.term = ApiTypeHelper.requireNonNull(builder.term, this, "term");
 
 	}

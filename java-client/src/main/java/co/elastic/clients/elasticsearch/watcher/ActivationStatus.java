@@ -73,7 +73,7 @@ public class ActivationStatus implements JsonpSerializable {
 
 		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
 		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version", 0);
 
 	}
 

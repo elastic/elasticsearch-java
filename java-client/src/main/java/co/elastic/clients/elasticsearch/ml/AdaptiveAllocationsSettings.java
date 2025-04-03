@@ -73,7 +73,7 @@ public class AdaptiveAllocationsSettings implements JsonpSerializable {
 
 	private AdaptiveAllocationsSettings(Builder builder) {
 
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
 		this.minNumberOfAllocations = builder.minNumberOfAllocations;
 		this.maxNumberOfAllocations = builder.maxNumberOfAllocations;
 

@@ -71,10 +71,10 @@ public class MappingStats implements JsonpSerializable {
 
 	private MappingStats(Builder builder) {
 
-		this.totalCount = ApiTypeHelper.requireNonNull(builder.totalCount, this, "totalCount");
+		this.totalCount = ApiTypeHelper.requireNonNull(builder.totalCount, this, "totalCount", 0);
 		this.totalEstimatedOverhead = builder.totalEstimatedOverhead;
 		this.totalEstimatedOverheadInBytes = ApiTypeHelper.requireNonNull(builder.totalEstimatedOverheadInBytes, this,
-				"totalEstimatedOverheadInBytes");
+				"totalEstimatedOverheadInBytes", 0);
 
 	}
 

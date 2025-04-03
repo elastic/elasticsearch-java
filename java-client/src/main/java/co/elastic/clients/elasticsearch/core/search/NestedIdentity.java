@@ -73,7 +73,7 @@ public class NestedIdentity implements JsonpSerializable {
 	private NestedIdentity(Builder builder) {
 
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.offset = ApiTypeHelper.requireNonNull(builder.offset, this, "offset");
+		this.offset = ApiTypeHelper.requireNonNull(builder.offset, this, "offset", 0);
 		this.nested = builder.nested;
 
 	}

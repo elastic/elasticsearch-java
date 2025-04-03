@@ -73,7 +73,7 @@ public class Explanation implements JsonpSerializable {
 
 		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
 		this.details = ApiTypeHelper.unmodifiableRequired(builder.details, this, "details");
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value", 0);
 
 	}
 

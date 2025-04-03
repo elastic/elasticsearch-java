@@ -68,11 +68,12 @@ public class FollowResponse implements JsonpSerializable {
 
 	private FollowResponse(Builder builder) {
 
-		this.followIndexCreated = ApiTypeHelper.requireNonNull(builder.followIndexCreated, this, "followIndexCreated");
+		this.followIndexCreated = ApiTypeHelper.requireNonNull(builder.followIndexCreated, this, "followIndexCreated",
+				false);
 		this.followIndexShardsAcked = ApiTypeHelper.requireNonNull(builder.followIndexShardsAcked, this,
-				"followIndexShardsAcked");
+				"followIndexShardsAcked", false);
 		this.indexFollowingStarted = ApiTypeHelper.requireNonNull(builder.indexFollowingStarted, this,
-				"indexFollowingStarted");
+				"indexFollowingStarted", false);
 
 	}
 

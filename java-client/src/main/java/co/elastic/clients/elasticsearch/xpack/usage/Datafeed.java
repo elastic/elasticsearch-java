@@ -64,7 +64,7 @@ public class Datafeed implements JsonpSerializable {
 
 	private Datafeed(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 
 	}
 

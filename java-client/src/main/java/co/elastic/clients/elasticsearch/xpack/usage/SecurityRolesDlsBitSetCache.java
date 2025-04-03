@@ -73,7 +73,7 @@ public class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 
 	private SecurityRolesDlsBitSetCache(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.memory = builder.memory;
 		this.memoryInBytes = ApiTypeHelper.requireNonNull(builder.memoryInBytes, this, "memoryInBytes");
 

@@ -64,7 +64,7 @@ public class DeleteExpiredDataResponse implements JsonpSerializable {
 
 	private DeleteExpiredDataResponse(Builder builder) {
 
-		this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted");
+		this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted", false);
 
 	}
 

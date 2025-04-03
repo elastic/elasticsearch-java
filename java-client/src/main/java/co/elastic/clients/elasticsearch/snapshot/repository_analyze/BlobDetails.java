@@ -83,13 +83,13 @@ public class BlobDetails implements JsonpSerializable {
 	private BlobDetails(Builder builder) {
 
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.overwritten = ApiTypeHelper.requireNonNull(builder.overwritten, this, "overwritten");
-		this.readEarly = ApiTypeHelper.requireNonNull(builder.readEarly, this, "readEarly");
-		this.readEnd = ApiTypeHelper.requireNonNull(builder.readEnd, this, "readEnd");
-		this.readStart = ApiTypeHelper.requireNonNull(builder.readStart, this, "readStart");
+		this.overwritten = ApiTypeHelper.requireNonNull(builder.overwritten, this, "overwritten", false);
+		this.readEarly = ApiTypeHelper.requireNonNull(builder.readEarly, this, "readEarly", false);
+		this.readEnd = ApiTypeHelper.requireNonNull(builder.readEnd, this, "readEnd", 0);
+		this.readStart = ApiTypeHelper.requireNonNull(builder.readStart, this, "readStart", 0);
 		this.reads = ApiTypeHelper.requireNonNull(builder.reads, this, "reads");
 		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size");
-		this.sizeBytes = ApiTypeHelper.requireNonNull(builder.sizeBytes, this, "sizeBytes");
+		this.sizeBytes = ApiTypeHelper.requireNonNull(builder.sizeBytes, this, "sizeBytes", 0);
 
 	}
 

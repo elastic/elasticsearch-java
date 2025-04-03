@@ -69,7 +69,7 @@ public abstract class SingleMetricAggregateBase extends AggregateBase {
 	protected SingleMetricAggregateBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value", 0);
 		this.valueAsString = builder.valueAsString;
 
 	}

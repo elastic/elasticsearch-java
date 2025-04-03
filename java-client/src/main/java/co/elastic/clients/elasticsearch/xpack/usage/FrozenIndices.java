@@ -62,7 +62,7 @@ public class FrozenIndices extends Base {
 	private FrozenIndices(Builder builder) {
 		super(builder);
 
-		this.indicesCount = ApiTypeHelper.requireNonNull(builder.indicesCount, this, "indicesCount");
+		this.indicesCount = ApiTypeHelper.requireNonNull(builder.indicesCount, this, "indicesCount", 0);
 
 	}
 

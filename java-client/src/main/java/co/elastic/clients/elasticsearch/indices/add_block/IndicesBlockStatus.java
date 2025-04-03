@@ -70,7 +70,7 @@ public class IndicesBlockStatus implements JsonpSerializable {
 	private IndicesBlockStatus(Builder builder) {
 
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.blocked = ApiTypeHelper.requireNonNull(builder.blocked, this, "blocked");
+		this.blocked = ApiTypeHelper.requireNonNull(builder.blocked, this, "blocked", false);
 
 	}
 

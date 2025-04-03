@@ -101,20 +101,21 @@ public class IndexingStats implements JsonpSerializable {
 
 	private IndexingStats(Builder builder) {
 
-		this.indexCurrent = ApiTypeHelper.requireNonNull(builder.indexCurrent, this, "indexCurrent");
-		this.deleteCurrent = ApiTypeHelper.requireNonNull(builder.deleteCurrent, this, "deleteCurrent");
+		this.indexCurrent = ApiTypeHelper.requireNonNull(builder.indexCurrent, this, "indexCurrent", 0);
+		this.deleteCurrent = ApiTypeHelper.requireNonNull(builder.deleteCurrent, this, "deleteCurrent", 0);
 		this.deleteTime = builder.deleteTime;
-		this.deleteTimeInMillis = ApiTypeHelper.requireNonNull(builder.deleteTimeInMillis, this, "deleteTimeInMillis");
-		this.deleteTotal = ApiTypeHelper.requireNonNull(builder.deleteTotal, this, "deleteTotal");
-		this.isThrottled = ApiTypeHelper.requireNonNull(builder.isThrottled, this, "isThrottled");
-		this.noopUpdateTotal = ApiTypeHelper.requireNonNull(builder.noopUpdateTotal, this, "noopUpdateTotal");
+		this.deleteTimeInMillis = ApiTypeHelper.requireNonNull(builder.deleteTimeInMillis, this, "deleteTimeInMillis",
+				0);
+		this.deleteTotal = ApiTypeHelper.requireNonNull(builder.deleteTotal, this, "deleteTotal", 0);
+		this.isThrottled = ApiTypeHelper.requireNonNull(builder.isThrottled, this, "isThrottled", false);
+		this.noopUpdateTotal = ApiTypeHelper.requireNonNull(builder.noopUpdateTotal, this, "noopUpdateTotal", 0);
 		this.throttleTime = builder.throttleTime;
 		this.throttleTimeInMillis = ApiTypeHelper.requireNonNull(builder.throttleTimeInMillis, this,
-				"throttleTimeInMillis");
+				"throttleTimeInMillis", 0);
 		this.indexTime = builder.indexTime;
-		this.indexTimeInMillis = ApiTypeHelper.requireNonNull(builder.indexTimeInMillis, this, "indexTimeInMillis");
-		this.indexTotal = ApiTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal");
-		this.indexFailed = ApiTypeHelper.requireNonNull(builder.indexFailed, this, "indexFailed");
+		this.indexTimeInMillis = ApiTypeHelper.requireNonNull(builder.indexTimeInMillis, this, "indexTimeInMillis", 0);
+		this.indexTotal = ApiTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal", 0);
+		this.indexFailed = ApiTypeHelper.requireNonNull(builder.indexFailed, this, "indexFailed", 0);
 		this.types = ApiTypeHelper.unmodifiable(builder.types);
 		this.writeLoad = builder.writeLoad;
 

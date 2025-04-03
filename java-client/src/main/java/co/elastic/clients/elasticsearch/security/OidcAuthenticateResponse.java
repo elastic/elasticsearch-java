@@ -74,7 +74,7 @@ public class OidcAuthenticateResponse implements JsonpSerializable {
 	private OidcAuthenticateResponse(Builder builder) {
 
 		this.accessToken = ApiTypeHelper.requireNonNull(builder.accessToken, this, "accessToken");
-		this.expiresIn = ApiTypeHelper.requireNonNull(builder.expiresIn, this, "expiresIn");
+		this.expiresIn = ApiTypeHelper.requireNonNull(builder.expiresIn, this, "expiresIn", 0);
 		this.refreshToken = ApiTypeHelper.requireNonNull(builder.refreshToken, this, "refreshToken");
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 

@@ -108,30 +108,31 @@ public abstract class HealthResponseBody implements JsonpSerializable {
 	protected HealthResponseBody(AbstractBuilder<?> builder) {
 
 		this.activePrimaryShards = ApiTypeHelper.requireNonNull(builder.activePrimaryShards, this,
-				"activePrimaryShards");
-		this.activeShards = ApiTypeHelper.requireNonNull(builder.activeShards, this, "activeShards");
+				"activePrimaryShards", 0);
+		this.activeShards = ApiTypeHelper.requireNonNull(builder.activeShards, this, "activeShards", 0);
 		this.activeShardsPercentAsNumber = ApiTypeHelper.requireNonNull(builder.activeShardsPercentAsNumber, this,
 				"activeShardsPercentAsNumber");
 		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
 		this.delayedUnassignedShards = ApiTypeHelper.requireNonNull(builder.delayedUnassignedShards, this,
-				"delayedUnassignedShards");
+				"delayedUnassignedShards", 0);
 		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
-		this.initializingShards = ApiTypeHelper.requireNonNull(builder.initializingShards, this, "initializingShards");
-		this.numberOfDataNodes = ApiTypeHelper.requireNonNull(builder.numberOfDataNodes, this, "numberOfDataNodes");
+		this.initializingShards = ApiTypeHelper.requireNonNull(builder.initializingShards, this, "initializingShards",
+				0);
+		this.numberOfDataNodes = ApiTypeHelper.requireNonNull(builder.numberOfDataNodes, this, "numberOfDataNodes", 0);
 		this.numberOfInFlightFetch = ApiTypeHelper.requireNonNull(builder.numberOfInFlightFetch, this,
-				"numberOfInFlightFetch");
-		this.numberOfNodes = ApiTypeHelper.requireNonNull(builder.numberOfNodes, this, "numberOfNodes");
+				"numberOfInFlightFetch", 0);
+		this.numberOfNodes = ApiTypeHelper.requireNonNull(builder.numberOfNodes, this, "numberOfNodes", 0);
 		this.numberOfPendingTasks = ApiTypeHelper.requireNonNull(builder.numberOfPendingTasks, this,
-				"numberOfPendingTasks");
-		this.relocatingShards = ApiTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards");
+				"numberOfPendingTasks", 0);
+		this.relocatingShards = ApiTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards", 0);
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.taskMaxWaitingInQueue = builder.taskMaxWaitingInQueue;
 		this.taskMaxWaitingInQueueMillis = ApiTypeHelper.requireNonNull(builder.taskMaxWaitingInQueueMillis, this,
-				"taskMaxWaitingInQueueMillis");
-		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
+				"taskMaxWaitingInQueueMillis", 0);
+		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut", false);
 		this.unassignedPrimaryShards = ApiTypeHelper.requireNonNull(builder.unassignedPrimaryShards, this,
-				"unassignedPrimaryShards");
-		this.unassignedShards = ApiTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards");
+				"unassignedPrimaryShards", 0);
+		this.unassignedShards = ApiTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards", 0);
 
 	}
 

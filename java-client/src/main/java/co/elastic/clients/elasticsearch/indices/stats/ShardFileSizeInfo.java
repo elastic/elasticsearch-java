@@ -82,7 +82,7 @@ public class ShardFileSizeInfo implements JsonpSerializable {
 	private ShardFileSizeInfo(Builder builder) {
 
 		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
-		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes", 0);
 		this.minSizeInBytes = builder.minSizeInBytes;
 		this.maxSizeInBytes = builder.maxSizeInBytes;
 		this.averageSizeInBytes = builder.averageSizeInBytes;

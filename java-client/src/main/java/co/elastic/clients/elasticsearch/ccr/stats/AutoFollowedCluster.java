@@ -73,9 +73,9 @@ public class AutoFollowedCluster implements JsonpSerializable {
 
 		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
 		this.lastSeenMetadataVersion = ApiTypeHelper.requireNonNull(builder.lastSeenMetadataVersion, this,
-				"lastSeenMetadataVersion");
+				"lastSeenMetadataVersion", 0);
 		this.timeSinceLastCheckMillis = ApiTypeHelper.requireNonNull(builder.timeSinceLastCheckMillis, this,
-				"timeSinceLastCheckMillis");
+				"timeSinceLastCheckMillis", 0);
 
 	}
 

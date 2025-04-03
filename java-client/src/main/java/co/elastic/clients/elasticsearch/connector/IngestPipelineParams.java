@@ -74,10 +74,10 @@ public class IngestPipelineParams implements JsonpSerializable {
 	private IngestPipelineParams(Builder builder) {
 
 		this.extractBinaryContent = ApiTypeHelper.requireNonNull(builder.extractBinaryContent, this,
-				"extractBinaryContent");
+				"extractBinaryContent", false);
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.reduceWhitespace = ApiTypeHelper.requireNonNull(builder.reduceWhitespace, this, "reduceWhitespace");
-		this.runMlInference = ApiTypeHelper.requireNonNull(builder.runMlInference, this, "runMlInference");
+		this.reduceWhitespace = ApiTypeHelper.requireNonNull(builder.reduceWhitespace, this, "reduceWhitespace", false);
+		this.runMlInference = ApiTypeHelper.requireNonNull(builder.runMlInference, this, "runMlInference", false);
 
 	}
 

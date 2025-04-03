@@ -85,7 +85,7 @@ public class TemplateMapping implements JsonpSerializable {
 		this.aliases = ApiTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
 		this.indexPatterns = ApiTypeHelper.unmodifiableRequired(builder.indexPatterns, this, "indexPatterns");
 		this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
-		this.order = ApiTypeHelper.requireNonNull(builder.order, this, "order");
+		this.order = ApiTypeHelper.requireNonNull(builder.order, this, "order", 0);
 		this.settings = ApiTypeHelper.unmodifiableRequired(builder.settings, this, "settings");
 		this.version = builder.version;
 

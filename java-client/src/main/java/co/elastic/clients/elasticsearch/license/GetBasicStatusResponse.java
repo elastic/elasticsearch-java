@@ -66,7 +66,7 @@ public class GetBasicStatusResponse implements JsonpSerializable {
 	private GetBasicStatusResponse(Builder builder) {
 
 		this.eligibleToStartBasic = ApiTypeHelper.requireNonNull(builder.eligibleToStartBasic, this,
-				"eligibleToStartBasic");
+				"eligibleToStartBasic", false);
 
 	}
 

@@ -70,7 +70,7 @@ public class StartDataFrameAnalyticsResponse implements AcknowledgedResponse, Js
 
 	private StartDataFrameAnalyticsResponse(Builder builder) {
 
-		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged", false);
 		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
 
 	}

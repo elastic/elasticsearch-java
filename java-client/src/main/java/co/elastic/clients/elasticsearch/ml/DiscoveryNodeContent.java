@@ -97,8 +97,8 @@ public class DiscoveryNodeContent implements JsonpSerializable {
 		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
 		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
 		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
-		this.minIndexVersion = ApiTypeHelper.requireNonNull(builder.minIndexVersion, this, "minIndexVersion");
-		this.maxIndexVersion = ApiTypeHelper.requireNonNull(builder.maxIndexVersion, this, "maxIndexVersion");
+		this.minIndexVersion = ApiTypeHelper.requireNonNull(builder.minIndexVersion, this, "minIndexVersion", 0);
+		this.maxIndexVersion = ApiTypeHelper.requireNonNull(builder.maxIndexVersion, this, "maxIndexVersion", 0);
 
 	}
 

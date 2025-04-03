@@ -68,7 +68,7 @@ public class ActivationState implements JsonpSerializable {
 
 	private ActivationState(Builder builder) {
 
-		this.active = ApiTypeHelper.requireNonNull(builder.active, this, "active");
+		this.active = ApiTypeHelper.requireNonNull(builder.active, this, "active", false);
 		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}

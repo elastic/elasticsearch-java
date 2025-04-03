@@ -123,7 +123,7 @@ public class PutDatafeedResponse implements JsonpSerializable {
 		this.queryDelay = ApiTypeHelper.requireNonNull(builder.queryDelay, this, "queryDelay");
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
-		this.scrollSize = ApiTypeHelper.requireNonNull(builder.scrollSize, this, "scrollSize");
+		this.scrollSize = ApiTypeHelper.requireNonNull(builder.scrollSize, this, "scrollSize", 0);
 
 	}
 

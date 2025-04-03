@@ -81,7 +81,8 @@ public class Status implements JsonpSerializable {
 
 	private Status(Builder builder) {
 
-		this.includeGlobalState = ApiTypeHelper.requireNonNull(builder.includeGlobalState, this, "includeGlobalState");
+		this.includeGlobalState = ApiTypeHelper.requireNonNull(builder.includeGlobalState, this, "includeGlobalState",
+				false);
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
 		this.shardsStats = ApiTypeHelper.requireNonNull(builder.shardsStats, this, "shardsStats");

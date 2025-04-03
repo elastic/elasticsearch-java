@@ -65,7 +65,7 @@ public class DeleteRoleMappingResponse implements JsonpSerializable {
 
 	private DeleteRoleMappingResponse(Builder builder) {
 
-		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found", false);
 
 	}
 

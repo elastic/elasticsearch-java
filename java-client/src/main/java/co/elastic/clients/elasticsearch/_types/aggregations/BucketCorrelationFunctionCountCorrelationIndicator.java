@@ -72,7 +72,7 @@ public class BucketCorrelationFunctionCountCorrelationIndicator implements Jsonp
 
 	private BucketCorrelationFunctionCountCorrelationIndicator(Builder builder) {
 
-		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
+		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount", 0);
 		this.expectations = ApiTypeHelper.unmodifiableRequired(builder.expectations, this, "expectations");
 		this.fractions = ApiTypeHelper.unmodifiable(builder.fractions);
 
