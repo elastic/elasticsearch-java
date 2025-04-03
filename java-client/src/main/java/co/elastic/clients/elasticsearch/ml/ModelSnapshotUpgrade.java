@@ -74,13 +74,12 @@ public class ModelSnapshotUpgrade implements JsonpSerializable {
 
 	private ModelSnapshotUpgrade(Builder builder) {
 
-		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
-		this.snapshotId = ApiTypeHelper.requireNonNullWithDefault(builder.snapshotId, this, "snapshotId",
-				this.snapshotId());
-		this.state = ApiTypeHelper.requireNonNullWithDefault(builder.state, this, "state", this.state());
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.snapshotId = ApiTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 		this.node = builder.node;
-		this.assignmentExplanation = ApiTypeHelper.requireNonNullWithDefault(builder.assignmentExplanation, this,
-				"assignmentExplanation", this.assignmentExplanation());
+		this.assignmentExplanation = ApiTypeHelper.requireNonNull(builder.assignmentExplanation, this,
+				"assignmentExplanation");
 
 	}
 

@@ -69,9 +69,8 @@ public class WatcherActionTotals implements JsonpSerializable {
 
 	private WatcherActionTotals(Builder builder) {
 
-		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
-		this.totalTimeInMs = ApiTypeHelper.requireNonNullWithDefault(builder.totalTimeInMs, this, "totalTimeInMs",
-				this.totalTimeInMs());
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.totalTimeInMs = ApiTypeHelper.requireNonNull(builder.totalTimeInMs, this, "totalTimeInMs", 0);
 
 	}
 

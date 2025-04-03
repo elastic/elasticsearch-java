@@ -71,9 +71,9 @@ public class HuggingFaceServiceSettings implements JsonpSerializable {
 
 	private HuggingFaceServiceSettings(Builder builder) {
 
-		this.apiKey = ApiTypeHelper.requireNonNullWithDefault(builder.apiKey, this, "apiKey", this.apiKey());
+		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
 		this.rateLimit = builder.rateLimit;
-		this.url = ApiTypeHelper.requireNonNullWithDefault(builder.url, this, "url", this.url());
+		this.url = ApiTypeHelper.requireNonNull(builder.url, this, "url");
 
 	}
 

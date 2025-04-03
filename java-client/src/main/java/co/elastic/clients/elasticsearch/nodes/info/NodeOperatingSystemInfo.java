@@ -90,16 +90,15 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 
 	private NodeOperatingSystemInfo(Builder builder) {
 
-		this.arch = ApiTypeHelper.requireNonNullWithDefault(builder.arch, this, "arch", this.arch());
-		this.availableProcessors = ApiTypeHelper.requireNonNullWithDefault(builder.availableProcessors, this,
-				"availableProcessors", this.availableProcessors());
+		this.arch = ApiTypeHelper.requireNonNull(builder.arch, this, "arch");
+		this.availableProcessors = ApiTypeHelper.requireNonNull(builder.availableProcessors, this,
+				"availableProcessors", 0);
 		this.allocatedProcessors = builder.allocatedProcessors;
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
-		this.prettyName = ApiTypeHelper.requireNonNullWithDefault(builder.prettyName, this, "prettyName",
-				this.prettyName());
-		this.refreshIntervalInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.refreshIntervalInMillis, this,
-				"refreshIntervalInMillis", this.refreshIntervalInMillis());
-		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.prettyName = ApiTypeHelper.requireNonNull(builder.prettyName, this, "prettyName");
+		this.refreshIntervalInMillis = ApiTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this,
+				"refreshIntervalInMillis", 0);
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.cpu = builder.cpu;
 		this.mem = builder.mem;
 		this.swap = builder.swap;

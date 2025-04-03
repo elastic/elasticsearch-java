@@ -80,7 +80,7 @@ public class NestedSortValue implements JsonpSerializable {
 		this.filter = builder.filter;
 		this.maxChildren = builder.maxChildren;
 		this.nested = builder.nested;
-		this.path = ApiTypeHelper.requireNonNullWithDefault(builder.path, this, "path", this.path());
+		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
 
 	}
 

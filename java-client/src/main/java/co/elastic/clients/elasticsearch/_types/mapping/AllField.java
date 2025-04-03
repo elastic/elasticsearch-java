@@ -84,23 +84,19 @@ public class AllField implements JsonpSerializable {
 
 	private AllField(Builder builder) {
 
-		this.analyzer = ApiTypeHelper.requireNonNullWithDefault(builder.analyzer, this, "analyzer", this.analyzer());
-		this.enabled = ApiTypeHelper.requireNonNullWithDefault(builder.enabled, this, "enabled", this.enabled());
-		this.omitNorms = ApiTypeHelper.requireNonNullWithDefault(builder.omitNorms, this, "omitNorms",
-				this.omitNorms());
-		this.searchAnalyzer = ApiTypeHelper.requireNonNullWithDefault(builder.searchAnalyzer, this, "searchAnalyzer",
-				this.searchAnalyzer());
-		this.similarity = ApiTypeHelper.requireNonNullWithDefault(builder.similarity, this, "similarity",
-				this.similarity());
-		this.store = ApiTypeHelper.requireNonNullWithDefault(builder.store, this, "store", this.store());
-		this.storeTermVectorOffsets = ApiTypeHelper.requireNonNullWithDefault(builder.storeTermVectorOffsets, this,
-				"storeTermVectorOffsets", this.storeTermVectorOffsets());
-		this.storeTermVectorPayloads = ApiTypeHelper.requireNonNullWithDefault(builder.storeTermVectorPayloads, this,
-				"storeTermVectorPayloads", this.storeTermVectorPayloads());
-		this.storeTermVectorPositions = ApiTypeHelper.requireNonNullWithDefault(builder.storeTermVectorPositions, this,
-				"storeTermVectorPositions", this.storeTermVectorPositions());
-		this.storeTermVectors = ApiTypeHelper.requireNonNullWithDefault(builder.storeTermVectors, this,
-				"storeTermVectors", this.storeTermVectors());
+		this.analyzer = ApiTypeHelper.requireNonNull(builder.analyzer, this, "analyzer");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
+		this.omitNorms = ApiTypeHelper.requireNonNull(builder.omitNorms, this, "omitNorms", false);
+		this.searchAnalyzer = ApiTypeHelper.requireNonNull(builder.searchAnalyzer, this, "searchAnalyzer");
+		this.similarity = ApiTypeHelper.requireNonNull(builder.similarity, this, "similarity");
+		this.store = ApiTypeHelper.requireNonNull(builder.store, this, "store", false);
+		this.storeTermVectorOffsets = ApiTypeHelper.requireNonNull(builder.storeTermVectorOffsets, this,
+				"storeTermVectorOffsets", false);
+		this.storeTermVectorPayloads = ApiTypeHelper.requireNonNull(builder.storeTermVectorPayloads, this,
+				"storeTermVectorPayloads", false);
+		this.storeTermVectorPositions = ApiTypeHelper.requireNonNull(builder.storeTermVectorPositions, this,
+				"storeTermVectorPositions", false);
+		this.storeTermVectors = ApiTypeHelper.requireNonNull(builder.storeTermVectors, this, "storeTermVectors", false);
 
 	}
 

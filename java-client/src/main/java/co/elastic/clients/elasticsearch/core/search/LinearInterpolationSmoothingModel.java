@@ -69,12 +69,9 @@ public class LinearInterpolationSmoothingModel implements SmoothingModelVariant,
 
 	private LinearInterpolationSmoothingModel(Builder builder) {
 
-		this.bigramLambda = ApiTypeHelper.requireNonNullWithDefault(builder.bigramLambda, this, "bigramLambda",
-				this.bigramLambda());
-		this.trigramLambda = ApiTypeHelper.requireNonNullWithDefault(builder.trigramLambda, this, "trigramLambda",
-				this.trigramLambda());
-		this.unigramLambda = ApiTypeHelper.requireNonNullWithDefault(builder.unigramLambda, this, "unigramLambda",
-				this.unigramLambda());
+		this.bigramLambda = ApiTypeHelper.requireNonNull(builder.bigramLambda, this, "bigramLambda", 0);
+		this.trigramLambda = ApiTypeHelper.requireNonNull(builder.trigramLambda, this, "trigramLambda", 0);
+		this.unigramLambda = ApiTypeHelper.requireNonNull(builder.unigramLambda, this, "unigramLambda", 0);
 
 	}
 

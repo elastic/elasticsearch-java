@@ -65,7 +65,7 @@ public class StupidBackoffSmoothingModel implements SmoothingModelVariant, Jsonp
 
 	private StupidBackoffSmoothingModel(Builder builder) {
 
-		this.discount = ApiTypeHelper.requireNonNullWithDefault(builder.discount, this, "discount", this.discount());
+		this.discount = ApiTypeHelper.requireNonNull(builder.discount, this, "discount", 0);
 
 	}
 

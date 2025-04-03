@@ -66,8 +66,8 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 	private SpanFieldMaskingQuery(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
-		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
 

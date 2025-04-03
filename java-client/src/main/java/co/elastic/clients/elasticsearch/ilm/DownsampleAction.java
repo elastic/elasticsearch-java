@@ -68,8 +68,7 @@ public class DownsampleAction implements JsonpSerializable {
 
 	private DownsampleAction(Builder builder) {
 
-		this.fixedInterval = ApiTypeHelper.requireNonNullWithDefault(builder.fixedInterval, this, "fixedInterval",
-				this.fixedInterval());
+		this.fixedInterval = ApiTypeHelper.requireNonNull(builder.fixedInterval, this, "fixedInterval");
 		this.waitTimeout = builder.waitTimeout;
 
 	}

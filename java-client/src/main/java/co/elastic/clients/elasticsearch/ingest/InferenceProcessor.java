@@ -74,7 +74,7 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 	private InferenceProcessor(Builder builder) {
 		super(builder);
 
-		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.targetField = builder.targetField;
 		this.fieldMap = ApiTypeHelper.unmodifiable(builder.fieldMap);
 		this.inferenceConfig = builder.inferenceConfig;

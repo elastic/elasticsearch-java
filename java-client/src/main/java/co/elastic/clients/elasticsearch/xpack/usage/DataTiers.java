@@ -71,12 +71,11 @@ public class DataTiers extends Base {
 	private DataTiers(Builder builder) {
 		super(builder);
 
-		this.dataWarm = ApiTypeHelper.requireNonNullWithDefault(builder.dataWarm, this, "dataWarm", this.dataWarm());
+		this.dataWarm = ApiTypeHelper.requireNonNull(builder.dataWarm, this, "dataWarm");
 		this.dataFrozen = builder.dataFrozen;
-		this.dataCold = ApiTypeHelper.requireNonNullWithDefault(builder.dataCold, this, "dataCold", this.dataCold());
-		this.dataContent = ApiTypeHelper.requireNonNullWithDefault(builder.dataContent, this, "dataContent",
-				this.dataContent());
-		this.dataHot = ApiTypeHelper.requireNonNullWithDefault(builder.dataHot, this, "dataHot", this.dataHot());
+		this.dataCold = ApiTypeHelper.requireNonNull(builder.dataCold, this, "dataCold");
+		this.dataContent = ApiTypeHelper.requireNonNull(builder.dataContent, this, "dataContent");
+		this.dataHot = ApiTypeHelper.requireNonNull(builder.dataHot, this, "dataHot");
 
 	}
 

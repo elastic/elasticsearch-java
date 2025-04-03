@@ -102,40 +102,27 @@ public class TransformIndexerStats implements JsonpSerializable {
 	private TransformIndexerStats(Builder builder) {
 
 		this.deleteTimeInMs = builder.deleteTimeInMs;
-		this.documentsIndexed = ApiTypeHelper.requireNonNullWithDefault(builder.documentsIndexed, this,
-				"documentsIndexed", this.documentsIndexed());
+		this.documentsIndexed = ApiTypeHelper.requireNonNull(builder.documentsIndexed, this, "documentsIndexed", 0);
 		this.documentsDeleted = builder.documentsDeleted;
-		this.documentsProcessed = ApiTypeHelper.requireNonNullWithDefault(builder.documentsProcessed, this,
-				"documentsProcessed", this.documentsProcessed());
-		this.exponentialAvgCheckpointDurationMs = ApiTypeHelper.requireNonNullWithDefault(
-				builder.exponentialAvgCheckpointDurationMs, this, "exponentialAvgCheckpointDurationMs",
-				this.exponentialAvgCheckpointDurationMs());
-		this.exponentialAvgDocumentsIndexed = ApiTypeHelper.requireNonNullWithDefault(
-				builder.exponentialAvgDocumentsIndexed, this, "exponentialAvgDocumentsIndexed",
-				this.exponentialAvgDocumentsIndexed());
-		this.exponentialAvgDocumentsProcessed = ApiTypeHelper.requireNonNullWithDefault(
-				builder.exponentialAvgDocumentsProcessed, this, "exponentialAvgDocumentsProcessed",
-				this.exponentialAvgDocumentsProcessed());
-		this.indexFailures = ApiTypeHelper.requireNonNullWithDefault(builder.indexFailures, this, "indexFailures",
-				this.indexFailures());
-		this.indexTimeInMs = ApiTypeHelper.requireNonNullWithDefault(builder.indexTimeInMs, this, "indexTimeInMs",
-				this.indexTimeInMs());
-		this.indexTotal = ApiTypeHelper.requireNonNullWithDefault(builder.indexTotal, this, "indexTotal",
-				this.indexTotal());
-		this.pagesProcessed = ApiTypeHelper.requireNonNullWithDefault(builder.pagesProcessed, this, "pagesProcessed",
-				this.pagesProcessed());
-		this.processingTimeInMs = ApiTypeHelper.requireNonNullWithDefault(builder.processingTimeInMs, this,
-				"processingTimeInMs", this.processingTimeInMs());
-		this.processingTotal = ApiTypeHelper.requireNonNullWithDefault(builder.processingTotal, this, "processingTotal",
-				this.processingTotal());
-		this.searchFailures = ApiTypeHelper.requireNonNullWithDefault(builder.searchFailures, this, "searchFailures",
-				this.searchFailures());
-		this.searchTimeInMs = ApiTypeHelper.requireNonNullWithDefault(builder.searchTimeInMs, this, "searchTimeInMs",
-				this.searchTimeInMs());
-		this.searchTotal = ApiTypeHelper.requireNonNullWithDefault(builder.searchTotal, this, "searchTotal",
-				this.searchTotal());
-		this.triggerCount = ApiTypeHelper.requireNonNullWithDefault(builder.triggerCount, this, "triggerCount",
-				this.triggerCount());
+		this.documentsProcessed = ApiTypeHelper.requireNonNull(builder.documentsProcessed, this, "documentsProcessed",
+				0);
+		this.exponentialAvgCheckpointDurationMs = ApiTypeHelper.requireNonNull(
+				builder.exponentialAvgCheckpointDurationMs, this, "exponentialAvgCheckpointDurationMs", 0);
+		this.exponentialAvgDocumentsIndexed = ApiTypeHelper.requireNonNull(builder.exponentialAvgDocumentsIndexed, this,
+				"exponentialAvgDocumentsIndexed", 0);
+		this.exponentialAvgDocumentsProcessed = ApiTypeHelper.requireNonNull(builder.exponentialAvgDocumentsProcessed,
+				this, "exponentialAvgDocumentsProcessed", 0);
+		this.indexFailures = ApiTypeHelper.requireNonNull(builder.indexFailures, this, "indexFailures", 0);
+		this.indexTimeInMs = ApiTypeHelper.requireNonNull(builder.indexTimeInMs, this, "indexTimeInMs", 0);
+		this.indexTotal = ApiTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal", 0);
+		this.pagesProcessed = ApiTypeHelper.requireNonNull(builder.pagesProcessed, this, "pagesProcessed", 0);
+		this.processingTimeInMs = ApiTypeHelper.requireNonNull(builder.processingTimeInMs, this, "processingTimeInMs",
+				0);
+		this.processingTotal = ApiTypeHelper.requireNonNull(builder.processingTotal, this, "processingTotal", 0);
+		this.searchFailures = ApiTypeHelper.requireNonNull(builder.searchFailures, this, "searchFailures", 0);
+		this.searchTimeInMs = ApiTypeHelper.requireNonNull(builder.searchTimeInMs, this, "searchTimeInMs", 0);
+		this.searchTotal = ApiTypeHelper.requireNonNull(builder.searchTotal, this, "searchTotal", 0);
+		this.triggerCount = ApiTypeHelper.requireNonNull(builder.triggerCount, this, "triggerCount", 0);
 
 	}
 

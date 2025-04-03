@@ -73,7 +73,7 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 	private SearchInput(Builder builder) {
 
 		this.extract = ApiTypeHelper.unmodifiable(builder.extract);
-		this.request = ApiTypeHelper.requireNonNullWithDefault(builder.request, this, "request", this.request());
+		this.request = ApiTypeHelper.requireNonNull(builder.request, this, "request");
 		this.timeout = builder.timeout;
 
 	}

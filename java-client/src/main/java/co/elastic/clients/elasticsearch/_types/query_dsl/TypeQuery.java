@@ -63,7 +63,7 @@ public class TypeQuery extends QueryBase implements QueryVariant {
 	private TypeQuery(Builder builder) {
 		super(builder);
 
-		this.value = ApiTypeHelper.requireNonNullWithDefault(builder.value, this, "value", this.value());
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 

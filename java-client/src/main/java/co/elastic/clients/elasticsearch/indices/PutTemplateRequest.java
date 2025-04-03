@@ -136,7 +136,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		this.indexPatterns = ApiTypeHelper.unmodifiable(builder.indexPatterns);
 		this.mappings = builder.mappings;
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.order = builder.order;
 		this.settings = builder.settings;
 		this.version = builder.version;

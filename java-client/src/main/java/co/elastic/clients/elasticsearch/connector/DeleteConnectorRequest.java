@@ -80,8 +80,7 @@ public class DeleteConnectorRequest extends RequestBase {
 
 	private DeleteConnectorRequest(Builder builder) {
 
-		this.connectorId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorId, this, "connectorId",
-				this.connectorId());
+		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
 		this.deleteSyncJobs = builder.deleteSyncJobs;
 		this.hard = builder.hard;
 

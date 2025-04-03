@@ -69,10 +69,9 @@ public class RuleQuery extends QueryBase implements QueryVariant {
 	private RuleQuery(Builder builder) {
 		super(builder);
 
-		this.organic = ApiTypeHelper.requireNonNullWithDefault(builder.organic, this, "organic", this.organic());
+		this.organic = ApiTypeHelper.requireNonNull(builder.organic, this, "organic");
 		this.rulesetIds = ApiTypeHelper.unmodifiableRequired(builder.rulesetIds, this, "rulesetIds");
-		this.matchCriteria = ApiTypeHelper.requireNonNullWithDefault(builder.matchCriteria, this, "matchCriteria",
-				this.matchCriteria());
+		this.matchCriteria = ApiTypeHelper.requireNonNull(builder.matchCriteria, this, "matchCriteria");
 
 	}
 

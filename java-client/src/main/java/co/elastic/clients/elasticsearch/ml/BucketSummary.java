@@ -91,25 +91,18 @@ public class BucketSummary implements JsonpSerializable {
 
 	private BucketSummary(Builder builder) {
 
-		this.anomalyScore = ApiTypeHelper.requireNonNullWithDefault(builder.anomalyScore, this, "anomalyScore",
-				this.anomalyScore());
+		this.anomalyScore = ApiTypeHelper.requireNonNull(builder.anomalyScore, this, "anomalyScore", 0);
 		this.bucketInfluencers = ApiTypeHelper.unmodifiableRequired(builder.bucketInfluencers, this,
 				"bucketInfluencers");
-		this.bucketSpan = ApiTypeHelper.requireNonNullWithDefault(builder.bucketSpan, this, "bucketSpan",
-				this.bucketSpan());
-		this.eventCount = ApiTypeHelper.requireNonNullWithDefault(builder.eventCount, this, "eventCount",
-				this.eventCount());
-		this.initialAnomalyScore = ApiTypeHelper.requireNonNullWithDefault(builder.initialAnomalyScore, this,
-				"initialAnomalyScore", this.initialAnomalyScore());
-		this.isInterim = ApiTypeHelper.requireNonNullWithDefault(builder.isInterim, this, "isInterim",
-				this.isInterim());
-		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
-		this.processingTimeMs = ApiTypeHelper.requireNonNullWithDefault(builder.processingTimeMs, this,
-				"processingTimeMs", this.processingTimeMs());
-		this.resultType = ApiTypeHelper.requireNonNullWithDefault(builder.resultType, this, "resultType",
-				this.resultType());
-		this.timestamp = ApiTypeHelper.requireNonNullWithDefault(builder.timestamp, this, "timestamp",
-				this.timestamp());
+		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan", 0);
+		this.eventCount = ApiTypeHelper.requireNonNull(builder.eventCount, this, "eventCount", 0);
+		this.initialAnomalyScore = ApiTypeHelper.requireNonNull(builder.initialAnomalyScore, this,
+				"initialAnomalyScore", 0);
+		this.isInterim = ApiTypeHelper.requireNonNull(builder.isInterim, this, "isInterim", false);
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.processingTimeMs = ApiTypeHelper.requireNonNull(builder.processingTimeMs, this, "processingTimeMs", 0);
+		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp", 0);
 		this.timestampString = builder.timestampString;
 
 	}

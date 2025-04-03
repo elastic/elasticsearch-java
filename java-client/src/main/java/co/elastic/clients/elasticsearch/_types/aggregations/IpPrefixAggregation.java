@@ -82,9 +82,8 @@ public class IpPrefixAggregation extends BucketAggregationBase implements Aggreg
 
 	private IpPrefixAggregation(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
-		this.prefixLength = ApiTypeHelper.requireNonNullWithDefault(builder.prefixLength, this, "prefixLength",
-				this.prefixLength());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.prefixLength = ApiTypeHelper.requireNonNull(builder.prefixLength, this, "prefixLength", 0);
 		this.isIpv6 = builder.isIpv6;
 		this.appendPrefixLength = builder.appendPrefixLength;
 		this.keyed = builder.keyed;

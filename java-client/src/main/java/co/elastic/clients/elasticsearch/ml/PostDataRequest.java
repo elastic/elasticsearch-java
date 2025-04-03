@@ -96,7 +96,7 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 
 	private PostDataRequest(Builder<TData> builder) {
 
-		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.resetEnd = builder.resetEnd;
 		this.resetStart = builder.resetStart;
 		this.data = ApiTypeHelper.unmodifiableRequired(builder.data, this, "data");

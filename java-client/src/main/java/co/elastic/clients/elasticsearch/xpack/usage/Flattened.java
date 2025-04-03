@@ -62,8 +62,7 @@ public class Flattened extends Base {
 	private Flattened(Builder builder) {
 		super(builder);
 
-		this.fieldCount = ApiTypeHelper.requireNonNullWithDefault(builder.fieldCount, this, "fieldCount",
-				this.fieldCount());
+		this.fieldCount = ApiTypeHelper.requireNonNull(builder.fieldCount, this, "fieldCount", 0);
 
 	}
 

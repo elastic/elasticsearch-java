@@ -66,7 +66,7 @@ public class MountResponse implements JsonpSerializable {
 
 	private MountResponse(Builder builder) {
 
-		this.snapshot = ApiTypeHelper.requireNonNullWithDefault(builder.snapshot, this, "snapshot", this.snapshot());
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 
 	}
 

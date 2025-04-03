@@ -80,14 +80,12 @@ public class Memory implements JsonpSerializable {
 	private Memory(Builder builder) {
 
 		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-		this.jvm = ApiTypeHelper.requireNonNullWithDefault(builder.jvm, this, "jvm", this.jvm());
-		this.mem = ApiTypeHelper.requireNonNullWithDefault(builder.mem, this, "mem", this.mem());
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.jvm = ApiTypeHelper.requireNonNull(builder.jvm, this, "jvm");
+		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
-		this.transportAddress = ApiTypeHelper.requireNonNullWithDefault(builder.transportAddress, this,
-				"transportAddress", this.transportAddress());
-		this.ephemeralId = ApiTypeHelper.requireNonNullWithDefault(builder.ephemeralId, this, "ephemeralId",
-				this.ephemeralId());
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+		this.ephemeralId = ApiTypeHelper.requireNonNull(builder.ephemeralId, this, "ephemeralId");
 
 	}
 

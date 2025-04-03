@@ -75,11 +75,11 @@ public class GrantApiKeyResponse implements JsonpSerializable {
 
 	private GrantApiKeyResponse(Builder builder) {
 
-		this.apiKey = ApiTypeHelper.requireNonNullWithDefault(builder.apiKey, this, "apiKey", this.apiKey());
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.expiration = builder.expiration;
-		this.encoded = ApiTypeHelper.requireNonNullWithDefault(builder.encoded, this, "encoded", this.encoded());
+		this.encoded = ApiTypeHelper.requireNonNull(builder.encoded, this, "encoded");
 
 	}
 

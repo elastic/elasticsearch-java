@@ -66,8 +66,8 @@ public class RankFeatureFunctionSigmoid extends RankFeatureFunction implements J
 
 	private RankFeatureFunctionSigmoid(Builder builder) {
 
-		this.pivot = ApiTypeHelper.requireNonNullWithDefault(builder.pivot, this, "pivot", this.pivot());
-		this.exponent = ApiTypeHelper.requireNonNullWithDefault(builder.exponent, this, "exponent", this.exponent());
+		this.pivot = ApiTypeHelper.requireNonNull(builder.pivot, this, "pivot", 0);
+		this.exponent = ApiTypeHelper.requireNonNull(builder.exponent, this, "exponent", 0);
 
 	}
 

@@ -67,8 +67,8 @@ public class AutoscalingCapacity implements JsonpSerializable {
 
 	private AutoscalingCapacity(Builder builder) {
 
-		this.node = ApiTypeHelper.requireNonNullWithDefault(builder.node, this, "node", this.node());
-		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 

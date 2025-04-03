@@ -108,7 +108,7 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 		this.passwordHash = builder.passwordHash;
 		this.refresh = builder.refresh;
 		this.roles = ApiTypeHelper.unmodifiable(builder.roles);
-		this.username = ApiTypeHelper.requireNonNullWithDefault(builder.username, this, "username", this.username());
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 

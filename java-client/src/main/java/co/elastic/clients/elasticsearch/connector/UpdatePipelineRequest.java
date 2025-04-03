@@ -77,9 +77,8 @@ public class UpdatePipelineRequest extends RequestBase implements JsonpSerializa
 
 	private UpdatePipelineRequest(Builder builder) {
 
-		this.connectorId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorId, this, "connectorId",
-				this.connectorId());
-		this.pipeline = ApiTypeHelper.requireNonNullWithDefault(builder.pipeline, this, "pipeline", this.pipeline());
+		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
+		this.pipeline = ApiTypeHelper.requireNonNull(builder.pipeline, this, "pipeline");
 
 	}
 

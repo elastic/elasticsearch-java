@@ -73,10 +73,10 @@ public class ShardRouting implements JsonpSerializable {
 
 	private ShardRouting(Builder builder) {
 
-		this.node = ApiTypeHelper.requireNonNullWithDefault(builder.node, this, "node", this.node());
-		this.primary = ApiTypeHelper.requireNonNullWithDefault(builder.primary, this, "primary", this.primary());
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary", false);
 		this.relocatingNode = builder.relocatingNode;
-		this.state = ApiTypeHelper.requireNonNullWithDefault(builder.state, this, "state", this.state());
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 
 	}
 

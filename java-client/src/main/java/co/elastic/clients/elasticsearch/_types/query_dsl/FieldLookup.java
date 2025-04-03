@@ -74,7 +74,7 @@ public class FieldLookup implements JsonpSerializable {
 
 	private FieldLookup(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = builder.index;
 		this.path = builder.path;
 		this.routing = builder.routing;

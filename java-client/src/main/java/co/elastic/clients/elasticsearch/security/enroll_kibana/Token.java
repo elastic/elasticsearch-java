@@ -67,8 +67,8 @@ public class Token implements JsonpSerializable {
 
 	private Token(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
-		this.value = ApiTypeHelper.requireNonNullWithDefault(builder.value, this, "value", this.value());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 

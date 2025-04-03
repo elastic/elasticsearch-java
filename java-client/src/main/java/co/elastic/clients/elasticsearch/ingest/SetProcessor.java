@@ -81,7 +81,7 @@ public class SetProcessor extends ProcessorBase implements ProcessorVariant {
 		super(builder);
 
 		this.copyFrom = builder.copyFrom;
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreEmptyValue = builder.ignoreEmptyValue;
 		this.mediaType = builder.mediaType;
 		this.override = builder.override;

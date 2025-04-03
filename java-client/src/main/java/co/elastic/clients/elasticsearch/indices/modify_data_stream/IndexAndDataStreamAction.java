@@ -68,9 +68,8 @@ public class IndexAndDataStreamAction implements ActionVariant, JsonpSerializabl
 
 	private IndexAndDataStreamAction(Builder builder) {
 
-		this.dataStream = ApiTypeHelper.requireNonNullWithDefault(builder.dataStream, this, "dataStream",
-				this.dataStream());
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.dataStream = ApiTypeHelper.requireNonNull(builder.dataStream, this, "dataStream");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 

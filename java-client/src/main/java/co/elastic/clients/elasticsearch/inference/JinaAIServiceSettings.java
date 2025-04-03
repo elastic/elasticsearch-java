@@ -75,7 +75,7 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 
 	private JinaAIServiceSettings(Builder builder) {
 
-		this.apiKey = ApiTypeHelper.requireNonNullWithDefault(builder.apiKey, this, "apiKey", this.apiKey());
+		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
 		this.modelId = builder.modelId;
 		this.rateLimit = builder.rateLimit;
 		this.similarity = builder.similarity;

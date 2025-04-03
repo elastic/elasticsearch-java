@@ -64,8 +64,7 @@ public class ClearCursorResponse implements JsonpSerializable {
 
 	private ClearCursorResponse(Builder builder) {
 
-		this.succeeded = ApiTypeHelper.requireNonNullWithDefault(builder.succeeded, this, "succeeded",
-				this.succeeded());
+		this.succeeded = ApiTypeHelper.requireNonNull(builder.succeeded, this, "succeeded", false);
 
 	}
 

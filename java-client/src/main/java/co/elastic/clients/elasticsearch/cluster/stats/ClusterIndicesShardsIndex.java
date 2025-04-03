@@ -69,11 +69,9 @@ public class ClusterIndicesShardsIndex implements JsonpSerializable {
 
 	private ClusterIndicesShardsIndex(Builder builder) {
 
-		this.primaries = ApiTypeHelper.requireNonNullWithDefault(builder.primaries, this, "primaries",
-				this.primaries());
-		this.replication = ApiTypeHelper.requireNonNullWithDefault(builder.replication, this, "replication",
-				this.replication());
-		this.shards = ApiTypeHelper.requireNonNullWithDefault(builder.shards, this, "shards", this.shards());
+		this.primaries = ApiTypeHelper.requireNonNull(builder.primaries, this, "primaries");
+		this.replication = ApiTypeHelper.requireNonNull(builder.replication, this, "replication");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 

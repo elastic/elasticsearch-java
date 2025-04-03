@@ -73,8 +73,7 @@ public class AutoscalingDecider implements JsonpSerializable {
 
 	private AutoscalingDecider(Builder builder) {
 
-		this.requiredCapacity = ApiTypeHelper.requireNonNullWithDefault(builder.requiredCapacity, this,
-				"requiredCapacity", this.requiredCapacity());
+		this.requiredCapacity = ApiTypeHelper.requireNonNull(builder.requiredCapacity, this, "requiredCapacity");
 		this.reasonSummary = builder.reasonSummary;
 		this.reasonDetails = builder.reasonDetails;
 

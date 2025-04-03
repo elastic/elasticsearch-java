@@ -70,10 +70,9 @@ public class FileDetails implements JsonpSerializable {
 
 	private FileDetails(Builder builder) {
 
-		this.length = ApiTypeHelper.requireNonNullWithDefault(builder.length, this, "length", this.length());
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
-		this.recovered = ApiTypeHelper.requireNonNullWithDefault(builder.recovered, this, "recovered",
-				this.recovered());
+		this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length", 0);
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered", 0);
 
 	}
 

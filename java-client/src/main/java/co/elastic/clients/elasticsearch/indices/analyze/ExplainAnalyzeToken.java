@@ -92,19 +92,15 @@ public class ExplainAnalyzeToken implements JsonpSerializable {
 
 		this.attributes = ApiTypeHelper.unmodifiable(builder.attributes);
 
-		this.bytes = ApiTypeHelper.requireNonNullWithDefault(builder.bytes, this, "bytes", this.bytes());
-		this.endOffset = ApiTypeHelper.requireNonNullWithDefault(builder.endOffset, this, "endOffset",
-				this.endOffset());
+		this.bytes = ApiTypeHelper.requireNonNull(builder.bytes, this, "bytes");
+		this.endOffset = ApiTypeHelper.requireNonNull(builder.endOffset, this, "endOffset", 0);
 		this.keyword = builder.keyword;
-		this.position = ApiTypeHelper.requireNonNullWithDefault(builder.position, this, "position", this.position());
-		this.positionlength = ApiTypeHelper.requireNonNullWithDefault(builder.positionlength, this, "positionlength",
-				this.positionlength());
-		this.startOffset = ApiTypeHelper.requireNonNullWithDefault(builder.startOffset, this, "startOffset",
-				this.startOffset());
-		this.termfrequency = ApiTypeHelper.requireNonNullWithDefault(builder.termfrequency, this, "termfrequency",
-				this.termfrequency());
-		this.token = ApiTypeHelper.requireNonNullWithDefault(builder.token, this, "token", this.token());
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
+		this.position = ApiTypeHelper.requireNonNull(builder.position, this, "position", 0);
+		this.positionlength = ApiTypeHelper.requireNonNull(builder.positionlength, this, "positionlength", 0);
+		this.startOffset = ApiTypeHelper.requireNonNull(builder.startOffset, this, "startOffset", 0);
+		this.termfrequency = ApiTypeHelper.requireNonNull(builder.termfrequency, this, "termfrequency", 0);
+		this.token = ApiTypeHelper.requireNonNull(builder.token, this, "token");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 

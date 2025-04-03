@@ -71,8 +71,8 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 		super(builder);
 
 		this.minScore = builder.minScore;
-		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
-		this.script = ApiTypeHelper.requireNonNullWithDefault(builder.script, this, "script", this.script());
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 

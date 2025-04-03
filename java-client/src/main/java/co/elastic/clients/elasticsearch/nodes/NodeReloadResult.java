@@ -69,7 +69,7 @@ public class NodeReloadResult implements JsonpSerializable {
 
 	private NodeReloadResult(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.reloadException = builder.reloadException;
 
 	}

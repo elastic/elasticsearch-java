@@ -84,7 +84,7 @@ public class ExplainLifecycleRequest extends RequestBase {
 
 	private ExplainLifecycleRequest(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
 		this.onlyErrors = builder.onlyErrors;
 		this.onlyManaged = builder.onlyManaged;

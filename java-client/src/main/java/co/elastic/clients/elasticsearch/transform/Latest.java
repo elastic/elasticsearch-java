@@ -68,7 +68,7 @@ public class Latest implements JsonpSerializable {
 
 	private Latest(Builder builder) {
 
-		this.sort = ApiTypeHelper.requireNonNullWithDefault(builder.sort, this, "sort", this.sort());
+		this.sort = ApiTypeHelper.requireNonNull(builder.sort, this, "sort");
 		this.uniqueKey = ApiTypeHelper.unmodifiableRequired(builder.uniqueKey, this, "uniqueKey");
 
 	}

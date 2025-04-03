@@ -69,7 +69,7 @@ public class RankEvalHitItem implements JsonpSerializable {
 
 	private RankEvalHitItem(Builder builder) {
 
-		this.hit = ApiTypeHelper.requireNonNullWithDefault(builder.hit, this, "hit", this.hit());
+		this.hit = ApiTypeHelper.requireNonNull(builder.hit, this, "hit");
 		this.rating = builder.rating;
 
 	}

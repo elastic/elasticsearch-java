@@ -111,11 +111,11 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 
 		this.allocationDelay = builder.allocationDelay;
 		this.masterTimeout = builder.masterTimeout;
-		this.nodeId = ApiTypeHelper.requireNonNullWithDefault(builder.nodeId, this, "nodeId", this.nodeId());
-		this.reason = ApiTypeHelper.requireNonNullWithDefault(builder.reason, this, "reason", this.reason());
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 		this.targetNodeName = builder.targetNodeName;
 		this.timeout = builder.timeout;
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 

@@ -68,9 +68,8 @@ public class InferenceEndpointInfo extends InferenceEndpoint {
 	protected InferenceEndpointInfo(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.inferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.inferenceId, this, "inferenceId",
-				this.inferenceId());
-		this.taskType = ApiTypeHelper.requireNonNullWithDefault(builder.taskType, this, "taskType", this.taskType());
+		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
+		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
 
 	}
 

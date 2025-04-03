@@ -75,12 +75,10 @@ public class MachineLearning extends Base {
 
 		this.datafeeds = ApiTypeHelper.unmodifiableRequired(builder.datafeeds, this, "datafeeds");
 		this.jobs = ApiTypeHelper.unmodifiableRequired(builder.jobs, this, "jobs");
-		this.nodeCount = ApiTypeHelper.requireNonNullWithDefault(builder.nodeCount, this, "nodeCount",
-				this.nodeCount());
-		this.dataFrameAnalyticsJobs = ApiTypeHelper.requireNonNullWithDefault(builder.dataFrameAnalyticsJobs, this,
-				"dataFrameAnalyticsJobs", this.dataFrameAnalyticsJobs());
-		this.inference = ApiTypeHelper.requireNonNullWithDefault(builder.inference, this, "inference",
-				this.inference());
+		this.nodeCount = ApiTypeHelper.requireNonNull(builder.nodeCount, this, "nodeCount", 0);
+		this.dataFrameAnalyticsJobs = ApiTypeHelper.requireNonNull(builder.dataFrameAnalyticsJobs, this,
+				"dataFrameAnalyticsJobs");
+		this.inference = ApiTypeHelper.requireNonNull(builder.inference, this, "inference");
 
 	}
 

@@ -68,8 +68,7 @@ public class TimingStats implements JsonpSerializable {
 
 	private TimingStats(Builder builder) {
 
-		this.elapsedTime = ApiTypeHelper.requireNonNullWithDefault(builder.elapsedTime, this, "elapsedTime",
-				this.elapsedTime());
+		this.elapsedTime = ApiTypeHelper.requireNonNull(builder.elapsedTime, this, "elapsedTime", 0);
 		this.iterationTime = builder.iterationTime;
 
 	}

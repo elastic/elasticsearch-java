@@ -91,19 +91,15 @@ public class ModelSnapshot implements JsonpSerializable {
 	private ModelSnapshot(Builder builder) {
 
 		this.description = builder.description;
-		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.latestRecordTimeStamp = builder.latestRecordTimeStamp;
 		this.latestResultTimeStamp = builder.latestResultTimeStamp;
-		this.minVersion = ApiTypeHelper.requireNonNullWithDefault(builder.minVersion, this, "minVersion",
-				this.minVersion());
+		this.minVersion = ApiTypeHelper.requireNonNull(builder.minVersion, this, "minVersion");
 		this.modelSizeStats = builder.modelSizeStats;
-		this.retain = ApiTypeHelper.requireNonNullWithDefault(builder.retain, this, "retain", this.retain());
-		this.snapshotDocCount = ApiTypeHelper.requireNonNullWithDefault(builder.snapshotDocCount, this,
-				"snapshotDocCount", this.snapshotDocCount());
-		this.snapshotId = ApiTypeHelper.requireNonNullWithDefault(builder.snapshotId, this, "snapshotId",
-				this.snapshotId());
-		this.timestamp = ApiTypeHelper.requireNonNullWithDefault(builder.timestamp, this, "timestamp",
-				this.timestamp());
+		this.retain = ApiTypeHelper.requireNonNull(builder.retain, this, "retain", false);
+		this.snapshotDocCount = ApiTypeHelper.requireNonNull(builder.snapshotDocCount, this, "snapshotDocCount", 0);
+		this.snapshotId = ApiTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp", 0);
 
 	}
 

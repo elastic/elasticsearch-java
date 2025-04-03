@@ -75,7 +75,7 @@ public class DeleteAsyncSearchRequest extends RequestBase {
 
 	private DeleteAsyncSearchRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 

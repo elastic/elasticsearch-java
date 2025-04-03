@@ -74,7 +74,7 @@ public class DeletePolicyRequest extends RequestBase {
 	private DeletePolicyRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 

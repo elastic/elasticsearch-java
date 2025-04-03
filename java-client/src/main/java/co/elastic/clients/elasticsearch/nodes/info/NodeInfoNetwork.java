@@ -67,10 +67,8 @@ public class NodeInfoNetwork implements JsonpSerializable {
 
 	private NodeInfoNetwork(Builder builder) {
 
-		this.primaryInterface = ApiTypeHelper.requireNonNullWithDefault(builder.primaryInterface, this,
-				"primaryInterface", this.primaryInterface());
-		this.refreshInterval = ApiTypeHelper.requireNonNullWithDefault(builder.refreshInterval, this, "refreshInterval",
-				this.refreshInterval());
+		this.primaryInterface = ApiTypeHelper.requireNonNull(builder.primaryInterface, this, "primaryInterface");
+		this.refreshInterval = ApiTypeHelper.requireNonNull(builder.refreshInterval, this, "refreshInterval", 0);
 
 	}
 

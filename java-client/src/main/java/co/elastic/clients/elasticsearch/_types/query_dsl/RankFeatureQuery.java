@@ -76,7 +76,7 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 	private RankFeatureQuery(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.saturation = builder.saturation;
 		this.log = builder.log;
 		this.linear = builder.linear;

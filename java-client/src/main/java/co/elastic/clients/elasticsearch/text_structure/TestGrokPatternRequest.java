@@ -81,8 +81,7 @@ public class TestGrokPatternRequest extends RequestBase implements JsonpSerializ
 	private TestGrokPatternRequest(Builder builder) {
 
 		this.ecsCompatibility = builder.ecsCompatibility;
-		this.grokPattern = ApiTypeHelper.requireNonNullWithDefault(builder.grokPattern, this, "grokPattern",
-				this.grokPattern());
+		this.grokPattern = ApiTypeHelper.requireNonNull(builder.grokPattern, this, "grokPattern");
 		this.text = ApiTypeHelper.unmodifiableRequired(builder.text, this, "text");
 
 	}

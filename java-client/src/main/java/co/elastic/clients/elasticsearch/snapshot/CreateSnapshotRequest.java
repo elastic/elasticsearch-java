@@ -109,9 +109,8 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 		this.masterTimeout = builder.masterTimeout;
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.partial = builder.partial;
-		this.repository = ApiTypeHelper.requireNonNullWithDefault(builder.repository, this, "repository",
-				this.repository());
-		this.snapshot = ApiTypeHelper.requireNonNullWithDefault(builder.snapshot, this, "snapshot", this.snapshot());
+		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}

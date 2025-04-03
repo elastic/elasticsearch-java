@@ -94,27 +94,20 @@ public class RuntimeFieldTypes implements JsonpSerializable {
 
 	private RuntimeFieldTypes(Builder builder) {
 
-		this.charsMax = ApiTypeHelper.requireNonNullWithDefault(builder.charsMax, this, "charsMax", this.charsMax());
-		this.charsTotal = ApiTypeHelper.requireNonNullWithDefault(builder.charsTotal, this, "charsTotal",
-				this.charsTotal());
-		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
-		this.docMax = ApiTypeHelper.requireNonNullWithDefault(builder.docMax, this, "docMax", this.docMax());
-		this.docTotal = ApiTypeHelper.requireNonNullWithDefault(builder.docTotal, this, "docTotal", this.docTotal());
-		this.indexCount = ApiTypeHelper.requireNonNullWithDefault(builder.indexCount, this, "indexCount",
-				this.indexCount());
+		this.charsMax = ApiTypeHelper.requireNonNull(builder.charsMax, this, "charsMax", 0);
+		this.charsTotal = ApiTypeHelper.requireNonNull(builder.charsTotal, this, "charsTotal", 0);
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
+		this.docMax = ApiTypeHelper.requireNonNull(builder.docMax, this, "docMax", 0);
+		this.docTotal = ApiTypeHelper.requireNonNull(builder.docTotal, this, "docTotal", 0);
+		this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount", 0);
 		this.lang = ApiTypeHelper.unmodifiableRequired(builder.lang, this, "lang");
-		this.linesMax = ApiTypeHelper.requireNonNullWithDefault(builder.linesMax, this, "linesMax", this.linesMax());
-		this.linesTotal = ApiTypeHelper.requireNonNullWithDefault(builder.linesTotal, this, "linesTotal",
-				this.linesTotal());
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
-		this.scriptlessCount = ApiTypeHelper.requireNonNullWithDefault(builder.scriptlessCount, this, "scriptlessCount",
-				this.scriptlessCount());
-		this.shadowedCount = ApiTypeHelper.requireNonNullWithDefault(builder.shadowedCount, this, "shadowedCount",
-				this.shadowedCount());
-		this.sourceMax = ApiTypeHelper.requireNonNullWithDefault(builder.sourceMax, this, "sourceMax",
-				this.sourceMax());
-		this.sourceTotal = ApiTypeHelper.requireNonNullWithDefault(builder.sourceTotal, this, "sourceTotal",
-				this.sourceTotal());
+		this.linesMax = ApiTypeHelper.requireNonNull(builder.linesMax, this, "linesMax", 0);
+		this.linesTotal = ApiTypeHelper.requireNonNull(builder.linesTotal, this, "linesTotal", 0);
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.scriptlessCount = ApiTypeHelper.requireNonNull(builder.scriptlessCount, this, "scriptlessCount", 0);
+		this.shadowedCount = ApiTypeHelper.requireNonNull(builder.shadowedCount, this, "shadowedCount", 0);
+		this.sourceMax = ApiTypeHelper.requireNonNull(builder.sourceMax, this, "sourceMax", 0);
+		this.sourceTotal = ApiTypeHelper.requireNonNull(builder.sourceTotal, this, "sourceTotal", 0);
 
 	}
 

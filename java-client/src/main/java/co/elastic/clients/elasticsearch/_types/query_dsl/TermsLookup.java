@@ -72,9 +72,9 @@ public class TermsLookup implements JsonpSerializable {
 
 	private TermsLookup(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.path = ApiTypeHelper.requireNonNullWithDefault(builder.path, this, "path", this.path());
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
 		this.routing = builder.routing;
 
 	}

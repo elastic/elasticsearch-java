@@ -74,10 +74,8 @@ public class UpdateSchedulingRequest extends RequestBase implements JsonpSeriali
 
 	private UpdateSchedulingRequest(Builder builder) {
 
-		this.connectorId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorId, this, "connectorId",
-				this.connectorId());
-		this.scheduling = ApiTypeHelper.requireNonNullWithDefault(builder.scheduling, this, "scheduling",
-				this.scheduling());
+		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
+		this.scheduling = ApiTypeHelper.requireNonNull(builder.scheduling, this, "scheduling");
 
 	}
 

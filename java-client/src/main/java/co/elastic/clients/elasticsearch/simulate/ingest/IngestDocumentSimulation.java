@@ -94,10 +94,10 @@ public class IngestDocumentSimulation implements JsonpSerializable {
 
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.source = ApiTypeHelper.unmodifiableRequired(builder.source, this, "source");
-		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version", 0);
 		this.executedPipelines = ApiTypeHelper.unmodifiableRequired(builder.executedPipelines, this,
 				"executedPipelines");
 		this.ignoredFields = ApiTypeHelper.unmodifiable(builder.ignoredFields);

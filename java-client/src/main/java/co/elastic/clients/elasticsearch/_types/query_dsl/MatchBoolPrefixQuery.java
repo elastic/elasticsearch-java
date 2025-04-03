@@ -92,7 +92,7 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 
 	private MatchBoolPrefixQuery(Builder builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.analyzer = builder.analyzer;
 		this.fuzziness = builder.fuzziness;
@@ -102,7 +102,7 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.operator = builder.operator;
 		this.prefixLength = builder.prefixLength;
-		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
 

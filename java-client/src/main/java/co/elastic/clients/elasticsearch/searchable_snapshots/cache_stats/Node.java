@@ -65,8 +65,7 @@ public class Node implements JsonpSerializable {
 
 	private Node(Builder builder) {
 
-		this.sharedCache = ApiTypeHelper.requireNonNullWithDefault(builder.sharedCache, this, "sharedCache",
-				this.sharedCache());
+		this.sharedCache = ApiTypeHelper.requireNonNull(builder.sharedCache, this, "sharedCache");
 
 	}
 

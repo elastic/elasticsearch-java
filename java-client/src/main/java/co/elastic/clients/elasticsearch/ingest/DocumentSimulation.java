@@ -91,9 +91,9 @@ public class DocumentSimulation implements JsonpSerializable {
 
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
-		this.ingest = ApiTypeHelper.requireNonNullWithDefault(builder.ingest, this, "ingest", this.ingest());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.ingest = ApiTypeHelper.requireNonNull(builder.ingest, this, "ingest");
 		this.routing = builder.routing;
 		this.source = ApiTypeHelper.unmodifiableRequired(builder.source, this, "source");
 		this.version = builder.version;

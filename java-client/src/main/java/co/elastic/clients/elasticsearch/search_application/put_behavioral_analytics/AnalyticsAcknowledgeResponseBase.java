@@ -65,7 +65,7 @@ public abstract class AnalyticsAcknowledgeResponseBase extends AcknowledgedRespo
 	protected AnalyticsAcknowledgeResponseBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 

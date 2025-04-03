@@ -98,18 +98,16 @@ public class WatchRecord implements JsonpSerializable {
 
 	private WatchRecord(Builder builder) {
 
-		this.condition = ApiTypeHelper.requireNonNullWithDefault(builder.condition, this, "condition",
-				this.condition());
-		this.input = ApiTypeHelper.requireNonNullWithDefault(builder.input, this, "input", this.input());
+		this.condition = ApiTypeHelper.requireNonNull(builder.condition, this, "condition");
+		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
 		this.messages = ApiTypeHelper.unmodifiableRequired(builder.messages, this, "messages");
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
-		this.node = ApiTypeHelper.requireNonNullWithDefault(builder.node, this, "node", this.node());
-		this.result = ApiTypeHelper.requireNonNullWithDefault(builder.result, this, "result", this.result());
-		this.state = ApiTypeHelper.requireNonNullWithDefault(builder.state, this, "state", this.state());
-		this.triggerEvent = ApiTypeHelper.requireNonNullWithDefault(builder.triggerEvent, this, "triggerEvent",
-				this.triggerEvent());
-		this.user = ApiTypeHelper.requireNonNullWithDefault(builder.user, this, "user", this.user());
-		this.watchId = ApiTypeHelper.requireNonNullWithDefault(builder.watchId, this, "watchId", this.watchId());
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.triggerEvent = ApiTypeHelper.requireNonNull(builder.triggerEvent, this, "triggerEvent");
+		this.user = ApiTypeHelper.requireNonNull(builder.user, this, "user");
+		this.watchId = ApiTypeHelper.requireNonNull(builder.watchId, this, "watchId");
 		this.status = builder.status;
 
 	}

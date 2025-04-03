@@ -88,7 +88,7 @@ public class FieldSort implements JsonpSerializable {
 
 	private FieldSort(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.missing = builder.missing;
 		this.mode = builder.mode;

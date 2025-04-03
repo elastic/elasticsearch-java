@@ -76,8 +76,7 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 	private TextSimilarityReranker(Builder builder) {
 		super(builder);
 
-		this.retriever = ApiTypeHelper.requireNonNullWithDefault(builder.retriever, this, "retriever",
-				this.retriever());
+		this.retriever = ApiTypeHelper.requireNonNull(builder.retriever, this, "retriever");
 		this.rankWindowSize = builder.rankWindowSize;
 		this.inferenceId = builder.inferenceId;
 		this.inferenceText = builder.inferenceText;

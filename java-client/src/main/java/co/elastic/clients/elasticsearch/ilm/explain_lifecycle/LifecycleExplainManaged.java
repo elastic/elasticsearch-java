@@ -151,13 +151,13 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		this.age = builder.age;
 		this.failedStep = builder.failedStep;
 		this.failedStepRetryCount = builder.failedStepRetryCount;
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.indexCreationDate = builder.indexCreationDate;
 		this.indexCreationDateMillis = builder.indexCreationDateMillis;
 		this.isAutoRetryableError = builder.isAutoRetryableError;
 		this.lifecycleDate = builder.lifecycleDate;
 		this.lifecycleDateMillis = builder.lifecycleDateMillis;
-		this.phase = ApiTypeHelper.requireNonNullWithDefault(builder.phase, this, "phase", this.phase());
+		this.phase = ApiTypeHelper.requireNonNull(builder.phase, this, "phase");
 		this.phaseTime = builder.phaseTime;
 		this.phaseTimeMillis = builder.phaseTimeMillis;
 		this.policy = builder.policy;

@@ -85,9 +85,8 @@ public class GetServiceCredentialsRequest extends RequestBase {
 
 	private GetServiceCredentialsRequest(Builder builder) {
 
-		this.namespace = ApiTypeHelper.requireNonNullWithDefault(builder.namespace, this, "namespace",
-				this.namespace());
-		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
+		this.namespace = ApiTypeHelper.requireNonNull(builder.namespace, this, "namespace");
+		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
 
 	}
 

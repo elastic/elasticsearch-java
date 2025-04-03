@@ -73,8 +73,7 @@ public class SyncJobDeleteRequest extends RequestBase {
 
 	private SyncJobDeleteRequest(Builder builder) {
 
-		this.connectorSyncJobId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorSyncJobId, this,
-				"connectorSyncJobId", this.connectorSyncJobId());
+		this.connectorSyncJobId = ApiTypeHelper.requireNonNull(builder.connectorSyncJobId, this, "connectorSyncJobId");
 
 	}
 

@@ -76,7 +76,7 @@ public class EqlGetRequest extends RequestBase {
 
 	private EqlGetRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.keepAlive = builder.keepAlive;
 		this.waitForCompletionTimeout = builder.waitForCompletionTimeout;
 

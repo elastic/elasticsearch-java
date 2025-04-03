@@ -77,13 +77,12 @@ public class SnapshotShardFailure implements JsonpSerializable {
 
 	private SnapshotShardFailure(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.nodeId = builder.nodeId;
-		this.reason = ApiTypeHelper.requireNonNullWithDefault(builder.reason, this, "reason", this.reason());
-		this.shardId = ApiTypeHelper.requireNonNullWithDefault(builder.shardId, this, "shardId", this.shardId());
-		this.indexUuid = ApiTypeHelper.requireNonNullWithDefault(builder.indexUuid, this, "indexUuid",
-				this.indexUuid());
-		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.shardId = ApiTypeHelper.requireNonNull(builder.shardId, this, "shardId");
+		this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 

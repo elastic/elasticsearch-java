@@ -103,9 +103,9 @@ public class UpdateCrossClusterApiKeyRequest extends RequestBase implements Json
 
 	private UpdateCrossClusterApiKeyRequest(Builder builder) {
 
-		this.access = ApiTypeHelper.requireNonNullWithDefault(builder.access, this, "access", this.access());
+		this.access = ApiTypeHelper.requireNonNull(builder.access, this, "access");
 		this.expiration = builder.expiration;
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 
 	}

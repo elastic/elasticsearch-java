@@ -72,13 +72,11 @@ public class AuthenticatedUser extends User {
 	private AuthenticatedUser(Builder builder) {
 		super(builder);
 
-		this.authenticationRealm = ApiTypeHelper.requireNonNullWithDefault(builder.authenticationRealm, this,
-				"authenticationRealm", this.authenticationRealm());
-		this.lookupRealm = ApiTypeHelper.requireNonNullWithDefault(builder.lookupRealm, this, "lookupRealm",
-				this.lookupRealm());
+		this.authenticationRealm = ApiTypeHelper.requireNonNull(builder.authenticationRealm, this,
+				"authenticationRealm");
+		this.lookupRealm = ApiTypeHelper.requireNonNull(builder.lookupRealm, this, "lookupRealm");
 		this.authenticationProvider = builder.authenticationProvider;
-		this.authenticationType = ApiTypeHelper.requireNonNullWithDefault(builder.authenticationType, this,
-				"authenticationType", this.authenticationType());
+		this.authenticationType = ApiTypeHelper.requireNonNull(builder.authenticationType, this, "authenticationType");
 
 	}
 

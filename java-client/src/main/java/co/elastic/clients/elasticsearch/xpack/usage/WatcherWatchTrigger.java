@@ -69,7 +69,7 @@ public class WatcherWatchTrigger implements JsonpSerializable {
 	private WatcherWatchTrigger(Builder builder) {
 
 		this.schedule = builder.schedule;
-		this.all = ApiTypeHelper.requireNonNullWithDefault(builder.all, this, "all", this.all());
+		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
 
 	}
 

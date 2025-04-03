@@ -69,7 +69,7 @@ public class RoleTemplate implements JsonpSerializable {
 	private RoleTemplate(Builder builder) {
 
 		this.format = builder.format;
-		this.template = ApiTypeHelper.requireNonNullWithDefault(builder.template, this, "template", this.template());
+		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
 
 	}
 

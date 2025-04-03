@@ -68,8 +68,8 @@ public class HttpInputBasicAuthentication implements JsonpSerializable {
 
 	private HttpInputBasicAuthentication(Builder builder) {
 
-		this.password = ApiTypeHelper.requireNonNullWithDefault(builder.password, this, "password", this.password());
-		this.username = ApiTypeHelper.requireNonNullWithDefault(builder.username, this, "username", this.username());
+		this.password = ApiTypeHelper.requireNonNull(builder.password, this, "password");
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 

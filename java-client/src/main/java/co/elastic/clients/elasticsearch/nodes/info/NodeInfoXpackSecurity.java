@@ -76,7 +76,7 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 	private NodeInfoXpackSecurity(Builder builder) {
 
 		this.http = builder.http;
-		this.enabled = ApiTypeHelper.requireNonNullWithDefault(builder.enabled, this, "enabled", this.enabled());
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 		this.transport = builder.transport;
 		this.authc = builder.authc;
 

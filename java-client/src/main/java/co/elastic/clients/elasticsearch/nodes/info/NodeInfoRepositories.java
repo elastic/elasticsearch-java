@@ -65,7 +65,7 @@ public class NodeInfoRepositories implements JsonpSerializable {
 
 	private NodeInfoRepositories(Builder builder) {
 
-		this.url = ApiTypeHelper.requireNonNullWithDefault(builder.url, this, "url", this.url());
+		this.url = ApiTypeHelper.requireNonNull(builder.url, this, "url");
 
 	}
 

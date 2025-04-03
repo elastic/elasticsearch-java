@@ -66,8 +66,7 @@ public class TextEmbeddingResponse implements JsonpSerializable {
 
 	private TextEmbeddingResponse(Builder builder) {
 
-		this.inferenceResult = ApiTypeHelper.requireNonNullWithDefault(builder.inferenceResult, this, "inferenceResult",
-				this.inferenceResult());
+		this.inferenceResult = ApiTypeHelper.requireNonNull(builder.inferenceResult, this, "inferenceResult");
 
 	}
 

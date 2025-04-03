@@ -77,7 +77,7 @@ public class ScriptSort implements SortOptionsVariant, JsonpSerializable {
 	private ScriptSort(Builder builder) {
 
 		this.order = builder.order;
-		this.script = ApiTypeHelper.requireNonNullWithDefault(builder.script, this, "script", this.script());
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 		this.type = builder.type;
 		this.mode = builder.mode;
 		this.nested = builder.nested;

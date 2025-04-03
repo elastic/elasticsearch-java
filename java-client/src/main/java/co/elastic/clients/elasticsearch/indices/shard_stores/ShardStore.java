@@ -76,11 +76,10 @@ public class ShardStore implements JsonpSerializable {
 
 	private ShardStore(Builder builder) {
 
-		this.nodeId = ApiTypeHelper.requireNonNullWithDefault(builder.nodeId, this, "nodeId", this.nodeId());
-		this.node = ApiTypeHelper.requireNonNullWithDefault(builder.node, this, "node", this.node());
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
 
-		this.allocation = ApiTypeHelper.requireNonNullWithDefault(builder.allocation, this, "allocation",
-				this.allocation());
+		this.allocation = ApiTypeHelper.requireNonNull(builder.allocation, this, "allocation");
 		this.allocationId = builder.allocationId;
 		this.storeException = builder.storeException;
 

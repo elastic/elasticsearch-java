@@ -79,16 +79,11 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 	private OperatingSystemMemoryInfo(Builder builder) {
 
 		this.adjustedTotalInBytes = builder.adjustedTotalInBytes;
-		this.freeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.freeInBytes, this, "freeInBytes",
-				this.freeInBytes());
-		this.freePercent = ApiTypeHelper.requireNonNullWithDefault(builder.freePercent, this, "freePercent",
-				this.freePercent());
-		this.totalInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.totalInBytes, this, "totalInBytes",
-				this.totalInBytes());
-		this.usedInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.usedInBytes, this, "usedInBytes",
-				this.usedInBytes());
-		this.usedPercent = ApiTypeHelper.requireNonNullWithDefault(builder.usedPercent, this, "usedPercent",
-				this.usedPercent());
+		this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes", 0);
+		this.freePercent = ApiTypeHelper.requireNonNull(builder.freePercent, this, "freePercent", 0);
+		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes", 0);
+		this.usedInBytes = ApiTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes", 0);
+		this.usedPercent = ApiTypeHelper.requireNonNull(builder.usedPercent, this, "usedPercent", 0);
 
 	}
 

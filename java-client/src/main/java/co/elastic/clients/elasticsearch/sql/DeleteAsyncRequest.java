@@ -77,7 +77,7 @@ public class DeleteAsyncRequest extends RequestBase {
 
 	private DeleteAsyncRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 

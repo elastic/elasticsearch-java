@@ -108,7 +108,7 @@ public class ClusterStateUpdate implements JsonpSerializable {
 
 	private ClusterStateUpdate(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.computationTime = builder.computationTime;
 		this.computationTimeMillis = builder.computationTimeMillis;
 		this.publicationTime = builder.publicationTime;

@@ -81,18 +81,15 @@ public class CacheStats implements JsonpSerializable {
 
 	private CacheStats(Builder builder) {
 
-		this.nodeId = ApiTypeHelper.requireNonNullWithDefault(builder.nodeId, this, "nodeId", this.nodeId());
-		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
-		this.hits = ApiTypeHelper.requireNonNullWithDefault(builder.hits, this, "hits", this.hits());
-		this.hitsTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.hitsTimeInMillis, this,
-				"hitsTimeInMillis", this.hitsTimeInMillis());
-		this.misses = ApiTypeHelper.requireNonNullWithDefault(builder.misses, this, "misses", this.misses());
-		this.missesTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.missesTimeInMillis, this,
-				"missesTimeInMillis", this.missesTimeInMillis());
-		this.evictions = ApiTypeHelper.requireNonNullWithDefault(builder.evictions, this, "evictions",
-				this.evictions());
-		this.sizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.sizeInBytes, this, "sizeInBytes",
-				this.sizeInBytes());
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits", 0);
+		this.hitsTimeInMillis = ApiTypeHelper.requireNonNull(builder.hitsTimeInMillis, this, "hitsTimeInMillis", 0);
+		this.misses = ApiTypeHelper.requireNonNull(builder.misses, this, "misses", 0);
+		this.missesTimeInMillis = ApiTypeHelper.requireNonNull(builder.missesTimeInMillis, this, "missesTimeInMillis",
+				0);
+		this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions", 0);
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes", 0);
 
 	}
 

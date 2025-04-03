@@ -70,10 +70,9 @@ public class AllocationDecision implements JsonpSerializable {
 
 	private AllocationDecision(Builder builder) {
 
-		this.decider = ApiTypeHelper.requireNonNullWithDefault(builder.decider, this, "decider", this.decider());
-		this.decision = ApiTypeHelper.requireNonNullWithDefault(builder.decision, this, "decision", this.decision());
-		this.explanation = ApiTypeHelper.requireNonNullWithDefault(builder.explanation, this, "explanation",
-				this.explanation());
+		this.decider = ApiTypeHelper.requireNonNull(builder.decider, this, "decider");
+		this.decision = ApiTypeHelper.requireNonNull(builder.decision, this, "decision");
+		this.explanation = ApiTypeHelper.requireNonNull(builder.explanation, this, "explanation");
 
 	}
 

@@ -71,8 +71,8 @@ public class GoogleAiStudioServiceSettings implements JsonpSerializable {
 
 	private GoogleAiStudioServiceSettings(Builder builder) {
 
-		this.apiKey = ApiTypeHelper.requireNonNullWithDefault(builder.apiKey, this, "apiKey", this.apiKey());
-		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
+		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.rateLimit = builder.rateLimit;
 
 	}

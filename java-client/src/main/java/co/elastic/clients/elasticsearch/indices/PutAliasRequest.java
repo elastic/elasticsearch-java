@@ -104,7 +104,7 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		this.indexRouting = builder.indexRouting;
 		this.isWriteIndex = builder.isWriteIndex;
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.routing = builder.routing;
 		this.searchRouting = builder.searchRouting;
 		this.timeout = builder.timeout;

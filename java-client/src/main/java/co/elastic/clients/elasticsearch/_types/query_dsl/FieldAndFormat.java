@@ -75,7 +75,7 @@ public class FieldAndFormat implements JsonpSerializable {
 
 	private FieldAndFormat(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.format = builder.format;
 		this.includeUnmapped = builder.includeUnmapped;
 

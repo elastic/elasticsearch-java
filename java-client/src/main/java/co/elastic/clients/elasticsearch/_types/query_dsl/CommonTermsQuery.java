@@ -82,14 +82,14 @@ public class CommonTermsQuery extends QueryBase implements QueryVariant {
 
 	private CommonTermsQuery(Builder builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.analyzer = builder.analyzer;
 		this.cutoffFrequency = builder.cutoffFrequency;
 		this.highFreqOperator = builder.highFreqOperator;
 		this.lowFreqOperator = builder.lowFreqOperator;
 		this.minimumShouldMatch = builder.minimumShouldMatch;
-		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
 

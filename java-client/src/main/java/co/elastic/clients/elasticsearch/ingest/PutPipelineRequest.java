@@ -103,7 +103,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.deprecated = builder.deprecated;
 		this.description = builder.description;
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.ifVersion = builder.ifVersion;
 		this.masterTimeout = builder.masterTimeout;
 		this.onFailure = ApiTypeHelper.unmodifiable(builder.onFailure);

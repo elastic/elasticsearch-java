@@ -76,10 +76,8 @@ public class UpdateFilteringValidationRequest extends RequestBase implements Jso
 
 	private UpdateFilteringValidationRequest(Builder builder) {
 
-		this.connectorId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorId, this, "connectorId",
-				this.connectorId());
-		this.validation = ApiTypeHelper.requireNonNullWithDefault(builder.validation, this, "validation",
-				this.validation());
+		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
+		this.validation = ApiTypeHelper.requireNonNull(builder.validation, this, "validation");
 
 	}
 

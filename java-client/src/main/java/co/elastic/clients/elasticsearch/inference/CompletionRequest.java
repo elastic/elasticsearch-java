@@ -81,8 +81,7 @@ public class CompletionRequest extends RequestBase implements JsonpSerializable 
 
 	private CompletionRequest(Builder builder) {
 
-		this.inferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.inferenceId, this, "inferenceId",
-				this.inferenceId());
+		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.input = ApiTypeHelper.unmodifiableRequired(builder.input, this, "input");
 		this.taskSettings = builder.taskSettings;
 		this.timeout = builder.timeout;

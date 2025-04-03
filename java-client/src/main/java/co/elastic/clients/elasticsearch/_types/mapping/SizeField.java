@@ -64,7 +64,7 @@ public class SizeField implements JsonpSerializable {
 
 	private SizeField(Builder builder) {
 
-		this.enabled = ApiTypeHelper.requireNonNullWithDefault(builder.enabled, this, "enabled", this.enabled());
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
 
 	}
 

@@ -72,9 +72,9 @@ public class MasterIsStableIndicatorClusterFormationNode implements JsonpSeriali
 	private MasterIsStableIndicatorClusterFormationNode(Builder builder) {
 
 		this.name = builder.name;
-		this.nodeId = ApiTypeHelper.requireNonNullWithDefault(builder.nodeId, this, "nodeId", this.nodeId());
-		this.clusterFormationMessage = ApiTypeHelper.requireNonNullWithDefault(builder.clusterFormationMessage, this,
-				"clusterFormationMessage", this.clusterFormationMessage());
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.clusterFormationMessage = ApiTypeHelper.requireNonNull(builder.clusterFormationMessage, this,
+				"clusterFormationMessage");
 
 	}
 

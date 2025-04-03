@@ -72,8 +72,7 @@ public class MlInference implements JsonpSerializable {
 	private MlInference(Builder builder) {
 
 		this.ingestProcessors = ApiTypeHelper.unmodifiableRequired(builder.ingestProcessors, this, "ingestProcessors");
-		this.trainedModels = ApiTypeHelper.requireNonNullWithDefault(builder.trainedModels, this, "trainedModels",
-				this.trainedModels());
+		this.trainedModels = ApiTypeHelper.requireNonNull(builder.trainedModels, this, "trainedModels");
 		this.deployments = builder.deployments;
 
 	}

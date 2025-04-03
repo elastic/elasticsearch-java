@@ -78,7 +78,7 @@ public class GrantApiKey implements JsonpSerializable {
 
 	private GrantApiKey(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.expiration = builder.expiration;
 		this.roleDescriptors = ApiTypeHelper.unmodifiable(builder.roleDescriptors);
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);

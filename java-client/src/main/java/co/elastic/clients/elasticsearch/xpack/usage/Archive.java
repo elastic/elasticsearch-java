@@ -62,8 +62,7 @@ public class Archive extends Base {
 	private Archive(Builder builder) {
 		super(builder);
 
-		this.indicesCount = ApiTypeHelper.requireNonNullWithDefault(builder.indicesCount, this, "indicesCount",
-				this.indicesCount());
+		this.indicesCount = ApiTypeHelper.requireNonNull(builder.indicesCount, this, "indicesCount", 0);
 
 	}
 

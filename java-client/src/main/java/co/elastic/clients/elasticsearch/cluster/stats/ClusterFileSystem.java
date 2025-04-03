@@ -69,12 +69,9 @@ public class ClusterFileSystem implements JsonpSerializable {
 
 	private ClusterFileSystem(Builder builder) {
 
-		this.availableInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.availableInBytes, this,
-				"availableInBytes", this.availableInBytes());
-		this.freeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.freeInBytes, this, "freeInBytes",
-				this.freeInBytes());
-		this.totalInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.totalInBytes, this, "totalInBytes",
-				this.totalInBytes());
+		this.availableInBytes = ApiTypeHelper.requireNonNull(builder.availableInBytes, this, "availableInBytes", 0);
+		this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes", 0);
+		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes", 0);
 
 	}
 

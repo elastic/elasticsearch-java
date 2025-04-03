@@ -74,10 +74,8 @@ public class RuleRetriever extends RetrieverBase implements RetrieverVariant {
 		super(builder);
 
 		this.rulesetIds = ApiTypeHelper.unmodifiableRequired(builder.rulesetIds, this, "rulesetIds");
-		this.matchCriteria = ApiTypeHelper.requireNonNullWithDefault(builder.matchCriteria, this, "matchCriteria",
-				this.matchCriteria());
-		this.retriever = ApiTypeHelper.requireNonNullWithDefault(builder.retriever, this, "retriever",
-				this.retriever());
+		this.matchCriteria = ApiTypeHelper.requireNonNull(builder.matchCriteria, this, "matchCriteria");
+		this.retriever = ApiTypeHelper.requireNonNull(builder.retriever, this, "retriever");
 		this.rankWindowSize = builder.rankWindowSize;
 
 	}

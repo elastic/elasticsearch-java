@@ -94,12 +94,10 @@ public class PutMistralRequest extends RequestBase implements JsonpSerializable 
 	private PutMistralRequest(Builder builder) {
 
 		this.chunkingSettings = builder.chunkingSettings;
-		this.mistralInferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.mistralInferenceId, this,
-				"mistralInferenceId", this.mistralInferenceId());
-		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
-		this.serviceSettings = ApiTypeHelper.requireNonNullWithDefault(builder.serviceSettings, this, "serviceSettings",
-				this.serviceSettings());
-		this.taskType = ApiTypeHelper.requireNonNullWithDefault(builder.taskType, this, "taskType", this.taskType());
+		this.mistralInferenceId = ApiTypeHelper.requireNonNull(builder.mistralInferenceId, this, "mistralInferenceId");
+		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
+		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
+		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
 
 	}
 

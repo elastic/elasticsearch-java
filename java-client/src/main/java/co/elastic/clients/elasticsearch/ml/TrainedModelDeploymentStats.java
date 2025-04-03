@@ -118,21 +118,19 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		this.adaptiveAllocations = builder.adaptiveAllocations;
 		this.allocationStatus = builder.allocationStatus;
 		this.cacheSize = builder.cacheSize;
-		this.deploymentId = ApiTypeHelper.requireNonNullWithDefault(builder.deploymentId, this, "deploymentId",
-				this.deploymentId());
+		this.deploymentId = ApiTypeHelper.requireNonNull(builder.deploymentId, this, "deploymentId");
 		this.errorCount = builder.errorCount;
 		this.inferenceCount = builder.inferenceCount;
-		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 		this.numberOfAllocations = builder.numberOfAllocations;
-		this.peakThroughputPerMinute = ApiTypeHelper.requireNonNullWithDefault(builder.peakThroughputPerMinute, this,
-				"peakThroughputPerMinute", this.peakThroughputPerMinute());
-		this.priority = ApiTypeHelper.requireNonNullWithDefault(builder.priority, this, "priority", this.priority());
+		this.peakThroughputPerMinute = ApiTypeHelper.requireNonNull(builder.peakThroughputPerMinute, this,
+				"peakThroughputPerMinute", 0);
+		this.priority = ApiTypeHelper.requireNonNull(builder.priority, this, "priority");
 		this.queueCapacity = builder.queueCapacity;
 		this.rejectedExecutionCount = builder.rejectedExecutionCount;
 		this.reason = builder.reason;
-		this.startTime = ApiTypeHelper.requireNonNullWithDefault(builder.startTime, this, "startTime",
-				this.startTime());
+		this.startTime = ApiTypeHelper.requireNonNull(builder.startTime, this, "startTime", 0);
 		this.state = builder.state;
 		this.threadsPerAllocation = builder.threadsPerAllocation;
 		this.timeoutCount = builder.timeoutCount;

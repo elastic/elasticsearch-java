@@ -72,7 +72,7 @@ public class EmailResult implements JsonpSerializable {
 	private EmailResult(Builder builder) {
 
 		this.account = builder.account;
-		this.message = ApiTypeHelper.requireNonNullWithDefault(builder.message, this, "message", this.message());
+		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
 		this.reason = builder.reason;
 
 	}

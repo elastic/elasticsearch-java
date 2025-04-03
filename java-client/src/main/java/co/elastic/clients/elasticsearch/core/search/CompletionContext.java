@@ -81,7 +81,7 @@ public class CompletionContext implements JsonpSerializable {
 	private CompletionContext(Builder builder) {
 
 		this.boost = builder.boost;
-		this.context = ApiTypeHelper.requireNonNullWithDefault(builder.context, this, "context", this.context());
+		this.context = ApiTypeHelper.requireNonNull(builder.context, this, "context");
 		this.neighbours = ApiTypeHelper.unmodifiable(builder.neighbours);
 		this.precision = builder.precision;
 		this.prefix = builder.prefix;

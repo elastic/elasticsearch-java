@@ -80,10 +80,9 @@ public class PostEisChatCompletionRequest extends RequestBase implements JsonpSe
 
 	private PostEisChatCompletionRequest(Builder builder) {
 
-		this.eisInferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.eisInferenceId, this, "eisInferenceId",
-				this.eisInferenceId());
-		this.chatCompletionRequest = ApiTypeHelper.requireNonNullWithDefault(builder.chatCompletionRequest, this,
-				"chatCompletionRequest", this.chatCompletionRequest());
+		this.eisInferenceId = ApiTypeHelper.requireNonNull(builder.eisInferenceId, this, "eisInferenceId");
+		this.chatCompletionRequest = ApiTypeHelper.requireNonNull(builder.chatCompletionRequest, this,
+				"chatCompletionRequest");
 
 	}
 

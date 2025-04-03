@@ -80,8 +80,7 @@ public class DeleteInferenceRequest extends RequestBase {
 
 		this.dryRun = builder.dryRun;
 		this.force = builder.force;
-		this.inferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.inferenceId, this, "inferenceId",
-				this.inferenceId());
+		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.taskType = builder.taskType;
 
 	}

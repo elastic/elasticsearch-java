@@ -73,12 +73,10 @@ public class MigrationFeature implements JsonpSerializable {
 
 	private MigrationFeature(Builder builder) {
 
-		this.featureName = ApiTypeHelper.requireNonNullWithDefault(builder.featureName, this, "featureName",
-				this.featureName());
-		this.minimumIndexVersion = ApiTypeHelper.requireNonNullWithDefault(builder.minimumIndexVersion, this,
-				"minimumIndexVersion", this.minimumIndexVersion());
-		this.migrationStatus = ApiTypeHelper.requireNonNullWithDefault(builder.migrationStatus, this, "migrationStatus",
-				this.migrationStatus());
+		this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+		this.minimumIndexVersion = ApiTypeHelper.requireNonNull(builder.minimumIndexVersion, this,
+				"minimumIndexVersion");
+		this.migrationStatus = ApiTypeHelper.requireNonNull(builder.migrationStatus, this, "migrationStatus");
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}

@@ -108,7 +108,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		this.global = ApiTypeHelper.unmodifiable(builder.global);
 		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.refresh = builder.refresh;
 		this.remoteCluster = ApiTypeHelper.unmodifiable(builder.remoteCluster);
 		this.remoteIndices = ApiTypeHelper.unmodifiable(builder.remoteIndices);

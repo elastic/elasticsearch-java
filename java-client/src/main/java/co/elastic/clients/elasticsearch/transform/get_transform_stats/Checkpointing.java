@@ -87,7 +87,7 @@ public class Checkpointing implements JsonpSerializable {
 
 		this.changesLastDetectedAt = builder.changesLastDetectedAt;
 		this.changesLastDetectedAtString = builder.changesLastDetectedAtString;
-		this.last = ApiTypeHelper.requireNonNullWithDefault(builder.last, this, "last", this.last());
+		this.last = ApiTypeHelper.requireNonNull(builder.last, this, "last");
 		this.next = builder.next;
 		this.operationsBehind = builder.operationsBehind;
 		this.lastSearchTime = builder.lastSearchTime;

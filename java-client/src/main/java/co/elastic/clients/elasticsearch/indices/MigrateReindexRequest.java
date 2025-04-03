@@ -74,7 +74,7 @@ public class MigrateReindexRequest extends RequestBase implements JsonpSerializa
 
 	private MigrateReindexRequest(Builder builder) {
 
-		this.reindex = ApiTypeHelper.requireNonNullWithDefault(builder.reindex, this, "reindex", this.reindex());
+		this.reindex = ApiTypeHelper.requireNonNull(builder.reindex, this, "reindex");
 
 	}
 

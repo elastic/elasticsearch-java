@@ -128,7 +128,7 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
-		this.knn = ApiTypeHelper.requireNonNullWithDefault(builder.knn, this, "knn", this.knn());
+		this.knn = ApiTypeHelper.requireNonNull(builder.knn, this, "knn");
 		this.routing = builder.routing;
 		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 

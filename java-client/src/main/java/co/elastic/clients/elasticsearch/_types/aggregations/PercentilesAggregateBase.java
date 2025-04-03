@@ -64,7 +64,7 @@ public abstract class PercentilesAggregateBase extends AggregateBase {
 	protected PercentilesAggregateBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.values = ApiTypeHelper.requireNonNullWithDefault(builder.values, this, "values", this.values());
+		this.values = ApiTypeHelper.requireNonNull(builder.values, this, "values");
 
 	}
 

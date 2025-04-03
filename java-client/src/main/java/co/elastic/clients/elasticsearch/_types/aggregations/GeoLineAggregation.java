@@ -79,8 +79,8 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 
 	private GeoLineAggregation(Builder builder) {
 
-		this.point = ApiTypeHelper.requireNonNullWithDefault(builder.point, this, "point", this.point());
-		this.sort = ApiTypeHelper.requireNonNullWithDefault(builder.sort, this, "sort", this.sort());
+		this.point = ApiTypeHelper.requireNonNull(builder.point, this, "point");
+		this.sort = ApiTypeHelper.requireNonNull(builder.sort, this, "sort");
 		this.includeSort = builder.includeSort;
 		this.sortOrder = builder.sortOrder;
 		this.size = builder.size;

@@ -70,9 +70,9 @@ public class StoredScript implements JsonpSerializable {
 
 	private StoredScript(Builder builder) {
 
-		this.lang = ApiTypeHelper.requireNonNullWithDefault(builder.lang, this, "lang", this.lang());
+		this.lang = ApiTypeHelper.requireNonNull(builder.lang, this, "lang");
 		this.options = ApiTypeHelper.unmodifiable(builder.options);
-		this.source = ApiTypeHelper.requireNonNullWithDefault(builder.source, this, "source", this.source());
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}
 

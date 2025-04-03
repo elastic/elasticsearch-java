@@ -153,7 +153,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		this.keepAlive = builder.keepAlive;
 		this.keepOnCompletion = builder.keepOnCompletion;
 		this.maxSamplesPerKey = builder.maxSamplesPerKey;
-		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.resultPosition = builder.resultPosition;
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.size = builder.size;

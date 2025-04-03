@@ -62,7 +62,7 @@ public class S3Repository extends RepositoryBase implements RepositoryVariant {
 	private S3Repository(Builder builder) {
 		super(builder);
 
-		this.settings = ApiTypeHelper.requireNonNullWithDefault(builder.settings, this, "settings", this.settings());
+		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 
 	}
 

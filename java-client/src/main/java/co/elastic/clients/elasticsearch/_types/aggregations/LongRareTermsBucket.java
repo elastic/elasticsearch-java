@@ -68,7 +68,7 @@ public class LongRareTermsBucket extends MultiBucketBase {
 	private LongRareTermsBucket(Builder builder) {
 		super(builder);
 
-		this.key = ApiTypeHelper.requireNonNullWithDefault(builder.key, this, "key", this.key());
+		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key", 0);
 		this.keyAsString = builder.keyAsString;
 
 	}

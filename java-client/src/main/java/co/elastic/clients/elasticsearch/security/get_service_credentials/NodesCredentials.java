@@ -70,8 +70,7 @@ public class NodesCredentials implements JsonpSerializable {
 
 	private NodesCredentials(Builder builder) {
 
-		this.nodeStats = ApiTypeHelper.requireNonNullWithDefault(builder.nodeStats, this, "nodeStats",
-				this.nodeStats());
+		this.nodeStats = ApiTypeHelper.requireNonNull(builder.nodeStats, this, "nodeStats");
 		this.fileTokens = ApiTypeHelper.unmodifiableRequired(builder.fileTokens, this, "fileTokens");
 
 	}

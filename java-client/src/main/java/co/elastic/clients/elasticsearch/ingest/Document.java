@@ -74,7 +74,7 @@ public class Document implements JsonpSerializable {
 
 		this.id = builder.id;
 		this.index = builder.index;
-		this.source = ApiTypeHelper.requireNonNullWithDefault(builder.source, this, "source", this.source());
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}
 

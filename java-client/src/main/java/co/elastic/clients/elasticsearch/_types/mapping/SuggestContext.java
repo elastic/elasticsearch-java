@@ -74,9 +74,9 @@ public class SuggestContext implements JsonpSerializable {
 
 	private SuggestContext(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.path = builder.path;
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.precision = builder.precision;
 
 	}

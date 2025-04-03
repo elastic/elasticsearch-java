@@ -70,7 +70,7 @@ public class HistogramGrouping implements JsonpSerializable {
 	private HistogramGrouping(Builder builder) {
 
 		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
-		this.interval = ApiTypeHelper.requireNonNullWithDefault(builder.interval, this, "interval", this.interval());
+		this.interval = ApiTypeHelper.requireNonNull(builder.interval, this, "interval", 0);
 
 	}
 

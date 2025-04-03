@@ -96,7 +96,7 @@ public class KnnSearch implements JsonpSerializable {
 
 	private KnnSearch(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.queryVector = ApiTypeHelper.unmodifiable(builder.queryVector);
 		this.queryVectorBuilder = builder.queryVectorBuilder;
 		this.k = builder.k;

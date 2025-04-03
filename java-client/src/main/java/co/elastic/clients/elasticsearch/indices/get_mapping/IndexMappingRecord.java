@@ -70,7 +70,7 @@ public class IndexMappingRecord implements JsonpSerializable {
 	private IndexMappingRecord(Builder builder) {
 
 		this.item = builder.item;
-		this.mappings = ApiTypeHelper.requireNonNullWithDefault(builder.mappings, this, "mappings", this.mappings());
+		this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
 
 	}
 

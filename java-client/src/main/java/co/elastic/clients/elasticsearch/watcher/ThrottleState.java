@@ -68,9 +68,8 @@ public class ThrottleState implements JsonpSerializable {
 
 	private ThrottleState(Builder builder) {
 
-		this.reason = ApiTypeHelper.requireNonNullWithDefault(builder.reason, this, "reason", this.reason());
-		this.timestamp = ApiTypeHelper.requireNonNullWithDefault(builder.timestamp, this, "timestamp",
-				this.timestamp());
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 

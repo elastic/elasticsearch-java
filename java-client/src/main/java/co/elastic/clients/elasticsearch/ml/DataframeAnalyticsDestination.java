@@ -69,7 +69,7 @@ public class DataframeAnalyticsDestination implements JsonpSerializable {
 
 	private DataframeAnalyticsDestination(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.resultsField = builder.resultsField;
 
 	}

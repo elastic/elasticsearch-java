@@ -89,7 +89,7 @@ public class PromoteDataStreamRequest extends RequestBase {
 	private PromoteDataStreamRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 

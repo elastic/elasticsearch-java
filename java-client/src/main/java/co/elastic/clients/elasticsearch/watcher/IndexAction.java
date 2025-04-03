@@ -83,7 +83,7 @@ public class IndexAction implements JsonpSerializable {
 
 	private IndexAction(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.docId = builder.docId;
 		this.refresh = builder.refresh;
 		this.opType = builder.opType;

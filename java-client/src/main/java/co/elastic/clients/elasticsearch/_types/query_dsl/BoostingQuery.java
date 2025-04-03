@@ -68,10 +68,9 @@ public class BoostingQuery extends QueryBase implements QueryVariant {
 	private BoostingQuery(Builder builder) {
 		super(builder);
 
-		this.negativeBoost = ApiTypeHelper.requireNonNullWithDefault(builder.negativeBoost, this, "negativeBoost",
-				this.negativeBoost());
-		this.negative = ApiTypeHelper.requireNonNullWithDefault(builder.negative, this, "negative", this.negative());
-		this.positive = ApiTypeHelper.requireNonNullWithDefault(builder.positive, this, "positive", this.positive());
+		this.negativeBoost = ApiTypeHelper.requireNonNull(builder.negativeBoost, this, "negativeBoost", 0);
+		this.negative = ApiTypeHelper.requireNonNull(builder.negative, this, "negative");
+		this.positive = ApiTypeHelper.requireNonNull(builder.positive, this, "positive");
 
 	}
 

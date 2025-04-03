@@ -67,10 +67,8 @@ public class ClusterJvmMemory implements JsonpSerializable {
 
 	private ClusterJvmMemory(Builder builder) {
 
-		this.heapMaxInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.heapMaxInBytes, this, "heapMaxInBytes",
-				this.heapMaxInBytes());
-		this.heapUsedInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.heapUsedInBytes, this, "heapUsedInBytes",
-				this.heapUsedInBytes());
+		this.heapMaxInBytes = ApiTypeHelper.requireNonNull(builder.heapMaxInBytes, this, "heapMaxInBytes", 0);
+		this.heapUsedInBytes = ApiTypeHelper.requireNonNull(builder.heapUsedInBytes, this, "heapUsedInBytes", 0);
 
 	}
 

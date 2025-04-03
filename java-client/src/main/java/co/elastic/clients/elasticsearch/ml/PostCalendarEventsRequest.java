@@ -74,8 +74,7 @@ public class PostCalendarEventsRequest extends RequestBase implements JsonpSeria
 
 	private PostCalendarEventsRequest(Builder builder) {
 
-		this.calendarId = ApiTypeHelper.requireNonNullWithDefault(builder.calendarId, this, "calendarId",
-				this.calendarId());
+		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
 		this.events = ApiTypeHelper.unmodifiableRequired(builder.events, this, "events");
 
 	}

@@ -79,20 +79,16 @@ public class PipelineSettings implements JsonpSerializable {
 
 	private PipelineSettings(Builder builder) {
 
-		this.pipelineWorkers = ApiTypeHelper.requireNonNullWithDefault(builder.pipelineWorkers, this, "pipelineWorkers",
-				this.pipelineWorkers());
-		this.pipelineBatchSize = ApiTypeHelper.requireNonNullWithDefault(builder.pipelineBatchSize, this,
-				"pipelineBatchSize", this.pipelineBatchSize());
-		this.pipelineBatchDelay = ApiTypeHelper.requireNonNullWithDefault(builder.pipelineBatchDelay, this,
-				"pipelineBatchDelay", this.pipelineBatchDelay());
-		this.queueType = ApiTypeHelper.requireNonNullWithDefault(builder.queueType, this, "queueType",
-				this.queueType());
-		this.queueMaxBytesNumber = ApiTypeHelper.requireNonNullWithDefault(builder.queueMaxBytesNumber, this,
-				"queueMaxBytesNumber", this.queueMaxBytesNumber());
-		this.queueMaxBytesUnits = ApiTypeHelper.requireNonNullWithDefault(builder.queueMaxBytesUnits, this,
-				"queueMaxBytesUnits", this.queueMaxBytesUnits());
-		this.queueCheckpointWrites = ApiTypeHelper.requireNonNullWithDefault(builder.queueCheckpointWrites, this,
-				"queueCheckpointWrites", this.queueCheckpointWrites());
+		this.pipelineWorkers = ApiTypeHelper.requireNonNull(builder.pipelineWorkers, this, "pipelineWorkers", 0);
+		this.pipelineBatchSize = ApiTypeHelper.requireNonNull(builder.pipelineBatchSize, this, "pipelineBatchSize", 0);
+		this.pipelineBatchDelay = ApiTypeHelper.requireNonNull(builder.pipelineBatchDelay, this, "pipelineBatchDelay",
+				0);
+		this.queueType = ApiTypeHelper.requireNonNull(builder.queueType, this, "queueType");
+		this.queueMaxBytesNumber = ApiTypeHelper.requireNonNull(builder.queueMaxBytesNumber, this,
+				"queueMaxBytesNumber", 0);
+		this.queueMaxBytesUnits = ApiTypeHelper.requireNonNull(builder.queueMaxBytesUnits, this, "queueMaxBytesUnits");
+		this.queueCheckpointWrites = ApiTypeHelper.requireNonNull(builder.queueCheckpointWrites, this,
+				"queueCheckpointWrites", 0);
 
 	}
 

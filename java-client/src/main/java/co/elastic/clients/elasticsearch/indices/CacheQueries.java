@@ -64,7 +64,7 @@ public class CacheQueries implements JsonpSerializable {
 
 	private CacheQueries(Builder builder) {
 
-		this.enabled = ApiTypeHelper.requireNonNullWithDefault(builder.enabled, this, "enabled", this.enabled());
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
 
 	}
 

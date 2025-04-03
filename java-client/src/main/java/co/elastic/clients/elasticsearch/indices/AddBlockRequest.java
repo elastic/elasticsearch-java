@@ -94,10 +94,10 @@ public class AddBlockRequest extends RequestBase {
 	private AddBlockRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
-		this.block = ApiTypeHelper.requireNonNullWithDefault(builder.block, this, "block", this.block());
+		this.block = ApiTypeHelper.requireNonNull(builder.block, this, "block");
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 

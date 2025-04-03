@@ -78,15 +78,12 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 	protected StatsResponseBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.clusterName = ApiTypeHelper.requireNonNullWithDefault(builder.clusterName, this, "clusterName",
-				this.clusterName());
-		this.clusterUuid = ApiTypeHelper.requireNonNullWithDefault(builder.clusterUuid, this, "clusterUuid",
-				this.clusterUuid());
-		this.indices = ApiTypeHelper.requireNonNullWithDefault(builder.indices, this, "indices", this.indices());
-		this.nodes = ApiTypeHelper.requireNonNullWithDefault(builder.nodes, this, "nodes", this.nodes());
-		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
-		this.timestamp = ApiTypeHelper.requireNonNullWithDefault(builder.timestamp, this, "timestamp",
-				this.timestamp());
+		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.clusterUuid = ApiTypeHelper.requireNonNull(builder.clusterUuid, this, "clusterUuid");
+		this.indices = ApiTypeHelper.requireNonNull(builder.indices, this, "indices");
+		this.nodes = ApiTypeHelper.requireNonNull(builder.nodes, this, "nodes");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp", 0);
 
 	}
 

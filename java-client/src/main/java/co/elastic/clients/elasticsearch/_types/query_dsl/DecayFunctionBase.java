@@ -78,9 +78,8 @@ public abstract class DecayFunctionBase<TOrigin, TScale> implements JsonpSeriali
 
 	protected DecayFunctionBase(AbstractBuilder<TOrigin, TScale, ?> builder) {
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
-		this.placement = ApiTypeHelper.requireNonNullWithDefault(builder.placement, this, "placement",
-				this.placement());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.placement = ApiTypeHelper.requireNonNull(builder.placement, this, "placement");
 
 		this.multiValueMode = builder.multiValueMode;
 		this.tOriginSerializer = builder.tOriginSerializer;

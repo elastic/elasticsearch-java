@@ -66,7 +66,7 @@ public class ScriptScoreFunction implements FunctionScoreVariant, JsonpSerializa
 
 	private ScriptScoreFunction(Builder builder) {
 
-		this.script = ApiTypeHelper.requireNonNullWithDefault(builder.script, this, "script", this.script());
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 

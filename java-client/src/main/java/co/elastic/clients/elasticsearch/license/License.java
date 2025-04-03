@@ -87,19 +87,17 @@ public class License implements JsonpSerializable {
 
 	private License(Builder builder) {
 
-		this.expiryDateInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.expiryDateInMillis, this,
-				"expiryDateInMillis", this.expiryDateInMillis());
-		this.issueDateInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.issueDateInMillis, this,
-				"issueDateInMillis", this.issueDateInMillis());
+		this.expiryDateInMillis = ApiTypeHelper.requireNonNull(builder.expiryDateInMillis, this, "expiryDateInMillis",
+				0);
+		this.issueDateInMillis = ApiTypeHelper.requireNonNull(builder.issueDateInMillis, this, "issueDateInMillis", 0);
 		this.startDateInMillis = builder.startDateInMillis;
-		this.issuedTo = ApiTypeHelper.requireNonNullWithDefault(builder.issuedTo, this, "issuedTo", this.issuedTo());
-		this.issuer = ApiTypeHelper.requireNonNullWithDefault(builder.issuer, this, "issuer", this.issuer());
+		this.issuedTo = ApiTypeHelper.requireNonNull(builder.issuedTo, this, "issuedTo");
+		this.issuer = ApiTypeHelper.requireNonNull(builder.issuer, this, "issuer");
 		this.maxNodes = builder.maxNodes;
 		this.maxResourceUnits = builder.maxResourceUnits;
-		this.signature = ApiTypeHelper.requireNonNullWithDefault(builder.signature, this, "signature",
-				this.signature());
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
-		this.uid = ApiTypeHelper.requireNonNullWithDefault(builder.uid, this, "uid", this.uid());
+		this.signature = ApiTypeHelper.requireNonNull(builder.signature, this, "signature");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.uid = ApiTypeHelper.requireNonNull(builder.uid, this, "uid");
 
 	}
 

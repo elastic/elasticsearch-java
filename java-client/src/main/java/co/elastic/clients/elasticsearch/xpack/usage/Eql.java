@@ -66,7 +66,7 @@ public class Eql extends Base {
 	private Eql(Builder builder) {
 		super(builder);
 
-		this.features = ApiTypeHelper.requireNonNullWithDefault(builder.features, this, "features", this.features());
+		this.features = ApiTypeHelper.requireNonNull(builder.features, this, "features");
 		this.queries = ApiTypeHelper.unmodifiableRequired(builder.queries, this, "queries");
 
 	}

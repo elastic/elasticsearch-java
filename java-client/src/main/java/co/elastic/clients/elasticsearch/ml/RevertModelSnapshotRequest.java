@@ -86,9 +86,8 @@ public class RevertModelSnapshotRequest extends RequestBase implements JsonpSeri
 	private RevertModelSnapshotRequest(Builder builder) {
 
 		this.deleteInterveningResults = builder.deleteInterveningResults;
-		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
-		this.snapshotId = ApiTypeHelper.requireNonNullWithDefault(builder.snapshotId, this, "snapshotId",
-				this.snapshotId());
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.snapshotId = ApiTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
 
 	}
 

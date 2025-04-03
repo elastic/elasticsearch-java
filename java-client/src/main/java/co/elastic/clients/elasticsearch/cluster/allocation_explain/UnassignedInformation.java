@@ -86,9 +86,9 @@ public class UnassignedInformation implements JsonpSerializable {
 
 	private UnassignedInformation(Builder builder) {
 
-		this.at = ApiTypeHelper.requireNonNullWithDefault(builder.at, this, "at", this.at());
+		this.at = ApiTypeHelper.requireNonNull(builder.at, this, "at");
 		this.lastAllocationStatus = builder.lastAllocationStatus;
-		this.reason = ApiTypeHelper.requireNonNullWithDefault(builder.reason, this, "reason", this.reason());
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 		this.details = builder.details;
 		this.failedAllocationAttempts = builder.failedAllocationAttempts;
 		this.delayed = builder.delayed;

@@ -65,8 +65,8 @@ public class WatcherWatchTriggerSchedule extends Counter {
 	private WatcherWatchTriggerSchedule(Builder builder) {
 		super(builder);
 
-		this.cron = ApiTypeHelper.requireNonNullWithDefault(builder.cron, this, "cron", this.cron());
-		this.all = ApiTypeHelper.requireNonNullWithDefault(builder.all, this, "all", this.all());
+		this.cron = ApiTypeHelper.requireNonNull(builder.cron, this, "cron");
+		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
 
 	}
 

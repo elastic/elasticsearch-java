@@ -109,36 +109,28 @@ public class DataCounts implements JsonpSerializable {
 
 	private DataCounts(Builder builder) {
 
-		this.bucketCount = ApiTypeHelper.requireNonNullWithDefault(builder.bucketCount, this, "bucketCount",
-				this.bucketCount());
+		this.bucketCount = ApiTypeHelper.requireNonNull(builder.bucketCount, this, "bucketCount", 0);
 		this.earliestRecordTimestamp = builder.earliestRecordTimestamp;
-		this.emptyBucketCount = ApiTypeHelper.requireNonNullWithDefault(builder.emptyBucketCount, this,
-				"emptyBucketCount", this.emptyBucketCount());
-		this.inputBytes = ApiTypeHelper.requireNonNullWithDefault(builder.inputBytes, this, "inputBytes",
-				this.inputBytes());
-		this.inputFieldCount = ApiTypeHelper.requireNonNullWithDefault(builder.inputFieldCount, this, "inputFieldCount",
-				this.inputFieldCount());
-		this.inputRecordCount = ApiTypeHelper.requireNonNullWithDefault(builder.inputRecordCount, this,
-				"inputRecordCount", this.inputRecordCount());
-		this.invalidDateCount = ApiTypeHelper.requireNonNullWithDefault(builder.invalidDateCount, this,
-				"invalidDateCount", this.invalidDateCount());
-		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
+		this.emptyBucketCount = ApiTypeHelper.requireNonNull(builder.emptyBucketCount, this, "emptyBucketCount", 0);
+		this.inputBytes = ApiTypeHelper.requireNonNull(builder.inputBytes, this, "inputBytes", 0);
+		this.inputFieldCount = ApiTypeHelper.requireNonNull(builder.inputFieldCount, this, "inputFieldCount", 0);
+		this.inputRecordCount = ApiTypeHelper.requireNonNull(builder.inputRecordCount, this, "inputRecordCount", 0);
+		this.invalidDateCount = ApiTypeHelper.requireNonNull(builder.invalidDateCount, this, "invalidDateCount", 0);
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.lastDataTime = builder.lastDataTime;
 		this.latestEmptyBucketTimestamp = builder.latestEmptyBucketTimestamp;
 		this.latestRecordTimestamp = builder.latestRecordTimestamp;
 		this.latestSparseBucketTimestamp = builder.latestSparseBucketTimestamp;
 		this.latestBucketTimestamp = builder.latestBucketTimestamp;
 		this.logTime = builder.logTime;
-		this.missingFieldCount = ApiTypeHelper.requireNonNullWithDefault(builder.missingFieldCount, this,
-				"missingFieldCount", this.missingFieldCount());
-		this.outOfOrderTimestampCount = ApiTypeHelper.requireNonNullWithDefault(builder.outOfOrderTimestampCount, this,
-				"outOfOrderTimestampCount", this.outOfOrderTimestampCount());
-		this.processedFieldCount = ApiTypeHelper.requireNonNullWithDefault(builder.processedFieldCount, this,
-				"processedFieldCount", this.processedFieldCount());
-		this.processedRecordCount = ApiTypeHelper.requireNonNullWithDefault(builder.processedRecordCount, this,
-				"processedRecordCount", this.processedRecordCount());
-		this.sparseBucketCount = ApiTypeHelper.requireNonNullWithDefault(builder.sparseBucketCount, this,
-				"sparseBucketCount", this.sparseBucketCount());
+		this.missingFieldCount = ApiTypeHelper.requireNonNull(builder.missingFieldCount, this, "missingFieldCount", 0);
+		this.outOfOrderTimestampCount = ApiTypeHelper.requireNonNull(builder.outOfOrderTimestampCount, this,
+				"outOfOrderTimestampCount", 0);
+		this.processedFieldCount = ApiTypeHelper.requireNonNull(builder.processedFieldCount, this,
+				"processedFieldCount", 0);
+		this.processedRecordCount = ApiTypeHelper.requireNonNull(builder.processedRecordCount, this,
+				"processedRecordCount", 0);
+		this.sparseBucketCount = ApiTypeHelper.requireNonNull(builder.sparseBucketCount, this, "sparseBucketCount", 0);
 
 	}
 

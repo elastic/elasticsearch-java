@@ -85,9 +85,8 @@ public class UpgradeJobSnapshotRequest extends RequestBase {
 
 	private UpgradeJobSnapshotRequest(Builder builder) {
 
-		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
-		this.snapshotId = ApiTypeHelper.requireNonNullWithDefault(builder.snapshotId, this, "snapshotId",
-				this.snapshotId());
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.snapshotId = ApiTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
 		this.timeout = builder.timeout;
 		this.waitForCompletion = builder.waitForCompletion;
 

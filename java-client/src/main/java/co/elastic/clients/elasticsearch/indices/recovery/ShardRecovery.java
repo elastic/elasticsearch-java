@@ -105,25 +105,22 @@ public class ShardRecovery implements JsonpSerializable {
 
 	private ShardRecovery(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
-		this.primary = ApiTypeHelper.requireNonNullWithDefault(builder.primary, this, "primary", this.primary());
-		this.source = ApiTypeHelper.requireNonNullWithDefault(builder.source, this, "source", this.source());
-		this.stage = ApiTypeHelper.requireNonNullWithDefault(builder.stage, this, "stage", this.stage());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id", 0);
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary", false);
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.stage = ApiTypeHelper.requireNonNull(builder.stage, this, "stage");
 		this.start = builder.start;
 		this.startTime = builder.startTime;
-		this.startTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.startTimeInMillis, this,
-				"startTimeInMillis", this.startTimeInMillis());
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis", 0);
 		this.stopTime = builder.stopTime;
 		this.stopTimeInMillis = builder.stopTimeInMillis;
-		this.target = ApiTypeHelper.requireNonNullWithDefault(builder.target, this, "target", this.target());
+		this.target = ApiTypeHelper.requireNonNull(builder.target, this, "target");
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.totalTimeInMillis, this,
-				"totalTimeInMillis", this.totalTimeInMillis());
-		this.translog = ApiTypeHelper.requireNonNullWithDefault(builder.translog, this, "translog", this.translog());
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
-		this.verifyIndex = ApiTypeHelper.requireNonNullWithDefault(builder.verifyIndex, this, "verifyIndex",
-				this.verifyIndex());
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis", 0);
+		this.translog = ApiTypeHelper.requireNonNull(builder.translog, this, "translog");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.verifyIndex = ApiTypeHelper.requireNonNull(builder.verifyIndex, this, "verifyIndex");
 
 	}
 

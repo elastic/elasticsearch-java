@@ -89,16 +89,13 @@ public class PagerDutyEvent implements JsonpSerializable {
 	protected PagerDutyEvent(AbstractBuilder<?> builder) {
 
 		this.account = builder.account;
-		this.attachPayload = ApiTypeHelper.requireNonNullWithDefault(builder.attachPayload, this, "attachPayload",
-				this.attachPayload());
+		this.attachPayload = ApiTypeHelper.requireNonNull(builder.attachPayload, this, "attachPayload", false);
 		this.client = builder.client;
 		this.clientUrl = builder.clientUrl;
 		this.contexts = ApiTypeHelper.unmodifiable(builder.contexts);
-		this.description = ApiTypeHelper.requireNonNullWithDefault(builder.description, this, "description",
-				this.description());
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
 		this.eventType = builder.eventType;
-		this.incidentKey = ApiTypeHelper.requireNonNullWithDefault(builder.incidentKey, this, "incidentKey",
-				this.incidentKey());
+		this.incidentKey = ApiTypeHelper.requireNonNull(builder.incidentKey, this, "incidentKey");
 		this.proxy = builder.proxy;
 
 	}

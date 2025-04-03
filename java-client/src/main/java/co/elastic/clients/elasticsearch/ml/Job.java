@@ -130,33 +130,29 @@ public class Job implements JsonpSerializable {
 
 	private Job(Builder builder) {
 
-		this.allowLazyOpen = ApiTypeHelper.requireNonNullWithDefault(builder.allowLazyOpen, this, "allowLazyOpen",
-				this.allowLazyOpen());
-		this.analysisConfig = ApiTypeHelper.requireNonNullWithDefault(builder.analysisConfig, this, "analysisConfig",
-				this.analysisConfig());
+		this.allowLazyOpen = ApiTypeHelper.requireNonNull(builder.allowLazyOpen, this, "allowLazyOpen", false);
+		this.analysisConfig = ApiTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
 		this.analysisLimits = builder.analysisLimits;
 		this.backgroundPersistInterval = builder.backgroundPersistInterval;
 		this.blocked = builder.blocked;
 		this.createTime = builder.createTime;
 		this.customSettings = builder.customSettings;
 		this.dailyModelSnapshotRetentionAfterDays = builder.dailyModelSnapshotRetentionAfterDays;
-		this.dataDescription = ApiTypeHelper.requireNonNullWithDefault(builder.dataDescription, this, "dataDescription",
-				this.dataDescription());
+		this.dataDescription = ApiTypeHelper.requireNonNull(builder.dataDescription, this, "dataDescription");
 		this.datafeedConfig = builder.datafeedConfig;
 		this.deleting = builder.deleting;
 		this.description = builder.description;
 		this.finishedTime = builder.finishedTime;
 		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
-		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.jobType = builder.jobType;
 		this.jobVersion = builder.jobVersion;
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelSnapshotId = builder.modelSnapshotId;
-		this.modelSnapshotRetentionDays = ApiTypeHelper.requireNonNullWithDefault(builder.modelSnapshotRetentionDays,
-				this, "modelSnapshotRetentionDays", this.modelSnapshotRetentionDays());
+		this.modelSnapshotRetentionDays = ApiTypeHelper.requireNonNull(builder.modelSnapshotRetentionDays, this,
+				"modelSnapshotRetentionDays", 0);
 		this.renormalizationWindowDays = builder.renormalizationWindowDays;
-		this.resultsIndexName = ApiTypeHelper.requireNonNullWithDefault(builder.resultsIndexName, this,
-				"resultsIndexName", this.resultsIndexName());
+		this.resultsIndexName = ApiTypeHelper.requireNonNull(builder.resultsIndexName, this, "resultsIndexName");
 		this.resultsRetentionDays = builder.resultsRetentionDays;
 
 	}

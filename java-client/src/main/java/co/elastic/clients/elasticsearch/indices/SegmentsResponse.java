@@ -71,7 +71,7 @@ public class SegmentsResponse implements JsonpSerializable {
 	private SegmentsResponse(Builder builder) {
 
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.shards = ApiTypeHelper.requireNonNullWithDefault(builder.shards, this, "shards", this.shards());
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 

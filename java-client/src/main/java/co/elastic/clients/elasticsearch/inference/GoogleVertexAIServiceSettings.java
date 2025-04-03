@@ -75,13 +75,11 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 
 	private GoogleVertexAIServiceSettings(Builder builder) {
 
-		this.location = ApiTypeHelper.requireNonNullWithDefault(builder.location, this, "location", this.location());
-		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
-		this.projectId = ApiTypeHelper.requireNonNullWithDefault(builder.projectId, this, "projectId",
-				this.projectId());
+		this.location = ApiTypeHelper.requireNonNull(builder.location, this, "location");
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.projectId = ApiTypeHelper.requireNonNull(builder.projectId, this, "projectId");
 		this.rateLimit = builder.rateLimit;
-		this.serviceAccountJson = ApiTypeHelper.requireNonNullWithDefault(builder.serviceAccountJson, this,
-				"serviceAccountJson", this.serviceAccountJson());
+		this.serviceAccountJson = ApiTypeHelper.requireNonNull(builder.serviceAccountJson, this, "serviceAccountJson");
 
 	}
 

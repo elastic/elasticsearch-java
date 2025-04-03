@@ -75,7 +75,7 @@ public class ClosePointInTimeRequest extends RequestBase implements JsonpSeriali
 
 	private ClosePointInTimeRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 

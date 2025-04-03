@@ -66,7 +66,7 @@ public class NodeInfoXpackLicenseType implements JsonpSerializable {
 
 	private NodeInfoXpackLicenseType(Builder builder) {
 
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 

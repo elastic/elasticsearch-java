@@ -71,8 +71,8 @@ public class DataframeAnalysisFeatureProcessorOneHotEncoding
 
 	private DataframeAnalysisFeatureProcessorOneHotEncoding(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
-		this.hotMap = ApiTypeHelper.requireNonNullWithDefault(builder.hotMap, this, "hotMap", this.hotMap());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.hotMap = ApiTypeHelper.requireNonNull(builder.hotMap, this, "hotMap");
 
 	}
 

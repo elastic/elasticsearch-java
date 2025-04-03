@@ -83,10 +83,10 @@ public class PrefixQuery extends QueryBase
 
 	private PrefixQuery(Builder builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.rewrite = builder.rewrite;
-		this.value = ApiTypeHelper.requireNonNullWithDefault(builder.value, this, "value", this.value());
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 		this.caseInsensitive = builder.caseInsensitive;
 
 	}

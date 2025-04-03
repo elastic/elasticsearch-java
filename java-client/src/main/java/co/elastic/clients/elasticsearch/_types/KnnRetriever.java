@@ -81,12 +81,11 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 	private KnnRetriever(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.queryVector = ApiTypeHelper.unmodifiable(builder.queryVector);
 		this.queryVectorBuilder = builder.queryVectorBuilder;
-		this.k = ApiTypeHelper.requireNonNullWithDefault(builder.k, this, "k", this.k());
-		this.numCandidates = ApiTypeHelper.requireNonNullWithDefault(builder.numCandidates, this, "numCandidates",
-				this.numCandidates());
+		this.k = ApiTypeHelper.requireNonNull(builder.k, this, "k", 0);
+		this.numCandidates = ApiTypeHelper.requireNonNull(builder.numCandidates, this, "numCandidates", 0);
 		this.similarity = builder.similarity;
 		this.rescoreVector = builder.rescoreVector;
 

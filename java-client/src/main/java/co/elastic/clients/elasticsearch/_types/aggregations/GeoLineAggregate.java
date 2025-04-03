@@ -70,10 +70,9 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 	private GeoLineAggregate(Builder builder) {
 		super(builder);
 
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
-		this.geometry = ApiTypeHelper.requireNonNullWithDefault(builder.geometry, this, "geometry", this.geometry());
-		this.properties = ApiTypeHelper.requireNonNullWithDefault(builder.properties, this, "properties",
-				this.properties());
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.geometry = ApiTypeHelper.requireNonNull(builder.geometry, this, "geometry");
+		this.properties = ApiTypeHelper.requireNonNull(builder.properties, this, "properties");
 
 	}
 

@@ -80,14 +80,11 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 	private AzureOpenAIServiceSettings(Builder builder) {
 
 		this.apiKey = builder.apiKey;
-		this.apiVersion = ApiTypeHelper.requireNonNullWithDefault(builder.apiVersion, this, "apiVersion",
-				this.apiVersion());
-		this.deploymentId = ApiTypeHelper.requireNonNullWithDefault(builder.deploymentId, this, "deploymentId",
-				this.deploymentId());
+		this.apiVersion = ApiTypeHelper.requireNonNull(builder.apiVersion, this, "apiVersion");
+		this.deploymentId = ApiTypeHelper.requireNonNull(builder.deploymentId, this, "deploymentId");
 		this.entraId = builder.entraId;
 		this.rateLimit = builder.rateLimit;
-		this.resourceName = ApiTypeHelper.requireNonNullWithDefault(builder.resourceName, this, "resourceName",
-				this.resourceName());
+		this.resourceName = ApiTypeHelper.requireNonNull(builder.resourceName, this, "resourceName");
 
 	}
 

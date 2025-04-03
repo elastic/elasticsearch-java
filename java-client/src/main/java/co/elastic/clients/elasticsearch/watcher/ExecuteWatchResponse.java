@@ -68,9 +68,8 @@ public class ExecuteWatchResponse implements JsonpSerializable {
 
 	private ExecuteWatchResponse(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.watchRecord = ApiTypeHelper.requireNonNullWithDefault(builder.watchRecord, this, "watchRecord",
-				this.watchRecord());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.watchRecord = ApiTypeHelper.requireNonNull(builder.watchRecord, this, "watchRecord");
 
 	}
 

@@ -69,8 +69,8 @@ public class CompletionToolChoice implements JsonpSerializable {
 
 	private CompletionToolChoice(Builder builder) {
 
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
-		this.function = ApiTypeHelper.requireNonNullWithDefault(builder.function, this, "function", this.function());
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.function = ApiTypeHelper.requireNonNull(builder.function, this, "function");
 
 	}
 

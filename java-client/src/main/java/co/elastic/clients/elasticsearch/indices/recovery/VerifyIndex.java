@@ -75,11 +75,10 @@ public class VerifyIndex implements JsonpSerializable {
 	private VerifyIndex(Builder builder) {
 
 		this.checkIndexTime = builder.checkIndexTime;
-		this.checkIndexTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.checkIndexTimeInMillis, this,
-				"checkIndexTimeInMillis", this.checkIndexTimeInMillis());
+		this.checkIndexTimeInMillis = ApiTypeHelper.requireNonNull(builder.checkIndexTimeInMillis, this,
+				"checkIndexTimeInMillis", 0);
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.totalTimeInMillis, this,
-				"totalTimeInMillis", this.totalTimeInMillis());
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis", 0);
 
 	}
 

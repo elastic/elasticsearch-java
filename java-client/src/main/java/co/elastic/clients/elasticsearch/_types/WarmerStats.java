@@ -72,11 +72,10 @@ public class WarmerStats implements JsonpSerializable {
 
 	private WarmerStats(Builder builder) {
 
-		this.current = ApiTypeHelper.requireNonNullWithDefault(builder.current, this, "current", this.current());
-		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
+		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current", 0);
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.totalTimeInMillis, this,
-				"totalTimeInMillis", this.totalTimeInMillis());
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis", 0);
 
 	}
 

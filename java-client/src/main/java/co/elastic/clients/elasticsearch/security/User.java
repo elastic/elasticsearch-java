@@ -88,8 +88,8 @@ public class User implements JsonpSerializable {
 		this.fullName = builder.fullName;
 		this.metadata = ApiTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
 		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
-		this.username = ApiTypeHelper.requireNonNullWithDefault(builder.username, this, "username", this.username());
-		this.enabled = ApiTypeHelper.requireNonNullWithDefault(builder.enabled, this, "enabled", this.enabled());
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
 		this.profileUid = builder.profileUid;
 
 	}

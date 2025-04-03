@@ -80,11 +80,10 @@ public class RerouteParameters implements JsonpSerializable {
 
 	private RerouteParameters(Builder builder) {
 
-		this.allowPrimary = ApiTypeHelper.requireNonNullWithDefault(builder.allowPrimary, this, "allowPrimary",
-				this.allowPrimary());
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
-		this.node = ApiTypeHelper.requireNonNullWithDefault(builder.node, this, "node", this.node());
-		this.shard = ApiTypeHelper.requireNonNullWithDefault(builder.shard, this, "shard", this.shard());
+		this.allowPrimary = ApiTypeHelper.requireNonNull(builder.allowPrimary, this, "allowPrimary", false);
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard", 0);
 		this.fromNode = builder.fromNode;
 		this.toNode = builder.toNode;
 

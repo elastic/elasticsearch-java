@@ -80,10 +80,9 @@ public class DatafeedStats implements JsonpSerializable {
 	private DatafeedStats(Builder builder) {
 
 		this.assignmentExplanation = builder.assignmentExplanation;
-		this.datafeedId = ApiTypeHelper.requireNonNullWithDefault(builder.datafeedId, this, "datafeedId",
-				this.datafeedId());
+		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.node = builder.node;
-		this.state = ApiTypeHelper.requireNonNullWithDefault(builder.state, this, "state", this.state());
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 		this.timingStats = builder.timingStats;
 		this.runningState = builder.runningState;
 

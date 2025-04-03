@@ -87,22 +87,18 @@ public class Security extends Base {
 	private Security(Builder builder) {
 		super(builder);
 
-		this.apiKeyService = ApiTypeHelper.requireNonNullWithDefault(builder.apiKeyService, this, "apiKeyService",
-				this.apiKeyService());
-		this.anonymous = ApiTypeHelper.requireNonNullWithDefault(builder.anonymous, this, "anonymous",
-				this.anonymous());
-		this.audit = ApiTypeHelper.requireNonNullWithDefault(builder.audit, this, "audit", this.audit());
-		this.fips140 = ApiTypeHelper.requireNonNullWithDefault(builder.fips140, this, "fips140", this.fips140());
-		this.ipfilter = ApiTypeHelper.requireNonNullWithDefault(builder.ipfilter, this, "ipfilter", this.ipfilter());
+		this.apiKeyService = ApiTypeHelper.requireNonNull(builder.apiKeyService, this, "apiKeyService");
+		this.anonymous = ApiTypeHelper.requireNonNull(builder.anonymous, this, "anonymous");
+		this.audit = ApiTypeHelper.requireNonNull(builder.audit, this, "audit");
+		this.fips140 = ApiTypeHelper.requireNonNull(builder.fips140, this, "fips140");
+		this.ipfilter = ApiTypeHelper.requireNonNull(builder.ipfilter, this, "ipfilter");
 		this.realms = ApiTypeHelper.unmodifiableRequired(builder.realms, this, "realms");
 		this.roleMapping = ApiTypeHelper.unmodifiableRequired(builder.roleMapping, this, "roleMapping");
-		this.roles = ApiTypeHelper.requireNonNullWithDefault(builder.roles, this, "roles", this.roles());
-		this.ssl = ApiTypeHelper.requireNonNullWithDefault(builder.ssl, this, "ssl", this.ssl());
+		this.roles = ApiTypeHelper.requireNonNull(builder.roles, this, "roles");
+		this.ssl = ApiTypeHelper.requireNonNull(builder.ssl, this, "ssl");
 		this.systemKey = builder.systemKey;
-		this.tokenService = ApiTypeHelper.requireNonNullWithDefault(builder.tokenService, this, "tokenService",
-				this.tokenService());
-		this.operatorPrivileges = ApiTypeHelper.requireNonNullWithDefault(builder.operatorPrivileges, this,
-				"operatorPrivileges", this.operatorPrivileges());
+		this.tokenService = ApiTypeHelper.requireNonNull(builder.tokenService, this, "tokenService");
+		this.operatorPrivileges = ApiTypeHelper.requireNonNull(builder.operatorPrivileges, this, "operatorPrivileges");
 
 	}
 

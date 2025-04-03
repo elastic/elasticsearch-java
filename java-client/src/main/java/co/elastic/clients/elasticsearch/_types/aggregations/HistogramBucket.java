@@ -69,7 +69,7 @@ public class HistogramBucket extends MultiBucketBase {
 		super(builder);
 
 		this.keyAsString = builder.keyAsString;
-		this.key = ApiTypeHelper.requireNonNullWithDefault(builder.key, this, "key", this.key());
+		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key", 0);
 
 	}
 

@@ -66,7 +66,7 @@ public class NodeInfoSettingsTransportFeatures implements JsonpSerializable {
 
 	private NodeInfoSettingsTransportFeatures(Builder builder) {
 
-		this.xPack = ApiTypeHelper.requireNonNullWithDefault(builder.xPack, this, "xPack", this.xPack());
+		this.xPack = ApiTypeHelper.requireNonNull(builder.xPack, this, "xPack");
 
 	}
 

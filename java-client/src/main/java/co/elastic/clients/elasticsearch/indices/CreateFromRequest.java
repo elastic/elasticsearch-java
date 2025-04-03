@@ -80,10 +80,9 @@ public class CreateFromRequest extends RequestBase implements JsonpSerializable 
 
 	private CreateFromRequest(Builder builder) {
 
-		this.dest = ApiTypeHelper.requireNonNullWithDefault(builder.dest, this, "dest", this.dest());
-		this.source = ApiTypeHelper.requireNonNullWithDefault(builder.source, this, "source", this.source());
-		this.createFrom = ApiTypeHelper.requireNonNullWithDefault(builder.createFrom, this, "createFrom",
-				this.createFrom());
+		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.createFrom = ApiTypeHelper.requireNonNull(builder.createFrom, this, "createFrom");
 
 	}
 

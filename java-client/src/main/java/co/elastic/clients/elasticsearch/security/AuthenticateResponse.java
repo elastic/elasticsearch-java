@@ -96,18 +96,16 @@ public class AuthenticateResponse implements JsonpSerializable {
 	private AuthenticateResponse(Builder builder) {
 
 		this.apiKey = builder.apiKey;
-		this.authenticationRealm = ApiTypeHelper.requireNonNullWithDefault(builder.authenticationRealm, this,
-				"authenticationRealm", this.authenticationRealm());
+		this.authenticationRealm = ApiTypeHelper.requireNonNull(builder.authenticationRealm, this,
+				"authenticationRealm");
 		this.email = builder.email;
 		this.fullName = builder.fullName;
-		this.lookupRealm = ApiTypeHelper.requireNonNullWithDefault(builder.lookupRealm, this, "lookupRealm",
-				this.lookupRealm());
+		this.lookupRealm = ApiTypeHelper.requireNonNull(builder.lookupRealm, this, "lookupRealm");
 		this.metadata = ApiTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
 		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
-		this.username = ApiTypeHelper.requireNonNullWithDefault(builder.username, this, "username", this.username());
-		this.enabled = ApiTypeHelper.requireNonNullWithDefault(builder.enabled, this, "enabled", this.enabled());
-		this.authenticationType = ApiTypeHelper.requireNonNullWithDefault(builder.authenticationType, this,
-				"authenticationType", this.authenticationType());
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
+		this.authenticationType = ApiTypeHelper.requireNonNull(builder.authenticationType, this, "authenticationType");
 		this.token = builder.token;
 
 	}

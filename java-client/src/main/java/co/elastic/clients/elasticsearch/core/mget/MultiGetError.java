@@ -70,9 +70,9 @@ public class MultiGetError implements JsonpSerializable {
 
 	private MultiGetError(Builder builder) {
 
-		this.error = ApiTypeHelper.requireNonNullWithDefault(builder.error, this, "error", this.error());
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.error = ApiTypeHelper.requireNonNull(builder.error, this, "error");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 

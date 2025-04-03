@@ -114,27 +114,24 @@ public class ConnectorSyncJob implements JsonpSerializable {
 		this.cancelationRequestedAt = builder.cancelationRequestedAt;
 		this.canceledAt = builder.canceledAt;
 		this.completedAt = builder.completedAt;
-		this.connector = ApiTypeHelper.requireNonNullWithDefault(builder.connector, this, "connector",
-				this.connector());
-		this.createdAt = ApiTypeHelper.requireNonNullWithDefault(builder.createdAt, this, "createdAt",
-				this.createdAt());
-		this.deletedDocumentCount = ApiTypeHelper.requireNonNullWithDefault(builder.deletedDocumentCount, this,
-				"deletedDocumentCount", this.deletedDocumentCount());
+		this.connector = ApiTypeHelper.requireNonNull(builder.connector, this, "connector");
+		this.createdAt = ApiTypeHelper.requireNonNull(builder.createdAt, this, "createdAt");
+		this.deletedDocumentCount = ApiTypeHelper.requireNonNull(builder.deletedDocumentCount, this,
+				"deletedDocumentCount", 0);
 		this.error = builder.error;
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.indexedDocumentCount = ApiTypeHelper.requireNonNullWithDefault(builder.indexedDocumentCount, this,
-				"indexedDocumentCount", this.indexedDocumentCount());
-		this.indexedDocumentVolume = ApiTypeHelper.requireNonNullWithDefault(builder.indexedDocumentVolume, this,
-				"indexedDocumentVolume", this.indexedDocumentVolume());
-		this.jobType = ApiTypeHelper.requireNonNullWithDefault(builder.jobType, this, "jobType", this.jobType());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.indexedDocumentCount = ApiTypeHelper.requireNonNull(builder.indexedDocumentCount, this,
+				"indexedDocumentCount", 0);
+		this.indexedDocumentVolume = ApiTypeHelper.requireNonNull(builder.indexedDocumentVolume, this,
+				"indexedDocumentVolume", 0);
+		this.jobType = ApiTypeHelper.requireNonNull(builder.jobType, this, "jobType");
 		this.lastSeen = builder.lastSeen;
 		this.metadata = ApiTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
 		this.startedAt = builder.startedAt;
-		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
-		this.totalDocumentCount = ApiTypeHelper.requireNonNullWithDefault(builder.totalDocumentCount, this,
-				"totalDocumentCount", this.totalDocumentCount());
-		this.triggerMethod = ApiTypeHelper.requireNonNullWithDefault(builder.triggerMethod, this, "triggerMethod",
-				this.triggerMethod());
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.totalDocumentCount = ApiTypeHelper.requireNonNull(builder.totalDocumentCount, this, "totalDocumentCount",
+				0);
+		this.triggerMethod = ApiTypeHelper.requireNonNull(builder.triggerMethod, this, "triggerMethod");
 		this.workerHostname = builder.workerHostname;
 
 	}

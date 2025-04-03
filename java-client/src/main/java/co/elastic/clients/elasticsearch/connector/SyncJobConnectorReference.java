@@ -86,15 +86,12 @@ public class SyncJobConnectorReference implements JsonpSerializable {
 	private SyncJobConnectorReference(Builder builder) {
 
 		this.configuration = ApiTypeHelper.unmodifiableRequired(builder.configuration, this, "configuration");
-		this.filtering = ApiTypeHelper.requireNonNullWithDefault(builder.filtering, this, "filtering",
-				this.filtering());
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.indexName = ApiTypeHelper.requireNonNullWithDefault(builder.indexName, this, "indexName",
-				this.indexName());
+		this.filtering = ApiTypeHelper.requireNonNull(builder.filtering, this, "filtering");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.indexName = ApiTypeHelper.requireNonNull(builder.indexName, this, "indexName");
 		this.language = builder.language;
 		this.pipeline = builder.pipeline;
-		this.serviceType = ApiTypeHelper.requireNonNullWithDefault(builder.serviceType, this, "serviceType",
-				this.serviceType());
+		this.serviceType = ApiTypeHelper.requireNonNull(builder.serviceType, this, "serviceType");
 		this.syncCursor = builder.syncCursor;
 
 	}

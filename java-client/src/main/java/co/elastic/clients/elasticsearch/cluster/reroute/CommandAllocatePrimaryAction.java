@@ -74,11 +74,10 @@ public class CommandAllocatePrimaryAction implements JsonpSerializable {
 
 	private CommandAllocatePrimaryAction(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
-		this.shard = ApiTypeHelper.requireNonNullWithDefault(builder.shard, this, "shard", this.shard());
-		this.node = ApiTypeHelper.requireNonNullWithDefault(builder.node, this, "node", this.node());
-		this.acceptDataLoss = ApiTypeHelper.requireNonNullWithDefault(builder.acceptDataLoss, this, "acceptDataLoss",
-				this.acceptDataLoss());
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard", 0);
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.acceptDataLoss = ApiTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss", false);
 
 	}
 

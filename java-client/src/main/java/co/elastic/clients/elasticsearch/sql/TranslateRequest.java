@@ -85,7 +85,7 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 
 		this.fetchSize = builder.fetchSize;
 		this.filter = builder.filter;
-		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.timeZone = builder.timeZone;
 
 	}

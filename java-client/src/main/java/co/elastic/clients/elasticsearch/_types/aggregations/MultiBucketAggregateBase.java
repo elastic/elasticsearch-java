@@ -68,7 +68,7 @@ public abstract class MultiBucketAggregateBase<TBucket> extends AggregateBase {
 	protected MultiBucketAggregateBase(AbstractBuilder<TBucket, ?> builder) {
 		super(builder);
 
-		this.buckets = ApiTypeHelper.requireNonNullWithDefault(builder.buckets, this, "buckets", this.buckets());
+		this.buckets = ApiTypeHelper.requireNonNull(builder.buckets, this, "buckets");
 		this.tBucketSerializer = builder.tBucketSerializer;
 
 	}

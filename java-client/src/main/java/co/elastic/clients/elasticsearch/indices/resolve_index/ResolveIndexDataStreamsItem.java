@@ -71,9 +71,8 @@ public class ResolveIndexDataStreamsItem implements JsonpSerializable {
 
 	private ResolveIndexDataStreamsItem(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
-		this.timestampField = ApiTypeHelper.requireNonNullWithDefault(builder.timestampField, this, "timestampField",
-				this.timestampField());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.timestampField = ApiTypeHelper.requireNonNull(builder.timestampField, this, "timestampField");
 		this.backingIndices = ApiTypeHelper.unmodifiableRequired(builder.backingIndices, this, "backingIndices");
 
 	}

@@ -98,7 +98,7 @@ public class CategorizeTextAggregation extends AggregationBase implements Aggreg
 
 	private CategorizeTextAggregation(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.maxUniqueTokens = builder.maxUniqueTokens;
 		this.maxMatchedTokens = builder.maxMatchedTokens;
 		this.similarityThreshold = builder.similarityThreshold;

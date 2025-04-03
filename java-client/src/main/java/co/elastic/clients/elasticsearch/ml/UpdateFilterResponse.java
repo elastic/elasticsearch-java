@@ -70,9 +70,8 @@ public class UpdateFilterResponse implements JsonpSerializable {
 
 	private UpdateFilterResponse(Builder builder) {
 
-		this.description = ApiTypeHelper.requireNonNullWithDefault(builder.description, this, "description",
-				this.description());
-		this.filterId = ApiTypeHelper.requireNonNullWithDefault(builder.filterId, this, "filterId", this.filterId());
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.filterId = ApiTypeHelper.requireNonNull(builder.filterId, this, "filterId");
 		this.items = ApiTypeHelper.unmodifiableRequired(builder.items, this, "items");
 
 	}

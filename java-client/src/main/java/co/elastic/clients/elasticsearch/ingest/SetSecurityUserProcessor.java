@@ -67,7 +67,7 @@ public class SetSecurityUserProcessor extends ProcessorBase implements Processor
 	private SetSecurityUserProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
 
 	}

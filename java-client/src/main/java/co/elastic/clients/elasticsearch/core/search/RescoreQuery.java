@@ -77,7 +77,7 @@ public class RescoreQuery implements RescoreVariant, JsonpSerializable {
 
 	private RescoreQuery(Builder builder) {
 
-		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.queryWeight = builder.queryWeight;
 		this.rescoreQueryWeight = builder.rescoreQueryWeight;
 		this.scoreMode = builder.scoreMode;

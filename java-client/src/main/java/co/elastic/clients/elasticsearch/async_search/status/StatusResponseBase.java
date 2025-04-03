@@ -74,7 +74,7 @@ public abstract class StatusResponseBase extends AsyncSearchResponseBase {
 	protected StatusResponseBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.shards = ApiTypeHelper.requireNonNullWithDefault(builder.shards, this, "shards", this.shards());
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 		this.clusters = builder.clusters;
 		this.completionStatus = builder.completionStatus;
 

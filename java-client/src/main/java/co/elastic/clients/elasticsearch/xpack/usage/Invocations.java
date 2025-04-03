@@ -64,7 +64,7 @@ public class Invocations implements JsonpSerializable {
 
 	private Invocations(Builder builder) {
 
-		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
 
 	}
 

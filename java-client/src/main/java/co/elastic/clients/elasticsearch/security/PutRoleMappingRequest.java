@@ -131,7 +131,7 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 
 		this.enabled = builder.enabled;
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.refresh = builder.refresh;
 		this.roleTemplates = ApiTypeHelper.unmodifiable(builder.roleTemplates);
 		this.roles = ApiTypeHelper.unmodifiable(builder.roles);

@@ -70,7 +70,7 @@ public class Phase implements JsonpSerializable {
 	private Phase(Builder builder) {
 
 		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
-		this.minAge = ApiTypeHelper.requireNonNullWithDefault(builder.minAge, this, "minAge", this.minAge());
+		this.minAge = ApiTypeHelper.requireNonNull(builder.minAge, this, "minAge", 0);
 
 	}
 

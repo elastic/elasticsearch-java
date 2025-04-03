@@ -73,8 +73,7 @@ public class TrainedModelInferenceFeatureImportance implements JsonpSerializable
 
 	private TrainedModelInferenceFeatureImportance(Builder builder) {
 
-		this.featureName = ApiTypeHelper.requireNonNullWithDefault(builder.featureName, this, "featureName",
-				this.featureName());
+		this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
 		this.importance = builder.importance;
 		this.classes = ApiTypeHelper.unmodifiable(builder.classes);
 

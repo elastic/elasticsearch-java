@@ -77,11 +77,11 @@ public class IndexResultSummary implements JsonpSerializable {
 
 	private IndexResultSummary(Builder builder) {
 
-		this.created = ApiTypeHelper.requireNonNullWithDefault(builder.created, this, "created", this.created());
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
-		this.result = ApiTypeHelper.requireNonNullWithDefault(builder.result, this, "result", this.result());
-		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
+		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created", false);
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version", 0);
 
 	}
 

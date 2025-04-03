@@ -74,7 +74,7 @@ public class ResolveIndexItem implements JsonpSerializable {
 
 	private ResolveIndexItem(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
 		this.dataStream = builder.dataStream;

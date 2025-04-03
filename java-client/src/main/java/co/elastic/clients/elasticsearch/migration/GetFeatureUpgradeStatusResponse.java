@@ -71,8 +71,7 @@ public class GetFeatureUpgradeStatusResponse implements JsonpSerializable {
 	private GetFeatureUpgradeStatusResponse(Builder builder) {
 
 		this.features = ApiTypeHelper.unmodifiableRequired(builder.features, this, "features");
-		this.migrationStatus = ApiTypeHelper.requireNonNullWithDefault(builder.migrationStatus, this, "migrationStatus",
-				this.migrationStatus());
+		this.migrationStatus = ApiTypeHelper.requireNonNull(builder.migrationStatus, this, "migrationStatus");
 
 	}
 

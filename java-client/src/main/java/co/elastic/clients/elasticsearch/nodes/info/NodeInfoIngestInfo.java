@@ -65,8 +65,7 @@ public class NodeInfoIngestInfo implements JsonpSerializable {
 
 	private NodeInfoIngestInfo(Builder builder) {
 
-		this.downloader = ApiTypeHelper.requireNonNullWithDefault(builder.downloader, this, "downloader",
-				this.downloader());
+		this.downloader = ApiTypeHelper.requireNonNull(builder.downloader, this, "downloader");
 
 	}
 

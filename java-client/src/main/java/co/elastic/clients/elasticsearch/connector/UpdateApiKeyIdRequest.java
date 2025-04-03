@@ -86,8 +86,7 @@ public class UpdateApiKeyIdRequest extends RequestBase implements JsonpSerializa
 
 		this.apiKeyId = builder.apiKeyId;
 		this.apiKeySecretId = builder.apiKeySecretId;
-		this.connectorId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorId, this, "connectorId",
-				this.connectorId());
+		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
 
 	}
 

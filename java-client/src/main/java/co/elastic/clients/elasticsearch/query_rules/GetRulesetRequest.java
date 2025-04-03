@@ -69,8 +69,7 @@ public class GetRulesetRequest extends RequestBase {
 
 	private GetRulesetRequest(Builder builder) {
 
-		this.rulesetId = ApiTypeHelper.requireNonNullWithDefault(builder.rulesetId, this, "rulesetId",
-				this.rulesetId());
+		this.rulesetId = ApiTypeHelper.requireNonNull(builder.rulesetId, this, "rulesetId");
 
 	}
 

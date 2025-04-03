@@ -71,7 +71,7 @@ public class WeightedTokensQuery extends QueryBase implements QueryVariant {
 
 	private WeightedTokensQuery(Builder builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.tokens = ApiTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
 		this.pruningConfig = builder.pruningConfig;

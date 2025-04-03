@@ -69,7 +69,7 @@ public class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	private KuromojiAnalyzer(Builder builder) {
 
-		this.mode = ApiTypeHelper.requireNonNullWithDefault(builder.mode, this, "mode", this.mode());
+		this.mode = ApiTypeHelper.requireNonNull(builder.mode, this, "mode");
 		this.userDictionary = builder.userDictionary;
 
 	}

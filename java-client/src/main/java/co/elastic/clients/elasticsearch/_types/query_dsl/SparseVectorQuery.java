@@ -136,7 +136,7 @@ public class SparseVectorQuery extends QueryBase
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.query = builder.query;
 		this.prune = builder.prune;
 		this.pruningConfig = builder.pruningConfig;

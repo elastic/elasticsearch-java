@@ -74,13 +74,11 @@ public class InfoResponse implements JsonpSerializable {
 
 	private InfoResponse(Builder builder) {
 
-		this.clusterName = ApiTypeHelper.requireNonNullWithDefault(builder.clusterName, this, "clusterName",
-				this.clusterName());
-		this.clusterUuid = ApiTypeHelper.requireNonNullWithDefault(builder.clusterUuid, this, "clusterUuid",
-				this.clusterUuid());
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
-		this.tagline = ApiTypeHelper.requireNonNullWithDefault(builder.tagline, this, "tagline", this.tagline());
-		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
+		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.clusterUuid = ApiTypeHelper.requireNonNull(builder.clusterUuid, this, "clusterUuid");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.tagline = ApiTypeHelper.requireNonNull(builder.tagline, this, "tagline");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
 

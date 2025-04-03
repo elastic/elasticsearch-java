@@ -65,7 +65,7 @@ public class OidcLogoutResponse implements JsonpSerializable {
 
 	private OidcLogoutResponse(Builder builder) {
 
-		this.redirect = ApiTypeHelper.requireNonNullWithDefault(builder.redirect, this, "redirect", this.redirect());
+		this.redirect = ApiTypeHelper.requireNonNull(builder.redirect, this, "redirect");
 
 	}
 

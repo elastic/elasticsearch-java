@@ -69,10 +69,9 @@ public class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSerializa
 
 	private DataframeEvaluationSummaryAucRocCurveItem(Builder builder) {
 
-		this.tpr = ApiTypeHelper.requireNonNullWithDefault(builder.tpr, this, "tpr", this.tpr());
-		this.fpr = ApiTypeHelper.requireNonNullWithDefault(builder.fpr, this, "fpr", this.fpr());
-		this.threshold = ApiTypeHelper.requireNonNullWithDefault(builder.threshold, this, "threshold",
-				this.threshold());
+		this.tpr = ApiTypeHelper.requireNonNull(builder.tpr, this, "tpr", 0);
+		this.fpr = ApiTypeHelper.requireNonNull(builder.fpr, this, "fpr", 0);
+		this.threshold = ApiTypeHelper.requireNonNull(builder.threshold, this, "threshold", 0);
 
 	}
 

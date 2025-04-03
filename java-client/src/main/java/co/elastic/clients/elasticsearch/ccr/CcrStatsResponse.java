@@ -68,10 +68,8 @@ public class CcrStatsResponse implements JsonpSerializable {
 
 	private CcrStatsResponse(Builder builder) {
 
-		this.autoFollowStats = ApiTypeHelper.requireNonNullWithDefault(builder.autoFollowStats, this, "autoFollowStats",
-				this.autoFollowStats());
-		this.followStats = ApiTypeHelper.requireNonNullWithDefault(builder.followStats, this, "followStats",
-				this.followStats());
+		this.autoFollowStats = ApiTypeHelper.requireNonNull(builder.autoFollowStats, this, "autoFollowStats");
+		this.followStats = ApiTypeHelper.requireNonNull(builder.followStats, this, "followStats");
 
 	}
 

@@ -89,26 +89,18 @@ public class ReadSummaryInfo implements JsonpSerializable {
 
 	private ReadSummaryInfo(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
-		this.maxWait = ApiTypeHelper.requireNonNullWithDefault(builder.maxWait, this, "maxWait", this.maxWait());
-		this.maxWaitNanos = ApiTypeHelper.requireNonNullWithDefault(builder.maxWaitNanos, this, "maxWaitNanos",
-				this.maxWaitNanos());
-		this.totalElapsed = ApiTypeHelper.requireNonNullWithDefault(builder.totalElapsed, this, "totalElapsed",
-				this.totalElapsed());
-		this.totalElapsedNanos = ApiTypeHelper.requireNonNullWithDefault(builder.totalElapsedNanos, this,
-				"totalElapsedNanos", this.totalElapsedNanos());
-		this.totalSize = ApiTypeHelper.requireNonNullWithDefault(builder.totalSize, this, "totalSize",
-				this.totalSize());
-		this.totalSizeBytes = ApiTypeHelper.requireNonNullWithDefault(builder.totalSizeBytes, this, "totalSizeBytes",
-				this.totalSizeBytes());
-		this.totalThrottled = ApiTypeHelper.requireNonNullWithDefault(builder.totalThrottled, this, "totalThrottled",
-				this.totalThrottled());
-		this.totalThrottledNanos = ApiTypeHelper.requireNonNullWithDefault(builder.totalThrottledNanos, this,
-				"totalThrottledNanos", this.totalThrottledNanos());
-		this.totalWait = ApiTypeHelper.requireNonNullWithDefault(builder.totalWait, this, "totalWait",
-				this.totalWait());
-		this.totalWaitNanos = ApiTypeHelper.requireNonNullWithDefault(builder.totalWaitNanos, this, "totalWaitNanos",
-				this.totalWaitNanos());
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
+		this.maxWait = ApiTypeHelper.requireNonNull(builder.maxWait, this, "maxWait");
+		this.maxWaitNanos = ApiTypeHelper.requireNonNull(builder.maxWaitNanos, this, "maxWaitNanos", 0);
+		this.totalElapsed = ApiTypeHelper.requireNonNull(builder.totalElapsed, this, "totalElapsed");
+		this.totalElapsedNanos = ApiTypeHelper.requireNonNull(builder.totalElapsedNanos, this, "totalElapsedNanos", 0);
+		this.totalSize = ApiTypeHelper.requireNonNull(builder.totalSize, this, "totalSize");
+		this.totalSizeBytes = ApiTypeHelper.requireNonNull(builder.totalSizeBytes, this, "totalSizeBytes", 0);
+		this.totalThrottled = ApiTypeHelper.requireNonNull(builder.totalThrottled, this, "totalThrottled");
+		this.totalThrottledNanos = ApiTypeHelper.requireNonNull(builder.totalThrottledNanos, this,
+				"totalThrottledNanos", 0);
+		this.totalWait = ApiTypeHelper.requireNonNull(builder.totalWait, this, "totalWait");
+		this.totalWaitNanos = ApiTypeHelper.requireNonNull(builder.totalWaitNanos, this, "totalWaitNanos", 0);
 
 	}
 

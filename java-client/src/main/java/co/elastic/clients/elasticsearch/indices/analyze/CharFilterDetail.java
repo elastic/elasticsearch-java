@@ -70,7 +70,7 @@ public class CharFilterDetail implements JsonpSerializable {
 	private CharFilterDetail(Builder builder) {
 
 		this.filteredText = ApiTypeHelper.unmodifiableRequired(builder.filteredText, this, "filteredText");
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 

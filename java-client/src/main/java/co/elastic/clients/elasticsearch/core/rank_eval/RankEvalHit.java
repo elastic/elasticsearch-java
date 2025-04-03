@@ -71,9 +71,9 @@ public class RankEvalHit implements JsonpSerializable {
 
 	private RankEvalHit(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
-		this.score = ApiTypeHelper.requireNonNullWithDefault(builder.score, this, "score", this.score());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score", 0);
 
 	}
 

@@ -76,9 +76,8 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 
 	private GeoBoundingBoxQuery(Builder builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
-		this.boundingBox = ApiTypeHelper.requireNonNullWithDefault(builder.boundingBox, this, "boundingBox",
-				this.boundingBox());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.boundingBox = ApiTypeHelper.requireNonNull(builder.boundingBox, this, "boundingBox");
 
 		this.type = builder.type;
 		this.validationMethod = builder.validationMethod;

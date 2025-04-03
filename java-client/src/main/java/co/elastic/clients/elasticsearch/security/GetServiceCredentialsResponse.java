@@ -76,12 +76,10 @@ public class GetServiceCredentialsResponse implements JsonpSerializable {
 
 	private GetServiceCredentialsResponse(Builder builder) {
 
-		this.serviceAccount = ApiTypeHelper.requireNonNullWithDefault(builder.serviceAccount, this, "serviceAccount",
-				this.serviceAccount());
-		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
+		this.serviceAccount = ApiTypeHelper.requireNonNull(builder.serviceAccount, this, "serviceAccount");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.tokens = ApiTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
-		this.nodesCredentials = ApiTypeHelper.requireNonNullWithDefault(builder.nodesCredentials, this,
-				"nodesCredentials", this.nodesCredentials());
+		this.nodesCredentials = ApiTypeHelper.requireNonNull(builder.nodesCredentials, this, "nodesCredentials");
 
 	}
 

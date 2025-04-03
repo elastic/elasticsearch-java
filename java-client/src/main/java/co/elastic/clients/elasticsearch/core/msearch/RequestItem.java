@@ -70,8 +70,8 @@ public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 
 	private RequestItem(Builder builder) {
 
-		this.header = ApiTypeHelper.requireNonNullWithDefault(builder.header, this, "header", this.header());
-		this.body = ApiTypeHelper.requireNonNullWithDefault(builder.body, this, "body", this.body());
+		this.header = ApiTypeHelper.requireNonNull(builder.header, this, "header");
+		this.body = ApiTypeHelper.requireNonNull(builder.body, this, "body");
 
 	}
 

@@ -95,10 +95,9 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 
 	private MoveToStepRequest(Builder builder) {
 
-		this.currentStep = ApiTypeHelper.requireNonNullWithDefault(builder.currentStep, this, "currentStep",
-				this.currentStep());
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
-		this.nextStep = ApiTypeHelper.requireNonNullWithDefault(builder.nextStep, this, "nextStep", this.nextStep());
+		this.currentStep = ApiTypeHelper.requireNonNull(builder.currentStep, this, "currentStep");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.nextStep = ApiTypeHelper.requireNonNull(builder.nextStep, this, "nextStep");
 
 	}
 

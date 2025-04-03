@@ -73,9 +73,8 @@ public class DeleteRuleRequest extends RequestBase {
 
 	private DeleteRuleRequest(Builder builder) {
 
-		this.ruleId = ApiTypeHelper.requireNonNullWithDefault(builder.ruleId, this, "ruleId", this.ruleId());
-		this.rulesetId = ApiTypeHelper.requireNonNullWithDefault(builder.rulesetId, this, "rulesetId",
-				this.rulesetId());
+		this.ruleId = ApiTypeHelper.requireNonNull(builder.ruleId, this, "ruleId");
+		this.rulesetId = ApiTypeHelper.requireNonNull(builder.rulesetId, this, "rulesetId");
 
 	}
 

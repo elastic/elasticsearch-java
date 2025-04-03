@@ -70,8 +70,7 @@ public class SearchableSnapshots extends Base {
 	private SearchableSnapshots(Builder builder) {
 		super(builder);
 
-		this.indicesCount = ApiTypeHelper.requireNonNullWithDefault(builder.indicesCount, this, "indicesCount",
-				this.indicesCount());
+		this.indicesCount = ApiTypeHelper.requireNonNull(builder.indicesCount, this, "indicesCount", 0);
 		this.fullCopyIndicesCount = builder.fullCopyIndicesCount;
 		this.sharedCacheIndicesCount = builder.sharedCacheIndicesCount;
 

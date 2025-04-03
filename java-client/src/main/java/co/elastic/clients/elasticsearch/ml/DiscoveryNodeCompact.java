@@ -76,12 +76,10 @@ public class DiscoveryNodeCompact implements JsonpSerializable {
 
 	private DiscoveryNodeCompact(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
-		this.ephemeralId = ApiTypeHelper.requireNonNullWithDefault(builder.ephemeralId, this, "ephemeralId",
-				this.ephemeralId());
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.transportAddress = ApiTypeHelper.requireNonNullWithDefault(builder.transportAddress, this,
-				"transportAddress", this.transportAddress());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.ephemeralId = ApiTypeHelper.requireNonNull(builder.ephemeralId, this, "ephemeralId");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
 		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
 
 	}

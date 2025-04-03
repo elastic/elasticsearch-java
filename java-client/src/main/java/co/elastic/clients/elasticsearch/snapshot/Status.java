@@ -81,17 +81,15 @@ public class Status implements JsonpSerializable {
 
 	private Status(Builder builder) {
 
-		this.includeGlobalState = ApiTypeHelper.requireNonNullWithDefault(builder.includeGlobalState, this,
-				"includeGlobalState", this.includeGlobalState());
+		this.includeGlobalState = ApiTypeHelper.requireNonNull(builder.includeGlobalState, this, "includeGlobalState",
+				false);
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.repository = ApiTypeHelper.requireNonNullWithDefault(builder.repository, this, "repository",
-				this.repository());
-		this.shardsStats = ApiTypeHelper.requireNonNullWithDefault(builder.shardsStats, this, "shardsStats",
-				this.shardsStats());
-		this.snapshot = ApiTypeHelper.requireNonNullWithDefault(builder.snapshot, this, "snapshot", this.snapshot());
-		this.state = ApiTypeHelper.requireNonNullWithDefault(builder.state, this, "state", this.state());
-		this.stats = ApiTypeHelper.requireNonNullWithDefault(builder.stats, this, "stats", this.stats());
-		this.uuid = ApiTypeHelper.requireNonNullWithDefault(builder.uuid, this, "uuid", this.uuid());
+		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.shardsStats = ApiTypeHelper.requireNonNull(builder.shardsStats, this, "shardsStats");
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
+		this.uuid = ApiTypeHelper.requireNonNull(builder.uuid, this, "uuid");
 
 	}
 

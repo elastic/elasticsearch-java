@@ -64,7 +64,7 @@ public class IndexField implements JsonpSerializable {
 
 	private IndexField(Builder builder) {
 
-		this.enabled = ApiTypeHelper.requireNonNullWithDefault(builder.enabled, this, "enabled", this.enabled());
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
 
 	}
 

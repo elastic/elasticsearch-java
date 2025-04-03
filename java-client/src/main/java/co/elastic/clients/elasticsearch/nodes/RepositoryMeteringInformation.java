@@ -86,21 +86,17 @@ public class RepositoryMeteringInformation implements JsonpSerializable {
 
 	private RepositoryMeteringInformation(Builder builder) {
 
-		this.repositoryName = ApiTypeHelper.requireNonNullWithDefault(builder.repositoryName, this, "repositoryName",
-				this.repositoryName());
-		this.repositoryType = ApiTypeHelper.requireNonNullWithDefault(builder.repositoryType, this, "repositoryType",
-				this.repositoryType());
-		this.repositoryLocation = ApiTypeHelper.requireNonNullWithDefault(builder.repositoryLocation, this,
-				"repositoryLocation", this.repositoryLocation());
-		this.repositoryEphemeralId = ApiTypeHelper.requireNonNullWithDefault(builder.repositoryEphemeralId, this,
-				"repositoryEphemeralId", this.repositoryEphemeralId());
-		this.repositoryStartedAt = ApiTypeHelper.requireNonNullWithDefault(builder.repositoryStartedAt, this,
-				"repositoryStartedAt", this.repositoryStartedAt());
+		this.repositoryName = ApiTypeHelper.requireNonNull(builder.repositoryName, this, "repositoryName");
+		this.repositoryType = ApiTypeHelper.requireNonNull(builder.repositoryType, this, "repositoryType");
+		this.repositoryLocation = ApiTypeHelper.requireNonNull(builder.repositoryLocation, this, "repositoryLocation");
+		this.repositoryEphemeralId = ApiTypeHelper.requireNonNull(builder.repositoryEphemeralId, this,
+				"repositoryEphemeralId");
+		this.repositoryStartedAt = ApiTypeHelper.requireNonNull(builder.repositoryStartedAt, this,
+				"repositoryStartedAt", 0);
 		this.repositoryStoppedAt = builder.repositoryStoppedAt;
-		this.archived = ApiTypeHelper.requireNonNullWithDefault(builder.archived, this, "archived", this.archived());
+		this.archived = ApiTypeHelper.requireNonNull(builder.archived, this, "archived", false);
 		this.clusterVersion = builder.clusterVersion;
-		this.requestCounts = ApiTypeHelper.requireNonNullWithDefault(builder.requestCounts, this, "requestCounts",
-				this.requestCounts());
+		this.requestCounts = ApiTypeHelper.requireNonNull(builder.requestCounts, this, "requestCounts");
 
 	}
 

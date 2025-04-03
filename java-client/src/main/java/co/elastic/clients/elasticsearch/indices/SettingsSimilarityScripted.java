@@ -69,7 +69,7 @@ public class SettingsSimilarityScripted implements SettingsSimilarityVariant, Js
 
 	private SettingsSimilarityScripted(Builder builder) {
 
-		this.script = ApiTypeHelper.requireNonNullWithDefault(builder.script, this, "script", this.script());
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 		this.weightScript = builder.weightScript;
 
 	}

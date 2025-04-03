@@ -72,9 +72,8 @@ public class SnapshotIndexStats implements JsonpSerializable {
 	private SnapshotIndexStats(Builder builder) {
 
 		this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
-		this.shardsStats = ApiTypeHelper.requireNonNullWithDefault(builder.shardsStats, this, "shardsStats",
-				this.shardsStats());
-		this.stats = ApiTypeHelper.requireNonNullWithDefault(builder.stats, this, "stats", this.stats());
+		this.shardsStats = ApiTypeHelper.requireNonNull(builder.shardsStats, this, "shardsStats");
+		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
 
 	}
 

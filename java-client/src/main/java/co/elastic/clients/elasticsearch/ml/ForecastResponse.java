@@ -69,10 +69,8 @@ public class ForecastResponse implements AcknowledgedResponse, JsonpSerializable
 
 	private ForecastResponse(Builder builder) {
 
-		this.acknowledged = ApiTypeHelper.requireNonNullWithDefault(builder.acknowledged, this, "acknowledged",
-				this.acknowledged());
-		this.forecastId = ApiTypeHelper.requireNonNullWithDefault(builder.forecastId, this, "forecastId",
-				this.forecastId());
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged", false);
+		this.forecastId = ApiTypeHelper.requireNonNull(builder.forecastId, this, "forecastId");
 
 	}
 

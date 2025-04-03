@@ -69,8 +69,7 @@ public class ForceMergeAction implements JsonpSerializable {
 
 	private ForceMergeAction(Builder builder) {
 
-		this.maxNumSegments = ApiTypeHelper.requireNonNullWithDefault(builder.maxNumSegments, this, "maxNumSegments",
-				this.maxNumSegments());
+		this.maxNumSegments = ApiTypeHelper.requireNonNull(builder.maxNumSegments, this, "maxNumSegments", 0);
 		this.indexCodec = builder.indexCodec;
 
 	}

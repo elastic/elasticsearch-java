@@ -87,8 +87,8 @@ public class GeoGridProcessor extends ProcessorBase implements ProcessorVariant 
 	private GeoGridProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
-		this.tileType = ApiTypeHelper.requireNonNullWithDefault(builder.tileType, this, "tileType", this.tileType());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.tileType = ApiTypeHelper.requireNonNull(builder.tileType, this, "tileType");
 		this.targetField = builder.targetField;
 		this.parentField = builder.parentField;
 		this.childrenField = builder.childrenField;

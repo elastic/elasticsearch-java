@@ -122,8 +122,8 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		this.create = builder.create;
 		this.deprecated = builder.deprecated;
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
-		this.template = ApiTypeHelper.requireNonNullWithDefault(builder.template, this, "template", this.template());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
 		this.version = builder.version;
 
 	}

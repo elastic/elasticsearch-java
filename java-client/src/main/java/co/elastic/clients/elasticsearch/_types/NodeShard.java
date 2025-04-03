@@ -92,11 +92,11 @@ public class NodeShard implements JsonpSerializable {
 
 	private NodeShard(Builder builder) {
 
-		this.state = ApiTypeHelper.requireNonNullWithDefault(builder.state, this, "state", this.state());
-		this.primary = ApiTypeHelper.requireNonNullWithDefault(builder.primary, this, "primary", this.primary());
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary", false);
 		this.node = builder.node;
-		this.shard = ApiTypeHelper.requireNonNullWithDefault(builder.shard, this, "shard", this.shard());
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard", 0);
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.allocationId = ApiTypeHelper.unmodifiable(builder.allocationId);
 		this.recoverySource = ApiTypeHelper.unmodifiable(builder.recoverySource);
 		this.unassignedInfo = builder.unassignedInfo;

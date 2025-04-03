@@ -122,7 +122,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		this.inferenceConfig = builder.inferenceConfig;
 		this.input = builder.input;
 		this.metadata = builder.metadata;
-		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.modelSizeBytes = builder.modelSizeBytes;
 		this.modelType = builder.modelType;
 		this.platformArchitecture = builder.platformArchitecture;

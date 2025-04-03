@@ -88,7 +88,7 @@ public class ForecastRequest extends RequestBase implements JsonpSerializable {
 
 		this.duration = builder.duration;
 		this.expiresIn = builder.expiresIn;
-		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.maxModelMemory = builder.maxModelMemory;
 
 	}

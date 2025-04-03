@@ -79,8 +79,8 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 
 	private PutPipelineRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.pipeline = ApiTypeHelper.requireNonNullWithDefault(builder.pipeline, this, "pipeline", this.pipeline());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.pipeline = ApiTypeHelper.requireNonNull(builder.pipeline, this, "pipeline");
 
 	}
 

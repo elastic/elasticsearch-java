@@ -85,7 +85,7 @@ public class SamlLogoutRequest extends RequestBase implements JsonpSerializable 
 	private SamlLogoutRequest(Builder builder) {
 
 		this.refreshToken = builder.refreshToken;
-		this.token = ApiTypeHelper.requireNonNullWithDefault(builder.token, this, "token", this.token());
+		this.token = ApiTypeHelper.requireNonNull(builder.token, this, "token");
 
 	}
 

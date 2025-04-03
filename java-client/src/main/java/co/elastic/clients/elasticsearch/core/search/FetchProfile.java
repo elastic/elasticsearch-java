@@ -79,13 +79,10 @@ public class FetchProfile implements JsonpSerializable {
 
 	private FetchProfile(Builder builder) {
 
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
-		this.description = ApiTypeHelper.requireNonNullWithDefault(builder.description, this, "description",
-				this.description());
-		this.timeInNanos = ApiTypeHelper.requireNonNullWithDefault(builder.timeInNanos, this, "timeInNanos",
-				this.timeInNanos());
-		this.breakdown = ApiTypeHelper.requireNonNullWithDefault(builder.breakdown, this, "breakdown",
-				this.breakdown());
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos", 0);
+		this.breakdown = ApiTypeHelper.requireNonNull(builder.breakdown, this, "breakdown");
 		this.debug = builder.debug;
 		this.children = ApiTypeHelper.unmodifiable(builder.children);
 

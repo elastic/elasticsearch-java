@@ -66,9 +66,8 @@ public class IpFilter implements JsonpSerializable {
 
 	private IpFilter(Builder builder) {
 
-		this.http = ApiTypeHelper.requireNonNullWithDefault(builder.http, this, "http", this.http());
-		this.transport = ApiTypeHelper.requireNonNullWithDefault(builder.transport, this, "transport",
-				this.transport());
+		this.http = ApiTypeHelper.requireNonNull(builder.http, this, "http", false);
+		this.transport = ApiTypeHelper.requireNonNull(builder.transport, this, "transport", false);
 
 	}
 

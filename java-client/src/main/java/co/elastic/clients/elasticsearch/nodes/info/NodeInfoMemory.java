@@ -68,9 +68,8 @@ public class NodeInfoMemory implements JsonpSerializable {
 
 	private NodeInfoMemory(Builder builder) {
 
-		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
-		this.totalInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.totalInBytes, this, "totalInBytes",
-				this.totalInBytes());
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes", 0);
 
 	}
 

@@ -80,7 +80,7 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 	private UserAgentProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.regexFile = builder.regexFile;
 		this.targetField = builder.targetField;

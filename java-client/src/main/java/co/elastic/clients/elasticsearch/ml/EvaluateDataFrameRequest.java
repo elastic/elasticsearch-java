@@ -81,9 +81,8 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 
 	private EvaluateDataFrameRequest(Builder builder) {
 
-		this.evaluation = ApiTypeHelper.requireNonNullWithDefault(builder.evaluation, this, "evaluation",
-				this.evaluation());
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.evaluation = ApiTypeHelper.requireNonNull(builder.evaluation, this, "evaluation");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.query = builder.query;
 
 	}

@@ -70,8 +70,7 @@ public class FieldSizeUsage implements JsonpSerializable {
 	private FieldSizeUsage(Builder builder) {
 
 		this.size = builder.size;
-		this.sizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.sizeInBytes, this, "sizeInBytes",
-				this.sizeInBytes());
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes", 0);
 
 	}
 

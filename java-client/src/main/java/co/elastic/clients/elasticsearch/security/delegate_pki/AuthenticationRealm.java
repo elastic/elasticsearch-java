@@ -71,8 +71,8 @@ public class AuthenticationRealm implements JsonpSerializable {
 
 	private AuthenticationRealm(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.domain = builder.domain;
 
 	}

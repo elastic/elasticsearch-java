@@ -79,9 +79,9 @@ public class TermSuggestOption implements JsonpSerializable {
 
 	private TermSuggestOption(Builder builder) {
 
-		this.text = ApiTypeHelper.requireNonNullWithDefault(builder.text, this, "text", this.text());
-		this.score = ApiTypeHelper.requireNonNullWithDefault(builder.score, this, "score", this.score());
-		this.freq = ApiTypeHelper.requireNonNullWithDefault(builder.freq, this, "freq", this.freq());
+		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
+		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score", 0);
+		this.freq = ApiTypeHelper.requireNonNull(builder.freq, this, "freq", 0);
 		this.highlighted = builder.highlighted;
 		this.collateMatch = builder.collateMatch;
 

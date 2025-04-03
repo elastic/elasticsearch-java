@@ -85,10 +85,8 @@ public class ImportDanglingIndexRequest extends RequestBase {
 
 	private ImportDanglingIndexRequest(Builder builder) {
 
-		this.acceptDataLoss = ApiTypeHelper.requireNonNullWithDefault(builder.acceptDataLoss, this, "acceptDataLoss",
-				this.acceptDataLoss());
-		this.indexUuid = ApiTypeHelper.requireNonNullWithDefault(builder.indexUuid, this, "indexUuid",
-				this.indexUuid());
+		this.acceptDataLoss = ApiTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss", false);
+		this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 

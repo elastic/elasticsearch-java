@@ -318,7 +318,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
 		this.includeSourceOnError = builder.includeSourceOnError;
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.opType = builder.opType;
 		this.pipeline = builder.pipeline;
 		this.refresh = builder.refresh;
@@ -328,7 +328,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 		this.waitForActiveShards = builder.waitForActiveShards;
-		this.document = ApiTypeHelper.requireNonNullWithDefault(builder.document, this, "document", this.document());
+		this.document = ApiTypeHelper.requireNonNull(builder.document, this, "document");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}

@@ -80,16 +80,13 @@ public class ClusterJvmVersion implements JsonpSerializable {
 
 	private ClusterJvmVersion(Builder builder) {
 
-		this.bundledJdk = ApiTypeHelper.requireNonNullWithDefault(builder.bundledJdk, this, "bundledJdk",
-				this.bundledJdk());
-		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
-		this.usingBundledJdk = ApiTypeHelper.requireNonNullWithDefault(builder.usingBundledJdk, this, "usingBundledJdk",
-				this.usingBundledJdk());
-		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
-		this.vmName = ApiTypeHelper.requireNonNullWithDefault(builder.vmName, this, "vmName", this.vmName());
-		this.vmVendor = ApiTypeHelper.requireNonNullWithDefault(builder.vmVendor, this, "vmVendor", this.vmVendor());
-		this.vmVersion = ApiTypeHelper.requireNonNullWithDefault(builder.vmVersion, this, "vmVersion",
-				this.vmVersion());
+		this.bundledJdk = ApiTypeHelper.requireNonNull(builder.bundledJdk, this, "bundledJdk", false);
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
+		this.usingBundledJdk = ApiTypeHelper.requireNonNull(builder.usingBundledJdk, this, "usingBundledJdk", false);
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.vmName = ApiTypeHelper.requireNonNull(builder.vmName, this, "vmName");
+		this.vmVendor = ApiTypeHelper.requireNonNull(builder.vmVendor, this, "vmVendor");
+		this.vmVersion = ApiTypeHelper.requireNonNull(builder.vmVersion, this, "vmVersion");
 
 	}
 

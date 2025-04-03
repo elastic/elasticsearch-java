@@ -69,7 +69,7 @@ public class GetCategoriesResponse implements JsonpSerializable {
 	private GetCategoriesResponse(Builder builder) {
 
 		this.categories = ApiTypeHelper.unmodifiableRequired(builder.categories, this, "categories");
-		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 
 	}
 

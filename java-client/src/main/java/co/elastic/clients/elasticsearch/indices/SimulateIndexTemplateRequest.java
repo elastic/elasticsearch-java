@@ -88,7 +88,7 @@ public class SimulateIndexTemplateRequest extends RequestBase {
 		this.create = builder.create;
 		this.includeDefaults = builder.includeDefaults;
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 

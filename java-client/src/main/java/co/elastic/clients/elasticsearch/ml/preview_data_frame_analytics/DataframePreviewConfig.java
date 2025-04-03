@@ -82,8 +82,8 @@ public class DataframePreviewConfig implements JsonpSerializable {
 
 	private DataframePreviewConfig(Builder builder) {
 
-		this.source = ApiTypeHelper.requireNonNullWithDefault(builder.source, this, "source", this.source());
-		this.analysis = ApiTypeHelper.requireNonNullWithDefault(builder.analysis, this, "analysis", this.analysis());
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.analysis = ApiTypeHelper.requireNonNull(builder.analysis, this, "analysis");
 		this.modelMemoryLimit = builder.modelMemoryLimit;
 		this.maxNumThreads = builder.maxNumThreads;
 		this.analyzedFields = builder.analyzedFields;

@@ -115,25 +115,21 @@ public class DataStream implements JsonpSerializable {
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.allowCustomRouting = builder.allowCustomRouting;
 		this.failureStore = builder.failureStore;
-		this.generation = ApiTypeHelper.requireNonNullWithDefault(builder.generation, this, "generation",
-				this.generation());
-		this.hidden = ApiTypeHelper.requireNonNullWithDefault(builder.hidden, this, "hidden", this.hidden());
+		this.generation = ApiTypeHelper.requireNonNull(builder.generation, this, "generation", 0);
+		this.hidden = ApiTypeHelper.requireNonNull(builder.hidden, this, "hidden", false);
 		this.ilmPolicy = builder.ilmPolicy;
-		this.nextGenerationManagedBy = ApiTypeHelper.requireNonNullWithDefault(builder.nextGenerationManagedBy, this,
-				"nextGenerationManagedBy", this.nextGenerationManagedBy());
-		this.preferIlm = ApiTypeHelper.requireNonNullWithDefault(builder.preferIlm, this, "preferIlm",
-				this.preferIlm());
+		this.nextGenerationManagedBy = ApiTypeHelper.requireNonNull(builder.nextGenerationManagedBy, this,
+				"nextGenerationManagedBy");
+		this.preferIlm = ApiTypeHelper.requireNonNull(builder.preferIlm, this, "preferIlm", false);
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 		this.lifecycle = builder.lifecycle;
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.replicated = builder.replicated;
-		this.rolloverOnWrite = ApiTypeHelper.requireNonNullWithDefault(builder.rolloverOnWrite, this, "rolloverOnWrite",
-				this.rolloverOnWrite());
-		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
+		this.rolloverOnWrite = ApiTypeHelper.requireNonNull(builder.rolloverOnWrite, this, "rolloverOnWrite", false);
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.system = builder.system;
-		this.template = ApiTypeHelper.requireNonNullWithDefault(builder.template, this, "template", this.template());
-		this.timestampField = ApiTypeHelper.requireNonNullWithDefault(builder.timestampField, this, "timestampField",
-				this.timestampField());
+		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
+		this.timestampField = ApiTypeHelper.requireNonNull(builder.timestampField, this, "timestampField");
 		this.indexMode = builder.indexMode;
 
 	}

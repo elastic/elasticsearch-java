@@ -75,8 +75,7 @@ public class PreviewTransformResponse<TTransform> implements JsonpSerializable {
 
 	private PreviewTransformResponse(Builder<TTransform> builder) {
 
-		this.generatedDestIndex = ApiTypeHelper.requireNonNullWithDefault(builder.generatedDestIndex, this,
-				"generatedDestIndex", this.generatedDestIndex());
+		this.generatedDestIndex = ApiTypeHelper.requireNonNull(builder.generatedDestIndex, this, "generatedDestIndex");
 		this.preview = ApiTypeHelper.unmodifiableRequired(builder.preview, this, "preview");
 		this.tTransformSerializer = builder.tTransformSerializer;
 

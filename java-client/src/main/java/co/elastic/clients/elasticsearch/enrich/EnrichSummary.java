@@ -65,7 +65,7 @@ public class EnrichSummary implements JsonpSerializable {
 
 	private EnrichSummary(Builder builder) {
 
-		this.config = ApiTypeHelper.requireNonNullWithDefault(builder.config, this, "config", this.config());
+		this.config = ApiTypeHelper.requireNonNull(builder.config, this, "config");
 
 	}
 

@@ -73,7 +73,7 @@ public class NodeInfoSettingsNode implements JsonpSerializable {
 
 	private NodeInfoSettingsNode(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.attr = ApiTypeHelper.unmodifiableRequired(builder.attr, this, "attr");
 		this.maxLocalStorageNodes = builder.maxLocalStorageNodes;
 

@@ -126,41 +126,40 @@ public class SegmentsStats implements JsonpSerializable {
 
 	private SegmentsStats(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.docValuesMemory = builder.docValuesMemory;
-		this.docValuesMemoryInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.docValuesMemoryInBytes, this,
-				"docValuesMemoryInBytes", this.docValuesMemoryInBytes());
+		this.docValuesMemoryInBytes = ApiTypeHelper.requireNonNull(builder.docValuesMemoryInBytes, this,
+				"docValuesMemoryInBytes", 0);
 		this.fileSizes = ApiTypeHelper.unmodifiableRequired(builder.fileSizes, this, "fileSizes");
 		this.fixedBitSet = builder.fixedBitSet;
-		this.fixedBitSetMemoryInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.fixedBitSetMemoryInBytes, this,
-				"fixedBitSetMemoryInBytes", this.fixedBitSetMemoryInBytes());
+		this.fixedBitSetMemoryInBytes = ApiTypeHelper.requireNonNull(builder.fixedBitSetMemoryInBytes, this,
+				"fixedBitSetMemoryInBytes", 0);
 		this.indexWriterMemory = builder.indexWriterMemory;
 		this.indexWriterMaxMemoryInBytes = builder.indexWriterMaxMemoryInBytes;
-		this.indexWriterMemoryInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.indexWriterMemoryInBytes, this,
-				"indexWriterMemoryInBytes", this.indexWriterMemoryInBytes());
-		this.maxUnsafeAutoIdTimestamp = ApiTypeHelper.requireNonNullWithDefault(builder.maxUnsafeAutoIdTimestamp, this,
-				"maxUnsafeAutoIdTimestamp", this.maxUnsafeAutoIdTimestamp());
+		this.indexWriterMemoryInBytes = ApiTypeHelper.requireNonNull(builder.indexWriterMemoryInBytes, this,
+				"indexWriterMemoryInBytes", 0);
+		this.maxUnsafeAutoIdTimestamp = ApiTypeHelper.requireNonNull(builder.maxUnsafeAutoIdTimestamp, this,
+				"maxUnsafeAutoIdTimestamp", 0);
 		this.memory = builder.memory;
-		this.memoryInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.memoryInBytes, this, "memoryInBytes",
-				this.memoryInBytes());
+		this.memoryInBytes = ApiTypeHelper.requireNonNull(builder.memoryInBytes, this, "memoryInBytes", 0);
 		this.normsMemory = builder.normsMemory;
-		this.normsMemoryInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.normsMemoryInBytes, this,
-				"normsMemoryInBytes", this.normsMemoryInBytes());
+		this.normsMemoryInBytes = ApiTypeHelper.requireNonNull(builder.normsMemoryInBytes, this, "normsMemoryInBytes",
+				0);
 		this.pointsMemory = builder.pointsMemory;
-		this.pointsMemoryInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.pointsMemoryInBytes, this,
-				"pointsMemoryInBytes", this.pointsMemoryInBytes());
+		this.pointsMemoryInBytes = ApiTypeHelper.requireNonNull(builder.pointsMemoryInBytes, this,
+				"pointsMemoryInBytes", 0);
 		this.storedMemory = builder.storedMemory;
-		this.storedFieldsMemoryInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.storedFieldsMemoryInBytes,
-				this, "storedFieldsMemoryInBytes", this.storedFieldsMemoryInBytes());
-		this.termsMemoryInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.termsMemoryInBytes, this,
-				"termsMemoryInBytes", this.termsMemoryInBytes());
+		this.storedFieldsMemoryInBytes = ApiTypeHelper.requireNonNull(builder.storedFieldsMemoryInBytes, this,
+				"storedFieldsMemoryInBytes", 0);
+		this.termsMemoryInBytes = ApiTypeHelper.requireNonNull(builder.termsMemoryInBytes, this, "termsMemoryInBytes",
+				0);
 		this.termsMemory = builder.termsMemory;
 		this.termVectoryMemory = builder.termVectoryMemory;
-		this.termVectorsMemoryInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.termVectorsMemoryInBytes, this,
-				"termVectorsMemoryInBytes", this.termVectorsMemoryInBytes());
+		this.termVectorsMemoryInBytes = ApiTypeHelper.requireNonNull(builder.termVectorsMemoryInBytes, this,
+				"termVectorsMemoryInBytes", 0);
 		this.versionMapMemory = builder.versionMapMemory;
-		this.versionMapMemoryInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.versionMapMemoryInBytes, this,
-				"versionMapMemoryInBytes", this.versionMapMemoryInBytes());
+		this.versionMapMemoryInBytes = ApiTypeHelper.requireNonNull(builder.versionMapMemoryInBytes, this,
+				"versionMapMemoryInBytes", 0);
 
 	}
 

@@ -69,7 +69,7 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 		super(builder);
 
 		this.filter = ApiTypeHelper.unmodifiableRequired(builder.filter, this, "filter");
-		this.script = ApiTypeHelper.requireNonNullWithDefault(builder.script, this, "script", this.script());
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 

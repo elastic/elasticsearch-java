@@ -73,7 +73,7 @@ public class PagerDutyContext implements JsonpSerializable {
 
 		this.href = builder.href;
 		this.src = builder.src;
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 

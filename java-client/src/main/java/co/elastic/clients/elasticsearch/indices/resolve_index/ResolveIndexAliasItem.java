@@ -69,7 +69,7 @@ public class ResolveIndexAliasItem implements JsonpSerializable {
 
 	private ResolveIndexAliasItem(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}

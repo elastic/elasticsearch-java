@@ -66,7 +66,7 @@ public class SamlServiceProviderMetadataResponse implements JsonpSerializable {
 
 	private SamlServiceProviderMetadataResponse(Builder builder) {
 
-		this.metadata = ApiTypeHelper.requireNonNullWithDefault(builder.metadata, this, "metadata", this.metadata());
+		this.metadata = ApiTypeHelper.requireNonNull(builder.metadata, this, "metadata");
 
 	}
 

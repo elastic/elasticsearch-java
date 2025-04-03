@@ -69,8 +69,8 @@ public class ErrorResponse implements JsonpSerializable {
 
 	private ErrorResponse(Builder builder) {
 
-		this.error = ApiTypeHelper.requireNonNullWithDefault(builder.error, this, "error", this.error());
-		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
+		this.error = ApiTypeHelper.requireNonNull(builder.error, this, "error");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status", 0);
 
 	}
 

@@ -76,16 +76,12 @@ public class Pipeline implements JsonpSerializable {
 
 	private Pipeline(Builder builder) {
 
-		this.description = ApiTypeHelper.requireNonNullWithDefault(builder.description, this, "description",
-				this.description());
-		this.lastModified = ApiTypeHelper.requireNonNullWithDefault(builder.lastModified, this, "lastModified",
-				this.lastModified());
-		this.pipeline = ApiTypeHelper.requireNonNullWithDefault(builder.pipeline, this, "pipeline", this.pipeline());
-		this.pipelineMetadata = ApiTypeHelper.requireNonNullWithDefault(builder.pipelineMetadata, this,
-				"pipelineMetadata", this.pipelineMetadata());
-		this.pipelineSettings = ApiTypeHelper.requireNonNullWithDefault(builder.pipelineSettings, this,
-				"pipelineSettings", this.pipelineSettings());
-		this.username = ApiTypeHelper.requireNonNullWithDefault(builder.username, this, "username", this.username());
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.lastModified = ApiTypeHelper.requireNonNull(builder.lastModified, this, "lastModified");
+		this.pipeline = ApiTypeHelper.requireNonNull(builder.pipeline, this, "pipeline");
+		this.pipelineMetadata = ApiTypeHelper.requireNonNull(builder.pipelineMetadata, this, "pipelineMetadata");
+		this.pipelineSettings = ApiTypeHelper.requireNonNull(builder.pipelineSettings, this, "pipelineSettings");
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 

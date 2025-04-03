@@ -108,7 +108,7 @@ public class UpdateApiKeyRequest extends RequestBase implements JsonpSerializabl
 	private UpdateApiKeyRequest(Builder builder) {
 
 		this.expiration = builder.expiration;
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.roleDescriptors = ApiTypeHelper.unmodifiable(builder.roleDescriptors);
 

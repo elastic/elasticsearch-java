@@ -76,7 +76,7 @@ public class ClearTrainedModelDeploymentCacheRequest extends RequestBase {
 
 	private ClearTrainedModelDeploymentCacheRequest(Builder builder) {
 
-		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 
 	}
 

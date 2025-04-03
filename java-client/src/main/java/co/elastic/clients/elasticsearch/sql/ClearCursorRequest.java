@@ -69,7 +69,7 @@ public class ClearCursorRequest extends RequestBase implements JsonpSerializable
 
 	private ClearCursorRequest(Builder builder) {
 
-		this.cursor = ApiTypeHelper.requireNonNullWithDefault(builder.cursor, this, "cursor", this.cursor());
+		this.cursor = ApiTypeHelper.requireNonNull(builder.cursor, this, "cursor");
 
 	}
 

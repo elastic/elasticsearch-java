@@ -67,8 +67,8 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 
 	private SearchTransform(Builder builder) {
 
-		this.request = ApiTypeHelper.requireNonNullWithDefault(builder.request, this, "request", this.request());
-		this.timeout = ApiTypeHelper.requireNonNullWithDefault(builder.timeout, this, "timeout", this.timeout());
+		this.request = ApiTypeHelper.requireNonNull(builder.request, this, "request");
+		this.timeout = ApiTypeHelper.requireNonNull(builder.timeout, this, "timeout");
 
 	}
 

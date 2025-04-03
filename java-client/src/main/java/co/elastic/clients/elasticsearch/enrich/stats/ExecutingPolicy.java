@@ -68,8 +68,8 @@ public class ExecutingPolicy implements JsonpSerializable {
 
 	private ExecutingPolicy(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
-		this.task = ApiTypeHelper.requireNonNullWithDefault(builder.task, this, "task", this.task());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.task = ApiTypeHelper.requireNonNull(builder.task, this, "task");
 
 	}
 

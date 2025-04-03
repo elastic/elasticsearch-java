@@ -77,12 +77,11 @@ public abstract class BaseNode implements JsonpSerializable {
 	protected BaseNode(AbstractBuilder<?> builder) {
 
 		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-		this.host = ApiTypeHelper.requireNonNullWithDefault(builder.host, this, "host", this.host());
-		this.ip = ApiTypeHelper.requireNonNullWithDefault(builder.ip, this, "ip", this.ip());
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
+		this.ip = ApiTypeHelper.requireNonNull(builder.ip, this, "ip");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.roles = ApiTypeHelper.unmodifiable(builder.roles);
-		this.transportAddress = ApiTypeHelper.requireNonNullWithDefault(builder.transportAddress, this,
-				"transportAddress", this.transportAddress());
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
 
 	}
 

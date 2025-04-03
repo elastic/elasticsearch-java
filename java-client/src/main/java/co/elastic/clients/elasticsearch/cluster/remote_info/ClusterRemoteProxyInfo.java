@@ -84,20 +84,16 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 
 	private ClusterRemoteProxyInfo(Builder builder) {
 
-		this.connected = ApiTypeHelper.requireNonNullWithDefault(builder.connected, this, "connected",
-				this.connected());
-		this.initialConnectTimeout = ApiTypeHelper.requireNonNullWithDefault(builder.initialConnectTimeout, this,
-				"initialConnectTimeout", this.initialConnectTimeout());
-		this.skipUnavailable = ApiTypeHelper.requireNonNullWithDefault(builder.skipUnavailable, this, "skipUnavailable",
-				this.skipUnavailable());
-		this.proxyAddress = ApiTypeHelper.requireNonNullWithDefault(builder.proxyAddress, this, "proxyAddress",
-				this.proxyAddress());
-		this.serverName = ApiTypeHelper.requireNonNullWithDefault(builder.serverName, this, "serverName",
-				this.serverName());
-		this.numProxySocketsConnected = ApiTypeHelper.requireNonNullWithDefault(builder.numProxySocketsConnected, this,
-				"numProxySocketsConnected", this.numProxySocketsConnected());
-		this.maxProxySocketConnections = ApiTypeHelper.requireNonNullWithDefault(builder.maxProxySocketConnections,
-				this, "maxProxySocketConnections", this.maxProxySocketConnections());
+		this.connected = ApiTypeHelper.requireNonNull(builder.connected, this, "connected", false);
+		this.initialConnectTimeout = ApiTypeHelper.requireNonNull(builder.initialConnectTimeout, this,
+				"initialConnectTimeout");
+		this.skipUnavailable = ApiTypeHelper.requireNonNull(builder.skipUnavailable, this, "skipUnavailable", false);
+		this.proxyAddress = ApiTypeHelper.requireNonNull(builder.proxyAddress, this, "proxyAddress");
+		this.serverName = ApiTypeHelper.requireNonNull(builder.serverName, this, "serverName");
+		this.numProxySocketsConnected = ApiTypeHelper.requireNonNull(builder.numProxySocketsConnected, this,
+				"numProxySocketsConnected", 0);
+		this.maxProxySocketConnections = ApiTypeHelper.requireNonNull(builder.maxProxySocketConnections, this,
+				"maxProxySocketConnections", 0);
 		this.clusterCredentials = builder.clusterCredentials;
 
 	}

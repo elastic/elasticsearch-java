@@ -69,9 +69,8 @@ public class ArrayCompareOpParams implements JsonpSerializable {
 
 	private ArrayCompareOpParams(Builder builder) {
 
-		this.quantifier = ApiTypeHelper.requireNonNullWithDefault(builder.quantifier, this, "quantifier",
-				this.quantifier());
-		this.value = ApiTypeHelper.requireNonNullWithDefault(builder.value, this, "value", this.value());
+		this.quantifier = ApiTypeHelper.requireNonNull(builder.quantifier, this, "quantifier");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 

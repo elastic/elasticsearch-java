@@ -80,7 +80,7 @@ public class UpdateTrainedModelDeploymentRequest extends RequestBase implements 
 	private UpdateTrainedModelDeploymentRequest(Builder builder) {
 
 		this.adaptiveAllocations = builder.adaptiveAllocations;
-		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.numberOfAllocations = builder.numberOfAllocations;
 
 	}

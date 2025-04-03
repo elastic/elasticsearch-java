@@ -80,16 +80,14 @@ public class RolloverResponse implements AcknowledgedResponse, JsonpSerializable
 
 	private RolloverResponse(Builder builder) {
 
-		this.acknowledged = ApiTypeHelper.requireNonNullWithDefault(builder.acknowledged, this, "acknowledged",
-				this.acknowledged());
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged", false);
 		this.conditions = ApiTypeHelper.unmodifiableRequired(builder.conditions, this, "conditions");
-		this.dryRun = ApiTypeHelper.requireNonNullWithDefault(builder.dryRun, this, "dryRun", this.dryRun());
-		this.newIndex = ApiTypeHelper.requireNonNullWithDefault(builder.newIndex, this, "newIndex", this.newIndex());
-		this.oldIndex = ApiTypeHelper.requireNonNullWithDefault(builder.oldIndex, this, "oldIndex", this.oldIndex());
-		this.rolledOver = ApiTypeHelper.requireNonNullWithDefault(builder.rolledOver, this, "rolledOver",
-				this.rolledOver());
-		this.shardsAcknowledged = ApiTypeHelper.requireNonNullWithDefault(builder.shardsAcknowledged, this,
-				"shardsAcknowledged", this.shardsAcknowledged());
+		this.dryRun = ApiTypeHelper.requireNonNull(builder.dryRun, this, "dryRun", false);
+		this.newIndex = ApiTypeHelper.requireNonNull(builder.newIndex, this, "newIndex");
+		this.oldIndex = ApiTypeHelper.requireNonNull(builder.oldIndex, this, "oldIndex");
+		this.rolledOver = ApiTypeHelper.requireNonNull(builder.rolledOver, this, "rolledOver", false);
+		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged",
+				false);
 
 	}
 

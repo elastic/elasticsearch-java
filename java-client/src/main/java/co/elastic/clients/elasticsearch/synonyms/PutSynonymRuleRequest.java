@@ -82,9 +82,9 @@ public class PutSynonymRuleRequest extends RequestBase implements JsonpSerializa
 
 	private PutSynonymRuleRequest(Builder builder) {
 
-		this.ruleId = ApiTypeHelper.requireNonNullWithDefault(builder.ruleId, this, "ruleId", this.ruleId());
-		this.setId = ApiTypeHelper.requireNonNullWithDefault(builder.setId, this, "setId", this.setId());
-		this.synonyms = ApiTypeHelper.requireNonNullWithDefault(builder.synonyms, this, "synonyms", this.synonyms());
+		this.ruleId = ApiTypeHelper.requireNonNull(builder.ruleId, this, "ruleId");
+		this.setId = ApiTypeHelper.requireNonNull(builder.setId, this, "setId");
+		this.synonyms = ApiTypeHelper.requireNonNull(builder.synonyms, this, "synonyms");
 
 	}
 

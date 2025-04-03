@@ -67,8 +67,8 @@ public class EqlFeaturesPipes implements JsonpSerializable {
 
 	private EqlFeaturesPipes(Builder builder) {
 
-		this.pipeTail = ApiTypeHelper.requireNonNullWithDefault(builder.pipeTail, this, "pipeTail", this.pipeTail());
-		this.pipeHead = ApiTypeHelper.requireNonNullWithDefault(builder.pipeHead, this, "pipeHead", this.pipeHead());
+		this.pipeTail = ApiTypeHelper.requireNonNull(builder.pipeTail, this, "pipeTail");
+		this.pipeHead = ApiTypeHelper.requireNonNull(builder.pipeHead, this, "pipeHead");
 
 	}
 

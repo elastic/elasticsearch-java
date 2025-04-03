@@ -92,13 +92,12 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 
 	private PutRuleRequest(Builder builder) {
 
-		this.actions = ApiTypeHelper.requireNonNullWithDefault(builder.actions, this, "actions", this.actions());
+		this.actions = ApiTypeHelper.requireNonNull(builder.actions, this, "actions");
 		this.criteria = ApiTypeHelper.unmodifiableRequired(builder.criteria, this, "criteria");
 		this.priority = builder.priority;
-		this.ruleId = ApiTypeHelper.requireNonNullWithDefault(builder.ruleId, this, "ruleId", this.ruleId());
-		this.rulesetId = ApiTypeHelper.requireNonNullWithDefault(builder.rulesetId, this, "rulesetId",
-				this.rulesetId());
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
+		this.ruleId = ApiTypeHelper.requireNonNull(builder.ruleId, this, "ruleId");
+		this.rulesetId = ApiTypeHelper.requireNonNull(builder.rulesetId, this, "rulesetId");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 

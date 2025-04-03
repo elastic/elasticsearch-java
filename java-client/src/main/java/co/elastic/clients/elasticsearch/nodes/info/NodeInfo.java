@@ -127,17 +127,14 @@ public class NodeInfo implements JsonpSerializable {
 	private NodeInfo(Builder builder) {
 
 		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-		this.buildFlavor = ApiTypeHelper.requireNonNullWithDefault(builder.buildFlavor, this, "buildFlavor",
-				this.buildFlavor());
-		this.buildHash = ApiTypeHelper.requireNonNullWithDefault(builder.buildHash, this, "buildHash",
-				this.buildHash());
-		this.buildType = ApiTypeHelper.requireNonNullWithDefault(builder.buildType, this, "buildType",
-				this.buildType());
-		this.host = ApiTypeHelper.requireNonNullWithDefault(builder.host, this, "host", this.host());
+		this.buildFlavor = ApiTypeHelper.requireNonNull(builder.buildFlavor, this, "buildFlavor");
+		this.buildHash = ApiTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
+		this.buildType = ApiTypeHelper.requireNonNull(builder.buildType, this, "buildType");
+		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
 		this.http = builder.http;
-		this.ip = ApiTypeHelper.requireNonNullWithDefault(builder.ip, this, "ip", this.ip());
+		this.ip = ApiTypeHelper.requireNonNull(builder.ip, this, "ip");
 		this.jvm = builder.jvm;
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.network = builder.network;
 		this.os = builder.os;
 		this.plugins = ApiTypeHelper.unmodifiable(builder.plugins);
@@ -148,9 +145,8 @@ public class NodeInfo implements JsonpSerializable {
 		this.totalIndexingBuffer = builder.totalIndexingBuffer;
 		this.totalIndexingBufferInBytes = builder.totalIndexingBufferInBytes;
 		this.transport = builder.transport;
-		this.transportAddress = ApiTypeHelper.requireNonNullWithDefault(builder.transportAddress, this,
-				"transportAddress", this.transportAddress());
-		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.modules = ApiTypeHelper.unmodifiable(builder.modules);
 		this.ingest = builder.ingest;
 		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);

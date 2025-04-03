@@ -84,7 +84,7 @@ public class UnfollowRequest extends RequestBase {
 
 	private UnfollowRequest(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
 
 	}

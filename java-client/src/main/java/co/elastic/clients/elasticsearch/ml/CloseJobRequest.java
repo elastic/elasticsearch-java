@@ -99,7 +99,7 @@ public class CloseJobRequest extends RequestBase implements JsonpSerializable {
 
 		this.allowNoMatch = builder.allowNoMatch;
 		this.force = builder.force;
-		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.timeout = builder.timeout;
 
 	}

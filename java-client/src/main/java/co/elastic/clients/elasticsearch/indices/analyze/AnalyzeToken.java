@@ -77,14 +77,12 @@ public class AnalyzeToken implements JsonpSerializable {
 
 	private AnalyzeToken(Builder builder) {
 
-		this.endOffset = ApiTypeHelper.requireNonNullWithDefault(builder.endOffset, this, "endOffset",
-				this.endOffset());
-		this.position = ApiTypeHelper.requireNonNullWithDefault(builder.position, this, "position", this.position());
+		this.endOffset = ApiTypeHelper.requireNonNull(builder.endOffset, this, "endOffset", 0);
+		this.position = ApiTypeHelper.requireNonNull(builder.position, this, "position", 0);
 		this.positionlength = builder.positionlength;
-		this.startOffset = ApiTypeHelper.requireNonNullWithDefault(builder.startOffset, this, "startOffset",
-				this.startOffset());
-		this.token = ApiTypeHelper.requireNonNullWithDefault(builder.token, this, "token", this.token());
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
+		this.startOffset = ApiTypeHelper.requireNonNull(builder.startOffset, this, "startOffset", 0);
+		this.token = ApiTypeHelper.requireNonNull(builder.token, this, "token");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 

@@ -86,7 +86,7 @@ public class MultiGetOperation implements JsonpSerializable {
 
 	private MultiGetOperation(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = builder.index;
 		this.routing = builder.routing;
 		this.source = builder.source;

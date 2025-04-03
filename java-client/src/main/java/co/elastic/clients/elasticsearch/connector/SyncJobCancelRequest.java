@@ -75,8 +75,7 @@ public class SyncJobCancelRequest extends RequestBase {
 
 	private SyncJobCancelRequest(Builder builder) {
 
-		this.connectorSyncJobId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorSyncJobId, this,
-				"connectorSyncJobId", this.connectorSyncJobId());
+		this.connectorSyncJobId = ApiTypeHelper.requireNonNull(builder.connectorSyncJobId, this, "connectorSyncJobId");
 
 	}
 

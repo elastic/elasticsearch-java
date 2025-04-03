@@ -77,8 +77,8 @@ public class UserProfile implements JsonpSerializable {
 
 	protected UserProfile(AbstractBuilder<?> builder) {
 
-		this.uid = ApiTypeHelper.requireNonNullWithDefault(builder.uid, this, "uid", this.uid());
-		this.user = ApiTypeHelper.requireNonNullWithDefault(builder.user, this, "user", this.user());
+		this.uid = ApiTypeHelper.requireNonNull(builder.uid, this, "uid");
+		this.user = ApiTypeHelper.requireNonNull(builder.user, this, "user");
 		this.data = ApiTypeHelper.unmodifiableRequired(builder.data, this, "data");
 		this.labels = ApiTypeHelper.unmodifiableRequired(builder.labels, this, "labels");
 		this.enabled = builder.enabled;

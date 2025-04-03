@@ -68,8 +68,8 @@ public class PipelineMetadata implements JsonpSerializable {
 
 	private PipelineMetadata(Builder builder) {
 
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
-		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
 

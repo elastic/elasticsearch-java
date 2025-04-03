@@ -74,7 +74,7 @@ public class ExistsQuery extends QueryBase
 	private ExistsQuery(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 	}
 

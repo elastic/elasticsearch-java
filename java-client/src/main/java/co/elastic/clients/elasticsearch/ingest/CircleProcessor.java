@@ -75,12 +75,10 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 	private CircleProcessor(Builder builder) {
 		super(builder);
 
-		this.errorDistance = ApiTypeHelper.requireNonNullWithDefault(builder.errorDistance, this, "errorDistance",
-				this.errorDistance());
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.errorDistance = ApiTypeHelper.requireNonNull(builder.errorDistance, this, "errorDistance", 0);
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.shapeType = ApiTypeHelper.requireNonNullWithDefault(builder.shapeType, this, "shapeType",
-				this.shapeType());
+		this.shapeType = ApiTypeHelper.requireNonNull(builder.shapeType, this, "shapeType");
 		this.targetField = builder.targetField;
 
 	}

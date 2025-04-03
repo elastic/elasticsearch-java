@@ -84,8 +84,8 @@ public class WatchStatus implements JsonpSerializable {
 		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
 		this.lastChecked = builder.lastChecked;
 		this.lastMetCondition = builder.lastMetCondition;
-		this.state = ApiTypeHelper.requireNonNullWithDefault(builder.state, this, "state", this.state());
-		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version", 0);
 		this.executionState = builder.executionState;
 
 	}

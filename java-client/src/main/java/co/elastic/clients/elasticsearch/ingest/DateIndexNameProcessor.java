@@ -82,9 +82,8 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		super(builder);
 
 		this.dateFormats = ApiTypeHelper.unmodifiable(builder.dateFormats);
-		this.dateRounding = ApiTypeHelper.requireNonNullWithDefault(builder.dateRounding, this, "dateRounding",
-				this.dateRounding());
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.dateRounding = ApiTypeHelper.requireNonNull(builder.dateRounding, this, "dateRounding");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.indexNameFormat = builder.indexNameFormat;
 		this.indexNamePrefix = builder.indexNamePrefix;
 		this.locale = builder.locale;

@@ -73,8 +73,7 @@ public class PutCalendarJobRequest extends RequestBase {
 
 	private PutCalendarJobRequest(Builder builder) {
 
-		this.calendarId = ApiTypeHelper.requireNonNullWithDefault(builder.calendarId, this, "calendarId",
-				this.calendarId());
+		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
 		this.jobId = ApiTypeHelper.unmodifiableRequired(builder.jobId, this, "jobId");
 
 	}

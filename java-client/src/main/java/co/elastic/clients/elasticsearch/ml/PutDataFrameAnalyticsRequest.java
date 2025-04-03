@@ -116,15 +116,15 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.allowLazyStart = builder.allowLazyStart;
-		this.analysis = ApiTypeHelper.requireNonNullWithDefault(builder.analysis, this, "analysis", this.analysis());
+		this.analysis = ApiTypeHelper.requireNonNull(builder.analysis, this, "analysis");
 		this.analyzedFields = builder.analyzedFields;
 		this.description = builder.description;
-		this.dest = ApiTypeHelper.requireNonNullWithDefault(builder.dest, this, "dest", this.dest());
+		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
 		this.headers = ApiTypeHelper.unmodifiable(builder.headers);
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.maxNumThreads = builder.maxNumThreads;
 		this.modelMemoryLimit = builder.modelMemoryLimit;
-		this.source = ApiTypeHelper.requireNonNullWithDefault(builder.source, this, "source", this.source());
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.version = builder.version;
 
 	}

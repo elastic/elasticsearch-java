@@ -66,9 +66,8 @@ public class MlJobForecasts implements JsonpSerializable {
 
 	private MlJobForecasts(Builder builder) {
 
-		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
-		this.forecastedJobs = ApiTypeHelper.requireNonNullWithDefault(builder.forecastedJobs, this, "forecastedJobs",
-				this.forecastedJobs());
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
+		this.forecastedJobs = ApiTypeHelper.requireNonNull(builder.forecastedJobs, this, "forecastedJobs", 0);
 
 	}
 

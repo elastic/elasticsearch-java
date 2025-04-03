@@ -68,8 +68,8 @@ public class BuildInformation implements JsonpSerializable {
 
 	private BuildInformation(Builder builder) {
 
-		this.date = ApiTypeHelper.requireNonNullWithDefault(builder.date, this, "date", this.date());
-		this.hash = ApiTypeHelper.requireNonNullWithDefault(builder.hash, this, "hash", this.hash());
+		this.date = ApiTypeHelper.requireNonNull(builder.date, this, "date");
+		this.hash = ApiTypeHelper.requireNonNull(builder.hash, this, "hash");
 
 	}
 

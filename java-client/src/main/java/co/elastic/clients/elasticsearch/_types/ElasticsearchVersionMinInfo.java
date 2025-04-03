@@ -73,15 +73,12 @@ public class ElasticsearchVersionMinInfo implements JsonpSerializable {
 
 	private ElasticsearchVersionMinInfo(Builder builder) {
 
-		this.buildFlavor = ApiTypeHelper.requireNonNullWithDefault(builder.buildFlavor, this, "buildFlavor",
-				this.buildFlavor());
-		this.minimumIndexCompatibilityVersion = ApiTypeHelper.requireNonNullWithDefault(
-				builder.minimumIndexCompatibilityVersion, this, "minimumIndexCompatibilityVersion",
-				this.minimumIndexCompatibilityVersion());
-		this.minimumWireCompatibilityVersion = ApiTypeHelper.requireNonNullWithDefault(
-				builder.minimumWireCompatibilityVersion, this, "minimumWireCompatibilityVersion",
-				this.minimumWireCompatibilityVersion());
-		this.number = ApiTypeHelper.requireNonNullWithDefault(builder.number, this, "number", this.number());
+		this.buildFlavor = ApiTypeHelper.requireNonNull(builder.buildFlavor, this, "buildFlavor");
+		this.minimumIndexCompatibilityVersion = ApiTypeHelper.requireNonNull(builder.minimumIndexCompatibilityVersion,
+				this, "minimumIndexCompatibilityVersion");
+		this.minimumWireCompatibilityVersion = ApiTypeHelper.requireNonNull(builder.minimumWireCompatibilityVersion,
+				this, "minimumWireCompatibilityVersion");
+		this.number = ApiTypeHelper.requireNonNull(builder.number, this, "number");
 
 	}
 

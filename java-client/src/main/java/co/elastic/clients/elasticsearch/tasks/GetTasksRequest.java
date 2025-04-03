@@ -83,7 +83,7 @@ public class GetTasksRequest extends RequestBase {
 
 	private GetTasksRequest(Builder builder) {
 
-		this.taskId = ApiTypeHelper.requireNonNullWithDefault(builder.taskId, this, "taskId", this.taskId());
+		this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
 		this.timeout = builder.timeout;
 		this.waitForCompletion = builder.waitForCompletion;
 

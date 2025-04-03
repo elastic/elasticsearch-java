@@ -94,7 +94,7 @@ public class RuntimeField implements DynamicTemplateVariant, JsonpSerializable {
 		this.targetField = builder.targetField;
 		this.targetIndex = builder.targetIndex;
 		this.script = builder.script;
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 

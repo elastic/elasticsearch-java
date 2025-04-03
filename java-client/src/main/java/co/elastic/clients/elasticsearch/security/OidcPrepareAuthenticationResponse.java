@@ -72,10 +72,10 @@ public class OidcPrepareAuthenticationResponse implements JsonpSerializable {
 
 	private OidcPrepareAuthenticationResponse(Builder builder) {
 
-		this.nonce = ApiTypeHelper.requireNonNullWithDefault(builder.nonce, this, "nonce", this.nonce());
-		this.realm = ApiTypeHelper.requireNonNullWithDefault(builder.realm, this, "realm", this.realm());
-		this.redirect = ApiTypeHelper.requireNonNullWithDefault(builder.redirect, this, "redirect", this.redirect());
-		this.state = ApiTypeHelper.requireNonNullWithDefault(builder.state, this, "state", this.state());
+		this.nonce = ApiTypeHelper.requireNonNull(builder.nonce, this, "nonce");
+		this.realm = ApiTypeHelper.requireNonNull(builder.realm, this, "realm");
+		this.redirect = ApiTypeHelper.requireNonNull(builder.redirect, this, "redirect");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 
 	}
 

@@ -80,8 +80,7 @@ public class ScheduleNowTransformRequest extends RequestBase {
 	private ScheduleNowTransformRequest(Builder builder) {
 
 		this.timeout = builder.timeout;
-		this.transformId = ApiTypeHelper.requireNonNullWithDefault(builder.transformId, this, "transformId",
-				this.transformId());
+		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
 

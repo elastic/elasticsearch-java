@@ -129,35 +129,28 @@ public class Anomaly implements JsonpSerializable {
 
 		this.actual = ApiTypeHelper.unmodifiable(builder.actual);
 		this.anomalyScoreExplanation = builder.anomalyScoreExplanation;
-		this.bucketSpan = ApiTypeHelper.requireNonNullWithDefault(builder.bucketSpan, this, "bucketSpan",
-				this.bucketSpan());
+		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan", 0);
 		this.byFieldName = builder.byFieldName;
 		this.byFieldValue = builder.byFieldValue;
 		this.causes = ApiTypeHelper.unmodifiable(builder.causes);
-		this.detectorIndex = ApiTypeHelper.requireNonNullWithDefault(builder.detectorIndex, this, "detectorIndex",
-				this.detectorIndex());
+		this.detectorIndex = ApiTypeHelper.requireNonNull(builder.detectorIndex, this, "detectorIndex", 0);
 		this.fieldName = builder.fieldName;
 		this.function = builder.function;
 		this.functionDescription = builder.functionDescription;
 		this.geoResults = builder.geoResults;
 		this.influencers = ApiTypeHelper.unmodifiable(builder.influencers);
-		this.initialRecordScore = ApiTypeHelper.requireNonNullWithDefault(builder.initialRecordScore, this,
-				"initialRecordScore", this.initialRecordScore());
-		this.isInterim = ApiTypeHelper.requireNonNullWithDefault(builder.isInterim, this, "isInterim",
-				this.isInterim());
-		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
+		this.initialRecordScore = ApiTypeHelper.requireNonNull(builder.initialRecordScore, this, "initialRecordScore",
+				0);
+		this.isInterim = ApiTypeHelper.requireNonNull(builder.isInterim, this, "isInterim", false);
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.overFieldName = builder.overFieldName;
 		this.overFieldValue = builder.overFieldValue;
 		this.partitionFieldName = builder.partitionFieldName;
 		this.partitionFieldValue = builder.partitionFieldValue;
-		this.probability = ApiTypeHelper.requireNonNullWithDefault(builder.probability, this, "probability",
-				this.probability());
-		this.recordScore = ApiTypeHelper.requireNonNullWithDefault(builder.recordScore, this, "recordScore",
-				this.recordScore());
-		this.resultType = ApiTypeHelper.requireNonNullWithDefault(builder.resultType, this, "resultType",
-				this.resultType());
-		this.timestamp = ApiTypeHelper.requireNonNullWithDefault(builder.timestamp, this, "timestamp",
-				this.timestamp());
+		this.probability = ApiTypeHelper.requireNonNull(builder.probability, this, "probability", 0);
+		this.recordScore = ApiTypeHelper.requireNonNull(builder.recordScore, this, "recordScore", 0);
+		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp", 0);
 		this.typical = ApiTypeHelper.unmodifiable(builder.typical);
 
 	}

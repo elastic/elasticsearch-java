@@ -73,7 +73,7 @@ public class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVariant,
 	private IntervalsPrefix(Builder builder) {
 
 		this.analyzer = builder.analyzer;
-		this.prefix = ApiTypeHelper.requireNonNullWithDefault(builder.prefix, this, "prefix", this.prefix());
+		this.prefix = ApiTypeHelper.requireNonNull(builder.prefix, this, "prefix");
 		this.useField = builder.useField;
 
 	}

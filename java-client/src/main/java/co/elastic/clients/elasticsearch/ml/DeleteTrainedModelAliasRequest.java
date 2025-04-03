@@ -76,9 +76,8 @@ public class DeleteTrainedModelAliasRequest extends RequestBase {
 
 	private DeleteTrainedModelAliasRequest(Builder builder) {
 
-		this.modelAlias = ApiTypeHelper.requireNonNullWithDefault(builder.modelAlias, this, "modelAlias",
-				this.modelAlias());
-		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
+		this.modelAlias = ApiTypeHelper.requireNonNull(builder.modelAlias, this, "modelAlias");
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 
 	}
 

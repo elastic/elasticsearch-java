@@ -66,7 +66,7 @@ public class UpdateActiveFilteringResponse implements JsonpSerializable {
 
 	private UpdateActiveFilteringResponse(Builder builder) {
 
-		this.result = ApiTypeHelper.requireNonNullWithDefault(builder.result, this, "result", this.result());
+		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
 
 	}
 

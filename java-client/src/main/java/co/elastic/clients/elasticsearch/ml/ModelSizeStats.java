@@ -116,42 +116,35 @@ public class ModelSizeStats implements JsonpSerializable {
 
 	private ModelSizeStats(Builder builder) {
 
-		this.bucketAllocationFailuresCount = ApiTypeHelper.requireNonNullWithDefault(
-				builder.bucketAllocationFailuresCount, this, "bucketAllocationFailuresCount",
-				this.bucketAllocationFailuresCount());
-		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
-		this.logTime = ApiTypeHelper.requireNonNullWithDefault(builder.logTime, this, "logTime", this.logTime());
-		this.memoryStatus = ApiTypeHelper.requireNonNullWithDefault(builder.memoryStatus, this, "memoryStatus",
-				this.memoryStatus());
-		this.modelBytes = ApiTypeHelper.requireNonNullWithDefault(builder.modelBytes, this, "modelBytes",
-				this.modelBytes());
+		this.bucketAllocationFailuresCount = ApiTypeHelper.requireNonNull(builder.bucketAllocationFailuresCount, this,
+				"bucketAllocationFailuresCount", 0);
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.logTime = ApiTypeHelper.requireNonNull(builder.logTime, this, "logTime");
+		this.memoryStatus = ApiTypeHelper.requireNonNull(builder.memoryStatus, this, "memoryStatus");
+		this.modelBytes = ApiTypeHelper.requireNonNull(builder.modelBytes, this, "modelBytes");
 		this.modelBytesExceeded = builder.modelBytesExceeded;
 		this.modelBytesMemoryLimit = builder.modelBytesMemoryLimit;
 		this.outputMemoryAllocatorBytes = builder.outputMemoryAllocatorBytes;
 		this.peakModelBytes = builder.peakModelBytes;
 		this.assignmentMemoryBasis = builder.assignmentMemoryBasis;
-		this.resultType = ApiTypeHelper.requireNonNullWithDefault(builder.resultType, this, "resultType",
-				this.resultType());
-		this.totalByFieldCount = ApiTypeHelper.requireNonNullWithDefault(builder.totalByFieldCount, this,
-				"totalByFieldCount", this.totalByFieldCount());
-		this.totalOverFieldCount = ApiTypeHelper.requireNonNullWithDefault(builder.totalOverFieldCount, this,
-				"totalOverFieldCount", this.totalOverFieldCount());
-		this.totalPartitionFieldCount = ApiTypeHelper.requireNonNullWithDefault(builder.totalPartitionFieldCount, this,
-				"totalPartitionFieldCount", this.totalPartitionFieldCount());
-		this.categorizationStatus = ApiTypeHelper.requireNonNullWithDefault(builder.categorizationStatus, this,
-				"categorizationStatus", this.categorizationStatus());
-		this.categorizedDocCount = ApiTypeHelper.requireNonNullWithDefault(builder.categorizedDocCount, this,
-				"categorizedDocCount", this.categorizedDocCount());
-		this.deadCategoryCount = ApiTypeHelper.requireNonNullWithDefault(builder.deadCategoryCount, this,
-				"deadCategoryCount", this.deadCategoryCount());
-		this.failedCategoryCount = ApiTypeHelper.requireNonNullWithDefault(builder.failedCategoryCount, this,
-				"failedCategoryCount", this.failedCategoryCount());
-		this.frequentCategoryCount = ApiTypeHelper.requireNonNullWithDefault(builder.frequentCategoryCount, this,
-				"frequentCategoryCount", this.frequentCategoryCount());
-		this.rareCategoryCount = ApiTypeHelper.requireNonNullWithDefault(builder.rareCategoryCount, this,
-				"rareCategoryCount", this.rareCategoryCount());
-		this.totalCategoryCount = ApiTypeHelper.requireNonNullWithDefault(builder.totalCategoryCount, this,
-				"totalCategoryCount", this.totalCategoryCount());
+		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
+		this.totalByFieldCount = ApiTypeHelper.requireNonNull(builder.totalByFieldCount, this, "totalByFieldCount", 0);
+		this.totalOverFieldCount = ApiTypeHelper.requireNonNull(builder.totalOverFieldCount, this,
+				"totalOverFieldCount", 0);
+		this.totalPartitionFieldCount = ApiTypeHelper.requireNonNull(builder.totalPartitionFieldCount, this,
+				"totalPartitionFieldCount", 0);
+		this.categorizationStatus = ApiTypeHelper.requireNonNull(builder.categorizationStatus, this,
+				"categorizationStatus");
+		this.categorizedDocCount = ApiTypeHelper.requireNonNull(builder.categorizedDocCount, this,
+				"categorizedDocCount", 0);
+		this.deadCategoryCount = ApiTypeHelper.requireNonNull(builder.deadCategoryCount, this, "deadCategoryCount", 0);
+		this.failedCategoryCount = ApiTypeHelper.requireNonNull(builder.failedCategoryCount, this,
+				"failedCategoryCount", 0);
+		this.frequentCategoryCount = ApiTypeHelper.requireNonNull(builder.frequentCategoryCount, this,
+				"frequentCategoryCount", 0);
+		this.rareCategoryCount = ApiTypeHelper.requireNonNull(builder.rareCategoryCount, this, "rareCategoryCount", 0);
+		this.totalCategoryCount = ApiTypeHelper.requireNonNull(builder.totalCategoryCount, this, "totalCategoryCount",
+				0);
 		this.timestamp = builder.timestamp;
 
 	}

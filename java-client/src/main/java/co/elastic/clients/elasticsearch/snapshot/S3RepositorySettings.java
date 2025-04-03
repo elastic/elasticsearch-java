@@ -109,7 +109,7 @@ public class S3RepositorySettings extends RepositorySettingsBase {
 	private S3RepositorySettings(Builder builder) {
 		super(builder);
 
-		this.bucket = ApiTypeHelper.requireNonNullWithDefault(builder.bucket, this, "bucket", this.bucket());
+		this.bucket = ApiTypeHelper.requireNonNull(builder.bucket, this, "bucket");
 		this.basePath = builder.basePath;
 		this.bufferSize = builder.bufferSize;
 		this.cannedAcl = builder.cannedAcl;

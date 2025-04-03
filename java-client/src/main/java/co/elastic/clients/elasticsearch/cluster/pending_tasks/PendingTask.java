@@ -81,15 +81,12 @@ public class PendingTask implements JsonpSerializable {
 
 	private PendingTask(Builder builder) {
 
-		this.executing = ApiTypeHelper.requireNonNullWithDefault(builder.executing, this, "executing",
-				this.executing());
-		this.insertOrder = ApiTypeHelper.requireNonNullWithDefault(builder.insertOrder, this, "insertOrder",
-				this.insertOrder());
-		this.priority = ApiTypeHelper.requireNonNullWithDefault(builder.priority, this, "priority", this.priority());
-		this.source = ApiTypeHelper.requireNonNullWithDefault(builder.source, this, "source", this.source());
+		this.executing = ApiTypeHelper.requireNonNull(builder.executing, this, "executing", false);
+		this.insertOrder = ApiTypeHelper.requireNonNull(builder.insertOrder, this, "insertOrder", 0);
+		this.priority = ApiTypeHelper.requireNonNull(builder.priority, this, "priority");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.timeInQueue = builder.timeInQueue;
-		this.timeInQueueMillis = ApiTypeHelper.requireNonNullWithDefault(builder.timeInQueueMillis, this,
-				"timeInQueueMillis", this.timeInQueueMillis());
+		this.timeInQueueMillis = ApiTypeHelper.requireNonNull(builder.timeInQueueMillis, this, "timeInQueueMillis", 0);
 
 	}
 

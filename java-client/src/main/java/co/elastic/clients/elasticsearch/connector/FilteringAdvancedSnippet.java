@@ -75,7 +75,7 @@ public class FilteringAdvancedSnippet implements JsonpSerializable {
 
 		this.createdAt = builder.createdAt;
 		this.updatedAt = builder.updatedAt;
-		this.value = ApiTypeHelper.requireNonNullWithDefault(builder.value, this, "value", this.value());
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 

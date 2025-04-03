@@ -79,13 +79,12 @@ public class ClusterStatistics implements JsonpSerializable {
 
 	private ClusterStatistics(Builder builder) {
 
-		this.skipped = ApiTypeHelper.requireNonNullWithDefault(builder.skipped, this, "skipped", this.skipped());
-		this.successful = ApiTypeHelper.requireNonNullWithDefault(builder.successful, this, "successful",
-				this.successful());
-		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
-		this.running = ApiTypeHelper.requireNonNullWithDefault(builder.running, this, "running", this.running());
-		this.partial = ApiTypeHelper.requireNonNullWithDefault(builder.partial, this, "partial", this.partial());
-		this.failed = ApiTypeHelper.requireNonNullWithDefault(builder.failed, this, "failed", this.failed());
+		this.skipped = ApiTypeHelper.requireNonNull(builder.skipped, this, "skipped", 0);
+		this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful", 0);
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
+		this.running = ApiTypeHelper.requireNonNull(builder.running, this, "running", 0);
+		this.partial = ApiTypeHelper.requireNonNull(builder.partial, this, "partial", 0);
+		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed", 0);
 		this.details = ApiTypeHelper.unmodifiable(builder.details);
 
 	}

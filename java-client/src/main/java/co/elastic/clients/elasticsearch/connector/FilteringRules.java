@@ -69,11 +69,9 @@ public class FilteringRules implements JsonpSerializable {
 
 	private FilteringRules(Builder builder) {
 
-		this.advancedSnippet = ApiTypeHelper.requireNonNullWithDefault(builder.advancedSnippet, this, "advancedSnippet",
-				this.advancedSnippet());
+		this.advancedSnippet = ApiTypeHelper.requireNonNull(builder.advancedSnippet, this, "advancedSnippet");
 		this.rules = ApiTypeHelper.unmodifiableRequired(builder.rules, this, "rules");
-		this.validation = ApiTypeHelper.requireNonNullWithDefault(builder.validation, this, "validation",
-				this.validation());
+		this.validation = ApiTypeHelper.requireNonNull(builder.validation, this, "validation");
 
 	}
 

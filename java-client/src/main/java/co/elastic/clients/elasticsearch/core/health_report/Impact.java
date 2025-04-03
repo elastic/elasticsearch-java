@@ -73,11 +73,10 @@ public class Impact implements JsonpSerializable {
 
 	private Impact(Builder builder) {
 
-		this.description = ApiTypeHelper.requireNonNullWithDefault(builder.description, this, "description",
-				this.description());
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.impactAreas = ApiTypeHelper.unmodifiableRequired(builder.impactAreas, this, "impactAreas");
-		this.severity = ApiTypeHelper.requireNonNullWithDefault(builder.severity, this, "severity", this.severity());
+		this.severity = ApiTypeHelper.requireNonNull(builder.severity, this, "severity", 0);
 
 	}
 

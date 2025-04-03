@@ -66,7 +66,7 @@ public class UpdateStatusResponse implements JsonpSerializable {
 
 	private UpdateStatusResponse(Builder builder) {
 
-		this.result = ApiTypeHelper.requireNonNullWithDefault(builder.result, this, "result", this.result());
+		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
 
 	}
 

@@ -76,9 +76,9 @@ public abstract class DistanceFeatureQueryBase<TOrigin, TDistance> extends Query
 	protected DistanceFeatureQueryBase(AbstractBuilder<TOrigin, TDistance, ?> builder) {
 		super(builder);
 
-		this.origin = ApiTypeHelper.requireNonNullWithDefault(builder.origin, this, "origin", this.origin());
-		this.pivot = ApiTypeHelper.requireNonNullWithDefault(builder.pivot, this, "pivot", this.pivot());
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.origin = ApiTypeHelper.requireNonNull(builder.origin, this, "origin");
+		this.pivot = ApiTypeHelper.requireNonNull(builder.pivot, this, "pivot");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.tOriginSerializer = builder.tOriginSerializer;
 		this.tDistanceSerializer = builder.tDistanceSerializer;
 

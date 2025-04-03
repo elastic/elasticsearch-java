@@ -100,8 +100,7 @@ public class StartTransformRequest extends RequestBase {
 
 		this.from = builder.from;
 		this.timeout = builder.timeout;
-		this.transformId = ApiTypeHelper.requireNonNullWithDefault(builder.transformId, this, "transformId",
-				this.transformId());
+		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
 

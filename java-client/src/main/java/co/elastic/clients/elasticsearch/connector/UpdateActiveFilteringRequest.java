@@ -72,8 +72,7 @@ public class UpdateActiveFilteringRequest extends RequestBase {
 
 	private UpdateActiveFilteringRequest(Builder builder) {
 
-		this.connectorId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorId, this, "connectorId",
-				this.connectorId());
+		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
 
 	}
 

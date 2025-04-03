@@ -87,7 +87,7 @@ public class GetAsyncRequest extends RequestBase {
 
 		this.delimiter = builder.delimiter;
 		this.format = builder.format;
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.keepAlive = builder.keepAlive;
 		this.waitForCompletionTimeout = builder.waitForCompletionTimeout;
 

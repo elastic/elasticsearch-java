@@ -67,10 +67,8 @@ public class CleanupRepositoryResults implements JsonpSerializable {
 
 	private CleanupRepositoryResults(Builder builder) {
 
-		this.deletedBlobs = ApiTypeHelper.requireNonNullWithDefault(builder.deletedBlobs, this, "deletedBlobs",
-				this.deletedBlobs());
-		this.deletedBytes = ApiTypeHelper.requireNonNullWithDefault(builder.deletedBytes, this, "deletedBytes",
-				this.deletedBytes());
+		this.deletedBlobs = ApiTypeHelper.requireNonNull(builder.deletedBlobs, this, "deletedBlobs", 0);
+		this.deletedBytes = ApiTypeHelper.requireNonNull(builder.deletedBytes, this, "deletedBytes", 0);
 
 	}
 

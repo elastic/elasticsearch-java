@@ -104,25 +104,22 @@ public class FindMessageStructureResponse implements JsonpSerializable {
 
 	private FindMessageStructureResponse(Builder builder) {
 
-		this.charset = ApiTypeHelper.requireNonNullWithDefault(builder.charset, this, "charset", this.charset());
+		this.charset = ApiTypeHelper.requireNonNull(builder.charset, this, "charset");
 		this.ecsCompatibility = builder.ecsCompatibility;
 		this.fieldStats = ApiTypeHelper.unmodifiableRequired(builder.fieldStats, this, "fieldStats");
-		this.format = ApiTypeHelper.requireNonNullWithDefault(builder.format, this, "format", this.format());
+		this.format = ApiTypeHelper.requireNonNull(builder.format, this, "format");
 		this.grokPattern = builder.grokPattern;
 		this.javaTimestampFormats = ApiTypeHelper.unmodifiable(builder.javaTimestampFormats);
 		this.jodaTimestampFormats = ApiTypeHelper.unmodifiable(builder.jodaTimestampFormats);
-		this.ingestPipeline = ApiTypeHelper.requireNonNullWithDefault(builder.ingestPipeline, this, "ingestPipeline",
-				this.ingestPipeline());
-		this.mappings = ApiTypeHelper.requireNonNullWithDefault(builder.mappings, this, "mappings", this.mappings());
+		this.ingestPipeline = ApiTypeHelper.requireNonNull(builder.ingestPipeline, this, "ingestPipeline");
+		this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
 		this.multilineStartPattern = builder.multilineStartPattern;
-		this.needClientTimezone = ApiTypeHelper.requireNonNullWithDefault(builder.needClientTimezone, this,
-				"needClientTimezone", this.needClientTimezone());
-		this.numLinesAnalyzed = ApiTypeHelper.requireNonNullWithDefault(builder.numLinesAnalyzed, this,
-				"numLinesAnalyzed", this.numLinesAnalyzed());
-		this.numMessagesAnalyzed = ApiTypeHelper.requireNonNullWithDefault(builder.numMessagesAnalyzed, this,
-				"numMessagesAnalyzed", this.numMessagesAnalyzed());
-		this.sampleStart = ApiTypeHelper.requireNonNullWithDefault(builder.sampleStart, this, "sampleStart",
-				this.sampleStart());
+		this.needClientTimezone = ApiTypeHelper.requireNonNull(builder.needClientTimezone, this, "needClientTimezone",
+				false);
+		this.numLinesAnalyzed = ApiTypeHelper.requireNonNull(builder.numLinesAnalyzed, this, "numLinesAnalyzed", 0);
+		this.numMessagesAnalyzed = ApiTypeHelper.requireNonNull(builder.numMessagesAnalyzed, this,
+				"numMessagesAnalyzed", 0);
+		this.sampleStart = ApiTypeHelper.requireNonNull(builder.sampleStart, this, "sampleStart");
 		this.timestampField = builder.timestampField;
 
 	}

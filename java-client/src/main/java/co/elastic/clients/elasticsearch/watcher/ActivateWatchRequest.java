@@ -69,7 +69,7 @@ public class ActivateWatchRequest extends RequestBase {
 
 	private ActivateWatchRequest(Builder builder) {
 
-		this.watchId = ApiTypeHelper.requireNonNullWithDefault(builder.watchId, this, "watchId", this.watchId());
+		this.watchId = ApiTypeHelper.requireNonNull(builder.watchId, this, "watchId");
 
 	}
 

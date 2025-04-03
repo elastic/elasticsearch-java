@@ -86,7 +86,7 @@ public class DeleteNodeRequest extends RequestBase {
 	private DeleteNodeRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.nodeId = ApiTypeHelper.requireNonNullWithDefault(builder.nodeId, this, "nodeId", this.nodeId());
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
 		this.timeout = builder.timeout;
 
 	}

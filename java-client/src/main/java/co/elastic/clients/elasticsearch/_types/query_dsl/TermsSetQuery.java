@@ -78,7 +78,7 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 
 	private TermsSetQuery(Builder builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.minimumShouldMatchField = builder.minimumShouldMatchField;

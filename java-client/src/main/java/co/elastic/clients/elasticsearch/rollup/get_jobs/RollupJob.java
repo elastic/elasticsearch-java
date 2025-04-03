@@ -68,9 +68,9 @@ public class RollupJob implements JsonpSerializable {
 
 	private RollupJob(Builder builder) {
 
-		this.config = ApiTypeHelper.requireNonNullWithDefault(builder.config, this, "config", this.config());
-		this.stats = ApiTypeHelper.requireNonNullWithDefault(builder.stats, this, "stats", this.stats());
-		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
+		this.config = ApiTypeHelper.requireNonNull(builder.config, this, "config");
+		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 

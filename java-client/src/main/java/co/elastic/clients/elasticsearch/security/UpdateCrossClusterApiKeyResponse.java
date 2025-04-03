@@ -65,7 +65,7 @@ public class UpdateCrossClusterApiKeyResponse implements JsonpSerializable {
 
 	private UpdateCrossClusterApiKeyResponse(Builder builder) {
 
-		this.updated = ApiTypeHelper.requireNonNullWithDefault(builder.updated, this, "updated", this.updated());
+		this.updated = ApiTypeHelper.requireNonNull(builder.updated, this, "updated", false);
 
 	}
 

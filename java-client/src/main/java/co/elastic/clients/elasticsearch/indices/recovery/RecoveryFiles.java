@@ -77,11 +77,10 @@ public class RecoveryFiles implements JsonpSerializable {
 	private RecoveryFiles(Builder builder) {
 
 		this.details = ApiTypeHelper.unmodifiable(builder.details);
-		this.percent = ApiTypeHelper.requireNonNullWithDefault(builder.percent, this, "percent", this.percent());
-		this.recovered = ApiTypeHelper.requireNonNullWithDefault(builder.recovered, this, "recovered",
-				this.recovered());
-		this.reused = ApiTypeHelper.requireNonNullWithDefault(builder.reused, this, "reused", this.reused());
-		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
+		this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
+		this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered", 0);
+		this.reused = ApiTypeHelper.requireNonNull(builder.reused, this, "reused", 0);
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
 
 	}
 

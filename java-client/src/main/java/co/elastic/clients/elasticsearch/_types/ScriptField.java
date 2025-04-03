@@ -68,7 +68,7 @@ public class ScriptField implements JsonpSerializable {
 
 	private ScriptField(Builder builder) {
 
-		this.script = ApiTypeHelper.requireNonNullWithDefault(builder.script, this, "script", this.script());
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 		this.ignoreFailure = builder.ignoreFailure;
 
 	}

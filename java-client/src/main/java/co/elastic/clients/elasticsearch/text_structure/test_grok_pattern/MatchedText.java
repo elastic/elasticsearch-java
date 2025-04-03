@@ -71,7 +71,7 @@ public class MatchedText implements JsonpSerializable {
 
 	private MatchedText(Builder builder) {
 
-		this.matched = ApiTypeHelper.requireNonNullWithDefault(builder.matched, this, "matched", this.matched());
+		this.matched = ApiTypeHelper.requireNonNull(builder.matched, this, "matched", false);
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 
 	}

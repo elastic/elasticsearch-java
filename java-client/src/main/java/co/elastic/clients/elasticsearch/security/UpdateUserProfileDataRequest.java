@@ -117,7 +117,7 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 		this.ifSeqNo = builder.ifSeqNo;
 		this.labels = ApiTypeHelper.unmodifiable(builder.labels);
 		this.refresh = builder.refresh;
-		this.uid = ApiTypeHelper.requireNonNullWithDefault(builder.uid, this, "uid", this.uid());
+		this.uid = ApiTypeHelper.requireNonNull(builder.uid, this, "uid");
 
 	}
 

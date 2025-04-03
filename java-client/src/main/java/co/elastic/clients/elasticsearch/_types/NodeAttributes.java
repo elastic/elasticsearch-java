@@ -76,12 +76,10 @@ public class NodeAttributes implements JsonpSerializable {
 	private NodeAttributes(Builder builder) {
 
 		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-		this.ephemeralId = ApiTypeHelper.requireNonNullWithDefault(builder.ephemeralId, this, "ephemeralId",
-				this.ephemeralId());
+		this.ephemeralId = ApiTypeHelper.requireNonNull(builder.ephemeralId, this, "ephemeralId");
 		this.id = builder.id;
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
-		this.transportAddress = ApiTypeHelper.requireNonNullWithDefault(builder.transportAddress, this,
-				"transportAddress", this.transportAddress());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
 
 	}
 

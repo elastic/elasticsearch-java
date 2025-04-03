@@ -67,7 +67,7 @@ public class IndexOperation<TDocument> extends WriteOperation implements NdJsonp
 
 	private IndexOperation(Builder<TDocument> builder) {
 		super(builder);
-		this.document = ApiTypeHelper.requireNonNullWithDefault(builder.document, this, "document", this.document());
+		this.document = ApiTypeHelper.requireNonNull(builder.document, this, "document");
 
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 

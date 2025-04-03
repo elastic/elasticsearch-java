@@ -68,7 +68,7 @@ public class QueryWatchesResponse implements JsonpSerializable {
 
 	private QueryWatchesResponse(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.watches = ApiTypeHelper.unmodifiableRequired(builder.watches, this, "watches");
 
 	}

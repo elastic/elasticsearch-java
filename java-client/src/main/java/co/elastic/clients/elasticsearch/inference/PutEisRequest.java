@@ -80,12 +80,10 @@ public class PutEisRequest extends RequestBase implements JsonpSerializable {
 
 	private PutEisRequest(Builder builder) {
 
-		this.eisInferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.eisInferenceId, this, "eisInferenceId",
-				this.eisInferenceId());
-		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
-		this.serviceSettings = ApiTypeHelper.requireNonNullWithDefault(builder.serviceSettings, this, "serviceSettings",
-				this.serviceSettings());
-		this.taskType = ApiTypeHelper.requireNonNullWithDefault(builder.taskType, this, "taskType", this.taskType());
+		this.eisInferenceId = ApiTypeHelper.requireNonNull(builder.eisInferenceId, this, "eisInferenceId");
+		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
+		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
+		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
 
 	}
 

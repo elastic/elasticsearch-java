@@ -68,7 +68,7 @@ public class JobBlocked implements JsonpSerializable {
 
 	private JobBlocked(Builder builder) {
 
-		this.reason = ApiTypeHelper.requireNonNullWithDefault(builder.reason, this, "reason", this.reason());
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 		this.taskId = builder.taskId;
 
 	}

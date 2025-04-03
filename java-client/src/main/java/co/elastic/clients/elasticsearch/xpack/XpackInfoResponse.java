@@ -74,10 +74,10 @@ public class XpackInfoResponse implements JsonpSerializable {
 
 	private XpackInfoResponse(Builder builder) {
 
-		this.build = ApiTypeHelper.requireNonNullWithDefault(builder.build, this, "build", this.build());
-		this.features = ApiTypeHelper.requireNonNullWithDefault(builder.features, this, "features", this.features());
-		this.license = ApiTypeHelper.requireNonNullWithDefault(builder.license, this, "license", this.license());
-		this.tagline = ApiTypeHelper.requireNonNullWithDefault(builder.tagline, this, "tagline", this.tagline());
+		this.build = ApiTypeHelper.requireNonNull(builder.build, this, "build");
+		this.features = ApiTypeHelper.requireNonNull(builder.features, this, "features");
+		this.license = ApiTypeHelper.requireNonNull(builder.license, this, "license");
+		this.tagline = ApiTypeHelper.requireNonNull(builder.tagline, this, "tagline");
 
 	}
 

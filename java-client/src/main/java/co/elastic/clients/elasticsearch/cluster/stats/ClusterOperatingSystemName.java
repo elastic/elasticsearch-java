@@ -69,8 +69,8 @@ public class ClusterOperatingSystemName implements JsonpSerializable {
 
 	private ClusterOperatingSystemName(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 

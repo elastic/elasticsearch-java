@@ -97,13 +97,11 @@ public class PutOpenaiRequest extends RequestBase implements JsonpSerializable {
 	private PutOpenaiRequest(Builder builder) {
 
 		this.chunkingSettings = builder.chunkingSettings;
-		this.openaiInferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.openaiInferenceId, this,
-				"openaiInferenceId", this.openaiInferenceId());
-		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
-		this.serviceSettings = ApiTypeHelper.requireNonNullWithDefault(builder.serviceSettings, this, "serviceSettings",
-				this.serviceSettings());
+		this.openaiInferenceId = ApiTypeHelper.requireNonNull(builder.openaiInferenceId, this, "openaiInferenceId");
+		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
+		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
 		this.taskSettings = builder.taskSettings;
-		this.taskType = ApiTypeHelper.requireNonNullWithDefault(builder.taskType, this, "taskType", this.taskType());
+		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
 
 	}
 

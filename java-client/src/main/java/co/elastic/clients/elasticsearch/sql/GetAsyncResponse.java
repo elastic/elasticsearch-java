@@ -79,11 +79,9 @@ public class GetAsyncResponse implements JsonpSerializable {
 
 	private GetAsyncResponse(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.isRunning = ApiTypeHelper.requireNonNullWithDefault(builder.isRunning, this, "isRunning",
-				this.isRunning());
-		this.isPartial = ApiTypeHelper.requireNonNullWithDefault(builder.isPartial, this, "isPartial",
-				this.isPartial());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.isRunning = ApiTypeHelper.requireNonNull(builder.isRunning, this, "isRunning", false);
+		this.isPartial = ApiTypeHelper.requireNonNull(builder.isPartial, this, "isPartial", false);
 		this.columns = ApiTypeHelper.unmodifiable(builder.columns);
 		this.cursor = builder.cursor;
 		this.rows = ApiTypeHelper.unmodifiableRequired(builder.rows, this, "rows");

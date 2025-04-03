@@ -66,7 +66,7 @@ public class CleanupRepositoryResponse implements JsonpSerializable {
 
 	private CleanupRepositoryResponse(Builder builder) {
 
-		this.results = ApiTypeHelper.requireNonNullWithDefault(builder.results, this, "results", this.results());
+		this.results = ApiTypeHelper.requireNonNull(builder.results, this, "results");
 
 	}
 

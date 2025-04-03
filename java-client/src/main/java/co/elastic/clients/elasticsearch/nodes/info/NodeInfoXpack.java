@@ -76,7 +76,7 @@ public class NodeInfoXpack implements JsonpSerializable {
 	private NodeInfoXpack(Builder builder) {
 
 		this.license = builder.license;
-		this.security = ApiTypeHelper.requireNonNullWithDefault(builder.security, this, "security", this.security());
+		this.security = ApiTypeHelper.requireNonNull(builder.security, this, "security");
 		this.notification = ApiTypeHelper.unmodifiable(builder.notification);
 		this.ml = builder.ml;
 

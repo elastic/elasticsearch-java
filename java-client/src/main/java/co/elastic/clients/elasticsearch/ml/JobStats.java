@@ -90,18 +90,14 @@ public class JobStats implements JsonpSerializable {
 	private JobStats(Builder builder) {
 
 		this.assignmentExplanation = builder.assignmentExplanation;
-		this.dataCounts = ApiTypeHelper.requireNonNullWithDefault(builder.dataCounts, this, "dataCounts",
-				this.dataCounts());
-		this.forecastsStats = ApiTypeHelper.requireNonNullWithDefault(builder.forecastsStats, this, "forecastsStats",
-				this.forecastsStats());
-		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
-		this.modelSizeStats = ApiTypeHelper.requireNonNullWithDefault(builder.modelSizeStats, this, "modelSizeStats",
-				this.modelSizeStats());
+		this.dataCounts = ApiTypeHelper.requireNonNull(builder.dataCounts, this, "dataCounts");
+		this.forecastsStats = ApiTypeHelper.requireNonNull(builder.forecastsStats, this, "forecastsStats");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.modelSizeStats = ApiTypeHelper.requireNonNull(builder.modelSizeStats, this, "modelSizeStats");
 		this.node = builder.node;
 		this.openTime = builder.openTime;
-		this.state = ApiTypeHelper.requireNonNullWithDefault(builder.state, this, "state", this.state());
-		this.timingStats = ApiTypeHelper.requireNonNullWithDefault(builder.timingStats, this, "timingStats",
-				this.timingStats());
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.timingStats = ApiTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
 		this.deleting = builder.deleting;
 
 	}

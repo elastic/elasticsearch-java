@@ -65,8 +65,8 @@ public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, Quer
 	private SpanWithinQuery(Builder builder) {
 		super(builder);
 
-		this.big = ApiTypeHelper.requireNonNullWithDefault(builder.big, this, "big", this.big());
-		this.little = ApiTypeHelper.requireNonNullWithDefault(builder.little, this, "little", this.little());
+		this.big = ApiTypeHelper.requireNonNull(builder.big, this, "big");
+		this.little = ApiTypeHelper.requireNonNull(builder.little, this, "little");
 
 	}
 

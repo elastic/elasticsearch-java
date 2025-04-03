@@ -71,10 +71,9 @@ public class TriggerEventResult implements JsonpSerializable {
 
 	private TriggerEventResult(Builder builder) {
 
-		this.manual = ApiTypeHelper.requireNonNullWithDefault(builder.manual, this, "manual", this.manual());
-		this.triggeredTime = ApiTypeHelper.requireNonNullWithDefault(builder.triggeredTime, this, "triggeredTime",
-				this.triggeredTime());
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
+		this.manual = ApiTypeHelper.requireNonNull(builder.manual, this, "manual");
+		this.triggeredTime = ApiTypeHelper.requireNonNull(builder.triggeredTime, this, "triggeredTime");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 

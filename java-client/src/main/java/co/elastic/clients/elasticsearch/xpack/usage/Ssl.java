@@ -66,9 +66,8 @@ public class Ssl implements JsonpSerializable {
 
 	private Ssl(Builder builder) {
 
-		this.http = ApiTypeHelper.requireNonNullWithDefault(builder.http, this, "http", this.http());
-		this.transport = ApiTypeHelper.requireNonNullWithDefault(builder.transport, this, "transport",
-				this.transport());
+		this.http = ApiTypeHelper.requireNonNull(builder.http, this, "http");
+		this.transport = ApiTypeHelper.requireNonNull(builder.transport, this, "transport");
 
 	}
 

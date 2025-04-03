@@ -65,8 +65,7 @@ public class ExecuteLifecycleResponse implements JsonpSerializable {
 
 	private ExecuteLifecycleResponse(Builder builder) {
 
-		this.snapshotName = ApiTypeHelper.requireNonNullWithDefault(builder.snapshotName, this, "snapshotName",
-				this.snapshotName());
+		this.snapshotName = ApiTypeHelper.requireNonNull(builder.snapshotName, this, "snapshotName");
 
 	}
 

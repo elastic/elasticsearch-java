@@ -79,7 +79,7 @@ public class UpdateByQueryRethrottleRequest extends RequestBase {
 	private UpdateByQueryRethrottleRequest(Builder builder) {
 
 		this.requestsPerSecond = builder.requestsPerSecond;
-		this.taskId = ApiTypeHelper.requireNonNullWithDefault(builder.taskId, this, "taskId", this.taskId());
+		this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
 
 	}
 

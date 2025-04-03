@@ -109,7 +109,7 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 		this.excludeInterim = builder.excludeInterim;
 		this.from = builder.from;
 		this.influencerScore = builder.influencerScore;
-		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.page = builder.page;
 		this.size = builder.size;
 		this.sort = builder.sort;

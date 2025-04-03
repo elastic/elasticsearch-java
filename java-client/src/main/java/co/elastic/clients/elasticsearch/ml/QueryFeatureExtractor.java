@@ -74,9 +74,8 @@ public class QueryFeatureExtractor implements JsonpSerializable {
 	private QueryFeatureExtractor(Builder builder) {
 
 		this.defaultScore = builder.defaultScore;
-		this.featureName = ApiTypeHelper.requireNonNullWithDefault(builder.featureName, this, "featureName",
-				this.featureName());
-		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
+		this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
 

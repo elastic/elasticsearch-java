@@ -93,14 +93,14 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		this.lastFailure = builder.lastFailure;
 		this.lastSuccess = builder.lastSuccess;
 		this.modifiedDate = builder.modifiedDate;
-		this.modifiedDateMillis = ApiTypeHelper.requireNonNullWithDefault(builder.modifiedDateMillis, this,
-				"modifiedDateMillis", this.modifiedDateMillis());
+		this.modifiedDateMillis = ApiTypeHelper.requireNonNull(builder.modifiedDateMillis, this, "modifiedDateMillis",
+				0);
 		this.nextExecution = builder.nextExecution;
-		this.nextExecutionMillis = ApiTypeHelper.requireNonNullWithDefault(builder.nextExecutionMillis, this,
-				"nextExecutionMillis", this.nextExecutionMillis());
-		this.policy = ApiTypeHelper.requireNonNullWithDefault(builder.policy, this, "policy", this.policy());
-		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
-		this.stats = ApiTypeHelper.requireNonNullWithDefault(builder.stats, this, "stats", this.stats());
+		this.nextExecutionMillis = ApiTypeHelper.requireNonNull(builder.nextExecutionMillis, this,
+				"nextExecutionMillis", 0);
+		this.policy = ApiTypeHelper.requireNonNull(builder.policy, this, "policy");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version", 0);
+		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
 
 	}
 

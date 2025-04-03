@@ -67,9 +67,8 @@ public class AcknowledgeState implements JsonpSerializable {
 
 	private AcknowledgeState(Builder builder) {
 
-		this.state = ApiTypeHelper.requireNonNullWithDefault(builder.state, this, "state", this.state());
-		this.timestamp = ApiTypeHelper.requireNonNullWithDefault(builder.timestamp, this, "timestamp",
-				this.timestamp());
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 

@@ -78,7 +78,7 @@ public class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	private DeleteDataFrameAnalyticsRequest(Builder builder) {
 
 		this.force = builder.force;
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.timeout = builder.timeout;
 
 	}

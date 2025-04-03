@@ -76,7 +76,7 @@ public class GetSynonymRequest extends RequestBase {
 	private GetSynonymRequest(Builder builder) {
 
 		this.from = builder.from;
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.size = builder.size;
 
 	}

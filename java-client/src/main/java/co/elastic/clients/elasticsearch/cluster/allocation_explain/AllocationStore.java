@@ -78,16 +78,13 @@ public class AllocationStore implements JsonpSerializable {
 
 	private AllocationStore(Builder builder) {
 
-		this.allocationId = ApiTypeHelper.requireNonNullWithDefault(builder.allocationId, this, "allocationId",
-				this.allocationId());
-		this.found = ApiTypeHelper.requireNonNullWithDefault(builder.found, this, "found", this.found());
-		this.inSync = ApiTypeHelper.requireNonNullWithDefault(builder.inSync, this, "inSync", this.inSync());
-		this.matchingSizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.matchingSizeInBytes, this,
-				"matchingSizeInBytes", this.matchingSizeInBytes());
-		this.matchingSyncId = ApiTypeHelper.requireNonNullWithDefault(builder.matchingSyncId, this, "matchingSyncId",
-				this.matchingSyncId());
-		this.storeException = ApiTypeHelper.requireNonNullWithDefault(builder.storeException, this, "storeException",
-				this.storeException());
+		this.allocationId = ApiTypeHelper.requireNonNull(builder.allocationId, this, "allocationId");
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found", false);
+		this.inSync = ApiTypeHelper.requireNonNull(builder.inSync, this, "inSync", false);
+		this.matchingSizeInBytes = ApiTypeHelper.requireNonNull(builder.matchingSizeInBytes, this,
+				"matchingSizeInBytes", 0);
+		this.matchingSyncId = ApiTypeHelper.requireNonNull(builder.matchingSyncId, this, "matchingSyncId", false);
+		this.storeException = ApiTypeHelper.requireNonNull(builder.storeException, this, "storeException");
 
 	}
 

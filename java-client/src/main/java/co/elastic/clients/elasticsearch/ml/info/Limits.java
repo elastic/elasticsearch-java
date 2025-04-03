@@ -82,8 +82,7 @@ public class Limits implements JsonpSerializable {
 		this.totalMlProcessors = builder.totalMlProcessors;
 		this.maxModelMemoryLimit = builder.maxModelMemoryLimit;
 		this.effectiveMaxModelMemoryLimit = builder.effectiveMaxModelMemoryLimit;
-		this.totalMlMemory = ApiTypeHelper.requireNonNullWithDefault(builder.totalMlMemory, this, "totalMlMemory",
-				this.totalMlMemory());
+		this.totalMlMemory = ApiTypeHelper.requireNonNull(builder.totalMlMemory, this, "totalMlMemory");
 
 	}
 

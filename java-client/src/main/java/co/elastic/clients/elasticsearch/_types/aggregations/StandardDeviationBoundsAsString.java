@@ -76,16 +76,12 @@ public class StandardDeviationBoundsAsString implements JsonpSerializable {
 
 	private StandardDeviationBoundsAsString(Builder builder) {
 
-		this.upper = ApiTypeHelper.requireNonNullWithDefault(builder.upper, this, "upper", this.upper());
-		this.lower = ApiTypeHelper.requireNonNullWithDefault(builder.lower, this, "lower", this.lower());
-		this.upperPopulation = ApiTypeHelper.requireNonNullWithDefault(builder.upperPopulation, this, "upperPopulation",
-				this.upperPopulation());
-		this.lowerPopulation = ApiTypeHelper.requireNonNullWithDefault(builder.lowerPopulation, this, "lowerPopulation",
-				this.lowerPopulation());
-		this.upperSampling = ApiTypeHelper.requireNonNullWithDefault(builder.upperSampling, this, "upperSampling",
-				this.upperSampling());
-		this.lowerSampling = ApiTypeHelper.requireNonNullWithDefault(builder.lowerSampling, this, "lowerSampling",
-				this.lowerSampling());
+		this.upper = ApiTypeHelper.requireNonNull(builder.upper, this, "upper");
+		this.lower = ApiTypeHelper.requireNonNull(builder.lower, this, "lower");
+		this.upperPopulation = ApiTypeHelper.requireNonNull(builder.upperPopulation, this, "upperPopulation");
+		this.lowerPopulation = ApiTypeHelper.requireNonNull(builder.lowerPopulation, this, "lowerPopulation");
+		this.upperSampling = ApiTypeHelper.requireNonNull(builder.upperSampling, this, "upperSampling");
+		this.lowerSampling = ApiTypeHelper.requireNonNull(builder.lowerSampling, this, "lowerSampling");
 
 	}
 

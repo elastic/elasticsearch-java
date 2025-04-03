@@ -80,7 +80,7 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		super(builder);
 
 		this.ecsCompatibility = builder.ecsCompatibility;
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.patternDefinitions = ApiTypeHelper.unmodifiable(builder.patternDefinitions);
 		this.patterns = ApiTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");

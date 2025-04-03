@@ -83,25 +83,17 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 
 	private ElasticsearchVersionInfo(Builder builder) {
 
-		this.buildDate = ApiTypeHelper.requireNonNullWithDefault(builder.buildDate, this, "buildDate",
-				this.buildDate());
-		this.buildFlavor = ApiTypeHelper.requireNonNullWithDefault(builder.buildFlavor, this, "buildFlavor",
-				this.buildFlavor());
-		this.buildHash = ApiTypeHelper.requireNonNullWithDefault(builder.buildHash, this, "buildHash",
-				this.buildHash());
-		this.buildSnapshot = ApiTypeHelper.requireNonNullWithDefault(builder.buildSnapshot, this, "buildSnapshot",
-				this.buildSnapshot());
-		this.buildType = ApiTypeHelper.requireNonNullWithDefault(builder.buildType, this, "buildType",
-				this.buildType());
-		this.luceneVersion = ApiTypeHelper.requireNonNullWithDefault(builder.luceneVersion, this, "luceneVersion",
-				this.luceneVersion());
-		this.minimumIndexCompatibilityVersion = ApiTypeHelper.requireNonNullWithDefault(
-				builder.minimumIndexCompatibilityVersion, this, "minimumIndexCompatibilityVersion",
-				this.minimumIndexCompatibilityVersion());
-		this.minimumWireCompatibilityVersion = ApiTypeHelper.requireNonNullWithDefault(
-				builder.minimumWireCompatibilityVersion, this, "minimumWireCompatibilityVersion",
-				this.minimumWireCompatibilityVersion());
-		this.number = ApiTypeHelper.requireNonNullWithDefault(builder.number, this, "number", this.number());
+		this.buildDate = ApiTypeHelper.requireNonNull(builder.buildDate, this, "buildDate");
+		this.buildFlavor = ApiTypeHelper.requireNonNull(builder.buildFlavor, this, "buildFlavor");
+		this.buildHash = ApiTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
+		this.buildSnapshot = ApiTypeHelper.requireNonNull(builder.buildSnapshot, this, "buildSnapshot", false);
+		this.buildType = ApiTypeHelper.requireNonNull(builder.buildType, this, "buildType");
+		this.luceneVersion = ApiTypeHelper.requireNonNull(builder.luceneVersion, this, "luceneVersion");
+		this.minimumIndexCompatibilityVersion = ApiTypeHelper.requireNonNull(builder.minimumIndexCompatibilityVersion,
+				this, "minimumIndexCompatibilityVersion");
+		this.minimumWireCompatibilityVersion = ApiTypeHelper.requireNonNull(builder.minimumWireCompatibilityVersion,
+				this, "minimumWireCompatibilityVersion");
+		this.number = ApiTypeHelper.requireNonNull(builder.number, this, "number");
 
 	}
 

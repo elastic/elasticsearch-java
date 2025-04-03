@@ -74,7 +74,7 @@ public class PagerDutyResult implements JsonpSerializable {
 
 	private PagerDutyResult(Builder builder) {
 
-		this.event = ApiTypeHelper.requireNonNullWithDefault(builder.event, this, "event", this.event());
+		this.event = ApiTypeHelper.requireNonNull(builder.event, this, "event");
 		this.reason = builder.reason;
 		this.request = builder.request;
 		this.response = builder.response;

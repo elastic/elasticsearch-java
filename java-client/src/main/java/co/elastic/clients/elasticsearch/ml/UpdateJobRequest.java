@@ -127,7 +127,7 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		this.description = builder.description;
 		this.detectors = ApiTypeHelper.unmodifiable(builder.detectors);
 		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
-		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelPruneWindow = builder.modelPruneWindow;
 		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;

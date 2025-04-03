@@ -73,7 +73,7 @@ public class StepKey implements JsonpSerializable {
 
 		this.action = builder.action;
 		this.name = builder.name;
-		this.phase = ApiTypeHelper.requireNonNullWithDefault(builder.phase, this, "phase", this.phase());
+		this.phase = ApiTypeHelper.requireNonNull(builder.phase, this, "phase");
 
 	}
 

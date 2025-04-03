@@ -86,7 +86,7 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 		this.geoMatch = builder.geoMatch;
 		this.masterTimeout = builder.masterTimeout;
 		this.match = builder.match;
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.range = builder.range;
 
 	}

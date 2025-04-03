@@ -68,9 +68,8 @@ public class SampleDiversity implements JsonpSerializable {
 
 	private SampleDiversity(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
-		this.maxDocsPerValue = ApiTypeHelper.requireNonNullWithDefault(builder.maxDocsPerValue, this, "maxDocsPerValue",
-				this.maxDocsPerValue());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.maxDocsPerValue = ApiTypeHelper.requireNonNull(builder.maxDocsPerValue, this, "maxDocsPerValue", 0);
 
 	}
 

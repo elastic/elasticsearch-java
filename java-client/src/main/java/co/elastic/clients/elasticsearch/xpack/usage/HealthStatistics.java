@@ -62,8 +62,7 @@ public class HealthStatistics extends Base {
 	private HealthStatistics(Builder builder) {
 		super(builder);
 
-		this.invocations = ApiTypeHelper.requireNonNullWithDefault(builder.invocations, this, "invocations",
-				this.invocations());
+		this.invocations = ApiTypeHelper.requireNonNull(builder.invocations, this, "invocations");
 
 	}
 

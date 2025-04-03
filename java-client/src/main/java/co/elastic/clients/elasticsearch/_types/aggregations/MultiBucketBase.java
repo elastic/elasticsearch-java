@@ -76,7 +76,7 @@ public abstract class MultiBucketBase implements JsonpSerializable {
 
 		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 
-		this.docCount = ApiTypeHelper.requireNonNullWithDefault(builder.docCount, this, "docCount", this.docCount());
+		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount", 0);
 
 	}
 

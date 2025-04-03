@@ -66,7 +66,7 @@ public class GeoLinePoint implements JsonpSerializable {
 
 	private GeoLinePoint(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 	}
 

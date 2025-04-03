@@ -65,7 +65,7 @@ public class CompositeSubField implements JsonpSerializable {
 
 	private CompositeSubField(Builder builder) {
 
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 

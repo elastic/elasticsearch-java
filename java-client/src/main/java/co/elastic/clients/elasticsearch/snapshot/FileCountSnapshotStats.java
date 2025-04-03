@@ -68,10 +68,8 @@ public class FileCountSnapshotStats implements JsonpSerializable {
 
 	private FileCountSnapshotStats(Builder builder) {
 
-		this.fileCount = ApiTypeHelper.requireNonNullWithDefault(builder.fileCount, this, "fileCount",
-				this.fileCount());
-		this.sizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.sizeInBytes, this, "sizeInBytes",
-				this.sizeInBytes());
+		this.fileCount = ApiTypeHelper.requireNonNull(builder.fileCount, this, "fileCount", 0);
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes", 0);
 
 	}
 

@@ -68,9 +68,8 @@ public class JoinProcessor extends ProcessorBase implements ProcessorVariant {
 	private JoinProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
-		this.separator = ApiTypeHelper.requireNonNullWithDefault(builder.separator, this, "separator",
-				this.separator());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.separator = ApiTypeHelper.requireNonNull(builder.separator, this, "separator");
 		this.targetField = builder.targetField;
 
 	}

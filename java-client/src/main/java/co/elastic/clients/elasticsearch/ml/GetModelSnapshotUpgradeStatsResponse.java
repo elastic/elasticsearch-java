@@ -69,7 +69,7 @@ public class GetModelSnapshotUpgradeStatsResponse implements JsonpSerializable {
 
 	private GetModelSnapshotUpgradeStatsResponse(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.modelSnapshotUpgrades = ApiTypeHelper.unmodifiableRequired(builder.modelSnapshotUpgrades, this,
 				"modelSnapshotUpgrades");
 

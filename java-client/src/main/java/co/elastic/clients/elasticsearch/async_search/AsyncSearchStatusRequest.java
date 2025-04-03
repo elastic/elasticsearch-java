@@ -83,7 +83,7 @@ public class AsyncSearchStatusRequest extends RequestBase {
 
 	private AsyncSearchStatusRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.keepAlive = builder.keepAlive;
 
 	}

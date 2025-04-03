@@ -70,8 +70,7 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 	private AggregateMetricDoubleProperty(Builder builder) {
 		super(builder);
 
-		this.defaultMetric = ApiTypeHelper.requireNonNullWithDefault(builder.defaultMetric, this, "defaultMetric",
-				this.defaultMetric());
+		this.defaultMetric = ApiTypeHelper.requireNonNull(builder.defaultMetric, this, "defaultMetric");
 		this.metrics = ApiTypeHelper.unmodifiableRequired(builder.metrics, this, "metrics");
 		this.timeSeriesMetric = builder.timeSeriesMetric;
 

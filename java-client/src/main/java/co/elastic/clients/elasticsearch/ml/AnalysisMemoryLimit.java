@@ -65,8 +65,7 @@ public class AnalysisMemoryLimit implements JsonpSerializable {
 
 	private AnalysisMemoryLimit(Builder builder) {
 
-		this.modelMemoryLimit = ApiTypeHelper.requireNonNullWithDefault(builder.modelMemoryLimit, this,
-				"modelMemoryLimit", this.modelMemoryLimit());
+		this.modelMemoryLimit = ApiTypeHelper.requireNonNull(builder.modelMemoryLimit, this, "modelMemoryLimit");
 
 	}
 

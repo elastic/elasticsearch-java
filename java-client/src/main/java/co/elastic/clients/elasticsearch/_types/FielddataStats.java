@@ -77,8 +77,7 @@ public class FielddataStats implements JsonpSerializable {
 
 		this.evictions = builder.evictions;
 		this.memorySize = builder.memorySize;
-		this.memorySizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.memorySizeInBytes, this,
-				"memorySizeInBytes", this.memorySizeInBytes());
+		this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes", 0);
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 
 	}

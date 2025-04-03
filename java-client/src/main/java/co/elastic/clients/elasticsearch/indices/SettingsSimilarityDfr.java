@@ -72,12 +72,9 @@ public class SettingsSimilarityDfr implements SettingsSimilarityVariant, JsonpSe
 
 	private SettingsSimilarityDfr(Builder builder) {
 
-		this.afterEffect = ApiTypeHelper.requireNonNullWithDefault(builder.afterEffect, this, "afterEffect",
-				this.afterEffect());
-		this.basicModel = ApiTypeHelper.requireNonNullWithDefault(builder.basicModel, this, "basicModel",
-				this.basicModel());
-		this.normalization = ApiTypeHelper.requireNonNullWithDefault(builder.normalization, this, "normalization",
-				this.normalization());
+		this.afterEffect = ApiTypeHelper.requireNonNull(builder.afterEffect, this, "afterEffect");
+		this.basicModel = ApiTypeHelper.requireNonNull(builder.basicModel, this, "basicModel");
+		this.normalization = ApiTypeHelper.requireNonNull(builder.normalization, this, "normalization");
 
 	}
 

@@ -65,8 +65,7 @@ public class NodeInfoBootstrap implements JsonpSerializable {
 
 	private NodeInfoBootstrap(Builder builder) {
 
-		this.memoryLock = ApiTypeHelper.requireNonNullWithDefault(builder.memoryLock, this, "memoryLock",
-				this.memoryLock());
+		this.memoryLock = ApiTypeHelper.requireNonNull(builder.memoryLock, this, "memoryLock");
 
 	}
 

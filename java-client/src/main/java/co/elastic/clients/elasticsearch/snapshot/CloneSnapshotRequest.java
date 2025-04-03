@@ -84,13 +84,11 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 
 	private CloneSnapshotRequest(Builder builder) {
 
-		this.indices = ApiTypeHelper.requireNonNullWithDefault(builder.indices, this, "indices", this.indices());
+		this.indices = ApiTypeHelper.requireNonNull(builder.indices, this, "indices");
 		this.masterTimeout = builder.masterTimeout;
-		this.repository = ApiTypeHelper.requireNonNullWithDefault(builder.repository, this, "repository",
-				this.repository());
-		this.snapshot = ApiTypeHelper.requireNonNullWithDefault(builder.snapshot, this, "snapshot", this.snapshot());
-		this.targetSnapshot = ApiTypeHelper.requireNonNullWithDefault(builder.targetSnapshot, this, "targetSnapshot",
-				this.targetSnapshot());
+		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.targetSnapshot = ApiTypeHelper.requireNonNull(builder.targetSnapshot, this, "targetSnapshot");
 		this.timeout = builder.timeout;
 
 	}

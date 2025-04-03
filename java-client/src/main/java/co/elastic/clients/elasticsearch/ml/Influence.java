@@ -68,8 +68,8 @@ public class Influence implements JsonpSerializable {
 
 	private Influence(Builder builder) {
 
-		this.influencerFieldName = ApiTypeHelper.requireNonNullWithDefault(builder.influencerFieldName, this,
-				"influencerFieldName", this.influencerFieldName());
+		this.influencerFieldName = ApiTypeHelper.requireNonNull(builder.influencerFieldName, this,
+				"influencerFieldName");
 		this.influencerFieldValues = ApiTypeHelper.unmodifiableRequired(builder.influencerFieldValues, this,
 				"influencerFieldValues");
 

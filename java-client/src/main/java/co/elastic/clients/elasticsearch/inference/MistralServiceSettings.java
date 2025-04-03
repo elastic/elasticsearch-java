@@ -75,9 +75,9 @@ public class MistralServiceSettings implements JsonpSerializable {
 
 	private MistralServiceSettings(Builder builder) {
 
-		this.apiKey = ApiTypeHelper.requireNonNullWithDefault(builder.apiKey, this, "apiKey", this.apiKey());
+		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
 		this.maxInputTokens = builder.maxInputTokens;
-		this.model = ApiTypeHelper.requireNonNullWithDefault(builder.model, this, "model", this.model());
+		this.model = ApiTypeHelper.requireNonNull(builder.model, this, "model");
 		this.rateLimit = builder.rateLimit;
 
 	}

@@ -82,16 +82,13 @@ public class GetTokenResponse implements JsonpSerializable {
 
 	private GetTokenResponse(Builder builder) {
 
-		this.accessToken = ApiTypeHelper.requireNonNullWithDefault(builder.accessToken, this, "accessToken",
-				this.accessToken());
-		this.expiresIn = ApiTypeHelper.requireNonNullWithDefault(builder.expiresIn, this, "expiresIn",
-				this.expiresIn());
+		this.accessToken = ApiTypeHelper.requireNonNull(builder.accessToken, this, "accessToken");
+		this.expiresIn = ApiTypeHelper.requireNonNull(builder.expiresIn, this, "expiresIn", 0);
 		this.scope = builder.scope;
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.refreshToken = builder.refreshToken;
 		this.kerberosAuthenticationResponseToken = builder.kerberosAuthenticationResponseToken;
-		this.authentication = ApiTypeHelper.requireNonNullWithDefault(builder.authentication, this, "authentication",
-				this.authentication());
+		this.authentication = ApiTypeHelper.requireNonNull(builder.authentication, this, "authentication");
 
 	}
 

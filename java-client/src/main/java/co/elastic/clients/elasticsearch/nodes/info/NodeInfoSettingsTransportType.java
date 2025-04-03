@@ -66,7 +66,7 @@ public class NodeInfoSettingsTransportType implements JsonpSerializable {
 
 	private NodeInfoSettingsTransportType(Builder builder) {
 
-		this.default_ = ApiTypeHelper.requireNonNullWithDefault(builder.default_, this, "default_", this.default_());
+		this.default_ = ApiTypeHelper.requireNonNull(builder.default_, this, "default_");
 
 	}
 

@@ -78,7 +78,7 @@ public class SyncJobPostRequest extends RequestBase implements JsonpSerializable
 
 	private SyncJobPostRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.jobType = builder.jobType;
 		this.triggerMethod = builder.triggerMethod;
 

@@ -78,9 +78,9 @@ public class VariableWidthHistogramBucket extends MultiBucketBase {
 	private VariableWidthHistogramBucket(Builder builder) {
 		super(builder);
 
-		this.min = ApiTypeHelper.requireNonNullWithDefault(builder.min, this, "min", this.min());
-		this.key = ApiTypeHelper.requireNonNullWithDefault(builder.key, this, "key", this.key());
-		this.max = ApiTypeHelper.requireNonNullWithDefault(builder.max, this, "max", this.max());
+		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min", 0);
+		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key", 0);
+		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max", 0);
 		this.minAsString = builder.minAsString;
 		this.keyAsString = builder.keyAsString;
 		this.maxAsString = builder.maxAsString;

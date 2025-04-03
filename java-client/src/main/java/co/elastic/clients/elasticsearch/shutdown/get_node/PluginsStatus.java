@@ -65,7 +65,7 @@ public class PluginsStatus implements JsonpSerializable {
 
 	private PluginsStatus(Builder builder) {
 
-		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 

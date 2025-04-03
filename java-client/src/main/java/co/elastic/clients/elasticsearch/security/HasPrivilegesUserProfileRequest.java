@@ -83,8 +83,7 @@ public class HasPrivilegesUserProfileRequest extends RequestBase implements Json
 
 	private HasPrivilegesUserProfileRequest(Builder builder) {
 
-		this.privileges = ApiTypeHelper.requireNonNullWithDefault(builder.privileges, this, "privileges",
-				this.privileges());
+		this.privileges = ApiTypeHelper.requireNonNull(builder.privileges, this, "privileges");
 		this.uids = ApiTypeHelper.unmodifiableRequired(builder.uids, this, "uids");
 
 	}

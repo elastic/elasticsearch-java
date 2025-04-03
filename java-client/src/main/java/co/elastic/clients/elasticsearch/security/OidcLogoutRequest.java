@@ -86,7 +86,7 @@ public class OidcLogoutRequest extends RequestBase implements JsonpSerializable 
 	private OidcLogoutRequest(Builder builder) {
 
 		this.refreshToken = builder.refreshToken;
-		this.token = ApiTypeHelper.requireNonNullWithDefault(builder.token, this, "token", this.token());
+		this.token = ApiTypeHelper.requireNonNull(builder.token, this, "token");
 
 	}
 

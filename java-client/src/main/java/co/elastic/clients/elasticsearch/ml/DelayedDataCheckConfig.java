@@ -71,7 +71,7 @@ public class DelayedDataCheckConfig implements JsonpSerializable {
 	private DelayedDataCheckConfig(Builder builder) {
 
 		this.checkWindow = builder.checkWindow;
-		this.enabled = ApiTypeHelper.requireNonNullWithDefault(builder.enabled, this, "enabled", this.enabled());
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
 
 	}
 

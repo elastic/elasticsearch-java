@@ -66,8 +66,7 @@ public class MlDataFrameAnalyticsJobsMemory implements JsonpSerializable {
 
 	private MlDataFrameAnalyticsJobsMemory(Builder builder) {
 
-		this.peakUsageBytes = ApiTypeHelper.requireNonNullWithDefault(builder.peakUsageBytes, this, "peakUsageBytes",
-				this.peakUsageBytes());
+		this.peakUsageBytes = ApiTypeHelper.requireNonNull(builder.peakUsageBytes, this, "peakUsageBytes");
 
 	}
 

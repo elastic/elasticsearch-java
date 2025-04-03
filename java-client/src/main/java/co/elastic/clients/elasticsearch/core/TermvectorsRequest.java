@@ -183,7 +183,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.filter = builder.filter;
 		this.id = builder.id;
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.offsets = builder.offsets;
 		this.payloads = builder.payloads;
 		this.perFieldAnalyzer = ApiTypeHelper.unmodifiable(builder.perFieldAnalyzer);

@@ -86,9 +86,9 @@ public class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSer
 	private PutAutoscalingPolicyRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.timeout = builder.timeout;
-		this.policy = ApiTypeHelper.requireNonNullWithDefault(builder.policy, this, "policy", this.policy());
+		this.policy = ApiTypeHelper.requireNonNull(builder.policy, this, "policy");
 
 	}
 

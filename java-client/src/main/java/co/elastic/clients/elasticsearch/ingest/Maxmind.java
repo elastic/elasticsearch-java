@@ -65,8 +65,7 @@ public class Maxmind implements DatabaseConfigurationFullVariant, DatabaseConfig
 
 	private Maxmind(Builder builder) {
 
-		this.accountId = ApiTypeHelper.requireNonNullWithDefault(builder.accountId, this, "accountId",
-				this.accountId());
+		this.accountId = ApiTypeHelper.requireNonNull(builder.accountId, this, "accountId");
 
 	}
 

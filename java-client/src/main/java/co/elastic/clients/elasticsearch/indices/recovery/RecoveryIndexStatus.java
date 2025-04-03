@@ -88,17 +88,16 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 	private RecoveryIndexStatus(Builder builder) {
 
 		this.bytes = builder.bytes;
-		this.files = ApiTypeHelper.requireNonNullWithDefault(builder.files, this, "files", this.files());
-		this.size = ApiTypeHelper.requireNonNullWithDefault(builder.size, this, "size", this.size());
+		this.files = ApiTypeHelper.requireNonNull(builder.files, this, "files");
+		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size");
 		this.sourceThrottleTime = builder.sourceThrottleTime;
-		this.sourceThrottleTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.sourceThrottleTimeInMillis,
-				this, "sourceThrottleTimeInMillis", this.sourceThrottleTimeInMillis());
+		this.sourceThrottleTimeInMillis = ApiTypeHelper.requireNonNull(builder.sourceThrottleTimeInMillis, this,
+				"sourceThrottleTimeInMillis", 0);
 		this.targetThrottleTime = builder.targetThrottleTime;
-		this.targetThrottleTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.targetThrottleTimeInMillis,
-				this, "targetThrottleTimeInMillis", this.targetThrottleTimeInMillis());
+		this.targetThrottleTimeInMillis = ApiTypeHelper.requireNonNull(builder.targetThrottleTimeInMillis, this,
+				"targetThrottleTimeInMillis", 0);
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.totalTimeInMillis, this,
-				"totalTimeInMillis", this.totalTimeInMillis());
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis", 0);
 
 	}
 

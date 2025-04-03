@@ -70,8 +70,7 @@ public class TrainedModelAssignmentRoutingStateAndReason implements JsonpSeriali
 	private TrainedModelAssignmentRoutingStateAndReason(Builder builder) {
 
 		this.reason = builder.reason;
-		this.routingState = ApiTypeHelper.requireNonNullWithDefault(builder.routingState, this, "routingState",
-				this.routingState());
+		this.routingState = ApiTypeHelper.requireNonNull(builder.routingState, this, "routingState");
 
 	}
 

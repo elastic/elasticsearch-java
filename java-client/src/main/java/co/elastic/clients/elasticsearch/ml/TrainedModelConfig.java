@@ -127,7 +127,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 
 	protected TrainedModelConfig(AbstractBuilder<?> builder) {
 
-		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.modelType = builder.modelType;
 		this.tags = ApiTypeHelper.unmodifiableRequired(builder.tags, this, "tags");
 		this.version = builder.version;
@@ -140,7 +140,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 		this.estimatedOperations = builder.estimatedOperations;
 		this.fullyDefined = builder.fullyDefined;
 		this.inferenceConfig = builder.inferenceConfig;
-		this.input = ApiTypeHelper.requireNonNullWithDefault(builder.input, this, "input", this.input());
+		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
 		this.licenseLevel = builder.licenseLevel;
 		this.metadata = builder.metadata;
 		this.modelSizeBytes = builder.modelSizeBytes;

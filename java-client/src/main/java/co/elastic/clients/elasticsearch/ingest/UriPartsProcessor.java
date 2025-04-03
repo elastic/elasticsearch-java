@@ -76,7 +76,7 @@ public class UriPartsProcessor extends ProcessorBase implements ProcessorVariant
 	private UriPartsProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.keepOriginal = builder.keepOriginal;
 		this.removeIfSuccessful = builder.removeIfSuccessful;

@@ -82,8 +82,8 @@ public class RemoteUserIndicesPrivileges implements JsonpSerializable {
 		this.names = ApiTypeHelper.unmodifiableRequired(builder.names, this, "names");
 		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
 		this.query = ApiTypeHelper.unmodifiable(builder.query);
-		this.allowRestrictedIndices = ApiTypeHelper.requireNonNullWithDefault(builder.allowRestrictedIndices, this,
-				"allowRestrictedIndices", this.allowRestrictedIndices());
+		this.allowRestrictedIndices = ApiTypeHelper.requireNonNull(builder.allowRestrictedIndices, this,
+				"allowRestrictedIndices", false);
 		this.clusters = ApiTypeHelper.unmodifiableRequired(builder.clusters, this, "clusters");
 
 	}

@@ -65,10 +65,8 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase implements C
 	private KuromojiIterationMarkCharFilter(Builder builder) {
 		super(builder);
 
-		this.normalizeKana = ApiTypeHelper.requireNonNullWithDefault(builder.normalizeKana, this, "normalizeKana",
-				this.normalizeKana());
-		this.normalizeKanji = ApiTypeHelper.requireNonNullWithDefault(builder.normalizeKanji, this, "normalizeKanji",
-				this.normalizeKanji());
+		this.normalizeKana = ApiTypeHelper.requireNonNull(builder.normalizeKana, this, "normalizeKana", false);
+		this.normalizeKanji = ApiTypeHelper.requireNonNull(builder.normalizeKanji, this, "normalizeKanji", false);
 
 	}
 

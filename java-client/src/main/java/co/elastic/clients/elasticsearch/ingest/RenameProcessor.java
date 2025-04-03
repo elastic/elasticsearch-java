@@ -69,10 +69,9 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 	private RenameProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.targetField = ApiTypeHelper.requireNonNullWithDefault(builder.targetField, this, "targetField",
-				this.targetField());
+		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
 
 	}
 

@@ -73,16 +73,12 @@ public class EqlFeaturesJoin implements JsonpSerializable {
 
 	private EqlFeaturesJoin(Builder builder) {
 
-		this.joinQueriesTwo = ApiTypeHelper.requireNonNullWithDefault(builder.joinQueriesTwo, this, "joinQueriesTwo",
-				this.joinQueriesTwo());
-		this.joinQueriesThree = ApiTypeHelper.requireNonNullWithDefault(builder.joinQueriesThree, this,
-				"joinQueriesThree", this.joinQueriesThree());
-		this.joinUntil = ApiTypeHelper.requireNonNullWithDefault(builder.joinUntil, this, "joinUntil",
-				this.joinUntil());
-		this.joinQueriesFiveOrMore = ApiTypeHelper.requireNonNullWithDefault(builder.joinQueriesFiveOrMore, this,
-				"joinQueriesFiveOrMore", this.joinQueriesFiveOrMore());
-		this.joinQueriesFour = ApiTypeHelper.requireNonNullWithDefault(builder.joinQueriesFour, this, "joinQueriesFour",
-				this.joinQueriesFour());
+		this.joinQueriesTwo = ApiTypeHelper.requireNonNull(builder.joinQueriesTwo, this, "joinQueriesTwo");
+		this.joinQueriesThree = ApiTypeHelper.requireNonNull(builder.joinQueriesThree, this, "joinQueriesThree");
+		this.joinUntil = ApiTypeHelper.requireNonNull(builder.joinUntil, this, "joinUntil");
+		this.joinQueriesFiveOrMore = ApiTypeHelper.requireNonNull(builder.joinQueriesFiveOrMore, this,
+				"joinQueriesFiveOrMore");
+		this.joinQueriesFour = ApiTypeHelper.requireNonNull(builder.joinQueriesFour, this, "joinQueriesFour");
 
 	}
 

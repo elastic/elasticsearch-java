@@ -87,24 +87,19 @@ public class IndexHealthStats implements JsonpSerializable {
 
 	private IndexHealthStats(Builder builder) {
 
-		this.activePrimaryShards = ApiTypeHelper.requireNonNullWithDefault(builder.activePrimaryShards, this,
-				"activePrimaryShards", this.activePrimaryShards());
-		this.activeShards = ApiTypeHelper.requireNonNullWithDefault(builder.activeShards, this, "activeShards",
-				this.activeShards());
-		this.initializingShards = ApiTypeHelper.requireNonNullWithDefault(builder.initializingShards, this,
-				"initializingShards", this.initializingShards());
-		this.numberOfReplicas = ApiTypeHelper.requireNonNullWithDefault(builder.numberOfReplicas, this,
-				"numberOfReplicas", this.numberOfReplicas());
-		this.numberOfShards = ApiTypeHelper.requireNonNullWithDefault(builder.numberOfShards, this, "numberOfShards",
-				this.numberOfShards());
-		this.relocatingShards = ApiTypeHelper.requireNonNullWithDefault(builder.relocatingShards, this,
-				"relocatingShards", this.relocatingShards());
+		this.activePrimaryShards = ApiTypeHelper.requireNonNull(builder.activePrimaryShards, this,
+				"activePrimaryShards", 0);
+		this.activeShards = ApiTypeHelper.requireNonNull(builder.activeShards, this, "activeShards", 0);
+		this.initializingShards = ApiTypeHelper.requireNonNull(builder.initializingShards, this, "initializingShards",
+				0);
+		this.numberOfReplicas = ApiTypeHelper.requireNonNull(builder.numberOfReplicas, this, "numberOfReplicas", 0);
+		this.numberOfShards = ApiTypeHelper.requireNonNull(builder.numberOfShards, this, "numberOfShards", 0);
+		this.relocatingShards = ApiTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards", 0);
 		this.shards = ApiTypeHelper.unmodifiable(builder.shards);
-		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
-		this.unassignedShards = ApiTypeHelper.requireNonNullWithDefault(builder.unassignedShards, this,
-				"unassignedShards", this.unassignedShards());
-		this.unassignedPrimaryShards = ApiTypeHelper.requireNonNullWithDefault(builder.unassignedPrimaryShards, this,
-				"unassignedPrimaryShards", this.unassignedPrimaryShards());
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.unassignedShards = ApiTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards", 0);
+		this.unassignedPrimaryShards = ApiTypeHelper.requireNonNull(builder.unassignedPrimaryShards, this,
+				"unassignedPrimaryShards", 0);
 
 	}
 

@@ -72,10 +72,8 @@ public class HealthReportResponse implements JsonpSerializable {
 
 	private HealthReportResponse(Builder builder) {
 
-		this.clusterName = ApiTypeHelper.requireNonNullWithDefault(builder.clusterName, this, "clusterName",
-				this.clusterName());
-		this.indicators = ApiTypeHelper.requireNonNullWithDefault(builder.indicators, this, "indicators",
-				this.indicators());
+		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.indicators = ApiTypeHelper.requireNonNull(builder.indicators, this, "indicators");
 		this.status = builder.status;
 
 	}

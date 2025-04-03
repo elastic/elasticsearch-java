@@ -136,8 +136,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.chunkingConfig = builder.chunkingConfig;
-		this.datafeedId = ApiTypeHelper.requireNonNullWithDefault(builder.datafeedId, this, "datafeedId",
-				this.datafeedId());
+		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.delayedDataCheckConfig = builder.delayedDataCheckConfig;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.frequency = builder.frequency;

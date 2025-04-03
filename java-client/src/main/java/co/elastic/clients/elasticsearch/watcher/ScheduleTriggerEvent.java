@@ -69,8 +69,7 @@ public class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSerializa
 
 	private ScheduleTriggerEvent(Builder builder) {
 
-		this.scheduledTime = ApiTypeHelper.requireNonNullWithDefault(builder.scheduledTime, this, "scheduledTime",
-				this.scheduledTime());
+		this.scheduledTime = ApiTypeHelper.requireNonNull(builder.scheduledTime, this, "scheduledTime");
 		this.triggeredTime = builder.triggeredTime;
 
 	}

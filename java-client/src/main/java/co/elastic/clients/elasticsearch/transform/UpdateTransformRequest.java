@@ -122,8 +122,7 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		this.source = builder.source;
 		this.sync = builder.sync;
 		this.timeout = builder.timeout;
-		this.transformId = ApiTypeHelper.requireNonNullWithDefault(builder.transformId, this, "transformId",
-				this.transformId());
+		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
 

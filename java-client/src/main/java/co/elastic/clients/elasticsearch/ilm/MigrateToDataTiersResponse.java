@@ -80,9 +80,9 @@ public class MigrateToDataTiersResponse implements JsonpSerializable {
 
 	private MigrateToDataTiersResponse(Builder builder) {
 
-		this.dryRun = ApiTypeHelper.requireNonNullWithDefault(builder.dryRun, this, "dryRun", this.dryRun());
-		this.removedLegacyTemplate = ApiTypeHelper.requireNonNullWithDefault(builder.removedLegacyTemplate, this,
-				"removedLegacyTemplate", this.removedLegacyTemplate());
+		this.dryRun = ApiTypeHelper.requireNonNull(builder.dryRun, this, "dryRun", false);
+		this.removedLegacyTemplate = ApiTypeHelper.requireNonNull(builder.removedLegacyTemplate, this,
+				"removedLegacyTemplate");
 		this.migratedIlmPolicies = ApiTypeHelper.unmodifiableRequired(builder.migratedIlmPolicies, this,
 				"migratedIlmPolicies");
 		this.migratedIndices = ApiTypeHelper.unmodifiableRequired(builder.migratedIndices, this, "migratedIndices");

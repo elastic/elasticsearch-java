@@ -75,17 +75,15 @@ public class AnomalyDetectors implements JsonpSerializable {
 
 	private AnomalyDetectors(Builder builder) {
 
-		this.categorizationAnalyzer = ApiTypeHelper.requireNonNullWithDefault(builder.categorizationAnalyzer, this,
-				"categorizationAnalyzer", this.categorizationAnalyzer());
-		this.categorizationExamplesLimit = ApiTypeHelper.requireNonNullWithDefault(builder.categorizationExamplesLimit,
-				this, "categorizationExamplesLimit", this.categorizationExamplesLimit());
-		this.modelMemoryLimit = ApiTypeHelper.requireNonNullWithDefault(builder.modelMemoryLimit, this,
-				"modelMemoryLimit", this.modelMemoryLimit());
-		this.modelSnapshotRetentionDays = ApiTypeHelper.requireNonNullWithDefault(builder.modelSnapshotRetentionDays,
-				this, "modelSnapshotRetentionDays", this.modelSnapshotRetentionDays());
-		this.dailyModelSnapshotRetentionAfterDays = ApiTypeHelper.requireNonNullWithDefault(
-				builder.dailyModelSnapshotRetentionAfterDays, this, "dailyModelSnapshotRetentionAfterDays",
-				this.dailyModelSnapshotRetentionAfterDays());
+		this.categorizationAnalyzer = ApiTypeHelper.requireNonNull(builder.categorizationAnalyzer, this,
+				"categorizationAnalyzer");
+		this.categorizationExamplesLimit = ApiTypeHelper.requireNonNull(builder.categorizationExamplesLimit, this,
+				"categorizationExamplesLimit", 0);
+		this.modelMemoryLimit = ApiTypeHelper.requireNonNull(builder.modelMemoryLimit, this, "modelMemoryLimit");
+		this.modelSnapshotRetentionDays = ApiTypeHelper.requireNonNull(builder.modelSnapshotRetentionDays, this,
+				"modelSnapshotRetentionDays", 0);
+		this.dailyModelSnapshotRetentionAfterDays = ApiTypeHelper.requireNonNull(
+				builder.dailyModelSnapshotRetentionAfterDays, this, "dailyModelSnapshotRetentionAfterDays", 0);
 
 	}
 

@@ -79,10 +79,10 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 
 	private GeoDistanceQuery(Builder builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
-		this.location = ApiTypeHelper.requireNonNullWithDefault(builder.location, this, "location", this.location());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.location = ApiTypeHelper.requireNonNull(builder.location, this, "location");
 
-		this.distance = ApiTypeHelper.requireNonNullWithDefault(builder.distance, this, "distance", this.distance());
+		this.distance = ApiTypeHelper.requireNonNull(builder.distance, this, "distance");
 		this.distanceType = builder.distanceType;
 		this.validationMethod = builder.validationMethod;
 		this.ignoreUnmapped = builder.ignoreUnmapped;

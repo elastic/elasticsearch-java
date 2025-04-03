@@ -68,10 +68,10 @@ public class Vector extends Base {
 	private Vector(Builder builder) {
 		super(builder);
 
-		this.denseVectorDimsAvgCount = ApiTypeHelper.requireNonNullWithDefault(builder.denseVectorDimsAvgCount, this,
-				"denseVectorDimsAvgCount", this.denseVectorDimsAvgCount());
-		this.denseVectorFieldsCount = ApiTypeHelper.requireNonNullWithDefault(builder.denseVectorFieldsCount, this,
-				"denseVectorFieldsCount", this.denseVectorFieldsCount());
+		this.denseVectorDimsAvgCount = ApiTypeHelper.requireNonNull(builder.denseVectorDimsAvgCount, this,
+				"denseVectorDimsAvgCount", 0);
+		this.denseVectorFieldsCount = ApiTypeHelper.requireNonNull(builder.denseVectorFieldsCount, this,
+				"denseVectorFieldsCount", 0);
 		this.sparseVectorFieldsCount = builder.sparseVectorFieldsCount;
 
 	}

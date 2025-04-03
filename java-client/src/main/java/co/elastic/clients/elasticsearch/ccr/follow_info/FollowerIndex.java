@@ -75,14 +75,11 @@ public class FollowerIndex implements JsonpSerializable {
 
 	private FollowerIndex(Builder builder) {
 
-		this.followerIndex = ApiTypeHelper.requireNonNullWithDefault(builder.followerIndex, this, "followerIndex",
-				this.followerIndex());
-		this.leaderIndex = ApiTypeHelper.requireNonNullWithDefault(builder.leaderIndex, this, "leaderIndex",
-				this.leaderIndex());
+		this.followerIndex = ApiTypeHelper.requireNonNull(builder.followerIndex, this, "followerIndex");
+		this.leaderIndex = ApiTypeHelper.requireNonNull(builder.leaderIndex, this, "leaderIndex");
 		this.parameters = builder.parameters;
-		this.remoteCluster = ApiTypeHelper.requireNonNullWithDefault(builder.remoteCluster, this, "remoteCluster",
-				this.remoteCluster());
-		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
+		this.remoteCluster = ApiTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 

@@ -62,7 +62,7 @@ public class Analytics extends Base {
 	private Analytics(Builder builder) {
 		super(builder);
 
-		this.stats = ApiTypeHelper.requireNonNullWithDefault(builder.stats, this, "stats", this.stats());
+		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
 
 	}
 

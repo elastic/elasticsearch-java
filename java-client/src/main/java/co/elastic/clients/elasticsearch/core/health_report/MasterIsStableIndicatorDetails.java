@@ -73,8 +73,7 @@ public class MasterIsStableIndicatorDetails implements JsonpSerializable {
 
 	private MasterIsStableIndicatorDetails(Builder builder) {
 
-		this.currentMaster = ApiTypeHelper.requireNonNullWithDefault(builder.currentMaster, this, "currentMaster",
-				this.currentMaster());
+		this.currentMaster = ApiTypeHelper.requireNonNull(builder.currentMaster, this, "currentMaster");
 		this.recentMasters = ApiTypeHelper.unmodifiableRequired(builder.recentMasters, this, "recentMasters");
 		this.exceptionFetchingHistory = builder.exceptionFetchingHistory;
 		this.clusterFormation = ApiTypeHelper.unmodifiable(builder.clusterFormation);

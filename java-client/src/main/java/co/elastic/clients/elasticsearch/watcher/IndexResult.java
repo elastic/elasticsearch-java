@@ -64,7 +64,7 @@ public class IndexResult implements JsonpSerializable {
 
 	private IndexResult(Builder builder) {
 
-		this.response = ApiTypeHelper.requireNonNullWithDefault(builder.response, this, "response", this.response());
+		this.response = ApiTypeHelper.requireNonNull(builder.response, this, "response");
 
 	}
 

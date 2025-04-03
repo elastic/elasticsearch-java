@@ -79,8 +79,7 @@ public class UpdateIndexNameRequest extends RequestBase implements JsonpSerializ
 
 	private UpdateIndexNameRequest(Builder builder) {
 
-		this.connectorId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorId, this, "connectorId",
-				this.connectorId());
+		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
 		this.indexName = builder.indexName;
 		this.isExpNullIndexName = builder.isExpNullIndexName;
 

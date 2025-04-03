@@ -65,8 +65,7 @@ public class StartTrainedModelDeploymentResponse implements JsonpSerializable {
 
 	private StartTrainedModelDeploymentResponse(Builder builder) {
 
-		this.assignment = ApiTypeHelper.requireNonNullWithDefault(builder.assignment, this, "assignment",
-				this.assignment());
+		this.assignment = ApiTypeHelper.requireNonNull(builder.assignment, this, "assignment");
 
 	}
 

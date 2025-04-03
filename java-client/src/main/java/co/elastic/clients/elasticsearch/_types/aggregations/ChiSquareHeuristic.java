@@ -67,10 +67,9 @@ public class ChiSquareHeuristic implements JsonpSerializable {
 
 	private ChiSquareHeuristic(Builder builder) {
 
-		this.backgroundIsSuperset = ApiTypeHelper.requireNonNullWithDefault(builder.backgroundIsSuperset, this,
-				"backgroundIsSuperset", this.backgroundIsSuperset());
-		this.includeNegatives = ApiTypeHelper.requireNonNullWithDefault(builder.includeNegatives, this,
-				"includeNegatives", this.includeNegatives());
+		this.backgroundIsSuperset = ApiTypeHelper.requireNonNull(builder.backgroundIsSuperset, this,
+				"backgroundIsSuperset", false);
+		this.includeNegatives = ApiTypeHelper.requireNonNull(builder.includeNegatives, this, "includeNegatives", false);
 
 	}
 

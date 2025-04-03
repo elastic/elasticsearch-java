@@ -77,8 +77,7 @@ public class SamlServiceProviderMetadataRequest extends RequestBase {
 
 	private SamlServiceProviderMetadataRequest(Builder builder) {
 
-		this.realmName = ApiTypeHelper.requireNonNullWithDefault(builder.realmName, this, "realmName",
-				this.realmName());
+		this.realmName = ApiTypeHelper.requireNonNull(builder.realmName, this, "realmName");
 
 	}
 

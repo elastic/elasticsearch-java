@@ -125,9 +125,8 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 	private FollowRequest(Builder builder) {
 
 		this.dataStreamName = builder.dataStreamName;
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
-		this.leaderIndex = ApiTypeHelper.requireNonNullWithDefault(builder.leaderIndex, this, "leaderIndex",
-				this.leaderIndex());
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.leaderIndex = ApiTypeHelper.requireNonNull(builder.leaderIndex, this, "leaderIndex");
 		this.masterTimeout = builder.masterTimeout;
 		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
 		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;
@@ -139,8 +138,7 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		this.maxWriteRequestOperationCount = builder.maxWriteRequestOperationCount;
 		this.maxWriteRequestSize = builder.maxWriteRequestSize;
 		this.readPollTimeout = builder.readPollTimeout;
-		this.remoteCluster = ApiTypeHelper.requireNonNullWithDefault(builder.remoteCluster, this, "remoteCluster",
-				this.remoteCluster());
+		this.remoteCluster = ApiTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
 		this.settings = builder.settings;
 		this.waitForActiveShards = builder.waitForActiveShards;
 

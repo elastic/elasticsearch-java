@@ -69,10 +69,8 @@ public class FileSettingsIndicatorDetails implements JsonpSerializable {
 
 	private FileSettingsIndicatorDetails(Builder builder) {
 
-		this.failureStreak = ApiTypeHelper.requireNonNullWithDefault(builder.failureStreak, this, "failureStreak",
-				this.failureStreak());
-		this.mostRecentFailure = ApiTypeHelper.requireNonNullWithDefault(builder.mostRecentFailure, this,
-				"mostRecentFailure", this.mostRecentFailure());
+		this.failureStreak = ApiTypeHelper.requireNonNull(builder.failureStreak, this, "failureStreak", 0);
+		this.mostRecentFailure = ApiTypeHelper.requireNonNull(builder.mostRecentFailure, this, "mostRecentFailure");
 
 	}
 

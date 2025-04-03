@@ -171,11 +171,11 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		this.detectNoop = builder.detectNoop;
 		this.doc = builder.doc;
 		this.docAsUpsert = builder.docAsUpsert;
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
 		this.includeSourceOnError = builder.includeSourceOnError;
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.lang = builder.lang;
 		this.refresh = builder.refresh;
 		this.requireAlias = builder.requireAlias;

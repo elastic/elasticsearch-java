@@ -86,10 +86,9 @@ public class DownsampleRequest extends RequestBase implements JsonpSerializable 
 
 	private DownsampleRequest(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
-		this.targetIndex = ApiTypeHelper.requireNonNullWithDefault(builder.targetIndex, this, "targetIndex",
-				this.targetIndex());
-		this.config = ApiTypeHelper.requireNonNullWithDefault(builder.config, this, "config", this.config());
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.targetIndex = ApiTypeHelper.requireNonNull(builder.targetIndex, this, "targetIndex");
+		this.config = ApiTypeHelper.requireNonNull(builder.config, this, "config");
 
 	}
 

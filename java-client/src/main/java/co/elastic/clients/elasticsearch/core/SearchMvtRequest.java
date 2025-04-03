@@ -492,7 +492,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		this.buffer = builder.buffer;
 		this.exactBounds = builder.exactBounds;
 		this.extent = builder.extent;
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.gridAgg = builder.gridAgg;
 		this.gridPrecision = builder.gridPrecision;
@@ -504,9 +504,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 		this.trackTotalHits = builder.trackTotalHits;
 		this.withLabels = builder.withLabels;
-		this.x = ApiTypeHelper.requireNonNullWithDefault(builder.x, this, "x", this.x());
-		this.y = ApiTypeHelper.requireNonNullWithDefault(builder.y, this, "y", this.y());
-		this.zoom = ApiTypeHelper.requireNonNullWithDefault(builder.zoom, this, "zoom", this.zoom());
+		this.x = ApiTypeHelper.requireNonNull(builder.x, this, "x", 0);
+		this.y = ApiTypeHelper.requireNonNull(builder.y, this, "y", 0);
+		this.zoom = ApiTypeHelper.requireNonNull(builder.zoom, this, "zoom", 0);
 
 	}
 

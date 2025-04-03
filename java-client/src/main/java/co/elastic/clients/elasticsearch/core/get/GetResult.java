@@ -99,11 +99,11 @@ public class GetResult<TDocument> implements JsonpSerializable {
 
 	protected GetResult(AbstractBuilder<TDocument, ?> builder) {
 
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.ignored = ApiTypeHelper.unmodifiable(builder.ignored);
-		this.found = ApiTypeHelper.requireNonNullWithDefault(builder.found, this, "found", this.found());
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found", false);
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.primaryTerm = builder.primaryTerm;
 		this.routing = builder.routing;
 		this.seqNo = builder.seqNo;

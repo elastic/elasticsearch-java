@@ -69,8 +69,8 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
 
 	private GeoShapeQuery(Builder builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
-		this.shape = ApiTypeHelper.requireNonNullWithDefault(builder.shape, this, "shape", this.shape());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.shape = ApiTypeHelper.requireNonNull(builder.shape, this, "shape");
 
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 

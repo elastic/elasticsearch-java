@@ -84,7 +84,7 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 		super(builder);
 
 		this.emptyValue = builder.emptyValue;
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.quote = builder.quote;
 		this.separator = builder.separator;

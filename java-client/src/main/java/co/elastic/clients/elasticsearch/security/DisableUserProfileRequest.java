@@ -87,7 +87,7 @@ public class DisableUserProfileRequest extends RequestBase {
 	private DisableUserProfileRequest(Builder builder) {
 
 		this.refresh = builder.refresh;
-		this.uid = ApiTypeHelper.requireNonNullWithDefault(builder.uid, this, "uid", this.uid());
+		this.uid = ApiTypeHelper.requireNonNull(builder.uid, this, "uid");
 
 	}
 

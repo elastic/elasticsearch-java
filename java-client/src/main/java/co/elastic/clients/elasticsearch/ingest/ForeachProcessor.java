@@ -69,10 +69,9 @@ public class ForeachProcessor extends ProcessorBase implements ProcessorVariant 
 	private ForeachProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.processor = ApiTypeHelper.requireNonNullWithDefault(builder.processor, this, "processor",
-				this.processor());
+		this.processor = ApiTypeHelper.requireNonNull(builder.processor, this, "processor");
 
 	}
 

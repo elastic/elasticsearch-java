@@ -69,9 +69,8 @@ public class DataframeAnalyticsStatsProgress implements JsonpSerializable {
 
 	private DataframeAnalyticsStatsProgress(Builder builder) {
 
-		this.phase = ApiTypeHelper.requireNonNullWithDefault(builder.phase, this, "phase", this.phase());
-		this.progressPercent = ApiTypeHelper.requireNonNullWithDefault(builder.progressPercent, this, "progressPercent",
-				this.progressPercent());
+		this.phase = ApiTypeHelper.requireNonNull(builder.phase, this, "phase");
+		this.progressPercent = ApiTypeHelper.requireNonNull(builder.progressPercent, this, "progressPercent", 0);
 
 	}
 

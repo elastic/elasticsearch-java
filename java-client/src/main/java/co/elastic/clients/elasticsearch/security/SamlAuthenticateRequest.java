@@ -99,7 +99,7 @@ public class SamlAuthenticateRequest extends RequestBase implements JsonpSeriali
 
 	private SamlAuthenticateRequest(Builder builder) {
 
-		this.content = ApiTypeHelper.requireNonNullWithDefault(builder.content, this, "content", this.content());
+		this.content = ApiTypeHelper.requireNonNull(builder.content, this, "content");
 		this.ids = ApiTypeHelper.unmodifiableRequired(builder.ids, this, "ids");
 		this.realm = builder.realm;
 

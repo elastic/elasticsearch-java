@@ -66,7 +66,7 @@ public class SimpleMovingAverageAggregation extends MovingAverageAggregationBase
 	private SimpleMovingAverageAggregation(Builder builder) {
 		super(builder);
 
-		this.settings = ApiTypeHelper.requireNonNullWithDefault(builder.settings, this, "settings", this.settings());
+		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 
 	}
 

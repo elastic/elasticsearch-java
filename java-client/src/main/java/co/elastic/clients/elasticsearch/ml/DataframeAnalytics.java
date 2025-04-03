@@ -86,14 +86,12 @@ public class DataframeAnalytics implements JsonpSerializable {
 
 		this.analysisStats = builder.analysisStats;
 		this.assignmentExplanation = builder.assignmentExplanation;
-		this.dataCounts = ApiTypeHelper.requireNonNullWithDefault(builder.dataCounts, this, "dataCounts",
-				this.dataCounts());
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.memoryUsage = ApiTypeHelper.requireNonNullWithDefault(builder.memoryUsage, this, "memoryUsage",
-				this.memoryUsage());
+		this.dataCounts = ApiTypeHelper.requireNonNull(builder.dataCounts, this, "dataCounts");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.memoryUsage = ApiTypeHelper.requireNonNull(builder.memoryUsage, this, "memoryUsage");
 		this.node = builder.node;
 		this.progress = ApiTypeHelper.unmodifiableRequired(builder.progress, this, "progress");
-		this.state = ApiTypeHelper.requireNonNullWithDefault(builder.state, this, "state", this.state());
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 
 	}
 

@@ -69,8 +69,8 @@ public class TotalUserProfiles implements JsonpSerializable {
 
 	private TotalUserProfiles(Builder builder) {
 
-		this.value = ApiTypeHelper.requireNonNullWithDefault(builder.value, this, "value", this.value());
-		this.relation = ApiTypeHelper.requireNonNullWithDefault(builder.relation, this, "relation", this.relation());
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value", 0);
+		this.relation = ApiTypeHelper.requireNonNull(builder.relation, this, "relation");
 
 	}
 

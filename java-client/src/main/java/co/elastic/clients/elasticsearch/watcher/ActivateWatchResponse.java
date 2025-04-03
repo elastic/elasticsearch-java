@@ -64,7 +64,7 @@ public class ActivateWatchResponse implements JsonpSerializable {
 
 	private ActivateWatchResponse(Builder builder) {
 
-		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 

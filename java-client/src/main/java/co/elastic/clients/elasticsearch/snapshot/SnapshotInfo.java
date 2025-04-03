@@ -138,12 +138,12 @@ public class SnapshotInfo implements JsonpSerializable {
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.reason = builder.reason;
 		this.repository = builder.repository;
-		this.snapshot = ApiTypeHelper.requireNonNullWithDefault(builder.snapshot, this, "snapshot", this.snapshot());
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 		this.shards = builder.shards;
 		this.startTime = builder.startTime;
 		this.startTimeInMillis = builder.startTimeInMillis;
 		this.state = builder.state;
-		this.uuid = ApiTypeHelper.requireNonNullWithDefault(builder.uuid, this, "uuid", this.uuid());
+		this.uuid = ApiTypeHelper.requireNonNull(builder.uuid, this, "uuid");
 		this.version = builder.version;
 		this.versionId = builder.versionId;
 		this.featureStates = ApiTypeHelper.unmodifiable(builder.featureStates);

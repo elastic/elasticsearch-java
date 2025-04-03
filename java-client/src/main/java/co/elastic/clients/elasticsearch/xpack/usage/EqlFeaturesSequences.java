@@ -76,18 +76,15 @@ public class EqlFeaturesSequences implements JsonpSerializable {
 
 	private EqlFeaturesSequences(Builder builder) {
 
-		this.sequenceQueriesThree = ApiTypeHelper.requireNonNullWithDefault(builder.sequenceQueriesThree, this,
-				"sequenceQueriesThree", this.sequenceQueriesThree());
-		this.sequenceQueriesFour = ApiTypeHelper.requireNonNullWithDefault(builder.sequenceQueriesFour, this,
-				"sequenceQueriesFour", this.sequenceQueriesFour());
-		this.sequenceQueriesTwo = ApiTypeHelper.requireNonNullWithDefault(builder.sequenceQueriesTwo, this,
-				"sequenceQueriesTwo", this.sequenceQueriesTwo());
-		this.sequenceUntil = ApiTypeHelper.requireNonNullWithDefault(builder.sequenceUntil, this, "sequenceUntil",
-				this.sequenceUntil());
-		this.sequenceQueriesFiveOrMore = ApiTypeHelper.requireNonNullWithDefault(builder.sequenceQueriesFiveOrMore,
-				this, "sequenceQueriesFiveOrMore", this.sequenceQueriesFiveOrMore());
-		this.sequenceMaxspan = ApiTypeHelper.requireNonNullWithDefault(builder.sequenceMaxspan, this, "sequenceMaxspan",
-				this.sequenceMaxspan());
+		this.sequenceQueriesThree = ApiTypeHelper.requireNonNull(builder.sequenceQueriesThree, this,
+				"sequenceQueriesThree");
+		this.sequenceQueriesFour = ApiTypeHelper.requireNonNull(builder.sequenceQueriesFour, this,
+				"sequenceQueriesFour");
+		this.sequenceQueriesTwo = ApiTypeHelper.requireNonNull(builder.sequenceQueriesTwo, this, "sequenceQueriesTwo");
+		this.sequenceUntil = ApiTypeHelper.requireNonNull(builder.sequenceUntil, this, "sequenceUntil");
+		this.sequenceQueriesFiveOrMore = ApiTypeHelper.requireNonNull(builder.sequenceQueriesFiveOrMore, this,
+				"sequenceQueriesFiveOrMore");
+		this.sequenceMaxspan = ApiTypeHelper.requireNonNull(builder.sequenceMaxspan, this, "sequenceMaxspan");
 
 	}
 

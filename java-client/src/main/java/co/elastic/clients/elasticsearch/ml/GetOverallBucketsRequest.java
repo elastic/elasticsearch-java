@@ -118,7 +118,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		this.bucketSpan = builder.bucketSpan;
 		this.end = builder.end;
 		this.excludeInterim = builder.excludeInterim;
-		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.overallScore = builder.overallScore;
 		this.start = builder.start;
 		this.topN = builder.topN;

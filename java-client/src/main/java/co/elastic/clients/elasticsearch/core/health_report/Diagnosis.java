@@ -74,12 +74,11 @@ public class Diagnosis implements JsonpSerializable {
 
 	private Diagnosis(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.action = ApiTypeHelper.requireNonNullWithDefault(builder.action, this, "action", this.action());
-		this.affectedResources = ApiTypeHelper.requireNonNullWithDefault(builder.affectedResources, this,
-				"affectedResources", this.affectedResources());
-		this.cause = ApiTypeHelper.requireNonNullWithDefault(builder.cause, this, "cause", this.cause());
-		this.helpUrl = ApiTypeHelper.requireNonNullWithDefault(builder.helpUrl, this, "helpUrl", this.helpUrl());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
+		this.affectedResources = ApiTypeHelper.requireNonNull(builder.affectedResources, this, "affectedResources");
+		this.cause = ApiTypeHelper.requireNonNull(builder.cause, this, "cause");
+		this.helpUrl = ApiTypeHelper.requireNonNull(builder.helpUrl, this, "helpUrl");
 
 	}
 

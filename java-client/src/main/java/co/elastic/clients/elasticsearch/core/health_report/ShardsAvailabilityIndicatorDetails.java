@@ -83,26 +83,22 @@ public class ShardsAvailabilityIndicatorDetails implements JsonpSerializable {
 
 	private ShardsAvailabilityIndicatorDetails(Builder builder) {
 
-		this.creatingPrimaries = ApiTypeHelper.requireNonNullWithDefault(builder.creatingPrimaries, this,
-				"creatingPrimaries", this.creatingPrimaries());
-		this.creatingReplicas = ApiTypeHelper.requireNonNullWithDefault(builder.creatingReplicas, this,
-				"creatingReplicas", this.creatingReplicas());
-		this.initializingPrimaries = ApiTypeHelper.requireNonNullWithDefault(builder.initializingPrimaries, this,
-				"initializingPrimaries", this.initializingPrimaries());
-		this.initializingReplicas = ApiTypeHelper.requireNonNullWithDefault(builder.initializingReplicas, this,
-				"initializingReplicas", this.initializingReplicas());
-		this.restartingPrimaries = ApiTypeHelper.requireNonNullWithDefault(builder.restartingPrimaries, this,
-				"restartingPrimaries", this.restartingPrimaries());
-		this.restartingReplicas = ApiTypeHelper.requireNonNullWithDefault(builder.restartingReplicas, this,
-				"restartingReplicas", this.restartingReplicas());
-		this.startedPrimaries = ApiTypeHelper.requireNonNullWithDefault(builder.startedPrimaries, this,
-				"startedPrimaries", this.startedPrimaries());
-		this.startedReplicas = ApiTypeHelper.requireNonNullWithDefault(builder.startedReplicas, this, "startedReplicas",
-				this.startedReplicas());
-		this.unassignedPrimaries = ApiTypeHelper.requireNonNullWithDefault(builder.unassignedPrimaries, this,
-				"unassignedPrimaries", this.unassignedPrimaries());
-		this.unassignedReplicas = ApiTypeHelper.requireNonNullWithDefault(builder.unassignedReplicas, this,
-				"unassignedReplicas", this.unassignedReplicas());
+		this.creatingPrimaries = ApiTypeHelper.requireNonNull(builder.creatingPrimaries, this, "creatingPrimaries", 0);
+		this.creatingReplicas = ApiTypeHelper.requireNonNull(builder.creatingReplicas, this, "creatingReplicas", 0);
+		this.initializingPrimaries = ApiTypeHelper.requireNonNull(builder.initializingPrimaries, this,
+				"initializingPrimaries", 0);
+		this.initializingReplicas = ApiTypeHelper.requireNonNull(builder.initializingReplicas, this,
+				"initializingReplicas", 0);
+		this.restartingPrimaries = ApiTypeHelper.requireNonNull(builder.restartingPrimaries, this,
+				"restartingPrimaries", 0);
+		this.restartingReplicas = ApiTypeHelper.requireNonNull(builder.restartingReplicas, this, "restartingReplicas",
+				0);
+		this.startedPrimaries = ApiTypeHelper.requireNonNull(builder.startedPrimaries, this, "startedPrimaries", 0);
+		this.startedReplicas = ApiTypeHelper.requireNonNull(builder.startedReplicas, this, "startedReplicas", 0);
+		this.unassignedPrimaries = ApiTypeHelper.requireNonNull(builder.unassignedPrimaries, this,
+				"unassignedPrimaries", 0);
+		this.unassignedReplicas = ApiTypeHelper.requireNonNull(builder.unassignedReplicas, this, "unassignedReplicas",
+				0);
 
 	}
 

@@ -65,7 +65,7 @@ public class StringTermsBucket extends TermsBucketBase {
 	private StringTermsBucket(Builder builder) {
 		super(builder);
 
-		this.key = ApiTypeHelper.requireNonNullWithDefault(builder.key, this, "key", this.key());
+		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
 
 	}
 

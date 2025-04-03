@@ -76,9 +76,9 @@ public class RunningStateSearchInterval implements JsonpSerializable {
 	private RunningStateSearchInterval(Builder builder) {
 
 		this.end = builder.end;
-		this.endMs = ApiTypeHelper.requireNonNullWithDefault(builder.endMs, this, "endMs", this.endMs());
+		this.endMs = ApiTypeHelper.requireNonNull(builder.endMs, this, "endMs", 0);
 		this.start = builder.start;
-		this.startMs = ApiTypeHelper.requireNonNullWithDefault(builder.startMs, this, "startMs", this.startMs());
+		this.startMs = ApiTypeHelper.requireNonNull(builder.startMs, this, "startMs", 0);
 
 	}
 

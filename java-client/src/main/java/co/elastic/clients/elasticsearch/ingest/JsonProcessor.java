@@ -79,7 +79,7 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 		this.addToRoot = builder.addToRoot;
 		this.addToRootConflictStrategy = builder.addToRootConflictStrategy;
 		this.allowDuplicateKeys = builder.allowDuplicateKeys;
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.targetField = builder.targetField;
 
 	}

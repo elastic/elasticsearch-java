@@ -64,7 +64,7 @@ public class StopDatafeedResponse implements JsonpSerializable {
 
 	private StopDatafeedResponse(Builder builder) {
 
-		this.stopped = ApiTypeHelper.requireNonNullWithDefault(builder.stopped, this, "stopped", this.stopped());
+		this.stopped = ApiTypeHelper.requireNonNull(builder.stopped, this, "stopped", false);
 
 	}
 

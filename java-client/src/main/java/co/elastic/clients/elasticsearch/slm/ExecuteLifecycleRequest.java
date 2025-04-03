@@ -79,7 +79,7 @@ public class ExecuteLifecycleRequest extends RequestBase {
 	private ExecuteLifecycleRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.policyId = ApiTypeHelper.requireNonNullWithDefault(builder.policyId, this, "policyId", this.policyId());
+		this.policyId = ApiTypeHelper.requireNonNull(builder.policyId, this, "policyId");
 		this.timeout = builder.timeout;
 
 	}

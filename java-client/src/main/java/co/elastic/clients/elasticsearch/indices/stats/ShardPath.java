@@ -70,11 +70,9 @@ public class ShardPath implements JsonpSerializable {
 
 	private ShardPath(Builder builder) {
 
-		this.dataPath = ApiTypeHelper.requireNonNullWithDefault(builder.dataPath, this, "dataPath", this.dataPath());
-		this.isCustomDataPath = ApiTypeHelper.requireNonNullWithDefault(builder.isCustomDataPath, this,
-				"isCustomDataPath", this.isCustomDataPath());
-		this.statePath = ApiTypeHelper.requireNonNullWithDefault(builder.statePath, this, "statePath",
-				this.statePath());
+		this.dataPath = ApiTypeHelper.requireNonNull(builder.dataPath, this, "dataPath");
+		this.isCustomDataPath = ApiTypeHelper.requireNonNull(builder.isCustomDataPath, this, "isCustomDataPath", false);
+		this.statePath = ApiTypeHelper.requireNonNull(builder.statePath, this, "statePath");
 
 	}
 

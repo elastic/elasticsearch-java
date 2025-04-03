@@ -76,11 +76,11 @@ public class CreateApiKeyResponse implements JsonpSerializable {
 
 	private CreateApiKeyResponse(Builder builder) {
 
-		this.apiKey = ApiTypeHelper.requireNonNullWithDefault(builder.apiKey, this, "apiKey", this.apiKey());
+		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
 		this.expiration = builder.expiration;
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
-		this.encoded = ApiTypeHelper.requireNonNullWithDefault(builder.encoded, this, "encoded", this.encoded());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.encoded = ApiTypeHelper.requireNonNull(builder.encoded, this, "encoded");
 
 	}
 

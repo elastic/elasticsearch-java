@@ -64,8 +64,7 @@ public class Datafeeds implements JsonpSerializable {
 
 	private Datafeeds(Builder builder) {
 
-		this.scrollSize = ApiTypeHelper.requireNonNullWithDefault(builder.scrollSize, this, "scrollSize",
-				this.scrollSize());
+		this.scrollSize = ApiTypeHelper.requireNonNull(builder.scrollSize, this, "scrollSize", 0);
 
 	}
 

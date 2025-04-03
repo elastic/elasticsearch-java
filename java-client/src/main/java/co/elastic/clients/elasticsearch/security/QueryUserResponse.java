@@ -71,8 +71,8 @@ public class QueryUserResponse implements JsonpSerializable {
 
 	private QueryUserResponse(Builder builder) {
 
-		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
-		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.users = ApiTypeHelper.unmodifiableRequired(builder.users, this, "users");
 
 	}

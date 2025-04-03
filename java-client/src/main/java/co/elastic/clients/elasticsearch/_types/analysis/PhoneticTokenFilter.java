@@ -80,7 +80,7 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 	private PhoneticTokenFilter(Builder builder) {
 		super(builder);
 
-		this.encoder = ApiTypeHelper.requireNonNullWithDefault(builder.encoder, this, "encoder", this.encoder());
+		this.encoder = ApiTypeHelper.requireNonNull(builder.encoder, this, "encoder");
 		this.languageset = ApiTypeHelper.unmodifiable(builder.languageset);
 		this.maxCodeLen = builder.maxCodeLen;
 		this.nameType = builder.nameType;

@@ -106,20 +106,18 @@ public class UpdateTransformResponse implements JsonpSerializable {
 	private UpdateTransformResponse(Builder builder) {
 
 		this.authorization = builder.authorization;
-		this.createTime = ApiTypeHelper.requireNonNullWithDefault(builder.createTime, this, "createTime",
-				this.createTime());
-		this.description = ApiTypeHelper.requireNonNullWithDefault(builder.description, this, "description",
-				this.description());
-		this.dest = ApiTypeHelper.requireNonNullWithDefault(builder.dest, this, "dest", this.dest());
+		this.createTime = ApiTypeHelper.requireNonNull(builder.createTime, this, "createTime", 0);
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
 		this.frequency = builder.frequency;
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.latest = builder.latest;
 		this.pivot = builder.pivot;
 		this.retentionPolicy = builder.retentionPolicy;
-		this.settings = ApiTypeHelper.requireNonNullWithDefault(builder.settings, this, "settings", this.settings());
-		this.source = ApiTypeHelper.requireNonNullWithDefault(builder.source, this, "source", this.source());
+		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.sync = builder.sync;
-		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 
 	}

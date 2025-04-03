@@ -97,7 +97,7 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		this.config = builder.config;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = builder.name;
-		this.policyId = ApiTypeHelper.requireNonNullWithDefault(builder.policyId, this, "policyId", this.policyId());
+		this.policyId = ApiTypeHelper.requireNonNull(builder.policyId, this, "policyId");
 		this.repository = builder.repository;
 		this.retention = builder.retention;
 		this.schedule = builder.schedule;

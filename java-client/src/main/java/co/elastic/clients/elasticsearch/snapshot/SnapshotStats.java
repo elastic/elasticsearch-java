@@ -75,14 +75,11 @@ public class SnapshotStats implements JsonpSerializable {
 
 	private SnapshotStats(Builder builder) {
 
-		this.incremental = ApiTypeHelper.requireNonNullWithDefault(builder.incremental, this, "incremental",
-				this.incremental());
-		this.startTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.startTimeInMillis, this,
-				"startTimeInMillis", this.startTimeInMillis());
+		this.incremental = ApiTypeHelper.requireNonNull(builder.incremental, this, "incremental");
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis", 0);
 		this.time = builder.time;
-		this.timeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.timeInMillis, this, "timeInMillis",
-				this.timeInMillis());
-		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
+		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis", 0);
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 

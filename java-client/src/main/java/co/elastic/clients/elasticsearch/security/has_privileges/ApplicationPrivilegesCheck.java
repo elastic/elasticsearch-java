@@ -71,8 +71,7 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 
 	private ApplicationPrivilegesCheck(Builder builder) {
 
-		this.application = ApiTypeHelper.requireNonNullWithDefault(builder.application, this, "application",
-				this.application());
+		this.application = ApiTypeHelper.requireNonNull(builder.application, this, "application");
 		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
 		this.resources = ApiTypeHelper.unmodifiableRequired(builder.resources, this, "resources");
 

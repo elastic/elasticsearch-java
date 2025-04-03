@@ -69,7 +69,7 @@ public class IlmPolicy implements JsonpSerializable {
 
 	private IlmPolicy(Builder builder) {
 
-		this.phases = ApiTypeHelper.requireNonNullWithDefault(builder.phases, this, "phases", this.phases());
+		this.phases = ApiTypeHelper.requireNonNull(builder.phases, this, "phases");
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 
 	}

@@ -77,15 +77,11 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 
 	private DataStreamsStatsItem(Builder builder) {
 
-		this.backingIndices = ApiTypeHelper.requireNonNullWithDefault(builder.backingIndices, this, "backingIndices",
-				this.backingIndices());
-		this.dataStream = ApiTypeHelper.requireNonNullWithDefault(builder.dataStream, this, "dataStream",
-				this.dataStream());
-		this.maximumTimestamp = ApiTypeHelper.requireNonNullWithDefault(builder.maximumTimestamp, this,
-				"maximumTimestamp", this.maximumTimestamp());
+		this.backingIndices = ApiTypeHelper.requireNonNull(builder.backingIndices, this, "backingIndices", 0);
+		this.dataStream = ApiTypeHelper.requireNonNull(builder.dataStream, this, "dataStream");
+		this.maximumTimestamp = ApiTypeHelper.requireNonNull(builder.maximumTimestamp, this, "maximumTimestamp", 0);
 		this.storeSize = builder.storeSize;
-		this.storeSizeBytes = ApiTypeHelper.requireNonNullWithDefault(builder.storeSizeBytes, this, "storeSizeBytes",
-				this.storeSizeBytes());
+		this.storeSizeBytes = ApiTypeHelper.requireNonNull(builder.storeSizeBytes, this, "storeSizeBytes", 0);
 
 	}
 

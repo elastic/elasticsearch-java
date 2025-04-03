@@ -72,8 +72,7 @@ public class DetectorUpdate implements JsonpSerializable {
 
 	private DetectorUpdate(Builder builder) {
 
-		this.detectorIndex = ApiTypeHelper.requireNonNullWithDefault(builder.detectorIndex, this, "detectorIndex",
-				this.detectorIndex());
+		this.detectorIndex = ApiTypeHelper.requireNonNull(builder.detectorIndex, this, "detectorIndex", 0);
 		this.description = builder.description;
 		this.customRules = ApiTypeHelper.unmodifiable(builder.customRules);
 

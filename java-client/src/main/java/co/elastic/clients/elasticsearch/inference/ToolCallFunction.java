@@ -69,9 +69,8 @@ public class ToolCallFunction implements JsonpSerializable {
 
 	private ToolCallFunction(Builder builder) {
 
-		this.arguments = ApiTypeHelper.requireNonNullWithDefault(builder.arguments, this, "arguments",
-				this.arguments());
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.arguments = ApiTypeHelper.requireNonNull(builder.arguments, this, "arguments");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 

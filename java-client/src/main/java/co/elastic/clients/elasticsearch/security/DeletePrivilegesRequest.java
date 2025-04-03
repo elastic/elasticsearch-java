@@ -85,8 +85,7 @@ public class DeletePrivilegesRequest extends RequestBase {
 
 	private DeletePrivilegesRequest(Builder builder) {
 
-		this.application = ApiTypeHelper.requireNonNullWithDefault(builder.application, this, "application",
-				this.application());
+		this.application = ApiTypeHelper.requireNonNull(builder.application, this, "application");
 		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 		this.refresh = builder.refresh;
 

@@ -88,7 +88,7 @@ public class GetCategoriesRequest extends RequestBase implements JsonpSerializab
 
 		this.categoryId = builder.categoryId;
 		this.from = builder.from;
-		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.page = builder.page;
 		this.partitionFieldValue = builder.partitionFieldValue;
 		this.size = builder.size;

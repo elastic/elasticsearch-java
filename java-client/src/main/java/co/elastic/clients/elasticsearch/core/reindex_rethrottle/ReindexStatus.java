@@ -95,23 +95,20 @@ public class ReindexStatus implements JsonpSerializable {
 
 	private ReindexStatus(Builder builder) {
 
-		this.batches = ApiTypeHelper.requireNonNullWithDefault(builder.batches, this, "batches", this.batches());
-		this.created = ApiTypeHelper.requireNonNullWithDefault(builder.created, this, "created", this.created());
-		this.deleted = ApiTypeHelper.requireNonNullWithDefault(builder.deleted, this, "deleted", this.deleted());
-		this.noops = ApiTypeHelper.requireNonNullWithDefault(builder.noops, this, "noops", this.noops());
-		this.requestsPerSecond = ApiTypeHelper.requireNonNullWithDefault(builder.requestsPerSecond, this,
-				"requestsPerSecond", this.requestsPerSecond());
-		this.retries = ApiTypeHelper.requireNonNullWithDefault(builder.retries, this, "retries", this.retries());
+		this.batches = ApiTypeHelper.requireNonNull(builder.batches, this, "batches", 0);
+		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created", 0);
+		this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted", 0);
+		this.noops = ApiTypeHelper.requireNonNull(builder.noops, this, "noops", 0);
+		this.requestsPerSecond = ApiTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond", 0);
+		this.retries = ApiTypeHelper.requireNonNull(builder.retries, this, "retries");
 		this.throttled = builder.throttled;
-		this.throttledMillis = ApiTypeHelper.requireNonNullWithDefault(builder.throttledMillis, this, "throttledMillis",
-				this.throttledMillis());
+		this.throttledMillis = ApiTypeHelper.requireNonNull(builder.throttledMillis, this, "throttledMillis", 0);
 		this.throttledUntil = builder.throttledUntil;
-		this.throttledUntilMillis = ApiTypeHelper.requireNonNullWithDefault(builder.throttledUntilMillis, this,
-				"throttledUntilMillis", this.throttledUntilMillis());
-		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
-		this.updated = ApiTypeHelper.requireNonNullWithDefault(builder.updated, this, "updated", this.updated());
-		this.versionConflicts = ApiTypeHelper.requireNonNullWithDefault(builder.versionConflicts, this,
-				"versionConflicts", this.versionConflicts());
+		this.throttledUntilMillis = ApiTypeHelper.requireNonNull(builder.throttledUntilMillis, this,
+				"throttledUntilMillis", 0);
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
+		this.updated = ApiTypeHelper.requireNonNull(builder.updated, this, "updated", 0);
+		this.versionConflicts = ApiTypeHelper.requireNonNull(builder.versionConflicts, this, "versionConflicts", 0);
 
 	}
 

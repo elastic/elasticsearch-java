@@ -68,8 +68,8 @@ public class EnrollKibanaResponse implements JsonpSerializable {
 
 	private EnrollKibanaResponse(Builder builder) {
 
-		this.token = ApiTypeHelper.requireNonNullWithDefault(builder.token, this, "token", this.token());
-		this.httpCa = ApiTypeHelper.requireNonNullWithDefault(builder.httpCa, this, "httpCa", this.httpCa());
+		this.token = ApiTypeHelper.requireNonNull(builder.token, this, "token");
+		this.httpCa = ApiTypeHelper.requireNonNull(builder.httpCa, this, "httpCa");
 
 	}
 

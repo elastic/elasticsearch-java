@@ -75,7 +75,7 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 	private MlDataFrameAnalyticsJobs(Builder builder) {
 
 		this.memoryUsage = builder.memoryUsage;
-		this.all = ApiTypeHelper.requireNonNullWithDefault(builder.all, this, "all", this.all());
+		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
 		this.analysisCounts = builder.analysisCounts;
 		this.stopped = builder.stopped;
 

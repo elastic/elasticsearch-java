@@ -81,11 +81,10 @@ public class UserProfileUser implements JsonpSerializable {
 
 		this.email = builder.email;
 		this.fullName = builder.fullName;
-		this.realmName = ApiTypeHelper.requireNonNullWithDefault(builder.realmName, this, "realmName",
-				this.realmName());
+		this.realmName = ApiTypeHelper.requireNonNull(builder.realmName, this, "realmName");
 		this.realmDomain = builder.realmDomain;
 		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
-		this.username = ApiTypeHelper.requireNonNullWithDefault(builder.username, this, "username", this.username());
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 

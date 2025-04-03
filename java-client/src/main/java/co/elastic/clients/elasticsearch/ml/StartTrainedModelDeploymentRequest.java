@@ -104,7 +104,7 @@ public class StartTrainedModelDeploymentRequest extends RequestBase implements J
 		this.adaptiveAllocations = builder.adaptiveAllocations;
 		this.cacheSize = builder.cacheSize;
 		this.deploymentId = builder.deploymentId;
-		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.numberOfAllocations = builder.numberOfAllocations;
 		this.priority = builder.priority;
 		this.queueCapacity = builder.queueCapacity;

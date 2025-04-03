@@ -86,11 +86,10 @@ public class OidcAuthenticateRequest extends RequestBase implements JsonpSeriali
 
 	private OidcAuthenticateRequest(Builder builder) {
 
-		this.nonce = ApiTypeHelper.requireNonNullWithDefault(builder.nonce, this, "nonce", this.nonce());
+		this.nonce = ApiTypeHelper.requireNonNull(builder.nonce, this, "nonce");
 		this.realm = builder.realm;
-		this.redirectUri = ApiTypeHelper.requireNonNullWithDefault(builder.redirectUri, this, "redirectUri",
-				this.redirectUri());
-		this.state = ApiTypeHelper.requireNonNullWithDefault(builder.state, this, "state", this.state());
+		this.redirectUri = ApiTypeHelper.requireNonNull(builder.redirectUri, this, "redirectUri");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 
 	}
 

@@ -64,8 +64,7 @@ public class Redact implements JsonpSerializable {
 
 	private Redact(Builder builder) {
 
-		this.isRedacted = ApiTypeHelper.requireNonNullWithDefault(builder.isRedacted, this, "isRedacted",
-				this.isRedacted());
+		this.isRedacted = ApiTypeHelper.requireNonNull(builder.isRedacted, this, "isRedacted", false);
 
 	}
 

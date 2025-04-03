@@ -70,9 +70,9 @@ public class SamlPrepareAuthenticationResponse implements JsonpSerializable {
 
 	private SamlPrepareAuthenticationResponse(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.realm = ApiTypeHelper.requireNonNullWithDefault(builder.realm, this, "realm", this.realm());
-		this.redirect = ApiTypeHelper.requireNonNullWithDefault(builder.redirect, this, "redirect", this.redirect());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.realm = ApiTypeHelper.requireNonNull(builder.realm, this, "realm");
+		this.redirect = ApiTypeHelper.requireNonNull(builder.redirect, this, "redirect");
 
 	}
 

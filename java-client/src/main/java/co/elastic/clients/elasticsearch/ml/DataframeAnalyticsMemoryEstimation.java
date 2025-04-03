@@ -68,10 +68,10 @@ public class DataframeAnalyticsMemoryEstimation implements JsonpSerializable {
 
 	private DataframeAnalyticsMemoryEstimation(Builder builder) {
 
-		this.expectedMemoryWithDisk = ApiTypeHelper.requireNonNullWithDefault(builder.expectedMemoryWithDisk, this,
-				"expectedMemoryWithDisk", this.expectedMemoryWithDisk());
-		this.expectedMemoryWithoutDisk = ApiTypeHelper.requireNonNullWithDefault(builder.expectedMemoryWithoutDisk,
-				this, "expectedMemoryWithoutDisk", this.expectedMemoryWithoutDisk());
+		this.expectedMemoryWithDisk = ApiTypeHelper.requireNonNull(builder.expectedMemoryWithDisk, this,
+				"expectedMemoryWithDisk");
+		this.expectedMemoryWithoutDisk = ApiTypeHelper.requireNonNull(builder.expectedMemoryWithoutDisk, this,
+				"expectedMemoryWithoutDisk");
 
 	}
 

@@ -69,10 +69,10 @@ public class NodeProcessInfo implements JsonpSerializable {
 
 	private NodeProcessInfo(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.mlockall = ApiTypeHelper.requireNonNullWithDefault(builder.mlockall, this, "mlockall", this.mlockall());
-		this.refreshIntervalInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.refreshIntervalInMillis, this,
-				"refreshIntervalInMillis", this.refreshIntervalInMillis());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id", 0);
+		this.mlockall = ApiTypeHelper.requireNonNull(builder.mlockall, this, "mlockall", false);
+		this.refreshIntervalInMillis = ApiTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this,
+				"refreshIntervalInMillis", 0);
 
 	}
 

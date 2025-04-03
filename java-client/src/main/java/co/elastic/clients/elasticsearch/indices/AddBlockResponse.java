@@ -72,10 +72,9 @@ public class AddBlockResponse implements AcknowledgedResponse, JsonpSerializable
 
 	private AddBlockResponse(Builder builder) {
 
-		this.acknowledged = ApiTypeHelper.requireNonNullWithDefault(builder.acknowledged, this, "acknowledged",
-				this.acknowledged());
-		this.shardsAcknowledged = ApiTypeHelper.requireNonNullWithDefault(builder.shardsAcknowledged, this,
-				"shardsAcknowledged", this.shardsAcknowledged());
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged", false);
+		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged",
+				false);
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}

@@ -72,8 +72,8 @@ public class SlicedScroll implements JsonpSerializable {
 	private SlicedScroll(Builder builder) {
 
 		this.field = builder.field;
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.max = ApiTypeHelper.requireNonNullWithDefault(builder.max, this, "max", this.max());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max", 0);
 
 	}
 

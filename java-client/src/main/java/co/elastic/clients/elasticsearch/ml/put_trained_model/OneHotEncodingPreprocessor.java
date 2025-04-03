@@ -69,7 +69,7 @@ public class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSer
 
 	private OneHotEncodingPreprocessor(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.hotMap = ApiTypeHelper.unmodifiableRequired(builder.hotMap, this, "hotMap");
 
 	}

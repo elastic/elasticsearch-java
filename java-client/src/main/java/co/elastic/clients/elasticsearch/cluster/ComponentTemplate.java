@@ -68,9 +68,8 @@ public class ComponentTemplate implements JsonpSerializable {
 
 	private ComponentTemplate(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
-		this.componentTemplate = ApiTypeHelper.requireNonNullWithDefault(builder.componentTemplate, this,
-				"componentTemplate", this.componentTemplate());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.componentTemplate = ApiTypeHelper.requireNonNull(builder.componentTemplate, this, "componentTemplate");
 
 	}
 

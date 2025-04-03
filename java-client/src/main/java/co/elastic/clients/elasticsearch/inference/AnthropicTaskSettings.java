@@ -76,8 +76,7 @@ public class AnthropicTaskSettings implements JsonpSerializable {
 
 	private AnthropicTaskSettings(Builder builder) {
 
-		this.maxTokens = ApiTypeHelper.requireNonNullWithDefault(builder.maxTokens, this, "maxTokens",
-				this.maxTokens());
+		this.maxTokens = ApiTypeHelper.requireNonNull(builder.maxTokens, this, "maxTokens", 0);
 		this.temperature = builder.temperature;
 		this.topK = builder.topK;
 		this.topP = builder.topP;

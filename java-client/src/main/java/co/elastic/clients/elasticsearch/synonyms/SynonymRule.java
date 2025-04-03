@@ -69,7 +69,7 @@ public class SynonymRule implements JsonpSerializable {
 	private SynonymRule(Builder builder) {
 
 		this.id = builder.id;
-		this.synonyms = ApiTypeHelper.requireNonNullWithDefault(builder.synonyms, this, "synonyms", this.synonyms());
+		this.synonyms = ApiTypeHelper.requireNonNull(builder.synonyms, this, "synonyms");
 
 	}
 

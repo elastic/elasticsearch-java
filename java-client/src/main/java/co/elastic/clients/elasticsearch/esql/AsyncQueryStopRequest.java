@@ -79,7 +79,7 @@ public class AsyncQueryStopRequest extends RequestBase {
 	private AsyncQueryStopRequest(Builder builder) {
 
 		this.dropNullColumns = builder.dropNullColumns;
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 

@@ -70,8 +70,7 @@ public class FieldMemoryUsage implements JsonpSerializable {
 	private FieldMemoryUsage(Builder builder) {
 
 		this.memorySize = builder.memorySize;
-		this.memorySizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.memorySizeInBytes, this,
-				"memorySizeInBytes", this.memorySizeInBytes());
+		this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes", 0);
 
 	}
 

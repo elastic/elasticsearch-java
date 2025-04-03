@@ -100,7 +100,7 @@ public class DetectorRead implements JsonpSerializable {
 		this.detectorIndex = builder.detectorIndex;
 		this.excludeFrequent = builder.excludeFrequent;
 		this.fieldName = builder.fieldName;
-		this.function = ApiTypeHelper.requireNonNullWithDefault(builder.function, this, "function", this.function());
+		this.function = ApiTypeHelper.requireNonNull(builder.function, this, "function");
 		this.overFieldName = builder.overFieldName;
 		this.partitionFieldName = builder.partitionFieldName;
 		this.useNull = builder.useNull;

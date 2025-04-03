@@ -69,8 +69,8 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 
 	private OpenPointInTimeResponse(Builder builder) {
 
-		this.shards = ApiTypeHelper.requireNonNullWithDefault(builder.shards, this, "shards", this.shards());
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 

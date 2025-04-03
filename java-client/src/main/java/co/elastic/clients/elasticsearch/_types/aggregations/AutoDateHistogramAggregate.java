@@ -66,7 +66,7 @@ public class AutoDateHistogramAggregate extends MultiBucketAggregateBase<DateHis
 	private AutoDateHistogramAggregate(Builder builder) {
 		super(builder);
 
-		this.interval = ApiTypeHelper.requireNonNullWithDefault(builder.interval, this, "interval", this.interval());
+		this.interval = ApiTypeHelper.requireNonNull(builder.interval, this, "interval");
 
 	}
 

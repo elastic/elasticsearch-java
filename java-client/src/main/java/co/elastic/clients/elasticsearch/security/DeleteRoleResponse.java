@@ -64,7 +64,7 @@ public class DeleteRoleResponse implements JsonpSerializable {
 
 	private DeleteRoleResponse(Builder builder) {
 
-		this.found = ApiTypeHelper.requireNonNullWithDefault(builder.found, this, "found", this.found());
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found", false);
 
 	}
 

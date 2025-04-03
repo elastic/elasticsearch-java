@@ -76,7 +76,7 @@ public class NodeInfoSettingsHttp implements JsonpSerializable {
 
 	private NodeInfoSettingsHttp(Builder builder) {
 
-		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.typeDefault = builder.typeDefault;
 		this.compression = builder.compression;
 		this.port = builder.port;

@@ -77,14 +77,11 @@ public class JobUsage implements JsonpSerializable {
 
 	private JobUsage(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.createdBy = ApiTypeHelper.unmodifiableRequired(builder.createdBy, this, "createdBy");
-		this.detectors = ApiTypeHelper.requireNonNullWithDefault(builder.detectors, this, "detectors",
-				this.detectors());
-		this.forecasts = ApiTypeHelper.requireNonNullWithDefault(builder.forecasts, this, "forecasts",
-				this.forecasts());
-		this.modelSize = ApiTypeHelper.requireNonNullWithDefault(builder.modelSize, this, "modelSize",
-				this.modelSize());
+		this.detectors = ApiTypeHelper.requireNonNull(builder.detectors, this, "detectors");
+		this.forecasts = ApiTypeHelper.requireNonNull(builder.forecasts, this, "forecasts");
+		this.modelSize = ApiTypeHelper.requireNonNull(builder.modelSize, this, "modelSize");
 
 	}
 

@@ -64,7 +64,7 @@ public class AckWatchResponse implements JsonpSerializable {
 
 	private AckWatchResponse(Builder builder) {
 
-		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 

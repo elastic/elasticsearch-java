@@ -71,7 +71,7 @@ public class SizeHttpHistogram implements JsonpSerializable {
 
 	private SizeHttpHistogram(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.geBytes = builder.geBytes;
 		this.ltBytes = builder.ltBytes;
 

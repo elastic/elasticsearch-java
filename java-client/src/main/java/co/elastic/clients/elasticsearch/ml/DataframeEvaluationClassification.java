@@ -75,8 +75,7 @@ public class DataframeEvaluationClassification implements DataframeEvaluationVar
 
 	private DataframeEvaluationClassification(Builder builder) {
 
-		this.actualField = ApiTypeHelper.requireNonNullWithDefault(builder.actualField, this, "actualField",
-				this.actualField());
+		this.actualField = ApiTypeHelper.requireNonNull(builder.actualField, this, "actualField");
 		this.predictedField = builder.predictedField;
 		this.topClassesField = builder.topClassesField;
 		this.metrics = builder.metrics;

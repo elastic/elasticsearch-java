@@ -68,8 +68,8 @@ public class HttpInputProxy implements JsonpSerializable {
 
 	private HttpInputProxy(Builder builder) {
 
-		this.host = ApiTypeHelper.requireNonNullWithDefault(builder.host, this, "host", this.host());
-		this.port = ApiTypeHelper.requireNonNullWithDefault(builder.port, this, "port", this.port());
+		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
+		this.port = ApiTypeHelper.requireNonNull(builder.port, this, "port");
 
 	}
 

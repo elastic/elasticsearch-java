@@ -77,8 +77,7 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 
 	private PutCalendarRequest(Builder builder) {
 
-		this.calendarId = ApiTypeHelper.requireNonNullWithDefault(builder.calendarId, this, "calendarId",
-				this.calendarId());
+		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
 		this.description = builder.description;
 		this.jobIds = ApiTypeHelper.unmodifiable(builder.jobIds);
 

@@ -75,9 +75,8 @@ public class DataframeAnalysisFeatureProcessorFrequencyEncoding
 
 	private DataframeAnalysisFeatureProcessorFrequencyEncoding(Builder builder) {
 
-		this.featureName = ApiTypeHelper.requireNonNullWithDefault(builder.featureName, this, "featureName",
-				this.featureName());
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.frequencyMap = ApiTypeHelper.unmodifiableRequired(builder.frequencyMap, this, "frequencyMap");
 
 	}

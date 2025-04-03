@@ -79,8 +79,7 @@ public class UpdateErrorRequest extends RequestBase implements JsonpSerializable
 
 	private UpdateErrorRequest(Builder builder) {
 
-		this.connectorId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorId, this, "connectorId",
-				this.connectorId());
+		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
 		this.error = builder.error;
 		this.isExpNullError = builder.isExpNullError;
 

@@ -71,11 +71,9 @@ public class ReadException implements JsonpSerializable {
 
 	private ReadException(Builder builder) {
 
-		this.exception = ApiTypeHelper.requireNonNullWithDefault(builder.exception, this, "exception",
-				this.exception());
-		this.fromSeqNo = ApiTypeHelper.requireNonNullWithDefault(builder.fromSeqNo, this, "fromSeqNo",
-				this.fromSeqNo());
-		this.retries = ApiTypeHelper.requireNonNullWithDefault(builder.retries, this, "retries", this.retries());
+		this.exception = ApiTypeHelper.requireNonNull(builder.exception, this, "exception");
+		this.fromSeqNo = ApiTypeHelper.requireNonNull(builder.fromSeqNo, this, "fromSeqNo", 0);
+		this.retries = ApiTypeHelper.requireNonNull(builder.retries, this, "retries", 0);
 
 	}
 

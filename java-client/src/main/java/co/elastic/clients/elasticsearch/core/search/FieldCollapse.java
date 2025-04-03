@@ -76,7 +76,7 @@ public class FieldCollapse implements JsonpSerializable {
 
 	private FieldCollapse(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.innerHits = ApiTypeHelper.unmodifiable(builder.innerHits);
 		this.maxConcurrentGroupSearches = builder.maxConcurrentGroupSearches;
 		this.collapse = builder.collapse;

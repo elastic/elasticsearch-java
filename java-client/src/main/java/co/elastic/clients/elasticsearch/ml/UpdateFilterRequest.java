@@ -82,7 +82,7 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 
 		this.addItems = ApiTypeHelper.unmodifiable(builder.addItems);
 		this.description = builder.description;
-		this.filterId = ApiTypeHelper.requireNonNullWithDefault(builder.filterId, this, "filterId", this.filterId());
+		this.filterId = ApiTypeHelper.requireNonNull(builder.filterId, this, "filterId");
 		this.removeItems = ApiTypeHelper.unmodifiable(builder.removeItems);
 
 	}

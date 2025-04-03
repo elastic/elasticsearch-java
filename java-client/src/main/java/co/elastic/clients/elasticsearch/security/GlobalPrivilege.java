@@ -64,8 +64,7 @@ public class GlobalPrivilege implements JsonpSerializable {
 
 	private GlobalPrivilege(Builder builder) {
 
-		this.application = ApiTypeHelper.requireNonNullWithDefault(builder.application, this, "application",
-				this.application());
+		this.application = ApiTypeHelper.requireNonNull(builder.application, this, "application");
 
 	}
 

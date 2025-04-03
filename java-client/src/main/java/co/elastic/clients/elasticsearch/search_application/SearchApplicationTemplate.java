@@ -66,7 +66,7 @@ public class SearchApplicationTemplate implements JsonpSerializable {
 
 	private SearchApplicationTemplate(Builder builder) {
 
-		this.script = ApiTypeHelper.requireNonNullWithDefault(builder.script, this, "script", this.script());
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 

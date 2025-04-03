@@ -95,11 +95,9 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 
 	private PutRequest(Builder builder) {
 
-		this.inferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.inferenceId, this, "inferenceId",
-				this.inferenceId());
+		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.taskType = builder.taskType;
-		this.inferenceConfig = ApiTypeHelper.requireNonNullWithDefault(builder.inferenceConfig, this, "inferenceConfig",
-				this.inferenceConfig());
+		this.inferenceConfig = ApiTypeHelper.requireNonNull(builder.inferenceConfig, this, "inferenceConfig");
 
 	}
 

@@ -63,7 +63,7 @@ public class ScriptQuery extends QueryBase implements QueryVariant {
 	private ScriptQuery(Builder builder) {
 		super(builder);
 
-		this.script = ApiTypeHelper.requireNonNullWithDefault(builder.script, this, "script", this.script());
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 

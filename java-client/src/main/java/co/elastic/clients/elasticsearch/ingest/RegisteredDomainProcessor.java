@@ -71,7 +71,7 @@ public class RegisteredDomainProcessor extends ProcessorBase implements Processo
 	private RegisteredDomainProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.targetField = builder.targetField;
 		this.ignoreMissing = builder.ignoreMissing;
 

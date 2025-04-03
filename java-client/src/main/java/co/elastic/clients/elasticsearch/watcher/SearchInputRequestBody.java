@@ -67,7 +67,7 @@ public class SearchInputRequestBody implements JsonpSerializable {
 
 	private SearchInputRequestBody(Builder builder) {
 
-		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
 

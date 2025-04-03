@@ -67,8 +67,8 @@ public class MigrateReindex implements JsonpSerializable {
 
 	private MigrateReindex(Builder builder) {
 
-		this.mode = ApiTypeHelper.requireNonNullWithDefault(builder.mode, this, "mode", this.mode());
-		this.source = ApiTypeHelper.requireNonNullWithDefault(builder.source, this, "source", this.source());
+		this.mode = ApiTypeHelper.requireNonNull(builder.mode, this, "mode");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}
 

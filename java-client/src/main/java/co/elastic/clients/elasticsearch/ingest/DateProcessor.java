@@ -78,7 +78,7 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 	private DateProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.formats = ApiTypeHelper.unmodifiableRequired(builder.formats, this, "formats");
 		this.locale = builder.locale;
 		this.targetField = builder.targetField;

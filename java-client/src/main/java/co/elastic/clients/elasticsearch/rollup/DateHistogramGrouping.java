@@ -86,7 +86,7 @@ public class DateHistogramGrouping implements JsonpSerializable {
 	private DateHistogramGrouping(Builder builder) {
 
 		this.delay = builder.delay;
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.format = builder.format;
 		this.interval = builder.interval;
 		this.calendarInterval = builder.calendarInterval;

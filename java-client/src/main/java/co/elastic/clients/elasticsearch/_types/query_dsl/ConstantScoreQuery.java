@@ -63,7 +63,7 @@ public class ConstantScoreQuery extends QueryBase implements QueryVariant {
 	private ConstantScoreQuery(Builder builder) {
 		super(builder);
 
-		this.filter = ApiTypeHelper.requireNonNullWithDefault(builder.filter, this, "filter", this.filter());
+		this.filter = ApiTypeHelper.requireNonNull(builder.filter, this, "filter");
 
 	}
 

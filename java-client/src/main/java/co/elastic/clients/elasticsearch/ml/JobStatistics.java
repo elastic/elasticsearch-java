@@ -70,10 +70,10 @@ public class JobStatistics implements JsonpSerializable {
 
 	private JobStatistics(Builder builder) {
 
-		this.avg = ApiTypeHelper.requireNonNullWithDefault(builder.avg, this, "avg", this.avg());
-		this.max = ApiTypeHelper.requireNonNullWithDefault(builder.max, this, "max", this.max());
-		this.min = ApiTypeHelper.requireNonNullWithDefault(builder.min, this, "min", this.min());
-		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
+		this.avg = ApiTypeHelper.requireNonNull(builder.avg, this, "avg", 0);
+		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max", 0);
+		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min", 0);
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
 
 	}
 

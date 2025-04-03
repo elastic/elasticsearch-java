@@ -78,7 +78,7 @@ public class ReadOnlyUrlRepositorySettings extends RepositorySettingsBase {
 		this.httpMaxRetries = builder.httpMaxRetries;
 		this.httpSocketTimeout = builder.httpSocketTimeout;
 		this.maxNumberOfSnapshots = builder.maxNumberOfSnapshots;
-		this.url = ApiTypeHelper.requireNonNullWithDefault(builder.url, this, "url", this.url());
+		this.url = ApiTypeHelper.requireNonNull(builder.url, this, "url");
 
 	}
 

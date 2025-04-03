@@ -70,7 +70,7 @@ public class DateRangeQuery extends RangeQueryBase<String> implements RangeQuery
 
 	private DateRangeQuery(Builder builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.format = builder.format;
 		this.timeZone = builder.timeZone;

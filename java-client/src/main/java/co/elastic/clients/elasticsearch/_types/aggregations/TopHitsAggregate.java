@@ -65,7 +65,7 @@ public class TopHitsAggregate extends AggregateBase implements AggregateVariant 
 	private TopHitsAggregate(Builder builder) {
 		super(builder);
 
-		this.hits = ApiTypeHelper.requireNonNullWithDefault(builder.hits, this, "hits", this.hits());
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
 
 	}
 

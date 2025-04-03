@@ -72,10 +72,8 @@ public class ClearCachedRealmsResponse implements JsonpSerializable {
 
 	private ClearCachedRealmsResponse(Builder builder) {
 
-		this.nodeStats = ApiTypeHelper.requireNonNullWithDefault(builder.nodeStats, this, "nodeStats",
-				this.nodeStats());
-		this.clusterName = ApiTypeHelper.requireNonNullWithDefault(builder.clusterName, this, "clusterName",
-				this.clusterName());
+		this.nodeStats = ApiTypeHelper.requireNonNull(builder.nodeStats, this, "nodeStats");
+		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
 		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}

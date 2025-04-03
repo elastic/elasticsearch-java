@@ -151,10 +151,10 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 	private SplitRequest(Builder builder) {
 
 		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
 		this.settings = ApiTypeHelper.unmodifiable(builder.settings);
-		this.target = ApiTypeHelper.requireNonNullWithDefault(builder.target, this, "target", this.target());
+		this.target = ApiTypeHelper.requireNonNull(builder.target, this, "target");
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
 

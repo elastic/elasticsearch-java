@@ -70,7 +70,7 @@ public class GetCalendarsResponse implements JsonpSerializable {
 	private GetCalendarsResponse(Builder builder) {
 
 		this.calendars = ApiTypeHelper.unmodifiableRequired(builder.calendars, this, "calendars");
-		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 
 	}
 

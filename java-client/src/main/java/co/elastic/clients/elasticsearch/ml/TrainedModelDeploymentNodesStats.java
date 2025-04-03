@@ -128,15 +128,14 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		this.node = builder.node;
 		this.numberOfAllocations = builder.numberOfAllocations;
 		this.numberOfPendingRequests = builder.numberOfPendingRequests;
-		this.peakThroughputPerMinute = ApiTypeHelper.requireNonNullWithDefault(builder.peakThroughputPerMinute, this,
-				"peakThroughputPerMinute", this.peakThroughputPerMinute());
+		this.peakThroughputPerMinute = ApiTypeHelper.requireNonNull(builder.peakThroughputPerMinute, this,
+				"peakThroughputPerMinute", 0);
 		this.rejectedExecutionCount = builder.rejectedExecutionCount;
-		this.routingState = ApiTypeHelper.requireNonNullWithDefault(builder.routingState, this, "routingState",
-				this.routingState());
+		this.routingState = ApiTypeHelper.requireNonNull(builder.routingState, this, "routingState");
 		this.startTime = builder.startTime;
 		this.threadsPerAllocation = builder.threadsPerAllocation;
-		this.throughputLastMinute = ApiTypeHelper.requireNonNullWithDefault(builder.throughputLastMinute, this,
-				"throughputLastMinute", this.throughputLastMinute());
+		this.throughputLastMinute = ApiTypeHelper.requireNonNull(builder.throughputLastMinute, this,
+				"throughputLastMinute", 0);
 		this.timeoutCount = builder.timeoutCount;
 
 	}

@@ -92,7 +92,7 @@ public class StopJobRequest extends RequestBase {
 
 	private StopJobRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.timeout = builder.timeout;
 		this.waitForCompletion = builder.waitForCompletion;
 

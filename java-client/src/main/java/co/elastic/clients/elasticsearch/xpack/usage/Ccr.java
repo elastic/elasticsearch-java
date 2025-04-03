@@ -64,10 +64,10 @@ public class Ccr extends Base {
 	private Ccr(Builder builder) {
 		super(builder);
 
-		this.autoFollowPatternsCount = ApiTypeHelper.requireNonNullWithDefault(builder.autoFollowPatternsCount, this,
-				"autoFollowPatternsCount", this.autoFollowPatternsCount());
-		this.followerIndicesCount = ApiTypeHelper.requireNonNullWithDefault(builder.followerIndicesCount, this,
-				"followerIndicesCount", this.followerIndicesCount());
+		this.autoFollowPatternsCount = ApiTypeHelper.requireNonNull(builder.autoFollowPatternsCount, this,
+				"autoFollowPatternsCount", 0);
+		this.followerIndicesCount = ApiTypeHelper.requireNonNull(builder.followerIndicesCount, this,
+				"followerIndicesCount", 0);
 
 	}
 

@@ -68,9 +68,8 @@ public class SlackDynamicAttachment implements JsonpSerializable {
 
 	private SlackDynamicAttachment(Builder builder) {
 
-		this.attachmentTemplate = ApiTypeHelper.requireNonNullWithDefault(builder.attachmentTemplate, this,
-				"attachmentTemplate", this.attachmentTemplate());
-		this.listPath = ApiTypeHelper.requireNonNullWithDefault(builder.listPath, this, "listPath", this.listPath());
+		this.attachmentTemplate = ApiTypeHelper.requireNonNull(builder.attachmentTemplate, this, "attachmentTemplate");
+		this.listPath = ApiTypeHelper.requireNonNull(builder.listPath, this, "listPath");
 
 	}
 

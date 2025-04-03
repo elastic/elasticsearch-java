@@ -72,11 +72,9 @@ public class IlmIndicatorDetails implements JsonpSerializable {
 
 	private IlmIndicatorDetails(Builder builder) {
 
-		this.ilmStatus = ApiTypeHelper.requireNonNullWithDefault(builder.ilmStatus, this, "ilmStatus",
-				this.ilmStatus());
-		this.policies = ApiTypeHelper.requireNonNullWithDefault(builder.policies, this, "policies", this.policies());
-		this.stagnatingIndices = ApiTypeHelper.requireNonNullWithDefault(builder.stagnatingIndices, this,
-				"stagnatingIndices", this.stagnatingIndices());
+		this.ilmStatus = ApiTypeHelper.requireNonNull(builder.ilmStatus, this, "ilmStatus");
+		this.policies = ApiTypeHelper.requireNonNull(builder.policies, this, "policies", 0);
+		this.stagnatingIndices = ApiTypeHelper.requireNonNull(builder.stagnatingIndices, this, "stagnatingIndices", 0);
 
 	}
 

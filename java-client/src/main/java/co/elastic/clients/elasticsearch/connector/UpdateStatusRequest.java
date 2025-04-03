@@ -73,9 +73,8 @@ public class UpdateStatusRequest extends RequestBase implements JsonpSerializabl
 
 	private UpdateStatusRequest(Builder builder) {
 
-		this.connectorId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorId, this, "connectorId",
-				this.connectorId());
-		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
+		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 

@@ -89,11 +89,11 @@ public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 
 	private RollupSearchResponse(Builder<TDocument> builder) {
 
-		this.took = ApiTypeHelper.requireNonNullWithDefault(builder.took, this, "took", this.took());
-		this.timedOut = ApiTypeHelper.requireNonNullWithDefault(builder.timedOut, this, "timedOut", this.timedOut());
+		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took", 0);
+		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut", false);
 		this.terminatedEarly = builder.terminatedEarly;
-		this.shards = ApiTypeHelper.requireNonNullWithDefault(builder.shards, this, "shards", this.shards());
-		this.hits = ApiTypeHelper.requireNonNullWithDefault(builder.hits, this, "hits", this.hits());
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
 		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 

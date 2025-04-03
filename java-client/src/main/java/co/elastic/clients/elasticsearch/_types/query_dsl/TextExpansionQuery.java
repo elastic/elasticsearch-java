@@ -71,11 +71,10 @@ public class TextExpansionQuery extends QueryBase implements QueryVariant {
 
 	private TextExpansionQuery(Builder builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
-		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
-		this.modelText = ApiTypeHelper.requireNonNullWithDefault(builder.modelText, this, "modelText",
-				this.modelText());
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelText = ApiTypeHelper.requireNonNull(builder.modelText, this, "modelText");
 		this.pruningConfig = builder.pruningConfig;
 
 	}

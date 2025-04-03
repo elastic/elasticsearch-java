@@ -67,10 +67,9 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 
 	private TrainedModelSizeStats(Builder builder) {
 
-		this.modelSizeBytes = ApiTypeHelper.requireNonNullWithDefault(builder.modelSizeBytes, this, "modelSizeBytes",
-				this.modelSizeBytes());
-		this.requiredNativeMemoryBytes = ApiTypeHelper.requireNonNullWithDefault(builder.requiredNativeMemoryBytes,
-				this, "requiredNativeMemoryBytes", this.requiredNativeMemoryBytes());
+		this.modelSizeBytes = ApiTypeHelper.requireNonNull(builder.modelSizeBytes, this, "modelSizeBytes");
+		this.requiredNativeMemoryBytes = ApiTypeHelper.requireNonNull(builder.requiredNativeMemoryBytes, this,
+				"requiredNativeMemoryBytes");
 
 	}
 

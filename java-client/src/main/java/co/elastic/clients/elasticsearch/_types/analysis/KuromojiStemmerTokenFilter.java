@@ -63,8 +63,7 @@ public class KuromojiStemmerTokenFilter extends TokenFilterBase implements Token
 	private KuromojiStemmerTokenFilter(Builder builder) {
 		super(builder);
 
-		this.minimumLength = ApiTypeHelper.requireNonNullWithDefault(builder.minimumLength, this, "minimumLength",
-				this.minimumLength());
+		this.minimumLength = ApiTypeHelper.requireNonNull(builder.minimumLength, this, "minimumLength", 0);
 
 	}
 

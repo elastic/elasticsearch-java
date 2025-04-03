@@ -82,20 +82,15 @@ public class Shared implements JsonpSerializable {
 
 	private Shared(Builder builder) {
 
-		this.reads = ApiTypeHelper.requireNonNullWithDefault(builder.reads, this, "reads", this.reads());
-		this.bytesReadInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.bytesReadInBytes, this,
-				"bytesReadInBytes", this.bytesReadInBytes());
-		this.writes = ApiTypeHelper.requireNonNullWithDefault(builder.writes, this, "writes", this.writes());
-		this.bytesWrittenInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.bytesWrittenInBytes, this,
-				"bytesWrittenInBytes", this.bytesWrittenInBytes());
-		this.evictions = ApiTypeHelper.requireNonNullWithDefault(builder.evictions, this, "evictions",
-				this.evictions());
-		this.numRegions = ApiTypeHelper.requireNonNullWithDefault(builder.numRegions, this, "numRegions",
-				this.numRegions());
-		this.sizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.sizeInBytes, this, "sizeInBytes",
-				this.sizeInBytes());
-		this.regionSizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.regionSizeInBytes, this,
-				"regionSizeInBytes", this.regionSizeInBytes());
+		this.reads = ApiTypeHelper.requireNonNull(builder.reads, this, "reads", 0);
+		this.bytesReadInBytes = ApiTypeHelper.requireNonNull(builder.bytesReadInBytes, this, "bytesReadInBytes");
+		this.writes = ApiTypeHelper.requireNonNull(builder.writes, this, "writes", 0);
+		this.bytesWrittenInBytes = ApiTypeHelper.requireNonNull(builder.bytesWrittenInBytes, this,
+				"bytesWrittenInBytes");
+		this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions", 0);
+		this.numRegions = ApiTypeHelper.requireNonNull(builder.numRegions, this, "numRegions", 0);
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+		this.regionSizeInBytes = ApiTypeHelper.requireNonNull(builder.regionSizeInBytes, this, "regionSizeInBytes");
 
 	}
 

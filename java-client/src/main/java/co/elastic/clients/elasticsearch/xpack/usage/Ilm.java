@@ -68,8 +68,7 @@ public class Ilm implements JsonpSerializable {
 
 	private Ilm(Builder builder) {
 
-		this.policyCount = ApiTypeHelper.requireNonNullWithDefault(builder.policyCount, this, "policyCount",
-				this.policyCount());
+		this.policyCount = ApiTypeHelper.requireNonNull(builder.policyCount, this, "policyCount", 0);
 		this.policyStats = ApiTypeHelper.unmodifiableRequired(builder.policyStats, this, "policyStats");
 
 	}

@@ -71,9 +71,8 @@ public class ContextMethod implements JsonpSerializable {
 
 	private ContextMethod(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
-		this.returnType = ApiTypeHelper.requireNonNullWithDefault(builder.returnType, this, "returnType",
-				this.returnType());
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.returnType = ApiTypeHelper.requireNonNull(builder.returnType, this, "returnType");
 		this.params = ApiTypeHelper.unmodifiableRequired(builder.params, this, "params");
 
 	}

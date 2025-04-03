@@ -81,10 +81,8 @@ public class ResolveClusterInfo implements JsonpSerializable {
 
 	private ResolveClusterInfo(Builder builder) {
 
-		this.connected = ApiTypeHelper.requireNonNullWithDefault(builder.connected, this, "connected",
-				this.connected());
-		this.skipUnavailable = ApiTypeHelper.requireNonNullWithDefault(builder.skipUnavailable, this, "skipUnavailable",
-				this.skipUnavailable());
+		this.connected = ApiTypeHelper.requireNonNull(builder.connected, this, "connected", false);
+		this.skipUnavailable = ApiTypeHelper.requireNonNull(builder.skipUnavailable, this, "skipUnavailable", false);
 		this.matchingIndices = builder.matchingIndices;
 		this.error = builder.error;
 		this.version = builder.version;

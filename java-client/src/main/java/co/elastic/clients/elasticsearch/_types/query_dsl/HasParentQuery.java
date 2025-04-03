@@ -79,9 +79,8 @@ public class HasParentQuery extends QueryBase implements QueryVariant {
 
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 		this.innerHits = builder.innerHits;
-		this.parentType = ApiTypeHelper.requireNonNullWithDefault(builder.parentType, this, "parentType",
-				this.parentType());
-		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
+		this.parentType = ApiTypeHelper.requireNonNull(builder.parentType, this, "parentType");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.score = builder.score;
 
 	}

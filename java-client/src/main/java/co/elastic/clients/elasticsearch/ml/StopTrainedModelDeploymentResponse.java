@@ -65,7 +65,7 @@ public class StopTrainedModelDeploymentResponse implements JsonpSerializable {
 
 	private StopTrainedModelDeploymentResponse(Builder builder) {
 
-		this.stopped = ApiTypeHelper.requireNonNullWithDefault(builder.stopped, this, "stopped", this.stopped());
+		this.stopped = ApiTypeHelper.requireNonNull(builder.stopped, this, "stopped", false);
 
 	}
 

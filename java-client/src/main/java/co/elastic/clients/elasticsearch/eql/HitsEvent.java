@@ -84,9 +84,9 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 
 	private HitsEvent(Builder<TEvent> builder) {
 
-		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
-		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
-		this.source = ApiTypeHelper.requireNonNullWithDefault(builder.source, this, "source", this.source());
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.missing = builder.missing;
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.tEventSerializer = builder.tEventSerializer;

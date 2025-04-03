@@ -64,7 +64,7 @@ public class AdjacencyMatrixBucket extends MultiBucketBase {
 	private AdjacencyMatrixBucket(Builder builder) {
 		super(builder);
 
-		this.key = ApiTypeHelper.requireNonNullWithDefault(builder.key, this, "key", this.key());
+		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
 
 	}
 

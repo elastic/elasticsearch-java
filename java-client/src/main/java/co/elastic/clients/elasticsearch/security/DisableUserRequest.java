@@ -76,7 +76,7 @@ public class DisableUserRequest extends RequestBase {
 	private DisableUserRequest(Builder builder) {
 
 		this.refresh = builder.refresh;
-		this.username = ApiTypeHelper.requireNonNullWithDefault(builder.username, this, "username", this.username());
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 

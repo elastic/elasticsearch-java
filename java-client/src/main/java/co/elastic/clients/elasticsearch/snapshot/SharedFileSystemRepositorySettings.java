@@ -72,7 +72,7 @@ public class SharedFileSystemRepositorySettings extends RepositorySettingsBase {
 	private SharedFileSystemRepositorySettings(Builder builder) {
 		super(builder);
 
-		this.location = ApiTypeHelper.requireNonNullWithDefault(builder.location, this, "location", this.location());
+		this.location = ApiTypeHelper.requireNonNull(builder.location, this, "location");
 		this.maxNumberOfSnapshots = builder.maxNumberOfSnapshots;
 		this.readonly = builder.readonly;
 

@@ -88,7 +88,7 @@ public class WildcardQuery extends QueryBase
 
 	private WildcardQuery(Builder builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.caseInsensitive = builder.caseInsensitive;
 		this.rewrite = builder.rewrite;

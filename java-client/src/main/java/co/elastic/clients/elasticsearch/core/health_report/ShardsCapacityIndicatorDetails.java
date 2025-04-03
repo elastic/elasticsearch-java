@@ -67,8 +67,8 @@ public class ShardsCapacityIndicatorDetails implements JsonpSerializable {
 
 	private ShardsCapacityIndicatorDetails(Builder builder) {
 
-		this.data = ApiTypeHelper.requireNonNullWithDefault(builder.data, this, "data", this.data());
-		this.frozen = ApiTypeHelper.requireNonNullWithDefault(builder.frozen, this, "frozen", this.frozen());
+		this.data = ApiTypeHelper.requireNonNull(builder.data, this, "data");
+		this.frozen = ApiTypeHelper.requireNonNull(builder.frozen, this, "frozen");
 
 	}
 
