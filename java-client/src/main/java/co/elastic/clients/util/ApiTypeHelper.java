@@ -107,6 +107,11 @@ public class ApiTypeHelper {
         return value == null ? defaultValue : value;
     }
 
+    public static boolean requireNonNull(Boolean value, Object obj, String name, boolean defaultValue) {
+        checkNotNull(value, obj, name );
+        return value == null ? defaultValue : value;
+    }
+
     //----- Lists
 
     /** Immutable empty list implementation so that we can create marker list objects */
