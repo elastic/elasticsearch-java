@@ -71,8 +71,9 @@ public class ShardRetentionLeases implements JsonpSerializable {
 
 	private ShardRetentionLeases(Builder builder) {
 
-		this.primaryTerm = ApiTypeHelper.requireNonNull(builder.primaryTerm, this, "primaryTerm");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.primaryTerm = ApiTypeHelper.requireNonNullWithDefault(builder.primaryTerm, this, "primaryTerm",
+				this.primaryTerm());
+		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
 		this.leases = ApiTypeHelper.unmodifiableRequired(builder.leases, this, "leases");
 
 	}

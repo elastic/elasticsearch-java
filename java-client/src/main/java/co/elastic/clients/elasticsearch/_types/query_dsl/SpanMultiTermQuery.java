@@ -63,7 +63,7 @@ public class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, Q
 	private SpanMultiTermQuery(Builder builder) {
 		super(builder);
 
-		this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match");
+		this.match = ApiTypeHelper.requireNonNullWithDefault(builder.match, this, "match", this.match());
 
 	}
 

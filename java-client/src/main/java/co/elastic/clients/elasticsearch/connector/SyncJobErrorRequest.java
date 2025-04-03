@@ -79,8 +79,9 @@ public class SyncJobErrorRequest extends RequestBase implements JsonpSerializabl
 
 	private SyncJobErrorRequest(Builder builder) {
 
-		this.connectorSyncJobId = ApiTypeHelper.requireNonNull(builder.connectorSyncJobId, this, "connectorSyncJobId");
-		this.error = ApiTypeHelper.requireNonNull(builder.error, this, "error");
+		this.connectorSyncJobId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorSyncJobId, this,
+				"connectorSyncJobId", this.connectorSyncJobId());
+		this.error = ApiTypeHelper.requireNonNullWithDefault(builder.error, this, "error", this.error());
 
 	}
 

@@ -84,13 +84,13 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 
 	protected WriteResponseBase(AbstractBuilder<?> builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
 		this.primaryTerm = builder.primaryTerm;
-		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
+		this.result = ApiTypeHelper.requireNonNullWithDefault(builder.result, this, "result", this.result());
 		this.seqNo = builder.seqNo;
-		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.shards = ApiTypeHelper.requireNonNullWithDefault(builder.shards, this, "shards", this.shards());
+		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
 		this.forcedRefresh = builder.forcedRefresh;
 
 	}

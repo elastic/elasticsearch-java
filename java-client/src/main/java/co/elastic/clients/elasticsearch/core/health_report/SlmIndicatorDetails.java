@@ -72,8 +72,9 @@ public class SlmIndicatorDetails implements JsonpSerializable {
 
 	private SlmIndicatorDetails(Builder builder) {
 
-		this.slmStatus = ApiTypeHelper.requireNonNull(builder.slmStatus, this, "slmStatus");
-		this.policies = ApiTypeHelper.requireNonNull(builder.policies, this, "policies");
+		this.slmStatus = ApiTypeHelper.requireNonNullWithDefault(builder.slmStatus, this, "slmStatus",
+				this.slmStatus());
+		this.policies = ApiTypeHelper.requireNonNullWithDefault(builder.policies, this, "policies", this.policies());
 		this.unhealthyPolicies = builder.unhealthyPolicies;
 
 	}

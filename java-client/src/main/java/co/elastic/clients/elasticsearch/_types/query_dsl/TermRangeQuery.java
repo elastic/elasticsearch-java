@@ -64,7 +64,7 @@ public class TermRangeQuery extends RangeQueryBase<String> implements RangeQuery
 
 	private TermRangeQuery(Builder builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 
 	}
 

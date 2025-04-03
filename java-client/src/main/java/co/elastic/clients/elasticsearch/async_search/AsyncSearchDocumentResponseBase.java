@@ -68,7 +68,7 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 	protected AsyncSearchDocumentResponseBase(AbstractBuilder<TDocument, ?> builder) {
 		super(builder);
 
-		this.response = ApiTypeHelper.requireNonNull(builder.response, this, "response");
+		this.response = ApiTypeHelper.requireNonNullWithDefault(builder.response, this, "response", this.response());
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}

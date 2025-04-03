@@ -66,8 +66,8 @@ public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, Query
 	private SpanFirstQuery(Builder builder) {
 		super(builder);
 
-		this.end = ApiTypeHelper.requireNonNull(builder.end, this, "end");
-		this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match");
+		this.end = ApiTypeHelper.requireNonNullWithDefault(builder.end, this, "end", this.end());
+		this.match = ApiTypeHelper.requireNonNullWithDefault(builder.match, this, "match", this.match());
 
 	}
 

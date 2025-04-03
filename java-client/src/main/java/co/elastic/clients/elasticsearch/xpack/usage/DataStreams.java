@@ -64,8 +64,10 @@ public class DataStreams extends Base {
 	private DataStreams(Builder builder) {
 		super(builder);
 
-		this.dataStreams = ApiTypeHelper.requireNonNull(builder.dataStreams, this, "dataStreams");
-		this.indicesCount = ApiTypeHelper.requireNonNull(builder.indicesCount, this, "indicesCount");
+		this.dataStreams = ApiTypeHelper.requireNonNullWithDefault(builder.dataStreams, this, "dataStreams",
+				this.dataStreams());
+		this.indicesCount = ApiTypeHelper.requireNonNullWithDefault(builder.indicesCount, this, "indicesCount",
+				this.indicesCount());
 
 	}
 

@@ -66,8 +66,8 @@ public class Counter implements JsonpSerializable {
 
 	protected Counter(AbstractBuilder<?> builder) {
 
-		this.active = ApiTypeHelper.requireNonNull(builder.active, this, "active");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.active = ApiTypeHelper.requireNonNullWithDefault(builder.active, this, "active", this.active());
+		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
 
 	}
 

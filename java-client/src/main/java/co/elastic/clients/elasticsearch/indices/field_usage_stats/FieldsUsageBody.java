@@ -73,7 +73,7 @@ public abstract class FieldsUsageBody implements JsonpSerializable {
 
 		this.stats = ApiTypeHelper.unmodifiable(builder.stats);
 
-		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.shards = ApiTypeHelper.requireNonNullWithDefault(builder.shards, this, "shards", this.shards());
 
 	}
 

@@ -63,7 +63,8 @@ public class IcuTokenizer extends TokenizerBase implements TokenizerDefinitionVa
 	private IcuTokenizer(Builder builder) {
 		super(builder);
 
-		this.ruleFiles = ApiTypeHelper.requireNonNull(builder.ruleFiles, this, "ruleFiles");
+		this.ruleFiles = ApiTypeHelper.requireNonNullWithDefault(builder.ruleFiles, this, "ruleFiles",
+				this.ruleFiles());
 
 	}
 

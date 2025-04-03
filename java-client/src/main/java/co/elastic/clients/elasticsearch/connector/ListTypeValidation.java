@@ -66,7 +66,8 @@ public class ListTypeValidation implements ValidationVariant, JsonpSerializable 
 
 	private ListTypeValidation(Builder builder) {
 
-		this.constraint = ApiTypeHelper.requireNonNull(builder.constraint, this, "constraint");
+		this.constraint = ApiTypeHelper.requireNonNullWithDefault(builder.constraint, this, "constraint",
+				this.constraint());
 
 	}
 

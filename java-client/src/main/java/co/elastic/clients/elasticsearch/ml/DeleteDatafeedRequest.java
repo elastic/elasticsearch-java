@@ -72,7 +72,8 @@ public class DeleteDatafeedRequest extends RequestBase {
 
 	private DeleteDatafeedRequest(Builder builder) {
 
-		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.datafeedId = ApiTypeHelper.requireNonNullWithDefault(builder.datafeedId, this, "datafeedId",
+				this.datafeedId());
 		this.force = builder.force;
 
 	}

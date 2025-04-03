@@ -154,7 +154,7 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 
 	private RolloverRequest(Builder builder) {
 
-		this.alias = ApiTypeHelper.requireNonNull(builder.alias, this, "alias");
+		this.alias = ApiTypeHelper.requireNonNullWithDefault(builder.alias, this, "alias", this.alias());
 		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.conditions = builder.conditions;
 		this.dryRun = builder.dryRun;

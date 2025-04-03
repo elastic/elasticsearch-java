@@ -70,7 +70,8 @@ public class DataframeClassificationSummaryRecall implements JsonpSerializable {
 	private DataframeClassificationSummaryRecall(Builder builder) {
 
 		this.classes = ApiTypeHelper.unmodifiableRequired(builder.classes, this, "classes");
-		this.avgRecall = ApiTypeHelper.requireNonNull(builder.avgRecall, this, "avgRecall");
+		this.avgRecall = ApiTypeHelper.requireNonNullWithDefault(builder.avgRecall, this, "avgRecall",
+				this.avgRecall());
 
 	}
 

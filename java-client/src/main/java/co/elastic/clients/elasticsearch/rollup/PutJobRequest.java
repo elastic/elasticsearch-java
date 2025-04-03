@@ -109,14 +109,16 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 
 	private PutJobRequest(Builder builder) {
 
-		this.cron = ApiTypeHelper.requireNonNull(builder.cron, this, "cron");
-		this.groups = ApiTypeHelper.requireNonNull(builder.groups, this, "groups");
+		this.cron = ApiTypeHelper.requireNonNullWithDefault(builder.cron, this, "cron", this.cron());
+		this.groups = ApiTypeHelper.requireNonNullWithDefault(builder.groups, this, "groups", this.groups());
 		this.headers = ApiTypeHelper.unmodifiable(builder.headers);
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.indexPattern = ApiTypeHelper.requireNonNull(builder.indexPattern, this, "indexPattern");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.indexPattern = ApiTypeHelper.requireNonNullWithDefault(builder.indexPattern, this, "indexPattern",
+				this.indexPattern());
 		this.metrics = ApiTypeHelper.unmodifiable(builder.metrics);
-		this.pageSize = ApiTypeHelper.requireNonNull(builder.pageSize, this, "pageSize");
-		this.rollupIndex = ApiTypeHelper.requireNonNull(builder.rollupIndex, this, "rollupIndex");
+		this.pageSize = ApiTypeHelper.requireNonNullWithDefault(builder.pageSize, this, "pageSize", this.pageSize());
+		this.rollupIndex = ApiTypeHelper.requireNonNullWithDefault(builder.rollupIndex, this, "rollupIndex",
+				this.rollupIndex());
 		this.timeout = builder.timeout;
 
 	}

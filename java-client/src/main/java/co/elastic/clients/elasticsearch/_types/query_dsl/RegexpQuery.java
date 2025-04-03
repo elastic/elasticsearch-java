@@ -79,13 +79,13 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
 
 	private RegexpQuery(Builder builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 
 		this.caseInsensitive = builder.caseInsensitive;
 		this.flags = builder.flags;
 		this.maxDeterminizedStates = builder.maxDeterminizedStates;
 		this.rewrite = builder.rewrite;
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNullWithDefault(builder.value, this, "value", this.value());
 
 	}
 

@@ -62,7 +62,7 @@ public class GcsRepository extends RepositoryBase implements RepositoryVariant {
 	private GcsRepository(Builder builder) {
 		super(builder);
 
-		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
+		this.settings = ApiTypeHelper.requireNonNullWithDefault(builder.settings, this, "settings", this.settings());
 
 	}
 

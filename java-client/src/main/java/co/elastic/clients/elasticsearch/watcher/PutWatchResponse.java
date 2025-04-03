@@ -75,11 +75,12 @@ public class PutWatchResponse implements JsonpSerializable {
 
 	private PutWatchResponse(Builder builder) {
 
-		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.primaryTerm = ApiTypeHelper.requireNonNull(builder.primaryTerm, this, "primaryTerm");
-		this.seqNo = ApiTypeHelper.requireNonNull(builder.seqNo, this, "seqNo");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.created = ApiTypeHelper.requireNonNullWithDefault(builder.created, this, "created", this.created());
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.primaryTerm = ApiTypeHelper.requireNonNullWithDefault(builder.primaryTerm, this, "primaryTerm",
+				this.primaryTerm());
+		this.seqNo = ApiTypeHelper.requireNonNullWithDefault(builder.seqNo, this, "seqNo", this.seqNo());
+		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
 
 	}
 

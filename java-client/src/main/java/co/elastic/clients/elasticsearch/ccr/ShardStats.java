@@ -139,55 +139,66 @@ public class ShardStats implements JsonpSerializable {
 
 	private ShardStats(Builder builder) {
 
-		this.bytesRead = ApiTypeHelper.requireNonNull(builder.bytesRead, this, "bytesRead");
-		this.failedReadRequests = ApiTypeHelper.requireNonNull(builder.failedReadRequests, this, "failedReadRequests");
-		this.failedWriteRequests = ApiTypeHelper.requireNonNull(builder.failedWriteRequests, this,
-				"failedWriteRequests");
+		this.bytesRead = ApiTypeHelper.requireNonNullWithDefault(builder.bytesRead, this, "bytesRead",
+				this.bytesRead());
+		this.failedReadRequests = ApiTypeHelper.requireNonNullWithDefault(builder.failedReadRequests, this,
+				"failedReadRequests", this.failedReadRequests());
+		this.failedWriteRequests = ApiTypeHelper.requireNonNullWithDefault(builder.failedWriteRequests, this,
+				"failedWriteRequests", this.failedWriteRequests());
 		this.fatalException = builder.fatalException;
-		this.followerAliasesVersion = ApiTypeHelper.requireNonNull(builder.followerAliasesVersion, this,
-				"followerAliasesVersion");
-		this.followerGlobalCheckpoint = ApiTypeHelper.requireNonNull(builder.followerGlobalCheckpoint, this,
-				"followerGlobalCheckpoint");
-		this.followerIndex = ApiTypeHelper.requireNonNull(builder.followerIndex, this, "followerIndex");
-		this.followerMappingVersion = ApiTypeHelper.requireNonNull(builder.followerMappingVersion, this,
-				"followerMappingVersion");
-		this.followerMaxSeqNo = ApiTypeHelper.requireNonNull(builder.followerMaxSeqNo, this, "followerMaxSeqNo");
-		this.followerSettingsVersion = ApiTypeHelper.requireNonNull(builder.followerSettingsVersion, this,
-				"followerSettingsVersion");
-		this.lastRequestedSeqNo = ApiTypeHelper.requireNonNull(builder.lastRequestedSeqNo, this, "lastRequestedSeqNo");
-		this.leaderGlobalCheckpoint = ApiTypeHelper.requireNonNull(builder.leaderGlobalCheckpoint, this,
-				"leaderGlobalCheckpoint");
-		this.leaderIndex = ApiTypeHelper.requireNonNull(builder.leaderIndex, this, "leaderIndex");
-		this.leaderMaxSeqNo = ApiTypeHelper.requireNonNull(builder.leaderMaxSeqNo, this, "leaderMaxSeqNo");
-		this.operationsRead = ApiTypeHelper.requireNonNull(builder.operationsRead, this, "operationsRead");
-		this.operationsWritten = ApiTypeHelper.requireNonNull(builder.operationsWritten, this, "operationsWritten");
-		this.outstandingReadRequests = ApiTypeHelper.requireNonNull(builder.outstandingReadRequests, this,
-				"outstandingReadRequests");
-		this.outstandingWriteRequests = ApiTypeHelper.requireNonNull(builder.outstandingWriteRequests, this,
-				"outstandingWriteRequests");
+		this.followerAliasesVersion = ApiTypeHelper.requireNonNullWithDefault(builder.followerAliasesVersion, this,
+				"followerAliasesVersion", this.followerAliasesVersion());
+		this.followerGlobalCheckpoint = ApiTypeHelper.requireNonNullWithDefault(builder.followerGlobalCheckpoint, this,
+				"followerGlobalCheckpoint", this.followerGlobalCheckpoint());
+		this.followerIndex = ApiTypeHelper.requireNonNullWithDefault(builder.followerIndex, this, "followerIndex",
+				this.followerIndex());
+		this.followerMappingVersion = ApiTypeHelper.requireNonNullWithDefault(builder.followerMappingVersion, this,
+				"followerMappingVersion", this.followerMappingVersion());
+		this.followerMaxSeqNo = ApiTypeHelper.requireNonNullWithDefault(builder.followerMaxSeqNo, this,
+				"followerMaxSeqNo", this.followerMaxSeqNo());
+		this.followerSettingsVersion = ApiTypeHelper.requireNonNullWithDefault(builder.followerSettingsVersion, this,
+				"followerSettingsVersion", this.followerSettingsVersion());
+		this.lastRequestedSeqNo = ApiTypeHelper.requireNonNullWithDefault(builder.lastRequestedSeqNo, this,
+				"lastRequestedSeqNo", this.lastRequestedSeqNo());
+		this.leaderGlobalCheckpoint = ApiTypeHelper.requireNonNullWithDefault(builder.leaderGlobalCheckpoint, this,
+				"leaderGlobalCheckpoint", this.leaderGlobalCheckpoint());
+		this.leaderIndex = ApiTypeHelper.requireNonNullWithDefault(builder.leaderIndex, this, "leaderIndex",
+				this.leaderIndex());
+		this.leaderMaxSeqNo = ApiTypeHelper.requireNonNullWithDefault(builder.leaderMaxSeqNo, this, "leaderMaxSeqNo",
+				this.leaderMaxSeqNo());
+		this.operationsRead = ApiTypeHelper.requireNonNullWithDefault(builder.operationsRead, this, "operationsRead",
+				this.operationsRead());
+		this.operationsWritten = ApiTypeHelper.requireNonNullWithDefault(builder.operationsWritten, this,
+				"operationsWritten", this.operationsWritten());
+		this.outstandingReadRequests = ApiTypeHelper.requireNonNullWithDefault(builder.outstandingReadRequests, this,
+				"outstandingReadRequests", this.outstandingReadRequests());
+		this.outstandingWriteRequests = ApiTypeHelper.requireNonNullWithDefault(builder.outstandingWriteRequests, this,
+				"outstandingWriteRequests", this.outstandingWriteRequests());
 		this.readExceptions = ApiTypeHelper.unmodifiableRequired(builder.readExceptions, this, "readExceptions");
-		this.remoteCluster = ApiTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
-		this.shardId = ApiTypeHelper.requireNonNull(builder.shardId, this, "shardId");
-		this.successfulReadRequests = ApiTypeHelper.requireNonNull(builder.successfulReadRequests, this,
-				"successfulReadRequests");
-		this.successfulWriteRequests = ApiTypeHelper.requireNonNull(builder.successfulWriteRequests, this,
-				"successfulWriteRequests");
+		this.remoteCluster = ApiTypeHelper.requireNonNullWithDefault(builder.remoteCluster, this, "remoteCluster",
+				this.remoteCluster());
+		this.shardId = ApiTypeHelper.requireNonNullWithDefault(builder.shardId, this, "shardId", this.shardId());
+		this.successfulReadRequests = ApiTypeHelper.requireNonNullWithDefault(builder.successfulReadRequests, this,
+				"successfulReadRequests", this.successfulReadRequests());
+		this.successfulWriteRequests = ApiTypeHelper.requireNonNullWithDefault(builder.successfulWriteRequests, this,
+				"successfulWriteRequests", this.successfulWriteRequests());
 		this.timeSinceLastRead = builder.timeSinceLastRead;
-		this.timeSinceLastReadMillis = ApiTypeHelper.requireNonNull(builder.timeSinceLastReadMillis, this,
-				"timeSinceLastReadMillis");
+		this.timeSinceLastReadMillis = ApiTypeHelper.requireNonNullWithDefault(builder.timeSinceLastReadMillis, this,
+				"timeSinceLastReadMillis", this.timeSinceLastReadMillis());
 		this.totalReadRemoteExecTime = builder.totalReadRemoteExecTime;
-		this.totalReadRemoteExecTimeMillis = ApiTypeHelper.requireNonNull(builder.totalReadRemoteExecTimeMillis, this,
-				"totalReadRemoteExecTimeMillis");
+		this.totalReadRemoteExecTimeMillis = ApiTypeHelper.requireNonNullWithDefault(
+				builder.totalReadRemoteExecTimeMillis, this, "totalReadRemoteExecTimeMillis",
+				this.totalReadRemoteExecTimeMillis());
 		this.totalReadTime = builder.totalReadTime;
-		this.totalReadTimeMillis = ApiTypeHelper.requireNonNull(builder.totalReadTimeMillis, this,
-				"totalReadTimeMillis");
+		this.totalReadTimeMillis = ApiTypeHelper.requireNonNullWithDefault(builder.totalReadTimeMillis, this,
+				"totalReadTimeMillis", this.totalReadTimeMillis());
 		this.totalWriteTime = builder.totalWriteTime;
-		this.totalWriteTimeMillis = ApiTypeHelper.requireNonNull(builder.totalWriteTimeMillis, this,
-				"totalWriteTimeMillis");
-		this.writeBufferOperationCount = ApiTypeHelper.requireNonNull(builder.writeBufferOperationCount, this,
-				"writeBufferOperationCount");
-		this.writeBufferSizeInBytes = ApiTypeHelper.requireNonNull(builder.writeBufferSizeInBytes, this,
-				"writeBufferSizeInBytes");
+		this.totalWriteTimeMillis = ApiTypeHelper.requireNonNullWithDefault(builder.totalWriteTimeMillis, this,
+				"totalWriteTimeMillis", this.totalWriteTimeMillis());
+		this.writeBufferOperationCount = ApiTypeHelper.requireNonNullWithDefault(builder.writeBufferOperationCount,
+				this, "writeBufferOperationCount", this.writeBufferOperationCount());
+		this.writeBufferSizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.writeBufferSizeInBytes, this,
+				"writeBufferSizeInBytes", this.writeBufferSizeInBytes());
 
 	}
 

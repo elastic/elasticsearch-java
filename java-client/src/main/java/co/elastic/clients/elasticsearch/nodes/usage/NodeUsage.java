@@ -76,8 +76,9 @@ public class NodeUsage implements JsonpSerializable {
 	private NodeUsage(Builder builder) {
 
 		this.restActions = ApiTypeHelper.unmodifiableRequired(builder.restActions, this, "restActions");
-		this.since = ApiTypeHelper.requireNonNull(builder.since, this, "since");
-		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.since = ApiTypeHelper.requireNonNullWithDefault(builder.since, this, "since", this.since());
+		this.timestamp = ApiTypeHelper.requireNonNullWithDefault(builder.timestamp, this, "timestamp",
+				this.timestamp());
 		this.aggregations = ApiTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
 
 	}

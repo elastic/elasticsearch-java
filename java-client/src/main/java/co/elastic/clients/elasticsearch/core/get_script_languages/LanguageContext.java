@@ -71,7 +71,7 @@ public class LanguageContext implements JsonpSerializable {
 	private LanguageContext(Builder builder) {
 
 		this.contexts = ApiTypeHelper.unmodifiableRequired(builder.contexts, this, "contexts");
-		this.language = ApiTypeHelper.requireNonNull(builder.language, this, "language");
+		this.language = ApiTypeHelper.requireNonNullWithDefault(builder.language, this, "language", this.language());
 
 	}
 

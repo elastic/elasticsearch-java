@@ -80,14 +80,19 @@ public class NodeInfoOSCPU implements JsonpSerializable {
 
 	private NodeInfoOSCPU(Builder builder) {
 
-		this.cacheSize = ApiTypeHelper.requireNonNull(builder.cacheSize, this, "cacheSize");
-		this.cacheSizeInBytes = ApiTypeHelper.requireNonNull(builder.cacheSizeInBytes, this, "cacheSizeInBytes");
-		this.coresPerSocket = ApiTypeHelper.requireNonNull(builder.coresPerSocket, this, "coresPerSocket");
-		this.mhz = ApiTypeHelper.requireNonNull(builder.mhz, this, "mhz");
-		this.model = ApiTypeHelper.requireNonNull(builder.model, this, "model");
-		this.totalCores = ApiTypeHelper.requireNonNull(builder.totalCores, this, "totalCores");
-		this.totalSockets = ApiTypeHelper.requireNonNull(builder.totalSockets, this, "totalSockets");
-		this.vendor = ApiTypeHelper.requireNonNull(builder.vendor, this, "vendor");
+		this.cacheSize = ApiTypeHelper.requireNonNullWithDefault(builder.cacheSize, this, "cacheSize",
+				this.cacheSize());
+		this.cacheSizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.cacheSizeInBytes, this,
+				"cacheSizeInBytes", this.cacheSizeInBytes());
+		this.coresPerSocket = ApiTypeHelper.requireNonNullWithDefault(builder.coresPerSocket, this, "coresPerSocket",
+				this.coresPerSocket());
+		this.mhz = ApiTypeHelper.requireNonNullWithDefault(builder.mhz, this, "mhz", this.mhz());
+		this.model = ApiTypeHelper.requireNonNullWithDefault(builder.model, this, "model", this.model());
+		this.totalCores = ApiTypeHelper.requireNonNullWithDefault(builder.totalCores, this, "totalCores",
+				this.totalCores());
+		this.totalSockets = ApiTypeHelper.requireNonNullWithDefault(builder.totalSockets, this, "totalSockets",
+				this.totalSockets());
+		this.vendor = ApiTypeHelper.requireNonNullWithDefault(builder.vendor, this, "vendor", this.vendor());
 
 	}
 

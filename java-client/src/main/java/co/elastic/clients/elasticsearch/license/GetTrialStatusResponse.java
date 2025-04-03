@@ -65,8 +65,8 @@ public class GetTrialStatusResponse implements JsonpSerializable {
 
 	private GetTrialStatusResponse(Builder builder) {
 
-		this.eligibleToStartTrial = ApiTypeHelper.requireNonNull(builder.eligibleToStartTrial, this,
-				"eligibleToStartTrial");
+		this.eligibleToStartTrial = ApiTypeHelper.requireNonNullWithDefault(builder.eligibleToStartTrial, this,
+				"eligibleToStartTrial", this.eligibleToStartTrial());
 
 	}
 

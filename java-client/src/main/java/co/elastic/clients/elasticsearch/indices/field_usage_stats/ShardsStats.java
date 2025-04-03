@@ -69,7 +69,8 @@ public class ShardsStats implements JsonpSerializable {
 
 	private ShardsStats(Builder builder) {
 
-		this.allFields = ApiTypeHelper.requireNonNull(builder.allFields, this, "allFields");
+		this.allFields = ApiTypeHelper.requireNonNullWithDefault(builder.allFields, this, "allFields",
+				this.allFields());
 		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
 
 	}

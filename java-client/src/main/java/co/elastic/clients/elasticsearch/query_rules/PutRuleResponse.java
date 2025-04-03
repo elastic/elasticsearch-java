@@ -65,7 +65,7 @@ public class PutRuleResponse implements JsonpSerializable {
 
 	private PutRuleResponse(Builder builder) {
 
-		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
+		this.result = ApiTypeHelper.requireNonNullWithDefault(builder.result, this, "result", this.result());
 
 	}
 

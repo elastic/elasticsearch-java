@@ -84,9 +84,9 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 
 	private ExplainResponse(Builder<TDocument> builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.matched = ApiTypeHelper.requireNonNull(builder.matched, this, "matched");
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.matched = ApiTypeHelper.requireNonNullWithDefault(builder.matched, this, "matched", this.matched());
 		this.explanation = builder.explanation;
 		this.get = builder.get;
 		this.tDocumentSerializer = builder.tDocumentSerializer;

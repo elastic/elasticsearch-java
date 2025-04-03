@@ -72,8 +72,8 @@ public class GetScriptResponse implements JsonpSerializable {
 
 	private GetScriptResponse(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.found = ApiTypeHelper.requireNonNullWithDefault(builder.found, this, "found", this.found());
 		this.script = builder.script;
 
 	}

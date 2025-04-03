@@ -63,7 +63,8 @@ public abstract class AcknowledgedResponseBase implements AcknowledgedResponse, 
 
 	protected AcknowledgedResponseBase(AbstractBuilder<?> builder) {
 
-		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+		this.acknowledged = ApiTypeHelper.requireNonNullWithDefault(builder.acknowledged, this, "acknowledged",
+				this.acknowledged());
 
 	}
 

@@ -75,9 +75,10 @@ public class ShardStatistics implements JsonpSerializable {
 
 	private ShardStatistics(Builder builder) {
 
-		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
-		this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.failed = ApiTypeHelper.requireNonNullWithDefault(builder.failed, this, "failed", this.failed());
+		this.successful = ApiTypeHelper.requireNonNullWithDefault(builder.successful, this, "successful",
+				this.successful());
+		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
 		this.failures = ApiTypeHelper.unmodifiable(builder.failures);
 		this.skipped = builder.skipped;
 

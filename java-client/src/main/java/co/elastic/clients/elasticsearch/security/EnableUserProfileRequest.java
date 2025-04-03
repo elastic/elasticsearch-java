@@ -86,7 +86,7 @@ public class EnableUserProfileRequest extends RequestBase {
 	private EnableUserProfileRequest(Builder builder) {
 
 		this.refresh = builder.refresh;
-		this.uid = ApiTypeHelper.requireNonNull(builder.uid, this, "uid");
+		this.uid = ApiTypeHelper.requireNonNullWithDefault(builder.uid, this, "uid", this.uid());
 
 	}
 

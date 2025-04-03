@@ -81,7 +81,7 @@ public class MlInferenceTrainedModels implements JsonpSerializable {
 		this.estimatedOperations = builder.estimatedOperations;
 		this.estimatedHeapMemoryUsageBytes = builder.estimatedHeapMemoryUsageBytes;
 		this.count = builder.count;
-		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
+		this.all = ApiTypeHelper.requireNonNullWithDefault(builder.all, this, "all", this.all());
 		this.modelSizeBytes = builder.modelSizeBytes;
 
 	}

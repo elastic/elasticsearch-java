@@ -69,8 +69,9 @@ public class SynonymsSetItem implements JsonpSerializable {
 
 	private SynonymsSetItem(Builder builder) {
 
-		this.synonymsSet = ApiTypeHelper.requireNonNull(builder.synonymsSet, this, "synonymsSet");
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.synonymsSet = ApiTypeHelper.requireNonNullWithDefault(builder.synonymsSet, this, "synonymsSet",
+				this.synonymsSet());
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
 
 	}
 

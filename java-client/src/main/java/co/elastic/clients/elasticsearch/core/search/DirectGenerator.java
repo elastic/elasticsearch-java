@@ -99,7 +99,7 @@ public class DirectGenerator implements JsonpSerializable {
 
 	private DirectGenerator(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.maxEdits = builder.maxEdits;
 		this.maxInspections = builder.maxInspections;
 		this.maxTermFreq = builder.maxTermFreq;

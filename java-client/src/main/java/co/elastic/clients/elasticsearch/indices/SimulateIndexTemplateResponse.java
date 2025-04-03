@@ -71,7 +71,7 @@ public class SimulateIndexTemplateResponse implements JsonpSerializable {
 	private SimulateIndexTemplateResponse(Builder builder) {
 
 		this.overlapping = ApiTypeHelper.unmodifiable(builder.overlapping);
-		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
+		this.template = ApiTypeHelper.requireNonNullWithDefault(builder.template, this, "template", this.template());
 
 	}
 

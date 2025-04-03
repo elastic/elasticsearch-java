@@ -70,9 +70,10 @@ public class FailureStore implements JsonpSerializable {
 
 	private FailureStore(Builder builder) {
 
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNullWithDefault(builder.enabled, this, "enabled", this.enabled());
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.rolloverOnWrite = ApiTypeHelper.requireNonNull(builder.rolloverOnWrite, this, "rolloverOnWrite");
+		this.rolloverOnWrite = ApiTypeHelper.requireNonNullWithDefault(builder.rolloverOnWrite, this, "rolloverOnWrite",
+				this.rolloverOnWrite());
 
 	}
 

@@ -87,15 +87,18 @@ public class RecoveryBytes implements JsonpSerializable {
 
 	private RecoveryBytes(Builder builder) {
 
-		this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
+		this.percent = ApiTypeHelper.requireNonNullWithDefault(builder.percent, this, "percent", this.percent());
 		this.recovered = builder.recovered;
-		this.recoveredInBytes = ApiTypeHelper.requireNonNull(builder.recoveredInBytes, this, "recoveredInBytes");
+		this.recoveredInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.recoveredInBytes, this,
+				"recoveredInBytes", this.recoveredInBytes());
 		this.recoveredFromSnapshot = builder.recoveredFromSnapshot;
 		this.recoveredFromSnapshotInBytes = builder.recoveredFromSnapshotInBytes;
 		this.reused = builder.reused;
-		this.reusedInBytes = ApiTypeHelper.requireNonNull(builder.reusedInBytes, this, "reusedInBytes");
+		this.reusedInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.reusedInBytes, this, "reusedInBytes",
+				this.reusedInBytes());
 		this.total = builder.total;
-		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+		this.totalInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.totalInBytes, this, "totalInBytes",
+				this.totalInBytes());
 
 	}
 

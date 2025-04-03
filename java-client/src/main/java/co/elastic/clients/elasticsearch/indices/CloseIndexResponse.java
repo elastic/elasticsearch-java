@@ -73,9 +73,11 @@ public class CloseIndexResponse implements AcknowledgedResponse, JsonpSerializab
 
 	private CloseIndexResponse(Builder builder) {
 
-		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+		this.acknowledged = ApiTypeHelper.requireNonNullWithDefault(builder.acknowledged, this, "acknowledged",
+				this.acknowledged());
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
+		this.shardsAcknowledged = ApiTypeHelper.requireNonNullWithDefault(builder.shardsAcknowledged, this,
+				"shardsAcknowledged", this.shardsAcknowledged());
 
 	}
 

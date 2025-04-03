@@ -80,9 +80,9 @@ public class SlackMessage implements JsonpSerializable {
 
 		this.attachments = ApiTypeHelper.unmodifiableRequired(builder.attachments, this, "attachments");
 		this.dynamicAttachments = builder.dynamicAttachments;
-		this.from = ApiTypeHelper.requireNonNull(builder.from, this, "from");
+		this.from = ApiTypeHelper.requireNonNullWithDefault(builder.from, this, "from", this.from());
 		this.icon = builder.icon;
-		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
+		this.text = ApiTypeHelper.requireNonNullWithDefault(builder.text, this, "text", this.text());
 		this.to = ApiTypeHelper.unmodifiableRequired(builder.to, this, "to");
 
 	}

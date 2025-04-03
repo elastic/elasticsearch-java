@@ -80,7 +80,8 @@ public class TextEmbeddingInferenceOptions implements InferenceConfigCreateVaria
 		this.embeddingSize = builder.embeddingSize;
 		this.tokenization = builder.tokenization;
 		this.resultsField = builder.resultsField;
-		this.vocabulary = ApiTypeHelper.requireNonNull(builder.vocabulary, this, "vocabulary");
+		this.vocabulary = ApiTypeHelper.requireNonNullWithDefault(builder.vocabulary, this, "vocabulary",
+				this.vocabulary());
 
 	}
 

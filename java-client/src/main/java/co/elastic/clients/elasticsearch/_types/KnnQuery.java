@@ -88,7 +88,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 	private KnnQuery(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.queryVector = ApiTypeHelper.unmodifiable(builder.queryVector);
 		this.queryVectorBuilder = builder.queryVectorBuilder;
 		this.numCandidates = builder.numCandidates;

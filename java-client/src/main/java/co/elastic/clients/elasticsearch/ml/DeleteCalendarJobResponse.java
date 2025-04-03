@@ -71,7 +71,8 @@ public class DeleteCalendarJobResponse implements JsonpSerializable {
 
 	private DeleteCalendarJobResponse(Builder builder) {
 
-		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
+		this.calendarId = ApiTypeHelper.requireNonNullWithDefault(builder.calendarId, this, "calendarId",
+				this.calendarId());
 		this.description = builder.description;
 		this.jobIds = ApiTypeHelper.unmodifiableRequired(builder.jobIds, this, "jobIds");
 

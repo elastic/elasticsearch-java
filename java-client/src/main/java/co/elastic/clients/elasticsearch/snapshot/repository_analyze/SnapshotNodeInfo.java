@@ -68,8 +68,8 @@ public class SnapshotNodeInfo implements JsonpSerializable {
 
 	private SnapshotNodeInfo(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 
 	}
 

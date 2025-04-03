@@ -74,8 +74,8 @@ public class PainlessContextSetup implements JsonpSerializable {
 
 	private PainlessContextSetup(Builder builder) {
 
-		this.document = ApiTypeHelper.requireNonNull(builder.document, this, "document");
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.document = ApiTypeHelper.requireNonNullWithDefault(builder.document, this, "document", this.document());
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
 		this.query = builder.query;
 
 	}

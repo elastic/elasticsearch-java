@@ -137,19 +137,21 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 
 		this.allowLazyOpen = builder.allowLazyOpen;
 		this.allowNoIndices = builder.allowNoIndices;
-		this.analysisConfig = ApiTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
+		this.analysisConfig = ApiTypeHelper.requireNonNullWithDefault(builder.analysisConfig, this, "analysisConfig",
+				this.analysisConfig());
 		this.analysisLimits = builder.analysisLimits;
 		this.backgroundPersistInterval = builder.backgroundPersistInterval;
 		this.customSettings = builder.customSettings;
 		this.dailyModelSnapshotRetentionAfterDays = builder.dailyModelSnapshotRetentionAfterDays;
-		this.dataDescription = ApiTypeHelper.requireNonNull(builder.dataDescription, this, "dataDescription");
+		this.dataDescription = ApiTypeHelper.requireNonNullWithDefault(builder.dataDescription, this, "dataDescription",
+				this.dataDescription());
 		this.datafeedConfig = builder.datafeedConfig;
 		this.description = builder.description;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;
 		this.renormalizationWindowDays = builder.renormalizationWindowDays;

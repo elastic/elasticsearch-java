@@ -70,7 +70,7 @@ public class GetSynonymsSetsResponse implements JsonpSerializable {
 
 	private GetSynonymsSetsResponse(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
 		this.results = ApiTypeHelper.unmodifiableRequired(builder.results, this, "results");
 
 	}

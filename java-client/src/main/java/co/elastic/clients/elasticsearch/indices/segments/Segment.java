@@ -87,14 +87,18 @@ public class Segment implements JsonpSerializable {
 	private Segment(Builder builder) {
 
 		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
-		this.committed = ApiTypeHelper.requireNonNull(builder.committed, this, "committed");
-		this.compound = ApiTypeHelper.requireNonNull(builder.compound, this, "compound");
-		this.deletedDocs = ApiTypeHelper.requireNonNull(builder.deletedDocs, this, "deletedDocs");
-		this.generation = ApiTypeHelper.requireNonNull(builder.generation, this, "generation");
-		this.search = ApiTypeHelper.requireNonNull(builder.search, this, "search");
-		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
-		this.numDocs = ApiTypeHelper.requireNonNull(builder.numDocs, this, "numDocs");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.committed = ApiTypeHelper.requireNonNullWithDefault(builder.committed, this, "committed",
+				this.committed());
+		this.compound = ApiTypeHelper.requireNonNullWithDefault(builder.compound, this, "compound", this.compound());
+		this.deletedDocs = ApiTypeHelper.requireNonNullWithDefault(builder.deletedDocs, this, "deletedDocs",
+				this.deletedDocs());
+		this.generation = ApiTypeHelper.requireNonNullWithDefault(builder.generation, this, "generation",
+				this.generation());
+		this.search = ApiTypeHelper.requireNonNullWithDefault(builder.search, this, "search", this.search());
+		this.sizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.sizeInBytes, this, "sizeInBytes",
+				this.sizeInBytes());
+		this.numDocs = ApiTypeHelper.requireNonNullWithDefault(builder.numDocs, this, "numDocs", this.numDocs());
+		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
 
 	}
 

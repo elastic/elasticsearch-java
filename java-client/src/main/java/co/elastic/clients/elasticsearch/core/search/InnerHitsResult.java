@@ -66,7 +66,7 @@ public class InnerHitsResult implements JsonpSerializable {
 
 	private InnerHitsResult(Builder builder) {
 
-		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
+		this.hits = ApiTypeHelper.requireNonNullWithDefault(builder.hits, this, "hits", this.hits());
 
 	}
 

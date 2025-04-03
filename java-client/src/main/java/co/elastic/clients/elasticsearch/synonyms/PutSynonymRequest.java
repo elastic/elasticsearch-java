@@ -81,7 +81,7 @@ public class PutSynonymRequest extends RequestBase implements JsonpSerializable 
 
 	private PutSynonymRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 		this.synonymsSet = ApiTypeHelper.unmodifiableRequired(builder.synonymsSet, this, "synonymsSet");
 
 	}

@@ -71,8 +71,8 @@ public class QueryRoleResponse implements JsonpSerializable {
 
 	private QueryRoleResponse(Builder builder) {
 
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
 		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
 
 	}

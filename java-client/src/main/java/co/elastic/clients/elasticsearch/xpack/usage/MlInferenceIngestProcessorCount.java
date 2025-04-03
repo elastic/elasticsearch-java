@@ -69,9 +69,9 @@ public class MlInferenceIngestProcessorCount implements JsonpSerializable {
 
 	private MlInferenceIngestProcessorCount(Builder builder) {
 
-		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
-		this.sum = ApiTypeHelper.requireNonNull(builder.sum, this, "sum");
-		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
+		this.max = ApiTypeHelper.requireNonNullWithDefault(builder.max, this, "max", this.max());
+		this.sum = ApiTypeHelper.requireNonNullWithDefault(builder.sum, this, "sum", this.sum());
+		this.min = ApiTypeHelper.requireNonNullWithDefault(builder.min, this, "min", this.min());
 
 	}
 

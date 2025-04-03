@@ -67,8 +67,9 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 
 	private TextEmbedding(Builder builder) {
 
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.modelText = ApiTypeHelper.requireNonNull(builder.modelText, this, "modelText");
+		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
+		this.modelText = ApiTypeHelper.requireNonNullWithDefault(builder.modelText, this, "modelText",
+				this.modelText());
 
 	}
 

@@ -85,7 +85,7 @@ public class RedactProcessor extends ProcessorBase implements ProcessorVariant {
 	private RedactProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.patterns = ApiTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
 		this.patternDefinitions = ApiTypeHelper.unmodifiable(builder.patternDefinitions);
 		this.prefix = builder.prefix;

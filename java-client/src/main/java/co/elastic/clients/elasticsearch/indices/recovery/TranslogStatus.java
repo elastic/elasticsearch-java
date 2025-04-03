@@ -79,12 +79,15 @@ public class TranslogStatus implements JsonpSerializable {
 
 	private TranslogStatus(Builder builder) {
 
-		this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
-		this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-		this.totalOnStart = ApiTypeHelper.requireNonNull(builder.totalOnStart, this, "totalOnStart");
+		this.percent = ApiTypeHelper.requireNonNullWithDefault(builder.percent, this, "percent", this.percent());
+		this.recovered = ApiTypeHelper.requireNonNullWithDefault(builder.recovered, this, "recovered",
+				this.recovered());
+		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
+		this.totalOnStart = ApiTypeHelper.requireNonNullWithDefault(builder.totalOnStart, this, "totalOnStart",
+				this.totalOnStart());
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.totalTimeInMillis, this,
+				"totalTimeInMillis", this.totalTimeInMillis());
 
 	}
 

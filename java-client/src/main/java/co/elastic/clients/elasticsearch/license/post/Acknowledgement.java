@@ -69,7 +69,7 @@ public class Acknowledgement implements JsonpSerializable {
 	private Acknowledgement(Builder builder) {
 
 		this.license = ApiTypeHelper.unmodifiableRequired(builder.license, this, "license");
-		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
+		this.message = ApiTypeHelper.requireNonNullWithDefault(builder.message, this, "message", this.message());
 
 	}
 

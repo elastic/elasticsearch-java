@@ -74,10 +74,11 @@ public class DatabaseConfigurationMetadata implements JsonpSerializable {
 
 	private DatabaseConfigurationMetadata(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
-		this.modifiedDateMillis = ApiTypeHelper.requireNonNull(builder.modifiedDateMillis, this, "modifiedDateMillis");
-		this.database = ApiTypeHelper.requireNonNull(builder.database, this, "database");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
+		this.modifiedDateMillis = ApiTypeHelper.requireNonNullWithDefault(builder.modifiedDateMillis, this,
+				"modifiedDateMillis", this.modifiedDateMillis());
+		this.database = ApiTypeHelper.requireNonNullWithDefault(builder.database, this, "database", this.database());
 
 	}
 

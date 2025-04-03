@@ -91,17 +91,19 @@ public class ClusterNodes implements JsonpSerializable {
 
 	private ClusterNodes(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
 		this.discoveryTypes = ApiTypeHelper.unmodifiableRequired(builder.discoveryTypes, this, "discoveryTypes");
-		this.fs = ApiTypeHelper.requireNonNull(builder.fs, this, "fs");
-		this.indexingPressure = ApiTypeHelper.requireNonNull(builder.indexingPressure, this, "indexingPressure");
-		this.ingest = ApiTypeHelper.requireNonNull(builder.ingest, this, "ingest");
-		this.jvm = ApiTypeHelper.requireNonNull(builder.jvm, this, "jvm");
-		this.networkTypes = ApiTypeHelper.requireNonNull(builder.networkTypes, this, "networkTypes");
-		this.os = ApiTypeHelper.requireNonNull(builder.os, this, "os");
+		this.fs = ApiTypeHelper.requireNonNullWithDefault(builder.fs, this, "fs", this.fs());
+		this.indexingPressure = ApiTypeHelper.requireNonNullWithDefault(builder.indexingPressure, this,
+				"indexingPressure", this.indexingPressure());
+		this.ingest = ApiTypeHelper.requireNonNullWithDefault(builder.ingest, this, "ingest", this.ingest());
+		this.jvm = ApiTypeHelper.requireNonNullWithDefault(builder.jvm, this, "jvm", this.jvm());
+		this.networkTypes = ApiTypeHelper.requireNonNullWithDefault(builder.networkTypes, this, "networkTypes",
+				this.networkTypes());
+		this.os = ApiTypeHelper.requireNonNullWithDefault(builder.os, this, "os", this.os());
 		this.packagingTypes = ApiTypeHelper.unmodifiableRequired(builder.packagingTypes, this, "packagingTypes");
 		this.plugins = ApiTypeHelper.unmodifiableRequired(builder.plugins, this, "plugins");
-		this.process = ApiTypeHelper.requireNonNull(builder.process, this, "process");
+		this.process = ApiTypeHelper.requireNonNullWithDefault(builder.process, this, "process", this.process());
 		this.versions = ApiTypeHelper.unmodifiableRequired(builder.versions, this, "versions");
 
 	}

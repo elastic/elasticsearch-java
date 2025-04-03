@@ -75,9 +75,9 @@ public class BulkResponse implements JsonpSerializable {
 	private BulkResponse(Builder builder) {
 
 		this.error = builder.error;
-		this.errors = ApiTypeHelper.requireNonNull(builder.errors, this, "errors");
-		this.ignored = ApiTypeHelper.requireNonNull(builder.ignored, this, "ignored");
-		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
+		this.errors = ApiTypeHelper.requireNonNullWithDefault(builder.errors, this, "errors", this.errors());
+		this.ignored = ApiTypeHelper.requireNonNullWithDefault(builder.ignored, this, "ignored", this.ignored());
+		this.took = ApiTypeHelper.requireNonNullWithDefault(builder.took, this, "took", this.took());
 
 	}
 

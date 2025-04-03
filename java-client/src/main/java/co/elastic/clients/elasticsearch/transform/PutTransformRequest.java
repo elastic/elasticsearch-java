@@ -138,16 +138,17 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.deferValidation = builder.deferValidation;
 		this.description = builder.description;
-		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
+		this.dest = ApiTypeHelper.requireNonNullWithDefault(builder.dest, this, "dest", this.dest());
 		this.frequency = builder.frequency;
 		this.latest = builder.latest;
 		this.pivot = builder.pivot;
 		this.retentionPolicy = builder.retentionPolicy;
 		this.settings = builder.settings;
-		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.source = ApiTypeHelper.requireNonNullWithDefault(builder.source, this, "source", this.source());
 		this.sync = builder.sync;
 		this.timeout = builder.timeout;
-		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
+		this.transformId = ApiTypeHelper.requireNonNullWithDefault(builder.transformId, this, "transformId",
+				this.transformId());
 
 	}
 

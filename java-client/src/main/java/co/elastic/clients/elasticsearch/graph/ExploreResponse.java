@@ -78,8 +78,8 @@ public class ExploreResponse implements JsonpSerializable {
 
 		this.connections = ApiTypeHelper.unmodifiableRequired(builder.connections, this, "connections");
 		this.failures = ApiTypeHelper.unmodifiableRequired(builder.failures, this, "failures");
-		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
-		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
+		this.timedOut = ApiTypeHelper.requireNonNullWithDefault(builder.timedOut, this, "timedOut", this.timedOut());
+		this.took = ApiTypeHelper.requireNonNullWithDefault(builder.took, this, "took", this.took());
 		this.vertices = ApiTypeHelper.unmodifiableRequired(builder.vertices, this, "vertices");
 
 	}

@@ -79,7 +79,7 @@ public class QuestionAnsweringInferenceUpdateOptions implements InferenceConfigU
 
 	private QuestionAnsweringInferenceUpdateOptions(Builder builder) {
 
-		this.question = ApiTypeHelper.requireNonNull(builder.question, this, "question");
+		this.question = ApiTypeHelper.requireNonNullWithDefault(builder.question, this, "question", this.question());
 		this.numTopClasses = builder.numTopClasses;
 		this.tokenization = builder.tokenization;
 		this.resultsField = builder.resultsField;

@@ -66,7 +66,7 @@ public class CompactNodeInfo implements JsonpSerializable {
 
 	private CompactNodeInfo(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 
 	}
 

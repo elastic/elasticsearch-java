@@ -71,9 +71,9 @@ public class DeleteWatchResponse implements JsonpSerializable {
 
 	private DeleteWatchResponse(Builder builder) {
 
-		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.found = ApiTypeHelper.requireNonNullWithDefault(builder.found, this, "found", this.found());
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
 
 	}
 

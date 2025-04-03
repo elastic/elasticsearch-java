@@ -64,7 +64,7 @@ public class PutUserResponse implements JsonpSerializable {
 
 	private PutUserResponse(Builder builder) {
 
-		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
+		this.created = ApiTypeHelper.requireNonNullWithDefault(builder.created, this, "created", this.created());
 
 	}
 

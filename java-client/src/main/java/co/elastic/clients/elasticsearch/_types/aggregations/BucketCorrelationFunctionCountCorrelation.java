@@ -65,7 +65,8 @@ public class BucketCorrelationFunctionCountCorrelation implements JsonpSerializa
 
 	private BucketCorrelationFunctionCountCorrelation(Builder builder) {
 
-		this.indicator = ApiTypeHelper.requireNonNull(builder.indicator, this, "indicator");
+		this.indicator = ApiTypeHelper.requireNonNullWithDefault(builder.indicator, this, "indicator",
+				this.indicator());
 
 	}
 

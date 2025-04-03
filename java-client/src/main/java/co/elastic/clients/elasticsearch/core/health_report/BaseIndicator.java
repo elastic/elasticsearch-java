@@ -73,8 +73,8 @@ public abstract class BaseIndicator implements JsonpSerializable {
 
 	protected BaseIndicator(AbstractBuilder<?> builder) {
 
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
-		this.symptom = ApiTypeHelper.requireNonNull(builder.symptom, this, "symptom");
+		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
+		this.symptom = ApiTypeHelper.requireNonNullWithDefault(builder.symptom, this, "symptom", this.symptom());
 		this.impacts = ApiTypeHelper.unmodifiable(builder.impacts);
 		this.diagnosis = ApiTypeHelper.unmodifiable(builder.diagnosis);
 

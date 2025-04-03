@@ -91,9 +91,11 @@ public class UpdateInferenceRequest extends RequestBase implements JsonpSerializ
 
 	private UpdateInferenceRequest(Builder builder) {
 
-		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
+		this.inferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.inferenceId, this, "inferenceId",
+				this.inferenceId());
 		this.taskType = builder.taskType;
-		this.inferenceConfig = ApiTypeHelper.requireNonNull(builder.inferenceConfig, this, "inferenceConfig");
+		this.inferenceConfig = ApiTypeHelper.requireNonNullWithDefault(builder.inferenceConfig, this, "inferenceConfig",
+				this.inferenceConfig());
 
 	}
 

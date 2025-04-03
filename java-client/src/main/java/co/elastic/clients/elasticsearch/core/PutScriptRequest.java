@@ -85,9 +85,9 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 	private PutScriptRequest(Builder builder) {
 
 		this.context = builder.context;
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 		this.masterTimeout = builder.masterTimeout;
-		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
+		this.script = ApiTypeHelper.requireNonNullWithDefault(builder.script, this, "script", this.script());
 		this.timeout = builder.timeout;
 
 	}

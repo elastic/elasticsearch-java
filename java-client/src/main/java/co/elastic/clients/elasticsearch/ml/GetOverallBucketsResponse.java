@@ -68,7 +68,7 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 
 	private GetOverallBucketsResponse(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
 		this.overallBuckets = ApiTypeHelper.unmodifiableRequired(builder.overallBuckets, this, "overallBuckets");
 
 	}

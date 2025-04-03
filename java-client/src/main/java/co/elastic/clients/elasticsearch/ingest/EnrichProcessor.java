@@ -82,13 +82,15 @@ public class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
 	private EnrichProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.ignoreMissing = builder.ignoreMissing;
 		this.maxMatches = builder.maxMatches;
 		this.override = builder.override;
-		this.policyName = ApiTypeHelper.requireNonNull(builder.policyName, this, "policyName");
+		this.policyName = ApiTypeHelper.requireNonNullWithDefault(builder.policyName, this, "policyName",
+				this.policyName());
 		this.shapeRelation = builder.shapeRelation;
-		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+		this.targetField = ApiTypeHelper.requireNonNullWithDefault(builder.targetField, this, "targetField",
+				this.targetField());
 
 	}
 

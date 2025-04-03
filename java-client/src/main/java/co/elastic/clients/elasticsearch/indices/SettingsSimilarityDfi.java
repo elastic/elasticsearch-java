@@ -66,8 +66,8 @@ public class SettingsSimilarityDfi implements SettingsSimilarityVariant, JsonpSe
 
 	private SettingsSimilarityDfi(Builder builder) {
 
-		this.independenceMeasure = ApiTypeHelper.requireNonNull(builder.independenceMeasure, this,
-				"independenceMeasure");
+		this.independenceMeasure = ApiTypeHelper.requireNonNullWithDefault(builder.independenceMeasure, this,
+				"independenceMeasure", this.independenceMeasure());
 
 	}
 

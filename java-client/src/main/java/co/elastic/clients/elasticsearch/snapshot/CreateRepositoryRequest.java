@@ -96,10 +96,11 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 	private CreateRepositoryRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 		this.timeout = builder.timeout;
 		this.verify = builder.verify;
-		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.repository = ApiTypeHelper.requireNonNullWithDefault(builder.repository, this, "repository",
+				this.repository());
 
 	}
 

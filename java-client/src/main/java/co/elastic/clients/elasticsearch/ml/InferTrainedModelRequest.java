@@ -83,7 +83,7 @@ public class InferTrainedModelRequest extends RequestBase implements JsonpSerial
 
 		this.docs = ApiTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
 		this.inferenceConfig = builder.inferenceConfig;
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
 		this.timeout = builder.timeout;
 
 	}

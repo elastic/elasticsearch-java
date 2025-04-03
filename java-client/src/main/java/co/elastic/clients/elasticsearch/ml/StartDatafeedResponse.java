@@ -70,7 +70,7 @@ public class StartDatafeedResponse implements JsonpSerializable {
 	private StartDatafeedResponse(Builder builder) {
 
 		this.node = ApiTypeHelper.unmodifiableRequired(builder.node, this, "node");
-		this.started = ApiTypeHelper.requireNonNull(builder.started, this, "started");
+		this.started = ApiTypeHelper.requireNonNullWithDefault(builder.started, this, "started", this.started());
 
 	}
 

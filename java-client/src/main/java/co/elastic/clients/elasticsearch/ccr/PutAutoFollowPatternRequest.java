@@ -142,9 +142,10 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		this.maxWriteBufferSize = builder.maxWriteBufferSize;
 		this.maxWriteRequestOperationCount = builder.maxWriteRequestOperationCount;
 		this.maxWriteRequestSize = builder.maxWriteRequestSize;
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 		this.readPollTimeout = builder.readPollTimeout;
-		this.remoteCluster = ApiTypeHelper.requireNonNull(builder.remoteCluster, this, "remoteCluster");
+		this.remoteCluster = ApiTypeHelper.requireNonNullWithDefault(builder.remoteCluster, this, "remoteCluster",
+				this.remoteCluster());
 		this.settings = ApiTypeHelper.unmodifiable(builder.settings);
 
 	}

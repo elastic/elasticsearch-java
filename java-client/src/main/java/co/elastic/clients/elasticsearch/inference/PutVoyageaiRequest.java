@@ -90,12 +90,13 @@ public class PutVoyageaiRequest extends RequestBase implements JsonpSerializable
 	private PutVoyageaiRequest(Builder builder) {
 
 		this.chunkingSettings = builder.chunkingSettings;
-		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
-		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
+		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
+		this.serviceSettings = ApiTypeHelper.requireNonNullWithDefault(builder.serviceSettings, this, "serviceSettings",
+				this.serviceSettings());
 		this.taskSettings = builder.taskSettings;
-		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
-		this.voyageaiInferenceId = ApiTypeHelper.requireNonNull(builder.voyageaiInferenceId, this,
-				"voyageaiInferenceId");
+		this.taskType = ApiTypeHelper.requireNonNullWithDefault(builder.taskType, this, "taskType", this.taskType());
+		this.voyageaiInferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.voyageaiInferenceId, this,
+				"voyageaiInferenceId", this.voyageaiInferenceId());
 
 	}
 

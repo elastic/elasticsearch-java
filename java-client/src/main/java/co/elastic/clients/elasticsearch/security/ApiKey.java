@@ -106,15 +106,16 @@ public class ApiKey implements JsonpSerializable {
 
 	private ApiKey(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-		this.creation = ApiTypeHelper.requireNonNull(builder.creation, this, "creation");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
+		this.creation = ApiTypeHelper.requireNonNullWithDefault(builder.creation, this, "creation", this.creation());
 		this.expiration = builder.expiration;
-		this.invalidated = ApiTypeHelper.requireNonNull(builder.invalidated, this, "invalidated");
+		this.invalidated = ApiTypeHelper.requireNonNullWithDefault(builder.invalidated, this, "invalidated",
+				this.invalidated());
 		this.invalidation = builder.invalidation;
-		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
-		this.realm = ApiTypeHelper.requireNonNull(builder.realm, this, "realm");
+		this.username = ApiTypeHelper.requireNonNullWithDefault(builder.username, this, "username", this.username());
+		this.realm = ApiTypeHelper.requireNonNullWithDefault(builder.realm, this, "realm", this.realm());
 		this.realmType = builder.realmType;
 		this.metadata = ApiTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
 		this.roleDescriptors = ApiTypeHelper.unmodifiable(builder.roleDescriptors);

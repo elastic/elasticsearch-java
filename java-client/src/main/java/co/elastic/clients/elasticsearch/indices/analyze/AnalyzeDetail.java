@@ -79,7 +79,8 @@ public class AnalyzeDetail implements JsonpSerializable {
 
 		this.analyzer = builder.analyzer;
 		this.charfilters = ApiTypeHelper.unmodifiable(builder.charfilters);
-		this.customAnalyzer = ApiTypeHelper.requireNonNull(builder.customAnalyzer, this, "customAnalyzer");
+		this.customAnalyzer = ApiTypeHelper.requireNonNullWithDefault(builder.customAnalyzer, this, "customAnalyzer",
+				this.customAnalyzer());
 		this.tokenfilters = ApiTypeHelper.unmodifiable(builder.tokenfilters);
 		this.tokenizer = builder.tokenizer;
 

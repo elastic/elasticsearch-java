@@ -69,7 +69,7 @@ public class SlackResult implements JsonpSerializable {
 	private SlackResult(Builder builder) {
 
 		this.account = builder.account;
-		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
+		this.message = ApiTypeHelper.requireNonNullWithDefault(builder.message, this, "message", this.message());
 
 	}
 

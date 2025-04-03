@@ -96,7 +96,7 @@ public class ScrollRequest extends RequestBase implements JsonpSerializable {
 	private ScrollRequest(Builder builder) {
 
 		this.scroll = builder.scroll;
-		this.scrollId = ApiTypeHelper.requireNonNull(builder.scrollId, this, "scrollId");
+		this.scrollId = ApiTypeHelper.requireNonNullWithDefault(builder.scrollId, this, "scrollId", this.scrollId());
 
 	}
 

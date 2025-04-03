@@ -81,9 +81,9 @@ public class OpenAIServiceSettings implements JsonpSerializable {
 
 	private OpenAIServiceSettings(Builder builder) {
 
-		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
+		this.apiKey = ApiTypeHelper.requireNonNullWithDefault(builder.apiKey, this, "apiKey", this.apiKey());
 		this.dimensions = builder.dimensions;
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
 		this.organizationId = builder.organizationId;
 		this.rateLimit = builder.rateLimit;
 		this.url = builder.url;

@@ -115,10 +115,12 @@ public class PutElserRequest extends RequestBase implements JsonpSerializable {
 	private PutElserRequest(Builder builder) {
 
 		this.chunkingSettings = builder.chunkingSettings;
-		this.elserInferenceId = ApiTypeHelper.requireNonNull(builder.elserInferenceId, this, "elserInferenceId");
-		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
-		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
-		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
+		this.elserInferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.elserInferenceId, this,
+				"elserInferenceId", this.elserInferenceId());
+		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
+		this.serviceSettings = ApiTypeHelper.requireNonNullWithDefault(builder.serviceSettings, this, "serviceSettings",
+				this.serviceSettings());
+		this.taskType = ApiTypeHelper.requireNonNullWithDefault(builder.taskType, this, "taskType", this.taskType());
 
 	}
 

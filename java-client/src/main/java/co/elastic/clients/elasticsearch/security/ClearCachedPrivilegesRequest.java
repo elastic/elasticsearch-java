@@ -74,7 +74,8 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 
 	private ClearCachedPrivilegesRequest(Builder builder) {
 
-		this.application = ApiTypeHelper.requireNonNull(builder.application, this, "application");
+		this.application = ApiTypeHelper.requireNonNullWithDefault(builder.application, this, "application",
+				this.application());
 
 	}
 

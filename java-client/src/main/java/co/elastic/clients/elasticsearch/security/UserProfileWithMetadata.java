@@ -67,8 +67,9 @@ public class UserProfileWithMetadata extends UserProfile {
 	protected UserProfileWithMetadata(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.lastSynchronized = ApiTypeHelper.requireNonNull(builder.lastSynchronized, this, "lastSynchronized");
-		this.doc = ApiTypeHelper.requireNonNull(builder.doc, this, "doc");
+		this.lastSynchronized = ApiTypeHelper.requireNonNullWithDefault(builder.lastSynchronized, this,
+				"lastSynchronized", this.lastSynchronized());
+		this.doc = ApiTypeHelper.requireNonNullWithDefault(builder.doc, this, "doc", this.doc());
 
 	}
 

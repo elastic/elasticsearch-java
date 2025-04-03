@@ -107,31 +107,38 @@ public abstract class HealthResponseBody implements JsonpSerializable {
 
 	protected HealthResponseBody(AbstractBuilder<?> builder) {
 
-		this.activePrimaryShards = ApiTypeHelper.requireNonNull(builder.activePrimaryShards, this,
-				"activePrimaryShards");
-		this.activeShards = ApiTypeHelper.requireNonNull(builder.activeShards, this, "activeShards");
-		this.activeShardsPercentAsNumber = ApiTypeHelper.requireNonNull(builder.activeShardsPercentAsNumber, this,
-				"activeShardsPercentAsNumber");
-		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
-		this.delayedUnassignedShards = ApiTypeHelper.requireNonNull(builder.delayedUnassignedShards, this,
-				"delayedUnassignedShards");
+		this.activePrimaryShards = ApiTypeHelper.requireNonNullWithDefault(builder.activePrimaryShards, this,
+				"activePrimaryShards", this.activePrimaryShards());
+		this.activeShards = ApiTypeHelper.requireNonNullWithDefault(builder.activeShards, this, "activeShards",
+				this.activeShards());
+		this.activeShardsPercentAsNumber = ApiTypeHelper.requireNonNullWithDefault(builder.activeShardsPercentAsNumber,
+				this, "activeShardsPercentAsNumber", this.activeShardsPercentAsNumber());
+		this.clusterName = ApiTypeHelper.requireNonNullWithDefault(builder.clusterName, this, "clusterName",
+				this.clusterName());
+		this.delayedUnassignedShards = ApiTypeHelper.requireNonNullWithDefault(builder.delayedUnassignedShards, this,
+				"delayedUnassignedShards", this.delayedUnassignedShards());
 		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
-		this.initializingShards = ApiTypeHelper.requireNonNull(builder.initializingShards, this, "initializingShards");
-		this.numberOfDataNodes = ApiTypeHelper.requireNonNull(builder.numberOfDataNodes, this, "numberOfDataNodes");
-		this.numberOfInFlightFetch = ApiTypeHelper.requireNonNull(builder.numberOfInFlightFetch, this,
-				"numberOfInFlightFetch");
-		this.numberOfNodes = ApiTypeHelper.requireNonNull(builder.numberOfNodes, this, "numberOfNodes");
-		this.numberOfPendingTasks = ApiTypeHelper.requireNonNull(builder.numberOfPendingTasks, this,
-				"numberOfPendingTasks");
-		this.relocatingShards = ApiTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards");
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.initializingShards = ApiTypeHelper.requireNonNullWithDefault(builder.initializingShards, this,
+				"initializingShards", this.initializingShards());
+		this.numberOfDataNodes = ApiTypeHelper.requireNonNullWithDefault(builder.numberOfDataNodes, this,
+				"numberOfDataNodes", this.numberOfDataNodes());
+		this.numberOfInFlightFetch = ApiTypeHelper.requireNonNullWithDefault(builder.numberOfInFlightFetch, this,
+				"numberOfInFlightFetch", this.numberOfInFlightFetch());
+		this.numberOfNodes = ApiTypeHelper.requireNonNullWithDefault(builder.numberOfNodes, this, "numberOfNodes",
+				this.numberOfNodes());
+		this.numberOfPendingTasks = ApiTypeHelper.requireNonNullWithDefault(builder.numberOfPendingTasks, this,
+				"numberOfPendingTasks", this.numberOfPendingTasks());
+		this.relocatingShards = ApiTypeHelper.requireNonNullWithDefault(builder.relocatingShards, this,
+				"relocatingShards", this.relocatingShards());
+		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
 		this.taskMaxWaitingInQueue = builder.taskMaxWaitingInQueue;
-		this.taskMaxWaitingInQueueMillis = ApiTypeHelper.requireNonNull(builder.taskMaxWaitingInQueueMillis, this,
-				"taskMaxWaitingInQueueMillis");
-		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
-		this.unassignedPrimaryShards = ApiTypeHelper.requireNonNull(builder.unassignedPrimaryShards, this,
-				"unassignedPrimaryShards");
-		this.unassignedShards = ApiTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards");
+		this.taskMaxWaitingInQueueMillis = ApiTypeHelper.requireNonNullWithDefault(builder.taskMaxWaitingInQueueMillis,
+				this, "taskMaxWaitingInQueueMillis", this.taskMaxWaitingInQueueMillis());
+		this.timedOut = ApiTypeHelper.requireNonNullWithDefault(builder.timedOut, this, "timedOut", this.timedOut());
+		this.unassignedPrimaryShards = ApiTypeHelper.requireNonNullWithDefault(builder.unassignedPrimaryShards, this,
+				"unassignedPrimaryShards", this.unassignedPrimaryShards());
+		this.unassignedShards = ApiTypeHelper.requireNonNullWithDefault(builder.unassignedShards, this,
+				"unassignedShards", this.unassignedShards());
 
 	}
 

@@ -73,8 +73,8 @@ public class ExecutionResultInput implements JsonpSerializable {
 	private ExecutionResultInput(Builder builder) {
 
 		this.payload = ApiTypeHelper.unmodifiableRequired(builder.payload, this, "payload");
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
 
 	}
 

@@ -102,7 +102,8 @@ public class ActivateUserProfileRequest extends RequestBase implements JsonpSeri
 	private ActivateUserProfileRequest(Builder builder) {
 
 		this.accessToken = builder.accessToken;
-		this.grantType = ApiTypeHelper.requireNonNull(builder.grantType, this, "grantType");
+		this.grantType = ApiTypeHelper.requireNonNullWithDefault(builder.grantType, this, "grantType",
+				this.grantType());
 		this.password = builder.password;
 		this.username = builder.username;
 

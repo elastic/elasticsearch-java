@@ -85,9 +85,10 @@ public class CreateServiceTokenRequest extends RequestBase {
 	private CreateServiceTokenRequest(Builder builder) {
 
 		this.name = builder.name;
-		this.namespace = ApiTypeHelper.requireNonNull(builder.namespace, this, "namespace");
+		this.namespace = ApiTypeHelper.requireNonNullWithDefault(builder.namespace, this, "namespace",
+				this.namespace());
 		this.refresh = builder.refresh;
-		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
+		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
 
 	}
 

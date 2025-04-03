@@ -69,9 +69,12 @@ public class DataframeAnalyticsStatsDataCounts implements JsonpSerializable {
 
 	private DataframeAnalyticsStatsDataCounts(Builder builder) {
 
-		this.skippedDocsCount = ApiTypeHelper.requireNonNull(builder.skippedDocsCount, this, "skippedDocsCount");
-		this.testDocsCount = ApiTypeHelper.requireNonNull(builder.testDocsCount, this, "testDocsCount");
-		this.trainingDocsCount = ApiTypeHelper.requireNonNull(builder.trainingDocsCount, this, "trainingDocsCount");
+		this.skippedDocsCount = ApiTypeHelper.requireNonNullWithDefault(builder.skippedDocsCount, this,
+				"skippedDocsCount", this.skippedDocsCount());
+		this.testDocsCount = ApiTypeHelper.requireNonNullWithDefault(builder.testDocsCount, this, "testDocsCount",
+				this.testDocsCount());
+		this.trainingDocsCount = ApiTypeHelper.requireNonNullWithDefault(builder.trainingDocsCount, this,
+				"trainingDocsCount", this.trainingDocsCount());
 
 	}
 

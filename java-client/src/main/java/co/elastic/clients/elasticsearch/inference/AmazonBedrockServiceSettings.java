@@ -78,12 +78,14 @@ public class AmazonBedrockServiceSettings implements JsonpSerializable {
 
 	private AmazonBedrockServiceSettings(Builder builder) {
 
-		this.accessKey = ApiTypeHelper.requireNonNull(builder.accessKey, this, "accessKey");
-		this.model = ApiTypeHelper.requireNonNull(builder.model, this, "model");
+		this.accessKey = ApiTypeHelper.requireNonNullWithDefault(builder.accessKey, this, "accessKey",
+				this.accessKey());
+		this.model = ApiTypeHelper.requireNonNullWithDefault(builder.model, this, "model", this.model());
 		this.provider = builder.provider;
-		this.region = ApiTypeHelper.requireNonNull(builder.region, this, "region");
+		this.region = ApiTypeHelper.requireNonNullWithDefault(builder.region, this, "region", this.region());
 		this.rateLimit = builder.rateLimit;
-		this.secretKey = ApiTypeHelper.requireNonNull(builder.secretKey, this, "secretKey");
+		this.secretKey = ApiTypeHelper.requireNonNullWithDefault(builder.secretKey, this, "secretKey",
+				this.secretKey());
 
 	}
 

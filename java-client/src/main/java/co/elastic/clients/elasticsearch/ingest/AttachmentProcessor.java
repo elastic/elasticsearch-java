@@ -87,7 +87,7 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 	private AttachmentProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.ignoreMissing = builder.ignoreMissing;
 		this.indexedChars = builder.indexedChars;
 		this.indexedCharsField = builder.indexedCharsField;

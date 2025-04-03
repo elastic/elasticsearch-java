@@ -66,9 +66,10 @@ public class Watcher extends Base {
 	private Watcher(Builder builder) {
 		super(builder);
 
-		this.execution = ApiTypeHelper.requireNonNull(builder.execution, this, "execution");
-		this.watch = ApiTypeHelper.requireNonNull(builder.watch, this, "watch");
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.execution = ApiTypeHelper.requireNonNullWithDefault(builder.execution, this, "execution",
+				this.execution());
+		this.watch = ApiTypeHelper.requireNonNullWithDefault(builder.watch, this, "watch", this.watch());
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
 
 	}
 

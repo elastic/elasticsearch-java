@@ -73,9 +73,9 @@ public class HttpInputResponseResult implements JsonpSerializable {
 
 	private HttpInputResponseResult(Builder builder) {
 
-		this.body = ApiTypeHelper.requireNonNull(builder.body, this, "body");
+		this.body = ApiTypeHelper.requireNonNullWithDefault(builder.body, this, "body", this.body());
 		this.headers = ApiTypeHelper.unmodifiableRequired(builder.headers, this, "headers");
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
 
 	}
 

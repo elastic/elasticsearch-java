@@ -68,7 +68,7 @@ public class GetFiltersResponse implements JsonpSerializable {
 
 	private GetFiltersResponse(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
 		this.filters = ApiTypeHelper.unmodifiableRequired(builder.filters, this, "filters");
 
 	}

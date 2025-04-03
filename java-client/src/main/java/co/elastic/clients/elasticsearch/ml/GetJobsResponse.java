@@ -68,7 +68,7 @@ public class GetJobsResponse implements JsonpSerializable {
 
 	private GetJobsResponse(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
 		this.jobs = ApiTypeHelper.unmodifiableRequired(builder.jobs, this, "jobs");
 
 	}

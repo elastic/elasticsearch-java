@@ -64,7 +64,7 @@ public class NodeInfoSearch implements JsonpSerializable {
 
 	private NodeInfoSearch(Builder builder) {
 
-		this.remote = ApiTypeHelper.requireNonNull(builder.remote, this, "remote");
+		this.remote = ApiTypeHelper.requireNonNullWithDefault(builder.remote, this, "remote", this.remote());
 
 	}
 

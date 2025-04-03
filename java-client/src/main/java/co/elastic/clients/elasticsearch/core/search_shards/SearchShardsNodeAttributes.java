@@ -86,15 +86,20 @@ public class SearchShardsNodeAttributes implements JsonpSerializable {
 
 	private SearchShardsNodeAttributes(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.ephemeralId = ApiTypeHelper.requireNonNull(builder.ephemeralId, this, "ephemeralId");
-		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
-		this.externalId = ApiTypeHelper.requireNonNull(builder.externalId, this, "externalId");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.ephemeralId = ApiTypeHelper.requireNonNullWithDefault(builder.ephemeralId, this, "ephemeralId",
+				this.ephemeralId());
+		this.transportAddress = ApiTypeHelper.requireNonNullWithDefault(builder.transportAddress, this,
+				"transportAddress", this.transportAddress());
+		this.externalId = ApiTypeHelper.requireNonNullWithDefault(builder.externalId, this, "externalId",
+				this.externalId());
 		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
 		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
-		this.minIndexVersion = ApiTypeHelper.requireNonNull(builder.minIndexVersion, this, "minIndexVersion");
-		this.maxIndexVersion = ApiTypeHelper.requireNonNull(builder.maxIndexVersion, this, "maxIndexVersion");
+		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
+		this.minIndexVersion = ApiTypeHelper.requireNonNullWithDefault(builder.minIndexVersion, this, "minIndexVersion",
+				this.minIndexVersion());
+		this.maxIndexVersion = ApiTypeHelper.requireNonNullWithDefault(builder.maxIndexVersion, this, "maxIndexVersion",
+				this.maxIndexVersion());
 
 	}
 

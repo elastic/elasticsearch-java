@@ -112,7 +112,8 @@ public class ModelPackageConfig implements JsonpSerializable {
 		this.minimumVersion = builder.minimumVersion;
 		this.modelRepository = builder.modelRepository;
 		this.modelType = builder.modelType;
-		this.packagedModelId = ApiTypeHelper.requireNonNull(builder.packagedModelId, this, "packagedModelId");
+		this.packagedModelId = ApiTypeHelper.requireNonNullWithDefault(builder.packagedModelId, this, "packagedModelId",
+				this.packagedModelId());
 		this.platformArchitecture = builder.platformArchitecture;
 		this.prefixStrings = builder.prefixStrings;
 		this.size = builder.size;

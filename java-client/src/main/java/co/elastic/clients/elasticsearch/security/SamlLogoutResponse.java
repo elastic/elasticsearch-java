@@ -65,7 +65,7 @@ public class SamlLogoutResponse implements JsonpSerializable {
 
 	private SamlLogoutResponse(Builder builder) {
 
-		this.redirect = ApiTypeHelper.requireNonNull(builder.redirect, this, "redirect");
+		this.redirect = ApiTypeHelper.requireNonNullWithDefault(builder.redirect, this, "redirect", this.redirect());
 
 	}
 

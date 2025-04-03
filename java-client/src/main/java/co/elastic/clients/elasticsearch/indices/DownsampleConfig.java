@@ -65,7 +65,8 @@ public class DownsampleConfig implements JsonpSerializable {
 
 	private DownsampleConfig(Builder builder) {
 
-		this.fixedInterval = ApiTypeHelper.requireNonNull(builder.fixedInterval, this, "fixedInterval");
+		this.fixedInterval = ApiTypeHelper.requireNonNullWithDefault(builder.fixedInterval, this, "fixedInterval",
+				this.fixedInterval());
 
 	}
 

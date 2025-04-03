@@ -92,7 +92,7 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 
 		this.document = builder.document;
 		this.documents = ApiTypeHelper.unmodifiable(builder.documents);
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.id = builder.id;
 		this.index = builder.index;
 		this.name = builder.name;

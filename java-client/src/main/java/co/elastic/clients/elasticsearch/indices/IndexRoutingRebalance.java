@@ -65,7 +65,7 @@ public class IndexRoutingRebalance implements JsonpSerializable {
 
 	private IndexRoutingRebalance(Builder builder) {
 
-		this.enable = ApiTypeHelper.requireNonNull(builder.enable, this, "enable");
+		this.enable = ApiTypeHelper.requireNonNullWithDefault(builder.enable, this, "enable", this.enable());
 
 	}
 

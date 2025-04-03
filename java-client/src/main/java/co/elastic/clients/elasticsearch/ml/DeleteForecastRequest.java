@@ -86,7 +86,7 @@ public class DeleteForecastRequest extends RequestBase {
 
 		this.allowNoForecasts = builder.allowNoForecasts;
 		this.forecastId = builder.forecastId;
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
 		this.timeout = builder.timeout;
 
 	}

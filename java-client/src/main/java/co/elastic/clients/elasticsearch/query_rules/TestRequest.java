@@ -76,7 +76,8 @@ public class TestRequest extends RequestBase implements JsonpSerializable {
 	private TestRequest(Builder builder) {
 
 		this.matchCriteria = ApiTypeHelper.unmodifiableRequired(builder.matchCriteria, this, "matchCriteria");
-		this.rulesetId = ApiTypeHelper.requireNonNull(builder.rulesetId, this, "rulesetId");
+		this.rulesetId = ApiTypeHelper.requireNonNullWithDefault(builder.rulesetId, this, "rulesetId",
+				this.rulesetId());
 
 	}
 

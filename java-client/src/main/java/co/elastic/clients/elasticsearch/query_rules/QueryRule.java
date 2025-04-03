@@ -76,10 +76,10 @@ public class QueryRule implements JsonpSerializable {
 
 	protected QueryRule(AbstractBuilder<?> builder) {
 
-		this.ruleId = ApiTypeHelper.requireNonNull(builder.ruleId, this, "ruleId");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.ruleId = ApiTypeHelper.requireNonNullWithDefault(builder.ruleId, this, "ruleId", this.ruleId());
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
 		this.criteria = ApiTypeHelper.unmodifiableRequired(builder.criteria, this, "criteria");
-		this.actions = ApiTypeHelper.requireNonNull(builder.actions, this, "actions");
+		this.actions = ApiTypeHelper.requireNonNullWithDefault(builder.actions, this, "actions", this.actions());
 		this.priority = builder.priority;
 
 	}

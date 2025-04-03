@@ -72,7 +72,7 @@ public class LoggingAction implements JsonpSerializable {
 	private LoggingAction(Builder builder) {
 
 		this.level = builder.level;
-		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
+		this.text = ApiTypeHelper.requireNonNullWithDefault(builder.text, this, "text", this.text());
 		this.category = builder.category;
 
 	}

@@ -82,13 +82,15 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 
 	private DataStreamsStatsResponse(Builder builder) {
 
-		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.backingIndices = ApiTypeHelper.requireNonNull(builder.backingIndices, this, "backingIndices");
-		this.dataStreamCount = ApiTypeHelper.requireNonNull(builder.dataStreamCount, this, "dataStreamCount");
+		this.shards = ApiTypeHelper.requireNonNullWithDefault(builder.shards, this, "shards", this.shards());
+		this.backingIndices = ApiTypeHelper.requireNonNullWithDefault(builder.backingIndices, this, "backingIndices",
+				this.backingIndices());
+		this.dataStreamCount = ApiTypeHelper.requireNonNullWithDefault(builder.dataStreamCount, this, "dataStreamCount",
+				this.dataStreamCount());
 		this.dataStreams = ApiTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
 		this.totalStoreSizes = builder.totalStoreSizes;
-		this.totalStoreSizeBytes = ApiTypeHelper.requireNonNull(builder.totalStoreSizeBytes, this,
-				"totalStoreSizeBytes");
+		this.totalStoreSizeBytes = ApiTypeHelper.requireNonNullWithDefault(builder.totalStoreSizeBytes, this,
+				"totalStoreSizeBytes", this.totalStoreSizeBytes());
 
 	}
 

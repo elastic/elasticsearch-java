@@ -68,8 +68,9 @@ public class Invocation implements JsonpSerializable {
 
 	private Invocation(Builder builder) {
 
-		this.snapshotName = ApiTypeHelper.requireNonNull(builder.snapshotName, this, "snapshotName");
-		this.time = ApiTypeHelper.requireNonNull(builder.time, this, "time");
+		this.snapshotName = ApiTypeHelper.requireNonNullWithDefault(builder.snapshotName, this, "snapshotName",
+				this.snapshotName());
+		this.time = ApiTypeHelper.requireNonNullWithDefault(builder.time, this, "time", this.time());
 
 	}
 

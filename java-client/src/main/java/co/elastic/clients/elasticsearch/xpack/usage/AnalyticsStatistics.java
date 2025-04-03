@@ -83,16 +83,22 @@ public class AnalyticsStatistics implements JsonpSerializable {
 
 	private AnalyticsStatistics(Builder builder) {
 
-		this.boxplotUsage = ApiTypeHelper.requireNonNull(builder.boxplotUsage, this, "boxplotUsage");
-		this.cumulativeCardinalityUsage = ApiTypeHelper.requireNonNull(builder.cumulativeCardinalityUsage, this,
-				"cumulativeCardinalityUsage");
-		this.stringStatsUsage = ApiTypeHelper.requireNonNull(builder.stringStatsUsage, this, "stringStatsUsage");
-		this.topMetricsUsage = ApiTypeHelper.requireNonNull(builder.topMetricsUsage, this, "topMetricsUsage");
-		this.tTestUsage = ApiTypeHelper.requireNonNull(builder.tTestUsage, this, "tTestUsage");
-		this.movingPercentilesUsage = ApiTypeHelper.requireNonNull(builder.movingPercentilesUsage, this,
-				"movingPercentilesUsage");
-		this.normalizeUsage = ApiTypeHelper.requireNonNull(builder.normalizeUsage, this, "normalizeUsage");
-		this.rateUsage = ApiTypeHelper.requireNonNull(builder.rateUsage, this, "rateUsage");
+		this.boxplotUsage = ApiTypeHelper.requireNonNullWithDefault(builder.boxplotUsage, this, "boxplotUsage",
+				this.boxplotUsage());
+		this.cumulativeCardinalityUsage = ApiTypeHelper.requireNonNullWithDefault(builder.cumulativeCardinalityUsage,
+				this, "cumulativeCardinalityUsage", this.cumulativeCardinalityUsage());
+		this.stringStatsUsage = ApiTypeHelper.requireNonNullWithDefault(builder.stringStatsUsage, this,
+				"stringStatsUsage", this.stringStatsUsage());
+		this.topMetricsUsage = ApiTypeHelper.requireNonNullWithDefault(builder.topMetricsUsage, this, "topMetricsUsage",
+				this.topMetricsUsage());
+		this.tTestUsage = ApiTypeHelper.requireNonNullWithDefault(builder.tTestUsage, this, "tTestUsage",
+				this.tTestUsage());
+		this.movingPercentilesUsage = ApiTypeHelper.requireNonNullWithDefault(builder.movingPercentilesUsage, this,
+				"movingPercentilesUsage", this.movingPercentilesUsage());
+		this.normalizeUsage = ApiTypeHelper.requireNonNullWithDefault(builder.normalizeUsage, this, "normalizeUsage",
+				this.normalizeUsage());
+		this.rateUsage = ApiTypeHelper.requireNonNullWithDefault(builder.rateUsage, this, "rateUsage",
+				this.rateUsage());
 		this.multiTermsUsage = builder.multiTermsUsage;
 
 	}

@@ -66,7 +66,7 @@ public class GeoLineSort implements JsonpSerializable {
 
 	private GeoLineSort(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 
 	}
 

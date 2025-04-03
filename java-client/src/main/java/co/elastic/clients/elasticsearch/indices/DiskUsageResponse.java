@@ -66,7 +66,8 @@ public class DiskUsageResponse implements JsonpSerializable {
 
 	private DiskUsageResponse(Builder builder) {
 
-		this.diskUsage = ApiTypeHelper.requireNonNull(builder.diskUsage, this, "diskUsage");
+		this.diskUsage = ApiTypeHelper.requireNonNullWithDefault(builder.diskUsage, this, "diskUsage",
+				this.diskUsage());
 
 	}
 

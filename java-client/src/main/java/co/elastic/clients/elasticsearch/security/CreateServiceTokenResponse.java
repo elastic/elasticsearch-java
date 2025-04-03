@@ -69,8 +69,8 @@ public class CreateServiceTokenResponse implements JsonpSerializable {
 
 	private CreateServiceTokenResponse(Builder builder) {
 
-		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
-		this.token = ApiTypeHelper.requireNonNull(builder.token, this, "token");
+		this.created = ApiTypeHelper.requireNonNullWithDefault(builder.created, this, "created", this.created());
+		this.token = ApiTypeHelper.requireNonNullWithDefault(builder.token, this, "token", this.token());
 
 	}
 

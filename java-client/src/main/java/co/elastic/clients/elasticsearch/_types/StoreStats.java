@@ -81,9 +81,11 @@ public class StoreStats implements JsonpSerializable {
 	private StoreStats(Builder builder) {
 
 		this.size = builder.size;
-		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+		this.sizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.sizeInBytes, this, "sizeInBytes",
+				this.sizeInBytes());
 		this.reserved = builder.reserved;
-		this.reservedInBytes = ApiTypeHelper.requireNonNull(builder.reservedInBytes, this, "reservedInBytes");
+		this.reservedInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.reservedInBytes, this, "reservedInBytes",
+				this.reservedInBytes());
 		this.totalDataSetSize = builder.totalDataSetSize;
 		this.totalDataSetSizeInBytes = builder.totalDataSetSizeInBytes;
 

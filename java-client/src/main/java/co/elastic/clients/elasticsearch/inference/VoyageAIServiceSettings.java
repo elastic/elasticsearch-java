@@ -78,7 +78,7 @@ public class VoyageAIServiceSettings implements JsonpSerializable {
 	private VoyageAIServiceSettings(Builder builder) {
 
 		this.dimensions = builder.dimensions;
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
 		this.rateLimit = builder.rateLimit;
 		this.embeddingType = builder.embeddingType;
 

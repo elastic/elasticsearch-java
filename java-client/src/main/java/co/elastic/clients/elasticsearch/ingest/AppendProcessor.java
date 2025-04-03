@@ -71,7 +71,7 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 	private AppendProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.value = ApiTypeHelper.unmodifiableRequired(builder.value, this, "value");
 		this.allowDuplicates = builder.allowDuplicates;
 

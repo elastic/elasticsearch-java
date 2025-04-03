@@ -85,9 +85,10 @@ public class NodeThreadPoolInfo implements JsonpSerializable {
 		this.core = builder.core;
 		this.keepAlive = builder.keepAlive;
 		this.max = builder.max;
-		this.queueSize = ApiTypeHelper.requireNonNull(builder.queueSize, this, "queueSize");
+		this.queueSize = ApiTypeHelper.requireNonNullWithDefault(builder.queueSize, this, "queueSize",
+				this.queueSize());
 		this.size = builder.size;
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
 
 	}
 

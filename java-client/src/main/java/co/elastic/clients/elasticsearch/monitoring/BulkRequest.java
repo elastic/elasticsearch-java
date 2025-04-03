@@ -86,9 +86,10 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 
 	private BulkRequest(Builder builder) {
 
-		this.interval = ApiTypeHelper.requireNonNull(builder.interval, this, "interval");
-		this.systemApiVersion = ApiTypeHelper.requireNonNull(builder.systemApiVersion, this, "systemApiVersion");
-		this.systemId = ApiTypeHelper.requireNonNull(builder.systemId, this, "systemId");
+		this.interval = ApiTypeHelper.requireNonNullWithDefault(builder.interval, this, "interval", this.interval());
+		this.systemApiVersion = ApiTypeHelper.requireNonNullWithDefault(builder.systemApiVersion, this,
+				"systemApiVersion", this.systemApiVersion());
+		this.systemId = ApiTypeHelper.requireNonNullWithDefault(builder.systemId, this, "systemId", this.systemId());
 		this.type = builder.type;
 		this.operations = ApiTypeHelper.unmodifiableRequired(builder.operations, this, "operations");
 

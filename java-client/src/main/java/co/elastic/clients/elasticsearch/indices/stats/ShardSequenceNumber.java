@@ -69,9 +69,11 @@ public class ShardSequenceNumber implements JsonpSerializable {
 
 	private ShardSequenceNumber(Builder builder) {
 
-		this.globalCheckpoint = ApiTypeHelper.requireNonNull(builder.globalCheckpoint, this, "globalCheckpoint");
-		this.localCheckpoint = ApiTypeHelper.requireNonNull(builder.localCheckpoint, this, "localCheckpoint");
-		this.maxSeqNo = ApiTypeHelper.requireNonNull(builder.maxSeqNo, this, "maxSeqNo");
+		this.globalCheckpoint = ApiTypeHelper.requireNonNullWithDefault(builder.globalCheckpoint, this,
+				"globalCheckpoint", this.globalCheckpoint());
+		this.localCheckpoint = ApiTypeHelper.requireNonNullWithDefault(builder.localCheckpoint, this, "localCheckpoint",
+				this.localCheckpoint());
+		this.maxSeqNo = ApiTypeHelper.requireNonNullWithDefault(builder.maxSeqNo, this, "maxSeqNo", this.maxSeqNo());
 
 	}
 

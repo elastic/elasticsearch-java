@@ -90,13 +90,16 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 	protected AsyncSearchResponseBase(AbstractBuilder<?> builder) {
 
 		this.id = builder.id;
-		this.isPartial = ApiTypeHelper.requireNonNull(builder.isPartial, this, "isPartial");
-		this.isRunning = ApiTypeHelper.requireNonNull(builder.isRunning, this, "isRunning");
+		this.isPartial = ApiTypeHelper.requireNonNullWithDefault(builder.isPartial, this, "isPartial",
+				this.isPartial());
+		this.isRunning = ApiTypeHelper.requireNonNullWithDefault(builder.isRunning, this, "isRunning",
+				this.isRunning());
 		this.expirationTime = builder.expirationTime;
-		this.expirationTimeInMillis = ApiTypeHelper.requireNonNull(builder.expirationTimeInMillis, this,
-				"expirationTimeInMillis");
+		this.expirationTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.expirationTimeInMillis, this,
+				"expirationTimeInMillis", this.expirationTimeInMillis());
 		this.startTime = builder.startTime;
-		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.startTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.startTimeInMillis, this,
+				"startTimeInMillis", this.startTimeInMillis());
 		this.completionTime = builder.completionTime;
 		this.completionTimeInMillis = builder.completionTimeInMillis;
 

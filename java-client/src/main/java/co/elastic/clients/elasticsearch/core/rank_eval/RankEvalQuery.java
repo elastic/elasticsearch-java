@@ -71,7 +71,7 @@ public class RankEvalQuery implements JsonpSerializable {
 
 	private RankEvalQuery(Builder builder) {
 
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
 		this.size = builder.size;
 
 	}

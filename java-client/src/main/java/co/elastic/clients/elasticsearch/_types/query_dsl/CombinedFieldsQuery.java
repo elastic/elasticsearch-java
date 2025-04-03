@@ -81,7 +81,7 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 		super(builder);
 
 		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
 		this.autoGenerateSynonymsPhraseQuery = builder.autoGenerateSynonymsPhraseQuery;
 		this.operator = builder.operator;
 		this.minimumShouldMatch = builder.minimumShouldMatch;

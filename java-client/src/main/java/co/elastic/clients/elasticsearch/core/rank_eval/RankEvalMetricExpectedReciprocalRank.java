@@ -67,7 +67,8 @@ public class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBase {
 	private RankEvalMetricExpectedReciprocalRank(Builder builder) {
 		super(builder);
 
-		this.maximumRelevance = ApiTypeHelper.requireNonNull(builder.maximumRelevance, this, "maximumRelevance");
+		this.maximumRelevance = ApiTypeHelper.requireNonNullWithDefault(builder.maximumRelevance, this,
+				"maximumRelevance", this.maximumRelevance());
 
 	}
 

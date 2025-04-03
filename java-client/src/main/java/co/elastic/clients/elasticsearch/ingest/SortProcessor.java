@@ -70,7 +70,7 @@ public class SortProcessor extends ProcessorBase implements ProcessorVariant {
 	private SortProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.order = builder.order;
 		this.targetField = builder.targetField;
 

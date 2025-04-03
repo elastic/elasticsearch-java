@@ -73,7 +73,8 @@ public class Ingest implements JsonpSerializable {
 	private Ingest(Builder builder) {
 
 		this.redact = builder.redact;
-		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.timestamp = ApiTypeHelper.requireNonNullWithDefault(builder.timestamp, this, "timestamp",
+				this.timestamp());
 		this.pipeline = builder.pipeline;
 
 	}

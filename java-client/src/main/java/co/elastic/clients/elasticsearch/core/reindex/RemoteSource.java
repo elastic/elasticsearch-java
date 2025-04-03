@@ -83,7 +83,7 @@ public class RemoteSource implements JsonpSerializable {
 
 		this.connectTimeout = builder.connectTimeout;
 		this.headers = ApiTypeHelper.unmodifiable(builder.headers);
-		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
+		this.host = ApiTypeHelper.requireNonNullWithDefault(builder.host, this, "host", this.host());
 		this.username = builder.username;
 		this.password = builder.password;
 		this.socketTimeout = builder.socketTimeout;

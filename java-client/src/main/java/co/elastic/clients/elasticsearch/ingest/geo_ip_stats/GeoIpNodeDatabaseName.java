@@ -66,7 +66,7 @@ public class GeoIpNodeDatabaseName implements JsonpSerializable {
 
 	private GeoIpNodeDatabaseName(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 
 	}
 

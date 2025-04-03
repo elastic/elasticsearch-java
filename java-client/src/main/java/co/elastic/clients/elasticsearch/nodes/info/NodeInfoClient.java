@@ -65,7 +65,7 @@ public class NodeInfoClient implements JsonpSerializable {
 
 	private NodeInfoClient(Builder builder) {
 
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
 
 	}
 

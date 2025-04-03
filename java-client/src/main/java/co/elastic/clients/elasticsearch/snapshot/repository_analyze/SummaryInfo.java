@@ -67,8 +67,8 @@ public class SummaryInfo implements JsonpSerializable {
 
 	private SummaryInfo(Builder builder) {
 
-		this.read = ApiTypeHelper.requireNonNull(builder.read, this, "read");
-		this.write = ApiTypeHelper.requireNonNull(builder.write, this, "write");
+		this.read = ApiTypeHelper.requireNonNullWithDefault(builder.read, this, "read", this.read());
+		this.write = ApiTypeHelper.requireNonNullWithDefault(builder.write, this, "write", this.write());
 
 	}
 

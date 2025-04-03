@@ -119,7 +119,7 @@ public class DatabaseConfigurationFull
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 
 	}
 

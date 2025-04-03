@@ -124,8 +124,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		this.analyzer = builder.analyzer;
 		this.defaultOperator = builder.defaultOperator;
 		this.df = builder.df;
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
 		this.lenient = builder.lenient;
 		this.preference = builder.preference;
 		this.q = builder.q;

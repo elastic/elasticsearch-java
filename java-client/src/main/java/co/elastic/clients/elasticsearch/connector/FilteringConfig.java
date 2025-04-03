@@ -71,9 +71,9 @@ public class FilteringConfig implements JsonpSerializable {
 
 	private FilteringConfig(Builder builder) {
 
-		this.active = ApiTypeHelper.requireNonNull(builder.active, this, "active");
+		this.active = ApiTypeHelper.requireNonNullWithDefault(builder.active, this, "active", this.active());
 		this.domain = builder.domain;
-		this.draft = ApiTypeHelper.requireNonNull(builder.draft, this, "draft");
+		this.draft = ApiTypeHelper.requireNonNullWithDefault(builder.draft, this, "draft", this.draft());
 
 	}
 

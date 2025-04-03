@@ -67,8 +67,8 @@ public class SnapshotShardsStatus implements JsonpSerializable {
 
 	private SnapshotShardsStatus(Builder builder) {
 
-		this.stage = ApiTypeHelper.requireNonNull(builder.stage, this, "stage");
-		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
+		this.stage = ApiTypeHelper.requireNonNullWithDefault(builder.stage, this, "stage", this.stage());
+		this.stats = ApiTypeHelper.requireNonNullWithDefault(builder.stats, this, "stats", this.stats());
 
 	}
 

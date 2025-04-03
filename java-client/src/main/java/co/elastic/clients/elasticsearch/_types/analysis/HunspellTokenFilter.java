@@ -76,7 +76,7 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 
 		this.dedup = builder.dedup;
 		this.dictionary = builder.dictionary;
-		this.locale = ApiTypeHelper.requireNonNull(builder.locale, this, "locale");
+		this.locale = ApiTypeHelper.requireNonNullWithDefault(builder.locale, this, "locale", this.locale());
 		this.longestOnly = builder.longestOnly;
 
 	}

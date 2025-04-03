@@ -72,7 +72,7 @@ public class FrequentItemSetsField implements JsonpSerializable {
 
 	private FrequentItemSetsField(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.exclude = builder.exclude;
 		this.include = builder.include;
 

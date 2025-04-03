@@ -81,11 +81,11 @@ public class Deprecation implements JsonpSerializable {
 	private Deprecation(Builder builder) {
 
 		this.details = builder.details;
-		this.level = ApiTypeHelper.requireNonNull(builder.level, this, "level");
-		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
-		this.url = ApiTypeHelper.requireNonNull(builder.url, this, "url");
-		this.resolveDuringRollingUpgrade = ApiTypeHelper.requireNonNull(builder.resolveDuringRollingUpgrade, this,
-				"resolveDuringRollingUpgrade");
+		this.level = ApiTypeHelper.requireNonNullWithDefault(builder.level, this, "level", this.level());
+		this.message = ApiTypeHelper.requireNonNullWithDefault(builder.message, this, "message", this.message());
+		this.url = ApiTypeHelper.requireNonNullWithDefault(builder.url, this, "url", this.url());
+		this.resolveDuringRollingUpgrade = ApiTypeHelper.requireNonNullWithDefault(builder.resolveDuringRollingUpgrade,
+				this, "resolveDuringRollingUpgrade", this.resolveDuringRollingUpgrade());
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 
 	}

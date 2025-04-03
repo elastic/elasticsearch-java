@@ -65,7 +65,7 @@ public class MlInferenceDeploymentsTimeMs implements JsonpSerializable {
 
 	private MlInferenceDeploymentsTimeMs(Builder builder) {
 
-		this.avg = ApiTypeHelper.requireNonNull(builder.avg, this, "avg");
+		this.avg = ApiTypeHelper.requireNonNullWithDefault(builder.avg, this, "avg", this.avg());
 
 	}
 

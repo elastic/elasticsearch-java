@@ -66,7 +66,7 @@ public class NodeInfoSearchRemote implements JsonpSerializable {
 
 	private NodeInfoSearchRemote(Builder builder) {
 
-		this.connect = ApiTypeHelper.requireNonNull(builder.connect, this, "connect");
+		this.connect = ApiTypeHelper.requireNonNullWithDefault(builder.connect, this, "connect", this.connect());
 
 	}
 

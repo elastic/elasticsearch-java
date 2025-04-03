@@ -69,7 +69,7 @@ public class ValidationLoss implements JsonpSerializable {
 	private ValidationLoss(Builder builder) {
 
 		this.foldValues = ApiTypeHelper.unmodifiableRequired(builder.foldValues, this, "foldValues");
-		this.lossType = ApiTypeHelper.requireNonNull(builder.lossType, this, "lossType");
+		this.lossType = ApiTypeHelper.requireNonNullWithDefault(builder.lossType, this, "lossType", this.lossType());
 
 	}
 

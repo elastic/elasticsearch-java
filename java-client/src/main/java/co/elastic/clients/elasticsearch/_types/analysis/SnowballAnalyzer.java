@@ -73,7 +73,7 @@ public class SnowballAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	private SnowballAnalyzer(Builder builder) {
 
 		this.version = builder.version;
-		this.language = ApiTypeHelper.requireNonNull(builder.language, this, "language");
+		this.language = ApiTypeHelper.requireNonNullWithDefault(builder.language, this, "language", this.language());
 		this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
 
 	}

@@ -76,9 +76,11 @@ public class PostStartTrialResponse implements AcknowledgedResponse, JsonpSerial
 
 	private PostStartTrialResponse(Builder builder) {
 
-		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+		this.acknowledged = ApiTypeHelper.requireNonNullWithDefault(builder.acknowledged, this, "acknowledged",
+				this.acknowledged());
 		this.errorMessage = builder.errorMessage;
-		this.trialWasStarted = ApiTypeHelper.requireNonNull(builder.trialWasStarted, this, "trialWasStarted");
+		this.trialWasStarted = ApiTypeHelper.requireNonNullWithDefault(builder.trialWasStarted, this, "trialWasStarted",
+				this.trialWasStarted());
 		this.type = builder.type;
 
 	}

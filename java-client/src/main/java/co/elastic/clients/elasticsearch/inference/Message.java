@@ -76,7 +76,7 @@ public class Message implements JsonpSerializable {
 	private Message(Builder builder) {
 
 		this.content = builder.content;
-		this.role = ApiTypeHelper.requireNonNull(builder.role, this, "role");
+		this.role = ApiTypeHelper.requireNonNullWithDefault(builder.role, this, "role", this.role());
 		this.toolCallId = builder.toolCallId;
 		this.toolCalls = ApiTypeHelper.unmodifiable(builder.toolCalls);
 

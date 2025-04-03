@@ -83,15 +83,19 @@ public class DetailsInfo implements JsonpSerializable {
 
 	private DetailsInfo(Builder builder) {
 
-		this.blob = ApiTypeHelper.requireNonNull(builder.blob, this, "blob");
+		this.blob = ApiTypeHelper.requireNonNullWithDefault(builder.blob, this, "blob", this.blob());
 		this.overwriteElapsed = builder.overwriteElapsed;
 		this.overwriteElapsedNanos = builder.overwriteElapsedNanos;
-		this.writeElapsed = ApiTypeHelper.requireNonNull(builder.writeElapsed, this, "writeElapsed");
-		this.writeElapsedNanos = ApiTypeHelper.requireNonNull(builder.writeElapsedNanos, this, "writeElapsedNanos");
-		this.writeThrottled = ApiTypeHelper.requireNonNull(builder.writeThrottled, this, "writeThrottled");
-		this.writeThrottledNanos = ApiTypeHelper.requireNonNull(builder.writeThrottledNanos, this,
-				"writeThrottledNanos");
-		this.writerNode = ApiTypeHelper.requireNonNull(builder.writerNode, this, "writerNode");
+		this.writeElapsed = ApiTypeHelper.requireNonNullWithDefault(builder.writeElapsed, this, "writeElapsed",
+				this.writeElapsed());
+		this.writeElapsedNanos = ApiTypeHelper.requireNonNullWithDefault(builder.writeElapsedNanos, this,
+				"writeElapsedNanos", this.writeElapsedNanos());
+		this.writeThrottled = ApiTypeHelper.requireNonNullWithDefault(builder.writeThrottled, this, "writeThrottled",
+				this.writeThrottled());
+		this.writeThrottledNanos = ApiTypeHelper.requireNonNullWithDefault(builder.writeThrottledNanos, this,
+				"writeThrottledNanos", this.writeThrottledNanos());
+		this.writerNode = ApiTypeHelper.requireNonNullWithDefault(builder.writerNode, this, "writerNode",
+				this.writerNode());
 
 	}
 

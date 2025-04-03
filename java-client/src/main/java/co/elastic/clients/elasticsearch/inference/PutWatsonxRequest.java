@@ -93,10 +93,12 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 
 	private PutWatsonxRequest(Builder builder) {
 
-		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
-		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
-		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
-		this.watsonxInferenceId = ApiTypeHelper.requireNonNull(builder.watsonxInferenceId, this, "watsonxInferenceId");
+		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
+		this.serviceSettings = ApiTypeHelper.requireNonNullWithDefault(builder.serviceSettings, this, "serviceSettings",
+				this.serviceSettings());
+		this.taskType = ApiTypeHelper.requireNonNullWithDefault(builder.taskType, this, "taskType", this.taskType());
+		this.watsonxInferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.watsonxInferenceId, this,
+				"watsonxInferenceId", this.watsonxInferenceId());
 
 	}
 

@@ -71,8 +71,10 @@ public class DataframeEvaluationRegression implements DataframeEvaluationVariant
 
 	private DataframeEvaluationRegression(Builder builder) {
 
-		this.actualField = ApiTypeHelper.requireNonNull(builder.actualField, this, "actualField");
-		this.predictedField = ApiTypeHelper.requireNonNull(builder.predictedField, this, "predictedField");
+		this.actualField = ApiTypeHelper.requireNonNullWithDefault(builder.actualField, this, "actualField",
+				this.actualField());
+		this.predictedField = ApiTypeHelper.requireNonNullWithDefault(builder.predictedField, this, "predictedField",
+				this.predictedField());
 		this.metrics = builder.metrics;
 
 	}

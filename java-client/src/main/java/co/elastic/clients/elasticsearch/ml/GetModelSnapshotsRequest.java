@@ -100,7 +100,7 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 		this.desc = builder.desc;
 		this.end = builder.end;
 		this.from = builder.from;
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
 		this.page = builder.page;
 		this.size = builder.size;
 		this.snapshotId = builder.snapshotId;

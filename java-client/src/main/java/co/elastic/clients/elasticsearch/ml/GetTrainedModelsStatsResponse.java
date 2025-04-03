@@ -69,7 +69,7 @@ public class GetTrainedModelsStatsResponse implements JsonpSerializable {
 
 	private GetTrainedModelsStatsResponse(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
 		this.trainedModelStats = ApiTypeHelper.unmodifiableRequired(builder.trainedModelStats, this,
 				"trainedModelStats");
 

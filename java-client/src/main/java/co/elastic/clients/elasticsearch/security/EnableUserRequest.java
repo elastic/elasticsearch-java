@@ -76,7 +76,7 @@ public class EnableUserRequest extends RequestBase {
 	private EnableUserRequest(Builder builder) {
 
 		this.refresh = builder.refresh;
-		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
+		this.username = ApiTypeHelper.requireNonNullWithDefault(builder.username, this, "username", this.username());
 
 	}
 

@@ -124,14 +124,14 @@ public class TransformSummary implements JsonpSerializable {
 		this.createTime = builder.createTime;
 		this.createTimeString = builder.createTimeString;
 		this.description = builder.description;
-		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
+		this.dest = ApiTypeHelper.requireNonNullWithDefault(builder.dest, this, "dest", this.dest());
 		this.frequency = builder.frequency;
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 		this.latest = builder.latest;
 		this.pivot = builder.pivot;
 		this.retentionPolicy = builder.retentionPolicy;
 		this.settings = builder.settings;
-		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.source = ApiTypeHelper.requireNonNullWithDefault(builder.source, this, "source", this.source());
 		this.sync = builder.sync;
 		this.version = builder.version;
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);

@@ -74,10 +74,11 @@ public class GsubProcessor extends ProcessorBase implements ProcessorVariant {
 	private GsubProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.ignoreMissing = builder.ignoreMissing;
-		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
-		this.replacement = ApiTypeHelper.requireNonNull(builder.replacement, this, "replacement");
+		this.pattern = ApiTypeHelper.requireNonNullWithDefault(builder.pattern, this, "pattern", this.pattern());
+		this.replacement = ApiTypeHelper.requireNonNullWithDefault(builder.replacement, this, "replacement",
+				this.replacement());
 		this.targetField = builder.targetField;
 
 	}

@@ -82,13 +82,14 @@ public class TransformStats implements JsonpSerializable {
 
 	private TransformStats(Builder builder) {
 
-		this.checkpointing = ApiTypeHelper.requireNonNull(builder.checkpointing, this, "checkpointing");
+		this.checkpointing = ApiTypeHelper.requireNonNullWithDefault(builder.checkpointing, this, "checkpointing",
+				this.checkpointing());
 		this.health = builder.health;
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 		this.node = builder.node;
 		this.reason = builder.reason;
-		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
-		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
+		this.state = ApiTypeHelper.requireNonNullWithDefault(builder.state, this, "state", this.state());
+		this.stats = ApiTypeHelper.requireNonNullWithDefault(builder.stats, this, "stats", this.stats());
 
 	}
 

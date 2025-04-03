@@ -142,10 +142,10 @@ public class FindFieldStructureRequest extends RequestBase {
 		this.documentsToSample = builder.documentsToSample;
 		this.ecsCompatibility = builder.ecsCompatibility;
 		this.explain = builder.explain;
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.format = builder.format;
 		this.grokPattern = builder.grokPattern;
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
 		this.quote = builder.quote;
 		this.shouldTrimFields = builder.shouldTrimFields;
 		this.timeout = builder.timeout;

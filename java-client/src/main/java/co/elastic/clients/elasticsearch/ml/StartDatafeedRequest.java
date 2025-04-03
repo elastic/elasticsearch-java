@@ -98,7 +98,8 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 
 	private StartDatafeedRequest(Builder builder) {
 
-		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.datafeedId = ApiTypeHelper.requireNonNullWithDefault(builder.datafeedId, this, "datafeedId",
+				this.datafeedId());
 		this.end = builder.end;
 		this.start = builder.start;
 		this.timeout = builder.timeout;

@@ -66,7 +66,7 @@ public class UpdateIndexNameResponse implements JsonpSerializable {
 
 	private UpdateIndexNameResponse(Builder builder) {
 
-		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
+		this.result = ApiTypeHelper.requireNonNullWithDefault(builder.result, this, "result", this.result());
 
 	}
 

@@ -81,13 +81,16 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 
 	private ClusterRemoteSniffInfo(Builder builder) {
 
-		this.connected = ApiTypeHelper.requireNonNull(builder.connected, this, "connected");
-		this.maxConnectionsPerCluster = ApiTypeHelper.requireNonNull(builder.maxConnectionsPerCluster, this,
-				"maxConnectionsPerCluster");
-		this.numNodesConnected = ApiTypeHelper.requireNonNull(builder.numNodesConnected, this, "numNodesConnected");
-		this.initialConnectTimeout = ApiTypeHelper.requireNonNull(builder.initialConnectTimeout, this,
-				"initialConnectTimeout");
-		this.skipUnavailable = ApiTypeHelper.requireNonNull(builder.skipUnavailable, this, "skipUnavailable");
+		this.connected = ApiTypeHelper.requireNonNullWithDefault(builder.connected, this, "connected",
+				this.connected());
+		this.maxConnectionsPerCluster = ApiTypeHelper.requireNonNullWithDefault(builder.maxConnectionsPerCluster, this,
+				"maxConnectionsPerCluster", this.maxConnectionsPerCluster());
+		this.numNodesConnected = ApiTypeHelper.requireNonNullWithDefault(builder.numNodesConnected, this,
+				"numNodesConnected", this.numNodesConnected());
+		this.initialConnectTimeout = ApiTypeHelper.requireNonNullWithDefault(builder.initialConnectTimeout, this,
+				"initialConnectTimeout", this.initialConnectTimeout());
+		this.skipUnavailable = ApiTypeHelper.requireNonNullWithDefault(builder.skipUnavailable, this, "skipUnavailable",
+				this.skipUnavailable());
 		this.seeds = ApiTypeHelper.unmodifiableRequired(builder.seeds, this, "seeds");
 
 	}

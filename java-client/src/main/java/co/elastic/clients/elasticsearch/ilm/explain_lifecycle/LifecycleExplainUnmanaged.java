@@ -66,7 +66,7 @@ public class LifecycleExplainUnmanaged implements LifecycleExplainVariant, Jsonp
 
 	private LifecycleExplainUnmanaged(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
 
 	}
 

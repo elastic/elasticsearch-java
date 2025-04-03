@@ -70,7 +70,7 @@ public class PostBehavioralAnalyticsEventResponse implements JsonpSerializable {
 
 	private PostBehavioralAnalyticsEventResponse(Builder builder) {
 
-		this.accepted = ApiTypeHelper.requireNonNull(builder.accepted, this, "accepted");
+		this.accepted = ApiTypeHelper.requireNonNullWithDefault(builder.accepted, this, "accepted", this.accepted());
 		this.event = builder.event;
 
 	}

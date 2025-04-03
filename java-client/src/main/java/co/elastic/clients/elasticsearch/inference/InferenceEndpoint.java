@@ -77,8 +77,9 @@ public class InferenceEndpoint implements JsonpSerializable {
 	protected InferenceEndpoint(AbstractBuilder<?> builder) {
 
 		this.chunkingSettings = builder.chunkingSettings;
-		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
-		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
+		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
+		this.serviceSettings = ApiTypeHelper.requireNonNullWithDefault(builder.serviceSettings, this, "serviceSettings",
+				this.serviceSettings());
 		this.taskSettings = builder.taskSettings;
 
 	}

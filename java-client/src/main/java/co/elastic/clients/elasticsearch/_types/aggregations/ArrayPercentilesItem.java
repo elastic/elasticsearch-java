@@ -73,7 +73,7 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 
 	private ArrayPercentilesItem(Builder builder) {
 
-		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
+		this.key = ApiTypeHelper.requireNonNullWithDefault(builder.key, this, "key", this.key());
 		this.value = builder.value;
 		this.valueAsString = builder.valueAsString;
 

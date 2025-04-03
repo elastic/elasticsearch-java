@@ -80,7 +80,7 @@ public class PutFilterRequest extends RequestBase implements JsonpSerializable {
 	private PutFilterRequest(Builder builder) {
 
 		this.description = builder.description;
-		this.filterId = ApiTypeHelper.requireNonNull(builder.filterId, this, "filterId");
+		this.filterId = ApiTypeHelper.requireNonNullWithDefault(builder.filterId, this, "filterId", this.filterId());
 		this.items = ApiTypeHelper.unmodifiable(builder.items);
 
 	}

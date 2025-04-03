@@ -68,7 +68,7 @@ public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFil
 		super(builder);
 
 		this.dir = builder.dir;
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 
 	}
 

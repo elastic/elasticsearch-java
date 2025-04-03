@@ -85,8 +85,9 @@ public class JobForecastStatistics implements JsonpSerializable {
 		this.processingTimeMs = builder.processingTimeMs;
 		this.records = builder.records;
 		this.status = ApiTypeHelper.unmodifiable(builder.status);
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-		this.forecastedJobs = ApiTypeHelper.requireNonNull(builder.forecastedJobs, this, "forecastedJobs");
+		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
+		this.forecastedJobs = ApiTypeHelper.requireNonNullWithDefault(builder.forecastedJobs, this, "forecastedJobs",
+				this.forecastedJobs());
 
 	}
 

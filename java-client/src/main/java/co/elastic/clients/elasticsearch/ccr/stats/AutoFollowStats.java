@@ -77,12 +77,14 @@ public class AutoFollowStats implements JsonpSerializable {
 
 		this.autoFollowedClusters = ApiTypeHelper.unmodifiableRequired(builder.autoFollowedClusters, this,
 				"autoFollowedClusters");
-		this.numberOfFailedFollowIndices = ApiTypeHelper.requireNonNull(builder.numberOfFailedFollowIndices, this,
-				"numberOfFailedFollowIndices");
-		this.numberOfFailedRemoteClusterStateRequests = ApiTypeHelper.requireNonNull(
-				builder.numberOfFailedRemoteClusterStateRequests, this, "numberOfFailedRemoteClusterStateRequests");
-		this.numberOfSuccessfulFollowIndices = ApiTypeHelper.requireNonNull(builder.numberOfSuccessfulFollowIndices,
-				this, "numberOfSuccessfulFollowIndices");
+		this.numberOfFailedFollowIndices = ApiTypeHelper.requireNonNullWithDefault(builder.numberOfFailedFollowIndices,
+				this, "numberOfFailedFollowIndices", this.numberOfFailedFollowIndices());
+		this.numberOfFailedRemoteClusterStateRequests = ApiTypeHelper.requireNonNullWithDefault(
+				builder.numberOfFailedRemoteClusterStateRequests, this, "numberOfFailedRemoteClusterStateRequests",
+				this.numberOfFailedRemoteClusterStateRequests());
+		this.numberOfSuccessfulFollowIndices = ApiTypeHelper.requireNonNullWithDefault(
+				builder.numberOfSuccessfulFollowIndices, this, "numberOfSuccessfulFollowIndices",
+				this.numberOfSuccessfulFollowIndices());
 		this.recentAutoFollowErrors = ApiTypeHelper.unmodifiableRequired(builder.recentAutoFollowErrors, this,
 				"recentAutoFollowErrors");
 

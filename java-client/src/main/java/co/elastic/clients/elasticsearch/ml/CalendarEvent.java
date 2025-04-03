@@ -89,9 +89,11 @@ public class CalendarEvent implements JsonpSerializable {
 
 		this.calendarId = builder.calendarId;
 		this.eventId = builder.eventId;
-		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
-		this.endTime = ApiTypeHelper.requireNonNull(builder.endTime, this, "endTime");
-		this.startTime = ApiTypeHelper.requireNonNull(builder.startTime, this, "startTime");
+		this.description = ApiTypeHelper.requireNonNullWithDefault(builder.description, this, "description",
+				this.description());
+		this.endTime = ApiTypeHelper.requireNonNullWithDefault(builder.endTime, this, "endTime", this.endTime());
+		this.startTime = ApiTypeHelper.requireNonNullWithDefault(builder.startTime, this, "startTime",
+				this.startTime());
 		this.skipResult = builder.skipResult;
 		this.skipModelUpdate = builder.skipModelUpdate;
 		this.forceTimeShift = builder.forceTimeShift;

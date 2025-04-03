@@ -145,35 +145,41 @@ public class XpackUsageResponse implements JsonpSerializable {
 
 	private XpackUsageResponse(Builder builder) {
 
-		this.aggregateMetric = ApiTypeHelper.requireNonNull(builder.aggregateMetric, this, "aggregateMetric");
-		this.analytics = ApiTypeHelper.requireNonNull(builder.analytics, this, "analytics");
-		this.archive = ApiTypeHelper.requireNonNull(builder.archive, this, "archive");
-		this.watcher = ApiTypeHelper.requireNonNull(builder.watcher, this, "watcher");
-		this.ccr = ApiTypeHelper.requireNonNull(builder.ccr, this, "ccr");
+		this.aggregateMetric = ApiTypeHelper.requireNonNullWithDefault(builder.aggregateMetric, this, "aggregateMetric",
+				this.aggregateMetric());
+		this.analytics = ApiTypeHelper.requireNonNullWithDefault(builder.analytics, this, "analytics",
+				this.analytics());
+		this.archive = ApiTypeHelper.requireNonNullWithDefault(builder.archive, this, "archive", this.archive());
+		this.watcher = ApiTypeHelper.requireNonNullWithDefault(builder.watcher, this, "watcher", this.watcher());
+		this.ccr = ApiTypeHelper.requireNonNullWithDefault(builder.ccr, this, "ccr", this.ccr());
 		this.dataFrame = builder.dataFrame;
 		this.dataScience = builder.dataScience;
 		this.dataStreams = builder.dataStreams;
-		this.dataTiers = ApiTypeHelper.requireNonNull(builder.dataTiers, this, "dataTiers");
+		this.dataTiers = ApiTypeHelper.requireNonNullWithDefault(builder.dataTiers, this, "dataTiers",
+				this.dataTiers());
 		this.enrich = builder.enrich;
-		this.eql = ApiTypeHelper.requireNonNull(builder.eql, this, "eql");
+		this.eql = ApiTypeHelper.requireNonNullWithDefault(builder.eql, this, "eql", this.eql());
 		this.flattened = builder.flattened;
-		this.graph = ApiTypeHelper.requireNonNull(builder.graph, this, "graph");
+		this.graph = ApiTypeHelper.requireNonNullWithDefault(builder.graph, this, "graph", this.graph());
 		this.healthApi = builder.healthApi;
-		this.ilm = ApiTypeHelper.requireNonNull(builder.ilm, this, "ilm");
-		this.logstash = ApiTypeHelper.requireNonNull(builder.logstash, this, "logstash");
-		this.ml = ApiTypeHelper.requireNonNull(builder.ml, this, "ml");
-		this.monitoring = ApiTypeHelper.requireNonNull(builder.monitoring, this, "monitoring");
-		this.rollup = ApiTypeHelper.requireNonNull(builder.rollup, this, "rollup");
+		this.ilm = ApiTypeHelper.requireNonNullWithDefault(builder.ilm, this, "ilm", this.ilm());
+		this.logstash = ApiTypeHelper.requireNonNullWithDefault(builder.logstash, this, "logstash", this.logstash());
+		this.ml = ApiTypeHelper.requireNonNullWithDefault(builder.ml, this, "ml", this.ml());
+		this.monitoring = ApiTypeHelper.requireNonNullWithDefault(builder.monitoring, this, "monitoring",
+				this.monitoring());
+		this.rollup = ApiTypeHelper.requireNonNullWithDefault(builder.rollup, this, "rollup", this.rollup());
 		this.runtimeFields = builder.runtimeFields;
-		this.spatial = ApiTypeHelper.requireNonNull(builder.spatial, this, "spatial");
-		this.searchableSnapshots = ApiTypeHelper.requireNonNull(builder.searchableSnapshots, this,
-				"searchableSnapshots");
-		this.security = ApiTypeHelper.requireNonNull(builder.security, this, "security");
-		this.slm = ApiTypeHelper.requireNonNull(builder.slm, this, "slm");
-		this.sql = ApiTypeHelper.requireNonNull(builder.sql, this, "sql");
-		this.transform = ApiTypeHelper.requireNonNull(builder.transform, this, "transform");
+		this.spatial = ApiTypeHelper.requireNonNullWithDefault(builder.spatial, this, "spatial", this.spatial());
+		this.searchableSnapshots = ApiTypeHelper.requireNonNullWithDefault(builder.searchableSnapshots, this,
+				"searchableSnapshots", this.searchableSnapshots());
+		this.security = ApiTypeHelper.requireNonNullWithDefault(builder.security, this, "security", this.security());
+		this.slm = ApiTypeHelper.requireNonNullWithDefault(builder.slm, this, "slm", this.slm());
+		this.sql = ApiTypeHelper.requireNonNullWithDefault(builder.sql, this, "sql", this.sql());
+		this.transform = ApiTypeHelper.requireNonNullWithDefault(builder.transform, this, "transform",
+				this.transform());
 		this.vectors = builder.vectors;
-		this.votingOnly = ApiTypeHelper.requireNonNull(builder.votingOnly, this, "votingOnly");
+		this.votingOnly = ApiTypeHelper.requireNonNullWithDefault(builder.votingOnly, this, "votingOnly",
+				this.votingOnly());
 
 	}
 

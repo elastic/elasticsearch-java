@@ -69,7 +69,7 @@ public class RuntimeFieldFetchFields implements JsonpSerializable {
 
 	private RuntimeFieldFetchFields(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.format = builder.format;
 
 	}

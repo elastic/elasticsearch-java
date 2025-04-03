@@ -86,17 +86,21 @@ public class GetStats implements JsonpSerializable {
 
 	private GetStats(Builder builder) {
 
-		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
+		this.current = ApiTypeHelper.requireNonNullWithDefault(builder.current, this, "current", this.current());
 		this.existsTime = builder.existsTime;
-		this.existsTimeInMillis = ApiTypeHelper.requireNonNull(builder.existsTimeInMillis, this, "existsTimeInMillis");
-		this.existsTotal = ApiTypeHelper.requireNonNull(builder.existsTotal, this, "existsTotal");
+		this.existsTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.existsTimeInMillis, this,
+				"existsTimeInMillis", this.existsTimeInMillis());
+		this.existsTotal = ApiTypeHelper.requireNonNullWithDefault(builder.existsTotal, this, "existsTotal",
+				this.existsTotal());
 		this.missingTime = builder.missingTime;
-		this.missingTimeInMillis = ApiTypeHelper.requireNonNull(builder.missingTimeInMillis, this,
-				"missingTimeInMillis");
-		this.missingTotal = ApiTypeHelper.requireNonNull(builder.missingTotal, this, "missingTotal");
+		this.missingTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.missingTimeInMillis, this,
+				"missingTimeInMillis", this.missingTimeInMillis());
+		this.missingTotal = ApiTypeHelper.requireNonNullWithDefault(builder.missingTotal, this, "missingTotal",
+				this.missingTotal());
 		this.time = builder.time;
-		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.timeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.timeInMillis, this, "timeInMillis",
+				this.timeInMillis());
+		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
 
 	}
 

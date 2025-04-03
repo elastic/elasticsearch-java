@@ -68,7 +68,7 @@ public class PinnedDoc implements JsonpSerializable {
 
 	private PinnedDoc(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 		this.index = builder.index;
 
 	}

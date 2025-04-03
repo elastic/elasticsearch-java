@@ -72,9 +72,11 @@ public class SettingsSimilarityIb implements SettingsSimilarityVariant, JsonpSer
 
 	private SettingsSimilarityIb(Builder builder) {
 
-		this.distribution = ApiTypeHelper.requireNonNull(builder.distribution, this, "distribution");
-		this.lambda = ApiTypeHelper.requireNonNull(builder.lambda, this, "lambda");
-		this.normalization = ApiTypeHelper.requireNonNull(builder.normalization, this, "normalization");
+		this.distribution = ApiTypeHelper.requireNonNullWithDefault(builder.distribution, this, "distribution",
+				this.distribution());
+		this.lambda = ApiTypeHelper.requireNonNullWithDefault(builder.lambda, this, "lambda", this.lambda());
+		this.normalization = ApiTypeHelper.requireNonNullWithDefault(builder.normalization, this, "normalization",
+				this.normalization());
 
 	}
 

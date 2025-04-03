@@ -71,9 +71,10 @@ public class DataframeEvaluationOutlierDetection implements DataframeEvaluationV
 
 	private DataframeEvaluationOutlierDetection(Builder builder) {
 
-		this.actualField = ApiTypeHelper.requireNonNull(builder.actualField, this, "actualField");
-		this.predictedProbabilityField = ApiTypeHelper.requireNonNull(builder.predictedProbabilityField, this,
-				"predictedProbabilityField");
+		this.actualField = ApiTypeHelper.requireNonNullWithDefault(builder.actualField, this, "actualField",
+				this.actualField());
+		this.predictedProbabilityField = ApiTypeHelper.requireNonNullWithDefault(builder.predictedProbabilityField,
+				this, "predictedProbabilityField", this.predictedProbabilityField());
 		this.metrics = builder.metrics;
 
 	}

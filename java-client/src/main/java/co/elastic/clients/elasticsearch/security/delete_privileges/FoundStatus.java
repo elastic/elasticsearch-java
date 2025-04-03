@@ -65,7 +65,7 @@ public class FoundStatus implements JsonpSerializable {
 
 	private FoundStatus(Builder builder) {
 
-		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+		this.found = ApiTypeHelper.requireNonNullWithDefault(builder.found, this, "found", this.found());
 
 	}
 

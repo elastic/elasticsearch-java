@@ -124,7 +124,7 @@ public class SimpleQueryStringQuery extends QueryBase
 		this.fuzzyTranspositions = builder.fuzzyTranspositions;
 		this.lenient = builder.lenient;
 		this.minimumShouldMatch = builder.minimumShouldMatch;
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
 		this.quoteFieldSuffix = builder.quoteFieldSuffix;
 
 	}

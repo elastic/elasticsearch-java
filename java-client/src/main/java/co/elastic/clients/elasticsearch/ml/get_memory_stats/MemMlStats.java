@@ -91,19 +91,20 @@ public class MemMlStats implements JsonpSerializable {
 	private MemMlStats(Builder builder) {
 
 		this.anomalyDetectors = builder.anomalyDetectors;
-		this.anomalyDetectorsInBytes = ApiTypeHelper.requireNonNull(builder.anomalyDetectorsInBytes, this,
-				"anomalyDetectorsInBytes");
+		this.anomalyDetectorsInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.anomalyDetectorsInBytes, this,
+				"anomalyDetectorsInBytes", this.anomalyDetectorsInBytes());
 		this.dataFrameAnalytics = builder.dataFrameAnalytics;
-		this.dataFrameAnalyticsInBytes = ApiTypeHelper.requireNonNull(builder.dataFrameAnalyticsInBytes, this,
-				"dataFrameAnalyticsInBytes");
+		this.dataFrameAnalyticsInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.dataFrameAnalyticsInBytes,
+				this, "dataFrameAnalyticsInBytes", this.dataFrameAnalyticsInBytes());
 		this.max = builder.max;
-		this.maxInBytes = ApiTypeHelper.requireNonNull(builder.maxInBytes, this, "maxInBytes");
+		this.maxInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.maxInBytes, this, "maxInBytes",
+				this.maxInBytes());
 		this.nativeCodeOverhead = builder.nativeCodeOverhead;
-		this.nativeCodeOverheadInBytes = ApiTypeHelper.requireNonNull(builder.nativeCodeOverheadInBytes, this,
-				"nativeCodeOverheadInBytes");
+		this.nativeCodeOverheadInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.nativeCodeOverheadInBytes,
+				this, "nativeCodeOverheadInBytes", this.nativeCodeOverheadInBytes());
 		this.nativeInference = builder.nativeInference;
-		this.nativeInferenceInBytes = ApiTypeHelper.requireNonNull(builder.nativeInferenceInBytes, this,
-				"nativeInferenceInBytes");
+		this.nativeInferenceInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.nativeInferenceInBytes, this,
+				"nativeInferenceInBytes", this.nativeInferenceInBytes());
 
 	}
 

@@ -69,7 +69,8 @@ public class Definition implements JsonpSerializable {
 	private Definition(Builder builder) {
 
 		this.preprocessors = ApiTypeHelper.unmodifiable(builder.preprocessors);
-		this.trainedModel = ApiTypeHelper.requireNonNull(builder.trainedModel, this, "trainedModel");
+		this.trainedModel = ApiTypeHelper.requireNonNullWithDefault(builder.trainedModel, this, "trainedModel",
+				this.trainedModel());
 
 	}
 

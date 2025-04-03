@@ -83,19 +83,25 @@ public class DataTierPhaseStatistics implements JsonpSerializable {
 
 	private DataTierPhaseStatistics(Builder builder) {
 
-		this.nodeCount = ApiTypeHelper.requireNonNull(builder.nodeCount, this, "nodeCount");
-		this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
-		this.totalShardCount = ApiTypeHelper.requireNonNull(builder.totalShardCount, this, "totalShardCount");
-		this.primaryShardCount = ApiTypeHelper.requireNonNull(builder.primaryShardCount, this, "primaryShardCount");
-		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
-		this.totalSizeBytes = ApiTypeHelper.requireNonNull(builder.totalSizeBytes, this, "totalSizeBytes");
-		this.primarySizeBytes = ApiTypeHelper.requireNonNull(builder.primarySizeBytes, this, "primarySizeBytes");
-		this.primaryShardSizeAvgBytes = ApiTypeHelper.requireNonNull(builder.primaryShardSizeAvgBytes, this,
-				"primaryShardSizeAvgBytes");
-		this.primaryShardSizeMedianBytes = ApiTypeHelper.requireNonNull(builder.primaryShardSizeMedianBytes, this,
-				"primaryShardSizeMedianBytes");
-		this.primaryShardSizeMadBytes = ApiTypeHelper.requireNonNull(builder.primaryShardSizeMadBytes, this,
-				"primaryShardSizeMadBytes");
+		this.nodeCount = ApiTypeHelper.requireNonNullWithDefault(builder.nodeCount, this, "nodeCount",
+				this.nodeCount());
+		this.indexCount = ApiTypeHelper.requireNonNullWithDefault(builder.indexCount, this, "indexCount",
+				this.indexCount());
+		this.totalShardCount = ApiTypeHelper.requireNonNullWithDefault(builder.totalShardCount, this, "totalShardCount",
+				this.totalShardCount());
+		this.primaryShardCount = ApiTypeHelper.requireNonNullWithDefault(builder.primaryShardCount, this,
+				"primaryShardCount", this.primaryShardCount());
+		this.docCount = ApiTypeHelper.requireNonNullWithDefault(builder.docCount, this, "docCount", this.docCount());
+		this.totalSizeBytes = ApiTypeHelper.requireNonNullWithDefault(builder.totalSizeBytes, this, "totalSizeBytes",
+				this.totalSizeBytes());
+		this.primarySizeBytes = ApiTypeHelper.requireNonNullWithDefault(builder.primarySizeBytes, this,
+				"primarySizeBytes", this.primarySizeBytes());
+		this.primaryShardSizeAvgBytes = ApiTypeHelper.requireNonNullWithDefault(builder.primaryShardSizeAvgBytes, this,
+				"primaryShardSizeAvgBytes", this.primaryShardSizeAvgBytes());
+		this.primaryShardSizeMedianBytes = ApiTypeHelper.requireNonNullWithDefault(builder.primaryShardSizeMedianBytes,
+				this, "primaryShardSizeMedianBytes", this.primaryShardSizeMedianBytes());
+		this.primaryShardSizeMadBytes = ApiTypeHelper.requireNonNullWithDefault(builder.primaryShardSizeMadBytes, this,
+				"primaryShardSizeMadBytes", this.primaryShardSizeMadBytes());
 
 	}
 

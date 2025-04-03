@@ -84,10 +84,10 @@ public class PutGeoipDatabaseRequest extends RequestBase implements JsonpSeriali
 
 	private PutGeoipDatabaseRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 		this.masterTimeout = builder.masterTimeout;
-		this.maxmind = ApiTypeHelper.requireNonNull(builder.maxmind, this, "maxmind");
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.maxmind = ApiTypeHelper.requireNonNullWithDefault(builder.maxmind, this, "maxmind", this.maxmind());
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 		this.timeout = builder.timeout;
 
 	}

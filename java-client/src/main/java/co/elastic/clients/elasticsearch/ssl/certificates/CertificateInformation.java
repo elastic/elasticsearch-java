@@ -85,13 +85,16 @@ public class CertificateInformation implements JsonpSerializable {
 	private CertificateInformation(Builder builder) {
 
 		this.alias = builder.alias;
-		this.expiry = ApiTypeHelper.requireNonNull(builder.expiry, this, "expiry");
-		this.format = ApiTypeHelper.requireNonNull(builder.format, this, "format");
-		this.hasPrivateKey = ApiTypeHelper.requireNonNull(builder.hasPrivateKey, this, "hasPrivateKey");
+		this.expiry = ApiTypeHelper.requireNonNullWithDefault(builder.expiry, this, "expiry", this.expiry());
+		this.format = ApiTypeHelper.requireNonNullWithDefault(builder.format, this, "format", this.format());
+		this.hasPrivateKey = ApiTypeHelper.requireNonNullWithDefault(builder.hasPrivateKey, this, "hasPrivateKey",
+				this.hasPrivateKey());
 		this.issuer = builder.issuer;
-		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
-		this.serialNumber = ApiTypeHelper.requireNonNull(builder.serialNumber, this, "serialNumber");
-		this.subjectDn = ApiTypeHelper.requireNonNull(builder.subjectDn, this, "subjectDn");
+		this.path = ApiTypeHelper.requireNonNullWithDefault(builder.path, this, "path", this.path());
+		this.serialNumber = ApiTypeHelper.requireNonNullWithDefault(builder.serialNumber, this, "serialNumber",
+				this.serialNumber());
+		this.subjectDn = ApiTypeHelper.requireNonNullWithDefault(builder.subjectDn, this, "subjectDn",
+				this.subjectDn());
 
 	}
 

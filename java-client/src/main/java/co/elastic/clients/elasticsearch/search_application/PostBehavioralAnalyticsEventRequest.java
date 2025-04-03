@@ -83,10 +83,12 @@ public class PostBehavioralAnalyticsEventRequest extends RequestBase implements 
 
 	private PostBehavioralAnalyticsEventRequest(Builder builder) {
 
-		this.collectionName = ApiTypeHelper.requireNonNull(builder.collectionName, this, "collectionName");
+		this.collectionName = ApiTypeHelper.requireNonNullWithDefault(builder.collectionName, this, "collectionName",
+				this.collectionName());
 		this.debug = builder.debug;
-		this.eventType = ApiTypeHelper.requireNonNull(builder.eventType, this, "eventType");
-		this.payload = ApiTypeHelper.requireNonNull(builder.payload, this, "payload");
+		this.eventType = ApiTypeHelper.requireNonNullWithDefault(builder.eventType, this, "eventType",
+				this.eventType());
+		this.payload = ApiTypeHelper.requireNonNullWithDefault(builder.payload, this, "payload", this.payload());
 
 	}
 

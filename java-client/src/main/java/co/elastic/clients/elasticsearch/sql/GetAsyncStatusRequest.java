@@ -70,7 +70,7 @@ public class GetAsyncStatusRequest extends RequestBase {
 
 	private GetAsyncStatusRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 
 	}
 

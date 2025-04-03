@@ -70,7 +70,7 @@ public class GeoIpStatsResponse implements JsonpSerializable {
 
 	private GeoIpStatsResponse(Builder builder) {
 
-		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
+		this.stats = ApiTypeHelper.requireNonNullWithDefault(builder.stats, this, "stats", this.stats());
 		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}

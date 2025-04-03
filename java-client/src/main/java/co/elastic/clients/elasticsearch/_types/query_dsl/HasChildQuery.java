@@ -88,9 +88,9 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 		this.innerHits = builder.innerHits;
 		this.maxChildren = builder.maxChildren;
 		this.minChildren = builder.minChildren;
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
 		this.scoreMode = builder.scoreMode;
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
 
 	}
 

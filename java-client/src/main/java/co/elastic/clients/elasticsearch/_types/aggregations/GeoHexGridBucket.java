@@ -64,7 +64,7 @@ public class GeoHexGridBucket extends MultiBucketBase {
 	private GeoHexGridBucket(Builder builder) {
 		super(builder);
 
-		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
+		this.key = ApiTypeHelper.requireNonNullWithDefault(builder.key, this, "key", this.key());
 
 	}
 

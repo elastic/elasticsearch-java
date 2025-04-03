@@ -64,7 +64,7 @@ public class NumericFielddata implements JsonpSerializable {
 
 	private NumericFielddata(Builder builder) {
 
-		this.format = ApiTypeHelper.requireNonNull(builder.format, this, "format");
+		this.format = ApiTypeHelper.requireNonNullWithDefault(builder.format, this, "format", this.format());
 
 	}
 

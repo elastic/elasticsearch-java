@@ -68,8 +68,8 @@ public class DownsamplingRound implements JsonpSerializable {
 
 	private DownsamplingRound(Builder builder) {
 
-		this.after = ApiTypeHelper.requireNonNull(builder.after, this, "after");
-		this.config = ApiTypeHelper.requireNonNull(builder.config, this, "config");
+		this.after = ApiTypeHelper.requireNonNullWithDefault(builder.after, this, "after", this.after());
+		this.config = ApiTypeHelper.requireNonNullWithDefault(builder.config, this, "config", this.config());
 
 	}
 

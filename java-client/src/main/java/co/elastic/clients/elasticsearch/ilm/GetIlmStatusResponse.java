@@ -65,7 +65,8 @@ public class GetIlmStatusResponse implements JsonpSerializable {
 
 	private GetIlmStatusResponse(Builder builder) {
 
-		this.operationMode = ApiTypeHelper.requireNonNull(builder.operationMode, this, "operationMode");
+		this.operationMode = ApiTypeHelper.requireNonNullWithDefault(builder.operationMode, this, "operationMode",
+				this.operationMode());
 
 	}
 

@@ -66,8 +66,8 @@ public class LatLonGeoLocation implements JsonpSerializable {
 
 	private LatLonGeoLocation(Builder builder) {
 
-		this.lat = ApiTypeHelper.requireNonNull(builder.lat, this, "lat");
-		this.lon = ApiTypeHelper.requireNonNull(builder.lon, this, "lon");
+		this.lat = ApiTypeHelper.requireNonNullWithDefault(builder.lat, this, "lat", this.lat());
+		this.lon = ApiTypeHelper.requireNonNullWithDefault(builder.lon, this, "lon", this.lon());
 
 	}
 

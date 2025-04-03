@@ -81,7 +81,8 @@ public class ClusterInfoResponse implements JsonpSerializable {
 
 	private ClusterInfoResponse(Builder builder) {
 
-		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.clusterName = ApiTypeHelper.requireNonNullWithDefault(builder.clusterName, this, "clusterName",
+				this.clusterName());
 		this.http = builder.http;
 		this.ingest = builder.ingest;
 		this.threadPool = ApiTypeHelper.unmodifiable(builder.threadPool);

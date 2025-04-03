@@ -87,8 +87,9 @@ public class PutTrainedModelAliasRequest extends RequestBase {
 
 	private PutTrainedModelAliasRequest(Builder builder) {
 
-		this.modelAlias = ApiTypeHelper.requireNonNull(builder.modelAlias, this, "modelAlias");
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelAlias = ApiTypeHelper.requireNonNullWithDefault(builder.modelAlias, this, "modelAlias",
+				this.modelAlias());
+		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
 		this.reassign = builder.reassign;
 
 	}

@@ -66,7 +66,8 @@ public class RoleDescriptorWrapper implements JsonpSerializable {
 
 	private RoleDescriptorWrapper(Builder builder) {
 
-		this.roleDescriptor = ApiTypeHelper.requireNonNull(builder.roleDescriptor, this, "roleDescriptor");
+		this.roleDescriptor = ApiTypeHelper.requireNonNullWithDefault(builder.roleDescriptor, this, "roleDescriptor",
+				this.roleDescriptor());
 
 	}
 

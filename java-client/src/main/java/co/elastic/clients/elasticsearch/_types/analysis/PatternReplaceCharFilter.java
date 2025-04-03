@@ -71,7 +71,7 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
 		super(builder);
 
 		this.flags = builder.flags;
-		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
+		this.pattern = ApiTypeHelper.requireNonNullWithDefault(builder.pattern, this, "pattern", this.pattern());
 		this.replacement = builder.replacement;
 
 	}

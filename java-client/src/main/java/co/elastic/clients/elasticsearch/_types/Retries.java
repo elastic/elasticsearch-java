@@ -66,8 +66,8 @@ public class Retries implements JsonpSerializable {
 
 	private Retries(Builder builder) {
 
-		this.bulk = ApiTypeHelper.requireNonNull(builder.bulk, this, "bulk");
-		this.search = ApiTypeHelper.requireNonNull(builder.search, this, "search");
+		this.bulk = ApiTypeHelper.requireNonNullWithDefault(builder.bulk, this, "bulk", this.bulk());
+		this.search = ApiTypeHelper.requireNonNullWithDefault(builder.search, this, "search", this.search());
 
 	}
 

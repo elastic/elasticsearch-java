@@ -77,12 +77,14 @@ public class WatsonxServiceSettings implements JsonpSerializable {
 
 	private WatsonxServiceSettings(Builder builder) {
 
-		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
-		this.apiVersion = ApiTypeHelper.requireNonNull(builder.apiVersion, this, "apiVersion");
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.projectId = ApiTypeHelper.requireNonNull(builder.projectId, this, "projectId");
+		this.apiKey = ApiTypeHelper.requireNonNullWithDefault(builder.apiKey, this, "apiKey", this.apiKey());
+		this.apiVersion = ApiTypeHelper.requireNonNullWithDefault(builder.apiVersion, this, "apiVersion",
+				this.apiVersion());
+		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
+		this.projectId = ApiTypeHelper.requireNonNullWithDefault(builder.projectId, this, "projectId",
+				this.projectId());
 		this.rateLimit = builder.rateLimit;
-		this.url = ApiTypeHelper.requireNonNull(builder.url, this, "url");
+		this.url = ApiTypeHelper.requireNonNullWithDefault(builder.url, this, "url", this.url());
 
 	}
 

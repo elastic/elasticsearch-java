@@ -85,7 +85,7 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
 		super(builder);
 
 		this.discardPunctuation = builder.discardPunctuation;
-		this.mode = ApiTypeHelper.requireNonNull(builder.mode, this, "mode");
+		this.mode = ApiTypeHelper.requireNonNullWithDefault(builder.mode, this, "mode", this.mode());
 		this.nbestCost = builder.nbestCost;
 		this.nbestExamples = builder.nbestExamples;
 		this.userDictionary = builder.userDictionary;

@@ -68,9 +68,9 @@ public class PutSynonymResponse implements JsonpSerializable {
 
 	private PutSynonymResponse(Builder builder) {
 
-		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
-		this.reloadAnalyzersDetails = ApiTypeHelper.requireNonNull(builder.reloadAnalyzersDetails, this,
-				"reloadAnalyzersDetails");
+		this.result = ApiTypeHelper.requireNonNullWithDefault(builder.result, this, "result", this.result());
+		this.reloadAnalyzersDetails = ApiTypeHelper.requireNonNullWithDefault(builder.reloadAnalyzersDetails, this,
+				"reloadAnalyzersDetails", this.reloadAnalyzersDetails());
 
 	}
 

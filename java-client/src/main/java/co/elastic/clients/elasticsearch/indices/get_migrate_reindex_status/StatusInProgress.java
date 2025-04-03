@@ -71,9 +71,11 @@ public class StatusInProgress implements JsonpSerializable {
 
 	private StatusInProgress(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.totalDocCount = ApiTypeHelper.requireNonNull(builder.totalDocCount, this, "totalDocCount");
-		this.reindexedDocCount = ApiTypeHelper.requireNonNull(builder.reindexedDocCount, this, "reindexedDocCount");
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.totalDocCount = ApiTypeHelper.requireNonNullWithDefault(builder.totalDocCount, this, "totalDocCount",
+				this.totalDocCount());
+		this.reindexedDocCount = ApiTypeHelper.requireNonNullWithDefault(builder.reindexedDocCount, this,
+				"reindexedDocCount", this.reindexedDocCount());
 
 	}
 

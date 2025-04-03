@@ -73,7 +73,7 @@ public class ActionStatus implements JsonpSerializable {
 
 	private ActionStatus(Builder builder) {
 
-		this.ack = ApiTypeHelper.requireNonNull(builder.ack, this, "ack");
+		this.ack = ApiTypeHelper.requireNonNullWithDefault(builder.ack, this, "ack", this.ack());
 		this.lastExecution = builder.lastExecution;
 		this.lastSuccessfulExecution = builder.lastSuccessfulExecution;
 		this.lastThrottle = builder.lastThrottle;

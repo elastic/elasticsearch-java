@@ -119,7 +119,8 @@ public class AnomalyCause implements JsonpSerializable {
 		this.overFieldValue = builder.overFieldValue;
 		this.partitionFieldName = builder.partitionFieldName;
 		this.partitionFieldValue = builder.partitionFieldValue;
-		this.probability = ApiTypeHelper.requireNonNull(builder.probability, this, "probability");
+		this.probability = ApiTypeHelper.requireNonNullWithDefault(builder.probability, this, "probability",
+				this.probability());
 		this.typical = ApiTypeHelper.unmodifiable(builder.typical);
 
 	}

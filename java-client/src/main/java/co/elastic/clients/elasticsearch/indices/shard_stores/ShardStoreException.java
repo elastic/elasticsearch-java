@@ -68,8 +68,8 @@ public class ShardStoreException implements JsonpSerializable {
 
 	private ShardStoreException(Builder builder) {
 
-		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.reason = ApiTypeHelper.requireNonNullWithDefault(builder.reason, this, "reason", this.reason());
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
 
 	}
 

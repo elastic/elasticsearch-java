@@ -109,7 +109,7 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 		this.followerCluster = builder.followerCluster;
 		this.followerIndex = builder.followerIndex;
 		this.followerIndexUuid = builder.followerIndexUuid;
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
 		this.leaderRemoteCluster = builder.leaderRemoteCluster;
 		this.timeout = builder.timeout;
 

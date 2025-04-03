@@ -75,7 +75,7 @@ public class DeleteUserRequest extends RequestBase {
 	private DeleteUserRequest(Builder builder) {
 
 		this.refresh = builder.refresh;
-		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
+		this.username = ApiTypeHelper.requireNonNullWithDefault(builder.username, this, "username", this.username());
 
 	}
 

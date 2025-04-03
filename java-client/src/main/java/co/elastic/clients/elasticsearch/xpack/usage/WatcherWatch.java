@@ -75,7 +75,7 @@ public class WatcherWatch implements JsonpSerializable {
 		this.input = ApiTypeHelper.unmodifiableRequired(builder.input, this, "input");
 		this.condition = ApiTypeHelper.unmodifiable(builder.condition);
 		this.action = ApiTypeHelper.unmodifiable(builder.action);
-		this.trigger = ApiTypeHelper.requireNonNull(builder.trigger, this, "trigger");
+		this.trigger = ApiTypeHelper.requireNonNullWithDefault(builder.trigger, this, "trigger", this.trigger());
 
 	}
 

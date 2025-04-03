@@ -79,7 +79,8 @@ public class ExploreControls implements JsonpSerializable {
 		this.sampleDiversity = builder.sampleDiversity;
 		this.sampleSize = builder.sampleSize;
 		this.timeout = builder.timeout;
-		this.useSignificance = ApiTypeHelper.requireNonNull(builder.useSignificance, this, "useSignificance");
+		this.useSignificance = ApiTypeHelper.requireNonNullWithDefault(builder.useSignificance, this, "useSignificance",
+				this.useSignificance());
 
 	}
 

@@ -69,7 +69,8 @@ public class InfoFeatureState implements JsonpSerializable {
 
 	private InfoFeatureState(Builder builder) {
 
-		this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+		this.featureName = ApiTypeHelper.requireNonNullWithDefault(builder.featureName, this, "featureName",
+				this.featureName());
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}

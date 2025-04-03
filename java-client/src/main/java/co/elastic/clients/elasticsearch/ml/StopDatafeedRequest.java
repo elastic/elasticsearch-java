@@ -85,7 +85,8 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 	private StopDatafeedRequest(Builder builder) {
 
 		this.allowNoMatch = builder.allowNoMatch;
-		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.datafeedId = ApiTypeHelper.requireNonNullWithDefault(builder.datafeedId, this, "datafeedId",
+				this.datafeedId());
 		this.force = builder.force;
 		this.timeout = builder.timeout;
 

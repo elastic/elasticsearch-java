@@ -83,7 +83,8 @@ public class ResetTransformRequest extends RequestBase {
 
 		this.force = builder.force;
 		this.timeout = builder.timeout;
-		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
+		this.transformId = ApiTypeHelper.requireNonNullWithDefault(builder.transformId, this, "transformId",
+				this.transformId());
 
 	}
 

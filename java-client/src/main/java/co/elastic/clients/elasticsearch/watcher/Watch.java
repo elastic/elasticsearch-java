@@ -92,14 +92,15 @@ public class Watch implements JsonpSerializable {
 	private Watch(Builder builder) {
 
 		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
-		this.condition = ApiTypeHelper.requireNonNull(builder.condition, this, "condition");
-		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
+		this.condition = ApiTypeHelper.requireNonNullWithDefault(builder.condition, this, "condition",
+				this.condition());
+		this.input = ApiTypeHelper.requireNonNullWithDefault(builder.input, this, "input", this.input());
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.status = builder.status;
 		this.throttlePeriod = builder.throttlePeriod;
 		this.throttlePeriodInMillis = builder.throttlePeriodInMillis;
 		this.transform = builder.transform;
-		this.trigger = ApiTypeHelper.requireNonNull(builder.trigger, this, "trigger");
+		this.trigger = ApiTypeHelper.requireNonNullWithDefault(builder.trigger, this, "trigger", this.trigger());
 
 	}
 

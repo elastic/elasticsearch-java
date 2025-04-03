@@ -101,7 +101,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 		this.advanceTime = builder.advanceTime;
 		this.calcInterim = builder.calcInterim;
 		this.end = builder.end;
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
 		this.skipTime = builder.skipTime;
 		this.start = builder.start;
 

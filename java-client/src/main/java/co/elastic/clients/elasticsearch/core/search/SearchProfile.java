@@ -73,7 +73,8 @@ public class SearchProfile implements JsonpSerializable {
 
 		this.collector = ApiTypeHelper.unmodifiableRequired(builder.collector, this, "collector");
 		this.query = ApiTypeHelper.unmodifiableRequired(builder.query, this, "query");
-		this.rewriteTime = ApiTypeHelper.requireNonNull(builder.rewriteTime, this, "rewriteTime");
+		this.rewriteTime = ApiTypeHelper.requireNonNullWithDefault(builder.rewriteTime, this, "rewriteTime",
+				this.rewriteTime());
 
 	}
 

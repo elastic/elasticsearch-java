@@ -101,7 +101,7 @@ public class Email implements JsonpSerializable {
 		this.priority = builder.priority;
 		this.replyTo = ApiTypeHelper.unmodifiable(builder.replyTo);
 		this.sentDate = builder.sentDate;
-		this.subject = ApiTypeHelper.requireNonNull(builder.subject, this, "subject");
+		this.subject = ApiTypeHelper.requireNonNullWithDefault(builder.subject, this, "subject", this.subject());
 		this.to = ApiTypeHelper.unmodifiableRequired(builder.to, this, "to");
 		this.attachments = ApiTypeHelper.unmodifiable(builder.attachments);
 

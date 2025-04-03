@@ -70,9 +70,9 @@ public abstract class SuggestBase implements JsonpSerializable {
 
 	protected SuggestBase(AbstractBuilder<?> builder) {
 
-		this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length");
-		this.offset = ApiTypeHelper.requireNonNull(builder.offset, this, "offset");
-		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
+		this.length = ApiTypeHelper.requireNonNullWithDefault(builder.length, this, "length", this.length());
+		this.offset = ApiTypeHelper.requireNonNullWithDefault(builder.offset, this, "offset", this.offset());
+		this.text = ApiTypeHelper.requireNonNullWithDefault(builder.text, this, "text", this.text());
 
 	}
 

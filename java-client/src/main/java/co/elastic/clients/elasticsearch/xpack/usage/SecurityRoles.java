@@ -68,9 +68,9 @@ public class SecurityRoles implements JsonpSerializable {
 
 	private SecurityRoles(Builder builder) {
 
-		this.native_ = ApiTypeHelper.requireNonNull(builder.native_, this, "native_");
-		this.dls = ApiTypeHelper.requireNonNull(builder.dls, this, "dls");
-		this.file = ApiTypeHelper.requireNonNull(builder.file, this, "file");
+		this.native_ = ApiTypeHelper.requireNonNullWithDefault(builder.native_, this, "native_", this.native_());
+		this.dls = ApiTypeHelper.requireNonNullWithDefault(builder.dls, this, "dls", this.dls());
+		this.file = ApiTypeHelper.requireNonNullWithDefault(builder.file, this, "file", this.file());
 
 	}
 

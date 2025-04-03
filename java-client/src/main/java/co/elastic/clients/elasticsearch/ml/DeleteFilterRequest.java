@@ -72,7 +72,7 @@ public class DeleteFilterRequest extends RequestBase {
 
 	private DeleteFilterRequest(Builder builder) {
 
-		this.filterId = ApiTypeHelper.requireNonNull(builder.filterId, this, "filterId");
+		this.filterId = ApiTypeHelper.requireNonNullWithDefault(builder.filterId, this, "filterId", this.filterId());
 
 	}
 

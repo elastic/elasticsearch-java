@@ -79,10 +79,11 @@ public class DeleteServiceTokenRequest extends RequestBase {
 
 	private DeleteServiceTokenRequest(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.namespace = ApiTypeHelper.requireNonNull(builder.namespace, this, "namespace");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.namespace = ApiTypeHelper.requireNonNullWithDefault(builder.namespace, this, "namespace",
+				this.namespace());
 		this.refresh = builder.refresh;
-		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
+		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
 
 	}
 

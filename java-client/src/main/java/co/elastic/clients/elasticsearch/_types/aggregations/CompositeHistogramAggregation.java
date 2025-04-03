@@ -63,7 +63,7 @@ public class CompositeHistogramAggregation extends CompositeAggregationBase {
 	private CompositeHistogramAggregation(Builder builder) {
 		super(builder);
 
-		this.interval = ApiTypeHelper.requireNonNull(builder.interval, this, "interval");
+		this.interval = ApiTypeHelper.requireNonNullWithDefault(builder.interval, this, "interval", this.interval());
 
 	}
 

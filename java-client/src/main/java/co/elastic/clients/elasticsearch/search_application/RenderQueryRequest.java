@@ -84,7 +84,7 @@ public class RenderQueryRequest extends RequestBase implements JsonpSerializable
 
 	private RenderQueryRequest(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 		this.params = ApiTypeHelper.unmodifiable(builder.params);
 
 	}

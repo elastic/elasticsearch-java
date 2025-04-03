@@ -66,8 +66,8 @@ public class EstimateModelMemoryResponse implements JsonpSerializable {
 
 	private EstimateModelMemoryResponse(Builder builder) {
 
-		this.modelMemoryEstimate = ApiTypeHelper.requireNonNull(builder.modelMemoryEstimate, this,
-				"modelMemoryEstimate");
+		this.modelMemoryEstimate = ApiTypeHelper.requireNonNullWithDefault(builder.modelMemoryEstimate, this,
+				"modelMemoryEstimate", this.modelMemoryEstimate());
 
 	}
 

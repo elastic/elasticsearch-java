@@ -77,7 +77,7 @@ public class ExecutePolicyRequest extends RequestBase {
 	private ExecutePolicyRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}

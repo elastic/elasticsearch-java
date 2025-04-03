@@ -66,8 +66,8 @@ public class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	private IcuAnalyzer(Builder builder) {
 
-		this.method = ApiTypeHelper.requireNonNull(builder.method, this, "method");
-		this.mode = ApiTypeHelper.requireNonNull(builder.mode, this, "mode");
+		this.method = ApiTypeHelper.requireNonNullWithDefault(builder.method, this, "method", this.method());
+		this.mode = ApiTypeHelper.requireNonNullWithDefault(builder.mode, this, "mode", this.mode());
 
 	}
 

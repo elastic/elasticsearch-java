@@ -86,7 +86,8 @@ public class UpdateFilteringRequest extends RequestBase implements JsonpSerializ
 	private UpdateFilteringRequest(Builder builder) {
 
 		this.advancedSnippet = builder.advancedSnippet;
-		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
+		this.connectorId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorId, this, "connectorId",
+				this.connectorId());
 		this.filtering = ApiTypeHelper.unmodifiable(builder.filtering);
 		this.rules = ApiTypeHelper.unmodifiable(builder.rules);
 

@@ -73,8 +73,8 @@ public class SnapshotRestore implements JsonpSerializable {
 	private SnapshotRestore(Builder builder) {
 
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
-		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.snapshot = ApiTypeHelper.requireNonNullWithDefault(builder.snapshot, this, "snapshot", this.snapshot());
+		this.shards = ApiTypeHelper.requireNonNullWithDefault(builder.shards, this, "shards", this.shards());
 
 	}
 

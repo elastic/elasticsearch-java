@@ -90,15 +90,20 @@ public class NodeInfoJvmMemory implements JsonpSerializable {
 	private NodeInfoJvmMemory(Builder builder) {
 
 		this.directMax = builder.directMax;
-		this.directMaxInBytes = ApiTypeHelper.requireNonNull(builder.directMaxInBytes, this, "directMaxInBytes");
+		this.directMaxInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.directMaxInBytes, this,
+				"directMaxInBytes", this.directMaxInBytes());
 		this.heapInit = builder.heapInit;
-		this.heapInitInBytes = ApiTypeHelper.requireNonNull(builder.heapInitInBytes, this, "heapInitInBytes");
+		this.heapInitInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.heapInitInBytes, this, "heapInitInBytes",
+				this.heapInitInBytes());
 		this.heapMax = builder.heapMax;
-		this.heapMaxInBytes = ApiTypeHelper.requireNonNull(builder.heapMaxInBytes, this, "heapMaxInBytes");
+		this.heapMaxInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.heapMaxInBytes, this, "heapMaxInBytes",
+				this.heapMaxInBytes());
 		this.nonHeapInit = builder.nonHeapInit;
-		this.nonHeapInitInBytes = ApiTypeHelper.requireNonNull(builder.nonHeapInitInBytes, this, "nonHeapInitInBytes");
+		this.nonHeapInitInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.nonHeapInitInBytes, this,
+				"nonHeapInitInBytes", this.nonHeapInitInBytes());
 		this.nonHeapMax = builder.nonHeapMax;
-		this.nonHeapMaxInBytes = ApiTypeHelper.requireNonNull(builder.nonHeapMaxInBytes, this, "nonHeapMaxInBytes");
+		this.nonHeapMaxInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.nonHeapMaxInBytes, this,
+				"nonHeapMaxInBytes", this.nonHeapMaxInBytes());
 
 	}
 

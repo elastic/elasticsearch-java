@@ -65,7 +65,8 @@ public class AnalyticsCollection implements JsonpSerializable {
 
 	private AnalyticsCollection(Builder builder) {
 
-		this.eventDataStream = ApiTypeHelper.requireNonNull(builder.eventDataStream, this, "eventDataStream");
+		this.eventDataStream = ApiTypeHelper.requireNonNullWithDefault(builder.eventDataStream, this, "eventDataStream",
+				this.eventDataStream());
 
 	}
 

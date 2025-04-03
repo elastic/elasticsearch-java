@@ -74,8 +74,8 @@ public class GeoPolygonQuery extends QueryBase implements QueryVariant {
 
 	private GeoPolygonQuery(Builder builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.polygon = ApiTypeHelper.requireNonNull(builder.polygon, this, "polygon");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.polygon = ApiTypeHelper.requireNonNullWithDefault(builder.polygon, this, "polygon", this.polygon());
 
 		this.validationMethod = builder.validationMethod;
 		this.ignoreUnmapped = builder.ignoreUnmapped;

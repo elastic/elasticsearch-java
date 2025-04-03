@@ -106,13 +106,14 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 
 	private PutAmazonbedrockRequest(Builder builder) {
 
-		this.amazonbedrockInferenceId = ApiTypeHelper.requireNonNull(builder.amazonbedrockInferenceId, this,
-				"amazonbedrockInferenceId");
+		this.amazonbedrockInferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.amazonbedrockInferenceId, this,
+				"amazonbedrockInferenceId", this.amazonbedrockInferenceId());
 		this.chunkingSettings = builder.chunkingSettings;
-		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
-		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
+		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
+		this.serviceSettings = ApiTypeHelper.requireNonNullWithDefault(builder.serviceSettings, this, "serviceSettings",
+				this.serviceSettings());
 		this.taskSettings = builder.taskSettings;
-		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
+		this.taskType = ApiTypeHelper.requireNonNullWithDefault(builder.taskType, this, "taskType", this.taskType());
 
 	}
 

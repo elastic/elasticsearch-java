@@ -75,11 +75,14 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 	private WatchRecordStats(Builder builder) {
 		super(builder);
 
-		this.executionPhase = ApiTypeHelper.requireNonNull(builder.executionPhase, this, "executionPhase");
-		this.triggeredTime = ApiTypeHelper.requireNonNull(builder.triggeredTime, this, "triggeredTime");
+		this.executionPhase = ApiTypeHelper.requireNonNullWithDefault(builder.executionPhase, this, "executionPhase",
+				this.executionPhase());
+		this.triggeredTime = ApiTypeHelper.requireNonNullWithDefault(builder.triggeredTime, this, "triggeredTime",
+				this.triggeredTime());
 		this.executedActions = ApiTypeHelper.unmodifiable(builder.executedActions);
-		this.watchId = ApiTypeHelper.requireNonNull(builder.watchId, this, "watchId");
-		this.watchRecordId = ApiTypeHelper.requireNonNull(builder.watchRecordId, this, "watchRecordId");
+		this.watchId = ApiTypeHelper.requireNonNullWithDefault(builder.watchId, this, "watchId", this.watchId());
+		this.watchRecordId = ApiTypeHelper.requireNonNullWithDefault(builder.watchRecordId, this, "watchRecordId",
+				this.watchRecordId());
 
 	}
 

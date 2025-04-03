@@ -64,7 +64,7 @@ public class SignificantStringTermsBucket extends SignificantTermsBucketBase {
 	private SignificantStringTermsBucket(Builder builder) {
 		super(builder);
 
-		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
+		this.key = ApiTypeHelper.requireNonNullWithDefault(builder.key, this, "key", this.key());
 
 	}
 

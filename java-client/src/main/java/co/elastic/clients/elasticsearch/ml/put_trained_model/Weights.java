@@ -64,7 +64,7 @@ public class Weights implements JsonpSerializable {
 
 	private Weights(Builder builder) {
 
-		this.weights = ApiTypeHelper.requireNonNull(builder.weights, this, "weights");
+		this.weights = ApiTypeHelper.requireNonNullWithDefault(builder.weights, this, "weights", this.weights());
 
 	}
 

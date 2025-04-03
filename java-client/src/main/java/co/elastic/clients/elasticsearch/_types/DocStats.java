@@ -68,7 +68,7 @@ public class DocStats implements JsonpSerializable {
 
 	private DocStats(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
 		this.deleted = builder.deleted;
 
 	}

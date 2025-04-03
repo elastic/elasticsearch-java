@@ -65,7 +65,7 @@ public class GetWatcherSettingsResponse implements JsonpSerializable {
 
 	private GetWatcherSettingsResponse(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
 
 	}
 

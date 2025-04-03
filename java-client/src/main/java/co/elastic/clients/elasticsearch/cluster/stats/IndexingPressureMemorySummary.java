@@ -83,15 +83,19 @@ public class IndexingPressureMemorySummary implements JsonpSerializable {
 
 	private IndexingPressureMemorySummary(Builder builder) {
 
-		this.allInBytes = ApiTypeHelper.requireNonNull(builder.allInBytes, this, "allInBytes");
-		this.combinedCoordinatingAndPrimaryInBytes = ApiTypeHelper.requireNonNull(
-				builder.combinedCoordinatingAndPrimaryInBytes, this, "combinedCoordinatingAndPrimaryInBytes");
-		this.coordinatingInBytes = ApiTypeHelper.requireNonNull(builder.coordinatingInBytes, this,
-				"coordinatingInBytes");
+		this.allInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.allInBytes, this, "allInBytes",
+				this.allInBytes());
+		this.combinedCoordinatingAndPrimaryInBytes = ApiTypeHelper.requireNonNullWithDefault(
+				builder.combinedCoordinatingAndPrimaryInBytes, this, "combinedCoordinatingAndPrimaryInBytes",
+				this.combinedCoordinatingAndPrimaryInBytes());
+		this.coordinatingInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.coordinatingInBytes, this,
+				"coordinatingInBytes", this.coordinatingInBytes());
 		this.coordinatingRejections = builder.coordinatingRejections;
-		this.primaryInBytes = ApiTypeHelper.requireNonNull(builder.primaryInBytes, this, "primaryInBytes");
+		this.primaryInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.primaryInBytes, this, "primaryInBytes",
+				this.primaryInBytes());
 		this.primaryRejections = builder.primaryRejections;
-		this.replicaInBytes = ApiTypeHelper.requireNonNull(builder.replicaInBytes, this, "replicaInBytes");
+		this.replicaInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.replicaInBytes, this, "replicaInBytes",
+				this.replicaInBytes());
 		this.replicaRejections = builder.replicaRejections;
 
 	}

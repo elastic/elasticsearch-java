@@ -64,7 +64,7 @@ public class DeleteUserResponse implements JsonpSerializable {
 
 	private DeleteUserResponse(Builder builder) {
 
-		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+		this.found = ApiTypeHelper.requireNonNullWithDefault(builder.found, this, "found", this.found());
 
 	}
 

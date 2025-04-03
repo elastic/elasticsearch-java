@@ -87,18 +87,30 @@ public class RollupJobStats implements JsonpSerializable {
 
 	private RollupJobStats(Builder builder) {
 
-		this.documentsProcessed = ApiTypeHelper.requireNonNull(builder.documentsProcessed, this, "documentsProcessed");
-		this.indexFailures = ApiTypeHelper.requireNonNull(builder.indexFailures, this, "indexFailures");
-		this.indexTimeInMs = ApiTypeHelper.requireNonNull(builder.indexTimeInMs, this, "indexTimeInMs");
-		this.indexTotal = ApiTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal");
-		this.pagesProcessed = ApiTypeHelper.requireNonNull(builder.pagesProcessed, this, "pagesProcessed");
-		this.rollupsIndexed = ApiTypeHelper.requireNonNull(builder.rollupsIndexed, this, "rollupsIndexed");
-		this.searchFailures = ApiTypeHelper.requireNonNull(builder.searchFailures, this, "searchFailures");
-		this.searchTimeInMs = ApiTypeHelper.requireNonNull(builder.searchTimeInMs, this, "searchTimeInMs");
-		this.searchTotal = ApiTypeHelper.requireNonNull(builder.searchTotal, this, "searchTotal");
-		this.triggerCount = ApiTypeHelper.requireNonNull(builder.triggerCount, this, "triggerCount");
-		this.processingTimeInMs = ApiTypeHelper.requireNonNull(builder.processingTimeInMs, this, "processingTimeInMs");
-		this.processingTotal = ApiTypeHelper.requireNonNull(builder.processingTotal, this, "processingTotal");
+		this.documentsProcessed = ApiTypeHelper.requireNonNullWithDefault(builder.documentsProcessed, this,
+				"documentsProcessed", this.documentsProcessed());
+		this.indexFailures = ApiTypeHelper.requireNonNullWithDefault(builder.indexFailures, this, "indexFailures",
+				this.indexFailures());
+		this.indexTimeInMs = ApiTypeHelper.requireNonNullWithDefault(builder.indexTimeInMs, this, "indexTimeInMs",
+				this.indexTimeInMs());
+		this.indexTotal = ApiTypeHelper.requireNonNullWithDefault(builder.indexTotal, this, "indexTotal",
+				this.indexTotal());
+		this.pagesProcessed = ApiTypeHelper.requireNonNullWithDefault(builder.pagesProcessed, this, "pagesProcessed",
+				this.pagesProcessed());
+		this.rollupsIndexed = ApiTypeHelper.requireNonNullWithDefault(builder.rollupsIndexed, this, "rollupsIndexed",
+				this.rollupsIndexed());
+		this.searchFailures = ApiTypeHelper.requireNonNullWithDefault(builder.searchFailures, this, "searchFailures",
+				this.searchFailures());
+		this.searchTimeInMs = ApiTypeHelper.requireNonNullWithDefault(builder.searchTimeInMs, this, "searchTimeInMs",
+				this.searchTimeInMs());
+		this.searchTotal = ApiTypeHelper.requireNonNullWithDefault(builder.searchTotal, this, "searchTotal",
+				this.searchTotal());
+		this.triggerCount = ApiTypeHelper.requireNonNullWithDefault(builder.triggerCount, this, "triggerCount",
+				this.triggerCount());
+		this.processingTimeInMs = ApiTypeHelper.requireNonNullWithDefault(builder.processingTimeInMs, this,
+				"processingTimeInMs", this.processingTimeInMs());
+		this.processingTotal = ApiTypeHelper.requireNonNullWithDefault(builder.processingTotal, this, "processingTotal",
+				this.processingTotal());
 
 	}
 

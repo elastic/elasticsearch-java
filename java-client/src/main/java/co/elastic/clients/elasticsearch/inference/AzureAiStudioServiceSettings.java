@@ -75,10 +75,11 @@ public class AzureAiStudioServiceSettings implements JsonpSerializable {
 
 	private AzureAiStudioServiceSettings(Builder builder) {
 
-		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
-		this.endpointType = ApiTypeHelper.requireNonNull(builder.endpointType, this, "endpointType");
-		this.target = ApiTypeHelper.requireNonNull(builder.target, this, "target");
-		this.provider = ApiTypeHelper.requireNonNull(builder.provider, this, "provider");
+		this.apiKey = ApiTypeHelper.requireNonNullWithDefault(builder.apiKey, this, "apiKey", this.apiKey());
+		this.endpointType = ApiTypeHelper.requireNonNullWithDefault(builder.endpointType, this, "endpointType",
+				this.endpointType());
+		this.target = ApiTypeHelper.requireNonNullWithDefault(builder.target, this, "target", this.target());
+		this.provider = ApiTypeHelper.requireNonNullWithDefault(builder.provider, this, "provider", this.provider());
 		this.rateLimit = builder.rateLimit;
 
 	}

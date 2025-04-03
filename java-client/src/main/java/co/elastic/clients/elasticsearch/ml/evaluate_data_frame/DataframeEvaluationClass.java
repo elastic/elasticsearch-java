@@ -64,7 +64,8 @@ public class DataframeEvaluationClass extends DataframeEvaluationValue {
 	private DataframeEvaluationClass(Builder builder) {
 		super(builder);
 
-		this.className = ApiTypeHelper.requireNonNull(builder.className, this, "className");
+		this.className = ApiTypeHelper.requireNonNullWithDefault(builder.className, this, "className",
+				this.className());
 
 	}
 

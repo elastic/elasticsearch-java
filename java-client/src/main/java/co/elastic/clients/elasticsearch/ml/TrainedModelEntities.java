@@ -75,11 +75,13 @@ public class TrainedModelEntities implements JsonpSerializable {
 
 	private TrainedModelEntities(Builder builder) {
 
-		this.className = ApiTypeHelper.requireNonNull(builder.className, this, "className");
-		this.classProbability = ApiTypeHelper.requireNonNull(builder.classProbability, this, "classProbability");
-		this.entity = ApiTypeHelper.requireNonNull(builder.entity, this, "entity");
-		this.startPos = ApiTypeHelper.requireNonNull(builder.startPos, this, "startPos");
-		this.endPos = ApiTypeHelper.requireNonNull(builder.endPos, this, "endPos");
+		this.className = ApiTypeHelper.requireNonNullWithDefault(builder.className, this, "className",
+				this.className());
+		this.classProbability = ApiTypeHelper.requireNonNullWithDefault(builder.classProbability, this,
+				"classProbability", this.classProbability());
+		this.entity = ApiTypeHelper.requireNonNullWithDefault(builder.entity, this, "entity", this.entity());
+		this.startPos = ApiTypeHelper.requireNonNullWithDefault(builder.startPos, this, "startPos", this.startPos());
+		this.endPos = ApiTypeHelper.requireNonNullWithDefault(builder.endPos, this, "endPos", this.endPos());
 
 	}
 

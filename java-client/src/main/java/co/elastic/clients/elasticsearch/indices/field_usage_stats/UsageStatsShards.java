@@ -74,11 +74,12 @@ public class UsageStatsShards implements JsonpSerializable {
 
 	private UsageStatsShards(Builder builder) {
 
-		this.routing = ApiTypeHelper.requireNonNull(builder.routing, this, "routing");
-		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
-		this.trackingId = ApiTypeHelper.requireNonNull(builder.trackingId, this, "trackingId");
-		this.trackingStartedAtMillis = ApiTypeHelper.requireNonNull(builder.trackingStartedAtMillis, this,
-				"trackingStartedAtMillis");
+		this.routing = ApiTypeHelper.requireNonNullWithDefault(builder.routing, this, "routing", this.routing());
+		this.stats = ApiTypeHelper.requireNonNullWithDefault(builder.stats, this, "stats", this.stats());
+		this.trackingId = ApiTypeHelper.requireNonNullWithDefault(builder.trackingId, this, "trackingId",
+				this.trackingId());
+		this.trackingStartedAtMillis = ApiTypeHelper.requireNonNullWithDefault(builder.trackingStartedAtMillis, this,
+				"trackingStartedAtMillis", this.trackingStartedAtMillis());
 
 	}
 

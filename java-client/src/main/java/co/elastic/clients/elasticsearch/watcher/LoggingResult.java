@@ -65,7 +65,8 @@ public class LoggingResult implements JsonpSerializable {
 
 	private LoggingResult(Builder builder) {
 
-		this.loggedText = ApiTypeHelper.requireNonNull(builder.loggedText, this, "loggedText");
+		this.loggedText = ApiTypeHelper.requireNonNullWithDefault(builder.loggedText, this, "loggedText",
+				this.loggedText());
 
 	}
 

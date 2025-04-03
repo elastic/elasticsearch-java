@@ -66,7 +66,7 @@ public class NodeInfoIngestDownloader implements JsonpSerializable {
 
 	private NodeInfoIngestDownloader(Builder builder) {
 
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNullWithDefault(builder.enabled, this, "enabled", this.enabled());
 
 	}
 

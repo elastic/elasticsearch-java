@@ -79,7 +79,7 @@ public class RankEvalRequestItem implements JsonpSerializable {
 
 	private RankEvalRequestItem(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 		this.request = builder.request;
 		this.ratings = ApiTypeHelper.unmodifiableRequired(builder.ratings, this, "ratings");
 		this.templateId = builder.templateId;

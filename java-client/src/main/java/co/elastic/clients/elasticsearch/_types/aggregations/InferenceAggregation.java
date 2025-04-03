@@ -67,7 +67,7 @@ public class InferenceAggregation extends PipelineAggregationBase implements Agg
 	private InferenceAggregation(Builder builder) {
 		super(builder);
 
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
 		this.inferenceConfig = builder.inferenceConfig;
 
 	}

@@ -70,8 +70,9 @@ public class HttpRouteRequests implements JsonpSerializable {
 
 	private HttpRouteRequests(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.totalSizeInBytes = ApiTypeHelper.requireNonNull(builder.totalSizeInBytes, this, "totalSizeInBytes");
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
+		this.totalSizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.totalSizeInBytes, this,
+				"totalSizeInBytes", this.totalSizeInBytes());
 		this.sizeHistogram = ApiTypeHelper.unmodifiableRequired(builder.sizeHistogram, this, "sizeHistogram");
 
 	}

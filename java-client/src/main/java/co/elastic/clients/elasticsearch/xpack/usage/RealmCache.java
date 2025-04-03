@@ -64,7 +64,7 @@ public class RealmCache implements JsonpSerializable {
 
 	private RealmCache(Builder builder) {
 
-		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size");
+		this.size = ApiTypeHelper.requireNonNullWithDefault(builder.size, this, "size", this.size());
 
 	}
 

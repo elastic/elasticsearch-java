@@ -71,11 +71,11 @@ public class DataStreamStats implements JsonpSerializable {
 
 	private DataStreamStats(Builder builder) {
 
-		this.backingIndicesInError = ApiTypeHelper.requireNonNull(builder.backingIndicesInError, this,
-				"backingIndicesInError");
-		this.backingIndicesInTotal = ApiTypeHelper.requireNonNull(builder.backingIndicesInTotal, this,
-				"backingIndicesInTotal");
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.backingIndicesInError = ApiTypeHelper.requireNonNullWithDefault(builder.backingIndicesInError, this,
+				"backingIndicesInError", this.backingIndicesInError());
+		this.backingIndicesInTotal = ApiTypeHelper.requireNonNullWithDefault(builder.backingIndicesInTotal, this,
+				"backingIndicesInTotal", this.backingIndicesInTotal());
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 
 	}
 

@@ -66,7 +66,7 @@ public class StateResponse implements JsonpSerializable {
 
 	private StateResponse(Builder builder) {
 
-		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.state = ApiTypeHelper.requireNonNullWithDefault(builder.state, this, "state", this.state());
 
 	}
 

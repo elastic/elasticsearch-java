@@ -70,7 +70,7 @@ public class ReloadResult implements JsonpSerializable {
 	protected ReloadResult(AbstractBuilder<?> builder) {
 
 		this.reloadDetails = ApiTypeHelper.unmodifiableRequired(builder.reloadDetails, this, "reloadDetails");
-		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.shards = ApiTypeHelper.requireNonNullWithDefault(builder.shards, this, "shards", this.shards());
 
 	}
 

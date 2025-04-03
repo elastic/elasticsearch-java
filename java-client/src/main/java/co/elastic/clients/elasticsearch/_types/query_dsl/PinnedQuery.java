@@ -123,7 +123,7 @@ public class PinnedQuery extends QueryBase
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-		this.organic = ApiTypeHelper.requireNonNull(builder.organic, this, "organic");
+		this.organic = ApiTypeHelper.requireNonNullWithDefault(builder.organic, this, "organic", this.organic());
 
 	}
 

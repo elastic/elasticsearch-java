@@ -80,7 +80,8 @@ public class UpdateConfigurationRequest extends RequestBase implements JsonpSeri
 	private UpdateConfigurationRequest(Builder builder) {
 
 		this.configuration = ApiTypeHelper.unmodifiable(builder.configuration);
-		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
+		this.connectorId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorId, this, "connectorId",
+				this.connectorId());
 		this.values = ApiTypeHelper.unmodifiable(builder.values);
 
 	}

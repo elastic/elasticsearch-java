@@ -116,18 +116,19 @@ public class Datafeed implements JsonpSerializable {
 		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.authorization = builder.authorization;
 		this.chunkingConfig = builder.chunkingConfig;
-		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.datafeedId = ApiTypeHelper.requireNonNullWithDefault(builder.datafeedId, this, "datafeedId",
+				this.datafeedId());
 		this.frequency = builder.frequency;
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 		this.indexes = ApiTypeHelper.unmodifiable(builder.indexes);
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
 		this.maxEmptySearches = builder.maxEmptySearches;
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
 		this.queryDelay = builder.queryDelay;
 		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
 		this.scrollSize = builder.scrollSize;
-		this.delayedDataCheckConfig = ApiTypeHelper.requireNonNull(builder.delayedDataCheckConfig, this,
-				"delayedDataCheckConfig");
+		this.delayedDataCheckConfig = ApiTypeHelper.requireNonNullWithDefault(builder.delayedDataCheckConfig, this,
+				"delayedDataCheckConfig", this.delayedDataCheckConfig());
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.indicesOptions = builder.indicesOptions;
 

@@ -76,8 +76,9 @@ public class DeleteModelSnapshotRequest extends RequestBase {
 
 	private DeleteModelSnapshotRequest(Builder builder) {
 
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.snapshotId = ApiTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
+		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
+		this.snapshotId = ApiTypeHelper.requireNonNullWithDefault(builder.snapshotId, this, "snapshotId",
+				this.snapshotId());
 
 	}
 

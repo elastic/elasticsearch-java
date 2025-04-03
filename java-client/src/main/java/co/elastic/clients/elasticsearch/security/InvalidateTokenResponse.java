@@ -74,11 +74,13 @@ public class InvalidateTokenResponse implements JsonpSerializable {
 
 	private InvalidateTokenResponse(Builder builder) {
 
-		this.errorCount = ApiTypeHelper.requireNonNull(builder.errorCount, this, "errorCount");
+		this.errorCount = ApiTypeHelper.requireNonNullWithDefault(builder.errorCount, this, "errorCount",
+				this.errorCount());
 		this.errorDetails = ApiTypeHelper.unmodifiable(builder.errorDetails);
-		this.invalidatedTokens = ApiTypeHelper.requireNonNull(builder.invalidatedTokens, this, "invalidatedTokens");
-		this.previouslyInvalidatedTokens = ApiTypeHelper.requireNonNull(builder.previouslyInvalidatedTokens, this,
-				"previouslyInvalidatedTokens");
+		this.invalidatedTokens = ApiTypeHelper.requireNonNullWithDefault(builder.invalidatedTokens, this,
+				"invalidatedTokens", this.invalidatedTokens());
+		this.previouslyInvalidatedTokens = ApiTypeHelper.requireNonNullWithDefault(builder.previouslyInvalidatedTokens,
+				this, "previouslyInvalidatedTokens", this.previouslyInvalidatedTokens());
 
 	}
 

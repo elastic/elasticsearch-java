@@ -68,7 +68,8 @@ public class NodeInfoScript implements JsonpSerializable {
 
 	private NodeInfoScript(Builder builder) {
 
-		this.allowedTypes = ApiTypeHelper.requireNonNull(builder.allowedTypes, this, "allowedTypes");
+		this.allowedTypes = ApiTypeHelper.requireNonNullWithDefault(builder.allowedTypes, this, "allowedTypes",
+				this.allowedTypes());
 		this.disableMaxCompilationsRate = builder.disableMaxCompilationsRate;
 
 	}

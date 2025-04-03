@@ -86,7 +86,7 @@ public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, 
 		this.analyzer = builder.analyzer;
 		this.fuzziness = builder.fuzziness;
 		this.prefixLength = builder.prefixLength;
-		this.term = ApiTypeHelper.requireNonNull(builder.term, this, "term");
+		this.term = ApiTypeHelper.requireNonNullWithDefault(builder.term, this, "term", this.term());
 		this.transpositions = builder.transpositions;
 		this.useField = builder.useField;
 

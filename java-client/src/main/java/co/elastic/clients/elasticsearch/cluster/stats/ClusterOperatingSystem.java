@@ -77,12 +77,12 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 
 	private ClusterOperatingSystem(Builder builder) {
 
-		this.allocatedProcessors = ApiTypeHelper.requireNonNull(builder.allocatedProcessors, this,
-				"allocatedProcessors");
+		this.allocatedProcessors = ApiTypeHelper.requireNonNullWithDefault(builder.allocatedProcessors, this,
+				"allocatedProcessors", this.allocatedProcessors());
 		this.architectures = ApiTypeHelper.unmodifiable(builder.architectures);
-		this.availableProcessors = ApiTypeHelper.requireNonNull(builder.availableProcessors, this,
-				"availableProcessors");
-		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
+		this.availableProcessors = ApiTypeHelper.requireNonNullWithDefault(builder.availableProcessors, this,
+				"availableProcessors", this.availableProcessors());
+		this.mem = ApiTypeHelper.requireNonNullWithDefault(builder.mem, this, "mem", this.mem());
 		this.names = ApiTypeHelper.unmodifiableRequired(builder.names, this, "names");
 		this.prettyNames = ApiTypeHelper.unmodifiableRequired(builder.prettyNames, this, "prettyNames");
 

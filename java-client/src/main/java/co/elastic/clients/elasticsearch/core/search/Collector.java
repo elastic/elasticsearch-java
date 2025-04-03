@@ -74,9 +74,10 @@ public class Collector implements JsonpSerializable {
 
 	private Collector(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
-		this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.reason = ApiTypeHelper.requireNonNullWithDefault(builder.reason, this, "reason", this.reason());
+		this.timeInNanos = ApiTypeHelper.requireNonNullWithDefault(builder.timeInNanos, this, "timeInNanos",
+				this.timeInNanos());
 		this.children = ApiTypeHelper.unmodifiable(builder.children);
 
 	}

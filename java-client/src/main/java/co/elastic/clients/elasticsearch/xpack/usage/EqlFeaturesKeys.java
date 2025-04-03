@@ -73,11 +73,16 @@ public class EqlFeaturesKeys implements JsonpSerializable {
 
 	private EqlFeaturesKeys(Builder builder) {
 
-		this.joinKeysTwo = ApiTypeHelper.requireNonNull(builder.joinKeysTwo, this, "joinKeysTwo");
-		this.joinKeysOne = ApiTypeHelper.requireNonNull(builder.joinKeysOne, this, "joinKeysOne");
-		this.joinKeysThree = ApiTypeHelper.requireNonNull(builder.joinKeysThree, this, "joinKeysThree");
-		this.joinKeysFiveOrMore = ApiTypeHelper.requireNonNull(builder.joinKeysFiveOrMore, this, "joinKeysFiveOrMore");
-		this.joinKeysFour = ApiTypeHelper.requireNonNull(builder.joinKeysFour, this, "joinKeysFour");
+		this.joinKeysTwo = ApiTypeHelper.requireNonNullWithDefault(builder.joinKeysTwo, this, "joinKeysTwo",
+				this.joinKeysTwo());
+		this.joinKeysOne = ApiTypeHelper.requireNonNullWithDefault(builder.joinKeysOne, this, "joinKeysOne",
+				this.joinKeysOne());
+		this.joinKeysThree = ApiTypeHelper.requireNonNullWithDefault(builder.joinKeysThree, this, "joinKeysThree",
+				this.joinKeysThree());
+		this.joinKeysFiveOrMore = ApiTypeHelper.requireNonNullWithDefault(builder.joinKeysFiveOrMore, this,
+				"joinKeysFiveOrMore", this.joinKeysFiveOrMore());
+		this.joinKeysFour = ApiTypeHelper.requireNonNullWithDefault(builder.joinKeysFour, this, "joinKeysFour",
+				this.joinKeysFour());
 
 	}
 

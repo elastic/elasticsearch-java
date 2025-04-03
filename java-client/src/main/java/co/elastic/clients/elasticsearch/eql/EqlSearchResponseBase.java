@@ -96,7 +96,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		this.isRunning = builder.isRunning;
 		this.took = builder.took;
 		this.timedOut = builder.timedOut;
-		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
+		this.hits = ApiTypeHelper.requireNonNullWithDefault(builder.hits, this, "hits", this.hits());
 		this.shardFailures = ApiTypeHelper.unmodifiable(builder.shardFailures);
 		this.tEventSerializer = builder.tEventSerializer;
 

@@ -70,9 +70,10 @@ public class Retention implements JsonpSerializable {
 
 	private Retention(Builder builder) {
 
-		this.expireAfter = ApiTypeHelper.requireNonNull(builder.expireAfter, this, "expireAfter");
-		this.maxCount = ApiTypeHelper.requireNonNull(builder.maxCount, this, "maxCount");
-		this.minCount = ApiTypeHelper.requireNonNull(builder.minCount, this, "minCount");
+		this.expireAfter = ApiTypeHelper.requireNonNullWithDefault(builder.expireAfter, this, "expireAfter",
+				this.expireAfter());
+		this.maxCount = ApiTypeHelper.requireNonNullWithDefault(builder.maxCount, this, "maxCount", this.maxCount());
+		this.minCount = ApiTypeHelper.requireNonNullWithDefault(builder.minCount, this, "minCount", this.minCount());
 
 	}
 

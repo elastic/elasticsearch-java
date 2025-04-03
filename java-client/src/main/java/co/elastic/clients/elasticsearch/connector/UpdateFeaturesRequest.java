@@ -89,8 +89,9 @@ public class UpdateFeaturesRequest extends RequestBase implements JsonpSerializa
 
 	private UpdateFeaturesRequest(Builder builder) {
 
-		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
-		this.features = ApiTypeHelper.requireNonNull(builder.features, this, "features");
+		this.connectorId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorId, this, "connectorId",
+				this.connectorId());
+		this.features = ApiTypeHelper.requireNonNullWithDefault(builder.features, this, "features", this.features());
 
 	}
 

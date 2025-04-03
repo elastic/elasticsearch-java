@@ -162,7 +162,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		this.ignoreMissingComponentTemplates = ApiTypeHelper.unmodifiable(builder.ignoreMissingComponentTemplates);
 		this.indexPatterns = ApiTypeHelper.unmodifiable(builder.indexPatterns);
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 		this.priority = builder.priority;
 		this.template = builder.template;
 		this.version = builder.version;

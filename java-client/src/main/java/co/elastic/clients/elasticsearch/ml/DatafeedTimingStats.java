@@ -81,13 +81,17 @@ public class DatafeedTimingStats implements JsonpSerializable {
 
 	private DatafeedTimingStats(Builder builder) {
 
-		this.bucketCount = ApiTypeHelper.requireNonNull(builder.bucketCount, this, "bucketCount");
-		this.exponentialAverageSearchTimePerHourMs = ApiTypeHelper.requireNonNull(
-				builder.exponentialAverageSearchTimePerHourMs, this, "exponentialAverageSearchTimePerHourMs");
+		this.bucketCount = ApiTypeHelper.requireNonNullWithDefault(builder.bucketCount, this, "bucketCount",
+				this.bucketCount());
+		this.exponentialAverageSearchTimePerHourMs = ApiTypeHelper.requireNonNullWithDefault(
+				builder.exponentialAverageSearchTimePerHourMs, this, "exponentialAverageSearchTimePerHourMs",
+				this.exponentialAverageSearchTimePerHourMs());
 		this.exponentialAverageCalculationContext = builder.exponentialAverageCalculationContext;
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.searchCount = ApiTypeHelper.requireNonNull(builder.searchCount, this, "searchCount");
-		this.totalSearchTimeMs = ApiTypeHelper.requireNonNull(builder.totalSearchTimeMs, this, "totalSearchTimeMs");
+		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
+		this.searchCount = ApiTypeHelper.requireNonNullWithDefault(builder.searchCount, this, "searchCount",
+				this.searchCount());
+		this.totalSearchTimeMs = ApiTypeHelper.requireNonNullWithDefault(builder.totalSearchTimeMs, this,
+				"totalSearchTimeMs", this.totalSearchTimeMs());
 		this.averageSearchTimePerBucketMs = builder.averageSearchTimePerBucketMs;
 
 	}

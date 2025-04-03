@@ -76,10 +76,13 @@ public class QueryProfile implements JsonpSerializable {
 
 	private QueryProfile(Builder builder) {
 
-		this.breakdown = ApiTypeHelper.requireNonNull(builder.breakdown, this, "breakdown");
-		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
-		this.timeInNanos = ApiTypeHelper.requireNonNull(builder.timeInNanos, this, "timeInNanos");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.breakdown = ApiTypeHelper.requireNonNullWithDefault(builder.breakdown, this, "breakdown",
+				this.breakdown());
+		this.description = ApiTypeHelper.requireNonNullWithDefault(builder.description, this, "description",
+				this.description());
+		this.timeInNanos = ApiTypeHelper.requireNonNullWithDefault(builder.timeInNanos, this, "timeInNanos",
+				this.timeInNanos());
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
 		this.children = ApiTypeHelper.unmodifiable(builder.children);
 
 	}

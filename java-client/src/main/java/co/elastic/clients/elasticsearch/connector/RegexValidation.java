@@ -66,7 +66,8 @@ public class RegexValidation implements ValidationVariant, JsonpSerializable {
 
 	private RegexValidation(Builder builder) {
 
-		this.constraint = ApiTypeHelper.requireNonNull(builder.constraint, this, "constraint");
+		this.constraint = ApiTypeHelper.requireNonNullWithDefault(builder.constraint, this, "constraint",
+				this.constraint());
 
 	}
 

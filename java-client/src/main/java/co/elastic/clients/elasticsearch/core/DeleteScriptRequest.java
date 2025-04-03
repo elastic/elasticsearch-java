@@ -76,7 +76,7 @@ public class DeleteScriptRequest extends RequestBase {
 
 	private DeleteScriptRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 

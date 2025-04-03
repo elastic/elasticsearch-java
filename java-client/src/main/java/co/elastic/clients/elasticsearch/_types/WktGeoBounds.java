@@ -65,7 +65,7 @@ public class WktGeoBounds implements JsonpSerializable {
 
 	private WktGeoBounds(Builder builder) {
 
-		this.wkt = ApiTypeHelper.requireNonNull(builder.wkt, this, "wkt");
+		this.wkt = ApiTypeHelper.requireNonNullWithDefault(builder.wkt, this, "wkt", this.wkt());
 
 	}
 

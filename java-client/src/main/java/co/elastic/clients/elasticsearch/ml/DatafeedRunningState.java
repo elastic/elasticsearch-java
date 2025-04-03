@@ -70,8 +70,10 @@ public class DatafeedRunningState implements JsonpSerializable {
 
 	private DatafeedRunningState(Builder builder) {
 
-		this.realTimeConfigured = ApiTypeHelper.requireNonNull(builder.realTimeConfigured, this, "realTimeConfigured");
-		this.realTimeRunning = ApiTypeHelper.requireNonNull(builder.realTimeRunning, this, "realTimeRunning");
+		this.realTimeConfigured = ApiTypeHelper.requireNonNullWithDefault(builder.realTimeConfigured, this,
+				"realTimeConfigured", this.realTimeConfigured());
+		this.realTimeRunning = ApiTypeHelper.requireNonNullWithDefault(builder.realTimeRunning, this, "realTimeRunning",
+				this.realTimeRunning());
 		this.searchInterval = builder.searchInterval;
 
 	}

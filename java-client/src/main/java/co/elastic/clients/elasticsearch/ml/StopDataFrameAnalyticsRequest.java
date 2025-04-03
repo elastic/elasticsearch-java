@@ -83,7 +83,7 @@ public class StopDataFrameAnalyticsRequest extends RequestBase {
 
 		this.allowNoMatch = builder.allowNoMatch;
 		this.force = builder.force;
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 		this.timeout = builder.timeout;
 
 	}

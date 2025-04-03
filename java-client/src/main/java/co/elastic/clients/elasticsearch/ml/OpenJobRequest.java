@@ -82,7 +82,7 @@ public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 
 	private OpenJobRequest(Builder builder) {
 
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
 		this.timeout = builder.timeout;
 
 	}

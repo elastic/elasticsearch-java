@@ -83,17 +83,20 @@ public class PluginStats implements JsonpSerializable {
 
 	private PluginStats(Builder builder) {
 
-		this.classname = ApiTypeHelper.requireNonNull(builder.classname, this, "classname");
-		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
-		this.elasticsearchVersion = ApiTypeHelper.requireNonNull(builder.elasticsearchVersion, this,
-				"elasticsearchVersion");
+		this.classname = ApiTypeHelper.requireNonNullWithDefault(builder.classname, this, "classname",
+				this.classname());
+		this.description = ApiTypeHelper.requireNonNullWithDefault(builder.description, this, "description",
+				this.description());
+		this.elasticsearchVersion = ApiTypeHelper.requireNonNullWithDefault(builder.elasticsearchVersion, this,
+				"elasticsearchVersion", this.elasticsearchVersion());
 		this.extendedPlugins = ApiTypeHelper.unmodifiableRequired(builder.extendedPlugins, this, "extendedPlugins");
-		this.hasNativeController = ApiTypeHelper.requireNonNull(builder.hasNativeController, this,
-				"hasNativeController");
-		this.javaVersion = ApiTypeHelper.requireNonNull(builder.javaVersion, this, "javaVersion");
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
-		this.licensed = ApiTypeHelper.requireNonNull(builder.licensed, this, "licensed");
+		this.hasNativeController = ApiTypeHelper.requireNonNullWithDefault(builder.hasNativeController, this,
+				"hasNativeController", this.hasNativeController());
+		this.javaVersion = ApiTypeHelper.requireNonNullWithDefault(builder.javaVersion, this, "javaVersion",
+				this.javaVersion());
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
+		this.licensed = ApiTypeHelper.requireNonNullWithDefault(builder.licensed, this, "licensed", this.licensed());
 
 	}
 

@@ -72,7 +72,8 @@ public class CompletionStats implements JsonpSerializable {
 
 	private CompletionStats(Builder builder) {
 
-		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+		this.sizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.sizeInBytes, this, "sizeInBytes",
+				this.sizeInBytes());
 		this.size = builder.size;
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 

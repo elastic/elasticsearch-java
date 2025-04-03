@@ -105,20 +105,22 @@ public class ConnectorConfigProperties implements JsonpSerializable {
 	private ConnectorConfigProperties(Builder builder) {
 
 		this.category = builder.category;
-		this.defaultValue = ApiTypeHelper.requireNonNull(builder.defaultValue, this, "defaultValue");
+		this.defaultValue = ApiTypeHelper.requireNonNullWithDefault(builder.defaultValue, this, "defaultValue",
+				this.defaultValue());
 		this.dependsOn = ApiTypeHelper.unmodifiableRequired(builder.dependsOn, this, "dependsOn");
-		this.display = ApiTypeHelper.requireNonNull(builder.display, this, "display");
-		this.label = ApiTypeHelper.requireNonNull(builder.label, this, "label");
+		this.display = ApiTypeHelper.requireNonNullWithDefault(builder.display, this, "display", this.display());
+		this.label = ApiTypeHelper.requireNonNullWithDefault(builder.label, this, "label", this.label());
 		this.options = ApiTypeHelper.unmodifiableRequired(builder.options, this, "options");
 		this.order = builder.order;
 		this.placeholder = builder.placeholder;
-		this.required = ApiTypeHelper.requireNonNull(builder.required, this, "required");
-		this.sensitive = ApiTypeHelper.requireNonNull(builder.sensitive, this, "sensitive");
+		this.required = ApiTypeHelper.requireNonNullWithDefault(builder.required, this, "required", this.required());
+		this.sensitive = ApiTypeHelper.requireNonNullWithDefault(builder.sensitive, this, "sensitive",
+				this.sensitive());
 		this.tooltip = builder.tooltip;
 		this.type = builder.type;
 		this.uiRestrictions = ApiTypeHelper.unmodifiable(builder.uiRestrictions);
 		this.validations = ApiTypeHelper.unmodifiable(builder.validations);
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNullWithDefault(builder.value, this, "value", this.value());
 
 	}
 

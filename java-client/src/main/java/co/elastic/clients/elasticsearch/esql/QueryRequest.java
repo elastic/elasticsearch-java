@@ -120,7 +120,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		this.locale = builder.locale;
 		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.profile = builder.profile;
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
 		this.tables = ApiTypeHelper.unmodifiable(builder.tables);
 
 	}

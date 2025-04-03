@@ -91,7 +91,8 @@ public class SamlInvalidateRequest extends RequestBase implements JsonpSerializa
 	private SamlInvalidateRequest(Builder builder) {
 
 		this.acs = builder.acs;
-		this.queryString = ApiTypeHelper.requireNonNull(builder.queryString, this, "queryString");
+		this.queryString = ApiTypeHelper.requireNonNullWithDefault(builder.queryString, this, "queryString",
+				this.queryString());
 		this.realm = builder.realm;
 
 	}

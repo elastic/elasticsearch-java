@@ -78,13 +78,16 @@ public class InvertedIndex implements JsonpSerializable {
 
 	private InvertedIndex(Builder builder) {
 
-		this.terms = ApiTypeHelper.requireNonNull(builder.terms, this, "terms");
-		this.postings = ApiTypeHelper.requireNonNull(builder.postings, this, "postings");
-		this.proximity = ApiTypeHelper.requireNonNull(builder.proximity, this, "proximity");
-		this.positions = ApiTypeHelper.requireNonNull(builder.positions, this, "positions");
-		this.termFrequencies = ApiTypeHelper.requireNonNull(builder.termFrequencies, this, "termFrequencies");
-		this.offsets = ApiTypeHelper.requireNonNull(builder.offsets, this, "offsets");
-		this.payloads = ApiTypeHelper.requireNonNull(builder.payloads, this, "payloads");
+		this.terms = ApiTypeHelper.requireNonNullWithDefault(builder.terms, this, "terms", this.terms());
+		this.postings = ApiTypeHelper.requireNonNullWithDefault(builder.postings, this, "postings", this.postings());
+		this.proximity = ApiTypeHelper.requireNonNullWithDefault(builder.proximity, this, "proximity",
+				this.proximity());
+		this.positions = ApiTypeHelper.requireNonNullWithDefault(builder.positions, this, "positions",
+				this.positions());
+		this.termFrequencies = ApiTypeHelper.requireNonNullWithDefault(builder.termFrequencies, this, "termFrequencies",
+				this.termFrequencies());
+		this.offsets = ApiTypeHelper.requireNonNullWithDefault(builder.offsets, this, "offsets", this.offsets());
+		this.payloads = ApiTypeHelper.requireNonNullWithDefault(builder.payloads, this, "payloads", this.payloads());
 
 	}
 

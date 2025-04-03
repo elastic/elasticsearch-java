@@ -96,14 +96,14 @@ public class ExecutionResultAction implements JsonpSerializable {
 	private ExecutionResultAction(Builder builder) {
 
 		this.email = builder.email;
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 		this.index = builder.index;
 		this.logging = builder.logging;
 		this.pagerduty = builder.pagerduty;
 		this.reason = builder.reason;
 		this.slack = builder.slack;
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
 		this.webhook = builder.webhook;
 		this.error = builder.error;
 

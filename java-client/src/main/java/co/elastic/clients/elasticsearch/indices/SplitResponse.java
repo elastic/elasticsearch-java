@@ -71,9 +71,11 @@ public class SplitResponse implements AcknowledgedResponse, JsonpSerializable {
 
 	private SplitResponse(Builder builder) {
 
-		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
-		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.acknowledged = ApiTypeHelper.requireNonNullWithDefault(builder.acknowledged, this, "acknowledged",
+				this.acknowledged());
+		this.shardsAcknowledged = ApiTypeHelper.requireNonNullWithDefault(builder.shardsAcknowledged, this,
+				"shardsAcknowledged", this.shardsAcknowledged());
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
 
 	}
 

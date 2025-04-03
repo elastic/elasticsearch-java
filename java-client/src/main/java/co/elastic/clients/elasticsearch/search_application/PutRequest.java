@@ -78,8 +78,9 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 	private PutRequest(Builder builder) {
 
 		this.create = builder.create;
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.searchApplication = ApiTypeHelper.requireNonNull(builder.searchApplication, this, "searchApplication");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.searchApplication = ApiTypeHelper.requireNonNullWithDefault(builder.searchApplication, this,
+				"searchApplication", this.searchApplication());
 
 	}
 

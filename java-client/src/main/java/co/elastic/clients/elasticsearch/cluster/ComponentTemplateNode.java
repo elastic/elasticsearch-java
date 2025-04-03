@@ -78,7 +78,7 @@ public class ComponentTemplateNode implements JsonpSerializable {
 
 	private ComponentTemplateNode(Builder builder) {
 
-		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
+		this.template = ApiTypeHelper.requireNonNullWithDefault(builder.template, this, "template", this.template());
 		this.version = builder.version;
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.deprecated = builder.deprecated;

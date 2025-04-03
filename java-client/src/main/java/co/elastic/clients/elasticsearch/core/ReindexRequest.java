@@ -386,7 +386,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	private ReindexRequest(Builder builder) {
 
 		this.conflicts = builder.conflicts;
-		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
+		this.dest = ApiTypeHelper.requireNonNullWithDefault(builder.dest, this, "dest", this.dest());
 		this.maxDocs = builder.maxDocs;
 		this.refresh = builder.refresh;
 		this.requestsPerSecond = builder.requestsPerSecond;
@@ -395,7 +395,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		this.scroll = builder.scroll;
 		this.size = builder.size;
 		this.slices = builder.slices;
-		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.source = ApiTypeHelper.requireNonNullWithDefault(builder.source, this, "source", this.source());
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
 		this.waitForCompletion = builder.waitForCompletion;

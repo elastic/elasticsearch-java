@@ -76,7 +76,7 @@ public class FieldValueFactorScoreFunction implements FunctionScoreVariant, Json
 
 	private FieldValueFactorScoreFunction(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.factor = builder.factor;
 		this.missing = builder.missing;
 		this.modifier = builder.modifier;

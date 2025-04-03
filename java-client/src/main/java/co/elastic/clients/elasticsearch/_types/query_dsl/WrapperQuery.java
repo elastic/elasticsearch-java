@@ -64,7 +64,7 @@ public class WrapperQuery extends QueryBase implements QueryVariant {
 	private WrapperQuery(Builder builder) {
 		super(builder);
 
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
 
 	}
 

@@ -79,7 +79,7 @@ public class CompletionToolFunction implements JsonpSerializable {
 	private CompletionToolFunction(Builder builder) {
 
 		this.description = builder.description;
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 		this.parameters = builder.parameters;
 		this.strict = builder.strict;
 

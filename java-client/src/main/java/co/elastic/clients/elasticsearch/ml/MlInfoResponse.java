@@ -74,10 +74,12 @@ public class MlInfoResponse implements JsonpSerializable {
 
 	private MlInfoResponse(Builder builder) {
 
-		this.defaults = ApiTypeHelper.requireNonNull(builder.defaults, this, "defaults");
-		this.limits = ApiTypeHelper.requireNonNull(builder.limits, this, "limits");
-		this.upgradeMode = ApiTypeHelper.requireNonNull(builder.upgradeMode, this, "upgradeMode");
-		this.nativeCode = ApiTypeHelper.requireNonNull(builder.nativeCode, this, "nativeCode");
+		this.defaults = ApiTypeHelper.requireNonNullWithDefault(builder.defaults, this, "defaults", this.defaults());
+		this.limits = ApiTypeHelper.requireNonNullWithDefault(builder.limits, this, "limits", this.limits());
+		this.upgradeMode = ApiTypeHelper.requireNonNullWithDefault(builder.upgradeMode, this, "upgradeMode",
+				this.upgradeMode());
+		this.nativeCode = ApiTypeHelper.requireNonNullWithDefault(builder.nativeCode, this, "nativeCode",
+				this.nativeCode());
 
 	}
 

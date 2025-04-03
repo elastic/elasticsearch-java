@@ -67,7 +67,7 @@ public class WebhookResult implements JsonpSerializable {
 
 	private WebhookResult(Builder builder) {
 
-		this.request = ApiTypeHelper.requireNonNull(builder.request, this, "request");
+		this.request = ApiTypeHelper.requireNonNullWithDefault(builder.request, this, "request", this.request());
 		this.response = builder.response;
 
 	}

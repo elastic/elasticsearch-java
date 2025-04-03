@@ -64,7 +64,7 @@ public class PutRoleResponse implements JsonpSerializable {
 
 	private PutRoleResponse(Builder builder) {
 
-		this.role = ApiTypeHelper.requireNonNull(builder.role, this, "role");
+		this.role = ApiTypeHelper.requireNonNullWithDefault(builder.role, this, "role", this.role());
 
 	}
 

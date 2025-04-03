@@ -68,9 +68,11 @@ public class GetSecuritySettingsResponse implements JsonpSerializable {
 
 	private GetSecuritySettingsResponse(Builder builder) {
 
-		this.security = ApiTypeHelper.requireNonNull(builder.security, this, "security");
-		this.securityProfile = ApiTypeHelper.requireNonNull(builder.securityProfile, this, "securityProfile");
-		this.securityTokens = ApiTypeHelper.requireNonNull(builder.securityTokens, this, "securityTokens");
+		this.security = ApiTypeHelper.requireNonNullWithDefault(builder.security, this, "security", this.security());
+		this.securityProfile = ApiTypeHelper.requireNonNullWithDefault(builder.securityProfile, this, "securityProfile",
+				this.securityProfile());
+		this.securityTokens = ApiTypeHelper.requireNonNullWithDefault(builder.securityTokens, this, "securityTokens",
+				this.securityTokens());
 
 	}
 

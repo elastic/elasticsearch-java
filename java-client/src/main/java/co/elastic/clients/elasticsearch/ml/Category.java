@@ -99,20 +99,24 @@ public class Category implements JsonpSerializable {
 
 	private Category(Builder builder) {
 
-		this.categoryId = ApiTypeHelper.requireNonNull(builder.categoryId, this, "categoryId");
+		this.categoryId = ApiTypeHelper.requireNonNullWithDefault(builder.categoryId, this, "categoryId",
+				this.categoryId());
 		this.examples = ApiTypeHelper.unmodifiableRequired(builder.examples, this, "examples");
 		this.grokPattern = builder.grokPattern;
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.maxMatchingLength = ApiTypeHelper.requireNonNull(builder.maxMatchingLength, this, "maxMatchingLength");
+		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
+		this.maxMatchingLength = ApiTypeHelper.requireNonNullWithDefault(builder.maxMatchingLength, this,
+				"maxMatchingLength", this.maxMatchingLength());
 		this.partitionFieldName = builder.partitionFieldName;
 		this.partitionFieldValue = builder.partitionFieldValue;
-		this.regex = ApiTypeHelper.requireNonNull(builder.regex, this, "regex");
-		this.terms = ApiTypeHelper.requireNonNull(builder.terms, this, "terms");
+		this.regex = ApiTypeHelper.requireNonNullWithDefault(builder.regex, this, "regex", this.regex());
+		this.terms = ApiTypeHelper.requireNonNullWithDefault(builder.terms, this, "terms", this.terms());
 		this.numMatches = builder.numMatches;
 		this.preferredToCategories = ApiTypeHelper.unmodifiable(builder.preferredToCategories);
 		this.p = builder.p;
-		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
-		this.mlcategory = ApiTypeHelper.requireNonNull(builder.mlcategory, this, "mlcategory");
+		this.resultType = ApiTypeHelper.requireNonNullWithDefault(builder.resultType, this, "resultType",
+				this.resultType());
+		this.mlcategory = ApiTypeHelper.requireNonNullWithDefault(builder.mlcategory, this, "mlcategory",
+				this.mlcategory());
 
 	}
 

@@ -65,7 +65,7 @@ public class ForgetFollowerResponse implements JsonpSerializable {
 
 	private ForgetFollowerResponse(Builder builder) {
 
-		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.shards = ApiTypeHelper.requireNonNullWithDefault(builder.shards, this, "shards", this.shards());
 
 	}
 

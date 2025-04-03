@@ -69,7 +69,8 @@ public class ExplainDataFrameAnalyticsResponse implements JsonpSerializable {
 	private ExplainDataFrameAnalyticsResponse(Builder builder) {
 
 		this.fieldSelection = ApiTypeHelper.unmodifiableRequired(builder.fieldSelection, this, "fieldSelection");
-		this.memoryEstimation = ApiTypeHelper.requireNonNull(builder.memoryEstimation, this, "memoryEstimation");
+		this.memoryEstimation = ApiTypeHelper.requireNonNullWithDefault(builder.memoryEstimation, this,
+				"memoryEstimation", this.memoryEstimation());
 
 	}
 

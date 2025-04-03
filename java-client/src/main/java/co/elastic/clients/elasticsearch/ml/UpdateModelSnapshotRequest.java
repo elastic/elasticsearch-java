@@ -82,9 +82,10 @@ public class UpdateModelSnapshotRequest extends RequestBase implements JsonpSeri
 	private UpdateModelSnapshotRequest(Builder builder) {
 
 		this.description = builder.description;
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
 		this.retain = builder.retain;
-		this.snapshotId = ApiTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
+		this.snapshotId = ApiTypeHelper.requireNonNullWithDefault(builder.snapshotId, this, "snapshotId",
+				this.snapshotId());
 
 	}
 

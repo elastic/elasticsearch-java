@@ -73,7 +73,7 @@ public class QueryRuleCriteria implements JsonpSerializable {
 
 	private QueryRuleCriteria(Builder builder) {
 
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
 		this.metadata = builder.metadata;
 		this.values = ApiTypeHelper.unmodifiable(builder.values);
 

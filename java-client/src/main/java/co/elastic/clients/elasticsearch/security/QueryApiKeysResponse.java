@@ -77,8 +77,8 @@ public class QueryApiKeysResponse implements JsonpSerializable {
 
 	private QueryApiKeysResponse(Builder builder) {
 
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
 		this.apiKeys = ApiTypeHelper.unmodifiableRequired(builder.apiKeys, this, "apiKeys");
 		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 

@@ -73,8 +73,10 @@ public class PostResponse implements AcknowledgedResponse, JsonpSerializable {
 	private PostResponse(Builder builder) {
 
 		this.acknowledge = builder.acknowledge;
-		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
-		this.licenseStatus = ApiTypeHelper.requireNonNull(builder.licenseStatus, this, "licenseStatus");
+		this.acknowledged = ApiTypeHelper.requireNonNullWithDefault(builder.acknowledged, this, "acknowledged",
+				this.acknowledged());
+		this.licenseStatus = ApiTypeHelper.requireNonNullWithDefault(builder.licenseStatus, this, "licenseStatus",
+				this.licenseStatus());
 
 	}
 

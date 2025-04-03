@@ -82,12 +82,14 @@ public class PutTrainedModelDefinitionPartRequest extends RequestBase implements
 
 	private PutTrainedModelDefinitionPartRequest(Builder builder) {
 
-		this.definition = ApiTypeHelper.requireNonNull(builder.definition, this, "definition");
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.part = ApiTypeHelper.requireNonNull(builder.part, this, "part");
-		this.totalDefinitionLength = ApiTypeHelper.requireNonNull(builder.totalDefinitionLength, this,
-				"totalDefinitionLength");
-		this.totalParts = ApiTypeHelper.requireNonNull(builder.totalParts, this, "totalParts");
+		this.definition = ApiTypeHelper.requireNonNullWithDefault(builder.definition, this, "definition",
+				this.definition());
+		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
+		this.part = ApiTypeHelper.requireNonNullWithDefault(builder.part, this, "part", this.part());
+		this.totalDefinitionLength = ApiTypeHelper.requireNonNullWithDefault(builder.totalDefinitionLength, this,
+				"totalDefinitionLength", this.totalDefinitionLength());
+		this.totalParts = ApiTypeHelper.requireNonNullWithDefault(builder.totalParts, this, "totalParts",
+				this.totalParts());
 
 	}
 

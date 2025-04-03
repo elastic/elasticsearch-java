@@ -92,8 +92,9 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		super(builder);
 
 		this.excludeKeys = ApiTypeHelper.unmodifiable(builder.excludeKeys);
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.fieldSplit = ApiTypeHelper.requireNonNull(builder.fieldSplit, this, "fieldSplit");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.fieldSplit = ApiTypeHelper.requireNonNullWithDefault(builder.fieldSplit, this, "fieldSplit",
+				this.fieldSplit());
 		this.ignoreMissing = builder.ignoreMissing;
 		this.includeKeys = ApiTypeHelper.unmodifiable(builder.includeKeys);
 		this.prefix = builder.prefix;
@@ -101,7 +102,8 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		this.targetField = builder.targetField;
 		this.trimKey = builder.trimKey;
 		this.trimValue = builder.trimValue;
-		this.valueSplit = ApiTypeHelper.requireNonNull(builder.valueSplit, this, "valueSplit");
+		this.valueSplit = ApiTypeHelper.requireNonNullWithDefault(builder.valueSplit, this, "valueSplit",
+				this.valueSplit());
 
 	}
 

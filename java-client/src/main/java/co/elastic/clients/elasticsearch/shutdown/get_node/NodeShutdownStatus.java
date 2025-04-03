@@ -81,15 +81,17 @@ public class NodeShutdownStatus implements JsonpSerializable {
 
 	private NodeShutdownStatus(Builder builder) {
 
-		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
-		this.shutdownStartedmillis = ApiTypeHelper.requireNonNull(builder.shutdownStartedmillis, this,
-				"shutdownStartedmillis");
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
-		this.shardMigration = ApiTypeHelper.requireNonNull(builder.shardMigration, this, "shardMigration");
-		this.persistentTasks = ApiTypeHelper.requireNonNull(builder.persistentTasks, this, "persistentTasks");
-		this.plugins = ApiTypeHelper.requireNonNull(builder.plugins, this, "plugins");
+		this.nodeId = ApiTypeHelper.requireNonNullWithDefault(builder.nodeId, this, "nodeId", this.nodeId());
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
+		this.reason = ApiTypeHelper.requireNonNullWithDefault(builder.reason, this, "reason", this.reason());
+		this.shutdownStartedmillis = ApiTypeHelper.requireNonNullWithDefault(builder.shutdownStartedmillis, this,
+				"shutdownStartedmillis", this.shutdownStartedmillis());
+		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
+		this.shardMigration = ApiTypeHelper.requireNonNullWithDefault(builder.shardMigration, this, "shardMigration",
+				this.shardMigration());
+		this.persistentTasks = ApiTypeHelper.requireNonNullWithDefault(builder.persistentTasks, this, "persistentTasks",
+				this.persistentTasks());
+		this.plugins = ApiTypeHelper.requireNonNullWithDefault(builder.plugins, this, "plugins", this.plugins());
 
 	}
 

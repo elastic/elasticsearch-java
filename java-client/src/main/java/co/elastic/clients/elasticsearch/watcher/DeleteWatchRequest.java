@@ -80,7 +80,7 @@ public class DeleteWatchRequest extends RequestBase {
 
 	private DeleteWatchRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 
 	}
 

@@ -68,7 +68,7 @@ public class FilterRef implements JsonpSerializable {
 
 	private FilterRef(Builder builder) {
 
-		this.filterId = ApiTypeHelper.requireNonNull(builder.filterId, this, "filterId");
+		this.filterId = ApiTypeHelper.requireNonNullWithDefault(builder.filterId, this, "filterId", this.filterId());
 		this.filterType = builder.filterType;
 
 	}

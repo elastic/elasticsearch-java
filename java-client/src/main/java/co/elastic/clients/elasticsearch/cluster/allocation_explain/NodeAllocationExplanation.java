@@ -89,13 +89,16 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 
 		this.deciders = ApiTypeHelper.unmodifiableRequired(builder.deciders, this, "deciders");
 		this.nodeAttributes = ApiTypeHelper.unmodifiableRequired(builder.nodeAttributes, this, "nodeAttributes");
-		this.nodeDecision = ApiTypeHelper.requireNonNull(builder.nodeDecision, this, "nodeDecision");
-		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
-		this.nodeName = ApiTypeHelper.requireNonNull(builder.nodeName, this, "nodeName");
+		this.nodeDecision = ApiTypeHelper.requireNonNullWithDefault(builder.nodeDecision, this, "nodeDecision",
+				this.nodeDecision());
+		this.nodeId = ApiTypeHelper.requireNonNullWithDefault(builder.nodeId, this, "nodeId", this.nodeId());
+		this.nodeName = ApiTypeHelper.requireNonNullWithDefault(builder.nodeName, this, "nodeName", this.nodeName());
 		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
 		this.store = builder.store;
-		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
-		this.weightRanking = ApiTypeHelper.requireNonNull(builder.weightRanking, this, "weightRanking");
+		this.transportAddress = ApiTypeHelper.requireNonNullWithDefault(builder.transportAddress, this,
+				"transportAddress", this.transportAddress());
+		this.weightRanking = ApiTypeHelper.requireNonNullWithDefault(builder.weightRanking, this, "weightRanking",
+				this.weightRanking());
 
 	}
 

@@ -66,8 +66,10 @@ public class Defaults implements JsonpSerializable {
 
 	private Defaults(Builder builder) {
 
-		this.anomalyDetectors = ApiTypeHelper.requireNonNull(builder.anomalyDetectors, this, "anomalyDetectors");
-		this.datafeeds = ApiTypeHelper.requireNonNull(builder.datafeeds, this, "datafeeds");
+		this.anomalyDetectors = ApiTypeHelper.requireNonNullWithDefault(builder.anomalyDetectors, this,
+				"anomalyDetectors", this.anomalyDetectors());
+		this.datafeeds = ApiTypeHelper.requireNonNullWithDefault(builder.datafeeds, this, "datafeeds",
+				this.datafeeds());
 
 	}
 

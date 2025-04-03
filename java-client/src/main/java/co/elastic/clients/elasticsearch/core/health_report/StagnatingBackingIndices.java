@@ -72,10 +72,12 @@ public class StagnatingBackingIndices implements JsonpSerializable {
 
 	private StagnatingBackingIndices(Builder builder) {
 
-		this.indexName = ApiTypeHelper.requireNonNull(builder.indexName, this, "indexName");
-		this.firstOccurrenceTimestamp = ApiTypeHelper.requireNonNull(builder.firstOccurrenceTimestamp, this,
-				"firstOccurrenceTimestamp");
-		this.retryCount = ApiTypeHelper.requireNonNull(builder.retryCount, this, "retryCount");
+		this.indexName = ApiTypeHelper.requireNonNullWithDefault(builder.indexName, this, "indexName",
+				this.indexName());
+		this.firstOccurrenceTimestamp = ApiTypeHelper.requireNonNullWithDefault(builder.firstOccurrenceTimestamp, this,
+				"firstOccurrenceTimestamp", this.firstOccurrenceTimestamp());
+		this.retryCount = ApiTypeHelper.requireNonNullWithDefault(builder.retryCount, this, "retryCount",
+				this.retryCount());
 
 	}
 

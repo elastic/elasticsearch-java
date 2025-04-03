@@ -107,8 +107,8 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	private TermsEnumRequest(Builder builder) {
 
 		this.caseInsensitive = builder.caseInsensitive;
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
 		this.indexFilter = builder.indexFilter;
 		this.searchAfter = builder.searchAfter;
 		this.size = builder.size;

@@ -271,7 +271,7 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 		this.earlyReadNodeCount = builder.earlyReadNodeCount;
 		this.maxBlobSize = builder.maxBlobSize;
 		this.maxTotalDataSize = builder.maxTotalDataSize;
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 		this.rareActionProbability = builder.rareActionProbability;
 		this.rarelyAbortWrites = builder.rarelyAbortWrites;
 		this.readNodeCount = builder.readNodeCount;

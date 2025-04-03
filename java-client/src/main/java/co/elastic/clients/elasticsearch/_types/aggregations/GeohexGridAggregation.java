@@ -79,7 +79,7 @@ public class GeohexGridAggregation extends BucketAggregationBase implements Aggr
 
 	private GeohexGridAggregation(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.precision = builder.precision;
 		this.bounds = builder.bounds;
 		this.size = builder.size;

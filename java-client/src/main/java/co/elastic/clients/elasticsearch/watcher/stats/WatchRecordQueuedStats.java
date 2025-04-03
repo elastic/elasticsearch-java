@@ -66,7 +66,8 @@ public class WatchRecordQueuedStats implements JsonpSerializable {
 
 	protected WatchRecordQueuedStats(AbstractBuilder<?> builder) {
 
-		this.executionTime = ApiTypeHelper.requireNonNull(builder.executionTime, this, "executionTime");
+		this.executionTime = ApiTypeHelper.requireNonNullWithDefault(builder.executionTime, this, "executionTime",
+				this.executionTime());
 
 	}
 

@@ -77,7 +77,7 @@ public class PauseFollowRequest extends RequestBase {
 
 	private PauseFollowRequest(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
 		this.masterTimeout = builder.masterTimeout;
 
 	}

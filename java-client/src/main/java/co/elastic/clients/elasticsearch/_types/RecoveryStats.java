@@ -72,11 +72,13 @@ public class RecoveryStats implements JsonpSerializable {
 
 	private RecoveryStats(Builder builder) {
 
-		this.currentAsSource = ApiTypeHelper.requireNonNull(builder.currentAsSource, this, "currentAsSource");
-		this.currentAsTarget = ApiTypeHelper.requireNonNull(builder.currentAsTarget, this, "currentAsTarget");
+		this.currentAsSource = ApiTypeHelper.requireNonNullWithDefault(builder.currentAsSource, this, "currentAsSource",
+				this.currentAsSource());
+		this.currentAsTarget = ApiTypeHelper.requireNonNullWithDefault(builder.currentAsTarget, this, "currentAsTarget",
+				this.currentAsTarget());
 		this.throttleTime = builder.throttleTime;
-		this.throttleTimeInMillis = ApiTypeHelper.requireNonNull(builder.throttleTimeInMillis, this,
-				"throttleTimeInMillis");
+		this.throttleTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.throttleTimeInMillis, this,
+				"throttleTimeInMillis", this.throttleTimeInMillis());
 
 	}
 

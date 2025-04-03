@@ -87,7 +87,7 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 
 	private GeoDistanceSort(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.location = ApiTypeHelper.unmodifiableRequired(builder.location, this, "location");
 
 		this.mode = builder.mode;

@@ -264,7 +264,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		this.highlight = builder.highlight;
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
 		this.indicesBoost = ApiTypeHelper.unmodifiable(builder.indicesBoost);
 		this.lenient = builder.lenient;
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;

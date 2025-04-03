@@ -73,10 +73,10 @@ public class Vertex implements JsonpSerializable {
 
 	private Vertex(Builder builder) {
 
-		this.depth = ApiTypeHelper.requireNonNull(builder.depth, this, "depth");
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.term = ApiTypeHelper.requireNonNull(builder.term, this, "term");
-		this.weight = ApiTypeHelper.requireNonNull(builder.weight, this, "weight");
+		this.depth = ApiTypeHelper.requireNonNullWithDefault(builder.depth, this, "depth", this.depth());
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.term = ApiTypeHelper.requireNonNullWithDefault(builder.term, this, "term", this.term());
+		this.weight = ApiTypeHelper.requireNonNullWithDefault(builder.weight, this, "weight", this.weight());
 
 	}
 

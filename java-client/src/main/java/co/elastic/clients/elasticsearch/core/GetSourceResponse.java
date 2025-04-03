@@ -71,7 +71,7 @@ public class GetSourceResponse<TDocument> implements JsonpSerializable {
 
 	private GetSourceResponse(Builder<TDocument> builder) {
 
-		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.source = ApiTypeHelper.requireNonNullWithDefault(builder.source, this, "source", this.source());
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}

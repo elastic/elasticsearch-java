@@ -83,9 +83,11 @@ public class TrainedModelStats implements JsonpSerializable {
 		this.deploymentStats = builder.deploymentStats;
 		this.inferenceStats = builder.inferenceStats;
 		this.ingest = ApiTypeHelper.unmodifiable(builder.ingest);
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.modelSizeStats = ApiTypeHelper.requireNonNull(builder.modelSizeStats, this, "modelSizeStats");
-		this.pipelineCount = ApiTypeHelper.requireNonNull(builder.pipelineCount, this, "pipelineCount");
+		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
+		this.modelSizeStats = ApiTypeHelper.requireNonNullWithDefault(builder.modelSizeStats, this, "modelSizeStats",
+				this.modelSizeStats());
+		this.pipelineCount = ApiTypeHelper.requireNonNullWithDefault(builder.pipelineCount, this, "pipelineCount",
+				this.pipelineCount());
 
 	}
 

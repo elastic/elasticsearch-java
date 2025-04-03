@@ -73,7 +73,8 @@ public class RankEvalResponse implements JsonpSerializable {
 
 	private RankEvalResponse(Builder builder) {
 
-		this.metricScore = ApiTypeHelper.requireNonNull(builder.metricScore, this, "metricScore");
+		this.metricScore = ApiTypeHelper.requireNonNullWithDefault(builder.metricScore, this, "metricScore",
+				this.metricScore());
 		this.details = ApiTypeHelper.unmodifiableRequired(builder.details, this, "details");
 		this.failures = ApiTypeHelper.unmodifiableRequired(builder.failures, this, "failures");
 

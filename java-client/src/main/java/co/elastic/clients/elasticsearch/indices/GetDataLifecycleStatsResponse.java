@@ -77,7 +77,8 @@ public class GetDataLifecycleStatsResponse implements JsonpSerializable {
 
 	private GetDataLifecycleStatsResponse(Builder builder) {
 
-		this.dataStreamCount = ApiTypeHelper.requireNonNull(builder.dataStreamCount, this, "dataStreamCount");
+		this.dataStreamCount = ApiTypeHelper.requireNonNullWithDefault(builder.dataStreamCount, this, "dataStreamCount",
+				this.dataStreamCount());
 		this.dataStreams = ApiTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
 		this.lastRunDurationInMillis = builder.lastRunDurationInMillis;
 		this.timeBetweenStartsInMillis = builder.timeBetweenStartsInMillis;

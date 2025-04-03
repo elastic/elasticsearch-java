@@ -68,7 +68,7 @@ public class LongTermsBucket extends TermsBucketBase {
 	private LongTermsBucket(Builder builder) {
 		super(builder);
 
-		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
+		this.key = ApiTypeHelper.requireNonNullWithDefault(builder.key, this, "key", this.key());
 		this.keyAsString = builder.keyAsString;
 
 	}

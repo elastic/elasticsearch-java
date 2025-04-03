@@ -78,7 +78,7 @@ public class CohereServiceSettings implements JsonpSerializable {
 
 	private CohereServiceSettings(Builder builder) {
 
-		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
+		this.apiKey = ApiTypeHelper.requireNonNullWithDefault(builder.apiKey, this, "apiKey", this.apiKey());
 		this.embeddingType = builder.embeddingType;
 		this.modelId = builder.modelId;
 		this.rateLimit = builder.rateLimit;

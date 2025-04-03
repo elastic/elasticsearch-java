@@ -69,7 +69,7 @@ public class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	private GetDataFrameAnalyticsResponse(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
 		this.dataFrameAnalytics = ApiTypeHelper.unmodifiableRequired(builder.dataFrameAnalytics, this,
 				"dataFrameAnalytics");
 

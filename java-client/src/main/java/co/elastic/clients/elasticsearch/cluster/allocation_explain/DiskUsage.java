@@ -78,12 +78,17 @@ public class DiskUsage implements JsonpSerializable {
 
 	private DiskUsage(Builder builder) {
 
-		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
-		this.totalBytes = ApiTypeHelper.requireNonNull(builder.totalBytes, this, "totalBytes");
-		this.usedBytes = ApiTypeHelper.requireNonNull(builder.usedBytes, this, "usedBytes");
-		this.freeBytes = ApiTypeHelper.requireNonNull(builder.freeBytes, this, "freeBytes");
-		this.freeDiskPercent = ApiTypeHelper.requireNonNull(builder.freeDiskPercent, this, "freeDiskPercent");
-		this.usedDiskPercent = ApiTypeHelper.requireNonNull(builder.usedDiskPercent, this, "usedDiskPercent");
+		this.path = ApiTypeHelper.requireNonNullWithDefault(builder.path, this, "path", this.path());
+		this.totalBytes = ApiTypeHelper.requireNonNullWithDefault(builder.totalBytes, this, "totalBytes",
+				this.totalBytes());
+		this.usedBytes = ApiTypeHelper.requireNonNullWithDefault(builder.usedBytes, this, "usedBytes",
+				this.usedBytes());
+		this.freeBytes = ApiTypeHelper.requireNonNullWithDefault(builder.freeBytes, this, "freeBytes",
+				this.freeBytes());
+		this.freeDiskPercent = ApiTypeHelper.requireNonNullWithDefault(builder.freeDiskPercent, this, "freeDiskPercent",
+				this.freeDiskPercent());
+		this.usedDiskPercent = ApiTypeHelper.requireNonNullWithDefault(builder.usedDiskPercent, this, "usedDiskPercent",
+				this.usedDiskPercent());
 
 	}
 

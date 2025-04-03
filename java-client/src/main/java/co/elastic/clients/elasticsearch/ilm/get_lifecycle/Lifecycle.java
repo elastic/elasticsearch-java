@@ -71,9 +71,10 @@ public class Lifecycle implements JsonpSerializable {
 
 	private Lifecycle(Builder builder) {
 
-		this.modifiedDate = ApiTypeHelper.requireNonNull(builder.modifiedDate, this, "modifiedDate");
-		this.policy = ApiTypeHelper.requireNonNull(builder.policy, this, "policy");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.modifiedDate = ApiTypeHelper.requireNonNullWithDefault(builder.modifiedDate, this, "modifiedDate",
+				this.modifiedDate());
+		this.policy = ApiTypeHelper.requireNonNullWithDefault(builder.policy, this, "policy", this.policy());
+		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
 
 	}
 

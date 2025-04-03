@@ -71,7 +71,7 @@ public class RepositoryLocation implements JsonpSerializable {
 
 	private RepositoryLocation(Builder builder) {
 
-		this.basePath = ApiTypeHelper.requireNonNull(builder.basePath, this, "basePath");
+		this.basePath = ApiTypeHelper.requireNonNullWithDefault(builder.basePath, this, "basePath", this.basePath());
 		this.container = builder.container;
 		this.bucket = builder.bucket;
 

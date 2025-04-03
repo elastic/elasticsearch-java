@@ -70,7 +70,7 @@ public class FrequentItemSetsBucket extends MultiBucketBase {
 		super(builder);
 
 		this.key = ApiTypeHelper.unmodifiableRequired(builder.key, this, "key");
-		this.support = ApiTypeHelper.requireNonNull(builder.support, this, "support");
+		this.support = ApiTypeHelper.requireNonNullWithDefault(builder.support, this, "support", this.support());
 
 	}
 

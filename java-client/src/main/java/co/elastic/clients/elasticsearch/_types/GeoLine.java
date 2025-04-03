@@ -70,7 +70,7 @@ public class GeoLine implements JsonpSerializable {
 
 	private GeoLine(Builder builder) {
 
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
 		this.coordinates = ApiTypeHelper.unmodifiableRequired(builder.coordinates, this, "coordinates");
 
 	}

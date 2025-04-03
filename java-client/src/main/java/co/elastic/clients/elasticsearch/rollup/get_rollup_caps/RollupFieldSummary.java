@@ -73,7 +73,7 @@ public class RollupFieldSummary implements JsonpSerializable {
 
 	private RollupFieldSummary(Builder builder) {
 
-		this.agg = ApiTypeHelper.requireNonNull(builder.agg, this, "agg");
+		this.agg = ApiTypeHelper.requireNonNullWithDefault(builder.agg, this, "agg", this.agg());
 		this.calendarInterval = builder.calendarInterval;
 		this.timeZone = builder.timeZone;
 

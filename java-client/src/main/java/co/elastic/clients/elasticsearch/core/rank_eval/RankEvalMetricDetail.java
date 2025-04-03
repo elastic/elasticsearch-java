@@ -76,7 +76,8 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 
 	private RankEvalMetricDetail(Builder builder) {
 
-		this.metricScore = ApiTypeHelper.requireNonNull(builder.metricScore, this, "metricScore");
+		this.metricScore = ApiTypeHelper.requireNonNullWithDefault(builder.metricScore, this, "metricScore",
+				this.metricScore());
 		this.unratedDocs = ApiTypeHelper.unmodifiableRequired(builder.unratedDocs, this, "unratedDocs");
 		this.hits = ApiTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
 		this.metricDetails = ApiTypeHelper.unmodifiableRequired(builder.metricDetails, this, "metricDetails");

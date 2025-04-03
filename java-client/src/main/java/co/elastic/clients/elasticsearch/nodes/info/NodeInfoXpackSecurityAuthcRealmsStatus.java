@@ -70,7 +70,7 @@ public class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerializable
 	private NodeInfoXpackSecurityAuthcRealmsStatus(Builder builder) {
 
 		this.enabled = builder.enabled;
-		this.order = ApiTypeHelper.requireNonNull(builder.order, this, "order");
+		this.order = ApiTypeHelper.requireNonNullWithDefault(builder.order, this, "order", this.order());
 
 	}
 

@@ -68,7 +68,8 @@ public abstract class QueryRuleset implements JsonpSerializable {
 
 	protected QueryRuleset(AbstractBuilder<?> builder) {
 
-		this.rulesetId = ApiTypeHelper.requireNonNull(builder.rulesetId, this, "rulesetId");
+		this.rulesetId = ApiTypeHelper.requireNonNullWithDefault(builder.rulesetId, this, "rulesetId",
+				this.rulesetId());
 		this.rules = ApiTypeHelper.unmodifiableRequired(builder.rules, this, "rules");
 
 	}

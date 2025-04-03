@@ -115,8 +115,8 @@ public class ExistsSourceRequest extends RequestBase {
 		this.source = builder.source;
 		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
 		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
 		this.refresh = builder.refresh;

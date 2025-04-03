@@ -71,10 +71,14 @@ public class ConfusionMatrixThreshold implements JsonpSerializable {
 
 	private ConfusionMatrixThreshold(Builder builder) {
 
-		this.truePositive = ApiTypeHelper.requireNonNull(builder.truePositive, this, "truePositive");
-		this.falsePositive = ApiTypeHelper.requireNonNull(builder.falsePositive, this, "falsePositive");
-		this.trueNegative = ApiTypeHelper.requireNonNull(builder.trueNegative, this, "trueNegative");
-		this.falseNegative = ApiTypeHelper.requireNonNull(builder.falseNegative, this, "falseNegative");
+		this.truePositive = ApiTypeHelper.requireNonNullWithDefault(builder.truePositive, this, "truePositive",
+				this.truePositive());
+		this.falsePositive = ApiTypeHelper.requireNonNullWithDefault(builder.falsePositive, this, "falsePositive",
+				this.falsePositive());
+		this.trueNegative = ApiTypeHelper.requireNonNullWithDefault(builder.trueNegative, this, "trueNegative",
+				this.trueNegative());
+		this.falseNegative = ApiTypeHelper.requireNonNullWithDefault(builder.falseNegative, this, "falseNegative",
+				this.falseNegative());
 
 	}
 

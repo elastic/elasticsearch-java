@@ -70,7 +70,7 @@ public class MultiTermLookup implements JsonpSerializable {
 
 	private MultiTermLookup(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.missing = builder.missing;
 
 	}

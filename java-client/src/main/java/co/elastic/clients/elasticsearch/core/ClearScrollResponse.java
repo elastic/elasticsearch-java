@@ -67,8 +67,9 @@ public class ClearScrollResponse implements JsonpSerializable {
 
 	private ClearScrollResponse(Builder builder) {
 
-		this.succeeded = ApiTypeHelper.requireNonNull(builder.succeeded, this, "succeeded");
-		this.numFreed = ApiTypeHelper.requireNonNull(builder.numFreed, this, "numFreed");
+		this.succeeded = ApiTypeHelper.requireNonNullWithDefault(builder.succeeded, this, "succeeded",
+				this.succeeded());
+		this.numFreed = ApiTypeHelper.requireNonNullWithDefault(builder.numFreed, this, "numFreed", this.numFreed());
 
 	}
 

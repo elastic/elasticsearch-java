@@ -70,7 +70,8 @@ public class SearchableSnapshotAction implements JsonpSerializable {
 
 	private SearchableSnapshotAction(Builder builder) {
 
-		this.snapshotRepository = ApiTypeHelper.requireNonNull(builder.snapshotRepository, this, "snapshotRepository");
+		this.snapshotRepository = ApiTypeHelper.requireNonNullWithDefault(builder.snapshotRepository, this,
+				"snapshotRepository", this.snapshotRepository());
 		this.forceMergeIndex = builder.forceMergeIndex;
 
 	}

@@ -67,8 +67,8 @@ public class SynonymRuleRead implements JsonpSerializable {
 
 	protected SynonymRuleRead(AbstractBuilder<?> builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.synonyms = ApiTypeHelper.requireNonNull(builder.synonyms, this, "synonyms");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.synonyms = ApiTypeHelper.requireNonNullWithDefault(builder.synonyms, this, "synonyms", this.synonyms());
 
 	}
 

@@ -73,16 +73,17 @@ public class DiskIndicatorDetails implements JsonpSerializable {
 
 	private DiskIndicatorDetails(Builder builder) {
 
-		this.indicesWithReadonlyBlock = ApiTypeHelper.requireNonNull(builder.indicesWithReadonlyBlock, this,
-				"indicesWithReadonlyBlock");
-		this.nodesWithEnoughDiskSpace = ApiTypeHelper.requireNonNull(builder.nodesWithEnoughDiskSpace, this,
-				"nodesWithEnoughDiskSpace");
-		this.nodesOverHighWatermark = ApiTypeHelper.requireNonNull(builder.nodesOverHighWatermark, this,
-				"nodesOverHighWatermark");
-		this.nodesOverFloodStageWatermark = ApiTypeHelper.requireNonNull(builder.nodesOverFloodStageWatermark, this,
-				"nodesOverFloodStageWatermark");
-		this.nodesWithUnknownDiskStatus = ApiTypeHelper.requireNonNull(builder.nodesWithUnknownDiskStatus, this,
-				"nodesWithUnknownDiskStatus");
+		this.indicesWithReadonlyBlock = ApiTypeHelper.requireNonNullWithDefault(builder.indicesWithReadonlyBlock, this,
+				"indicesWithReadonlyBlock", this.indicesWithReadonlyBlock());
+		this.nodesWithEnoughDiskSpace = ApiTypeHelper.requireNonNullWithDefault(builder.nodesWithEnoughDiskSpace, this,
+				"nodesWithEnoughDiskSpace", this.nodesWithEnoughDiskSpace());
+		this.nodesOverHighWatermark = ApiTypeHelper.requireNonNullWithDefault(builder.nodesOverHighWatermark, this,
+				"nodesOverHighWatermark", this.nodesOverHighWatermark());
+		this.nodesOverFloodStageWatermark = ApiTypeHelper.requireNonNullWithDefault(
+				builder.nodesOverFloodStageWatermark, this, "nodesOverFloodStageWatermark",
+				this.nodesOverFloodStageWatermark());
+		this.nodesWithUnknownDiskStatus = ApiTypeHelper.requireNonNullWithDefault(builder.nodesWithUnknownDiskStatus,
+				this, "nodesWithUnknownDiskStatus", this.nodesWithUnknownDiskStatus());
 
 	}
 

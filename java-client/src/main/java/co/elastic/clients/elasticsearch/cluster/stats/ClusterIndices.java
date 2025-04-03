@@ -92,16 +92,19 @@ public class ClusterIndices implements JsonpSerializable {
 
 	private ClusterIndices(Builder builder) {
 
-		this.analysis = ApiTypeHelper.requireNonNull(builder.analysis, this, "analysis");
-		this.completion = ApiTypeHelper.requireNonNull(builder.completion, this, "completion");
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.docs = ApiTypeHelper.requireNonNull(builder.docs, this, "docs");
-		this.fielddata = ApiTypeHelper.requireNonNull(builder.fielddata, this, "fielddata");
-		this.queryCache = ApiTypeHelper.requireNonNull(builder.queryCache, this, "queryCache");
-		this.segments = ApiTypeHelper.requireNonNull(builder.segments, this, "segments");
-		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.store = ApiTypeHelper.requireNonNull(builder.store, this, "store");
-		this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
+		this.analysis = ApiTypeHelper.requireNonNullWithDefault(builder.analysis, this, "analysis", this.analysis());
+		this.completion = ApiTypeHelper.requireNonNullWithDefault(builder.completion, this, "completion",
+				this.completion());
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
+		this.docs = ApiTypeHelper.requireNonNullWithDefault(builder.docs, this, "docs", this.docs());
+		this.fielddata = ApiTypeHelper.requireNonNullWithDefault(builder.fielddata, this, "fielddata",
+				this.fielddata());
+		this.queryCache = ApiTypeHelper.requireNonNullWithDefault(builder.queryCache, this, "queryCache",
+				this.queryCache());
+		this.segments = ApiTypeHelper.requireNonNullWithDefault(builder.segments, this, "segments", this.segments());
+		this.shards = ApiTypeHelper.requireNonNullWithDefault(builder.shards, this, "shards", this.shards());
+		this.store = ApiTypeHelper.requireNonNullWithDefault(builder.store, this, "store", this.store());
+		this.mappings = ApiTypeHelper.requireNonNullWithDefault(builder.mappings, this, "mappings", this.mappings());
 		this.versions = ApiTypeHelper.unmodifiable(builder.versions);
 
 	}

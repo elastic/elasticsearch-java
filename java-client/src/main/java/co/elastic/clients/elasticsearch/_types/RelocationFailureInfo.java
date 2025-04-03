@@ -64,7 +64,8 @@ public class RelocationFailureInfo implements JsonpSerializable {
 
 	private RelocationFailureInfo(Builder builder) {
 
-		this.failedAttempts = ApiTypeHelper.requireNonNull(builder.failedAttempts, this, "failedAttempts");
+		this.failedAttempts = ApiTypeHelper.requireNonNullWithDefault(builder.failedAttempts, this, "failedAttempts",
+				this.failedAttempts());
 
 	}
 

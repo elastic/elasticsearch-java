@@ -86,20 +86,23 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 
 	private TrainedModelAssignmentTaskParameters(Builder builder) {
 
-		this.modelBytes = ApiTypeHelper.requireNonNull(builder.modelBytes, this, "modelBytes");
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.deploymentId = ApiTypeHelper.requireNonNull(builder.deploymentId, this, "deploymentId");
+		this.modelBytes = ApiTypeHelper.requireNonNullWithDefault(builder.modelBytes, this, "modelBytes",
+				this.modelBytes());
+		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
+		this.deploymentId = ApiTypeHelper.requireNonNullWithDefault(builder.deploymentId, this, "deploymentId",
+				this.deploymentId());
 		this.cacheSize = builder.cacheSize;
-		this.numberOfAllocations = ApiTypeHelper.requireNonNull(builder.numberOfAllocations, this,
-				"numberOfAllocations");
-		this.priority = ApiTypeHelper.requireNonNull(builder.priority, this, "priority");
-		this.perDeploymentMemoryBytes = ApiTypeHelper.requireNonNull(builder.perDeploymentMemoryBytes, this,
-				"perDeploymentMemoryBytes");
-		this.perAllocationMemoryBytes = ApiTypeHelper.requireNonNull(builder.perAllocationMemoryBytes, this,
-				"perAllocationMemoryBytes");
-		this.queueCapacity = ApiTypeHelper.requireNonNull(builder.queueCapacity, this, "queueCapacity");
-		this.threadsPerAllocation = ApiTypeHelper.requireNonNull(builder.threadsPerAllocation, this,
-				"threadsPerAllocation");
+		this.numberOfAllocations = ApiTypeHelper.requireNonNullWithDefault(builder.numberOfAllocations, this,
+				"numberOfAllocations", this.numberOfAllocations());
+		this.priority = ApiTypeHelper.requireNonNullWithDefault(builder.priority, this, "priority", this.priority());
+		this.perDeploymentMemoryBytes = ApiTypeHelper.requireNonNullWithDefault(builder.perDeploymentMemoryBytes, this,
+				"perDeploymentMemoryBytes", this.perDeploymentMemoryBytes());
+		this.perAllocationMemoryBytes = ApiTypeHelper.requireNonNullWithDefault(builder.perAllocationMemoryBytes, this,
+				"perAllocationMemoryBytes", this.perAllocationMemoryBytes());
+		this.queueCapacity = ApiTypeHelper.requireNonNullWithDefault(builder.queueCapacity, this, "queueCapacity",
+				this.queueCapacity());
+		this.threadsPerAllocation = ApiTypeHelper.requireNonNullWithDefault(builder.threadsPerAllocation, this,
+				"threadsPerAllocation", this.threadsPerAllocation());
 
 	}
 

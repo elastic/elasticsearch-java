@@ -74,7 +74,7 @@ public class DeletePipelineRequest extends RequestBase {
 
 	private DeletePipelineRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 
 	}
 

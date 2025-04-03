@@ -68,8 +68,8 @@ public class StatusError implements JsonpSerializable {
 
 	private StatusError(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.message = ApiTypeHelper.requireNonNullWithDefault(builder.message, this, "message", this.message());
 
 	}
 

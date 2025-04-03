@@ -68,8 +68,8 @@ public class AutoFollowPattern implements JsonpSerializable {
 
 	private AutoFollowPattern(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.pattern = ApiTypeHelper.requireNonNullWithDefault(builder.pattern, this, "pattern", this.pattern());
 
 	}
 

@@ -71,7 +71,7 @@ public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializabl
 
 	private ScriptsPainlessExecuteResponse(Builder<TResult> builder) {
 
-		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
+		this.result = ApiTypeHelper.requireNonNullWithDefault(builder.result, this, "result", this.result());
 		this.tResultSerializer = builder.tResultSerializer;
 
 	}

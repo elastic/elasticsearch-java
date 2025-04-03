@@ -74,8 +74,10 @@ public class UpdateServiceTypeRequest extends RequestBase implements JsonpSerial
 
 	private UpdateServiceTypeRequest(Builder builder) {
 
-		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
-		this.serviceType = ApiTypeHelper.requireNonNull(builder.serviceType, this, "serviceType");
+		this.connectorId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorId, this, "connectorId",
+				this.connectorId());
+		this.serviceType = ApiTypeHelper.requireNonNullWithDefault(builder.serviceType, this, "serviceType",
+				this.serviceType());
 
 	}
 

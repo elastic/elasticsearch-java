@@ -72,8 +72,8 @@ public class SimulatedActions implements JsonpSerializable {
 	private SimulatedActions(Builder builder) {
 
 		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
-		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
-		this.useAll = ApiTypeHelper.requireNonNull(builder.useAll, this, "useAll");
+		this.all = ApiTypeHelper.requireNonNullWithDefault(builder.all, this, "all", this.all());
+		this.useAll = ApiTypeHelper.requireNonNullWithDefault(builder.useAll, this, "useAll", this.useAll());
 
 	}
 

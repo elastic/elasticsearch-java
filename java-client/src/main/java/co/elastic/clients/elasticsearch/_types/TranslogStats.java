@@ -81,16 +81,18 @@ public class TranslogStats implements JsonpSerializable {
 
 	private TranslogStats(Builder builder) {
 
-		this.earliestLastModifiedAge = ApiTypeHelper.requireNonNull(builder.earliestLastModifiedAge, this,
-				"earliestLastModifiedAge");
-		this.operations = ApiTypeHelper.requireNonNull(builder.operations, this, "operations");
+		this.earliestLastModifiedAge = ApiTypeHelper.requireNonNullWithDefault(builder.earliestLastModifiedAge, this,
+				"earliestLastModifiedAge", this.earliestLastModifiedAge());
+		this.operations = ApiTypeHelper.requireNonNullWithDefault(builder.operations, this, "operations",
+				this.operations());
 		this.size = builder.size;
-		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
-		this.uncommittedOperations = ApiTypeHelper.requireNonNull(builder.uncommittedOperations, this,
-				"uncommittedOperations");
+		this.sizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.sizeInBytes, this, "sizeInBytes",
+				this.sizeInBytes());
+		this.uncommittedOperations = ApiTypeHelper.requireNonNullWithDefault(builder.uncommittedOperations, this,
+				"uncommittedOperations", this.uncommittedOperations());
 		this.uncommittedSize = builder.uncommittedSize;
-		this.uncommittedSizeInBytes = ApiTypeHelper.requireNonNull(builder.uncommittedSizeInBytes, this,
-				"uncommittedSizeInBytes");
+		this.uncommittedSizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.uncommittedSizeInBytes, this,
+				"uncommittedSizeInBytes", this.uncommittedSizeInBytes());
 
 	}
 

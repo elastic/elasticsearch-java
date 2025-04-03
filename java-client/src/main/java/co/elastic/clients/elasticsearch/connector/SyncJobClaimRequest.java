@@ -89,9 +89,11 @@ public class SyncJobClaimRequest extends RequestBase implements JsonpSerializabl
 
 	private SyncJobClaimRequest(Builder builder) {
 
-		this.connectorSyncJobId = ApiTypeHelper.requireNonNull(builder.connectorSyncJobId, this, "connectorSyncJobId");
+		this.connectorSyncJobId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorSyncJobId, this,
+				"connectorSyncJobId", this.connectorSyncJobId());
 		this.syncCursor = builder.syncCursor;
-		this.workerHostname = ApiTypeHelper.requireNonNull(builder.workerHostname, this, "workerHostname");
+		this.workerHostname = ApiTypeHelper.requireNonNullWithDefault(builder.workerHostname, this, "workerHostname",
+				this.workerHostname());
 
 	}
 

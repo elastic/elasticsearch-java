@@ -72,7 +72,7 @@ public class Filter implements JsonpSerializable {
 	private Filter(Builder builder) {
 
 		this.description = builder.description;
-		this.filterId = ApiTypeHelper.requireNonNull(builder.filterId, this, "filterId");
+		this.filterId = ApiTypeHelper.requireNonNullWithDefault(builder.filterId, this, "filterId", this.filterId());
 		this.items = ApiTypeHelper.unmodifiableRequired(builder.items, this, "items");
 
 	}

@@ -83,9 +83,10 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 
 	private RerankRequest(Builder builder) {
 
-		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
+		this.inferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.inferenceId, this, "inferenceId",
+				this.inferenceId());
 		this.input = ApiTypeHelper.unmodifiableRequired(builder.input, this, "input");
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
 		this.taskSettings = builder.taskSettings;
 		this.timeout = builder.timeout;
 

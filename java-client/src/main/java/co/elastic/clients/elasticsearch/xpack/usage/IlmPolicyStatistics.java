@@ -68,8 +68,9 @@ public class IlmPolicyStatistics implements JsonpSerializable {
 
 	private IlmPolicyStatistics(Builder builder) {
 
-		this.indicesManaged = ApiTypeHelper.requireNonNull(builder.indicesManaged, this, "indicesManaged");
-		this.phases = ApiTypeHelper.requireNonNull(builder.phases, this, "phases");
+		this.indicesManaged = ApiTypeHelper.requireNonNullWithDefault(builder.indicesManaged, this, "indicesManaged",
+				this.indicesManaged());
+		this.phases = ApiTypeHelper.requireNonNullWithDefault(builder.phases, this, "phases", this.phases());
 
 	}
 

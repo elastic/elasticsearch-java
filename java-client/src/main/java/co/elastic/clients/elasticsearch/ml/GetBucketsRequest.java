@@ -114,7 +114,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 		this.excludeInterim = builder.excludeInterim;
 		this.expand = builder.expand;
 		this.from = builder.from;
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
 		this.page = builder.page;
 		this.size = builder.size;
 		this.sort = builder.sort;

@@ -120,7 +120,8 @@ public abstract class DataframeAnalysisBase implements JsonpSerializable {
 	protected DataframeAnalysisBase(AbstractBuilder<?> builder) {
 
 		this.alpha = builder.alpha;
-		this.dependentVariable = ApiTypeHelper.requireNonNull(builder.dependentVariable, this, "dependentVariable");
+		this.dependentVariable = ApiTypeHelper.requireNonNullWithDefault(builder.dependentVariable, this,
+				"dependentVariable", this.dependentVariable());
 		this.downsampleFactor = builder.downsampleFactor;
 		this.earlyStoppingEnabled = builder.earlyStoppingEnabled;
 		this.eta = builder.eta;

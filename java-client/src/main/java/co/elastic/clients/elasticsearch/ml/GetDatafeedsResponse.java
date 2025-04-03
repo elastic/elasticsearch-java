@@ -68,7 +68,7 @@ public class GetDatafeedsResponse implements JsonpSerializable {
 
 	private GetDatafeedsResponse(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
 		this.datafeeds = ApiTypeHelper.unmodifiableRequired(builder.datafeeds, this, "datafeeds");
 
 	}

@@ -67,8 +67,9 @@ public class NativeCode implements JsonpSerializable {
 
 	private NativeCode(Builder builder) {
 
-		this.buildHash = ApiTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.buildHash = ApiTypeHelper.requireNonNullWithDefault(builder.buildHash, this, "buildHash",
+				this.buildHash());
+		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
 
 	}
 

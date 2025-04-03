@@ -93,8 +93,9 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 
 	private DataStreamLifecycleExplain(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.managedByLifecycle = ApiTypeHelper.requireNonNull(builder.managedByLifecycle, this, "managedByLifecycle");
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.managedByLifecycle = ApiTypeHelper.requireNonNullWithDefault(builder.managedByLifecycle, this,
+				"managedByLifecycle", this.managedByLifecycle());
 		this.indexCreationDateMillis = builder.indexCreationDateMillis;
 		this.timeSinceIndexCreation = builder.timeSinceIndexCreation;
 		this.rolloverDateMillis = builder.rolloverDateMillis;

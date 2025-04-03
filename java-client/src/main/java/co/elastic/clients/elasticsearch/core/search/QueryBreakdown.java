@@ -103,30 +103,42 @@ public class QueryBreakdown implements JsonpSerializable {
 
 	private QueryBreakdown(Builder builder) {
 
-		this.advance = ApiTypeHelper.requireNonNull(builder.advance, this, "advance");
-		this.advanceCount = ApiTypeHelper.requireNonNull(builder.advanceCount, this, "advanceCount");
-		this.buildScorer = ApiTypeHelper.requireNonNull(builder.buildScorer, this, "buildScorer");
-		this.buildScorerCount = ApiTypeHelper.requireNonNull(builder.buildScorerCount, this, "buildScorerCount");
-		this.createWeight = ApiTypeHelper.requireNonNull(builder.createWeight, this, "createWeight");
-		this.createWeightCount = ApiTypeHelper.requireNonNull(builder.createWeightCount, this, "createWeightCount");
-		this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match");
-		this.matchCount = ApiTypeHelper.requireNonNull(builder.matchCount, this, "matchCount");
-		this.shallowAdvance = ApiTypeHelper.requireNonNull(builder.shallowAdvance, this, "shallowAdvance");
-		this.shallowAdvanceCount = ApiTypeHelper.requireNonNull(builder.shallowAdvanceCount, this,
-				"shallowAdvanceCount");
-		this.nextDoc = ApiTypeHelper.requireNonNull(builder.nextDoc, this, "nextDoc");
-		this.nextDocCount = ApiTypeHelper.requireNonNull(builder.nextDocCount, this, "nextDocCount");
-		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
-		this.scoreCount = ApiTypeHelper.requireNonNull(builder.scoreCount, this, "scoreCount");
-		this.computeMaxScore = ApiTypeHelper.requireNonNull(builder.computeMaxScore, this, "computeMaxScore");
-		this.computeMaxScoreCount = ApiTypeHelper.requireNonNull(builder.computeMaxScoreCount, this,
-				"computeMaxScoreCount");
-		this.countWeight = ApiTypeHelper.requireNonNull(builder.countWeight, this, "countWeight");
-		this.countWeightCount = ApiTypeHelper.requireNonNull(builder.countWeightCount, this, "countWeightCount");
-		this.setMinCompetitiveScore = ApiTypeHelper.requireNonNull(builder.setMinCompetitiveScore, this,
-				"setMinCompetitiveScore");
-		this.setMinCompetitiveScoreCount = ApiTypeHelper.requireNonNull(builder.setMinCompetitiveScoreCount, this,
-				"setMinCompetitiveScoreCount");
+		this.advance = ApiTypeHelper.requireNonNullWithDefault(builder.advance, this, "advance", this.advance());
+		this.advanceCount = ApiTypeHelper.requireNonNullWithDefault(builder.advanceCount, this, "advanceCount",
+				this.advanceCount());
+		this.buildScorer = ApiTypeHelper.requireNonNullWithDefault(builder.buildScorer, this, "buildScorer",
+				this.buildScorer());
+		this.buildScorerCount = ApiTypeHelper.requireNonNullWithDefault(builder.buildScorerCount, this,
+				"buildScorerCount", this.buildScorerCount());
+		this.createWeight = ApiTypeHelper.requireNonNullWithDefault(builder.createWeight, this, "createWeight",
+				this.createWeight());
+		this.createWeightCount = ApiTypeHelper.requireNonNullWithDefault(builder.createWeightCount, this,
+				"createWeightCount", this.createWeightCount());
+		this.match = ApiTypeHelper.requireNonNullWithDefault(builder.match, this, "match", this.match());
+		this.matchCount = ApiTypeHelper.requireNonNullWithDefault(builder.matchCount, this, "matchCount",
+				this.matchCount());
+		this.shallowAdvance = ApiTypeHelper.requireNonNullWithDefault(builder.shallowAdvance, this, "shallowAdvance",
+				this.shallowAdvance());
+		this.shallowAdvanceCount = ApiTypeHelper.requireNonNullWithDefault(builder.shallowAdvanceCount, this,
+				"shallowAdvanceCount", this.shallowAdvanceCount());
+		this.nextDoc = ApiTypeHelper.requireNonNullWithDefault(builder.nextDoc, this, "nextDoc", this.nextDoc());
+		this.nextDocCount = ApiTypeHelper.requireNonNullWithDefault(builder.nextDocCount, this, "nextDocCount",
+				this.nextDocCount());
+		this.score = ApiTypeHelper.requireNonNullWithDefault(builder.score, this, "score", this.score());
+		this.scoreCount = ApiTypeHelper.requireNonNullWithDefault(builder.scoreCount, this, "scoreCount",
+				this.scoreCount());
+		this.computeMaxScore = ApiTypeHelper.requireNonNullWithDefault(builder.computeMaxScore, this, "computeMaxScore",
+				this.computeMaxScore());
+		this.computeMaxScoreCount = ApiTypeHelper.requireNonNullWithDefault(builder.computeMaxScoreCount, this,
+				"computeMaxScoreCount", this.computeMaxScoreCount());
+		this.countWeight = ApiTypeHelper.requireNonNullWithDefault(builder.countWeight, this, "countWeight",
+				this.countWeight());
+		this.countWeightCount = ApiTypeHelper.requireNonNullWithDefault(builder.countWeightCount, this,
+				"countWeightCount", this.countWeightCount());
+		this.setMinCompetitiveScore = ApiTypeHelper.requireNonNullWithDefault(builder.setMinCompetitiveScore, this,
+				"setMinCompetitiveScore", this.setMinCompetitiveScore());
+		this.setMinCompetitiveScoreCount = ApiTypeHelper.requireNonNullWithDefault(builder.setMinCompetitiveScoreCount,
+				this, "setMinCompetitiveScoreCount", this.setMinCompetitiveScoreCount());
 
 	}
 

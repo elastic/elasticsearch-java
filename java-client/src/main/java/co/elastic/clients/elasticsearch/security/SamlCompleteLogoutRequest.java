@@ -98,7 +98,7 @@ public class SamlCompleteLogoutRequest extends RequestBase implements JsonpSeria
 		this.content = builder.content;
 		this.ids = ApiTypeHelper.unmodifiableRequired(builder.ids, this, "ids");
 		this.queryString = builder.queryString;
-		this.realm = ApiTypeHelper.requireNonNull(builder.realm, this, "realm");
+		this.realm = ApiTypeHelper.requireNonNullWithDefault(builder.realm, this, "realm", this.realm());
 
 	}
 

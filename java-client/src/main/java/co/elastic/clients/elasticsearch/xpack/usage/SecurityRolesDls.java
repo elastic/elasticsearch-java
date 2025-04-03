@@ -64,7 +64,8 @@ public class SecurityRolesDls implements JsonpSerializable {
 
 	private SecurityRolesDls(Builder builder) {
 
-		this.bitSetCache = ApiTypeHelper.requireNonNull(builder.bitSetCache, this, "bitSetCache");
+		this.bitSetCache = ApiTypeHelper.requireNonNullWithDefault(builder.bitSetCache, this, "bitSetCache",
+				this.bitSetCache());
 
 	}
 

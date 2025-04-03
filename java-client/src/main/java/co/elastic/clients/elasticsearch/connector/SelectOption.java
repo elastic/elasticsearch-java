@@ -68,8 +68,8 @@ public class SelectOption implements JsonpSerializable {
 
 	private SelectOption(Builder builder) {
 
-		this.label = ApiTypeHelper.requireNonNull(builder.label, this, "label");
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.label = ApiTypeHelper.requireNonNullWithDefault(builder.label, this, "label", this.label());
+		this.value = ApiTypeHelper.requireNonNullWithDefault(builder.value, this, "value", this.value());
 
 	}
 

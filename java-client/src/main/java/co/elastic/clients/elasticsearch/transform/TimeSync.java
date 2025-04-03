@@ -70,7 +70,7 @@ public class TimeSync implements SyncVariant, JsonpSerializable {
 	private TimeSync(Builder builder) {
 
 		this.delay = builder.delay;
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 
 	}
 

@@ -89,7 +89,7 @@ public class MultiTermVectorsResult implements JsonpSerializable {
 	private MultiTermVectorsResult(Builder builder) {
 
 		this.id = builder.id;
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
 		this.version = builder.version;
 		this.took = builder.took;
 		this.found = builder.found;

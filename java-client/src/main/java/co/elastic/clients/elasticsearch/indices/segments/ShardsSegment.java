@@ -74,10 +74,11 @@ public class ShardsSegment implements JsonpSerializable {
 
 	private ShardsSegment(Builder builder) {
 
-		this.numCommittedSegments = ApiTypeHelper.requireNonNull(builder.numCommittedSegments, this,
-				"numCommittedSegments");
-		this.routing = ApiTypeHelper.requireNonNull(builder.routing, this, "routing");
-		this.numSearchSegments = ApiTypeHelper.requireNonNull(builder.numSearchSegments, this, "numSearchSegments");
+		this.numCommittedSegments = ApiTypeHelper.requireNonNullWithDefault(builder.numCommittedSegments, this,
+				"numCommittedSegments", this.numCommittedSegments());
+		this.routing = ApiTypeHelper.requireNonNullWithDefault(builder.routing, this, "routing", this.routing());
+		this.numSearchSegments = ApiTypeHelper.requireNonNullWithDefault(builder.numSearchSegments, this,
+				"numSearchSegments", this.numSearchSegments());
 		this.segments = ApiTypeHelper.unmodifiableRequired(builder.segments, this, "segments");
 
 	}

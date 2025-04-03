@@ -65,7 +65,7 @@ public class ApplicationGlobalUserPrivileges implements JsonpSerializable {
 
 	private ApplicationGlobalUserPrivileges(Builder builder) {
 
-		this.manage = ApiTypeHelper.requireNonNull(builder.manage, this, "manage");
+		this.manage = ApiTypeHelper.requireNonNullWithDefault(builder.manage, this, "manage", this.manage());
 
 	}
 

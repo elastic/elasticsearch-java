@@ -72,7 +72,8 @@ public class NodeInfoTransport implements JsonpSerializable {
 	private NodeInfoTransport(Builder builder) {
 
 		this.boundAddress = ApiTypeHelper.unmodifiableRequired(builder.boundAddress, this, "boundAddress");
-		this.publishAddress = ApiTypeHelper.requireNonNull(builder.publishAddress, this, "publishAddress");
+		this.publishAddress = ApiTypeHelper.requireNonNullWithDefault(builder.publishAddress, this, "publishAddress",
+				this.publishAddress());
 		this.profiles = ApiTypeHelper.unmodifiableRequired(builder.profiles, this, "profiles");
 
 	}

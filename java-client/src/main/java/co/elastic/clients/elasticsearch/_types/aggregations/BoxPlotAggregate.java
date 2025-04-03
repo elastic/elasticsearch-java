@@ -98,13 +98,13 @@ public class BoxPlotAggregate extends AggregateBase implements AggregateVariant 
 	private BoxPlotAggregate(Builder builder) {
 		super(builder);
 
-		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
-		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
-		this.q1 = ApiTypeHelper.requireNonNull(builder.q1, this, "q1");
-		this.q2 = ApiTypeHelper.requireNonNull(builder.q2, this, "q2");
-		this.q3 = ApiTypeHelper.requireNonNull(builder.q3, this, "q3");
-		this.lower = ApiTypeHelper.requireNonNull(builder.lower, this, "lower");
-		this.upper = ApiTypeHelper.requireNonNull(builder.upper, this, "upper");
+		this.min = ApiTypeHelper.requireNonNullWithDefault(builder.min, this, "min", this.min());
+		this.max = ApiTypeHelper.requireNonNullWithDefault(builder.max, this, "max", this.max());
+		this.q1 = ApiTypeHelper.requireNonNullWithDefault(builder.q1, this, "q1", this.q1());
+		this.q2 = ApiTypeHelper.requireNonNullWithDefault(builder.q2, this, "q2", this.q2());
+		this.q3 = ApiTypeHelper.requireNonNullWithDefault(builder.q3, this, "q3", this.q3());
+		this.lower = ApiTypeHelper.requireNonNullWithDefault(builder.lower, this, "lower", this.lower());
+		this.upper = ApiTypeHelper.requireNonNullWithDefault(builder.upper, this, "upper", this.upper());
 		this.minAsString = builder.minAsString;
 		this.maxAsString = builder.maxAsString;
 		this.q1AsString = builder.q1AsString;

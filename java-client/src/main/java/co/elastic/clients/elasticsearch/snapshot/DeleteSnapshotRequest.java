@@ -75,8 +75,9 @@ public class DeleteSnapshotRequest extends RequestBase {
 	private DeleteSnapshotRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
-		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.repository = ApiTypeHelper.requireNonNullWithDefault(builder.repository, this, "repository",
+				this.repository());
+		this.snapshot = ApiTypeHelper.requireNonNullWithDefault(builder.snapshot, this, "snapshot", this.snapshot());
 
 	}
 

@@ -83,7 +83,8 @@ public class EnrichPolicy implements JsonpSerializable {
 
 		this.enrichFields = ApiTypeHelper.unmodifiableRequired(builder.enrichFields, this, "enrichFields");
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.matchField = ApiTypeHelper.requireNonNull(builder.matchField, this, "matchField");
+		this.matchField = ApiTypeHelper.requireNonNullWithDefault(builder.matchField, this, "matchField",
+				this.matchField());
 		this.query = builder.query;
 		this.name = builder.name;
 		this.elasticsearchVersion = builder.elasticsearchVersion;

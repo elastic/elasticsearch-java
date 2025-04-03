@@ -80,12 +80,14 @@ public class WatcherNodeStats implements JsonpSerializable {
 	private WatcherNodeStats(Builder builder) {
 
 		this.currentWatches = ApiTypeHelper.unmodifiable(builder.currentWatches);
-		this.executionThreadPool = ApiTypeHelper.requireNonNull(builder.executionThreadPool, this,
-				"executionThreadPool");
+		this.executionThreadPool = ApiTypeHelper.requireNonNullWithDefault(builder.executionThreadPool, this,
+				"executionThreadPool", this.executionThreadPool());
 		this.queuedWatches = ApiTypeHelper.unmodifiable(builder.queuedWatches);
-		this.watchCount = ApiTypeHelper.requireNonNull(builder.watchCount, this, "watchCount");
-		this.watcherState = ApiTypeHelper.requireNonNull(builder.watcherState, this, "watcherState");
-		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.watchCount = ApiTypeHelper.requireNonNullWithDefault(builder.watchCount, this, "watchCount",
+				this.watchCount());
+		this.watcherState = ApiTypeHelper.requireNonNullWithDefault(builder.watcherState, this, "watcherState",
+				this.watcherState());
+		this.nodeId = ApiTypeHelper.requireNonNullWithDefault(builder.nodeId, this, "nodeId", this.nodeId());
 
 	}
 

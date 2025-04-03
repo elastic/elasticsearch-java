@@ -97,11 +97,13 @@ public class PutCohereRequest extends RequestBase implements JsonpSerializable {
 	private PutCohereRequest(Builder builder) {
 
 		this.chunkingSettings = builder.chunkingSettings;
-		this.cohereInferenceId = ApiTypeHelper.requireNonNull(builder.cohereInferenceId, this, "cohereInferenceId");
-		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
-		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
+		this.cohereInferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.cohereInferenceId, this,
+				"cohereInferenceId", this.cohereInferenceId());
+		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
+		this.serviceSettings = ApiTypeHelper.requireNonNullWithDefault(builder.serviceSettings, this, "serviceSettings",
+				this.serviceSettings());
 		this.taskSettings = builder.taskSettings;
-		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
+		this.taskType = ApiTypeHelper.requireNonNullWithDefault(builder.taskType, this, "taskType", this.taskType());
 
 	}
 

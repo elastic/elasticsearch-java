@@ -77,7 +77,7 @@ public class Token implements JsonpSerializable {
 
 		this.endOffset = builder.endOffset;
 		this.payload = builder.payload;
-		this.position = ApiTypeHelper.requireNonNull(builder.position, this, "position");
+		this.position = ApiTypeHelper.requireNonNullWithDefault(builder.position, this, "position", this.position());
 		this.startOffset = builder.startOffset;
 
 	}

@@ -67,8 +67,9 @@ public class UserProfileHitMetadata implements JsonpSerializable {
 
 	private UserProfileHitMetadata(Builder builder) {
 
-		this.primaryTerm = ApiTypeHelper.requireNonNull(builder.primaryTerm, this, "primaryTerm");
-		this.seqNo = ApiTypeHelper.requireNonNull(builder.seqNo, this, "seqNo");
+		this.primaryTerm = ApiTypeHelper.requireNonNullWithDefault(builder.primaryTerm, this, "primaryTerm",
+				this.primaryTerm());
+		this.seqNo = ApiTypeHelper.requireNonNullWithDefault(builder.seqNo, this, "seqNo", this.seqNo());
 
 	}
 

@@ -80,14 +80,19 @@ public class FieldSummary implements JsonpSerializable {
 
 	private FieldSummary(Builder builder) {
 
-		this.any = ApiTypeHelper.requireNonNull(builder.any, this, "any");
-		this.storedFields = ApiTypeHelper.requireNonNull(builder.storedFields, this, "storedFields");
-		this.docValues = ApiTypeHelper.requireNonNull(builder.docValues, this, "docValues");
-		this.points = ApiTypeHelper.requireNonNull(builder.points, this, "points");
-		this.norms = ApiTypeHelper.requireNonNull(builder.norms, this, "norms");
-		this.termVectors = ApiTypeHelper.requireNonNull(builder.termVectors, this, "termVectors");
-		this.knnVectors = ApiTypeHelper.requireNonNull(builder.knnVectors, this, "knnVectors");
-		this.invertedIndex = ApiTypeHelper.requireNonNull(builder.invertedIndex, this, "invertedIndex");
+		this.any = ApiTypeHelper.requireNonNullWithDefault(builder.any, this, "any", this.any());
+		this.storedFields = ApiTypeHelper.requireNonNullWithDefault(builder.storedFields, this, "storedFields",
+				this.storedFields());
+		this.docValues = ApiTypeHelper.requireNonNullWithDefault(builder.docValues, this, "docValues",
+				this.docValues());
+		this.points = ApiTypeHelper.requireNonNullWithDefault(builder.points, this, "points", this.points());
+		this.norms = ApiTypeHelper.requireNonNullWithDefault(builder.norms, this, "norms", this.norms());
+		this.termVectors = ApiTypeHelper.requireNonNullWithDefault(builder.termVectors, this, "termVectors",
+				this.termVectors());
+		this.knnVectors = ApiTypeHelper.requireNonNullWithDefault(builder.knnVectors, this, "knnVectors",
+				this.knnVectors());
+		this.invertedIndex = ApiTypeHelper.requireNonNullWithDefault(builder.invertedIndex, this, "invertedIndex",
+				this.invertedIndex());
 
 	}
 

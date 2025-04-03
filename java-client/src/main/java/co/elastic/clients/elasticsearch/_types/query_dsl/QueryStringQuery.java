@@ -157,7 +157,7 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		this.maxDeterminizedStates = builder.maxDeterminizedStates;
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.phraseSlop = builder.phraseSlop;
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
 		this.quoteAnalyzer = builder.quoteAnalyzer;
 		this.quoteFieldSuffix = builder.quoteFieldSuffix;
 		this.rewrite = builder.rewrite;

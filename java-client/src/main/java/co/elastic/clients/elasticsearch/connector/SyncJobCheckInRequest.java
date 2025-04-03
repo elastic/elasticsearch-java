@@ -76,7 +76,8 @@ public class SyncJobCheckInRequest extends RequestBase {
 
 	private SyncJobCheckInRequest(Builder builder) {
 
-		this.connectorSyncJobId = ApiTypeHelper.requireNonNull(builder.connectorSyncJobId, this, "connectorSyncJobId");
+		this.connectorSyncJobId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorSyncJobId, this,
+				"connectorSyncJobId", this.connectorSyncJobId());
 
 	}
 

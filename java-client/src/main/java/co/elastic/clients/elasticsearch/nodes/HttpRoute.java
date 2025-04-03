@@ -66,8 +66,9 @@ public class HttpRoute implements JsonpSerializable {
 
 	private HttpRoute(Builder builder) {
 
-		this.requests = ApiTypeHelper.requireNonNull(builder.requests, this, "requests");
-		this.responses = ApiTypeHelper.requireNonNull(builder.responses, this, "responses");
+		this.requests = ApiTypeHelper.requireNonNullWithDefault(builder.requests, this, "requests", this.requests());
+		this.responses = ApiTypeHelper.requireNonNullWithDefault(builder.responses, this, "responses",
+				this.responses());
 
 	}
 

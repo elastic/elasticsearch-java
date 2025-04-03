@@ -75,8 +75,8 @@ public class TermsQuery extends QueryBase
 
 	private TermsQuery(Builder builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.terms = ApiTypeHelper.requireNonNull(builder.terms, this, "terms");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.terms = ApiTypeHelper.requireNonNullWithDefault(builder.terms, this, "terms", this.terms());
 
 	}
 

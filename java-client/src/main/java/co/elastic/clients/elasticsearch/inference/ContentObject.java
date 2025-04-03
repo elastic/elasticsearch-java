@@ -68,8 +68,8 @@ public class ContentObject implements JsonpSerializable {
 
 	private ContentObject(Builder builder) {
 
-		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.text = ApiTypeHelper.requireNonNullWithDefault(builder.text, this, "text", this.text());
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
 
 	}
 

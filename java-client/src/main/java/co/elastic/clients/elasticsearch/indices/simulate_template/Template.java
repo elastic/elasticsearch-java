@@ -75,8 +75,8 @@ public class Template implements JsonpSerializable {
 	private Template(Builder builder) {
 
 		this.aliases = ApiTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
-		this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
-		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
+		this.mappings = ApiTypeHelper.requireNonNullWithDefault(builder.mappings, this, "mappings", this.mappings());
+		this.settings = ApiTypeHelper.requireNonNullWithDefault(builder.settings, this, "settings", this.settings());
 
 	}
 

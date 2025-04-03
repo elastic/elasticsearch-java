@@ -77,7 +77,7 @@ public class GcsRepositorySettings extends RepositorySettingsBase {
 	private GcsRepositorySettings(Builder builder) {
 		super(builder);
 
-		this.bucket = ApiTypeHelper.requireNonNull(builder.bucket, this, "bucket");
+		this.bucket = ApiTypeHelper.requireNonNullWithDefault(builder.bucket, this, "bucket", this.bucket());
 		this.applicationName = builder.applicationName;
 		this.basePath = builder.basePath;
 		this.client = builder.client;

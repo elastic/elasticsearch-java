@@ -80,15 +80,18 @@ public class IngestStats implements JsonpSerializable {
 
 	private IngestStats(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
-		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
+		this.current = ApiTypeHelper.requireNonNullWithDefault(builder.current, this, "current", this.current());
+		this.failed = ApiTypeHelper.requireNonNullWithDefault(builder.failed, this, "failed", this.failed());
 		this.processors = ApiTypeHelper.unmodifiableRequired(builder.processors, this, "processors");
-		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
-		this.ingestedAsFirstPipelineInBytes = ApiTypeHelper.requireNonNull(builder.ingestedAsFirstPipelineInBytes, this,
-				"ingestedAsFirstPipelineInBytes");
-		this.producedAsFirstPipelineInBytes = ApiTypeHelper.requireNonNull(builder.producedAsFirstPipelineInBytes, this,
-				"producedAsFirstPipelineInBytes");
+		this.timeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.timeInMillis, this, "timeInMillis",
+				this.timeInMillis());
+		this.ingestedAsFirstPipelineInBytes = ApiTypeHelper.requireNonNullWithDefault(
+				builder.ingestedAsFirstPipelineInBytes, this, "ingestedAsFirstPipelineInBytes",
+				this.ingestedAsFirstPipelineInBytes());
+		this.producedAsFirstPipelineInBytes = ApiTypeHelper.requireNonNullWithDefault(
+				builder.producedAsFirstPipelineInBytes, this, "producedAsFirstPipelineInBytes",
+				this.producedAsFirstPipelineInBytes());
 
 	}
 

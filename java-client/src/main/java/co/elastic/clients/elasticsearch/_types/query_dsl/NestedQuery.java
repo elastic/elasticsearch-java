@@ -78,8 +78,8 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 		this.innerHits = builder.innerHits;
-		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.path = ApiTypeHelper.requireNonNullWithDefault(builder.path, this, "path", this.path());
+		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
 		this.scoreMode = builder.scoreMode;
 
 	}

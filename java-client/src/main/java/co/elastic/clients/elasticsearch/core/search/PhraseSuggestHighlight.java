@@ -68,8 +68,8 @@ public class PhraseSuggestHighlight implements JsonpSerializable {
 
 	private PhraseSuggestHighlight(Builder builder) {
 
-		this.postTag = ApiTypeHelper.requireNonNull(builder.postTag, this, "postTag");
-		this.preTag = ApiTypeHelper.requireNonNull(builder.preTag, this, "preTag");
+		this.postTag = ApiTypeHelper.requireNonNullWithDefault(builder.postTag, this, "postTag", this.postTag());
+		this.preTag = ApiTypeHelper.requireNonNullWithDefault(builder.preTag, this, "preTag", this.preTag());
 
 	}
 

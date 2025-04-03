@@ -64,7 +64,8 @@ public class RescoreVector implements JsonpSerializable {
 
 	private RescoreVector(Builder builder) {
 
-		this.oversample = ApiTypeHelper.requireNonNull(builder.oversample, this, "oversample");
+		this.oversample = ApiTypeHelper.requireNonNullWithDefault(builder.oversample, this, "oversample",
+				this.oversample());
 
 	}
 

@@ -67,7 +67,7 @@ public class CreateOperation<TDocument> extends WriteOperation implements NdJson
 
 	private CreateOperation(Builder<TDocument> builder) {
 		super(builder);
-		this.document = ApiTypeHelper.requireNonNull(builder.document, this, "document");
+		this.document = ApiTypeHelper.requireNonNullWithDefault(builder.document, this, "document", this.document());
 
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 

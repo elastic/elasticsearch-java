@@ -68,8 +68,8 @@ public class PostResponse implements JsonpSerializable {
 
 	private PostResponse(Builder builder) {
 
-		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.result = ApiTypeHelper.requireNonNullWithDefault(builder.result, this, "result", this.result());
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 
 	}
 

@@ -84,13 +84,13 @@ public class FilteringRule implements JsonpSerializable {
 	private FilteringRule(Builder builder) {
 
 		this.createdAt = builder.createdAt;
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.order = ApiTypeHelper.requireNonNull(builder.order, this, "order");
-		this.policy = ApiTypeHelper.requireNonNull(builder.policy, this, "policy");
-		this.rule = ApiTypeHelper.requireNonNull(builder.rule, this, "rule");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.order = ApiTypeHelper.requireNonNullWithDefault(builder.order, this, "order", this.order());
+		this.policy = ApiTypeHelper.requireNonNullWithDefault(builder.policy, this, "policy", this.policy());
+		this.rule = ApiTypeHelper.requireNonNullWithDefault(builder.rule, this, "rule", this.rule());
 		this.updatedAt = builder.updatedAt;
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNullWithDefault(builder.value, this, "value", this.value());
 
 	}
 

@@ -77,13 +77,14 @@ public class EqlFeatures implements JsonpSerializable {
 
 	private EqlFeatures(Builder builder) {
 
-		this.join = ApiTypeHelper.requireNonNull(builder.join, this, "join");
-		this.joins = ApiTypeHelper.requireNonNull(builder.joins, this, "joins");
-		this.keys = ApiTypeHelper.requireNonNull(builder.keys, this, "keys");
-		this.event = ApiTypeHelper.requireNonNull(builder.event, this, "event");
-		this.pipes = ApiTypeHelper.requireNonNull(builder.pipes, this, "pipes");
-		this.sequence = ApiTypeHelper.requireNonNull(builder.sequence, this, "sequence");
-		this.sequences = ApiTypeHelper.requireNonNull(builder.sequences, this, "sequences");
+		this.join = ApiTypeHelper.requireNonNullWithDefault(builder.join, this, "join", this.join());
+		this.joins = ApiTypeHelper.requireNonNullWithDefault(builder.joins, this, "joins", this.joins());
+		this.keys = ApiTypeHelper.requireNonNullWithDefault(builder.keys, this, "keys", this.keys());
+		this.event = ApiTypeHelper.requireNonNullWithDefault(builder.event, this, "event", this.event());
+		this.pipes = ApiTypeHelper.requireNonNullWithDefault(builder.pipes, this, "pipes", this.pipes());
+		this.sequence = ApiTypeHelper.requireNonNullWithDefault(builder.sequence, this, "sequence", this.sequence());
+		this.sequences = ApiTypeHelper.requireNonNullWithDefault(builder.sequences, this, "sequences",
+				this.sequences());
 
 	}
 

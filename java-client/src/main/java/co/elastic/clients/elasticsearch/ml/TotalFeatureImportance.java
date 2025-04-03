@@ -71,7 +71,8 @@ public class TotalFeatureImportance implements JsonpSerializable {
 
 	private TotalFeatureImportance(Builder builder) {
 
-		this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+		this.featureName = ApiTypeHelper.requireNonNullWithDefault(builder.featureName, this, "featureName",
+				this.featureName());
 		this.importance = ApiTypeHelper.unmodifiableRequired(builder.importance, this, "importance");
 		this.classes = ApiTypeHelper.unmodifiableRequired(builder.classes, this, "classes");
 

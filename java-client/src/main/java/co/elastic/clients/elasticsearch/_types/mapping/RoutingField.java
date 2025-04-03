@@ -64,7 +64,7 @@ public class RoutingField implements JsonpSerializable {
 
 	private RoutingField(Builder builder) {
 
-		this.required = ApiTypeHelper.requireNonNull(builder.required, this, "required");
+		this.required = ApiTypeHelper.requireNonNullWithDefault(builder.required, this, "required", this.required());
 
 	}
 

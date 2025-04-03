@@ -68,7 +68,7 @@ public class TokenDetail implements JsonpSerializable {
 
 	private TokenDetail(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 		this.tokens = ApiTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
 
 	}

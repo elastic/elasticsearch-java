@@ -66,7 +66,7 @@ public class ScriptedHeuristic implements JsonpSerializable {
 
 	private ScriptedHeuristic(Builder builder) {
 
-		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
+		this.script = ApiTypeHelper.requireNonNullWithDefault(builder.script, this, "script", this.script());
 
 	}
 

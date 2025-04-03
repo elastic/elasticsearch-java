@@ -66,9 +66,9 @@ public class ClusterProcess implements JsonpSerializable {
 
 	private ClusterProcess(Builder builder) {
 
-		this.cpu = ApiTypeHelper.requireNonNull(builder.cpu, this, "cpu");
-		this.openFileDescriptors = ApiTypeHelper.requireNonNull(builder.openFileDescriptors, this,
-				"openFileDescriptors");
+		this.cpu = ApiTypeHelper.requireNonNullWithDefault(builder.cpu, this, "cpu", this.cpu());
+		this.openFileDescriptors = ApiTypeHelper.requireNonNullWithDefault(builder.openFileDescriptors, this,
+				"openFileDescriptors", this.openFileDescriptors());
 
 	}
 

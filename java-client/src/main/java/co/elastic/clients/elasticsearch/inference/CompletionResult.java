@@ -67,7 +67,7 @@ public class CompletionResult implements JsonpSerializable {
 
 	private CompletionResult(Builder builder) {
 
-		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
+		this.result = ApiTypeHelper.requireNonNullWithDefault(builder.result, this, "result", this.result());
 
 	}
 

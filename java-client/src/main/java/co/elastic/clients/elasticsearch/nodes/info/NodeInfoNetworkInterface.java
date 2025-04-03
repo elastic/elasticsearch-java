@@ -70,9 +70,10 @@ public class NodeInfoNetworkInterface implements JsonpSerializable {
 
 	private NodeInfoNetworkInterface(Builder builder) {
 
-		this.address = ApiTypeHelper.requireNonNull(builder.address, this, "address");
-		this.macAddress = ApiTypeHelper.requireNonNull(builder.macAddress, this, "macAddress");
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.address = ApiTypeHelper.requireNonNullWithDefault(builder.address, this, "address", this.address());
+		this.macAddress = ApiTypeHelper.requireNonNullWithDefault(builder.macAddress, this, "macAddress",
+				this.macAddress());
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 
 	}
 

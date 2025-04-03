@@ -87,7 +87,7 @@ public class DeleteJobRequest extends RequestBase {
 
 		this.deleteUserAnnotations = builder.deleteUserAnnotations;
 		this.force = builder.force;
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}

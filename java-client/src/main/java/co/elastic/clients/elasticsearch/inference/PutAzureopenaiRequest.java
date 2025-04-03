@@ -112,13 +112,14 @@ public class PutAzureopenaiRequest extends RequestBase implements JsonpSerializa
 
 	private PutAzureopenaiRequest(Builder builder) {
 
-		this.azureopenaiInferenceId = ApiTypeHelper.requireNonNull(builder.azureopenaiInferenceId, this,
-				"azureopenaiInferenceId");
+		this.azureopenaiInferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.azureopenaiInferenceId, this,
+				"azureopenaiInferenceId", this.azureopenaiInferenceId());
 		this.chunkingSettings = builder.chunkingSettings;
-		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
-		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
+		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
+		this.serviceSettings = ApiTypeHelper.requireNonNullWithDefault(builder.serviceSettings, this, "serviceSettings",
+				this.serviceSettings());
 		this.taskSettings = builder.taskSettings;
-		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
+		this.taskType = ApiTypeHelper.requireNonNullWithDefault(builder.taskType, this, "taskType", this.taskType());
 
 	}
 

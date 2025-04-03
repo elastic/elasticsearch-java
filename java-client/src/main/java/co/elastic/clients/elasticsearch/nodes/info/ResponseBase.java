@@ -68,7 +68,8 @@ public abstract class ResponseBase extends NodesResponseBase {
 	protected ResponseBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.clusterName = ApiTypeHelper.requireNonNullWithDefault(builder.clusterName, this, "clusterName",
+				this.clusterName());
 		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}

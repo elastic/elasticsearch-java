@@ -65,7 +65,7 @@ public class GetLicenseResponse implements JsonpSerializable {
 
 	private GetLicenseResponse(Builder builder) {
 
-		this.license = ApiTypeHelper.requireNonNull(builder.license, this, "license");
+		this.license = ApiTypeHelper.requireNonNullWithDefault(builder.license, this, "license", this.license());
 
 	}
 

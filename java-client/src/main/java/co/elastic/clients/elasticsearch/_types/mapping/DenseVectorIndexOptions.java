@@ -79,7 +79,7 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		this.confidenceInterval = builder.confidenceInterval;
 		this.efConstruction = builder.efConstruction;
 		this.m = builder.m;
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
 
 	}
 

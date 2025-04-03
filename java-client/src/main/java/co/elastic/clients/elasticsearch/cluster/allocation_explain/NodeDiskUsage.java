@@ -70,9 +70,11 @@ public class NodeDiskUsage implements JsonpSerializable {
 
 	private NodeDiskUsage(Builder builder) {
 
-		this.nodeName = ApiTypeHelper.requireNonNull(builder.nodeName, this, "nodeName");
-		this.leastAvailable = ApiTypeHelper.requireNonNull(builder.leastAvailable, this, "leastAvailable");
-		this.mostAvailable = ApiTypeHelper.requireNonNull(builder.mostAvailable, this, "mostAvailable");
+		this.nodeName = ApiTypeHelper.requireNonNullWithDefault(builder.nodeName, this, "nodeName", this.nodeName());
+		this.leastAvailable = ApiTypeHelper.requireNonNullWithDefault(builder.leastAvailable, this, "leastAvailable",
+				this.leastAvailable());
+		this.mostAvailable = ApiTypeHelper.requireNonNullWithDefault(builder.mostAvailable, this, "mostAvailable",
+				this.mostAvailable());
 
 	}
 

@@ -71,10 +71,13 @@ public class MlInferenceIngestProcessor implements JsonpSerializable {
 
 	private MlInferenceIngestProcessor(Builder builder) {
 
-		this.numDocsProcessed = ApiTypeHelper.requireNonNull(builder.numDocsProcessed, this, "numDocsProcessed");
-		this.pipelines = ApiTypeHelper.requireNonNull(builder.pipelines, this, "pipelines");
-		this.numFailures = ApiTypeHelper.requireNonNull(builder.numFailures, this, "numFailures");
-		this.timeMs = ApiTypeHelper.requireNonNull(builder.timeMs, this, "timeMs");
+		this.numDocsProcessed = ApiTypeHelper.requireNonNullWithDefault(builder.numDocsProcessed, this,
+				"numDocsProcessed", this.numDocsProcessed());
+		this.pipelines = ApiTypeHelper.requireNonNullWithDefault(builder.pipelines, this, "pipelines",
+				this.pipelines());
+		this.numFailures = ApiTypeHelper.requireNonNullWithDefault(builder.numFailures, this, "numFailures",
+				this.numFailures());
+		this.timeMs = ApiTypeHelper.requireNonNullWithDefault(builder.timeMs, this, "timeMs", this.timeMs());
 
 	}
 

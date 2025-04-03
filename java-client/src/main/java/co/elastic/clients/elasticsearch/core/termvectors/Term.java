@@ -80,7 +80,7 @@ public class Term implements JsonpSerializable {
 
 		this.docFreq = builder.docFreq;
 		this.score = builder.score;
-		this.termFreq = ApiTypeHelper.requireNonNull(builder.termFreq, this, "termFreq");
+		this.termFreq = ApiTypeHelper.requireNonNullWithDefault(builder.termFreq, this, "termFreq", this.termFreq());
 		this.tokens = ApiTypeHelper.unmodifiable(builder.tokens);
 		this.ttf = builder.ttf;
 

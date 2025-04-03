@@ -82,7 +82,8 @@ public class CheckpointStats implements JsonpSerializable {
 
 	private CheckpointStats(Builder builder) {
 
-		this.checkpoint = ApiTypeHelper.requireNonNull(builder.checkpoint, this, "checkpoint");
+		this.checkpoint = ApiTypeHelper.requireNonNullWithDefault(builder.checkpoint, this, "checkpoint",
+				this.checkpoint());
 		this.checkpointProgress = builder.checkpointProgress;
 		this.timestamp = builder.timestamp;
 		this.timestampMillis = builder.timestampMillis;

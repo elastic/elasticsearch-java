@@ -69,7 +69,7 @@ public class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 
 	private ExecuteEnrichPolicyStatus(Builder builder) {
 
-		this.phase = ApiTypeHelper.requireNonNull(builder.phase, this, "phase");
+		this.phase = ApiTypeHelper.requireNonNullWithDefault(builder.phase, this, "phase", this.phase());
 		this.step = builder.step;
 
 	}

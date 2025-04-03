@@ -72,8 +72,10 @@ public class ElserServiceSettings implements JsonpSerializable {
 	private ElserServiceSettings(Builder builder) {
 
 		this.adaptiveAllocations = builder.adaptiveAllocations;
-		this.numAllocations = ApiTypeHelper.requireNonNull(builder.numAllocations, this, "numAllocations");
-		this.numThreads = ApiTypeHelper.requireNonNull(builder.numThreads, this, "numThreads");
+		this.numAllocations = ApiTypeHelper.requireNonNullWithDefault(builder.numAllocations, this, "numAllocations",
+				this.numAllocations());
+		this.numThreads = ApiTypeHelper.requireNonNullWithDefault(builder.numThreads, this, "numThreads",
+				this.numThreads());
 
 	}
 

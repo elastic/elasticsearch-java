@@ -68,7 +68,7 @@ public class GetModelSnapshotsResponse implements JsonpSerializable {
 
 	private GetModelSnapshotsResponse(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
 		this.modelSnapshots = ApiTypeHelper.unmodifiableRequired(builder.modelSnapshots, this, "modelSnapshots");
 
 	}

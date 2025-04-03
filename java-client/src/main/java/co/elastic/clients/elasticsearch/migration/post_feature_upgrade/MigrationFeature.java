@@ -66,7 +66,8 @@ public class MigrationFeature implements JsonpSerializable {
 
 	private MigrationFeature(Builder builder) {
 
-		this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+		this.featureName = ApiTypeHelper.requireNonNullWithDefault(builder.featureName, this, "featureName",
+				this.featureName());
 
 	}
 

@@ -111,19 +111,23 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 
 		this.authorization = builder.authorization;
 		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
-		this.chunkingConfig = ApiTypeHelper.requireNonNull(builder.chunkingConfig, this, "chunkingConfig");
+		this.chunkingConfig = ApiTypeHelper.requireNonNullWithDefault(builder.chunkingConfig, this, "chunkingConfig",
+				this.chunkingConfig());
 		this.delayedDataCheckConfig = builder.delayedDataCheckConfig;
-		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.datafeedId = ApiTypeHelper.requireNonNullWithDefault(builder.datafeedId, this, "datafeedId",
+				this.datafeedId());
 		this.frequency = builder.frequency;
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 		this.indicesOptions = builder.indicesOptions;
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
 		this.maxEmptySearches = builder.maxEmptySearches;
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
-		this.queryDelay = ApiTypeHelper.requireNonNull(builder.queryDelay, this, "queryDelay");
+		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
+		this.queryDelay = ApiTypeHelper.requireNonNullWithDefault(builder.queryDelay, this, "queryDelay",
+				this.queryDelay());
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
-		this.scrollSize = ApiTypeHelper.requireNonNull(builder.scrollSize, this, "scrollSize");
+		this.scrollSize = ApiTypeHelper.requireNonNullWithDefault(builder.scrollSize, this, "scrollSize",
+				this.scrollSize());
 
 	}
 

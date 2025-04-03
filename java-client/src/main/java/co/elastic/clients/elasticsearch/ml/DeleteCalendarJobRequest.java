@@ -73,7 +73,8 @@ public class DeleteCalendarJobRequest extends RequestBase {
 
 	private DeleteCalendarJobRequest(Builder builder) {
 
-		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
+		this.calendarId = ApiTypeHelper.requireNonNullWithDefault(builder.calendarId, this, "calendarId",
+				this.calendarId());
 		this.jobId = ApiTypeHelper.unmodifiableRequired(builder.jobId, this, "jobId");
 
 	}

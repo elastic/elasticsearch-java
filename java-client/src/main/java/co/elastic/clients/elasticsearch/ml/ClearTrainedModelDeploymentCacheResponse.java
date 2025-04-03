@@ -65,7 +65,7 @@ public class ClearTrainedModelDeploymentCacheResponse implements JsonpSerializab
 
 	private ClearTrainedModelDeploymentCacheResponse(Builder builder) {
 
-		this.cleared = ApiTypeHelper.requireNonNull(builder.cleared, this, "cleared");
+		this.cleared = ApiTypeHelper.requireNonNullWithDefault(builder.cleared, this, "cleared", this.cleared());
 
 	}
 

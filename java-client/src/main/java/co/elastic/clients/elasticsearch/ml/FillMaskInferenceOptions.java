@@ -84,7 +84,8 @@ public class FillMaskInferenceOptions implements InferenceConfigCreateVariant, J
 		this.numTopClasses = builder.numTopClasses;
 		this.tokenization = builder.tokenization;
 		this.resultsField = builder.resultsField;
-		this.vocabulary = ApiTypeHelper.requireNonNull(builder.vocabulary, this, "vocabulary");
+		this.vocabulary = ApiTypeHelper.requireNonNullWithDefault(builder.vocabulary, this, "vocabulary",
+				this.vocabulary());
 
 	}
 

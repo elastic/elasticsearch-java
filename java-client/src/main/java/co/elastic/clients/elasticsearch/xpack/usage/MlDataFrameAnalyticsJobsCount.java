@@ -65,7 +65,7 @@ public class MlDataFrameAnalyticsJobsCount implements JsonpSerializable {
 
 	private MlDataFrameAnalyticsJobsCount(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
 
 	}
 

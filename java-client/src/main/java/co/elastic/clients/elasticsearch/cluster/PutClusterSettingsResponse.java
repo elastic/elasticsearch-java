@@ -73,7 +73,8 @@ public class PutClusterSettingsResponse implements AcknowledgedResponse, JsonpSe
 
 	private PutClusterSettingsResponse(Builder builder) {
 
-		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+		this.acknowledged = ApiTypeHelper.requireNonNullWithDefault(builder.acknowledged, this, "acknowledged",
+				this.acknowledged());
 		this.persistent = ApiTypeHelper.unmodifiableRequired(builder.persistent, this, "persistent");
 		this.transient_ = ApiTypeHelper.unmodifiableRequired(builder.transient_, this, "transient_");
 

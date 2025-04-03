@@ -80,7 +80,7 @@ public class DeleteTrainedModelRequest extends RequestBase {
 	private DeleteTrainedModelRequest(Builder builder) {
 
 		this.force = builder.force;
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
 		this.timeout = builder.timeout;
 
 	}

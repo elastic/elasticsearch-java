@@ -98,12 +98,13 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 	private MountRequest(Builder builder) {
 
 		this.ignoreIndexSettings = ApiTypeHelper.unmodifiable(builder.ignoreIndexSettings);
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
 		this.indexSettings = ApiTypeHelper.unmodifiable(builder.indexSettings);
 		this.masterTimeout = builder.masterTimeout;
 		this.renamedIndex = builder.renamedIndex;
-		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
-		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.repository = ApiTypeHelper.requireNonNullWithDefault(builder.repository, this, "repository",
+				this.repository());
+		this.snapshot = ApiTypeHelper.requireNonNullWithDefault(builder.snapshot, this, "snapshot", this.snapshot());
 		this.storage = builder.storage;
 		this.waitForCompletion = builder.waitForCompletion;
 

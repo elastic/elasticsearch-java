@@ -81,10 +81,11 @@ public class PutIpLocationDatabaseRequest extends RequestBase implements JsonpSe
 
 	private PutIpLocationDatabaseRequest(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
-		this.configuration = ApiTypeHelper.requireNonNull(builder.configuration, this, "configuration");
+		this.configuration = ApiTypeHelper.requireNonNullWithDefault(builder.configuration, this, "configuration",
+				this.configuration());
 
 	}
 

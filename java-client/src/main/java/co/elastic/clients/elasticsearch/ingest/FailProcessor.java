@@ -63,7 +63,7 @@ public class FailProcessor extends ProcessorBase implements ProcessorVariant {
 	private FailProcessor(Builder builder) {
 		super(builder);
 
-		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
+		this.message = ApiTypeHelper.requireNonNullWithDefault(builder.message, this, "message", this.message());
 
 	}
 

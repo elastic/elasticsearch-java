@@ -69,7 +69,7 @@ public class TransformStatsHealth implements JsonpSerializable {
 
 	private TransformStatsHealth(Builder builder) {
 
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
 		this.issues = ApiTypeHelper.unmodifiable(builder.issues);
 
 	}

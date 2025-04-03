@@ -76,7 +76,7 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 
 		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.prune = builder.prune;
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
 
 	}
 

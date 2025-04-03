@@ -65,7 +65,7 @@ public class GeoHashLocation implements JsonpSerializable {
 
 	private GeoHashLocation(Builder builder) {
 
-		this.geohash = ApiTypeHelper.requireNonNull(builder.geohash, this, "geohash");
+		this.geohash = ApiTypeHelper.requireNonNullWithDefault(builder.geohash, this, "geohash", this.geohash());
 
 	}
 

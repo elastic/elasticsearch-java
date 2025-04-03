@@ -65,7 +65,7 @@ public class RetentionLease implements JsonpSerializable {
 
 	private RetentionLease(Builder builder) {
 
-		this.period = ApiTypeHelper.requireNonNull(builder.period, this, "period");
+		this.period = ApiTypeHelper.requireNonNullWithDefault(builder.period, this, "period", this.period());
 
 	}
 

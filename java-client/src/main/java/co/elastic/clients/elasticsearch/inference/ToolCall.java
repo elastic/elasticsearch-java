@@ -70,9 +70,9 @@ public class ToolCall implements JsonpSerializable {
 
 	private ToolCall(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.function = ApiTypeHelper.requireNonNull(builder.function, this, "function");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.function = ApiTypeHelper.requireNonNullWithDefault(builder.function, this, "function", this.function());
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
 
 	}
 

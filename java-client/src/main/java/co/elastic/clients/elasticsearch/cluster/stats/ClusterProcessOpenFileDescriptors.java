@@ -69,9 +69,9 @@ public class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
 
 	private ClusterProcessOpenFileDescriptors(Builder builder) {
 
-		this.avg = ApiTypeHelper.requireNonNull(builder.avg, this, "avg");
-		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
-		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
+		this.avg = ApiTypeHelper.requireNonNullWithDefault(builder.avg, this, "avg", this.avg());
+		this.max = ApiTypeHelper.requireNonNullWithDefault(builder.max, this, "max", this.max());
+		this.min = ApiTypeHelper.requireNonNullWithDefault(builder.min, this, "min", this.min());
 
 	}
 

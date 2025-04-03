@@ -70,7 +70,7 @@ public class LearningToRank implements RescoreVariant, JsonpSerializable {
 
 	private LearningToRank(Builder builder) {
 
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
 		this.params = ApiTypeHelper.unmodifiable(builder.params);
 
 	}

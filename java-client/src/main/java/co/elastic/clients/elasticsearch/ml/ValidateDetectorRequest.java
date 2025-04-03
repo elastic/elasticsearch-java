@@ -69,7 +69,7 @@ public class ValidateDetectorRequest extends RequestBase implements JsonpSeriali
 
 	private ValidateDetectorRequest(Builder builder) {
 
-		this.detector = ApiTypeHelper.requireNonNull(builder.detector, this, "detector");
+		this.detector = ApiTypeHelper.requireNonNullWithDefault(builder.detector, this, "detector", this.detector());
 
 	}
 

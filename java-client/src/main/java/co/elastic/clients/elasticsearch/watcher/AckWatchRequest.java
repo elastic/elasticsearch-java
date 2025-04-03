@@ -87,7 +87,7 @@ public class AckWatchRequest extends RequestBase {
 	private AckWatchRequest(Builder builder) {
 
 		this.actionId = ApiTypeHelper.unmodifiable(builder.actionId);
-		this.watchId = ApiTypeHelper.requireNonNull(builder.watchId, this, "watchId");
+		this.watchId = ApiTypeHelper.requireNonNullWithDefault(builder.watchId, this, "watchId", this.watchId());
 
 	}
 

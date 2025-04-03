@@ -84,7 +84,8 @@ public class PutRulesetRequest extends RequestBase implements JsonpSerializable 
 	private PutRulesetRequest(Builder builder) {
 
 		this.rules = ApiTypeHelper.unmodifiableRequired(builder.rules, this, "rules");
-		this.rulesetId = ApiTypeHelper.requireNonNull(builder.rulesetId, this, "rulesetId");
+		this.rulesetId = ApiTypeHelper.requireNonNullWithDefault(builder.rulesetId, this, "rulesetId",
+				this.rulesetId());
 
 	}
 

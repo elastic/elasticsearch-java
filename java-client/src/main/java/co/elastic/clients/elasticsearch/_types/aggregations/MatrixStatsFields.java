@@ -83,12 +83,12 @@ public class MatrixStatsFields implements JsonpSerializable {
 
 	private MatrixStatsFields(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.mean = ApiTypeHelper.requireNonNull(builder.mean, this, "mean");
-		this.variance = ApiTypeHelper.requireNonNull(builder.variance, this, "variance");
-		this.skewness = ApiTypeHelper.requireNonNull(builder.skewness, this, "skewness");
-		this.kurtosis = ApiTypeHelper.requireNonNull(builder.kurtosis, this, "kurtosis");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
+		this.mean = ApiTypeHelper.requireNonNullWithDefault(builder.mean, this, "mean", this.mean());
+		this.variance = ApiTypeHelper.requireNonNullWithDefault(builder.variance, this, "variance", this.variance());
+		this.skewness = ApiTypeHelper.requireNonNullWithDefault(builder.skewness, this, "skewness", this.skewness());
+		this.kurtosis = ApiTypeHelper.requireNonNullWithDefault(builder.kurtosis, this, "kurtosis", this.kurtosis());
 		this.covariance = ApiTypeHelper.unmodifiableRequired(builder.covariance, this, "covariance");
 		this.correlation = ApiTypeHelper.unmodifiableRequired(builder.correlation, this, "correlation");
 

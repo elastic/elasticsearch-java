@@ -65,7 +65,7 @@ public class RevertModelSnapshotResponse implements JsonpSerializable {
 
 	private RevertModelSnapshotResponse(Builder builder) {
 
-		this.model = ApiTypeHelper.requireNonNull(builder.model, this, "model");
+		this.model = ApiTypeHelper.requireNonNullWithDefault(builder.model, this, "model", this.model());
 
 	}
 

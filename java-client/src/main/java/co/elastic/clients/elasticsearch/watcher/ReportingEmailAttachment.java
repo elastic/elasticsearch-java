@@ -81,7 +81,7 @@ public class ReportingEmailAttachment implements EmailAttachmentVariant, JsonpSe
 
 	private ReportingEmailAttachment(Builder builder) {
 
-		this.url = ApiTypeHelper.requireNonNull(builder.url, this, "url");
+		this.url = ApiTypeHelper.requireNonNullWithDefault(builder.url, this, "url", this.url());
 		this.inline = builder.inline;
 		this.retries = builder.retries;
 		this.interval = builder.interval;

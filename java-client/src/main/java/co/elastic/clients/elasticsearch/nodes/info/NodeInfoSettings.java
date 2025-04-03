@@ -103,16 +103,17 @@ public class NodeInfoSettings implements JsonpSerializable {
 
 	private NodeInfoSettings(Builder builder) {
 
-		this.cluster = ApiTypeHelper.requireNonNull(builder.cluster, this, "cluster");
-		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.cluster = ApiTypeHelper.requireNonNullWithDefault(builder.cluster, this, "cluster", this.cluster());
+		this.node = ApiTypeHelper.requireNonNullWithDefault(builder.node, this, "node", this.node());
 		this.path = builder.path;
 		this.repositories = builder.repositories;
 		this.discovery = builder.discovery;
 		this.action = builder.action;
 		this.client = builder.client;
-		this.http = ApiTypeHelper.requireNonNull(builder.http, this, "http");
+		this.http = ApiTypeHelper.requireNonNullWithDefault(builder.http, this, "http", this.http());
 		this.bootstrap = builder.bootstrap;
-		this.transport = ApiTypeHelper.requireNonNull(builder.transport, this, "transport");
+		this.transport = ApiTypeHelper.requireNonNullWithDefault(builder.transport, this, "transport",
+				this.transport());
 		this.network = builder.network;
 		this.xpack = builder.xpack;
 		this.script = builder.script;

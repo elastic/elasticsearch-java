@@ -98,12 +98,13 @@ public class PutGooglevertexaiRequest extends RequestBase implements JsonpSerial
 	private PutGooglevertexaiRequest(Builder builder) {
 
 		this.chunkingSettings = builder.chunkingSettings;
-		this.googlevertexaiInferenceId = ApiTypeHelper.requireNonNull(builder.googlevertexaiInferenceId, this,
-				"googlevertexaiInferenceId");
-		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
-		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
+		this.googlevertexaiInferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.googlevertexaiInferenceId,
+				this, "googlevertexaiInferenceId", this.googlevertexaiInferenceId());
+		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
+		this.serviceSettings = ApiTypeHelper.requireNonNullWithDefault(builder.serviceSettings, this, "serviceSettings",
+				this.serviceSettings());
 		this.taskSettings = builder.taskSettings;
-		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
+		this.taskType = ApiTypeHelper.requireNonNullWithDefault(builder.taskType, this, "taskType", this.taskType());
 
 	}
 

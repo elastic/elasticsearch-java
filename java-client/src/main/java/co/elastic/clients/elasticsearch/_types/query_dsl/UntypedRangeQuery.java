@@ -71,7 +71,7 @@ public class UntypedRangeQuery extends RangeQueryBase<JsonData> implements Range
 
 	private UntypedRangeQuery(Builder builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 
 		this.format = builder.format;
 		this.timeZone = builder.timeZone;

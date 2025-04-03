@@ -97,13 +97,14 @@ public class PutAlibabacloudRequest extends RequestBase implements JsonpSerializ
 
 	private PutAlibabacloudRequest(Builder builder) {
 
-		this.alibabacloudInferenceId = ApiTypeHelper.requireNonNull(builder.alibabacloudInferenceId, this,
-				"alibabacloudInferenceId");
+		this.alibabacloudInferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.alibabacloudInferenceId, this,
+				"alibabacloudInferenceId", this.alibabacloudInferenceId());
 		this.chunkingSettings = builder.chunkingSettings;
-		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
-		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
+		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
+		this.serviceSettings = ApiTypeHelper.requireNonNullWithDefault(builder.serviceSettings, this, "serviceSettings",
+				this.serviceSettings());
 		this.taskSettings = builder.taskSettings;
-		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
+		this.taskType = ApiTypeHelper.requireNonNullWithDefault(builder.taskType, this, "taskType", this.taskType());
 
 	}
 

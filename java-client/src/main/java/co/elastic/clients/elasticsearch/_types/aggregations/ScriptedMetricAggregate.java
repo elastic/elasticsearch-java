@@ -64,7 +64,7 @@ public class ScriptedMetricAggregate extends AggregateBase implements AggregateV
 	private ScriptedMetricAggregate(Builder builder) {
 		super(builder);
 
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNullWithDefault(builder.value, this, "value", this.value());
 
 	}
 

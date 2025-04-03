@@ -67,7 +67,7 @@ public class PipelineProcessor extends ProcessorBase implements ProcessorVariant
 	private PipelineProcessor(Builder builder) {
 		super(builder);
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 		this.ignoreMissingPipeline = builder.ignoreMissingPipeline;
 
 	}

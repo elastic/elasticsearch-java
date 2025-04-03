@@ -85,7 +85,8 @@ public class GetCalendarEventsRequest extends RequestBase {
 
 	private GetCalendarEventsRequest(Builder builder) {
 
-		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
+		this.calendarId = ApiTypeHelper.requireNonNullWithDefault(builder.calendarId, this, "calendarId",
+				this.calendarId());
 		this.end = builder.end;
 		this.from = builder.from;
 		this.jobId = builder.jobId;

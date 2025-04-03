@@ -84,7 +84,7 @@ public class IpLocationProcessor extends ProcessorBase implements ProcessorVaria
 		super(builder);
 
 		this.databaseFile = builder.databaseFile;
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.firstOnly = builder.firstOnly;
 		this.ignoreMissing = builder.ignoreMissing;
 		this.properties = ApiTypeHelper.unmodifiable(builder.properties);

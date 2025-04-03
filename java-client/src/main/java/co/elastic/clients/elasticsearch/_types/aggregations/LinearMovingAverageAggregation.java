@@ -66,7 +66,7 @@ public class LinearMovingAverageAggregation extends MovingAverageAggregationBase
 	private LinearMovingAverageAggregation(Builder builder) {
 		super(builder);
 
-		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
+		this.settings = ApiTypeHelper.requireNonNullWithDefault(builder.settings, this, "settings", this.settings());
 
 	}
 

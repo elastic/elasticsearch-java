@@ -76,14 +76,15 @@ public class CoordinatorStats implements JsonpSerializable {
 
 	private CoordinatorStats(Builder builder) {
 
-		this.executedSearchesTotal = ApiTypeHelper.requireNonNull(builder.executedSearchesTotal, this,
-				"executedSearchesTotal");
-		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
-		this.queueSize = ApiTypeHelper.requireNonNull(builder.queueSize, this, "queueSize");
-		this.remoteRequestsCurrent = ApiTypeHelper.requireNonNull(builder.remoteRequestsCurrent, this,
-				"remoteRequestsCurrent");
-		this.remoteRequestsTotal = ApiTypeHelper.requireNonNull(builder.remoteRequestsTotal, this,
-				"remoteRequestsTotal");
+		this.executedSearchesTotal = ApiTypeHelper.requireNonNullWithDefault(builder.executedSearchesTotal, this,
+				"executedSearchesTotal", this.executedSearchesTotal());
+		this.nodeId = ApiTypeHelper.requireNonNullWithDefault(builder.nodeId, this, "nodeId", this.nodeId());
+		this.queueSize = ApiTypeHelper.requireNonNullWithDefault(builder.queueSize, this, "queueSize",
+				this.queueSize());
+		this.remoteRequestsCurrent = ApiTypeHelper.requireNonNullWithDefault(builder.remoteRequestsCurrent, this,
+				"remoteRequestsCurrent", this.remoteRequestsCurrent());
+		this.remoteRequestsTotal = ApiTypeHelper.requireNonNullWithDefault(builder.remoteRequestsTotal, this,
+				"remoteRequestsTotal", this.remoteRequestsTotal());
 
 	}
 

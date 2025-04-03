@@ -128,7 +128,7 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 		this.preserveExisting = builder.preserveExisting;
 		this.reopen = builder.reopen;
 		this.timeout = builder.timeout;
-		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
+		this.settings = ApiTypeHelper.requireNonNullWithDefault(builder.settings, this, "settings", this.settings());
 
 	}
 

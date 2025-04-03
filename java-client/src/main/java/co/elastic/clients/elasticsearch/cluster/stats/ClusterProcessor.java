@@ -76,11 +76,12 @@ public class ClusterProcessor implements JsonpSerializable {
 
 	private ClusterProcessor(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
-		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
+		this.current = ApiTypeHelper.requireNonNullWithDefault(builder.current, this, "current", this.current());
+		this.failed = ApiTypeHelper.requireNonNullWithDefault(builder.failed, this, "failed", this.failed());
 		this.time = builder.time;
-		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
+		this.timeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.timeInMillis, this, "timeInMillis",
+				this.timeInMillis());
 
 	}
 

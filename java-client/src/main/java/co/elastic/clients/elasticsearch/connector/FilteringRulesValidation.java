@@ -69,7 +69,7 @@ public class FilteringRulesValidation implements JsonpSerializable {
 	private FilteringRulesValidation(Builder builder) {
 
 		this.errors = ApiTypeHelper.unmodifiableRequired(builder.errors, this, "errors");
-		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.state = ApiTypeHelper.requireNonNullWithDefault(builder.state, this, "state", this.state());
 
 	}
 

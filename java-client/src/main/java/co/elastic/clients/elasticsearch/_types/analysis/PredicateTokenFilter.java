@@ -64,7 +64,7 @@ public class PredicateTokenFilter extends TokenFilterBase implements TokenFilter
 	private PredicateTokenFilter(Builder builder) {
 		super(builder);
 
-		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
+		this.script = ApiTypeHelper.requireNonNullWithDefault(builder.script, this, "script", this.script());
 
 	}
 

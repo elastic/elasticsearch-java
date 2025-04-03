@@ -68,8 +68,8 @@ public class SearchableSnapshotsStatsResponse implements JsonpSerializable {
 
 	private SearchableSnapshotsStatsResponse(Builder builder) {
 
-		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.stats = ApiTypeHelper.requireNonNullWithDefault(builder.stats, this, "stats", this.stats());
+		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
 
 	}
 

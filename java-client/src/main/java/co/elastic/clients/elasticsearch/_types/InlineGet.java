@@ -95,7 +95,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
-		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+		this.found = ApiTypeHelper.requireNonNullWithDefault(builder.found, this, "found", this.found());
 		this.seqNo = builder.seqNo;
 		this.primaryTerm = builder.primaryTerm;
 		this.routing = builder.routing;

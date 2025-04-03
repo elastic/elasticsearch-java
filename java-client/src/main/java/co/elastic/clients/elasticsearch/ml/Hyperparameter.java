@@ -78,10 +78,10 @@ public class Hyperparameter implements JsonpSerializable {
 	private Hyperparameter(Builder builder) {
 
 		this.absoluteImportance = builder.absoluteImportance;
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 		this.relativeImportance = builder.relativeImportance;
-		this.supplied = ApiTypeHelper.requireNonNull(builder.supplied, this, "supplied");
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.supplied = ApiTypeHelper.requireNonNullWithDefault(builder.supplied, this, "supplied", this.supplied());
+		this.value = ApiTypeHelper.requireNonNullWithDefault(builder.value, this, "value", this.value());
 
 	}
 

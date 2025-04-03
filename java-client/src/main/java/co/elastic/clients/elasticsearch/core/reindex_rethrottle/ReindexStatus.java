@@ -95,20 +95,23 @@ public class ReindexStatus implements JsonpSerializable {
 
 	private ReindexStatus(Builder builder) {
 
-		this.batches = ApiTypeHelper.requireNonNull(builder.batches, this, "batches");
-		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
-		this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted");
-		this.noops = ApiTypeHelper.requireNonNull(builder.noops, this, "noops");
-		this.requestsPerSecond = ApiTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond");
-		this.retries = ApiTypeHelper.requireNonNull(builder.retries, this, "retries");
+		this.batches = ApiTypeHelper.requireNonNullWithDefault(builder.batches, this, "batches", this.batches());
+		this.created = ApiTypeHelper.requireNonNullWithDefault(builder.created, this, "created", this.created());
+		this.deleted = ApiTypeHelper.requireNonNullWithDefault(builder.deleted, this, "deleted", this.deleted());
+		this.noops = ApiTypeHelper.requireNonNullWithDefault(builder.noops, this, "noops", this.noops());
+		this.requestsPerSecond = ApiTypeHelper.requireNonNullWithDefault(builder.requestsPerSecond, this,
+				"requestsPerSecond", this.requestsPerSecond());
+		this.retries = ApiTypeHelper.requireNonNullWithDefault(builder.retries, this, "retries", this.retries());
 		this.throttled = builder.throttled;
-		this.throttledMillis = ApiTypeHelper.requireNonNull(builder.throttledMillis, this, "throttledMillis");
+		this.throttledMillis = ApiTypeHelper.requireNonNullWithDefault(builder.throttledMillis, this, "throttledMillis",
+				this.throttledMillis());
 		this.throttledUntil = builder.throttledUntil;
-		this.throttledUntilMillis = ApiTypeHelper.requireNonNull(builder.throttledUntilMillis, this,
-				"throttledUntilMillis");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-		this.updated = ApiTypeHelper.requireNonNull(builder.updated, this, "updated");
-		this.versionConflicts = ApiTypeHelper.requireNonNull(builder.versionConflicts, this, "versionConflicts");
+		this.throttledUntilMillis = ApiTypeHelper.requireNonNullWithDefault(builder.throttledUntilMillis, this,
+				"throttledUntilMillis", this.throttledUntilMillis());
+		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
+		this.updated = ApiTypeHelper.requireNonNullWithDefault(builder.updated, this, "updated", this.updated());
+		this.versionConflicts = ApiTypeHelper.requireNonNullWithDefault(builder.versionConflicts, this,
+				"versionConflicts", this.versionConflicts());
 
 	}
 

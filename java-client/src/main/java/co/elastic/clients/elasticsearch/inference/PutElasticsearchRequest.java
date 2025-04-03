@@ -115,12 +115,13 @@ public class PutElasticsearchRequest extends RequestBase implements JsonpSeriali
 	private PutElasticsearchRequest(Builder builder) {
 
 		this.chunkingSettings = builder.chunkingSettings;
-		this.elasticsearchInferenceId = ApiTypeHelper.requireNonNull(builder.elasticsearchInferenceId, this,
-				"elasticsearchInferenceId");
-		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
-		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
+		this.elasticsearchInferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.elasticsearchInferenceId, this,
+				"elasticsearchInferenceId", this.elasticsearchInferenceId());
+		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
+		this.serviceSettings = ApiTypeHelper.requireNonNullWithDefault(builder.serviceSettings, this, "serviceSettings",
+				this.serviceSettings());
 		this.taskSettings = builder.taskSettings;
-		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
+		this.taskType = ApiTypeHelper.requireNonNullWithDefault(builder.taskType, this, "taskType", this.taskType());
 
 	}
 

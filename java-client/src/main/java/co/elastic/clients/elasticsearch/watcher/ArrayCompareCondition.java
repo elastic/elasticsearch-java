@@ -70,10 +70,10 @@ public class ArrayCompareCondition implements JsonpSerializable {
 
 	private ArrayCompareCondition(Builder builder) {
 
-		this.operator = ApiTypeHelper.requireNonNull(builder.operator, this, "operator");
-		this.params = ApiTypeHelper.requireNonNull(builder.params, this, "params");
+		this.operator = ApiTypeHelper.requireNonNullWithDefault(builder.operator, this, "operator", this.operator());
+		this.params = ApiTypeHelper.requireNonNullWithDefault(builder.params, this, "params", this.params());
 
-		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
+		this.path = ApiTypeHelper.requireNonNullWithDefault(builder.path, this, "path", this.path());
 
 	}
 

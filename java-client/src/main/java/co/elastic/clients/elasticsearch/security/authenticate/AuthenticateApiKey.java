@@ -69,7 +69,7 @@ public class AuthenticateApiKey implements JsonpSerializable {
 
 	private AuthenticateApiKey(Builder builder) {
 
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 		this.name = builder.name;
 
 	}

@@ -80,10 +80,11 @@ public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSe
 
 	private ChatCompletionUnifiedRequest(Builder builder) {
 
-		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
+		this.inferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.inferenceId, this, "inferenceId",
+				this.inferenceId());
 		this.timeout = builder.timeout;
-		this.chatCompletionRequest = ApiTypeHelper.requireNonNull(builder.chatCompletionRequest, this,
-				"chatCompletionRequest");
+		this.chatCompletionRequest = ApiTypeHelper.requireNonNullWithDefault(builder.chatCompletionRequest, this,
+				"chatCompletionRequest", this.chatCompletionRequest());
 
 	}
 

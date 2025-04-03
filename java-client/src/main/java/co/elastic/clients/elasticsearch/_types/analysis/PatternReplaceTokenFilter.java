@@ -76,7 +76,7 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 
 		this.all = builder.all;
 		this.flags = builder.flags;
-		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
+		this.pattern = ApiTypeHelper.requireNonNullWithDefault(builder.pattern, this, "pattern", this.pattern());
 		this.replacement = builder.replacement;
 
 	}

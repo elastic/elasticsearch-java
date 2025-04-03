@@ -72,7 +72,8 @@ public class CheckInRequest extends RequestBase {
 
 	private CheckInRequest(Builder builder) {
 
-		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
+		this.connectorId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorId, this, "connectorId",
+				this.connectorId());
 
 	}
 

@@ -74,9 +74,11 @@ public class DelegatePkiResponse implements JsonpSerializable {
 
 	private DelegatePkiResponse(Builder builder) {
 
-		this.accessToken = ApiTypeHelper.requireNonNull(builder.accessToken, this, "accessToken");
-		this.expiresIn = ApiTypeHelper.requireNonNull(builder.expiresIn, this, "expiresIn");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.accessToken = ApiTypeHelper.requireNonNullWithDefault(builder.accessToken, this, "accessToken",
+				this.accessToken());
+		this.expiresIn = ApiTypeHelper.requireNonNullWithDefault(builder.expiresIn, this, "expiresIn",
+				this.expiresIn());
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
 		this.authentication = builder.authentication;
 
 	}

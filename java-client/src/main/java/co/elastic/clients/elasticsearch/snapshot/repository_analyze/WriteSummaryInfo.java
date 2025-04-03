@@ -81,14 +81,19 @@ public class WriteSummaryInfo implements JsonpSerializable {
 
 	private WriteSummaryInfo(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.totalElapsed = ApiTypeHelper.requireNonNull(builder.totalElapsed, this, "totalElapsed");
-		this.totalElapsedNanos = ApiTypeHelper.requireNonNull(builder.totalElapsedNanos, this, "totalElapsedNanos");
-		this.totalSize = ApiTypeHelper.requireNonNull(builder.totalSize, this, "totalSize");
-		this.totalSizeBytes = ApiTypeHelper.requireNonNull(builder.totalSizeBytes, this, "totalSizeBytes");
-		this.totalThrottled = ApiTypeHelper.requireNonNull(builder.totalThrottled, this, "totalThrottled");
-		this.totalThrottledNanos = ApiTypeHelper.requireNonNull(builder.totalThrottledNanos, this,
-				"totalThrottledNanos");
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
+		this.totalElapsed = ApiTypeHelper.requireNonNullWithDefault(builder.totalElapsed, this, "totalElapsed",
+				this.totalElapsed());
+		this.totalElapsedNanos = ApiTypeHelper.requireNonNullWithDefault(builder.totalElapsedNanos, this,
+				"totalElapsedNanos", this.totalElapsedNanos());
+		this.totalSize = ApiTypeHelper.requireNonNullWithDefault(builder.totalSize, this, "totalSize",
+				this.totalSize());
+		this.totalSizeBytes = ApiTypeHelper.requireNonNullWithDefault(builder.totalSizeBytes, this, "totalSizeBytes",
+				this.totalSizeBytes());
+		this.totalThrottled = ApiTypeHelper.requireNonNullWithDefault(builder.totalThrottled, this, "totalThrottled",
+				this.totalThrottled());
+		this.totalThrottledNanos = ApiTypeHelper.requireNonNullWithDefault(builder.totalThrottledNanos, this,
+				"totalThrottledNanos", this.totalThrottledNanos());
 
 	}
 

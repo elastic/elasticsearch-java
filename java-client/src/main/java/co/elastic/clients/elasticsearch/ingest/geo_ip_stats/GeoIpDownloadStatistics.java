@@ -76,13 +76,18 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 
 	private GeoIpDownloadStatistics(Builder builder) {
 
-		this.successfulDownloads = ApiTypeHelper.requireNonNull(builder.successfulDownloads, this,
-				"successfulDownloads");
-		this.failedDownloads = ApiTypeHelper.requireNonNull(builder.failedDownloads, this, "failedDownloads");
-		this.totalDownloadTime = ApiTypeHelper.requireNonNull(builder.totalDownloadTime, this, "totalDownloadTime");
-		this.databasesCount = ApiTypeHelper.requireNonNull(builder.databasesCount, this, "databasesCount");
-		this.skippedUpdates = ApiTypeHelper.requireNonNull(builder.skippedUpdates, this, "skippedUpdates");
-		this.expiredDatabases = ApiTypeHelper.requireNonNull(builder.expiredDatabases, this, "expiredDatabases");
+		this.successfulDownloads = ApiTypeHelper.requireNonNullWithDefault(builder.successfulDownloads, this,
+				"successfulDownloads", this.successfulDownloads());
+		this.failedDownloads = ApiTypeHelper.requireNonNullWithDefault(builder.failedDownloads, this, "failedDownloads",
+				this.failedDownloads());
+		this.totalDownloadTime = ApiTypeHelper.requireNonNullWithDefault(builder.totalDownloadTime, this,
+				"totalDownloadTime", this.totalDownloadTime());
+		this.databasesCount = ApiTypeHelper.requireNonNullWithDefault(builder.databasesCount, this, "databasesCount",
+				this.databasesCount());
+		this.skippedUpdates = ApiTypeHelper.requireNonNullWithDefault(builder.skippedUpdates, this, "skippedUpdates",
+				this.skippedUpdates());
+		this.expiredDatabases = ApiTypeHelper.requireNonNullWithDefault(builder.expiredDatabases, this,
+				"expiredDatabases", this.expiredDatabases());
 
 	}
 

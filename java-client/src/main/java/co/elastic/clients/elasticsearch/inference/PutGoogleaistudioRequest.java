@@ -95,11 +95,12 @@ public class PutGoogleaistudioRequest extends RequestBase implements JsonpSerial
 	private PutGoogleaistudioRequest(Builder builder) {
 
 		this.chunkingSettings = builder.chunkingSettings;
-		this.googleaistudioInferenceId = ApiTypeHelper.requireNonNull(builder.googleaistudioInferenceId, this,
-				"googleaistudioInferenceId");
-		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
-		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
-		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
+		this.googleaistudioInferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.googleaistudioInferenceId,
+				this, "googleaistudioInferenceId", this.googleaistudioInferenceId());
+		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
+		this.serviceSettings = ApiTypeHelper.requireNonNullWithDefault(builder.serviceSettings, this, "serviceSettings",
+				this.serviceSettings());
+		this.taskType = ApiTypeHelper.requireNonNullWithDefault(builder.taskType, this, "taskType", this.taskType());
 
 	}
 

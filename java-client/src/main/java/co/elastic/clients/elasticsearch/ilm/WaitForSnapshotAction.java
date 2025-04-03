@@ -66,7 +66,7 @@ public class WaitForSnapshotAction implements JsonpSerializable {
 
 	private WaitForSnapshotAction(Builder builder) {
 
-		this.policy = ApiTypeHelper.requireNonNull(builder.policy, this, "policy");
+		this.policy = ApiTypeHelper.requireNonNullWithDefault(builder.policy, this, "policy", this.policy());
 
 	}
 

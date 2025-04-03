@@ -74,8 +74,10 @@ public class QueryRulesetListItem implements JsonpSerializable {
 
 	private QueryRulesetListItem(Builder builder) {
 
-		this.rulesetId = ApiTypeHelper.requireNonNull(builder.rulesetId, this, "rulesetId");
-		this.ruleTotalCount = ApiTypeHelper.requireNonNull(builder.ruleTotalCount, this, "ruleTotalCount");
+		this.rulesetId = ApiTypeHelper.requireNonNullWithDefault(builder.rulesetId, this, "rulesetId",
+				this.rulesetId());
+		this.ruleTotalCount = ApiTypeHelper.requireNonNullWithDefault(builder.ruleTotalCount, this, "ruleTotalCount",
+				this.ruleTotalCount());
 		this.ruleCriteriaTypesCounts = ApiTypeHelper.unmodifiableRequired(builder.ruleCriteriaTypesCounts, this,
 				"ruleCriteriaTypesCounts");
 		this.ruleTypeCounts = ApiTypeHelper.unmodifiableRequired(builder.ruleTypeCounts, this, "ruleTypeCounts");

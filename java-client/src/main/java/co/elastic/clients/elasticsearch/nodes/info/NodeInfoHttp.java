@@ -76,9 +76,10 @@ public class NodeInfoHttp implements JsonpSerializable {
 
 		this.boundAddress = ApiTypeHelper.unmodifiableRequired(builder.boundAddress, this, "boundAddress");
 		this.maxContentLength = builder.maxContentLength;
-		this.maxContentLengthInBytes = ApiTypeHelper.requireNonNull(builder.maxContentLengthInBytes, this,
-				"maxContentLengthInBytes");
-		this.publishAddress = ApiTypeHelper.requireNonNull(builder.publishAddress, this, "publishAddress");
+		this.maxContentLengthInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.maxContentLengthInBytes, this,
+				"maxContentLengthInBytes", this.maxContentLengthInBytes());
+		this.publishAddress = ApiTypeHelper.requireNonNullWithDefault(builder.publishAddress, this, "publishAddress",
+				this.publishAddress());
 
 	}
 

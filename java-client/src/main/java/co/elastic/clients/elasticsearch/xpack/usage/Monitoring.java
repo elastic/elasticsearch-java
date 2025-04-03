@@ -68,7 +68,8 @@ public class Monitoring extends Base {
 	private Monitoring(Builder builder) {
 		super(builder);
 
-		this.collectionEnabled = ApiTypeHelper.requireNonNull(builder.collectionEnabled, this, "collectionEnabled");
+		this.collectionEnabled = ApiTypeHelper.requireNonNullWithDefault(builder.collectionEnabled, this,
+				"collectionEnabled", this.collectionEnabled());
 		this.enabledExporters = ApiTypeHelper.unmodifiableRequired(builder.enabledExporters, this, "enabledExporters");
 
 	}

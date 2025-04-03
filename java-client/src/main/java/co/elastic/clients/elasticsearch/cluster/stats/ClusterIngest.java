@@ -69,7 +69,8 @@ public class ClusterIngest implements JsonpSerializable {
 
 	private ClusterIngest(Builder builder) {
 
-		this.numberOfPipelines = ApiTypeHelper.requireNonNull(builder.numberOfPipelines, this, "numberOfPipelines");
+		this.numberOfPipelines = ApiTypeHelper.requireNonNullWithDefault(builder.numberOfPipelines, this,
+				"numberOfPipelines", this.numberOfPipelines());
 		this.processorStats = ApiTypeHelper.unmodifiableRequired(builder.processorStats, this, "processorStats");
 
 	}

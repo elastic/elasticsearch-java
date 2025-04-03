@@ -97,7 +97,8 @@ public class TrainedModelTreeNode implements JsonpSerializable {
 		this.defaultLeft = builder.defaultLeft;
 		this.leafValue = builder.leafValue;
 		this.leftChild = builder.leftChild;
-		this.nodeIndex = ApiTypeHelper.requireNonNull(builder.nodeIndex, this, "nodeIndex");
+		this.nodeIndex = ApiTypeHelper.requireNonNullWithDefault(builder.nodeIndex, this, "nodeIndex",
+				this.nodeIndex());
 		this.rightChild = builder.rightChild;
 		this.splitFeature = builder.splitFeature;
 		this.splitGain = builder.splitGain;

@@ -72,8 +72,8 @@ public class MigrationFeatureIndexInfo implements JsonpSerializable {
 
 	private MigrationFeatureIndexInfo(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
 		this.failureCause = builder.failureCause;
 
 	}

@@ -64,7 +64,8 @@ public class IcuFoldingTokenFilter extends TokenFilterBase implements TokenFilte
 	private IcuFoldingTokenFilter(Builder builder) {
 		super(builder);
 
-		this.unicodeSetFilter = ApiTypeHelper.requireNonNull(builder.unicodeSetFilter, this, "unicodeSetFilter");
+		this.unicodeSetFilter = ApiTypeHelper.requireNonNullWithDefault(builder.unicodeSetFilter, this,
+				"unicodeSetFilter", this.unicodeSetFilter());
 
 	}
 

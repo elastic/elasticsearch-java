@@ -78,7 +78,7 @@ public class StopTrainedModelDeploymentRequest extends RequestBase {
 
 		this.allowNoMatch = builder.allowNoMatch;
 		this.force = builder.force;
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
 
 	}
 

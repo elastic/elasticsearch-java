@@ -88,7 +88,7 @@ public class UpdateDataFrameAnalyticsRequest extends RequestBase implements Json
 
 		this.allowLazyStart = builder.allowLazyStart;
 		this.description = builder.description;
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 		this.maxNumThreads = builder.maxNumThreads;
 		this.modelMemoryLimit = builder.modelMemoryLimit;
 

@@ -117,12 +117,14 @@ public class JobConfig implements JsonpSerializable {
 	private JobConfig(Builder builder) {
 
 		this.allowLazyOpen = builder.allowLazyOpen;
-		this.analysisConfig = ApiTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
+		this.analysisConfig = ApiTypeHelper.requireNonNullWithDefault(builder.analysisConfig, this, "analysisConfig",
+				this.analysisConfig());
 		this.analysisLimits = builder.analysisLimits;
 		this.backgroundPersistInterval = builder.backgroundPersistInterval;
 		this.customSettings = builder.customSettings;
 		this.dailyModelSnapshotRetentionAfterDays = builder.dailyModelSnapshotRetentionAfterDays;
-		this.dataDescription = ApiTypeHelper.requireNonNull(builder.dataDescription, this, "dataDescription");
+		this.dataDescription = ApiTypeHelper.requireNonNullWithDefault(builder.dataDescription, this, "dataDescription",
+				this.dataDescription());
 		this.datafeedConfig = builder.datafeedConfig;
 		this.description = builder.description;
 		this.groups = ApiTypeHelper.unmodifiable(builder.groups);

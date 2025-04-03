@@ -85,9 +85,10 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 
 	private MlInferenceTrainedModelsCount(Builder builder) {
 
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-		this.prepackaged = ApiTypeHelper.requireNonNull(builder.prepackaged, this, "prepackaged");
-		this.other = ApiTypeHelper.requireNonNull(builder.other, this, "other");
+		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
+		this.prepackaged = ApiTypeHelper.requireNonNullWithDefault(builder.prepackaged, this, "prepackaged",
+				this.prepackaged());
+		this.other = ApiTypeHelper.requireNonNullWithDefault(builder.other, this, "other", this.other());
 		this.passThrough = builder.passThrough;
 		this.regression = builder.regression;
 		this.classification = builder.classification;

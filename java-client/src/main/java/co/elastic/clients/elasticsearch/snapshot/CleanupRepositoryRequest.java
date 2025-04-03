@@ -79,7 +79,7 @@ public class CleanupRepositoryRequest extends RequestBase {
 	private CleanupRepositoryRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 		this.timeout = builder.timeout;
 
 	}

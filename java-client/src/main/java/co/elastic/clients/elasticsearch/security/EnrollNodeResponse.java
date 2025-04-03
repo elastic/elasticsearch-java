@@ -76,11 +76,16 @@ public class EnrollNodeResponse implements JsonpSerializable {
 
 	private EnrollNodeResponse(Builder builder) {
 
-		this.httpCaKey = ApiTypeHelper.requireNonNull(builder.httpCaKey, this, "httpCaKey");
-		this.httpCaCert = ApiTypeHelper.requireNonNull(builder.httpCaCert, this, "httpCaCert");
-		this.transportCaCert = ApiTypeHelper.requireNonNull(builder.transportCaCert, this, "transportCaCert");
-		this.transportKey = ApiTypeHelper.requireNonNull(builder.transportKey, this, "transportKey");
-		this.transportCert = ApiTypeHelper.requireNonNull(builder.transportCert, this, "transportCert");
+		this.httpCaKey = ApiTypeHelper.requireNonNullWithDefault(builder.httpCaKey, this, "httpCaKey",
+				this.httpCaKey());
+		this.httpCaCert = ApiTypeHelper.requireNonNullWithDefault(builder.httpCaCert, this, "httpCaCert",
+				this.httpCaCert());
+		this.transportCaCert = ApiTypeHelper.requireNonNullWithDefault(builder.transportCaCert, this, "transportCaCert",
+				this.transportCaCert());
+		this.transportKey = ApiTypeHelper.requireNonNullWithDefault(builder.transportKey, this, "transportKey",
+				this.transportKey());
+		this.transportCert = ApiTypeHelper.requireNonNullWithDefault(builder.transportCert, this, "transportCert",
+				this.transportCert());
 		this.nodesAddresses = ApiTypeHelper.unmodifiableRequired(builder.nodesAddresses, this, "nodesAddresses");
 
 	}

@@ -72,10 +72,10 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 	private ConvertProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.ignoreMissing = builder.ignoreMissing;
 		this.targetField = builder.targetField;
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
 
 	}
 

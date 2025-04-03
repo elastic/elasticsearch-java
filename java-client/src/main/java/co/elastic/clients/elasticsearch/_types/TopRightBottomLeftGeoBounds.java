@@ -67,8 +67,9 @@ public class TopRightBottomLeftGeoBounds implements JsonpSerializable {
 
 	private TopRightBottomLeftGeoBounds(Builder builder) {
 
-		this.topRight = ApiTypeHelper.requireNonNull(builder.topRight, this, "topRight");
-		this.bottomLeft = ApiTypeHelper.requireNonNull(builder.bottomLeft, this, "bottomLeft");
+		this.topRight = ApiTypeHelper.requireNonNullWithDefault(builder.topRight, this, "topRight", this.topRight());
+		this.bottomLeft = ApiTypeHelper.requireNonNullWithDefault(builder.bottomLeft, this, "bottomLeft",
+				this.bottomLeft());
 
 	}
 

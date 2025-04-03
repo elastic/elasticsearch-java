@@ -83,9 +83,10 @@ public class FieldTypes implements JsonpSerializable {
 
 	private FieldTypes(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.count = ApiTypeHelper.requireNonNullWithDefault(builder.count, this, "count", this.count());
+		this.indexCount = ApiTypeHelper.requireNonNullWithDefault(builder.indexCount, this, "indexCount",
+				this.indexCount());
 		this.indexedVectorCount = builder.indexedVectorCount;
 		this.indexedVectorDimMax = builder.indexedVectorDimMax;
 		this.indexedVectorDimMin = builder.indexedVectorDimMin;

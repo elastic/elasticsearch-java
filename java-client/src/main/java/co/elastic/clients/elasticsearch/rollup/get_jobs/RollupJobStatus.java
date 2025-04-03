@@ -75,7 +75,7 @@ public class RollupJobStatus implements JsonpSerializable {
 	private RollupJobStatus(Builder builder) {
 
 		this.currentPosition = ApiTypeHelper.unmodifiable(builder.currentPosition);
-		this.jobState = ApiTypeHelper.requireNonNull(builder.jobState, this, "jobState");
+		this.jobState = ApiTypeHelper.requireNonNullWithDefault(builder.jobState, this, "jobState", this.jobState());
 		this.upgradedDocId = builder.upgradedDocId;
 
 	}

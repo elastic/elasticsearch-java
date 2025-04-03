@@ -161,7 +161,8 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.indexFilter = builder.indexFilter;
-		this.keepAlive = ApiTypeHelper.requireNonNull(builder.keepAlive, this, "keepAlive");
+		this.keepAlive = ApiTypeHelper.requireNonNullWithDefault(builder.keepAlive, this, "keepAlive",
+				this.keepAlive());
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.preference = builder.preference;
 		this.routing = builder.routing;

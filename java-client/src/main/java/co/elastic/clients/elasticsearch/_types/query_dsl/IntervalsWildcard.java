@@ -73,7 +73,7 @@ public class IntervalsWildcard implements IntervalsQueryVariant, IntervalsVarian
 	private IntervalsWildcard(Builder builder) {
 
 		this.analyzer = builder.analyzer;
-		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
+		this.pattern = ApiTypeHelper.requireNonNullWithDefault(builder.pattern, this, "pattern", this.pattern());
 		this.useField = builder.useField;
 
 	}

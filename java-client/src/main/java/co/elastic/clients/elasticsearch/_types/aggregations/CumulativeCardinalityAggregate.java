@@ -69,7 +69,7 @@ public class CumulativeCardinalityAggregate extends AggregateBase implements Agg
 	private CumulativeCardinalityAggregate(Builder builder) {
 		super(builder);
 
-		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
+		this.value = ApiTypeHelper.requireNonNullWithDefault(builder.value, this, "value", this.value());
 		this.valueAsString = builder.valueAsString;
 
 	}

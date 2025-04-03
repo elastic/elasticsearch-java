@@ -76,7 +76,7 @@ public class DeleteRoleRequest extends RequestBase {
 
 	private DeleteRoleRequest(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 		this.refresh = builder.refresh;
 
 	}

@@ -66,8 +66,8 @@ public abstract class SignificantTermsBucketBase extends MultiBucketBase {
 	protected SignificantTermsBucketBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
-		this.bgCount = ApiTypeHelper.requireNonNull(builder.bgCount, this, "bgCount");
+		this.score = ApiTypeHelper.requireNonNullWithDefault(builder.score, this, "score", this.score());
+		this.bgCount = ApiTypeHelper.requireNonNullWithDefault(builder.bgCount, this, "bgCount", this.bgCount());
 
 	}
 

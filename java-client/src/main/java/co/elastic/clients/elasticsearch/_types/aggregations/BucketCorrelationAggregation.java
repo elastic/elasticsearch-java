@@ -65,7 +65,7 @@ public class BucketCorrelationAggregation extends BucketPathAggregation implemen
 	private BucketCorrelationAggregation(Builder builder) {
 		super(builder);
 
-		this.function = ApiTypeHelper.requireNonNull(builder.function, this, "function");
+		this.function = ApiTypeHelper.requireNonNullWithDefault(builder.function, this, "function", this.function());
 
 	}
 

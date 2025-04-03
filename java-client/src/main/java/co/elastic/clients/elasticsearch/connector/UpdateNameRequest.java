@@ -77,7 +77,8 @@ public class UpdateNameRequest extends RequestBase implements JsonpSerializable 
 
 	private UpdateNameRequest(Builder builder) {
 
-		this.connectorId = ApiTypeHelper.requireNonNull(builder.connectorId, this, "connectorId");
+		this.connectorId = ApiTypeHelper.requireNonNullWithDefault(builder.connectorId, this, "connectorId",
+				this.connectorId());
 		this.description = builder.description;
 		this.name = builder.name;
 

@@ -87,7 +87,7 @@ public class DataframeAnalysisFeatureProcessorNGramEncoding
 	private DataframeAnalysisFeatureProcessorNGramEncoding(Builder builder) {
 
 		this.featurePrefix = builder.featurePrefix;
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.length = builder.length;
 		this.nGrams = ApiTypeHelper.unmodifiableRequired(builder.nGrams, this, "nGrams");
 		this.start = builder.start;

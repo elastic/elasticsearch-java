@@ -65,8 +65,8 @@ public class NodeInfoAction implements JsonpSerializable {
 
 	private NodeInfoAction(Builder builder) {
 
-		this.destructiveRequiresName = ApiTypeHelper.requireNonNull(builder.destructiveRequiresName, this,
-				"destructiveRequiresName");
+		this.destructiveRequiresName = ApiTypeHelper.requireNonNullWithDefault(builder.destructiveRequiresName, this,
+				"destructiveRequiresName", this.destructiveRequiresName());
 
 	}
 

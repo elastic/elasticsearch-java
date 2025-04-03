@@ -74,7 +74,8 @@ public class SnapshotResponseItem implements JsonpSerializable {
 
 	private SnapshotResponseItem(Builder builder) {
 
-		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.repository = ApiTypeHelper.requireNonNullWithDefault(builder.repository, this, "repository",
+				this.repository());
 		this.snapshots = ApiTypeHelper.unmodifiable(builder.snapshots);
 		this.error = builder.error;
 

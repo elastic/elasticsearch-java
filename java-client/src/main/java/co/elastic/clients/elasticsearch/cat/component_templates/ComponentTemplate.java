@@ -79,13 +79,18 @@ public class ComponentTemplate implements JsonpSerializable {
 
 	private ComponentTemplate(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 		this.version = builder.version;
-		this.aliasCount = ApiTypeHelper.requireNonNull(builder.aliasCount, this, "aliasCount");
-		this.mappingCount = ApiTypeHelper.requireNonNull(builder.mappingCount, this, "mappingCount");
-		this.settingsCount = ApiTypeHelper.requireNonNull(builder.settingsCount, this, "settingsCount");
-		this.metadataCount = ApiTypeHelper.requireNonNull(builder.metadataCount, this, "metadataCount");
-		this.includedIn = ApiTypeHelper.requireNonNull(builder.includedIn, this, "includedIn");
+		this.aliasCount = ApiTypeHelper.requireNonNullWithDefault(builder.aliasCount, this, "aliasCount",
+				this.aliasCount());
+		this.mappingCount = ApiTypeHelper.requireNonNullWithDefault(builder.mappingCount, this, "mappingCount",
+				this.mappingCount());
+		this.settingsCount = ApiTypeHelper.requireNonNullWithDefault(builder.settingsCount, this, "settingsCount",
+				this.settingsCount());
+		this.metadataCount = ApiTypeHelper.requireNonNullWithDefault(builder.metadataCount, this, "metadataCount",
+				this.metadataCount());
+		this.includedIn = ApiTypeHelper.requireNonNullWithDefault(builder.includedIn, this, "includedIn",
+				this.includedIn());
 
 	}
 

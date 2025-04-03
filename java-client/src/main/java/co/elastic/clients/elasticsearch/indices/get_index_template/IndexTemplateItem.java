@@ -69,8 +69,9 @@ public class IndexTemplateItem implements JsonpSerializable {
 
 	private IndexTemplateItem(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.indexTemplate = ApiTypeHelper.requireNonNull(builder.indexTemplate, this, "indexTemplate");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.indexTemplate = ApiTypeHelper.requireNonNullWithDefault(builder.indexTemplate, this, "indexTemplate",
+				this.indexTemplate());
 
 	}
 

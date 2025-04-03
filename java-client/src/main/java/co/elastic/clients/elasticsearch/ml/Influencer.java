@@ -89,19 +89,25 @@ public class Influencer implements JsonpSerializable {
 
 	private Influencer(Builder builder) {
 
-		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
-		this.influencerScore = ApiTypeHelper.requireNonNull(builder.influencerScore, this, "influencerScore");
-		this.influencerFieldName = ApiTypeHelper.requireNonNull(builder.influencerFieldName, this,
-				"influencerFieldName");
-		this.influencerFieldValue = ApiTypeHelper.requireNonNull(builder.influencerFieldValue, this,
-				"influencerFieldValue");
-		this.initialInfluencerScore = ApiTypeHelper.requireNonNull(builder.initialInfluencerScore, this,
-				"initialInfluencerScore");
-		this.isInterim = ApiTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.probability = ApiTypeHelper.requireNonNull(builder.probability, this, "probability");
-		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
-		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.bucketSpan = ApiTypeHelper.requireNonNullWithDefault(builder.bucketSpan, this, "bucketSpan",
+				this.bucketSpan());
+		this.influencerScore = ApiTypeHelper.requireNonNullWithDefault(builder.influencerScore, this, "influencerScore",
+				this.influencerScore());
+		this.influencerFieldName = ApiTypeHelper.requireNonNullWithDefault(builder.influencerFieldName, this,
+				"influencerFieldName", this.influencerFieldName());
+		this.influencerFieldValue = ApiTypeHelper.requireNonNullWithDefault(builder.influencerFieldValue, this,
+				"influencerFieldValue", this.influencerFieldValue());
+		this.initialInfluencerScore = ApiTypeHelper.requireNonNullWithDefault(builder.initialInfluencerScore, this,
+				"initialInfluencerScore", this.initialInfluencerScore());
+		this.isInterim = ApiTypeHelper.requireNonNullWithDefault(builder.isInterim, this, "isInterim",
+				this.isInterim());
+		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
+		this.probability = ApiTypeHelper.requireNonNullWithDefault(builder.probability, this, "probability",
+				this.probability());
+		this.resultType = ApiTypeHelper.requireNonNullWithDefault(builder.resultType, this, "resultType",
+				this.resultType());
+		this.timestamp = ApiTypeHelper.requireNonNullWithDefault(builder.timestamp, this, "timestamp",
+				this.timestamp());
 		this.foo = builder.foo;
 
 	}

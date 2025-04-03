@@ -65,7 +65,8 @@ public class ShardsTotalStats implements JsonpSerializable {
 
 	private ShardsTotalStats(Builder builder) {
 
-		this.totalCount = ApiTypeHelper.requireNonNull(builder.totalCount, this, "totalCount");
+		this.totalCount = ApiTypeHelper.requireNonNullWithDefault(builder.totalCount, this, "totalCount",
+				this.totalCount());
 
 	}
 

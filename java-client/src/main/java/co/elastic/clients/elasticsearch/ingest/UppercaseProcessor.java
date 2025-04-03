@@ -71,7 +71,7 @@ public class UppercaseProcessor extends ProcessorBase implements ProcessorVarian
 	private UppercaseProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.ignoreMissing = builder.ignoreMissing;
 		this.targetField = builder.targetField;
 

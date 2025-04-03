@@ -122,7 +122,7 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 	private CreateIndexRequest(Builder builder) {
 
 		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
 		this.mappings = builder.mappings;
 		this.masterTimeout = builder.masterTimeout;
 		this.settings = builder.settings;

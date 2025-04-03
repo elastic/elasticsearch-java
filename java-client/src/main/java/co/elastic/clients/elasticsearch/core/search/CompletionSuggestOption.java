@@ -107,7 +107,7 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		this.routing = builder.routing;
 		this.score = builder.score;
 		this.source = builder.source;
-		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
+		this.text = ApiTypeHelper.requireNonNullWithDefault(builder.text, this, "text", this.text());
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}

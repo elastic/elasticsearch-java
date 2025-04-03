@@ -102,11 +102,13 @@ public class PutJinaaiRequest extends RequestBase implements JsonpSerializable {
 	private PutJinaaiRequest(Builder builder) {
 
 		this.chunkingSettings = builder.chunkingSettings;
-		this.jinaaiInferenceId = ApiTypeHelper.requireNonNull(builder.jinaaiInferenceId, this, "jinaaiInferenceId");
-		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
-		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
+		this.jinaaiInferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.jinaaiInferenceId, this,
+				"jinaaiInferenceId", this.jinaaiInferenceId());
+		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
+		this.serviceSettings = ApiTypeHelper.requireNonNullWithDefault(builder.serviceSettings, this, "serviceSettings",
+				this.serviceSettings());
 		this.taskSettings = builder.taskSettings;
-		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
+		this.taskType = ApiTypeHelper.requireNonNullWithDefault(builder.taskType, this, "taskType", this.taskType());
 
 	}
 

@@ -71,7 +71,7 @@ public class ReloadDetails implements JsonpSerializable {
 
 	private ReloadDetails(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
 		this.reloadedAnalyzers = ApiTypeHelper.unmodifiableRequired(builder.reloadedAnalyzers, this,
 				"reloadedAnalyzers");
 		this.reloadedNodeIds = ApiTypeHelper.unmodifiableRequired(builder.reloadedNodeIds, this, "reloadedNodeIds");

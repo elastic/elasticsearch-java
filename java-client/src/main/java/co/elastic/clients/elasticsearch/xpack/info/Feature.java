@@ -74,9 +74,10 @@ public class Feature implements JsonpSerializable {
 
 	private Feature(Builder builder) {
 
-		this.available = ApiTypeHelper.requireNonNull(builder.available, this, "available");
+		this.available = ApiTypeHelper.requireNonNullWithDefault(builder.available, this, "available",
+				this.available());
 		this.description = builder.description;
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNullWithDefault(builder.enabled, this, "enabled", this.enabled());
 		this.nativeCodeInfo = builder.nativeCodeInfo;
 
 	}

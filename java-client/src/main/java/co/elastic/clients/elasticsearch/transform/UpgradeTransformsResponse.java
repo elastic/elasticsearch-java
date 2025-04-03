@@ -69,9 +69,10 @@ public class UpgradeTransformsResponse implements JsonpSerializable {
 
 	private UpgradeTransformsResponse(Builder builder) {
 
-		this.needsUpdate = ApiTypeHelper.requireNonNull(builder.needsUpdate, this, "needsUpdate");
-		this.noAction = ApiTypeHelper.requireNonNull(builder.noAction, this, "noAction");
-		this.updated = ApiTypeHelper.requireNonNull(builder.updated, this, "updated");
+		this.needsUpdate = ApiTypeHelper.requireNonNullWithDefault(builder.needsUpdate, this, "needsUpdate",
+				this.needsUpdate());
+		this.noAction = ApiTypeHelper.requireNonNullWithDefault(builder.noAction, this, "noAction", this.noAction());
+		this.updated = ApiTypeHelper.requireNonNullWithDefault(builder.updated, this, "updated", this.updated());
 
 	}
 

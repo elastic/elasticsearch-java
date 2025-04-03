@@ -86,7 +86,7 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 		this.analyzer = builder.analyzer;
 		this.maxGaps = builder.maxGaps;
 		this.ordered = builder.ordered;
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
 		this.useField = builder.useField;
 		this.filter = builder.filter;
 

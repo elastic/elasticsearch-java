@@ -97,13 +97,14 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 
 	private PutAzureaistudioRequest(Builder builder) {
 
-		this.azureaistudioInferenceId = ApiTypeHelper.requireNonNull(builder.azureaistudioInferenceId, this,
-				"azureaistudioInferenceId");
+		this.azureaistudioInferenceId = ApiTypeHelper.requireNonNullWithDefault(builder.azureaistudioInferenceId, this,
+				"azureaistudioInferenceId", this.azureaistudioInferenceId());
 		this.chunkingSettings = builder.chunkingSettings;
-		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
-		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
+		this.service = ApiTypeHelper.requireNonNullWithDefault(builder.service, this, "service", this.service());
+		this.serviceSettings = ApiTypeHelper.requireNonNullWithDefault(builder.serviceSettings, this, "serviceSettings",
+				this.serviceSettings());
 		this.taskSettings = builder.taskSettings;
-		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
+		this.taskType = ApiTypeHelper.requireNonNullWithDefault(builder.taskType, this, "taskType", this.taskType());
 
 	}
 

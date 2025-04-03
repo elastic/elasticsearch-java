@@ -71,9 +71,10 @@ public class RerouteExplanation implements JsonpSerializable {
 
 	private RerouteExplanation(Builder builder) {
 
-		this.command = ApiTypeHelper.requireNonNull(builder.command, this, "command");
+		this.command = ApiTypeHelper.requireNonNullWithDefault(builder.command, this, "command", this.command());
 		this.decisions = ApiTypeHelper.unmodifiableRequired(builder.decisions, this, "decisions");
-		this.parameters = ApiTypeHelper.requireNonNull(builder.parameters, this, "parameters");
+		this.parameters = ApiTypeHelper.requireNonNullWithDefault(builder.parameters, this, "parameters",
+				this.parameters());
 
 	}
 

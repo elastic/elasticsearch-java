@@ -78,8 +78,10 @@ public class TransformProgress implements JsonpSerializable {
 
 	private TransformProgress(Builder builder) {
 
-		this.docsIndexed = ApiTypeHelper.requireNonNull(builder.docsIndexed, this, "docsIndexed");
-		this.docsProcessed = ApiTypeHelper.requireNonNull(builder.docsProcessed, this, "docsProcessed");
+		this.docsIndexed = ApiTypeHelper.requireNonNullWithDefault(builder.docsIndexed, this, "docsIndexed",
+				this.docsIndexed());
+		this.docsProcessed = ApiTypeHelper.requireNonNullWithDefault(builder.docsProcessed, this, "docsProcessed",
+				this.docsProcessed());
 		this.docsRemaining = builder.docsRemaining;
 		this.percentComplete = builder.percentComplete;
 		this.totalDocs = builder.totalDocs;

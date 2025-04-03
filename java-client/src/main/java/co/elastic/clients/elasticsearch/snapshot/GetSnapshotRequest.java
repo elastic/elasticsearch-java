@@ -131,7 +131,8 @@ public class GetSnapshotRequest extends RequestBase {
 		this.masterTimeout = builder.masterTimeout;
 		this.offset = builder.offset;
 		this.order = builder.order;
-		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.repository = ApiTypeHelper.requireNonNullWithDefault(builder.repository, this, "repository",
+				this.repository());
 		this.size = builder.size;
 		this.slmPolicyFilter = builder.slmPolicyFilter;
 		this.snapshot = ApiTypeHelper.unmodifiableRequired(builder.snapshot, this, "snapshot");

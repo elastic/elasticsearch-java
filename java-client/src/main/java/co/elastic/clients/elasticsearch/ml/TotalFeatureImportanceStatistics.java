@@ -70,9 +70,10 @@ public class TotalFeatureImportanceStatistics implements JsonpSerializable {
 
 	private TotalFeatureImportanceStatistics(Builder builder) {
 
-		this.meanMagnitude = ApiTypeHelper.requireNonNull(builder.meanMagnitude, this, "meanMagnitude");
-		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
-		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
+		this.meanMagnitude = ApiTypeHelper.requireNonNullWithDefault(builder.meanMagnitude, this, "meanMagnitude",
+				this.meanMagnitude());
+		this.max = ApiTypeHelper.requireNonNullWithDefault(builder.max, this, "max", this.max());
+		this.min = ApiTypeHelper.requireNonNullWithDefault(builder.min, this, "min", this.min());
 
 	}
 

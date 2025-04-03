@@ -106,24 +106,35 @@ public class SearchStats implements JsonpSerializable {
 
 	private SearchStats(Builder builder) {
 
-		this.fetchCurrent = ApiTypeHelper.requireNonNull(builder.fetchCurrent, this, "fetchCurrent");
+		this.fetchCurrent = ApiTypeHelper.requireNonNullWithDefault(builder.fetchCurrent, this, "fetchCurrent",
+				this.fetchCurrent());
 		this.fetchTime = builder.fetchTime;
-		this.fetchTimeInMillis = ApiTypeHelper.requireNonNull(builder.fetchTimeInMillis, this, "fetchTimeInMillis");
-		this.fetchTotal = ApiTypeHelper.requireNonNull(builder.fetchTotal, this, "fetchTotal");
+		this.fetchTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.fetchTimeInMillis, this,
+				"fetchTimeInMillis", this.fetchTimeInMillis());
+		this.fetchTotal = ApiTypeHelper.requireNonNullWithDefault(builder.fetchTotal, this, "fetchTotal",
+				this.fetchTotal());
 		this.openContexts = builder.openContexts;
-		this.queryCurrent = ApiTypeHelper.requireNonNull(builder.queryCurrent, this, "queryCurrent");
+		this.queryCurrent = ApiTypeHelper.requireNonNullWithDefault(builder.queryCurrent, this, "queryCurrent",
+				this.queryCurrent());
 		this.queryTime = builder.queryTime;
-		this.queryTimeInMillis = ApiTypeHelper.requireNonNull(builder.queryTimeInMillis, this, "queryTimeInMillis");
-		this.queryTotal = ApiTypeHelper.requireNonNull(builder.queryTotal, this, "queryTotal");
-		this.scrollCurrent = ApiTypeHelper.requireNonNull(builder.scrollCurrent, this, "scrollCurrent");
+		this.queryTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.queryTimeInMillis, this,
+				"queryTimeInMillis", this.queryTimeInMillis());
+		this.queryTotal = ApiTypeHelper.requireNonNullWithDefault(builder.queryTotal, this, "queryTotal",
+				this.queryTotal());
+		this.scrollCurrent = ApiTypeHelper.requireNonNullWithDefault(builder.scrollCurrent, this, "scrollCurrent",
+				this.scrollCurrent());
 		this.scrollTime = builder.scrollTime;
-		this.scrollTimeInMillis = ApiTypeHelper.requireNonNull(builder.scrollTimeInMillis, this, "scrollTimeInMillis");
-		this.scrollTotal = ApiTypeHelper.requireNonNull(builder.scrollTotal, this, "scrollTotal");
-		this.suggestCurrent = ApiTypeHelper.requireNonNull(builder.suggestCurrent, this, "suggestCurrent");
+		this.scrollTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.scrollTimeInMillis, this,
+				"scrollTimeInMillis", this.scrollTimeInMillis());
+		this.scrollTotal = ApiTypeHelper.requireNonNullWithDefault(builder.scrollTotal, this, "scrollTotal",
+				this.scrollTotal());
+		this.suggestCurrent = ApiTypeHelper.requireNonNullWithDefault(builder.suggestCurrent, this, "suggestCurrent",
+				this.suggestCurrent());
 		this.suggestTime = builder.suggestTime;
-		this.suggestTimeInMillis = ApiTypeHelper.requireNonNull(builder.suggestTimeInMillis, this,
-				"suggestTimeInMillis");
-		this.suggestTotal = ApiTypeHelper.requireNonNull(builder.suggestTotal, this, "suggestTotal");
+		this.suggestTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.suggestTimeInMillis, this,
+				"suggestTimeInMillis", this.suggestTimeInMillis());
+		this.suggestTotal = ApiTypeHelper.requireNonNullWithDefault(builder.suggestTotal, this, "suggestTotal",
+				this.suggestTotal());
 		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
 
 	}

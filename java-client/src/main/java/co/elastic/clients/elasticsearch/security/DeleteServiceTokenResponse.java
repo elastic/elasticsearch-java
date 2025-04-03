@@ -65,7 +65,7 @@ public class DeleteServiceTokenResponse implements JsonpSerializable {
 
 	private DeleteServiceTokenResponse(Builder builder) {
 
-		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+		this.found = ApiTypeHelper.requireNonNullWithDefault(builder.found, this, "found", this.found());
 
 	}
 

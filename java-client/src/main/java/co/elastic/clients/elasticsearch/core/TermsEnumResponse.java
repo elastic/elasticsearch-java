@@ -72,9 +72,9 @@ public class TermsEnumResponse implements JsonpSerializable {
 
 	private TermsEnumResponse(Builder builder) {
 
-		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.shards = ApiTypeHelper.requireNonNullWithDefault(builder.shards, this, "shards", this.shards());
 		this.terms = ApiTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
-		this.complete = ApiTypeHelper.requireNonNull(builder.complete, this, "complete");
+		this.complete = ApiTypeHelper.requireNonNullWithDefault(builder.complete, this, "complete", this.complete());
 
 	}
 

@@ -99,18 +99,21 @@ public class TaskInfo implements JsonpSerializable {
 
 	protected TaskInfo(AbstractBuilder<?> builder) {
 
-		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
+		this.action = ApiTypeHelper.requireNonNullWithDefault(builder.action, this, "action", this.action());
 		this.cancelled = builder.cancelled;
-		this.cancellable = ApiTypeHelper.requireNonNull(builder.cancellable, this, "cancellable");
+		this.cancellable = ApiTypeHelper.requireNonNullWithDefault(builder.cancellable, this, "cancellable",
+				this.cancellable());
 		this.description = builder.description;
 		this.headers = ApiTypeHelper.unmodifiableRequired(builder.headers, this, "headers");
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
+		this.node = ApiTypeHelper.requireNonNullWithDefault(builder.node, this, "node", this.node());
 		this.runningTime = builder.runningTime;
-		this.runningTimeInNanos = ApiTypeHelper.requireNonNull(builder.runningTimeInNanos, this, "runningTimeInNanos");
-		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.runningTimeInNanos = ApiTypeHelper.requireNonNullWithDefault(builder.runningTimeInNanos, this,
+				"runningTimeInNanos", this.runningTimeInNanos());
+		this.startTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.startTimeInMillis, this,
+				"startTimeInMillis", this.startTimeInMillis());
 		this.status = builder.status;
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
 		this.parentTaskId = builder.parentTaskId;
 
 	}

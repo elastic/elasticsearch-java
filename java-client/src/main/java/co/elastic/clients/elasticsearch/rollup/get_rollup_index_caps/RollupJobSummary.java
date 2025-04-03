@@ -75,9 +75,11 @@ public class RollupJobSummary implements JsonpSerializable {
 	private RollupJobSummary(Builder builder) {
 
 		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
-		this.indexPattern = ApiTypeHelper.requireNonNull(builder.indexPattern, this, "indexPattern");
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.rollupIndex = ApiTypeHelper.requireNonNull(builder.rollupIndex, this, "rollupIndex");
+		this.indexPattern = ApiTypeHelper.requireNonNullWithDefault(builder.indexPattern, this, "indexPattern",
+				this.indexPattern());
+		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
+		this.rollupIndex = ApiTypeHelper.requireNonNullWithDefault(builder.rollupIndex, this, "rollupIndex",
+				this.rollupIndex());
 
 	}
 

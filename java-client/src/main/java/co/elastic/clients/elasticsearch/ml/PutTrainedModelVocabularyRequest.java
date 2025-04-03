@@ -84,7 +84,7 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 	private PutTrainedModelVocabularyRequest(Builder builder) {
 
 		this.merges = ApiTypeHelper.unmodifiable(builder.merges);
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelId = ApiTypeHelper.requireNonNullWithDefault(builder.modelId, this, "modelId", this.modelId());
 		this.scores = ApiTypeHelper.unmodifiable(builder.scores);
 		this.vocabulary = ApiTypeHelper.unmodifiableRequired(builder.vocabulary, this, "vocabulary");
 

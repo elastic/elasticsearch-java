@@ -76,10 +76,10 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 	private LifecycleExplainPhaseExecution(Builder builder) {
 
 		this.phaseDefinition = builder.phaseDefinition;
-		this.policy = ApiTypeHelper.requireNonNull(builder.policy, this, "policy");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
-		this.modifiedDateInMillis = ApiTypeHelper.requireNonNull(builder.modifiedDateInMillis, this,
-				"modifiedDateInMillis");
+		this.policy = ApiTypeHelper.requireNonNullWithDefault(builder.policy, this, "policy", this.policy());
+		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
+		this.modifiedDateInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.modifiedDateInMillis, this,
+				"modifiedDateInMillis", this.modifiedDateInMillis());
 
 	}
 

@@ -116,7 +116,7 @@ public class MatchQuery extends QueryBase
 
 	private MatchQuery(Builder builder) {
 		super(builder);
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 
 		this.analyzer = builder.analyzer;
 		this.autoGenerateSynonymsPhraseQuery = builder.autoGenerateSynonymsPhraseQuery;
@@ -129,7 +129,7 @@ public class MatchQuery extends QueryBase
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.operator = builder.operator;
 		this.prefixLength = builder.prefixLength;
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.query = ApiTypeHelper.requireNonNullWithDefault(builder.query, this, "query", this.query());
 		this.zeroTermsQuery = builder.zeroTermsQuery;
 
 	}

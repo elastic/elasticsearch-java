@@ -75,11 +75,13 @@ public class AlibabaCloudServiceSettings implements JsonpSerializable {
 
 	private AlibabaCloudServiceSettings(Builder builder) {
 
-		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
-		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
+		this.apiKey = ApiTypeHelper.requireNonNullWithDefault(builder.apiKey, this, "apiKey", this.apiKey());
+		this.host = ApiTypeHelper.requireNonNullWithDefault(builder.host, this, "host", this.host());
 		this.rateLimit = builder.rateLimit;
-		this.serviceId = ApiTypeHelper.requireNonNull(builder.serviceId, this, "serviceId");
-		this.workspace = ApiTypeHelper.requireNonNull(builder.workspace, this, "workspace");
+		this.serviceId = ApiTypeHelper.requireNonNullWithDefault(builder.serviceId, this, "serviceId",
+				this.serviceId());
+		this.workspace = ApiTypeHelper.requireNonNullWithDefault(builder.workspace, this, "workspace",
+				this.workspace());
 
 	}
 

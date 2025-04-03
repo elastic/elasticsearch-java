@@ -66,7 +66,7 @@ public class NodeInfoSettingsClusterElection implements JsonpSerializable {
 
 	private NodeInfoSettingsClusterElection(Builder builder) {
 
-		this.strategy = ApiTypeHelper.requireNonNull(builder.strategy, this, "strategy");
+		this.strategy = ApiTypeHelper.requireNonNullWithDefault(builder.strategy, this, "strategy", this.strategy());
 
 	}
 

@@ -68,8 +68,9 @@ public class MasterIsStableIndicatorExceptionFetchingHistory implements JsonpSer
 
 	private MasterIsStableIndicatorExceptionFetchingHistory(Builder builder) {
 
-		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
-		this.stackTrace = ApiTypeHelper.requireNonNull(builder.stackTrace, this, "stackTrace");
+		this.message = ApiTypeHelper.requireNonNullWithDefault(builder.message, this, "message", this.message());
+		this.stackTrace = ApiTypeHelper.requireNonNullWithDefault(builder.stackTrace, this, "stackTrace",
+				this.stackTrace());
 
 	}
 

@@ -80,8 +80,10 @@ public class DataStreamIndex implements JsonpSerializable {
 
 	private DataStreamIndex(Builder builder) {
 
-		this.indexName = ApiTypeHelper.requireNonNull(builder.indexName, this, "indexName");
-		this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
+		this.indexName = ApiTypeHelper.requireNonNullWithDefault(builder.indexName, this, "indexName",
+				this.indexName());
+		this.indexUuid = ApiTypeHelper.requireNonNullWithDefault(builder.indexUuid, this, "indexUuid",
+				this.indexUuid());
 		this.ilmPolicy = builder.ilmPolicy;
 		this.managedBy = builder.managedBy;
 		this.preferIlm = builder.preferIlm;

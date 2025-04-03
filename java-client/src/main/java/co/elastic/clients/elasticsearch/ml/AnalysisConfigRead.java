@@ -95,7 +95,8 @@ public class AnalysisConfigRead implements JsonpSerializable {
 
 	private AnalysisConfigRead(Builder builder) {
 
-		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
+		this.bucketSpan = ApiTypeHelper.requireNonNullWithDefault(builder.bucketSpan, this, "bucketSpan",
+				this.bucketSpan());
 		this.categorizationAnalyzer = builder.categorizationAnalyzer;
 		this.categorizationFieldName = builder.categorizationFieldName;
 		this.categorizationFilters = ApiTypeHelper.unmodifiable(builder.categorizationFilters);

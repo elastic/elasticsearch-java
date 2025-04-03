@@ -76,10 +76,11 @@ public class SlmPolicy implements JsonpSerializable {
 	private SlmPolicy(Builder builder) {
 
 		this.config = builder.config;
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
+		this.repository = ApiTypeHelper.requireNonNullWithDefault(builder.repository, this, "repository",
+				this.repository());
 		this.retention = builder.retention;
-		this.schedule = ApiTypeHelper.requireNonNull(builder.schedule, this, "schedule");
+		this.schedule = ApiTypeHelper.requireNonNullWithDefault(builder.schedule, this, "schedule", this.schedule());
 
 	}
 

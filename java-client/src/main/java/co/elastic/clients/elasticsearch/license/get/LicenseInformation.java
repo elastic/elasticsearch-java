@@ -99,16 +99,19 @@ public class LicenseInformation implements JsonpSerializable {
 
 		this.expiryDate = builder.expiryDate;
 		this.expiryDateInMillis = builder.expiryDateInMillis;
-		this.issueDate = ApiTypeHelper.requireNonNull(builder.issueDate, this, "issueDate");
-		this.issueDateInMillis = ApiTypeHelper.requireNonNull(builder.issueDateInMillis, this, "issueDateInMillis");
-		this.issuedTo = ApiTypeHelper.requireNonNull(builder.issuedTo, this, "issuedTo");
-		this.issuer = ApiTypeHelper.requireNonNull(builder.issuer, this, "issuer");
+		this.issueDate = ApiTypeHelper.requireNonNullWithDefault(builder.issueDate, this, "issueDate",
+				this.issueDate());
+		this.issueDateInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.issueDateInMillis, this,
+				"issueDateInMillis", this.issueDateInMillis());
+		this.issuedTo = ApiTypeHelper.requireNonNullWithDefault(builder.issuedTo, this, "issuedTo", this.issuedTo());
+		this.issuer = ApiTypeHelper.requireNonNullWithDefault(builder.issuer, this, "issuer", this.issuer());
 		this.maxNodes = builder.maxNodes;
 		this.maxResourceUnits = builder.maxResourceUnits;
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-		this.uid = ApiTypeHelper.requireNonNull(builder.uid, this, "uid");
-		this.startDateInMillis = ApiTypeHelper.requireNonNull(builder.startDateInMillis, this, "startDateInMillis");
+		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
+		this.uid = ApiTypeHelper.requireNonNullWithDefault(builder.uid, this, "uid", this.uid());
+		this.startDateInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.startDateInMillis, this,
+				"startDateInMillis", this.startDateInMillis());
 
 	}
 

@@ -86,15 +86,20 @@ public class BulkStats implements JsonpSerializable {
 
 	private BulkStats(Builder builder) {
 
-		this.totalOperations = ApiTypeHelper.requireNonNull(builder.totalOperations, this, "totalOperations");
+		this.totalOperations = ApiTypeHelper.requireNonNullWithDefault(builder.totalOperations, this, "totalOperations",
+				this.totalOperations());
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.totalTimeInMillis, this,
+				"totalTimeInMillis", this.totalTimeInMillis());
 		this.totalSize = builder.totalSize;
-		this.totalSizeInBytes = ApiTypeHelper.requireNonNull(builder.totalSizeInBytes, this, "totalSizeInBytes");
+		this.totalSizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.totalSizeInBytes, this,
+				"totalSizeInBytes", this.totalSizeInBytes());
 		this.avgTime = builder.avgTime;
-		this.avgTimeInMillis = ApiTypeHelper.requireNonNull(builder.avgTimeInMillis, this, "avgTimeInMillis");
+		this.avgTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.avgTimeInMillis, this, "avgTimeInMillis",
+				this.avgTimeInMillis());
 		this.avgSize = builder.avgSize;
-		this.avgSizeInBytes = ApiTypeHelper.requireNonNull(builder.avgSizeInBytes, this, "avgSizeInBytes");
+		this.avgSizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.avgSizeInBytes, this, "avgSizeInBytes",
+				this.avgSizeInBytes());
 
 	}
 

@@ -72,7 +72,8 @@ public class RandomSamplerAggregation extends BucketAggregationBase implements A
 
 	private RandomSamplerAggregation(Builder builder) {
 
-		this.probability = ApiTypeHelper.requireNonNull(builder.probability, this, "probability");
+		this.probability = ApiTypeHelper.requireNonNullWithDefault(builder.probability, this, "probability",
+				this.probability());
 		this.seed = builder.seed;
 		this.shardSeed = builder.shardSeed;
 

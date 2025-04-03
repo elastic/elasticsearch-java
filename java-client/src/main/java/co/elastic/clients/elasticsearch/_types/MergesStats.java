@@ -102,25 +102,30 @@ public class MergesStats implements JsonpSerializable {
 
 	private MergesStats(Builder builder) {
 
-		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
-		this.currentDocs = ApiTypeHelper.requireNonNull(builder.currentDocs, this, "currentDocs");
+		this.current = ApiTypeHelper.requireNonNullWithDefault(builder.current, this, "current", this.current());
+		this.currentDocs = ApiTypeHelper.requireNonNullWithDefault(builder.currentDocs, this, "currentDocs",
+				this.currentDocs());
 		this.currentSize = builder.currentSize;
-		this.currentSizeInBytes = ApiTypeHelper.requireNonNull(builder.currentSizeInBytes, this, "currentSizeInBytes");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.currentSizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.currentSizeInBytes, this,
+				"currentSizeInBytes", this.currentSizeInBytes());
+		this.total = ApiTypeHelper.requireNonNullWithDefault(builder.total, this, "total", this.total());
 		this.totalAutoThrottle = builder.totalAutoThrottle;
-		this.totalAutoThrottleInBytes = ApiTypeHelper.requireNonNull(builder.totalAutoThrottleInBytes, this,
-				"totalAutoThrottleInBytes");
-		this.totalDocs = ApiTypeHelper.requireNonNull(builder.totalDocs, this, "totalDocs");
+		this.totalAutoThrottleInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.totalAutoThrottleInBytes, this,
+				"totalAutoThrottleInBytes", this.totalAutoThrottleInBytes());
+		this.totalDocs = ApiTypeHelper.requireNonNullWithDefault(builder.totalDocs, this, "totalDocs",
+				this.totalDocs());
 		this.totalSize = builder.totalSize;
-		this.totalSizeInBytes = ApiTypeHelper.requireNonNull(builder.totalSizeInBytes, this, "totalSizeInBytes");
+		this.totalSizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.totalSizeInBytes, this,
+				"totalSizeInBytes", this.totalSizeInBytes());
 		this.totalStoppedTime = builder.totalStoppedTime;
-		this.totalStoppedTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalStoppedTimeInMillis, this,
-				"totalStoppedTimeInMillis");
+		this.totalStoppedTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.totalStoppedTimeInMillis, this,
+				"totalStoppedTimeInMillis", this.totalStoppedTimeInMillis());
 		this.totalThrottledTime = builder.totalThrottledTime;
-		this.totalThrottledTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalThrottledTimeInMillis, this,
-				"totalThrottledTimeInMillis");
+		this.totalThrottledTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.totalThrottledTimeInMillis,
+				this, "totalThrottledTimeInMillis", this.totalThrottledTimeInMillis());
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNullWithDefault(builder.totalTimeInMillis, this,
+				"totalTimeInMillis", this.totalTimeInMillis());
 
 	}
 

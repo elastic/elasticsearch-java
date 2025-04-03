@@ -69,8 +69,8 @@ public class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpSeriali
 
 	private TimeRetentionPolicy(Builder builder) {
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.maxAge = ApiTypeHelper.requireNonNull(builder.maxAge, this, "maxAge");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
+		this.maxAge = ApiTypeHelper.requireNonNullWithDefault(builder.maxAge, this, "maxAge", this.maxAge());
 
 	}
 

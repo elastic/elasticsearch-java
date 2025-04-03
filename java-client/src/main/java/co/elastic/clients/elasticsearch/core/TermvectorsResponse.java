@@ -80,12 +80,12 @@ public class TermvectorsResponse implements JsonpSerializable {
 
 	private TermvectorsResponse(Builder builder) {
 
-		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+		this.found = ApiTypeHelper.requireNonNullWithDefault(builder.found, this, "found", this.found());
 		this.id = builder.id;
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
 		this.termVectors = ApiTypeHelper.unmodifiable(builder.termVectors);
-		this.took = ApiTypeHelper.requireNonNull(builder.took, this, "took");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.took = ApiTypeHelper.requireNonNullWithDefault(builder.took, this, "took", this.took());
+		this.version = ApiTypeHelper.requireNonNullWithDefault(builder.version, this, "version", this.version());
 
 	}
 

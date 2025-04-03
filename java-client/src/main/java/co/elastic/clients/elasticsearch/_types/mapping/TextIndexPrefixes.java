@@ -67,8 +67,8 @@ public class TextIndexPrefixes implements JsonpSerializable {
 
 	private TextIndexPrefixes(Builder builder) {
 
-		this.maxChars = ApiTypeHelper.requireNonNull(builder.maxChars, this, "maxChars");
-		this.minChars = ApiTypeHelper.requireNonNull(builder.minChars, this, "minChars");
+		this.maxChars = ApiTypeHelper.requireNonNullWithDefault(builder.maxChars, this, "maxChars", this.maxChars());
+		this.minChars = ApiTypeHelper.requireNonNullWithDefault(builder.minChars, this, "minChars", this.minChars());
 
 	}
 

@@ -72,8 +72,8 @@ public class GetSynonymRuleRequest extends RequestBase {
 
 	private GetSynonymRuleRequest(Builder builder) {
 
-		this.ruleId = ApiTypeHelper.requireNonNull(builder.ruleId, this, "ruleId");
-		this.setId = ApiTypeHelper.requireNonNull(builder.setId, this, "setId");
+		this.ruleId = ApiTypeHelper.requireNonNullWithDefault(builder.ruleId, this, "ruleId", this.ruleId());
+		this.setId = ApiTypeHelper.requireNonNullWithDefault(builder.setId, this, "setId", this.setId());
 
 	}
 

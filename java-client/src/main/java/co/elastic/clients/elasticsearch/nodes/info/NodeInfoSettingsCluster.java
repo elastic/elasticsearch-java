@@ -78,9 +78,9 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 
 	private NodeInfoSettingsCluster(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 		this.routing = builder.routing;
-		this.election = ApiTypeHelper.requireNonNull(builder.election, this, "election");
+		this.election = ApiTypeHelper.requireNonNullWithDefault(builder.election, this, "election", this.election());
 		this.initialMasterNodes = ApiTypeHelper.unmodifiable(builder.initialMasterNodes);
 		this.deprecationIndexing = builder.deprecationIndexing;
 

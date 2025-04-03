@@ -76,8 +76,9 @@ public class RankedDocument implements JsonpSerializable {
 
 	private RankedDocument(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.relevanceScore = ApiTypeHelper.requireNonNull(builder.relevanceScore, this, "relevanceScore");
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
+		this.relevanceScore = ApiTypeHelper.requireNonNullWithDefault(builder.relevanceScore, this, "relevanceScore",
+				this.relevanceScore());
 		this.text = builder.text;
 
 	}

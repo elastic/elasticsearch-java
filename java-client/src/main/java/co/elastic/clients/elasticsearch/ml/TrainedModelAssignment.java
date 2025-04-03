@@ -85,12 +85,15 @@ public class TrainedModelAssignment implements JsonpSerializable {
 	private TrainedModelAssignment(Builder builder) {
 
 		this.adaptiveAllocations = builder.adaptiveAllocations;
-		this.assignmentState = ApiTypeHelper.requireNonNull(builder.assignmentState, this, "assignmentState");
+		this.assignmentState = ApiTypeHelper.requireNonNullWithDefault(builder.assignmentState, this, "assignmentState",
+				this.assignmentState());
 		this.maxAssignedAllocations = builder.maxAssignedAllocations;
 		this.reason = builder.reason;
 		this.routingTable = ApiTypeHelper.unmodifiableRequired(builder.routingTable, this, "routingTable");
-		this.startTime = ApiTypeHelper.requireNonNull(builder.startTime, this, "startTime");
-		this.taskParameters = ApiTypeHelper.requireNonNull(builder.taskParameters, this, "taskParameters");
+		this.startTime = ApiTypeHelper.requireNonNullWithDefault(builder.startTime, this, "startTime",
+				this.startTime());
+		this.taskParameters = ApiTypeHelper.requireNonNullWithDefault(builder.taskParameters, this, "taskParameters",
+				this.taskParameters());
 
 	}
 

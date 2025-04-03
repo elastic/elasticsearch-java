@@ -68,7 +68,7 @@ public class FieldMapping implements JsonpSerializable {
 
 	private FieldMapping(Builder builder) {
 
-		this.fullName = ApiTypeHelper.requireNonNull(builder.fullName, this, "fullName");
+		this.fullName = ApiTypeHelper.requireNonNullWithDefault(builder.fullName, this, "fullName", this.fullName());
 		this.mapping = ApiTypeHelper.unmodifiableRequired(builder.mapping, this, "mapping");
 
 	}

@@ -70,7 +70,8 @@ public class RemovePolicyResponse implements JsonpSerializable {
 	private RemovePolicyResponse(Builder builder) {
 
 		this.failedIndexes = ApiTypeHelper.unmodifiableRequired(builder.failedIndexes, this, "failedIndexes");
-		this.hasFailures = ApiTypeHelper.requireNonNull(builder.hasFailures, this, "hasFailures");
+		this.hasFailures = ApiTypeHelper.requireNonNullWithDefault(builder.hasFailures, this, "hasFailures",
+				this.hasFailures());
 
 	}
 

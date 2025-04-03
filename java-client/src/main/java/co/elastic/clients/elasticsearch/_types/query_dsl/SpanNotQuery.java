@@ -76,8 +76,8 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 		super(builder);
 
 		this.dist = builder.dist;
-		this.exclude = ApiTypeHelper.requireNonNull(builder.exclude, this, "exclude");
-		this.include = ApiTypeHelper.requireNonNull(builder.include, this, "include");
+		this.exclude = ApiTypeHelper.requireNonNullWithDefault(builder.exclude, this, "exclude", this.exclude());
+		this.include = ApiTypeHelper.requireNonNullWithDefault(builder.include, this, "include", this.include());
 		this.post = builder.post;
 		this.pre = builder.pre;
 

@@ -109,7 +109,8 @@ public class SlackAttachment implements JsonpSerializable {
 
 		this.authorIcon = builder.authorIcon;
 		this.authorLink = builder.authorLink;
-		this.authorName = ApiTypeHelper.requireNonNull(builder.authorName, this, "authorName");
+		this.authorName = ApiTypeHelper.requireNonNullWithDefault(builder.authorName, this, "authorName",
+				this.authorName());
 		this.color = builder.color;
 		this.fallback = builder.fallback;
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
@@ -119,7 +120,7 @@ public class SlackAttachment implements JsonpSerializable {
 		this.pretext = builder.pretext;
 		this.text = builder.text;
 		this.thumbUrl = builder.thumbUrl;
-		this.title = ApiTypeHelper.requireNonNull(builder.title, this, "title");
+		this.title = ApiTypeHelper.requireNonNullWithDefault(builder.title, this, "title", this.title());
 		this.titleLink = builder.titleLink;
 		this.ts = builder.ts;
 

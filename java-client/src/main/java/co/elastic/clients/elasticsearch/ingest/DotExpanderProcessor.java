@@ -71,7 +71,7 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 	private DotExpanderProcessor(Builder builder) {
 		super(builder);
 
-		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.field = ApiTypeHelper.requireNonNullWithDefault(builder.field, this, "field", this.field());
 		this.override = builder.override;
 		this.path = builder.path;
 

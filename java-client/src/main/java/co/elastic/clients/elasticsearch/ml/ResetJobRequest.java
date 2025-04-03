@@ -79,7 +79,7 @@ public class ResetJobRequest extends RequestBase {
 	private ResetJobRequest(Builder builder) {
 
 		this.deleteUserAnnotations = builder.deleteUserAnnotations;
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}

@@ -129,7 +129,7 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		this.actions = ApiTypeHelper.unmodifiable(builder.actions);
 		this.active = builder.active;
 		this.condition = builder.condition;
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.id = ApiTypeHelper.requireNonNullWithDefault(builder.id, this, "id", this.id());
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
 		this.input = builder.input;

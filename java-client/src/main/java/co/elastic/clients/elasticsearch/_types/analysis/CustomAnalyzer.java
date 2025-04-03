@@ -82,7 +82,8 @@ public class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 		this.positionIncrementGap = builder.positionIncrementGap;
 		this.positionOffsetGap = builder.positionOffsetGap;
-		this.tokenizer = ApiTypeHelper.requireNonNull(builder.tokenizer, this, "tokenizer");
+		this.tokenizer = ApiTypeHelper.requireNonNullWithDefault(builder.tokenizer, this, "tokenizer",
+				this.tokenizer());
 
 	}
 

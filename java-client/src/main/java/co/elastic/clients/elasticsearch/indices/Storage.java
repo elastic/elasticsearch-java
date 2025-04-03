@@ -69,7 +69,7 @@ public class Storage implements JsonpSerializable {
 
 	private Storage(Builder builder) {
 
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = ApiTypeHelper.requireNonNullWithDefault(builder.type, this, "type", this.type());
 		this.allowMmap = builder.allowMmap;
 
 	}

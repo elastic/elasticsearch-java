@@ -113,7 +113,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		this.end = builder.end;
 		this.excludeInterim = builder.excludeInterim;
 		this.from = builder.from;
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobId = ApiTypeHelper.requireNonNullWithDefault(builder.jobId, this, "jobId", this.jobId());
 		this.page = builder.page;
 		this.recordScore = builder.recordScore;
 		this.size = builder.size;

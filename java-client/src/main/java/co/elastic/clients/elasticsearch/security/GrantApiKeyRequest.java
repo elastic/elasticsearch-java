@@ -114,8 +114,9 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	private GrantApiKeyRequest(Builder builder) {
 
 		this.accessToken = builder.accessToken;
-		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
-		this.grantType = ApiTypeHelper.requireNonNull(builder.grantType, this, "grantType");
+		this.apiKey = ApiTypeHelper.requireNonNullWithDefault(builder.apiKey, this, "apiKey", this.apiKey());
+		this.grantType = ApiTypeHelper.requireNonNullWithDefault(builder.grantType, this, "grantType",
+				this.grantType());
 		this.password = builder.password;
 		this.runAs = builder.runAs;
 		this.username = builder.username;

@@ -73,8 +73,8 @@ public class IndicesStatsResponse implements JsonpSerializable {
 	private IndicesStatsResponse(Builder builder) {
 
 		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
-		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
+		this.shards = ApiTypeHelper.requireNonNullWithDefault(builder.shards, this, "shards", this.shards());
+		this.all = ApiTypeHelper.requireNonNullWithDefault(builder.all, this, "all", this.all());
 
 	}
 

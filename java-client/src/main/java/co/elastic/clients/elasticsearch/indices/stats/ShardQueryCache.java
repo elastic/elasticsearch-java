@@ -77,13 +77,19 @@ public class ShardQueryCache implements JsonpSerializable {
 
 	private ShardQueryCache(Builder builder) {
 
-		this.cacheCount = ApiTypeHelper.requireNonNull(builder.cacheCount, this, "cacheCount");
-		this.cacheSize = ApiTypeHelper.requireNonNull(builder.cacheSize, this, "cacheSize");
-		this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions");
-		this.hitCount = ApiTypeHelper.requireNonNull(builder.hitCount, this, "hitCount");
-		this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes");
-		this.missCount = ApiTypeHelper.requireNonNull(builder.missCount, this, "missCount");
-		this.totalCount = ApiTypeHelper.requireNonNull(builder.totalCount, this, "totalCount");
+		this.cacheCount = ApiTypeHelper.requireNonNullWithDefault(builder.cacheCount, this, "cacheCount",
+				this.cacheCount());
+		this.cacheSize = ApiTypeHelper.requireNonNullWithDefault(builder.cacheSize, this, "cacheSize",
+				this.cacheSize());
+		this.evictions = ApiTypeHelper.requireNonNullWithDefault(builder.evictions, this, "evictions",
+				this.evictions());
+		this.hitCount = ApiTypeHelper.requireNonNullWithDefault(builder.hitCount, this, "hitCount", this.hitCount());
+		this.memorySizeInBytes = ApiTypeHelper.requireNonNullWithDefault(builder.memorySizeInBytes, this,
+				"memorySizeInBytes", this.memorySizeInBytes());
+		this.missCount = ApiTypeHelper.requireNonNullWithDefault(builder.missCount, this, "missCount",
+				this.missCount());
+		this.totalCount = ApiTypeHelper.requireNonNullWithDefault(builder.totalCount, this, "totalCount",
+				this.totalCount());
 
 	}
 

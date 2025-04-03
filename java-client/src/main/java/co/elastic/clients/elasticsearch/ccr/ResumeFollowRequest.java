@@ -109,7 +109,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 
 	private ResumeFollowRequest(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.requireNonNullWithDefault(builder.index, this, "index", this.index());
 		this.masterTimeout = builder.masterTimeout;
 		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
 		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;

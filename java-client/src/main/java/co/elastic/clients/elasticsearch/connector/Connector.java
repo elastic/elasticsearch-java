@@ -158,14 +158,14 @@ public class Connector implements JsonpSerializable {
 		this.apiKeySecretId = builder.apiKeySecretId;
 		this.configuration = ApiTypeHelper.unmodifiableRequired(builder.configuration, this, "configuration");
 		this.customScheduling = ApiTypeHelper.unmodifiableRequired(builder.customScheduling, this, "customScheduling");
-		this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted");
+		this.deleted = ApiTypeHelper.requireNonNullWithDefault(builder.deleted, this, "deleted", this.deleted());
 		this.description = builder.description;
 		this.error = builder.error;
 		this.features = builder.features;
 		this.filtering = ApiTypeHelper.unmodifiableRequired(builder.filtering, this, "filtering");
 		this.id = builder.id;
 		this.indexName = builder.indexName;
-		this.isNative = ApiTypeHelper.requireNonNull(builder.isNative, this, "isNative");
+		this.isNative = ApiTypeHelper.requireNonNullWithDefault(builder.isNative, this, "isNative", this.isNative());
 		this.language = builder.language;
 		this.lastAccessControlSyncError = builder.lastAccessControlSyncError;
 		this.lastAccessControlSyncScheduledAt = builder.lastAccessControlSyncScheduledAt;
@@ -180,11 +180,12 @@ public class Connector implements JsonpSerializable {
 		this.lastSynced = builder.lastSynced;
 		this.name = builder.name;
 		this.pipeline = builder.pipeline;
-		this.scheduling = ApiTypeHelper.requireNonNull(builder.scheduling, this, "scheduling");
+		this.scheduling = ApiTypeHelper.requireNonNullWithDefault(builder.scheduling, this, "scheduling",
+				this.scheduling());
 		this.serviceType = builder.serviceType;
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.status = ApiTypeHelper.requireNonNullWithDefault(builder.status, this, "status", this.status());
 		this.syncCursor = builder.syncCursor;
-		this.syncNow = ApiTypeHelper.requireNonNull(builder.syncNow, this, "syncNow");
+		this.syncNow = ApiTypeHelper.requireNonNullWithDefault(builder.syncNow, this, "syncNow", this.syncNow());
 
 	}
 

@@ -106,10 +106,10 @@ public class CreateCrossClusterApiKeyRequest extends RequestBase implements Json
 
 	private CreateCrossClusterApiKeyRequest(Builder builder) {
 
-		this.access = ApiTypeHelper.requireNonNull(builder.access, this, "access");
+		this.access = ApiTypeHelper.requireNonNullWithDefault(builder.access, this, "access", this.access());
 		this.expiration = builder.expiration;
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.requireNonNullWithDefault(builder.name, this, "name", this.name());
 
 	}
 
