@@ -247,7 +247,7 @@ public class BuiltinTypesTest extends ModelTestCase {
         assertEquals(4, stats.maxLength());
         assertEquals(0, stats.entropy());
 
-        // Missing values
+        // Missing values (Java mapping same as json)
         String json = "{\"count\":1,\"min_length\":null,\"max_length\":null,\"avg_length\":null,\"entropy\":null}";
         stats = fromJson(json, StringStatsAggregate.class);
         assertEquals(1, stats.count());

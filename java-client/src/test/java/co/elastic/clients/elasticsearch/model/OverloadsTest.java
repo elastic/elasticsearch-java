@@ -19,14 +19,17 @@
 
 package co.elastic.clients.elasticsearch.model;
 
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.FieldSort;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.aggregations.TopMetrics;
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchAllQuery;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.testkit.ModelTestCase;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 public class OverloadsTest extends ModelTestCase {
@@ -74,5 +77,15 @@ public class OverloadsTest extends ModelTestCase {
 
         assertTrue(sort.get(1).isLong());
         assertEquals(42, sort.get(1).longValue());
+    }
+
+    @Test
+    public void voidClassTDocumentOverload() throws IOException {
+        // no need for a complete instance of the client,
+        // nor testing anything, just checking this compiles
+        ElasticsearchClient client = ElasticsearchClient.of(e -> e);
+
+        SearchResponse<Void> resp = client.search(s -> s,Void.class);
+        SearchResponse<Void> respDefault = client.search(s -> s);
     }
 }
