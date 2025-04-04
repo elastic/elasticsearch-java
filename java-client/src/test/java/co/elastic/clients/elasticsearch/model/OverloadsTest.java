@@ -27,6 +27,8 @@ import co.elastic.clients.elasticsearch._types.query_dsl.MatchAllQuery;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.testkit.ModelTestCase;
+import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -80,10 +82,11 @@ public class OverloadsTest extends ModelTestCase {
     }
 
     @Test
+    @Disabled("just need to compile")
     public void voidClassTDocumentOverload() throws IOException {
         // no need for a complete instance of the client,
         // nor testing anything, just checking this compiles
-        ElasticsearchClient client = ElasticsearchClient.of(e -> e);
+        ElasticsearchClient client = ElasticsearchClient.of(e -> e.host("http://localhost:9200"));
 
         SearchResponse<Void> resp = client.search(s -> s,Void.class);
         SearchResponse<Void> respDefault = client.search(s -> s);
