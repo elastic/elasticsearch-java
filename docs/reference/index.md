@@ -15,7 +15,7 @@ This is the documentation for the official Java API Client for {{es}}. The clien
 * Blocking and asynchronous versions of all APIs.
 * Use of fluent builders and functional patterns to allow writing concise yet readable code when creating complex nested structures.
 * Seamless integration of application classes by using an object mapper such as Jackson or any JSON-B implementation.
-* Delegates protocol handling to an http client such as the [Java Low Level REST Client](transport/rest-client/) that takes care of all transport-level concerns: HTTP connection pooling, retries, node discovery, and so on.
+* Delegates protocol handling to an http client such as the [Java Low Level REST Client](transport/rest-client/index.md) that takes care of all transport-level concerns: HTTP connection pooling, retries, node discovery, and so on.
 
 
 ## Elasticsearch server compatibility policy [_elasticsearch_server_compatibility_policy]

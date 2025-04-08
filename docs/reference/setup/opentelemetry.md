@@ -9,21 +9,21 @@ You can use [OpenTelemetry](https://opentelemetry.io/) to monitor the performanc
 
 The native instrumentation in the Java API Client follows the [OpenTelemetry Semantic Conventions for {{es}}](https://opentelemetry.io/docs/specs/semconv/database/elasticsearch/). In particular, the instrumentation in the client covers the logical layer of {{es}} requests. A single span per request is created that is processed by the service through the Java API Client. The following image shows a trace that records the handling of three different {{es}} requests: an `index`, `get` and a search `request`:
 
-:::{image} images/otel-waterfall-instrumented-without-http.jpg
+:::{image} ../images/otel-waterfall-instrumented-without-http.jpg
 :alt: Distributed trace with {{es}} spans
 :class: screenshot
 :::
 
 Usually, OpenTelemetry agents and auto-instrumentation modules come with instrumentation support for HTTP-level communication. In this case, in addition to the logical {{es}} client requests, spans will be captured for the physical HTTP requests emitted by the client. The following image shows a trace with both, {{es}} spans (in blue) and the corresponding HTTP-level spans (in red):
 
-:::{image} images/otel-waterfall-instrumented.jpg
+:::{image} ../images/otel-waterfall-instrumented.jpg
 :alt: Distributed trace with {{es}} and HTTP spans
 :class: screenshot
 :::
 
 Advanced Java API Client behavior such as nodes round-robin and request retries are revealed through the combination of logical {{es}} spans and the physical HTTP spans. The following example shows an `index` request in a scenario with two {{es}} nodes:
 
-:::{image} images/otel-waterfall-retries.jpg
+:::{image} ../images/otel-waterfall-retries.jpg
 :alt: Distributed trace with request retries
 :class: screenshot
 :::
