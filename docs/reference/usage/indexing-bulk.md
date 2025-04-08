@@ -26,15 +26,21 @@ A `BulkRequest` contains a collection of operations, each operation being a [typ
 
 The example below shows how to index a list or application objects.
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/usage/IndexingBulkTest.java[bulk-objects]
+```
+-->
+% :::include::start -- do not remove
 ```java
 List<Product> products = fetchProducts();
 
 BulkRequest.Builder br = new BulkRequest.Builder();
 
 for (Product product : products) {
-    br.operations(op -> op           <1>
-        .index(idx -> idx            <2>
-            .index("products")       <3>
+    br.operations(op -> op           // <1>
+        .index(idx -> idx            // <2>
+            .index("products")       // <3>
             .id(product.getSku())
             .document(product)
         )
@@ -53,6 +59,7 @@ if (result.errors()) {
     }
 }
 ```
+% :::include::end -- do not remove
 
 1. Adds an operation (remember that [list properties are additive](/reference/api-conventions/lists-maps.md)). `op` is is a builder for `BulkOperation` which is a [variant type](/reference/api-conventions/variant-types.md). This type has `index`, `create`, `update` and `delete` variants.
 2. Selects the `index` operation variant, `idx` is a builder for `IndexOperation`.
@@ -66,6 +73,12 @@ The `document` property of a bulk index request can be any object that can be se
 
 In the example below we will use the Java API Client’s `BinaryData` to read json files from a log directory and send them in a bulk request.
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/usage/IndexingBulkTest.java[bulk-json]
+```
+-->
+% :::include::start -- do not remove
 ```java
 // List json log files in the log directory
 File[] logFiles = logDir.listFiles(
@@ -86,6 +99,7 @@ for (File file: logFiles) {
     );
 }
 ```
+% :::include::end -- do not remove
 
 
 ## Streaming ingestion with the Bulk Ingester [_streaming_ingestion_with_the_bulk_ingester]
@@ -100,18 +114,24 @@ The ingester will send a bulk request when one of the following criteria is met:
 
 Additionally, you can define a maximum number of concurrent request waiting to be executed by {{es}} (defaults to 1). When that maximum is reached and the maximum number of operations have been collected, adding a new operation to the indexer will block. This is avoids overloading the {{es}} server by putting backpressure on the client application.
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/usage/IndexingBulkTest.java[bulk-ingester-setup]
+```
+-->
+% :::include::start -- do not remove
 ```java
 BulkIngester<Void> ingester = BulkIngester.of(b -> b
-    .client(esClient)    <1>
-    .maxOperations(100)  <2>
-    .flushInterval(1, TimeUnit.SECONDS) <3>
+    .client(esClient)    // <1>
+    .maxOperations(100)  // <2>
+    .flushInterval(1, TimeUnit.SECONDS) // <3>
 );
 
 for (File file: logFiles) {
     FileInputStream input = new FileInputStream(file);
     BinaryData data = BinaryData.of(IOUtils.toByteArray(input), ContentType.APPLICATION_JSON);
 
-    ingester.add(op -> op <4>
+    ingester.add(op -> op // <4>
         .index(idx -> idx
             .index("logs")
             .document(data)
@@ -119,8 +139,9 @@ for (File file: logFiles) {
     );
 }
 
-ingester.close(); <5>
+ingester.close(); // <5>
 ```
+% :::include::end -- do not remove
 
 1. Sets the {{es}} client used to send bulk requests.
 2. Sets the maximum number of operations to collect before sending a bulk request.
@@ -133,8 +154,14 @@ Additionally, the bulk ingester accepts a listener so that your application can 
 
 The following example shows how you can use context values to implement a bulk ingestion listener: as previously it sends JSON log files in bulk, but tracks bulk request errors and failed operations. When an operation fails, depending on the error type you may want to re-add it to the ingester.
 
+<!-- :::include
 ```java
-BulkListener<String> listener = new BulkListener<String>() { <1>
+:::{include} {doc-tests-src}/usage/IndexingBulkTest.java[bulk-ingester-context]
+```
+-->
+% :::include::start -- do not remove
+```java
+BulkListener<String> listener = new BulkListener<String>() { // <1>
     @Override
     public void beforeBulk(long executionId, BulkRequest request, List<String> contexts) {
     }
@@ -164,7 +191,7 @@ BulkIngester<String> ingester = BulkIngester.of(b -> b
     .client(esClient)
     .maxOperations(100)
     .flushInterval(1, TimeUnit.SECONDS)
-    .listener(listener) <2>
+    .listener(listener) // <2>
 );
 
 for (File file: logFiles) {
@@ -176,12 +203,13 @@ for (File file: logFiles) {
             .index("logs")
             .document(data)
         ),
-        file.getName() <3>
+        file.getName() // <3>
     );
 }
 
 ingester.close();
 ```
+% :::include::end -- do not remove
 
 1. Creates a listener where context values are strings for the ingested file name.
 2. Registers the listener on the bulk ingester.

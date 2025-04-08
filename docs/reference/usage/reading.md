@@ -22,11 +22,17 @@ The `get` request has two parameters:
 * the first parameter is the actual request, built below with the fluent DSL
 * the second parameter is the class we want the document’s JSON to be mapped to.
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/usage/ReadingTest.java[get-by-id]
+```
+-->
+% :::include::start -- do not remove
 ```java
 GetResponse<Product> response = esClient.get(g -> g
-    .index("products") <1>
+    .index("products") // <1>
     .id("bk-1"),
-    Product.class      <2>
+    Product.class      // <2>
 );
 
 if (response.found()) {
@@ -36,6 +42,7 @@ if (response.found()) {
     logger.info ("Product not found");
 }
 ```
+% :::include::end -- do not remove
 
 1. The get request, with the index name and identifier.
 2. The target class, here `Product`.
@@ -48,11 +55,17 @@ When your index contains semi-structured data or if you don’t have a domain ob
 
 Raw JSON data is just another class that you can use as the result type for the get request. In the example below we use Jackson’s `ObjectNode`. We could also have used any JSON representation that can be deserialized by the JSON mapper associated to the `ElasticsearchClient`.
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/usage/ReadingTest.java[get-by-id-json]
+```
+-->
+% :::include::start -- do not remove
 ```java
 GetResponse<ObjectNode> response = esClient.get(g -> g
     .index("products")
     .id("bk-1"),
-    ObjectNode.class     <1>
+    ObjectNode.class     // <1>
 );
 
 if (response.found()) {
@@ -63,6 +76,7 @@ if (response.found()) {
     logger.info("Product not found");
 }
 ```
+% :::include::end -- do not remove
 
 1. The target class is a raw JSON object.
 

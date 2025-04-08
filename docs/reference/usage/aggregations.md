@@ -21,6 +21,12 @@ This example is an analytics-type aggregation where we do not want to use the ma
 
 If that same aggregation was used for to display products and the price histogram as drill-down facets, we would have set `size` to a non-zero value and used `Product` as the target class to process the results.
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/usage/AggregationsTest.java[price-histo-request]
+```
+-->
+% :::include::start -- do not remove
 ```java
 String searchText = "bike";
 
@@ -31,17 +37,18 @@ Query query = MatchQuery.of(m -> m
 
 SearchResponse<Void> response = esClient.search(b -> b
     .index("products")
-    .size(0) <1>
-    .query(query) <2>
-    .aggregations("price-histogram", a -> a <3>
-        .histogram(h -> h <4>
+    .size(0) // <1>
+    .query(query) // <2>
+    .aggregations("price-histogram", a -> a // <3>
+        .histogram(h -> h // <4>
             .field("price")
             .interval(50.0)
         )
     ),
-    Void.class <5>
+    Void.class // <5>
 );
 ```
+% :::include::end -- do not remove
 
 1. Set the number of matching documents to zero as we only use the price histogram.
 2. Set the query that fill filter the products on which to run the aggregation
@@ -52,17 +59,25 @@ SearchResponse<Void> response = esClient.search(b -> b
 
 The response contains an aggregation result for each aggregation in the request.
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/usage/AggregationsTest.java[price-histo-response]
+```
+-->
+% :::include::start -- do not remove
 ```java
 List<HistogramBucket> buckets = response.aggregations()
-    .get("price-histogram") <1>
-    .histogram() <2>
-    .buckets().array(); <3>
+    .get("price-histogram") // <1>
+    .histogram() // <2>
+    .buckets().array(); // <3>
 
 for (HistogramBucket bucket: buckets) {
     logger.info("There are " + bucket.docCount() +
         " bikes under " + bucket.key());
 }
+
 ```
+% :::include::end -- do not remove
 
 1. Get the results for the "price-histogram" aggregation.
 2. Cast it down to the `histogram` variant results. This has to be consistent with the aggregation definition.

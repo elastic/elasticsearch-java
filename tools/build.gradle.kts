@@ -1,5 +1,3 @@
-import java.nio.file.Paths
-
 /*
  * Licensed to Elasticsearch B.V. under one or more contributor
  * license agreements. See the NOTICE file distributed with
@@ -19,7 +17,35 @@ import java.nio.file.Paths
  * under the License.
  */
 
-rootProject.name = "elasticsearch-java"
+plugins {
+    java
+    `java-test-fixtures`
+}
 
-include("java-client")
-include("tools")
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
+java {
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+dependencies {
+    // EPL-2.0
+    // https://junit.org/junit5/
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
+}
+
+tasks.register<JavaExec>("expand-includes") {
+    group = "application"
+    mainClass.set("co.elastic.clients.tools.docs.IncludeExpander")
+    args = listOf(
+        "../docs/reference",
+    )
+    classpath = sourceSets["main"].runtimeClasspath
+}
+
+repositories {
+    mavenCentral()
+}

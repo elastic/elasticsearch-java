@@ -31,17 +31,24 @@ Consider a resource file `some-index.json` containing an index definition:
 
 You can create an index from that definition as follows:
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/api_conventions/LoadingJsonTest.java[load-index]
+```
+-->
+% :::include::start -- do not remove
 ```java
 InputStream input = this.getClass()
-    .getResourceAsStream("some-index.json"); <1>
+    .getResourceAsStream("some-index.json"); // <1>
 
 CreateIndexRequest req = CreateIndexRequest.of(b -> b
     .index("some-index")
-    .withJson(input) <2>
+    .withJson(input) // <2>
 );
 
 boolean created = client.indices().create(req).acknowledged();
 ```
+% :::include::end -- do not remove
 
 1. open an input stream for the JSON resource file.
 2. populate the index creation request with the resource file contents.
@@ -52,10 +59,16 @@ boolean created = client.indices().create(req).acknowledged();
 
 Similarly, you can read documents to be stored in {{es}} from data files:
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/api_conventions/LoadingJsonTest.java[ingest-data]
+```
+-->
+% :::include::start -- do not remove
 ```java
 FileReader file = new FileReader(new File(dataDir, "document-1.json"));
 
-IndexRequest<JsonData> req; <1>
+IndexRequest<JsonData> req; // <1>
 
 req = IndexRequest.of(b -> b
     .index("some-index")
@@ -64,6 +77,7 @@ req = IndexRequest.of(b -> b
 
 client.index(req);
 ```
+% :::include::end -- do not remove
 
 1. when calling `withJson()` on data structures that have generic type parameters, these generic types will be considered to be `JsonData`.
 
@@ -73,6 +87,12 @@ client.index(req);
 
 You can combine `withJson()` with regular calls to setter methods. The example below loads the query part of a search request from a `String` and programmatically adds an aggregation.
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/api_conventions/LoadingJsonTest.java[query]
+```
+-->
+% :::include::start -- do not remove
 ```java
 Reader queryJson = new StringReader(
     "{" +
@@ -86,8 +106,8 @@ Reader queryJson = new StringReader(
     "}");
 
 SearchRequest aggRequest = SearchRequest.of(b -> b
-    .withJson(queryJson) <1>
-    .aggregations("max-cpu", a1 -> a1 <2>
+    .withJson(queryJson) // <1>
+    .aggregations("max-cpu", a1 -> a1 // <2>
         .dateHistogram(h -> h
             .field("@timestamp")
             .calendarInterval(CalendarInterval.Hour)
@@ -100,9 +120,10 @@ SearchRequest aggRequest = SearchRequest.of(b -> b
 );
 
 Map<String, Aggregate> aggs = client
-    .search(aggRequest, Void.class) <3>
+    .search(aggRequest, Void.class) // <3>
     .aggregations();
 ```
+% :::include::end -- do not remove
 
 1. loads the query from the JSON string.
 2. adds the aggregation.
@@ -114,6 +135,12 @@ Map<String, Aggregate> aggs = client
 
 The `withJson()` methods are partial deserializers: the properties loaded from the JSON will set property values or replace the previous ones, but will not reset other properties not found in the JSON input. You can use this to combine multiple JSON snippets to build complex search requests. In the example below, we combine separate definitions of a query that selects some documents and an aggregation that is run on the results of this query.
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/api_conventions/LoadingJsonTest.java[query-and-agg]
+```
+-->
+% :::include::start -- do not remove
 ```java
 Reader queryJson = new StringReader(
     "{" +
@@ -124,12 +151,12 @@ Reader queryJson = new StringReader(
     "      }" +
     "    }" +
     "  }," +
-    "  \"size\": 100" + <1>
+    "  \"size\": 100" + // <1>
     "}");
 
 Reader aggregationJson = new StringReader(
     "{" +
-    "  \"size\": 0, " + <2>
+    "  \"size\": 0, " + // <2>
     "  \"aggregations\": {" +
     "    \"hours\": {" +
     "      \"date_histogram\": {" +
@@ -148,15 +175,16 @@ Reader aggregationJson = new StringReader(
     "}");
 
 SearchRequest aggRequest = SearchRequest.of(b -> b
-    .withJson(queryJson) <3>
-    .withJson(aggregationJson) <4>
-    .ignoreUnavailable(true) <5>
+    .withJson(queryJson) // <3>
+    .withJson(aggregationJson) // <4>
+    .ignoreUnavailable(true) // <5>
 );
 
 Map<String, Aggregate> aggs = client
     .search(aggRequest, Void.class)
     .aggregations();
 ```
+% :::include::end -- do not remove
 
 1. set max number of returned document to 100 for queries.
 2. we do not want any matching document in aggregations.

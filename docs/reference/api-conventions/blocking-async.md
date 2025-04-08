@@ -15,10 +15,9 @@ ElasticsearchTransport transport = ...
 :::{include} {doc-tests-src}/api_conventions/ApiConventionsTest.java[blocking-and-async]
 ```
 -->
-
+% :::include::start -- do not remove
 ```java
 ElasticsearchTransport transport = ...
-
 // Synchronous blocking client
 ElasticsearchClient client = new ElasticsearchClient(transport);
 
@@ -40,6 +39,7 @@ asyncClient
         }
     });
 ```
+% :::include::end -- do not remove
 
 Although we won’t go in deeper details on asynchronous programming in Java, remember to handle failures of asynchronous tasks. It’s easy to overlook them and have errors go unnoticed.
 

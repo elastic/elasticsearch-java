@@ -23,18 +23,25 @@ The total value comes with a relation that indicates if the total is exact (`eq`
 
 Each returned document comes with its relevance score and additional information about its location in the index.
 
+<!-- :::include
 ```java
+:::{include} {doc-tests-src}/usage/SearchingTest.java[search-simple]
+```
+-->
+% :::include::start -- do not remove
+```java
+
 String searchText = "bike";
 
 SearchResponse<Product> response = esClient.search(s -> s
-    .index("products") <1>
-    .query(q -> q      <2>
-        .match(t -> t   <3>
-            .field("name")  <4>
+    .index("products") // <1>
+    .query(q -> q      // <2>
+        .match(t -> t   // <3>
+            .field("name")  // <4>
             .query(searchText)
         )
     ),
-    Product.class      <5>
+    Product.class      // <5>
 );
 
 TotalHits total = response.hits().total();
@@ -52,6 +59,7 @@ for (Hit<Product> hit: hits) {
     logger.info("Found product " + product.getSku() + ", score " + hit.score());
 }
 ```
+% :::include::end -- do not remove
 
 1. Name of the index we want to search.
 2. The query part of the search request (a search request can also have other components like [aggregations](aggregations.md)).
@@ -67,29 +75,35 @@ Similarly to [get](reading.md) operations, you can fetch documents matching your
 
 {{es}} allows individual queries to be combined to build more complex search requests. In the example below we will search for bikes with a maximum price of 200.
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/usage/SearchingTest.java[search-nested]
+```
+-->
+% :::include::start -- do not remove
 ```java
 String searchText = "bike";
 double maxPrice = 200.0;
 
 // Search by product name
-Query byName = MatchQuery.of(m -> m <1>
+Query byName = MatchQuery.of(m -> m // <1>
     .field("name")
     .query(searchText)
-)._toQuery(); <2>
+)._toQuery(); // <2>
 
 // Search by max price
 Query byMaxPrice = RangeQuery.of(r -> r
     .number(n -> n
     .field("price")
-    .gte(maxPrice)) <3>
+    .gte(maxPrice)) // <3>
 )._toQuery();
 
 // Combine name and price queries to search the product index
 SearchResponse<Product> response = esClient.search(s -> s
     .index("products")
     .query(q -> q
-        .bool(b -> b <4>
-            .must(byName) <5>
+        .bool(b -> b // <4>
+            .must(byName) // <5>
             .must(byMaxPrice)
         )
     ),
@@ -102,6 +116,7 @@ for (Hit<Product> hit: hits) {
     logger.info("Found product " + product.getSku() + ", score " + hit.score());
 }
 ```
+% :::include::end -- do not remove
 
 1. We’re creating the queries for individual criteria separately.
 2. A `MatchQuery` is a query *variant* that we have to turn into the `Query` *union type*. See [variant types](/reference/api-conventions/variant-types.md) for additional details.
@@ -117,26 +132,39 @@ A search template is a stored search that you can run with different variables. 
 
 Before running a template search, you first have to create the template. This is a stored script that returns the search request body, and is usually defined as a Mustache template. This stored script can be created outside the application, and also with the Java API Client:
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/usage/SearchingTest.java[search-template-script]
+```
+-->
+% :::include::start -- do not remove
 ```java
 // Create a script
 esClient.putScript(r -> r
-    .id("query-script") <1>
+    .id("query-script") // <1>
     .script(s -> s
         .lang("mustache")
-        .source("{\"query\":{\"match\":{\"{{field}}\":\"{{value}}\"}}}")
+        .source(so -> so.scriptString("{\"query\":{\"match\":{\"{{field}}\":\"{{value}}\"}}}"))
     ));
 ```
+% :::include::end -- do not remove
 
 1. Identifier of the template script to create.
 
 
 To use the search template, use the `searchTemplate` method to refer to the script and provide values for its parameters:
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/usage/SearchingTest.java[search-template-query]
+```
+-->
+% :::include::start -- do not remove
 ```java
 SearchTemplateResponse<Product> response = esClient.searchTemplate(r -> r
         .index("some-index")
-        .id("query-script") <1>
-        .params("field", JsonData.of("some-field")) <2>
+        .id("query-script") // <1>
+        .params("field", JsonData.of("some-field")) // <2>
         .params("value", JsonData.of("some-data")),
     Product.class
 );
@@ -147,6 +175,7 @@ for (Hit<Product> hit: hits) {
     logger.info("Found product " + product.getSku() + ", score " + hit.score());
 }
 ```
+% :::include::end -- do not remove
 
 1. Identifier of the template script to use.
 2. Template parameter values.

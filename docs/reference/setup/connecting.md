@@ -13,31 +13,30 @@ The Java API Client is structured around three main components:
 
 This code snippet creates and wires together these three components:
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/getting_started/ConnectingTest.java[create-client]
+```
+-->
+% :::include::start -- do not remove
 ```java
 // URL and API key
 String serverUrl = "https://localhost:9200";
 String apiKey = "VnVhQ2ZHY0JDZGJrU...";
 
-// Create the low-level client
-RestClient restClient = RestClient
-    .builder(HttpHost.create(serverUrl))
-    .setDefaultHeaders(new Header[]{
-        new BasicHeader("Authorization", "ApiKey " + apiKey)
-    })
-    .build();
-
-// Create the transport with a Jackson mapper
-ElasticsearchTransport transport = new RestClientTransport(
-    restClient, new JacksonJsonpMapper());
-
-// And create the API client
-ElasticsearchClient esClient = new ElasticsearchClient(transport);
+ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
+    .host(serverUrl)
+    .apiKey(apiKey)
+    // Use the Jackson mapper to deserialize JSON to application objects
+    .jsonMapper(new JacksonJsonpMapper())
+);
 
 // Use the client...
 
 // Close the client, also closing the underlying transport object and network connections.
 esClient.close();
 ```
+% :::include::end -- do not remove
 
 Authentication is managed by the [Java Low Level REST Client](/reference/transport/rest-client/index.md). For further details on configuring authentication, refer to [its documentation](/reference/transport/rest-client/config/basic_authentication.md).
 
@@ -48,6 +47,12 @@ The code snippet below searches all items from a “product” index whose name 
 
 It illustrates the use of fluent functional builders to write search queries as concise DSL-like code. This pattern is explained in more detail in [*API conventions*](/reference/api-conventions/index.md).
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/getting_started/ConnectingTest.java[first-request]
+```
+-->
+% :::include::start -- do not remove
 ```java
 SearchResponse<Product> search = esClient.search(s -> s
     .index("products")
@@ -62,7 +67,7 @@ for (Hit<Product> hit: search.hits().hits()) {
     processProduct(hit.source());
 }
 ```
-
+% :::include::end -- do not remove
 
 ## Using a secure connection [using-a-secure-connection]
 
@@ -72,7 +77,7 @@ In self-managed installations, Elasticsearch will start with security features l
 
 When you start Elasticsearch for the first time you’ll see a distinct block like the one below in the output from Elasticsearch (you may have to scroll up if it’s been a while):
 
-```xml
+```
 -> Elasticsearch security features have been automatically configured!
 -> Authentication is enabled and cluster connections are encrypted.
 
@@ -93,34 +98,30 @@ Depending on the context, you have two options for verifying the HTTPS connectio
 
 This method of verifying the HTTPS connection uses the certificate fingerprint value noted down earlier.
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/getting_started/ConnectingTest.java[create-secure-client-fingerprint]
+```
+-->
+% :::include::start -- do not remove
 ```java
 String fingerprint = "<certificate fingerprint>";
 
 SSLContext sslContext = TransportUtils
-    .sslContextFromCaFingerprint(fingerprint); <1>
+    .sslContextFromCaFingerprint(fingerprint); // <1>
 
-BasicCredentialsProvider credsProv = new BasicCredentialsProvider(); <2>
-credsProv.setCredentials(
-    AuthScope.ANY, new UsernamePasswordCredentials(login, password)
+ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
+    .host(url) // <3>
+    .usernameAndPassword(login, password) // <2>
+    .sslContext(sslContext) // <4>
 );
-
-RestClient restClient = RestClient
-    .builder(new HttpHost(host, port, "https")) <3>
-    .setHttpClientConfigCallback(hc -> hc
-        .setSSLContext(sslContext) <4>
-        .setDefaultCredentialsProvider(credsProv)
-    )
-    .build();
-
-// Create the transport and the API client
-ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
-ElasticsearchClient esClient = new ElasticsearchClient(transport);
 
 // Use the client...
 
 // Close the client, also closing the underlying transport object and network connections.
 esClient.close();
 ```
+% :::include::end -- do not remove
 
 1. Create an `SSLContext` with the certificate fingerprint.
 2. Set up authentication.
@@ -148,34 +149,30 @@ The generated root CA certificate can be found in the `certs` directory in your 
 
 Once you have made the `http_ca.crt` file available to your application, you can use it to set up the client:
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/getting_started/ConnectingTest.java[create-secure-client-cert]
+```
+-->
+% :::include::start -- do not remove
 ```java
 File certFile = new File("/path/to/http_ca.crt");
 
 SSLContext sslContext = TransportUtils
-    .sslContextFromHttpCaCrt(certFile); <1>
+    .sslContextFromHttpCaCrt(certFile); // <1>
 
-BasicCredentialsProvider credsProv = new BasicCredentialsProvider(); <2>
-credsProv.setCredentials(
-    AuthScope.ANY, new UsernamePasswordCredentials(login, password)
+ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
+    .host(url) // <3>
+    .usernameAndPassword(login, password) // <2>
+    .sslContext(sslContext) // <4>
 );
-
-RestClient restClient = RestClient
-    .builder(new HttpHost(host, port, "https")) <3>
-    .setHttpClientConfigCallback(hc -> hc
-        .setSSLContext(sslContext) <4>
-        .setDefaultCredentialsProvider(credsProv)
-    )
-    .build();
-
-// Create the transport and the API client
-ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
-ElasticsearchClient esClient = new ElasticsearchClient(transport);
 
 // Use the client...
 
 // Close the client, also closing the underlying transport object and network connections.
 esClient.close();
 ```
+% :::include::end -- do not remove
 
 1. Create an `SSLContext` with the `http_ca.crt` file.
 2. Set up authentication.

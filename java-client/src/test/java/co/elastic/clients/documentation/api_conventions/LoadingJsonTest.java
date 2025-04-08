@@ -75,11 +75,11 @@ public class LoadingJsonTest extends ModelTestCase {
 
         //tag::load-index
         InputStream input = this.getClass()
-            .getResourceAsStream("some-index.json"); //<1>
+            .getResourceAsStream("some-index.json"); // <1>
 
         CreateIndexRequest req = CreateIndexRequest.of(b -> b
             .index("some-index")
-            .withJson(input) //<2>
+            .withJson(input) // <2>
         );
 
         boolean created = client.indices().create(req).acknowledged();
@@ -89,13 +89,13 @@ public class LoadingJsonTest extends ModelTestCase {
     @Disabled
     @Test
     public void ingestDocument() throws IOException {
-        
+
         File dataDir = null;
 
         //tag::ingest-data
         FileReader file = new FileReader(new File(dataDir, "document-1.json"));
 
-        IndexRequest<JsonData> req; //<1>
+        IndexRequest<JsonData> req; // <1>
 
         req = IndexRequest.of(b -> b
             .index("some-index")
@@ -123,8 +123,8 @@ public class LoadingJsonTest extends ModelTestCase {
             "}");
 
         SearchRequest aggRequest = SearchRequest.of(b -> b
-            .withJson(queryJson) //<1>
-            .aggregations("max-cpu", a1 -> a1 //<2>
+            .withJson(queryJson) // <1>
+            .aggregations("max-cpu", a1 -> a1 // <2>
                 .dateHistogram(h -> h
                     .field("@timestamp")
                     .calendarInterval(CalendarInterval.Hour)
@@ -137,7 +137,7 @@ public class LoadingJsonTest extends ModelTestCase {
         );
 
         Map<String, Aggregate> aggs = client
-            .search(aggRequest, Void.class) //<3>
+            .search(aggRequest, Void.class) // <3>
             .aggregations();
         //end::query
     }
@@ -156,12 +156,12 @@ public class LoadingJsonTest extends ModelTestCase {
             "      }" +
             "    }" +
             "  }," +
-            "  \"size\": 100" + //<1>
+            "  \"size\": 100" + // <1>
             "}");
 
         Reader aggregationJson = new StringReader(
             "{" +
-            "  \"size\": 0, " + //<2>
+            "  \"size\": 0, " + // <2>
             "  \"aggregations\": {" +
             "    \"hours\": {" +
             "      \"date_histogram\": {" +
@@ -180,9 +180,9 @@ public class LoadingJsonTest extends ModelTestCase {
             "}");
 
         SearchRequest aggRequest = SearchRequest.of(b -> b
-            .withJson(queryJson) //<3>
-            .withJson(aggregationJson) //<4>
-            .ignoreUnavailable(true) //<5>
+            .withJson(queryJson) // <3>
+            .withJson(aggregationJson) // <4>
+            .ignoreUnavailable(true) // <5>
         );
 
         Map<String, Aggregate> aggs = client

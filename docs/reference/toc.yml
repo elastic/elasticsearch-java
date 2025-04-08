@@ -1,3 +1,6 @@
+# Note: source code snippets in all the docs are pulled from test source files, do ensure their correctness.
+# To update these snippets, run `./gradlew :tools:expand-includes` from the main elasticsearch-java directory.
+
 toc:
   - file: index.md
   - file: getting-started.md

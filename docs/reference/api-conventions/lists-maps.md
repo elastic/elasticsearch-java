@@ -12,6 +12,12 @@ Properties of type `List` and `Map` are exposed by object builders as a set of o
 
 Object builders create immutable objects, and this also applies to list and map properties that are made immutable at object construction time.
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/api_conventions/ApiConventionsTest.java[collections]
+```
+-->
+% :::include::start -- do not remove
 ```java
 // Prepare a list of index names
 List<String> names = Arrays.asList("idx-a", "idx-b", "idx-c");
@@ -47,7 +53,7 @@ SearchRequest search = SearchRequest.of(r -> r
         a -> a.histogram(h -> h.field("price")))
 );
 ```
-
+% :::include::end -- do not remove
 
 ## List and map values are never `null` [_list_and_map_values_are_never_null]
 
@@ -57,6 +63,12 @@ For lists and maps however, applications often only care about whether they’re
 
 If you ever need to distinguish between a missing (undefined) optional collection and an effectively-empty collection returned by {{es}}, the `ApiTypeHelper` class provides a utility method to distinguish them:
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/api_conventions/ApiConventionsTest.java[optional-collections]
+```
+-->
+% :::include::start -- do not remove
 ```java
 NodeStatistics stats = NodeStatistics.of(b -> b
     .total(1)
@@ -72,6 +84,7 @@ assertEquals(0, stats.failures().size());
 // - and if needed we can know it was actually not defined
 assertFalse(ApiTypeHelper.isDefined(stats.failures()));
 ```
+% :::include::end -- do not remove
 
 :::{include} /reference/_snippets/doc-tests-blurb.md
 :::

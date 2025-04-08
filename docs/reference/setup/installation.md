@@ -15,9 +15,9 @@ Releases are hosted on [Maven Central](https://search.maven.org/search?q=g:co.el
 
 ## Installation in a Gradle project by using Jackson [gradle]
 
-```groovy
+```groovy subs=true
 dependencies {
-    implementation 'co.elastic.clients:elasticsearch-java:9.0.0-beta1'
+    implementation 'co.elastic.clients:elasticsearch-java:{{version}}'
 }
 ```
 
@@ -33,7 +33,7 @@ In the `pom.xml` of your project, add the following repository definition and de
     <dependency>
       <groupId>co.elastic.clients</groupId>
       <artifactId>elasticsearch-java</artifactId>
-      <version>9.0.0-beta1</version>
+      <version>{{version}}</version>
     </dependency>
 
   </dependencies>
@@ -50,7 +50,7 @@ If this happens, you have to explicitly add the `jakarta.json:jakarta.json-api:2
 ```groovy
 dependencies {
     ...
-    implementation 'jakarta.json:jakarta.json-api:2.0.1'
+    implementation 'jakarta.json:jakarta.json-api:2.1.3'
 }
 ```
 
@@ -61,7 +61,7 @@ dependencies {
     <dependency>
       <groupId>jakarta.json</groupId>
       <artifactId>jakarta.json-api</artifactId>
-      <version>2.0.1</version>
+      <version>2.1.3</version>
     </dependency>
 
   </dependencies>
@@ -74,8 +74,6 @@ Some frameworks like Spring Boot or Helidon come with their Gradle and Maven plu
 
 One of these libraries can be `jakarta.json:json-api` that defines the standard Java JSON API. In version `1.x` this library used the `javax.json` package, while in version `2.x` it uses the `jakarta.json` package after [the transition from JavaEE to JakartaEE](https://blogs.oracle.com/javamagazine/post/transition-from-java-ee-to-jakarta-ee).
 
-The Java API Client depends on version `2.0.1` of this library, in order to use the newer and future-proof `jakarta.json` package. But some build plugins and BOMs override the Java API Client’s dependency to use version `1.x` in the older `javax.json` namespace, resulting in `ClassNotFoundException: jakarta.json.spi.JsonProvider`.
+The Java API Client depends on version `2.1.3` of this library, in order to use the newer and future-proof `jakarta.json` package. But some build plugins and BOMs override the Java API Client’s dependency to use version `1.x` in the older `javax.json` namespace, resulting in `ClassNotFoundException: jakarta.json.spi.JsonProvider`.
 
 Adding the correct version as top-level project dependency solves the problem.
-
-If your application also requires `javax.json` you can add the `javax.json:javax.json-api:1.1.4` dependency, which is equivalent to `jakarta.json:jakarta.json-api:1.1.6`.

@@ -40,18 +40,17 @@ When using the [OpenTelemetry Java SDK manually](https://opentelemetry.io/docs/i
 
 In case you are using [manual OpenTelemetry instrumentation](https://opentelemetry.io/docs/instrumentation/java/manual/#example) with a custom OpenTelemetry SDK instance that is *not registered globally*, you can create the Java API Client using a custom OpenTelemetry instance. The following code snippet shows an example of using a custom OpenTelemetry instance.
 
+<!-- :::include
+```java
+:::{include} {doc-tests-src}/getting_started/ConnectingTest.java[create-client-otel]
+```
+-->
+% :::include::start -- do not remove
 ```java
 // URL and API key
 String serverUrl = "https://localhost:9200";
 String apiKey = "VnVhQ2ZHY0JDZGJrU...";
 
-// Create the low-level client
-RestClient restClient = RestClient
-    .builder(HttpHost.create(serverUrl))
-    .setDefaultHeaders(new Header[]{
-            new BasicHeader("Authorization", "ApiKey " + apiKey)
-    })
-    .build();
 // Create and configure custom OpenTelemetry instance
 OpenTelemetry customOtel = OpenTelemetrySdk.builder().build();
 
@@ -60,19 +59,18 @@ OpenTelemetry customOtel = OpenTelemetrySdk.builder().build();
 OpenTelemetryForElasticsearch esOtelInstrumentation =
     new OpenTelemetryForElasticsearch(customOtel, false);
 
-// Create the transport with the custom Instrumentation instance
-ElasticsearchTransport transport = new RestClientTransport(
-    restClient, new JacksonJsonpMapper(), null, esOtelInstrumentation
+ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
+    .host(serverUrl)
+    .apiKey(apiKey)
+    .instrumentation(esOtelInstrumentation)
 );
-
-// And create the API client
-ElasticsearchClient esClient = new ElasticsearchClient(transport);
 
 // Use the client...
 
 // Close the client, also closing the underlying transport object and network connections.
 esClient.close();
 ```
+% :::include::end -- do not remove
 
 
 ## Configuring the OpenTelemetry instrumentation [_configuring_the_opentelemetry_instrumentation]
