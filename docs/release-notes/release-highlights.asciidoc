@@ -6,6 +6,179 @@ These are the important new features and changes in minor releases. Every releas
 For a list of detailed changes, including bug fixes, please see the https://github.com/elastic/elasticsearch-java/releases[GitHub project realease notes].
 
 [discrete]
+==== Version 8.18
+
+===== Breaking changes
+
+While we try to limit breaking changes to the minimum between minor versions of the client, all the following changes were necessary to keep the client code in sync with the server code and to fix client side bugs.
+
+* Removed deprecated `LanguageAnalyzer`
+* Removed unused `NodeReloadError`
+* Removed unused `SearchApplicationListItem`
+* Removed `InferenceRequest`, `InferenceResponse`, `InferenceResult`, `InferenceResultVariant` as part of a complete refactor of the Inference API
+
+* `SearchRequest`,`SubmitRequest`: `indicesBoost` field modified from `List<Map<String,Double>>` to `List<NamedValue<Double>>`, because the server does not accept more than one value in the map.
+** Old:
++
+[source,java]
+----
+esClient.search(s -> s
+    .index("*")
+    .indicesBoost(Map.of("index", 1.0))
+,Void.class);
+----
++
+** New:
++
+[source,java]
+----
+esClient.search(s -> s
+    .index("*")
+    .indicesBoost(NamedValue.of("index", 1.0))
+,Void.class);
+----
++
+
+* `PutMappingRequest`: `dynamicTemplates` field modified from `List<Map<String, DynamicTemplate>>` to `List<NamedValue<DynamicTemplate>>`, same reason as above.
+* `DenseVectorIndexOptions`: `type` field modified from `String` to enum `DenseVectorIndexOptionsType`
+* `DenseVectorProperty`:
+    **  `elementType` field modified from `String` to enum `DenseVectorElementType`
+    **  `similarity` field modified from `String` to enum `DenseVectorSimilarity`
+* `DynamicTemplate`: `runtime` field modified from `Property` to `RuntimeField`, fixing a previous wrong mapping of the property.
+* `ObjectProperty`: `subobjects` field modified from `Boolean` to `Subobjects`
+* `TypeMapping`: `subobjects` field modified from `Boolean` to `Subobjects`
+* `FollowerIndexParameters`:
+    ** `maxOutstandingReadRequests` field modified from `int` to `Long`, now optional
+    ** `maxOutstandingWriteRequests` field modified from `int` to `Integer`, now optional
+    ** `maxReadRequestOperationCount` field modified from `int` to `Integer`, now optional
+    ** `maxWriteBufferCount` field modified from `int` to `Integer`, now optional
+    ** `maxWriteRequestOperationCount` field modified from `int` to `Integer`, now optional
+* `FollowRequest`
+    ** `maxOutstandingWriteRequests` field modified from `Long` to `Integer`
+    ** `maxReadRequestOperationCount` field modified from `Long` to `Integer`
+    ** `maxWriteBufferCount` field modified from `Long` to `Integer`
+    ** `maxWriteRequestOperationCount` field modified from `Long` to `Integer`
+* `ScriptsPainlessExecuteRequest`: `context` field modified from `String` to `PainlessContext`
+* `DataStreamWithLifecycle`: `lifecycle` field modified from `DataStreamLifecycle` to `DataStreamLifecycleWithRollover`
+* `elasticsearch.search_application.PutRequest`: `searchApplication` field modified from `SearchApplication` to `SearchApplicationParameters`
+* `TrainedModelDeploymentNodesStats`: `routingState` field modified from `TrainedModelAssignmentRoutingTable` to `TrainedModelAssignmentRoutingStateAndReason`
+
+
+===== New Features
+
+====== BulkIngester retry policy
+
+Retry logic can now be enabled allowing the BulkIngester to retry operations that failed with error 429 (too many requests), hoping that the error will recover and the request will go through. Users can configure the desired backoff policy using the backoffPolicy() method in the BulkIngester builder:
+[source,java]
+----
+BulkIngester ingester = BulkIngester.of(b -> b
+    .client(client)
+    ...
+    .listener(listener)
+    .flushInterval(1000, TimeUnit.MILLISECONDS)
+    .backoffPolicy(BackoffPolicy.constantBackoff(50L, 8))
+----
+This is an example of constant backoff, meaning the single failed operation will be retried 8 times every 50 milliseconds.
+
+====== Default class for methods requiring TDocument
+
+Some requests in the client require a second parameter to define the result class, for example `search`, meaning the compiler will complain while the query is being written, which can be annoying. We added overload methods that use Void.class as default type, so that the correct type can be eventually added later into writing the query.
+
+Example with `search`:
+
+- Old:
+
+[source,java]
+----
+esClient.search(s -> s
+    .index("my-index")
+    .query(q -> q
+        .matchAll(m -> m)
+    )
+,Object.class);
+----
+
+
+- New:
+
+[source,java]
+----
+esClient.search(s -> s
+    .index("my-index")
+    .query(q -> q
+        .matchAll(m -> m)
+    )
+);
+----
+
+====== Builder setters overloads with variant type
+
+Added more setters allowing to build requests with a specific type variant instead of having to use the parent class and then select the desired variant later.
+
+Example with `query`, where the `query` field can now accept a `MatchAllQuery` (or any other variant) directly:
+
+- Old:
+
+[source,java]
+----
+esClient.search(s -> s
+    .index("my-index")
+    .query(q -> q
+        .matchAll(m -> m)
+    )
+);
+----
+- New:
+
+[source,java]
+----
+esClient.search(s -> s
+    .index("my-index")
+    .query(MatchAllQuery.of(m -> m))
+);
+----
+
+Example with `aggregations`, where the `aggregations` field can now accept  `AverageAggregation` (or any other variant) drectly:
+
+- Old:
+
+[source,java]
+----
+// using functional builder shortcut
+esClient.search(s -> s
+    .aggregations("agg", a -> a
+        .avg(av -> av
+            .field("price")
+        )
+    )
+);
+
+// using Aggregation class builder
+esClient.search(s -> s
+    .aggregations("agg", Aggregation.of(ag -> ag
+        .avg(av -> av
+            .field("price"))
+        )
+    )
+);
+----
+
+- New:
+
+[source,java]
+----
+esClient.search(s -> s
+    .aggregations("agg", AverageAggregation.of(av -> av
+        .field("price"))
+    )
+);
+----
+
+[discrete]
+==== Version 8.17
+* No new feature.
+
+[discrete]
 ==== Version 8.16
 * `ElasticsearchClient` is now `Closeable`. Closing a client object also closes the underlying transport - https://github.com/elastic/elasticsearch-java/pull/851[#851]
 * Added option to make the response body available in case of deserialization error- https://github.com/elastic/elasticsearch-java/pull/886[#886].
