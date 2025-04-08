@@ -19,9 +19,9 @@ This page guides you through the installation process of the Java client, shows 
 
 #### Installation in a Gradle project by using Jackson [_installation_in_a_gradle_project_by_using_jackson]
 
-```groovy
+```groovy subs=true
 dependencies {
-    implementation 'co.elastic.clients:elasticsearch-java:9.0.0-beta1'
+    implementation 'co.elastic.clients:elasticsearch-java:{{version}}'
 }
 ```
 
@@ -30,21 +30,21 @@ dependencies {
 
 In the `pom.xml` of your project, add the following repository definition and dependencies:
 
-```xml
+```xml subs=true
 <project>
   <dependencies>
 
     <dependency>
       <groupId>co.elastic.clients</groupId>
       <artifactId>elasticsearch-java</artifactId>
-      <version>9.0.0-beta1</version>
+      <version>{{version}}</version>
     </dependency>
 
   </dependencies>
 </project>
 ```
 
-Refer to the [Installation](/reference/installation.md) page to learn more.
+Refer to the [Installation](setup/installation.md) page to learn more.
 
 
 ### Connecting [_connecting]
@@ -89,12 +89,12 @@ You can generate an API key on the **Management** page under Security.
 :alt: Create API key
 :::
 
-For other connection options, refer to the [Connecting](/reference/connecting.md) section.
+For other connection options, refer to the [Connecting](setup/connecting.md) section.
 
 
 ### Operations [_operations]
 
-Time to use Elasticsearch! This section walks you through the basic, and most important, operations of Elasticsearch. For more operations and more advanced examples, refer to the [*Using the Java API Client*](/reference/using-java-api-client.md) page.
+Time to use Elasticsearch! This section walks you through the basic, and most important, operations of Elasticsearch. For more operations and more advanced examples, refer to the [*Using the Java API Client*](usage/index.md) page.
 
 
 #### Creating an index [_creating_an_index]
@@ -208,4 +208,4 @@ The [examples](https://github.com/elastic/elasticsearch-java/tree/main/examples)
 
 ## Further reading [_further_reading]
 
-* Learn more about the [*API conventions*](/reference/api-conventions.md) of the Java client.
+* Learn more about the [*API conventions*](api-conventions/index.md) of the Java client.

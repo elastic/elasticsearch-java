@@ -99,5 +99,6 @@ SearchResponse<SomeApplicationData> results = client
 1. Search results will be mapped to `SomeApplicationData` instances to be readily available to the application.
 
 
-The source code for the examples above can be found in the [Java API Client tests](https://github.com/elastic/elasticsearch-java/tree/master/java-client/src/test/java/co/elastic/clients/documentation).
+:::{include} /reference/_snippets/doc-tests-blurb.md
+:::
 

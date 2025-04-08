@@ -39,14 +39,14 @@ ElasticsearchClient esClient = new ElasticsearchClient(transport);
 esClient.close();
 ```
 
-Authentication is managed by the [Java Low Level REST Client](/reference/java-low-level-rest-client.md). For further details on configuring authentication, refer to [its documentation](/reference/_basic_authentication.md).
+Authentication is managed by the [Java Low Level REST Client](/reference/transport/rest-client/index.md). For further details on configuring authentication, refer to [its documentation](/reference/transport/rest-client/config/basic_authentication.md).
 
 
 ## Your first request [_your_first_request]
 
 The code snippet below searches all items from a “product” index whose name matches “bicycle” and return them as instances of a `Product` application class.
 
-It illustrates the use of fluent functional builders to write search queries as concise DSL-like code. This pattern is explained in more detail in [*API conventions*](/reference/api-conventions.md).
+It illustrates the use of fluent functional builders to write search queries as concise DSL-like code. This pattern is explained in more detail in [*API conventions*](/reference/api-conventions/index.md).
 
 ```java
 SearchResponse<Product> search = esClient.search(s -> s
@@ -66,7 +66,7 @@ for (Hit<Product> hit: search.hits().hits()) {
 
 ## Using a secure connection [using-a-secure-connection]
 
-The [Java Low Level REST Client](/reference/java-low-level-rest-client.md) documentation explains how to set up encrypted communications in detail.
+The [Java Low Level REST Client](/reference/transport/rest-client/index.md) documentation explains how to set up encrypted communications in detail.
 
 In self-managed installations, Elasticsearch will start with security features like authentication and TLS enabled. To connect to the Elasticsearch cluster you’ll need to configure the Java API Client to use HTTPS with the generated CA certificate in order to make requests successfully.
 
@@ -183,4 +183,5 @@ esClient.close();
 4. Configure the http client with the SSL and authentication configurations.
 
 
-The source code for the examples above can be found in the [Java API Client tests](https://github.com/elastic/elasticsearch-java/tree/master/java-client/src/test/java/co/elastic/clients/documentation).
+:::{include} /reference/_snippets/doc-tests-blurb.md
+:::

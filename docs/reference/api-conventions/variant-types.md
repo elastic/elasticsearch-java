@@ -114,7 +114,7 @@ for (JsonValue item : buckets) {
 }
 ```
 
-1. Use `Void` if you’re only interested in aggregation results, not search hits (see also [Aggregations](/reference/aggregations.md)).
+1. Use `Void` if you’re only interested in aggregation results, not search hits (see also [Aggregations](/reference/usage/aggregations.md)).
 2. Get the `neighbors` aggregation result as custom JSON result.
 3. Traverse the JSON tree to extract the result data.
 
@@ -172,5 +172,5 @@ public static class Bucket {
 }
 ```
 
-The source code for the examples above can be found in the [Java API Client tests](https://github.com/elastic/elasticsearch-java/tree/master/java-client/src/test/java/co/elastic/clients/documentation).
-
+:::{include} /reference/_snippets/doc-tests-blurb.md
+:::

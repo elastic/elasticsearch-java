@@ -9,6 +9,13 @@ API clients come in two flavors: blocking and asynchronous. All methods on async
 
 Both flavors can be used at the same time depending on your needs, sharing the same transport object:
 
+<!-- :::include
+```java
+ElasticsearchTransport transport = ...
+:::{include} {doc-tests-src}/api_conventions/ApiConventionsTest.java[blocking-and-async]
+```
+-->
+
 ```java
 ElasticsearchTransport transport = ...
 
@@ -36,5 +43,6 @@ asyncClient
 
 Although we won’t go in deeper details on asynchronous programming in Java, remember to handle failures of asynchronous tasks. It’s easy to overlook them and have errors go unnoticed.
 
-The source code for the examples above can be found in the [Java API Client tests](https://github.com/elastic/elasticsearch-java/tree/master/java-client/src/test/java/co/elastic/clients/documentation).
+:::{include} /reference/_snippets/doc-tests-blurb.md
+:::
 

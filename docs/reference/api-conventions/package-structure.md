@@ -11,7 +11,7 @@ The Java API Client follows this structure: feature groups are called “namespa
 
 Each of the namespace clients can be accessed from the top level {{es}} client. The only exceptions are the “search” and “document” APIs which are located in the `core` subpackage and can be accessed on the main {{es}} client object.
 
-The snippet below shows how to use the indices namespace client to create an index (the lambda syntax is explained in [Building API objects](/reference/building-objects.md)):
+The snippet below shows how to use the indices namespace client to create an index (the lambda syntax is explained in [Building API objects](building-objects.md)):
 
 ```java
 // Create the "products" index

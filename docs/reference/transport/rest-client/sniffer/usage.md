@@ -5,7 +5,7 @@ mapped_pages:
 
 # Usage [_usage]
 
-Once a `RestClient` instance has been created as shown in [Initialization](/reference/java-rest-low-usage-initialization.md), a `Sniffer` can be associated to it. The `Sniffer` will make use of the provided `RestClient` to periodically (every 5 minutes by default) fetch the list of current nodes from the cluster and update them by calling `RestClient#setNodes`.
+Once a `RestClient` instance has been created as shown in [Initialization](../usage/initialization.md), a `Sniffer` can be associated to it. The `Sniffer` will make use of the provided `RestClient` to periodically (every 5 minutes by default) fetch the list of current nodes from the cluster and update them by calling `RestClient#setNodes`.
 
 ```java
 RestClient restClient = RestClient.builder(

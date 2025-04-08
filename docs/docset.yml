@@ -2,7 +2,6 @@ project: 'Java API Client'
 exclude:
   - external-resources.md
   - design/*
-  - local/README.md
 cross_links:
   - docs-content
   - elasticsearch
@@ -13,3 +12,4 @@ subs:
   serverless-full:   "Elastic Cloud Serverless"
   es3:   "Elasticsearch Serverless"
   es:   "Elasticsearch"
+  version: "9.0.0"

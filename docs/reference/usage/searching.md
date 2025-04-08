@@ -54,13 +54,13 @@ for (Hit<Product> hit: hits) {
 ```
 
 1. Name of the index we want to search.
-2. The query part of the search request (a search request can also have other components like [aggregations](/reference/aggregations.md)).
+2. The query part of the search request (a search request can also have other components like [aggregations](aggregations.md)).
 3. Choose a query variant among the many available. We choose here the match query (full text search).
 4. Configure the match query: we search for a term in the `name` field.
-5. The target class for the matching documents. We use `Product` here, just like in [get request](/reference/reading.md) examples.
+5. The target class for the matching documents. We use `Product` here, just like in [get request](reading.md) examples.
 
 
-Similarly to [get](/reference/reading.md) operations, you can fetch documents matching your query as raw JSON by using a corresponding target class instead of `Product`, like JSON-P’s `JsonValue` or Jackson’s `ObjectNode`.
+Similarly to [get](reading.md) operations, you can fetch documents matching your query as raw JSON by using a corresponding target class instead of `Product`, like JSON-P’s `JsonValue` or Jackson’s `ObjectNode`.
 
 
 ## Nested search queries [_nested_search_queries]
@@ -104,7 +104,7 @@ for (Hit<Product> hit: hits) {
 ```
 
 1. We’re creating the queries for individual criteria separately.
-2. A `MatchQuery` is a query *variant* that we have to turn into the `Query` *union type*. See [variant types](/reference/variant-types.md) for additional details.
+2. A `MatchQuery` is a query *variant* that we have to turn into the `Query` *union type*. See [variant types](/reference/api-conventions/variant-types.md) for additional details.
 3. {{es}} range query accepts a large range of value types. We create here a JSON representation of the maximum price.
 4. The search query is a boolean query that combines the text search and max price queries.
 5. Both queries are added as `must` as we want results to match all criteria.
@@ -154,5 +154,6 @@ for (Hit<Product> hit: hits) {
 
 For more in-depth information, see the [{{es}} search template documentation](docs-content://solutions/search/search-templates.md).
 
-The source code for the examples above can be found in the [Java API Client tests](https://github.com/elastic/elasticsearch-java/tree/master/java-client/src/test/java/co/elastic/clients/documentation).
+:::{include} /reference/_snippets/doc-tests-blurb.md
+:::
 

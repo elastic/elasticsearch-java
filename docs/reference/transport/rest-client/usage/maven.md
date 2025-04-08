@@ -15,11 +15,11 @@ If you are looking for a SNAPSHOT version, the Elastic Maven Snapshot repository
 
 Here is how you can configure the dependency using maven as a dependency manager. Add the following to your `pom.xml` file:
 
-```xml
+```xml subs=true
 <dependency>
     <groupId>org.elasticsearch.client</groupId>
     <artifactId>elasticsearch-rest-client</artifactId>
-    <version>9.0.0-beta1</version>
+    <version>{{version}}</version>
 </dependency>
 ```
 
@@ -30,7 +30,7 @@ Here is how you can configure the dependency using gradle as a dependency manage
 
 ```groovy
 dependencies {
-    compile 'org.elasticsearch.client:elasticsearch-rest-client:9.0.0-beta1'
+    compile 'org.elasticsearch.client:elasticsearch-rest-client:{{version}}'
 }
 ```
 

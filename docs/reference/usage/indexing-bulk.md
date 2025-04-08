@@ -22,7 +22,7 @@ See the [{{es}} API documentation](https://www.elastic.co/docs/api/doc/elasticse
 
 ## Indexing application objects [_indexing_application_objects]
 
-A `BulkRequest` contains a collection of operations, each operation being a [type with several variants](/reference/variant-types.md). To create this request, it is convenient to use a builder object for the main request, and the fluent DSL for each operation.
+A `BulkRequest` contains a collection of operations, each operation being a [type with several variants](/reference/api-conventions/variant-types.md). To create this request, it is convenient to use a builder object for the main request, and the fluent DSL for each operation.
 
 The example below shows how to index a list or application objects.
 
@@ -54,9 +54,9 @@ if (result.errors()) {
 }
 ```
 
-1. Adds an operation (remember that [list properties are additive](/reference/lists-maps.md)). `op` is is a builder for `BulkOperation` which is a [variant type](/reference/variant-types.md). This type has `index`, `create`, `update` and `delete` variants.
+1. Adds an operation (remember that [list properties are additive](/reference/api-conventions/lists-maps.md)). `op` is is a builder for `BulkOperation` which is a [variant type](/reference/api-conventions/variant-types.md). This type has `index`, `create`, `update` and `delete` variants.
 2. Selects the `index` operation variant, `idx` is a builder for `IndexOperation`.
-3. Sets the properties for the index operation, similar to [single document indexing](/reference/indexing.md): index name, identifier and document.
+3. Sets the properties for the index operation, similar to [single document indexing](indexing.md): index name, identifier and document.
 
 
 
@@ -195,5 +195,6 @@ The bulk ingest also exposes statistic information that allows monitoring the in
 * number of bulk requests sent,
 * number of bulk requests that were blocked because the maximum number of concurrent requests was reached.
 
-The source code for the examples above can be found in the [Java API Client tests](https://github.com/elastic/elasticsearch-java/tree/master/java-client/src/test/java/co/elastic/clients/documentation).
+:::{include} /reference/_snippets/doc-tests-blurb.md
+:::
 

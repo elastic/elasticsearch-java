@@ -68,7 +68,7 @@ logger.info("Indexed with version " + response.version());
 
 ## Using the asynchronous client [_using_the_asynchronous_client]
 
-The examples above used the synchronous {{es}} client. All {{es}} APIs are also available in the asynchronous client, using the same request and response types. See also [Blocking and asynchronous clients](/reference/blocking-async.md) for additional details.
+The examples above used the synchronous {{es}} client. All {{es}} APIs are also available in the asynchronous client, using the same request and response types. See also [Blocking and asynchronous clients](/reference/api-conventions/blocking-async.md) for additional details.
 
 ```java
 ElasticsearchAsyncClient esAsyncClient = new ElasticsearchAsyncClient(transport);
@@ -93,7 +93,7 @@ esAsyncClient.index(i -> i
 
 When the data you want to index comes from external sources, having to create domain objects may be cumbersome or outright impossible with semi-structured data.
 
-You can index data from an arbitrary source using `withJson()`. Using this method will read the source and use it for the index request’s `document` property. See [Creating API objects from JSON data](/reference/loading-json.md) for additional details.
+You can index data from an arbitrary source using `withJson()`. Using this method will read the source and use it for the index request’s `document` property. See [Creating API objects from JSON data](/reference/api-conventions/loading-json.md) for additional details.
 
 ```java
 Reader input = new StringReader(
@@ -110,5 +110,6 @@ IndexResponse response = esClient.index(request);
 logger.info("Indexed with version " + response.version());
 ```
 
-The source code for the examples above can be found in the [Java API Client tests](https://github.com/elastic/elasticsearch-java/tree/master/java-client/src/test/java/co/elastic/clients/documentation).
+:::{include} /reference/_snippets/doc-tests-blurb.md
+:::
 

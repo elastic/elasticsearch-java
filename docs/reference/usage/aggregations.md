@@ -15,7 +15,7 @@ See the [{{es}} documentation](elasticsearch://reference/aggregations/index.md) 
 
 ## A simple aggregation [_a_simple_aggregation]
 
-In the example below we run an aggregation that creates a price histogram from a product index, for the products whose name match a user-provided text. To achieve this, we use a search request that has a query (explained in [Searching for documents](/reference/searching.md)) and an aggregation definition.
+In the example below we run an aggregation that creates a price histogram from a product index, for the products whose name match a user-provided text. To achieve this, we use a search request that has a query (explained in [Searching for documents](searching.md)) and an aggregation definition.
 
 This example is an analytics-type aggregation where we do not want to use the matching documents. A general pattern for search requests used for analytics is to set the result `size` to zero and the target class for search results to `Void`.
 
@@ -69,5 +69,6 @@ for (HistogramBucket bucket: buckets) {
 3. Buckets can be expressed as arrays or maps. This casts down to the array variant (the default).
 
 
-The source code for the examples above can be found in the [Java API Client tests](https://github.com/elastic/elasticsearch-java/tree/master/java-client/src/test/java/co/elastic/clients/documentation).
+:::{include} /reference/_snippets/doc-tests-blurb.md
+:::
 

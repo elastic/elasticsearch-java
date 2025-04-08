@@ -167,5 +167,6 @@ Map<String, Aggregate> aggs = client
 
 Notice that order matters when the JSON snippets have some common properties: just as when setting property values programmatically, the last value that is set for a property overwrites the previous one.
 
-The source code for the examples above can be found in the [Java API Client tests](https://github.com/elastic/elasticsearch-java/tree/master/java-client/src/test/java/co/elastic/clients/documentation).
+:::{include} /reference/_snippets/doc-tests-blurb.md
+:::
 

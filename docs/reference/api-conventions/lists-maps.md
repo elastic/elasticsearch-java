@@ -73,5 +73,6 @@ assertEquals(0, stats.failures().size());
 assertFalse(ApiTypeHelper.isDefined(stats.failures()));
 ```
 
-The source code for the examples above can be found in the [Java API Client tests](https://github.com/elastic/elasticsearch-java/tree/master/java-client/src/test/java/co/elastic/clients/documentation).
+:::{include} /reference/_snippets/doc-tests-blurb.md
+:::
 
