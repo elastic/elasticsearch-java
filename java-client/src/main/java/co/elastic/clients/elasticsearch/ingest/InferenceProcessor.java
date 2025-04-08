@@ -28,7 +28,9 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -69,6 +71,11 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 	@Nullable
 	private final InferenceConfig inferenceConfig;
 
+	private final List<InputConfig> inputOutput;
+
+	@Nullable
+	private final Boolean ignoreMissing;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private InferenceProcessor(Builder builder) {
@@ -78,6 +85,8 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		this.targetField = builder.targetField;
 		this.fieldMap = ApiTypeHelper.unmodifiable(builder.fieldMap);
 		this.inferenceConfig = builder.inferenceConfig;
+		this.inputOutput = ApiTypeHelper.unmodifiable(builder.inputOutput);
+		this.ignoreMissing = builder.ignoreMissing;
 
 	}
 
@@ -134,6 +143,30 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		return this.inferenceConfig;
 	}
 
+	/**
+	 * Input fields for inference and output (destination) fields for the inference
+	 * results. This option is incompatible with the target_field and field_map
+	 * options.
+	 * <p>
+	 * API name: {@code input_output}
+	 */
+	public final List<InputConfig> inputOutput() {
+		return this.inputOutput;
+	}
+
+	/**
+	 * If true and any of the input fields defined in input_ouput are missing then
+	 * those missing fields are quietly ignored, otherwise a missing field causes a
+	 * failure. Only applies when using input_output configurations to explicitly
+	 * list the input fields.
+	 * <p>
+	 * API name: {@code ignore_missing}
+	 */
+	@Nullable
+	public final Boolean ignoreMissing() {
+		return this.ignoreMissing;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -161,6 +194,21 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 			this.inferenceConfig.serialize(generator, mapper);
 
 		}
+		if (ApiTypeHelper.isDefined(this.inputOutput)) {
+			generator.writeKey("input_output");
+			generator.writeStartArray();
+			for (InputConfig item0 : this.inputOutput) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.ignoreMissing != null) {
+			generator.writeKey("ignore_missing");
+			generator.write(this.ignoreMissing);
+
+		}
 
 	}
 
@@ -183,6 +231,12 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 
 		@Nullable
 		private InferenceConfig inferenceConfig;
+
+		@Nullable
+		private List<InputConfig> inputOutput;
+
+		@Nullable
+		private Boolean ignoreMissing;
 
 		/**
 		 * Required - The ID or alias for the trained model, or the ID of the
@@ -262,6 +316,60 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 			return this;
 		}
 
+		/**
+		 * Input fields for inference and output (destination) fields for the inference
+		 * results. This option is incompatible with the target_field and field_map
+		 * options.
+		 * <p>
+		 * API name: {@code input_output}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>inputOutput</code>.
+		 */
+		public final Builder inputOutput(List<InputConfig> list) {
+			this.inputOutput = _listAddAll(this.inputOutput, list);
+			return this;
+		}
+
+		/**
+		 * Input fields for inference and output (destination) fields for the inference
+		 * results. This option is incompatible with the target_field and field_map
+		 * options.
+		 * <p>
+		 * API name: {@code input_output}
+		 * <p>
+		 * Adds one or more values to <code>inputOutput</code>.
+		 */
+		public final Builder inputOutput(InputConfig value, InputConfig... values) {
+			this.inputOutput = _listAdd(this.inputOutput, value, values);
+			return this;
+		}
+
+		/**
+		 * Input fields for inference and output (destination) fields for the inference
+		 * results. This option is incompatible with the target_field and field_map
+		 * options.
+		 * <p>
+		 * API name: {@code input_output}
+		 * <p>
+		 * Adds a value to <code>inputOutput</code> using a builder lambda.
+		 */
+		public final Builder inputOutput(Function<InputConfig.Builder, ObjectBuilder<InputConfig>> fn) {
+			return inputOutput(fn.apply(new InputConfig.Builder()).build());
+		}
+
+		/**
+		 * If true and any of the input fields defined in input_ouput are missing then
+		 * those missing fields are quietly ignored, otherwise a missing field causes a
+		 * failure. Only applies when using input_output configurations to explicitly
+		 * list the input fields.
+		 * <p>
+		 * API name: {@code ignore_missing}
+		 */
+		public final Builder ignoreMissing(@Nullable Boolean value) {
+			this.ignoreMissing = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -294,6 +402,8 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 		op.add(Builder::fieldMap, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "field_map");
 		op.add(Builder::inferenceConfig, InferenceConfig._DESERIALIZER, "inference_config");
+		op.add(Builder::inputOutput, JsonpDeserializer.arrayDeserializer(InputConfig._DESERIALIZER), "input_output");
+		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
 
 	}
 
