@@ -35,8 +35,6 @@ import co.elastic.clients.json.JsonData;
 import co.elastic.clients.util.ApiTypeHelper;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonValue;
@@ -62,9 +60,9 @@ public class ApiConventionsTest extends Assertions {
 
         //tag::blocking-and-async
         // Synchronous blocking client
-        ElasticsearchClient client = new ElasticsearchClient(transport);
+        ElasticsearchClient esClient = new ElasticsearchClient(transport);
 
-        if (client.exists(b -> b.index("products").id("foo")).value()) {
+        if (esClient.exists(b -> b.index("products").id("foo")).value()) {
             logger.info("product exists");
         }
 
@@ -92,8 +90,8 @@ public class ApiConventionsTest extends Assertions {
     public void builders() throws Exception {
 
         //tag::builders
-        ElasticsearchClient client = createClient();
-        CreateIndexResponse createResponse = client.indices().create(
+        ElasticsearchClient esClient = createClient();
+        CreateIndexResponse createResponse = esClient.indices().create(
             new CreateIndexRequest.Builder()
                 .index("my-index")
                 .aliases("foo",
@@ -107,8 +105,8 @@ public class ApiConventionsTest extends Assertions {
     public void builderLambdas() throws Exception {
 
         //tag::builder-lambdas
-        ElasticsearchClient client = createClient();
-        CreateIndexResponse createResponse = client.indices()
+        ElasticsearchClient esClient = createClient();
+        CreateIndexResponse createResponse = esClient.indices()
             .create(createIndexBuilder -> createIndexBuilder
                 .index("my-index")
                 .aliases("foo", aliasBuilder -> aliasBuilder
@@ -121,8 +119,8 @@ public class ApiConventionsTest extends Assertions {
     public void builderLambdasShort() throws Exception {
 
         //tag::builder-lambdas-short
-        ElasticsearchClient client = createClient();
-        CreateIndexResponse createResponse = client.indices()
+        ElasticsearchClient esClient = createClient();
+        CreateIndexResponse createResponse = esClient.indices()
             .create(c -> c
                 .index("my-index")
                 .aliases("foo", a -> a
@@ -134,8 +132,8 @@ public class ApiConventionsTest extends Assertions {
 
     public void builderIntervals() throws Exception {
         //tag::builder-intervals
-        ElasticsearchClient client = createClient();
-        SearchResponse<SomeApplicationData> results = client
+        ElasticsearchClient esClient = createClient();
+        SearchResponse<SomeApplicationData> results = esClient
             .search(b0 -> b0
                 .query(b1 -> b1
                     .intervals(b2 -> b2

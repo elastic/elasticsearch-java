@@ -47,7 +47,7 @@ import java.util.Map;
 public class LoadingJsonTest extends ModelTestCase {
 
     private final DocTestsTransport transport = new DocTestsTransport();
-    private final ElasticsearchClient client = new ElasticsearchClient(transport);
+    private final ElasticsearchClient esClient = new ElasticsearchClient(transport);
 
     private static final SearchResponse<JsonData> searchResponse = SearchResponse.of(b -> b
         .aggregations(new HashMap<>())
@@ -82,7 +82,7 @@ public class LoadingJsonTest extends ModelTestCase {
             .withJson(input) // <2>
         );
 
-        boolean created = client.indices().create(req).acknowledged();
+        boolean created = esClient.indices().create(req).acknowledged();
         //end::load-index
     }
 
@@ -102,7 +102,7 @@ public class LoadingJsonTest extends ModelTestCase {
             .withJson(file)
         );
 
-        client.index(req);
+        esClient.index(req);
         //end::ingest-data
     }
 
@@ -136,7 +136,7 @@ public class LoadingJsonTest extends ModelTestCase {
             .size(0)
         );
 
-        Map<String, Aggregate> aggs = client
+        Map<String, Aggregate> aggs = esClient
             .search(aggRequest, Void.class) // <3>
             .aggregations();
         //end::query
@@ -185,7 +185,7 @@ public class LoadingJsonTest extends ModelTestCase {
             .ignoreUnavailable(true) // <5>
         );
 
-        Map<String, Aggregate> aggs = client
+        Map<String, Aggregate> aggs = esClient
             .search(aggRequest, Void.class)
             .aggregations();
         //end::query-and-agg
