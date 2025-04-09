@@ -173,3 +173,44 @@ For more information, check the [relevant issue](https://github.com/elastic/elas
 
 ::::
 
+::::{dropdown} Package change for EsqlFormat
+Breaking change caused by refactoring the ESQL package. 
+
+**Impact**<br> The following classes are affected:
+- elasticsearch.esql.QueryRequest
+  - `format`: modified from `elasticsearch.esql.query.EsqlFormat` to `elasticsearch.esql.EsqlFormat`
+
+**Action**<br> Change the import from `elasticsearch.esql.query.EsqlFormat` to `elasticsearch.esql.EsqlFormat`
+
+::::
+
+::::{dropdown} Miscellaneous changes
+The reason for these changes is to better reflect what the Elasticsearch server actually accepts/sends. 
+
+**Impact**<br> The following classes are affected:
+- elasticsearch._types.analysis.FingerprintAnalyzer
+  - `maxOutputSize`: modified from `int` to `Integer`, now optional
+- elasticsearch._types.query_dsl.SpanTermQuery
+  - `value`: modified from `String` to `elasticsearch._types.FieldValue`
+- elasticsearch.async_search.SubmitRequest
+  - `maxConcurrentShardRequests`: modified from `Long` to `Integer`
+- elasticsearch.core.msearch.RequestItem
+  - `body`: modified from `elasticsearch.core.msearch.MultisearchBody` to `elasticsearch.core.search.SearchRequestBody`
+- elasticsearch.core.MsearchRequest
+  - `maxConcurrentSearches`: modified from `Long` to `Integer`
+  - `maxConcurrentShardRequests`: modified from `Long` to `Integer`
+- elasticsearch.core.SearchRequest
+  - `maxConcurrentShardRequests`: modified from `Long` to `Integer`
+- elasticsearch.fleet.FleetSearchRequest
+  - `maxConcurrentShardRequests`: modified from `Long` to `Integer`
+- elasticsearch.graph.VertexInclude
+  - `boost`: modified from `double` to `Double`, now optional
+- elasticsearch.security.RoleMappingRule
+  - `field`: modified from `elasticsearch.security.FieldRule` to `util.NamedValue`
+
+**Action**<br> 
+For types that went from the primitive type to the matching Object, make sure to handle the possible null value.  
+For `msearch.RequestItem`, `MultisearchBody` was just an alias to map `SearchRequestBody`, so it can be replaced without other changes.
+
+::::
+
