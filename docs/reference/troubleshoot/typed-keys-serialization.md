@@ -5,7 +5,7 @@ mapped_pages:
 
 # Typed keys serialization [serialize-without-typed-keys]
 
-{{es}} search requests accept a `typed_key` parameter that allow returning type information along with the name in aggregation and suggestion results (see the [aggregations documentation](/explore-analyze/query-filter/aggregations.md#return-agg-type) for additional details).
+{{es}} search requests accept a `typed_key` parameter that allow returning type information along with the name in aggregation and suggestion results (see the [aggregations documentation](docs-content://explore-analyze/query-filter/aggregations.md#return-agg-type) for additional details).
 
 The Java API Client always adds this parameter to search requests, as type information is needed to know the concrete class that should be used to deserialize aggregation and suggestion results.
 
