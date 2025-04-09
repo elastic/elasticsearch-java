@@ -24,7 +24,7 @@ A `BulkRequest` contains a collection of operations, each operation being a [typ
 
 The example below shows how to index a list or application objects.
 
-% :::include-code src={{doc-tests-src}}/usage/IndexingBulkTest.java tag=bulk-objects
+% :::{include-code} src={{doc-tests-src}}/usage/IndexingBulkTest.java tag=bulk-objects
 ```java
 List<Product> products = fetchProducts();
 
@@ -63,7 +63,7 @@ The `document` property of a bulk index request can be any object that can be se
 
 In the example below we will use the Java API Client’s `BinaryData` to read json files from a log directory and send them in a bulk request.
 
-% :::include-code src={{doc-tests-src}}/usage/IndexingBulkTest.java tag=bulk-json
+% :::{include-code} src={{doc-tests-src}}/usage/IndexingBulkTest.java tag=bulk-json
 ```java
 // List json log files in the log directory
 File[] logFiles = logDir.listFiles(
@@ -97,7 +97,7 @@ The ingester will send a bulk request when one of the following criteria is met:
 
 Additionally, you can define a maximum number of concurrent request waiting to be executed by {{es}} (defaults to 1). When that maximum is reached and the maximum number of operations have been collected, adding a new operation to the indexer will block. This is avoids overloading the {{es}} server by putting backpressure on the client application.
 
-% :::include-code src={{doc-tests-src}}/usage/IndexingBulkTest.java tag=bulk-ingester-setup
+% :::{include-code} src={{doc-tests-src}}/usage/IndexingBulkTest.java tag=bulk-ingester-setup
 ```java
 BulkIngester<Void> ingester = BulkIngester.of(b -> b
     .client(esClient)    // <1>
@@ -131,7 +131,7 @@ Additionally, the bulk ingester accepts a listener so that your application can 
 
 The following example shows how you can use context values to implement a bulk ingestion listener: as previously it sends JSON log files in bulk, but tracks bulk request errors and failed operations. When an operation fails, depending on the error type you may want to re-add it to the ingester.
 
-% :::include-code src={{doc-tests-src}}/usage/IndexingBulkTest.java tag=bulk-ingester-context
+% :::{include-code} src={{doc-tests-src}}/usage/IndexingBulkTest.java tag=bulk-ingester-context
 ```java
 BulkListener<String> listener = new BulkListener<String>() { // <1>
     @Override

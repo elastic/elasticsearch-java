@@ -12,7 +12,7 @@ Properties of type `List` and `Map` are exposed by object builders as a set of o
 
 Object builders create immutable objects, and this also applies to list and map properties that are made immutable at object construction time.
 
-% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=collections
+% :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=collections
 ```java
 // Prepare a list of index names
 List<String> names = Arrays.asList("idx-a", "idx-b", "idx-c");
@@ -57,7 +57,7 @@ For lists and maps however, applications often only care about whether they’re
 
 If you ever need to distinguish between a missing (undefined) optional collection and an effectively-empty collection returned by {{es}}, the `ApiTypeHelper` class provides a utility method to distinguish them:
 
-% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=optional-collections
+% :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=optional-collections
 ```java
 NodeStatistics stats = NodeStatistics.of(b -> b
     .total(1)

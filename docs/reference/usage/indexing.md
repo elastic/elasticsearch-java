@@ -19,7 +19,7 @@ See the [{{es}} API documentation](https://www.elastic.co/docs/api/doc/elasticse
 
 The most direct way to build requests is using the fluent DSL. In the example below we index a product description in the `products` index, using the product’s SKU as the document identifier in the index. The `product` object will be mapped to JSON using the object mapper configured on the {{es}} client.
 
-% :::include-code src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-dsl
+% :::{include-code} src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-dsl
 ```java
 Product product = new Product("bk-1", "City bike", 123.0);
 
@@ -34,7 +34,7 @@ logger.info("Indexed with version " + response.version());
 
 You can also assign objects created with the DSL to variables. Java API Client classes have a static `of()` method for this, that creates an object with the DSL syntax.
 
-% :::include-code src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-dsl-of
+% :::{include-code} src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-dsl-of
 ```java
 Product product = new Product("bk-1", "City bike", 123.0);
 
@@ -53,7 +53,7 @@ logger.info("Indexed with version " + response.version());
 
 If you’re more used to the classic builder pattern, it is also available. Builder objects are used under the hood by the fluent DSL syntax.
 
-% :::include-code src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-builder
+% :::{include-code} src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-builder
 ```java
 Product product = new Product("bk-1", "City bike", 123.0);
 
@@ -71,7 +71,7 @@ logger.info("Indexed with version " + response.version());
 
 The examples above used the synchronous {{es}} client. All {{es}} APIs are also available in the asynchronous client, using the same request and response types. See also [Blocking and asynchronous clients](/reference/api-conventions/blocking-async.md) for additional details.
 
-% :::include-code src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-dsl-async
+% :::{include-code} src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-dsl-async
 ```java
 ElasticsearchAsyncClient esAsyncClient = new ElasticsearchAsyncClient(transport);
 
@@ -96,7 +96,7 @@ When the data you want to index comes from external sources, having to create do
 
 You can index data from an arbitrary source using `withJson()`. Using this method will read the source and use it for the index request’s `document` property. See [Creating API objects from JSON data](/reference/api-conventions/loading-json.md) for additional details.
 
-% :::include-code src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-json
+% :::{include-code} src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-json
 ```java
 Reader input = new StringReader(
     "{'@timestamp': '2022-04-08T13:55:32Z', 'level': 'warn', 'message': 'Some log message'}"

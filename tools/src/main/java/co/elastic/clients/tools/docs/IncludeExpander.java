@@ -88,7 +88,7 @@ public class IncludeExpander {
     }
 
     public static String expandText(String input, Map<String, String> subst, String path) throws IOException {
-        if (!input.contains("% :::include-code")) {
+        if (!input.contains("% :::{include-code}")) {
             // Nothing to do
             return null;
         }
@@ -104,7 +104,7 @@ public class IncludeExpander {
 
             switch (state) {
                 case NORMAL_TEXT -> {
-                    if (line.startsWith("% :::include-code")) {
+                    if (line.startsWith("% :::{include-code}")) {
                         output.append(line).append("\n");
                         includeCodeLine = line;
                         state = State.INCLUDE_CODE;
@@ -117,7 +117,7 @@ public class IncludeExpander {
 
                 case INCLUDE_CODE -> {
                     if (!line.startsWith("```")) {
-                        fail("The '% :::include-code' should be followed by a code block", path, reader, null);
+                        fail("The '% :::{include-code}' should be followed by a code block", path, reader, null);
                     }
                     output.append(line).append("\n");
                     state = State.CODE_BLOCK;

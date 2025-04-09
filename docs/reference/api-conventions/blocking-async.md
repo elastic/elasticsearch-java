@@ -9,7 +9,7 @@ API clients come in two flavors: blocking and asynchronous. All methods on async
 
 Both flavors can be used at the same time depending on your needs, sharing the same transport object:
 
-% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=blocking-and-async
+% :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=blocking-and-async
 ```java
 // Synchronous blocking client
 ElasticsearchClient client = new ElasticsearchClient(transport);

@@ -10,7 +10,7 @@ mapped_pages:
 
 All data types in the Java API Client are immutable. Object creation uses the [builder pattern](https://www.informit.com/articles/article.aspx?p=1216151&seqNum=2) that was popularized in **Effective Java** in 2008.
 
-% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=builders
+% :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=builders
 ```java
 ElasticsearchClient client = createClient();
 CreateIndexResponse createResponse = client.indices().create(
@@ -30,7 +30,7 @@ Note that a builder should not be reused after its `build()` method has been cal
 
 Although this works nicely, having to instantiate builder classes and call the `build()` method is a bit verbose. So every property setter in the Java API Client also accepts a lambda expression that takes a newly created builder as a parameter and returns a populated builder. The snippet above can also be written as:
 
-% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=builder-lambdas
+% :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=builder-lambdas
 ```java
 ElasticsearchClient client = createClient();
 CreateIndexResponse createResponse = client.indices()
@@ -46,7 +46,7 @@ This approach allows for much more concise code, and also avoids importing class
 
 Note in the above example that builder variables are only used to start a chain of property setters. The names of these variables are therefore unimportant and can be shortened to improve readability:
 
-% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=builder-lambdas-short
+% :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=builder-lambdas-short
 ```java
 ElasticsearchClient client = createClient();
 CreateIndexResponse createResponse = client.indices()
@@ -62,7 +62,7 @@ Builder lambdas become particularly useful with complex nested queries like the 
 
 This example also highlights a useful naming convention for builder parameters in deeply nested structures. For lambda expressions with a single argument, Kotlin provides the implicit `it` parameter and Scala allows use of `_`. This can be approximated in Java by using an underscore or a single letter prefix followed by a number representing the depth level (i.e. `_0`, `_1`, or `b0`, `b1` and so on). Not only does this remove the need to create throw-away variable names, but it also improves code readability. Correct indentation also allows the structure of the query to stand out.
 
-% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=builder-intervals
+% :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=builder-intervals
 ```java
 ElasticsearchClient client = createClient();
 SearchResponse<SomeApplicationData> results = client

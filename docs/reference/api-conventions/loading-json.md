@@ -31,7 +31,7 @@ Consider a resource file `some-index.json` containing an index definition:
 
 You can create an index from that definition as follows:
 
-% :::include-code src={{doc-tests-src}}/api_conventions/LoadingJsonTest.java tag=load-index
+% :::{include-code} src={{doc-tests-src}}/api_conventions/LoadingJsonTest.java tag=load-index
 ```java
 InputStream input = this.getClass()
     .getResourceAsStream("some-index.json"); // <1>
@@ -53,7 +53,7 @@ boolean created = client.indices().create(req).acknowledged();
 
 Similarly, you can read documents to be stored in {{es}} from data files:
 
-% :::include-code src={{doc-tests-src}}/api_conventions/LoadingJsonTest.java tag=ingest-data
+% :::{include-code} src={{doc-tests-src}}/api_conventions/LoadingJsonTest.java tag=ingest-data
 ```java
 FileReader file = new FileReader(new File(dataDir, "document-1.json"));
 
@@ -75,7 +75,7 @@ client.index(req);
 
 You can combine `withJson()` with regular calls to setter methods. The example below loads the query part of a search request from a `String` and programmatically adds an aggregation.
 
-% :::include-code src={{doc-tests-src}}/api_conventions/LoadingJsonTest.java tag=query
+% :::{include-code} src={{doc-tests-src}}/api_conventions/LoadingJsonTest.java tag=query
 ```java
 Reader queryJson = new StringReader(
     "{" +
@@ -117,7 +117,7 @@ Map<String, Aggregate> aggs = client
 
 The `withJson()` methods are partial deserializers: the properties loaded from the JSON will set property values or replace the previous ones, but will not reset other properties not found in the JSON input. You can use this to combine multiple JSON snippets to build complex search requests. In the example below, we combine separate definitions of a query that selects some documents and an aggregation that is run on the results of this query.
 
-% :::include-code src={{doc-tests-src}}/api_conventions/LoadingJsonTest.java tag=query-and-agg
+% :::{include-code} src={{doc-tests-src}}/api_conventions/LoadingJsonTest.java tag=query-and-agg
 ```java
 Reader queryJson = new StringReader(
     "{" +

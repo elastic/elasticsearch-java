@@ -51,7 +51,7 @@ Refer to the [Installation](setup/installation.md) page to learn more.
 
 You can connect to the Elastic Cloud using an API key and the Elasticsearch endpoint.
 
-% :::include-code src={{doc-tests-src}}/getting_started/ConnectingTest.java tag=create-client
+% :::{include-code} src={{doc-tests-src}}/getting_started/ConnectingTest.java tag=create-client
 ```java
 // URL and API key
 String serverUrl = "https://localhost:9200";
@@ -94,7 +94,7 @@ Time to use Elasticsearch! This section walks you through the basic, and most im
 
 This is how you create the `product` index:
 
-% :::include-code src={{doc-tests-src}}/usage/IndexingTest.java tag=create-products-index
+% :::{include-code} src={{doc-tests-src}}/usage/IndexingTest.java tag=create-products-index
 ```java
 esClient.indices().create(c -> c
     .index("products")
@@ -106,7 +106,7 @@ esClient.indices().create(c -> c
 
 This is a simple way of indexing a document, here a `Product` application object:
 
-% :::include-code src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-dsl
+% :::{include-code} src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-dsl
 ```java
 Product product = new Product("bk-1", "City bike", 123.0);
 
@@ -123,7 +123,7 @@ logger.info("Indexed with version " + response.version());
 
 You can get documents by using the following code:
 
-% :::include-code src={{doc-tests-src}}/usage/ReadingTest.java tag=get-by-id
+% :::{include-code} src={{doc-tests-src}}/usage/ReadingTest.java tag=get-by-id
 ```java
 GetResponse<Product> response = esClient.get(g -> g
     .index("products") // <1>
@@ -146,7 +146,7 @@ if (response.found()) {
 
 This is how you can create a single match query with the Java client:
 
-% :::include-code src={{doc-tests-src}}/usage/SearchingTest.java tag=search-getting-started
+% :::{include-code} src={{doc-tests-src}}/usage/SearchingTest.java tag=search-getting-started
 ```java
 String searchText = "bike";
 
@@ -166,7 +166,7 @@ SearchResponse<Product> response = esClient.search(s -> s
 
 This is how you can update a document, for example to add a new field:
 
-% :::include-code src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-update
+% :::{include-code} src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-update
 ```java
 Product product = new Product("bk-1", "City bike", 123.0);
 
@@ -180,14 +180,14 @@ esClient.update(u -> u
 
 #### Deleting documents [_deleting_documents]
 
-% :::include-code src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-delete
+% :::{include-code} src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-delete
 ```java
 esClient.delete(d -> d.index("products").id("bk-1"));
 ```
 
 #### Deleting an index [_deleting_an_index]
 
-% :::include-code src={{doc-tests-src}}/usage/IndexingTest.java tag=delete-products-index
+% :::{include-code} src={{doc-tests-src}}/usage/IndexingTest.java tag=delete-products-index
 ```java
 esClient.indices().delete(d -> d
     .index("products")

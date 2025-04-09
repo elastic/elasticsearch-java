@@ -22,7 +22,7 @@ The `get` request has two parameters:
 * the first parameter is the actual request, built below with the fluent DSL
 * the second parameter is the class we want the document’s JSON to be mapped to.
 
-% :::include-code src={{doc-tests-src}}/usage/ReadingTest.java tag=get-by-id
+% :::{include-code} src={{doc-tests-src}}/usage/ReadingTest.java tag=get-by-id
 ```java
 GetResponse<Product> response = esClient.get(g -> g
     .index("products") // <1>
@@ -49,7 +49,7 @@ When your index contains semi-structured data or if you don’t have a domain ob
 
 Raw JSON data is just another class that you can use as the result type for the get request. In the example below we use Jackson’s `ObjectNode`. We could also have used any JSON representation that can be deserialized by the JSON mapper associated to the `ElasticsearchClient`.
 
-% :::include-code src={{doc-tests-src}}/usage/ReadingTest.java tag=get-by-id-json
+% :::{include-code} src={{doc-tests-src}}/usage/ReadingTest.java tag=get-by-id-json
 ```java
 GetResponse<ObjectNode> response = esClient.get(g -> g
     .index("products")

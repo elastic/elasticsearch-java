@@ -21,7 +21,7 @@ This example is an analytics-type aggregation where we do not want to use the ma
 
 If that same aggregation was used for to display products and the price histogram as drill-down facets, we would have set `size` to a non-zero value and used `Product` as the target class to process the results.
 
-% :::include-code src={{doc-tests-src}}/usage/AggregationsTest.java tag=price-histo-request
+% :::{include-code} src={{doc-tests-src}}/usage/AggregationsTest.java tag=price-histo-request
 ```java
 String searchText = "bike";
 
@@ -53,7 +53,7 @@ SearchResponse<Void> response = esClient.search(b -> b
 
 The response contains an aggregation result for each aggregation in the request.
 
-% :::include-code src={{doc-tests-src}}/usage/AggregationsTest.java tag=price-histo-response
+% :::{include-code} src={{doc-tests-src}}/usage/AggregationsTest.java tag=price-histo-response
 ```java
 List<HistogramBucket> buckets = response.aggregations()
     .get("price-histogram") // <1>

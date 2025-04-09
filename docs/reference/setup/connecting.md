@@ -13,7 +13,7 @@ The Java API Client is structured around three main components:
 
 This code snippet creates and wires together these three components:
 
-% :::include-code src={{doc-tests-src}}/getting_started/ConnectingTest.java tag=create-client
+% :::{include-code} src={{doc-tests-src}}/getting_started/ConnectingTest.java tag=create-client
 ```java
 // URL and API key
 String serverUrl = "https://localhost:9200";
@@ -41,7 +41,7 @@ The code snippet below searches all items from a “product” index whose name 
 
 It illustrates the use of fluent functional builders to write search queries as concise DSL-like code. This pattern is explained in more detail in [*API conventions*](/reference/api-conventions/index.md).
 
-% :::include-code src={{doc-tests-src}}/getting_started/ConnectingTest.java tag=first-request
+% :::{include-code} src={{doc-tests-src}}/getting_started/ConnectingTest.java tag=first-request
 ```java
 SearchResponse<Product> search = esClient.search(s -> s
     .index("products")
@@ -86,7 +86,7 @@ Depending on the context, you have two options for verifying the HTTPS connectio
 
 This method of verifying the HTTPS connection uses the certificate fingerprint value noted down earlier.
 
-% :::include-code src={{doc-tests-src}}/getting_started/ConnectingTest.java tag=create-secure-client-fingerprint
+% :::{include-code} src={{doc-tests-src}}/getting_started/ConnectingTest.java tag=create-secure-client-fingerprint
 ```java
 String fingerprint = "<certificate fingerprint>";
 
@@ -131,7 +131,7 @@ The generated root CA certificate can be found in the `certs` directory in your 
 
 Once you have made the `http_ca.crt` file available to your application, you can use it to set up the client:
 
-% :::include-code src={{doc-tests-src}}/getting_started/ConnectingTest.java tag=create-secure-client-cert
+% :::{include-code} src={{doc-tests-src}}/getting_started/ConnectingTest.java tag=create-secure-client-cert
 ```java
 File certFile = new File("/path/to/http_ca.crt");
 

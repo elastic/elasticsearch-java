@@ -23,7 +23,7 @@ The total value comes with a relation that indicates if the total is exact (`eq`
 
 Each returned document comes with its relevance score and additional information about its location in the index.
 
-% :::include-code src={{doc-tests-src}}/usage/SearchingTest.java tag=search-simple
+% :::{include-code} src={{doc-tests-src}}/usage/SearchingTest.java tag=search-simple
 ```java
 
 String searchText = "bike";
@@ -69,7 +69,7 @@ Similarly to [get](reading.md) operations, you can fetch documents matching your
 
 {{es}} allows individual queries to be combined to build more complex search requests. In the example below we will search for bikes with a maximum price of 200.
 
-% :::include-code src={{doc-tests-src}}/usage/SearchingTest.java tag=search-nested
+% :::{include-code} src={{doc-tests-src}}/usage/SearchingTest.java tag=search-nested
 ```java
 String searchText = "bike";
 double maxPrice = 200.0;
@@ -120,7 +120,7 @@ A search template is a stored search that you can run with different variables. 
 
 Before running a template search, you first have to create the template. This is a stored script that returns the search request body, and is usually defined as a Mustache template. This stored script can be created outside the application, and also with the Java API Client:
 
-% :::include-code src={{doc-tests-src}}/usage/SearchingTest.java tag=search-template-script
+% :::{include-code} src={{doc-tests-src}}/usage/SearchingTest.java tag=search-template-script
 ```java
 // Create a script
 esClient.putScript(r -> r
@@ -136,7 +136,7 @@ esClient.putScript(r -> r
 
 To use the search template, use the `searchTemplate` method to refer to the script and provide values for its parameters:
 
-% :::include-code src={{doc-tests-src}}/usage/SearchingTest.java tag=search-template-query
+% :::{include-code} src={{doc-tests-src}}/usage/SearchingTest.java tag=search-template-query
 ```java
 SearchTemplateResponse<Product> response = esClient.searchTemplate(r -> r
         .index("some-index")

@@ -40,7 +40,7 @@ When using the [OpenTelemetry Java SDK manually](https://opentelemetry.io/docs/i
 
 In case you are using [manual OpenTelemetry instrumentation](https://opentelemetry.io/docs/instrumentation/java/manual/#example) with a custom OpenTelemetry SDK instance that is *not registered globally*, you can create the Java API Client using a custom OpenTelemetry instance. The following code snippet shows an example of using a custom OpenTelemetry instance.
 
-% :::include-code src={{doc-tests-src}}/getting_started/ConnectingTest.java tag=create-client-otel
+% :::{include-code} src={{doc-tests-src}}/getting_started/ConnectingTest.java tag=create-client-otel
 ```java
 // URL and API key
 String serverUrl = "https://localhost:9200";

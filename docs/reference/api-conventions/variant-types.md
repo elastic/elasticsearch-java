@@ -13,7 +13,7 @@ This is because variant objects in the Java API Client are implementations of a 
 
 Variant builders have setter methods for every available implementation. They use the same conventions as regular properties and accept both a builder lambda expression and a ready-made object of the actual type of the variant. Here’s an example to build a term query:
 
-% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=variant-creation
+% :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=variant-creation
 ```java
 Query query = new Query.Builder()
     .term(t -> t                          // <1>
@@ -30,7 +30,7 @@ Query query = new Query.Builder()
 
 Variant objects have getter methods for every available implementation. These methods check that the object actually holds a variant of that kind and return the value downcasted to the correct type. They throw an `IllegalStateException` otherwise. This approach allows writing fluent code to traverse variants.
 
-% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=variant-navigation
+% :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=variant-navigation
 ```java
 assertEquals("foo", query.term().value().stringValue());
 ```
@@ -42,7 +42,7 @@ Variant objects also provide information on the variant kind they currently hold
 
 This information can then be used to navigate down into specific variants after checking their actual kind:
 
-% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=variant-kind
+% :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=variant-kind
 ```java
 if (query.isTerm()) { // <1>
     doSomething(query.term());
@@ -74,7 +74,7 @@ In the examples below we use a hypothetical plugin that adds a `sphere-distance`
 
 To create a custom aggregation, use the `_custom()` aggregation type and provide its identifier, defined by the plugin, and parameters. The parameters can be any object or value that can be serialized to JSON. In the example below we use a simple map:
 
-% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=custom-variant-creation
+% :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=custom-variant-creation
 ```java
 Map<String, Object> params = new HashMap<>(); // <1>
 params.put("interval", 10);
@@ -97,7 +97,7 @@ The results of custom variants are returned as raw JSON represented by a `JsonDa
 
 Traversing the JSON tree:
 
-% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=custom-variant-navigation-json
+% :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=custom-variant-navigation-json
 ```java
 SearchResponse<Void> response = esClient.search(request, Void.class); // <1>
 
@@ -124,7 +124,7 @@ for (JsonValue item : buckets) {
 
 Using a class that represents the custom aggregation results:
 
-% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=custom-variant-navigation-typed
+% :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=custom-variant-navigation-typed
 ```java
 SearchResponse<Void> response = esClient.search(request, Void.class);
 
@@ -143,7 +143,7 @@ for (Bucket bucket : neighbors.buckets()) {
 
 Where `SphereDistanceAggregate` can be defined as follows:
 
-% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=custom-variant-types
+% :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=custom-variant-types
 ```java
 public static class SphereDistanceAggregate {
     private final List<Bucket> buckets;
