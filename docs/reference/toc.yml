@@ -26,6 +26,12 @@ toc:
       - file: reading.md
       - file: searching.md
       - file: aggregations.md
+  - file: troubleshoot/index.md
+    children: 
+      - file: troubleshoot/missing-required-property.md
+      - file: troubleshoot/error-no-such-method.md
+      - file: troubleshoot/apache-errors.md
+      - file: troubleshoot/typed-keys-serialization.md
   - file: javadoc-source-code.md
   - file: external-resources.md
   - file: java-low-level-rest-client.md
