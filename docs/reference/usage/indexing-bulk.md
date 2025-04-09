@@ -18,20 +18,13 @@ A bulk request can contain several kinds of operations:
 See the [{{es}} API documentation](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-bulk) for a full explanation of bulk requests.
 ::::
 
-
-
 ## Indexing application objects [_indexing_application_objects]
 
 A `BulkRequest` contains a collection of operations, each operation being a [type with several variants](/reference/api-conventions/variant-types.md). To create this request, it is convenient to use a builder object for the main request, and the fluent DSL for each operation.
 
 The example below shows how to index a list or application objects.
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/usage/IndexingBulkTest.java[bulk-objects]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/usage/IndexingBulkTest.java tag=bulk-objects
 ```java
 List<Product> products = fetchProducts();
 
@@ -59,13 +52,10 @@ if (result.errors()) {
     }
 }
 ```
-% :::include::end -- do not remove
 
 1. Adds an operation (remember that [list properties are additive](/reference/api-conventions/lists-maps.md)). `op` is is a builder for `BulkOperation` which is a [variant type](/reference/api-conventions/variant-types.md). This type has `index`, `create`, `update` and `delete` variants.
 2. Selects the `index` operation variant, `idx` is a builder for `IndexOperation`.
 3. Sets the properties for the index operation, similar to [single document indexing](indexing.md): index name, identifier and document.
-
-
 
 ## Indexing raw JSON data [indexing-raw-json-data]
 
@@ -73,12 +63,7 @@ The `document` property of a bulk index request can be any object that can be se
 
 In the example below we will use the Java API Client’s `BinaryData` to read json files from a log directory and send them in a bulk request.
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/usage/IndexingBulkTest.java[bulk-json]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/usage/IndexingBulkTest.java tag=bulk-json
 ```java
 // List json log files in the log directory
 File[] logFiles = logDir.listFiles(
@@ -99,8 +84,6 @@ for (File file: logFiles) {
     );
 }
 ```
-% :::include::end -- do not remove
-
 
 ## Streaming ingestion with the Bulk Ingester [_streaming_ingestion_with_the_bulk_ingester]
 
@@ -114,12 +97,7 @@ The ingester will send a bulk request when one of the following criteria is met:
 
 Additionally, you can define a maximum number of concurrent request waiting to be executed by {{es}} (defaults to 1). When that maximum is reached and the maximum number of operations have been collected, adding a new operation to the indexer will block. This is avoids overloading the {{es}} server by putting backpressure on the client application.
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/usage/IndexingBulkTest.java[bulk-ingester-setup]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/usage/IndexingBulkTest.java tag=bulk-ingester-setup
 ```java
 BulkIngester<Void> ingester = BulkIngester.of(b -> b
     .client(esClient)    // <1>
@@ -141,7 +119,6 @@ for (File file: logFiles) {
 
 ingester.close(); // <5>
 ```
-% :::include::end -- do not remove
 
 1. Sets the {{es}} client used to send bulk requests.
 2. Sets the maximum number of operations to collect before sending a bulk request.
@@ -154,12 +131,7 @@ Additionally, the bulk ingester accepts a listener so that your application can 
 
 The following example shows how you can use context values to implement a bulk ingestion listener: as previously it sends JSON log files in bulk, but tracks bulk request errors and failed operations. When an operation fails, depending on the error type you may want to re-add it to the ingester.
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/usage/IndexingBulkTest.java[bulk-ingester-context]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/usage/IndexingBulkTest.java tag=bulk-ingester-context
 ```java
 BulkListener<String> listener = new BulkListener<String>() { // <1>
     @Override
@@ -209,7 +181,6 @@ for (File file: logFiles) {
 
 ingester.close();
 ```
-% :::include::end -- do not remove
 
 1. Creates a listener where context values are strings for the ingested file name.
 2. Registers the listener on the bulk ingester.

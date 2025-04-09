@@ -85,10 +85,14 @@ public class ApiConventionsTest extends Assertions {
 
     }
 
+    private ElasticsearchClient createClient() {
+        return new ElasticsearchClient(transport);
+    }
+
     public void builders() throws Exception {
-        ElasticsearchClient client = new ElasticsearchClient(transport);
 
         //tag::builders
+        ElasticsearchClient client = createClient();
         CreateIndexResponse createResponse = client.indices().create(
             new CreateIndexRequest.Builder()
                 .index("my-index")
@@ -101,9 +105,9 @@ public class ApiConventionsTest extends Assertions {
     }
 
     public void builderLambdas() throws Exception {
-        ElasticsearchClient client = new ElasticsearchClient(transport);
 
         //tag::builder-lambdas
+        ElasticsearchClient client = createClient();
         CreateIndexResponse createResponse = client.indices()
             .create(createIndexBuilder -> createIndexBuilder
                 .index("my-index")
@@ -115,9 +119,9 @@ public class ApiConventionsTest extends Assertions {
     }
 
     public void builderLambdasShort() throws Exception {
-        ElasticsearchClient client = new ElasticsearchClient(transport);
 
         //tag::builder-lambdas-short
+        ElasticsearchClient client = createClient();
         CreateIndexResponse createResponse = client.indices()
             .create(c -> c
                 .index("my-index")
@@ -129,11 +133,8 @@ public class ApiConventionsTest extends Assertions {
     }
 
     public void builderIntervals() throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
-        ElasticsearchClient client = new ElasticsearchClient(transport);
-
         //tag::builder-intervals
+        ElasticsearchClient client = createClient();
         SearchResponse<SomeApplicationData> results = client
             .search(b0 -> b0
                 .query(b1 -> b1

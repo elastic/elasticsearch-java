@@ -13,12 +13,7 @@ This is because variant objects in the Java API Client are implementations of a 
 
 Variant builders have setter methods for every available implementation. They use the same conventions as regular properties and accept both a builder lambda expression and a ready-made object of the actual type of the variant. Here’s an example to build a term query:
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/api_conventions/ApiConventionsTest.java[variant-creation]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=variant-creation
 ```java
 Query query = new Query.Builder()
     .term(t -> t                          // <1>
@@ -27,7 +22,6 @@ Query query = new Query.Builder()
     )
     .build();                             // <3>
 ```
-% :::include::end -- do not remove
 
 1. Choose the `term` variant to build a term query.
 2. Build the terms query with a builder lambda expression.
@@ -36,16 +30,10 @@ Query query = new Query.Builder()
 
 Variant objects have getter methods for every available implementation. These methods check that the object actually holds a variant of that kind and return the value downcasted to the correct type. They throw an `IllegalStateException` otherwise. This approach allows writing fluent code to traverse variants.
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/api_conventions/ApiConventionsTest.java[variant-navigation]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=variant-navigation
 ```java
 assertEquals("foo", query.term().value().stringValue());
 ```
-% :::include::end -- do not remove
 
 Variant objects also provide information on the variant kind they currently hold:
 
@@ -54,12 +42,7 @@ Variant objects also provide information on the variant kind they currently hold
 
 This information can then be used to navigate down into specific variants after checking their actual kind:
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/api_conventions/ApiConventionsTest.java[variant-kind]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=variant-kind
 ```java
 if (query.isTerm()) { // <1>
     doSomething(query.term());
@@ -76,13 +59,10 @@ switch(query._kind()) { // <2>
         doSomething(query._kind(), query._get()); // <3>
 }
 ```
-% :::include::end -- do not remove
 
 1. Test if the variant is of a specific kind.
 2. Test a larger set of variant kinds.
 3. Get the kind and value held by the variant object.
-
-
 
 ## Custom extensions provided by {{es}} plugins [variant-types-custom]
 
@@ -94,12 +74,7 @@ In the examples below we use a hypothetical plugin that adds a `sphere-distance`
 
 To create a custom aggregation, use the `_custom()` aggregation type and provide its identifier, defined by the plugin, and parameters. The parameters can be any object or value that can be serialized to JSON. In the example below we use a simple map:
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/api_conventions/ApiConventionsTest.java[custom-variant-creation]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=custom-variant-creation
 ```java
 Map<String, Object> params = new HashMap<>(); // <1>
 params.put("interval", 10);
@@ -113,7 +88,6 @@ SearchRequest request = SearchRequest.of(r -> r
     )
 );
 ```
-% :::include::end -- do not remove
 
 1. Parameters for the custom aggregation.
 2. Create a custom aggregation named `neighbors` of kind `sphere-distance` with its parameters.
@@ -123,12 +97,7 @@ The results of custom variants are returned as raw JSON represented by a `JsonDa
 
 Traversing the JSON tree:
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/api_conventions/ApiConventionsTest.java[custom-variant-navigation-json]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=custom-variant-navigation-json
 ```java
 SearchResponse<Void> response = esClient.search(request, Void.class); // <1>
 
@@ -147,7 +116,6 @@ for (JsonValue item : buckets) {
     doSomething(key, docCount);
 }
 ```
-% :::include::end -- do not remove
 
 1. Use `Void` if you’re only interested in aggregation results, not search hits (see also [Aggregations](/reference/usage/aggregations.md)).
 2. Get the `neighbors` aggregation result as custom JSON result.
@@ -156,12 +124,7 @@ for (JsonValue item : buckets) {
 
 Using a class that represents the custom aggregation results:
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/api_conventions/ApiConventionsTest.java[custom-variant-navigation-typed]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=custom-variant-navigation-typed
 ```java
 SearchResponse<Void> response = esClient.search(request, Void.class);
 
@@ -174,19 +137,13 @@ for (Bucket bucket : neighbors.buckets()) {
     doSomething(bucket.key(), bucket.docCount());
 }
 ```
-% :::include::end -- do not remove
 
 1. Deserialize the custom JSON to a dedicated `SphereDistanceAggregate` class.
 
 
 Where `SphereDistanceAggregate` can be defined as follows:
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/api_conventions/ApiConventionsTest.java[custom-variant-types]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=custom-variant-types
 ```java
 public static class SphereDistanceAggregate {
     private final List<Bucket> buckets;
@@ -219,7 +176,6 @@ public static class Bucket {
     }
 }
 ```
-% :::include::end -- do not remove
 
 :::{include} /reference/_snippets/doc-tests-blurb.md
 :::

@@ -51,12 +51,7 @@ Refer to the [Installation](setup/installation.md) page to learn more.
 
 You can connect to the Elastic Cloud using an API key and the Elasticsearch endpoint.
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/getting_started/ConnectingTest.java[create-client]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/getting_started/ConnectingTest.java tag=create-client
 ```java
 // URL and API key
 String serverUrl = "https://localhost:9200";
@@ -74,7 +69,6 @@ ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
 // Close the client, also closing the underlying transport object and network connections.
 esClient.close();
 ```
-% :::include::end -- do not remove
 
 Your Elasticsearch endpoint can be found on the **My deployment** page of your deployment:
 
@@ -100,30 +94,19 @@ Time to use Elasticsearch! This section walks you through the basic, and most im
 
 This is how you create the `product` index:
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/usage/IndexingTest.java[create-products-index]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/usage/IndexingTest.java tag=create-products-index
 ```java
 esClient.indices().create(c -> c
     .index("products")
 );
 ```
-% :::include::end -- do not remove
 
 
 #### Indexing documents [_indexing_documents]
 
 This is a simple way of indexing a document, here a `Product` application object:
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/usage/IndexingTest.java[single-doc-dsl]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-dsl
 ```java
 Product product = new Product("bk-1", "City bike", 123.0);
 
@@ -135,19 +118,12 @@ IndexResponse response = esClient.index(i -> i
 
 logger.info("Indexed with version " + response.version());
 ```
-% :::include::end -- do not remove
-
 
 #### Getting documents [_getting_documents]
 
 You can get documents by using the following code:
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/usage/ReadingTest.java[get-by-id]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/usage/ReadingTest.java tag=get-by-id
 ```java
 GetResponse<Product> response = esClient.get(g -> g
     .index("products") // <1>
@@ -162,23 +138,15 @@ if (response.found()) {
     logger.info ("Product not found");
 }
 ```
-% :::include::end -- do not remove
 
 1. The get request, with the index name and identifier.
 2. The target class, here `Product`.
-
-
 
 #### Searching documents [_searching_documents]
 
 This is how you can create a single match query with the Java client:
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/usage/SearchingTest.java[search-getting-started]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/usage/SearchingTest.java tag=search-getting-started
 ```java
 String searchText = "bike";
 
@@ -193,19 +161,12 @@ SearchResponse<Product> response = esClient.search(s -> s
     Product.class
 );
 ```
-% :::include::end -- do not remove
-
 
 #### Updating documents [_updating_documents]
 
 This is how you can update a document, for example to add a new field:
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/usage/IndexingTest.java[single-doc-update]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-update
 ```java
 Product product = new Product("bk-1", "City bike", 123.0);
 
@@ -216,38 +177,22 @@ esClient.update(u -> u
     Product.class
 );
 ```
-% :::include::end -- do not remove
-
 
 #### Deleting documents [_deleting_documents]
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/usage/IndexingTest.java[single-doc-delete]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/usage/IndexingTest.java tag=single-doc-delete
 ```java
 esClient.delete(d -> d.index("products").id("bk-1"));
 ```
-% :::include::end -- do not remove
-
 
 #### Deleting an index [_deleting_an_index]
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/usage/IndexingTest.java[delete-products-index]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/usage/IndexingTest.java tag=delete-products-index
 ```java
 esClient.indices().delete(d -> d
     .index("products")
 );
 ```
-% :::include::end -- do not remove
-
 
 ## Examples [_examples]
 

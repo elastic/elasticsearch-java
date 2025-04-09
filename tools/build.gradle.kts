@@ -38,10 +38,11 @@ dependencies {
 }
 
 tasks.register<JavaExec>("expand-includes") {
+    workingDir = rootDir
     group = "application"
     mainClass.set("co.elastic.clients.tools.docs.IncludeExpander")
     args = listOf(
-        "../docs/reference",
+        "docs/reference",
     )
     classpath = sourceSets["main"].runtimeClasspath
 }

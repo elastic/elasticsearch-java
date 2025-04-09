@@ -21,12 +21,7 @@ This example is an analytics-type aggregation where we do not want to use the ma
 
 If that same aggregation was used for to display products and the price histogram as drill-down facets, we would have set `size` to a non-zero value and used `Product` as the target class to process the results.
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/usage/AggregationsTest.java[price-histo-request]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/usage/AggregationsTest.java tag=price-histo-request
 ```java
 String searchText = "bike";
 
@@ -48,7 +43,6 @@ SearchResponse<Void> response = esClient.search(b -> b
     Void.class // <5>
 );
 ```
-% :::include::end -- do not remove
 
 1. Set the number of matching documents to zero as we only use the price histogram.
 2. Set the query that fill filter the products on which to run the aggregation
@@ -59,12 +53,7 @@ SearchResponse<Void> response = esClient.search(b -> b
 
 The response contains an aggregation result for each aggregation in the request.
 
-<!-- :::include
-```java
-:::{include} {doc-tests-src}/usage/AggregationsTest.java[price-histo-response]
-```
--->
-% :::include::start -- do not remove
+% :::include-code src={{doc-tests-src}}/usage/AggregationsTest.java tag=price-histo-response
 ```java
 List<HistogramBucket> buckets = response.aggregations()
     .get("price-histogram") // <1>
@@ -77,7 +66,6 @@ for (HistogramBucket bucket: buckets) {
 }
 
 ```
-% :::include::end -- do not remove
 
 1. Get the results for the "price-histogram" aggregation.
 2. Cast it down to the `histogram` variant results. This has to be consistent with the aggregation definition.

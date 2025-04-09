@@ -10,15 +10,9 @@ mapped_pages:
 
 All data types in the Java API Client are immutable. Object creation uses the [builder pattern](https://www.informit.com/articles/article.aspx?p=1216151&seqNum=2) that was popularized in **Effective Java** in 2008.
 
-<!-- :::include
+% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=builders
 ```java
-ElasticsearchClient client = ...
-:::{include} {doc-tests-src}/api_conventions/ApiConventionsTest.java[builders]
-```
--->
-% :::include::start -- do not remove
-```java
-ElasticsearchClient client = ...
+ElasticsearchClient client = createClient();
 CreateIndexResponse createResponse = client.indices().create(
     new CreateIndexRequest.Builder()
         .index("my-index")
@@ -28,7 +22,6 @@ CreateIndexResponse createResponse = client.indices().create(
         .build()
 );
 ```
-% :::include::end -- do not remove
 
 Note that a builder should not be reused after its `build()` method has been called.
 
@@ -37,15 +30,9 @@ Note that a builder should not be reused after its `build()` method has been cal
 
 Although this works nicely, having to instantiate builder classes and call the `build()` method is a bit verbose. So every property setter in the Java API Client also accepts a lambda expression that takes a newly created builder as a parameter and returns a populated builder. The snippet above can also be written as:
 
-<!-- :::include
+% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=builder-lambdas
 ```java
-ElasticsearchClient client = ...
-:::{include} {doc-tests-src}/api_conventions/ApiConventionsTest.java[builder-lambdas]
-```
--->
-% :::include::start -- do not remove
-```java
-ElasticsearchClient client = ...
+ElasticsearchClient client = createClient();
 CreateIndexResponse createResponse = client.indices()
     .create(createIndexBuilder -> createIndexBuilder
         .index("my-index")
@@ -54,21 +41,14 @@ CreateIndexResponse createResponse = client.indices()
         )
     );
 ```
-% :::include::end -- do not remove
 
 This approach allows for much more concise code, and also avoids importing classes (and even remembering their names) since types are inferred from the method parameter signature.
 
 Note in the above example that builder variables are only used to start a chain of property setters. The names of these variables are therefore unimportant and can be shortened to improve readability:
 
-<!-- :::include
+% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=builder-lambdas-short
 ```java
-ElasticsearchClient client = ...
-:::{include} {doc-tests-src}/api_conventions/ApiConventionsTest.java[builder-lambdas-short]
-```
--->
-% :::include::start -- do not remove
-```java
-ElasticsearchClient client = ...
+ElasticsearchClient client = createClient();
 CreateIndexResponse createResponse = client.indices()
     .create(c -> c
         .index("my-index")
@@ -77,21 +57,14 @@ CreateIndexResponse createResponse = client.indices()
         )
     );
 ```
-% :::include::end -- do not remove
 
 Builder lambdas become particularly useful with complex nested queries like the one below, taken from the [intervals query API documentation](elasticsearch://reference/query-languages/query-dsl/query-dsl-intervals-query.md).
 
 This example also highlights a useful naming convention for builder parameters in deeply nested structures. For lambda expressions with a single argument, Kotlin provides the implicit `it` parameter and Scala allows use of `_`. This can be approximated in Java by using an underscore or a single letter prefix followed by a number representing the depth level (i.e. `_0`, `_1`, or `b0`, `b1` and so on). Not only does this remove the need to create throw-away variable names, but it also improves code readability. Correct indentation also allows the structure of the query to stand out.
 
-<!-- :::include
+% :::include-code src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=builder-intervals
 ```java
-ElasticsearchClient client = ...
-:::{include} {doc-tests-src}/api_conventions/ApiConventionsTest.java[builder-intervals]
-```
--->
-% :::include::start -- do not remove
-```java
-ElasticsearchClient client = ...
+ElasticsearchClient client = createClient();
 SearchResponse<SomeApplicationData> results = client
     .search(b0 -> b0
         .query(b1 -> b1
@@ -126,7 +99,6 @@ SearchResponse<SomeApplicationData> results = client
     SomeApplicationData.class // <1>
 );
 ```
-% :::include::end -- do not remove
 
 1. Search results will be mapped to `SomeApplicationData` instances to be readily available to the application.
 

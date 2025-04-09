@@ -26,25 +26,26 @@ import java.io.LineNumberReader;
 import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Objects;
 
 public class IncludeExpander {
 
     public static void main(String[] args) throws IOException {
 
-        File dir = new File(args[0]);
+
+        File dir = new File(args.length == 0 ? "docs/reference" : args[0]);
 
         if (!dir.isDirectory()) {
             throw new IllegalArgumentException(dir.getAbsolutePath() + " is not a directory");
         }
 
-        processDirectory(dir, Map.of("doc-tests-src", "../java-client/src/test/java/co/elastic/clients/documentation"));
+        processDirectory(dir, Map.of("doc-tests-src", "java-client/src/test/java/co/elastic/clients/documentation"));
     }
 
     public static void processDirectory(File dir, Map<String, String> subst) throws IOException {
-        System.out.println("Processing directory " + dir);
+        //System.out.println("Processing directory " + dir);
         // Traverse all files
         for (File file : dir.listFiles()) {
             if (file.isDirectory()) {
@@ -78,8 +79,8 @@ public class IncludeExpander {
 
     enum State {
         NORMAL_TEXT,
-        INCLUDE_DIRECTIVE,
-        INCLUDE_EXPANSION,
+        INCLUDE_CODE,
+        CODE_BLOCK,
     }
 
     public static void fail(String message, String path, LineNumberReader reader, Throwable e) {
@@ -87,8 +88,7 @@ public class IncludeExpander {
     }
 
     public static String expandText(String input, Map<String, String> subst, String path) throws IOException {
-        int start = input.indexOf("<!-- :::include");
-        if (start == -1) {
+        if (!input.contains("% :::include-code")) {
             // Nothing to do
             return null;
         }
@@ -97,22 +97,17 @@ public class IncludeExpander {
         StringBuilder output = new StringBuilder();
         State state = State.NORMAL_TEXT;
 
-        StringBuilder expanded = null;
+        String includeCodeLine = null;
 
         String line;
         while ((line = reader.readLine()) != null) {
 
             switch (state) {
                 case NORMAL_TEXT -> {
-                    if (line.startsWith("<!-- :::include")) {
+                    if (line.startsWith("% :::include-code")) {
                         output.append(line).append("\n");
-                        state = State.INCLUDE_DIRECTIVE;
-                        // Prepare template expansion
-                        expanded = new StringBuilder();
-
-                    } else if (line.startsWith("% :::include::start")) {
-                        // Skip line
-                        state = State.INCLUDE_EXPANSION;
+                        includeCodeLine = line;
+                        state = State.INCLUDE_CODE;
 
                     } else {
                         // Regular text line
@@ -120,34 +115,24 @@ public class IncludeExpander {
                     }
                 }
 
-                case INCLUDE_EXPANSION -> {
-                    // Always skip line, it will be replaced by the expansion result.
-                    if (line.startsWith("% :::include::end")) {
-                        state = State.NORMAL_TEXT;
+                case INCLUDE_CODE -> {
+                    if (!line.startsWith("```")) {
+                        fail("The '% :::include-code' should be followed by a code block", path, reader, null);
+                    }
+                    output.append(line).append("\n");
+                    state = State.CODE_BLOCK;
+                    try {
+                        expandIncludeCodeDirective(includeCodeLine, subst, output);
+                    } catch (Exception e) {
+                        fail("Failed to expand include directive", path, reader, e);
                     }
                 }
 
-                case INCLUDE_DIRECTIVE -> {
-                    // Keep template in the doc file
-                    output.append(line).append("\n");
-
-                    if (line.startsWith(":::{include}")) {
-                        try {
-                            expandIncludeDirective(line, subst, expanded);
-                        } catch(Exception e) {
-                            fail("Failed to expand include directive", path, reader, e);
-                        }
-
-                    } else if (line.startsWith("-->")) {
-                        // End of template: append expanded output with enclosing markers
-                        output.append("% :::include::start -- do not remove").append("\n");
-                        output.append(expanded);
-                        output.append("% :::include::end -- do not remove").append("\n");
+                case CODE_BLOCK -> {
+                    // Skip existing code until we reach the end
+                    if (line.startsWith("```")) {
+                        output.append(line).append("\n");
                         state = State.NORMAL_TEXT;
-
-                    } else {
-                        // Regular line in the include template
-                        expanded.append(line).append("\n");
                     }
                 }
             }
@@ -160,26 +145,23 @@ public class IncludeExpander {
         return output.toString();
     }
 
-    // Extracts path and tag from ":::include some/path/to/Source.java[tag-name]"
-    public static Pattern DIRECTIVE = Pattern.compile(":::\\{include}\\s+([^\\[]+)\\[([^]]*).*");
-
-    public static void expandIncludeDirective(String input, Map<String, String> subst, StringBuilder output) throws IOException {
-
-        Matcher matcher = DIRECTIVE.matcher(input);
-
-        if (!matcher.matches()) {
-            throw new RuntimeException("Invalid directive: " + input);
+    public static void expandIncludeCodeDirective(String command, Map<String, String> subst, StringBuilder output) throws IOException {
+        String[] s = command.split(" ");
+        Map<String, String> args = new HashMap<>();
+        for (int i = 2; i < s.length; i++) {
+            var kv = s[i].split("=");
+            args.put(kv[0], kv[1]);
         }
 
-        String path = matcher.group(1);
-        String tag = matcher.group(2);
+        var src = Objects.requireNonNull(args.get("src"), "Missing 'src' attribute");
+        var tag = Objects.requireNonNull(args.get("tag"), "Missing 'tag' attribute");
 
         // Brute force replacement of placeholders
         for (var kv: subst.entrySet()) {
-            path = path.replace("{" + kv.getKey() + "}", kv.getValue());
+            src = src.replace("{{" + kv.getKey() + "}}", kv.getValue());
         }
 
-        expandTaggedFile(path, tag, output);
+        expandTaggedFile(src, tag, output);
     }
 
     public static void expandTaggedFile(String path, String tag, StringBuilder output) throws IOException {
@@ -215,50 +197,5 @@ public class IncludeExpander {
         } else {
             throw new RuntimeException("Missing start tag '" + tag + "' in " + path);
         }
-    }
-
-    // TODO: write proper tests
-    public static void main0(String[] args) throws IOException {
-        var string = ":::{include} {doc-tests-src}/api_conventions/ApiConventionsTest.java[blocking-and-async]";
-
-        Matcher matcher = DIRECTIVE.matcher(string);
-        if (matcher.matches()) {
-            for (int i = 1; i <= matcher.groupCount(); i++) {
-                System.out.println(i + " - " + matcher.group(i));
-            }
-        } else {
-            System.out.println("No match found");
-        }
-
-    }
-
-
-    public static void main1(String[] args) throws IOException {
-
-        System.out.println(expandText("""
-            Text before
-
-            <!-- :::include
-            ```java
-            ElasticsearchTransport transport = ...
-            :::{include} {doc-tests-src}/api_conventions/ApiConventionsTest.java[blocking-and-async]
-            transport.close();
-            ```
-            -->
-            % :::include::start -- do not remove
-
-            ```java
-            ElasticsearchTransport transport = ...
-
-            ```
-
-            % :::include::end -- do not remove
-
-            Text after
-            """,
-            Map.of("doc-tests-src", "java-client/src/test/java/co/elastic/clients/documentation"),
-            "some-path"
-        ));
-
     }
 }
