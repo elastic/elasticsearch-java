@@ -5,6 +5,9 @@ mapped_pages:
 
 # Other authentication methods [_other_authentication_methods]
 
+:::{include} /reference/_snippets/legacy-rest-client.md
+:::
+
 ## Elasticsearch Token Service tokens [_elasticsearch_token_service_tokens]
 
 If you want the client to authenticate with an Elasticsearch access token, set the relevant HTTP request header. If the client makes requests on behalf of a single user only, you can set the necessary `Authorization` header as a default header as shown in the following example:

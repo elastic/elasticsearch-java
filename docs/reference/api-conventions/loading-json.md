@@ -41,7 +41,7 @@ CreateIndexRequest req = CreateIndexRequest.of(b -> b
     .withJson(input) // <2>
 );
 
-boolean created = client.indices().create(req).acknowledged();
+boolean created = esClient.indices().create(req).acknowledged();
 ```
 
 1. open an input stream for the JSON resource file.
@@ -64,7 +64,7 @@ req = IndexRequest.of(b -> b
     .withJson(file)
 );
 
-client.index(req);
+esClient.index(req);
 ```
 
 1. when calling `withJson()` on data structures that have generic type parameters, these generic types will be considered to be `JsonData`.
@@ -102,7 +102,7 @@ SearchRequest aggRequest = SearchRequest.of(b -> b
     .size(0)
 );
 
-Map<String, Aggregate> aggs = client
+Map<String, Aggregate> aggs = esClient
     .search(aggRequest, Void.class) // <3>
     .aggregations();
 ```
@@ -157,7 +157,7 @@ SearchRequest aggRequest = SearchRequest.of(b -> b
     .ignoreUnavailable(true) // <5>
 );
 
-Map<String, Aggregate> aggs = client
+Map<String, Aggregate> aggs = esClient
     .search(aggRequest, Void.class)
     .aggregations();
 ```

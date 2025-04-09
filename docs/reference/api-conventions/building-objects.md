@@ -12,8 +12,8 @@ All data types in the Java API Client are immutable. Object creation uses the [b
 
 % :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=builders
 ```java
-ElasticsearchClient client = createClient();
-CreateIndexResponse createResponse = client.indices().create(
+ElasticsearchClient esClient = createClient();
+CreateIndexResponse createResponse = esClient.indices().create(
     new CreateIndexRequest.Builder()
         .index("my-index")
         .aliases("foo",
@@ -32,8 +32,8 @@ Although this works nicely, having to instantiate builder classes and call the `
 
 % :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=builder-lambdas
 ```java
-ElasticsearchClient client = createClient();
-CreateIndexResponse createResponse = client.indices()
+ElasticsearchClient esClient = createClient();
+CreateIndexResponse createResponse = esClient.indices()
     .create(createIndexBuilder -> createIndexBuilder
         .index("my-index")
         .aliases("foo", aliasBuilder -> aliasBuilder
@@ -48,8 +48,8 @@ Note in the above example that builder variables are only used to start a chain 
 
 % :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=builder-lambdas-short
 ```java
-ElasticsearchClient client = createClient();
-CreateIndexResponse createResponse = client.indices()
+ElasticsearchClient esClient = createClient();
+CreateIndexResponse createResponse = esClient.indices()
     .create(c -> c
         .index("my-index")
         .aliases("foo", a -> a
@@ -64,8 +64,8 @@ This example also highlights a useful naming convention for builder parameters i
 
 % :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=builder-intervals
 ```java
-ElasticsearchClient client = createClient();
-SearchResponse<SomeApplicationData> results = client
+ElasticsearchClient esClient = createClient();
+SearchResponse<SomeApplicationData> results = esClient
     .search(b0 -> b0
         .query(b1 -> b1
             .intervals(b2 -> b2

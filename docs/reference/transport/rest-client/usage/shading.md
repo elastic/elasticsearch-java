@@ -5,6 +5,9 @@ mapped_pages:
 
 # Shading [java-rest-low-usage-shading]
 
+:::{include} /reference/_snippets/legacy-rest-client.md
+:::
+
 In order to avoid version conflicts, the dependencies can be shaded and packaged within the client in a single JAR file (sometimes called an "uber JAR" or "fat JAR"). Shading a dependency consists of taking its content (resources files and Java class files) and renaming some of its packages before putting them in the same JAR file as the low-level Java REST client. Shading a JAR can be accomplished by 3rd-party plugins for Gradle and Maven.
 
 Be advised that shading a JAR also has implications. Shading the Commons Logging layer, for instance, means that 3rd-party logging backends need to be shaded as well.

@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.transport.rest5_client.low_level.sniffer.documentation;
+package co.elastic.clients.documentation.rest5_client;
 
 import org.apache.hc.core5.http.HttpHost;
 import co.elastic.clients.transport.rest5_client.low_level.Node;
@@ -28,6 +28,7 @@ import co.elastic.clients.transport.rest5_client.low_level.sniffer.SniffOnFailur
 import co.elastic.clients.transport.rest5_client.low_level.sniffer.Sniffer;
 
 import java.io.IOException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -56,9 +57,10 @@ public class SnifferDocumentation {
     public void usage() throws IOException, URISyntaxException {
         {
             //tag::sniffer-init
-            Rest5Client restClient = Rest5Client.builder(
-                HttpHost.create("http://localhost:9200"))
+            Rest5Client restClient = Rest5Client
+                .builder(HttpHost.create("http://localhost:9200"))
                 .build();
+
             Sniffer sniffer = Sniffer.builder(restClient).build();
             //end::sniffer-init
 
@@ -69,9 +71,10 @@ public class SnifferDocumentation {
         }
         {
             //tag::sniffer-interval
-            Rest5Client restClient = Rest5Client.builder(
-                new HttpHost("localhost", 9200))
+            Rest5Client restClient = Rest5Client
+                .builder(new HttpHost("localhost", 9200))
                 .build();
+
             Sniffer sniffer = Sniffer.builder(restClient)
                 .setSniffIntervalMillis(60000).build();
             //end::sniffer-interval
@@ -80,13 +83,16 @@ public class SnifferDocumentation {
             //tag::sniff-on-failure
             SniffOnFailureListener sniffOnFailureListener =
                 new SniffOnFailureListener();
-            Rest5Client restClient = Rest5Client.builder(
-                new HttpHost("localhost", 9200))
+
+            Rest5Client restClient = Rest5Client
+                .builder(new HttpHost("localhost", 9200))
                 .setFailureListener(sniffOnFailureListener) // <1>
                 .build();
+
             Sniffer sniffer = Sniffer.builder(restClient)
                 .setSniffAfterFailureDelayMillis(30000) // <2>
                 .build();
+
             sniffOnFailureListener.setSniffer(sniffer); // <3>
             //end::sniff-on-failure
         }
@@ -95,10 +101,13 @@ public class SnifferDocumentation {
             Rest5Client restClient = Rest5Client.builder(
                     new HttpHost("localhost", 9200))
                     .build();
+
             NodesSniffer nodesSniffer = new ElasticsearchNodesSniffer(
                     restClient,
                     ElasticsearchNodesSniffer.DEFAULT_SNIFF_REQUEST_TIMEOUT,
-                    ElasticsearchNodesSniffer.Scheme.HTTPS);
+                    ElasticsearchNodesSniffer.Scheme.HTTPS
+            );
+
             Sniffer sniffer = Sniffer.builder(restClient)
                     .setNodesSniffer(nodesSniffer).build();
             //end::sniffer-https
@@ -108,25 +117,30 @@ public class SnifferDocumentation {
             Rest5Client restClient = Rest5Client.builder(
                 new HttpHost("localhost", 9200))
                 .build();
+
             NodesSniffer nodesSniffer = new ElasticsearchNodesSniffer(
                 restClient,
                 TimeUnit.SECONDS.toMillis(5),
-                ElasticsearchNodesSniffer.Scheme.HTTP);
+                ElasticsearchNodesSniffer.Scheme.HTTP
+            );
+
             Sniffer sniffer = Sniffer.builder(restClient)
                 .setNodesSniffer(nodesSniffer).build();
             //end::sniff-request-timeout
         }
         {
             //tag::custom-nodes-sniffer
-            Rest5Client restClient = Rest5Client.builder(
-                HttpHost.create("http://localhost:9200"))
+            Rest5Client restClient = Rest5Client
+                .builder(URI.create("http://localhost:9200"))
                 .build();
+
             NodesSniffer nodesSniffer = new NodesSniffer() {
-                    @Override
-                    public List<Node> sniff() throws IOException {
-                        return null; // <1>
-                    }
-                };
+                @Override
+                public List<Node> sniff() throws IOException {
+                    return null; // <1>
+                }
+            };
+
             Sniffer sniffer = Sniffer.builder(restClient)
                 .setNodesSniffer(nodesSniffer).build();
             //end::custom-nodes-sniffer

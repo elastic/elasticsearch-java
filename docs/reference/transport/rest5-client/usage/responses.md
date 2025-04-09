@@ -1,22 +1,17 @@
----
-mapped_pages:
-  - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/java-rest-low-usage-responses.html
----
 
-# Reading responses [java-rest-low-usage-responses]
-
-:::{include} /reference/_snippets/legacy-rest-client.md
-:::
+# Reading responses
 
 The `Response` object, either returned by the synchronous `performRequest` methods or received as an argument in `ResponseListener#onSuccess(Response)`, wraps the response object returned by the http client and exposes some additional information.
 
+% :::{include-code} src={{doc-tests-src}}/rest5_client/RestClientDocumentation.java tag=rest-client-response2
 ```java
 Response response = restClient.performRequest(new Request("GET", "/"));
-RequestLine requestLine = response.getRequestLine(); <1>
-HttpHost host = response.getHost(); <2>
-int statusCode = response.getStatusLine().getStatusCode(); <3>
-Header[] headers = response.getHeaders(); <4>
-String responseBody = EntityUtils.toString(response.getEntity()); <5>
+
+RequestLine requestLine = response.getRequestLine(); // <1>
+HttpHost host = response.getHost(); // <2>
+int statusCode = response.getStatusCode(); // <3>
+Header[] headers = response.getHeaders(); // <4>
+String responseBody = EntityUtils.toString(response.getEntity()); // <5>
 ```
 
 1. Information about the performed request
@@ -41,4 +36,8 @@ A `ResponseException` is **not** thrown for `HEAD` requests that return a `404` 
 
 Note that the low-level client doesn’t expose any helper for json marshalling and un-marshalling. Users are free to use the library that they prefer for that purpose.
 
-The underlying Apache Async Http Client ships with different [`org.apache.http.HttpEntity`](https://hc.apache.org/httpcomponents-core-4.4.x/current/httpcore/apidocs/org/apache/http/HttpEntity.html) implementations that allow to provide the request body in different formats (stream, byte array, string etc.). As for reading the response body, the `HttpEntity#getContent` method comes handy which returns an `InputStream` reading from the previously buffered response body. As an alternative, it is possible to provide a custom [`org.apache.http.nio.protocol.HttpAsyncResponseConsumer`](https://hc.apache.org/httpcomponents-core-4.4.x/current/httpcore-nio/apidocs/org/apache/http/nio/protocol/HttpAsyncResponseConsumer.html) that controls how bytes are read and buffered.
+The underlying Apache Async Http Client ships with different `HttpEntity` implementations that allow to provide the request body in different formats (stream, byte array, string etc.). As for reading the response body, the `HttpEntity#getContent` method comes handy which returns an `InputStream` reading from the previously buffered response body. As an alternative, it is possible to provide a custom `HttpAsyncResponseConsumer` that controls how bytes are read and buffered.
+
+<!--
+TODO update HttpAsyncResponseConsumer above
+-->

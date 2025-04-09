@@ -26,7 +26,7 @@ dependencies {
 
 In the `pom.xml` of your project, add the following repository definition and dependencies:
 
-```xml
+```xml subs=true
 <project>
   <dependencies>
 

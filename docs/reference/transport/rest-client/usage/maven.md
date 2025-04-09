@@ -5,6 +5,9 @@ mapped_pages:
 
 # Maven Repository [java-rest-low-usage-maven]
 
+:::{include} /reference/_snippets/legacy-rest-client.md
+:::
+
 The low-level Java REST client is hosted on [Maven Central](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.elasticsearch.client%22). The minimum Java version required is `1.8`.
 
 The low-level REST client is subject to the same release cycle as Elasticsearch. Replace the version with the desired client version, first released with `5.0.0-alpha4`. There is no relation between the client version and the Elasticsearch version that the client can communicate with. The low-level REST client is compatible with all Elasticsearch versions.

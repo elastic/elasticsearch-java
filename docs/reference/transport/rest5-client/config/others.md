@@ -1,12 +1,5 @@
----
-mapped_pages:
-  - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/_others.html
----
 
-# Others [_others]
-
-:::{include} /reference/_snippets/legacy-rest-client.md
-:::
+# Others
 
 For any other required configuration needed, the Apache HttpAsyncClient docs should be consulted: [https://hc.apache.org/httpcomponents-asyncclient-4.1.x/](https://hc.apache.org/httpcomponents-asyncclient-4.1.x/) .
 

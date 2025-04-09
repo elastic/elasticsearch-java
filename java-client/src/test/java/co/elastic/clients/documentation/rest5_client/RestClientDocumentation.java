@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.transport.rest5_client.low_level.documentation;
+package co.elastic.clients.documentation.rest5_client;
 
 import co.elastic.clients.transport.rest5_client.low_level.Cancellable;
 import co.elastic.clients.transport.rest5_client.low_level.HttpAsyncResponseConsumerFactory;
@@ -51,6 +51,7 @@ import org.apache.hc.core5.util.Timeout;
 import javax.net.ssl.SSLContext;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -85,25 +86,29 @@ import java.util.concurrent.TimeUnit;
 public class RestClientDocumentation {
     private static final String TOKEN = "DUMMY";
 
-    // tag::rest-client-options-singleton
+    //tag::rest-client-options-singleton
     private static final RequestOptions COMMON_OPTIONS;
 
     static {
-        RequestOptions.Builder builder = RequestOptions.DEFAULT.toBuilder();
-        builder.addHeader("Authorization", "Bearer " + TOKEN); // <1>
-        builder.setHttpAsyncResponseConsumerFactory(           // <2>
-            HttpAsyncResponseConsumerFactory.DEFAULT);
+        RequestOptions.Builder builder = RequestOptions.DEFAULT
+            .toBuilder()
+            .addHeader("Authorization", "Bearer " + TOKEN) // <1>
+            .setHttpAsyncResponseConsumerFactory(           // <2>
+                HttpAsyncResponseConsumerFactory.DEFAULT
+            );
+
         COMMON_OPTIONS = builder.build();
     }
-    // end::rest-client-options-singleton
+    //end::rest-client-options-singleton
 
     @SuppressWarnings("unused")
     public void usage() throws IOException, InterruptedException, ParseException {
 
         //tag::rest-client-init
         Rest5Client restClient = Rest5Client.builder(
-            new HttpHost("http", "localhost", 9200),
-            new HttpHost("http", "localhost", 9201)).build();
+            URI.create("http://localhost:9200"),
+            URI.create("http://localhost:9201")
+        ).build();
         //end::rest-client-init
 
         //tag::rest-client-close
@@ -112,24 +117,26 @@ public class RestClientDocumentation {
 
         {
             //tag::rest-client-init-default-headers
-            Rest5ClientBuilder builder = Rest5Client.builder(
-                new HttpHost("http", "localhost", 9200));
+            Rest5ClientBuilder builder = Rest5Client
+                .builder(new HttpHost("http", "localhost", 9200));
+
             Header[] defaultHeaders = new Header[]{new BasicHeader("header", "value")};
             builder.setDefaultHeaders(defaultHeaders); // <1>
             //end::rest-client-init-default-headers
         }
         {
             //tag::rest-client-init-node-selector
-            Rest5ClientBuilder builder = Rest5Client.builder(
-                new HttpHost("http", "localhost", 9200));
+            Rest5ClientBuilder builder = Rest5Client
+                .builder(new HttpHost("http", "localhost", 9200));
+
             builder.setNodeSelector(NodeSelector.SKIP_DEDICATED_MASTERS); // <1>
             //end::rest-client-init-node-selector
         }
         {
             //tag::rest-client-init-allocation-aware-selector
-            Rest5ClientBuilder builder = Rest5Client.builder(
-                new HttpHost("http", "localhost", 9200));
-            // <1>
+            Rest5ClientBuilder builder = Rest5Client
+                .builder(new HttpHost("http", "localhost", 9200));
+
             builder.setNodeSelector(nodes -> { // <1>
                 /*
                  * Prefer any node that belongs to rack_one. If none is around
@@ -149,7 +156,7 @@ public class RestClientDocumentation {
                     while (nodesIt.hasNext()) {
                         Node node = nodesIt.next();
                         String rackId = node.getAttributes().get("rack_id").get(0);
-                        if ("rack_one".equals(rackId) == false) {
+                        if (!"rack_one".equals(rackId)) {
                             nodesIt.remove();
                         }
                     }
@@ -159,8 +166,9 @@ public class RestClientDocumentation {
         }
         {
             //tag::rest-client-init-failure-listener
-            Rest5ClientBuilder builder = Rest5Client.builder(
-                new HttpHost("http", "localhost", 9200));
+            Rest5ClientBuilder builder = Rest5Client
+                .builder(new HttpHost("http", "localhost", 9200));
+
             builder.setFailureListener(new Rest5Client.FailureListener() {
                 @Override
                 public void onFailure(Node node) {
@@ -179,9 +187,10 @@ public class RestClientDocumentation {
             CloseableHttpAsyncClient httpclient = HttpAsyncClients.custom()
                 .setConnectionManager(connectionManager)
                 .build();
-            Rest5ClientBuilder builder = Rest5Client.builder(
-                new HttpHost("http", "localhost", 9200));
-            builder.setHttpClient(httpclient);
+
+            Rest5ClientBuilder builder = Rest5Client
+                .builder(new HttpHost("http", "localhost", 9200))
+                .setHttpClient(httpclient);
             //end::rest-client-init-request-config-callback
         }
 
@@ -190,6 +199,7 @@ public class RestClientDocumentation {
             Request request = new Request(
                 "GET",  // <1>
                 "/");   // <2>
+
             Response response = restClient.performRequest(request);
             //end::rest-client-sync
         }
@@ -198,7 +208,9 @@ public class RestClientDocumentation {
             Request request = new Request(
                 "GET",  // <1>
                 "/");   // <2>
-            Cancellable cancellable = restClient.performRequestAsync(request,
+
+            Cancellable cancellable = restClient.performRequestAsync(
+                request,
                 new ResponseListener() {
                     @Override
                     public void onSuccess(Response response) {
@@ -214,17 +226,21 @@ public class RestClientDocumentation {
         }
         {
             Request request = new Request("GET", "/");
+
             //tag::rest-client-parameters
             request.addParameter("pretty", "true");
             //end::rest-client-parameters
+
             //tag::rest-client-body
             request.setEntity(new StringEntity(
                 "{\"json\":\"text\"}",
                 ContentType.APPLICATION_JSON));
             //end::rest-client-body
+
             //tag::rest-client-body-shorter
             request.setJsonEntity("{\"json\":\"text\"}");
             //end::rest-client-body-shorter
+
             //tag::rest-client-options-set-singleton
             request.setOptions(COMMON_OPTIONS);
             //end::rest-client-options-set-singleton
@@ -287,6 +303,7 @@ public class RestClientDocumentation {
         {
             //tag::rest-client-response2
             Response response = restClient.performRequest(new Request("GET", "/"));
+
             RequestLine requestLine = response.getRequestLine(); // <1>
             HttpHost host = response.getHost(); // <2>
             int statusCode = response.getStatusCode(); // <3>
@@ -307,8 +324,8 @@ public class RestClientDocumentation {
                 .setDefaultRequestConfig(requestConfigBuilder.build())
                 .build();
 
-            Rest5ClientBuilder builder = Rest5Client.builder(
-                    new HttpHost("localhost", 9200))
+            Rest5ClientBuilder builder = Rest5Client
+                .builder(new HttpHost("localhost", 9200))
                 .setHttpClient(httpclient);
             //end::rest-client-config-timeouts
         }
@@ -318,6 +335,7 @@ public class RestClientDocumentation {
                 .setConnectTimeout(Timeout.ofMilliseconds(5000))
                 .setConnectionRequestTimeout(Timeout.ofMilliseconds(60000))
                 .build();
+
             RequestOptions options = RequestOptions.DEFAULT.toBuilder()
                 .setRequestConfig(requestConfig)
                 .build();
@@ -326,22 +344,23 @@ public class RestClientDocumentation {
         {
             //tag::rest-client-config-threads
             CloseableHttpAsyncClient httpclient = HttpAsyncClients.custom()
-                .setIOReactorConfig(IOReactorConfig.custom()
-                    .setIoThreadCount(1).build())
+                .setIOReactorConfig(
+                    IOReactorConfig.custom().setIoThreadCount(1).build()
+                )
                 .build();
 
-            Rest5ClientBuilder builder = Rest5Client.builder(
-                    new HttpHost("localhost", 9200))
+            Rest5ClientBuilder builder = Rest5Client
+                .builder(new HttpHost("localhost", 9200))
                 .setHttpClient(httpclient);
             //end::rest-client-config-threads
         }
         {
             //tag::rest-client-config-basic-auth
+            var creds = Base64.getEncoder()
+                .encodeToString("user:test-user-password".getBytes());
 
-            var creds = Base64.getEncoder().encodeToString("user:test-user-password".getBytes());
-
-            Rest5ClientBuilder restClient = Rest5Client.builder(new HttpHost("https", "localhost",
-                    9200))
+            Rest5ClientBuilder restClient = Rest5Client
+                .builder(new HttpHost("https", "localhost", 9200))
                 .setDefaultHeaders(new Header[]{
                     new BasicHeader("Authorization", "Basic " + creds)
                 });
@@ -355,11 +374,11 @@ public class RestClientDocumentation {
             var creds = Base64.getEncoder().encodeToString("user:test-user-password".getBytes());
 
             CloseableHttpAsyncClient httpclient = HttpAsyncClients.custom()
-                .disableAuthCaching()
+                .disableAuthCaching() // <1>
                 .build();
 
-            Rest5ClientBuilder restClient = Rest5Client.builder(new HttpHost("https", "localhost",
-                    9200))
+            Rest5ClientBuilder restClient = Rest5Client
+                .builder(new HttpHost("https", "localhost", 9200))
                 .setHttpClient(httpclient)
                 .setDefaultHeaders(new Header[]{
                     new BasicHeader("Authorization", "Basic " + creds)
@@ -374,33 +393,35 @@ public class RestClientDocumentation {
             try (InputStream is = Files.newInputStream(trustStorePath)) {
                 truststore.load(is, keyStorePass.toCharArray());
             }
-            SSLContextBuilder sslBuilder = SSLContexts.custom()
-                .loadTrustMaterial(truststore, null);
-            final SSLContext sslContext = sslBuilder.build();
-            Rest5ClientBuilder builder = Rest5Client.builder(
-                    new HttpHost("https", "localhost",
-                        9200))
+
+            SSLContext sslContext = SSLContexts.custom()
+                .loadTrustMaterial(truststore, null)
+                .build();
+
+            Rest5ClientBuilder builder = Rest5Client
+                .builder(new HttpHost("https", "localhost", 9200))
                 .setSSLContext(sslContext);
             //end::rest-client-config-encrypted-communication
         }
         {
             //tag::rest-client-config-trust-ca-pem
             Path caCertificatePath = Paths.get("/path/to/ca.crt");
-            CertificateFactory factory =
-                CertificateFactory.getInstance("X.509");
+            CertificateFactory factory = CertificateFactory.getInstance("X.509");
             Certificate trustedCa;
             try (InputStream is = Files.newInputStream(caCertificatePath)) {
                 trustedCa = factory.generateCertificate(is);
             }
+
             KeyStore trustStore = KeyStore.getInstance("pkcs12");
             trustStore.load(null, null);
             trustStore.setCertificateEntry("ca", trustedCa);
-            SSLContextBuilder sslContextBuilder = SSLContexts.custom()
-                .loadTrustMaterial(trustStore, null);
-            final SSLContext sslContext = sslContextBuilder.build();
-            Rest5Client.builder(
-                    new HttpHost("https", "localhost",
-                        9200))
+
+            SSLContext sslContext = SSLContexts.custom()
+                .loadTrustMaterial(trustStore, null)
+                .build();
+
+            Rest5Client
+                .builder(new HttpHost("https", "localhost", 9200))
                 .setSSLContext(sslContext);
             //end::rest-client-config-trust-ca-pem
         }
@@ -412,30 +433,35 @@ public class RestClientDocumentation {
             Path keyStorePath = Paths.get("/path/to/your/keystore.p12");
             KeyStore trustStore = KeyStore.getInstance("pkcs12");
             KeyStore keyStore = KeyStore.getInstance("pkcs12");
+
             try (InputStream is = Files.newInputStream(trustStorePath)) {
                 trustStore.load(is, trustStorePass.toCharArray());
             }
+
             try (InputStream is = Files.newInputStream(keyStorePath)) {
                 keyStore.load(is, keyStorePass.toCharArray());
             }
-            SSLContextBuilder sslBuilder = SSLContexts.custom()
+
+            SSLContext sslContext = SSLContexts.custom()
                 .loadTrustMaterial(trustStore, null)
-                .loadKeyMaterial(keyStore, keyStorePass.toCharArray());
-            final SSLContext sslContext = sslBuilder.build();
-            Rest5Client.builder(
-                    new HttpHost("https", "localhost",
-                        9200))
+                .loadKeyMaterial(keyStore, keyStorePass.toCharArray())
+                .build();
+
+            Rest5Client
+                .builder(new HttpHost("https", "localhost", 9200))
                 .setSSLContext(sslContext);
             //end::rest-client-config-mutual-tls-authentication
         }
         {
             //tag::rest-client-auth-bearer-token
-            Rest5ClientBuilder builder = Rest5Client.builder(
-                new HttpHost("https", "localhost",
-                    9200));
-            Header[] defaultHeaders =
-                new Header[]{new BasicHeader("Authorization",
-                    "Bearer u6iuAxZ0RG1Kcm5jVFI4eU4tZU9aVFEwT2F3")};
+            Rest5ClientBuilder builder = Rest5Client
+                .builder(new HttpHost("https", "localhost", 9200));
+
+            Header[] defaultHeaders = new Header[]{ new BasicHeader(
+                "Authorization",
+                "Bearer u6iuAxZ0RG1Kcm5jVFI4eU4tZU9aVFEwT2F3"
+            )};
+
             builder.setDefaultHeaders(defaultHeaders);
             //end::rest-client-auth-bearer-token
         }
@@ -443,19 +469,20 @@ public class RestClientDocumentation {
             //tag::rest-client-auth-api-key
             String apiKeyId = "uqlEyn8B_gQ_jlvwDIvM";
             String apiKeySecret = "HxHWk2m4RN-V_qg9cDpuX";
-            String apiKeyAuth =
-                Base64.getEncoder().encodeToString(
-                    (apiKeyId + ":" + apiKeySecret)
-                        .getBytes(StandardCharsets.UTF_8));
-            Rest5ClientBuilder builder = Rest5Client.builder(
-                new HttpHost("https", "localhost",
-                    9200));
-            Header[] defaultHeaders =
-                new Header[]{new BasicHeader("Authorization",
-                    "ApiKey " + apiKeyAuth)};
+            String apiKeyAuth = Base64.getEncoder().encodeToString(
+                    (apiKeyId + ":" + apiKeySecret).getBytes(StandardCharsets.UTF_8)
+            );
+
+            Rest5ClientBuilder builder = Rest5Client
+                .builder(new HttpHost("https", "localhost", 9200));
+
+            Header[] defaultHeaders = new Header[]{ new BasicHeader(
+                "Authorization",
+                "ApiKey " + apiKeyAuth
+            )};
+
             builder.setDefaultHeaders(defaultHeaders);
             //end::rest-client-auth-api-key
         }
-
     }
 }

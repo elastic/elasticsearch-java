@@ -5,6 +5,9 @@ mapped_pages:
 
 # Dependencies [java-rest-low-usage-dependencies]
 
+:::{include} /reference/_snippets/legacy-rest-client.md
+:::
+
 The low-level Java REST client internally uses the [Apache Http Async Client](https://hc.apache.org/httpcomponents-asyncclient-4.1.x/) to send http requests. It depends on the following artifacts, namely the async http client and its own transitive dependencies:
 
 * org.apache.httpcomponents:httpasyncclient

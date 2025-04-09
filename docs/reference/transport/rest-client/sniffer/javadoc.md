@@ -5,5 +5,8 @@ mapped_pages:
 
 # Javadoc [java-rest-sniffer-javadoc]
 
+:::{include} /reference/_snippets/legacy-rest-client.md
+:::
+
 The javadoc for the REST client sniffer can be found at [https://snapshots.elastic.co/javadoc/org/elasticsearch/client/elasticsearch-rest-client-sniffer/{{version}}/index.html](https://snapshots.elastic.co/javadoc/org/elasticsearch/client/elasticsearch-rest-client-sniffer/{{version}}/index.md).
 

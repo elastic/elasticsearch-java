@@ -5,6 +5,9 @@ mapped_pages:
 
 # Maven Repository [_maven_repository]
 
+:::{include} /reference/_snippets/legacy-rest-client.md
+:::
+
 The REST client sniffer is subject to the same release cycle as Elasticsearch. Replace the version with the desired sniffer version, first released with `5.0.0-alpha4`. There is no relation between the sniffer version and the Elasticsearch version that the client can communicate with. Sniffer supports fetching the nodes list from Elasticsearch 2.x and onwards.
 
 If you are looking for a SNAPSHOT version, the Elastic Maven Snapshot repository is available at [https://snapshots.elastic.co/maven/](https://snapshots.elastic.co/maven/).
@@ -28,7 +31,7 @@ Here is how you can configure the dependency using gradle as a dependency manage
 
 ```groovy
 dependencies {
-    compile 'org.elasticsearch.client:elasticsearch-rest-client-sniffer:9.0.0-beta1'
+    compile 'org.elasticsearch.client:elasticsearch-rest-client-sniffer:{{version}}'
 }
 ```
 

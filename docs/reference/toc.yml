@@ -39,6 +39,30 @@ toc:
     children:
       - file: index.md
 
+      - folder: rest5-client
+        children:
+          - file: index.md
+          - folder: usage
+            children:
+              - file: index.md
+              - file: initialization.md
+              - file: requests.md
+              - file: responses.md
+              - file: logging.md
+          - folder: config
+            children:
+              - file: index.md
+              - file: timeouts.md
+              - file: number_of_threads.md
+              - file: basic_authentication.md
+              - file: other_authentication_methods.md
+              - file: encrypted_communication.md
+              - file: others.md
+              - file: node_selector.md
+          - folder: sniffer
+            children:
+              - file: index.md
+
       - folder: rest-client
         children:
           - file: index.md

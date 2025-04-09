@@ -12,9 +12,9 @@ Both flavors can be used at the same time depending on your needs, sharing the s
 % :::{include-code} src={{doc-tests-src}}/api_conventions/ApiConventionsTest.java tag=blocking-and-async
 ```java
 // Synchronous blocking client
-ElasticsearchClient client = new ElasticsearchClient(transport);
+ElasticsearchClient esClient = new ElasticsearchClient(transport);
 
-if (client.exists(b -> b.index("products").id("foo")).value()) {
+if (esClient.exists(b -> b.index("products").id("foo")).value()) {
     logger.info("product exists");
 }
 

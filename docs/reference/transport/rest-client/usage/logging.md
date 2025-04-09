@@ -5,6 +5,9 @@ mapped_pages:
 
 # Logging [java-rest-low-usage-logging]
 
+:::{include} /reference/_snippets/legacy-rest-client.md
+:::
+
 The Java REST client uses the same logging library that the Apache Async Http Client uses: [Apache Commons Logging](https://commons.apache.org/proper/commons-logging/), which comes with support for a number of popular logging implementations. The java packages to enable logging for are `org.elasticsearch.client` for the client itself and `org.elasticsearch.client.sniffer` for the sniffer.
 
 The request tracer logging can also be enabled to log every request and corresponding response in curl format. That comes handy when debugging, for instance in case a request needs to be manually executed to check whether it still yields the same response as it did. Enable trace logging for the `tracer` package to have such log lines printed out. Do note that this type of logging is expensive and should not be enabled at all times in production environments, but rather temporarily used only when needed.

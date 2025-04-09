@@ -5,6 +5,9 @@ mapped_pages:
 
 # Getting started [java-rest-low-usage]
 
+:::{include} /reference/_snippets/legacy-rest-client.md
+:::
+
 This section describes how to get started with the low-level REST client from getting the artifact to using it in an application.
 
 

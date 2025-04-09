@@ -5,6 +5,9 @@ mapped_pages:
 
 # Number of threads [_number_of_threads]
 
+:::{include} /reference/_snippets/legacy-rest-client.md
+:::
+
 The Apache Http Async Client starts by default one dispatcher thread, and a number of worker threads used by the connection manager, as many as the number of locally detected processors (depending on what `Runtime.getRuntime().availableProcessors()` returns). The number of threads can be modified as follows:
 
 ```java

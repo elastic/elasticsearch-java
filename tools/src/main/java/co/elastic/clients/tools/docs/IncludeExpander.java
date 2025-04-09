@@ -185,14 +185,19 @@ public class IncludeExpander {
         String content = Files.readString(file.toPath());
         var reader = new BufferedReader(new StringReader(content));
 
-        String startTag = "//tag::" + tag;
-        String endTag = "//end::" + tag;
+        String startTag = "tag::" + tag;
+        String endTag = "end::" + tag;
 
         String line;
-        int pos;
         boolean found = false;
         while ((line = reader.readLine()) != null) {
-            if ((pos = line.indexOf(startTag)) >= 0) {
+            if (line.contains(startTag)) {
+                // Find indentation level
+                int start = 0;
+                while (Character.isWhitespace(line.charAt(start))) {
+                    start++;
+                }
+
                 found = true;
                 while((line = reader.readLine()) != null) {
                     if (line.contains(endTag)) {
@@ -200,8 +205,8 @@ public class IncludeExpander {
                     }
                     // If the line has more characters than the tag's initial position,
                     // assume it's whitespace and truncate it to remove indentation.
-                    if (line.length() > pos) {
-                        line = line.substring(pos);
+                    if (line.length() > start) {
+                        line = line.substring(start);
                     }
                     output.append(line).append("\n");
                 }
