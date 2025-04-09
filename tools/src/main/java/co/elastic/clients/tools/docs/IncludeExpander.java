@@ -30,10 +30,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Processes the {@code .md} files in a directory expanding code blocks following a custom directive
+ * (expressed as MyST comment):
+ * <pre>
+ *     % :::{include-code} src={{doc-tests-src}}/path/to/SomeCode.java tag=some-marker
+ *     ```java
+ *       this is replaced by the section of SomeCode.java delimited
+ *       with `tag::some-marker` and `end::some-marker`
+ *     ```
+ * </pre>
+ *
+ * Note: the MyST format has the {@code {literalinclude}} directive, which is currently only partially supported
+ * by docs-builder (the whole file is included, ignoring {@code start-after} and {@code end-before} parameters).
+ * <p>
+ * See <a href="https://mystmd.org/guide/code#docs-literalinclude">MyST docs</a>
+ */
 public class IncludeExpander {
 
     public static void main(String[] args) throws IOException {
-
 
         File dir = new File(args.length == 0 ? "docs/reference" : args[0]);
 
@@ -41,6 +56,7 @@ public class IncludeExpander {
             throw new IllegalArgumentException(dir.getAbsolutePath() + " is not a directory");
         }
 
+        // FIXME: we should read this from `docset.yml` in the `dir` directory.
         processDirectory(dir, Map.of("doc-tests-src", "java-client/src/test/java/co/elastic/clients/documentation"));
     }
 
@@ -79,8 +95,8 @@ public class IncludeExpander {
 
     enum State {
         NORMAL_TEXT,
-        INCLUDE_CODE,
-        CODE_BLOCK,
+        INCLUDE_CODE_DIRECTIVE,
+        REPLACED_CODE_BLOCK,
     }
 
     public static void fail(String message, String path, LineNumberReader reader, Throwable e) {
@@ -107,7 +123,7 @@ public class IncludeExpander {
                     if (line.startsWith("% :::{include-code}")) {
                         output.append(line).append("\n");
                         includeCodeLine = line;
-                        state = State.INCLUDE_CODE;
+                        state = State.INCLUDE_CODE_DIRECTIVE;
 
                     } else {
                         // Regular text line
@@ -115,12 +131,12 @@ public class IncludeExpander {
                     }
                 }
 
-                case INCLUDE_CODE -> {
+                case INCLUDE_CODE_DIRECTIVE -> {
                     if (!line.startsWith("```")) {
                         fail("The '% :::{include-code}' should be followed by a code block", path, reader, null);
                     }
                     output.append(line).append("\n");
-                    state = State.CODE_BLOCK;
+                    state = State.REPLACED_CODE_BLOCK;
                     try {
                         expandIncludeCodeDirective(includeCodeLine, subst, output);
                     } catch (Exception e) {
@@ -128,7 +144,7 @@ public class IncludeExpander {
                     }
                 }
 
-                case CODE_BLOCK -> {
+                case REPLACED_CODE_BLOCK -> {
                     // Skip existing code until we reach the end
                     if (line.startsWith("```")) {
                         output.append(line).append("\n");
@@ -156,7 +172,7 @@ public class IncludeExpander {
         var src = Objects.requireNonNull(args.get("src"), "Missing 'src' attribute");
         var tag = Objects.requireNonNull(args.get("tag"), "Missing 'tag' attribute");
 
-        // Brute force replacement of placeholders
+        // Brute force replacement of placeholders. We can do better.
         for (var kv: subst.entrySet()) {
             src = src.replace("{{" + kv.getKey() + "}}", kv.getValue());
         }
