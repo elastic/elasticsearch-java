@@ -23,7 +23,6 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
@@ -32,6 +31,7 @@ import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -49,37 +49,37 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.aggregations.AggregationRangeBase
+// typedef: _types.aggregations.DateRangeExpression
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.aggregations.AggregationRangeBase">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.DateRangeExpression">API
  *      specification</a>
  */
-
-public abstract class AggregationRangeBase<T> implements JsonpSerializable {
+@JsonpDeserializable
+public class DateRangeExpression implements JsonpSerializable {
 	@Nullable
-	private final T from;
+	private final FieldDateMath from;
 
 	@Nullable
 	private final String key;
 
 	@Nullable
-	private final T to;
-
-	@Nullable
-	private final JsonpSerializer<T> tSerializer;
+	private final FieldDateMath to;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected AggregationRangeBase(AbstractBuilder<T, ?> builder) {
+	private DateRangeExpression(Builder builder) {
 
 		this.from = builder.from;
 		this.key = builder.key;
 		this.to = builder.to;
-		this.tSerializer = builder.tSerializer;
 
+	}
+
+	public static DateRangeExpression of(Function<Builder, ObjectBuilder<DateRangeExpression>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,7 +88,7 @@ public abstract class AggregationRangeBase<T> implements JsonpSerializable {
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public final T from() {
+	public final FieldDateMath from() {
 		return this.from;
 	}
 
@@ -108,7 +108,7 @@ public abstract class AggregationRangeBase<T> implements JsonpSerializable {
 	 * API name: {@code to}
 	 */
 	@Nullable
-	public final T to() {
+	public final FieldDateMath to() {
 		return this.to;
 	}
 
@@ -125,7 +125,7 @@ public abstract class AggregationRangeBase<T> implements JsonpSerializable {
 
 		if (this.from != null) {
 			generator.writeKey("from");
-			JsonpUtils.serialize(this.from, generator, tSerializer, mapper);
+			this.from.serialize(generator, mapper);
 
 		}
 		if (this.key != null) {
@@ -135,7 +135,7 @@ public abstract class AggregationRangeBase<T> implements JsonpSerializable {
 		}
 		if (this.to != null) {
 			generator.writeKey("to");
-			JsonpUtils.serialize(this.to, generator, tSerializer, mapper);
+			this.to.serialize(generator, mapper);
 
 		}
 
@@ -146,29 +146,41 @@ public abstract class AggregationRangeBase<T> implements JsonpSerializable {
 		return JsonpUtils.toString(this);
 	}
 
-	public abstract static class AbstractBuilder<T, BuilderT extends AbstractBuilder<T, BuilderT>>
-			extends
-				WithJsonObjectBuilderBase<BuilderT> {
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link DateRangeExpression}.
+	 */
+
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<DateRangeExpression> {
 		@Nullable
-		private T from;
+		private FieldDateMath from;
 
 		@Nullable
 		private String key;
 
 		@Nullable
-		private T to;
-
-		@Nullable
-		private JsonpSerializer<T> tSerializer;
+		private FieldDateMath to;
 
 		/**
 		 * Start of the range (inclusive).
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public final BuilderT from(@Nullable T value) {
+		public final Builder from(@Nullable FieldDateMath value) {
 			this.from = value;
-			return self();
+			return this;
+		}
+
+		/**
+		 * Start of the range (inclusive).
+		 * <p>
+		 * API name: {@code from}
+		 */
+		public final Builder from(Function<FieldDateMath.Builder, ObjectBuilder<FieldDateMath>> fn) {
+			return this.from(fn.apply(new FieldDateMath.Builder()).build());
 		}
 
 		/**
@@ -176,9 +188,9 @@ public abstract class AggregationRangeBase<T> implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code key}
 		 */
-		public final BuilderT key(@Nullable String value) {
+		public final Builder key(@Nullable String value) {
 			this.key = value;
-			return self();
+			return this;
 		}
 
 		/**
@@ -186,31 +198,51 @@ public abstract class AggregationRangeBase<T> implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code to}
 		 */
-		public final BuilderT to(@Nullable T value) {
+		public final Builder to(@Nullable FieldDateMath value) {
 			this.to = value;
-			return self();
+			return this;
 		}
 
 		/**
-		 * Serializer for T. If not set, an attempt will be made to find a serializer
-		 * from the JSON context.
+		 * End of the range (exclusive).
+		 * <p>
+		 * API name: {@code to}
 		 */
-		public final BuilderT tSerializer(@Nullable JsonpSerializer<T> value) {
-			this.tSerializer = value;
-			return self();
+		public final Builder to(Function<FieldDateMath.Builder, ObjectBuilder<FieldDateMath>> fn) {
+			return this.to(fn.apply(new FieldDateMath.Builder()).build());
 		}
 
-		protected abstract BuilderT self();
+		@Override
+		protected Builder self() {
+			return this;
+		}
 
+		/**
+		 * Builds a {@link DateRangeExpression}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public DateRangeExpression build() {
+			_checkSingleUse();
+
+			return new DateRangeExpression(this);
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
-	protected static <T, BuilderT extends AbstractBuilder<T, BuilderT>> void setupAggregationRangeBaseDeserializer(
-			ObjectDeserializer<BuilderT> op, JsonpDeserializer<T> tDeserializer) {
 
-		op.add(AbstractBuilder::from, tDeserializer, "from");
-		op.add(AbstractBuilder::key, JsonpDeserializer.stringDeserializer(), "key");
-		op.add(AbstractBuilder::to, tDeserializer, "to");
+	/**
+	 * Json deserializer for {@link DateRangeExpression}
+	 */
+	public static final JsonpDeserializer<DateRangeExpression> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DateRangeExpression::setupDateRangeExpressionDeserializer);
+
+	protected static void setupDateRangeExpressionDeserializer(ObjectDeserializer<DateRangeExpression.Builder> op) {
+
+		op.add(Builder::from, FieldDateMath._DESERIALIZER, "from");
+		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
+		op.add(Builder::to, FieldDateMath._DESERIALIZER, "to");
 
 	}
 
