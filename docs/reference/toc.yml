@@ -35,6 +35,14 @@ toc:
       - file: aggregations.md
       - file: esql.md
 
+  - folder: troubleshooting
+    children:
+      - file: index.md
+      - file: missing-required-property.md
+      - file: no-such-method-request-options.md
+      - file: io-reactor-errors.md
+      - file: serialize-without-typed-keys.md
+
   - folder: transport
     children:
       - file: index.md

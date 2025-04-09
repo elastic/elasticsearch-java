@@ -13,7 +13,7 @@ Requirements:
 Releases are hosted on [Maven Central](https://search.maven.org/search?q=g:co.elastic.clients). If you are looking for a SNAPSHOT version, the Elastic Maven Snapshot repository is available at [https://snapshots.elastic.co/maven/](https://snapshots.elastic.co/maven/).
 
 
-## Installation in a Gradle project by using Jackson [gradle]
+## Installation in a Gradle project [gradle]
 
 ```groovy subs=true
 dependencies {
@@ -22,7 +22,7 @@ dependencies {
 ```
 
 
-## Installation in a Maven project by using Jackson [maven]
+## Installation in a Maven project [maven]
 
 In the `pom.xml` of your project, add the following repository definition and dependencies:
 

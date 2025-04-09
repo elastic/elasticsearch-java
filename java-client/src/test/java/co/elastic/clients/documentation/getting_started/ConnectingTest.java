@@ -47,8 +47,6 @@ public class ConnectingTest {
         ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
             .host(serverUrl)
             .apiKey(apiKey)
-            // Use the Jackson mapper to deserialize JSON to application objects
-            .jsonMapper(new JacksonJsonpMapper())
         );
 
         // Use the client...

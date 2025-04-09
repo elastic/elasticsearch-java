@@ -3,21 +3,18 @@ mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/getting-started-java.html
 ---
 
-# Getting started [getting-started-java]
+# Getting started
 
 This page guides you through the installation process of the Java client, shows you how to instantiate the client, and how to perform basic Elasticsearch operations with it.
 
+### Requirements
 
-### Requirements [_requirements]
+Java 17 or later.
 
-* Java 17 or later.
-* A JSON object mapping library to allow seamless integration of your application classes with the Elasticsearch API. The examples below show usage with Jackson, which is the default.
-
-
-### Installation [_installation]
+### Installation
 
 
-#### Installation in a Gradle project by using Jackson [_installation_in_a_gradle_project_by_using_jackson]
+#### Installation in a Gradle project
 
 ```groovy subs=true
 dependencies {
@@ -26,7 +23,7 @@ dependencies {
 ```
 
 
-#### Installation in a Maven project by using Jackson [_installation_in_a_maven_project_by_using_jackson]
+#### Installation in a Maven project
 
 In the `pom.xml` of your project, add the following repository definition and dependencies:
 
@@ -47,7 +44,7 @@ In the `pom.xml` of your project, add the following repository definition and de
 Refer to the [Installation](setup/installation.md) page to learn more.
 
 
-### Connecting [_connecting]
+### Connecting
 
 You can connect to the Elastic Cloud using an API key and the Elasticsearch endpoint.
 
@@ -60,8 +57,6 @@ String apiKey = "VnVhQ2ZHY0JDZGJrU...";
 ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
     .host(serverUrl)
     .apiKey(apiKey)
-    // Use the Jackson mapper to deserialize JSON to application objects
-    .jsonMapper(new JacksonJsonpMapper())
 );
 
 // Use the client...

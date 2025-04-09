@@ -5,10 +5,9 @@ mapped_pages:
 
 # Setup [_setup]
 
-* [Installation](installation.md)
-* [Connecting](connecting.md)
-* [Using OpenTelemetry](opentelemetry.md)
-* [Java Low Level REST Client](/reference/transport/rest-client/index.md)
+* [](installation.md)
+* [](connecting.md)
+* [](opentelemetry.md)
 
 
 
