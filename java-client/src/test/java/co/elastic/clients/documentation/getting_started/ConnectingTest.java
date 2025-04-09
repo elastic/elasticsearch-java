@@ -23,7 +23,6 @@ import co.elastic.clients.documentation.usage.Product;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
-import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.TransportUtils;
 import co.elastic.clients.transport.instrumentation.OpenTelemetryForElasticsearch;
 import io.opentelemetry.api.OpenTelemetry;
