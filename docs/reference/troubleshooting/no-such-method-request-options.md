@@ -1,5 +1,7 @@
 ---
 navigation_title: "NoSuchMethodError: removeHeader"
+mapped_pages:
+  - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/no-such-method-request-options.html
 ---
 
 # `NoSuchMethodError` when creating a client

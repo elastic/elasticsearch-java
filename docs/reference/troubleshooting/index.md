@@ -1,3 +1,8 @@
+---
+mapped_pages:
+  - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/troubleshooting.html
+---
+
 # Troubleshooting
 
 ## Exceptions

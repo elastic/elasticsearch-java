@@ -9,8 +9,6 @@ toc:
   - toc: reference
   - toc: release-notes
 subs:
-  serverless-full:   "Elastic Cloud Serverless"
-  es3:   "Elasticsearch Serverless"
   es:   "Elasticsearch"
   version: "9.0.0"
   # Not used by docs-builder, but present in `% :::{include-bloc}` preprocessing directives (see IncludeExpander.java)

@@ -1,5 +1,7 @@
 ---
 navigation_title: Serializing without typed keys
+mapped_pages:
+  - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/serialize-without-typed-keys.html
 ---
 
 # Serializing aggregations and suggestions without typed keys

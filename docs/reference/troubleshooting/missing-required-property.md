@@ -1,5 +1,7 @@
 ---
 navigation_title: Missing required property
+mapped_pages:
+- https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/missing-required-property.html
 ---
 
 # Missing required property exception in a response

@@ -1,5 +1,7 @@
 ---
 navigation_title: IOReactor errors
+mapped_pages:
+  - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/io-reactor-errors.html
 ---
 
 # Apache http-client I/O reactor errors
