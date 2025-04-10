@@ -71,9 +71,9 @@ public class IndexingBulkTest extends ModelTestCase {
         BulkRequest.Builder br = new BulkRequest.Builder();
 
         for (Product product : products) {
-            br.operations(op -> op           //<1>
-                .index(idx -> idx            //<2>
-                    .index("products")       //<3>
+            br.operations(op -> op           // <1>
+                .index(idx -> idx            // <2>
+                    .index("products")       // <3>
                     .id(product.getSku())
                     .document(product)
                 )

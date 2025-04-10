@@ -23,7 +23,6 @@ import co.elastic.clients.documentation.usage.Product;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
-import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.TransportUtils;
 import co.elastic.clients.transport.instrumentation.OpenTelemetryForElasticsearch;
 import io.opentelemetry.api.OpenTelemetry;
@@ -47,8 +46,6 @@ public class ConnectingTest {
         ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
             .host(serverUrl)
             .apiKey(apiKey)
-            // Use the Jackson mapper to deserialize JSON to application objects
-            .jsonMapper(new JacksonJsonpMapper())
         );
 
         // Use the client...
