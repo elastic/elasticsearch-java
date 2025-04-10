@@ -166,7 +166,7 @@ Example with `PutScript`:
 
 For more information, check the [relevant issue](https://github.com/elastic/elasticsearch-java/issues/634).  
 **Impact**<br> The following classes are affected:
-- elasticsearch.core.search.Hit
+- **elasticsearch.core.search.Hit**
   - `matchedQueries`: modified from `List<String>` to `Map<String, Double>`  
 
 **Action**<br> Reading `matched_queries` will be different since it's now a Map, so instead of iterating on the List values now the Map's KeySet has to be iterated to obtain the same result as before. 
@@ -177,10 +177,79 @@ For more information, check the [relevant issue](https://github.com/elastic/elas
 Breaking change caused by refactoring the ESQL package. 
 
 **Impact**<br> The following classes are affected:
-- elasticsearch.esql.QueryRequest
+- **elasticsearch.esql.QueryRequest**
   - `format`: modified from `elasticsearch.esql.query.EsqlFormat` to `elasticsearch.esql.EsqlFormat`
 
 **Action**<br> Change the import from `elasticsearch.esql.query.EsqlFormat` to `elasticsearch.esql.EsqlFormat`
+
+::::
+
+::::{dropdown} Body name and getter change for Responses
+Response types should have had a specific body name and getter matching the body type, but in previous versions of the client it was just called `valueBody`.
+
+**Impact**<br> The following classes are affected:
+- **elasticsearch.ssl.CertificatesResponse**
+  - `valueBody` is now `certificates`
+- **elasticsearch.snapshot.RepositoryVerifyIntegrityResponse**
+  - `valueBody` is now `result`
+- **elasticsearch.snapshot.GetRepositoryResponse**
+  - `valueBody` is now `repositories`
+- **elasticsearch.inference.TextEmbeddingResponse**
+  - `valueBody` is now `inferenceResult`
+- **elasticsearch.cluster.StateResponse**
+  - `valueBody` is now `state`
+- **elasticsearch.cat.TransformsResponse**
+  - `valueBody` is now `transforms`
+- **elasticsearch.cat.ThreadPoolResponse**
+  - `valueBody` is now `threadPools`
+- **elasticsearch.cat.TemplatesResponse**
+  - `valueBody` is now `templates`
+- **elasticsearch.cat.TasksResponse**
+  - `valueBody` is now `tasks`
+- **elasticsearch.cat.SnapshotsResponse**
+  - `valueBody` is now `snapshots`
+- **elasticsearch.cat.ShardsResponse**
+  - `valueBody` is now `shards`
+- **elasticsearch.cat.SegmentsResponse**
+  - `valueBody` is now `segments`
+- **elasticsearch.cat.RepositoriesResponse**
+  - `valueBody` is now `repositories`
+- **elasticsearch.cat.RecoveryResponse**
+  - `valueBody` is now `recoveryRecords`
+- **elasticsearch.cat.PluginsResponse**
+  - `valueBody` is now `plugins`
+- **elasticsearch.cat.PendingTasksResponse**
+  - `valueBody` is now `pendingTasks`
+- **elasticsearch.cat.NodesResponse**
+  - `valueBody` is now `nodes`
+- **elasticsearch.cat.NodeattrsResponse**
+  - `valueBody` is now `nodeAttributes`
+- **elasticsearch.cat.MlTrainedModelsResponse**
+  - `valueBody` is now `trainedModels`
+- **elasticsearch.cat.MlJobsResponse**
+  - `valueBody` is now `jobs`
+- **elasticsearch.cat.MlDataFrameAnalyticsResponse**
+  - `valueBody` is now `dataFrameAnalytics`
+- **elasticsearch.cat.MlDatafeedsResponse**
+  - `valueBody` is now `datafeeds`
+- **elasticsearch.cat.MasterResponse**
+  - `valueBody` is now `masters`
+- **elasticsearch.cat.IndicesResponse**
+  - `valueBody` is now `indices`
+- **elasticsearch.cat.HealthResponse**
+  - `valueBody` is now `healthRecords`
+- **elasticsearch.cat.FielddataResponse**
+  - `valueBody` is now `fielddataRecords`
+- **elasticsearch.cat.CountResponse**
+  - `valueBody` is now `countRecords`
+- **elasticsearch.cat.ComponentTemplatesResponse**
+  - `valueBody` is now `componentTemplates`
+- **elasticsearch.cat.AllocationResponse**
+  - `valueBody` is now `allocations`
+- **elasticsearch.cat.AliasesResponse**
+  - `valueBody` is now `aliases`
+
+**Action**<br> Replace the `valueBody()` getter with the specific getter depending on the class used. 
 
 ::::
 
