@@ -181,7 +181,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * used with the GeoIP processor.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/geoip-processor.html">Documentation
+	 *      "https://www.elastic.co/docs/reference/enrich-processor/geoip-processor">Documentation
 	 *      on elastic.co</a>
 	 */
 	public GeoIpStatsResponse geoIpStats() throws IOException, ElasticsearchException {
@@ -357,7 +357,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * reused.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/grok-processor.html">Documentation
+	 *      "https://www.elastic.co/docs/reference/enrich-processor/grok-processor">Documentation
 	 *      on elastic.co</a>
 	 */
 	public ProcessorGrokResponse processorGrok() throws IOException, ElasticsearchException {
@@ -446,7 +446,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * immediately.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ingest.html">Documentation
+	 *      "https://www.elastic.co/docs/manage-data/ingest/transform-enrich/ingest-pipelines">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -465,7 +465,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *            a function that initializes a builder to create the
 	 *            {@link PutPipelineRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ingest.html">Documentation
+	 *      "https://www.elastic.co/docs/manage-data/ingest/transform-enrich/ingest-pipelines">Documentation
 	 *      on elastic.co</a>
 	 */
 

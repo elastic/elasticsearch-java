@@ -192,10 +192,8 @@ public class CategorizeTextAggregation extends AggregationBase implements Aggreg
 	/**
 	 * The categorization analyzer specifies how the text is analyzed and tokenized
 	 * before being categorized. The syntax is very similar to that used to define
-	 * the analyzer in the <a href=
-	 * "https://www.elastic.co/guide/en/elasticsearch/reference/8.0/indices-analyze.html">Analyze
-	 * endpoint</a>. This property cannot be used at the same time as
-	 * categorization_filters.
+	 * the analyzer in the analyze API. This property cannot be used at the same
+	 * time as <code>categorization_filters</code>.
 	 * <p>
 	 * API name: {@code categorization_analyzer}
 	 */
@@ -451,10 +449,8 @@ public class CategorizeTextAggregation extends AggregationBase implements Aggreg
 		/**
 		 * The categorization analyzer specifies how the text is analyzed and tokenized
 		 * before being categorized. The syntax is very similar to that used to define
-		 * the analyzer in the <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/8.0/indices-analyze.html">Analyze
-		 * endpoint</a>. This property cannot be used at the same time as
-		 * categorization_filters.
+		 * the analyzer in the analyze API. This property cannot be used at the same
+		 * time as <code>categorization_filters</code>.
 		 * <p>
 		 * API name: {@code categorization_analyzer}
 		 */
@@ -466,10 +462,8 @@ public class CategorizeTextAggregation extends AggregationBase implements Aggreg
 		/**
 		 * The categorization analyzer specifies how the text is analyzed and tokenized
 		 * before being categorized. The syntax is very similar to that used to define
-		 * the analyzer in the <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/8.0/indices-analyze.html">Analyze
-		 * endpoint</a>. This property cannot be used at the same time as
-		 * categorization_filters.
+		 * the analyzer in the analyze API. This property cannot be used at the same
+		 * time as <code>categorization_filters</code>.
 		 * <p>
 		 * API name: {@code categorization_analyzer}
 		 */

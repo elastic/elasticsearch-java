@@ -331,12 +331,10 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * If true, returns partial results if there are shard request timeouts or
-	 * <a href=
-	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-replication.html#shard-failures">shard
-	 * failures</a>. If false, returns an error with no partial results. Defaults to
-	 * the configured cluster setting
-	 * <code>search.default_allow_partial_results</code> which is true by default.
+	 * If true, returns partial results if there are shard request timeouts or shard
+	 * failures. If false, returns an error with no partial results. Defaults to the
+	 * configured cluster setting <code>search.default_allow_partial_results</code>,
+	 * which is true by default.
 	 * <p>
 	 * API name: {@code allow_partial_search_results}
 	 */
@@ -521,7 +519,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 
 	/**
 	 * Minimum _score for matching documents. Documents with a lower _score are not
-	 * included in the search results.
+	 * included in search results and results collected by aggregations.
 	 * <p>
 	 * API name: {@code min_score}
 	 */
@@ -1275,12 +1273,10 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * If true, returns partial results if there are shard request timeouts or
-		 * <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-replication.html#shard-failures">shard
-		 * failures</a>. If false, returns an error with no partial results. Defaults to
-		 * the configured cluster setting
-		 * <code>search.default_allow_partial_results</code> which is true by default.
+		 * If true, returns partial results if there are shard request timeouts or shard
+		 * failures. If false, returns an error with no partial results. Defaults to the
+		 * configured cluster setting <code>search.default_allow_partial_results</code>,
+		 * which is true by default.
 		 * <p>
 		 * API name: {@code allow_partial_search_results}
 		 */
@@ -1579,7 +1575,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 
 		/**
 		 * Minimum _score for matching documents. Documents with a lower _score are not
-		 * included in the search results.
+		 * included in search results and results collected by aggregations.
 		 * <p>
 		 * API name: {@code min_score}
 		 */

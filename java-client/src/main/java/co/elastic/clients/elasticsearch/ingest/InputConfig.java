@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.aggregations;
+package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -26,10 +26,10 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Double;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -50,67 +50,44 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.aggregations.AggregationRange
+// typedef: ingest._types.InputConfig
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#_types.aggregations.AggregationRange">API
+ * @see <a href="../doc-files/api-spec.html#ingest._types.InputConfig">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class AggregationRange implements JsonpSerializable {
-	@Nullable
-	private final Double from;
+public class InputConfig implements JsonpSerializable {
+	private final String inputField;
 
-	@Nullable
-	private final String key;
-
-	@Nullable
-	private final Double to;
+	private final String outputField;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private AggregationRange(Builder builder) {
+	private InputConfig(Builder builder) {
 
-		this.from = builder.from;
-		this.key = builder.key;
-		this.to = builder.to;
+		this.inputField = ApiTypeHelper.requireNonNull(builder.inputField, this, "inputField");
+		this.outputField = ApiTypeHelper.requireNonNull(builder.outputField, this, "outputField");
 
 	}
 
-	public static AggregationRange of(Function<Builder, ObjectBuilder<AggregationRange>> fn) {
+	public static InputConfig of(Function<Builder, ObjectBuilder<InputConfig>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Start of the range (inclusive).
-	 * <p>
-	 * API name: {@code from}
+	 * Required - API name: {@code input_field}
 	 */
-	@Nullable
-	public final Double from() {
-		return this.from;
+	public final String inputField() {
+		return this.inputField;
 	}
 
 	/**
-	 * Custom key to return the range with.
-	 * <p>
-	 * API name: {@code key}
+	 * Required - API name: {@code output_field}
 	 */
-	@Nullable
-	public final String key() {
-		return this.key;
-	}
-
-	/**
-	 * End of the range (exclusive).
-	 * <p>
-	 * API name: {@code to}
-	 */
-	@Nullable
-	public final Double to() {
-		return this.to;
+	public final String outputField() {
+		return this.outputField;
 	}
 
 	/**
@@ -124,21 +101,11 @@ public class AggregationRange implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.from != null) {
-			generator.writeKey("from");
-			generator.write(this.from);
+		generator.writeKey("input_field");
+		generator.write(this.inputField);
 
-		}
-		if (this.key != null) {
-			generator.writeKey("key");
-			generator.write(this.key);
-
-		}
-		if (this.to != null) {
-			generator.writeKey("to");
-			generator.write(this.to);
-
-		}
+		generator.writeKey("output_field");
+		generator.write(this.outputField);
 
 	}
 
@@ -150,46 +117,27 @@ public class AggregationRange implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link AggregationRange}.
+	 * Builder for {@link InputConfig}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AggregationRange> {
-		@Nullable
-		private Double from;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<InputConfig> {
+		private String inputField;
 
-		@Nullable
-		private String key;
-
-		@Nullable
-		private Double to;
+		private String outputField;
 
 		/**
-		 * Start of the range (inclusive).
-		 * <p>
-		 * API name: {@code from}
+		 * Required - API name: {@code input_field}
 		 */
-		public final Builder from(@Nullable Double value) {
-			this.from = value;
+		public final Builder inputField(String value) {
+			this.inputField = value;
 			return this;
 		}
 
 		/**
-		 * Custom key to return the range with.
-		 * <p>
-		 * API name: {@code key}
+		 * Required - API name: {@code output_field}
 		 */
-		public final Builder key(@Nullable String value) {
-			this.key = value;
-			return this;
-		}
-
-		/**
-		 * End of the range (exclusive).
-		 * <p>
-		 * API name: {@code to}
-		 */
-		public final Builder to(@Nullable Double value) {
-			this.to = value;
+		public final Builder outputField(String value) {
+			this.outputField = value;
 			return this;
 		}
 
@@ -199,31 +147,30 @@ public class AggregationRange implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link AggregationRange}.
+		 * Builds a {@link InputConfig}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public AggregationRange build() {
+		public InputConfig build() {
 			_checkSingleUse();
 
-			return new AggregationRange(this);
+			return new InputConfig(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link AggregationRange}
+	 * Json deserializer for {@link InputConfig}
 	 */
-	public static final JsonpDeserializer<AggregationRange> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AggregationRange::setupAggregationRangeDeserializer);
+	public static final JsonpDeserializer<InputConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			InputConfig::setupInputConfigDeserializer);
 
-	protected static void setupAggregationRangeDeserializer(ObjectDeserializer<AggregationRange.Builder> op) {
+	protected static void setupInputConfigDeserializer(ObjectDeserializer<InputConfig.Builder> op) {
 
-		op.add(Builder::from, JsonpDeserializer.doubleDeserializer(), "from");
-		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
-		op.add(Builder::to, JsonpDeserializer.doubleDeserializer(), "to");
+		op.add(Builder::inputField, JsonpDeserializer.stringDeserializer(), "input_field");
+		op.add(Builder::outputField, JsonpDeserializer.stringDeserializer(), "output_field");
 
 	}
 

@@ -202,7 +202,7 @@ public class KnnSearch implements JsonpSerializable {
 	}
 
 	/**
-	 * Apply oversampling and rescoring to quantized vectors *
+	 * Apply oversampling and rescoring to quantized vectors
 	 * <p>
 	 * API name: {@code rescore_vector}
 	 */
@@ -501,7 +501,7 @@ public class KnnSearch implements JsonpSerializable {
 		}
 
 		/**
-		 * Apply oversampling and rescoring to quantized vectors *
+		 * Apply oversampling and rescoring to quantized vectors
 		 * <p>
 		 * API name: {@code rescore_vector}
 		 */
@@ -511,7 +511,7 @@ public class KnnSearch implements JsonpSerializable {
 		}
 
 		/**
-		 * Apply oversampling and rescoring to quantized vectors *
+		 * Apply oversampling and rescoring to quantized vectors
 		 * <p>
 		 * API name: {@code rescore_vector}
 		 */

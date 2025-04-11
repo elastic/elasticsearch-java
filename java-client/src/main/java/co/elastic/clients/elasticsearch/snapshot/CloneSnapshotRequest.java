@@ -77,9 +77,6 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 
 	private final String targetSnapshot;
 
-	@Nullable
-	private final Time timeout;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private CloneSnapshotRequest(Builder builder) {
@@ -89,7 +86,6 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
 		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 		this.targetSnapshot = ApiTypeHelper.requireNonNull(builder.targetSnapshot, this, "targetSnapshot");
-		this.timeout = builder.timeout;
 
 	}
 
@@ -148,17 +144,6 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The period of time to wait for a response. If no response is received before
-	 * the timeout expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public final Time timeout() {
-		return this.timeout;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -193,9 +178,6 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		private String snapshot;
 
 		private String targetSnapshot;
-
-		@Nullable
-		private Time timeout;
 
 		/**
 		 * Required - A comma-separated list of indices to include in the snapshot.
@@ -260,27 +242,6 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		public final Builder targetSnapshot(String value) {
 			this.targetSnapshot = value;
 			return this;
-		}
-
-		/**
-		 * The period of time to wait for a response. If no response is received before
-		 * the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(@Nullable Time value) {
-			this.timeout = value;
-			return this;
-		}
-
-		/**
-		 * The period of time to wait for a response. If no response is received before
-		 * the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -383,9 +344,6 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 
