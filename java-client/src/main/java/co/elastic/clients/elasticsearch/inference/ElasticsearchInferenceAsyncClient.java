@@ -213,45 +213,6 @@ public class ElasticsearchInferenceAsyncClient
 				GetInferenceRequest._ENDPOINT, this.transportOptions);
 	}
 
-	// ----- Endpoint: inference.post_eis_chat_completion
-
-	/**
-	 * Perform a chat completion task through the Elastic Inference Service (EIS).
-	 * <p>
-	 * Perform a chat completion inference task with the <code>elastic</code>
-	 * service.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/post-inference-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<BinaryResponse> postEisChatCompletion(PostEisChatCompletionRequest request) {
-		@SuppressWarnings("unchecked")
-		Endpoint<PostEisChatCompletionRequest, BinaryResponse, ErrorResponse> endpoint = (Endpoint<PostEisChatCompletionRequest, BinaryResponse, ErrorResponse>) PostEisChatCompletionRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Perform a chat completion task through the Elastic Inference Service (EIS).
-	 * <p>
-	 * Perform a chat completion inference task with the <code>elastic</code>
-	 * service.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link PostEisChatCompletionRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/post-inference-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<BinaryResponse> postEisChatCompletion(
-			Function<PostEisChatCompletionRequest.Builder, ObjectBuilder<PostEisChatCompletionRequest>> fn) {
-		return postEisChatCompletion(fn.apply(new PostEisChatCompletionRequest.Builder()).build());
-	}
-
 	// ----- Endpoint: inference.put
 
 	/**
@@ -720,45 +681,6 @@ public class ElasticsearchInferenceAsyncClient
 	public final CompletableFuture<PutCohereResponse> putCohere(
 			Function<PutCohereRequest.Builder, ObjectBuilder<PutCohereRequest>> fn) {
 		return putCohere(fn.apply(new PutCohereRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: inference.put_eis
-
-	/**
-	 * Create an Elastic Inference Service (EIS) inference endpoint.
-	 * <p>
-	 * Create an inference endpoint to perform an inference task through the Elastic
-	 * Inference Service (EIS).
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/infer-service-elastic.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<PutEisResponse> putEis(PutEisRequest request) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<PutEisRequest, PutEisResponse, ErrorResponse> endpoint = (JsonEndpoint<PutEisRequest, PutEisResponse, ErrorResponse>) PutEisRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Create an Elastic Inference Service (EIS) inference endpoint.
-	 * <p>
-	 * Create an inference endpoint to perform an inference task through the Elastic
-	 * Inference Service (EIS).
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link PutEisRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/infer-service-elastic.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<PutEisResponse> putEis(
-			Function<PutEisRequest.Builder, ObjectBuilder<PutEisRequest>> fn) {
-		return putEis(fn.apply(new PutEisRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: inference.put_elasticsearch
