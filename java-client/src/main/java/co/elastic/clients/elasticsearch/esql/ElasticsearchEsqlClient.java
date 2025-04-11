@@ -68,48 +68,6 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 		return new ElasticsearchEsqlClient(this.transport, transportOptions);
 	}
 
-	// ----- Endpoint: esql.async_query_stop
-
-	/**
-	 * Stop async ES|QL query.
-	 * <p>
-	 * This API interrupts the query execution and returns the results so far. If
-	 * the Elasticsearch security features are enabled, only the user who first
-	 * submitted the ES|QL query can stop it.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/esql-async-query-stop-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public BinaryResponse asyncQueryStop(AsyncQueryStopRequest request) throws IOException, ElasticsearchException {
-		@SuppressWarnings("unchecked")
-		Endpoint<AsyncQueryStopRequest, BinaryResponse, ErrorResponse> endpoint = (Endpoint<AsyncQueryStopRequest, BinaryResponse, ErrorResponse>) AsyncQueryStopRequest._ENDPOINT;
-
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Stop async ES|QL query.
-	 * <p>
-	 * This API interrupts the query execution and returns the results so far. If
-	 * the Elasticsearch security features are enabled, only the user who first
-	 * submitted the ES|QL query can stop it.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link AsyncQueryStopRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/esql-async-query-stop-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final BinaryResponse asyncQueryStop(
-			Function<AsyncQueryStopRequest.Builder, ObjectBuilder<AsyncQueryStopRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return asyncQueryStop(fn.apply(new AsyncQueryStopRequest.Builder()).build());
-	}
-
 	// ----- Endpoint: esql.query
 
 	/**
