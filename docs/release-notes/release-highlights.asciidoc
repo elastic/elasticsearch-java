@@ -8,7 +8,7 @@ For a list of detailed changes, including bug fixes, please see the https://gith
 [discrete]
 ==== Version 8.18
 
-===== Breaking changes
+**Breaking changes**
 
 While we try to limit breaking changes to the minimum between minor versions of the client, all the following changes were necessary to keep the client code in sync with the server code and to fix client side bugs.
 
@@ -64,11 +64,12 @@ esClient.search(s -> s
 * `TrainedModelDeploymentNodesStats`: `routingState` field modified from `TrainedModelAssignmentRoutingTable` to `TrainedModelAssignmentRoutingStateAndReason`
 
 
-===== New Features
+**New Features**
 
-====== BulkIngester retry policy
-
+* BulkIngester retry policy
++
 Retry logic can now be enabled allowing the BulkIngester to retry operations that failed with error 429 (too many requests), hoping that the error will recover and the request will go through. Users can configure the desired backoff policy using the backoffPolicy() method in the BulkIngester builder:
++
 [source,java]
 ----
 BulkIngester ingester = BulkIngester.of(b -> b
@@ -78,16 +79,17 @@ BulkIngester ingester = BulkIngester.of(b -> b
     .flushInterval(1000, TimeUnit.MILLISECONDS)
     .backoffPolicy(BackoffPolicy.constantBackoff(50L, 8))
 ----
++
 This is an example of constant backoff, meaning the single failed operation will be retried 8 times every 50 milliseconds.
 
-====== Default class for methods requiring TDocument
-
+* Default class for methods requiring TDocument
++
 Some requests in the client require a second parameter to define the result class, for example `search`, meaning the compiler will complain while the query is being written, which can be annoying. We added overload methods that use `Void.class` as default type, so that the correct type can be eventually added later into writing the query.
-
++
 Example with `search`:
 
 - Old:
-
++
 [source,java]
 ----
 esClient.search(s -> s
@@ -98,9 +100,8 @@ esClient.search(s -> s
 ,Object.class);
 ----
 
-
 - New:
-
++
 [source,java]
 ----
 esClient.search(s -> s
@@ -111,14 +112,14 @@ esClient.search(s -> s
 );
 ----
 
-====== Builder setters overloads with variant type
-
+* Builder setters overloads with variant type
++
 Added more setters allowing to build requests with a specific type variant instead of having to use the parent class and then select the desired variant later.
-
++
 Example with `query`, where the `query` field can now accept a `MatchAllQuery` (or any other variant) directly:
 
 - Old:
-
++
 [source,java]
 ----
 esClient.search(s -> s
@@ -129,7 +130,7 @@ esClient.search(s -> s
 );
 ----
 - New:
-
++
 [source,java]
 ----
 esClient.search(s -> s
@@ -137,11 +138,11 @@ esClient.search(s -> s
     .query(MatchAllQuery.of(m -> m))
 );
 ----
-
++
 Example with `aggregations`, where the `aggregations` field can now accept  `AverageAggregation` (or any other variant) directly:
 
 - Old:
-
++
 [source,java]
 ----
 // using functional builder shortcut
@@ -164,7 +165,7 @@ esClient.search(s -> s
 ----
 
 - New:
-
++
 [source,java]
 ----
 esClient.search(s -> s
