@@ -82,7 +82,7 @@ This is an example of constant backoff, meaning the single failed operation will
 
 ====== Default class for methods requiring TDocument
 
-Some requests in the client require a second parameter to define the result class, for example `search`, meaning the compiler will complain while the query is being written, which can be annoying. We added overload methods that use Void.class as default type, so that the correct type can be eventually added later into writing the query.
+Some requests in the client require a second parameter to define the result class, for example `search`, meaning the compiler will complain while the query is being written, which can be annoying. We added overload methods that use `Void.class` as default type, so that the correct type can be eventually added later into writing the query.
 
 Example with `search`:
 
@@ -138,7 +138,7 @@ esClient.search(s -> s
 );
 ----
 
-Example with `aggregations`, where the `aggregations` field can now accept  `AverageAggregation` (or any other variant) drectly:
+Example with `aggregations`, where the `aggregations` field can now accept  `AverageAggregation` (or any other variant) directly:
 
 - Old:
 
