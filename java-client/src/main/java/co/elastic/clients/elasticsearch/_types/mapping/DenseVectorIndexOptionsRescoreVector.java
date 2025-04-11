@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.inference;
+package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -30,10 +30,9 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.lang.Float;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -50,53 +49,45 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: inference._types.EisServiceSettings
+// typedef: _types.mapping.DenseVectorIndexOptionsRescoreVector
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#inference._types.EisServiceSettings">API
+ *      "../../doc-files/api-spec.html#_types.mapping.DenseVectorIndexOptionsRescoreVector">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class EisServiceSettings implements JsonpSerializable {
-	private final String modelId;
-
-	@Nullable
-	private final RateLimitSetting rateLimit;
+public class DenseVectorIndexOptionsRescoreVector implements JsonpSerializable {
+	private final float oversample;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private EisServiceSettings(Builder builder) {
+	private DenseVectorIndexOptionsRescoreVector(Builder builder) {
 
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.rateLimit = builder.rateLimit;
+		this.oversample = ApiTypeHelper.requireNonNull(builder.oversample, this, "oversample", 0);
 
 	}
 
-	public static EisServiceSettings of(Function<Builder, ObjectBuilder<EisServiceSettings>> fn) {
+	public static DenseVectorIndexOptionsRescoreVector of(
+			Function<Builder, ObjectBuilder<DenseVectorIndexOptionsRescoreVector>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The name of the model to use for the inference task.
+	 * Required - The oversampling factor to use when searching for the nearest
+	 * neighbor. This is only applicable to the quantized formats:
+	 * <code>bbq_*</code>, <code>int4_*</code>, and <code>int8_*</code>. When
+	 * provided, <code>oversample * k</code> vectors will be gathered and then their
+	 * scores will be re-computed with the original vectors.
 	 * <p>
-	 * API name: {@code model_id}
-	 */
-	public final String modelId() {
-		return this.modelId;
-	}
-
-	/**
-	 * This setting helps to minimize the number of rate limit errors returned. By
-	 * default, the <code>elastic</code> service sets the number of requests allowed
-	 * per minute to <code>240</code> in case of <code>chat_completion</code>.
+	 * valid values are between <code>1.0</code> and <code>10.0</code> (inclusive),
+	 * or <code>0</code> exactly to disable oversampling.
 	 * <p>
-	 * API name: {@code rate_limit}
+	 * API name: {@code oversample}
 	 */
-	@Nullable
-	public final RateLimitSetting rateLimit() {
-		return this.rateLimit;
+	public final float oversample() {
+		return this.oversample;
 	}
 
 	/**
@@ -110,14 +101,8 @@ public class EisServiceSettings implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("model_id");
-		generator.write(this.modelId);
-
-		if (this.rateLimit != null) {
-			generator.writeKey("rate_limit");
-			this.rateLimit.serialize(generator, mapper);
-
-		}
+		generator.writeKey("oversample");
+		generator.write(this.oversample);
 
 	}
 
@@ -129,48 +114,29 @@ public class EisServiceSettings implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link EisServiceSettings}.
+	 * Builder for {@link DenseVectorIndexOptionsRescoreVector}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<EisServiceSettings> {
-		private String modelId;
-
-		@Nullable
-		private RateLimitSetting rateLimit;
+				ObjectBuilder<DenseVectorIndexOptionsRescoreVector> {
+		private Float oversample;
 
 		/**
-		 * Required - The name of the model to use for the inference task.
+		 * Required - The oversampling factor to use when searching for the nearest
+		 * neighbor. This is only applicable to the quantized formats:
+		 * <code>bbq_*</code>, <code>int4_*</code>, and <code>int8_*</code>. When
+		 * provided, <code>oversample * k</code> vectors will be gathered and then their
+		 * scores will be re-computed with the original vectors.
 		 * <p>
-		 * API name: {@code model_id}
+		 * valid values are between <code>1.0</code> and <code>10.0</code> (inclusive),
+		 * or <code>0</code> exactly to disable oversampling.
+		 * <p>
+		 * API name: {@code oversample}
 		 */
-		public final Builder modelId(String value) {
-			this.modelId = value;
+		public final Builder oversample(float value) {
+			this.oversample = value;
 			return this;
-		}
-
-		/**
-		 * This setting helps to minimize the number of rate limit errors returned. By
-		 * default, the <code>elastic</code> service sets the number of requests allowed
-		 * per minute to <code>240</code> in case of <code>chat_completion</code>.
-		 * <p>
-		 * API name: {@code rate_limit}
-		 */
-		public final Builder rateLimit(@Nullable RateLimitSetting value) {
-			this.rateLimit = value;
-			return this;
-		}
-
-		/**
-		 * This setting helps to minimize the number of rate limit errors returned. By
-		 * default, the <code>elastic</code> service sets the number of requests allowed
-		 * per minute to <code>240</code> in case of <code>chat_completion</code>.
-		 * <p>
-		 * API name: {@code rate_limit}
-		 */
-		public final Builder rateLimit(Function<RateLimitSetting.Builder, ObjectBuilder<RateLimitSetting>> fn) {
-			return this.rateLimit(fn.apply(new RateLimitSetting.Builder()).build());
 		}
 
 		@Override
@@ -179,30 +145,31 @@ public class EisServiceSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link EisServiceSettings}.
+		 * Builds a {@link DenseVectorIndexOptionsRescoreVector}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public EisServiceSettings build() {
+		public DenseVectorIndexOptionsRescoreVector build() {
 			_checkSingleUse();
 
-			return new EisServiceSettings(this);
+			return new DenseVectorIndexOptionsRescoreVector(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link EisServiceSettings}
+	 * Json deserializer for {@link DenseVectorIndexOptionsRescoreVector}
 	 */
-	public static final JsonpDeserializer<EisServiceSettings> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, EisServiceSettings::setupEisServiceSettingsDeserializer);
+	public static final JsonpDeserializer<DenseVectorIndexOptionsRescoreVector> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					DenseVectorIndexOptionsRescoreVector::setupDenseVectorIndexOptionsRescoreVectorDeserializer);
 
-	protected static void setupEisServiceSettingsDeserializer(ObjectDeserializer<EisServiceSettings.Builder> op) {
+	protected static void setupDenseVectorIndexOptionsRescoreVectorDeserializer(
+			ObjectDeserializer<DenseVectorIndexOptionsRescoreVector.Builder> op) {
 
-		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
-		op.add(Builder::rateLimit, RateLimitSetting._DESERIALIZER, "rate_limit");
+		op.add(Builder::oversample, JsonpDeserializer.floatDeserializer(), "oversample");
 
 	}
 

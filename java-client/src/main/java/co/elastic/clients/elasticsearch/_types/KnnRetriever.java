@@ -162,7 +162,7 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 	}
 
 	/**
-	 * Apply oversampling and rescoring to quantized vectors *
+	 * Apply oversampling and rescoring to quantized vectors
 	 * <p>
 	 * API name: {@code rescore_vector}
 	 */
@@ -335,7 +335,7 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 		}
 
 		/**
-		 * Apply oversampling and rescoring to quantized vectors *
+		 * Apply oversampling and rescoring to quantized vectors
 		 * <p>
 		 * API name: {@code rescore_vector}
 		 */
@@ -345,7 +345,7 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 		}
 
 		/**
-		 * Apply oversampling and rescoring to quantized vectors *
+		 * Apply oversampling and rescoring to quantized vectors
 		 * <p>
 		 * API name: {@code rescore_vector}
 		 */

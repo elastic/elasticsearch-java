@@ -337,7 +337,8 @@ public class SearchRequestBody implements JsonpSerializable {
 
 	/**
 	 * The minimum <code>_score</code> for matching documents. Documents with a
-	 * lower <code>_score</code> are not included in the search results.
+	 * lower <code>_score</code> are not included in search results or results
+	 * collected by aggregations.
 	 * <p>
 	 * API name: {@code min_score}
 	 */
@@ -1268,7 +1269,8 @@ public class SearchRequestBody implements JsonpSerializable {
 
 		/**
 		 * The minimum <code>_score</code> for matching documents. Documents with a
-		 * lower <code>_score</code> are not included in the search results.
+		 * lower <code>_score</code> are not included in search results or results
+		 * collected by aggregations.
 		 * <p>
 		 * API name: {@code min_score}
 		 */

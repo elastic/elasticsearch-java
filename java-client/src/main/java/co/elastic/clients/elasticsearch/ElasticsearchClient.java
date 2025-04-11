@@ -3337,7 +3337,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/knn-search-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-knn-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3386,7 +3386,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link KnnSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/knn-search-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-knn-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3449,7 +3449,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/knn-search-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-knn-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3498,7 +3498,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link KnnSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/knn-search-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-knn-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5037,7 +5037,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * context you're using for that script.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/current/painless-execute-api.html">Documentation
+	 *      "https://www.elastic.co/docs/reference/scripting-languages/painless/painless-api-examples">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5071,7 +5071,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link ScriptsPainlessExecuteRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/current/painless-execute-api.html">Documentation
+	 *      "https://www.elastic.co/docs/reference/scripting-languages/painless/painless-api-examples">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5120,7 +5120,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * context you're using for that script.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/current/painless-execute-api.html">Documentation
+	 *      "https://www.elastic.co/docs/reference/scripting-languages/painless/painless-api-examples">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5153,7 +5153,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link ScriptsPainlessExecuteRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/current/painless-execute-api.html">Documentation
+	 *      "https://www.elastic.co/docs/reference/scripting-languages/painless/painless-api-examples">Documentation
 	 *      on elastic.co</a>
 	 */
 

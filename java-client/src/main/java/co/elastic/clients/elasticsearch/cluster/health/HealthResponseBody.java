@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Double;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
@@ -70,7 +71,10 @@ public abstract class HealthResponseBody implements JsonpSerializable {
 
 	private final int activeShards;
 
-	private final String activeShardsPercentAsNumber;
+	@Nullable
+	private final String activeShardsPercent;
+
+	private final double activeShardsPercentAsNumber;
 
 	private final String clusterName;
 
@@ -110,8 +114,9 @@ public abstract class HealthResponseBody implements JsonpSerializable {
 		this.activePrimaryShards = ApiTypeHelper.requireNonNull(builder.activePrimaryShards, this,
 				"activePrimaryShards", 0);
 		this.activeShards = ApiTypeHelper.requireNonNull(builder.activeShards, this, "activeShards", 0);
+		this.activeShardsPercent = builder.activeShardsPercent;
 		this.activeShardsPercentAsNumber = ApiTypeHelper.requireNonNull(builder.activeShardsPercentAsNumber, this,
-				"activeShardsPercentAsNumber");
+				"activeShardsPercentAsNumber", 0);
 		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
 		this.delayedUnassignedShards = ApiTypeHelper.requireNonNull(builder.delayedUnassignedShards, this,
 				"delayedUnassignedShards", 0);
@@ -155,12 +160,23 @@ public abstract class HealthResponseBody implements JsonpSerializable {
 	}
 
 	/**
+	 * The ratio of active shards in the cluster expressed as a string formatted
+	 * percentage.
+	 * <p>
+	 * API name: {@code active_shards_percent}
+	 */
+	@Nullable
+	public final String activeShardsPercent() {
+		return this.activeShardsPercent;
+	}
+
+	/**
 	 * Required - The ratio of active shards in the cluster expressed as a
 	 * percentage.
 	 * <p>
 	 * API name: {@code active_shards_percent_as_number}
 	 */
-	public final String activeShardsPercentAsNumber() {
+	public final double activeShardsPercentAsNumber() {
 		return this.activeShardsPercentAsNumber;
 	}
 
@@ -317,6 +333,11 @@ public abstract class HealthResponseBody implements JsonpSerializable {
 		generator.writeKey("active_shards");
 		generator.write(this.activeShards);
 
+		if (this.activeShardsPercent != null) {
+			generator.writeKey("active_shards_percent");
+			generator.write(this.activeShardsPercent);
+
+		}
 		generator.writeKey("active_shards_percent_as_number");
 		generator.write(this.activeShardsPercentAsNumber);
 
@@ -388,7 +409,10 @@ public abstract class HealthResponseBody implements JsonpSerializable {
 
 		private Integer activeShards;
 
-		private String activeShardsPercentAsNumber;
+		@Nullable
+		private String activeShardsPercent;
+
+		private Double activeShardsPercentAsNumber;
 
 		private String clusterName;
 
@@ -443,12 +467,23 @@ public abstract class HealthResponseBody implements JsonpSerializable {
 		}
 
 		/**
+		 * The ratio of active shards in the cluster expressed as a string formatted
+		 * percentage.
+		 * <p>
+		 * API name: {@code active_shards_percent}
+		 */
+		public final BuilderT activeShardsPercent(@Nullable String value) {
+			this.activeShardsPercent = value;
+			return self();
+		}
+
+		/**
 		 * Required - The ratio of active shards in the cluster expressed as a
 		 * percentage.
 		 * <p>
 		 * API name: {@code active_shards_percent_as_number}
 		 */
-		public final BuilderT activeShardsPercentAsNumber(String value) {
+		public final BuilderT activeShardsPercentAsNumber(double value) {
 			this.activeShardsPercentAsNumber = value;
 			return self();
 		}
@@ -644,7 +679,8 @@ public abstract class HealthResponseBody implements JsonpSerializable {
 
 		op.add(AbstractBuilder::activePrimaryShards, JsonpDeserializer.integerDeserializer(), "active_primary_shards");
 		op.add(AbstractBuilder::activeShards, JsonpDeserializer.integerDeserializer(), "active_shards");
-		op.add(AbstractBuilder::activeShardsPercentAsNumber, JsonpDeserializer.stringDeserializer(),
+		op.add(AbstractBuilder::activeShardsPercent, JsonpDeserializer.stringDeserializer(), "active_shards_percent");
+		op.add(AbstractBuilder::activeShardsPercentAsNumber, JsonpDeserializer.doubleDeserializer(),
 				"active_shards_percent_as_number");
 		op.add(AbstractBuilder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
 		op.add(AbstractBuilder::delayedUnassignedShards, JsonpDeserializer.integerDeserializer(),

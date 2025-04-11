@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-cluster.html">Documentation
+ *      "https://www.elastic.co/docs/reference/elasticsearch/configuration-reference/cluster-level-shard-allocation-routing-settings">Documentation
  *      on elastic.co</a>
  * @see <a href=
  *      "../../doc-files/api-spec.html#cluster.reroute.CommandAllocateReplicaAction">API
