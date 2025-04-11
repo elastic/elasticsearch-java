@@ -1,0 +1,4 @@
+redirects:
+  'reference/_others.md': 'reference/transport/rest-client/config/others.md'
+  'reference/installation.md': 'reference/setup/installation.md'
+  'reference/_basic_authentication.md': 'reference/transport/rest-client/config/basic_authentication.md'
