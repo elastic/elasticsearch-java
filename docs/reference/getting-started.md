@@ -168,7 +168,7 @@ Product product = new Product("bk-1", "City bike", 123.0);
 esClient.update(u -> u
         .index("products")
         .id("bk-1")
-        .upsert(product),
+        .doc(product),
     Product.class
 );
 ```
