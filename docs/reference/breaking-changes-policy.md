@@ -33,3 +33,6 @@ Major releases (e.g. 7.x → 8.x) can include larger refactorings of the API spe
 
 All Elasticsearch APIs have stability indicators, which imply potential changes. If an API is `stable` only additional non-breaking changes are added. In case of `experimental` APIs, breaking changes can be introduced any time, which means that these changes, will also be reflected in the Java API Client.
 
+## Breaking changes by release
+
+For more information, refer to the [](../release-notes/index.md).

@@ -9,3 +9,6 @@ mapped_pages:
 Review the changes, fixes, and more in each version of Elasticsearch Java Client.
 
 To check for security updates, go to [Security announcements for the Elastic stack](https://discuss.elastic.co/c/announcements/security-announcements/31).
+
+## 9.0.0
+[Release notes](../release-notes/9-0-0.md)

@@ -7,8 +7,8 @@ mapped_pages:
 
 These are the important new features and changes in minor releases. Every release also updates the Java API Client to the latest [API specification](https://github.com/elastic/elasticsearch-specification). This includes new APIs and bug fixes in the specification of existing APIs.
 
-For a list of detailed changes, including bug fixes, please see the [GitHub project realease notes](https://github.com/elastic/elasticsearch-java/releases).
+For a list of detailed changes, including bug fixes, please see the [GitHub project release notes](https://github.com/elastic/elasticsearch-java/releases).
 
-### 9.0.0 [release-highlights-900]
+## 9.0.0 [release-highlights-900]
 
-[Release Notes](/release-notes/9-0-0.md)
+[Release notes](/release-notes/9-0-0.md)
