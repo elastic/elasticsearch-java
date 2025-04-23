@@ -29,7 +29,7 @@ Here is how you can configure the dependency using maven as a dependency manager
 
 Here is how you can configure the dependency using gradle as a dependency manager. Add the following to your `build.gradle` file:
 
-```groovy
+```groovy subs=true
 dependencies {
     compile 'org.elasticsearch.client:elasticsearch-rest-client-sniffer:{{version}}'
 }
