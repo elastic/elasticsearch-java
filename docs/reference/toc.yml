@@ -42,6 +42,8 @@ toc:
       - file: no-such-method-request-options.md
       - file: io-reactor-errors.md
       - file: serialize-without-typed-keys.md
+      - file: could-not-resolve-dependencies.md
+      - file: no-class-def-found-error.md
 
   - folder: transport
     children:

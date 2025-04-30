@@ -10,6 +10,8 @@ mapped_pages:
 * [](missing-required-property.md)
 * [](no-such-method-request-options.md)
 * [](io-reactor-errors.md)
+* [](could-not-resolve-dependencies.md)
+* [](no-class-def-found-error.md)
 
 ## Miscellaneous
 
