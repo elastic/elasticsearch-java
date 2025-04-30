@@ -6,4 +6,4 @@ mapped_pages:
 
 # `Could not resolve dependencies`
 
-Check the [Known Issues](/release-notes/known-issues#known-issues-8-16-7)
+Check the [Known Issues](/release-notes/known-issues.md#known-issues-8-16-7)

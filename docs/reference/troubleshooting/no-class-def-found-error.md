@@ -6,4 +6,4 @@ mapped_pages:
 
 # `NoClassDefFoundError`
 
-Check the [Known Issues](/release-notes/known-issues#known-issues-9-0-0)
+Check the [Known Issues](/release-notes/known-issues.md#known-issues-9-0-0)
