@@ -163,20 +163,17 @@ Cancellable cancellable = restClient.performRequestAsync(
     new ResponseListener() {
         @Override
         public void onSuccess(Response response) {
-            <1>
+          // Process the returned response, in case it was
+          // ready before the request got cancelled
         }
 
         @Override
         public void onFailure(Exception exception) {
-            <2>
+          // Handle the returned exception, which will most
+          // likely be a `CancellationException` as the request
+          // got cancelled
         }
     }
 );
 cancellable.cancel();
 ```
-
-1. Process the returned response, in case it was ready before the request got cancelled
-2. Handle the returned exception, which will most likely be a `CancellationException` as the request got cancelled
-
-
-
