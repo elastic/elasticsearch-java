@@ -2,6 +2,7 @@
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/index.html
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/introduction.html
+  - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/migrate-hlrc.html
 ---
 
 # Java [introduction]
