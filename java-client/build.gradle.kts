@@ -162,29 +162,6 @@ publishing {
                     developerConnection.set("scm:git:ssh://git@github.com:elastic/elasticsearch-java.git")
                     url.set("https://github.com/elastic/elasticsearch-java/")
                 }
-
-                withXml {
-                    // Note: org.elasticsearch.client is now an optional dependency, so the below is no more useful.
-                    // It's kept in case it ever comes back as a required dependency.
-
-                    // Set the version of dependencies of the org.elasticsearch.client group to the one that we are building.
-                    // Since the unified release process releases everything at once, this ensures all published artifacts depend
-                    // on the exact same version. This assumes of course that the binary API and the behavior of these dependencies
-                    // are the same as the one used in the dependency section below.
-                    val xPathFactory = javax.xml.xpath.XPathFactory.newInstance()
-                    val depSelector = xPathFactory.newXPath()
-                            .compile("/project/dependencies/dependency[groupId/text() = 'org.elasticsearch.client']")
-                    val versionSelector = xPathFactory.newXPath().compile("version")
-
-                    val deps = depSelector.evaluate(asElement().ownerDocument, javax.xml.xpath.XPathConstants.NODESET)
-                            as org.w3c.dom.NodeList
-
-                    for (i in 0 until deps.length) {
-                        val dep = deps.item(i)
-                        val version = versionSelector.evaluate(dep, javax.xml.xpath.XPathConstants.NODE) as org.w3c.dom.Element
-                        version.textContent = project.version.toString()
-                    }
-                }
             }
         }
     }
@@ -200,7 +177,7 @@ signing {
 dependencies {
     // Compile and test with the last 8.x version to make sure transition scenarios where
     // the Java API client coexists with a 8.x HLRC work fine
-    val elasticsearchVersion = "8.17.0"
+    val elasticsearchVersion = "9.0.0"
     val jacksonVersion = "2.18.3"
     val openTelemetryVersion = "1.29.0"
 
@@ -209,7 +186,9 @@ dependencies {
     compileOnly("org.elasticsearch.client", "elasticsearch-rest-client", elasticsearchVersion)
     testImplementation("org.elasticsearch.client", "elasticsearch-rest-client", elasticsearchVersion)
 
-    api("org.apache.httpcomponents.client5","httpclient5","5.4")
+    // Apache 2.0
+    // https://hc.apache.org/httpcomponents-client-ga/
+    api("org.apache.httpcomponents.client5","httpclient5","5.4.4")
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
@@ -223,6 +202,10 @@ dependencies {
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/parsson
     api("org.eclipse.parsson:parsson:1.1.7")
+
+    // Apache 2.0
+    // https://commons.apache.org/proper/commons-logging/
+    implementation("commons-logging:commons-logging:1.3.5")
 
     // OpenTelemetry API for native instrumentation of the client.
     // Apache 2.0
