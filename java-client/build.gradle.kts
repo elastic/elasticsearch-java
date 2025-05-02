@@ -204,8 +204,8 @@ dependencies {
     api("org.eclipse.parsson:parsson:1.1.7")
 
     // Apache 2.0
-    // https://commons.apache.org/proper/commons-logging/
-    implementation("commons-logging:commons-logging:1.3.5")
+    // http://commons.apache.org/logging/
+    api("commons-logging:commons-logging:1.3.5")
 
     // OpenTelemetry API for native instrumentation of the client.
     // Apache 2.0
@@ -275,6 +275,7 @@ class SpdxReporter(val dest: File) : ReportRenderer {
             "The Apache License, Version 2.0" to "Apache-2.0",
             "Apache License, Version 2.0" to "Apache-2.0",
             "The Apache Software License, Version 2.0" to "Apache-2.0",
+            "Apache-2.0" to "Apache-2.0",
             "MIT License" to "MIT",
             "BSD Zero Clause License" to "0BSD",
             "Eclipse Public License 2.0" to "EPL-2.0",
