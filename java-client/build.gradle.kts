@@ -50,6 +50,10 @@ forbiddenApis {
     suppressAnnotations = setOf("co.elastic.clients.util.AllowForbiddenApis")
 }
 
+tasks.compileJava {
+    options.release.set(8)
+}
+
 tasks.forbiddenApisMain {
     bundledSignatures = setOf("jdk-system-out")
 }
