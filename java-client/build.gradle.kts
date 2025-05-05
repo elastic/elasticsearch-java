@@ -177,7 +177,7 @@ signing {
 dependencies {
     // Compile and test with the last 7.x version to make sure transition scenarios where
     // the Java API client coexists with a 7.x HLRC work fine
-    val elasticsearchVersion = "8.18.0" // update to 8.19.0 before release
+    val elasticsearchVersion = "8.17.0"
     val jacksonVersion = "2.17.0"
     val openTelemetryVersion = "1.29.0"
 
