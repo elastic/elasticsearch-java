@@ -86,14 +86,22 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 	}
 
 	/**
-	 * Required - API name: {@code filter}
+	 * Required - Array of token filters. If a token matches the predicate script in
+	 * the <code>script</code> parameter, these filters are applied to the token in
+	 * the order provided.
+	 * <p>
+	 * API name: {@code filter}
 	 */
 	public final List<String> filter() {
 		return this.filter;
 	}
 
 	/**
-	 * Required - API name: {@code script}
+	 * Required - Predicate script used to apply token filters. If a token matches
+	 * this script, the filters in the <code>filter</code> parameter are applied to
+	 * the token.
+	 * <p>
+	 * API name: {@code script}
 	 */
 	public final Script script() {
 		return this.script;
@@ -132,7 +140,11 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 		private Script script;
 
 		/**
-		 * Required - API name: {@code filter}
+		 * Required - Array of token filters. If a token matches the predicate script in
+		 * the <code>script</code> parameter, these filters are applied to the token in
+		 * the order provided.
+		 * <p>
+		 * API name: {@code filter}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>filter</code>.
 		 */
@@ -142,7 +154,11 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 		}
 
 		/**
-		 * Required - API name: {@code filter}
+		 * Required - Array of token filters. If a token matches the predicate script in
+		 * the <code>script</code> parameter, these filters are applied to the token in
+		 * the order provided.
+		 * <p>
+		 * API name: {@code filter}
 		 * <p>
 		 * Adds one or more values to <code>filter</code>.
 		 */
@@ -152,7 +168,11 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 		}
 
 		/**
-		 * Required - API name: {@code script}
+		 * Required - Predicate script used to apply token filters. If a token matches
+		 * this script, the filters in the <code>filter</code> parameter are applied to
+		 * the token.
+		 * <p>
+		 * API name: {@code script}
 		 */
 		public final Builder script(Script value) {
 			this.script = value;
@@ -160,7 +180,11 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 		}
 
 		/**
-		 * Required - API name: {@code script}
+		 * Required - Predicate script used to apply token filters. If a token matches
+		 * this script, the filters in the <code>filter</code> parameter are applied to
+		 * the token.
+		 * <p>
+		 * API name: {@code script}
 		 */
 		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
 			return this.script(fn.apply(new Script.Builder()).build());

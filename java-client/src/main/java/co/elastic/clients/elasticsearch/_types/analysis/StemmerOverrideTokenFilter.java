@@ -86,6 +86,8 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 	}
 
 	/**
+	 * A list of mapping rules to use.
+	 * <p>
 	 * API name: {@code rules}
 	 */
 	public final List<String> rules() {
@@ -93,6 +95,9 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 	}
 
 	/**
+	 * A path (either relative to <code>config</code> location, or absolute) to a
+	 * list of mappings.
+	 * <p>
 	 * API name: {@code rules_path}
 	 */
 	@Nullable
@@ -138,6 +143,8 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 		private String rulesPath;
 
 		/**
+		 * A list of mapping rules to use.
+		 * <p>
 		 * API name: {@code rules}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>rules</code>.
@@ -148,6 +155,8 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 		}
 
 		/**
+		 * A list of mapping rules to use.
+		 * <p>
 		 * API name: {@code rules}
 		 * <p>
 		 * Adds one or more values to <code>rules</code>.
@@ -158,6 +167,9 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 		}
 
 		/**
+		 * A path (either relative to <code>config</code> location, or absolute) to a
+		 * list of mappings.
+		 * <p>
 		 * API name: {@code rules_path}
 		 */
 		public final Builder rulesPath(@Nullable String value) {

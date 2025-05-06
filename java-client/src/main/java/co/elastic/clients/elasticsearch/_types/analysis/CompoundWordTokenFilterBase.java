@@ -61,9 +61,6 @@ import javax.annotation.Nullable;
 
 public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 	@Nullable
-	private final String hyphenationPatternsPath;
-
-	@Nullable
 	private final Integer maxSubwordSize;
 
 	@Nullable
@@ -85,7 +82,6 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 	protected CompoundWordTokenFilterBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.hyphenationPatternsPath = builder.hyphenationPatternsPath;
 		this.maxSubwordSize = builder.maxSubwordSize;
 		this.minSubwordSize = builder.minSubwordSize;
 		this.minWordSize = builder.minWordSize;
@@ -96,14 +92,9 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 	}
 
 	/**
-	 * API name: {@code hyphenation_patterns_path}
-	 */
-	@Nullable
-	public final String hyphenationPatternsPath() {
-		return this.hyphenationPatternsPath;
-	}
-
-	/**
+	 * Maximum subword character length. Longer subword tokens are excluded from the
+	 * output. Defaults to <code>15</code>.
+	 * <p>
 	 * API name: {@code max_subword_size}
 	 */
 	@Nullable
@@ -112,6 +103,9 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 	}
 
 	/**
+	 * Minimum subword character length. Shorter subword tokens are excluded from
+	 * the output. Defaults to <code>2</code>.
+	 * <p>
 	 * API name: {@code min_subword_size}
 	 */
 	@Nullable
@@ -120,6 +114,9 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 	}
 
 	/**
+	 * Minimum word character length. Shorter word tokens are excluded from the
+	 * output. Defaults to <code>5</code>.
+	 * <p>
 	 * API name: {@code min_word_size}
 	 */
 	@Nullable
@@ -128,6 +125,9 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 	}
 
 	/**
+	 * If <code>true</code>, only include the longest matching subword. Defaults to
+	 * <code>false</code>.
+	 * <p>
 	 * API name: {@code only_longest_match}
 	 */
 	@Nullable
@@ -136,6 +136,10 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 	}
 
 	/**
+	 * A list of subwords to look for in the token stream. If found, the subword is
+	 * included in the token output. Either this parameter or
+	 * <code>word_list_path</code> must be specified.
+	 * <p>
 	 * API name: {@code word_list}
 	 */
 	public final List<String> wordList() {
@@ -143,6 +147,12 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 	}
 
 	/**
+	 * Path to a file that contains a list of subwords to find in the token stream.
+	 * If found, the subword is included in the token output. This path must be
+	 * absolute or relative to the config location, and the file must be UTF-8
+	 * encoded. Each token in the file must be separated by a line break. Either
+	 * this parameter or <code>word_list</code> must be specified.
+	 * <p>
 	 * API name: {@code word_list_path}
 	 */
 	@Nullable
@@ -153,11 +163,6 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.hyphenationPatternsPath != null) {
-			generator.writeKey("hyphenation_patterns_path");
-			generator.write(this.hyphenationPatternsPath);
-
-		}
 		if (this.maxSubwordSize != null) {
 			generator.writeKey("max_subword_size");
 			generator.write(this.maxSubwordSize);
@@ -200,9 +205,6 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 			extends
 				TokenFilterBase.AbstractBuilder<BuilderT> {
 		@Nullable
-		private String hyphenationPatternsPath;
-
-		@Nullable
 		private Integer maxSubwordSize;
 
 		@Nullable
@@ -221,14 +223,9 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		private String wordListPath;
 
 		/**
-		 * API name: {@code hyphenation_patterns_path}
-		 */
-		public final BuilderT hyphenationPatternsPath(@Nullable String value) {
-			this.hyphenationPatternsPath = value;
-			return self();
-		}
-
-		/**
+		 * Maximum subword character length. Longer subword tokens are excluded from the
+		 * output. Defaults to <code>15</code>.
+		 * <p>
 		 * API name: {@code max_subword_size}
 		 */
 		public final BuilderT maxSubwordSize(@Nullable Integer value) {
@@ -237,6 +234,9 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		}
 
 		/**
+		 * Minimum subword character length. Shorter subword tokens are excluded from
+		 * the output. Defaults to <code>2</code>.
+		 * <p>
 		 * API name: {@code min_subword_size}
 		 */
 		public final BuilderT minSubwordSize(@Nullable Integer value) {
@@ -245,6 +245,9 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		}
 
 		/**
+		 * Minimum word character length. Shorter word tokens are excluded from the
+		 * output. Defaults to <code>5</code>.
+		 * <p>
 		 * API name: {@code min_word_size}
 		 */
 		public final BuilderT minWordSize(@Nullable Integer value) {
@@ -253,6 +256,9 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		}
 
 		/**
+		 * If <code>true</code>, only include the longest matching subword. Defaults to
+		 * <code>false</code>.
+		 * <p>
 		 * API name: {@code only_longest_match}
 		 */
 		public final BuilderT onlyLongestMatch(@Nullable Boolean value) {
@@ -261,6 +267,10 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		}
 
 		/**
+		 * A list of subwords to look for in the token stream. If found, the subword is
+		 * included in the token output. Either this parameter or
+		 * <code>word_list_path</code> must be specified.
+		 * <p>
 		 * API name: {@code word_list}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>wordList</code>.
@@ -271,6 +281,10 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		}
 
 		/**
+		 * A list of subwords to look for in the token stream. If found, the subword is
+		 * included in the token output. Either this parameter or
+		 * <code>word_list_path</code> must be specified.
+		 * <p>
 		 * API name: {@code word_list}
 		 * <p>
 		 * Adds one or more values to <code>wordList</code>.
@@ -281,6 +295,12 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 		}
 
 		/**
+		 * Path to a file that contains a list of subwords to find in the token stream.
+		 * If found, the subword is included in the token output. This path must be
+		 * absolute or relative to the config location, and the file must be UTF-8
+		 * encoded. Each token in the file must be separated by a line break. Either
+		 * this parameter or <code>word_list</code> must be specified.
+		 * <p>
 		 * API name: {@code word_list_path}
 		 */
 		public final BuilderT wordListPath(@Nullable String value) {
@@ -294,8 +314,6 @@ public abstract class CompoundWordTokenFilterBase extends TokenFilterBase {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupCompoundWordTokenFilterBaseDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
-		op.add(AbstractBuilder::hyphenationPatternsPath, JsonpDeserializer.stringDeserializer(),
-				"hyphenation_patterns_path");
 		op.add(AbstractBuilder::maxSubwordSize, JsonpDeserializer.integerDeserializer(), "max_subword_size");
 		op.add(AbstractBuilder::minSubwordSize, JsonpDeserializer.integerDeserializer(), "min_subword_size");
 		op.add(AbstractBuilder::minWordSize, JsonpDeserializer.integerDeserializer(), "min_word_size");

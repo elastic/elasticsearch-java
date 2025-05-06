@@ -82,6 +82,8 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 	}
 
 	/**
+	 * An array of part-of-speech tags that should be removed.
+	 * <p>
 	 * API name: {@code stoptags}
 	 */
 	public final List<String> stoptags() {
@@ -118,6 +120,8 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 		private List<String> stoptags;
 
 		/**
+		 * An array of part-of-speech tags that should be removed.
+		 * <p>
 		 * API name: {@code stoptags}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>stoptags</code>.
@@ -128,6 +132,8 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 		}
 
 		/**
+		 * An array of part-of-speech tags that should be removed.
+		 * <p>
 		 * API name: {@code stoptags}
 		 * <p>
 		 * Adds one or more values to <code>stoptags</code>.

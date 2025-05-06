@@ -95,6 +95,9 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 	}
 
 	/**
+	 * A list of tokens. The filter generates bigrams for these tokens. Either this
+	 * or the <code>common_words_path</code> parameter is required.
+	 * <p>
 	 * API name: {@code common_words}
 	 */
 	public final List<String> commonWords() {
@@ -102,6 +105,12 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 	}
 
 	/**
+	 * Path to a file containing a list of tokens. The filter generates bigrams for
+	 * these tokens. This path must be absolute or relative to the
+	 * <code>config</code> location. The file must be UTF-8 encoded. Each token in
+	 * the file must be separated by a line break. Either this or the
+	 * <code>common_words</code> parameter is required.
+	 * <p>
 	 * API name: {@code common_words_path}
 	 */
 	@Nullable
@@ -110,6 +119,9 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 	}
 
 	/**
+	 * If <code>true</code>, matches for common words matching are case-insensitive.
+	 * Defaults to <code>false</code>.
+	 * <p>
 	 * API name: {@code ignore_case}
 	 */
 	@Nullable
@@ -118,6 +130,15 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 	}
 
 	/**
+	 * If <code>true</code>, the filter excludes the following tokens from the
+	 * output:
+	 * <ul>
+	 * <li>Unigrams for common words</li>
+	 * <li>Unigrams for terms followed by common words Defaults to
+	 * <code>false</code>. We recommend enabling this parameter for search
+	 * analyzers.</li>
+	 * </ul>
+	 * <p>
 	 * API name: {@code query_mode}
 	 */
 	@Nullable
@@ -179,6 +200,9 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 		private Boolean queryMode;
 
 		/**
+		 * A list of tokens. The filter generates bigrams for these tokens. Either this
+		 * or the <code>common_words_path</code> parameter is required.
+		 * <p>
 		 * API name: {@code common_words}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>commonWords</code>.
@@ -189,6 +213,9 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 		}
 
 		/**
+		 * A list of tokens. The filter generates bigrams for these tokens. Either this
+		 * or the <code>common_words_path</code> parameter is required.
+		 * <p>
 		 * API name: {@code common_words}
 		 * <p>
 		 * Adds one or more values to <code>commonWords</code>.
@@ -199,6 +226,12 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 		}
 
 		/**
+		 * Path to a file containing a list of tokens. The filter generates bigrams for
+		 * these tokens. This path must be absolute or relative to the
+		 * <code>config</code> location. The file must be UTF-8 encoded. Each token in
+		 * the file must be separated by a line break. Either this or the
+		 * <code>common_words</code> parameter is required.
+		 * <p>
 		 * API name: {@code common_words_path}
 		 */
 		public final Builder commonWordsPath(@Nullable String value) {
@@ -207,6 +240,9 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 		}
 
 		/**
+		 * If <code>true</code>, matches for common words matching are case-insensitive.
+		 * Defaults to <code>false</code>.
+		 * <p>
 		 * API name: {@code ignore_case}
 		 */
 		public final Builder ignoreCase(@Nullable Boolean value) {
@@ -215,6 +251,15 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 		}
 
 		/**
+		 * If <code>true</code>, the filter excludes the following tokens from the
+		 * output:
+		 * <ul>
+		 * <li>Unigrams for common words</li>
+		 * <li>Unigrams for terms followed by common words Defaults to
+		 * <code>false</code>. We recommend enabling this parameter for search
+		 * analyzers.</li>
+		 * </ul>
+		 * <p>
 		 * API name: {@code query_mode}
 		 */
 		public final Builder queryMode(@Nullable Boolean value) {

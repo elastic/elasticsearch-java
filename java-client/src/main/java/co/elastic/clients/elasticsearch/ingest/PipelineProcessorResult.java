@@ -20,7 +20,6 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.elasticsearch.watcher.ActionStatusOptions;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -51,16 +50,16 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: ingest._types.PipelineSimulation
+// typedef: ingest._types.PipelineProcessorResult
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#ingest._types.PipelineSimulation">API
+ *      "../doc-files/api-spec.html#ingest._types.PipelineProcessorResult">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class PipelineSimulation implements JsonpSerializable {
+public class PipelineProcessorResult implements JsonpSerializable {
 	@Nullable
 	private final DocumentSimulation doc;
 
@@ -71,7 +70,7 @@ public class PipelineSimulation implements JsonpSerializable {
 	private final String processorType;
 
 	@Nullable
-	private final ActionStatusOptions status;
+	private final PipelineSimulationStatusOptions status;
 
 	@Nullable
 	private final String description;
@@ -84,7 +83,7 @@ public class PipelineSimulation implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	private PipelineSimulation(Builder builder) {
+	private PipelineProcessorResult(Builder builder) {
 
 		this.doc = builder.doc;
 		this.tag = builder.tag;
@@ -96,7 +95,7 @@ public class PipelineSimulation implements JsonpSerializable {
 
 	}
 
-	public static PipelineSimulation of(Function<Builder, ObjectBuilder<PipelineSimulation>> fn) {
+	public static PipelineProcessorResult of(Function<Builder, ObjectBuilder<PipelineProcessorResult>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -128,7 +127,7 @@ public class PipelineSimulation implements JsonpSerializable {
 	 * API name: {@code status}
 	 */
 	@Nullable
-	public final ActionStatusOptions status() {
+	public final PipelineSimulationStatusOptions status() {
 		return this.status;
 	}
 
@@ -212,12 +211,12 @@ public class PipelineSimulation implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link PipelineSimulation}.
+	 * Builder for {@link PipelineProcessorResult}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<PipelineSimulation> {
+				ObjectBuilder<PipelineProcessorResult> {
 		@Nullable
 		private DocumentSimulation doc;
 
@@ -228,7 +227,7 @@ public class PipelineSimulation implements JsonpSerializable {
 		private String processorType;
 
 		@Nullable
-		private ActionStatusOptions status;
+		private PipelineSimulationStatusOptions status;
 
 		@Nullable
 		private String description;
@@ -273,7 +272,7 @@ public class PipelineSimulation implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public final Builder status(@Nullable ActionStatusOptions value) {
+		public final Builder status(@Nullable PipelineSimulationStatusOptions value) {
 			this.status = value;
 			return this;
 		}
@@ -322,32 +321,33 @@ public class PipelineSimulation implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link PipelineSimulation}.
+		 * Builds a {@link PipelineProcessorResult}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public PipelineSimulation build() {
+		public PipelineProcessorResult build() {
 			_checkSingleUse();
 
-			return new PipelineSimulation(this);
+			return new PipelineProcessorResult(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link PipelineSimulation}
+	 * Json deserializer for {@link PipelineProcessorResult}
 	 */
-	public static final JsonpDeserializer<PipelineSimulation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PipelineSimulation::setupPipelineSimulationDeserializer);
+	public static final JsonpDeserializer<PipelineProcessorResult> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PipelineProcessorResult::setupPipelineProcessorResultDeserializer);
 
-	protected static void setupPipelineSimulationDeserializer(ObjectDeserializer<PipelineSimulation.Builder> op) {
+	protected static void setupPipelineProcessorResultDeserializer(
+			ObjectDeserializer<PipelineProcessorResult.Builder> op) {
 
 		op.add(Builder::doc, DocumentSimulation._DESERIALIZER, "doc");
 		op.add(Builder::tag, JsonpDeserializer.stringDeserializer(), "tag");
 		op.add(Builder::processorType, JsonpDeserializer.stringDeserializer(), "processor_type");
-		op.add(Builder::status, ActionStatusOptions._DESERIALIZER, "status");
+		op.add(Builder::status, PipelineSimulationStatusOptions._DESERIALIZER, "status");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::ignoredError, ErrorCause._DESERIALIZER, "ignored_error");
 		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");

@@ -90,6 +90,8 @@ public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefi
 	}
 
 	/**
+	 * Maximum length of characters in a gram. Defaults to <code>2</code>.
+	 * <p>
 	 * API name: {@code max_gram}
 	 */
 	@Nullable
@@ -98,6 +100,8 @@ public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefi
 	}
 
 	/**
+	 * Minimum length of characters in a gram. Defaults to <code>1</code>.
+	 * <p>
 	 * API name: {@code min_gram}
 	 */
 	@Nullable
@@ -106,6 +110,9 @@ public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefi
 	}
 
 	/**
+	 * Emits original token when set to <code>true</code>. Defaults to
+	 * <code>false</code>.
+	 * <p>
 	 * API name: {@code preserve_original}
 	 */
 	@Nullable
@@ -154,6 +161,8 @@ public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefi
 		private Boolean preserveOriginal;
 
 		/**
+		 * Maximum length of characters in a gram. Defaults to <code>2</code>.
+		 * <p>
 		 * API name: {@code max_gram}
 		 */
 		public final Builder maxGram(@Nullable Integer value) {
@@ -162,6 +171,8 @@ public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefi
 		}
 
 		/**
+		 * Minimum length of characters in a gram. Defaults to <code>1</code>.
+		 * <p>
 		 * API name: {@code min_gram}
 		 */
 		public final Builder minGram(@Nullable Integer value) {
@@ -170,6 +181,9 @@ public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefi
 		}
 
 		/**
+		 * Emits original token when set to <code>true</code>. Defaults to
+		 * <code>false</code>.
+		 * <p>
 		 * API name: {@code preserve_original}
 		 */
 		public final Builder preserveOriginal(@Nullable Boolean value) {

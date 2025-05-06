@@ -213,6 +213,81 @@ public class ElasticsearchInferenceAsyncClient
 				GetInferenceRequest._ENDPOINT, this.transportOptions);
 	}
 
+	// ----- Endpoint: inference.inference
+
+	/**
+	 * Perform inference on the service.
+	 * <p>
+	 * This API enables you to use machine learning models to perform specific tasks
+	 * on data that you provide as an input. It returns a response with the results
+	 * of the tasks. The inference endpoint you use can perform one specific task
+	 * that has been defined when the endpoint was created with the create inference
+	 * API.
+	 * <p>
+	 * For details about using this API with a service, such as Amazon Bedrock,
+	 * Anthropic, or HuggingFace, refer to the service-specific documentation.
+	 * <blockquote>
+	 * <p>
+	 * info The inference APIs enable you to use certain services, such as built-in
+	 * machine learning models (ELSER, E5), models uploaded through Eland, Cohere,
+	 * OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic, Watsonx.ai, or
+	 * Hugging Face. For built-in models and models uploaded through Eland, the
+	 * inference APIs offer an alternative way to use and manage trained models.
+	 * However, if you do not plan to use the inference APIs to use these models or
+	 * if you want to use non-NLP models, use the machine learning trained model
+	 * APIs.
+	 * </p>
+	 * </blockquote>
+	 *
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/post-inference-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<InferenceResponse> inference(InferenceRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<InferenceRequest, InferenceResponse, ErrorResponse> endpoint = (JsonEndpoint<InferenceRequest, InferenceResponse, ErrorResponse>) InferenceRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Perform inference on the service.
+	 * <p>
+	 * This API enables you to use machine learning models to perform specific tasks
+	 * on data that you provide as an input. It returns a response with the results
+	 * of the tasks. The inference endpoint you use can perform one specific task
+	 * that has been defined when the endpoint was created with the create inference
+	 * API.
+	 * <p>
+	 * For details about using this API with a service, such as Amazon Bedrock,
+	 * Anthropic, or HuggingFace, refer to the service-specific documentation.
+	 * <blockquote>
+	 * <p>
+	 * info The inference APIs enable you to use certain services, such as built-in
+	 * machine learning models (ELSER, E5), models uploaded through Eland, Cohere,
+	 * OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic, Watsonx.ai, or
+	 * Hugging Face. For built-in models and models uploaded through Eland, the
+	 * inference APIs offer an alternative way to use and manage trained models.
+	 * However, if you do not plan to use the inference APIs to use these models or
+	 * if you want to use non-NLP models, use the machine learning trained model
+	 * APIs.
+	 * </p>
+	 * </blockquote>
+	 *
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link InferenceRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/post-inference-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<InferenceResponse> inference(
+			Function<InferenceRequest.Builder, ObjectBuilder<InferenceRequest>> fn) {
+		return inference(fn.apply(new InferenceRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: inference.put
 
 	/**

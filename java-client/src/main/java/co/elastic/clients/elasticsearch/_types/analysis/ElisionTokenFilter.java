@@ -91,6 +91,11 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 	}
 
 	/**
+	 * List of elisions to remove. To be removed, the elision must be at the
+	 * beginning of a token and be immediately followed by an apostrophe. Both the
+	 * elision and apostrophe are removed. For custom <code>elision</code> filters,
+	 * either this parameter or <code>articles_path</code> must be specified.
+	 * <p>
 	 * API name: {@code articles}
 	 */
 	public final List<String> articles() {
@@ -98,6 +103,14 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 	}
 
 	/**
+	 * Path to a file that contains a list of elisions to remove. This path must be
+	 * absolute or relative to the <code>config</code> location, and the file must
+	 * be UTF-8 encoded. Each elision in the file must be separated by a line break.
+	 * To be removed, the elision must be at the beginning of a token and be
+	 * immediately followed by an apostrophe. Both the elision and apostrophe are
+	 * removed. For custom <code>elision</code> filters, either this parameter or
+	 * <code>articles</code> must be specified.
+	 * <p>
 	 * API name: {@code articles_path}
 	 */
 	@Nullable
@@ -106,6 +119,10 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 	}
 
 	/**
+	 * If <code>true</code>, elision matching is case insensitive. If
+	 * <code>false</code>, elision matching is case sensitive. Defaults to
+	 * <code>false</code>.
+	 * <p>
 	 * API name: {@code articles_case}
 	 */
 	@Nullable
@@ -159,6 +176,11 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 		private Boolean articlesCase;
 
 		/**
+		 * List of elisions to remove. To be removed, the elision must be at the
+		 * beginning of a token and be immediately followed by an apostrophe. Both the
+		 * elision and apostrophe are removed. For custom <code>elision</code> filters,
+		 * either this parameter or <code>articles_path</code> must be specified.
+		 * <p>
 		 * API name: {@code articles}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>articles</code>.
@@ -169,6 +191,11 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 		}
 
 		/**
+		 * List of elisions to remove. To be removed, the elision must be at the
+		 * beginning of a token and be immediately followed by an apostrophe. Both the
+		 * elision and apostrophe are removed. For custom <code>elision</code> filters,
+		 * either this parameter or <code>articles_path</code> must be specified.
+		 * <p>
 		 * API name: {@code articles}
 		 * <p>
 		 * Adds one or more values to <code>articles</code>.
@@ -179,6 +206,14 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 		}
 
 		/**
+		 * Path to a file that contains a list of elisions to remove. This path must be
+		 * absolute or relative to the <code>config</code> location, and the file must
+		 * be UTF-8 encoded. Each elision in the file must be separated by a line break.
+		 * To be removed, the elision must be at the beginning of a token and be
+		 * immediately followed by an apostrophe. Both the elision and apostrophe are
+		 * removed. For custom <code>elision</code> filters, either this parameter or
+		 * <code>articles</code> must be specified.
+		 * <p>
 		 * API name: {@code articles_path}
 		 */
 		public final Builder articlesPath(@Nullable String value) {
@@ -187,6 +222,10 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 		}
 
 		/**
+		 * If <code>true</code>, elision matching is case insensitive. If
+		 * <code>false</code>, elision matching is case sensitive. Defaults to
+		 * <code>false</code>.
+		 * <p>
 		 * API name: {@code articles_case}
 		 */
 		public final Builder articlesCase(@Nullable Boolean value) {

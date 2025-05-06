@@ -67,7 +67,7 @@ public class SimulateDocumentResult implements JsonpSerializable {
 	@Nullable
 	private final ErrorCause error;
 
-	private final List<PipelineSimulation> processorResults;
+	private final List<PipelineProcessorResult> processorResults;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -102,7 +102,7 @@ public class SimulateDocumentResult implements JsonpSerializable {
 	/**
 	 * API name: {@code processor_results}
 	 */
-	public final List<PipelineSimulation> processorResults() {
+	public final List<PipelineProcessorResult> processorResults() {
 		return this.processorResults;
 	}
 
@@ -130,7 +130,7 @@ public class SimulateDocumentResult implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.processorResults)) {
 			generator.writeKey("processor_results");
 			generator.writeStartArray();
-			for (PipelineSimulation item0 : this.processorResults) {
+			for (PipelineProcessorResult item0 : this.processorResults) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -161,7 +161,7 @@ public class SimulateDocumentResult implements JsonpSerializable {
 		private ErrorCause error;
 
 		@Nullable
-		private List<PipelineSimulation> processorResults;
+		private List<PipelineProcessorResult> processorResults;
 
 		/**
 		 * API name: {@code doc}
@@ -198,7 +198,7 @@ public class SimulateDocumentResult implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>processorResults</code>.
 		 */
-		public final Builder processorResults(List<PipelineSimulation> list) {
+		public final Builder processorResults(List<PipelineProcessorResult> list) {
 			this.processorResults = _listAddAll(this.processorResults, list);
 			return this;
 		}
@@ -208,7 +208,7 @@ public class SimulateDocumentResult implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>processorResults</code>.
 		 */
-		public final Builder processorResults(PipelineSimulation value, PipelineSimulation... values) {
+		public final Builder processorResults(PipelineProcessorResult value, PipelineProcessorResult... values) {
 			this.processorResults = _listAdd(this.processorResults, value, values);
 			return this;
 		}
@@ -219,8 +219,8 @@ public class SimulateDocumentResult implements JsonpSerializable {
 		 * Adds a value to <code>processorResults</code> using a builder lambda.
 		 */
 		public final Builder processorResults(
-				Function<PipelineSimulation.Builder, ObjectBuilder<PipelineSimulation>> fn) {
-			return processorResults(fn.apply(new PipelineSimulation.Builder()).build());
+				Function<PipelineProcessorResult.Builder, ObjectBuilder<PipelineProcessorResult>> fn) {
+			return processorResults(fn.apply(new PipelineProcessorResult.Builder()).build());
 		}
 
 		@Override
@@ -254,7 +254,7 @@ public class SimulateDocumentResult implements JsonpSerializable {
 
 		op.add(Builder::doc, DocumentSimulation._DESERIALIZER, "doc");
 		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
-		op.add(Builder::processorResults, JsonpDeserializer.arrayDeserializer(PipelineSimulation._DESERIALIZER),
+		op.add(Builder::processorResults, JsonpDeserializer.arrayDeserializer(PipelineProcessorResult._DESERIALIZER),
 				"processor_results");
 
 	}

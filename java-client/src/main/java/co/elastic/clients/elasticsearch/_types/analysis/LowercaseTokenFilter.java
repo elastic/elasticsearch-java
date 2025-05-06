@@ -26,7 +26,6 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -57,7 +56,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
-	private final String language;
+	private final LowercaseTokenFilterLanguages language;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -81,10 +80,12 @@ public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilter
 	}
 
 	/**
+	 * Language-specific lowercase token filter to use.
+	 * <p>
 	 * API name: {@code language}
 	 */
 	@Nullable
-	public final String language() {
+	public final LowercaseTokenFilterLanguages language() {
 		return this.language;
 	}
 
@@ -94,8 +95,7 @@ public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilter
 		super.serializeInternal(generator, mapper);
 		if (this.language != null) {
 			generator.writeKey("language");
-			generator.write(this.language);
-
+			this.language.serialize(generator, mapper);
 		}
 
 	}
@@ -110,12 +110,14 @@ public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilter
 			implements
 				ObjectBuilder<LowercaseTokenFilter> {
 		@Nullable
-		private String language;
+		private LowercaseTokenFilterLanguages language;
 
 		/**
+		 * Language-specific lowercase token filter to use.
+		 * <p>
 		 * API name: {@code language}
 		 */
-		public final Builder language(@Nullable String value) {
+		public final Builder language(@Nullable LowercaseTokenFilterLanguages value) {
 			this.language = value;
 			return this;
 		}
@@ -148,7 +150,7 @@ public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilter
 
 	protected static void setupLowercaseTokenFilterDeserializer(ObjectDeserializer<LowercaseTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
-		op.add(Builder::language, JsonpDeserializer.stringDeserializer(), "language");
+		op.add(Builder::language, LowercaseTokenFilterLanguages._DESERIALIZER, "language");
 
 		op.ignore("type");
 	}

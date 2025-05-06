@@ -81,6 +81,9 @@ public class TruncateTokenFilter extends TokenFilterBase implements TokenFilterD
 	}
 
 	/**
+	 * Character limit for each token. Tokens exceeding this limit are truncated.
+	 * Defaults to <code>10</code>.
+	 * <p>
 	 * API name: {@code length}
 	 */
 	@Nullable
@@ -113,6 +116,9 @@ public class TruncateTokenFilter extends TokenFilterBase implements TokenFilterD
 		private Integer length;
 
 		/**
+		 * Character limit for each token. Tokens exceeding this limit are truncated.
+		 * Defaults to <code>10</code>.
+		 * <p>
 		 * API name: {@code length}
 		 */
 		public final Builder length(@Nullable Integer value) {

@@ -248,7 +248,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * enabled, only operator users can use this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-post">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-license-post">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -277,7 +277,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PostRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-post">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-license-post">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -301,7 +301,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * enabled, only operator users can use this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-post">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-license-post">Documentation
 	 *      on elastic.co</a>
 	 */
 
