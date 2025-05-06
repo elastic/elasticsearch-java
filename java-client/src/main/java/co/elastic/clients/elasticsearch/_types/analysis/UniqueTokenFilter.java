@@ -81,6 +81,9 @@ public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterDef
 	}
 
 	/**
+	 * If <code>true</code>, only remove duplicate tokens in the same position.
+	 * Defaults to <code>false</code>.
+	 * <p>
 	 * API name: {@code only_on_same_position}
 	 */
 	@Nullable
@@ -113,6 +116,9 @@ public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterDef
 		private Boolean onlyOnSamePosition;
 
 		/**
+		 * If <code>true</code>, only remove duplicate tokens in the same position.
+		 * Defaults to <code>false</code>.
+		 * <p>
 		 * API name: {@code only_on_same_position}
 		 */
 		public final Builder onlyOnSamePosition(@Nullable Boolean value) {

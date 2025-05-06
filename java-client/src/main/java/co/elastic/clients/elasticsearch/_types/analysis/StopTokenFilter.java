@@ -95,6 +95,10 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 	}
 
 	/**
+	 * If <code>true</code>, stop word matching is case insensitive. For example, if
+	 * <code>true</code>, a stop word of the matches and removes <code>The</code>,
+	 * <code>THE</code>, or <code>the</code>. Defaults to <code>false</code>.
+	 * <p>
 	 * API name: {@code ignore_case}
 	 */
 	@Nullable
@@ -103,6 +107,9 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 	}
 
 	/**
+	 * If <code>true</code>, the last token of a stream is removed if it’s a stop
+	 * word. Defaults to <code>true</code>.
+	 * <p>
 	 * API name: {@code remove_trailing}
 	 */
 	@Nullable
@@ -111,6 +118,9 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 	}
 
 	/**
+	 * Language value, such as <code>_arabic_</code> or <code>_thai_</code>.
+	 * Defaults to <code>_english_</code>.
+	 * <p>
 	 * API name: {@code stopwords}
 	 */
 	public final List<String> stopwords() {
@@ -118,6 +128,11 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 	}
 
 	/**
+	 * Path to a file that contains a list of stop words to remove. This path must
+	 * be absolute or relative to the <code>config</code> location, and the file
+	 * must be UTF-8 encoded. Each stop word in the file must be separated by a line
+	 * break.
+	 * <p>
 	 * API name: {@code stopwords_path}
 	 */
 	@Nullable
@@ -179,6 +194,10 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 		private String stopwordsPath;
 
 		/**
+		 * If <code>true</code>, stop word matching is case insensitive. For example, if
+		 * <code>true</code>, a stop word of the matches and removes <code>The</code>,
+		 * <code>THE</code>, or <code>the</code>. Defaults to <code>false</code>.
+		 * <p>
 		 * API name: {@code ignore_case}
 		 */
 		public final Builder ignoreCase(@Nullable Boolean value) {
@@ -187,6 +206,9 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 		}
 
 		/**
+		 * If <code>true</code>, the last token of a stream is removed if it’s a stop
+		 * word. Defaults to <code>true</code>.
+		 * <p>
 		 * API name: {@code remove_trailing}
 		 */
 		public final Builder removeTrailing(@Nullable Boolean value) {
@@ -195,6 +217,9 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 		}
 
 		/**
+		 * Language value, such as <code>_arabic_</code> or <code>_thai_</code>.
+		 * Defaults to <code>_english_</code>.
+		 * <p>
 		 * API name: {@code stopwords}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>stopwords</code>.
@@ -205,6 +230,9 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 		}
 
 		/**
+		 * Language value, such as <code>_arabic_</code> or <code>_thai_</code>.
+		 * Defaults to <code>_english_</code>.
+		 * <p>
 		 * API name: {@code stopwords}
 		 * <p>
 		 * Adds one or more values to <code>stopwords</code>.
@@ -215,6 +243,11 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 		}
 
 		/**
+		 * Path to a file that contains a list of stop words to remove. This path must
+		 * be absolute or relative to the <code>config</code> location, and the file
+		 * must be UTF-8 encoded. Each stop word in the file must be separated by a line
+		 * break.
+		 * <p>
 		 * API name: {@code stopwords_path}
 		 */
 		public final Builder stopwordsPath(@Nullable String value) {

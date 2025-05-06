@@ -137,7 +137,7 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	 * usage statistics.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/usage-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/group/endpoint-xpack">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -157,7 +157,7 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link XpackUsageRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/usage-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/group/endpoint-xpack">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -172,7 +172,7 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	 * usage statistics.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/usage-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/group/endpoint-xpack">Documentation
 	 *      on elastic.co</a>
 	 */
 

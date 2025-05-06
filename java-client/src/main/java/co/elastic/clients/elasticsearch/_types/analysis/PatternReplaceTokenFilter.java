@@ -61,9 +61,6 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 	@Nullable
 	private final Boolean all;
 
-	@Nullable
-	private final String flags;
-
 	private final String pattern;
 
 	@Nullable
@@ -75,7 +72,6 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 		super(builder);
 
 		this.all = builder.all;
-		this.flags = builder.flags;
 		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
 		this.replacement = builder.replacement;
 
@@ -94,6 +90,10 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 	}
 
 	/**
+	 * If <code>true</code>, all substrings matching the pattern parameter’s regular
+	 * expression are replaced. If <code>false</code>, the filter replaces only the
+	 * first matching substring in each token. Defaults to <code>true</code>.
+	 * <p>
 	 * API name: {@code all}
 	 */
 	@Nullable
@@ -102,21 +102,20 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 	}
 
 	/**
-	 * API name: {@code flags}
-	 */
-	@Nullable
-	public final String flags() {
-		return this.flags;
-	}
-
-	/**
-	 * Required - API name: {@code pattern}
+	 * Required - Regular expression, written in Java’s regular expression syntax.
+	 * The filter replaces token substrings matching this pattern with the substring
+	 * in the <code>replacement</code> parameter.
+	 * <p>
+	 * API name: {@code pattern}
 	 */
 	public final String pattern() {
 		return this.pattern;
 	}
 
 	/**
+	 * Replacement substring. Defaults to an empty substring
+	 * (<code>&quot;&quot;</code>).
+	 * <p>
 	 * API name: {@code replacement}
 	 */
 	@Nullable
@@ -131,11 +130,6 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 		if (this.all != null) {
 			generator.writeKey("all");
 			generator.write(this.all);
-
-		}
-		if (this.flags != null) {
-			generator.writeKey("flags");
-			generator.write(this.flags);
 
 		}
 		generator.writeKey("pattern");
@@ -161,15 +155,16 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 		@Nullable
 		private Boolean all;
 
-		@Nullable
-		private String flags;
-
 		private String pattern;
 
 		@Nullable
 		private String replacement;
 
 		/**
+		 * If <code>true</code>, all substrings matching the pattern parameter’s regular
+		 * expression are replaced. If <code>false</code>, the filter replaces only the
+		 * first matching substring in each token. Defaults to <code>true</code>.
+		 * <p>
 		 * API name: {@code all}
 		 */
 		public final Builder all(@Nullable Boolean value) {
@@ -178,15 +173,11 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 		}
 
 		/**
-		 * API name: {@code flags}
-		 */
-		public final Builder flags(@Nullable String value) {
-			this.flags = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code pattern}
+		 * Required - Regular expression, written in Java’s regular expression syntax.
+		 * The filter replaces token substrings matching this pattern with the substring
+		 * in the <code>replacement</code> parameter.
+		 * <p>
+		 * API name: {@code pattern}
 		 */
 		public final Builder pattern(String value) {
 			this.pattern = value;
@@ -194,6 +185,9 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 		}
 
 		/**
+		 * Replacement substring. Defaults to an empty substring
+		 * (<code>&quot;&quot;</code>).
+		 * <p>
 		 * API name: {@code replacement}
 		 */
 		public final Builder replacement(@Nullable String value) {
@@ -231,7 +225,6 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 			ObjectDeserializer<PatternReplaceTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::all, JsonpDeserializer.booleanDeserializer(), "all");
-		op.add(Builder::flags, JsonpDeserializer.stringDeserializer(), "flags");
 		op.add(Builder::pattern, JsonpDeserializer.stringDeserializer(), "pattern");
 		op.add(Builder::replacement, JsonpDeserializer.stringDeserializer(), "replacement");
 

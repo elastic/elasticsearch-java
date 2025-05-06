@@ -87,13 +87,17 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 	}
 
 	/**
-	 * Required - API name: {@code patterns}
+	 * Required - A list of regular expressions to match.
+	 * <p>
+	 * API name: {@code patterns}
 	 */
 	public final List<String> patterns() {
 		return this.patterns;
 	}
 
 	/**
+	 * If set to <code>true</code> (the default) it will emit the original token.
+	 * <p>
 	 * API name: {@code preserve_original}
 	 */
 	@Nullable
@@ -138,7 +142,9 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 		private Boolean preserveOriginal;
 
 		/**
-		 * Required - API name: {@code patterns}
+		 * Required - A list of regular expressions to match.
+		 * <p>
+		 * API name: {@code patterns}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>patterns</code>.
 		 */
@@ -148,7 +154,9 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 		}
 
 		/**
-		 * Required - API name: {@code patterns}
+		 * Required - A list of regular expressions to match.
+		 * <p>
+		 * API name: {@code patterns}
 		 * <p>
 		 * Adds one or more values to <code>patterns</code>.
 		 */
@@ -158,6 +166,8 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 		}
 
 		/**
+		 * If set to <code>true</code> (the default) it will emit the original token.
+		 * <p>
 		 * API name: {@code preserve_original}
 		 */
 		public final Builder preserveOriginal(@Nullable Boolean value) {

@@ -605,7 +605,7 @@ public class ElasticsearchTransformAsyncClient
 	 * at the time of update and runs with those privileges.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-transform-update-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -632,7 +632,7 @@ public class ElasticsearchTransformAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-transform.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-transform-update-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -666,7 +666,7 @@ public class ElasticsearchTransformAsyncClient
 	 * cluster backup prior to the upgrade.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/upgrade-transforms.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-transform-upgrade-transforms">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -703,7 +703,7 @@ public class ElasticsearchTransformAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpgradeTransformsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/upgrade-transforms.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-transform-upgrade-transforms">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -735,7 +735,7 @@ public class ElasticsearchTransformAsyncClient
 	 * cluster backup prior to the upgrade.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/upgrade-transforms.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-transform-upgrade-transforms">Documentation
 	 *      on elastic.co</a>
 	 */
 

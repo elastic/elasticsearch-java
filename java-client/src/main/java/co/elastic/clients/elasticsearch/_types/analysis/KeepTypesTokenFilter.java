@@ -69,7 +69,7 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 		super(builder);
 
 		this.mode = builder.mode;
-		this.types = ApiTypeHelper.unmodifiable(builder.types);
+		this.types = ApiTypeHelper.unmodifiableRequired(builder.types, this, "types");
 
 	}
 
@@ -86,6 +86,8 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 	}
 
 	/**
+	 * Indicates whether to keep or remove the specified token types.
+	 * <p>
 	 * API name: {@code mode}
 	 */
 	@Nullable
@@ -94,6 +96,8 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 	}
 
 	/**
+	 * Required - List of token types to keep or remove.
+	 * <p>
 	 * API name: {@code types}
 	 */
 	public final List<String> types() {
@@ -133,10 +137,11 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 		@Nullable
 		private KeepTypesMode mode;
 
-		@Nullable
 		private List<String> types;
 
 		/**
+		 * Indicates whether to keep or remove the specified token types.
+		 * <p>
 		 * API name: {@code mode}
 		 */
 		public final Builder mode(@Nullable KeepTypesMode value) {
@@ -145,6 +150,8 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 		}
 
 		/**
+		 * Required - List of token types to keep or remove.
+		 * <p>
 		 * API name: {@code types}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>types</code>.
@@ -155,6 +162,8 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 		}
 
 		/**
+		 * Required - List of token types to keep or remove.
+		 * <p>
 		 * API name: {@code types}
 		 * <p>
 		 * Adds one or more values to <code>types</code>.

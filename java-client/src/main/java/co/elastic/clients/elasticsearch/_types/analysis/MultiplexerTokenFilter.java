@@ -87,13 +87,18 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 	}
 
 	/**
-	 * Required - API name: {@code filters}
+	 * Required - A list of token filters to apply to incoming tokens.
+	 * <p>
+	 * API name: {@code filters}
 	 */
 	public final List<String> filters() {
 		return this.filters;
 	}
 
 	/**
+	 * If <code>true</code> (the default) then emit the original token in addition
+	 * to the filtered tokens.
+	 * <p>
 	 * API name: {@code preserve_original}
 	 */
 	@Nullable
@@ -138,7 +143,9 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 		private Boolean preserveOriginal;
 
 		/**
-		 * Required - API name: {@code filters}
+		 * Required - A list of token filters to apply to incoming tokens.
+		 * <p>
+		 * API name: {@code filters}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>filters</code>.
 		 */
@@ -148,7 +155,9 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 		}
 
 		/**
-		 * Required - API name: {@code filters}
+		 * Required - A list of token filters to apply to incoming tokens.
+		 * <p>
+		 * API name: {@code filters}
 		 * <p>
 		 * Adds one or more values to <code>filters</code>.
 		 */
@@ -158,6 +167,9 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 		}
 
 		/**
+		 * If <code>true</code> (the default) then emit the original token in addition
+		 * to the filtered tokens.
+		 * <p>
 		 * API name: {@code preserve_original}
 		 */
 		public final Builder preserveOriginal(@Nullable Boolean value) {

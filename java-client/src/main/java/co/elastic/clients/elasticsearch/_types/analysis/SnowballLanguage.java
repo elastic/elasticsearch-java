@@ -46,6 +46,8 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum SnowballLanguage implements JsonEnum {
+	Arabic("Arabic"),
+
 	Armenian("Armenian"),
 
 	Basque("Basque"),
@@ -57,6 +59,8 @@ public enum SnowballLanguage implements JsonEnum {
 	Dutch("Dutch"),
 
 	English("English"),
+
+	Estonian("Estonian"),
 
 	Finnish("Finnish"),
 
@@ -70,7 +74,11 @@ public enum SnowballLanguage implements JsonEnum {
 
 	Italian("Italian"),
 
+	Irish("Irish"),
+
 	Kp("Kp"),
+
+	Lithuanian("Lithuanian"),
 
 	Lovins("Lovins"),
 
@@ -83,6 +91,8 @@ public enum SnowballLanguage implements JsonEnum {
 	Romanian("Romanian"),
 
 	Russian("Russian"),
+
+	Serbian("Serbian"),
 
 	Spanish("Spanish"),
 

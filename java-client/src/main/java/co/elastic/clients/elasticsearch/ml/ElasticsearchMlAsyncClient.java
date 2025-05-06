@@ -1144,7 +1144,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.get_data_frame_analytics_stats
 
 	/**
-	 * Get data frame analytics jobs usage info.
+	 * Get data frame analytics job stats.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-dfanalytics-stats.html">Documentation
@@ -1160,7 +1160,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get data frame analytics jobs usage info.
+	 * Get data frame analytics job stats.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1176,7 +1176,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get data frame analytics jobs usage info.
+	 * Get data frame analytics job stats.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/get-dfanalytics-stats.html">Documentation
@@ -1191,8 +1191,8 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.get_datafeed_stats
 
 	/**
-	 * Get datafeeds usage info. You can get statistics for multiple datafeeds in a
-	 * single API request by using a comma-separated list of datafeeds or a wildcard
+	 * Get datafeed stats. You can get statistics for multiple datafeeds in a single
+	 * API request by using a comma-separated list of datafeeds or a wildcard
 	 * expression. You can get statistics for all datafeeds by using
 	 * <code>_all</code>, by specifying <code>*</code> as the
 	 * <code>&lt;feed_id&gt;</code>, or by omitting the
@@ -1213,8 +1213,8 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get datafeeds usage info. You can get statistics for multiple datafeeds in a
-	 * single API request by using a comma-separated list of datafeeds or a wildcard
+	 * Get datafeed stats. You can get statistics for multiple datafeeds in a single
+	 * API request by using a comma-separated list of datafeeds or a wildcard
 	 * expression. You can get statistics for all datafeeds by using
 	 * <code>_all</code>, by specifying <code>*</code> as the
 	 * <code>&lt;feed_id&gt;</code>, or by omitting the
@@ -1236,8 +1236,8 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get datafeeds usage info. You can get statistics for multiple datafeeds in a
-	 * single API request by using a comma-separated list of datafeeds or a wildcard
+	 * Get datafeed stats. You can get statistics for multiple datafeeds in a single
+	 * API request by using a comma-separated list of datafeeds or a wildcard
 	 * expression. You can get statistics for all datafeeds by using
 	 * <code>_all</code>, by specifying <code>*</code> as the
 	 * <code>&lt;feed_id&gt;</code>, or by omitting the
@@ -1404,7 +1404,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.get_job_stats
 
 	/**
-	 * Get anomaly detection jobs usage info.
+	 * Get anomaly detection job stats.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/ml-get-job-stats.html">Documentation
@@ -1419,7 +1419,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get anomaly detection jobs usage info.
+	 * Get anomaly detection job stats.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1435,7 +1435,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get anomaly detection jobs usage info.
+	 * Get anomaly detection job stats.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/ml-get-job-stats.html">Documentation
@@ -3055,7 +3055,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Update a data frame analytics job.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-dfanalytics.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-ml-update-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3074,7 +3074,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateDataFrameAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-dfanalytics.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-ml-update-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3233,7 +3233,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Update a trained model deployment.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-trained-model-deployment.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-ml-update-trained-model-deployment">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3252,7 +3252,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateTrainedModelDeploymentRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/update-trained-model-deployment.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-ml-update-trained-model-deployment">Documentation
 	 *      on elastic.co</a>
 	 */
 

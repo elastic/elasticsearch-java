@@ -86,6 +86,10 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
 	}
 
 	/**
+	 * Maximum character length, including whitespace, of the output token. Defaults
+	 * to <code>255</code>. Concatenated tokens longer than this will result in no
+	 * token output.
+	 * <p>
 	 * API name: {@code max_output_size}
 	 */
 	@Nullable
@@ -94,6 +98,8 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
 	}
 
 	/**
+	 * Character to use to concatenate the token stream input. Defaults to a space.
+	 * <p>
 	 * API name: {@code separator}
 	 */
 	@Nullable
@@ -134,6 +140,10 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
 		private String separator;
 
 		/**
+		 * Maximum character length, including whitespace, of the output token. Defaults
+		 * to <code>255</code>. Concatenated tokens longer than this will result in no
+		 * token output.
+		 * <p>
 		 * API name: {@code max_output_size}
 		 */
 		public final Builder maxOutputSize(@Nullable Integer value) {
@@ -142,6 +152,8 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
 		}
 
 		/**
+		 * Character to use to concatenate the token stream input. Defaults to a space.
+		 * <p>
 		 * API name: {@code separator}
 		 */
 		public final Builder separator(@Nullable String value) {
