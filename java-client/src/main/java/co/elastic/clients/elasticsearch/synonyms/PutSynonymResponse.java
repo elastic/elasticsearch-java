@@ -62,6 +62,7 @@ import javax.annotation.Nullable;
 public class PutSynonymResponse implements JsonpSerializable {
 	private final Result result;
 
+	@Nullable
 	private final ReloadResult reloadAnalyzersDetails;
 
 	// ---------------------------------------------------------------------------------------------
@@ -69,8 +70,7 @@ public class PutSynonymResponse implements JsonpSerializable {
 	private PutSynonymResponse(Builder builder) {
 
 		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
-		this.reloadAnalyzersDetails = ApiTypeHelper.requireNonNull(builder.reloadAnalyzersDetails, this,
-				"reloadAnalyzersDetails");
+		this.reloadAnalyzersDetails = builder.reloadAnalyzersDetails;
 
 	}
 
@@ -79,15 +79,21 @@ public class PutSynonymResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code result}
+	 * Required - The update operation result.
+	 * <p>
+	 * API name: {@code result}
 	 */
 	public final Result result() {
 		return this.result;
 	}
 
 	/**
-	 * Required - API name: {@code reload_analyzers_details}
+	 * Updating a synonyms set can reload the associated analyzers in case refresh
+	 * is set to true. This information is the analyzers reloading result.
+	 * <p>
+	 * API name: {@code reload_analyzers_details}
 	 */
+	@Nullable
 	public final ReloadResult reloadAnalyzersDetails() {
 		return this.reloadAnalyzersDetails;
 	}
@@ -105,8 +111,11 @@ public class PutSynonymResponse implements JsonpSerializable {
 
 		generator.writeKey("result");
 		this.result.serialize(generator, mapper);
-		generator.writeKey("reload_analyzers_details");
-		this.reloadAnalyzersDetails.serialize(generator, mapper);
+		if (this.reloadAnalyzersDetails != null) {
+			generator.writeKey("reload_analyzers_details");
+			this.reloadAnalyzersDetails.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -126,10 +135,13 @@ public class PutSynonymResponse implements JsonpSerializable {
 				ObjectBuilder<PutSynonymResponse> {
 		private Result result;
 
+		@Nullable
 		private ReloadResult reloadAnalyzersDetails;
 
 		/**
-		 * Required - API name: {@code result}
+		 * Required - The update operation result.
+		 * <p>
+		 * API name: {@code result}
 		 */
 		public final Builder result(Result value) {
 			this.result = value;
@@ -137,15 +149,21 @@ public class PutSynonymResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code reload_analyzers_details}
+		 * Updating a synonyms set can reload the associated analyzers in case refresh
+		 * is set to true. This information is the analyzers reloading result.
+		 * <p>
+		 * API name: {@code reload_analyzers_details}
 		 */
-		public final Builder reloadAnalyzersDetails(ReloadResult value) {
+		public final Builder reloadAnalyzersDetails(@Nullable ReloadResult value) {
 			this.reloadAnalyzersDetails = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code reload_analyzers_details}
+		 * Updating a synonyms set can reload the associated analyzers in case refresh
+		 * is set to true. This information is the analyzers reloading result.
+		 * <p>
+		 * API name: {@code reload_analyzers_details}
 		 */
 		public final Builder reloadAnalyzersDetails(Function<ReloadResult.Builder, ObjectBuilder<ReloadResult>> fn) {
 			return this.reloadAnalyzersDetails(fn.apply(new ReloadResult.Builder()).build());

@@ -86,6 +86,10 @@ public class LimitTokenCountTokenFilter extends TokenFilterBase implements Token
 	}
 
 	/**
+	 * If <code>true</code>, the limit filter exhausts the token stream, even if the
+	 * <code>max_token_count</code> has already been reached. Defaults to
+	 * <code>false</code>.
+	 * <p>
 	 * API name: {@code consume_all_tokens}
 	 */
 	@Nullable
@@ -94,6 +98,9 @@ public class LimitTokenCountTokenFilter extends TokenFilterBase implements Token
 	}
 
 	/**
+	 * Maximum number of tokens to keep. Once this limit is reached, any remaining
+	 * tokens are excluded from the output. Defaults to <code>1</code>.
+	 * <p>
 	 * API name: {@code max_token_count}
 	 */
 	@Nullable
@@ -134,6 +141,10 @@ public class LimitTokenCountTokenFilter extends TokenFilterBase implements Token
 		private Integer maxTokenCount;
 
 		/**
+		 * If <code>true</code>, the limit filter exhausts the token stream, even if the
+		 * <code>max_token_count</code> has already been reached. Defaults to
+		 * <code>false</code>.
+		 * <p>
 		 * API name: {@code consume_all_tokens}
 		 */
 		public final Builder consumeAllTokens(@Nullable Boolean value) {
@@ -142,6 +153,9 @@ public class LimitTokenCountTokenFilter extends TokenFilterBase implements Token
 		}
 
 		/**
+		 * Maximum number of tokens to keep. Once this limit is reached, any remaining
+		 * tokens are excluded from the output. Defaults to <code>1</code>.
+		 * <p>
 		 * API name: {@code max_token_count}
 		 */
 		public final Builder maxTokenCount(@Nullable Integer value) {

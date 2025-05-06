@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * Precision at K (P@k)
  * 
  * @see <a href=
- *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rank-eval#k-precision">Documentation
+ *      "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/search-rank-eval#k-precision">Documentation
  *      on elastic.co</a>
  * @see <a href=
  *      "../../doc-files/api-spec.html#_global.rank_eval.RankEvalMetricPrecision">API

@@ -63,6 +63,7 @@ import javax.annotation.Nullable;
 public abstract class SynonymsUpdateResult implements JsonpSerializable {
 	private final Result result;
 
+	@Nullable
 	private final ReloadResult reloadAnalyzersDetails;
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,8 +71,7 @@ public abstract class SynonymsUpdateResult implements JsonpSerializable {
 	protected SynonymsUpdateResult(AbstractBuilder<?> builder) {
 
 		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
-		this.reloadAnalyzersDetails = ApiTypeHelper.requireNonNull(builder.reloadAnalyzersDetails, this,
-				"reloadAnalyzersDetails");
+		this.reloadAnalyzersDetails = builder.reloadAnalyzersDetails;
 
 	}
 
@@ -85,11 +85,13 @@ public abstract class SynonymsUpdateResult implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Updating synonyms in a synonym set reloads the associated
-	 * analyzers. This information is the analyzers reloading result.
+	 * Updating synonyms in a synonym set can reload the associated analyzers in
+	 * case refresh is set to true. This information is the analyzers reloading
+	 * result.
 	 * <p>
 	 * API name: {@code reload_analyzers_details}
 	 */
+	@Nullable
 	public final ReloadResult reloadAnalyzersDetails() {
 		return this.reloadAnalyzersDetails;
 	}
@@ -107,8 +109,11 @@ public abstract class SynonymsUpdateResult implements JsonpSerializable {
 
 		generator.writeKey("result");
 		this.result.serialize(generator, mapper);
-		generator.writeKey("reload_analyzers_details");
-		this.reloadAnalyzersDetails.serialize(generator, mapper);
+		if (this.reloadAnalyzersDetails != null) {
+			generator.writeKey("reload_analyzers_details");
+			this.reloadAnalyzersDetails.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -122,6 +127,7 @@ public abstract class SynonymsUpdateResult implements JsonpSerializable {
 				WithJsonObjectBuilderBase<BuilderT> {
 		private Result result;
 
+		@Nullable
 		private ReloadResult reloadAnalyzersDetails;
 
 		/**
@@ -135,19 +141,21 @@ public abstract class SynonymsUpdateResult implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Updating synonyms in a synonym set reloads the associated
-		 * analyzers. This information is the analyzers reloading result.
+		 * Updating synonyms in a synonym set can reload the associated analyzers in
+		 * case refresh is set to true. This information is the analyzers reloading
+		 * result.
 		 * <p>
 		 * API name: {@code reload_analyzers_details}
 		 */
-		public final BuilderT reloadAnalyzersDetails(ReloadResult value) {
+		public final BuilderT reloadAnalyzersDetails(@Nullable ReloadResult value) {
 			this.reloadAnalyzersDetails = value;
 			return self();
 		}
 
 		/**
-		 * Required - Updating synonyms in a synonym set reloads the associated
-		 * analyzers. This information is the analyzers reloading result.
+		 * Updating synonyms in a synonym set can reload the associated analyzers in
+		 * case refresh is set to true. This information is the analyzers reloading
+		 * result.
 		 * <p>
 		 * API name: {@code reload_analyzers_details}
 		 */

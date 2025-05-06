@@ -102,6 +102,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	@Nullable
 	private final Long lifecycleDateMillis;
 
+	@Nullable
 	private final String phase;
 
 	@Nullable
@@ -157,7 +158,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		this.isAutoRetryableError = builder.isAutoRetryableError;
 		this.lifecycleDate = builder.lifecycleDate;
 		this.lifecycleDateMillis = builder.lifecycleDateMillis;
-		this.phase = ApiTypeHelper.requireNonNull(builder.phase, this, "phase");
+		this.phase = builder.phase;
 		this.phaseTime = builder.phaseTime;
 		this.phaseTimeMillis = builder.phaseTimeMillis;
 		this.policy = builder.policy;
@@ -282,8 +283,9 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	}
 
 	/**
-	 * Required - API name: {@code phase}
+	 * API name: {@code phase}
 	 */
+	@Nullable
 	public final String phase() {
 		return this.phase;
 	}
@@ -458,9 +460,11 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 			generator.write(this.lifecycleDateMillis);
 
 		}
-		generator.writeKey("phase");
-		generator.write(this.phase);
+		if (this.phase != null) {
+			generator.writeKey("phase");
+			generator.write(this.phase);
 
+		}
 		if (this.phaseTime != null) {
 			generator.writeKey("phase_time");
 			this.phaseTime.serialize(generator, mapper);
@@ -588,6 +592,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		@Nullable
 		private Long lifecycleDateMillis;
 
+		@Nullable
 		private String phase;
 
 		@Nullable
@@ -733,9 +738,9 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		}
 
 		/**
-		 * Required - API name: {@code phase}
+		 * API name: {@code phase}
 		 */
-		public final Builder phase(String value) {
+		public final Builder phase(@Nullable String value) {
 			this.phase = value;
 			return this;
 		}

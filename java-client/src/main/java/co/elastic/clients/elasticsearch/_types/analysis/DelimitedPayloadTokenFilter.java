@@ -85,6 +85,8 @@ public class DelimitedPayloadTokenFilter extends TokenFilterBase implements Toke
 	}
 
 	/**
+	 * Character used to separate tokens from payloads. Defaults to <code>|</code>.
+	 * <p>
 	 * API name: {@code delimiter}
 	 */
 	@Nullable
@@ -93,6 +95,8 @@ public class DelimitedPayloadTokenFilter extends TokenFilterBase implements Toke
 	}
 
 	/**
+	 * Data type for the stored payload.
+	 * <p>
 	 * API name: {@code encoding}
 	 */
 	@Nullable
@@ -132,6 +136,8 @@ public class DelimitedPayloadTokenFilter extends TokenFilterBase implements Toke
 		private DelimitedPayloadEncoding encoding;
 
 		/**
+		 * Character used to separate tokens from payloads. Defaults to <code>|</code>.
+		 * <p>
 		 * API name: {@code delimiter}
 		 */
 		public final Builder delimiter(@Nullable String value) {
@@ -140,6 +146,8 @@ public class DelimitedPayloadTokenFilter extends TokenFilterBase implements Toke
 		}
 
 		/**
+		 * Data type for the stored payload.
+		 * <p>
 		 * API name: {@code encoding}
 		 */
 		public final Builder encoding(@Nullable DelimitedPayloadEncoding value) {

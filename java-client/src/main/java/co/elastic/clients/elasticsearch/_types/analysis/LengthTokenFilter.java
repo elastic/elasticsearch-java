@@ -85,6 +85,10 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDef
 	}
 
 	/**
+	 * Maximum character length of a token. Longer tokens are excluded from the
+	 * output. Defaults to <code>Integer.MAX_VALUE</code>, which is
+	 * <code>2^31-1</code> or <code>2147483647</code>.
+	 * <p>
 	 * API name: {@code max}
 	 */
 	@Nullable
@@ -93,6 +97,9 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDef
 	}
 
 	/**
+	 * Minimum character length of a token. Shorter tokens are excluded from the
+	 * output. Defaults to <code>0</code>.
+	 * <p>
 	 * API name: {@code min}
 	 */
 	@Nullable
@@ -133,6 +140,10 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDef
 		private Integer min;
 
 		/**
+		 * Maximum character length of a token. Longer tokens are excluded from the
+		 * output. Defaults to <code>Integer.MAX_VALUE</code>, which is
+		 * <code>2^31-1</code> or <code>2147483647</code>.
+		 * <p>
 		 * API name: {@code max}
 		 */
 		public final Builder max(@Nullable Integer value) {
@@ -141,6 +152,9 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDef
 		}
 
 		/**
+		 * Minimum character length of a token. Shorter tokens are excluded from the
+		 * output. Defaults to <code>0</code>.
+		 * <p>
 		 * API name: {@code min}
 		 */
 		public final Builder min(@Nullable Integer value) {

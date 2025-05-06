@@ -24,10 +24,14 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -56,10 +60,23 @@ import java.util.function.Function;
 public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterBase
 		implements
 			TokenFilterDefinitionVariant {
+	private final String hyphenationPatternsPath;
+
+	@Nullable
+	private final Boolean noSubMatches;
+
+	@Nullable
+	private final Boolean noOverlappingMatches;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private HyphenationDecompounderTokenFilter(Builder builder) {
 		super(builder);
+
+		this.hyphenationPatternsPath = ApiTypeHelper.requireNonNull(builder.hyphenationPatternsPath, this,
+				"hyphenationPatternsPath");
+		this.noSubMatches = builder.noSubMatches;
+		this.noOverlappingMatches = builder.noOverlappingMatches;
 
 	}
 
@@ -76,10 +93,56 @@ public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterB
 		return TokenFilterDefinition.Kind.HyphenationDecompounder;
 	}
 
+	/**
+	 * Required - Path to an Apache FOP (Formatting Objects Processor) XML
+	 * hyphenation pattern file. This path must be absolute or relative to the
+	 * <code>config</code> location. Only FOP v1.2 compatible files are supported.
+	 * <p>
+	 * API name: {@code hyphenation_patterns_path}
+	 */
+	public final String hyphenationPatternsPath() {
+		return this.hyphenationPatternsPath;
+	}
+
+	/**
+	 * If <code>true</code>, do not match sub tokens in tokens that are in the word
+	 * list. Defaults to <code>false</code>.
+	 * <p>
+	 * API name: {@code no_sub_matches}
+	 */
+	@Nullable
+	public final Boolean noSubMatches() {
+		return this.noSubMatches;
+	}
+
+	/**
+	 * If <code>true</code>, do not allow overlapping tokens. Defaults to
+	 * <code>false</code>.
+	 * <p>
+	 * API name: {@code no_overlapping_matches}
+	 */
+	@Nullable
+	public final Boolean noOverlappingMatches() {
+		return this.noOverlappingMatches;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "hyphenation_decompounder");
 		super.serializeInternal(generator, mapper);
+		generator.writeKey("hyphenation_patterns_path");
+		generator.write(this.hyphenationPatternsPath);
+
+		if (this.noSubMatches != null) {
+			generator.writeKey("no_sub_matches");
+			generator.write(this.noSubMatches);
+
+		}
+		if (this.noOverlappingMatches != null) {
+			generator.writeKey("no_overlapping_matches");
+			generator.write(this.noOverlappingMatches);
+
+		}
 
 	}
 
@@ -92,6 +155,48 @@ public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterB
 	public static class Builder extends CompoundWordTokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HyphenationDecompounderTokenFilter> {
+		private String hyphenationPatternsPath;
+
+		@Nullable
+		private Boolean noSubMatches;
+
+		@Nullable
+		private Boolean noOverlappingMatches;
+
+		/**
+		 * Required - Path to an Apache FOP (Formatting Objects Processor) XML
+		 * hyphenation pattern file. This path must be absolute or relative to the
+		 * <code>config</code> location. Only FOP v1.2 compatible files are supported.
+		 * <p>
+		 * API name: {@code hyphenation_patterns_path}
+		 */
+		public final Builder hyphenationPatternsPath(String value) {
+			this.hyphenationPatternsPath = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, do not match sub tokens in tokens that are in the word
+		 * list. Defaults to <code>false</code>.
+		 * <p>
+		 * API name: {@code no_sub_matches}
+		 */
+		public final Builder noSubMatches(@Nullable Boolean value) {
+			this.noSubMatches = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, do not allow overlapping tokens. Defaults to
+		 * <code>false</code>.
+		 * <p>
+		 * API name: {@code no_overlapping_matches}
+		 */
+		public final Builder noOverlappingMatches(@Nullable Boolean value) {
+			this.noOverlappingMatches = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -122,6 +227,9 @@ public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterB
 	protected static void setupHyphenationDecompounderTokenFilterDeserializer(
 			ObjectDeserializer<HyphenationDecompounderTokenFilter.Builder> op) {
 		CompoundWordTokenFilterBase.setupCompoundWordTokenFilterBaseDeserializer(op);
+		op.add(Builder::hyphenationPatternsPath, JsonpDeserializer.stringDeserializer(), "hyphenation_patterns_path");
+		op.add(Builder::noSubMatches, JsonpDeserializer.booleanDeserializer(), "no_sub_matches");
+		op.add(Builder::noOverlappingMatches, JsonpDeserializer.booleanDeserializer(), "no_overlapping_matches");
 
 		op.ignore("type");
 	}

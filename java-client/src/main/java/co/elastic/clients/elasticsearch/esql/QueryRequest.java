@@ -132,6 +132,11 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * If <code>true</code>, partial results will be returned if there are shard
 	 * failures, but the query can continue to execute on other clusters and shards.
+	 * If <code>false</code>, the query will fail if there are any failures.
+	 * <p>
+	 * To override the default behavior, you can set the
+	 * <code>esql.query.allow_partial_results</code> cluster setting to
+	 * <code>false</code>.
 	 * <p>
 	 * API name: {@code allow_partial_results}
 	 */
@@ -380,6 +385,11 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * If <code>true</code>, partial results will be returned if there are shard
 		 * failures, but the query can continue to execute on other clusters and shards.
+		 * If <code>false</code>, the query will fail if there are any failures.
+		 * <p>
+		 * To override the default behavior, you can set the
+		 * <code>esql.query.allow_partial_results</code> cluster setting to
+		 * <code>false</code>.
 		 * <p>
 		 * API name: {@code allow_partial_results}
 		 */

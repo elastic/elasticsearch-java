@@ -27,6 +27,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -61,10 +62,10 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 	private final String fillerToken;
 
 	@Nullable
-	private final String maxShingleSize;
+	private final Integer maxShingleSize;
 
 	@Nullable
-	private final String minShingleSize;
+	private final Integer minShingleSize;
 
 	@Nullable
 	private final Boolean outputUnigrams;
@@ -102,6 +103,10 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 	}
 
 	/**
+	 * String used in shingles as a replacement for empty positions that do not
+	 * contain a token. This filler token is only used in shingles, not original
+	 * unigrams. Defaults to an underscore (<code>_</code>).
+	 * <p>
 	 * API name: {@code filler_token}
 	 */
 	@Nullable
@@ -110,22 +115,32 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 	}
 
 	/**
+	 * Maximum number of tokens to concatenate when creating shingles. Defaults to
+	 * <code>2</code>.
+	 * <p>
 	 * API name: {@code max_shingle_size}
 	 */
 	@Nullable
-	public final String maxShingleSize() {
+	public final Integer maxShingleSize() {
 		return this.maxShingleSize;
 	}
 
 	/**
+	 * Minimum number of tokens to concatenate when creating shingles. Defaults to
+	 * <code>2</code>.
+	 * <p>
 	 * API name: {@code min_shingle_size}
 	 */
 	@Nullable
-	public final String minShingleSize() {
+	public final Integer minShingleSize() {
 		return this.minShingleSize;
 	}
 
 	/**
+	 * If <code>true</code>, the output includes the original input tokens. If
+	 * <code>false</code>, the output only includes shingles; the original input
+	 * tokens are removed. Defaults to <code>true</code>.
+	 * <p>
 	 * API name: {@code output_unigrams}
 	 */
 	@Nullable
@@ -134,6 +149,10 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 	}
 
 	/**
+	 * If <code>true</code>, the output includes the original input tokens only if
+	 * no shingles are produced; if shingles are produced, the output only includes
+	 * shingles. Defaults to <code>false</code>.
+	 * <p>
 	 * API name: {@code output_unigrams_if_no_shingles}
 	 */
 	@Nullable
@@ -142,6 +161,9 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 	}
 
 	/**
+	 * Separator used to concatenate adjacent tokens to form a shingle. Defaults to
+	 * a space (<code>&quot; &quot;</code>).
+	 * <p>
 	 * API name: {@code token_separator}
 	 */
 	@Nullable
@@ -199,10 +221,10 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 		private String fillerToken;
 
 		@Nullable
-		private String maxShingleSize;
+		private Integer maxShingleSize;
 
 		@Nullable
-		private String minShingleSize;
+		private Integer minShingleSize;
 
 		@Nullable
 		private Boolean outputUnigrams;
@@ -214,6 +236,10 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 		private String tokenSeparator;
 
 		/**
+		 * String used in shingles as a replacement for empty positions that do not
+		 * contain a token. This filler token is only used in shingles, not original
+		 * unigrams. Defaults to an underscore (<code>_</code>).
+		 * <p>
 		 * API name: {@code filler_token}
 		 */
 		public final Builder fillerToken(@Nullable String value) {
@@ -222,22 +248,32 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 		}
 
 		/**
+		 * Maximum number of tokens to concatenate when creating shingles. Defaults to
+		 * <code>2</code>.
+		 * <p>
 		 * API name: {@code max_shingle_size}
 		 */
-		public final Builder maxShingleSize(@Nullable String value) {
+		public final Builder maxShingleSize(@Nullable Integer value) {
 			this.maxShingleSize = value;
 			return this;
 		}
 
 		/**
+		 * Minimum number of tokens to concatenate when creating shingles. Defaults to
+		 * <code>2</code>.
+		 * <p>
 		 * API name: {@code min_shingle_size}
 		 */
-		public final Builder minShingleSize(@Nullable String value) {
+		public final Builder minShingleSize(@Nullable Integer value) {
 			this.minShingleSize = value;
 			return this;
 		}
 
 		/**
+		 * If <code>true</code>, the output includes the original input tokens. If
+		 * <code>false</code>, the output only includes shingles; the original input
+		 * tokens are removed. Defaults to <code>true</code>.
+		 * <p>
 		 * API name: {@code output_unigrams}
 		 */
 		public final Builder outputUnigrams(@Nullable Boolean value) {
@@ -246,6 +282,10 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 		}
 
 		/**
+		 * If <code>true</code>, the output includes the original input tokens only if
+		 * no shingles are produced; if shingles are produced, the output only includes
+		 * shingles. Defaults to <code>false</code>.
+		 * <p>
 		 * API name: {@code output_unigrams_if_no_shingles}
 		 */
 		public final Builder outputUnigramsIfNoShingles(@Nullable Boolean value) {
@@ -254,6 +294,9 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 		}
 
 		/**
+		 * Separator used to concatenate adjacent tokens to form a shingle. Defaults to
+		 * a space (<code>&quot; &quot;</code>).
+		 * <p>
 		 * API name: {@code token_separator}
 		 */
 		public final Builder tokenSeparator(@Nullable String value) {
@@ -290,8 +333,8 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 	protected static void setupShingleTokenFilterDeserializer(ObjectDeserializer<ShingleTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::fillerToken, JsonpDeserializer.stringDeserializer(), "filler_token");
-		op.add(Builder::maxShingleSize, JsonpDeserializer.stringDeserializer(), "max_shingle_size");
-		op.add(Builder::minShingleSize, JsonpDeserializer.stringDeserializer(), "min_shingle_size");
+		op.add(Builder::maxShingleSize, JsonpDeserializer.integerDeserializer(), "max_shingle_size");
+		op.add(Builder::minShingleSize, JsonpDeserializer.integerDeserializer(), "min_shingle_size");
 		op.add(Builder::outputUnigrams, JsonpDeserializer.booleanDeserializer(), "output_unigrams");
 		op.add(Builder::outputUnigramsIfNoShingles, JsonpDeserializer.booleanDeserializer(),
 				"output_unigrams_if_no_shingles");

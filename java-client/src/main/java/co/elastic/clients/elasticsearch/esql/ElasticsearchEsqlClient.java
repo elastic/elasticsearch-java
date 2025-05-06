@@ -68,6 +68,50 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 		return new ElasticsearchEsqlClient(this.transport, transportOptions);
 	}
 
+	// ----- Endpoint: esql.get_query
+
+	/**
+	 * Get a specific running ES|QL query information. Returns an object extended
+	 * information about a running ES|QL query.
+	 * 
+	 * @see <a href="null">Documentation on elastic.co</a>
+	 */
+
+	public GetQueryResponse getQuery(GetQueryRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetQueryRequest, GetQueryResponse, ErrorResponse> endpoint = (JsonEndpoint<GetQueryRequest, GetQueryResponse, ErrorResponse>) GetQueryRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get a specific running ES|QL query information. Returns an object extended
+	 * information about a running ES|QL query.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetQueryRequest}
+	 * @see <a href="null">Documentation on elastic.co</a>
+	 */
+
+	public final GetQueryResponse getQuery(Function<GetQueryRequest.Builder, ObjectBuilder<GetQueryRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getQuery(fn.apply(new GetQueryRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: esql.list_queries
+
+	/**
+	 * Get running ES|QL queries information. Returns an object containing IDs and
+	 * other information about the running ES|QL queries.
+	 * 
+	 * @see <a href="null">Documentation on elastic.co</a>
+	 */
+	public ListQueriesResponse listQueries() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(ListQueriesRequest._INSTANCE, ListQueriesRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
 	// ----- Endpoint: esql.query
 
 	/**

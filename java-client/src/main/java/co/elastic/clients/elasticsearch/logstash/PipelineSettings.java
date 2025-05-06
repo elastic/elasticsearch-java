@@ -69,9 +69,7 @@ public class PipelineSettings implements JsonpSerializable {
 
 	private final String queueType;
 
-	private final int queueMaxBytesNumber;
-
-	private final String queueMaxBytesUnits;
+	private final String queueMaxBytes;
 
 	private final int queueCheckpointWrites;
 
@@ -84,9 +82,7 @@ public class PipelineSettings implements JsonpSerializable {
 		this.pipelineBatchDelay = ApiTypeHelper.requireNonNull(builder.pipelineBatchDelay, this, "pipelineBatchDelay",
 				0);
 		this.queueType = ApiTypeHelper.requireNonNull(builder.queueType, this, "queueType");
-		this.queueMaxBytesNumber = ApiTypeHelper.requireNonNull(builder.queueMaxBytesNumber, this,
-				"queueMaxBytesNumber", 0);
-		this.queueMaxBytesUnits = ApiTypeHelper.requireNonNull(builder.queueMaxBytesUnits, this, "queueMaxBytesUnits");
+		this.queueMaxBytes = ApiTypeHelper.requireNonNull(builder.queueMaxBytes, this, "queueMaxBytes");
 		this.queueCheckpointWrites = ApiTypeHelper.requireNonNull(builder.queueCheckpointWrites, this,
 				"queueCheckpointWrites", 0);
 
@@ -140,20 +136,10 @@ public class PipelineSettings implements JsonpSerializable {
 	 * Required - The total capacity of the queue
 	 * (<code>queue.type: persisted</code>) in number of bytes.
 	 * <p>
-	 * API name: {@code queue.max_bytes.number}
+	 * API name: {@code queue.max_bytes}
 	 */
-	public final int queueMaxBytesNumber() {
-		return this.queueMaxBytesNumber;
-	}
-
-	/**
-	 * Required - The total capacity of the queue
-	 * (<code>queue.type: persisted</code>) in terms of units of bytes.
-	 * <p>
-	 * API name: {@code queue.max_bytes.units}
-	 */
-	public final String queueMaxBytesUnits() {
-		return this.queueMaxBytesUnits;
+	public final String queueMaxBytes() {
+		return this.queueMaxBytes;
 	}
 
 	/**
@@ -189,11 +175,8 @@ public class PipelineSettings implements JsonpSerializable {
 		generator.writeKey("queue.type");
 		generator.write(this.queueType);
 
-		generator.writeKey("queue.max_bytes.number");
-		generator.write(this.queueMaxBytesNumber);
-
-		generator.writeKey("queue.max_bytes.units");
-		generator.write(this.queueMaxBytesUnits);
+		generator.writeKey("queue.max_bytes");
+		generator.write(this.queueMaxBytes);
 
 		generator.writeKey("queue.checkpoint.writes");
 		generator.write(this.queueCheckpointWrites);
@@ -220,9 +203,7 @@ public class PipelineSettings implements JsonpSerializable {
 
 		private String queueType;
 
-		private Integer queueMaxBytesNumber;
-
-		private String queueMaxBytesUnits;
+		private String queueMaxBytes;
 
 		private Integer queueCheckpointWrites;
 
@@ -274,21 +255,10 @@ public class PipelineSettings implements JsonpSerializable {
 		 * Required - The total capacity of the queue
 		 * (<code>queue.type: persisted</code>) in number of bytes.
 		 * <p>
-		 * API name: {@code queue.max_bytes.number}
+		 * API name: {@code queue.max_bytes}
 		 */
-		public final Builder queueMaxBytesNumber(int value) {
-			this.queueMaxBytesNumber = value;
-			return this;
-		}
-
-		/**
-		 * Required - The total capacity of the queue
-		 * (<code>queue.type: persisted</code>) in terms of units of bytes.
-		 * <p>
-		 * API name: {@code queue.max_bytes.units}
-		 */
-		public final Builder queueMaxBytesUnits(String value) {
-			this.queueMaxBytesUnits = value;
+		public final Builder queueMaxBytes(String value) {
+			this.queueMaxBytes = value;
 			return this;
 		}
 
@@ -335,8 +305,7 @@ public class PipelineSettings implements JsonpSerializable {
 		op.add(Builder::pipelineBatchSize, JsonpDeserializer.integerDeserializer(), "pipeline.batch.size");
 		op.add(Builder::pipelineBatchDelay, JsonpDeserializer.integerDeserializer(), "pipeline.batch.delay");
 		op.add(Builder::queueType, JsonpDeserializer.stringDeserializer(), "queue.type");
-		op.add(Builder::queueMaxBytesNumber, JsonpDeserializer.integerDeserializer(), "queue.max_bytes.number");
-		op.add(Builder::queueMaxBytesUnits, JsonpDeserializer.stringDeserializer(), "queue.max_bytes.units");
+		op.add(Builder::queueMaxBytes, JsonpDeserializer.stringDeserializer(), "queue.max_bytes");
 		op.add(Builder::queueCheckpointWrites, JsonpDeserializer.integerDeserializer(), "queue.checkpoint.writes");
 
 	}
