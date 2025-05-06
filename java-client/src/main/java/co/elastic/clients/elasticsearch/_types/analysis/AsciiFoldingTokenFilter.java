@@ -81,6 +81,9 @@ public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFil
 	}
 
 	/**
+	 * If <code>true</code>, emit both original tokens and folded tokens. Defaults
+	 * to <code>false</code>.
+	 * <p>
 	 * API name: {@code preserve_original}
 	 */
 	@Nullable
@@ -113,6 +116,9 @@ public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFil
 		private Boolean preserveOriginal;
 
 		/**
+		 * If <code>true</code>, emit both original tokens and folded tokens. Defaults
+		 * to <code>false</code>.
+		 * <p>
 		 * API name: {@code preserve_original}
 		 */
 		public final Builder preserveOriginal(@Nullable Boolean value) {

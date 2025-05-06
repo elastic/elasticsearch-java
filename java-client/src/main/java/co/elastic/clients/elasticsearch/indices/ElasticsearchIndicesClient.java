@@ -180,7 +180,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Cancel a migration reindex attempt for a data stream or index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migrate-data-stream.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-cancel-migrate-reindex">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -201,7 +201,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link CancelMigrateReindexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migrate-data-stream.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-cancel-migrate-reindex">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -668,7 +668,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * while allowing request settings and mappings to override the source values.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migrate-data-stream.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-create-from">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -689,7 +689,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateFromRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migrate-data-stream.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-create-from">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2047,7 +2047,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Get the status of a migration reindex attempt for a data stream or index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migrate-data-stream.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-migration">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2068,7 +2068,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetMigrateReindexStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migrate-data-stream.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-migration">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2198,7 +2198,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * reindexing work is completed in that task.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migrate-data-stream.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-migrate-reindex">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2221,7 +2221,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link MigrateReindexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migrate-data-stream.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-migrate-reindex">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2239,7 +2239,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * reindexing work is completed in that task.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migrate-data-stream.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-migrate-reindex">Documentation
 	 *      on elastic.co</a>
 	 */
 

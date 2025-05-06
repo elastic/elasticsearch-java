@@ -91,6 +91,10 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
 	}
 
 	/**
+	 * List of words to keep. Only tokens that match words in this list are included
+	 * in the output. Either this parameter or <code>keep_words_path</code> must be
+	 * specified.
+	 * <p>
 	 * API name: {@code keep_words}
 	 */
 	public final List<String> keepWords() {
@@ -98,6 +102,9 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
 	}
 
 	/**
+	 * If <code>true</code>, lowercase all keep words. Defaults to
+	 * <code>false</code>.
+	 * <p>
 	 * API name: {@code keep_words_case}
 	 */
 	@Nullable
@@ -106,6 +113,12 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
 	}
 
 	/**
+	 * Path to a file that contains a list of words to keep. Only tokens that match
+	 * words in this list are included in the output. This path must be absolute or
+	 * relative to the <code>config</code> location, and the file must be UTF-8
+	 * encoded. Each word in the file must be separated by a line break. Either this
+	 * parameter or <code>keep_words</code> must be specified.
+	 * <p>
 	 * API name: {@code keep_words_path}
 	 */
 	@Nullable
@@ -159,6 +172,10 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
 		private String keepWordsPath;
 
 		/**
+		 * List of words to keep. Only tokens that match words in this list are included
+		 * in the output. Either this parameter or <code>keep_words_path</code> must be
+		 * specified.
+		 * <p>
 		 * API name: {@code keep_words}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>keepWords</code>.
@@ -169,6 +186,10 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
 		}
 
 		/**
+		 * List of words to keep. Only tokens that match words in this list are included
+		 * in the output. Either this parameter or <code>keep_words_path</code> must be
+		 * specified.
+		 * <p>
 		 * API name: {@code keep_words}
 		 * <p>
 		 * Adds one or more values to <code>keepWords</code>.
@@ -179,6 +200,9 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
 		}
 
 		/**
+		 * If <code>true</code>, lowercase all keep words. Defaults to
+		 * <code>false</code>.
+		 * <p>
 		 * API name: {@code keep_words_case}
 		 */
 		public final Builder keepWordsCase(@Nullable Boolean value) {
@@ -187,6 +211,12 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
 		}
 
 		/**
+		 * Path to a file that contains a list of words to keep. Only tokens that match
+		 * words in this list are included in the output. This path must be absolute or
+		 * relative to the <code>config</code> location, and the file must be UTF-8
+		 * encoded. Each word in the file must be separated by a line break. Either this
+		 * parameter or <code>keep_words</code> must be specified.
+		 * <p>
 		 * API name: {@code keep_words_path}
 		 */
 		public final Builder keepWordsPath(@Nullable String value) {

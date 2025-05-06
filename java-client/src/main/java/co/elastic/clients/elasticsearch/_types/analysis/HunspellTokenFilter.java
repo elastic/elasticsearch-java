@@ -94,6 +94,9 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 	}
 
 	/**
+	 * If <code>true</code>, duplicate tokens are removed from the filter’s output.
+	 * Defaults to <code>true</code>.
+	 * <p>
 	 * API name: {@code dedup}
 	 */
 	@Nullable
@@ -102,6 +105,13 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 	}
 
 	/**
+	 * One or more <code>.dic</code> files (e.g, <code>en_US.dic</code>,
+	 * my_custom.dic) to use for the Hunspell dictionary. By default, the
+	 * <code>hunspell</code> filter uses all <code>.dic</code> files in the
+	 * <code>&lt;$ES_PATH_CONF&gt;/hunspell/&lt;locale&gt;</code> directory
+	 * specified using the <code>lang</code>, <code>language</code>, or
+	 * <code>locale</code> parameter.
+	 * <p>
 	 * API name: {@code dictionary}
 	 */
 	@Nullable
@@ -110,13 +120,20 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 	}
 
 	/**
-	 * Required - API name: {@code locale}
+	 * Required - Locale directory used to specify the <code>.aff</code> and
+	 * <code>.dic</code> files for a Hunspell dictionary.
+	 * <p>
+	 * API name: {@code locale}
 	 */
 	public final String locale() {
 		return this.locale;
 	}
 
 	/**
+	 * If <code>true</code>, only the longest stemmed version of each token is
+	 * included in the output. If <code>false</code>, all stemmed versions of the
+	 * token are included. Defaults to <code>false</code>.
+	 * <p>
 	 * API name: {@code longest_only}
 	 */
 	@Nullable
@@ -170,6 +187,9 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 		private Boolean longestOnly;
 
 		/**
+		 * If <code>true</code>, duplicate tokens are removed from the filter’s output.
+		 * Defaults to <code>true</code>.
+		 * <p>
 		 * API name: {@code dedup}
 		 */
 		public final Builder dedup(@Nullable Boolean value) {
@@ -178,6 +198,13 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 		}
 
 		/**
+		 * One or more <code>.dic</code> files (e.g, <code>en_US.dic</code>,
+		 * my_custom.dic) to use for the Hunspell dictionary. By default, the
+		 * <code>hunspell</code> filter uses all <code>.dic</code> files in the
+		 * <code>&lt;$ES_PATH_CONF&gt;/hunspell/&lt;locale&gt;</code> directory
+		 * specified using the <code>lang</code>, <code>language</code>, or
+		 * <code>locale</code> parameter.
+		 * <p>
 		 * API name: {@code dictionary}
 		 */
 		public final Builder dictionary(@Nullable String value) {
@@ -186,7 +213,10 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 		}
 
 		/**
-		 * Required - API name: {@code locale}
+		 * Required - Locale directory used to specify the <code>.aff</code> and
+		 * <code>.dic</code> files for a Hunspell dictionary.
+		 * <p>
+		 * API name: {@code locale}
 		 */
 		public final Builder locale(String value) {
 			this.locale = value;
@@ -194,6 +224,10 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 		}
 
 		/**
+		 * If <code>true</code>, only the longest stemmed version of each token is
+		 * included in the output. If <code>false</code>, all stemmed versions of the
+		 * token are included. Defaults to <code>false</code>.
+		 * <p>
 		 * API name: {@code longest_only}
 		 */
 		public final Builder longestOnly(@Nullable Boolean value) {
@@ -231,7 +265,7 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::dedup, JsonpDeserializer.booleanDeserializer(), "dedup");
 		op.add(Builder::dictionary, JsonpDeserializer.stringDeserializer(), "dictionary");
-		op.add(Builder::locale, JsonpDeserializer.stringDeserializer(), "locale");
+		op.add(Builder::locale, JsonpDeserializer.stringDeserializer(), "locale", "lang", "language");
 		op.add(Builder::longestOnly, JsonpDeserializer.booleanDeserializer(), "longest_only");
 
 		op.ignore("type");
