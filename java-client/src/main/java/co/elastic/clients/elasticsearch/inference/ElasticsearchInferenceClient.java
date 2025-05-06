@@ -72,7 +72,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * Perform chat completion inference
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-unified-inference">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-unified-inference">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -91,7 +91,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link ChatCompletionUnifiedRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-unified-inference">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-unified-inference">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -107,7 +107,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * Perform completion inference on the service
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-inference">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -125,7 +125,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link CompletionRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-inference">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -140,7 +140,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * Delete an inference endpoint
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -158,7 +158,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteInferenceRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -174,7 +174,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * Get an inference endpoint
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -192,7 +192,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link GetInferenceRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -205,13 +205,88 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * Get an inference endpoint
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public GetInferenceResponse get() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetInferenceRequest.Builder().build(), GetInferenceRequest._ENDPOINT,
 				this.transportOptions);
+	}
+
+	// ----- Endpoint: inference.inference
+
+	/**
+	 * Perform inference on the service.
+	 * <p>
+	 * This API enables you to use machine learning models to perform specific tasks
+	 * on data that you provide as an input. It returns a response with the results
+	 * of the tasks. The inference endpoint you use can perform one specific task
+	 * that has been defined when the endpoint was created with the create inference
+	 * API.
+	 * <p>
+	 * For details about using this API with a service, such as Amazon Bedrock,
+	 * Anthropic, or HuggingFace, refer to the service-specific documentation.
+	 * <blockquote>
+	 * <p>
+	 * info The inference APIs enable you to use certain services, such as built-in
+	 * machine learning models (ELSER, E5), models uploaded through Eland, Cohere,
+	 * OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic, Watsonx.ai, or
+	 * Hugging Face. For built-in models and models uploaded through Eland, the
+	 * inference APIs offer an alternative way to use and manage trained models.
+	 * However, if you do not plan to use the inference APIs to use these models or
+	 * if you want to use non-NLP models, use the machine learning trained model
+	 * APIs.
+	 * </p>
+	 * </blockquote>
+	 *
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-inference">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public InferenceResponse inference(InferenceRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<InferenceRequest, InferenceResponse, ErrorResponse> endpoint = (JsonEndpoint<InferenceRequest, InferenceResponse, ErrorResponse>) InferenceRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Perform inference on the service.
+	 * <p>
+	 * This API enables you to use machine learning models to perform specific tasks
+	 * on data that you provide as an input. It returns a response with the results
+	 * of the tasks. The inference endpoint you use can perform one specific task
+	 * that has been defined when the endpoint was created with the create inference
+	 * API.
+	 * <p>
+	 * For details about using this API with a service, such as Amazon Bedrock,
+	 * Anthropic, or HuggingFace, refer to the service-specific documentation.
+	 * <blockquote>
+	 * <p>
+	 * info The inference APIs enable you to use certain services, such as built-in
+	 * machine learning models (ELSER, E5), models uploaded through Eland, Cohere,
+	 * OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic, Watsonx.ai, or
+	 * Hugging Face. For built-in models and models uploaded through Eland, the
+	 * inference APIs offer an alternative way to use and manage trained models.
+	 * However, if you do not plan to use the inference APIs to use these models or
+	 * if you want to use non-NLP models, use the machine learning trained model
+	 * APIs.
+	 * </p>
+	 * </blockquote>
+	 *
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link InferenceRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-inference">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final InferenceResponse inference(Function<InferenceRequest.Builder, ObjectBuilder<InferenceRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return inference(fn.apply(new InferenceRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: inference.put
@@ -238,7 +313,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * machine learning trained model APIs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -274,7 +349,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -302,7 +377,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * consumes significant resources.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-alibabacloud">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-alibabacloud">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -334,7 +409,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutAlibabacloudRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-alibabacloud">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-alibabacloud">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -372,7 +447,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * consumes significant resources.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-amazonbedrock">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-amazonbedrock">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -413,7 +488,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutAmazonbedrockRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-amazonbedrock">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-amazonbedrock">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -442,7 +517,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * consumes significant resources.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-anthropic">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-anthropic">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -473,7 +548,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutAnthropicRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-anthropic">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-anthropic">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -502,7 +577,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * consumes significant resources.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-azureaistudio">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-azureaistudio">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -534,7 +609,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutAzureaistudioRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-azureaistudio">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-azureaistudio">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -578,7 +653,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * consumes significant resources.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-azureopenai">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-azureopenai">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -625,7 +700,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutAzureopenaiRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-azureopenai">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-azureopenai">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -654,7 +729,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * consumes significant resources.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-cohere">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-cohere">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -685,7 +760,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutCohereRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-cohere">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-cohere">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -730,7 +805,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * significant resources.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-elasticsearch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-elasticsearch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -779,7 +854,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutElasticsearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-elasticsearch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-elasticsearch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -825,7 +900,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * significant resources.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-elser">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-elser">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -873,7 +948,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutElserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-elser">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-elser">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -901,7 +976,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * consumes significant resources.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-googleaistudio">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-googleaistudio">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -933,7 +1008,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutGoogleaistudioRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-googleaistudio">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-googleaistudio">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -962,7 +1037,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * consumes significant resources.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-googlevertexai">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-googlevertexai">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -994,7 +1069,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutGooglevertexaiRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-googlevertexai">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-googlevertexai">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1041,7 +1116,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * consumes significant resources.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-hugging-face">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-hugging-face">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1091,7 +1166,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutHuggingFaceRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-hugging-face">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-hugging-face">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1125,7 +1200,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * consumes significant resources.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-jinaai">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-jinaai">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1161,7 +1236,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutJinaaiRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-jinaai">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-jinaai">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1189,7 +1264,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * consumes significant resources.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-mistral">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-mistral">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1220,7 +1295,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutMistralRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-mistral">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-mistral">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1248,7 +1323,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * consumes significant resources.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-openai">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-openai">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1279,7 +1354,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutOpenaiRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-openai">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-openai">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1300,7 +1375,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * endpoint consumes significant resources.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-voyageai">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-voyageai">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1324,7 +1399,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutVoyageaiRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-voyageai">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-voyageai">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1356,7 +1431,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * consumes significant resources.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-watsonx">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-watsonx">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1390,7 +1465,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link PutWatsonxRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-watsonx">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-put-watsonx">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1405,7 +1480,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * Perform rereanking inference on the service
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-inference">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1423,7 +1498,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link RerankRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-inference">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1438,7 +1513,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * Perform sparse embedding inference on the service
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-inference">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1457,7 +1532,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link SparseEmbeddingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-inference">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1488,7 +1563,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * grant this privilege). You must use a client that supports streaming.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-stream-inference">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-stream-inference">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1521,7 +1596,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link StreamCompletionRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-stream-inference">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-stream-inference">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1537,7 +1612,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * Perform text embedding inference on the service
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-inference">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1556,7 +1631,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link TextEmbeddingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-inference">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1586,7 +1661,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * model APIs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-update">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-update">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1618,7 +1693,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateInferenceRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-update">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-update">Documentation
 	 *      on elastic.co</a>
 	 */
 

@@ -75,7 +75,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * snapshots.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-cleanup-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-cleanup-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -95,7 +95,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CleanupRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-cleanup-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-cleanup-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -111,7 +111,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * the same repository.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-clone">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-clone">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -130,7 +130,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CloneSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-clone">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-clone">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -146,7 +146,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-create">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-create">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -165,7 +165,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-create">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-create">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -190,7 +190,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * parameter is used.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-create-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-create-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -218,7 +218,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-create-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-create-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -233,7 +233,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * Delete snapshots.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -251,7 +251,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -269,7 +269,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * place.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-delete-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-delete-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -290,7 +290,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-delete-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-delete-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -312,7 +312,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * concurrently created may be seen during an iteration.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -337,7 +337,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -352,7 +352,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * Get snapshot repository information.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-get-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-get-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -370,7 +370,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-get-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-get-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -383,7 +383,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * Get snapshot repository information.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-get-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-get-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -554,7 +554,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * also verify the behavior on small blobs with sizes other than 8 bytes.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-repository-analyze">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-repository-analyze">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -728,7 +728,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link RepositoryAnalyzeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-repository-analyze">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-repository-analyze">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -806,7 +806,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * stable and may be different in newer versions.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-repository-verify-integrity">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-repository-verify-integrity">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -888,7 +888,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link RepositoryVerifyIntegrityRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-repository-verify-integrity">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-repository-verify-integrity">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -928,7 +928,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * restore the Enterprise Search encryption key before you restore the snapshot.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-restore">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-restore">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -971,7 +971,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link RestoreRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-restore">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-restore">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1008,7 +1008,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * and, when using cloud storage, incur high processing costs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-status">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1048,7 +1048,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SnapshotStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-status">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1083,7 +1083,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * and, when using cloud storage, incur high processing costs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-status">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1099,7 +1099,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 * snapshot repository.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-verify-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-verify-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1118,7 +1118,7 @@ public class ElasticsearchSnapshotAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link VerifyRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-verify-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-snapshot-verify-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 

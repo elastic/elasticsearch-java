@@ -86,9 +86,7 @@ public class SynonymRuleRead implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Synonyms, in Solr format, that conform the synonym rule. See
-	 * <a href=
-	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-synonym-graph-tokenfilter.html#_solr_synonyms_2">https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-synonym-graph-tokenfilter.html#_solr_synonyms_2</a>
+	 * Required - Synonyms, in Solr format, that conform the synonym rule.
 	 * <p>
 	 * API name: {@code synonyms}
 	 */
@@ -165,9 +163,7 @@ public class SynonymRuleRead implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Synonyms, in Solr format, that conform the synonym rule. See
-		 * <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-synonym-graph-tokenfilter.html#_solr_synonyms_2">https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-synonym-graph-tokenfilter.html#_solr_synonyms_2</a>
+		 * Required - Synonyms, in Solr format, that conform the synonym rule.
 		 * <p>
 		 * API name: {@code synonyms}
 		 */

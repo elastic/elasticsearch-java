@@ -88,7 +88,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 * of completing the cancelled task.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-tasks">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -123,7 +123,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link CancelRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-tasks">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -153,7 +153,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 * of completing the cancelled task.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-tasks">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -175,7 +175,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 * are no resources that match the request.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-tasks">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -200,7 +200,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTasksRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-tasks">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -280,7 +280,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 * the child task of the task that was initiated by the REST request.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-tasks">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -363,7 +363,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link ListRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-tasks">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -440,7 +440,7 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 * the child task of the task that was initiated by the REST request.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-tasks">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 

@@ -52,7 +52,7 @@ import java.util.function.Function;
  * Expected Reciprocal Rank (ERR)
  * 
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-rank-eval.html#_expected_reciprocal_rank_err">Documentation
+ *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rank-eval#_expected_reciprocal_rank_err">Documentation
  *      on elastic.co</a>
  * @see <a href=
  *      "../../doc-files/api-spec.html#_global.rank_eval.RankEvalMetricExpectedReciprocalRank">API

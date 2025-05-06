@@ -145,7 +145,23 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * Required - Name of the index you wish to create.
+	 * Required - Name of the index you wish to create. Index names must meet the
+	 * following criteria:
+	 * <ul>
+	 * <li>Lowercase only</li>
+	 * <li>Cannot include <code>\</code>, <code>/</code>, <code>*</code>,
+	 * <code>?</code>, <code>&quot;</code>, <code>&lt;</code>, <code>&gt;</code>,
+	 * <code>|</code>, <code> </code> (space character), <code>,</code>, or
+	 * <code>#</code></li>
+	 * <li>Indices prior to 7.0 could contain a colon (<code>:</code>), but that has
+	 * been deprecated and will not be supported in later versions</li>
+	 * <li>Cannot start with <code>-</code>, <code>_</code>, or <code>+</code></li>
+	 * <li>Cannot be <code>.</code> or <code>..</code></li>
+	 * <li>Cannot be longer than 255 bytes (note thtat it is bytes, so multi-byte
+	 * characters will reach the limit faster)</li>
+	 * <li>Names starting with <code>.</code> are deprecated, except for hidden
+	 * indices and internal indices managed by plugins</li>
+	 * </ul>
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -312,7 +328,23 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * Required - Name of the index you wish to create.
+		 * Required - Name of the index you wish to create. Index names must meet the
+		 * following criteria:
+		 * <ul>
+		 * <li>Lowercase only</li>
+		 * <li>Cannot include <code>\</code>, <code>/</code>, <code>*</code>,
+		 * <code>?</code>, <code>&quot;</code>, <code>&lt;</code>, <code>&gt;</code>,
+		 * <code>|</code>, <code> </code> (space character), <code>,</code>, or
+		 * <code>#</code></li>
+		 * <li>Indices prior to 7.0 could contain a colon (<code>:</code>), but that has
+		 * been deprecated and will not be supported in later versions</li>
+		 * <li>Cannot start with <code>-</code>, <code>_</code>, or <code>+</code></li>
+		 * <li>Cannot be <code>.</code> or <code>..</code></li>
+		 * <li>Cannot be longer than 255 bytes (note thtat it is bytes, so multi-byte
+		 * characters will reach the limit faster)</li>
+		 * <li>Names starting with <code>.</code> are deprecated, except for hidden
+		 * indices and internal indices managed by plugins</li>
+		 * </ul>
 		 * <p>
 		 * API name: {@code index}
 		 */

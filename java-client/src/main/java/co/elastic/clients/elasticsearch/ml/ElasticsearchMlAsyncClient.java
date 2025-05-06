@@ -78,7 +78,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * deployment.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-clear-trained-model-deployment-cache">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-clear-trained-model-deployment-cache">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -103,7 +103,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearTrainedModelDeploymentCacheRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-clear-trained-model-deployment-cache">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-clear-trained-model-deployment-cache">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -134,7 +134,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * automatically closes its associated job.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-close-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-close-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -167,7 +167,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link CloseJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-close-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-close-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -184,7 +184,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Remove all scheduled events from a calendar, then delete it.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-calendar">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-calendar">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -204,7 +204,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteCalendarRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-calendar">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-calendar">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -219,7 +219,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Delete events from a calendar.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-calendar-event">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-calendar-event">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -237,7 +237,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteCalendarEventRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-calendar-event">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-calendar-event">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -252,7 +252,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Delete anomaly jobs from a calendar.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-calendar-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-calendar-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -270,7 +270,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteCalendarJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-calendar-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-calendar-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -285,7 +285,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Delete a data frame analytics job.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -304,7 +304,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteDataFrameAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -319,7 +319,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Delete a datafeed.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-datafeed">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-datafeed">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -337,7 +337,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteDatafeedRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-datafeed">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-datafeed">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -361,7 +361,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * <code>&lt;job_id&gt;</code>, or by omitting the <code>&lt;job_id&gt;</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-expired-data">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-expired-data">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -388,7 +388,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteExpiredDataRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-expired-data">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-expired-data">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -410,7 +410,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * <code>&lt;job_id&gt;</code>, or by omitting the <code>&lt;job_id&gt;</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-expired-data">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-expired-data">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -428,7 +428,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * filter. You must update or delete the job before you can delete the filter.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-filter">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-filter">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -449,7 +449,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteFilterRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-filter">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-filter">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -469,7 +469,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * before they expire.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-forecast">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-forecast">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -492,7 +492,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteForecastRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-forecast">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-forecast">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -514,7 +514,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * job request.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -539,7 +539,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -558,7 +558,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * the <code>model_snapshot_id</code> in the results from the get jobs API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-model-snapshot">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-model-snapshot">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -580,7 +580,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteModelSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-model-snapshot">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-model-snapshot">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -598,7 +598,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * ingest pipeline.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-trained-model">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-trained-model">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -619,7 +619,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteTrainedModelRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-trained-model">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-trained-model">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -638,7 +638,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * by the <code>model_id</code>, this API returns an error.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-trained-model-alias">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-trained-model-alias">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -661,7 +661,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteTrainedModelAliasRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-delete-trained-model-alias">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-delete-trained-model-alias">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -680,7 +680,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * cardinality estimates for the fields it references.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-estimate-model-memory">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-estimate-model-memory">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -702,7 +702,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link EstimateModelMemoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-estimate-model-memory">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-estimate-model-memory">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -719,7 +719,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * cardinality estimates for the fields it references.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-estimate-model-memory">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-estimate-model-memory">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -739,7 +739,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * field and an analytics result field to be present.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-evaluate-data-frame">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-evaluate-data-frame">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -762,7 +762,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link EvaluateDataFrameRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-evaluate-data-frame">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-evaluate-data-frame">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -788,7 +788,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-explain-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-explain-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -818,7 +818,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link ExplainDataFrameAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-explain-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-explain-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -842,7 +842,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-explain-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-explain-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -864,7 +864,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * opened again before analyzing further data.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-flush-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-flush-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -889,7 +889,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link FlushJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-flush-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-flush-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -909,7 +909,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * behavior based on historical data.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-forecast">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-forecast">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -932,7 +932,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link ForecastRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-forecast">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-forecast">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -948,7 +948,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * chronological view of the records, grouped by bucket.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-buckets">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-buckets">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -967,7 +967,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetBucketsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-buckets">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-buckets">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -982,7 +982,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Get info about events in calendars.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-calendar-events">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-calendar-events">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1000,7 +1000,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetCalendarEventsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-calendar-events">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-calendar-events">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1015,7 +1015,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Get calendar configuration info.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-calendars">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-calendars">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1033,7 +1033,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetCalendarsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-calendars">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-calendars">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1046,7 +1046,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Get calendar configuration info.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-calendars">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-calendars">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1061,7 +1061,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Get anomaly detection job results for categories.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-categories">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-categories">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1079,7 +1079,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetCategoriesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-categories">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-categories">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1096,7 +1096,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * comma-separated list of data frame analytics jobs or a wildcard expression.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1117,7 +1117,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetDataFrameAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1132,7 +1132,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * comma-separated list of data frame analytics jobs or a wildcard expression.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1144,10 +1144,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.get_data_frame_analytics_stats
 
 	/**
-	 * Get data frame analytics jobs usage info.
+	 * Get data frame analytics job stats.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-data-frame-analytics-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-data-frame-analytics-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1160,13 +1160,13 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get data frame analytics jobs usage info.
+	 * Get data frame analytics job stats.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetDataFrameAnalyticsStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-data-frame-analytics-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-data-frame-analytics-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1176,10 +1176,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get data frame analytics jobs usage info.
+	 * Get data frame analytics job stats.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-data-frame-analytics-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-data-frame-analytics-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1191,8 +1191,8 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.get_datafeed_stats
 
 	/**
-	 * Get datafeeds usage info. You can get statistics for multiple datafeeds in a
-	 * single API request by using a comma-separated list of datafeeds or a wildcard
+	 * Get datafeed stats. You can get statistics for multiple datafeeds in a single
+	 * API request by using a comma-separated list of datafeeds or a wildcard
 	 * expression. You can get statistics for all datafeeds by using
 	 * <code>_all</code>, by specifying <code>*</code> as the
 	 * <code>&lt;feed_id&gt;</code>, or by omitting the
@@ -1201,7 +1201,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * <code>state</code>. This API returns a maximum of 10,000 datafeeds.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-datafeed-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-datafeed-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1213,8 +1213,8 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get datafeeds usage info. You can get statistics for multiple datafeeds in a
-	 * single API request by using a comma-separated list of datafeeds or a wildcard
+	 * Get datafeed stats. You can get statistics for multiple datafeeds in a single
+	 * API request by using a comma-separated list of datafeeds or a wildcard
 	 * expression. You can get statistics for all datafeeds by using
 	 * <code>_all</code>, by specifying <code>*</code> as the
 	 * <code>&lt;feed_id&gt;</code>, or by omitting the
@@ -1226,7 +1226,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetDatafeedStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-datafeed-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-datafeed-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1236,8 +1236,8 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get datafeeds usage info. You can get statistics for multiple datafeeds in a
-	 * single API request by using a comma-separated list of datafeeds or a wildcard
+	 * Get datafeed stats. You can get statistics for multiple datafeeds in a single
+	 * API request by using a comma-separated list of datafeeds or a wildcard
 	 * expression. You can get statistics for all datafeeds by using
 	 * <code>_all</code>, by specifying <code>*</code> as the
 	 * <code>&lt;feed_id&gt;</code>, or by omitting the
@@ -1246,7 +1246,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * <code>state</code>. This API returns a maximum of 10,000 datafeeds.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-datafeed-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-datafeed-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1266,7 +1266,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * <code>&lt;feed_id&gt;</code>. This API returns a maximum of 10,000 datafeeds.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-datafeeds">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-datafeeds">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1289,7 +1289,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetDatafeedsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-datafeeds">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-datafeeds">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1307,7 +1307,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * <code>&lt;feed_id&gt;</code>. This API returns a maximum of 10,000 datafeeds.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-datafeeds">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-datafeeds">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1322,7 +1322,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Get filters. You can get a single filter or all filters.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-filters">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-filters">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1340,7 +1340,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetFiltersRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-filters">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-filters">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1353,7 +1353,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Get filters. You can get a single filter or all filters.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-filters">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-filters">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1371,7 +1371,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * <code>influencer_field_name</code> is specified in the job configuration.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-influencers">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-influencers">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1392,7 +1392,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetInfluencersRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-influencers">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-influencers">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1404,10 +1404,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.get_job_stats
 
 	/**
-	 * Get anomaly detection jobs usage info.
+	 * Get anomaly detection job stats.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-job-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-job-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1419,13 +1419,13 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get anomaly detection jobs usage info.
+	 * Get anomaly detection job stats.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetJobStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-job-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-job-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1435,10 +1435,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get anomaly detection jobs usage info.
+	 * Get anomaly detection job stats.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-job-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-job-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1458,7 +1458,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * the <code>&lt;job_id&gt;</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-jobs">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-jobs">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1481,7 +1481,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetJobsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-jobs">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-jobs">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1499,7 +1499,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * the <code>&lt;job_id&gt;</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-jobs">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-jobs">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1516,7 +1516,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * the JVM heap, and natively, outside of the JVM.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-memory-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-memory-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1536,7 +1536,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetMemoryStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-memory-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-memory-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1551,7 +1551,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * the JVM heap, and natively, outside of the JVM.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-memory-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-memory-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1566,7 +1566,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Get anomaly detection job model snapshot upgrade usage info.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-model-snapshot-upgrade-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-model-snapshot-upgrade-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1585,7 +1585,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetModelSnapshotUpgradeStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-model-snapshot-upgrade-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-model-snapshot-upgrade-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1600,7 +1600,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Get model snapshots info.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-model-snapshots">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-model-snapshots">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1618,7 +1618,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetModelSnapshotsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-model-snapshots">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-model-snapshots">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1651,7 +1651,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * the overall buckets that have a span equal to the jobs' largest bucket span.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-overall-buckets">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-overall-buckets">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1687,7 +1687,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetOverallBucketsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-overall-buckets">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-overall-buckets">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1710,7 +1710,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * number of time series being modeled and the number of detectors.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-records">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-records">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1736,7 +1736,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRecordsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-records">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-records">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1751,7 +1751,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Get trained model configuration info.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-trained-models">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-trained-models">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1769,7 +1769,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTrainedModelsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-trained-models">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-trained-models">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1782,7 +1782,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Get trained model configuration info.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-trained-models">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-trained-models">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1799,7 +1799,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * model IDs or a wildcard expression.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-trained-models-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-trained-models-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1820,7 +1820,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTrainedModelsStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-trained-models-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-trained-models-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1835,7 +1835,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * model IDs or a wildcard expression.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-trained-models-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-get-trained-models-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1850,7 +1850,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Evaluate a trained model.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-infer-trained-model">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-infer-trained-model">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1868,7 +1868,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link InferTrainedModelRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-infer-trained-model">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-infer-trained-model">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1889,7 +1889,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * cluster configuration.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-info">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-info">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<MlInfoResponse> info() {
@@ -1910,7 +1910,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * received.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-open-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-open-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1935,7 +1935,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link OpenJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-open-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-open-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1950,7 +1950,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Add scheduled events to the calendar.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-post-calendar-events">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-post-calendar-events">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1968,7 +1968,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PostCalendarEventsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-post-calendar-events">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-post-calendar-events">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1987,7 +1987,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * wildcards or a comma-separated list.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-post-data">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-post-data">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2009,7 +2009,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PostDataRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-post-data">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-post-data">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2025,7 +2025,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * used by a data frame analytics config.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-preview-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-preview-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2045,7 +2045,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PreviewDataFrameAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-preview-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-preview-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2059,7 +2059,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * used by a data frame analytics config.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-preview-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-preview-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2083,7 +2083,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * use secondary authorization headers to supply the credentials.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-preview-datafeed">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-preview-datafeed">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2114,7 +2114,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PreviewDatafeedRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-preview-datafeed">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-preview-datafeed">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2158,7 +2158,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * use secondary authorization headers to supply the credentials.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-preview-datafeed">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-preview-datafeed">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2189,7 +2189,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PreviewDatafeedRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-preview-datafeed">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-preview-datafeed">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2204,7 +2204,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Create a calendar.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-calendar">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-calendar">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2222,7 +2222,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PutCalendarRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-calendar">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-calendar">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2237,7 +2237,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Add anomaly detection job to calendar.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-calendar-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-calendar-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2255,7 +2255,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PutCalendarJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-calendar-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-calendar-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2280,7 +2280,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * undefined parameters.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2309,7 +2309,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PutDataFrameAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2338,7 +2338,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * <code>write</code> privileges on the <code>.ml-config</code> index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-datafeed">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-datafeed">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2370,7 +2370,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PutDatafeedRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-datafeed">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-datafeed">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2387,7 +2387,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * <code>custom_rules</code> property of detector configuration objects.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-filter">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-filter">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2407,7 +2407,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PutFilterRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-filter">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-filter">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2427,7 +2427,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * <code>{&quot;match_all&quot;: {&quot;boost&quot;: 1}}</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2450,7 +2450,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PutJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2466,7 +2466,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * created by data frame analytics.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-trained-model">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-trained-model">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2485,7 +2485,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PutTrainedModelRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-trained-model">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-trained-model">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2512,7 +2512,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * and new trained models for the model alias, the API returns a warning.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-trained-model-alias">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-trained-model-alias">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2542,7 +2542,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PutTrainedModelAliasRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-trained-model-alias">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-trained-model-alias">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2557,7 +2557,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Create part of a trained model definition.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-trained-model-definition-part">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-trained-model-definition-part">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2576,7 +2576,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PutTrainedModelDefinitionPartRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-trained-model-definition-part">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-trained-model-definition-part">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2594,7 +2594,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * definition.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-trained-model-vocabulary">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-trained-model-vocabulary">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2616,7 +2616,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PutTrainedModelVocabularyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-trained-model-vocabulary">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-put-trained-model-vocabulary">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2634,7 +2634,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * separated list.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-reset-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-reset-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2655,7 +2655,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link ResetJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-reset-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-reset-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2677,7 +2677,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * system failure.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-revert-model-snapshot">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-revert-model-snapshot">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2702,7 +2702,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link RevertModelSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-revert-model-snapshot">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-revert-model-snapshot">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2727,7 +2727,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * upgrade_mode setting by using the get machine learning info API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-set-upgrade-mode">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-set-upgrade-mode">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2755,7 +2755,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link SetUpgradeModeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-set-upgrade-mode">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-set-upgrade-mode">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2778,7 +2778,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * upgrade_mode setting by using the get machine learning info API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-set-upgrade-mode">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-set-upgrade-mode">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2803,7 +2803,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * with custom settings and mappings.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-start-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-start-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2832,7 +2832,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link StartDataFrameAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-start-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-start-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2863,7 +2863,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * those credentials are used instead.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-start-datafeed">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-start-datafeed">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2897,7 +2897,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link StartDatafeedRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-start-datafeed">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-start-datafeed">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2913,7 +2913,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * learning node.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-start-trained-model-deployment">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-start-trained-model-deployment">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2933,7 +2933,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link StartTrainedModelDeploymentRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-start-trained-model-deployment">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-start-trained-model-deployment">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2949,7 +2949,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * stopped multiple times throughout its lifecycle.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-stop-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-stop-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2969,7 +2969,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link StopDataFrameAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-stop-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-stop-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2986,7 +2986,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * throughout its lifecycle.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-stop-datafeed">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-stop-datafeed">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3006,7 +3006,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link StopDatafeedRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-stop-datafeed">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-stop-datafeed">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3021,7 +3021,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Stop a trained model deployment.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-stop-trained-model-deployment">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-stop-trained-model-deployment">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3040,7 +3040,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link StopTrainedModelDeploymentRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-stop-trained-model-deployment">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-stop-trained-model-deployment">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3055,7 +3055,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Update a data frame analytics job.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-update-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3074,7 +3074,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateDataFrameAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-update-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3093,7 +3093,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * authorization headers, those credentials are used instead.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-datafeed">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-update-datafeed">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3115,7 +3115,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateDatafeedRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-datafeed">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-update-datafeed">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3131,7 +3131,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * items from the list.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-filter">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-update-filter">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3150,7 +3150,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateFilterRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-filter">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-update-filter">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3166,7 +3166,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * detection job.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-update-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3185,7 +3185,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-update-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3200,7 +3200,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Update a snapshot. Updates certain properties of a snapshot.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-model-snapshot">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-update-model-snapshot">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3218,7 +3218,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateModelSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-model-snapshot">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-update-model-snapshot">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3233,7 +3233,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Update a trained model deployment.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-trained-model-deployment">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-update-trained-model-deployment">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3252,7 +3252,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateTrainedModelDeploymentRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-trained-model-deployment">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-update-trained-model-deployment">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3274,7 +3274,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * of the anomaly detection job.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-upgrade-job-snapshot">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-upgrade-job-snapshot">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3299,7 +3299,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link UpgradeJobSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-upgrade-job-snapshot">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-upgrade-job-snapshot">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3360,7 +3360,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Validate an anomaly detection job.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch">Documentation on
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/">Documentation on
 	 *      elastic.co</a>
 	 */
 
@@ -3378,7 +3378,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link ValidateDetectorRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch">Documentation on
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/">Documentation on
 	 *      elastic.co</a>
 	 */
 
@@ -3391,7 +3391,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Validate an anomaly detection job.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch">Documentation on
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/">Documentation on
 	 *      elastic.co</a>
 	 */
 

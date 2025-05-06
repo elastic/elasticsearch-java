@@ -77,7 +77,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * an index by blocking specific operation types.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-add-block">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-add-block">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -98,7 +98,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link AddBlockRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-add-block">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-add-block">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -120,7 +120,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * specified index will always use <code>10000</code> as its limit.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-analyze">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-analyze">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -145,7 +145,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link AnalyzeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-analyze">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-analyze">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -165,7 +165,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * specified index will always use <code>10000</code> as its limit.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-analyze">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-analyze">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -182,7 +182,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Cancel a migration reindex attempt for a data stream or index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migrate-data-stream.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-cancel-migrate-reindex">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -202,7 +202,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CancelMigrateReindexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migrate-data-stream.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-cancel-migrate-reindex">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -223,7 +223,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * use the <code>fields</code> parameter.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-clear-cache">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-clear-cache">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -247,7 +247,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearCacheRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-clear-cache">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-clear-cache">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -266,7 +266,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * use the <code>fields</code> parameter.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-clear-cache">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-clear-cache">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -347,7 +347,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * action as well.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-clone">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-clone">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -431,7 +431,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CloneIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-clone">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-clone">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -472,7 +472,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * <code>false</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-close">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-close">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -516,7 +516,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CloseIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-close">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-close">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -562,7 +562,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * <code>wait_for_active_shards</code> value on all subsequent write operations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-create">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-create">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -611,7 +611,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-create">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-create">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -628,7 +628,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * You must have a matching index template with data stream enabled.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-create-data-stream">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-create-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -648,7 +648,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateDataStreamRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-create-data-stream">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-create-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -666,7 +666,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * while allowing request settings and mappings to override the source values.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migrate-data-stream.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-create-from">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -687,7 +687,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateFromRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migrate-data-stream.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-create-from">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -704,7 +704,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Get statistics for one or more data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-data-streams-stats-1">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-data-streams-stats-1">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -724,7 +724,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DataStreamsStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-data-streams-stats-1">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-data-streams-stats-1">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -739,7 +739,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Get statistics for one or more data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-data-streams-stats-1">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-data-streams-stats-1">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -760,7 +760,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * You can then use the delete index API to delete the previous write index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -784,7 +784,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -799,7 +799,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Delete an alias. Removes a data stream or index from an alias.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-delete-alias">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-delete-alias">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -817,7 +817,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteAliasRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-delete-alias">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-delete-alias">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -833,7 +833,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * stream, rendering it not managed by the data stream lifecycle.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-delete-data-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-delete-data-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -852,7 +852,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteDataLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-delete-data-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-delete-data-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -868,7 +868,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-delete-data-stream">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-delete-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -887,7 +887,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteDataStreamRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-delete-data-stream">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-delete-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -905,7 +905,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * match completely with existing templates.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-delete-index-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-delete-index-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -926,7 +926,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-delete-index-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-delete-index-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -941,7 +941,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Delete a legacy index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-delete-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-delete-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -959,7 +959,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-delete-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-delete-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -985,7 +985,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * underestimated while the <code>_source</code> field is overestimated.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-disk-usage">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-disk-usage">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1014,7 +1014,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DiskUsageRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-disk-usage">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-disk-usage">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1039,7 +1039,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * index must be read only (<code>index.blocks.write: true</code>).
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-downsample">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-downsample">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1067,7 +1067,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DownsampleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-downsample">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-downsample">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1083,7 +1083,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * exist.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-exists">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-exists">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1102,7 +1102,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-exists">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-exists">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1119,7 +1119,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Check if one or more data stream or index aliases exist.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-exists-alias">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-exists-alias">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1139,7 +1139,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsAliasRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-exists-alias">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-exists-alias">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1156,7 +1156,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Check whether index templates exist.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-exists-index-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-exists-index-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1176,7 +1176,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-exists-index-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-exists-index-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1197,7 +1197,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Elasticsearch 7.8.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-exists-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-exists-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1221,7 +1221,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-exists-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-exists-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1239,7 +1239,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * index, or any errors encountered during lifecycle execution.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-explain-data-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-explain-data-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1260,7 +1260,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ExplainDataLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-explain-data-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-explain-data-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1284,7 +1284,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * times.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-field-usage-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-field-usage-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1311,7 +1311,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link FieldUsageStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-field-usage-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-field-usage-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1345,7 +1345,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * before the flush API was called.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-flush">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-flush">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1382,7 +1382,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link FlushRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-flush">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-flush">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1414,7 +1414,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * before the flush API was called.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-flush">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-flush">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1501,7 +1501,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * </pre>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-forcemerge">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-forcemerge">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1591,7 +1591,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ForcemergeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-forcemerge">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-forcemerge">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1676,7 +1676,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * </pre>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-forcemerge">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-forcemerge">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1692,7 +1692,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * streams, the API returns information about the stream’s backing indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1711,7 +1711,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1727,7 +1727,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * aliases.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-alias">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-alias">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1746,7 +1746,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAliasRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-alias">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-alias">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1760,7 +1760,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * aliases.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-alias">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-alias">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1777,7 +1777,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Get the data stream lifecycle configuration of one or more data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-data-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-data-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1797,7 +1797,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetDataLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-data-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-data-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1813,7 +1813,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * are managed by a data stream lifecycle.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-data-lifecycle-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-data-lifecycle-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetDataLifecycleStatsResponse> getDataLifecycleStats() {
@@ -1829,7 +1829,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Get information about one or more data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-data-stream">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1849,7 +1849,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetDataStreamRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-data-stream">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1864,7 +1864,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Get information about one or more data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-data-stream">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1884,7 +1884,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * mapping contains a large number of fields.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1907,7 +1907,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetFieldMappingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1922,7 +1922,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Get index templates. Get information about one or more index templates.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-index-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-index-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1940,7 +1940,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-index-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-index-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1953,7 +1953,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Get index templates. Get information about one or more index templates.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-index-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-index-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1969,7 +1969,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * stream’s backing indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1988,7 +1988,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetMappingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2002,7 +2002,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * stream’s backing indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2019,7 +2019,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Get the status of a migration reindex attempt for a data stream or index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migrate-data-stream.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-migration">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2040,7 +2040,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetMigrateReindexStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migrate-data-stream.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-migration">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2056,7 +2056,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * streams, it returns setting information for the stream's backing indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2075,7 +2075,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetIndicesSettingsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2089,7 +2089,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * streams, it returns setting information for the stream's backing indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2108,7 +2108,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Elasticsearch 7.8.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2130,7 +2130,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2147,7 +2147,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Elasticsearch 7.8.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-get-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2166,7 +2166,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * reindexing work is completed in that task.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migrate-data-stream.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-migrate-reindex">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2188,7 +2188,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link MigrateReindexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migrate-data-stream.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-migrate-reindex">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2205,7 +2205,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * reindexing work is completed in that task.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migrate-data-stream.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-migrate-reindex">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2228,7 +2228,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * stream. The write index for the alias becomes the write index for the stream.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-migrate-to-data-stream">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-migrate-to-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2254,7 +2254,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link MigrateToDataStreamRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-migrate-to-data-stream">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-migrate-to-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2270,7 +2270,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * a single atomic operation.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-modify-data-stream">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-modify-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2289,7 +2289,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ModifyDataStreamRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-modify-data-stream">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-modify-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2336,7 +2336,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * <code>_open</code> and <code>_close</code> index actions as well.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-open">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-open">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2386,7 +2386,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link OpenRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-open">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-open">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2415,7 +2415,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * stream and interfere with the data stream size and retention.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-promote-data-stream">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-promote-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2448,7 +2448,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PromoteDataStreamRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-promote-data-stream">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-promote-data-stream">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2463,7 +2463,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Create or update an alias. Adds a data stream or index to an alias.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-alias">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-put-alias">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2481,7 +2481,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutAliasRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-alias">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-put-alias">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2497,7 +2497,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * specified data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-data-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-put-data-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2516,7 +2516,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutDataLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-data-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-put-data-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2571,7 +2571,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * new definition.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-index-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-put-index-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2629,7 +2629,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-index-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-put-index-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2678,7 +2678,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * name. Instead, add an alias field to create an alternate field name.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-put-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2730,7 +2730,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutMappingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-put-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2763,7 +2763,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * indices, you must create a new data stream and reindex your data into it.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-put-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2799,7 +2799,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutIndicesSettingsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-put-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2830,7 +2830,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * indices, you must create a new data stream and reindex your data into it.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-put-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2874,7 +2874,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * non-deterministic merging order.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-put-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2921,7 +2921,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-put-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2969,7 +2969,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * the recovery API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-recovery">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-recovery">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3020,7 +3020,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link RecoveryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-recovery">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-recovery">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3066,7 +3066,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * the recovery API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-recovery">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-recovery">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3100,7 +3100,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * indexing operation waits for a periodic refresh before running the search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-refresh">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-refresh">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3137,7 +3137,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link RefreshRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-refresh">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-refresh">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3169,7 +3169,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * indexing operation waits for a periodic refresh before running the search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-refresh">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-refresh">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3205,7 +3205,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * in case shards are relocated in the future.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-reload-search-analyzers">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-reload-search-analyzers">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3245,7 +3245,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ReloadSearchAnalyzersRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-reload-search-analyzers">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-reload-search-analyzers">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3340,7 +3340,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * to now indicate a connected status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-resolve-cluster">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-resolve-cluster">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3438,7 +3438,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ResolveClusterRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-resolve-cluster">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-resolve-cluster">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3531,7 +3531,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * to now indicate a connected status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-resolve-cluster">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-resolve-cluster">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3548,7 +3548,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * supported.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-resolve-index">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-resolve-index">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3568,7 +3568,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ResolveIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-resolve-index">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-resolve-index">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3633,7 +3633,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * 2099, the new index's name is <code>my-index-2099.05.07-000002</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-rollover">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-rollover">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3701,7 +3701,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link RolloverRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-rollover">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-rollover">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3718,7 +3718,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * stream's backing indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-segments">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-segments">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3738,7 +3738,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SegmentsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-segments">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-segments">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3753,7 +3753,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * stream's backing indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-segments">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-segments">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3782,7 +3782,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * are unassigned or have one or more unassigned replica shards.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-shard-stores">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-shard-stores">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3814,7 +3814,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ShardStoresRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-shard-stores">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-shard-stores">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3841,7 +3841,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * are unassigned or have one or more unassigned replica shards.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-shard-stores">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-shard-stores">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3910,7 +3910,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-shrink">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-shrink">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3982,7 +3982,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ShrinkRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-shrink">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-shrink">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3998,7 +3998,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * specified index from an existing index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-simulate-index-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-simulate-index-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4018,7 +4018,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateIndexTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-simulate-index-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-simulate-index-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4034,7 +4034,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * by a particular index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-simulate-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-simulate-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4053,7 +4053,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-simulate-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-simulate-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4067,7 +4067,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * by a particular index template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-simulate-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-simulate-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4144,7 +4144,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-split">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-split">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4224,7 +4224,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SplitRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-split">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-split">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4253,7 +4253,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * any node-level statistics to which the shard contributed.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4285,7 +4285,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link IndicesStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4312,7 +4312,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * any node-level statistics to which the shard contributed.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4327,7 +4327,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Create or update an alias. Adds a data stream or index to an alias.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-update-aliases">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-update-aliases">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4345,7 +4345,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateAliasesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-update-aliases">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-update-aliases">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4358,7 +4358,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Create or update an alias. Adds a data stream or index to an alias.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-update-aliases">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-update-aliases">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4373,7 +4373,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Validate a query. Validates a query without running it.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-validate-query">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-validate-query">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4391,7 +4391,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ValidateQueryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-validate-query">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-validate-query">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4404,7 +4404,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Validate a query. Validates a query without running it.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-validate-query">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-validate-query">Documentation
 	 *      on elastic.co</a>
 	 */
 

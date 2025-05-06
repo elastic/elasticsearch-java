@@ -746,11 +746,12 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	 * node using the default method.</li>
 	 * <li><code>_prefer_nodes:&lt;node-id&gt;,&lt;node-id&gt;</code> to if
 	 * possible, run the search on the specified nodes IDs. If not, select shards
-	 * using the default method. <code>_shards:&lt;shard&gt;,&lt;shard&gt;</code> to
-	 * run the search only on the specified shards. You can combine this value with
-	 * other <code>preference</code> values. However, the <code>_shards</code> value
-	 * must come first. For example: <code>_shards:2,3|_local</code>.
-	 * <code>&lt;custom-string&gt;</code> (any string that does not start with
+	 * using the default method.</li>
+	 * <li><code>_shards:&lt;shard&gt;,&lt;shard&gt;</code> to run the search only
+	 * on the specified shards. You can combine this value with other
+	 * <code>preference</code> values. However, the <code>_shards</code> value must
+	 * come first. For example: <code>_shards:2,3|_local</code>.</li>
+	 * <li><code>&lt;custom-string&gt;</code> (any string that does not start with
 	 * <code>_</code>) to route searches with the same
 	 * <code>&lt;custom-string&gt;</code> to the same shards in the same order.</li>
 	 * </ul>
@@ -2145,11 +2146,12 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * node using the default method.</li>
 		 * <li><code>_prefer_nodes:&lt;node-id&gt;,&lt;node-id&gt;</code> to if
 		 * possible, run the search on the specified nodes IDs. If not, select shards
-		 * using the default method. <code>_shards:&lt;shard&gt;,&lt;shard&gt;</code> to
-		 * run the search only on the specified shards. You can combine this value with
-		 * other <code>preference</code> values. However, the <code>_shards</code> value
-		 * must come first. For example: <code>_shards:2,3|_local</code>.
-		 * <code>&lt;custom-string&gt;</code> (any string that does not start with
+		 * using the default method.</li>
+		 * <li><code>_shards:&lt;shard&gt;,&lt;shard&gt;</code> to run the search only
+		 * on the specified shards. You can combine this value with other
+		 * <code>preference</code> values. However, the <code>_shards</code> value must
+		 * come first. For example: <code>_shards:2,3|_local</code>.</li>
+		 * <li><code>&lt;custom-string&gt;</code> (any string that does not start with
 		 * <code>_</code>) to route searches with the same
 		 * <code>&lt;custom-string&gt;</code> to the same shards in the same order.</li>
 		 * </ul>

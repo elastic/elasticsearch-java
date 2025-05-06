@@ -73,6 +73,8 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 
 	private final long timestamp;
 
+	private final CCSStats ccs;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected StatsResponseBase(AbstractBuilder<?> builder) {
@@ -84,6 +86,7 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 		this.nodes = ApiTypeHelper.requireNonNull(builder.nodes, this, "nodes");
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp", 0);
+		this.ccs = ApiTypeHelper.requireNonNull(builder.ccs, this, "ccs");
 
 	}
 
@@ -145,6 +148,15 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 		return this.timestamp;
 	}
 
+	/**
+	 * Required - Cross-cluster stats
+	 * <p>
+	 * API name: {@code ccs}
+	 */
+	public final CCSStats ccs() {
+		return this.ccs;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -165,6 +177,9 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp);
 
+		generator.writeKey("ccs");
+		this.ccs.serialize(generator, mapper);
+
 	}
 
 	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
@@ -181,6 +196,8 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 		private HealthStatus status;
 
 		private Long timestamp;
+
+		private CCSStats ccs;
 
 		/**
 		 * Required - Name of the cluster, based on the cluster name setting.
@@ -266,6 +283,25 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 			return self();
 		}
 
+		/**
+		 * Required - Cross-cluster stats
+		 * <p>
+		 * API name: {@code ccs}
+		 */
+		public final BuilderT ccs(CCSStats value) {
+			this.ccs = value;
+			return self();
+		}
+
+		/**
+		 * Required - Cross-cluster stats
+		 * <p>
+		 * API name: {@code ccs}
+		 */
+		public final BuilderT ccs(Function<CCSStats.Builder, ObjectBuilder<CCSStats>> fn) {
+			return this.ccs(fn.apply(new CCSStats.Builder()).build());
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -278,6 +314,7 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 		op.add(AbstractBuilder::nodes, ClusterNodes._DESERIALIZER, "nodes");
 		op.add(AbstractBuilder::status, HealthStatus._DESERIALIZER, "status");
 		op.add(AbstractBuilder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
+		op.add(AbstractBuilder::ccs, CCSStats._DESERIALIZER, "ccs");
 
 	}
 
