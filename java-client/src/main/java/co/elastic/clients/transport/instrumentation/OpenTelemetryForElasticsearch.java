@@ -31,6 +31,9 @@ import io.opentelemetry.api.trace.SpanKind;
 import io.opentelemetry.api.trace.StatusCode;
 import io.opentelemetry.api.trace.Tracer;
 import io.opentelemetry.context.Scope;
+import io.opentelemetry.semconv.HttpAttributes;
+import io.opentelemetry.semconv.ServerAttributes;
+import io.opentelemetry.semconv.UrlAttributes;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -69,18 +72,14 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
         "search"
     ));
 
-    private static final AttributeKey<String> ATTR_DB_SYSTEM = AttributeKey.stringKey("db.system");
-    private static final AttributeKey<String> ATTR_DB_OPERATION = AttributeKey.stringKey("db.operation");
-    private static final AttributeKey<String> ATTR_DB_STATEMENT = AttributeKey.stringKey("db.statement");
-    // Use Semantic Convention keys once opentelemetry-semconv is stable
-    //private static final AttributeKey<String> ATTR_DB_SYSTEM = SemanticAttributes.DB_SYSTEM;
-    //private static final AttributeKey<String> ATTR_DB_OPERATION = SemanticAttributes.DB_OPERATION;
-    //private static final AttributeKey<String> ATTR_DB_STATEMENT = SemanticAttributes.DB_STATEMENT;
+    private static final AttributeKey<String> ATTR_DB_SYSTEM = AttributeKey.stringKey("db.system.name");
+    private static final AttributeKey<String> ATTR_DB_OPERATION = AttributeKey.stringKey("db.operation.name");
+    private static final AttributeKey<String> ATTR_DB_QUERY = AttributeKey.stringKey("db.query.text");
 
-    private static final AttributeKey<String> ATTR_HTTP_REQUEST_METHOD = AttributeKey.stringKey("http.request.method");
-    private static final AttributeKey<String> ATTR_URL_FULL = AttributeKey.stringKey("url.full");
-    private static final AttributeKey<String> ATTR_SERVER_ADDRESS = AttributeKey.stringKey("server.address");
-    private static final AttributeKey<Long> ATTR_SERVER_PORT = AttributeKey.longKey("server.port");
+    private static final AttributeKey<String> ATTR_HTTP_REQUEST_METHOD = HttpAttributes.HTTP_REQUEST_METHOD;
+    private static final AttributeKey<String> ATTR_URL_FULL = UrlAttributes.URL_FULL;
+    private static final AttributeKey<String> ATTR_SERVER_ADDRESS = ServerAttributes.SERVER_ADDRESS;
+    private static final AttributeKey<Long> ATTR_SERVER_PORT = ServerAttributes.SERVER_PORT;
 
     // Caching attributes keys to avoid unnecessary memory allocation
     private static final Map<String, AttributeKey<String>> attributesKeyCache = new ConcurrentHashMap<>();
@@ -222,7 +221,7 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
                         sb.append(StandardCharsets.UTF_8.decode(buf));
                         buf.reset();
                     }
-                    span.setAttribute(ATTR_DB_STATEMENT, sb.toString());
+                    span.setAttribute(ATTR_DB_QUERY, sb.toString());
                 }
             } catch (Exception e) {
                 logger.debug("Failed reading HTTP body content for an OpenTelemetry span.", e);
