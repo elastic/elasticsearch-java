@@ -38,8 +38,6 @@ import io.opentelemetry.sdk.trace.SdkTracerProvider;
 import io.opentelemetry.sdk.trace.data.SpanData;
 import io.opentelemetry.sdk.trace.export.SimpleSpanProcessor;
 import io.opentelemetry.sdk.trace.export.SpanExporter;
-import io.opentelemetry.semconv.resource.attributes.ResourceAttributes;
-import io.opentelemetry.semconv.trace.attributes.SemanticAttributes;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -56,6 +54,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+
+import static io.opentelemetry.semconv.ServiceAttributes.SERVICE_NAME;
 
 public class OpenTelemetryForElasticsearchTest {
     private static final String INDEX = "test-index";
@@ -100,7 +100,9 @@ public class OpenTelemetryForElasticsearchTest {
             "    ]\n" +
             "  }\n" +
             "}";
-    public static final String DB_OPERATION = "db.operation";
+    public static final String DB_SYSTEM = "db.system.name";
+    public static final String DB_OPERATION = "db.operation.name";
+    public static final String DB_QUERY = "db.query.text";
     public static final String URL_FULL = "url.full";
     public static final String SERVER_ADDRESS = "server.address";
     public static final String SERVER_PORT = "server.port";
@@ -162,7 +164,7 @@ public class OpenTelemetryForElasticsearchTest {
 
     private static void setupOTel() {
         Resource resource = Resource.getDefault()
-                .merge(Resource.create(Attributes.of(ResourceAttributes.SERVICE_NAME, "es-api-test")));
+                .merge(Resource.create(Attributes.of(SERVICE_NAME, "es-api-test")));
 
         spanExporter = new MockSpanExporter();
 
@@ -189,7 +191,7 @@ public class OpenTelemetryForElasticsearchTest {
         Assertions.assertEquals("get", span.getName());
         Assertions.assertEquals("get", span.getAttributes().get(AttributeKey.stringKey(DB_OPERATION)));
         Assertions.assertEquals("GET", span.getAttributes().get(AttributeKey.stringKey(HTTP_REQUEST_METHOD)));
-        Assertions.assertEquals("elasticsearch", span.getAttributes().get(SemanticAttributes.DB_SYSTEM));
+        Assertions.assertEquals("elasticsearch", span.getAttributes().get(AttributeKey.stringKey(DB_SYSTEM)));
 
         String url = "http://" + httpServer.getAddress().getHostString() + ":" + httpServer.getAddress().getPort() +
             "/" + INDEX + "/_doc/" + DOC_ID + "?refresh=true";
@@ -214,7 +216,7 @@ public class OpenTelemetryForElasticsearchTest {
         Assertions.assertEquals(spanExporter.getSpans().size(), 1);
         SpanData span = spanExporter.getSpans().get(0);
         Assertions.assertEquals("search", span.getName());
-        Assertions.assertEquals(queryAsString, span.getAttributes().get(SemanticAttributes.DB_STATEMENT));
+        Assertions.assertEquals(queryAsString, span.getAttributes().get(AttributeKey.stringKey(DB_QUERY)));
     }
 
     @Test
@@ -228,7 +230,7 @@ public class OpenTelemetryForElasticsearchTest {
         Assertions.assertEquals("search", span.getName());
 
         // We're not capturing bodies by default
-        Assertions.assertNull(span.getAttributes().get(SemanticAttributes.DB_STATEMENT));
+        Assertions.assertNull(span.getAttributes().get(AttributeKey.stringKey(DB_QUERY)));
     }
 
     private static class MockSpanExporter implements SpanExporter {
