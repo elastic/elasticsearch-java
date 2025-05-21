@@ -1,4 +1,6 @@
 project: 'Java API Client'
+products:
+  - id: elasticsearch-client
 exclude:
   - external-resources.md
   - design/*
