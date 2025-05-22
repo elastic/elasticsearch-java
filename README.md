@@ -42,10 +42,10 @@ is required for that. Elasticsearch language clients are only backwards
 compatible with default distributions and without guarantees made.
 
 | Elasticsearch Version | Elasticsearch-Java Branch | Supported |
-| --------------------- | ------------------------- | --------- |
+|-----------------------|---------------------------|-----------|
 | main                  | main                      |           |
-| 8.x                   | 8.x                       | 8.x       |
-| 7.x                   | 7.x                       | 7.17      |
+| 9.x                   | 9.x                       | 9.x       |
+| 8.x                   | 8.x                       | 8.17      |
 
 ## Usage
 
