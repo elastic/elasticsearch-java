@@ -30,7 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -80,7 +80,7 @@ public class ShardProfile implements JsonpSerializable {
 
 	private final List<SearchProfile> searches;
 
-	private final long shardId;
+	private final int shardId;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -163,7 +163,7 @@ public class ShardProfile implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code shard_id}
 	 */
-	public final long shardId() {
+	public final int shardId() {
 		return this.shardId;
 	}
 
@@ -255,7 +255,7 @@ public class ShardProfile implements JsonpSerializable {
 
 		private List<SearchProfile> searches;
 
-		private Long shardId;
+		private Integer shardId;
 
 		/**
 		 * Required - API name: {@code aggregations}
@@ -380,7 +380,7 @@ public class ShardProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shard_id}
 		 */
-		public final Builder shardId(long value) {
+		public final Builder shardId(int value) {
 			this.shardId = value;
 			return this;
 		}
@@ -422,7 +422,7 @@ public class ShardProfile implements JsonpSerializable {
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
 		op.add(Builder::searches, JsonpDeserializer.arrayDeserializer(SearchProfile._DESERIALIZER), "searches");
-		op.add(Builder::shardId, JsonpDeserializer.longDeserializer(), "shard_id");
+		op.add(Builder::shardId, JsonpDeserializer.integerDeserializer(), "shard_id");
 
 	}
 

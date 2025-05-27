@@ -26,6 +26,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -61,6 +62,9 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
 	@Nullable
 	private final IcuNormalizationType name;
 
+	@Nullable
+	private final String unicodeSetFilter;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IcuNormalizationCharFilter(Builder builder) {
@@ -68,6 +72,7 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
 
 		this.mode = builder.mode;
 		this.name = builder.name;
+		this.unicodeSetFilter = builder.unicodeSetFilter;
 
 	}
 
@@ -99,6 +104,14 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
 		return this.name;
 	}
 
+	/**
+	 * API name: {@code unicode_set_filter}
+	 */
+	@Nullable
+	public final String unicodeSetFilter() {
+		return this.unicodeSetFilter;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "icu_normalizer");
@@ -110,6 +123,11 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
 		if (this.name != null) {
 			generator.writeKey("name");
 			this.name.serialize(generator, mapper);
+		}
+		if (this.unicodeSetFilter != null) {
+			generator.writeKey("unicode_set_filter");
+			generator.write(this.unicodeSetFilter);
+
 		}
 
 	}
@@ -129,6 +147,9 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
 		@Nullable
 		private IcuNormalizationType name;
 
+		@Nullable
+		private String unicodeSetFilter;
+
 		/**
 		 * API name: {@code mode}
 		 */
@@ -142,6 +163,14 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
 		 */
 		public final Builder name(@Nullable IcuNormalizationType value) {
 			this.name = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code unicode_set_filter}
+		 */
+		public final Builder unicodeSetFilter(@Nullable String value) {
+			this.unicodeSetFilter = value;
 			return this;
 		}
 
@@ -176,6 +205,7 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
 		CharFilterBase.setupCharFilterBaseDeserializer(op);
 		op.add(Builder::mode, IcuNormalizationMode._DESERIALIZER, "mode");
 		op.add(Builder::name, IcuNormalizationType._DESERIALIZER, "name");
+		op.add(Builder::unicodeSetFilter, JsonpDeserializer.stringDeserializer(), "unicode_set_filter");
 
 		op.ignore("type");
 	}
