@@ -80,6 +80,8 @@ public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterD
 	}
 
 	/**
+	 * Controls the language used by the stemmer.
+	 * <p>
 	 * API name: {@code language}
 	 */
 	@Nullable
@@ -111,6 +113,8 @@ public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterD
 		private SnowballLanguage language;
 
 		/**
+		 * Controls the language used by the stemmer.
+		 * <p>
 		 * API name: {@code language}
 		 */
 		public final Builder language(@Nullable SnowballLanguage value) {

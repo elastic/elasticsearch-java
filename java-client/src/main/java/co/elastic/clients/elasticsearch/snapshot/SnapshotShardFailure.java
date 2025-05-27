@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -67,7 +68,7 @@ public class SnapshotShardFailure implements JsonpSerializable {
 
 	private final String reason;
 
-	private final String shardId;
+	private final int shardId;
 
 	private final String indexUuid;
 
@@ -80,7 +81,7 @@ public class SnapshotShardFailure implements JsonpSerializable {
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.nodeId = builder.nodeId;
 		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
-		this.shardId = ApiTypeHelper.requireNonNull(builder.shardId, this, "shardId");
+		this.shardId = ApiTypeHelper.requireNonNull(builder.shardId, this, "shardId", 0);
 		this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
@@ -115,7 +116,7 @@ public class SnapshotShardFailure implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code shard_id}
 	 */
-	public final String shardId() {
+	public final int shardId() {
 		return this.shardId;
 	}
 
@@ -187,7 +188,7 @@ public class SnapshotShardFailure implements JsonpSerializable {
 
 		private String reason;
 
-		private String shardId;
+		private Integer shardId;
 
 		private String indexUuid;
 
@@ -220,7 +221,7 @@ public class SnapshotShardFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shard_id}
 		 */
-		public final Builder shardId(String value) {
+		public final Builder shardId(int value) {
 			this.shardId = value;
 			return this;
 		}
@@ -272,7 +273,7 @@ public class SnapshotShardFailure implements JsonpSerializable {
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
-		op.add(Builder::shardId, JsonpDeserializer.stringDeserializer(), "shard_id");
+		op.add(Builder::shardId, JsonpDeserializer.integerDeserializer(), "shard_id");
 		op.add(Builder::indexUuid, JsonpDeserializer.stringDeserializer(), "index_uuid");
 		op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
 

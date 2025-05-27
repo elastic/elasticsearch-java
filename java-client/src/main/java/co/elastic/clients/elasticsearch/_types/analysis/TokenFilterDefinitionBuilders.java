@@ -45,6 +45,44 @@ public class TokenFilterDefinitionBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link ApostropheTokenFilter apostrophe}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static ApostropheTokenFilter.Builder apostrophe() {
+		return new ApostropheTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link ApostropheTokenFilter
+	 * apostrophe} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition apostrophe(
+			Function<ApostropheTokenFilter.Builder, ObjectBuilder<ApostropheTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.apostrophe(fn.apply(new ApostropheTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link ArabicNormalizationTokenFilter
+	 * arabic_normalization} {@code TokenFilterDefinition} variant.
+	 */
+	public static ArabicNormalizationTokenFilter.Builder arabicNormalization() {
+		return new ArabicNormalizationTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link ArabicNormalizationTokenFilter
+	 * arabic_normalization} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition arabicNormalization(
+			Function<ArabicNormalizationTokenFilter.Builder, ObjectBuilder<ArabicNormalizationTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.arabicNormalization(fn.apply(new ArabicNormalizationTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link AsciiFoldingTokenFilter asciifolding}
 	 * {@code TokenFilterDefinition} variant.
 	 */
@@ -60,6 +98,63 @@ public class TokenFilterDefinitionBuilders {
 			Function<AsciiFoldingTokenFilter.Builder, ObjectBuilder<AsciiFoldingTokenFilter>> fn) {
 		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
 		builder.asciifolding(fn.apply(new AsciiFoldingTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link CjkBigramTokenFilter cjk_bigram}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static CjkBigramTokenFilter.Builder cjkBigram() {
+		return new CjkBigramTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link CjkBigramTokenFilter
+	 * cjk_bigram} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition cjkBigram(
+			Function<CjkBigramTokenFilter.Builder, ObjectBuilder<CjkBigramTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.cjkBigram(fn.apply(new CjkBigramTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link CjkWidthTokenFilter cjk_width}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static CjkWidthTokenFilter.Builder cjkWidth() {
+		return new CjkWidthTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link CjkWidthTokenFilter cjk_width}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition cjkWidth(
+			Function<CjkWidthTokenFilter.Builder, ObjectBuilder<CjkWidthTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.cjkWidth(fn.apply(new CjkWidthTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link ClassicTokenFilter classic}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static ClassicTokenFilter.Builder classic() {
+		return new ClassicTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link ClassicTokenFilter classic}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition classic(
+			Function<ClassicTokenFilter.Builder, ObjectBuilder<ClassicTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.classic(fn.apply(new ClassicTokenFilter.Builder()).build());
 		return builder.build();
 	}
 
@@ -98,6 +193,25 @@ public class TokenFilterDefinitionBuilders {
 			Function<ConditionTokenFilter.Builder, ObjectBuilder<ConditionTokenFilter>> fn) {
 		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
 		builder.condition(fn.apply(new ConditionTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link DecimalDigitTokenFilter decimal_digit}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static DecimalDigitTokenFilter.Builder decimalDigit() {
+		return new DecimalDigitTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link DecimalDigitTokenFilter
+	 * decimal_digit} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition decimalDigit(
+			Function<DecimalDigitTokenFilter.Builder, ObjectBuilder<DecimalDigitTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.decimalDigit(fn.apply(new DecimalDigitTokenFilter.Builder()).build());
 		return builder.build();
 	}
 
@@ -194,6 +308,63 @@ public class TokenFilterDefinitionBuilders {
 			Function<FingerprintTokenFilter.Builder, ObjectBuilder<FingerprintTokenFilter>> fn) {
 		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
 		builder.fingerprint(fn.apply(new FingerprintTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link FlattenGraphTokenFilter flatten_graph}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static FlattenGraphTokenFilter.Builder flattenGraph() {
+		return new FlattenGraphTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link FlattenGraphTokenFilter
+	 * flatten_graph} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition flattenGraph(
+			Function<FlattenGraphTokenFilter.Builder, ObjectBuilder<FlattenGraphTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.flattenGraph(fn.apply(new FlattenGraphTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link GermanNormalizationTokenFilter
+	 * german_normalization} {@code TokenFilterDefinition} variant.
+	 */
+	public static GermanNormalizationTokenFilter.Builder germanNormalization() {
+		return new GermanNormalizationTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link GermanNormalizationTokenFilter
+	 * german_normalization} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition germanNormalization(
+			Function<GermanNormalizationTokenFilter.Builder, ObjectBuilder<GermanNormalizationTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.germanNormalization(fn.apply(new GermanNormalizationTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link HindiNormalizationTokenFilter
+	 * hindi_normalization} {@code TokenFilterDefinition} variant.
+	 */
+	public static HindiNormalizationTokenFilter.Builder hindiNormalization() {
+		return new HindiNormalizationTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link HindiNormalizationTokenFilter
+	 * hindi_normalization} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition hindiNormalization(
+			Function<HindiNormalizationTokenFilter.Builder, ObjectBuilder<HindiNormalizationTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.hindiNormalization(fn.apply(new HindiNormalizationTokenFilter.Builder()).build());
 		return builder.build();
 	}
 
@@ -313,6 +484,44 @@ public class TokenFilterDefinitionBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link IndicNormalizationTokenFilter
+	 * indic_normalization} {@code TokenFilterDefinition} variant.
+	 */
+	public static IndicNormalizationTokenFilter.Builder indicNormalization() {
+		return new IndicNormalizationTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link IndicNormalizationTokenFilter
+	 * indic_normalization} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition indicNormalization(
+			Function<IndicNormalizationTokenFilter.Builder, ObjectBuilder<IndicNormalizationTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.indicNormalization(fn.apply(new IndicNormalizationTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link JaStopTokenFilter ja_stop}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static JaStopTokenFilter.Builder jaStop() {
+		return new JaStopTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link JaStopTokenFilter ja_stop}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition jaStop(
+			Function<JaStopTokenFilter.Builder, ObjectBuilder<JaStopTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.jaStop(fn.apply(new JaStopTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link KStemTokenFilter kstem}
 	 * {@code TokenFilterDefinition} variant.
 	 */
@@ -384,6 +593,25 @@ public class TokenFilterDefinitionBuilders {
 			Function<KeywordMarkerTokenFilter.Builder, ObjectBuilder<KeywordMarkerTokenFilter>> fn) {
 		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
 		builder.keywordMarker(fn.apply(new KeywordMarkerTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link KeywordRepeatTokenFilter keyword_repeat}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static KeywordRepeatTokenFilter.Builder keywordRepeat() {
+		return new KeywordRepeatTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link KeywordRepeatTokenFilter
+	 * keyword_repeat} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition keywordRepeat(
+			Function<KeywordRepeatTokenFilter.Builder, ObjectBuilder<KeywordRepeatTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.keywordRepeat(fn.apply(new KeywordRepeatTokenFilter.Builder()).build());
 		return builder.build();
 	}
 
@@ -502,6 +730,25 @@ public class TokenFilterDefinitionBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link MinHashTokenFilter min_hash}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static MinHashTokenFilter.Builder minHash() {
+		return new MinHashTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link MinHashTokenFilter min_hash}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition minHash(
+			Function<MinHashTokenFilter.Builder, ObjectBuilder<MinHashTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.minHash(fn.apply(new MinHashTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link MultiplexerTokenFilter multiplexer}
 	 * {@code TokenFilterDefinition} variant.
 	 */
@@ -592,6 +839,25 @@ public class TokenFilterDefinitionBuilders {
 			Function<PatternReplaceTokenFilter.Builder, ObjectBuilder<PatternReplaceTokenFilter>> fn) {
 		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
 		builder.patternReplace(fn.apply(new PatternReplaceTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link PersianNormalizationTokenFilter
+	 * persian_normalization} {@code TokenFilterDefinition} variant.
+	 */
+	public static PersianNormalizationTokenFilter.Builder persianNormalization() {
+		return new PersianNormalizationTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link PersianNormalizationTokenFilter
+	 * persian_normalization} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition persianNormalization(
+			Function<PersianNormalizationTokenFilter.Builder, ObjectBuilder<PersianNormalizationTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.persianNormalization(fn.apply(new PersianNormalizationTokenFilter.Builder()).build());
 		return builder.build();
 	}
 
@@ -691,6 +957,64 @@ public class TokenFilterDefinitionBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link ScandinavianFoldingTokenFilter
+	 * scandinavian_folding} {@code TokenFilterDefinition} variant.
+	 */
+	public static ScandinavianFoldingTokenFilter.Builder scandinavianFolding() {
+		return new ScandinavianFoldingTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link ScandinavianFoldingTokenFilter
+	 * scandinavian_folding} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition scandinavianFolding(
+			Function<ScandinavianFoldingTokenFilter.Builder, ObjectBuilder<ScandinavianFoldingTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.scandinavianFolding(fn.apply(new ScandinavianFoldingTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link ScandinavianNormalizationTokenFilter
+	 * scandinavian_normalization} {@code TokenFilterDefinition} variant.
+	 */
+	public static ScandinavianNormalizationTokenFilter.Builder scandinavianNormalization() {
+		return new ScandinavianNormalizationTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the
+	 * {@link ScandinavianNormalizationTokenFilter scandinavian_normalization}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition scandinavianNormalization(
+			Function<ScandinavianNormalizationTokenFilter.Builder, ObjectBuilder<ScandinavianNormalizationTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.scandinavianNormalization(fn.apply(new ScandinavianNormalizationTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link SerbianNormalizationTokenFilter
+	 * serbian_normalization} {@code TokenFilterDefinition} variant.
+	 */
+	public static SerbianNormalizationTokenFilter.Builder serbianNormalization() {
+		return new SerbianNormalizationTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link SerbianNormalizationTokenFilter
+	 * serbian_normalization} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition serbianNormalization(
+			Function<SerbianNormalizationTokenFilter.Builder, ObjectBuilder<SerbianNormalizationTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.serbianNormalization(fn.apply(new SerbianNormalizationTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link ShingleTokenFilter shingle}
 	 * {@code TokenFilterDefinition} variant.
 	 */
@@ -725,6 +1049,25 @@ public class TokenFilterDefinitionBuilders {
 			Function<SnowballTokenFilter.Builder, ObjectBuilder<SnowballTokenFilter>> fn) {
 		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
 		builder.snowball(fn.apply(new SnowballTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link SoraniNormalizationTokenFilter
+	 * sorani_normalization} {@code TokenFilterDefinition} variant.
+	 */
+	public static SoraniNormalizationTokenFilter.Builder soraniNormalization() {
+		return new SoraniNormalizationTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link SoraniNormalizationTokenFilter
+	 * sorani_normalization} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition soraniNormalization(
+			Function<SoraniNormalizationTokenFilter.Builder, ObjectBuilder<SoraniNormalizationTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.soraniNormalization(fn.apply(new SoraniNormalizationTokenFilter.Builder()).build());
 		return builder.build();
 	}
 

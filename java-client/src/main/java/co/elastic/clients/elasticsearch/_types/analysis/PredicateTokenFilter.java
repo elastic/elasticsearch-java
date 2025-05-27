@@ -81,7 +81,10 @@ public class PredicateTokenFilter extends TokenFilterBase implements TokenFilter
 	}
 
 	/**
-	 * Required - API name: {@code script}
+	 * Required - Script containing a condition used to filter incoming tokens. Only
+	 * tokens that match this script are included in the output.
+	 * <p>
+	 * API name: {@code script}
 	 */
 	public final Script script() {
 		return this.script;
@@ -108,7 +111,10 @@ public class PredicateTokenFilter extends TokenFilterBase implements TokenFilter
 		private Script script;
 
 		/**
-		 * Required - API name: {@code script}
+		 * Required - Script containing a condition used to filter incoming tokens. Only
+		 * tokens that match this script are included in the output.
+		 * <p>
+		 * API name: {@code script}
 		 */
 		public final Builder script(Script value) {
 			this.script = value;
@@ -116,7 +122,10 @@ public class PredicateTokenFilter extends TokenFilterBase implements TokenFilter
 		}
 
 		/**
-		 * Required - API name: {@code script}
+		 * Required - Script containing a condition used to filter incoming tokens. Only
+		 * tokens that match this script are included in the output.
+		 * <p>
+		 * API name: {@code script}
 		 */
 		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
 			return this.script(fn.apply(new Script.Builder()).build());

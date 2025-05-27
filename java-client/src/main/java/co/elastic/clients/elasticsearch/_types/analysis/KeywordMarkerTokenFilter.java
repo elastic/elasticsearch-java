@@ -95,6 +95,10 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 	}
 
 	/**
+	 * If <code>true</code>, matching for the <code>keywords</code> and
+	 * <code>keywords_path</code> parameters ignores letter case. Defaults to
+	 * <code>false</code>.
+	 * <p>
 	 * API name: {@code ignore_case}
 	 */
 	@Nullable
@@ -103,6 +107,11 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 	}
 
 	/**
+	 * Array of keywords. Tokens that match these keywords are not stemmed. This
+	 * parameter, <code>keywords_path</code>, or <code>keywords_pattern</code> must
+	 * be specified. You cannot specify this parameter and
+	 * <code>keywords_pattern</code>.
+	 * <p>
 	 * API name: {@code keywords}
 	 */
 	public final List<String> keywords() {
@@ -110,6 +119,13 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 	}
 
 	/**
+	 * Path to a file that contains a list of keywords. Tokens that match these
+	 * keywords are not stemmed. This path must be absolute or relative to the
+	 * <code>config</code> location, and the file must be UTF-8 encoded. Each word
+	 * in the file must be separated by a line break. This parameter,
+	 * <code>keywords</code>, or <code>keywords_pattern</code> must be specified.
+	 * You cannot specify this parameter and <code>keywords_pattern</code>.
+	 * <p>
 	 * API name: {@code keywords_path}
 	 */
 	@Nullable
@@ -118,6 +134,12 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 	}
 
 	/**
+	 * Java regular expression used to match tokens. Tokens that match this
+	 * expression are marked as keywords and not stemmed. This parameter,
+	 * <code>keywords</code>, or <code>keywords_path</code> must be specified. You
+	 * cannot specify this parameter and <code>keywords</code> or
+	 * <code>keywords_pattern</code>.
+	 * <p>
 	 * API name: {@code keywords_pattern}
 	 */
 	@Nullable
@@ -179,6 +201,10 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 		private String keywordsPattern;
 
 		/**
+		 * If <code>true</code>, matching for the <code>keywords</code> and
+		 * <code>keywords_path</code> parameters ignores letter case. Defaults to
+		 * <code>false</code>.
+		 * <p>
 		 * API name: {@code ignore_case}
 		 */
 		public final Builder ignoreCase(@Nullable Boolean value) {
@@ -187,6 +213,11 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
+		 * Array of keywords. Tokens that match these keywords are not stemmed. This
+		 * parameter, <code>keywords_path</code>, or <code>keywords_pattern</code> must
+		 * be specified. You cannot specify this parameter and
+		 * <code>keywords_pattern</code>.
+		 * <p>
 		 * API name: {@code keywords}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>keywords</code>.
@@ -197,6 +228,11 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
+		 * Array of keywords. Tokens that match these keywords are not stemmed. This
+		 * parameter, <code>keywords_path</code>, or <code>keywords_pattern</code> must
+		 * be specified. You cannot specify this parameter and
+		 * <code>keywords_pattern</code>.
+		 * <p>
 		 * API name: {@code keywords}
 		 * <p>
 		 * Adds one or more values to <code>keywords</code>.
@@ -207,6 +243,13 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
+		 * Path to a file that contains a list of keywords. Tokens that match these
+		 * keywords are not stemmed. This path must be absolute or relative to the
+		 * <code>config</code> location, and the file must be UTF-8 encoded. Each word
+		 * in the file must be separated by a line break. This parameter,
+		 * <code>keywords</code>, or <code>keywords_pattern</code> must be specified.
+		 * You cannot specify this parameter and <code>keywords_pattern</code>.
+		 * <p>
 		 * API name: {@code keywords_path}
 		 */
 		public final Builder keywordsPath(@Nullable String value) {
@@ -215,6 +258,12 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 		}
 
 		/**
+		 * Java regular expression used to match tokens. Tokens that match this
+		 * expression are marked as keywords and not stemmed. This parameter,
+		 * <code>keywords</code>, or <code>keywords_path</code> must be specified. You
+		 * cannot specify this parameter and <code>keywords</code> or
+		 * <code>keywords_pattern</code>.
+		 * <p>
 		 * API name: {@code keywords_pattern}
 		 */
 		public final Builder keywordsPattern(@Nullable String value) {

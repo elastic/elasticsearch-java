@@ -938,7 +938,9 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.delete_template
 
 	/**
-	 * Delete a legacy index template.
+	 * Delete a legacy index template. IMPORTANT: This documentation is about legacy
+	 * index templates, which are deprecated and will be replaced by the composable
+	 * templates introduced in Elasticsearch 7.8.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-indices-delete-template">Documentation
@@ -953,7 +955,9 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Delete a legacy index template.
+	 * Delete a legacy index template. IMPORTANT: This documentation is about legacy
+	 * index templates, which are deprecated and will be replaced by the composable
+	 * templates introduced in Elasticsearch 7.8.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2101,7 +2105,8 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.get_template
 
 	/**
-	 * Get index templates. Get information about one or more index templates.
+	 * Get legacy index templates. Get information about one or more index
+	 * templates.
 	 * <p>
 	 * IMPORTANT: This documentation is about legacy index templates, which are
 	 * deprecated and will be replaced by the composable templates introduced in
@@ -2120,7 +2125,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Get index templates. Get information about one or more index templates.
+	 * Get legacy index templates. Get information about one or more index
+	 * templates.
 	 * <p>
 	 * IMPORTANT: This documentation is about legacy index templates, which are
 	 * deprecated and will be replaced by the composable templates introduced in
@@ -2140,7 +2146,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Get index templates. Get information about one or more index templates.
+	 * Get legacy index templates. Get information about one or more index
+	 * templates.
 	 * <p>
 	 * IMPORTANT: This documentation is about legacy index templates, which are
 	 * deprecated and will be replaced by the composable templates introduced in
@@ -2842,7 +2849,7 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.put_template
 
 	/**
-	 * Create or update an index template. Index templates define settings,
+	 * Create or update a legacy index template. Index templates define settings,
 	 * mappings, and aliases that can be applied automatically to new indices.
 	 * Elasticsearch applies templates to new indices based on an index pattern that
 	 * matches the index name.
@@ -2886,7 +2893,7 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Create or update an index template. Index templates define settings,
+	 * Create or update a legacy index template. Index templates define settings,
 	 * mappings, and aliases that can be applied automatically to new indices.
 	 * Elasticsearch applies templates to new indices based on an index pattern that
 	 * matches the index name.
