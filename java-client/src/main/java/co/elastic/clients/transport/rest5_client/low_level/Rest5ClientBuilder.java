@@ -27,7 +27,9 @@ import org.apache.hc.client5.http.impl.async.CloseableHttpAsyncClient;
 import org.apache.hc.client5.http.impl.async.HttpAsyncClientBuilder;
 import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManager;
 import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManagerBuilder;
+import org.apache.hc.client5.http.routing.HttpRoutePlanner;
 import org.apache.hc.core5.http.Header;
+import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.nio.ssl.BasicClientTlsStrategy;
 import org.apache.hc.core5.util.Timeout;
 import org.apache.hc.core5.util.VersionInfo;
@@ -35,6 +37,7 @@ import org.apache.hc.core5.util.VersionInfo;
 import javax.net.ssl.SSLContext;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.ProxySelector;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Locale;
@@ -75,6 +78,9 @@ public final class Rest5ClientBuilder {
     private Header[] defaultHeaders = EMPTY_HEADERS;
     private Rest5Client.FailureListener failureListener;
     private SSLContext sslContext;
+    private HttpHost proxy;
+    private ProxySelector proxySelector;
+    private HttpRoutePlanner routePlanner;
     private String pathPrefix;
     private NodeSelector nodeSelector = NodeSelector.ANY;
     private boolean strictDeprecationMode = false;
@@ -177,6 +183,24 @@ public final class Rest5ClientBuilder {
     public Rest5ClientBuilder setSSLContext(SSLContext sslContext) {
         Objects.requireNonNull(sslContext, "ssl context must not be null");
         this.sslContext = sslContext;
+        return this;
+    }
+
+    public Rest5ClientBuilder setProxy(HttpHost proxy) {
+        Objects.requireNonNull(proxy, "proxy must not be null");
+        this.proxy = proxy;
+        return this;
+    }
+
+    public Rest5ClientBuilder setProxySelector(ProxySelector proxySelector) {
+        Objects.requireNonNull(proxySelector, "proxy selector must not be null");
+        this.proxySelector = proxySelector;
+        return this;
+    }
+
+    public Rest5ClientBuilder setRoutePlanner(HttpRoutePlanner routePlanner) {
+        Objects.requireNonNull(routePlanner, "route planner must not be null");
+        this.routePlanner = routePlanner;
         return this;
     }
 
@@ -373,6 +397,16 @@ public final class Rest5ClientBuilder {
                 .setUserAgent(USER_AGENT_HEADER_VALUE)
                 .setTargetAuthenticationStrategy(new DefaultAuthenticationStrategy())
                 .setThreadFactory(new RestClientThreadFactory());
+
+            if (this.proxy != null) {
+                httpClientBuilder.setProxy(this.proxy);
+            }
+            if (this.proxySelector != null) {
+                httpClientBuilder.setProxySelector(this.proxySelector);
+            }
+            if (this.routePlanner != null) {
+                httpClientBuilder.setRoutePlanner(this.routePlanner);
+            }
 
             return httpClientBuilder.build();
         } catch (NoSuchAlgorithmException e) {
