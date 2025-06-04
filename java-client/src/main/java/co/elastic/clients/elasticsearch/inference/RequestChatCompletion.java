@@ -104,7 +104,12 @@ public class RequestChatCompletion implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - A list of objects representing the conversation.
+	 * Required - A list of objects representing the conversation. Requests should
+	 * generally only add new messages from the user (role <code>user</code>). The
+	 * other message roles (<code>assistant</code>, <code>system</code>, or
+	 * <code>tool</code>) should generally only be copied from the response to a
+	 * previous completion request, such that the messages array is built up
+	 * throughout a conversation.
 	 * <p>
 	 * API name: {@code messages}
 	 */
@@ -289,7 +294,12 @@ public class RequestChatCompletion implements JsonpSerializable {
 		private Float topP;
 
 		/**
-		 * Required - A list of objects representing the conversation.
+		 * Required - A list of objects representing the conversation. Requests should
+		 * generally only add new messages from the user (role <code>user</code>). The
+		 * other message roles (<code>assistant</code>, <code>system</code>, or
+		 * <code>tool</code>) should generally only be copied from the response to a
+		 * previous completion request, such that the messages array is built up
+		 * throughout a conversation.
 		 * <p>
 		 * API name: {@code messages}
 		 * <p>
@@ -301,7 +311,12 @@ public class RequestChatCompletion implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A list of objects representing the conversation.
+		 * Required - A list of objects representing the conversation. Requests should
+		 * generally only add new messages from the user (role <code>user</code>). The
+		 * other message roles (<code>assistant</code>, <code>system</code>, or
+		 * <code>tool</code>) should generally only be copied from the response to a
+		 * previous completion request, such that the messages array is built up
+		 * throughout a conversation.
 		 * <p>
 		 * API name: {@code messages}
 		 * <p>
@@ -313,7 +328,12 @@ public class RequestChatCompletion implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A list of objects representing the conversation.
+		 * Required - A list of objects representing the conversation. Requests should
+		 * generally only add new messages from the user (role <code>user</code>). The
+		 * other message roles (<code>assistant</code>, <code>system</code>, or
+		 * <code>tool</code>) should generally only be copied from the response to a
+		 * previous completion request, such that the messages array is built up
+		 * throughout a conversation.
 		 * <p>
 		 * API name: {@code messages}
 		 * <p>

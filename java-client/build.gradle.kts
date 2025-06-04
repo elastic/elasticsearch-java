@@ -175,11 +175,9 @@ signing {
 }
 
 dependencies {
-    // Compile and test with the last 8.x version to make sure transition scenarios where
-    // the Java API client coexists with a 8.x HLRC work fine
     val elasticsearchVersion = "9.0.0"
     val jacksonVersion = "2.18.3"
-    val openTelemetryVersion = "1.29.0"
+    val openTelemetryVersion = "1.32.0"
 
     // Apache 2.0
     // https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html
@@ -211,8 +209,7 @@ dependencies {
     // Apache 2.0
     // https://github.com/open-telemetry/opentelemetry-java
     implementation("io.opentelemetry", "opentelemetry-api", openTelemetryVersion)
-    // Use it once it's stable (see Instrumentation.java). Limited to tests for now.
-    testImplementation("io.opentelemetry", "opentelemetry-semconv", "$openTelemetryVersion-alpha")
+    implementation("io.opentelemetry.semconv","opentelemetry-semconv", openTelemetryVersion)
     testImplementation("io.opentelemetry", "opentelemetry-sdk", openTelemetryVersion)
 
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0

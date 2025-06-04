@@ -26,7 +26,7 @@ Along with these bug fixes, the API specification is constantly refined, more pr
 
 ## Breaking changes in major releases [_breaking_changes_in_major_releases]
 
-Major releases (e.g. 7.x → 8.x) can include larger refactorings of the API specification and the framework underlying the Java API Client. These refactorings are considered carefully and done only when they unlock new important features or new developments.
+Major releases (e.g. 8.x → 9.x) can include larger refactorings of the API specification and the framework underlying the Java API Client. These refactorings are considered carefully and done only when they unlock new important features or new developments.
 
 
 ## Elasticsearch API stability guarantees [_elasticsearch_api_stability_guarantees]

@@ -1,4 +1,6 @@
 project: 'Java API Client'
+products:
+  - id: elasticsearch-client
 exclude:
   - external-resources.md
   - design/*
@@ -10,6 +12,6 @@ toc:
   - toc: release-notes
 subs:
   es:   "Elasticsearch"
-  version: "9.0.0"
+  version: "9.0.1"
   # Not used by docs-builder, but present in `% :::{include-bloc}` preprocessing directives (see IncludeExpander.java)
   doc-tests-src: "../../java-client/src/test/java/co/elastic/clients/documentation"

@@ -395,12 +395,10 @@ public class ElasticsearchSnapshotAsyncClient
 	// ----- Endpoint: snapshot.repository_analyze
 
 	/**
-	 * Analyze a snapshot repository. Analyze the performance characteristics and
-	 * any incorrect behaviour found in a repository.
+	 * Analyze a snapshot repository.
 	 * <p>
-	 * The response exposes implementation details of the analysis which may change
-	 * from version to version. The response body format is therefore not considered
-	 * stable and may be different in newer versions.
+	 * Performs operations on a snapshot repository in order to check for incorrect
+	 * behaviour.
 	 * <p>
 	 * There are a large number of third-party storage systems available, not all of
 	 * which are suitable for use as a snapshot repository by Elasticsearch. Some
@@ -413,24 +411,45 @@ public class ElasticsearchSnapshotAsyncClient
 	 * The default values for the parameters are deliberately low to reduce the
 	 * impact of running an analysis inadvertently and to provide a sensible
 	 * starting point for your investigations. Run your first analysis with the
-	 * default parameter values to check for simple problems. If successful, run a
-	 * sequence of increasingly large analyses until you encounter a failure or you
-	 * reach a <code>blob_count</code> of at least <code>2000</code>, a
+	 * default parameter values to check for simple problems. Some repositories may
+	 * behave correctly when lightly loaded but incorrectly under production-like
+	 * workloads. If the first analysis is successful, run a sequence of
+	 * increasingly large analyses until you encounter a failure or you reach a
+	 * <code>blob_count</code> of at least <code>2000</code>, a
 	 * <code>max_blob_size</code> of at least <code>2gb</code>, a
 	 * <code>max_total_data_size</code> of at least <code>1tb</code>, and a
 	 * <code>register_operation_count</code> of at least <code>100</code>. Always
 	 * specify a generous timeout, possibly <code>1h</code> or longer, to allow time
-	 * for each analysis to run to completion. Perform the analyses using a
-	 * multi-node cluster of a similar size to your production cluster so that it
-	 * can detect any problems that only arise when the repository is accessed by
-	 * many nodes at once.
+	 * for each analysis to run to completion. Some repositories may behave
+	 * correctly when accessed by a small number of Elasticsearch nodes but
+	 * incorrectly when accessed concurrently by a production-scale cluster. Perform
+	 * the analyses using a multi-node cluster of a similar size to your production
+	 * cluster so that it can detect any problems that only arise when the
+	 * repository is accessed by many nodes at once.
 	 * <p>
 	 * If the analysis fails, Elasticsearch detected that your repository behaved
 	 * unexpectedly. This usually means you are using a third-party storage system
 	 * with an incorrect or incompatible implementation of the API it claims to
 	 * support. If so, this storage system is not suitable for use as a snapshot
-	 * repository. You will need to work with the supplier of your storage system to
-	 * address the incompatibilities that Elasticsearch detects.
+	 * repository. Repository analysis triggers conditions that occur only rarely
+	 * when taking snapshots in a production system. Snapshotting to unsuitable
+	 * storage may appear to work correctly most of the time despite repository
+	 * analysis failures. However your snapshot data is at risk if you store it in a
+	 * snapshot repository that does not reliably pass repository analysis. You can
+	 * demonstrate that the analysis failure is due to an incompatible storage
+	 * implementation by verifying that Elasticsearch does not detect the same
+	 * problem when analysing the reference implementation of the storage protocol
+	 * you are using. For instance, if you are using storage that offers an API
+	 * which the supplier claims to be compatible with AWS S3, verify that
+	 * repositories in AWS S3 do not fail repository analysis. This allows you to
+	 * demonstrate to your storage supplier that a repository analysis failure must
+	 * only be caused by an incompatibility with AWS S3 and cannot be attributed to
+	 * a problem in Elasticsearch. Please do not report Elasticsearch issues
+	 * involving third-party storage systems unless you can demonstrate that the
+	 * same issue exists when analysing a repository that uses the reference
+	 * implementation of the same storage protocol. You will need to work with the
+	 * supplier of your storage system to address the incompatibilities that
+	 * Elasticsearch detects.
 	 * <p>
 	 * If the analysis is successful, the API returns details of the testing
 	 * process, optionally including how long each operation took. You can use this
@@ -481,6 +500,8 @@ public class ElasticsearchSnapshotAsyncClient
 	 * <p>
 	 * NOTE: This API is intended for exploratory use by humans. You should expect
 	 * the request parameters and the response format to vary in future versions.
+	 * The response exposes immplementation details of the analysis which may change
+	 * from version to version.
 	 * <p>
 	 * NOTE: Different versions of Elasticsearch may perform different checks for
 	 * repository compatibility, with newer versions typically being stricter than
@@ -566,12 +587,10 @@ public class ElasticsearchSnapshotAsyncClient
 	}
 
 	/**
-	 * Analyze a snapshot repository. Analyze the performance characteristics and
-	 * any incorrect behaviour found in a repository.
+	 * Analyze a snapshot repository.
 	 * <p>
-	 * The response exposes implementation details of the analysis which may change
-	 * from version to version. The response body format is therefore not considered
-	 * stable and may be different in newer versions.
+	 * Performs operations on a snapshot repository in order to check for incorrect
+	 * behaviour.
 	 * <p>
 	 * There are a large number of third-party storage systems available, not all of
 	 * which are suitable for use as a snapshot repository by Elasticsearch. Some
@@ -584,24 +603,45 @@ public class ElasticsearchSnapshotAsyncClient
 	 * The default values for the parameters are deliberately low to reduce the
 	 * impact of running an analysis inadvertently and to provide a sensible
 	 * starting point for your investigations. Run your first analysis with the
-	 * default parameter values to check for simple problems. If successful, run a
-	 * sequence of increasingly large analyses until you encounter a failure or you
-	 * reach a <code>blob_count</code> of at least <code>2000</code>, a
+	 * default parameter values to check for simple problems. Some repositories may
+	 * behave correctly when lightly loaded but incorrectly under production-like
+	 * workloads. If the first analysis is successful, run a sequence of
+	 * increasingly large analyses until you encounter a failure or you reach a
+	 * <code>blob_count</code> of at least <code>2000</code>, a
 	 * <code>max_blob_size</code> of at least <code>2gb</code>, a
 	 * <code>max_total_data_size</code> of at least <code>1tb</code>, and a
 	 * <code>register_operation_count</code> of at least <code>100</code>. Always
 	 * specify a generous timeout, possibly <code>1h</code> or longer, to allow time
-	 * for each analysis to run to completion. Perform the analyses using a
-	 * multi-node cluster of a similar size to your production cluster so that it
-	 * can detect any problems that only arise when the repository is accessed by
-	 * many nodes at once.
+	 * for each analysis to run to completion. Some repositories may behave
+	 * correctly when accessed by a small number of Elasticsearch nodes but
+	 * incorrectly when accessed concurrently by a production-scale cluster. Perform
+	 * the analyses using a multi-node cluster of a similar size to your production
+	 * cluster so that it can detect any problems that only arise when the
+	 * repository is accessed by many nodes at once.
 	 * <p>
 	 * If the analysis fails, Elasticsearch detected that your repository behaved
 	 * unexpectedly. This usually means you are using a third-party storage system
 	 * with an incorrect or incompatible implementation of the API it claims to
 	 * support. If so, this storage system is not suitable for use as a snapshot
-	 * repository. You will need to work with the supplier of your storage system to
-	 * address the incompatibilities that Elasticsearch detects.
+	 * repository. Repository analysis triggers conditions that occur only rarely
+	 * when taking snapshots in a production system. Snapshotting to unsuitable
+	 * storage may appear to work correctly most of the time despite repository
+	 * analysis failures. However your snapshot data is at risk if you store it in a
+	 * snapshot repository that does not reliably pass repository analysis. You can
+	 * demonstrate that the analysis failure is due to an incompatible storage
+	 * implementation by verifying that Elasticsearch does not detect the same
+	 * problem when analysing the reference implementation of the storage protocol
+	 * you are using. For instance, if you are using storage that offers an API
+	 * which the supplier claims to be compatible with AWS S3, verify that
+	 * repositories in AWS S3 do not fail repository analysis. This allows you to
+	 * demonstrate to your storage supplier that a repository analysis failure must
+	 * only be caused by an incompatibility with AWS S3 and cannot be attributed to
+	 * a problem in Elasticsearch. Please do not report Elasticsearch issues
+	 * involving third-party storage systems unless you can demonstrate that the
+	 * same issue exists when analysing a repository that uses the reference
+	 * implementation of the same storage protocol. You will need to work with the
+	 * supplier of your storage system to address the incompatibilities that
+	 * Elasticsearch detects.
 	 * <p>
 	 * If the analysis is successful, the API returns details of the testing
 	 * process, optionally including how long each operation took. You can use this
@@ -652,6 +692,8 @@ public class ElasticsearchSnapshotAsyncClient
 	 * <p>
 	 * NOTE: This API is intended for exploratory use by humans. You should expect
 	 * the request parameters and the response format to vary in future versions.
+	 * The response exposes immplementation details of the analysis which may change
+	 * from version to version.
 	 * <p>
 	 * NOTE: Different versions of Elasticsearch may perform different checks for
 	 * repository compatibility, with newer versions typically being stricter than

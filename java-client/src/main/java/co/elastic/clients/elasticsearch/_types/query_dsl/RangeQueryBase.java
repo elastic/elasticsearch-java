@@ -73,12 +73,6 @@ public abstract class RangeQueryBase<T> extends QueryBase {
 	private final T lte;
 
 	@Nullable
-	private final T from;
-
-	@Nullable
-	private final T to;
-
-	@Nullable
 	private final JsonpSerializer<T> tSerializer;
 
 	// ---------------------------------------------------------------------------------------------
@@ -91,8 +85,6 @@ public abstract class RangeQueryBase<T> extends QueryBase {
 		this.gte = builder.gte;
 		this.lt = builder.lt;
 		this.lte = builder.lte;
-		this.from = builder.from;
-		this.to = builder.to;
 		this.tSerializer = builder.tSerializer;
 
 	}
@@ -147,28 +139,6 @@ public abstract class RangeQueryBase<T> extends QueryBase {
 		return this.lte;
 	}
 
-	/**
-	 * API name: {@code from}
-	 * 
-	 * @deprecated 8.16.0 Use gte or gt instead
-	 */
-	@Deprecated
-	@Nullable
-	public final T from() {
-		return this.from;
-	}
-
-	/**
-	 * API name: {@code to}
-	 * 
-	 * @deprecated 8.16.0 Use lte or lt instead
-	 */
-	@Deprecated
-	@Nullable
-	public final T to() {
-		return this.to;
-	}
-
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -196,16 +166,6 @@ public abstract class RangeQueryBase<T> extends QueryBase {
 			JsonpUtils.serialize(this.lte, generator, tSerializer, mapper);
 
 		}
-		if (this.from != null) {
-			generator.writeKey("from");
-			JsonpUtils.serialize(this.from, generator, tSerializer, mapper);
-
-		}
-		if (this.to != null) {
-			generator.writeKey("to");
-			JsonpUtils.serialize(this.to, generator, tSerializer, mapper);
-
-		}
 
 	}
 
@@ -226,12 +186,6 @@ public abstract class RangeQueryBase<T> extends QueryBase {
 
 		@Nullable
 		private T lte;
-
-		@Nullable
-		private T from;
-
-		@Nullable
-		private T to;
 
 		@Nullable
 		private JsonpSerializer<T> tSerializer;
@@ -287,28 +241,6 @@ public abstract class RangeQueryBase<T> extends QueryBase {
 		}
 
 		/**
-		 * API name: {@code from}
-		 * 
-		 * @deprecated 8.16.0 Use gte or gt instead
-		 */
-		@Deprecated
-		public final BuilderT from(@Nullable T value) {
-			this.from = value;
-			return self();
-		}
-
-		/**
-		 * API name: {@code to}
-		 * 
-		 * @deprecated 8.16.0 Use lte or lt instead
-		 */
-		@Deprecated
-		public final BuilderT to(@Nullable T value) {
-			this.to = value;
-			return self();
-		}
-
-		/**
 		 * Serializer for T. If not set, an attempt will be made to find a serializer
 		 * from the JSON context.
 		 */
@@ -328,8 +260,6 @@ public abstract class RangeQueryBase<T> extends QueryBase {
 		op.add(AbstractBuilder::gte, tDeserializer, "gte");
 		op.add(AbstractBuilder::lt, tDeserializer, "lt");
 		op.add(AbstractBuilder::lte, tDeserializer, "lte");
-		op.add(AbstractBuilder::from, tDeserializer, "from");
-		op.add(AbstractBuilder::to, tDeserializer, "to");
 
 	}
 
