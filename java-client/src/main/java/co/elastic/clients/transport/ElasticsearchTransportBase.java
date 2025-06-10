@@ -65,15 +65,14 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
 
     private static final String USER_AGENT_VALUE = getUserAgent();
     private static final String CLIENT_META_VALUE = getClientMeta();
-    public static final String JSON_CONTENT_TYPE;
+    public static final String JSON_CONTENT_TYPE_ES = "application/vnd.elasticsearch+json; compatible-with=" +
+        Version.VERSION.major();
 
-    static {
-        if (Version.VERSION == null) {
-            JSON_CONTENT_TYPE = ContentType.APPLICATION_JSON;
+    private String getContentTypeHeader() {
+        if (Version.VERSION == null || options().enableServerlessMode()) {
+            return ContentType.APPLICATION_JSON;
         } else {
-            JSON_CONTENT_TYPE =
-                "application/vnd.elasticsearch+json; compatible-with=" +
-                    Version.VERSION.major();
+            return JSON_CONTENT_TYPE_ES;
         }
     }
 
@@ -243,6 +242,9 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         Map<String, String> params = endpoint.queryParameters(request);
 
         List<ByteBuffer> bodyBuffers = null;
+        String contentTypeValue = getContentTypeHeader();
+        DefaultHeaders.put(HeaderMap.ACCEPT,contentTypeValue);
+        JsonContentTypeHeaders.put(HeaderMap.CONTENT_TYPE, contentTypeValue);
         HeaderMap headers = DefaultHeaders;
 
         Object body = endpoint.body(request);
@@ -301,7 +303,6 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
     static {
         addStandardHeaders(DefaultHeaders);
         addStandardHeaders(JsonContentTypeHeaders);
-        JsonContentTypeHeaders.put(HeaderMap.CONTENT_TYPE, JSON_CONTENT_TYPE);
     }
 
     private static final ByteBuffer NdJsonSeparator = ByteBuffer.wrap("\n".getBytes(StandardCharsets.UTF_8));
@@ -509,7 +510,6 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
     private static void addStandardHeaders(HeaderMap headers) {
         headers.put(HeaderMap.USER_AGENT, USER_AGENT_VALUE);
         headers.put(HeaderMap.CLIENT_META, CLIENT_META_VALUE);
-        headers.put(HeaderMap.ACCEPT, JSON_CONTENT_TYPE);
     }
 
     private static String getUserAgent() {

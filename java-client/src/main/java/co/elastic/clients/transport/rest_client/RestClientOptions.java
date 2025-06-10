@@ -22,6 +22,7 @@ package co.elastic.clients.transport.rest_client;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.http.HeaderMap;
+import co.elastic.clients.util.ContentType;
 import co.elastic.clients.util.LanguageRuntimeVersions;
 import co.elastic.clients.util.VisibleForTesting;
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
@@ -44,6 +45,8 @@ public class RestClientOptions implements TransportOptions {
 
     boolean keepResponseBodyOnException;
 
+    boolean enableServerlessMode;
+
     @VisibleForTesting
     static final String CLIENT_META_VALUE = getClientMeta();
     @VisibleForTesting
@@ -62,11 +65,24 @@ public class RestClientOptions implements TransportOptions {
         options.headers().forEach(h -> builder.addHeader(h.getKey(), h.getValue()));
         options.queryParameters().forEach(builder::setParameter);
         builder.onWarnings(options.onWarnings());
+        builder.keepResponseBodyOnException(options.keepResponseBodyOnException());
+        builder.enableServerlessMode(options.enableServerlessMode());
         return builder.build();
+    }
+
+    public RestClientOptions(RequestOptions options, boolean keepResponseBodyOnException, boolean enableServerlessMode) {
+        this.keepResponseBodyOnException = keepResponseBodyOnException;
+        this.enableServerlessMode = enableServerlessMode;
+        this.options = addBuiltinHeaders(options.toBuilder()).build();
     }
 
     public RestClientOptions(RequestOptions options, boolean keepResponseBodyOnException) {
         this.keepResponseBodyOnException = keepResponseBodyOnException;
+        this.options = addBuiltinHeaders(options.toBuilder()).build();
+    }
+
+    public RestClientOptions(RequestOptions options) {
+        this.keepResponseBodyOnException = false;
         this.options = addBuiltinHeaders(options.toBuilder()).build();
     }
 
@@ -113,6 +129,11 @@ public class RestClientOptions implements TransportOptions {
     }
 
     @Override
+    public boolean enableServerlessMode() {
+        return this.enableServerlessMode;
+    }
+
+    @Override
     public Builder toBuilder() {
         return new Builder(options.toBuilder());
     }
@@ -122,6 +143,8 @@ public class RestClientOptions implements TransportOptions {
         private RequestOptions.Builder builder;
 
         private boolean keepResponseBodyOnException;
+
+        private boolean enableServerlessMode;
 
         public Builder(RequestOptions.Builder builder) {
             this.builder = builder;
@@ -203,13 +226,19 @@ public class RestClientOptions implements TransportOptions {
         }
 
         @Override
+        public TransportOptions.Builder enableServerlessMode(boolean value) {
+            this.enableServerlessMode = value;
+            return this;
+        }
+
+        @Override
         public RestClientOptions build() {
-            return new RestClientOptions(addBuiltinHeaders(builder).build(), keepResponseBodyOnException);
+            return new RestClientOptions(addBuiltinHeaders(builder).build(), keepResponseBodyOnException, enableServerlessMode);
         }
     }
 
     static RestClientOptions initialOptions() {
-        return new RestClientOptions(SafeResponseConsumer.DEFAULT_REQUEST_OPTIONS, false);
+        return new RestClientOptions(SafeResponseConsumer.DEFAULT_REQUEST_OPTIONS, false, false);
     }
 
     private static RequestOptions.Builder addBuiltinHeaders(RequestOptions.Builder builder) {
@@ -218,10 +247,6 @@ public class RestClientOptions implements TransportOptions {
         if (builder.getHeaders().stream().noneMatch(h -> h.getName().equalsIgnoreCase(HeaderMap.USER_AGENT))) {
             builder.addHeader(HeaderMap.USER_AGENT, USER_AGENT_VALUE);
         }
-        if (builder.getHeaders().stream().noneMatch(h -> h.getName().equalsIgnoreCase(HeaderMap.ACCEPT))) {
-            builder.addHeader(HeaderMap.ACCEPT, RestClientTransport.JSON_CONTENT_TYPE);
-        }
-
         return builder;
     }
 

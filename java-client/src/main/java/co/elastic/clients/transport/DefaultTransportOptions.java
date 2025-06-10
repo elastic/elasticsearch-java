@@ -38,6 +38,7 @@ public class DefaultTransportOptions implements TransportOptions {
     private final Map<String, String> parameters;
     private final Function<List<String>, Boolean> onWarnings;
     private boolean keepResponseBodyOnException;
+    private boolean enableServerlessMode;
 
     public static final DefaultTransportOptions EMPTY = new DefaultTransportOptions();
 
@@ -49,10 +50,12 @@ public class DefaultTransportOptions implements TransportOptions {
         @Nullable HeaderMap headers,
         @Nullable Map<String, String> parameters,
         @Nullable Function<List<String>, Boolean> onWarnings,
-        boolean keepResponseBodyOnException
+        boolean keepResponseBodyOnException,
+        boolean enableServerlessMode
     ) {
         this(headers,parameters,onWarnings);
         this.keepResponseBodyOnException = keepResponseBodyOnException;
+        this.enableServerlessMode = enableServerlessMode;
     }
 
     public DefaultTransportOptions(
@@ -65,10 +68,11 @@ public class DefaultTransportOptions implements TransportOptions {
             Collections.emptyMap() : Collections.unmodifiableMap(parameters);
         this.onWarnings = onWarnings;
         this.keepResponseBodyOnException = false;
+        this.enableServerlessMode = false;
     }
 
     protected DefaultTransportOptions(AbstractBuilder<?> builder) {
-        this(builder.headers, builder.parameters, builder.onWarnings, builder.keepResponseBodyOnException);
+        this(builder.headers, builder.parameters, builder.onWarnings, builder.keepResponseBodyOnException, builder.enableServerlessMode);
     }
 
     public static DefaultTransportOptions of(@Nullable TransportOptions options) {
@@ -105,10 +109,14 @@ public class DefaultTransportOptions implements TransportOptions {
         this.headers.put("Authorization", "Bearer " + token);
     }
 
-
     @Override
     public boolean keepResponseBodyOnException() {
         return keepResponseBodyOnException;
+    }
+
+    @Override
+    public boolean enableServerlessMode() {
+        return enableServerlessMode;
     }
 
     @Override
@@ -135,6 +143,7 @@ public class DefaultTransportOptions implements TransportOptions {
         private Map<String, String> parameters;
         private Function<List<String>, Boolean> onWarnings;
         private boolean keepResponseBodyOnException;
+        private boolean enableServerlessMode;
 
         public AbstractBuilder() {
         }
@@ -144,6 +153,7 @@ public class DefaultTransportOptions implements TransportOptions {
             this.parameters = copyOrNull(options.parameters);
             this.onWarnings = options.onWarnings;
             this.keepResponseBodyOnException = options.keepResponseBodyOnException;
+            this.enableServerlessMode = options.enableServerlessMode;
         }
 
         protected abstract BuilderT self();
@@ -151,6 +161,12 @@ public class DefaultTransportOptions implements TransportOptions {
         @Override
         public BuilderT keepResponseBodyOnException(boolean value) {
             this.keepResponseBodyOnException = value;
+            return self();
+        }
+
+        @Override
+        public BuilderT enableServerlessMode(boolean value) {
+            this.enableServerlessMode = value;
             return self();
         }
 

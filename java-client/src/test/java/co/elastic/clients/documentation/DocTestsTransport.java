@@ -70,6 +70,11 @@ public class DocTestsTransport implements ElasticsearchTransport {
         }
 
         @Override
+        public boolean enableServerlessMode() {
+            return false;
+        }
+
+        @Override
         public Builder toBuilder() {
             return null;
         }

@@ -44,6 +44,8 @@ public class Rest5ClientOptions implements TransportOptions {
 
     boolean keepResponseBodyOnException;
 
+    boolean enableServerlessMode;
+
     @VisibleForTesting
     static final String CLIENT_META_VALUE = getClientMeta();
     @VisibleForTesting
@@ -62,11 +64,23 @@ public class Rest5ClientOptions implements TransportOptions {
         options.headers().forEach(h -> builder.addHeader(h.getKey(), h.getValue()));
         options.queryParameters().forEach(builder::setParameter);
         builder.onWarnings(options.onWarnings());
+        builder.keepResponseBodyOnException(options.keepResponseBodyOnException());
+        builder.enableServerlessMode(options.enableServerlessMode());
         return builder.build();
+    }
+
+    public Rest5ClientOptions(RequestOptions options) {
+        this.options = addBuiltinHeaders(options.toBuilder()).build();
     }
 
     public Rest5ClientOptions(RequestOptions options, boolean keepResponseBodyOnException) {
         this.keepResponseBodyOnException = keepResponseBodyOnException;
+        this.options = addBuiltinHeaders(options.toBuilder()).build();
+    }
+
+    public Rest5ClientOptions(RequestOptions options, boolean keepResponseBodyOnException, boolean enableServerlessMode) {
+        this.keepResponseBodyOnException = keepResponseBodyOnException;
+        this.enableServerlessMode = enableServerlessMode;
         this.options = addBuiltinHeaders(options.toBuilder()).build();
     }
 
@@ -113,6 +127,11 @@ public class Rest5ClientOptions implements TransportOptions {
     }
 
     @Override
+    public boolean enableServerlessMode() {
+        return this.enableServerlessMode;
+    }
+
+    @Override
     public Builder toBuilder() {
         return new Builder(options.toBuilder());
     }
@@ -122,6 +141,8 @@ public class Rest5ClientOptions implements TransportOptions {
         private RequestOptions.Builder builder;
 
         private boolean keepResponseBodyOnException;
+
+        private boolean enableServerlessMode;
 
         public Builder(RequestOptions.Builder builder) {
             this.builder = builder;
@@ -203,8 +224,14 @@ public class Rest5ClientOptions implements TransportOptions {
         }
 
         @Override
+        public TransportOptions.Builder enableServerlessMode(boolean value) {
+            this.enableServerlessMode = value;
+            return this;
+        }
+
+        @Override
         public Rest5ClientOptions build() {
-            return new Rest5ClientOptions(addBuiltinHeaders(builder).build(), keepResponseBodyOnException);
+            return new Rest5ClientOptions(addBuiltinHeaders(builder).build(), keepResponseBodyOnException, enableServerlessMode);
         }
     }
 
@@ -218,10 +245,6 @@ public class Rest5ClientOptions implements TransportOptions {
         if (builder.getHeaders().stream().noneMatch(h -> h.getName().equalsIgnoreCase(HeaderMap.USER_AGENT))) {
             builder.addHeader(HeaderMap.USER_AGENT, USER_AGENT_VALUE);
         }
-        if (builder.getHeaders().stream().noneMatch(h -> h.getName().equalsIgnoreCase(HeaderMap.ACCEPT))) {
-            builder.addHeader(HeaderMap.ACCEPT, Rest5ClientTransport.JSON_CONTENT_TYPE);
-        }
-
         return builder;
     }
 

@@ -36,6 +36,8 @@ public class HeaderMap extends AbstractMap<String, String> {
     public static final String CONTENT_TYPE = "Content-Type";
     public static final String USER_AGENT = "User-Agent";
     public static final String CLIENT_META = "X-Elastic-Client-Meta";
+    public static final String SERVERLESS_META = "Elastic-Api-Version";
+    public static final String SERVERLESS_META_VALUE = "2023-10-31";
 
     @Nullable
     protected Map<String, String> map;

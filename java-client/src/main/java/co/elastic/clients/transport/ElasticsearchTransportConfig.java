@@ -217,7 +217,7 @@ public abstract class ElasticsearchTransportConfig {
             }
 
             return config;
-        };
+        }
 
         /**
          * Elasticsearch host location

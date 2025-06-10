@@ -24,14 +24,16 @@ import co.elastic.clients.transport.ElasticsearchTransportBase;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.ElasticsearchTransportConfig;
 import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.http.HeaderMap;
 import co.elastic.clients.transport.instrumentation.Instrumentation;
 import co.elastic.clients.transport.rest5_client.low_level.Rest5Client;
 import co.elastic.clients.transport.rest5_client.low_level.Rest5ClientBuilder;
-import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.message.BasicHeader;
 
 import javax.annotation.Nullable;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Rest5ClientTransport extends ElasticsearchTransportBase {
 
@@ -64,20 +66,29 @@ public class Rest5ClientTransport extends ElasticsearchTransportBase {
     private static Rest5Client buildRest5Client(ElasticsearchTransportConfig config) {
         Rest5ClientBuilder restClientBuilder = Rest5Client.builder(config.hosts());
 
+        Map<String, BasicHeader> defaultHeaders = new HashMap<>();
+
         if (config.username() != null && config.password() != null) {
             var cred = Base64.getEncoder().encodeToString((config.username() + ":" + config.password()).getBytes());
-            restClientBuilder.setDefaultHeaders(new Header[]{
-                new BasicHeader("Authorization", "Basic " + cred)
-            });
+            defaultHeaders.putIfAbsent("Authorization", new BasicHeader("Authorization","Basic " + cred));
         } else if (config.apiKey() != null) {
-            restClientBuilder.setDefaultHeaders(new Header[]{
-                new BasicHeader("Authorization", "ApiKey " + config.apiKey())
-            });
+            defaultHeaders.putIfAbsent("Authorization", new BasicHeader("Authorization", "ApiKey " + config.apiKey()));
         } else if (config.token() != null) {
-            restClientBuilder.setDefaultHeaders(new Header[]{
-                new BasicHeader("Authorization", "Bearer " + config.token())
-            });
+            defaultHeaders.putIfAbsent("Authorization", new BasicHeader("Authorization", "Bearer " + config.token()));
         }
+
+        if (config.transportOptions() != null && config.transportOptions().enableServerlessMode()) {
+            if (config.hosts().size() == 1 && config.hosts().get(0).getHost().endsWith("elastic.cloud")) {
+                defaultHeaders.putIfAbsent(HeaderMap.SERVERLESS_META, new BasicHeader(HeaderMap.SERVERLESS_META,HeaderMap.SERVERLESS_META_VALUE));
+            }
+            else {
+                throw new IllegalArgumentException(
+                    "If serverless mode is enabled, host must be a single serverless node"
+                );
+            }
+        }
+
+        restClientBuilder.setDefaultHeaders(defaultHeaders.values().toArray(new BasicHeader[0]));
 
         if (config.sslContext() != null) {
             restClientBuilder.setSSLContext(config.sslContext());

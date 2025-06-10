@@ -47,6 +47,8 @@ public interface TransportOptions {
      */
     boolean keepResponseBodyOnException();
 
+    boolean enableServerlessMode();
+
     Builder toBuilder();
 
     default TransportOptions with(Consumer<Builder> fn) {
@@ -75,5 +77,7 @@ public interface TransportOptions {
          * streamed by the http library.
          */
         Builder keepResponseBodyOnException(boolean value);
+
+        Builder enableServerlessMode(boolean value);
     }
 }
