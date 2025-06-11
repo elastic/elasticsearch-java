@@ -7,7 +7,7 @@ mapped_pages:
 
 Requirements:
 
-* Java 8 or later.
+* Java 17 or later.
 * A JSON object mapping library to allow seamless integration of your application classes with the Elasticsearch API. The Java client has support for [Jackson](https://github.com/FasterXML/jackson) or a [JSON-B](https://github.com/eclipse-ee4j/jsonb-api) library like [Eclipse Yasson](https://github.com/eclipse-ee4j/yasson).
 
 Releases are hosted on [Maven Central](https://search.maven.org/search?q=g:co.elastic.clients). If you are looking for a SNAPSHOT version, the Elastic Maven Snapshot repository is available at [https://snapshots.elastic.co/maven/](https://snapshots.elastic.co/maven/).
