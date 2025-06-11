@@ -13,7 +13,7 @@ before we can accept pull requests from you.
 
 ### Prerequisites
 
-You need at least Java 11 to build the project, even though the code targets Java 8. The project is built with `Gradle`. You don't have to install it, and can use the provided `gradlew` that will install the required version if needed.
+You need at least Java 17 to build the project. The project is built with `Gradle`. You don't have to install it, and can use the provided `gradlew` that will install the required version if needed.
 
 Docker is used for some tests to spawn an Elasticsearch server.
 
