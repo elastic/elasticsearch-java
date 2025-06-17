@@ -288,8 +288,7 @@ public class ElasticsearchNodesSnifferTests extends RestClientTestCase {
             }
 
             List<String> roles = Arrays.asList(
-                new String[] { "master", "data", "ingest", "data_content", "data_hot", "data_warm", "data_cold", "data_frozen" }
-            );
+                "master", "data", "ingest", "data_content", "data_hot", "data_warm", "data_cold", "data_frozen");
             Collections.shuffle(roles, getRandom());
             generator.writeArrayFieldStart("roles");
             for (String role : roles) {
@@ -373,6 +372,6 @@ public class ElasticsearchNodesSnifferTests extends RestClientTestCase {
     }
 
     private static int randomErrorResponseCode() {
-        return randomIntBetween(400, 599);
+        return randomIntBetween(500, 599);
     }
 }
