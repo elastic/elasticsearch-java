@@ -17,7 +17,7 @@ For a list of detailed changes, including bug fixes, see the [GitHub project rel
 
 To view release notes for earlier versions, use the version dropdown in the top right corner of this page.
 
-% For GitHub and support links, use the anchor pattern _version_X_X
+% To facilitate GitHub and community links, use the anchor pattern _version_X_X
 % List up to 5 most recent releases
 
 ### Recent releases
