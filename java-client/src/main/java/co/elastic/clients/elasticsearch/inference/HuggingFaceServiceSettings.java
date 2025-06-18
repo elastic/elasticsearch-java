@@ -67,6 +67,9 @@ public class HuggingFaceServiceSettings implements JsonpSerializable {
 
 	private final String url;
 
+	@Nullable
+	private final String modelId;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private HuggingFaceServiceSettings(Builder builder) {
@@ -74,6 +77,7 @@ public class HuggingFaceServiceSettings implements JsonpSerializable {
 		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
 		this.rateLimit = builder.rateLimit;
 		this.url = ApiTypeHelper.requireNonNull(builder.url, this, "url");
+		this.modelId = builder.modelId;
 
 	}
 
@@ -100,7 +104,10 @@ public class HuggingFaceServiceSettings implements JsonpSerializable {
 	/**
 	 * This setting helps to minimize the number of rate limit errors returned from
 	 * Hugging Face. By default, the <code>hugging_face</code> service sets the
-	 * number of requests allowed per minute to 3000.
+	 * number of requests allowed per minute to 3000 for all supported tasks.
+	 * Hugging Face does not publish a universal rate limit — actual limits may
+	 * vary. It is recommended to adjust this value based on the capacity and limits
+	 * of your specific deployment environment.
 	 * <p>
 	 * API name: {@code rate_limit}
 	 */
@@ -110,12 +117,35 @@ public class HuggingFaceServiceSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The URL endpoint to use for the requests.
+	 * Required - The URL endpoint to use for the requests. For
+	 * <code>completion</code> and <code>chat_completion</code> tasks, the deployed
+	 * model must be compatible with the Hugging Face Chat Completion interface (see
+	 * the linked external documentation for details). The endpoint URL for the
+	 * request must include <code>/v1/chat/completions</code>. If the model supports
+	 * the OpenAI Chat Completion schema, a toggle should appear in the interface.
+	 * Enabling this toggle doesn't change any model behavior, it reveals the full
+	 * endpoint URL needed (which should include <code>/v1/chat/completions</code>)
+	 * when configuring the inference endpoint in Elasticsearch. If the model
+	 * doesn't support this schema, the toggle may not be shown.
 	 * <p>
 	 * API name: {@code url}
 	 */
 	public final String url() {
 		return this.url;
+	}
+
+	/**
+	 * The name of the HuggingFace model to use for the inference task. For
+	 * <code>completion</code> and <code>chat_completion</code> tasks, this field is
+	 * optional but may be required for certain models — particularly when using
+	 * serverless inference endpoints. For the <code>text_embedding</code> task,
+	 * this field should not be included. Otherwise, the request will fail.
+	 * <p>
+	 * API name: {@code model_id}
+	 */
+	@Nullable
+	public final String modelId() {
+		return this.modelId;
 	}
 
 	/**
@@ -140,6 +170,12 @@ public class HuggingFaceServiceSettings implements JsonpSerializable {
 		generator.writeKey("url");
 		generator.write(this.url);
 
+		if (this.modelId != null) {
+			generator.writeKey("model_id");
+			generator.write(this.modelId);
+
+		}
+
 	}
 
 	@Override
@@ -163,6 +199,9 @@ public class HuggingFaceServiceSettings implements JsonpSerializable {
 
 		private String url;
 
+		@Nullable
+		private String modelId;
+
 		/**
 		 * Required - A valid access token for your HuggingFace account. You can create
 		 * or find your access tokens on the HuggingFace settings page.
@@ -183,7 +222,10 @@ public class HuggingFaceServiceSettings implements JsonpSerializable {
 		/**
 		 * This setting helps to minimize the number of rate limit errors returned from
 		 * Hugging Face. By default, the <code>hugging_face</code> service sets the
-		 * number of requests allowed per minute to 3000.
+		 * number of requests allowed per minute to 3000 for all supported tasks.
+		 * Hugging Face does not publish a universal rate limit — actual limits may
+		 * vary. It is recommended to adjust this value based on the capacity and limits
+		 * of your specific deployment environment.
 		 * <p>
 		 * API name: {@code rate_limit}
 		 */
@@ -195,7 +237,10 @@ public class HuggingFaceServiceSettings implements JsonpSerializable {
 		/**
 		 * This setting helps to minimize the number of rate limit errors returned from
 		 * Hugging Face. By default, the <code>hugging_face</code> service sets the
-		 * number of requests allowed per minute to 3000.
+		 * number of requests allowed per minute to 3000 for all supported tasks.
+		 * Hugging Face does not publish a universal rate limit — actual limits may
+		 * vary. It is recommended to adjust this value based on the capacity and limits
+		 * of your specific deployment environment.
 		 * <p>
 		 * API name: {@code rate_limit}
 		 */
@@ -204,12 +249,35 @@ public class HuggingFaceServiceSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The URL endpoint to use for the requests.
+		 * Required - The URL endpoint to use for the requests. For
+		 * <code>completion</code> and <code>chat_completion</code> tasks, the deployed
+		 * model must be compatible with the Hugging Face Chat Completion interface (see
+		 * the linked external documentation for details). The endpoint URL for the
+		 * request must include <code>/v1/chat/completions</code>. If the model supports
+		 * the OpenAI Chat Completion schema, a toggle should appear in the interface.
+		 * Enabling this toggle doesn't change any model behavior, it reveals the full
+		 * endpoint URL needed (which should include <code>/v1/chat/completions</code>)
+		 * when configuring the inference endpoint in Elasticsearch. If the model
+		 * doesn't support this schema, the toggle may not be shown.
 		 * <p>
 		 * API name: {@code url}
 		 */
 		public final Builder url(String value) {
 			this.url = value;
+			return this;
+		}
+
+		/**
+		 * The name of the HuggingFace model to use for the inference task. For
+		 * <code>completion</code> and <code>chat_completion</code> tasks, this field is
+		 * optional but may be required for certain models — particularly when using
+		 * serverless inference endpoints. For the <code>text_embedding</code> task,
+		 * this field should not be included. Otherwise, the request will fail.
+		 * <p>
+		 * API name: {@code model_id}
+		 */
+		public final Builder modelId(@Nullable String value) {
+			this.modelId = value;
 			return this;
 		}
 
@@ -245,6 +313,7 @@ public class HuggingFaceServiceSettings implements JsonpSerializable {
 		op.add(Builder::apiKey, JsonpDeserializer.stringDeserializer(), "api_key");
 		op.add(Builder::rateLimit, RateLimitSetting._DESERIALIZER, "rate_limit");
 		op.add(Builder::url, JsonpDeserializer.stringDeserializer(), "url");
+		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
 
 	}
 

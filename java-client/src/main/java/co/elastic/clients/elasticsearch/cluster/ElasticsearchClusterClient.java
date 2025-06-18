@@ -940,9 +940,7 @@ public class ElasticsearchClusterClient extends ApiClient<ElasticsearchTransport
 	 * currently an open connection to it. Elasticsearch does not spontaneously try
 	 * to reconnect to a disconnected remote cluster. To trigger a reconnection,
 	 * attempt a cross-cluster search, ES|QL cross-cluster search, or try the
-	 * <a href=
-	 * "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-resolve-cluster">resolve
-	 * cluster endpoint</a>.
+	 * <code>/_resolve/cluster</code> endpoint.
 	 * </p>
 	 * </blockquote>
 	 *

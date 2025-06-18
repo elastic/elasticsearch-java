@@ -146,6 +146,8 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
+	 * The settings that persist after the cluster restarts.
+	 * <p>
 	 * API name: {@code persistent}
 	 */
 	public final Map<String, JsonData> persistent() {
@@ -163,6 +165,8 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
+	 * The settings that do not persist after the cluster restarts.
+	 * <p>
 	 * API name: {@code transient}
 	 */
 	public final Map<String, JsonData> transient_() {
@@ -259,6 +263,8 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
+		 * The settings that persist after the cluster restarts.
+		 * <p>
 		 * API name: {@code persistent}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>persistent</code>.
@@ -269,6 +275,8 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
+		 * The settings that persist after the cluster restarts.
+		 * <p>
 		 * API name: {@code persistent}
 		 * <p>
 		 * Adds an entry to <code>persistent</code>.
@@ -298,6 +306,8 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
+		 * The settings that do not persist after the cluster restarts.
+		 * <p>
 		 * API name: {@code transient}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>transient_</code>.
@@ -308,6 +318,8 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
+		 * The settings that do not persist after the cluster restarts.
+		 * <p>
 		 * API name: {@code transient}
 		 * <p>
 		 * Adds an entry to <code>transient_</code>.

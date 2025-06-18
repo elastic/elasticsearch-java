@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 /**
  * Create an Amazon Bedrock inference endpoint.
  * <p>
- * Creates an inference endpoint to perform an inference task with the
+ * Create an inference endpoint to perform an inference task with the
  * <code>amazonbedrock</code> service. <blockquote>
  * <p>
  * info You need to provide the access and secret keys only once, during the
@@ -71,17 +71,7 @@ import javax.annotation.Nullable;
  * updated keys.
  * </p>
  * </blockquote>
- * <p>
- * When you create an inference endpoint, the associated machine learning model
- * is automatically deployed if it is not already running. After creating the
- * endpoint, wait for the model deployment to complete before using it. To
- * verify the deployment status, use the get trained model statistics API. Look
- * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
- * response and ensure that the <code>&quot;allocation_count&quot;</code>
- * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
- * multiple endpoints for the same model unless required, as each endpoint
- * consumes significant resources.
- * 
+ *
  * @see <a href=
  *      "../doc-files/api-spec.html#inference.put_amazonbedrock.Request">API
  *      specification</a>

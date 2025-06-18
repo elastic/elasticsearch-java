@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
 // typedef: indices.put_template.Request
 
 /**
- * Create or update an index template. Index templates define settings,
+ * Create or update a legacy index template. Index templates define settings,
  * mappings, and aliases that can be applied automatically to new indices.
  * Elasticsearch applies templates to new indices based on an index pattern that
  * matches the index name.
@@ -96,7 +96,9 @@ import javax.annotation.Nullable;
  * 
  * @see <a href="../doc-files/api-spec.html#indices.put_template.Request">API
  *      specification</a>
+ * @deprecated 7.8.0
  */
+@Deprecated
 @JsonpDeserializable
 public class PutTemplateRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, Alias> aliases;
@@ -312,7 +314,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Builder for {@link PutTemplateRequest}.
 	 */
-
+	@Deprecated
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutTemplateRequest> {

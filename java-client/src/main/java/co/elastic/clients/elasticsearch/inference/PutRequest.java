@@ -59,16 +59,7 @@ import javax.annotation.Nullable;
 // typedef: inference.put.Request
 
 /**
- * Create an inference endpoint. When you create an inference endpoint, the
- * associated machine learning model is automatically deployed if it is not
- * already running. After creating the endpoint, wait for the model deployment
- * to complete before using it. To verify the deployment status, use the get
- * trained model statistics API. Look for
- * <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the response
- * and ensure that the <code>&quot;allocation_count&quot;</code> matches the
- * <code>&quot;target_allocation_count&quot;</code>. Avoid creating multiple
- * endpoints for the same model unless required, as each endpoint consumes
- * significant resources.
+ * Create an inference endpoint.
  * <p>
  * IMPORTANT: The inference APIs enable you to use certain services, such as
  * built-in machine learning models (ELSER, E5), models uploaded through Eland,
@@ -78,7 +69,38 @@ import javax.annotation.Nullable;
  * and manage trained models. However, if you do not plan to use the inference
  * APIs to use these models or if you want to use non-NLP models, use the
  * machine learning trained model APIs.
- * 
+ * <p>
+ * The following integrations are available through the inference API. You can
+ * find the available task types next to the integration name:
+ * <ul>
+ * <li>AlibabaCloud AI Search (<code>completion</code>, <code>rerank</code>,
+ * <code>sparse_embedding</code>, <code>text_embedding</code>)</li>
+ * <li>Amazon Bedrock (<code>completion</code>,
+ * <code>text_embedding</code>)</li>
+ * <li>Anthropic (<code>completion</code>)</li>
+ * <li>Azure AI Studio (<code>completion</code>,
+ * <code>text_embedding</code>)</li>
+ * <li>Azure OpenAI (<code>completion</code>, <code>text_embedding</code>)</li>
+ * <li>Cohere (<code>completion</code>, <code>rerank</code>,
+ * <code>text_embedding</code>)</li>
+ * <li>Elasticsearch (<code>rerank</code>, <code>sparse_embedding</code>,
+ * <code>text_embedding</code> - this service is for built-in models and models
+ * uploaded through Eland)</li>
+ * <li>ELSER (<code>sparse_embedding</code>)</li>
+ * <li>Google AI Studio (<code>completion</code>,
+ * <code>text_embedding</code>)</li>
+ * <li>Google Vertex AI (<code>rerank</code>, <code>text_embedding</code>)</li>
+ * <li>Hugging Face (<code>chat_completion</code>, <code>completion</code>,
+ * <code>rerank</code>, <code>text_embedding</code>)</li>
+ * <li>Mistral (<code>chat_completion</code>, <code>completion</code>,
+ * <code>text_embedding</code>)</li>
+ * <li>OpenAI (<code>chat_completion</code>, <code>completion</code>,
+ * <code>text_embedding</code>)</li>
+ * <li>VoyageAI (<code>text_embedding</code>, <code>rerank</code>)</li>
+ * <li>Watsonx inference integration (<code>text_embedding</code>)</li>
+ * <li>JinaAI (<code>text_embedding</code>, <code>rerank</code>)</li>
+ * </ul>
+ *
  * @see <a href="../doc-files/api-spec.html#inference.put.Request">API
  *      specification</a>
  */
@@ -115,7 +137,8 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The task type
+	 * The task type. Refer to the integration list in the API description for the
+	 * available task types.
 	 * <p>
 	 * API name: {@code task_type}
 	 */
@@ -164,7 +187,8 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The task type
+		 * The task type. Refer to the integration list in the API description for the
+		 * available task types.
 		 * <p>
 		 * API name: {@code task_type}
 		 */

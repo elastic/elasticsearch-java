@@ -60,18 +60,8 @@ import javax.annotation.Nullable;
 /**
  * Create a Mistral inference endpoint.
  * <p>
- * Creates an inference endpoint to perform an inference task with the
+ * Create an inference endpoint to perform an inference task with the
  * <code>mistral</code> service.
- * <p>
- * When you create an inference endpoint, the associated machine learning model
- * is automatically deployed if it is not already running. After creating the
- * endpoint, wait for the model deployment to complete before using it. To
- * verify the deployment status, use the get trained model statistics API. Look
- * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
- * response and ensure that the <code>&quot;allocation_count&quot;</code>
- * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
- * multiple endpoints for the same model unless required, as each endpoint
- * consumes significant resources.
  * 
  * @see <a href="../doc-files/api-spec.html#inference.put_mistral.Request">API
  *      specification</a>
@@ -145,8 +135,7 @@ public class PutMistralRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Required - The task type. The only valid task type for the model to perform
-	 * is <code>text_embedding</code>.
+	 * Required - The type of the inference task that the model will perform.
 	 * <p>
 	 * API name: {@code task_type}
 	 */
@@ -261,8 +250,7 @@ public class PutMistralRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Required - The task type. The only valid task type for the model to perform
-		 * is <code>text_embedding</code>.
+		 * Required - The type of the inference task that the model will perform.
 		 * <p>
 		 * API name: {@code task_type}
 		 */

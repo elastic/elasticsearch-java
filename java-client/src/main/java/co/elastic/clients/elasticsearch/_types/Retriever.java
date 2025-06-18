@@ -81,6 +81,12 @@ public class Retriever implements TaggedUnion<Retriever.Kind, Object>, JsonpSeri
 
 		Rule("rule"),
 
+		Rescorer("rescorer"),
+
+		Linear("linear"),
+
+		Pinned("pinned"),
+
 		;
 
 		private final String jsonValue;
@@ -212,6 +218,57 @@ public class Retriever implements TaggedUnion<Retriever.Kind, Object>, JsonpSeri
 		return TaggedUnionUtils.get(this, Kind.Rule);
 	}
 
+	/**
+	 * Is this variant instance of kind {@code rescorer}?
+	 */
+	public boolean isRescorer() {
+		return _kind == Kind.Rescorer;
+	}
+
+	/**
+	 * Get the {@code rescorer} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code rescorer} kind.
+	 */
+	public RescorerRetriever rescorer() {
+		return TaggedUnionUtils.get(this, Kind.Rescorer);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code linear}?
+	 */
+	public boolean isLinear() {
+		return _kind == Kind.Linear;
+	}
+
+	/**
+	 * Get the {@code linear} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code linear} kind.
+	 */
+	public LinearRetriever linear() {
+		return TaggedUnionUtils.get(this, Kind.Linear);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code pinned}?
+	 */
+	public boolean isPinned() {
+		return _kind == Kind.Pinned;
+	}
+
+	/**
+	 * Get the {@code pinned} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code pinned} kind.
+	 */
+	public PinnedRetriever pinned() {
+		return TaggedUnionUtils.get(this, Kind.Pinned);
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -292,6 +349,37 @@ public class Retriever implements TaggedUnion<Retriever.Kind, Object>, JsonpSeri
 			return this.rule(fn.apply(new RuleRetriever.Builder()).build());
 		}
 
+		public ObjectBuilder<Retriever> rescorer(RescorerRetriever v) {
+			this._kind = Kind.Rescorer;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Retriever> rescorer(
+				Function<RescorerRetriever.Builder, ObjectBuilder<RescorerRetriever>> fn) {
+			return this.rescorer(fn.apply(new RescorerRetriever.Builder()).build());
+		}
+
+		public ObjectBuilder<Retriever> linear(LinearRetriever v) {
+			this._kind = Kind.Linear;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Retriever> linear(Function<LinearRetriever.Builder, ObjectBuilder<LinearRetriever>> fn) {
+			return this.linear(fn.apply(new LinearRetriever.Builder()).build());
+		}
+
+		public ObjectBuilder<Retriever> pinned(PinnedRetriever v) {
+			this._kind = Kind.Pinned;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Retriever> pinned(Function<PinnedRetriever.Builder, ObjectBuilder<PinnedRetriever>> fn) {
+			return this.pinned(fn.apply(new PinnedRetriever.Builder()).build());
+		}
+
 		public Retriever build() {
 			_checkSingleUse();
 			return new Retriever(this);
@@ -306,6 +394,9 @@ public class Retriever implements TaggedUnion<Retriever.Kind, Object>, JsonpSeri
 		op.add(Builder::rrf, RRFRetriever._DESERIALIZER, "rrf");
 		op.add(Builder::textSimilarityReranker, TextSimilarityReranker._DESERIALIZER, "text_similarity_reranker");
 		op.add(Builder::rule, RuleRetriever._DESERIALIZER, "rule");
+		op.add(Builder::rescorer, RescorerRetriever._DESERIALIZER, "rescorer");
+		op.add(Builder::linear, LinearRetriever._DESERIALIZER, "linear");
+		op.add(Builder::pinned, PinnedRetriever._DESERIALIZER, "pinned");
 
 	}
 

@@ -65,16 +65,6 @@ import javax.annotation.Nullable;
  * Elasticsearch deployment to use the <code>watsonxai</code> inference service.
  * You can provision one through the IBM catalog, the Cloud Databases CLI
  * plug-in, the Cloud Databases API, or Terraform.
- * <p>
- * When you create an inference endpoint, the associated machine learning model
- * is automatically deployed if it is not already running. After creating the
- * endpoint, wait for the model deployment to complete before using it. To
- * verify the deployment status, use the get trained model statistics API. Look
- * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
- * response and ensure that the <code>&quot;allocation_count&quot;</code>
- * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
- * multiple endpoints for the same model unless required, as each endpoint
- * consumes significant resources.
  * 
  * @see <a href="../doc-files/api-spec.html#inference.put_watsonx.Request">API
  *      specification</a>

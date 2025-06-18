@@ -48,6 +48,10 @@ import co.elastic.clients.json.JsonpDeserializer;
 public enum MistralTaskType implements JsonEnum {
 	TextEmbedding("text_embedding"),
 
+	Completion("completion"),
+
+	ChatCompletion("chat_completion"),
+
 	;
 
 	private final String jsonValue;

@@ -72,6 +72,19 @@ public class ElasticsearchInferenceAsyncClient
 
 	/**
 	 * Perform chat completion inference
+	 * <p>
+	 * The chat completion inference API enables real-time responses for chat
+	 * completion tasks by delivering answers incrementally, reducing response times
+	 * during computation. It only works with the <code>chat_completion</code> task
+	 * type for <code>openai</code> and <code>elastic</code> inference services.
+	 * <p>
+	 * NOTE: The <code>chat_completion</code> task type is only available within the
+	 * _stream API and only supports streaming. The Chat completion inference API
+	 * and the Stream inference API differ in their response structure and
+	 * capabilities. The Chat completion inference API provides more comprehensive
+	 * customization options through more fields and function calling support. If
+	 * you use the <code>openai</code>, <code>hugging_face</code> or the
+	 * <code>elastic</code> service, use the Chat completion inference API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/chat-completion-inference-api.html">Documentation
@@ -87,6 +100,19 @@ public class ElasticsearchInferenceAsyncClient
 
 	/**
 	 * Perform chat completion inference
+	 * <p>
+	 * The chat completion inference API enables real-time responses for chat
+	 * completion tasks by delivering answers incrementally, reducing response times
+	 * during computation. It only works with the <code>chat_completion</code> task
+	 * type for <code>openai</code> and <code>elastic</code> inference services.
+	 * <p>
+	 * NOTE: The <code>chat_completion</code> task type is only available within the
+	 * _stream API and only supports streaming. The Chat completion inference API
+	 * and the Stream inference API differ in their response structure and
+	 * capabilities. The Chat completion inference API provides more comprehensive
+	 * customization options through more fields and function calling support. If
+	 * you use the <code>openai</code>, <code>hugging_face</code> or the
+	 * <code>elastic</code> service, use the Chat completion inference API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -291,16 +317,7 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.put
 
 	/**
-	 * Create an inference endpoint. When you create an inference endpoint, the
-	 * associated machine learning model is automatically deployed if it is not
-	 * already running. After creating the endpoint, wait for the model deployment
-	 * to complete before using it. To verify the deployment status, use the get
-	 * trained model statistics API. Look for
-	 * <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the response
-	 * and ensure that the <code>&quot;allocation_count&quot;</code> matches the
-	 * <code>&quot;target_allocation_count&quot;</code>. Avoid creating multiple
-	 * endpoints for the same model unless required, as each endpoint consumes
-	 * significant resources.
+	 * Create an inference endpoint.
 	 * <p>
 	 * IMPORTANT: The inference APIs enable you to use certain services, such as
 	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
@@ -310,7 +327,38 @@ public class ElasticsearchInferenceAsyncClient
 	 * and manage trained models. However, if you do not plan to use the inference
 	 * APIs to use these models or if you want to use non-NLP models, use the
 	 * machine learning trained model APIs.
-	 * 
+	 * <p>
+	 * The following integrations are available through the inference API. You can
+	 * find the available task types next to the integration name:
+	 * <ul>
+	 * <li>AlibabaCloud AI Search (<code>completion</code>, <code>rerank</code>,
+	 * <code>sparse_embedding</code>, <code>text_embedding</code>)</li>
+	 * <li>Amazon Bedrock (<code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Anthropic (<code>completion</code>)</li>
+	 * <li>Azure AI Studio (<code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Azure OpenAI (<code>completion</code>, <code>text_embedding</code>)</li>
+	 * <li>Cohere (<code>completion</code>, <code>rerank</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Elasticsearch (<code>rerank</code>, <code>sparse_embedding</code>,
+	 * <code>text_embedding</code> - this service is for built-in models and models
+	 * uploaded through Eland)</li>
+	 * <li>ELSER (<code>sparse_embedding</code>)</li>
+	 * <li>Google AI Studio (<code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Google Vertex AI (<code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>Hugging Face (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>Mistral (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>OpenAI (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>VoyageAI (<code>text_embedding</code>, <code>rerank</code>)</li>
+	 * <li>Watsonx inference integration (<code>text_embedding</code>)</li>
+	 * <li>JinaAI (<code>text_embedding</code>, <code>rerank</code>)</li>
+	 * </ul>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/put-inference-api.html">Documentation
 	 *      on elastic.co</a>
@@ -324,16 +372,7 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Create an inference endpoint. When you create an inference endpoint, the
-	 * associated machine learning model is automatically deployed if it is not
-	 * already running. After creating the endpoint, wait for the model deployment
-	 * to complete before using it. To verify the deployment status, use the get
-	 * trained model statistics API. Look for
-	 * <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the response
-	 * and ensure that the <code>&quot;allocation_count&quot;</code> matches the
-	 * <code>&quot;target_allocation_count&quot;</code>. Avoid creating multiple
-	 * endpoints for the same model unless required, as each endpoint consumes
-	 * significant resources.
+	 * Create an inference endpoint.
 	 * <p>
 	 * IMPORTANT: The inference APIs enable you to use certain services, such as
 	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
@@ -343,7 +382,38 @@ public class ElasticsearchInferenceAsyncClient
 	 * and manage trained models. However, if you do not plan to use the inference
 	 * APIs to use these models or if you want to use non-NLP models, use the
 	 * machine learning trained model APIs.
-	 * 
+	 * <p>
+	 * The following integrations are available through the inference API. You can
+	 * find the available task types next to the integration name:
+	 * <ul>
+	 * <li>AlibabaCloud AI Search (<code>completion</code>, <code>rerank</code>,
+	 * <code>sparse_embedding</code>, <code>text_embedding</code>)</li>
+	 * <li>Amazon Bedrock (<code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Anthropic (<code>completion</code>)</li>
+	 * <li>Azure AI Studio (<code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Azure OpenAI (<code>completion</code>, <code>text_embedding</code>)</li>
+	 * <li>Cohere (<code>completion</code>, <code>rerank</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Elasticsearch (<code>rerank</code>, <code>sparse_embedding</code>,
+	 * <code>text_embedding</code> - this service is for built-in models and models
+	 * uploaded through Eland)</li>
+	 * <li>ELSER (<code>sparse_embedding</code>)</li>
+	 * <li>Google AI Studio (<code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Google Vertex AI (<code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>Hugging Face (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>Mistral (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>OpenAI (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>VoyageAI (<code>text_embedding</code>, <code>rerank</code>)</li>
+	 * <li>Watsonx inference integration (<code>text_embedding</code>)</li>
+	 * <li>JinaAI (<code>text_embedding</code>, <code>rerank</code>)</li>
+	 * </ul>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRequest}
@@ -363,16 +433,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
 	 * <code>alibabacloud-ai-search</code> service.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/infer-service-alibabacloud-ai-search.html">Documentation
@@ -391,16 +451,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
 	 * <code>alibabacloud-ai-search</code> service.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -420,7 +470,7 @@ public class ElasticsearchInferenceAsyncClient
 	/**
 	 * Create an Amazon Bedrock inference endpoint.
 	 * <p>
-	 * Creates an inference endpoint to perform an inference task with the
+	 * Create an inference endpoint to perform an inference task with the
 	 * <code>amazonbedrock</code> service. <blockquote>
 	 * <p>
 	 * info You need to provide the access and secret keys only once, during the
@@ -431,17 +481,7 @@ public class ElasticsearchInferenceAsyncClient
 	 * updated keys.
 	 * </p>
 	 * </blockquote>
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
-	 * 
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/infer-service-amazon-bedrock.html">Documentation
 	 *      on elastic.co</a>
@@ -457,7 +497,7 @@ public class ElasticsearchInferenceAsyncClient
 	/**
 	 * Create an Amazon Bedrock inference endpoint.
 	 * <p>
-	 * Creates an inference endpoint to perform an inference task with the
+	 * Create an inference endpoint to perform an inference task with the
 	 * <code>amazonbedrock</code> service. <blockquote>
 	 * <p>
 	 * info You need to provide the access and secret keys only once, during the
@@ -468,17 +508,7 @@ public class ElasticsearchInferenceAsyncClient
 	 * updated keys.
 	 * </p>
 	 * </blockquote>
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
-	 * 
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutAmazonbedrockRequest}
@@ -499,16 +529,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
 	 * <code>anthropic</code> service.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/infer-service-anthropic.html">Documentation
@@ -527,16 +547,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
 	 * <code>anthropic</code> service.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -558,16 +568,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
 	 * <code>azureaistudio</code> service.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/infer-service-azure-ai-studio.html">Documentation
@@ -586,16 +586,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
 	 * <code>azureaistudio</code> service.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -632,16 +622,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * be found in the <a href=
 	 * "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#embeddings">Azure
 	 * models documentation</a>.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/infer-service-azure-openai.html">Documentation
@@ -675,16 +655,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * be found in the <a href=
 	 * "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models?tabs=global-standard%2Cstandard-chat-completions#embeddings">Azure
 	 * models documentation</a>.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -706,16 +676,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
 	 * <code>cohere</code> service.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/infer-service-cohere.html">Documentation
@@ -734,16 +694,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
 	 * <code>cohere</code> service.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -951,16 +901,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
 	 * <code>googleaistudio</code> service.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/infer-service-google-ai-studio.html">Documentation
@@ -979,16 +919,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
 	 * <code>googleaistudio</code> service.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1010,16 +940,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
 	 * <code>googlevertexai</code> service.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/infer-service-google-vertex-ai.html">Documentation
@@ -1038,16 +958,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
 	 * <code>googlevertexai</code> service.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1068,16 +978,20 @@ public class ElasticsearchInferenceAsyncClient
 	 * Create a Hugging Face inference endpoint.
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
-	 * <code>hugging_face</code> service.
+	 * <code>hugging_face</code> service. Supported tasks include:
+	 * <code>text_embedding</code>, <code>completion</code>, and
+	 * <code>chat_completion</code>.
 	 * <p>
-	 * You must first create an inference endpoint on the Hugging Face endpoint page
-	 * to get an endpoint URL. Select the model you want to use on the new endpoint
-	 * creation page (for example <code>intfloat/e5-small-v2</code>), then select
-	 * the sentence embeddings task under the advanced configuration section. Create
-	 * the endpoint and copy the URL after the endpoint initialization has been
-	 * finished.
+	 * To configure the endpoint, first visit the Hugging Face Inference Endpoints
+	 * page and create a new endpoint. Select a model that supports the task you
+	 * intend to use.
 	 * <p>
-	 * The following models are recommended for the Hugging Face service:
+	 * For Elastic's <code>text_embedding</code> task: The selected model must
+	 * support the <code>Sentence Embeddings</code> task. On the new endpoint
+	 * creation page, select the <code>Sentence Embeddings</code> task under the
+	 * <code>Advanced Configuration</code> section. After the endpoint has
+	 * initialized, copy the generated endpoint URL. Recommended models for
+	 * <code>text_embedding</code> task:
 	 * <ul>
 	 * <li><code>all-MiniLM-L6-v2</code></li>
 	 * <li><code>all-MiniLM-L12-v2</code></li>
@@ -1088,16 +1002,31 @@ public class ElasticsearchInferenceAsyncClient
 	 * <li><code>multilingual-e5-small</code></li>
 	 * </ul>
 	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
-	 * 
+	 * For Elastic's <code>chat_completion</code> and <code>completion</code> tasks:
+	 * The selected model must support the <code>Text Generation</code> task and
+	 * expose OpenAI API. HuggingFace supports both serverless and dedicated
+	 * endpoints for <code>Text Generation</code>. When creating dedicated endpoint
+	 * select the <code>Text Generation</code> task. After the endpoint is
+	 * initialized (for dedicated) or ready (for serverless), ensure it supports the
+	 * OpenAI API and includes <code>/v1/chat/completions</code> part in URL. Then,
+	 * copy the full endpoint URL for use. Recommended models for
+	 * <code>chat_completion</code> and <code>completion</code> tasks:
+	 * <ul>
+	 * <li><code>Mistral-7B-Instruct-v0.2</code></li>
+	 * <li><code>QwQ-32B</code></li>
+	 * <li><code>Phi-3-mini-128k-instruct</code></li>
+	 * </ul>
+	 * <p>
+	 * For Elastic's <code>rerank</code> task: The selected model must support the
+	 * <code>sentence-ranking</code> task and expose OpenAI API. HuggingFace
+	 * supports only dedicated (not serverless) endpoints for <code>Rerank</code> so
+	 * far. After the endpoint is initialized, copy the full endpoint URL for use.
+	 * Tested models for <code>rerank</code> task:
+	 * <ul>
+	 * <li><code>bge-reranker-base</code></li>
+	 * <li><code>jina-reranker-v1-turbo-en-GGUF</code></li>
+	 * </ul>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/infer-service-hugging-face.html">Documentation
 	 *      on elastic.co</a>
@@ -1114,16 +1043,20 @@ public class ElasticsearchInferenceAsyncClient
 	 * Create a Hugging Face inference endpoint.
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
-	 * <code>hugging_face</code> service.
+	 * <code>hugging_face</code> service. Supported tasks include:
+	 * <code>text_embedding</code>, <code>completion</code>, and
+	 * <code>chat_completion</code>.
 	 * <p>
-	 * You must first create an inference endpoint on the Hugging Face endpoint page
-	 * to get an endpoint URL. Select the model you want to use on the new endpoint
-	 * creation page (for example <code>intfloat/e5-small-v2</code>), then select
-	 * the sentence embeddings task under the advanced configuration section. Create
-	 * the endpoint and copy the URL after the endpoint initialization has been
-	 * finished.
+	 * To configure the endpoint, first visit the Hugging Face Inference Endpoints
+	 * page and create a new endpoint. Select a model that supports the task you
+	 * intend to use.
 	 * <p>
-	 * The following models are recommended for the Hugging Face service:
+	 * For Elastic's <code>text_embedding</code> task: The selected model must
+	 * support the <code>Sentence Embeddings</code> task. On the new endpoint
+	 * creation page, select the <code>Sentence Embeddings</code> task under the
+	 * <code>Advanced Configuration</code> section. After the endpoint has
+	 * initialized, copy the generated endpoint URL. Recommended models for
+	 * <code>text_embedding</code> task:
 	 * <ul>
 	 * <li><code>all-MiniLM-L6-v2</code></li>
 	 * <li><code>all-MiniLM-L12-v2</code></li>
@@ -1134,16 +1067,31 @@ public class ElasticsearchInferenceAsyncClient
 	 * <li><code>multilingual-e5-small</code></li>
 	 * </ul>
 	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
-	 * 
+	 * For Elastic's <code>chat_completion</code> and <code>completion</code> tasks:
+	 * The selected model must support the <code>Text Generation</code> task and
+	 * expose OpenAI API. HuggingFace supports both serverless and dedicated
+	 * endpoints for <code>Text Generation</code>. When creating dedicated endpoint
+	 * select the <code>Text Generation</code> task. After the endpoint is
+	 * initialized (for dedicated) or ready (for serverless), ensure it supports the
+	 * OpenAI API and includes <code>/v1/chat/completions</code> part in URL. Then,
+	 * copy the full endpoint URL for use. Recommended models for
+	 * <code>chat_completion</code> and <code>completion</code> tasks:
+	 * <ul>
+	 * <li><code>Mistral-7B-Instruct-v0.2</code></li>
+	 * <li><code>QwQ-32B</code></li>
+	 * <li><code>Phi-3-mini-128k-instruct</code></li>
+	 * </ul>
+	 * <p>
+	 * For Elastic's <code>rerank</code> task: The selected model must support the
+	 * <code>sentence-ranking</code> task and expose OpenAI API. HuggingFace
+	 * supports only dedicated (not serverless) endpoints for <code>Rerank</code> so
+	 * far. After the endpoint is initialized, copy the full endpoint URL for use.
+	 * Tested models for <code>rerank</code> task:
+	 * <ul>
+	 * <li><code>bge-reranker-base</code></li>
+	 * <li><code>jina-reranker-v1-turbo-en-GGUF</code></li>
+	 * </ul>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutHuggingFaceRequest}
@@ -1169,16 +1117,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * <a href="https://jina.ai/reranker">https://jina.ai/reranker</a>. To review
 	 * the available <code>text_embedding</code> models, refer to the
 	 * <a href="https://jina.ai/embeddings/">https://jina.ai/embeddings/</a>.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/infer-service-jinaai.html">Documentation
@@ -1202,16 +1140,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * <a href="https://jina.ai/reranker">https://jina.ai/reranker</a>. To review
 	 * the available <code>text_embedding</code> models, refer to the
 	 * <a href="https://jina.ai/embeddings/">https://jina.ai/embeddings/</a>.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1231,18 +1159,8 @@ public class ElasticsearchInferenceAsyncClient
 	/**
 	 * Create a Mistral inference endpoint.
 	 * <p>
-	 * Creates an inference endpoint to perform an inference task with the
+	 * Create an inference endpoint to perform an inference task with the
 	 * <code>mistral</code> service.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/infer-service-mistral.html">Documentation
@@ -1259,18 +1177,8 @@ public class ElasticsearchInferenceAsyncClient
 	/**
 	 * Create a Mistral inference endpoint.
 	 * <p>
-	 * Creates an inference endpoint to perform an inference task with the
+	 * Create an inference endpoint to perform an inference task with the
 	 * <code>mistral</code> service.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1292,16 +1200,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
 	 * <code>openai</code> service or <code>openai</code> compatible APIs.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/infer-service-openai.html">Documentation
@@ -1320,16 +1218,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
 	 * <code>openai</code> service or <code>openai</code> compatible APIs.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1399,16 +1287,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * Elasticsearch deployment to use the <code>watsonxai</code> inference service.
 	 * You can provision one through the IBM catalog, the Cloud Databases CLI
 	 * plug-in, the Cloud Databases API, or Terraform.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/infer-service-watsonx-ai.html">Documentation
@@ -1430,16 +1308,6 @@ public class ElasticsearchInferenceAsyncClient
 	 * Elasticsearch deployment to use the <code>watsonxai</code> inference service.
 	 * You can provision one through the IBM catalog, the Cloud Databases CLI
 	 * plug-in, the Cloud Databases API, or Terraform.
-	 * <p>
-	 * When you create an inference endpoint, the associated machine learning model
-	 * is automatically deployed if it is not already running. After creating the
-	 * endpoint, wait for the model deployment to complete before using it. To
-	 * verify the deployment status, use the get trained model statistics API. Look
-	 * for <code>&quot;state&quot;: &quot;fully_allocated&quot;</code> in the
-	 * response and ensure that the <code>&quot;allocation_count&quot;</code>
-	 * matches the <code>&quot;target_allocation_count&quot;</code>. Avoid creating
-	 * multiple endpoints for the same model unless required, as each endpoint
-	 * consumes significant resources.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

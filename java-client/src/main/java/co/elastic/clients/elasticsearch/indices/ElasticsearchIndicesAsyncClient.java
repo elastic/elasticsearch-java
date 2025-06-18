@@ -120,7 +120,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * specified index will always use <code>10000</code> as its limit.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-analyze.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-analyze">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -145,7 +145,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link AnalyzeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-analyze.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-analyze">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -165,7 +165,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * specified index will always use <code>10000</code> as its limit.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-analyze.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-analyze">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -938,7 +938,9 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.delete_template
 
 	/**
-	 * Delete a legacy index template.
+	 * Delete a legacy index template. IMPORTANT: This documentation is about legacy
+	 * index templates, which are deprecated and will be replaced by the composable
+	 * templates introduced in Elasticsearch 7.8.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-delete-template-v1.html">Documentation
@@ -953,7 +955,9 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Delete a legacy index template.
+	 * Delete a legacy index template. IMPORTANT: This documentation is about legacy
+	 * index templates, which are deprecated and will be replaced by the composable
+	 * templates introduced in Elasticsearch 7.8.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2101,7 +2105,8 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.get_template
 
 	/**
-	 * Get index templates. Get information about one or more index templates.
+	 * Get legacy index templates. Get information about one or more index
+	 * templates.
 	 * <p>
 	 * IMPORTANT: This documentation is about legacy index templates, which are
 	 * deprecated and will be replaced by the composable templates introduced in
@@ -2120,7 +2125,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Get index templates. Get information about one or more index templates.
+	 * Get legacy index templates. Get information about one or more index
+	 * templates.
 	 * <p>
 	 * IMPORTANT: This documentation is about legacy index templates, which are
 	 * deprecated and will be replaced by the composable templates introduced in
@@ -2140,7 +2146,8 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Get index templates. Get information about one or more index templates.
+	 * Get legacy index templates. Get information about one or more index
+	 * templates.
 	 * <p>
 	 * IMPORTANT: This documentation is about legacy index templates, which are
 	 * deprecated and will be replaced by the composable templates introduced in
@@ -2747,9 +2754,53 @@ public class ElasticsearchIndicesAsyncClient
 	 * <p>
 	 * To revert a setting to the default value, use a null value. The list of
 	 * per-index settings that can be updated dynamically on live indices can be
-	 * found in index module documentation. To preserve existing settings from being
-	 * updated, set the <code>preserve_existing</code> parameter to
+	 * found in index settings documentation. To preserve existing settings from
+	 * being updated, set the <code>preserve_existing</code> parameter to
 	 * <code>true</code>.
+	 * <p>
+	 * There are multiple valid ways to represent index settings in the request
+	 * body. You can specify only the setting, for example:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;number_of_replicas&quot;: 1
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Or you can use an <code>index</code> setting object:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;index&quot;: {
+	 *     &quot;number_of_replicas&quot;: 1
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Or you can use dot annotation:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;index.number_of_replicas&quot;: 1
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Or you can embed any of the aforementioned options in a <code>settings</code>
+	 * object. For example:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;settings&quot;: {
+	 *     &quot;index&quot;: {
+	 *       &quot;number_of_replicas&quot;: 1
+	 *     }
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
 	 * <p>
 	 * NOTE: You can only define new analyzers on closed indices. To add an
 	 * analyzer, you must close the index, define the analyzer, and reopen the
@@ -2780,9 +2831,53 @@ public class ElasticsearchIndicesAsyncClient
 	 * <p>
 	 * To revert a setting to the default value, use a null value. The list of
 	 * per-index settings that can be updated dynamically on live indices can be
-	 * found in index module documentation. To preserve existing settings from being
-	 * updated, set the <code>preserve_existing</code> parameter to
+	 * found in index settings documentation. To preserve existing settings from
+	 * being updated, set the <code>preserve_existing</code> parameter to
 	 * <code>true</code>.
+	 * <p>
+	 * There are multiple valid ways to represent index settings in the request
+	 * body. You can specify only the setting, for example:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;number_of_replicas&quot;: 1
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Or you can use an <code>index</code> setting object:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;index&quot;: {
+	 *     &quot;number_of_replicas&quot;: 1
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Or you can use dot annotation:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;index.number_of_replicas&quot;: 1
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Or you can embed any of the aforementioned options in a <code>settings</code>
+	 * object. For example:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;settings&quot;: {
+	 *     &quot;index&quot;: {
+	 *       &quot;number_of_replicas&quot;: 1
+	 *     }
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
 	 * <p>
 	 * NOTE: You can only define new analyzers on closed indices. To add an
 	 * analyzer, you must close the index, define the analyzer, and reopen the
@@ -2814,9 +2909,53 @@ public class ElasticsearchIndicesAsyncClient
 	 * <p>
 	 * To revert a setting to the default value, use a null value. The list of
 	 * per-index settings that can be updated dynamically on live indices can be
-	 * found in index module documentation. To preserve existing settings from being
-	 * updated, set the <code>preserve_existing</code> parameter to
+	 * found in index settings documentation. To preserve existing settings from
+	 * being updated, set the <code>preserve_existing</code> parameter to
 	 * <code>true</code>.
+	 * <p>
+	 * There are multiple valid ways to represent index settings in the request
+	 * body. You can specify only the setting, for example:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;number_of_replicas&quot;: 1
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Or you can use an <code>index</code> setting object:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;index&quot;: {
+	 *     &quot;number_of_replicas&quot;: 1
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Or you can use dot annotation:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;index.number_of_replicas&quot;: 1
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Or you can embed any of the aforementioned options in a <code>settings</code>
+	 * object. For example:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;settings&quot;: {
+	 *     &quot;index&quot;: {
+	 *       &quot;number_of_replicas&quot;: 1
+	 *     }
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
 	 * <p>
 	 * NOTE: You can only define new analyzers on closed indices. To add an
 	 * analyzer, you must close the index, define the analyzer, and reopen the
@@ -2842,7 +2981,7 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.put_template
 
 	/**
-	 * Create or update an index template. Index templates define settings,
+	 * Create or update a legacy index template. Index templates define settings,
 	 * mappings, and aliases that can be applied automatically to new indices.
 	 * Elasticsearch applies templates to new indices based on an index pattern that
 	 * matches the index name.
@@ -2886,7 +3025,7 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Create or update an index template. Index templates define settings,
+	 * Create or update a legacy index template. Index templates define settings,
 	 * mappings, and aliases that can be applied automatically to new indices.
 	 * Elasticsearch applies templates to new indices based on an index pattern that
 	 * matches the index name.

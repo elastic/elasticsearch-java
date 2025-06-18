@@ -135,6 +135,42 @@ public class IntervalsQueryBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link IntervalsRange range} {@code IntervalsQuery}
+	 * variant.
+	 */
+	public static IntervalsRange.Builder range() {
+		return new IntervalsRange.Builder();
+	}
+
+	/**
+	 * Creates a IntervalsQuery of the {@link IntervalsRange range}
+	 * {@code IntervalsQuery} variant.
+	 */
+	public static IntervalsQuery range(Function<IntervalsRange.Builder, ObjectBuilder<IntervalsRange>> fn) {
+		IntervalsQuery.Builder builder = new IntervalsQuery.Builder();
+		builder.range(fn.apply(new IntervalsRange.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link IntervalsRegexp regexp}
+	 * {@code IntervalsQuery} variant.
+	 */
+	public static IntervalsRegexp.Builder regexp() {
+		return new IntervalsRegexp.Builder();
+	}
+
+	/**
+	 * Creates a IntervalsQuery of the {@link IntervalsRegexp regexp}
+	 * {@code IntervalsQuery} variant.
+	 */
+	public static IntervalsQuery regexp(Function<IntervalsRegexp.Builder, ObjectBuilder<IntervalsRegexp>> fn) {
+		IntervalsQuery.Builder builder = new IntervalsQuery.Builder();
+		builder.regexp(fn.apply(new IntervalsRegexp.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link IntervalsWildcard wildcard}
 	 * {@code IntervalsQuery} variant.
 	 */

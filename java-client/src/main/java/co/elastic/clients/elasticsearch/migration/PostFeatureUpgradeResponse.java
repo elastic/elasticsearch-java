@@ -32,6 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -66,12 +67,16 @@ public class PostFeatureUpgradeResponse implements JsonpSerializable {
 
 	private final List<MigrationFeature> features;
 
+	@Nullable
+	private final String reason;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private PostFeatureUpgradeResponse(Builder builder) {
 
 		this.accepted = ApiTypeHelper.requireNonNull(builder.accepted, this, "accepted", false);
-		this.features = ApiTypeHelper.unmodifiableRequired(builder.features, this, "features");
+		this.features = ApiTypeHelper.unmodifiable(builder.features);
+		this.reason = builder.reason;
 
 	}
 
@@ -87,10 +92,18 @@ public class PostFeatureUpgradeResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code features}
+	 * API name: {@code features}
 	 */
 	public final List<MigrationFeature> features() {
 		return this.features;
+	}
+
+	/**
+	 * API name: {@code reason}
+	 */
+	@Nullable
+	public final String reason() {
+		return this.reason;
 	}
 
 	/**
@@ -117,6 +130,11 @@ public class PostFeatureUpgradeResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.reason != null) {
+			generator.writeKey("reason");
+			generator.write(this.reason);
+
+		}
 
 	}
 
@@ -136,7 +154,11 @@ public class PostFeatureUpgradeResponse implements JsonpSerializable {
 				ObjectBuilder<PostFeatureUpgradeResponse> {
 		private Boolean accepted;
 
+		@Nullable
 		private List<MigrationFeature> features;
+
+		@Nullable
+		private String reason;
 
 		/**
 		 * Required - API name: {@code accepted}
@@ -147,7 +169,7 @@ public class PostFeatureUpgradeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code features}
+		 * API name: {@code features}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>features</code>.
 		 */
@@ -157,7 +179,7 @@ public class PostFeatureUpgradeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code features}
+		 * API name: {@code features}
 		 * <p>
 		 * Adds one or more values to <code>features</code>.
 		 */
@@ -167,12 +189,20 @@ public class PostFeatureUpgradeResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code features}
+		 * API name: {@code features}
 		 * <p>
 		 * Adds a value to <code>features</code> using a builder lambda.
 		 */
 		public final Builder features(Function<MigrationFeature.Builder, ObjectBuilder<MigrationFeature>> fn) {
 			return features(fn.apply(new MigrationFeature.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code reason}
+		 */
+		public final Builder reason(@Nullable String value) {
+			this.reason = value;
+			return this;
 		}
 
 		@Override
@@ -206,6 +236,7 @@ public class PostFeatureUpgradeResponse implements JsonpSerializable {
 
 		op.add(Builder::accepted, JsonpDeserializer.booleanDeserializer(), "accepted");
 		op.add(Builder::features, JsonpDeserializer.arrayDeserializer(MigrationFeature._DESERIALIZER), "features");
+		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
 
 	}
 

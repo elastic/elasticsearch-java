@@ -59,7 +59,8 @@ import javax.annotation.Nullable;
 // typedef: indices.get_template.Request
 
 /**
- * Get index templates. Get information about one or more index templates.
+ * Get legacy index templates. Get information about one or more index
+ * templates.
  * <p>
  * IMPORTANT: This documentation is about legacy index templates, which are
  * deprecated and will be replaced by the composable templates introduced in
@@ -67,8 +68,9 @@ import javax.annotation.Nullable;
  * 
  * @see <a href="../doc-files/api-spec.html#indices.get_template.Request">API
  *      specification</a>
+ * @deprecated 7.8.0
  */
-
+@Deprecated
 public class GetTemplateRequest extends RequestBase {
 	@Nullable
 	private final Boolean flatSettings;
@@ -145,7 +147,7 @@ public class GetTemplateRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetTemplateRequest}.
 	 */
-
+	@Deprecated
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GetTemplateRequest> {
