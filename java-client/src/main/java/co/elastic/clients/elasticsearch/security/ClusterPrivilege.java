@@ -76,8 +76,6 @@ public enum ClusterPrivilege implements JsonEnum {
 
 	ManageEnrich("manage_enrich"),
 
-	ManageEsql("manage_esql"),
-
 	ManageIlm("manage_ilm"),
 
 	ManageIndexTemplates("manage_index_templates"),
@@ -127,8 +125,6 @@ public enum ClusterPrivilege implements JsonEnum {
 	MonitorDataStreamGlobalRetention("monitor_data_stream_global_retention"),
 
 	MonitorEnrich("monitor_enrich"),
-
-	MonitorEsql("monitor_esql"),
 
 	MonitorInference("monitor_inference"),
 

@@ -71,7 +71,7 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchTransport, El
 	 * Clear an SQL search cursor.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-sql-clear-cursor">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-sql-clear-cursor">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -89,7 +89,7 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearCursorRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-sql-clear-cursor">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-sql-clear-cursor">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -113,7 +113,7 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchTransport, El
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-sql-delete-async">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-sql-delete-async">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -139,7 +139,7 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteAsyncRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-sql-delete-async">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-sql-delete-async">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -159,7 +159,7 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchTransport, El
 	 * submitted the SQL search can retrieve the search using this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-sql-get-async">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-sql-get-async">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -181,7 +181,7 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAsyncRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-sql-get-async">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-sql-get-async">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -197,7 +197,7 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchTransport, El
 	 * search or a stored synchronous SQL search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-sql-get-async-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-sql-get-async-status">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -217,7 +217,7 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAsyncStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-sql-get-async-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-sql-get-async-status">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -233,7 +233,7 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchTransport, El
 	 * Get SQL search results. Run an SQL request.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-sql-query">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-sql-query">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -251,7 +251,7 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link QueryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-sql-query">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-sql-query">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -264,7 +264,7 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchTransport, El
 	 * Get SQL search results. Run an SQL request.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-sql-query">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-sql-query">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -281,7 +281,7 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchTransport, El
 	 * parameters as the SQL search API, excluding <code>cursor</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-sql-translate">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-sql-translate">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -301,7 +301,7 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link TranslateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-sql-translate">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-sql-translate">Documentation
 	 *      on elastic.co</a>
 	 */
 

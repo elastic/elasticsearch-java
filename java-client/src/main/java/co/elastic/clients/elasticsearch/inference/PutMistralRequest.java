@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 /**
  * Create a Mistral inference endpoint.
  * <p>
- * Create an inference endpoint to perform an inference task with the
+ * Creates an inference endpoint to perform an inference task with the
  * <code>mistral</code> service.
  * 
  * @see <a href="../doc-files/api-spec.html#inference.put_mistral.Request">API
@@ -135,7 +135,8 @@ public class PutMistralRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Required - The type of the inference task that the model will perform.
+	 * Required - The task type. The only valid task type for the model to perform
+	 * is <code>text_embedding</code>.
 	 * <p>
 	 * API name: {@code task_type}
 	 */
@@ -250,7 +251,8 @@ public class PutMistralRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Required - The type of the inference task that the model will perform.
+		 * Required - The task type. The only valid task type for the model to perform
+		 * is <code>text_embedding</code>.
 		 * <p>
 		 * API name: {@code task_type}
 		 */

@@ -115,8 +115,6 @@ public class GetSnapshotRequest extends RequestBase {
 	@Nullable
 	private final SnapshotSort sort;
 
-	private final List<SnapshotState> state;
-
 	@Nullable
 	private final Boolean verbose;
 
@@ -138,7 +136,6 @@ public class GetSnapshotRequest extends RequestBase {
 		this.slmPolicyFilter = builder.slmPolicyFilter;
 		this.snapshot = ApiTypeHelper.unmodifiableRequired(builder.snapshot, this, "snapshot");
 		this.sort = builder.sort;
-		this.state = ApiTypeHelper.unmodifiable(builder.state);
 		this.verbose = builder.verbose;
 
 	}
@@ -323,16 +320,6 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Only return snapshots with a state found in the given comma-separated list of
-	 * snapshot states. The default is all snapshot states.
-	 * <p>
-	 * API name: {@code state}
-	 */
-	public final List<SnapshotState> state() {
-		return this.state;
-	}
-
-	/**
 	 * If <code>true</code>, returns additional information about each snapshot such
 	 * as the version of Elasticsearch which took the snapshot, the start and end
 	 * times of the snapshot, and the number of shards snapshotted.
@@ -398,9 +385,6 @@ public class GetSnapshotRequest extends RequestBase {
 
 		@Nullable
 		private SnapshotSort sort;
-
-		@Nullable
-		private List<SnapshotState> state;
 
 		@Nullable
 		private Boolean verbose;
@@ -614,32 +598,6 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * Only return snapshots with a state found in the given comma-separated list of
-		 * snapshot states. The default is all snapshot states.
-		 * <p>
-		 * API name: {@code state}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>state</code>.
-		 */
-		public final Builder state(List<SnapshotState> list) {
-			this.state = _listAddAll(this.state, list);
-			return this;
-		}
-
-		/**
-		 * Only return snapshots with a state found in the given comma-separated list of
-		 * snapshot states. The default is all snapshot states.
-		 * <p>
-		 * API name: {@code state}
-		 * <p>
-		 * Adds one or more values to <code>state</code>.
-		 */
-		public final Builder state(SnapshotState value, SnapshotState... values) {
-			this.state = _listAdd(this.state, value, values);
-			return this;
-		}
-
-		/**
 		 * If <code>true</code>, returns additional information about each snapshot such
 		 * as the version of Elasticsearch which took the snapshot, the start and end
 		 * times of the snapshot, and the number of shards snapshotted.
@@ -766,10 +724,6 @@ public class GetSnapshotRequest extends RequestBase {
 				}
 				if (request.after != null) {
 					params.put("after", request.after);
-				}
-				if (ApiTypeHelper.isDefined(request.state)) {
-					params.put("state",
-							request.state.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.slmPolicyFilter != null) {
 					params.put("slm_policy_filter", request.slmPolicyFilter);

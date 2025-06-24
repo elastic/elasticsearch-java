@@ -76,7 +76,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * current timestamp.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-check-in">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-check-in">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -97,7 +97,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CheckInRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-check-in">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-check-in">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -117,7 +117,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * to be removed manually.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -140,7 +140,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteConnectorRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -157,7 +157,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * Get the details about a connector.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -177,7 +177,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetConnectorRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -194,7 +194,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * Get information about all connectors.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-list">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-list">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -214,7 +214,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ListRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-list">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-list">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -228,7 +228,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * Get information about all connectors.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-list">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-list">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -249,7 +249,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * self-managed on your infrastructure.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-put">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-put">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -273,7 +273,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PostRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-put">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-put">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -291,7 +291,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * self-managed on your infrastructure.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-put">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-put">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -306,7 +306,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * Create or update a connector.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-put">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-put">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -324,7 +324,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-put">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-put">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -336,7 +336,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * Create or update a connector.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-put">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-put">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -356,7 +356,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * cancelled.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-cancel">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-cancel">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -379,7 +379,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SyncJobCancelRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-cancel">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-cancel">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -400,7 +400,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * on Elastic Cloud for Elastic managed connectors.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-check-in">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-check-in">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -424,7 +424,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SyncJobCheckInRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-check-in">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-check-in">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -450,7 +450,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * on Elastic Cloud for Elastic managed connectors.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-claim">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-claim">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -479,7 +479,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SyncJobClaimRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-claim">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-claim">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -497,7 +497,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * action that is not recoverable.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -518,7 +518,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SyncJobDeleteRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -538,7 +538,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * on Elastic Cloud for Elastic managed connectors.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-error">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-error">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -561,7 +561,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SyncJobErrorRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-error">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-error">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -576,7 +576,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * Get a connector sync job.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -594,7 +594,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SyncJobGetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -612,7 +612,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * date in ascending order.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-list">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-list">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -633,7 +633,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SyncJobListRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-list">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-list">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -649,7 +649,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * date in ascending order.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-list">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-list">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -667,7 +667,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * counters and timestamps with default values.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-post">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-post">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -688,7 +688,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SyncJobPostRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-post">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-post">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -711,7 +711,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * on Elastic Cloud for Elastic managed connectors.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-update-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-update-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -737,7 +737,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SyncJobUpdateStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-sync-job-update-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-sync-job-update-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -754,7 +754,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * Activates the valid draft filtering for a connector.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-filtering">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-filtering">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -775,7 +775,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateActiveFilteringRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-filtering">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-filtering">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -796,7 +796,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * Self-managed connectors (connector clients) do not use this field.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-api-key-id">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-api-key-id">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -820,7 +820,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateApiKeyIdRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-api-key-id">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-api-key-id">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -837,7 +837,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * Update the configuration field in the connector document.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-configuration">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-configuration">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -857,7 +857,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateConfigurationRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-configuration">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-configuration">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -876,7 +876,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * the error is reset to null, the connector status is updated to connected.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-error">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-error">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -898,7 +898,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateErrorRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-error">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-error">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -928,7 +928,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * on Elastic Cloud for Elastic managed connectors.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-features">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-features">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -961,7 +961,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateFeaturesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-features">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-features">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -981,7 +981,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * configure sync rules (both basic and advanced) for a connector.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-filtering">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-filtering">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1004,7 +1004,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateFilteringRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-filtering">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-filtering">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1021,7 +1021,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * Update the draft filtering validation info for a connector.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-filtering-validation">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-filtering-validation">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1042,7 +1042,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateFilteringValidationRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-filtering-validation">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-filtering-validation">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1060,7 +1060,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * where the data ingested by the connector is stored.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-index-name">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-index-name">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1081,7 +1081,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateIndexNameRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-index-name">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-index-name">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1096,7 +1096,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * Update the connector name and description.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-name">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-name">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1114,7 +1114,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateNameRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-name">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-name">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1129,7 +1129,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * Update the connector is_native flag.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-native">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-native">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1147,7 +1147,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateNativeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-native">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-native">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1165,7 +1165,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * populated with default settings.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-pipeline">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-pipeline">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1186,7 +1186,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdatePipelineRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-pipeline">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-pipeline">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1201,7 +1201,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * Update the connector scheduling.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-scheduling">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-scheduling">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1219,7 +1219,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateSchedulingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-scheduling">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-scheduling">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1234,7 +1234,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * Update the connector service type.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-service-type">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-service-type">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1252,7 +1252,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateServiceTypeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-service-type">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-service-type">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1267,7 +1267,7 @@ public class ElasticsearchConnectorAsyncClient
 	 * Update the connector status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-status">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1285,7 +1285,7 @@ public class ElasticsearchConnectorAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-connector-update-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-connector-update-status">Documentation
 	 *      on elastic.co</a>
 	 */
 

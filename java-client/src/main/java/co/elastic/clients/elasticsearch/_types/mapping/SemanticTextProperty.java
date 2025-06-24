@@ -69,9 +69,6 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 	@Nullable
 	private final String searchInferenceId;
 
-	@Nullable
-	private final ChunkingSettings chunkingSettings;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private SemanticTextProperty(Builder builder) {
@@ -79,7 +76,6 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.inferenceId = builder.inferenceId;
 		this.searchInferenceId = builder.searchInferenceId;
-		this.chunkingSettings = builder.chunkingSettings;
 
 	}
 
@@ -129,19 +125,6 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 	}
 
 	/**
-	 * Settings for chunking text into smaller passages. If specified, these will
-	 * override the chunking settings sent in the inference endpoint associated with
-	 * inference_id. If chunking settings are updated, they will not be applied to
-	 * existing documents until they are reindexed.
-	 * <p>
-	 * API name: {@code chunking_settings}
-	 */
-	@Nullable
-	public final ChunkingSettings chunkingSettings() {
-		return this.chunkingSettings;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -175,11 +158,6 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 			generator.write(this.searchInferenceId);
 
 		}
-		if (this.chunkingSettings != null) {
-			generator.writeKey("chunking_settings");
-			this.chunkingSettings.serialize(generator, mapper);
-
-		}
 
 	}
 
@@ -205,9 +183,6 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 
 		@Nullable
 		private String searchInferenceId;
-
-		@Nullable
-		private ChunkingSettings chunkingSettings;
 
 		/**
 		 * API name: {@code meta}
@@ -255,31 +230,6 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 			return this;
 		}
 
-		/**
-		 * Settings for chunking text into smaller passages. If specified, these will
-		 * override the chunking settings sent in the inference endpoint associated with
-		 * inference_id. If chunking settings are updated, they will not be applied to
-		 * existing documents until they are reindexed.
-		 * <p>
-		 * API name: {@code chunking_settings}
-		 */
-		public final Builder chunkingSettings(@Nullable ChunkingSettings value) {
-			this.chunkingSettings = value;
-			return this;
-		}
-
-		/**
-		 * Settings for chunking text into smaller passages. If specified, these will
-		 * override the chunking settings sent in the inference endpoint associated with
-		 * inference_id. If chunking settings are updated, they will not be applied to
-		 * existing documents until they are reindexed.
-		 * <p>
-		 * API name: {@code chunking_settings}
-		 */
-		public final Builder chunkingSettings(Function<ChunkingSettings.Builder, ObjectBuilder<ChunkingSettings>> fn) {
-			return this.chunkingSettings(fn.apply(new ChunkingSettings.Builder()).build());
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
@@ -311,7 +261,6 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "meta");
 		op.add(Builder::inferenceId, JsonpDeserializer.stringDeserializer(), "inference_id");
 		op.add(Builder::searchInferenceId, JsonpDeserializer.stringDeserializer(), "search_inference_id");
-		op.add(Builder::chunkingSettings, ChunkingSettings._DESERIALIZER, "chunking_settings");
 
 		op.ignore("type");
 	}

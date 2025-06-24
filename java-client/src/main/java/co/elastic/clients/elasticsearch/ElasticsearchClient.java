@@ -539,7 +539,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * documentation for step-by-step instructions using the index settings API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-bulk">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-bulk">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -720,7 +720,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link BulkRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-bulk">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-bulk">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -896,7 +896,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * documentation for step-by-step instructions using the index settings API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-bulk">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-bulk">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -912,7 +912,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * scrolling search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-clear-scroll">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-clear-scroll">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -931,7 +931,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearScrollRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-clear-scroll">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-clear-scroll">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -946,7 +946,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * scrolling search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-clear-scroll">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-clear-scroll">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -966,7 +966,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * for search requests.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-open-point-in-time">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-open-point-in-time">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -990,7 +990,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link ClosePointInTimeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-open-point-in-time">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-open-point-in-time">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1018,7 +1018,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * increase the scalability of the count.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-count">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-count">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1048,7 +1048,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link CountRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-count">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-count">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1073,7 +1073,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * increase the scalability of the count.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-count">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-count">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1210,7 +1210,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * and failed.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-create">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-create">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1351,7 +1351,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-create">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-create">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1417,7 +1417,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * needed) to shard replicas within that ID group.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1485,7 +1485,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1629,7 +1629,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * checks that it has been cancelled and terminates itself.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-delete-by-query">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-delete-by-query">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1777,7 +1777,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteByQueryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-delete-by-query">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-delete-by-query">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1798,7 +1798,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * current batch to prevent scroll timeouts.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-delete-by-query-rethrottle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-delete-by-query-rethrottle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1822,7 +1822,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteByQueryRethrottleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-delete-by-query-rethrottle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-delete-by-query-rethrottle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1839,7 +1839,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-delete-script">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-delete-script">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1858,7 +1858,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteScriptRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-delete-script">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-delete-script">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1896,7 +1896,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * deleted documents in the background as you continue to index more data.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1936,7 +1936,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1960,7 +1960,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * A document's source is not available if it is disabled in the mapping.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1987,7 +1987,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsSourceRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2005,7 +2005,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * for a query and a specific document.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-explain">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-explain">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2028,7 +2028,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link ExplainRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-explain">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-explain">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2065,7 +2065,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * for a query and a specific document.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-explain">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-explain">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2088,7 +2088,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link ExplainRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-explain">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-explain">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2111,7 +2111,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * field that belongs to the <code>keyword</code> family.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-field-caps">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-field-caps">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2136,7 +2136,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link FieldCapsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-field-caps">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-field-caps">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2156,7 +2156,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * field that belongs to the <code>keyword</code> family.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-field-caps">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-field-caps">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2242,7 +2242,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * deleted documents in the background as you continue to index more data.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2334,7 +2334,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2439,7 +2439,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * deleted documents in the background as you continue to index more data.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2531,7 +2531,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2547,7 +2547,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get-script">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get-script">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2566,7 +2566,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link GetScriptRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get-script">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get-script">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2583,7 +2583,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * Get a list of supported script contexts and their methods.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get-script-context">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get-script-context">Documentation
 	 *      on elastic.co</a>
 	 */
 	public GetScriptContextResponse getScriptContext() throws IOException, ElasticsearchException {
@@ -2599,7 +2599,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * Get a list of available script types, languages, and contexts.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get-script-languages">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get-script-languages">Documentation
 	 *      on elastic.co</a>
 	 */
 	public GetScriptLanguagesResponse getScriptLanguages() throws IOException, ElasticsearchException {
@@ -2628,7 +2628,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * </pre>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2665,7 +2665,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSourceRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2716,7 +2716,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * </pre>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2753,7 +2753,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSourceRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2796,7 +2796,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * false to disable the more expensive analysis logic.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-health-report">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-health-report">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2841,7 +2841,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link HealthReportRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-health-report">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-health-report">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2882,7 +2882,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * false to disable the more expensive analysis logic.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-health-report">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-health-report">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3085,7 +3085,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * </pre>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-create">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-create">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3291,7 +3291,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link IndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-create">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-create">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3307,7 +3307,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * Get cluster info. Get basic build, version, and cluster information.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-info">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-info">Documentation
 	 *      on elastic.co</a>
 	 */
 	public InfoResponse info() throws IOException, ElasticsearchException {
@@ -3343,7 +3343,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * instructions.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-mget">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-mget">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3387,7 +3387,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link MgetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-mget">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-mget">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3444,7 +3444,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * instructions.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-mget">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-mget">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3488,7 +3488,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link MgetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-mget">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-mget">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3523,7 +3523,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * <code>application/x-ndjson</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-msearch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-msearch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3564,7 +3564,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link MsearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-msearch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-msearch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3619,7 +3619,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * <code>application/x-ndjson</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-msearch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-msearch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3660,7 +3660,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link MsearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-msearch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-msearch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3692,7 +3692,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * </pre>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-msearch-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-msearch-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3730,7 +3730,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link MsearchTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-msearch-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-msearch-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3783,7 +3783,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * </pre>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-msearch-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-msearch-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3821,7 +3821,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link MsearchTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-msearch-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-msearch-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3849,7 +3849,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * determined by the specified <code>_index</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-mtermvectors">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-mtermvectors">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3879,7 +3879,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link MtermvectorsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-mtermvectors">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-mtermvectors">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3905,7 +3905,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * determined by the specified <code>_index</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-mtermvectors">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-mtermvectors">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3975,7 +3975,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * point-in-times (that is, search contexts) are open with the nodes stats API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-open-point-in-time">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-open-point-in-time">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4049,7 +4049,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link OpenPointInTimeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-open-point-in-time">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-open-point-in-time">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4065,7 +4065,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * Ping the cluster. Get information about whether the cluster is running.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-cluster">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-cluster">Documentation
 	 *      on elastic.co</a>
 	 */
 	public BooleanResponse ping() throws IOException, ElasticsearchException {
@@ -4079,7 +4079,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * script or search template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-put-script">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-put-script">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4098,7 +4098,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link PutScriptRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-put-script">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-put-script">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4116,7 +4116,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * queries.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rank-eval">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rank-eval">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4137,7 +4137,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link RankEvalRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rank-eval">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rank-eval">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4216,7 +4216,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * Refer to the linked documentation for examples of how to reindex documents.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-reindex">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-reindex">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4298,7 +4298,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link ReindexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-reindex">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-reindex">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4325,7 +4325,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * batch. This behavior prevents scroll timeouts.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-reindex">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-reindex">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4356,7 +4356,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link ReindexRethrottleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-reindex">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-reindex">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4374,7 +4374,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * Render a search template as a search request body.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-render-search-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-render-search-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4395,7 +4395,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link RenderSearchTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-render-search-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-render-search-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4411,7 +4411,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * Render a search template as a search request body.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-render-search-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-render-search-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4591,7 +4591,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * changes only affect later search and scroll requests.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-scroll">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-scroll">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4634,7 +4634,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link ScrollRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-scroll">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-scroll">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4691,7 +4691,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * changes only affect later search and scroll requests.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-scroll">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-scroll">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4734,7 +4734,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link ScrollRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-scroll">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-scroll">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4777,7 +4777,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * document IDs, which are not stable across changes to the index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4825,7 +4825,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4887,7 +4887,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * document IDs, which are not stable across changes to the index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4935,7 +4935,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5307,7 +5307,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * geotile density.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-mvt">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-mvt">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5681,7 +5681,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchMvtRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-mvt">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-mvt">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5705,7 +5705,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * the target data stream, index, or alias.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-shards">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-shards">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5732,7 +5732,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchShardsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-shards">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-shards">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5755,7 +5755,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * the target data stream, index, or alias.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-shards">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-shards">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5770,7 +5770,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * Run a search with a search template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5792,7 +5792,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5829,7 +5829,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * Run a search with a search template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5851,7 +5851,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5877,7 +5877,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * </blockquote>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-terms-enum">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-terms-enum">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5905,7 +5905,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link TermsEnumRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-terms-enum">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-terms-enum">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5974,7 +5974,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * documentation for detailed examples of how to use this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-termvectors">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-termvectors">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6047,7 +6047,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link TermvectorsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-termvectors">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-termvectors">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6089,7 +6089,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * <code>_now</code> (the current timestamp).
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-update">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-update">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6137,7 +6137,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-update">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-update">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6177,7 +6177,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * <code>_now</code> (the current timestamp).
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-update">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-update">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6225,7 +6225,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-update">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-update">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6377,7 +6377,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * them.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-update-by-query">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-update-by-query">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6532,7 +6532,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateByQueryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-update-by-query">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-update-by-query">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6553,7 +6553,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * current batch to prevent scroll timeouts.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-update-by-query-rethrottle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-update-by-query-rethrottle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6577,7 +6577,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateByQueryRethrottleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-update-by-query-rethrottle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-update-by-query-rethrottle">Documentation
 	 *      on elastic.co</a>
 	 */
 

@@ -30,7 +30,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -62,9 +61,6 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class SourceFilter implements JsonpSerializable {
-	@Nullable
-	private final Boolean excludeVectors;
-
 	private final List<String> excludes;
 
 	private final List<String> includes;
@@ -73,7 +69,6 @@ public class SourceFilter implements JsonpSerializable {
 
 	private SourceFilter(Builder builder) {
 
-		this.excludeVectors = builder.excludeVectors;
 		this.excludes = ApiTypeHelper.unmodifiable(builder.excludes);
 		this.includes = ApiTypeHelper.unmodifiable(builder.includes);
 
@@ -84,21 +79,6 @@ public class SourceFilter implements JsonpSerializable {
 	}
 
 	/**
-	 * If <code>true</code>, vector fields are excluded from the returned source.
-	 * <p>
-	 * This option takes precedence over <code>includes</code>: any vector field
-	 * will remain excluded even if it matches an <code>includes</code> rule.
-	 * <p>
-	 * API name: {@code exclude_vectors}
-	 */
-	@Nullable
-	public final Boolean excludeVectors() {
-		return this.excludeVectors;
-	}
-
-	/**
-	 * A list of fields to exclude from the returned source.
-	 * <p>
 	 * API name: {@code excludes}
 	 */
 	public final List<String> excludes() {
@@ -106,8 +86,6 @@ public class SourceFilter implements JsonpSerializable {
 	}
 
 	/**
-	 * A list of fields to include in the returned source.
-	 * <p>
 	 * API name: {@code includes}
 	 */
 	public final List<String> includes() {
@@ -125,11 +103,6 @@ public class SourceFilter implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.excludeVectors != null) {
-			generator.writeKey("exclude_vectors");
-			generator.write(this.excludeVectors);
-
-		}
 		if (ApiTypeHelper.isDefined(this.excludes)) {
 			generator.writeKey("excludes");
 			generator.writeStartArray();
@@ -166,30 +139,12 @@ public class SourceFilter implements JsonpSerializable {
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SourceFilter> {
 		@Nullable
-		private Boolean excludeVectors;
-
-		@Nullable
 		private List<String> excludes;
 
 		@Nullable
 		private List<String> includes;
 
 		/**
-		 * If <code>true</code>, vector fields are excluded from the returned source.
-		 * <p>
-		 * This option takes precedence over <code>includes</code>: any vector field
-		 * will remain excluded even if it matches an <code>includes</code> rule.
-		 * <p>
-		 * API name: {@code exclude_vectors}
-		 */
-		public final Builder excludeVectors(@Nullable Boolean value) {
-			this.excludeVectors = value;
-			return this;
-		}
-
-		/**
-		 * A list of fields to exclude from the returned source.
-		 * <p>
 		 * API name: {@code excludes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>excludes</code>.
@@ -200,8 +155,6 @@ public class SourceFilter implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of fields to exclude from the returned source.
-		 * <p>
 		 * API name: {@code excludes}
 		 * <p>
 		 * Adds one or more values to <code>excludes</code>.
@@ -212,8 +165,6 @@ public class SourceFilter implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of fields to include in the returned source.
-		 * <p>
 		 * API name: {@code includes}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>includes</code>.
@@ -224,8 +175,6 @@ public class SourceFilter implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of fields to include in the returned source.
-		 * <p>
 		 * API name: {@code includes}
 		 * <p>
 		 * Adds one or more values to <code>includes</code>.
@@ -263,7 +212,6 @@ public class SourceFilter implements JsonpSerializable {
 
 	protected static void setupSourceFilterDeserializer(ObjectDeserializer<SourceFilter.Builder> op) {
 
-		op.add(Builder::excludeVectors, JsonpDeserializer.booleanDeserializer(), "exclude_vectors");
 		op.add(Builder::excludes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"excludes", "exclude");
 		op.add(Builder::includes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

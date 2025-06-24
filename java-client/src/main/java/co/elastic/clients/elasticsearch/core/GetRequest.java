@@ -235,7 +235,7 @@ public class GetRequest extends RequestBase {
 
 	/**
 	 * Indicates whether the request forces synthetic <code>_source</code>. Use this
-	 * parameter to test if the mapping supports synthetic <code>_source</code> and
+	 * paramater to test if the mapping supports synthetic <code>_source</code> and
 	 * to get a sense of the worst case performance. Fetches with this parameter
 	 * enabled will be slower than enabling synthetic source natively in the index.
 	 * <p>
@@ -320,7 +320,7 @@ public class GetRequest extends RequestBase {
 	 * fields are specified, no stored fields are included in the response. If this
 	 * field is specified, the <code>_source</code> parameter defaults to
 	 * <code>false</code>. Only leaf fields can be retrieved with the
-	 * <code>stored_fields</code> option. Object fields can't be returned; if
+	 * <code>stored_field</code> option. Object fields can't be returned;​if
 	 * specified, the request fails.
 	 * <p>
 	 * API name: {@code stored_fields}
@@ -479,7 +479,7 @@ public class GetRequest extends RequestBase {
 
 		/**
 		 * Indicates whether the request forces synthetic <code>_source</code>. Use this
-		 * parameter to test if the mapping supports synthetic <code>_source</code> and
+		 * paramater to test if the mapping supports synthetic <code>_source</code> and
 		 * to get a sense of the worst case performance. Fetches with this parameter
 		 * enabled will be slower than enabling synthetic source natively in the index.
 		 * <p>
@@ -566,7 +566,7 @@ public class GetRequest extends RequestBase {
 		 * fields are specified, no stored fields are included in the response. If this
 		 * field is specified, the <code>_source</code> parameter defaults to
 		 * <code>false</code>. Only leaf fields can be retrieved with the
-		 * <code>stored_fields</code> option. Object fields can't be returned; if
+		 * <code>stored_field</code> option. Object fields can't be returned;​if
 		 * specified, the request fails.
 		 * <p>
 		 * API name: {@code stored_fields}
@@ -583,7 +583,7 @@ public class GetRequest extends RequestBase {
 		 * fields are specified, no stored fields are included in the response. If this
 		 * field is specified, the <code>_source</code> parameter defaults to
 		 * <code>false</code>. Only leaf fields can be retrieved with the
-		 * <code>stored_fields</code> option. Object fields can't be returned; if
+		 * <code>stored_field</code> option. Object fields can't be returned;​if
 		 * specified, the request fails.
 		 * <p>
 		 * API name: {@code stored_fields}

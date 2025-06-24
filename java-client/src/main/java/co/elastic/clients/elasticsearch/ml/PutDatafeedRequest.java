@@ -74,9 +74,9 @@ import javax.annotation.Nullable;
  * an anomaly detection job. You can associate only one datafeed with each
  * anomaly detection job. The datafeed contains a query that runs at a defined
  * interval (<code>frequency</code>). If you are concerned about delayed data,
- * you can add a delay
- * (<code>query_delay') at each interval. By default, the datafeed uses the following query: </code>{&quot;match_all&quot;:
- * {&quot;boost&quot;: 1}}`.
+ * you can add a delay (<code>query_delay</code>) at each interval. By default,
+ * the datafeed uses the following query:
+ * <code>{&quot;match_all&quot;: {&quot;boost&quot;: 1}}</code>.
  * <p>
  * When Elasticsearch security features are enabled, your datafeed remembers
  * which roles the user who created it had at the time of creation and runs the

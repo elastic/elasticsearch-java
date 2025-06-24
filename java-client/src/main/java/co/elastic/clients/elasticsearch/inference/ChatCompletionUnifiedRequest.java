@@ -73,8 +73,8 @@ import javax.annotation.Nullable;
  * and the Stream inference API differ in their response structure and
  * capabilities. The Chat completion inference API provides more comprehensive
  * customization options through more fields and function calling support. If
- * you use the <code>openai</code>, <code>hugging_face</code> or the
- * <code>elastic</code> service, use the Chat completion inference API.
+ * you use the <code>openai</code> service or the <code>elastic</code> service,
+ * use the Chat completion inference API.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#inference.chat_completion_unified.Request">API

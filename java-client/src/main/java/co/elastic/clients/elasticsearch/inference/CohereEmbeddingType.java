@@ -46,10 +46,6 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum CohereEmbeddingType implements JsonEnum {
-	Binary("binary"),
-
-	Bit("bit"),
-
 	Byte("byte"),
 
 	Float("float"),

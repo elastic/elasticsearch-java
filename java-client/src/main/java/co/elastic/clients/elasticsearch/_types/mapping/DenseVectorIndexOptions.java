@@ -72,9 +72,6 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 
 	private final DenseVectorIndexOptionsType type;
 
-	@Nullable
-	private final DenseVectorIndexOptionsRescoreVector rescoreVector;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private DenseVectorIndexOptions(Builder builder) {
@@ -83,7 +80,6 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		this.efConstruction = builder.efConstruction;
 		this.m = builder.m;
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-		this.rescoreVector = builder.rescoreVector;
 
 	}
 
@@ -153,18 +149,6 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	}
 
 	/**
-	 * The rescore vector options. This is only applicable to <code>bbq_hnsw</code>,
-	 * <code>int4_hnsw</code>, <code>int8_hnsw</code>, <code>bbq_flat</code>,
-	 * <code>int4_flat</code>, and <code>int8_flat</code> index types.
-	 * <p>
-	 * API name: {@code rescore_vector}
-	 */
-	@Nullable
-	public final DenseVectorIndexOptionsRescoreVector rescoreVector() {
-		return this.rescoreVector;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -192,11 +176,6 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		}
 		generator.writeKey("type");
 		this.type.serialize(generator, mapper);
-		if (this.rescoreVector != null) {
-			generator.writeKey("rescore_vector");
-			this.rescoreVector.serialize(generator, mapper);
-
-		}
 
 	}
 
@@ -224,9 +203,6 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		private Integer m;
 
 		private DenseVectorIndexOptionsType type;
-
-		@Nullable
-		private DenseVectorIndexOptionsRescoreVector rescoreVector;
 
 		/**
 		 * The confidence interval to use when quantizing the vectors. Can be any value
@@ -290,30 +266,6 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * The rescore vector options. This is only applicable to <code>bbq_hnsw</code>,
-		 * <code>int4_hnsw</code>, <code>int8_hnsw</code>, <code>bbq_flat</code>,
-		 * <code>int4_flat</code>, and <code>int8_flat</code> index types.
-		 * <p>
-		 * API name: {@code rescore_vector}
-		 */
-		public final Builder rescoreVector(@Nullable DenseVectorIndexOptionsRescoreVector value) {
-			this.rescoreVector = value;
-			return this;
-		}
-
-		/**
-		 * The rescore vector options. This is only applicable to <code>bbq_hnsw</code>,
-		 * <code>int4_hnsw</code>, <code>int8_hnsw</code>, <code>bbq_flat</code>,
-		 * <code>int4_flat</code>, and <code>int8_flat</code> index types.
-		 * <p>
-		 * API name: {@code rescore_vector}
-		 */
-		public final Builder rescoreVector(
-				Function<DenseVectorIndexOptionsRescoreVector.Builder, ObjectBuilder<DenseVectorIndexOptionsRescoreVector>> fn) {
-			return this.rescoreVector(fn.apply(new DenseVectorIndexOptionsRescoreVector.Builder()).build());
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
@@ -347,7 +299,6 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		op.add(Builder::efConstruction, JsonpDeserializer.integerDeserializer(), "ef_construction");
 		op.add(Builder::m, JsonpDeserializer.integerDeserializer(), "m");
 		op.add(Builder::type, DenseVectorIndexOptionsType._DESERIALIZER, "type");
-		op.add(Builder::rescoreVector, DenseVectorIndexOptionsRescoreVector._DESERIALIZER, "rescore_vector");
 
 	}
 

@@ -114,7 +114,7 @@ public class MistralServiceSettings implements JsonpSerializable {
 
 	/**
 	 * Required - The name of the model to use for the inference task. Refer to the
-	 * Mistral models documentation for the list of available models.
+	 * Mistral models documentation for the list of available text embedding models.
 	 * <p>
 	 * API name: {@code model}
 	 */
@@ -217,7 +217,7 @@ public class MistralServiceSettings implements JsonpSerializable {
 
 		/**
 		 * Required - The name of the model to use for the inference task. Refer to the
-		 * Mistral models documentation for the list of available models.
+		 * Mistral models documentation for the list of available text embedding models.
 		 * <p>
 		 * API name: {@code model}
 		 */

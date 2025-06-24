@@ -61,15 +61,11 @@ public class TDigest implements JsonpSerializable {
 	@Nullable
 	private final Integer compression;
 
-	@Nullable
-	private final TDigestExecutionHint executionHint;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private TDigest(Builder builder) {
 
 		this.compression = builder.compression;
-		this.executionHint = builder.executionHint;
 
 	}
 
@@ -90,20 +86,6 @@ public class TDigest implements JsonpSerializable {
 	}
 
 	/**
-	 * The default implementation of TDigest is optimized for performance, scaling
-	 * to millions or even billions of sample values while maintaining acceptable
-	 * accuracy levels (close to 1% relative error for millions of samples in some
-	 * cases). To use an implementation optimized for accuracy, set this parameter
-	 * to high_accuracy instead.
-	 * <p>
-	 * API name: {@code execution_hint}
-	 */
-	@Nullable
-	public final TDigestExecutionHint executionHint() {
-		return this.executionHint;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -118,10 +100,6 @@ public class TDigest implements JsonpSerializable {
 			generator.writeKey("compression");
 			generator.write(this.compression);
 
-		}
-		if (this.executionHint != null) {
-			generator.writeKey("execution_hint");
-			this.executionHint.serialize(generator, mapper);
 		}
 
 	}
@@ -141,9 +119,6 @@ public class TDigest implements JsonpSerializable {
 		@Nullable
 		private Integer compression;
 
-		@Nullable
-		private TDigestExecutionHint executionHint;
-
 		/**
 		 * Limits the maximum number of nodes used by the underlying TDigest algorithm
 		 * to <code>20 * compression</code>, enabling control of memory usage and
@@ -153,20 +128,6 @@ public class TDigest implements JsonpSerializable {
 		 */
 		public final Builder compression(@Nullable Integer value) {
 			this.compression = value;
-			return this;
-		}
-
-		/**
-		 * The default implementation of TDigest is optimized for performance, scaling
-		 * to millions or even billions of sample values while maintaining acceptable
-		 * accuracy levels (close to 1% relative error for millions of samples in some
-		 * cases). To use an implementation optimized for accuracy, set this parameter
-		 * to high_accuracy instead.
-		 * <p>
-		 * API name: {@code execution_hint}
-		 */
-		public final Builder executionHint(@Nullable TDigestExecutionHint value) {
-			this.executionHint = value;
 			return this;
 		}
 
@@ -199,7 +160,6 @@ public class TDigest implements JsonpSerializable {
 	protected static void setupTDigestDeserializer(ObjectDeserializer<TDigest.Builder> op) {
 
 		op.add(Builder::compression, JsonpDeserializer.integerDeserializer(), "compression");
-		op.add(Builder::executionHint, TDigestExecutionHint._DESERIALIZER, "execution_hint");
 
 	}
 

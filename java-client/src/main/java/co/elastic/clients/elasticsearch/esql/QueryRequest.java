@@ -74,9 +74,6 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final Boolean allowPartialResults;
-
-	@Nullable
 	private final Boolean columnar;
 
 	@Nullable
@@ -110,7 +107,6 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 	private QueryRequest(Builder builder) {
 
-		this.allowPartialResults = builder.allowPartialResults;
 		this.columnar = builder.columnar;
 		this.delimiter = builder.delimiter;
 		this.dropNullColumns = builder.dropNullColumns;
@@ -127,22 +123,6 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 	public static QueryRequest of(Function<Builder, ObjectBuilder<QueryRequest>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * If <code>true</code>, partial results will be returned if there are shard
-	 * failures, but the query can continue to execute on other clusters and shards.
-	 * If <code>false</code>, the query will fail if there are any failures.
-	 * <p>
-	 * To override the default behavior, you can set the
-	 * <code>esql.query.allow_partial_results</code> cluster setting to
-	 * <code>false</code>.
-	 * <p>
-	 * API name: {@code allow_partial_results}
-	 */
-	@Nullable
-	public final Boolean allowPartialResults() {
-		return this.allowPartialResults;
 	}
 
 	/**
@@ -348,9 +328,6 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<QueryRequest> {
 		@Nullable
-		private Boolean allowPartialResults;
-
-		@Nullable
 		private Boolean columnar;
 
 		@Nullable
@@ -381,22 +358,6 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Map<String, Map<String, TableValues>> tables;
-
-		/**
-		 * If <code>true</code>, partial results will be returned if there are shard
-		 * failures, but the query can continue to execute on other clusters and shards.
-		 * If <code>false</code>, the query will fail if there are any failures.
-		 * <p>
-		 * To override the default behavior, you can set the
-		 * <code>esql.query.allow_partial_results</code> cluster setting to
-		 * <code>false</code>.
-		 * <p>
-		 * API name: {@code allow_partial_results}
-		 */
-		public final Builder allowPartialResults(@Nullable Boolean value) {
-			this.allowPartialResults = value;
-			return this;
-		}
 
 		/**
 		 * By default, ES|QL returns results as rows. For example, FROM returns each
@@ -731,9 +692,6 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.format != null) {
 					params.put("format", request.format.jsonValue());
-				}
-				if (request.allowPartialResults != null) {
-					params.put("allow_partial_results", String.valueOf(request.allowPartialResults));
 				}
 				if (request.dropNullColumns != null) {
 					params.put("drop_null_columns", String.valueOf(request.dropNullColumns));

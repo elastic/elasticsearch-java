@@ -79,7 +79,7 @@ public class ElasticsearchSearchApplicationClient
 	 * search application are not removed.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -101,7 +101,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteSearchApplicationRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -118,7 +118,7 @@ public class ElasticsearchSearchApplicationClient
 	 * deleted.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-delete-behavioral-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-delete-behavioral-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -138,7 +138,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteBehavioralAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-delete-behavioral-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-delete-behavioral-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -154,7 +154,7 @@ public class ElasticsearchSearchApplicationClient
 	 * Get search application details.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -173,7 +173,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSearchApplicationRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -189,7 +189,7 @@ public class ElasticsearchSearchApplicationClient
 	 * Get behavioral analytics collections.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-get-behavioral-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-get-behavioral-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -208,7 +208,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetBehavioralAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-get-behavioral-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-get-behavioral-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -222,7 +222,7 @@ public class ElasticsearchSearchApplicationClient
 	 * Get behavioral analytics collections.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-get-behavioral-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-get-behavioral-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -237,7 +237,7 @@ public class ElasticsearchSearchApplicationClient
 	 * Get search applications. Get information about search applications.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-get-behavioral-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-get-behavioral-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -255,7 +255,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ListRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-get-behavioral-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-get-behavioral-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -268,7 +268,7 @@ public class ElasticsearchSearchApplicationClient
 	 * Get search applications. Get information about search applications.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-get-behavioral-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-get-behavioral-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -283,7 +283,7 @@ public class ElasticsearchSearchApplicationClient
 	 * Create a behavioral analytics collection event.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-post-behavioral-analytics-event">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-post-behavioral-analytics-event">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -302,7 +302,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PostBehavioralAnalyticsEventRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-post-behavioral-analytics-event">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-post-behavioral-analytics-event">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -318,7 +318,7 @@ public class ElasticsearchSearchApplicationClient
 	 * Create or update a search application.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-put">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-put">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -336,7 +336,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-put">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-put">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -351,7 +351,7 @@ public class ElasticsearchSearchApplicationClient
 	 * Create a behavioral analytics collection.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-put-behavioral-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-put-behavioral-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -370,7 +370,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutBehavioralAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-put-behavioral-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-put-behavioral-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -395,7 +395,7 @@ public class ElasticsearchSearchApplicationClient
 	 * application.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-render-query">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-render-query">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -422,7 +422,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link RenderQueryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-render-query">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-render-query">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -441,7 +441,7 @@ public class ElasticsearchSearchApplicationClient
 	 * are assigned their default values if applicable.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -466,7 +466,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchApplicationSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -506,7 +506,7 @@ public class ElasticsearchSearchApplicationClient
 	 * are assigned their default values if applicable.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -531,7 +531,7 @@ public class ElasticsearchSearchApplicationClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchApplicationSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-application-search">Documentation
 	 *      on elastic.co</a>
 	 */
 

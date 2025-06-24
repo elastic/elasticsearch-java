@@ -90,10 +90,8 @@ import javax.annotation.Nullable;
  * <li>Google AI Studio (<code>completion</code>,
  * <code>text_embedding</code>)</li>
  * <li>Google Vertex AI (<code>rerank</code>, <code>text_embedding</code>)</li>
- * <li>Hugging Face (<code>chat_completion</code>, <code>completion</code>,
- * <code>rerank</code>, <code>text_embedding</code>)</li>
- * <li>Mistral (<code>chat_completion</code>, <code>completion</code>,
- * <code>text_embedding</code>)</li>
+ * <li>Hugging Face (<code>text_embedding</code>)</li>
+ * <li>Mistral (<code>text_embedding</code>)</li>
  * <li>OpenAI (<code>chat_completion</code>, <code>completion</code>,
  * <code>text_embedding</code>)</li>
  * <li>VoyageAI (<code>text_embedding</code>, <code>rerank</code>)</li>

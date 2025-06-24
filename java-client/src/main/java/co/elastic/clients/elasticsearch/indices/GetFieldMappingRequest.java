@@ -87,6 +87,9 @@ public class GetFieldMappingRequest extends RequestBase {
 
 	private final List<String> index;
 
+	@Nullable
+	private final Boolean local;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GetFieldMappingRequest(Builder builder) {
@@ -97,6 +100,7 @@ public class GetFieldMappingRequest extends RequestBase {
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeDefaults = builder.includeDefaults;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
+		this.local = builder.local;
 
 	}
 
@@ -171,6 +175,17 @@ public class GetFieldMappingRequest extends RequestBase {
 		return this.index;
 	}
 
+	/**
+	 * If <code>true</code>, the request retrieves information from the local node
+	 * only.
+	 * <p>
+	 * API name: {@code local}
+	 */
+	@Nullable
+	public final Boolean local() {
+		return this.local;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -196,6 +211,9 @@ public class GetFieldMappingRequest extends RequestBase {
 
 		@Nullable
 		private List<String> index;
+
+		@Nullable
+		private Boolean local;
 
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
@@ -315,6 +333,17 @@ public class GetFieldMappingRequest extends RequestBase {
 			return this;
 		}
 
+		/**
+		 * If <code>true</code>, the request retrieves information from the local node
+		 * only.
+		 * <p>
+		 * API name: {@code local}
+		 */
+		public final Builder local(@Nullable Boolean value) {
+			this.local = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -419,6 +448,9 @@ public class GetFieldMappingRequest extends RequestBase {
 				}
 				if (request.includeDefaults != null) {
 					params.put("include_defaults", String.valueOf(request.includeDefaults));
+				}
+				if (request.local != null) {
+					params.put("local", String.valueOf(request.local));
 				}
 				return params;
 

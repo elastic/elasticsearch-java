@@ -88,7 +88,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * documentation.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-ack-watch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-ack-watch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -121,7 +121,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link AckWatchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-ack-watch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-ack-watch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -136,7 +136,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * Activate a watch. A watch can be either active or inactive.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-activate-watch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-activate-watch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -154,7 +154,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ActivateWatchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-activate-watch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-activate-watch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -169,7 +169,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * Deactivate a watch. A watch can be either active or inactive.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-deactivate-watch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-deactivate-watch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -187,7 +187,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeactivateWatchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-deactivate-watch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-deactivate-watch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -213,7 +213,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * <code>.watches</code> index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-delete-watch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-delete-watch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -242,7 +242,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteWatchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-delete-watch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-delete-watch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -279,7 +279,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * requests, including existing, customized, and inline watches.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-execute-watch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-execute-watch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -319,7 +319,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ExecuteWatchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-execute-watch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-execute-watch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -354,7 +354,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * requests, including existing, customized, and inline watches.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-execute-watch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-execute-watch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -372,7 +372,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * <code>index.number_of_replicas</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-get-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-get-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -393,7 +393,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetWatcherSettingsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-get-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-get-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -409,7 +409,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * <code>index.number_of_replicas</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-get-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-get-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -424,7 +424,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * Get a watch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-get-watch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-get-watch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -442,7 +442,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetWatchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-get-watch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-get-watch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -473,7 +473,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * <code>b</code>, the same will apply when the watch runs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-put-watch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-put-watch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -507,7 +507,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutWatchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-put-watch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-put-watch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -526,7 +526,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * queryable or sortable.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-query-watches">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-query-watches">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -548,7 +548,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link QueryWatchesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-query-watches">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-query-watches">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -565,7 +565,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * queryable or sortable.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-query-watches">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-query-watches">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -581,7 +581,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * running.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-start">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-start">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -600,7 +600,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link StartWatcherRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-start">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-start">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -614,7 +614,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * running.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-start">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-start">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -630,7 +630,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * more metrics by using the metric parameter.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -649,7 +649,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link WatcherStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -663,7 +663,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * more metrics by using the metric parameter.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -678,7 +678,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * Stop the watch service. Stop the Watcher service if it is running.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-stop">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-stop">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -696,7 +696,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link StopWatcherRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-stop">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-stop">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -709,7 +709,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * Stop the watch service. Stop the Watcher service if it is running.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-stop">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-stop">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -733,7 +733,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * <code>data_content</code> tier.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-update-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-update-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -760,7 +760,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateSettingsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-update-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-update-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -782,7 +782,7 @@ public class ElasticsearchWatcherAsyncClient
 	 * <code>data_content</code> tier.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-update-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-watcher-update-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 

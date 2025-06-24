@@ -73,9 +73,6 @@ public class DataStreamIndex implements JsonpSerializable {
 	@Nullable
 	private final Boolean preferIlm;
 
-	@Nullable
-	private final IndexMode indexMode;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private DataStreamIndex(Builder builder) {
@@ -85,7 +82,6 @@ public class DataStreamIndex implements JsonpSerializable {
 		this.ilmPolicy = builder.ilmPolicy;
 		this.managedBy = builder.managedBy;
 		this.preferIlm = builder.preferIlm;
-		this.indexMode = builder.indexMode;
 
 	}
 
@@ -143,16 +139,6 @@ public class DataStreamIndex implements JsonpSerializable {
 	}
 
 	/**
-	 * The index mode of this backing index of the data stream.
-	 * <p>
-	 * API name: {@code index_mode}
-	 */
-	@Nullable
-	public final IndexMode indexMode() {
-		return this.indexMode;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -183,10 +169,6 @@ public class DataStreamIndex implements JsonpSerializable {
 			generator.write(this.preferIlm);
 
 		}
-		if (this.indexMode != null) {
-			generator.writeKey("index_mode");
-			this.indexMode.serialize(generator, mapper);
-		}
 
 	}
 
@@ -214,9 +196,6 @@ public class DataStreamIndex implements JsonpSerializable {
 
 		@Nullable
 		private Boolean preferIlm;
-
-		@Nullable
-		private IndexMode indexMode;
 
 		/**
 		 * Required - Name of the backing index.
@@ -269,16 +248,6 @@ public class DataStreamIndex implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * The index mode of this backing index of the data stream.
-		 * <p>
-		 * API name: {@code index_mode}
-		 */
-		public final Builder indexMode(@Nullable IndexMode value) {
-			this.indexMode = value;
-			return this;
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
@@ -312,7 +281,6 @@ public class DataStreamIndex implements JsonpSerializable {
 		op.add(Builder::ilmPolicy, JsonpDeserializer.stringDeserializer(), "ilm_policy");
 		op.add(Builder::managedBy, ManagedBy._DESERIALIZER, "managed_by");
 		op.add(Builder::preferIlm, JsonpDeserializer.booleanDeserializer(), "prefer_ilm");
-		op.add(Builder::indexMode, IndexMode._DESERIALIZER, "index_mode");
 
 	}
 

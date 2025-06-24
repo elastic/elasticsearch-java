@@ -49,8 +49,6 @@ public enum ScoreNormalizer implements JsonEnum {
 
 	Minmax("minmax"),
 
-	L2Norm("l2_norm"),
-
 	;
 
 	private final String jsonValue;

@@ -29,7 +29,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.lang.String;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -63,7 +62,7 @@ public class WeightedTokensQuery extends QueryBase implements QueryVariant {
 	// Single key dictionary
 	private final String field;
 
-	private final List<Map<String, Float>> tokens;
+	private final Map<String, Float> tokens;
 
 	@Nullable
 	private final TokenPruningConfig pruningConfig;
@@ -103,7 +102,7 @@ public class WeightedTokensQuery extends QueryBase implements QueryVariant {
 	 * <p>
 	 * API name: {@code tokens}
 	 */
-	public final List<Map<String, Float>> tokens() {
+	public final Map<String, Float> tokens() {
 		return this.tokens;
 	}
 
@@ -123,17 +122,10 @@ public class WeightedTokensQuery extends QueryBase implements QueryVariant {
 		super.serializeInternal(generator, mapper);
 		if (ApiTypeHelper.isDefined(this.tokens)) {
 			generator.writeKey("tokens");
-			generator.writeStartArray();
-			for (Map<String, Float> item0 : this.tokens) {
-				generator.writeStartObject();
-				if (item0 != null) {
-					for (Map.Entry<String, Float> item1 : item0.entrySet()) {
-						generator.writeKey(item1.getKey());
-						generator.write(item1.getValue());
-
-					}
-				}
-				generator.writeEnd();
+			generator.writeStartObject();
+			for (Map.Entry<String, Float> item0 : this.tokens.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
 
 			}
 			generator.writeEnd();
@@ -168,7 +160,7 @@ public class WeightedTokensQuery extends QueryBase implements QueryVariant {
 			return this;
 		}
 
-		private List<Map<String, Float>> tokens;
+		private Map<String, Float> tokens;
 
 		@Nullable
 		private TokenPruningConfig pruningConfig;
@@ -178,10 +170,10 @@ public class WeightedTokensQuery extends QueryBase implements QueryVariant {
 		 * <p>
 		 * API name: {@code tokens}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>tokens</code>.
+		 * Adds all entries of <code>map</code> to <code>tokens</code>.
 		 */
-		public final Builder tokens(List<Map<String, Float>> list) {
-			this.tokens = _listAddAll(this.tokens, list);
+		public final Builder tokens(Map<String, Float> map) {
+			this.tokens = _mapPutAll(this.tokens, map);
 			return this;
 		}
 
@@ -190,10 +182,10 @@ public class WeightedTokensQuery extends QueryBase implements QueryVariant {
 		 * <p>
 		 * API name: {@code tokens}
 		 * <p>
-		 * Adds one or more values to <code>tokens</code>.
+		 * Adds an entry to <code>tokens</code>.
 		 */
-		public final Builder tokens(Map<String, Float> value, Map<String, Float>... values) {
-			this.tokens = _listAdd(this.tokens, value, values);
+		public final Builder tokens(String key, Float value) {
+			this.tokens = _mapPut(this.tokens, key, value);
 			return this;
 		}
 
@@ -244,8 +236,8 @@ public class WeightedTokensQuery extends QueryBase implements QueryVariant {
 
 	protected static void setupWeightedTokensQueryDeserializer(ObjectDeserializer<WeightedTokensQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::tokens, JsonpDeserializer.arrayDeserializer(
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.floatDeserializer())), "tokens");
+		op.add(Builder::tokens, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.floatDeserializer()),
+				"tokens");
 		op.add(Builder::pruningConfig, TokenPruningConfig._DESERIALIZER, "pruning_config");
 
 		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
