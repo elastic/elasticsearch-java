@@ -68,9 +68,57 @@ import javax.annotation.Nullable;
  * <p>
  * To revert a setting to the default value, use a null value. The list of
  * per-index settings that can be updated dynamically on live indices can be
- * found in index module documentation. To preserve existing settings from being
- * updated, set the <code>preserve_existing</code> parameter to
+ * found in index settings documentation. To preserve existing settings from
+ * being updated, set the <code>preserve_existing</code> parameter to
  * <code>true</code>.
+ * <p>
+ * For performance optimization during bulk indexing, you can disable the
+ * refresh interval. Refer to <a href=
+ * "https://www.elastic.co/docs/deploy-manage/production-guidance/optimize-performance/indexing-speed#disable-refresh-interval">disable
+ * refresh interval</a> for an example. There are multiple valid ways to
+ * represent index settings in the request body. You can specify only the
+ * setting, for example:
+ * 
+ * <pre>
+ * <code>{
+ *   &quot;number_of_replicas&quot;: 1
+ * }
+ * </code>
+ * </pre>
+ * <p>
+ * Or you can use an <code>index</code> setting object:
+ * 
+ * <pre>
+ * <code>{
+ *   &quot;index&quot;: {
+ *     &quot;number_of_replicas&quot;: 1
+ *   }
+ * }
+ * </code>
+ * </pre>
+ * <p>
+ * Or you can use dot annotation:
+ * 
+ * <pre>
+ * <code>{
+ *   &quot;index.number_of_replicas&quot;: 1
+ * }
+ * </code>
+ * </pre>
+ * <p>
+ * Or you can embed any of the aforementioned options in a <code>settings</code>
+ * object. For example:
+ * 
+ * <pre>
+ * <code>{
+ *   &quot;settings&quot;: {
+ *     &quot;index&quot;: {
+ *       &quot;number_of_replicas&quot;: 1
+ *     }
+ *   }
+ * }
+ * </code>
+ * </pre>
  * <p>
  * NOTE: You can only define new analyzers on closed indices. To add an
  * analyzer, you must close the index, define the analyzer, and reopen the
@@ -82,6 +130,9 @@ import javax.annotation.Nullable;
  * after the rollover. However, it does not affect the data stream's backing
  * indices or their existing data. To change the analyzer for existing backing
  * indices, you must create a new data stream and reindex your data into it.
+ * Refer to <a href=
+ * "https://www.elastic.co/docs/manage-data/data-store/text-analysis/specify-an-analyzer#update-analyzers-on-existing-indices">updating
+ * analyzers on existing indices</a> for step-by-step examples.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.put_settings.Request">API
  *      specification</a>

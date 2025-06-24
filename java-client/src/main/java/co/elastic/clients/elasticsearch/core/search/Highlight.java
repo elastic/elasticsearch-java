@@ -25,10 +25,10 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.NamedValue;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
-import java.util.Map;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -61,7 +61,7 @@ public class Highlight extends HighlightBase {
 	@Nullable
 	private final HighlighterEncoder encoder;
 
-	private final Map<String, HighlightField> fields;
+	private final List<NamedValue<HighlightField>> fields;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -88,7 +88,7 @@ public class Highlight extends HighlightBase {
 	/**
 	 * Required - API name: {@code fields}
 	 */
-	public final Map<String, HighlightField> fields() {
+	public final List<NamedValue<HighlightField>> fields() {
 		return this.fields;
 	}
 
@@ -101,10 +101,13 @@ public class Highlight extends HighlightBase {
 		}
 		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
-			generator.writeStartObject();
-			for (Map.Entry<String, HighlightField> item0 : this.fields.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
+			generator.writeStartArray();
+			for (NamedValue<HighlightField> item0 : this.fields) {
+				generator.writeStartObject();
+				generator.writeKey(item0.name());
+				item0.value().serialize(generator, mapper);
+
+				generator.writeEnd();
 
 			}
 			generator.writeEnd();
@@ -123,7 +126,7 @@ public class Highlight extends HighlightBase {
 		@Nullable
 		private HighlighterEncoder encoder;
 
-		private Map<String, HighlightField> fields;
+		private List<NamedValue<HighlightField>> fields;
 
 		/**
 		 * API name: {@code encoder}
@@ -136,30 +139,21 @@ public class Highlight extends HighlightBase {
 		/**
 		 * Required - API name: {@code fields}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>fields</code>.
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public final Builder fields(Map<String, HighlightField> map) {
-			this.fields = _mapPutAll(this.fields, map);
+		public final Builder fields(List<NamedValue<HighlightField>> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code fields}
 		 * <p>
-		 * Adds an entry to <code>fields</code>.
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(String key, HighlightField value) {
-			this.fields = _mapPut(this.fields, key, value);
+		public final Builder fields(NamedValue<HighlightField> value, NamedValue<HighlightField>... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
-		}
-
-		/**
-		 * Required - API name: {@code fields}
-		 * <p>
-		 * Adds an entry to <code>fields</code> using a builder lambda.
-		 */
-		public final Builder fields(String key, Function<HighlightField.Builder, ObjectBuilder<HighlightField>> fn) {
-			return fields(key, fn.apply(new HighlightField.Builder()).build());
 		}
 
 		@Override
@@ -191,7 +185,9 @@ public class Highlight extends HighlightBase {
 	protected static void setupHighlightDeserializer(ObjectDeserializer<Highlight.Builder> op) {
 		HighlightBase.setupHighlightBaseDeserializer(op);
 		op.add(Builder::encoder, HighlighterEncoder._DESERIALIZER, "encoder");
-		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(HighlightField._DESERIALIZER), "fields");
+		op.add(Builder::fields,
+				JsonpDeserializer.arrayDeserializer(NamedValue.deserializer(() -> HighlightField._DESERIALIZER)),
+				"fields");
 
 	}
 

@@ -120,7 +120,8 @@ public class WatsonxServiceSettings implements JsonpSerializable {
 	/**
 	 * Required - The name of the model to use for the inference task. Refer to the
 	 * IBM Embedding Models section in the Watsonx documentation for the list of
-	 * available text embedding models.
+	 * available text embedding models. Refer to the IBM library - Foundation models
+	 * in Watsonx.ai.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
@@ -251,7 +252,8 @@ public class WatsonxServiceSettings implements JsonpSerializable {
 		/**
 		 * Required - The name of the model to use for the inference task. Refer to the
 		 * IBM Embedding Models section in the Watsonx documentation for the list of
-		 * available text embedding models.
+		 * available text embedding models. Refer to the IBM library - Foundation models
+		 * in Watsonx.ai.
 		 * <p>
 		 * API name: {@code model_id}
 		 */

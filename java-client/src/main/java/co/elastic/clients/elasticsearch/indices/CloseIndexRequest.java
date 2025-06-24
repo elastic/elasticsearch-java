@@ -148,9 +148,7 @@ public class CloseIndexRequest extends RequestBase {
 	 * Type of index that wildcard patterns can match. If the request can target
 	 * data streams, this argument determines whether wildcard expressions match
 	 * hidden data streams. Supports comma-separated values, such as
-	 * <code>open,hidden</code>. Valid values are: <code>all</code>,
-	 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
-	 * <code>none</code>.
+	 * <code>open,hidden</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -259,9 +257,7 @@ public class CloseIndexRequest extends RequestBase {
 		 * Type of index that wildcard patterns can match. If the request can target
 		 * data streams, this argument determines whether wildcard expressions match
 		 * hidden data streams. Supports comma-separated values, such as
-		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
-		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
-		 * <code>none</code>.
+		 * <code>open,hidden</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -276,9 +272,7 @@ public class CloseIndexRequest extends RequestBase {
 		 * Type of index that wildcard patterns can match. If the request can target
 		 * data streams, this argument determines whether wildcard expressions match
 		 * hidden data streams. Supports comma-separated values, such as
-		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
-		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
-		 * <code>none</code>.
+		 * <code>open,hidden</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>

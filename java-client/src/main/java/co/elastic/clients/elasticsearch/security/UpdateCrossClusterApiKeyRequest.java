@@ -83,6 +83,10 @@ import javax.annotation.Nullable;
  * <p>
  * NOTE: This API cannot update REST API keys, which should be updated by either
  * the update API key or bulk update API keys API.
+ * <p>
+ * To learn more about how to use this API, refer to the <a href=
+ * "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/update-cc-api-key-examples">Update
+ * cross cluter API key API examples page</a>.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.update_cross_cluster_api_key.Request">API

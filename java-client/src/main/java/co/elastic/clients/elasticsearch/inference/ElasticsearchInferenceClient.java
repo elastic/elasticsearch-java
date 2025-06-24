@@ -76,22 +76,13 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * during computation. It only works with the <code>chat_completion</code> task
 	 * type for <code>openai</code> and <code>elastic</code> inference services.
 	 * <p>
-	 * IMPORTANT: The inference APIs enable you to use certain services, such as
-	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
-	 * Cohere, OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic,
-	 * Watsonx.ai, or Hugging Face. For built-in models and models uploaded through
-	 * Eland, the inference APIs offer an alternative way to use and manage trained
-	 * models. However, if you do not plan to use the inference APIs to use these
-	 * models or if you want to use non-NLP models, use the machine learning trained
-	 * model APIs.
-	 * <p>
 	 * NOTE: The <code>chat_completion</code> task type is only available within the
 	 * _stream API and only supports streaming. The Chat completion inference API
 	 * and the Stream inference API differ in their response structure and
 	 * capabilities. The Chat completion inference API provides more comprehensive
 	 * customization options through more fields and function calling support. If
-	 * you use the <code>openai</code> service or the <code>elastic</code> service,
-	 * use the Chat completion inference API.
+	 * you use the <code>openai</code>, <code>hugging_face</code> or the
+	 * <code>elastic</code> service, use the Chat completion inference API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-unified-inference">Documentation
@@ -114,22 +105,13 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * during computation. It only works with the <code>chat_completion</code> task
 	 * type for <code>openai</code> and <code>elastic</code> inference services.
 	 * <p>
-	 * IMPORTANT: The inference APIs enable you to use certain services, such as
-	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
-	 * Cohere, OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic,
-	 * Watsonx.ai, or Hugging Face. For built-in models and models uploaded through
-	 * Eland, the inference APIs offer an alternative way to use and manage trained
-	 * models. However, if you do not plan to use the inference APIs to use these
-	 * models or if you want to use non-NLP models, use the machine learning trained
-	 * model APIs.
-	 * <p>
 	 * NOTE: The <code>chat_completion</code> task type is only available within the
 	 * _stream API and only supports streaming. The Chat completion inference API
 	 * and the Stream inference API differ in their response structure and
 	 * capabilities. The Chat completion inference API provides more comprehensive
 	 * customization options through more fields and function calling support. If
-	 * you use the <code>openai</code> service or the <code>elastic</code> service,
-	 * use the Chat completion inference API.
+	 * you use the <code>openai</code>, <code>hugging_face</code> or the
+	 * <code>elastic</code> service, use the Chat completion inference API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -346,7 +328,38 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * and manage trained models. However, if you do not plan to use the inference
 	 * APIs to use these models or if you want to use non-NLP models, use the
 	 * machine learning trained model APIs.
-	 * 
+	 * <p>
+	 * The following integrations are available through the inference API. You can
+	 * find the available task types next to the integration name:
+	 * <ul>
+	 * <li>AlibabaCloud AI Search (<code>completion</code>, <code>rerank</code>,
+	 * <code>sparse_embedding</code>, <code>text_embedding</code>)</li>
+	 * <li>Amazon Bedrock (<code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Anthropic (<code>completion</code>)</li>
+	 * <li>Azure AI Studio (<code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Azure OpenAI (<code>completion</code>, <code>text_embedding</code>)</li>
+	 * <li>Cohere (<code>completion</code>, <code>rerank</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Elasticsearch (<code>rerank</code>, <code>sparse_embedding</code>,
+	 * <code>text_embedding</code> - this service is for built-in models and models
+	 * uploaded through Eland)</li>
+	 * <li>ELSER (<code>sparse_embedding</code>)</li>
+	 * <li>Google AI Studio (<code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Google Vertex AI (<code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>Hugging Face (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>Mistral (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>OpenAI (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>VoyageAI (<code>text_embedding</code>, <code>rerank</code>)</li>
+	 * <li>Watsonx inference integration (<code>text_embedding</code>)</li>
+	 * <li>JinaAI (<code>text_embedding</code>, <code>rerank</code>)</li>
+	 * </ul>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put">Documentation
 	 *      on elastic.co</a>
@@ -370,7 +383,38 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * and manage trained models. However, if you do not plan to use the inference
 	 * APIs to use these models or if you want to use non-NLP models, use the
 	 * machine learning trained model APIs.
-	 * 
+	 * <p>
+	 * The following integrations are available through the inference API. You can
+	 * find the available task types next to the integration name:
+	 * <ul>
+	 * <li>AlibabaCloud AI Search (<code>completion</code>, <code>rerank</code>,
+	 * <code>sparse_embedding</code>, <code>text_embedding</code>)</li>
+	 * <li>Amazon Bedrock (<code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Anthropic (<code>completion</code>)</li>
+	 * <li>Azure AI Studio (<code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Azure OpenAI (<code>completion</code>, <code>text_embedding</code>)</li>
+	 * <li>Cohere (<code>completion</code>, <code>rerank</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Elasticsearch (<code>rerank</code>, <code>sparse_embedding</code>,
+	 * <code>text_embedding</code> - this service is for built-in models and models
+	 * uploaded through Eland)</li>
+	 * <li>ELSER (<code>sparse_embedding</code>)</li>
+	 * <li>Google AI Studio (<code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Google Vertex AI (<code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>Hugging Face (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>Mistral (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>OpenAI (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>VoyageAI (<code>text_embedding</code>, <code>rerank</code>)</li>
+	 * <li>Watsonx inference integration (<code>text_embedding</code>)</li>
+	 * <li>JinaAI (<code>text_embedding</code>, <code>rerank</code>)</li>
+	 * </ul>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRequest}
@@ -430,7 +474,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	/**
 	 * Create an Amazon Bedrock inference endpoint.
 	 * <p>
-	 * Creates an inference endpoint to perform an inference task with the
+	 * Create an inference endpoint to perform an inference task with the
 	 * <code>amazonbedrock</code> service. <blockquote>
 	 * <p>
 	 * info You need to provide the access and secret keys only once, during the
@@ -458,7 +502,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	/**
 	 * Create an Amazon Bedrock inference endpoint.
 	 * <p>
-	 * Creates an inference endpoint to perform an inference task with the
+	 * Create an inference endpoint to perform an inference task with the
 	 * <code>amazonbedrock</code> service. <blockquote>
 	 * <p>
 	 * info You need to provide the access and secret keys only once, during the
@@ -951,16 +995,20 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * Create a Hugging Face inference endpoint.
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
-	 * <code>hugging_face</code> service.
+	 * <code>hugging_face</code> service. Supported tasks include:
+	 * <code>text_embedding</code>, <code>completion</code>, and
+	 * <code>chat_completion</code>.
 	 * <p>
-	 * You must first create an inference endpoint on the Hugging Face endpoint page
-	 * to get an endpoint URL. Select the model you want to use on the new endpoint
-	 * creation page (for example <code>intfloat/e5-small-v2</code>), then select
-	 * the sentence embeddings task under the advanced configuration section. Create
-	 * the endpoint and copy the URL after the endpoint initialization has been
-	 * finished.
+	 * To configure the endpoint, first visit the Hugging Face Inference Endpoints
+	 * page and create a new endpoint. Select a model that supports the task you
+	 * intend to use.
 	 * <p>
-	 * The following models are recommended for the Hugging Face service:
+	 * For Elastic's <code>text_embedding</code> task: The selected model must
+	 * support the <code>Sentence Embeddings</code> task. On the new endpoint
+	 * creation page, select the <code>Sentence Embeddings</code> task under the
+	 * <code>Advanced Configuration</code> section. After the endpoint has
+	 * initialized, copy the generated endpoint URL. Recommended models for
+	 * <code>text_embedding</code> task:
 	 * <ul>
 	 * <li><code>all-MiniLM-L6-v2</code></li>
 	 * <li><code>all-MiniLM-L12-v2</code></li>
@@ -969,6 +1017,31 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * <li><code>e5-small-v2</code></li>
 	 * <li><code>multilingual-e5-base</code></li>
 	 * <li><code>multilingual-e5-small</code></li>
+	 * </ul>
+	 * <p>
+	 * For Elastic's <code>chat_completion</code> and <code>completion</code> tasks:
+	 * The selected model must support the <code>Text Generation</code> task and
+	 * expose OpenAI API. HuggingFace supports both serverless and dedicated
+	 * endpoints for <code>Text Generation</code>. When creating dedicated endpoint
+	 * select the <code>Text Generation</code> task. After the endpoint is
+	 * initialized (for dedicated) or ready (for serverless), ensure it supports the
+	 * OpenAI API and includes <code>/v1/chat/completions</code> part in URL. Then,
+	 * copy the full endpoint URL for use. Recommended models for
+	 * <code>chat_completion</code> and <code>completion</code> tasks:
+	 * <ul>
+	 * <li><code>Mistral-7B-Instruct-v0.2</code></li>
+	 * <li><code>QwQ-32B</code></li>
+	 * <li><code>Phi-3-mini-128k-instruct</code></li>
+	 * </ul>
+	 * <p>
+	 * For Elastic's <code>rerank</code> task: The selected model must support the
+	 * <code>sentence-ranking</code> task and expose OpenAI API. HuggingFace
+	 * supports only dedicated (not serverless) endpoints for <code>Rerank</code> so
+	 * far. After the endpoint is initialized, copy the full endpoint URL for use.
+	 * Tested models for <code>rerank</code> task:
+	 * <ul>
+	 * <li><code>bge-reranker-base</code></li>
+	 * <li><code>jina-reranker-v1-turbo-en-GGUF</code></li>
 	 * </ul>
 	 *
 	 * @see <a href=
@@ -988,16 +1061,20 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * Create a Hugging Face inference endpoint.
 	 * <p>
 	 * Create an inference endpoint to perform an inference task with the
-	 * <code>hugging_face</code> service.
+	 * <code>hugging_face</code> service. Supported tasks include:
+	 * <code>text_embedding</code>, <code>completion</code>, and
+	 * <code>chat_completion</code>.
 	 * <p>
-	 * You must first create an inference endpoint on the Hugging Face endpoint page
-	 * to get an endpoint URL. Select the model you want to use on the new endpoint
-	 * creation page (for example <code>intfloat/e5-small-v2</code>), then select
-	 * the sentence embeddings task under the advanced configuration section. Create
-	 * the endpoint and copy the URL after the endpoint initialization has been
-	 * finished.
+	 * To configure the endpoint, first visit the Hugging Face Inference Endpoints
+	 * page and create a new endpoint. Select a model that supports the task you
+	 * intend to use.
 	 * <p>
-	 * The following models are recommended for the Hugging Face service:
+	 * For Elastic's <code>text_embedding</code> task: The selected model must
+	 * support the <code>Sentence Embeddings</code> task. On the new endpoint
+	 * creation page, select the <code>Sentence Embeddings</code> task under the
+	 * <code>Advanced Configuration</code> section. After the endpoint has
+	 * initialized, copy the generated endpoint URL. Recommended models for
+	 * <code>text_embedding</code> task:
 	 * <ul>
 	 * <li><code>all-MiniLM-L6-v2</code></li>
 	 * <li><code>all-MiniLM-L12-v2</code></li>
@@ -1006,6 +1083,31 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * <li><code>e5-small-v2</code></li>
 	 * <li><code>multilingual-e5-base</code></li>
 	 * <li><code>multilingual-e5-small</code></li>
+	 * </ul>
+	 * <p>
+	 * For Elastic's <code>chat_completion</code> and <code>completion</code> tasks:
+	 * The selected model must support the <code>Text Generation</code> task and
+	 * expose OpenAI API. HuggingFace supports both serverless and dedicated
+	 * endpoints for <code>Text Generation</code>. When creating dedicated endpoint
+	 * select the <code>Text Generation</code> task. After the endpoint is
+	 * initialized (for dedicated) or ready (for serverless), ensure it supports the
+	 * OpenAI API and includes <code>/v1/chat/completions</code> part in URL. Then,
+	 * copy the full endpoint URL for use. Recommended models for
+	 * <code>chat_completion</code> and <code>completion</code> tasks:
+	 * <ul>
+	 * <li><code>Mistral-7B-Instruct-v0.2</code></li>
+	 * <li><code>QwQ-32B</code></li>
+	 * <li><code>Phi-3-mini-128k-instruct</code></li>
+	 * </ul>
+	 * <p>
+	 * For Elastic's <code>rerank</code> task: The selected model must support the
+	 * <code>sentence-ranking</code> task and expose OpenAI API. HuggingFace
+	 * supports only dedicated (not serverless) endpoints for <code>Rerank</code> so
+	 * far. After the endpoint is initialized, copy the full endpoint URL for use.
+	 * Tested models for <code>rerank</code> task:
+	 * <ul>
+	 * <li><code>bge-reranker-base</code></li>
+	 * <li><code>jina-reranker-v1-turbo-en-GGUF</code></li>
 	 * </ul>
 	 *
 	 * @param fn
@@ -1076,7 +1178,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	/**
 	 * Create a Mistral inference endpoint.
 	 * <p>
-	 * Creates an inference endpoint to perform an inference task with the
+	 * Create an inference endpoint to perform an inference task with the
 	 * <code>mistral</code> service.
 	 * 
 	 * @see <a href=
@@ -1094,7 +1196,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	/**
 	 * Create a Mistral inference endpoint.
 	 * <p>
-	 * Creates an inference endpoint to perform an inference task with the
+	 * Create an inference endpoint to perform an inference task with the
 	 * <code>mistral</code> service.
 	 * 
 	 * @param fn

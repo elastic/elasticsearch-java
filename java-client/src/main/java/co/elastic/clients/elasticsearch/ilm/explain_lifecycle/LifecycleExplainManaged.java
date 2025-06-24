@@ -142,6 +142,8 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	@Nullable
 	private final Time timeSinceIndexCreation;
 
+	private final boolean skip;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private LifecycleExplainManaged(Builder builder) {
@@ -172,6 +174,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		this.stepTimeMillis = builder.stepTimeMillis;
 		this.phaseExecution = builder.phaseExecution;
 		this.timeSinceIndexCreation = builder.timeSinceIndexCreation;
+		this.skip = ApiTypeHelper.requireNonNull(builder.skip, this, "skip", false);
 
 	}
 
@@ -393,6 +396,13 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	}
 
 	/**
+	 * Required - API name: {@code skip}
+	 */
+	public final boolean skip() {
+		return this.skip;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -540,6 +550,8 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 			this.timeSinceIndexCreation.serialize(generator, mapper);
 
 		}
+		generator.writeKey("skip");
+		generator.write(this.skip);
 
 	}
 
@@ -633,6 +645,8 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 
 		@Nullable
 		private Time timeSinceIndexCreation;
+
+		private Boolean skip;
 
 		/**
 		 * API name: {@code action}
@@ -888,6 +902,14 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 			return this.timeSinceIndexCreation(fn.apply(new Time.Builder()).build());
 		}
 
+		/**
+		 * Required - API name: {@code skip}
+		 */
+		public final Builder skip(boolean value) {
+			this.skip = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -944,6 +966,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		op.add(Builder::stepTimeMillis, JsonpDeserializer.longDeserializer(), "step_time_millis");
 		op.add(Builder::phaseExecution, LifecycleExplainPhaseExecution._DESERIALIZER, "phase_execution");
 		op.add(Builder::timeSinceIndexCreation, Time._DESERIALIZER, "time_since_index_creation");
+		op.add(Builder::skip, JsonpDeserializer.booleanDeserializer(), "skip");
 
 		op.ignore("managed");
 	}

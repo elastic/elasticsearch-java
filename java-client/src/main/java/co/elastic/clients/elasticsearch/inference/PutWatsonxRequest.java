@@ -115,8 +115,7 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Required - The task type. The only valid task type for the model to perform
-	 * is <code>text_embedding</code>.
+	 * Required - The type of the inference task that the model will perform.
 	 * <p>
 	 * API name: {@code task_type}
 	 */
@@ -202,8 +201,7 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Required - The task type. The only valid task type for the model to perform
-		 * is <code>text_embedding</code>.
+		 * Required - The type of the inference task that the model will perform.
 		 * <p>
 		 * API name: {@code task_type}
 		 */

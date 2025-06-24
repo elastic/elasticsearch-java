@@ -50,6 +50,10 @@ public enum GoogleVertexAITaskType implements JsonEnum {
 
 	TextEmbedding("text_embedding"),
 
+	Completion("completion"),
+
+	ChatCompletion("chat_completion"),
+
 	;
 
 	private final String jsonValue;

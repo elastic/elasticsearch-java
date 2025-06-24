@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -67,12 +68,16 @@ public abstract class RetrieverBase implements JsonpSerializable {
 	@Nullable
 	private final Float minScore;
 
+	@Nullable
+	private final String name;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected RetrieverBase(AbstractBuilder<?> builder) {
 
 		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 		this.minScore = builder.minScore;
+		this.name = builder.name;
 
 	}
 
@@ -94,6 +99,16 @@ public abstract class RetrieverBase implements JsonpSerializable {
 	@Nullable
 	public final Float minScore() {
 		return this.minScore;
+	}
+
+	/**
+	 * Retriever name.
+	 * <p>
+	 * API name: {@code _name}
+	 */
+	@Nullable
+	public final String name() {
+		return this.name;
 	}
 
 	/**
@@ -122,6 +137,11 @@ public abstract class RetrieverBase implements JsonpSerializable {
 			generator.write(this.minScore);
 
 		}
+		if (this.name != null) {
+			generator.writeKey("_name");
+			generator.write(this.name);
+
+		}
 
 	}
 
@@ -138,6 +158,9 @@ public abstract class RetrieverBase implements JsonpSerializable {
 
 		@Nullable
 		private Float minScore;
+
+		@Nullable
+		private String name;
 
 		/**
 		 * Query to filter the documents that can match.
@@ -200,6 +223,16 @@ public abstract class RetrieverBase implements JsonpSerializable {
 			return self();
 		}
 
+		/**
+		 * Retriever name.
+		 * <p>
+		 * API name: {@code _name}
+		 */
+		public final BuilderT name(@Nullable String value) {
+			this.name = value;
+			return self();
+		}
+
 		protected abstract BuilderT self();
 
 	}
@@ -210,6 +243,7 @@ public abstract class RetrieverBase implements JsonpSerializable {
 
 		op.add(AbstractBuilder::filter, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "filter");
 		op.add(AbstractBuilder::minScore, JsonpDeserializer.floatDeserializer(), "min_score");
+		op.add(AbstractBuilder::name, JsonpDeserializer.stringDeserializer(), "_name");
 
 	}
 

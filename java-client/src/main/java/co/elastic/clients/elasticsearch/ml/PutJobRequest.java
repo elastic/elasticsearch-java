@@ -295,18 +295,7 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * Type of index that wildcard patterns can match. If the request can target
 	 * data streams, this argument determines whether wildcard expressions match
-	 * hidden data streams. Supports comma-separated values. Valid values are:
-	 * <ul>
-	 * <li><code>all</code>: Match any data stream or index, including hidden
-	 * ones.</li>
-	 * <li><code>closed</code>: Match closed, non-hidden indices. Also matches any
-	 * non-hidden data stream. Data streams cannot be closed.</li>
-	 * <li><code>hidden</code>: Match hidden data streams and hidden indices. Must
-	 * be combined with <code>open</code>, <code>closed</code>, or both.</li>
-	 * <li><code>none</code>: Wildcard patterns are not accepted.</li>
-	 * <li><code>open</code>: Match open, non-hidden indices. Also matches any
-	 * non-hidden data stream.</li>
-	 * </ul>
+	 * hidden data streams. Supports comma-separated values.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -782,18 +771,7 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * Type of index that wildcard patterns can match. If the request can target
 		 * data streams, this argument determines whether wildcard expressions match
-		 * hidden data streams. Supports comma-separated values. Valid values are:
-		 * <ul>
-		 * <li><code>all</code>: Match any data stream or index, including hidden
-		 * ones.</li>
-		 * <li><code>closed</code>: Match closed, non-hidden indices. Also matches any
-		 * non-hidden data stream. Data streams cannot be closed.</li>
-		 * <li><code>hidden</code>: Match hidden data streams and hidden indices. Must
-		 * be combined with <code>open</code>, <code>closed</code>, or both.</li>
-		 * <li><code>none</code>: Wildcard patterns are not accepted.</li>
-		 * <li><code>open</code>: Match open, non-hidden indices. Also matches any
-		 * non-hidden data stream.</li>
-		 * </ul>
+		 * hidden data streams. Supports comma-separated values.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -807,18 +785,7 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * Type of index that wildcard patterns can match. If the request can target
 		 * data streams, this argument determines whether wildcard expressions match
-		 * hidden data streams. Supports comma-separated values. Valid values are:
-		 * <ul>
-		 * <li><code>all</code>: Match any data stream or index, including hidden
-		 * ones.</li>
-		 * <li><code>closed</code>: Match closed, non-hidden indices. Also matches any
-		 * non-hidden data stream. Data streams cannot be closed.</li>
-		 * <li><code>hidden</code>: Match hidden data streams and hidden indices. Must
-		 * be combined with <code>open</code>, <code>closed</code>, or both.</li>
-		 * <li><code>none</code>: Wildcard patterns are not accepted.</li>
-		 * <li><code>open</code>: Match open, non-hidden indices. Also matches any
-		 * non-hidden data stream.</li>
-		 * </ul>
+		 * hidden data streams. Supports comma-separated values.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>

@@ -46,6 +46,12 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum HuggingFaceTaskType implements JsonEnum {
+	ChatCompletion("chat_completion"),
+
+	Completion("completion"),
+
+	Rerank("rerank"),
+
 	TextEmbedding("text_embedding"),
 
 	;

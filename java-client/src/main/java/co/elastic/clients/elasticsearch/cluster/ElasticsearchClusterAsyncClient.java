@@ -77,7 +77,8 @@ public class ElasticsearchClusterAsyncClient
 	 * shard is remaining on its current node and has not moved or rebalanced to
 	 * another node. This API can be very useful when attempting to diagnose why a
 	 * shard is unassigned or why a shard continues to remain on its current node
-	 * when you might expect otherwise.
+	 * when you might expect otherwise. Refer to the linked documentation for
+	 * examples of how to troubleshoot allocation issues using this API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-allocation-explain">Documentation
@@ -98,7 +99,8 @@ public class ElasticsearchClusterAsyncClient
 	 * shard is remaining on its current node and has not moved or rebalanced to
 	 * another node. This API can be very useful when attempting to diagnose why a
 	 * shard is unassigned or why a shard continues to remain on its current node
-	 * when you might expect otherwise.
+	 * when you might expect otherwise. Refer to the linked documentation for
+	 * examples of how to troubleshoot allocation issues using this API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -120,7 +122,8 @@ public class ElasticsearchClusterAsyncClient
 	 * shard is remaining on its current node and has not moved or rebalanced to
 	 * another node. This API can be very useful when attempting to diagnose why a
 	 * shard is unassigned or why a shard continues to remain on its current node
-	 * when you might expect otherwise.
+	 * when you might expect otherwise. Refer to the linked documentation for
+	 * examples of how to troubleshoot allocation issues using this API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-allocation-explain">Documentation
@@ -304,8 +307,9 @@ public class ElasticsearchClusterAsyncClient
 	// ----- Endpoint: cluster.get_settings
 
 	/**
-	 * Get cluster-wide settings. By default, it returns only settings that have
-	 * been explicitly defined.
+	 * Get cluster-wide settings.
+	 * <p>
+	 * By default, it returns only settings that have been explicitly defined.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-get-settings">Documentation
@@ -320,8 +324,9 @@ public class ElasticsearchClusterAsyncClient
 	}
 
 	/**
-	 * Get cluster-wide settings. By default, it returns only settings that have
-	 * been explicitly defined.
+	 * Get cluster-wide settings.
+	 * <p>
+	 * By default, it returns only settings that have been explicitly defined.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -337,8 +342,9 @@ public class ElasticsearchClusterAsyncClient
 	}
 
 	/**
-	 * Get cluster-wide settings. By default, it returns only settings that have
-	 * been explicitly defined.
+	 * Get cluster-wide settings.
+	 * <p>
+	 * By default, it returns only settings that have been explicitly defined.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-get-settings">Documentation
