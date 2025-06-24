@@ -60,12 +60,13 @@ class MultiBufferEntity extends AbstractHttpEntity implements HttpAsyncContentPr
     }
 
     private void init() {
-        this.iterator = buffers.iterator();
-        if (this.iterator.hasNext()) {
-            this.currentBuffer = this.iterator.next().duplicate();
+        Iterator<ByteBuffer> localIterator = this.buffers.iterator();
+        if (localIterator.hasNext()) {
+            this.currentBuffer = localIterator.next().duplicate();
         } else {
             this.currentBuffer = null;
         }
+        this.iterator = localIterator;
     }
 
     @Override
