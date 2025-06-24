@@ -88,8 +88,8 @@ public class GetRepositoriesMeteringInfoRequest extends RequestBase {
 
 	/**
 	 * Required - Comma-separated list of node IDs or names used to limit returned
-	 * information. All the nodes selective options are explained <a href=
-	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster.html#cluster-nodes">here</a>.
+	 * information. For more information about the nodes selective options, refer to
+	 * the node specification documentation.
 	 * <p>
 	 * API name: {@code node_id}
 	 */
@@ -110,8 +110,8 @@ public class GetRepositoriesMeteringInfoRequest extends RequestBase {
 
 		/**
 		 * Required - Comma-separated list of node IDs or names used to limit returned
-		 * information. All the nodes selective options are explained <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster.html#cluster-nodes">here</a>.
+		 * information. For more information about the nodes selective options, refer to
+		 * the node specification documentation.
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>
@@ -124,8 +124,8 @@ public class GetRepositoriesMeteringInfoRequest extends RequestBase {
 
 		/**
 		 * Required - Comma-separated list of node IDs or names used to limit returned
-		 * information. All the nodes selective options are explained <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster.html#cluster-nodes">here</a>.
+		 * information. For more information about the nodes selective options, refer to
+		 * the node specification documentation.
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>

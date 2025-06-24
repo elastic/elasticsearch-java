@@ -51,7 +51,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class PutVoyageaiResponse extends InferenceEndpointInfo {
+public class PutVoyageaiResponse extends InferenceEndpointInfoVoyageAI {
 	// ---------------------------------------------------------------------------------------------
 
 	private PutVoyageaiResponse(Builder builder) {
@@ -69,7 +69,7 @@ public class PutVoyageaiResponse extends InferenceEndpointInfo {
 	 * Builder for {@link PutVoyageaiResponse}.
 	 */
 
-	public static class Builder extends InferenceEndpointInfo.AbstractBuilder<Builder>
+	public static class Builder extends InferenceEndpointInfoVoyageAI.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutVoyageaiResponse> {
 		@Override
@@ -99,7 +99,7 @@ public class PutVoyageaiResponse extends InferenceEndpointInfo {
 			.lazy(Builder::new, PutVoyageaiResponse::setupPutVoyageaiResponseDeserializer);
 
 	protected static void setupPutVoyageaiResponseDeserializer(ObjectDeserializer<PutVoyageaiResponse.Builder> op) {
-		InferenceEndpointInfo.setupInferenceEndpointInfoDeserializer(op);
+		InferenceEndpointInfoVoyageAI.setupInferenceEndpointInfoVoyageAIDeserializer(op);
 
 	}
 

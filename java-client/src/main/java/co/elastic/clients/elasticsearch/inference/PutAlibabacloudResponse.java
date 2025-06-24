@@ -52,7 +52,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class PutAlibabacloudResponse extends InferenceEndpointInfo {
+public class PutAlibabacloudResponse extends InferenceEndpointInfoAlibabaCloudAI {
 	// ---------------------------------------------------------------------------------------------
 
 	private PutAlibabacloudResponse(Builder builder) {
@@ -70,7 +70,7 @@ public class PutAlibabacloudResponse extends InferenceEndpointInfo {
 	 * Builder for {@link PutAlibabacloudResponse}.
 	 */
 
-	public static class Builder extends InferenceEndpointInfo.AbstractBuilder<Builder>
+	public static class Builder extends InferenceEndpointInfoAlibabaCloudAI.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutAlibabacloudResponse> {
 		@Override
@@ -101,7 +101,7 @@ public class PutAlibabacloudResponse extends InferenceEndpointInfo {
 
 	protected static void setupPutAlibabacloudResponseDeserializer(
 			ObjectDeserializer<PutAlibabacloudResponse.Builder> op) {
-		InferenceEndpointInfo.setupInferenceEndpointInfoDeserializer(op);
+		InferenceEndpointInfoAlibabaCloudAI.setupInferenceEndpointInfoAlibabaCloudAIDeserializer(op);
 
 	}
 

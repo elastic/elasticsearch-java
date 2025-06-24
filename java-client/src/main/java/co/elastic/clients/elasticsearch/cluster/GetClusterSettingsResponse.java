@@ -82,20 +82,26 @@ public class GetClusterSettingsResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code persistent}
+	 * Required - The settings that persist after the cluster restarts.
+	 * <p>
+	 * API name: {@code persistent}
 	 */
 	public final Map<String, JsonData> persistent() {
 		return this.persistent;
 	}
 
 	/**
-	 * Required - API name: {@code transient}
+	 * Required - The settings that do not persist after the cluster restarts.
+	 * <p>
+	 * API name: {@code transient}
 	 */
 	public final Map<String, JsonData> transient_() {
 		return this.transient_;
 	}
 
 	/**
+	 * The default setting values.
+	 * <p>
 	 * API name: {@code defaults}
 	 */
 	public final Map<String, JsonData> defaults() {
@@ -171,7 +177,9 @@ public class GetClusterSettingsResponse implements JsonpSerializable {
 		private Map<String, JsonData> defaults;
 
 		/**
-		 * Required - API name: {@code persistent}
+		 * Required - The settings that persist after the cluster restarts.
+		 * <p>
+		 * API name: {@code persistent}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>persistent</code>.
 		 */
@@ -181,7 +189,9 @@ public class GetClusterSettingsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code persistent}
+		 * Required - The settings that persist after the cluster restarts.
+		 * <p>
+		 * API name: {@code persistent}
 		 * <p>
 		 * Adds an entry to <code>persistent</code>.
 		 */
@@ -191,7 +201,9 @@ public class GetClusterSettingsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code transient}
+		 * Required - The settings that do not persist after the cluster restarts.
+		 * <p>
+		 * API name: {@code transient}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>transient_</code>.
 		 */
@@ -201,7 +213,9 @@ public class GetClusterSettingsResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code transient}
+		 * Required - The settings that do not persist after the cluster restarts.
+		 * <p>
+		 * API name: {@code transient}
 		 * <p>
 		 * Adds an entry to <code>transient_</code>.
 		 */
@@ -211,6 +225,8 @@ public class GetClusterSettingsResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The default setting values.
+		 * <p>
 		 * API name: {@code defaults}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>defaults</code>.
@@ -221,6 +237,8 @@ public class GetClusterSettingsResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The default setting values.
+		 * <p>
 		 * API name: {@code defaults}
 		 * <p>
 		 * Adds an entry to <code>defaults</code>.

@@ -32,7 +32,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -80,7 +79,7 @@ public class GetStatsResponse implements JsonpSerializable {
 
 	private final long totalSnapshotsTaken;
 
-	private final List<String> policyStats;
+	private final List<SnapshotPolicyStats> policyStats;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -175,7 +174,7 @@ public class GetStatsResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code policy_stats}
 	 */
-	public final List<String> policyStats() {
+	public final List<SnapshotPolicyStats> policyStats() {
 		return this.policyStats;
 	}
 
@@ -220,8 +219,8 @@ public class GetStatsResponse implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.policyStats)) {
 			generator.writeKey("policy_stats");
 			generator.writeStartArray();
-			for (String item0 : this.policyStats) {
-				generator.write(item0);
+			for (SnapshotPolicyStats item0 : this.policyStats) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -260,7 +259,7 @@ public class GetStatsResponse implements JsonpSerializable {
 
 		private Long totalSnapshotsTaken;
 
-		private List<String> policyStats;
+		private List<SnapshotPolicyStats> policyStats;
 
 		/**
 		 * Required - API name: {@code retention_deletion_time}
@@ -346,7 +345,7 @@ public class GetStatsResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>policyStats</code>.
 		 */
-		public final Builder policyStats(List<String> list) {
+		public final Builder policyStats(List<SnapshotPolicyStats> list) {
 			this.policyStats = _listAddAll(this.policyStats, list);
 			return this;
 		}
@@ -356,9 +355,18 @@ public class GetStatsResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>policyStats</code>.
 		 */
-		public final Builder policyStats(String value, String... values) {
+		public final Builder policyStats(SnapshotPolicyStats value, SnapshotPolicyStats... values) {
 			this.policyStats = _listAdd(this.policyStats, value, values);
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code policy_stats}
+		 * <p>
+		 * Adds a value to <code>policyStats</code> using a builder lambda.
+		 */
+		public final Builder policyStats(Function<SnapshotPolicyStats.Builder, ObjectBuilder<SnapshotPolicyStats>> fn) {
+			return policyStats(fn.apply(new SnapshotPolicyStats.Builder()).build());
 		}
 
 		@Override
@@ -400,7 +408,7 @@ public class GetStatsResponse implements JsonpSerializable {
 				"total_snapshot_deletion_failures");
 		op.add(Builder::totalSnapshotsFailed, JsonpDeserializer.longDeserializer(), "total_snapshots_failed");
 		op.add(Builder::totalSnapshotsTaken, JsonpDeserializer.longDeserializer(), "total_snapshots_taken");
-		op.add(Builder::policyStats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+		op.add(Builder::policyStats, JsonpDeserializer.arrayDeserializer(SnapshotPolicyStats._DESERIALIZER),
 				"policy_stats");
 
 	}

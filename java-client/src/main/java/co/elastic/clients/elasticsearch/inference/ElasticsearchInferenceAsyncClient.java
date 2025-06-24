@@ -76,16 +76,8 @@ public class ElasticsearchInferenceAsyncClient
 	 * The chat completion inference API enables real-time responses for chat
 	 * completion tasks by delivering answers incrementally, reducing response times
 	 * during computation. It only works with the <code>chat_completion</code> task
-	 * type for <code>openai</code> and <code>elastic</code> inference services.
-	 * <p>
-	 * IMPORTANT: The inference APIs enable you to use certain services, such as
-	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
-	 * Cohere, OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic,
-	 * Watsonx.ai, or Hugging Face. For built-in models and models uploaded through
-	 * Eland, the inference APIs offer an alternative way to use and manage trained
-	 * models. However, if you do not plan to use the inference APIs to use these
-	 * models or if you want to use non-NLP models, use the machine learning trained
-	 * model APIs.
+	 * type for <code>openai</code>, <code>elastic</code> and
+	 * <code>googlevertexai</code> inference services.
 	 * <p>
 	 * NOTE: The <code>chat_completion</code> task type is only available within the
 	 * _stream API and only supports streaming. The Chat completion inference API
@@ -113,16 +105,8 @@ public class ElasticsearchInferenceAsyncClient
 	 * The chat completion inference API enables real-time responses for chat
 	 * completion tasks by delivering answers incrementally, reducing response times
 	 * during computation. It only works with the <code>chat_completion</code> task
-	 * type for <code>openai</code> and <code>elastic</code> inference services.
-	 * <p>
-	 * IMPORTANT: The inference APIs enable you to use certain services, such as
-	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
-	 * Cohere, OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic,
-	 * Watsonx.ai, or Hugging Face. For built-in models and models uploaded through
-	 * Eland, the inference APIs offer an alternative way to use and manage trained
-	 * models. However, if you do not plan to use the inference APIs to use these
-	 * models or if you want to use non-NLP models, use the machine learning trained
-	 * model APIs.
+	 * type for <code>openai</code>, <code>elastic</code> and
+	 * <code>googlevertexai</code> inference services.
 	 * <p>
 	 * NOTE: The <code>chat_completion</code> task type is only available within the
 	 * _stream API and only supports streaming. The Chat completion inference API
@@ -345,7 +329,36 @@ public class ElasticsearchInferenceAsyncClient
 	 * and manage trained models. However, if you do not plan to use the inference
 	 * APIs to use these models or if you want to use non-NLP models, use the
 	 * machine learning trained model APIs.
-	 * 
+	 * <p>
+	 * The following integrations are available through the inference API. You can
+	 * find the available task types next to the integration name:
+	 * <ul>
+	 * <li>AlibabaCloud AI Search (<code>completion</code>, <code>rerank</code>,
+	 * <code>sparse_embedding</code>, <code>text_embedding</code>)</li>
+	 * <li>Amazon Bedrock (<code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Anthropic (<code>completion</code>)</li>
+	 * <li>Azure AI Studio (<code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Azure OpenAI (<code>completion</code>, <code>text_embedding</code>)</li>
+	 * <li>Cohere (<code>completion</code>, <code>rerank</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Elasticsearch (<code>rerank</code>, <code>sparse_embedding</code>,
+	 * <code>text_embedding</code> - this service is for built-in models and models
+	 * uploaded through Eland)</li>
+	 * <li>ELSER (<code>sparse_embedding</code>)</li>
+	 * <li>Google AI Studio (<code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Google Vertex AI (<code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>Hugging Face (<code>text_embedding</code>)</li>
+	 * <li>Mistral (<code>text_embedding</code>)</li>
+	 * <li>OpenAI (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>VoyageAI (<code>text_embedding</code>, <code>rerank</code>)</li>
+	 * <li>Watsonx inference integration (<code>text_embedding</code>)</li>
+	 * <li>JinaAI (<code>text_embedding</code>, <code>rerank</code>)</li>
+	 * </ul>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/put-inference-api.html">Documentation
 	 *      on elastic.co</a>
@@ -369,7 +382,36 @@ public class ElasticsearchInferenceAsyncClient
 	 * and manage trained models. However, if you do not plan to use the inference
 	 * APIs to use these models or if you want to use non-NLP models, use the
 	 * machine learning trained model APIs.
-	 * 
+	 * <p>
+	 * The following integrations are available through the inference API. You can
+	 * find the available task types next to the integration name:
+	 * <ul>
+	 * <li>AlibabaCloud AI Search (<code>completion</code>, <code>rerank</code>,
+	 * <code>sparse_embedding</code>, <code>text_embedding</code>)</li>
+	 * <li>Amazon Bedrock (<code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Anthropic (<code>completion</code>)</li>
+	 * <li>Azure AI Studio (<code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Azure OpenAI (<code>completion</code>, <code>text_embedding</code>)</li>
+	 * <li>Cohere (<code>completion</code>, <code>rerank</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Elasticsearch (<code>rerank</code>, <code>sparse_embedding</code>,
+	 * <code>text_embedding</code> - this service is for built-in models and models
+	 * uploaded through Eland)</li>
+	 * <li>ELSER (<code>sparse_embedding</code>)</li>
+	 * <li>Google AI Studio (<code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>Google Vertex AI (<code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>Hugging Face (<code>text_embedding</code>)</li>
+	 * <li>Mistral (<code>text_embedding</code>)</li>
+	 * <li>OpenAI (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>)</li>
+	 * <li>VoyageAI (<code>text_embedding</code>, <code>rerank</code>)</li>
+	 * <li>Watsonx inference integration (<code>text_embedding</code>)</li>
+	 * <li>JinaAI (<code>text_embedding</code>, <code>rerank</code>)</li>
+	 * </ul>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRequest}
@@ -426,7 +468,7 @@ public class ElasticsearchInferenceAsyncClient
 	/**
 	 * Create an Amazon Bedrock inference endpoint.
 	 * <p>
-	 * Creates an inference endpoint to perform an inference task with the
+	 * Create an inference endpoint to perform an inference task with the
 	 * <code>amazonbedrock</code> service. <blockquote>
 	 * <p>
 	 * info You need to provide the access and secret keys only once, during the
@@ -453,7 +495,7 @@ public class ElasticsearchInferenceAsyncClient
 	/**
 	 * Create an Amazon Bedrock inference endpoint.
 	 * <p>
-	 * Creates an inference endpoint to perform an inference task with the
+	 * Create an inference endpoint to perform an inference task with the
 	 * <code>amazonbedrock</code> service. <blockquote>
 	 * <p>
 	 * info You need to provide the access and secret keys only once, during the

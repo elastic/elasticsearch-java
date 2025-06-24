@@ -77,7 +77,7 @@ public class GeoGridQuery extends QueryBase
 	 */
 
 	public enum Kind implements JsonEnum {
-		Geogrid("geogrid"),
+		Geotile("geotile"),
 
 		Geohash("geohash"),
 
@@ -142,20 +142,20 @@ public class GeoGridQuery extends QueryBase
 	}
 
 	/**
-	 * Is this variant instance of kind {@code geogrid}?
+	 * Is this variant instance of kind {@code geotile}?
 	 */
-	public boolean isGeogrid() {
-		return _kind == Kind.Geogrid;
+	public boolean isGeotile() {
+		return _kind == Kind.Geotile;
 	}
 
 	/**
-	 * Get the {@code geogrid} variant value.
+	 * Get the {@code geotile} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code geogrid} kind.
+	 *             if the current variant is not of the {@code geotile} kind.
 	 */
-	public String geogrid() {
-		return TaggedUnionUtils.get(this, Kind.Geogrid);
+	public String geotile() {
+		return TaggedUnionUtils.get(this, Kind.Geotile);
 	}
 
 	/**
@@ -206,7 +206,7 @@ public class GeoGridQuery extends QueryBase
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
 			switch (_kind) {
-				case Geogrid :
+				case Geotile :
 					generator.write(((String) this._value));
 
 					break;
@@ -250,8 +250,8 @@ public class GeoGridQuery extends QueryBase
 		protected Builder self() {
 			return this;
 		}
-		public ObjectBuilder<GeoGridQuery> geogrid(String v) {
-			this._kind = Kind.Geogrid;
+		public ObjectBuilder<GeoGridQuery> geotile(String v) {
+			this._kind = Kind.Geotile;
 			this._value = v;
 			return this;
 		}
@@ -277,7 +277,7 @@ public class GeoGridQuery extends QueryBase
 
 	protected static void setupGeoGridQueryDeserializer(ObjectDeserializer<Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::geogrid, JsonpDeserializer.stringDeserializer(), "geogrid");
+		op.add(Builder::geotile, JsonpDeserializer.stringDeserializer(), "geotile");
 		op.add(Builder::geohash, JsonpDeserializer.stringDeserializer(), "geohash");
 		op.add(Builder::geohex, JsonpDeserializer.stringDeserializer(), "geohex");
 

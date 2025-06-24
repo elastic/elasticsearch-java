@@ -66,16 +66,8 @@ import javax.annotation.Nullable;
  * The chat completion inference API enables real-time responses for chat
  * completion tasks by delivering answers incrementally, reducing response times
  * during computation. It only works with the <code>chat_completion</code> task
- * type for <code>openai</code> and <code>elastic</code> inference services.
- * <p>
- * IMPORTANT: The inference APIs enable you to use certain services, such as
- * built-in machine learning models (ELSER, E5), models uploaded through Eland,
- * Cohere, OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic,
- * Watsonx.ai, or Hugging Face. For built-in models and models uploaded through
- * Eland, the inference APIs offer an alternative way to use and manage trained
- * models. However, if you do not plan to use the inference APIs to use these
- * models or if you want to use non-NLP models, use the machine learning trained
- * model APIs.
+ * type for <code>openai</code>, <code>elastic</code> and
+ * <code>googlevertexai</code> inference services.
  * <p>
  * NOTE: The <code>chat_completion</code> task type is only available within the
  * _stream API and only supports streaming. The Chat completion inference API

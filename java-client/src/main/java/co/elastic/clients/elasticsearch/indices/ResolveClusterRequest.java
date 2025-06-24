@@ -201,11 +201,10 @@ public class ResolveClusterRequest extends RequestBase {
 	 * Type of index that wildcard patterns can match. If the request can target
 	 * data streams, this argument determines whether wildcard expressions match
 	 * hidden data streams. Supports comma-separated values, such as
-	 * <code>open,hidden</code>. Valid values are: <code>all</code>,
-	 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
-	 * <code>none</code>. NOTE: This option is only supported when specifying an
-	 * index expression. You will get an error if you specify index options to the
-	 * <code>_resolve/cluster</code> API endpoint that takes no index expression.
+	 * <code>open,hidden</code>. NOTE: This option is only supported when specifying
+	 * an index expression. You will get an error if you specify index options to
+	 * the <code>_resolve/cluster</code> API endpoint that takes no index
+	 * expression.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -322,11 +321,10 @@ public class ResolveClusterRequest extends RequestBase {
 		 * Type of index that wildcard patterns can match. If the request can target
 		 * data streams, this argument determines whether wildcard expressions match
 		 * hidden data streams. Supports comma-separated values, such as
-		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
-		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
-		 * <code>none</code>. NOTE: This option is only supported when specifying an
-		 * index expression. You will get an error if you specify index options to the
-		 * <code>_resolve/cluster</code> API endpoint that takes no index expression.
+		 * <code>open,hidden</code>. NOTE: This option is only supported when specifying
+		 * an index expression. You will get an error if you specify index options to
+		 * the <code>_resolve/cluster</code> API endpoint that takes no index
+		 * expression.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -341,11 +339,10 @@ public class ResolveClusterRequest extends RequestBase {
 		 * Type of index that wildcard patterns can match. If the request can target
 		 * data streams, this argument determines whether wildcard expressions match
 		 * hidden data streams. Supports comma-separated values, such as
-		 * <code>open,hidden</code>. Valid values are: <code>all</code>,
-		 * <code>open</code>, <code>closed</code>, <code>hidden</code>,
-		 * <code>none</code>. NOTE: This option is only supported when specifying an
-		 * index expression. You will get an error if you specify index options to the
-		 * <code>_resolve/cluster</code> API endpoint that takes no index expression.
+		 * <code>open,hidden</code>. NOTE: This option is only supported when specifying
+		 * an index expression. You will get an error if you specify index options to
+		 * the <code>_resolve/cluster</code> API endpoint that takes no index
+		 * expression.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>

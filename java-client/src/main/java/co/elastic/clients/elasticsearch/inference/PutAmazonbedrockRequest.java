@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 /**
  * Create an Amazon Bedrock inference endpoint.
  * <p>
- * Creates an inference endpoint to perform an inference task with the
+ * Create an inference endpoint to perform an inference task with the
  * <code>amazonbedrock</code> service. <blockquote>
  * <p>
  * info You need to provide the access and secret keys only once, during the
