@@ -294,6 +294,7 @@ public class VariantsTest extends ModelTestCase {
             "      \"index\": \"test\",\n" +
             "      \"managed\": true,\n" +
             "      \"policy\": \"my_policy\",\n" +
+            "      \"skip\": false,\n" +
             "      \"index_creation_date_millis\": 1736785235558,\n" +
             "      \"time_since_index_creation\": \"27.75d\",\n" +
             "      \"lifecycle_date_millis\": 1736785235558,\n" +
