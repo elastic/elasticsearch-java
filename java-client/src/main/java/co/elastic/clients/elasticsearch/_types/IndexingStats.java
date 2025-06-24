@@ -97,6 +97,12 @@ public class IndexingStats implements JsonpSerializable {
 	@Nullable
 	private final Double writeLoad;
 
+	@Nullable
+	private final Double recentWriteLoad;
+
+	@Nullable
+	private final Double peakWriteLoad;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexingStats(Builder builder) {
@@ -118,6 +124,8 @@ public class IndexingStats implements JsonpSerializable {
 		this.indexFailed = ApiTypeHelper.requireNonNull(builder.indexFailed, this, "indexFailed", 0);
 		this.types = ApiTypeHelper.unmodifiable(builder.types);
 		this.writeLoad = builder.writeLoad;
+		this.recentWriteLoad = builder.recentWriteLoad;
+		this.peakWriteLoad = builder.peakWriteLoad;
 
 	}
 
@@ -235,6 +243,22 @@ public class IndexingStats implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code recent_write_load}
+	 */
+	@Nullable
+	public final Double recentWriteLoad() {
+		return this.recentWriteLoad;
+	}
+
+	/**
+	 * API name: {@code peak_write_load}
+	 */
+	@Nullable
+	public final Double peakWriteLoad() {
+		return this.peakWriteLoad;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -306,6 +330,16 @@ public class IndexingStats implements JsonpSerializable {
 			generator.write(this.writeLoad);
 
 		}
+		if (this.recentWriteLoad != null) {
+			generator.writeKey("recent_write_load");
+			generator.write(this.recentWriteLoad);
+
+		}
+		if (this.peakWriteLoad != null) {
+			generator.writeKey("peak_write_load");
+			generator.write(this.peakWriteLoad);
+
+		}
 
 	}
 
@@ -355,6 +389,12 @@ public class IndexingStats implements JsonpSerializable {
 
 		@Nullable
 		private Double writeLoad;
+
+		@Nullable
+		private Double recentWriteLoad;
+
+		@Nullable
+		private Double peakWriteLoad;
 
 		/**
 		 * Required - API name: {@code index_current}
@@ -518,6 +558,22 @@ public class IndexingStats implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code recent_write_load}
+		 */
+		public final Builder recentWriteLoad(@Nullable Double value) {
+			this.recentWriteLoad = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code peak_write_load}
+		 */
+		public final Builder peakWriteLoad(@Nullable Double value) {
+			this.peakWriteLoad = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -561,6 +617,8 @@ public class IndexingStats implements JsonpSerializable {
 		op.add(Builder::indexFailed, JsonpDeserializer.longDeserializer(), "index_failed");
 		op.add(Builder::types, JsonpDeserializer.stringMapDeserializer(IndexingStats._DESERIALIZER), "types");
 		op.add(Builder::writeLoad, JsonpDeserializer.doubleDeserializer(), "write_load");
+		op.add(Builder::recentWriteLoad, JsonpDeserializer.doubleDeserializer(), "recent_write_load");
+		op.add(Builder::peakWriteLoad, JsonpDeserializer.doubleDeserializer(), "peak_write_load");
 
 	}
 

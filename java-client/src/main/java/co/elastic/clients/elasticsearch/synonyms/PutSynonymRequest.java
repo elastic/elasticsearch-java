@@ -32,8 +32,8 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,6 +75,9 @@ import javax.annotation.Nullable;
 public class PutSynonymRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
+	@Nullable
+	private final Boolean refresh;
+
 	private final List<SynonymRule> synonymsSet;
 
 	// ---------------------------------------------------------------------------------------------
@@ -82,6 +85,7 @@ public class PutSynonymRequest extends RequestBase implements JsonpSerializable 
 	private PutSynonymRequest(Builder builder) {
 
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.refresh = builder.refresh;
 		this.synonymsSet = ApiTypeHelper.unmodifiableRequired(builder.synonymsSet, this, "synonymsSet");
 
 	}
@@ -97,6 +101,19 @@ public class PutSynonymRequest extends RequestBase implements JsonpSerializable 
 	 */
 	public final String id() {
 		return this.id;
+	}
+
+	/**
+	 * If <code>true</code>, the request will refresh the analyzers with the new
+	 * synonyms set and wait for the new synonyms to be available before returning.
+	 * If <code>false</code>, analyzers will not be reloaded with the new synonym
+	 * set
+	 * <p>
+	 * API name: {@code refresh}
+	 */
+	@Nullable
+	public final Boolean refresh() {
+		return this.refresh;
 	}
 
 	/**
@@ -143,6 +160,9 @@ public class PutSynonymRequest extends RequestBase implements JsonpSerializable 
 				ObjectBuilder<PutSynonymRequest> {
 		private String id;
 
+		@Nullable
+		private Boolean refresh;
+
 		private List<SynonymRule> synonymsSet;
 
 		/**
@@ -152,6 +172,19 @@ public class PutSynonymRequest extends RequestBase implements JsonpSerializable 
 		 */
 		public final Builder id(String value) {
 			this.id = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the request will refresh the analyzers with the new
+		 * synonyms set and wait for the new synonyms to be available before returning.
+		 * If <code>false</code>, analyzers will not be reloaded with the new synonym
+		 * set
+		 * <p>
+		 * API name: {@code refresh}
+		 */
+		public final Builder refresh(@Nullable Boolean value) {
+			this.refresh = value;
 			return this;
 		}
 
@@ -272,7 +305,11 @@ public class PutSynonymRequest extends RequestBase implements JsonpSerializable 
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.refresh != null) {
+					params.put("refresh", String.valueOf(request.refresh));
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, PutSynonymResponse._DESERIALIZER);
 }

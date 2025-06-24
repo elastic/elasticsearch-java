@@ -71,7 +71,9 @@ import javax.annotation.Nullable;
  * Acknowledging an action throttles further executions of that action until its
  * <code>ack.state</code> is reset to <code>awaits_successful_execution</code>.
  * This happens when the condition of the watch is not met (the condition
- * evaluates to false).
+ * evaluates to false). To demonstrate how throttling works in practice and how
+ * it can be configured for individual actions within a watch, refer to External
+ * documentation.
  * 
  * @see <a href="../doc-files/api-spec.html#watcher.ack_watch.Request">API
  *      specification</a>

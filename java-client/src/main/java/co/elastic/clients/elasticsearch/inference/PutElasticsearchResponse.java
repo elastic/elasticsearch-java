@@ -52,7 +52,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class PutElasticsearchResponse extends InferenceEndpointInfo {
+public class PutElasticsearchResponse extends InferenceEndpointInfoElasticsearch {
 	// ---------------------------------------------------------------------------------------------
 
 	private PutElasticsearchResponse(Builder builder) {
@@ -70,7 +70,7 @@ public class PutElasticsearchResponse extends InferenceEndpointInfo {
 	 * Builder for {@link PutElasticsearchResponse}.
 	 */
 
-	public static class Builder extends InferenceEndpointInfo.AbstractBuilder<Builder>
+	public static class Builder extends InferenceEndpointInfoElasticsearch.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutElasticsearchResponse> {
 		@Override
@@ -101,7 +101,7 @@ public class PutElasticsearchResponse extends InferenceEndpointInfo {
 
 	protected static void setupPutElasticsearchResponseDeserializer(
 			ObjectDeserializer<PutElasticsearchResponse.Builder> op) {
-		InferenceEndpointInfo.setupInferenceEndpointInfoDeserializer(op);
+		InferenceEndpointInfoElasticsearch.setupInferenceEndpointInfoElasticsearchDeserializer(op);
 
 	}
 

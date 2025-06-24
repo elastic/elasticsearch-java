@@ -76,7 +76,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-license-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -99,7 +99,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteLicenseRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-license-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -118,7 +118,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-license-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -143,7 +143,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * </blockquote>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-license-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -171,7 +171,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetLicenseRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-license-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -194,7 +194,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * </blockquote>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-license-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -209,7 +209,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * Get the basic license status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-license-get-basic-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-get-basic-status">Documentation
 	 *      on elastic.co</a>
 	 */
 	public GetBasicStatusResponse getBasicStatus() throws IOException, ElasticsearchException {
@@ -223,7 +223,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * Get the trial status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-license-get-trial-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-get-trial-status">Documentation
 	 *      on elastic.co</a>
 	 */
 	public GetTrialStatusResponse getTrialStatus() throws IOException, ElasticsearchException {
@@ -248,7 +248,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * enabled, only operator users can use this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-license-post">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-post">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -277,7 +277,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PostRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-license-post">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-post">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -301,7 +301,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * enabled, only operator users can use this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-license-post">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-post">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -329,7 +329,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * To check the status of your basic license, use the get basic license API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-license-post-start-basic">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-post-start-basic">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -361,7 +361,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PostStartBasicRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-license-post-start-basic">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-post-start-basic">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -388,7 +388,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * To check the status of your basic license, use the get basic license API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-license-post-start-basic">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-post-start-basic">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -412,7 +412,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * To check the status of your trial, use the get trial status API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-license-post-start-trial">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-post-start-trial">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -440,7 +440,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PostStartTrialRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-license-post-start-trial">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-post-start-trial">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -463,7 +463,7 @@ public class ElasticsearchLicenseClient extends ApiClient<ElasticsearchTransport
 	 * To check the status of your trial, use the get trial status API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-license-post-start-trial">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-license-post-start-trial">Documentation
 	 *      on elastic.co</a>
 	 */
 

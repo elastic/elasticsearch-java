@@ -40,7 +40,7 @@ import java.util.function.Function;
 /**
  * Builders for {@link GeoGridQuery} variants.
  * <p>
- * Variants <code>geogrid</code>, <code>geohash</code>, <code>geohex</code> are
+ * Variants <code>geotile</code>, <code>geohash</code>, <code>geohex</code> are
  * not available here as they don't have a dedicated class. Use
  * {@link GeoGridQuery}'s builder for these.
  * 

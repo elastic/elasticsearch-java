@@ -159,7 +159,24 @@ public class RequestChatCompletion implements JsonpSerializable {
 	}
 
 	/**
-	 * Controls which tool is called by the model.
+	 * Controls which tool is called by the model. String representation: One of
+	 * <code>auto</code>, <code>none</code>, or <code>requrired</code>.
+	 * <code>auto</code> allows the model to choose between calling tools and
+	 * generating a message. <code>none</code> causes the model to not call any
+	 * tools. <code>required</code> forces the model to call one or more tools.
+	 * Example (object representation):
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;tool_choice&quot;: {
+	 *       &quot;type&quot;: &quot;function&quot;,
+	 *       &quot;function&quot;: {
+	 *           &quot;name&quot;: &quot;get_current_weather&quot;
+	 *       }
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
 	 * <p>
 	 * API name: {@code tool_choice}
 	 */
@@ -169,7 +186,33 @@ public class RequestChatCompletion implements JsonpSerializable {
 	}
 
 	/**
-	 * A list of tools that the model can call.
+	 * A list of tools that the model can call. Example:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;tools&quot;: [
+	 *       {
+	 *           &quot;type&quot;: &quot;function&quot;,
+	 *           &quot;function&quot;: {
+	 *               &quot;name&quot;: &quot;get_price_of_item&quot;,
+	 *               &quot;description&quot;: &quot;Get the current price of an item&quot;,
+	 *               &quot;parameters&quot;: {
+	 *                   &quot;type&quot;: &quot;object&quot;,
+	 *                   &quot;properties&quot;: {
+	 *                       &quot;item&quot;: {
+	 *                           &quot;id&quot;: &quot;12345&quot;
+	 *                       },
+	 *                       &quot;unit&quot;: {
+	 *                           &quot;type&quot;: &quot;currency&quot;
+	 *                       }
+	 *                   }
+	 *               }
+	 *           }
+	 *       }
+	 *   ]
+	 * }
+	 * </code>
+	 * </pre>
 	 * <p>
 	 * API name: {@code tools}
 	 */
@@ -401,7 +444,24 @@ public class RequestChatCompletion implements JsonpSerializable {
 		}
 
 		/**
-		 * Controls which tool is called by the model.
+		 * Controls which tool is called by the model. String representation: One of
+		 * <code>auto</code>, <code>none</code>, or <code>requrired</code>.
+		 * <code>auto</code> allows the model to choose between calling tools and
+		 * generating a message. <code>none</code> causes the model to not call any
+		 * tools. <code>required</code> forces the model to call one or more tools.
+		 * Example (object representation):
+		 * 
+		 * <pre>
+		 * <code>{
+		 *   &quot;tool_choice&quot;: {
+		 *       &quot;type&quot;: &quot;function&quot;,
+		 *       &quot;function&quot;: {
+		 *           &quot;name&quot;: &quot;get_current_weather&quot;
+		 *       }
+		 *   }
+		 * }
+		 * </code>
+		 * </pre>
 		 * <p>
 		 * API name: {@code tool_choice}
 		 */
@@ -411,7 +471,24 @@ public class RequestChatCompletion implements JsonpSerializable {
 		}
 
 		/**
-		 * Controls which tool is called by the model.
+		 * Controls which tool is called by the model. String representation: One of
+		 * <code>auto</code>, <code>none</code>, or <code>requrired</code>.
+		 * <code>auto</code> allows the model to choose between calling tools and
+		 * generating a message. <code>none</code> causes the model to not call any
+		 * tools. <code>required</code> forces the model to call one or more tools.
+		 * Example (object representation):
+		 * 
+		 * <pre>
+		 * <code>{
+		 *   &quot;tool_choice&quot;: {
+		 *       &quot;type&quot;: &quot;function&quot;,
+		 *       &quot;function&quot;: {
+		 *           &quot;name&quot;: &quot;get_current_weather&quot;
+		 *       }
+		 *   }
+		 * }
+		 * </code>
+		 * </pre>
 		 * <p>
 		 * API name: {@code tool_choice}
 		 */
@@ -420,7 +497,33 @@ public class RequestChatCompletion implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of tools that the model can call.
+		 * A list of tools that the model can call. Example:
+		 * 
+		 * <pre>
+		 * <code>{
+		 *   &quot;tools&quot;: [
+		 *       {
+		 *           &quot;type&quot;: &quot;function&quot;,
+		 *           &quot;function&quot;: {
+		 *               &quot;name&quot;: &quot;get_price_of_item&quot;,
+		 *               &quot;description&quot;: &quot;Get the current price of an item&quot;,
+		 *               &quot;parameters&quot;: {
+		 *                   &quot;type&quot;: &quot;object&quot;,
+		 *                   &quot;properties&quot;: {
+		 *                       &quot;item&quot;: {
+		 *                           &quot;id&quot;: &quot;12345&quot;
+		 *                       },
+		 *                       &quot;unit&quot;: {
+		 *                           &quot;type&quot;: &quot;currency&quot;
+		 *                       }
+		 *                   }
+		 *               }
+		 *           }
+		 *       }
+		 *   ]
+		 * }
+		 * </code>
+		 * </pre>
 		 * <p>
 		 * API name: {@code tools}
 		 * <p>
@@ -432,7 +535,33 @@ public class RequestChatCompletion implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of tools that the model can call.
+		 * A list of tools that the model can call. Example:
+		 * 
+		 * <pre>
+		 * <code>{
+		 *   &quot;tools&quot;: [
+		 *       {
+		 *           &quot;type&quot;: &quot;function&quot;,
+		 *           &quot;function&quot;: {
+		 *               &quot;name&quot;: &quot;get_price_of_item&quot;,
+		 *               &quot;description&quot;: &quot;Get the current price of an item&quot;,
+		 *               &quot;parameters&quot;: {
+		 *                   &quot;type&quot;: &quot;object&quot;,
+		 *                   &quot;properties&quot;: {
+		 *                       &quot;item&quot;: {
+		 *                           &quot;id&quot;: &quot;12345&quot;
+		 *                       },
+		 *                       &quot;unit&quot;: {
+		 *                           &quot;type&quot;: &quot;currency&quot;
+		 *                       }
+		 *                   }
+		 *               }
+		 *           }
+		 *       }
+		 *   ]
+		 * }
+		 * </code>
+		 * </pre>
 		 * <p>
 		 * API name: {@code tools}
 		 * <p>
@@ -444,7 +573,33 @@ public class RequestChatCompletion implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of tools that the model can call.
+		 * A list of tools that the model can call. Example:
+		 * 
+		 * <pre>
+		 * <code>{
+		 *   &quot;tools&quot;: [
+		 *       {
+		 *           &quot;type&quot;: &quot;function&quot;,
+		 *           &quot;function&quot;: {
+		 *               &quot;name&quot;: &quot;get_price_of_item&quot;,
+		 *               &quot;description&quot;: &quot;Get the current price of an item&quot;,
+		 *               &quot;parameters&quot;: {
+		 *                   &quot;type&quot;: &quot;object&quot;,
+		 *                   &quot;properties&quot;: {
+		 *                       &quot;item&quot;: {
+		 *                           &quot;id&quot;: &quot;12345&quot;
+		 *                       },
+		 *                       &quot;unit&quot;: {
+		 *                           &quot;type&quot;: &quot;currency&quot;
+		 *                       }
+		 *                   }
+		 *               }
+		 *           }
+		 *       }
+		 *   ]
+		 * }
+		 * </code>
+		 * </pre>
 		 * <p>
 		 * API name: {@code tools}
 		 * <p>

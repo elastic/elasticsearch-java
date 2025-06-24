@@ -77,7 +77,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 * supported.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-autoscaling-delete-autoscaling-policy">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-autoscaling-delete-autoscaling-policy">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -100,7 +100,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteAutoscalingPolicyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-autoscaling-delete-autoscaling-policy">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-autoscaling-delete-autoscaling-policy">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -136,7 +136,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 * make autoscaling decisions.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-autoscaling-get-autoscaling-capacity">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-autoscaling-get-autoscaling-capacity">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -176,7 +176,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAutoscalingCapacityRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-autoscaling-get-autoscaling-capacity">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-autoscaling-get-autoscaling-capacity">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -210,7 +210,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 * make autoscaling decisions.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-autoscaling-get-autoscaling-capacity">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-autoscaling-get-autoscaling-capacity">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -229,7 +229,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 * supported.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-autoscaling-get-autoscaling-capacity">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-autoscaling-get-autoscaling-capacity">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -251,7 +251,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAutoscalingPolicyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-autoscaling-get-autoscaling-capacity">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-autoscaling-get-autoscaling-capacity">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -270,7 +270,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 * supported.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-autoscaling-put-autoscaling-policy">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-autoscaling-put-autoscaling-policy">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -292,7 +292,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutAutoscalingPolicyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-autoscaling-put-autoscaling-policy">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-autoscaling-put-autoscaling-policy">Documentation
 	 *      on elastic.co</a>
 	 */
 

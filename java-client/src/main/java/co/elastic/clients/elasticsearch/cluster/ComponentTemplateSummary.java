@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.AliasDefinition;
 import co.elastic.clients.elasticsearch.indices.DataStreamLifecycleWithRollover;
+import co.elastic.clients.elasticsearch.indices.DataStreamOptionsTemplate;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -82,6 +83,9 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 	@Nullable
 	private final DataStreamLifecycleWithRollover lifecycle;
 
+	@Nullable
+	private final DataStreamOptionsTemplate dataStreamOptions;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ComponentTemplateSummary(Builder builder) {
@@ -92,6 +96,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		this.mappings = builder.mappings;
 		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.lifecycle = builder.lifecycle;
+		this.dataStreamOptions = builder.dataStreamOptions;
 
 	}
 
@@ -142,6 +147,14 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 	@Nullable
 	public final DataStreamLifecycleWithRollover lifecycle() {
 		return this.lifecycle;
+	}
+
+	/**
+	 * API name: {@code data_stream_options}
+	 */
+	@Nullable
+	public final DataStreamOptionsTemplate dataStreamOptions() {
+		return this.dataStreamOptions;
 	}
 
 	/**
@@ -203,6 +216,11 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 			this.lifecycle.serialize(generator, mapper);
 
 		}
+		if (this.dataStreamOptions != null) {
+			generator.writeKey("data_stream_options");
+			this.dataStreamOptions.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -237,6 +255,9 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 
 		@Nullable
 		private DataStreamLifecycleWithRollover lifecycle;
+
+		@Nullable
+		private DataStreamOptionsTemplate dataStreamOptions;
 
 		/**
 		 * API name: {@code _meta}
@@ -355,6 +376,22 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 			return this.lifecycle(fn.apply(new DataStreamLifecycleWithRollover.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code data_stream_options}
+		 */
+		public final Builder dataStreamOptions(@Nullable DataStreamOptionsTemplate value) {
+			this.dataStreamOptions = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code data_stream_options}
+		 */
+		public final Builder dataStreamOptions(
+				Function<DataStreamOptionsTemplate.Builder, ObjectBuilder<DataStreamOptionsTemplate>> fn) {
+			return this.dataStreamOptions(fn.apply(new DataStreamOptionsTemplate.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -390,6 +427,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(AliasDefinition._DESERIALIZER), "aliases");
 		op.add(Builder::lifecycle, DataStreamLifecycleWithRollover._DESERIALIZER, "lifecycle");
+		op.add(Builder::dataStreamOptions, DataStreamOptionsTemplate._DESERIALIZER, "data_stream_options");
 
 	}
 

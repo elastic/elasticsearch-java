@@ -180,7 +180,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * Apply oversampling and rescoring to quantized vectors *
+	 * Apply oversampling and rescoring to quantized vectors
 	 * <p>
 	 * API name: {@code rescore_vector}
 	 */
@@ -421,7 +421,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Apply oversampling and rescoring to quantized vectors *
+		 * Apply oversampling and rescoring to quantized vectors
 		 * <p>
 		 * API name: {@code rescore_vector}
 		 */
@@ -431,7 +431,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * Apply oversampling and rescoring to quantized vectors *
+		 * Apply oversampling and rescoring to quantized vectors
 		 * <p>
 		 * API name: {@code rescore_vector}
 		 */

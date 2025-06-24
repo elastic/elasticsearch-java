@@ -30,8 +30,8 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -64,6 +64,9 @@ import javax.annotation.Nullable;
  */
 
 public class DeleteSynonymRuleRequest extends RequestBase {
+	@Nullable
+	private final Boolean refresh;
+
 	private final String ruleId;
 
 	private final String setId;
@@ -72,6 +75,7 @@ public class DeleteSynonymRuleRequest extends RequestBase {
 
 	private DeleteSynonymRuleRequest(Builder builder) {
 
+		this.refresh = builder.refresh;
 		this.ruleId = ApiTypeHelper.requireNonNull(builder.ruleId, this, "ruleId");
 		this.setId = ApiTypeHelper.requireNonNull(builder.setId, this, "setId");
 
@@ -79,6 +83,19 @@ public class DeleteSynonymRuleRequest extends RequestBase {
 
 	public static DeleteSynonymRuleRequest of(Function<Builder, ObjectBuilder<DeleteSynonymRuleRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * If <code>true</code>, the request will refresh the analyzers with the deleted
+	 * synonym rule and wait for the new synonyms to be available before returning.
+	 * If <code>false</code>, analyzers will not be reloaded with the deleted
+	 * synonym rule
+	 * <p>
+	 * API name: {@code refresh}
+	 */
+	@Nullable
+	public final Boolean refresh() {
+		return this.refresh;
 	}
 
 	/**
@@ -108,9 +125,25 @@ public class DeleteSynonymRuleRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteSynonymRuleRequest> {
+		@Nullable
+		private Boolean refresh;
+
 		private String ruleId;
 
 		private String setId;
+
+		/**
+		 * If <code>true</code>, the request will refresh the analyzers with the deleted
+		 * synonym rule and wait for the new synonyms to be available before returning.
+		 * If <code>false</code>, analyzers will not be reloaded with the deleted
+		 * synonym rule
+		 * <p>
+		 * API name: {@code refresh}
+		 */
+		public final Builder refresh(@Nullable Boolean value) {
+			this.refresh = value;
+			return this;
+		}
 
 		/**
 		 * Required - The ID of the synonym rule to delete.
@@ -207,7 +240,11 @@ public class DeleteSynonymRuleRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.refresh != null) {
+					params.put("refresh", String.valueOf(request.refresh));
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, DeleteSynonymRuleResponse._DESERIALIZER);
 }

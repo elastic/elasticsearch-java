@@ -78,7 +78,7 @@ public class ElasticsearchGraphAsyncClient extends ApiClient<ElasticsearchTransp
 	 * interest. You can exclude vertices that have already been returned.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-graph">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-graph">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -103,7 +103,7 @@ public class ElasticsearchGraphAsyncClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link ExploreRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-graph">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-graph">Documentation
 	 *      on elastic.co</a>
 	 */
 

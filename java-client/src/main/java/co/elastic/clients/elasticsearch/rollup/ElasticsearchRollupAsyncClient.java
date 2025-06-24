@@ -101,7 +101,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * </pre>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-delete-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-delete-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -147,7 +147,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-delete-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-delete-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -168,7 +168,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * historical rollup job, the rollup capabilities API may be more useful.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-get-jobs">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-get-jobs">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -192,7 +192,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link GetJobsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-get-jobs">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-get-jobs">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -211,7 +211,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * historical rollup job, the rollup capabilities API may be more useful.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-get-jobs">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-get-jobs">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -239,7 +239,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * </ol>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-get-rollup-caps">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-get-rollup-caps">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -270,7 +270,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRollupCapsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-get-rollup-caps">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-get-rollup-caps">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -296,7 +296,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * </ol>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-get-rollup-caps">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-get-rollup-caps">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -320,7 +320,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-get-rollup-index-caps">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-get-rollup-index-caps">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -347,7 +347,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRollupIndexCapsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-get-rollup-index-caps">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-get-rollup-index-caps">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -378,7 +378,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * start rollup jobs API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-put-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-put-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -412,7 +412,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link PutJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-put-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-put-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -472,7 +472,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * non-rollup index are used.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-rollup-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-rollup-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -539,7 +539,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link RollupSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-rollup-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-rollup-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -619,7 +619,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * non-rollup index are used.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-rollup-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-rollup-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -686,7 +686,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link RollupSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-rollup-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-rollup-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -703,7 +703,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * happens.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-start-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-start-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -723,7 +723,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link StartJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-start-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-start-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -753,7 +753,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 * elapses without the job moving to STOPPED, a timeout exception occurs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-stop-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-stop-job">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -786,7 +786,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link StopJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rollup-stop-job">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-stop-job">Documentation
 	 *      on elastic.co</a>
 	 */
 

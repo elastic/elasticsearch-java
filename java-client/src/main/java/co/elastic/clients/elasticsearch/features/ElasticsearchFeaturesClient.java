@@ -84,7 +84,7 @@ public class ElasticsearchFeaturesClient extends ApiClient<ElasticsearchTranspor
 	 * the plugin that defines that feature must be installed on the master node.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-features-get-features">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-features-get-features">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -115,7 +115,7 @@ public class ElasticsearchFeaturesClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetFeaturesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-features-get-features">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-features-get-features">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -142,7 +142,7 @@ public class ElasticsearchFeaturesClient extends ApiClient<ElasticsearchTranspor
 	 * the plugin that defines that feature must be installed on the master node.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-features-get-features">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-features-get-features">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -179,7 +179,7 @@ public class ElasticsearchFeaturesClient extends ApiClient<ElasticsearchTranspor
 	 * doubts about which plugins are installed on individual nodes.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-features-reset-features">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-features-reset-features">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -220,7 +220,7 @@ public class ElasticsearchFeaturesClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link ResetFeaturesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-features-reset-features">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-features-reset-features">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -256,7 +256,7 @@ public class ElasticsearchFeaturesClient extends ApiClient<ElasticsearchTranspor
 	 * doubts about which plugins are installed on individual nodes.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-features-reset-features">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-features-reset-features">Documentation
 	 *      on elastic.co</a>
 	 */
 

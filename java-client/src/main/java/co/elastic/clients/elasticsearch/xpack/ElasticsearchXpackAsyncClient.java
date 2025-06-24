@@ -77,7 +77,7 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-info">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-info">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -101,7 +101,7 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link XpackInfoRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-info">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-info">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -120,7 +120,7 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-info">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-info">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -137,7 +137,7 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	 * usage statistics.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-xpack">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-xpack">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -157,7 +157,7 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link XpackUsageRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-xpack">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-xpack">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -172,7 +172,7 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	 * usage statistics.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-xpack">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-xpack">Documentation
 	 *      on elastic.co</a>
 	 */
 

@@ -52,7 +52,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class PutAzureaistudioResponse extends InferenceEndpointInfo {
+public class PutAzureaistudioResponse extends InferenceEndpointInfoAzureAIStudio {
 	// ---------------------------------------------------------------------------------------------
 
 	private PutAzureaistudioResponse(Builder builder) {
@@ -70,7 +70,7 @@ public class PutAzureaistudioResponse extends InferenceEndpointInfo {
 	 * Builder for {@link PutAzureaistudioResponse}.
 	 */
 
-	public static class Builder extends InferenceEndpointInfo.AbstractBuilder<Builder>
+	public static class Builder extends InferenceEndpointInfoAzureAIStudio.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutAzureaistudioResponse> {
 		@Override
@@ -101,7 +101,7 @@ public class PutAzureaistudioResponse extends InferenceEndpointInfo {
 
 	protected static void setupPutAzureaistudioResponseDeserializer(
 			ObjectDeserializer<PutAzureaistudioResponse.Builder> op) {
-		InferenceEndpointInfo.setupInferenceEndpointInfoDeserializer(op);
+		InferenceEndpointInfoAzureAIStudio.setupInferenceEndpointInfoAzureAIStudioDeserializer(op);
 
 	}
 

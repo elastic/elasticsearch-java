@@ -52,7 +52,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class PutAmazonbedrockResponse extends InferenceEndpointInfo {
+public class PutAmazonbedrockResponse extends InferenceEndpointInfoAmazonBedrock {
 	// ---------------------------------------------------------------------------------------------
 
 	private PutAmazonbedrockResponse(Builder builder) {
@@ -70,7 +70,7 @@ public class PutAmazonbedrockResponse extends InferenceEndpointInfo {
 	 * Builder for {@link PutAmazonbedrockResponse}.
 	 */
 
-	public static class Builder extends InferenceEndpointInfo.AbstractBuilder<Builder>
+	public static class Builder extends InferenceEndpointInfoAmazonBedrock.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutAmazonbedrockResponse> {
 		@Override
@@ -101,7 +101,7 @@ public class PutAmazonbedrockResponse extends InferenceEndpointInfo {
 
 	protected static void setupPutAmazonbedrockResponseDeserializer(
 			ObjectDeserializer<PutAmazonbedrockResponse.Builder> op) {
-		InferenceEndpointInfo.setupInferenceEndpointInfoDeserializer(op);
+		InferenceEndpointInfoAmazonBedrock.setupInferenceEndpointInfoAmazonBedrockDeserializer(op);
 
 	}
 

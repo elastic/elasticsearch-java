@@ -533,9 +533,13 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * five shards. The request will only wait for those three shards to refresh.
 	 * The other two shards that make up the index do not participate in the
 	 * <code>_bulk</code> request at all.
+	 * <p>
+	 * You might want to disable the refresh interval temporarily to improve
+	 * indexing throughput for large bulk requests. Refer to the linked
+	 * documentation for step-by-step instructions using the index settings API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-bulk">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-bulk">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -707,12 +711,16 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * five shards. The request will only wait for those three shards to refresh.
 	 * The other two shards that make up the index do not participate in the
 	 * <code>_bulk</code> request at all.
+	 * <p>
+	 * You might want to disable the refresh interval temporarily to improve
+	 * indexing throughput for large bulk requests. Refer to the linked
+	 * documentation for step-by-step instructions using the index settings API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link BulkRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-bulk">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-bulk">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -881,9 +889,13 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * five shards. The request will only wait for those three shards to refresh.
 	 * The other two shards that make up the index do not participate in the
 	 * <code>_bulk</code> request at all.
+	 * <p>
+	 * You might want to disable the refresh interval temporarily to improve
+	 * indexing throughput for large bulk requests. Refer to the linked
+	 * documentation for step-by-step instructions using the index settings API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-bulk">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-bulk">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -899,7 +911,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * scrolling search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-clear-scroll">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-clear-scroll">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -918,7 +930,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearScrollRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-clear-scroll">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-clear-scroll">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -932,7 +944,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * scrolling search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-clear-scroll">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-clear-scroll">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -952,7 +964,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * for search requests.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-open-point-in-time">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-open-point-in-time">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -975,7 +987,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link ClosePointInTimeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-open-point-in-time">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-open-point-in-time">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1002,7 +1014,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * increase the scalability of the count.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-count">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-count">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1032,7 +1044,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link CountRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-count">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-count">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1057,7 +1069,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * increase the scalability of the count.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-count">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-count">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1194,7 +1206,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * and failed.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-create">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-create">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1334,7 +1346,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-create">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-create">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1399,7 +1411,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * needed) to shard replicas within that ID group.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1467,7 +1479,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1611,7 +1623,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * checks that it has been cancelled and terminates itself.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-delete-by-query">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-delete-by-query">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1758,7 +1770,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteByQueryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-delete-by-query">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-delete-by-query">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1778,7 +1790,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * current batch to prevent scroll timeouts.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-delete-by-query-rethrottle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-delete-by-query-rethrottle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1802,7 +1814,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteByQueryRethrottleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-delete-by-query-rethrottle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-delete-by-query-rethrottle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1818,7 +1830,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-delete-script">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-delete-script">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1837,7 +1849,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteScriptRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-delete-script">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-delete-script">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1874,7 +1886,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * deleted documents in the background as you continue to index more data.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1914,7 +1926,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1938,7 +1950,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * A document's source is not available if it is disabled in the mapping.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1965,7 +1977,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsSourceRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1982,7 +1994,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * for a query and a specific document.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-explain">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-explain">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2005,7 +2017,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link ExplainRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-explain">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-explain">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2041,7 +2053,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * for a query and a specific document.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-explain">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-explain">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2064,7 +2076,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link ExplainRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-explain">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-explain">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2086,7 +2098,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * field that belongs to the <code>keyword</code> family.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-field-caps">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-field-caps">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2111,7 +2123,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link FieldCapsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-field-caps">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-field-caps">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2131,7 +2143,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * field that belongs to the <code>keyword</code> family.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-field-caps">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-field-caps">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2217,7 +2229,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * deleted documents in the background as you continue to index more data.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2309,7 +2321,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2413,7 +2425,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * deleted documents in the background as you continue to index more data.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2504,7 +2516,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2520,7 +2532,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get-script">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get-script">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2539,7 +2551,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link GetScriptRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get-script">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get-script">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2556,7 +2568,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * Get a list of supported script contexts and their methods.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get-script-context">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get-script-context">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetScriptContextResponse> getScriptContext() {
@@ -2572,7 +2584,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * Get a list of available script types, languages, and contexts.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get-script-languages">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get-script-languages">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetScriptLanguagesResponse> getScriptLanguages() {
@@ -2601,7 +2613,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * </pre>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2638,7 +2650,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSourceRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2687,7 +2699,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * </pre>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2724,7 +2736,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSourceRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2766,7 +2778,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * false to disable the more expensive analysis logic.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-health-report">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-health-report">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2811,7 +2823,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link HealthReportRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-health-report">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-health-report">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2851,7 +2863,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * false to disable the more expensive analysis logic.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-health-report">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-health-report">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3054,7 +3066,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * </pre>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-create">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-create">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3260,7 +3272,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link IndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-create">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-create">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3275,7 +3287,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * Get cluster info. Get basic build, version, and cluster information.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-info">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-info">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<InfoResponse> info() {
@@ -3311,7 +3323,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * instructions.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-mget">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-mget">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3355,7 +3367,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link MgetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-mget">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-mget">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3412,7 +3424,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * instructions.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-mget">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-mget">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3455,7 +3467,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link MgetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-mget">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-mget">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3490,7 +3502,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * <code>application/x-ndjson</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-msearch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-msearch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3531,7 +3543,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link MsearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-msearch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-msearch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3585,7 +3597,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * <code>application/x-ndjson</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-msearch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-msearch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3626,7 +3638,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link MsearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-msearch">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-msearch">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3657,7 +3669,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * </pre>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-msearch-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-msearch-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3695,7 +3707,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link MsearchTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-msearch-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-msearch-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3746,7 +3758,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * </pre>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-msearch-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-msearch-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3784,7 +3796,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link MsearchTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-msearch-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-msearch-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3811,7 +3823,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * determined by the specified <code>_index</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-mtermvectors">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-mtermvectors">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3841,7 +3853,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link MtermvectorsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-mtermvectors">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-mtermvectors">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3866,7 +3878,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * determined by the specified <code>_index</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-mtermvectors">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-mtermvectors">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3936,7 +3948,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * point-in-times (that is, search contexts) are open with the nodes stats API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-open-point-in-time">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-open-point-in-time">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4009,7 +4021,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link OpenPointInTimeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-open-point-in-time">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-open-point-in-time">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4024,7 +4036,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * Ping the cluster. Get information about whether the cluster is running.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-cluster">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-cluster">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<BooleanResponse> ping() {
@@ -4038,7 +4050,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * script or search template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-put-script">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-put-script">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4057,7 +4069,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link PutScriptRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-put-script">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-put-script">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4075,7 +4087,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * queries.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rank-eval">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rank-eval">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4096,7 +4108,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link RankEvalRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-rank-eval">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rank-eval">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4172,213 +4184,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * until it has successfully indexed <code>max_docs</code> documents into the
 	 * target or it has gone through every document in the source query.
 	 * <p>
-	 * NOTE: The reindex API makes no effort to handle ID collisions. The last
-	 * document written will &quot;win&quot; but the order isn't usually predictable
-	 * so it is not a good idea to rely on this behavior. Instead, make sure that
-	 * IDs are unique by using a script.
-	 * <p>
-	 * <strong>Running reindex asynchronously</strong>
-	 * <p>
-	 * If the request contains <code>wait_for_completion=false</code>, Elasticsearch
-	 * performs some preflight checks, launches the request, and returns a task you
-	 * can use to cancel or get the status of the task. Elasticsearch creates a
-	 * record of this task as a document at <code>_tasks/&lt;task_id&gt;</code>.
-	 * <p>
-	 * <strong>Reindex from multiple sources</strong>
-	 * <p>
-	 * If you have many sources to reindex it is generally better to reindex them
-	 * one at a time rather than using a glob pattern to pick up multiple sources.
-	 * That way you can resume the process if there are any errors by removing the
-	 * partially completed source and starting over. It also makes parallelizing the
-	 * process fairly simple: split the list of sources to reindex and run each list
-	 * in parallel.
-	 * <p>
-	 * For example, you can use a bash script like this:
-	 * 
-	 * <pre>
-	 * <code>for index in i1 i2 i3 i4 i5; do
-	 *   curl -HContent-Type:application/json -XPOST localhost:9200/_reindex?pretty -d'{
-	 *     &quot;source&quot;: {
-	 *       &quot;index&quot;: &quot;'$index'&quot;
-	 *     },
-	 *     &quot;dest&quot;: {
-	 *       &quot;index&quot;: &quot;'$index'-reindexed&quot;
-	 *     }
-	 *   }'
-	 * done
-	 * </code>
-	 * </pre>
-	 * <p>
-	 * <strong>Throttling</strong>
-	 * <p>
-	 * Set <code>requests_per_second</code> to any positive decimal number
-	 * (<code>1.4</code>, <code>6</code>, <code>1000</code>, for example) to
-	 * throttle the rate at which reindex issues batches of index operations.
-	 * Requests are throttled by padding each batch with a wait time. To turn off
-	 * throttling, set <code>requests_per_second</code> to <code>-1</code>.
-	 * <p>
-	 * The throttling is done by waiting between batches so that the scroll that
-	 * reindex uses internally can be given a timeout that takes into account the
-	 * padding. The padding time is the difference between the batch size divided by
-	 * the <code>requests_per_second</code> and the time spent writing. By default
-	 * the batch size is <code>1000</code>, so if <code>requests_per_second</code>
-	 * is set to <code>500</code>:
-	 * 
-	 * <pre>
-	 * <code>target_time = 1000 / 500 per second = 2 seconds
-	 * wait_time = target_time - write_time = 2 seconds - .5 seconds = 1.5 seconds
-	 * </code>
-	 * </pre>
-	 * <p>
-	 * Since the batch is issued as a single bulk request, large batch sizes cause
-	 * Elasticsearch to create many requests and then wait for a while before
-	 * starting the next set. This is &quot;bursty&quot; instead of
-	 * &quot;smooth&quot;.
-	 * <p>
-	 * <strong>Slicing</strong>
-	 * <p>
-	 * Reindex supports sliced scroll to parallelize the reindexing process. This
-	 * parallelization can improve efficiency and provide a convenient way to break
-	 * the request down into smaller parts.
-	 * <p>
-	 * NOTE: Reindexing from remote clusters does not support manual or automatic
-	 * slicing.
-	 * <p>
-	 * You can slice a reindex request manually by providing a slice ID and total
-	 * number of slices to each request. You can also let reindex automatically
-	 * parallelize by using sliced scroll to slice on <code>_id</code>. The
-	 * <code>slices</code> parameter specifies the number of slices to use.
-	 * <p>
-	 * Adding <code>slices</code> to the reindex request just automates the manual
-	 * process, creating sub-requests which means it has some quirks:
-	 * <ul>
-	 * <li>You can see these requests in the tasks API. These sub-requests are
-	 * &quot;child&quot; tasks of the task for the request with slices.</li>
-	 * <li>Fetching the status of the task for the request with <code>slices</code>
-	 * only contains the status of completed slices.</li>
-	 * <li>These sub-requests are individually addressable for things like
-	 * cancellation and rethrottling.</li>
-	 * <li>Rethrottling the request with <code>slices</code> will rethrottle the
-	 * unfinished sub-request proportionally.</li>
-	 * <li>Canceling the request with <code>slices</code> will cancel each
-	 * sub-request.</li>
-	 * <li>Due to the nature of <code>slices</code>, each sub-request won't get a
-	 * perfectly even portion of the documents. All documents will be addressed, but
-	 * some slices may be larger than others. Expect larger slices to have a more
-	 * even distribution.</li>
-	 * <li>Parameters like <code>requests_per_second</code> and
-	 * <code>max_docs</code> on a request with <code>slices</code> are distributed
-	 * proportionally to each sub-request. Combine that with the previous point
-	 * about distribution being uneven and you should conclude that using
-	 * <code>max_docs</code> with <code>slices</code> might not result in exactly
-	 * <code>max_docs</code> documents being reindexed.</li>
-	 * <li>Each sub-request gets a slightly different snapshot of the source, though
-	 * these are all taken at approximately the same time.</li>
-	 * </ul>
-	 * <p>
-	 * If slicing automatically, setting <code>slices</code> to <code>auto</code>
-	 * will choose a reasonable number for most indices. If slicing manually or
-	 * otherwise tuning automatic slicing, use the following guidelines.
-	 * <p>
-	 * Query performance is most efficient when the number of slices is equal to the
-	 * number of shards in the index. If that number is large (for example,
-	 * <code>500</code>), choose a lower number as too many slices will hurt
-	 * performance. Setting slices higher than the number of shards generally does
-	 * not improve efficiency and adds overhead.
-	 * <p>
-	 * Indexing performance scales linearly across available resources with the
-	 * number of slices.
-	 * <p>
-	 * Whether query or indexing performance dominates the runtime depends on the
-	 * documents being reindexed and cluster resources.
-	 * <p>
-	 * <strong>Modify documents during reindexing</strong>
-	 * <p>
-	 * Like <code>_update_by_query</code>, reindex operations support a script that
-	 * modifies the document. Unlike <code>_update_by_query</code>, the script is
-	 * allowed to modify the document's metadata.
-	 * <p>
-	 * Just as in <code>_update_by_query</code>, you can set <code>ctx.op</code> to
-	 * change the operation that is run on the destination. For example, set
-	 * <code>ctx.op</code> to <code>noop</code> if your script decides that the
-	 * document doesn’t have to be indexed in the destination. This &quot;no
-	 * operation&quot; will be reported in the <code>noop</code> counter in the
-	 * response body. Set <code>ctx.op</code> to <code>delete</code> if your script
-	 * decides that the document must be deleted from the destination. The deletion
-	 * will be reported in the <code>deleted</code> counter in the response body.
-	 * Setting <code>ctx.op</code> to anything else will return an error, as will
-	 * setting any other field in <code>ctx</code>.
-	 * <p>
-	 * Think of the possibilities! Just be careful; you are able to change:
-	 * <ul>
-	 * <li><code>_id</code></li>
-	 * <li><code>_index</code></li>
-	 * <li><code>_version</code></li>
-	 * <li><code>_routing</code></li>
-	 * </ul>
-	 * <p>
-	 * Setting <code>_version</code> to <code>null</code> or clearing it from the
-	 * <code>ctx</code> map is just like not sending the version in an indexing
-	 * request. It will cause the document to be overwritten in the destination
-	 * regardless of the version on the target or the version type you use in the
-	 * reindex API.
-	 * <p>
-	 * <strong>Reindex from remote</strong>
-	 * <p>
-	 * Reindex supports reindexing from a remote Elasticsearch cluster. The
-	 * <code>host</code> parameter must contain a scheme, host, port, and optional
-	 * path. The <code>username</code> and <code>password</code> parameters are
-	 * optional and when they are present the reindex operation will connect to the
-	 * remote Elasticsearch node using basic authentication. Be sure to use HTTPS
-	 * when using basic authentication or the password will be sent in plain text.
-	 * There are a range of settings available to configure the behavior of the
-	 * HTTPS connection.
-	 * <p>
-	 * When using Elastic Cloud, it is also possible to authenticate against the
-	 * remote cluster through the use of a valid API key. Remote hosts must be
-	 * explicitly allowed with the <code>reindex.remote.whitelist</code> setting. It
-	 * can be set to a comma delimited list of allowed remote host and port
-	 * combinations. Scheme is ignored; only the host and port are used. For
-	 * example:
-	 * 
-	 * <pre>
-	 * <code>reindex.remote.whitelist: [otherhost:9200, another:9200, 127.0.10.*:9200, localhost:*&quot;]
-	 * </code>
-	 * </pre>
-	 * <p>
-	 * The list of allowed hosts must be configured on any nodes that will
-	 * coordinate the reindex. This feature should work with remote clusters of any
-	 * version of Elasticsearch. This should enable you to upgrade from any version
-	 * of Elasticsearch to the current version by reindexing from a cluster of the
-	 * old version.
-	 * <p>
-	 * WARNING: Elasticsearch does not support forward compatibility across major
-	 * versions. For example, you cannot reindex from a 7.x cluster into a 6.x
-	 * cluster.
-	 * <p>
-	 * To enable queries sent to older versions of Elasticsearch, the
-	 * <code>query</code> parameter is sent directly to the remote host without
-	 * validation or modification.
-	 * <p>
-	 * NOTE: Reindexing from remote clusters does not support manual or automatic
-	 * slicing.
-	 * <p>
-	 * Reindexing from a remote server uses an on-heap buffer that defaults to a
-	 * maximum size of 100mb. If the remote index includes very large documents
-	 * you'll need to use a smaller batch size. It is also possible to set the
-	 * socket read timeout on the remote connection with the
-	 * <code>socket_timeout</code> field and the connection timeout with the
-	 * <code>connect_timeout</code> field. Both default to 30 seconds.
-	 * <p>
-	 * <strong>Configuring SSL parameters</strong>
-	 * <p>
-	 * Reindex from remote supports configurable SSL settings. These must be
-	 * specified in the <code>elasticsearch.yml</code> file, with the exception of
-	 * the secure settings, which you add in the Elasticsearch keystore. It is not
-	 * possible to configure SSL in the body of the reindex request.
+	 * Refer to the linked documentation for examples of how to reindex documents.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-reindex">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-reindex">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4454,216 +4263,13 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * until it has successfully indexed <code>max_docs</code> documents into the
 	 * target or it has gone through every document in the source query.
 	 * <p>
-	 * NOTE: The reindex API makes no effort to handle ID collisions. The last
-	 * document written will &quot;win&quot; but the order isn't usually predictable
-	 * so it is not a good idea to rely on this behavior. Instead, make sure that
-	 * IDs are unique by using a script.
-	 * <p>
-	 * <strong>Running reindex asynchronously</strong>
-	 * <p>
-	 * If the request contains <code>wait_for_completion=false</code>, Elasticsearch
-	 * performs some preflight checks, launches the request, and returns a task you
-	 * can use to cancel or get the status of the task. Elasticsearch creates a
-	 * record of this task as a document at <code>_tasks/&lt;task_id&gt;</code>.
-	 * <p>
-	 * <strong>Reindex from multiple sources</strong>
-	 * <p>
-	 * If you have many sources to reindex it is generally better to reindex them
-	 * one at a time rather than using a glob pattern to pick up multiple sources.
-	 * That way you can resume the process if there are any errors by removing the
-	 * partially completed source and starting over. It also makes parallelizing the
-	 * process fairly simple: split the list of sources to reindex and run each list
-	 * in parallel.
-	 * <p>
-	 * For example, you can use a bash script like this:
-	 * 
-	 * <pre>
-	 * <code>for index in i1 i2 i3 i4 i5; do
-	 *   curl -HContent-Type:application/json -XPOST localhost:9200/_reindex?pretty -d'{
-	 *     &quot;source&quot;: {
-	 *       &quot;index&quot;: &quot;'$index'&quot;
-	 *     },
-	 *     &quot;dest&quot;: {
-	 *       &quot;index&quot;: &quot;'$index'-reindexed&quot;
-	 *     }
-	 *   }'
-	 * done
-	 * </code>
-	 * </pre>
-	 * <p>
-	 * <strong>Throttling</strong>
-	 * <p>
-	 * Set <code>requests_per_second</code> to any positive decimal number
-	 * (<code>1.4</code>, <code>6</code>, <code>1000</code>, for example) to
-	 * throttle the rate at which reindex issues batches of index operations.
-	 * Requests are throttled by padding each batch with a wait time. To turn off
-	 * throttling, set <code>requests_per_second</code> to <code>-1</code>.
-	 * <p>
-	 * The throttling is done by waiting between batches so that the scroll that
-	 * reindex uses internally can be given a timeout that takes into account the
-	 * padding. The padding time is the difference between the batch size divided by
-	 * the <code>requests_per_second</code> and the time spent writing. By default
-	 * the batch size is <code>1000</code>, so if <code>requests_per_second</code>
-	 * is set to <code>500</code>:
-	 * 
-	 * <pre>
-	 * <code>target_time = 1000 / 500 per second = 2 seconds
-	 * wait_time = target_time - write_time = 2 seconds - .5 seconds = 1.5 seconds
-	 * </code>
-	 * </pre>
-	 * <p>
-	 * Since the batch is issued as a single bulk request, large batch sizes cause
-	 * Elasticsearch to create many requests and then wait for a while before
-	 * starting the next set. This is &quot;bursty&quot; instead of
-	 * &quot;smooth&quot;.
-	 * <p>
-	 * <strong>Slicing</strong>
-	 * <p>
-	 * Reindex supports sliced scroll to parallelize the reindexing process. This
-	 * parallelization can improve efficiency and provide a convenient way to break
-	 * the request down into smaller parts.
-	 * <p>
-	 * NOTE: Reindexing from remote clusters does not support manual or automatic
-	 * slicing.
-	 * <p>
-	 * You can slice a reindex request manually by providing a slice ID and total
-	 * number of slices to each request. You can also let reindex automatically
-	 * parallelize by using sliced scroll to slice on <code>_id</code>. The
-	 * <code>slices</code> parameter specifies the number of slices to use.
-	 * <p>
-	 * Adding <code>slices</code> to the reindex request just automates the manual
-	 * process, creating sub-requests which means it has some quirks:
-	 * <ul>
-	 * <li>You can see these requests in the tasks API. These sub-requests are
-	 * &quot;child&quot; tasks of the task for the request with slices.</li>
-	 * <li>Fetching the status of the task for the request with <code>slices</code>
-	 * only contains the status of completed slices.</li>
-	 * <li>These sub-requests are individually addressable for things like
-	 * cancellation and rethrottling.</li>
-	 * <li>Rethrottling the request with <code>slices</code> will rethrottle the
-	 * unfinished sub-request proportionally.</li>
-	 * <li>Canceling the request with <code>slices</code> will cancel each
-	 * sub-request.</li>
-	 * <li>Due to the nature of <code>slices</code>, each sub-request won't get a
-	 * perfectly even portion of the documents. All documents will be addressed, but
-	 * some slices may be larger than others. Expect larger slices to have a more
-	 * even distribution.</li>
-	 * <li>Parameters like <code>requests_per_second</code> and
-	 * <code>max_docs</code> on a request with <code>slices</code> are distributed
-	 * proportionally to each sub-request. Combine that with the previous point
-	 * about distribution being uneven and you should conclude that using
-	 * <code>max_docs</code> with <code>slices</code> might not result in exactly
-	 * <code>max_docs</code> documents being reindexed.</li>
-	 * <li>Each sub-request gets a slightly different snapshot of the source, though
-	 * these are all taken at approximately the same time.</li>
-	 * </ul>
-	 * <p>
-	 * If slicing automatically, setting <code>slices</code> to <code>auto</code>
-	 * will choose a reasonable number for most indices. If slicing manually or
-	 * otherwise tuning automatic slicing, use the following guidelines.
-	 * <p>
-	 * Query performance is most efficient when the number of slices is equal to the
-	 * number of shards in the index. If that number is large (for example,
-	 * <code>500</code>), choose a lower number as too many slices will hurt
-	 * performance. Setting slices higher than the number of shards generally does
-	 * not improve efficiency and adds overhead.
-	 * <p>
-	 * Indexing performance scales linearly across available resources with the
-	 * number of slices.
-	 * <p>
-	 * Whether query or indexing performance dominates the runtime depends on the
-	 * documents being reindexed and cluster resources.
-	 * <p>
-	 * <strong>Modify documents during reindexing</strong>
-	 * <p>
-	 * Like <code>_update_by_query</code>, reindex operations support a script that
-	 * modifies the document. Unlike <code>_update_by_query</code>, the script is
-	 * allowed to modify the document's metadata.
-	 * <p>
-	 * Just as in <code>_update_by_query</code>, you can set <code>ctx.op</code> to
-	 * change the operation that is run on the destination. For example, set
-	 * <code>ctx.op</code> to <code>noop</code> if your script decides that the
-	 * document doesn’t have to be indexed in the destination. This &quot;no
-	 * operation&quot; will be reported in the <code>noop</code> counter in the
-	 * response body. Set <code>ctx.op</code> to <code>delete</code> if your script
-	 * decides that the document must be deleted from the destination. The deletion
-	 * will be reported in the <code>deleted</code> counter in the response body.
-	 * Setting <code>ctx.op</code> to anything else will return an error, as will
-	 * setting any other field in <code>ctx</code>.
-	 * <p>
-	 * Think of the possibilities! Just be careful; you are able to change:
-	 * <ul>
-	 * <li><code>_id</code></li>
-	 * <li><code>_index</code></li>
-	 * <li><code>_version</code></li>
-	 * <li><code>_routing</code></li>
-	 * </ul>
-	 * <p>
-	 * Setting <code>_version</code> to <code>null</code> or clearing it from the
-	 * <code>ctx</code> map is just like not sending the version in an indexing
-	 * request. It will cause the document to be overwritten in the destination
-	 * regardless of the version on the target or the version type you use in the
-	 * reindex API.
-	 * <p>
-	 * <strong>Reindex from remote</strong>
-	 * <p>
-	 * Reindex supports reindexing from a remote Elasticsearch cluster. The
-	 * <code>host</code> parameter must contain a scheme, host, port, and optional
-	 * path. The <code>username</code> and <code>password</code> parameters are
-	 * optional and when they are present the reindex operation will connect to the
-	 * remote Elasticsearch node using basic authentication. Be sure to use HTTPS
-	 * when using basic authentication or the password will be sent in plain text.
-	 * There are a range of settings available to configure the behavior of the
-	 * HTTPS connection.
-	 * <p>
-	 * When using Elastic Cloud, it is also possible to authenticate against the
-	 * remote cluster through the use of a valid API key. Remote hosts must be
-	 * explicitly allowed with the <code>reindex.remote.whitelist</code> setting. It
-	 * can be set to a comma delimited list of allowed remote host and port
-	 * combinations. Scheme is ignored; only the host and port are used. For
-	 * example:
-	 * 
-	 * <pre>
-	 * <code>reindex.remote.whitelist: [otherhost:9200, another:9200, 127.0.10.*:9200, localhost:*&quot;]
-	 * </code>
-	 * </pre>
-	 * <p>
-	 * The list of allowed hosts must be configured on any nodes that will
-	 * coordinate the reindex. This feature should work with remote clusters of any
-	 * version of Elasticsearch. This should enable you to upgrade from any version
-	 * of Elasticsearch to the current version by reindexing from a cluster of the
-	 * old version.
-	 * <p>
-	 * WARNING: Elasticsearch does not support forward compatibility across major
-	 * versions. For example, you cannot reindex from a 7.x cluster into a 6.x
-	 * cluster.
-	 * <p>
-	 * To enable queries sent to older versions of Elasticsearch, the
-	 * <code>query</code> parameter is sent directly to the remote host without
-	 * validation or modification.
-	 * <p>
-	 * NOTE: Reindexing from remote clusters does not support manual or automatic
-	 * slicing.
-	 * <p>
-	 * Reindexing from a remote server uses an on-heap buffer that defaults to a
-	 * maximum size of 100mb. If the remote index includes very large documents
-	 * you'll need to use a smaller batch size. It is also possible to set the
-	 * socket read timeout on the remote connection with the
-	 * <code>socket_timeout</code> field and the connection timeout with the
-	 * <code>connect_timeout</code> field. Both default to 30 seconds.
-	 * <p>
-	 * <strong>Configuring SSL parameters</strong>
-	 * <p>
-	 * Reindex from remote supports configurable SSL settings. These must be
-	 * specified in the <code>elasticsearch.yml</code> file, with the exception of
-	 * the secure settings, which you add in the Elasticsearch keystore. It is not
-	 * possible to configure SSL in the body of the reindex request.
+	 * Refer to the linked documentation for examples of how to reindex documents.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ReindexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-reindex">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-reindex">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4690,7 +4296,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * batch. This behavior prevents scroll timeouts.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-reindex">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-reindex">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4720,7 +4326,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link ReindexRethrottleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-reindex">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-reindex">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4737,7 +4343,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * Render a search template as a search request body.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-render-search-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-render-search-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4757,7 +4363,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link RenderSearchTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-render-search-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-render-search-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4772,7 +4378,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * Render a search template as a search request body.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-render-search-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-render-search-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4950,7 +4556,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * changes only affect later search and scroll requests.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-scroll">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-scroll">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4993,7 +4599,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link ScrollRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-scroll">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-scroll">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5049,7 +4655,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * changes only affect later search and scroll requests.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-scroll">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-scroll">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5091,7 +4697,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link ScrollRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-scroll">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-scroll">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5133,7 +4739,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * document IDs, which are not stable across changes to the index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5181,7 +4787,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5242,7 +4848,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * document IDs, which are not stable across changes to the index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5289,7 +4895,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -5660,7 +5266,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * geotile density.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-mvt">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-mvt">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6034,7 +5640,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchMvtRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-mvt">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-mvt">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6058,7 +5664,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * the target data stream, index, or alias.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-shards">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-shards">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6085,7 +5691,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchShardsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-shards">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-shards">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6107,7 +5713,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * the target data stream, index, or alias.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-shards">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-shards">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6122,7 +5728,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * Run a search with a search template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6144,7 +5750,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6179,7 +5785,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * Run a search with a search template.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6201,7 +5807,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-search-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6226,7 +5832,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * </blockquote>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-terms-enum">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-terms-enum">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6254,7 +5860,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link TermsEnumRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-terms-enum">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-terms-enum">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6319,10 +5925,11 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * only useful as relative measures whereas the absolute numbers have no meaning
 	 * in this context. By default, when requesting term vectors of artificial
 	 * documents, a shard to get the statistics from is randomly selected. Use
-	 * <code>routing</code> only to hit a particular shard.
+	 * <code>routing</code> only to hit a particular shard. Refer to the linked
+	 * documentation for detailed examples of how to use this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-termvectors">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-termvectors">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6387,13 +5994,14 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * only useful as relative measures whereas the absolute numbers have no meaning
 	 * in this context. By default, when requesting term vectors of artificial
 	 * documents, a shard to get the statistics from is randomly selected. Use
-	 * <code>routing</code> only to hit a particular shard.
+	 * <code>routing</code> only to hit a particular shard. Refer to the linked
+	 * documentation for detailed examples of how to use this API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link TermvectorsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-termvectors">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-termvectors">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6434,7 +6042,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * <code>_now</code> (the current timestamp).
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-update">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-update">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6481,7 +6089,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-update">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-update">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6521,7 +6129,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * <code>_now</code> (the current timestamp).
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-update">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-update">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6568,7 +6176,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-update">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-update">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6720,7 +6328,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * them.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-update-by-query">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-update-by-query">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6874,7 +6482,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateByQueryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-update-by-query">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-update-by-query">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6894,7 +6502,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * current batch to prevent scroll timeouts.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-update-by-query-rethrottle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-update-by-query-rethrottle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -6918,7 +6526,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateByQueryRethrottleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-update-by-query-rethrottle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-update-by-query-rethrottle">Documentation
 	 *      on elastic.co</a>
 	 */
 

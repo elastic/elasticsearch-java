@@ -73,7 +73,7 @@ public class ElasticsearchMonitoringClient extends ApiClient<ElasticsearchTransp
 	 * monitoring data.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/">Documentation on
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch">Documentation on
 	 *      elastic.co</a>
 	 */
 
@@ -92,7 +92,7 @@ public class ElasticsearchMonitoringClient extends ApiClient<ElasticsearchTransp
 	 *            a function that initializes a builder to create the
 	 *            {@link BulkRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/">Documentation on
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch">Documentation on
 	 *      elastic.co</a>
 	 */
 

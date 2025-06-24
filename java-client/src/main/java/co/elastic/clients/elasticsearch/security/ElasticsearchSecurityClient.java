@@ -94,7 +94,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * <code>labels</code> or <code>data</code> fields.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-activate-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-activate-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -135,7 +135,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link ActivateUserProfileRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-activate-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-activate-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -160,7 +160,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * returns a 401 status code.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-authenticate">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-authenticate">Documentation
 	 *      on elastic.co</a>
 	 */
 	public AuthenticateResponse authenticate() throws IOException, ElasticsearchException {
@@ -178,7 +178,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * cannot delete roles that are defined in roles files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-bulk-delete-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-bulk-delete-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -201,7 +201,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link BulkDeleteRoleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-bulk-delete-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-bulk-delete-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -221,7 +221,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * API cannot update roles that are defined in roles files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-bulk-put-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-bulk-put-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -243,7 +243,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link BulkPutRoleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-bulk-put-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-bulk-put-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -284,7 +284,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * and did not require an update, and error details for any failed update.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-bulk-update-api-keys">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-bulk-update-api-keys">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -328,7 +328,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link BulkUpdateApiKeysRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-bulk-update-api-keys">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-bulk-update-api-keys">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -346,7 +346,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * Change the passwords of users in the native realm and built-in users.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-change-password">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-change-password">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -367,7 +367,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link ChangePasswordRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-change-password">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-change-password">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -383,7 +383,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * Change the passwords of users in the native realm and built-in users.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-change-password">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-change-password">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -401,7 +401,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * automatically cleared on state changes of the security index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-api-key-cache">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-api-key-cache">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -423,7 +423,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearApiKeyCacheRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-api-key-cache">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-api-key-cache">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -443,7 +443,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * updated.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-cached-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-cached-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -466,7 +466,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearCachedPrivilegesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-cached-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-cached-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -491,7 +491,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * cache.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-cached-realms">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-cached-realms">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -519,7 +519,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearCachedRealmsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-cached-realms">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-cached-realms">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -537,7 +537,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * Evict roles from the native role cache.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-cached-roles">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-cached-roles">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -558,7 +558,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearCachedRolesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-cached-roles">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-cached-roles">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -585,7 +585,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * automatically on file changes.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-cached-service-tokens">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-cached-service-tokens">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -615,7 +615,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearCachedServiceTokensRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-cached-service-tokens">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-cached-service-tokens">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -648,7 +648,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * API key service setting documentation.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-create-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-create-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -683,7 +683,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-create-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-create-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -714,7 +714,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * API key service setting documentation.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-create-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-create-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -755,7 +755,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * bulk update REST API keys API will result in an error.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-create-cross-cluster-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-create-cross-cluster-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -800,7 +800,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateCrossClusterApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-create-cross-cluster-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-create-cross-cluster-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -822,7 +822,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * they are no longer needed.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-create-service-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-create-service-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -847,7 +847,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateServiceTokenRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-create-service-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-create-service-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -881,7 +881,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * this API translates that authentication into an Elasticsearch access token.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delegate-pki">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delegate-pki">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -917,7 +917,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link DelegatePkiRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delegate-pki">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delegate-pki">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -941,7 +941,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -968,7 +968,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link DeletePrivilegesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -988,7 +988,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * The delete roles API cannot remove roles that are defined in roles files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1010,7 +1010,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRoleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1030,7 +1030,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * mappings that are defined in role mapping files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-role-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-role-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1054,7 +1054,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRoleMappingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-role-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-role-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1072,7 +1072,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * Delete service account tokens for a service in a specified namespace.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-service-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-service-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1093,7 +1093,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteServiceTokenRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-service-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-service-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1111,7 +1111,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * Delete users from the native realm.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1131,7 +1131,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteUserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1149,7 +1149,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * are enabled. You can use this API to revoke a user's access to Elasticsearch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-disable-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-disable-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1170,7 +1170,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link DisableUserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-disable-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-disable-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1199,7 +1199,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * user profile, use the enable user profile API .
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-disable-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-disable-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1231,7 +1231,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link DisableUserProfileRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-disable-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-disable-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1250,7 +1250,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * enabled.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-enable-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-enable-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1271,7 +1271,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link EnableUserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-enable-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-enable-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1298,7 +1298,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * enable user profile API to make the profile visible in these searches again.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-enable-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-enable-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1329,7 +1329,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link EnableUserProfileRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-enable-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-enable-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1352,7 +1352,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * Elasticsearch cluster that already has security features enabled.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-enroll-kibana">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-enroll-kibana">Documentation
 	 *      on elastic.co</a>
 	 */
 	public EnrollKibanaResponse enrollKibana() throws IOException, ElasticsearchException {
@@ -1375,7 +1375,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * all nodes in the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-enroll-node">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-enroll-node">Documentation
 	 *      on elastic.co</a>
 	 */
 	public EnrollNodeResponse enrollNode() throws IOException, ElasticsearchException {
@@ -1396,7 +1396,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * ownership.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1421,7 +1421,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1441,7 +1441,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * ownership.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1459,7 +1459,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * this version of Elasticsearch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-builtin-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-builtin-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 	public GetBuiltinPrivilegesResponse getBuiltinPrivileges() throws IOException, ElasticsearchException {
@@ -1481,7 +1481,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1508,7 +1508,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetPrivilegesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1530,7 +1530,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1549,7 +1549,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * The get roles API cannot retrieve roles that are defined in roles files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1571,7 +1571,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRoleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1588,7 +1588,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * The get roles API cannot retrieve roles that are defined in roles files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1608,7 +1608,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * mappings that are defined in role mapping files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-role-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-role-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1632,7 +1632,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRoleMappingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-role-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-role-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1651,7 +1651,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * mappings that are defined in role mapping files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-role-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-role-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1671,7 +1671,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * is available.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-service-accounts">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-service-accounts">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1695,7 +1695,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetServiceAccountsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-service-accounts">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-service-accounts">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1714,7 +1714,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * is available.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-service-accounts">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-service-accounts">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1742,7 +1742,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * towards the total number of service tokens.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-service-credentials">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-service-credentials">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1774,7 +1774,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetServiceCredentialsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-service-credentials">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-service-credentials">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1798,7 +1798,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1825,7 +1825,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSecuritySettingsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1847,7 +1847,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1884,7 +1884,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1924,7 +1924,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTokenRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1959,7 +1959,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1976,7 +1976,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * Get information about users in the native realm and built-in users.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1996,7 +1996,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetUserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2011,7 +2011,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * Get information about users in the native realm and built-in users.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2031,7 +2031,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * specific list of privileges, use the has privileges API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-user-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-user-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2055,7 +2055,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetUserPrivilegesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-user-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-user-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2074,7 +2074,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * specific list of privileges, use the has privileges API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-user-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-user-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2097,7 +2097,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * releases without prior notice.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2124,7 +2124,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetUserProfileRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2168,7 +2168,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * when you create the API keys.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-grant-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-grant-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2214,7 +2214,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GrantApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-grant-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-grant-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2234,7 +2234,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * the privileges of other users, you must use the run as feature.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-has-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-has-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2257,7 +2257,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link HasPrivilegesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-has-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-has-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2275,7 +2275,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * the privileges of other users, you must use the run as feature.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-has-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-has-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2299,7 +2299,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * releases without prior notice.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-has-privileges-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-has-privileges-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2327,7 +2327,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link HasPrivilegesUserProfileRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-has-privileges-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-has-privileges-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2365,7 +2365,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-invalidate-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-invalidate-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2406,7 +2406,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link InvalidateApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-invalidate-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-invalidate-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2442,7 +2442,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-invalidate-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-invalidate-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2472,7 +2472,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * be specified.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-invalidate-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-invalidate-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2506,7 +2506,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link InvalidateTokenRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-invalidate-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-invalidate-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2535,7 +2535,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * be specified.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-invalidate-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-invalidate-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2559,7 +2559,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * other, custom web applications or other clients.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-oidc-authenticate">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-oidc-authenticate">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2587,7 +2587,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link OidcAuthenticateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-oidc-authenticate">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-oidc-authenticate">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2616,7 +2616,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * other, custom web applications or other clients.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-oidc-logout">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-oidc-logout">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2647,7 +2647,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link OidcLogoutRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-oidc-logout">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-oidc-logout">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2674,7 +2674,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * other, custom web applications or other clients.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-oidc-prepare-authentication">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-oidc-prepare-authentication">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2705,7 +2705,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link OidcPrepareAuthenticationRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-oidc-prepare-authentication">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-oidc-prepare-authentication">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2731,7 +2731,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * other, custom web applications or other clients.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-oidc-prepare-authentication">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-oidc-prepare-authentication">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2777,7 +2777,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * <code>*</code>, <code>:</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-put-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2827,7 +2827,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link PutPrivilegesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-put-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2872,7 +2872,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * <code>*</code>, <code>:</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-put-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2892,7 +2892,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * File-based role management is not available in Elastic Serverless.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-put-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2915,7 +2915,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRoleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-put-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2967,7 +2967,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * a JSON string or an array of JSON strings for the role names.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-put-role-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-role-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3023,7 +3023,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRoleMappingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-put-role-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-role-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3043,7 +3043,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * password without updating any other fields, use the change password API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-put-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3065,7 +3065,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link PutUserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-put-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3091,7 +3091,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * ownership.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-api-keys">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-query-api-keys">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3120,7 +3120,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link QueryApiKeysRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-api-keys">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-query-api-keys">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3145,7 +3145,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * ownership.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-api-keys">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-query-api-keys">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3166,7 +3166,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * the results can be paginated and sorted.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-query-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3190,7 +3190,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link QueryRoleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-query-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3209,7 +3209,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * the results can be paginated and sorted.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-query-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3230,7 +3230,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * result. This API is only for native users.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-query-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3254,7 +3254,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link QueryUserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-query-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3273,7 +3273,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * result. This API is only for native users.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-query-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3311,7 +3311,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * refresh tokens, which can be used for authentication against Elasticsearch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-authenticate">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-authenticate">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3353,7 +3353,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link SamlAuthenticateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-authenticate">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-authenticate">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3383,7 +3383,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * either of them.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-complete-logout">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-complete-logout">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3416,7 +3416,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link SamlCompleteLogoutRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-complete-logout">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-complete-logout">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3446,7 +3446,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * IdP.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-invalidate">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-invalidate">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3479,7 +3479,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link SamlInvalidateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-invalidate">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-invalidate">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3507,7 +3507,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * request (starting an SP-initiated SAML Single Logout).
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-logout">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-logout">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3537,7 +3537,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link SamlLogoutRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-logout">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-logout">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3572,7 +3572,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * as it needs to be used in a following step of the authentication process.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-prepare-authentication">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-prepare-authentication">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3611,7 +3611,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link SamlPrepareAuthenticationRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-prepare-authentication">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-prepare-authentication">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3645,7 +3645,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * as it needs to be used in a following step of the authentication process.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-prepare-authentication">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-prepare-authentication">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3667,7 +3667,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * realm in Elasticsearch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-service-provider-metadata">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-service-provider-metadata">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3693,7 +3693,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link SamlServiceProviderMetadataRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-service-provider-metadata">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-service-provider-metadata">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3717,7 +3717,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * releases without prior notice.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-suggest-user-profiles">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-suggest-user-profiles">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3744,7 +3744,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link SuggestUserProfilesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-suggest-user-profiles">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-suggest-user-profiles">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3766,7 +3766,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * releases without prior notice.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-suggest-user-profiles">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-suggest-user-profiles">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3808,7 +3808,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * created or last modified.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-update-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3853,7 +3853,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-update-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3889,9 +3889,13 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * <p>
 	 * NOTE: This API cannot update REST API keys, which should be updated by either
 	 * the update API key or bulk update API keys API.
+	 * <p>
+	 * To learn more about how to use this API, refer to the <a href=
+	 * "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/update-cc-api-key-examples">Update
+	 * cross cluter API key API examples page</a>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-cross-cluster-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-update-cross-cluster-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3927,12 +3931,16 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * <p>
 	 * NOTE: This API cannot update REST API keys, which should be updated by either
 	 * the update API key or bulk update API keys API.
+	 * <p>
+	 * To learn more about how to use this API, refer to the <a href=
+	 * "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/update-cc-api-key-examples">Update
+	 * cross cluter API key API examples page</a>.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateCrossClusterApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-cross-cluster-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-update-cross-cluster-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3961,7 +3969,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * the settings for indices before they are in use.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-update-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3993,7 +4001,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateSettingsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-update-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4020,7 +4028,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * the settings for indices before they are in use.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-update-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4060,7 +4068,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 * updating only the allowed namespaces.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-user-profile-data">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-update-user-profile-data">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4104,7 +4112,7 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateUserProfileDataRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-user-profile-data">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-update-user-profile-data">Documentation
 	 *      on elastic.co</a>
 	 */
 
