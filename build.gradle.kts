@@ -25,8 +25,6 @@ nexusPublishing {
         sonatype {
             nexusUrl.set(uri("https://ossrh-staging-api.central.sonatype.com/service/local/"))
             snapshotRepositoryUrl.set(uri("https://central.sonatype.com/repository/maven-snapshots/"))
-            username.set("test_username")
-            password.set("test_password")
         }
     }
 }
