@@ -24,13 +24,21 @@ nexusPublishing {
     repositories {
         sonatype()
     }
+    repositories {
+        sonatype {
+            nexusUrl.set(uri("https://ossrh-staging-api.central.sonatype.com/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://central.sonatype.com/repository/maven-snapshots/"))
+            username.set("test_username")
+            password.set("test_password")
+        }
+    }
 }
 
 repositories {
     mavenCentral()
 }
 
-group = "co.elastic.clients"
+group = "co.elastic.release-test"
 description = "Maven central release of the official elasticsearch java client"
 
 subprojects {
@@ -39,7 +47,7 @@ subprojects {
 }
 
 allprojects {
-    group = "co.elastic.clients"
+    group = "co.elastic.release-test"
     // Release manager provides a $VERSION. If not present, it's a local or CI snapshot build.
     // also need to add the qualifier in case it's a staging build
     version = ""

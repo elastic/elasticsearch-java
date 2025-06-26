@@ -46,6 +46,6 @@ signing.keyId=${signing_key: -8}
 signing.password=${signing_password}
 signing.secretKeyRingFile=${keyring_file}
 
-sonatypeUsername=${maven_username}
-sonatypePassword=${maven_password}
+sonatypeUsername=test_username
+sonatypePassword=test_password
 EOF
