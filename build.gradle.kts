@@ -33,7 +33,7 @@ repositories {
     mavenCentral()
 }
 
-group = "co.elastic.release-test"
+group = "co.elastic.clients"
 description = "Maven central release of the official elasticsearch java client"
 
 subprojects {
@@ -42,7 +42,7 @@ subprojects {
 }
 
 allprojects {
-    group = "co.elastic.release-test"
+    group = "co.elastic.clients"
     // Release manager provides a $VERSION. If not present, it's a local or CI snapshot build.
     // also need to add the qualifier in case it's a staging build
     version = ""
