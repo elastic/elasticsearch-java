@@ -52,7 +52,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class PutHuggingFaceResponse extends InferenceEndpointInfo {
+public class PutHuggingFaceResponse extends InferenceEndpointInfoHuggingFace {
 	// ---------------------------------------------------------------------------------------------
 
 	private PutHuggingFaceResponse(Builder builder) {
@@ -70,7 +70,7 @@ public class PutHuggingFaceResponse extends InferenceEndpointInfo {
 	 * Builder for {@link PutHuggingFaceResponse}.
 	 */
 
-	public static class Builder extends InferenceEndpointInfo.AbstractBuilder<Builder>
+	public static class Builder extends InferenceEndpointInfoHuggingFace.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutHuggingFaceResponse> {
 		@Override
@@ -101,7 +101,7 @@ public class PutHuggingFaceResponse extends InferenceEndpointInfo {
 
 	protected static void setupPutHuggingFaceResponseDeserializer(
 			ObjectDeserializer<PutHuggingFaceResponse.Builder> op) {
-		InferenceEndpointInfo.setupInferenceEndpointInfoDeserializer(op);
+		InferenceEndpointInfoHuggingFace.setupInferenceEndpointInfoHuggingFaceDeserializer(op);
 
 	}
 

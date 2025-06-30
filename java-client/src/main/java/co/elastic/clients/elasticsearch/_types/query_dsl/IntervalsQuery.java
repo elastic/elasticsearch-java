@@ -87,6 +87,10 @@ public class IntervalsQuery extends QueryBase
 
 		Prefix("prefix"),
 
+		Range("range"),
+
+		Regexp("regexp"),
+
 		Wildcard("wildcard"),
 
 		;
@@ -233,6 +237,40 @@ public class IntervalsQuery extends QueryBase
 	}
 
 	/**
+	 * Is this variant instance of kind {@code range}?
+	 */
+	public boolean isRange() {
+		return _kind == Kind.Range;
+	}
+
+	/**
+	 * Get the {@code range} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code range} kind.
+	 */
+	public IntervalsRange range() {
+		return TaggedUnionUtils.get(this, Kind.Range);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code regexp}?
+	 */
+	public boolean isRegexp() {
+		return _kind == Kind.Regexp;
+	}
+
+	/**
+	 * Get the {@code regexp} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code regexp} kind.
+	 */
+	public IntervalsRegexp regexp() {
+		return TaggedUnionUtils.get(this, Kind.Regexp);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code wildcard}?
 	 */
 	public boolean isWildcard() {
@@ -343,6 +381,27 @@ public class IntervalsQuery extends QueryBase
 			return this.prefix(fn.apply(new IntervalsPrefix.Builder()).build());
 		}
 
+		public ObjectBuilder<IntervalsQuery> range(IntervalsRange v) {
+			this._kind = Kind.Range;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<IntervalsQuery> range(Function<IntervalsRange.Builder, ObjectBuilder<IntervalsRange>> fn) {
+			return this.range(fn.apply(new IntervalsRange.Builder()).build());
+		}
+
+		public ObjectBuilder<IntervalsQuery> regexp(IntervalsRegexp v) {
+			this._kind = Kind.Regexp;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<IntervalsQuery> regexp(
+				Function<IntervalsRegexp.Builder, ObjectBuilder<IntervalsRegexp>> fn) {
+			return this.regexp(fn.apply(new IntervalsRegexp.Builder()).build());
+		}
+
 		public ObjectBuilder<IntervalsQuery> wildcard(IntervalsWildcard v) {
 			this._kind = Kind.Wildcard;
 			this._value = v;
@@ -368,6 +427,8 @@ public class IntervalsQuery extends QueryBase
 		op.add(Builder::fuzzy, IntervalsFuzzy._DESERIALIZER, "fuzzy");
 		op.add(Builder::match, IntervalsMatch._DESERIALIZER, "match");
 		op.add(Builder::prefix, IntervalsPrefix._DESERIALIZER, "prefix");
+		op.add(Builder::range, IntervalsRange._DESERIALIZER, "range");
+		op.add(Builder::regexp, IntervalsRegexp._DESERIALIZER, "regexp");
 		op.add(Builder::wildcard, IntervalsWildcard._DESERIALIZER, "wildcard");
 
 		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());

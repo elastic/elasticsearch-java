@@ -68,22 +68,13 @@ import javax.annotation.Nullable;
  * during computation. It only works with the <code>chat_completion</code> task
  * type for <code>openai</code> and <code>elastic</code> inference services.
  * <p>
- * IMPORTANT: The inference APIs enable you to use certain services, such as
- * built-in machine learning models (ELSER, E5), models uploaded through Eland,
- * Cohere, OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic,
- * Watsonx.ai, or Hugging Face. For built-in models and models uploaded through
- * Eland, the inference APIs offer an alternative way to use and manage trained
- * models. However, if you do not plan to use the inference APIs to use these
- * models or if you want to use non-NLP models, use the machine learning trained
- * model APIs.
- * <p>
  * NOTE: The <code>chat_completion</code> task type is only available within the
  * _stream API and only supports streaming. The Chat completion inference API
  * and the Stream inference API differ in their response structure and
  * capabilities. The Chat completion inference API provides more comprehensive
  * customization options through more fields and function calling support. If
- * you use the <code>openai</code> service or the <code>elastic</code> service,
- * use the Chat completion inference API.
+ * you use the <code>openai</code>, <code>hugging_face</code> or the
+ * <code>elastic</code> service, use the Chat completion inference API.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#inference.chat_completion_unified.Request">API

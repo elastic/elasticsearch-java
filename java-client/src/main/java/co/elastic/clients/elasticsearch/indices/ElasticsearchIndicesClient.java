@@ -905,6 +905,43 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 		return deleteDataStream(fn.apply(new DeleteDataStreamRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: indices.delete_data_stream_options
+
+	/**
+	 * Delete data stream options. Removes the data stream options from a data
+	 * stream.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DeleteDataStreamOptionsResponse deleteDataStreamOptions(DeleteDataStreamOptionsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteDataStreamOptionsRequest, DeleteDataStreamOptionsResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteDataStreamOptionsRequest, DeleteDataStreamOptionsResponse, ErrorResponse>) DeleteDataStreamOptionsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Delete data stream options. Removes the data stream options from a data
+	 * stream.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteDataStreamOptionsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DeleteDataStreamOptionsResponse deleteDataStreamOptions(
+			Function<DeleteDataStreamOptionsRequest.Builder, ObjectBuilder<DeleteDataStreamOptionsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteDataStreamOptions(fn.apply(new DeleteDataStreamOptionsRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.delete_index_template
 
 	/**
@@ -1901,6 +1938,84 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 				this.transportOptions);
 	}
 
+	// ----- Endpoint: indices.get_data_stream_options
+
+	/**
+	 * Get data stream options.
+	 * <p>
+	 * Get the data stream options configuration of one or more data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetDataStreamOptionsResponse getDataStreamOptions(GetDataStreamOptionsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetDataStreamOptionsRequest, GetDataStreamOptionsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDataStreamOptionsRequest, GetDataStreamOptionsResponse, ErrorResponse>) GetDataStreamOptionsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get data stream options.
+	 * <p>
+	 * Get the data stream options configuration of one or more data streams.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetDataStreamOptionsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetDataStreamOptionsResponse getDataStreamOptions(
+			Function<GetDataStreamOptionsRequest.Builder, ObjectBuilder<GetDataStreamOptionsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getDataStreamOptions(fn.apply(new GetDataStreamOptionsRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.get_data_stream_settings
+
+	/**
+	 * Get data stream settings.
+	 * <p>
+	 * Get setting information for one or more data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-data-stream-settings">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetDataStreamSettingsResponse getDataStreamSettings(GetDataStreamSettingsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetDataStreamSettingsRequest, GetDataStreamSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDataStreamSettingsRequest, GetDataStreamSettingsResponse, ErrorResponse>) GetDataStreamSettingsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get data stream settings.
+	 * <p>
+	 * Get setting information for one or more data streams.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetDataStreamSettingsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-data-stream-settings">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetDataStreamSettingsResponse getDataStreamSettings(
+			Function<GetDataStreamSettingsRequest.Builder, ObjectBuilder<GetDataStreamSettingsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getDataStreamSettings(fn.apply(new GetDataStreamSettingsRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.get_field_mapping
 
 	/**
@@ -2575,6 +2690,92 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 		return putDataLifecycle(fn.apply(new PutDataLifecycleRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: indices.put_data_stream_options
+
+	/**
+	 * Update data stream options. Update the data stream options of the specified
+	 * data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutDataStreamOptionsResponse putDataStreamOptions(PutDataStreamOptionsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutDataStreamOptionsRequest, PutDataStreamOptionsResponse, ErrorResponse> endpoint = (JsonEndpoint<PutDataStreamOptionsRequest, PutDataStreamOptionsResponse, ErrorResponse>) PutDataStreamOptionsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Update data stream options. Update the data stream options of the specified
+	 * data streams.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutDataStreamOptionsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutDataStreamOptionsResponse putDataStreamOptions(
+			Function<PutDataStreamOptionsRequest.Builder, ObjectBuilder<PutDataStreamOptionsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putDataStreamOptions(fn.apply(new PutDataStreamOptionsRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.put_data_stream_settings
+
+	/**
+	 * Update data stream settings.
+	 * <p>
+	 * This API can be used to override settings on specific data streams. These
+	 * overrides will take precedence over what is specified in the template that
+	 * the data stream matches. To prevent your data stream from getting into an
+	 * invalid state, only certain settings are allowed. If possible, the setting
+	 * change is applied to all backing indices. Otherwise, it will be applied when
+	 * the data stream is next rolled over.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-data-stream-settings">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutDataStreamSettingsResponse putDataStreamSettings(PutDataStreamSettingsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutDataStreamSettingsRequest, PutDataStreamSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<PutDataStreamSettingsRequest, PutDataStreamSettingsResponse, ErrorResponse>) PutDataStreamSettingsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Update data stream settings.
+	 * <p>
+	 * This API can be used to override settings on specific data streams. These
+	 * overrides will take precedence over what is specified in the template that
+	 * the data stream matches. To prevent your data stream from getting into an
+	 * invalid state, only certain settings are allowed. If possible, the setting
+	 * change is applied to all backing indices. Otherwise, it will be applied when
+	 * the data stream is next rolled over.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutDataStreamSettingsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-data-stream-settings">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutDataStreamSettingsResponse putDataStreamSettings(
+			Function<PutDataStreamSettingsRequest.Builder, ObjectBuilder<PutDataStreamSettingsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putDataStreamSettings(fn.apply(new PutDataStreamSettingsRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.put_index_template
 
 	/**
@@ -2694,40 +2895,21 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 
 	/**
 	 * Update field mappings. Add new fields to an existing data stream or index.
-	 * You can also use this API to change the search settings of existing fields
-	 * and add new properties to existing object fields. For data streams, these
-	 * changes are applied to all backing indices by default.
+	 * You can use the update mapping API to:
+	 * <ul>
+	 * <li>Add a new field to an existing index</li>
+	 * <li>Update mappings for multiple indices in a single request</li>
+	 * <li>Add new properties to an object field</li>
+	 * <li>Enable multi-fields for an existing field</li>
+	 * <li>Update supported mapping parameters</li>
+	 * <li>Change a field's mapping using reindexing</li>
+	 * <li>Rename a field using a field alias</li>
+	 * </ul>
 	 * <p>
-	 * <strong>Add multi-fields to an existing field</strong>
-	 * <p>
-	 * Multi-fields let you index the same field in different ways. You can use this
-	 * API to update the fields mapping parameter and enable multi-fields for an
-	 * existing field. WARNING: If an index (or data stream) contains documents when
-	 * you add a multi-field, those documents will not have values for the new
-	 * multi-field. You can populate the new multi-field with the update by query
-	 * API.
-	 * <p>
-	 * <strong>Change supported mapping parameters for an existing field</strong>
-	 * <p>
-	 * The documentation for each mapping parameter indicates whether you can update
-	 * it for an existing field using this API. For example, you can use the update
-	 * mapping API to update the <code>ignore_above</code> parameter.
-	 * <p>
-	 * <strong>Change the mapping of an existing field</strong>
-	 * <p>
-	 * Except for supported mapping parameters, you can't change the mapping or
-	 * field type of an existing field. Changing an existing field could invalidate
-	 * data that's already indexed.
-	 * <p>
-	 * If you need to change the mapping of a field in a data stream's backing
-	 * indices, refer to documentation about modifying data streams. If you need to
-	 * change the mapping of a field in other indices, create a new index with the
-	 * correct mapping and reindex your data into that index.
-	 * <p>
-	 * <strong>Rename a field</strong>
-	 * <p>
-	 * Renaming a field would invalidate data already indexed under the old field
-	 * name. Instead, add an alias field to create an alternate field name.
+	 * Learn how to use the update mapping API with practical examples in the
+	 * <a href=
+	 * "https://www.elastic.co/docs//manage-data/data-store/mapping/update-mappings-examples">Update
+	 * mapping API examples</a> guide.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-mapping">Documentation
@@ -2743,40 +2925,21 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 
 	/**
 	 * Update field mappings. Add new fields to an existing data stream or index.
-	 * You can also use this API to change the search settings of existing fields
-	 * and add new properties to existing object fields. For data streams, these
-	 * changes are applied to all backing indices by default.
+	 * You can use the update mapping API to:
+	 * <ul>
+	 * <li>Add a new field to an existing index</li>
+	 * <li>Update mappings for multiple indices in a single request</li>
+	 * <li>Add new properties to an object field</li>
+	 * <li>Enable multi-fields for an existing field</li>
+	 * <li>Update supported mapping parameters</li>
+	 * <li>Change a field's mapping using reindexing</li>
+	 * <li>Rename a field using a field alias</li>
+	 * </ul>
 	 * <p>
-	 * <strong>Add multi-fields to an existing field</strong>
-	 * <p>
-	 * Multi-fields let you index the same field in different ways. You can use this
-	 * API to update the fields mapping parameter and enable multi-fields for an
-	 * existing field. WARNING: If an index (or data stream) contains documents when
-	 * you add a multi-field, those documents will not have values for the new
-	 * multi-field. You can populate the new multi-field with the update by query
-	 * API.
-	 * <p>
-	 * <strong>Change supported mapping parameters for an existing field</strong>
-	 * <p>
-	 * The documentation for each mapping parameter indicates whether you can update
-	 * it for an existing field using this API. For example, you can use the update
-	 * mapping API to update the <code>ignore_above</code> parameter.
-	 * <p>
-	 * <strong>Change the mapping of an existing field</strong>
-	 * <p>
-	 * Except for supported mapping parameters, you can't change the mapping or
-	 * field type of an existing field. Changing an existing field could invalidate
-	 * data that's already indexed.
-	 * <p>
-	 * If you need to change the mapping of a field in a data stream's backing
-	 * indices, refer to documentation about modifying data streams. If you need to
-	 * change the mapping of a field in other indices, create a new index with the
-	 * correct mapping and reindex your data into that index.
-	 * <p>
-	 * <strong>Rename a field</strong>
-	 * <p>
-	 * Renaming a field would invalidate data already indexed under the old field
-	 * name. Instead, add an alias field to create an alternate field name.
+	 * Learn how to use the update mapping API with practical examples in the
+	 * <a href=
+	 * "https://www.elastic.co/docs//manage-data/data-store/mapping/update-mappings-examples">Update
+	 * mapping API examples</a> guide.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2799,9 +2962,57 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * <p>
 	 * To revert a setting to the default value, use a null value. The list of
 	 * per-index settings that can be updated dynamically on live indices can be
-	 * found in index module documentation. To preserve existing settings from being
-	 * updated, set the <code>preserve_existing</code> parameter to
+	 * found in index settings documentation. To preserve existing settings from
+	 * being updated, set the <code>preserve_existing</code> parameter to
 	 * <code>true</code>.
+	 * <p>
+	 * For performance optimization during bulk indexing, you can disable the
+	 * refresh interval. Refer to <a href=
+	 * "https://www.elastic.co/docs/deploy-manage/production-guidance/optimize-performance/indexing-speed#disable-refresh-interval">disable
+	 * refresh interval</a> for an example. There are multiple valid ways to
+	 * represent index settings in the request body. You can specify only the
+	 * setting, for example:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;number_of_replicas&quot;: 1
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Or you can use an <code>index</code> setting object:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;index&quot;: {
+	 *     &quot;number_of_replicas&quot;: 1
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Or you can use dot annotation:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;index.number_of_replicas&quot;: 1
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Or you can embed any of the aforementioned options in a <code>settings</code>
+	 * object. For example:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;settings&quot;: {
+	 *     &quot;index&quot;: {
+	 *       &quot;number_of_replicas&quot;: 1
+	 *     }
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
 	 * <p>
 	 * NOTE: You can only define new analyzers on closed indices. To add an
 	 * analyzer, you must close the index, define the analyzer, and reopen the
@@ -2813,6 +3024,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * after the rollover. However, it does not affect the data stream's backing
 	 * indices or their existing data. To change the analyzer for existing backing
 	 * indices, you must create a new data stream and reindex your data into it.
+	 * Refer to <a href=
+	 * "https://www.elastic.co/docs/manage-data/data-store/text-analysis/specify-an-analyzer#update-analyzers-on-existing-indices">updating
+	 * analyzers on existing indices</a> for step-by-step examples.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-settings">Documentation
@@ -2833,9 +3047,57 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * <p>
 	 * To revert a setting to the default value, use a null value. The list of
 	 * per-index settings that can be updated dynamically on live indices can be
-	 * found in index module documentation. To preserve existing settings from being
-	 * updated, set the <code>preserve_existing</code> parameter to
+	 * found in index settings documentation. To preserve existing settings from
+	 * being updated, set the <code>preserve_existing</code> parameter to
 	 * <code>true</code>.
+	 * <p>
+	 * For performance optimization during bulk indexing, you can disable the
+	 * refresh interval. Refer to <a href=
+	 * "https://www.elastic.co/docs/deploy-manage/production-guidance/optimize-performance/indexing-speed#disable-refresh-interval">disable
+	 * refresh interval</a> for an example. There are multiple valid ways to
+	 * represent index settings in the request body. You can specify only the
+	 * setting, for example:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;number_of_replicas&quot;: 1
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Or you can use an <code>index</code> setting object:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;index&quot;: {
+	 *     &quot;number_of_replicas&quot;: 1
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Or you can use dot annotation:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;index.number_of_replicas&quot;: 1
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Or you can embed any of the aforementioned options in a <code>settings</code>
+	 * object. For example:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;settings&quot;: {
+	 *     &quot;index&quot;: {
+	 *       &quot;number_of_replicas&quot;: 1
+	 *     }
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
 	 * <p>
 	 * NOTE: You can only define new analyzers on closed indices. To add an
 	 * analyzer, you must close the index, define the analyzer, and reopen the
@@ -2847,6 +3109,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * after the rollover. However, it does not affect the data stream's backing
 	 * indices or their existing data. To change the analyzer for existing backing
 	 * indices, you must create a new data stream and reindex your data into it.
+	 * Refer to <a href=
+	 * "https://www.elastic.co/docs/manage-data/data-store/text-analysis/specify-an-analyzer#update-analyzers-on-existing-indices">updating
+	 * analyzers on existing indices</a> for step-by-step examples.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2868,9 +3133,57 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * <p>
 	 * To revert a setting to the default value, use a null value. The list of
 	 * per-index settings that can be updated dynamically on live indices can be
-	 * found in index module documentation. To preserve existing settings from being
-	 * updated, set the <code>preserve_existing</code> parameter to
+	 * found in index settings documentation. To preserve existing settings from
+	 * being updated, set the <code>preserve_existing</code> parameter to
 	 * <code>true</code>.
+	 * <p>
+	 * For performance optimization during bulk indexing, you can disable the
+	 * refresh interval. Refer to <a href=
+	 * "https://www.elastic.co/docs/deploy-manage/production-guidance/optimize-performance/indexing-speed#disable-refresh-interval">disable
+	 * refresh interval</a> for an example. There are multiple valid ways to
+	 * represent index settings in the request body. You can specify only the
+	 * setting, for example:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;number_of_replicas&quot;: 1
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Or you can use an <code>index</code> setting object:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;index&quot;: {
+	 *     &quot;number_of_replicas&quot;: 1
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Or you can use dot annotation:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;index.number_of_replicas&quot;: 1
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Or you can embed any of the aforementioned options in a <code>settings</code>
+	 * object. For example:
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;settings&quot;: {
+	 *     &quot;index&quot;: {
+	 *       &quot;number_of_replicas&quot;: 1
+	 *     }
+	 *   }
+	 * }
+	 * </code>
+	 * </pre>
 	 * <p>
 	 * NOTE: You can only define new analyzers on closed indices. To add an
 	 * analyzer, you must close the index, define the analyzer, and reopen the
@@ -2882,6 +3195,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * after the rollover. However, it does not affect the data stream's backing
 	 * indices or their existing data. To change the analyzer for existing backing
 	 * indices, you must create a new data stream and reindex your data into it.
+	 * Refer to <a href=
+	 * "https://www.elastic.co/docs/manage-data/data-store/text-analysis/specify-an-analyzer#update-analyzers-on-existing-indices">updating
+	 * analyzers on existing indices</a> for step-by-step examples.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-settings">Documentation

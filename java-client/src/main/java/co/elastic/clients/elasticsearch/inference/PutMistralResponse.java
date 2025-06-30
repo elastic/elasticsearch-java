@@ -51,7 +51,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class PutMistralResponse extends InferenceEndpointInfo {
+public class PutMistralResponse extends InferenceEndpointInfoMistral {
 	// ---------------------------------------------------------------------------------------------
 
 	private PutMistralResponse(Builder builder) {
@@ -69,7 +69,7 @@ public class PutMistralResponse extends InferenceEndpointInfo {
 	 * Builder for {@link PutMistralResponse}.
 	 */
 
-	public static class Builder extends InferenceEndpointInfo.AbstractBuilder<Builder>
+	public static class Builder extends InferenceEndpointInfoMistral.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutMistralResponse> {
 		@Override
@@ -99,7 +99,7 @@ public class PutMistralResponse extends InferenceEndpointInfo {
 			.lazy(Builder::new, PutMistralResponse::setupPutMistralResponseDeserializer);
 
 	protected static void setupPutMistralResponseDeserializer(ObjectDeserializer<PutMistralResponse.Builder> op) {
-		InferenceEndpointInfo.setupInferenceEndpointInfoDeserializer(op);
+		InferenceEndpointInfoMistral.setupInferenceEndpointInfoMistralDeserializer(op);
 
 	}
 

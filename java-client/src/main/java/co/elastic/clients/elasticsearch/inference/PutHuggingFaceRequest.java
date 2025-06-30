@@ -61,16 +61,20 @@ import javax.annotation.Nullable;
  * Create a Hugging Face inference endpoint.
  * <p>
  * Create an inference endpoint to perform an inference task with the
- * <code>hugging_face</code> service.
+ * <code>hugging_face</code> service. Supported tasks include:
+ * <code>text_embedding</code>, <code>completion</code>, and
+ * <code>chat_completion</code>.
  * <p>
- * You must first create an inference endpoint on the Hugging Face endpoint page
- * to get an endpoint URL. Select the model you want to use on the new endpoint
- * creation page (for example <code>intfloat/e5-small-v2</code>), then select
- * the sentence embeddings task under the advanced configuration section. Create
- * the endpoint and copy the URL after the endpoint initialization has been
- * finished.
+ * To configure the endpoint, first visit the Hugging Face Inference Endpoints
+ * page and create a new endpoint. Select a model that supports the task you
+ * intend to use.
  * <p>
- * The following models are recommended for the Hugging Face service:
+ * For Elastic's <code>text_embedding</code> task: The selected model must
+ * support the <code>Sentence Embeddings</code> task. On the new endpoint
+ * creation page, select the <code>Sentence Embeddings</code> task under the
+ * <code>Advanced Configuration</code> section. After the endpoint has
+ * initialized, copy the generated endpoint URL. Recommended models for
+ * <code>text_embedding</code> task:
  * <ul>
  * <li><code>all-MiniLM-L6-v2</code></li>
  * <li><code>all-MiniLM-L12-v2</code></li>
@@ -79,6 +83,31 @@ import javax.annotation.Nullable;
  * <li><code>e5-small-v2</code></li>
  * <li><code>multilingual-e5-base</code></li>
  * <li><code>multilingual-e5-small</code></li>
+ * </ul>
+ * <p>
+ * For Elastic's <code>chat_completion</code> and <code>completion</code> tasks:
+ * The selected model must support the <code>Text Generation</code> task and
+ * expose OpenAI API. HuggingFace supports both serverless and dedicated
+ * endpoints for <code>Text Generation</code>. When creating dedicated endpoint
+ * select the <code>Text Generation</code> task. After the endpoint is
+ * initialized (for dedicated) or ready (for serverless), ensure it supports the
+ * OpenAI API and includes <code>/v1/chat/completions</code> part in URL. Then,
+ * copy the full endpoint URL for use. Recommended models for
+ * <code>chat_completion</code> and <code>completion</code> tasks:
+ * <ul>
+ * <li><code>Mistral-7B-Instruct-v0.2</code></li>
+ * <li><code>QwQ-32B</code></li>
+ * <li><code>Phi-3-mini-128k-instruct</code></li>
+ * </ul>
+ * <p>
+ * For Elastic's <code>rerank</code> task: The selected model must support the
+ * <code>sentence-ranking</code> task and expose OpenAI API. HuggingFace
+ * supports only dedicated (not serverless) endpoints for <code>Rerank</code> so
+ * far. After the endpoint is initialized, copy the full endpoint URL for use.
+ * Tested models for <code>rerank</code> task:
+ * <ul>
+ * <li><code>bge-reranker-base</code></li>
+ * <li><code>jina-reranker-v1-turbo-en-GGUF</code></li>
  * </ul>
  *
  * @see <a href=
@@ -96,6 +125,9 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 
 	private final HuggingFaceServiceSettings serviceSettings;
 
+	@Nullable
+	private final HuggingFaceTaskSettings taskSettings;
+
 	private final HuggingFaceTaskType taskType;
 
 	// ---------------------------------------------------------------------------------------------
@@ -107,6 +139,7 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 				"huggingfaceInferenceId");
 		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
 		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
+		this.taskSettings = builder.taskSettings;
 		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
 
 	}
@@ -155,6 +188,17 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
+	 * Settings to configure the inference task. These settings are specific to the
+	 * task type you specified.
+	 * <p>
+	 * API name: {@code task_settings}
+	 */
+	@Nullable
+	public final HuggingFaceTaskSettings taskSettings() {
+		return this.taskSettings;
+	}
+
+	/**
 	 * Required - The type of the inference task that the model will perform.
 	 * <p>
 	 * API name: {@code task_type}
@@ -184,6 +228,12 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 		generator.writeKey("service_settings");
 		this.serviceSettings.serialize(generator, mapper);
 
+		if (this.taskSettings != null) {
+			generator.writeKey("task_settings");
+			this.taskSettings.serialize(generator, mapper);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -203,6 +253,9 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 		private HuggingFaceServiceType service;
 
 		private HuggingFaceServiceSettings serviceSettings;
+
+		@Nullable
+		private HuggingFaceTaskSettings taskSettings;
 
 		private HuggingFaceTaskType taskType;
 
@@ -270,6 +323,28 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
+		 * Settings to configure the inference task. These settings are specific to the
+		 * task type you specified.
+		 * <p>
+		 * API name: {@code task_settings}
+		 */
+		public final Builder taskSettings(@Nullable HuggingFaceTaskSettings value) {
+			this.taskSettings = value;
+			return this;
+		}
+
+		/**
+		 * Settings to configure the inference task. These settings are specific to the
+		 * task type you specified.
+		 * <p>
+		 * API name: {@code task_settings}
+		 */
+		public final Builder taskSettings(
+				Function<HuggingFaceTaskSettings.Builder, ObjectBuilder<HuggingFaceTaskSettings>> fn) {
+			return this.taskSettings(fn.apply(new HuggingFaceTaskSettings.Builder()).build());
+		}
+
+		/**
 		 * Required - The type of the inference task that the model will perform.
 		 * <p>
 		 * API name: {@code task_type}
@@ -310,6 +385,7 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
 		op.add(Builder::service, HuggingFaceServiceType._DESERIALIZER, "service");
 		op.add(Builder::serviceSettings, HuggingFaceServiceSettings._DESERIALIZER, "service_settings");
+		op.add(Builder::taskSettings, HuggingFaceTaskSettings._DESERIALIZER, "task_settings");
 
 	}
 

@@ -133,4 +133,58 @@ public class RetrieverBuilders {
 		return builder.build();
 	}
 
+	/**
+	 * Creates a builder for the {@link RescorerRetriever rescorer}
+	 * {@code Retriever} variant.
+	 */
+	public static RescorerRetriever.Builder rescorer() {
+		return new RescorerRetriever.Builder();
+	}
+
+	/**
+	 * Creates a Retriever of the {@link RescorerRetriever rescorer}
+	 * {@code Retriever} variant.
+	 */
+	public static Retriever rescorer(Function<RescorerRetriever.Builder, ObjectBuilder<RescorerRetriever>> fn) {
+		Retriever.Builder builder = new Retriever.Builder();
+		builder.rescorer(fn.apply(new RescorerRetriever.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link LinearRetriever linear} {@code Retriever}
+	 * variant.
+	 */
+	public static LinearRetriever.Builder linear() {
+		return new LinearRetriever.Builder();
+	}
+
+	/**
+	 * Creates a Retriever of the {@link LinearRetriever linear} {@code Retriever}
+	 * variant.
+	 */
+	public static Retriever linear(Function<LinearRetriever.Builder, ObjectBuilder<LinearRetriever>> fn) {
+		Retriever.Builder builder = new Retriever.Builder();
+		builder.linear(fn.apply(new LinearRetriever.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link PinnedRetriever pinned} {@code Retriever}
+	 * variant.
+	 */
+	public static PinnedRetriever.Builder pinned() {
+		return new PinnedRetriever.Builder();
+	}
+
+	/**
+	 * Creates a Retriever of the {@link PinnedRetriever pinned} {@code Retriever}
+	 * variant.
+	 */
+	public static Retriever pinned(Function<PinnedRetriever.Builder, ObjectBuilder<PinnedRetriever>> fn) {
+		Retriever.Builder builder = new Retriever.Builder();
+		builder.pinned(fn.apply(new PinnedRetriever.Builder()).build());
+		return builder.build();
+	}
+
 }

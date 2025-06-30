@@ -108,9 +108,12 @@ public class CohereServiceSettings implements JsonpSerializable {
 
 	/**
 	 * For a <code>text_embedding</code> task, the types of embeddings you want to
-	 * get back. Use <code>byte</code> for signed int8 embeddings (this is a synonym
-	 * of <code>int8</code>). Use <code>float</code> for the default float
-	 * embeddings. Use <code>int8</code> for signed int8 embeddings.
+	 * get back. Use <code>binary</code> for binary embeddings, which are encoded as
+	 * bytes with signed int8 precision. Use <code>bit</code> for binary embeddings,
+	 * which are encoded as bytes with signed int8 precision (this is a synonym of
+	 * <code>binary</code>). Use <code>byte</code> for signed int8 embeddings (this
+	 * is a synonym of <code>int8</code>). Use <code>float</code> for the default
+	 * float embeddings. Use <code>int8</code> for signed int8 embeddings.
 	 * <p>
 	 * API name: {@code embedding_type}
 	 */
@@ -251,9 +254,12 @@ public class CohereServiceSettings implements JsonpSerializable {
 
 		/**
 		 * For a <code>text_embedding</code> task, the types of embeddings you want to
-		 * get back. Use <code>byte</code> for signed int8 embeddings (this is a synonym
-		 * of <code>int8</code>). Use <code>float</code> for the default float
-		 * embeddings. Use <code>int8</code> for signed int8 embeddings.
+		 * get back. Use <code>binary</code> for binary embeddings, which are encoded as
+		 * bytes with signed int8 precision. Use <code>bit</code> for binary embeddings,
+		 * which are encoded as bytes with signed int8 precision (this is a synonym of
+		 * <code>binary</code>). Use <code>byte</code> for signed int8 embeddings (this
+		 * is a synonym of <code>int8</code>). Use <code>float</code> for the default
+		 * float embeddings. Use <code>int8</code> for signed int8 embeddings.
 		 * <p>
 		 * API name: {@code embedding_type}
 		 */

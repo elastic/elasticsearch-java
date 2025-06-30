@@ -132,7 +132,7 @@ public class ElasticsearchNodesSnifferTests extends RestClientTestCase {
                         + httpHost
                         + "], URI [/_nodes/http?timeout="
                         + sniffRequestTimeout
-                        + "ms], status line [HTTP/1.1";
+                        + "ms], status line ";
                     assertThat(e.getMessage(), startsWith(errorPrefix));
                     assertThat(e.getMessage(), containsString(Integer.toString(sniffResponse.nodesInfoResponseCode)));
                     assertThat(response.getHost(), equalTo(httpHost));

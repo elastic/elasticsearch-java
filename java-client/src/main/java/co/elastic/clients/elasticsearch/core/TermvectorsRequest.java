@@ -119,7 +119,8 @@ import javax.annotation.Nullable;
  * only useful as relative measures whereas the absolute numbers have no meaning
  * in this context. By default, when requesting term vectors of artificial
  * documents, a shard to get the statistics from is randomly selected. Use
- * <code>routing</code> only to hit a particular shard.
+ * <code>routing</code> only to hit a particular shard. Refer to the linked
+ * documentation for detailed examples of how to use this API.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.termvectors.Request">API
  *      specification</a>

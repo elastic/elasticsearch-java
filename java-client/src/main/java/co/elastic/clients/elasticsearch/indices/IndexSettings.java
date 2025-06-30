@@ -530,7 +530,8 @@ public class IndexSettings implements JsonpSerializable {
 
 	/**
 	 * Settings to define analyzers, tokenizers, token filters and character
-	 * filters.
+	 * filters. Refer to the linked documentation for step-by-step examples of
+	 * updating analyzers on existing indices.
 	 * <p>
 	 * API name: {@code analyze}
 	 */
@@ -1587,7 +1588,8 @@ public class IndexSettings implements JsonpSerializable {
 
 		/**
 		 * Settings to define analyzers, tokenizers, token filters and character
-		 * filters.
+		 * filters. Refer to the linked documentation for step-by-step examples of
+		 * updating analyzers on existing indices.
 		 * <p>
 		 * API name: {@code analyze}
 		 */
@@ -1598,7 +1600,8 @@ public class IndexSettings implements JsonpSerializable {
 
 		/**
 		 * Settings to define analyzers, tokenizers, token filters and character
-		 * filters.
+		 * filters. Refer to the linked documentation for step-by-step examples of
+		 * updating analyzers on existing indices.
 		 * <p>
 		 * API name: {@code analyze}
 		 */

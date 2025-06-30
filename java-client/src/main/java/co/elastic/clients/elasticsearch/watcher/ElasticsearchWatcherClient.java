@@ -81,7 +81,9 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 * Acknowledging an action throttles further executions of that action until its
 	 * <code>ack.state</code> is reset to <code>awaits_successful_execution</code>.
 	 * This happens when the condition of the watch is not met (the condition
-	 * evaluates to false).
+	 * evaluates to false). To demonstrate how throttling works in practice and how
+	 * it can be configured for individual actions within a watch, refer to External
+	 * documentation.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-ack-watch">Documentation
@@ -109,7 +111,9 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 * Acknowledging an action throttles further executions of that action until its
 	 * <code>ack.state</code> is reset to <code>awaits_successful_execution</code>.
 	 * This happens when the condition of the watch is not met (the condition
-	 * evaluates to false).
+	 * evaluates to false). To demonstrate how throttling works in practice and how
+	 * it can be configured for individual actions within a watch, refer to External
+	 * documentation.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -274,7 +278,8 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 * <p>
 	 * When using the run watch API, the authorization data of the user that called
 	 * the API will be used as a base, instead of the information who stored the
-	 * watch.
+	 * watch. Refer to the external documentation for examples of watch execution
+	 * requests, including existing, customized, and inline watches.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-execute-watch">Documentation
@@ -310,7 +315,8 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 * <p>
 	 * When using the run watch API, the authorization data of the user that called
 	 * the API will be used as a base, instead of the information who stored the
-	 * watch.
+	 * watch. Refer to the external documentation for examples of watch execution
+	 * requests, including existing, customized, and inline watches.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -348,7 +354,8 @@ public class ElasticsearchWatcherClient extends ApiClient<ElasticsearchTransport
 	 * <p>
 	 * When using the run watch API, the authorization data of the user that called
 	 * the API will be used as a base, instead of the information who stored the
-	 * watch.
+	 * watch. Refer to the external documentation for examples of watch execution
+	 * requests, including existing, customized, and inline watches.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-watcher-execute-watch">Documentation

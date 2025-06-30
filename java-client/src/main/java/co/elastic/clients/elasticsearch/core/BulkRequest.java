@@ -228,6 +228,10 @@ import javax.annotation.Nullable;
  * five shards. The request will only wait for those three shards to refresh.
  * The other two shards that make up the index do not participate in the
  * <code>_bulk</code> request at all.
+ * <p>
+ * You might want to disable the refresh interval temporarily to improve
+ * indexing throughput for large bulk requests. Refer to the linked
+ * documentation for step-by-step instructions using the index settings API.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.bulk.Request">API
  *      specification</a>

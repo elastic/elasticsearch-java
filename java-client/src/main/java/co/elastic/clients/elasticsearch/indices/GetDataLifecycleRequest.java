@@ -97,9 +97,7 @@ public class GetDataLifecycleRequest extends RequestBase {
 
 	/**
 	 * Type of data stream that wildcard patterns can match. Supports
-	 * comma-separated values, such as <code>open,hidden</code>. Valid values are:
-	 * <code>all</code>, <code>open</code>, <code>closed</code>,
-	 * <code>hidden</code>, <code>none</code>.
+	 * comma-separated values, such as <code>open,hidden</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -161,9 +159,7 @@ public class GetDataLifecycleRequest extends RequestBase {
 
 		/**
 		 * Type of data stream that wildcard patterns can match. Supports
-		 * comma-separated values, such as <code>open,hidden</code>. Valid values are:
-		 * <code>all</code>, <code>open</code>, <code>closed</code>,
-		 * <code>hidden</code>, <code>none</code>.
+		 * comma-separated values, such as <code>open,hidden</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -176,9 +172,7 @@ public class GetDataLifecycleRequest extends RequestBase {
 
 		/**
 		 * Type of data stream that wildcard patterns can match. Supports
-		 * comma-separated values, such as <code>open,hidden</code>. Valid values are:
-		 * <code>all</code>, <code>open</code>, <code>closed</code>,
-		 * <code>hidden</code>, <code>none</code>.
+		 * comma-separated values, such as <code>open,hidden</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
