@@ -75,6 +75,7 @@ public final class Rest5ClientBuilder {
 
     private final List<Node> nodes;
     private CloseableHttpAsyncClient httpClient;
+    private HttpClientConfigCallback httpClientConfigCallback;
     private Header[] defaultHeaders = EMPTY_HEADERS;
     private Rest5Client.FailureListener failureListener;
     private SSLContext sslContext;
@@ -321,6 +322,36 @@ public final class Rest5ClientBuilder {
     }
 
     /**
+     * Sets the {@link HttpClientConfigCallback} to be used to customize http client configuration
+     *
+     * @throws NullPointerException if {@code httpClientConfigCallback} is {@code null}.
+     */
+    public Rest5ClientBuilder setHttpClientConfigCallback(HttpClientConfigCallback httpClientConfigCallback) {
+        Objects.requireNonNull(httpClientConfigCallback, "httpClientConfigCallback must not be null");
+        this.httpClientConfigCallback = httpClientConfigCallback;
+        return this;
+    }
+
+    /**
+     * Callback used to customize the {@link CloseableHttpAsyncClient} instance used by a
+     * {@link Rest5Client} instance.
+     * Allows to customize default {@link RequestConfig} being set to the client and any parameter that
+     * can be set through {@link HttpAsyncClientBuilder}
+     */
+    public interface HttpClientConfigCallback {
+        /**
+         * Allows to customize the {@link CloseableHttpAsyncClient} being created and used by the
+         * {@link Rest5Client}.
+         * Commonly used to customize {@link HttpAsyncClientBuilder} without losing any other useful default
+         * value that the {@link Rest5ClientBuilder} internally sets, except if RequestConfig,
+         * ConnectionConfig
+         * and ConnectionManager are set through this callback.
+         * In those cases, all default values set by the {@link Rest5ClientBuilder} are lost.
+         */
+        HttpAsyncClientBuilder customizeHttpClient(HttpAsyncClientBuilder httpClientBuilder);
+    }
+
+    /**
      * Creates a new {@link Rest5Client} based on the provided configuration.
      */
     public Rest5Client build() {
@@ -406,6 +437,9 @@ public final class Rest5ClientBuilder {
             }
             if (this.routePlanner != null) {
                 httpClientBuilder.setRoutePlanner(this.routePlanner);
+            }
+            if (httpClientConfigCallback != null) {
+                httpClientBuilder = httpClientConfigCallback.customizeHttpClient(httpClientBuilder);
             }
 
             return httpClientBuilder.build();
