@@ -1,18 +1,16 @@
 
 # Timeouts
 
-Configuring requests timeouts can be done by using the `setHttpClientConfigCallback` method while building the `RestClient` and then calling `setDefaultRequestConfig`. In the following example we increase the connect timeout (defaults to 30 second) and the response timeout (defaults to 0, which is infinite).
+Configuring requests timeouts can be done by using the `setRequestConfigCallback` method while building the `RestClient`. In the following example we increase the connect timeout (defaults to 30 second) and the response timeout (defaults to 0, which is infinite).
 
 % :::{include-code} src={{doc-tests-src}}/rest5_client/RestClientDocumentation.java tag=rest-client-config-timeouts
 ```java
 Rest5ClientBuilder builder = Rest5Client
     .builder(new HttpHost("localhost", 9200))
-    .setHttpClientConfigCallback(c -> c
-        .setDefaultRequestConfig(RequestConfig.custom()
-            .setConnectTimeout(Timeout.of(5000, TimeUnit.MILLISECONDS))
-            .setResponseTimeout(Timeout.of(30000, TimeUnit.MILLISECONDS))
-            .build()
-        )
+    .setRequestConfigCallback(r -> r
+        .setConnectTimeout(Timeout.of(5000, TimeUnit.MILLISECONDS))
+        .setResponseTimeout(Timeout.of(30000, TimeUnit.MILLISECONDS))
+        .build()
     );
 ```
 

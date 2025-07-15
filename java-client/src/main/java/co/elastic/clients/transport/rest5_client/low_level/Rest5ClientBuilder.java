@@ -77,6 +77,9 @@ public final class Rest5ClientBuilder {
     private final List<Node> nodes;
     private CloseableHttpAsyncClient httpClient;
     private Consumer<HttpAsyncClientBuilder> httpClientConfigCallback;
+    private Consumer<RequestConfig.Builder> requestConfigCallback;
+    private Consumer<ConnectionConfig.Builder> connectionConfigCallback;
+    private Consumer<PoolingAsyncClientConnectionManagerBuilder> connectionManagerCallback;
     private Header[] defaultHeaders = EMPTY_HEADERS;
     private Rest5Client.FailureListener failureListener;
     private SSLContext sslContext;
@@ -326,14 +329,51 @@ public final class Rest5ClientBuilder {
      * Allows to customize the {@link CloseableHttpAsyncClient} being created and used by the
      * {@link Rest5Client}.
      * Commonly used to customize {@link HttpAsyncClientBuilder} without losing any other useful default
-     * value that the {@link Rest5ClientBuilder} internally sets, except if RequestConfig,
-     * ConnectionConfig and ConnectionManager are set through this callback.
-     * In those cases, all default values set by the {@link Rest5ClientBuilder} are lost.
+     * value that the {@link Rest5ClientBuilder} internally sets.
      * @throws NullPointerException if {@code httpClientConfigCallback} is {@code null}.
      */
     public Rest5ClientBuilder setHttpClientConfigCallback(Consumer<HttpAsyncClientBuilder> httpClientConfigCallback) {
         Objects.requireNonNull(httpClientConfigCallback, "httpClientConfigCallback must not be null");
         this.httpClientConfigCallback = httpClientConfigCallback;
+        return this;
+    }
+
+    /**
+     * Allows to customize the {@link RequestConfig} created by the {@link Rest5Client}
+     * and used by the {@link CloseableHttpAsyncClient}.
+     * Commonly used to customize {@link RequestConfig} without losing any other useful default
+     * value that the {@link Rest5ClientBuilder} internally sets.
+     * @throws NullPointerException if {@code requestConfigCallback} is {@code null}.
+     */
+    public Rest5ClientBuilder setRequestConfigCallback(Consumer<RequestConfig.Builder> requestConfigCallback) {
+        Objects.requireNonNull(requestConfigCallback, "requestConfigCallback must not be null");
+        this.requestConfigCallback = requestConfigCallback;
+        return this;
+    }
+
+    /**
+     * Allows to customize the {@link ConnectionConfig} created by the {@link Rest5Client}
+     * and used by the {@link CloseableHttpAsyncClient}.
+     * Commonly used to customize {@link ConnectionConfig} without losing any other useful default
+     * value that the {@link Rest5ClientBuilder} internally sets.
+     * @throws NullPointerException if {@code connectionConfigCallback} is {@code null}.
+     */
+    public Rest5ClientBuilder setConnectionConfigCallback(Consumer<ConnectionConfig.Builder> connectionConfigCallback) {
+        Objects.requireNonNull(connectionConfigCallback, "connectionConfigCallback must not be null");
+        this.connectionConfigCallback = connectionConfigCallback;
+        return this;
+    }
+
+    /**
+     * Allows to customize the {@link PoolingAsyncClientConnectionManager} created by the {@link Rest5Client}
+     * and used by the {@link CloseableHttpAsyncClient}.
+     * Commonly used to customize {@link PoolingAsyncClientConnectionManager} without losing any other useful default
+     * value that the {@link Rest5ClientBuilder} internally sets.
+     * @throws NullPointerException if {@code connectionManagerCallback} is {@code null}.
+     */
+    public Rest5ClientBuilder setConnectionManagerCallback(Consumer<PoolingAsyncClientConnectionManagerBuilder> connectionManagerCallback) {
+        Objects.requireNonNull(connectionManagerCallback, "connectionManagerCallback must not be null");
+        this.connectionManagerCallback = connectionManagerCallback;
         return this;
     }
 
@@ -386,31 +426,40 @@ public final class Rest5ClientBuilder {
             return this.httpClient;
         }
         // otherwise, creating a default instance of CloseableHttpAsyncClient
-        // default timeouts are all 3 mins
-        RequestConfig requestConfigBuilder = RequestConfig.custom()
+
+        // default timeouts are all 3 mins, replacing those
+        RequestConfig.Builder requestConfigBuilder = RequestConfig.custom()
             .setConnectionRequestTimeout(Timeout.of(DEFAULT_SOCKET_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS))
-            .setResponseTimeout(Timeout.of(DEFAULT_RESPONSE_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS))
-            .build();
+            .setResponseTimeout(Timeout.of(DEFAULT_RESPONSE_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS));
+
+        if (requestConfigCallback != null) {
+            requestConfigCallback.accept(requestConfigBuilder);
+        }
 
         try {
 
             SSLContext sslContext = this.sslContext != null ? this.sslContext : SSLContext.getDefault();
 
-            ConnectionConfig connectionConfig = ConnectionConfig.custom()
-                .setConnectTimeout(Timeout.of(DEFAULT_CONNECT_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS))
-                .build();
+            ConnectionConfig.Builder connectionConfigBuilder = ConnectionConfig.custom()
+                .setConnectTimeout(Timeout.of(DEFAULT_CONNECT_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS));
+            if (connectionConfigCallback != null) {
+                connectionConfigCallback.accept(connectionConfigBuilder);
+            }
 
-            PoolingAsyncClientConnectionManager defaultConnectionManager =
+            PoolingAsyncClientConnectionManagerBuilder connectionManagerBuilder =
                 PoolingAsyncClientConnectionManagerBuilder.create()
-                    .setDefaultConnectionConfig(connectionConfig)
+                    .setDefaultConnectionConfig(connectionConfigBuilder.build())
                     .setMaxConnPerRoute(DEFAULT_MAX_CONN_PER_ROUTE)
                     .setMaxConnTotal(DEFAULT_MAX_CONN_TOTAL)
-                    .setTlsStrategy(new BasicClientTlsStrategy(sslContext))
-                    .build();
+                    .setTlsStrategy(new BasicClientTlsStrategy(sslContext));
+
+            if (connectionManagerCallback != null) {
+                connectionManagerCallback.accept(connectionManagerBuilder);
+            }
 
             HttpAsyncClientBuilder httpClientBuilder = HttpAsyncClientBuilder.create()
-                .setDefaultRequestConfig(requestConfigBuilder)
-                .setConnectionManager(defaultConnectionManager)
+                .setDefaultRequestConfig(requestConfigBuilder.build())
+                .setConnectionManager(connectionManagerBuilder.build())
                 .setUserAgent(USER_AGENT_HEADER_VALUE)
                 .setTargetAuthenticationStrategy(new DefaultAuthenticationStrategy())
                 .setThreadFactory(new RestClientThreadFactory());
