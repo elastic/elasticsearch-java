@@ -46,6 +46,7 @@ import java.util.Properties;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.function.Consumer;
 
 import static co.elastic.clients.transport.rest5_client.low_level.LanguageRuntimeVersions.getRuntimeMetadata;
 
@@ -75,7 +76,7 @@ public final class Rest5ClientBuilder {
 
     private final List<Node> nodes;
     private CloseableHttpAsyncClient httpClient;
-    private HttpClientConfigCallback httpClientConfigCallback;
+    private Consumer<HttpAsyncClientBuilder> httpClientConfigCallback;
     private Header[] defaultHeaders = EMPTY_HEADERS;
     private Rest5Client.FailureListener failureListener;
     private SSLContext sslContext;
@@ -322,33 +323,18 @@ public final class Rest5ClientBuilder {
     }
 
     /**
-     * Sets the {@link HttpClientConfigCallback} to be used to customize http client configuration
-     *
+     * Allows to customize the {@link CloseableHttpAsyncClient} being created and used by the
+     * {@link Rest5Client}.
+     * Commonly used to customize {@link HttpAsyncClientBuilder} without losing any other useful default
+     * value that the {@link Rest5ClientBuilder} internally sets, except if RequestConfig,
+     * ConnectionConfig and ConnectionManager are set through this callback.
+     * In those cases, all default values set by the {@link Rest5ClientBuilder} are lost.
      * @throws NullPointerException if {@code httpClientConfigCallback} is {@code null}.
      */
-    public Rest5ClientBuilder setHttpClientConfigCallback(HttpClientConfigCallback httpClientConfigCallback) {
+    public Rest5ClientBuilder setHttpClientConfigCallback(Consumer<HttpAsyncClientBuilder> httpClientConfigCallback) {
         Objects.requireNonNull(httpClientConfigCallback, "httpClientConfigCallback must not be null");
         this.httpClientConfigCallback = httpClientConfigCallback;
         return this;
-    }
-
-    /**
-     * Callback used to customize the {@link CloseableHttpAsyncClient} instance used by a
-     * {@link Rest5Client} instance.
-     * Allows to customize default {@link RequestConfig} being set to the client and any parameter that
-     * can be set through {@link HttpAsyncClientBuilder}
-     */
-    public interface HttpClientConfigCallback {
-        /**
-         * Allows to customize the {@link CloseableHttpAsyncClient} being created and used by the
-         * {@link Rest5Client}.
-         * Commonly used to customize {@link HttpAsyncClientBuilder} without losing any other useful default
-         * value that the {@link Rest5ClientBuilder} internally sets, except if RequestConfig,
-         * ConnectionConfig
-         * and ConnectionManager are set through this callback.
-         * In those cases, all default values set by the {@link Rest5ClientBuilder} are lost.
-         */
-        HttpAsyncClientBuilder customizeHttpClient(HttpAsyncClientBuilder httpClientBuilder);
     }
 
     /**
@@ -439,7 +425,7 @@ public final class Rest5ClientBuilder {
                 httpClientBuilder.setRoutePlanner(this.routePlanner);
             }
             if (httpClientConfigCallback != null) {
-                httpClientBuilder = httpClientConfigCallback.customizeHttpClient(httpClientBuilder);
+                httpClientConfigCallback.accept(httpClientBuilder);
             }
 
             return httpClientBuilder.build();
