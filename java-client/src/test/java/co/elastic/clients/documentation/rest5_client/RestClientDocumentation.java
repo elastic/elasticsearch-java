@@ -30,8 +30,7 @@ import co.elastic.clients.transport.rest5_client.low_level.ResponseListener;
 import co.elastic.clients.transport.rest5_client.low_level.Rest5Client;
 import co.elastic.clients.transport.rest5_client.low_level.Rest5ClientBuilder;
 import org.apache.hc.client5.http.config.RequestConfig;
-import org.apache.hc.client5.http.impl.async.CloseableHttpAsyncClient;
-import org.apache.hc.client5.http.impl.async.HttpAsyncClients;
+import org.apache.hc.client5.http.impl.async.HttpAsyncClientBuilder;
 import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManager;
 import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManagerBuilder;
 import org.apache.hc.core5.http.ContentType;
@@ -183,13 +182,11 @@ public class RestClientDocumentation {
                     .setMaxConnPerRoute(5)
                     .build();
 
-            CloseableHttpAsyncClient httpclient = HttpAsyncClients.custom()
-                .setConnectionManager(connectionManager)
-                .build();
-
             Rest5ClientBuilder builder = Rest5Client
                 .builder(new HttpHost("http", "localhost", 9200))
-                .setHttpClient(httpclient);
+                .setHttpClientConfigCallback(c -> c
+                    .setConnectionManager(connectionManager)
+                );
             //end::rest-client-init-request-config-callback
         }
 
@@ -319,13 +316,10 @@ public class RestClientDocumentation {
             RequestConfig.Builder requestConfigBuilder = RequestConfig.custom()
                 .setConnectTimeout(Timeout.of(5000, TimeUnit.MILLISECONDS));
 
-            CloseableHttpAsyncClient httpclient = HttpAsyncClients.custom()
-                .setDefaultRequestConfig(requestConfigBuilder.build())
-                .build();
-
             Rest5ClientBuilder builder = Rest5Client
                 .builder(new HttpHost("localhost", 9200))
-                .setHttpClient(httpclient);
+                .setHttpClientConfigCallback(c -> c
+                    .setDefaultRequestConfig(requestConfigBuilder.build()));
             //end::rest-client-config-timeouts
         }
         {
@@ -342,15 +336,12 @@ public class RestClientDocumentation {
         }
         {
             //tag::rest-client-config-threads
-            CloseableHttpAsyncClient httpclient = HttpAsyncClients.custom()
-                .setIOReactorConfig(
-                    IOReactorConfig.custom().setIoThreadCount(1).build()
-                )
-                .build();
 
             Rest5ClientBuilder builder = Rest5Client
                 .builder(new HttpHost("localhost", 9200))
-                .setHttpClient(httpclient);
+                .setHttpClientConfigCallback(c -> c
+                    .setIOReactorConfig(IOReactorConfig.custom().setIoThreadCount(1).build()
+                ));
             //end::rest-client-config-threads
         }
         {
@@ -372,13 +363,9 @@ public class RestClientDocumentation {
 
             var creds = Base64.getEncoder().encodeToString("user:test-user-password".getBytes());
 
-            CloseableHttpAsyncClient httpclient = HttpAsyncClients.custom()
-                .disableAuthCaching() // <1>
-                .build();
-
             Rest5ClientBuilder restClient = Rest5Client
                 .builder(new HttpHost("https", "localhost", 9200))
-                .setHttpClient(httpclient)
+                .setHttpClientConfigCallback(HttpAsyncClientBuilder::disableAuthCaching) // <1>
                 .setDefaultHeaders(new Header[]{
                     new BasicHeader("Authorization", "Basic " + creds)
                 });
