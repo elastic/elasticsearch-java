@@ -16,7 +16,7 @@ Rest5ClientBuilder restClient = Rest5Client
 
 ```
 
-Preemptive Authentication can be disabled, which means that every request will be sent without authorization headers to see if it is accepted and, upon receiving an HTTP 401 response, it will resend the exact same request with the basic authentication header. If you wish to do this, then you can do so by disabling it via the `HttpAsyncClientBuilder`:
+Preemptive Authentication can be disabled, which means that every request will be sent without authorization headers to see if it is accepted and, upon receiving an HTTP 401 response, it will resend the exact same request with the basic authentication header. If you wish to do this, then you can do so by disabling it via the `HttpClientConfigCallback`:
 
 % :::{include-code} src={{doc-tests-src}}/rest5_client/RestClientDocumentation.java tag=rest-client-config-disable-preemptive-auth
 ```java
@@ -24,13 +24,9 @@ HttpHost host = new HttpHost("http", "localhost", 9200);
 
 var creds = Base64.getEncoder().encodeToString("user:test-user-password".getBytes());
 
-CloseableHttpAsyncClient httpclient = HttpAsyncClients.custom()
-    .disableAuthCaching() // <1>
-    .build();
-
 Rest5ClientBuilder restClient = Rest5Client
     .builder(new HttpHost("https", "localhost", 9200))
-    .setHttpClient(httpclient)
+    .setHttpClientConfigCallback(HttpAsyncClientBuilder::disableAuthCaching)
     .setDefaultHeaders(new Header[]{
         new BasicHeader("Authorization", "Basic " + creds)
     });
