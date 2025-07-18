@@ -78,7 +78,8 @@ import javax.annotation.Nullable;
  * that you own. If you have the <code>read_security</code>,
  * <code>manage_api_key</code>, or greater privileges (including
  * <code>manage_security</code>), this API returns all API keys regardless of
- * ownership.
+ * ownership. Refer to the linked documentation for examples of how to find API
+ * keys:
  * 
  * @see <a href="../doc-files/api-spec.html#security.query_api_keys.Request">API
  *      specification</a>

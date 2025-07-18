@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -62,6 +63,9 @@ import javax.annotation.Nullable;
 public class ClusterJvm implements JsonpSerializable {
 	private final long maxUptimeInMillis;
 
+	@Nullable
+	private final Time maxUptime;
+
 	private final ClusterJvmMemory mem;
 
 	private final long threads;
@@ -73,6 +77,7 @@ public class ClusterJvm implements JsonpSerializable {
 	private ClusterJvm(Builder builder) {
 
 		this.maxUptimeInMillis = ApiTypeHelper.requireNonNull(builder.maxUptimeInMillis, this, "maxUptimeInMillis", 0);
+		this.maxUptime = builder.maxUptime;
 		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
 		this.threads = ApiTypeHelper.requireNonNull(builder.threads, this, "threads", 0);
 		this.versions = ApiTypeHelper.unmodifiableRequired(builder.versions, this, "versions");
@@ -90,6 +95,16 @@ public class ClusterJvm implements JsonpSerializable {
 	 */
 	public final long maxUptimeInMillis() {
 		return this.maxUptimeInMillis;
+	}
+
+	/**
+	 * Uptime duration since JVM last started.
+	 * <p>
+	 * API name: {@code max_uptime}
+	 */
+	@Nullable
+	public final Time maxUptime() {
+		return this.maxUptime;
 	}
 
 	/**
@@ -133,6 +148,11 @@ public class ClusterJvm implements JsonpSerializable {
 		generator.writeKey("max_uptime_in_millis");
 		generator.write(this.maxUptimeInMillis);
 
+		if (this.maxUptime != null) {
+			generator.writeKey("max_uptime");
+			this.maxUptime.serialize(generator, mapper);
+
+		}
 		generator.writeKey("mem");
 		this.mem.serialize(generator, mapper);
 
@@ -166,6 +186,9 @@ public class ClusterJvm implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ClusterJvm> {
 		private Long maxUptimeInMillis;
 
+		@Nullable
+		private Time maxUptime;
+
 		private ClusterJvmMemory mem;
 
 		private Long threads;
@@ -180,6 +203,25 @@ public class ClusterJvm implements JsonpSerializable {
 		public final Builder maxUptimeInMillis(long value) {
 			this.maxUptimeInMillis = value;
 			return this;
+		}
+
+		/**
+		 * Uptime duration since JVM last started.
+		 * <p>
+		 * API name: {@code max_uptime}
+		 */
+		public final Builder maxUptime(@Nullable Time value) {
+			this.maxUptime = value;
+			return this;
+		}
+
+		/**
+		 * Uptime duration since JVM last started.
+		 * <p>
+		 * API name: {@code max_uptime}
+		 */
+		public final Builder maxUptime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.maxUptime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -275,6 +317,7 @@ public class ClusterJvm implements JsonpSerializable {
 	protected static void setupClusterJvmDeserializer(ObjectDeserializer<ClusterJvm.Builder> op) {
 
 		op.add(Builder::maxUptimeInMillis, JsonpDeserializer.longDeserializer(), "max_uptime_in_millis");
+		op.add(Builder::maxUptime, Time._DESERIALIZER, "max_uptime");
 		op.add(Builder::mem, ClusterJvmMemory._DESERIALIZER, "mem");
 		op.add(Builder::threads, JsonpDeserializer.longDeserializer(), "threads");
 		op.add(Builder::versions, JsonpDeserializer.arrayDeserializer(ClusterJvmVersion._DESERIALIZER), "versions");

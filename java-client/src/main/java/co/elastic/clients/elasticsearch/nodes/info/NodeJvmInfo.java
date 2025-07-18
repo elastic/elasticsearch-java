@@ -484,7 +484,7 @@ public class NodeJvmInfo implements JsonpSerializable {
 		op.add(Builder::vmName, JsonpDeserializer.stringDeserializer(), "vm_name");
 		op.add(Builder::vmVendor, JsonpDeserializer.stringDeserializer(), "vm_vendor");
 		op.add(Builder::vmVersion, JsonpDeserializer.stringDeserializer(), "vm_version");
-		op.add(Builder::usingBundledJdk, JsonpDeserializer.booleanDeserializer(), "using_bundled_jdk", "bundled_jdk");
+		op.add(Builder::usingBundledJdk, JsonpDeserializer.booleanDeserializer(), "using_bundled_jdk");
 		op.add(Builder::usingCompressedOrdinaryObjectPointers, JsonpDeserializer.booleanDeserializer(),
 				"using_compressed_ordinary_object_pointers");
 		op.add(Builder::inputArguments, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

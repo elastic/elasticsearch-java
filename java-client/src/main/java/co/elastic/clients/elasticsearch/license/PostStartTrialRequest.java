@@ -81,7 +81,7 @@ public class PostStartTrialRequest extends RequestBase {
 	private final Time masterTimeout;
 
 	@Nullable
-	private final String typeQueryString;
+	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -89,7 +89,7 @@ public class PostStartTrialRequest extends RequestBase {
 
 		this.acknowledge = builder.acknowledge;
 		this.masterTimeout = builder.masterTimeout;
-		this.typeQueryString = builder.typeQueryString;
+		this.type = builder.type;
 
 	}
 
@@ -118,11 +118,13 @@ public class PostStartTrialRequest extends RequestBase {
 	}
 
 	/**
-	 * API name: {@code type_query_string}
+	 * The type of trial license to generate (default: &quot;trial&quot;)
+	 * <p>
+	 * API name: {@code type}
 	 */
 	@Nullable
-	public final String typeQueryString() {
-		return this.typeQueryString;
+	public final String type() {
+		return this.type;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -141,7 +143,7 @@ public class PostStartTrialRequest extends RequestBase {
 		private Time masterTimeout;
 
 		@Nullable
-		private String typeQueryString;
+		private String type;
 
 		/**
 		 * whether the user has acknowledged acknowledge messages (default: false)
@@ -173,10 +175,12 @@ public class PostStartTrialRequest extends RequestBase {
 		}
 
 		/**
-		 * API name: {@code type_query_string}
+		 * The type of trial license to generate (default: &quot;trial&quot;)
+		 * <p>
+		 * API name: {@code type}
 		 */
-		public final Builder typeQueryString(@Nullable String value) {
-			this.typeQueryString = value;
+		public final Builder type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
@@ -229,11 +233,11 @@ public class PostStartTrialRequest extends RequestBase {
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
-				if (request.typeQueryString != null) {
-					params.put("type_query_string", request.typeQueryString);
-				}
 				if (request.acknowledge != null) {
 					params.put("acknowledge", String.valueOf(request.acknowledge));
+				}
+				if (request.type != null) {
+					params.put("type", request.type);
 				}
 				return params;
 

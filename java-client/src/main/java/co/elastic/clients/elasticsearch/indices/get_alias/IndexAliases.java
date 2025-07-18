@@ -52,12 +52,12 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: indices.get_alias.IndexAliases
+// typedef: indices.get_alias._types.IndexAliases
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#indices.get_alias.IndexAliases">API
+ *      "../../doc-files/api-spec.html#indices.get_alias._types.IndexAliases">API
  *      specification</a>
  */
 @JsonpDeserializable

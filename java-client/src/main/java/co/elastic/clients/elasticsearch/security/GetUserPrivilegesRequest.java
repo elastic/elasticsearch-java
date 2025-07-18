@@ -29,13 +29,8 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
-import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -68,126 +63,13 @@ import javax.annotation.Nullable;
  */
 
 public class GetUserPrivilegesRequest extends RequestBase {
-	@Nullable
-	private final String application;
-
-	@Nullable
-	private final String priviledge;
-
-	@Nullable
-	private final String username;
-
-	// ---------------------------------------------------------------------------------------------
-
-	private GetUserPrivilegesRequest(Builder builder) {
-
-		this.application = builder.application;
-		this.priviledge = builder.priviledge;
-		this.username = builder.username;
-
-	}
-
-	public static GetUserPrivilegesRequest of(Function<Builder, ObjectBuilder<GetUserPrivilegesRequest>> fn) {
-		return fn.apply(new Builder()).build();
+	public GetUserPrivilegesRequest() {
 	}
 
 	/**
-	 * The name of the application. Application privileges are always associated
-	 * with exactly one application. If you do not specify this parameter, the API
-	 * returns information about all privileges for all applications.
-	 * <p>
-	 * API name: {@code application}
+	 * Singleton instance for {@link GetUserPrivilegesRequest}.
 	 */
-	@Nullable
-	public final String application() {
-		return this.application;
-	}
-
-	/**
-	 * The name of the privilege. If you do not specify this parameter, the API
-	 * returns information about all privileges for the requested application.
-	 * <p>
-	 * API name: {@code priviledge}
-	 */
-	@Nullable
-	public final String priviledge() {
-		return this.priviledge;
-	}
-
-	/**
-	 * API name: {@code username}
-	 */
-	@Nullable
-	public final String username() {
-		return this.username;
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link GetUserPrivilegesRequest}.
-	 */
-
-	public static class Builder extends RequestBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<GetUserPrivilegesRequest> {
-		@Nullable
-		private String application;
-
-		@Nullable
-		private String priviledge;
-
-		@Nullable
-		private String username;
-
-		/**
-		 * The name of the application. Application privileges are always associated
-		 * with exactly one application. If you do not specify this parameter, the API
-		 * returns information about all privileges for all applications.
-		 * <p>
-		 * API name: {@code application}
-		 */
-		public final Builder application(@Nullable String value) {
-			this.application = value;
-			return this;
-		}
-
-		/**
-		 * The name of the privilege. If you do not specify this parameter, the API
-		 * returns information about all privileges for the requested application.
-		 * <p>
-		 * API name: {@code priviledge}
-		 */
-		public final Builder priviledge(@Nullable String value) {
-			this.priviledge = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code username}
-		 */
-		public final Builder username(@Nullable String value) {
-			this.username = value;
-			return this;
-		}
-
-		@Override
-		protected Builder self() {
-			return this;
-		}
-
-		/**
-		 * Builds a {@link GetUserPrivilegesRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetUserPrivilegesRequest build() {
-			_checkSingleUse();
-
-			return new GetUserPrivilegesRequest(this);
-		}
-	}
+	public static final GetUserPrivilegesRequest _INSTANCE = new GetUserPrivilegesRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -216,17 +98,7 @@ public class GetUserPrivilegesRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.application != null) {
-					params.put("application", request.application);
-				}
-				if (request.priviledge != null) {
-					params.put("priviledge", request.priviledge);
-				}
-				if (request.username != null) {
-					params.put("username", request.username);
-				}
-				return params;
+				return Collections.emptyMap();
 
 			}, SimpleEndpoint.emptyMap(), false, GetUserPrivilegesResponse._DESERIALIZER);
 }

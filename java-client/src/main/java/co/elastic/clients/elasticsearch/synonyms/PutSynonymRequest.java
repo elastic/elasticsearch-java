@@ -67,6 +67,9 @@ import javax.annotation.Nullable;
  * synonyms set are reloaded automatically for all indices. This is equivalent
  * to invoking the reload search analyzers API for all indices that use the
  * synonyms set.
+ * <p>
+ * For practical examples of how to create or update a synonyms set, refer to
+ * the External documentation.
  * 
  * @see <a href="../doc-files/api-spec.html#synonyms.put_synonym.Request">API
  *      specification</a>

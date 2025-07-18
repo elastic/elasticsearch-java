@@ -1994,50 +1994,8 @@ public class ElasticsearchSecurityAsyncClient
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-user-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
-
-	public CompletableFuture<GetUserPrivilegesResponse> getUserPrivileges(GetUserPrivilegesRequest request) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetUserPrivilegesRequest, GetUserPrivilegesResponse, ErrorResponse> endpoint = (JsonEndpoint<GetUserPrivilegesRequest, GetUserPrivilegesResponse, ErrorResponse>) GetUserPrivilegesRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Get user privileges.
-	 * <p>
-	 * Get the security privileges for the logged in user. All users can use this
-	 * API, but only to determine their own privileges. To check the privileges of
-	 * other users, you must use the run as feature. To check whether a user has a
-	 * specific list of privileges, use the has privileges API.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link GetUserPrivilegesRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-user-privileges">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<GetUserPrivilegesResponse> getUserPrivileges(
-			Function<GetUserPrivilegesRequest.Builder, ObjectBuilder<GetUserPrivilegesRequest>> fn) {
-		return getUserPrivileges(fn.apply(new GetUserPrivilegesRequest.Builder()).build());
-	}
-
-	/**
-	 * Get user privileges.
-	 * <p>
-	 * Get the security privileges for the logged in user. All users can use this
-	 * API, but only to determine their own privileges. To check the privileges of
-	 * other users, you must use the run as feature. To check whether a user has a
-	 * specific list of privileges, use the has privileges API.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-user-privileges">Documentation
-	 *      on elastic.co</a>
-	 */
-
 	public CompletableFuture<GetUserPrivilegesResponse> getUserPrivileges() {
-		return this.transport.performRequestAsync(new GetUserPrivilegesRequest.Builder().build(),
+		return this.transport.performRequestAsync(GetUserPrivilegesRequest._INSTANCE,
 				GetUserPrivilegesRequest._ENDPOINT, this.transportOptions);
 	}
 
@@ -3029,7 +2987,8 @@ public class ElasticsearchSecurityAsyncClient
 	 * that you own. If you have the <code>read_security</code>,
 	 * <code>manage_api_key</code>, or greater privileges (including
 	 * <code>manage_security</code>), this API returns all API keys regardless of
-	 * ownership.
+	 * ownership. Refer to the linked documentation for examples of how to find API
+	 * keys:
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-api-keys">Documentation
@@ -3055,7 +3014,8 @@ public class ElasticsearchSecurityAsyncClient
 	 * that you own. If you have the <code>read_security</code>,
 	 * <code>manage_api_key</code>, or greater privileges (including
 	 * <code>manage_security</code>), this API returns all API keys regardless of
-	 * ownership.
+	 * ownership. Refer to the linked documentation for examples of how to find API
+	 * keys:
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -3082,7 +3042,8 @@ public class ElasticsearchSecurityAsyncClient
 	 * that you own. If you have the <code>read_security</code>,
 	 * <code>manage_api_key</code>, or greater privileges (including
 	 * <code>manage_security</code>), this API returns all API keys regardless of
-	 * ownership.
+	 * ownership. Refer to the linked documentation for examples of how to find API
+	 * keys:
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-api-keys">Documentation
@@ -3818,6 +3779,10 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * NOTE: This API cannot update REST API keys, which should be updated by either
 	 * the update API key or bulk update API keys API.
+	 * <p>
+	 * To learn more about how to use this API, refer to the <a href=
+	 * "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/update-cc-api-key-examples">Update
+	 * cross cluter API key API examples page</a>.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-cross-cluster-api-key">Documentation
@@ -3856,6 +3821,10 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * NOTE: This API cannot update REST API keys, which should be updated by either
 	 * the update API key or bulk update API keys API.
+	 * <p>
+	 * To learn more about how to use this API, refer to the <a href=
+	 * "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/update-cc-api-key-examples">Update
+	 * cross cluter API key API examples page</a>.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

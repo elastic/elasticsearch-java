@@ -3135,7 +3135,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 * Update a data frame analytics job.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-update-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3154,7 +3154,7 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateDataFrameAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ml-update-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 

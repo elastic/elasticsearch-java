@@ -83,6 +83,25 @@ public class TokenFilterDefinitionBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link ArabicStemTokenFilter arabic_stem}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static ArabicStemTokenFilter.Builder arabicStem() {
+		return new ArabicStemTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link ArabicStemTokenFilter
+	 * arabic_stem} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition arabicStem(
+			Function<ArabicStemTokenFilter.Builder, ObjectBuilder<ArabicStemTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.arabicStem(fn.apply(new ArabicStemTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link AsciiFoldingTokenFilter asciifolding}
 	 * {@code TokenFilterDefinition} variant.
 	 */
@@ -98,6 +117,44 @@ public class TokenFilterDefinitionBuilders {
 			Function<AsciiFoldingTokenFilter.Builder, ObjectBuilder<AsciiFoldingTokenFilter>> fn) {
 		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
 		builder.asciifolding(fn.apply(new AsciiFoldingTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link BengaliNormalizationTokenFilter
+	 * bengali_normalization} {@code TokenFilterDefinition} variant.
+	 */
+	public static BengaliNormalizationTokenFilter.Builder bengaliNormalization() {
+		return new BengaliNormalizationTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link BengaliNormalizationTokenFilter
+	 * bengali_normalization} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition bengaliNormalization(
+			Function<BengaliNormalizationTokenFilter.Builder, ObjectBuilder<BengaliNormalizationTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.bengaliNormalization(fn.apply(new BengaliNormalizationTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link BrazilianStemTokenFilter brazilian_stem}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static BrazilianStemTokenFilter.Builder brazilianStem() {
+		return new BrazilianStemTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link BrazilianStemTokenFilter
+	 * brazilian_stem} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition brazilianStem(
+			Function<BrazilianStemTokenFilter.Builder, ObjectBuilder<BrazilianStemTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.brazilianStem(fn.apply(new BrazilianStemTokenFilter.Builder()).build());
 		return builder.build();
 	}
 
@@ -197,6 +254,25 @@ public class TokenFilterDefinitionBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link CzechStemTokenFilter czech_stem}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static CzechStemTokenFilter.Builder czechStem() {
+		return new CzechStemTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link CzechStemTokenFilter
+	 * czech_stem} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition czechStem(
+			Function<CzechStemTokenFilter.Builder, ObjectBuilder<CzechStemTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.czechStem(fn.apply(new CzechStemTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link DecimalDigitTokenFilter decimal_digit}
 	 * {@code TokenFilterDefinition} variant.
 	 */
@@ -251,6 +327,25 @@ public class TokenFilterDefinitionBuilders {
 			Function<DictionaryDecompounderTokenFilter.Builder, ObjectBuilder<DictionaryDecompounderTokenFilter>> fn) {
 		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
 		builder.dictionaryDecompounder(fn.apply(new DictionaryDecompounderTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link DutchStemTokenFilter dutch_stem}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static DutchStemTokenFilter.Builder dutchStem() {
+		return new DutchStemTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link DutchStemTokenFilter
+	 * dutch_stem} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition dutchStem(
+			Function<DutchStemTokenFilter.Builder, ObjectBuilder<DutchStemTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.dutchStem(fn.apply(new DutchStemTokenFilter.Builder()).build());
 		return builder.build();
 	}
 
@@ -331,6 +426,25 @@ public class TokenFilterDefinitionBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link FrenchStemTokenFilter french_stem}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static FrenchStemTokenFilter.Builder frenchStem() {
+		return new FrenchStemTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link FrenchStemTokenFilter
+	 * french_stem} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition frenchStem(
+			Function<FrenchStemTokenFilter.Builder, ObjectBuilder<FrenchStemTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.frenchStem(fn.apply(new FrenchStemTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link GermanNormalizationTokenFilter
 	 * german_normalization} {@code TokenFilterDefinition} variant.
 	 */
@@ -346,6 +460,25 @@ public class TokenFilterDefinitionBuilders {
 			Function<GermanNormalizationTokenFilter.Builder, ObjectBuilder<GermanNormalizationTokenFilter>> fn) {
 		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
 		builder.germanNormalization(fn.apply(new GermanNormalizationTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link GermanStemTokenFilter german_stem}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static GermanStemTokenFilter.Builder germanStem() {
+		return new GermanStemTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link GermanStemTokenFilter
+	 * german_stem} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition germanStem(
+			Function<GermanStemTokenFilter.Builder, ObjectBuilder<GermanStemTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.germanStem(fn.apply(new GermanStemTokenFilter.Builder()).build());
 		return builder.build();
 	}
 
@@ -862,6 +995,25 @@ public class TokenFilterDefinitionBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link PersianStemTokenFilter persian_stem}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static PersianStemTokenFilter.Builder persianStem() {
+		return new PersianStemTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link PersianStemTokenFilter
+	 * persian_stem} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition persianStem(
+			Function<PersianStemTokenFilter.Builder, ObjectBuilder<PersianStemTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.persianStem(fn.apply(new PersianStemTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link PhoneticTokenFilter phonetic}
 	 * {@code TokenFilterDefinition} variant.
 	 */
@@ -953,6 +1105,25 @@ public class TokenFilterDefinitionBuilders {
 			Function<ReverseTokenFilter.Builder, ObjectBuilder<ReverseTokenFilter>> fn) {
 		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
 		builder.reverse(fn.apply(new ReverseTokenFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link RussianStemTokenFilter russian_stem}
+	 * {@code TokenFilterDefinition} variant.
+	 */
+	public static RussianStemTokenFilter.Builder russianStem() {
+		return new RussianStemTokenFilter.Builder();
+	}
+
+	/**
+	 * Creates a TokenFilterDefinition of the {@link RussianStemTokenFilter
+	 * russian_stem} {@code TokenFilterDefinition} variant.
+	 */
+	public static TokenFilterDefinition russianStem(
+			Function<RussianStemTokenFilter.Builder, ObjectBuilder<RussianStemTokenFilter>> fn) {
+		TokenFilterDefinition.Builder builder = new TokenFilterDefinition.Builder();
+		builder.russianStem(fn.apply(new RussianStemTokenFilter.Builder()).build());
 		return builder.build();
 	}
 

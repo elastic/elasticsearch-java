@@ -28,14 +28,17 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -79,6 +82,8 @@ public class GetComponentTemplateRequest extends RequestBase {
 	@Nullable
 	private final String name;
 
+	private final List<String> settingsFilter;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GetComponentTemplateRequest(Builder builder) {
@@ -88,6 +93,7 @@ public class GetComponentTemplateRequest extends RequestBase {
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = builder.name;
+		this.settingsFilter = ApiTypeHelper.unmodifiable(builder.settingsFilter);
 
 	}
 
@@ -148,6 +154,16 @@ public class GetComponentTemplateRequest extends RequestBase {
 		return this.name;
 	}
 
+	/**
+	 * Filter out results, for example to filter out sensitive information. Supports
+	 * wildcards or full settings keys
+	 * <p>
+	 * API name: {@code settings_filter}
+	 */
+	public final List<String> settingsFilter() {
+		return this.settingsFilter;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -171,6 +187,9 @@ public class GetComponentTemplateRequest extends RequestBase {
 
 		@Nullable
 		private String name;
+
+		@Nullable
+		private List<String> settingsFilter;
 
 		/**
 		 * If <code>true</code>, returns settings in flat format.
@@ -232,6 +251,32 @@ public class GetComponentTemplateRequest extends RequestBase {
 		 */
 		public final Builder name(@Nullable String value) {
 			this.name = value;
+			return this;
+		}
+
+		/**
+		 * Filter out results, for example to filter out sensitive information. Supports
+		 * wildcards or full settings keys
+		 * <p>
+		 * API name: {@code settings_filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>settingsFilter</code>.
+		 */
+		public final Builder settingsFilter(List<String> list) {
+			this.settingsFilter = _listAddAll(this.settingsFilter, list);
+			return this;
+		}
+
+		/**
+		 * Filter out results, for example to filter out sensitive information. Supports
+		 * wildcards or full settings keys
+		 * <p>
+		 * API name: {@code settings_filter}
+		 * <p>
+		 * Adds one or more values to <code>settingsFilter</code>.
+		 */
+		public final Builder settingsFilter(String value, String... values) {
+			this.settingsFilter = _listAdd(this.settingsFilter, value, values);
 			return this;
 		}
 
@@ -318,6 +363,10 @@ public class GetComponentTemplateRequest extends RequestBase {
 				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
+				}
+				if (ApiTypeHelper.isDefined(request.settingsFilter)) {
+					params.put("settings_filter",
+							request.settingsFilter.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.includeDefaults != null) {
 					params.put("include_defaults", String.valueOf(request.includeDefaults));

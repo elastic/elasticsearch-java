@@ -59,7 +59,8 @@ import javax.annotation.Nullable;
 public class LinearRetriever extends RetrieverBase implements RetrieverVariant {
 	private final List<InnerRetriever> retrievers;
 
-	private final int rankWindowSize;
+	@Nullable
+	private final Integer rankWindowSize;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -67,7 +68,7 @@ public class LinearRetriever extends RetrieverBase implements RetrieverVariant {
 		super(builder);
 
 		this.retrievers = ApiTypeHelper.unmodifiable(builder.retrievers);
-		this.rankWindowSize = ApiTypeHelper.requireNonNull(builder.rankWindowSize, this, "rankWindowSize", 0);
+		this.rankWindowSize = builder.rankWindowSize;
 
 	}
 
@@ -93,9 +94,10 @@ public class LinearRetriever extends RetrieverBase implements RetrieverVariant {
 	}
 
 	/**
-	 * Required - API name: {@code rank_window_size}
+	 * API name: {@code rank_window_size}
 	 */
-	public final int rankWindowSize() {
+	@Nullable
+	public final Integer rankWindowSize() {
 		return this.rankWindowSize;
 	}
 
@@ -112,8 +114,11 @@ public class LinearRetriever extends RetrieverBase implements RetrieverVariant {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("rank_window_size");
-		generator.write(this.rankWindowSize);
+		if (this.rankWindowSize != null) {
+			generator.writeKey("rank_window_size");
+			generator.write(this.rankWindowSize);
+
+		}
 
 	}
 
@@ -129,6 +134,7 @@ public class LinearRetriever extends RetrieverBase implements RetrieverVariant {
 		@Nullable
 		private List<InnerRetriever> retrievers;
 
+		@Nullable
 		private Integer rankWindowSize;
 
 		/**
@@ -167,9 +173,9 @@ public class LinearRetriever extends RetrieverBase implements RetrieverVariant {
 		}
 
 		/**
-		 * Required - API name: {@code rank_window_size}
+		 * API name: {@code rank_window_size}
 		 */
-		public final Builder rankWindowSize(int value) {
+		public final Builder rankWindowSize(@Nullable Integer value) {
 			this.rankWindowSize = value;
 			return this;
 		}
