@@ -1265,7 +1265,7 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.rerank
 
 	/**
-	 * Perform rereanking inference on the service
+	 * Perform reranking inference on the service
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/post-inference-api.html">Documentation
@@ -1280,7 +1280,7 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform rereanking inference on the service
+	 * Perform reranking inference on the service
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

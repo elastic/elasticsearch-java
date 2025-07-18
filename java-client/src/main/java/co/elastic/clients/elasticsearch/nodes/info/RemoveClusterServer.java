@@ -30,7 +30,8 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
+import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,44 +51,45 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: nodes.info.NodeInfoNetwork
+// typedef: nodes.info.RemoveClusterServer
 
 /**
  *
- * @see <a href="../../doc-files/api-spec.html#nodes.info.NodeInfoNetwork">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#nodes.info.RemoveClusterServer">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class NodeInfoNetwork implements JsonpSerializable {
-	private final NodeInfoNetworkInterface primaryInterface;
+public class RemoveClusterServer implements JsonpSerializable {
+	private final List<String> boundAddress;
 
-	private final int refreshInterval;
+	private final String publishAddress;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private NodeInfoNetwork(Builder builder) {
+	private RemoveClusterServer(Builder builder) {
 
-		this.primaryInterface = ApiTypeHelper.requireNonNull(builder.primaryInterface, this, "primaryInterface");
-		this.refreshInterval = ApiTypeHelper.requireNonNull(builder.refreshInterval, this, "refreshInterval", 0);
+		this.boundAddress = ApiTypeHelper.unmodifiableRequired(builder.boundAddress, this, "boundAddress");
+		this.publishAddress = ApiTypeHelper.requireNonNull(builder.publishAddress, this, "publishAddress");
 
 	}
 
-	public static NodeInfoNetwork of(Function<Builder, ObjectBuilder<NodeInfoNetwork>> fn) {
+	public static RemoveClusterServer of(Function<Builder, ObjectBuilder<RemoveClusterServer>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code primary_interface}
+	 * Required - API name: {@code bound_address}
 	 */
-	public final NodeInfoNetworkInterface primaryInterface() {
-		return this.primaryInterface;
+	public final List<String> boundAddress() {
+		return this.boundAddress;
 	}
 
 	/**
-	 * Required - API name: {@code refresh_interval}
+	 * Required - API name: {@code publish_address}
 	 */
-	public final int refreshInterval() {
-		return this.refreshInterval;
+	public final String publishAddress() {
+		return this.publishAddress;
 	}
 
 	/**
@@ -101,11 +103,18 @@ public class NodeInfoNetwork implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("primary_interface");
-		this.primaryInterface.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.boundAddress)) {
+			generator.writeKey("bound_address");
+			generator.writeStartArray();
+			for (String item0 : this.boundAddress) {
+				generator.write(item0);
 
-		generator.writeKey("refresh_interval");
-		generator.write(this.refreshInterval);
+			}
+			generator.writeEnd();
+
+		}
+		generator.writeKey("publish_address");
+		generator.write(this.publishAddress);
 
 	}
 
@@ -117,35 +126,41 @@ public class NodeInfoNetwork implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link NodeInfoNetwork}.
+	 * Builder for {@link RemoveClusterServer}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeInfoNetwork> {
-		private NodeInfoNetworkInterface primaryInterface;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<RemoveClusterServer> {
+		private List<String> boundAddress;
 
-		private Integer refreshInterval;
+		private String publishAddress;
 
 		/**
-		 * Required - API name: {@code primary_interface}
+		 * Required - API name: {@code bound_address}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>boundAddress</code>.
 		 */
-		public final Builder primaryInterface(NodeInfoNetworkInterface value) {
-			this.primaryInterface = value;
+		public final Builder boundAddress(List<String> list) {
+			this.boundAddress = _listAddAll(this.boundAddress, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code primary_interface}
+		 * Required - API name: {@code bound_address}
+		 * <p>
+		 * Adds one or more values to <code>boundAddress</code>.
 		 */
-		public final Builder primaryInterface(
-				Function<NodeInfoNetworkInterface.Builder, ObjectBuilder<NodeInfoNetworkInterface>> fn) {
-			return this.primaryInterface(fn.apply(new NodeInfoNetworkInterface.Builder()).build());
+		public final Builder boundAddress(String value, String... values) {
+			this.boundAddress = _listAdd(this.boundAddress, value, values);
+			return this;
 		}
 
 		/**
-		 * Required - API name: {@code refresh_interval}
+		 * Required - API name: {@code publish_address}
 		 */
-		public final Builder refreshInterval(int value) {
-			this.refreshInterval = value;
+		public final Builder publishAddress(String value) {
+			this.publishAddress = value;
 			return this;
 		}
 
@@ -155,30 +170,31 @@ public class NodeInfoNetwork implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link NodeInfoNetwork}.
+		 * Builds a {@link RemoveClusterServer}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public NodeInfoNetwork build() {
+		public RemoveClusterServer build() {
 			_checkSingleUse();
 
-			return new NodeInfoNetwork(this);
+			return new RemoveClusterServer(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link NodeInfoNetwork}
+	 * Json deserializer for {@link RemoveClusterServer}
 	 */
-	public static final JsonpDeserializer<NodeInfoNetwork> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeInfoNetwork::setupNodeInfoNetworkDeserializer);
+	public static final JsonpDeserializer<RemoveClusterServer> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RemoveClusterServer::setupRemoveClusterServerDeserializer);
 
-	protected static void setupNodeInfoNetworkDeserializer(ObjectDeserializer<NodeInfoNetwork.Builder> op) {
+	protected static void setupRemoveClusterServerDeserializer(ObjectDeserializer<RemoveClusterServer.Builder> op) {
 
-		op.add(Builder::primaryInterface, NodeInfoNetworkInterface._DESERIALIZER, "primary_interface");
-		op.add(Builder::refreshInterval, JsonpDeserializer.integerDeserializer(), "refresh_interval");
+		op.add(Builder::boundAddress, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"bound_address");
+		op.add(Builder::publishAddress, JsonpDeserializer.stringDeserializer(), "publish_address");
 
 	}
 

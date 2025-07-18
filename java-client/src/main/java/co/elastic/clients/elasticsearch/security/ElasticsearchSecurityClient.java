@@ -2034,53 +2034,9 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/security-api-get-user-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
-
-	public GetUserPrivilegesResponse getUserPrivileges(GetUserPrivilegesRequest request)
-			throws IOException, ElasticsearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetUserPrivilegesRequest, GetUserPrivilegesResponse, ErrorResponse> endpoint = (JsonEndpoint<GetUserPrivilegesRequest, GetUserPrivilegesResponse, ErrorResponse>) GetUserPrivilegesRequest._ENDPOINT;
-
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Get user privileges.
-	 * <p>
-	 * Get the security privileges for the logged in user. All users can use this
-	 * API, but only to determine their own privileges. To check the privileges of
-	 * other users, you must use the run as feature. To check whether a user has a
-	 * specific list of privileges, use the has privileges API.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link GetUserPrivilegesRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/security-api-get-user-privileges.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final GetUserPrivilegesResponse getUserPrivileges(
-			Function<GetUserPrivilegesRequest.Builder, ObjectBuilder<GetUserPrivilegesRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return getUserPrivileges(fn.apply(new GetUserPrivilegesRequest.Builder()).build());
-	}
-
-	/**
-	 * Get user privileges.
-	 * <p>
-	 * Get the security privileges for the logged in user. All users can use this
-	 * API, but only to determine their own privileges. To check the privileges of
-	 * other users, you must use the run as feature. To check whether a user has a
-	 * specific list of privileges, use the has privileges API.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/security-api-get-user-privileges.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
 	public GetUserPrivilegesResponse getUserPrivileges() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetUserPrivilegesRequest.Builder().build(),
-				GetUserPrivilegesRequest._ENDPOINT, this.transportOptions);
+		return this.transport.performRequest(GetUserPrivilegesRequest._INSTANCE, GetUserPrivilegesRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_user_profile

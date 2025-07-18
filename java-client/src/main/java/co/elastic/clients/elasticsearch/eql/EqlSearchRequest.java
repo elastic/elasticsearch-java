@@ -91,6 +91,9 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	private final Boolean caseSensitive;
 
 	@Nullable
+	private final Boolean ccsMinimizeRoundtrips;
+
+	@Nullable
 	private final String eventCategoryField;
 
 	private final List<ExpandWildcard> expandWildcards;
@@ -143,6 +146,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		this.allowPartialSearchResults = builder.allowPartialSearchResults;
 		this.allowPartialSequenceResults = builder.allowPartialSequenceResults;
 		this.caseSensitive = builder.caseSensitive;
+		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
 		this.eventCategoryField = builder.eventCategoryField;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.fetchSize = builder.fetchSize;
@@ -168,6 +172,10 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -210,6 +218,17 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Indicates whether network round-trips should be minimized as part of
+	 * cross-cluster search requests execution
+	 * <p>
+	 * API name: {@code ccs_minimize_roundtrips}
+	 */
+	@Nullable
+	public final Boolean ccsMinimizeRoundtrips() {
+		return this.ccsMinimizeRoundtrips;
+	}
+
+	/**
 	 * Field containing the event classification, such as process, file, or network.
 	 * <p>
 	 * API name: {@code event_category_field}
@@ -220,6 +239,9 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
 	public final List<ExpandWildcard> expandWildcards() {
@@ -503,6 +525,9 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		private Boolean caseSensitive;
 
 		@Nullable
+		private Boolean ccsMinimizeRoundtrips;
+
+		@Nullable
 		private String eventCategoryField;
 
 		@Nullable
@@ -552,6 +577,10 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		private Time waitForCompletionTimeout;
 
 		/**
+		 * Whether to ignore if a wildcard indices expression resolves into no concrete
+		 * indices. (This includes <code>_all</code> string or when no indices have been
+		 * specified)
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public final Builder allowNoIndices(@Nullable Boolean value) {
@@ -594,6 +623,17 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Indicates whether network round-trips should be minimized as part of
+		 * cross-cluster search requests execution
+		 * <p>
+		 * API name: {@code ccs_minimize_roundtrips}
+		 */
+		public final Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
+			this.ccsMinimizeRoundtrips = value;
+			return this;
+		}
+
+		/**
 		 * Field containing the event classification, such as process, file, or network.
 		 * <p>
 		 * API name: {@code event_category_field}
@@ -604,6 +644,9 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
@@ -614,6 +657,9 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
 		 * Adds one or more values to <code>expandWildcards</code>.
@@ -1002,6 +1048,9 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.ccsMinimizeRoundtrips != null) {
+					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
 				}
 				return params;
 

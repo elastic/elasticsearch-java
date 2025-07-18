@@ -31,6 +31,7 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -70,6 +71,9 @@ public class DeleteSnapshotRequest extends RequestBase {
 
 	private final String snapshot;
 
+	@Nullable
+	private final Boolean waitForCompletion;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DeleteSnapshotRequest(Builder builder) {
@@ -77,6 +81,7 @@ public class DeleteSnapshotRequest extends RequestBase {
 		this.masterTimeout = builder.masterTimeout;
 		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
 		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
@@ -112,6 +117,18 @@ public class DeleteSnapshotRequest extends RequestBase {
 		return this.snapshot;
 	}
 
+	/**
+	 * If <code>true</code>, the request returns a response when the matching
+	 * snapshots are all deleted. If <code>false</code>, the request returns a
+	 * response as soon as the deletes are scheduled.
+	 * <p>
+	 * API name: {@code wait_for_completion}
+	 */
+	@Nullable
+	public final Boolean waitForCompletion() {
+		return this.waitForCompletion;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -127,6 +144,9 @@ public class DeleteSnapshotRequest extends RequestBase {
 		private String repository;
 
 		private String snapshot;
+
+		@Nullable
+		private Boolean waitForCompletion;
 
 		/**
 		 * Explicit operation timeout for connection to master node
@@ -164,6 +184,18 @@ public class DeleteSnapshotRequest extends RequestBase {
 		 */
 		public final Builder snapshot(String value) {
 			this.snapshot = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the request returns a response when the matching
+		 * snapshots are all deleted. If <code>false</code>, the request returns a
+		 * response as soon as the deletes are scheduled.
+		 * <p>
+		 * API name: {@code wait_for_completion}
+		 */
+		public final Builder waitForCompletion(@Nullable Boolean value) {
+			this.waitForCompletion = value;
 			return this;
 		}
 
@@ -245,6 +277,9 @@ public class DeleteSnapshotRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.waitForCompletion != null) {
+					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
 				}
 				return params;
 

@@ -768,6 +768,24 @@ public class PropertyBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link RankVectorProperty rank_vectors}
+	 * {@code Property} variant.
+	 */
+	public static RankVectorProperty.Builder rankVectors() {
+		return new RankVectorProperty.Builder();
+	}
+
+	/**
+	 * Creates a Property of the {@link RankVectorProperty rank_vectors}
+	 * {@code Property} variant.
+	 */
+	public static Property rankVectors(Function<RankVectorProperty.Builder, ObjectBuilder<RankVectorProperty>> fn) {
+		Property.Builder builder = new Property.Builder();
+		builder.rankVectors(fn.apply(new RankVectorProperty.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link ScaledFloatNumberProperty scaled_float}
 	 * {@code Property} variant.
 	 */

@@ -63,6 +63,10 @@ public enum HealthStatus implements JsonEnum {
 	 */
 	Red("red", "RED"),
 
+	Unknown("unknown"),
+
+	Unavailable("unavailable"),
+
 	;
 
 	private final String jsonValue;

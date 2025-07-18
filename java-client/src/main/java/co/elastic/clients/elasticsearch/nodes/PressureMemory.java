@@ -98,6 +98,12 @@ public class PressureMemory implements JsonpSerializable {
 	@Nullable
 	private final Long replicaRejections;
 
+	@Nullable
+	private final Long primaryDocumentRejections;
+
+	@Nullable
+	private final Long largeOperationRejections;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private PressureMemory(Builder builder) {
@@ -115,6 +121,8 @@ public class PressureMemory implements JsonpSerializable {
 		this.coordinatingRejections = builder.coordinatingRejections;
 		this.primaryRejections = builder.primaryRejections;
 		this.replicaRejections = builder.replicaRejections;
+		this.primaryDocumentRejections = builder.primaryDocumentRejections;
+		this.largeOperationRejections = builder.largeOperationRejections;
 
 	}
 
@@ -260,6 +268,22 @@ public class PressureMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code primary_document_rejections}
+	 */
+	@Nullable
+	public final Long primaryDocumentRejections() {
+		return this.primaryDocumentRejections;
+	}
+
+	/**
+	 * API name: {@code large_operation_rejections}
+	 */
+	@Nullable
+	public final Long largeOperationRejections() {
+		return this.largeOperationRejections;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -335,6 +359,16 @@ public class PressureMemory implements JsonpSerializable {
 			generator.write(this.replicaRejections);
 
 		}
+		if (this.primaryDocumentRejections != null) {
+			generator.writeKey("primary_document_rejections");
+			generator.write(this.primaryDocumentRejections);
+
+		}
+		if (this.largeOperationRejections != null) {
+			generator.writeKey("large_operation_rejections");
+			generator.write(this.largeOperationRejections);
+
+		}
 
 	}
 
@@ -388,6 +422,12 @@ public class PressureMemory implements JsonpSerializable {
 
 		@Nullable
 		private Long replicaRejections;
+
+		@Nullable
+		private Long primaryDocumentRejections;
+
+		@Nullable
+		private Long largeOperationRejections;
 
 		/**
 		 * Memory consumed by indexing requests in the coordinating, primary, or replica
@@ -526,6 +566,22 @@ public class PressureMemory implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code primary_document_rejections}
+		 */
+		public final Builder primaryDocumentRejections(@Nullable Long value) {
+			this.primaryDocumentRejections = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code large_operation_rejections}
+		 */
+		public final Builder largeOperationRejections(@Nullable Long value) {
+			this.largeOperationRejections = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -569,6 +625,8 @@ public class PressureMemory implements JsonpSerializable {
 		op.add(Builder::coordinatingRejections, JsonpDeserializer.longDeserializer(), "coordinating_rejections");
 		op.add(Builder::primaryRejections, JsonpDeserializer.longDeserializer(), "primary_rejections");
 		op.add(Builder::replicaRejections, JsonpDeserializer.longDeserializer(), "replica_rejections");
+		op.add(Builder::primaryDocumentRejections, JsonpDeserializer.longDeserializer(), "primary_document_rejections");
+		op.add(Builder::largeOperationRejections, JsonpDeserializer.longDeserializer(), "large_operation_rejections");
 
 	}
 

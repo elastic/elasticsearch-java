@@ -156,7 +156,7 @@ public class RemoteClusterInfo implements JsonpSerializable {
 	/**
 	 * Required - Transport compression setting used for this remote cluster.
 	 * <p>
-	 * API name: {@code transport_compress}
+	 * API name: {@code transport.compress}
 	 */
 	public final String transportCompress() {
 		return this.transportCompress;
@@ -292,7 +292,7 @@ public class RemoteClusterInfo implements JsonpSerializable {
 		generator.writeKey("skip_unavailable");
 		generator.write(this.skipUnavailable);
 
-		generator.writeKey("transport_compress");
+		generator.writeKey("transport.compress");
 		generator.write(this.transportCompress);
 
 		generator.writeKey("status");
@@ -422,7 +422,7 @@ public class RemoteClusterInfo implements JsonpSerializable {
 		/**
 		 * Required - Transport compression setting used for this remote cluster.
 		 * <p>
-		 * API name: {@code transport_compress}
+		 * API name: {@code transport.compress}
 		 */
 		public final Builder transportCompress(String value) {
 			this.transportCompress = value;
@@ -593,7 +593,7 @@ public class RemoteClusterInfo implements JsonpSerializable {
 		op.add(Builder::clusterUuid, JsonpDeserializer.stringDeserializer(), "cluster_uuid");
 		op.add(Builder::mode, JsonpDeserializer.stringDeserializer(), "mode");
 		op.add(Builder::skipUnavailable, JsonpDeserializer.booleanDeserializer(), "skip_unavailable");
-		op.add(Builder::transportCompress, JsonpDeserializer.stringDeserializer(), "transport_compress");
+		op.add(Builder::transportCompress, JsonpDeserializer.stringDeserializer(), "transport.compress");
 		op.add(Builder::status, HealthStatus._DESERIALIZER, "status");
 		op.add(Builder::version, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"version");

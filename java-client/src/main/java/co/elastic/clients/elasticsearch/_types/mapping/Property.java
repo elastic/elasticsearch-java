@@ -152,6 +152,8 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 
 		RankFeatures("rank_features"),
 
+		RankVectors("rank_vectors"),
+
 		ScaledFloat("scaled_float"),
 
 		SearchAsYouType("search_as_you_type"),
@@ -920,6 +922,23 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 	}
 
 	/**
+	 * Is this variant instance of kind {@code rank_vectors}?
+	 */
+	public boolean isRankVectors() {
+		return _kind == Kind.RankVectors;
+	}
+
+	/**
+	 * Get the {@code rank_vectors} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code rank_vectors} kind.
+	 */
+	public RankVectorProperty rankVectors() {
+		return TaggedUnionUtils.get(this, Kind.RankVectors);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code scaled_float}?
 	 */
 	public boolean isScaledFloat() {
@@ -1587,6 +1606,17 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 			return this.rankFeatures(fn.apply(new RankFeaturesProperty.Builder()).build());
 		}
 
+		public ObjectBuilder<Property> rankVectors(RankVectorProperty v) {
+			this._kind = Kind.RankVectors;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Property> rankVectors(
+				Function<RankVectorProperty.Builder, ObjectBuilder<RankVectorProperty>> fn) {
+			return this.rankVectors(fn.apply(new RankVectorProperty.Builder()).build());
+		}
+
 		public ObjectBuilder<Property> scaledFloat(ScaledFloatNumberProperty v) {
 			this._kind = Kind.ScaledFloat;
 			this._value = v;
@@ -1770,6 +1800,7 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 		op.add(Builder::point, PointProperty._DESERIALIZER, "point");
 		op.add(Builder::rankFeature, RankFeatureProperty._DESERIALIZER, "rank_feature");
 		op.add(Builder::rankFeatures, RankFeaturesProperty._DESERIALIZER, "rank_features");
+		op.add(Builder::rankVectors, RankVectorProperty._DESERIALIZER, "rank_vectors");
 		op.add(Builder::scaledFloat, ScaledFloatNumberProperty._DESERIALIZER, "scaled_float");
 		op.add(Builder::searchAsYouType, SearchAsYouTypeProperty._DESERIALIZER, "search_as_you_type");
 		op.add(Builder::semanticText, SemanticTextProperty._DESERIALIZER, "semantic_text");

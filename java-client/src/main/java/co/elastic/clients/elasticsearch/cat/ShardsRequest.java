@@ -134,7 +134,7 @@ public class ShardsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node.
+	 * The period to wait for a connection to the master node.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -144,9 +144,9 @@ public class ShardsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * List of columns that determine how the table should be sorted. Sorting
-	 * defaults to ascending and can be changed by setting <code>:asc</code> or
-	 * <code>:desc</code> as a suffix to the column name.
+	 * A comma-separated list of column names or aliases that determines the sort
+	 * order. Sorting defaults to ascending and can be changed by setting
+	 * <code>:asc</code> or <code>:desc</code> as a suffix to the column name.
 	 * <p>
 	 * API name: {@code s}
 	 */
@@ -155,7 +155,7 @@ public class ShardsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Unit used to display time values.
+	 * The unit used to display time values.
 	 * <p>
 	 * API name: {@code time}
 	 */
@@ -254,7 +254,7 @@ public class ShardsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -264,7 +264,7 @@ public class ShardsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -273,9 +273,9 @@ public class ShardsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * List of columns that determine how the table should be sorted. Sorting
-		 * defaults to ascending and can be changed by setting <code>:asc</code> or
-		 * <code>:desc</code> as a suffix to the column name.
+		 * A comma-separated list of column names or aliases that determines the sort
+		 * order. Sorting defaults to ascending and can be changed by setting
+		 * <code>:asc</code> or <code>:desc</code> as a suffix to the column name.
 		 * <p>
 		 * API name: {@code s}
 		 * <p>
@@ -287,9 +287,9 @@ public class ShardsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * List of columns that determine how the table should be sorted. Sorting
-		 * defaults to ascending and can be changed by setting <code>:asc</code> or
-		 * <code>:desc</code> as a suffix to the column name.
+		 * A comma-separated list of column names or aliases that determines the sort
+		 * order. Sorting defaults to ascending and can be changed by setting
+		 * <code>:asc</code> or <code>:desc</code> as a suffix to the column name.
 		 * <p>
 		 * API name: {@code s}
 		 * <p>
@@ -301,7 +301,7 @@ public class ShardsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Unit used to display time values.
+		 * The unit used to display time values.
 		 * <p>
 		 * API name: {@code time}
 		 */

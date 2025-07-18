@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.grant_api_key.ApiKeyGrantType;
 import co.elastic.clients.elasticsearch.security.grant_api_key.GrantApiKey;
@@ -36,6 +37,8 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -104,6 +107,9 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	private final String password;
 
 	@Nullable
+	private final Refresh refresh;
+
+	@Nullable
 	private final String runAs;
 
 	@Nullable
@@ -117,6 +123,7 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
 		this.grantType = ApiTypeHelper.requireNonNull(builder.grantType, this, "grantType");
 		this.password = builder.password;
+		this.refresh = builder.refresh;
 		this.runAs = builder.runAs;
 		this.username = builder.username;
 
@@ -165,6 +172,18 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	public final String password() {
 		return this.password;
+	}
+
+	/**
+	 * If 'true', Elasticsearch refreshes the affected shards to make this operation
+	 * visible to search. If 'wait_for', it waits for a refresh to make this
+	 * operation visible to search. If 'false', nothing is done with refreshes.
+	 * <p>
+	 * API name: {@code refresh}
+	 */
+	@Nullable
+	public final Refresh refresh() {
+		return this.refresh;
 	}
 
 	/**
@@ -248,6 +267,9 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		private String password;
 
 		@Nullable
+		private Refresh refresh;
+
+		@Nullable
 		private String runAs;
 
 		@Nullable
@@ -302,6 +324,18 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		 */
 		public final Builder password(@Nullable String value) {
 			this.password = value;
+			return this;
+		}
+
+		/**
+		 * If 'true', Elasticsearch refreshes the affected shards to make this operation
+		 * visible to search. If 'wait_for', it waits for a refresh to make this
+		 * operation visible to search. If 'false', nothing is done with refreshes.
+		 * <p>
+		 * API name: {@code refresh}
+		 */
+		public final Builder refresh(@Nullable Refresh value) {
+			this.refresh = value;
 			return this;
 		}
 
@@ -391,7 +425,11 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.refresh != null) {
+					params.put("refresh", request.refresh.jsonValue());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, GrantApiKeyResponse._DESERIALIZER);
 }

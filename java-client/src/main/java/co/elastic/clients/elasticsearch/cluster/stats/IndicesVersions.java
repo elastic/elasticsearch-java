@@ -68,6 +68,9 @@ public class IndicesVersions implements JsonpSerializable {
 
 	private final long totalPrimaryBytes;
 
+	@Nullable
+	private final String totalPrimarySize;
+
 	private final String version;
 
 	// ---------------------------------------------------------------------------------------------
@@ -77,6 +80,7 @@ public class IndicesVersions implements JsonpSerializable {
 		this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount", 0);
 		this.primaryShardCount = ApiTypeHelper.requireNonNull(builder.primaryShardCount, this, "primaryShardCount", 0);
 		this.totalPrimaryBytes = ApiTypeHelper.requireNonNull(builder.totalPrimaryBytes, this, "totalPrimaryBytes", 0);
+		this.totalPrimarySize = builder.totalPrimarySize;
 		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
@@ -107,6 +111,14 @@ public class IndicesVersions implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code total_primary_size}
+	 */
+	@Nullable
+	public final String totalPrimarySize() {
+		return this.totalPrimarySize;
+	}
+
+	/**
 	 * Required - API name: {@code version}
 	 */
 	public final String version() {
@@ -133,6 +145,11 @@ public class IndicesVersions implements JsonpSerializable {
 		generator.writeKey("total_primary_bytes");
 		generator.write(this.totalPrimaryBytes);
 
+		if (this.totalPrimarySize != null) {
+			generator.writeKey("total_primary_size");
+			generator.write(this.totalPrimarySize);
+
+		}
 		generator.writeKey("version");
 		generator.write(this.version);
 
@@ -155,6 +172,9 @@ public class IndicesVersions implements JsonpSerializable {
 		private Integer primaryShardCount;
 
 		private Long totalPrimaryBytes;
+
+		@Nullable
+		private String totalPrimarySize;
 
 		private String version;
 
@@ -179,6 +199,14 @@ public class IndicesVersions implements JsonpSerializable {
 		 */
 		public final Builder totalPrimaryBytes(long value) {
 			this.totalPrimaryBytes = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total_primary_size}
+		 */
+		public final Builder totalPrimarySize(@Nullable String value) {
+			this.totalPrimarySize = value;
 			return this;
 		}
 
@@ -221,6 +249,7 @@ public class IndicesVersions implements JsonpSerializable {
 		op.add(Builder::indexCount, JsonpDeserializer.integerDeserializer(), "index_count");
 		op.add(Builder::primaryShardCount, JsonpDeserializer.integerDeserializer(), "primary_shard_count");
 		op.add(Builder::totalPrimaryBytes, JsonpDeserializer.longDeserializer(), "total_primary_bytes");
+		op.add(Builder::totalPrimarySize, JsonpDeserializer.stringDeserializer(), "total_primary_size");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 
 	}

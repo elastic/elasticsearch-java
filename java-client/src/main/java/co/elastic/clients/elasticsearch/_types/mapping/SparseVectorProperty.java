@@ -26,8 +26,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -54,10 +56,15 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class SparseVectorProperty extends PropertyBase implements PropertyVariant {
+	@Nullable
+	private final Boolean store;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private SparseVectorProperty(Builder builder) {
 		super(builder);
+
+		this.store = builder.store;
 
 	}
 
@@ -73,10 +80,23 @@ public class SparseVectorProperty extends PropertyBase implements PropertyVarian
 		return Property.Kind.SparseVector;
 	}
 
+	/**
+	 * API name: {@code store}
+	 */
+	@Nullable
+	public final Boolean store() {
+		return this.store;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "sparse_vector");
 		super.serializeInternal(generator, mapper);
+		if (this.store != null) {
+			generator.writeKey("store");
+			generator.write(this.store);
+
+		}
 
 	}
 
@@ -89,6 +109,17 @@ public class SparseVectorProperty extends PropertyBase implements PropertyVarian
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SparseVectorProperty> {
+		@Nullable
+		private Boolean store;
+
+		/**
+		 * API name: {@code store}
+		 */
+		public final Builder store(@Nullable Boolean value) {
+			this.store = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -117,6 +148,7 @@ public class SparseVectorProperty extends PropertyBase implements PropertyVarian
 
 	protected static void setupSparseVectorPropertyDeserializer(ObjectDeserializer<SparseVectorProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
+		op.add(Builder::store, JsonpDeserializer.booleanDeserializer(), "store");
 
 		op.ignore("type");
 	}
