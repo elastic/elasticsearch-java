@@ -31,6 +31,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -64,12 +65,19 @@ public class DocStats implements JsonpSerializable {
 	@Nullable
 	private final Long deleted;
 
+	private final long totalSizeInBytes;
+
+	@Nullable
+	private final String totalSize;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DocStats(Builder builder) {
 
 		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.deleted = builder.deleted;
+		this.totalSizeInBytes = ApiTypeHelper.requireNonNull(builder.totalSizeInBytes, this, "totalSizeInBytes", 0);
+		this.totalSize = builder.totalSize;
 
 	}
 
@@ -102,6 +110,27 @@ public class DocStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - Returns the total size in bytes of all documents in this stats.
+	 * This value may be more reliable than store_stats.size_in_bytes in estimating
+	 * the index size.
+	 * <p>
+	 * API name: {@code total_size_in_bytes}
+	 */
+	public final long totalSizeInBytes() {
+		return this.totalSizeInBytes;
+	}
+
+	/**
+	 * Human readable total_size_in_bytes
+	 * <p>
+	 * API name: {@code total_size}
+	 */
+	@Nullable
+	public final String totalSize() {
+		return this.totalSize;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -118,6 +147,14 @@ public class DocStats implements JsonpSerializable {
 		if (this.deleted != null) {
 			generator.writeKey("deleted");
 			generator.write(this.deleted);
+
+		}
+		generator.writeKey("total_size_in_bytes");
+		generator.write(this.totalSizeInBytes);
+
+		if (this.totalSize != null) {
+			generator.writeKey("total_size");
+			generator.write(this.totalSize);
 
 		}
 
@@ -139,6 +176,11 @@ public class DocStats implements JsonpSerializable {
 
 		@Nullable
 		private Long deleted;
+
+		private Long totalSizeInBytes;
+
+		@Nullable
+		private String totalSize;
 
 		/**
 		 * Required - Total number of non-deleted documents across all primary shards
@@ -162,6 +204,28 @@ public class DocStats implements JsonpSerializable {
 		 */
 		public final Builder deleted(@Nullable Long value) {
 			this.deleted = value;
+			return this;
+		}
+
+		/**
+		 * Required - Returns the total size in bytes of all documents in this stats.
+		 * This value may be more reliable than store_stats.size_in_bytes in estimating
+		 * the index size.
+		 * <p>
+		 * API name: {@code total_size_in_bytes}
+		 */
+		public final Builder totalSizeInBytes(long value) {
+			this.totalSizeInBytes = value;
+			return this;
+		}
+
+		/**
+		 * Human readable total_size_in_bytes
+		 * <p>
+		 * API name: {@code total_size}
+		 */
+		public final Builder totalSize(@Nullable String value) {
+			this.totalSize = value;
 			return this;
 		}
 
@@ -195,6 +259,8 @@ public class DocStats implements JsonpSerializable {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::deleted, JsonpDeserializer.longDeserializer(), "deleted");
+		op.add(Builder::totalSizeInBytes, JsonpDeserializer.longDeserializer(), "total_size_in_bytes");
+		op.add(Builder::totalSize, JsonpDeserializer.stringDeserializer(), "total_size");
 
 	}
 

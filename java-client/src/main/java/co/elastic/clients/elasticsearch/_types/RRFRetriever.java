@@ -28,6 +28,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -65,6 +66,11 @@ public class RRFRetriever extends RetrieverBase implements RetrieverVariant {
 	@Nullable
 	private final Integer rankWindowSize;
 
+	@Nullable
+	private final String query;
+
+	private final List<String> fields;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private RRFRetriever(Builder builder) {
@@ -73,6 +79,8 @@ public class RRFRetriever extends RetrieverBase implements RetrieverVariant {
 		this.retrievers = ApiTypeHelper.unmodifiableRequired(builder.retrievers, this, "retrievers");
 		this.rankConstant = builder.rankConstant;
 		this.rankWindowSize = builder.rankWindowSize;
+		this.query = builder.query;
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 
 	}
 
@@ -119,6 +127,21 @@ public class RRFRetriever extends RetrieverBase implements RetrieverVariant {
 		return this.rankWindowSize;
 	}
 
+	/**
+	 * API name: {@code query}
+	 */
+	@Nullable
+	public final String query() {
+		return this.query;
+	}
+
+	/**
+	 * API name: {@code fields}
+	 */
+	public final List<String> fields() {
+		return this.fields;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -142,6 +165,21 @@ public class RRFRetriever extends RetrieverBase implements RetrieverVariant {
 			generator.write(this.rankWindowSize);
 
 		}
+		if (this.query != null) {
+			generator.writeKey("query");
+			generator.write(this.query);
+
+		}
+		if (ApiTypeHelper.isDefined(this.fields)) {
+			generator.writeKey("fields");
+			generator.writeStartArray();
+			for (String item0 : this.fields) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -159,6 +197,12 @@ public class RRFRetriever extends RetrieverBase implements RetrieverVariant {
 
 		@Nullable
 		private Integer rankWindowSize;
+
+		@Nullable
+		private String query;
+
+		@Nullable
+		private List<String> fields;
 
 		/**
 		 * Required - A list of child retrievers to specify which sets of returned top
@@ -235,6 +279,34 @@ public class RRFRetriever extends RetrieverBase implements RetrieverVariant {
 			return this;
 		}
 
+		/**
+		 * API name: {@code query}
+		 */
+		public final Builder query(@Nullable String value) {
+			this.query = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
+		 */
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
+		 */
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -266,6 +338,8 @@ public class RRFRetriever extends RetrieverBase implements RetrieverVariant {
 		op.add(Builder::retrievers, JsonpDeserializer.arrayDeserializer(Retriever._DESERIALIZER), "retrievers");
 		op.add(Builder::rankConstant, JsonpDeserializer.integerDeserializer(), "rank_constant");
 		op.add(Builder::rankWindowSize, JsonpDeserializer.integerDeserializer(), "rank_window_size");
+		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 
 	}
 

@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -36,7 +37,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,6 +92,9 @@ public class StreamCompletionRequest extends RequestBase implements JsonpSeriali
 	@Nullable
 	private final JsonData taskSettings;
 
+	@Nullable
+	private final Time timeout;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private StreamCompletionRequest(Builder builder) {
@@ -99,6 +102,7 @@ public class StreamCompletionRequest extends RequestBase implements JsonpSeriali
 		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.input = ApiTypeHelper.unmodifiableRequired(builder.input, this, "input");
 		this.taskSettings = builder.taskSettings;
+		this.timeout = builder.timeout;
 
 	}
 
@@ -136,6 +140,16 @@ public class StreamCompletionRequest extends RequestBase implements JsonpSeriali
 	@Nullable
 	public final JsonData taskSettings() {
 		return this.taskSettings;
+	}
+
+	/**
+	 * The amount of time to wait for the inference request to complete.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
 	}
 
 	/**
@@ -182,6 +196,9 @@ public class StreamCompletionRequest extends RequestBase implements JsonpSeriali
 
 		@Nullable
 		private JsonData taskSettings;
+
+		@Nullable
+		private Time timeout;
 
 		/**
 		 * Required - The unique identifier for the inference endpoint.
@@ -233,6 +250,25 @@ public class StreamCompletionRequest extends RequestBase implements JsonpSeriali
 		public final Builder taskSettings(@Nullable JsonData value) {
 			this.taskSettings = value;
 			return this;
+		}
+
+		/**
+		 * The amount of time to wait for the inference request to complete.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * The amount of time to wait for the inference request to complete.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -321,7 +357,11 @@ public class StreamCompletionRequest extends RequestBase implements JsonpSeriali
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, null);
 }

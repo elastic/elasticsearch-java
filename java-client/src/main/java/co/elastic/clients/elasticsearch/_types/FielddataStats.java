@@ -71,6 +71,8 @@ public class FielddataStats implements JsonpSerializable {
 
 	private final Map<String, FieldMemoryUsage> fields;
 
+	private final GlobalOrdinalsStats globalOrdinals;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private FielddataStats(Builder builder) {
@@ -79,6 +81,7 @@ public class FielddataStats implements JsonpSerializable {
 		this.memorySize = builder.memorySize;
 		this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes", 0);
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.globalOrdinals = ApiTypeHelper.requireNonNull(builder.globalOrdinals, this, "globalOrdinals");
 
 	}
 
@@ -117,6 +120,13 @@ public class FielddataStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code global_ordinals}
+	 */
+	public final GlobalOrdinalsStats globalOrdinals() {
+		return this.globalOrdinals;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -151,6 +161,8 @@ public class FielddataStats implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		generator.writeKey("global_ordinals");
+		this.globalOrdinals.serialize(generator, mapper);
 
 	}
 
@@ -176,6 +188,8 @@ public class FielddataStats implements JsonpSerializable {
 
 		@Nullable
 		private Map<String, FieldMemoryUsage> fields;
+
+		private GlobalOrdinalsStats globalOrdinals;
 
 		/**
 		 * API name: {@code evictions}
@@ -231,6 +245,22 @@ public class FielddataStats implements JsonpSerializable {
 			return fields(key, fn.apply(new FieldMemoryUsage.Builder()).build());
 		}
 
+		/**
+		 * Required - API name: {@code global_ordinals}
+		 */
+		public final Builder globalOrdinals(GlobalOrdinalsStats value) {
+			this.globalOrdinals = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code global_ordinals}
+		 */
+		public final Builder globalOrdinals(
+				Function<GlobalOrdinalsStats.Builder, ObjectBuilder<GlobalOrdinalsStats>> fn) {
+			return this.globalOrdinals(fn.apply(new GlobalOrdinalsStats.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -263,6 +293,7 @@ public class FielddataStats implements JsonpSerializable {
 		op.add(Builder::memorySize, JsonpDeserializer.stringDeserializer(), "memory_size");
 		op.add(Builder::memorySizeInBytes, JsonpDeserializer.longDeserializer(), "memory_size_in_bytes");
 		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(FieldMemoryUsage._DESERIALIZER), "fields");
+		op.add(Builder::globalOrdinals, GlobalOrdinalsStats._DESERIALIZER, "global_ordinals");
 
 	}
 

@@ -66,6 +66,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ClusterIndices implements JsonpSerializable {
+	@Nullable
 	private final CharFilterTypes analysis;
 
 	private final CompletionStats completion;
@@ -78,31 +79,41 @@ public class ClusterIndices implements JsonpSerializable {
 
 	private final QueryCacheStats queryCache;
 
+	private final SearchUsageStats search;
+
 	private final SegmentsStats segments;
 
 	private final ClusterIndicesShards shards;
 
 	private final StoreStats store;
 
+	@Nullable
 	private final FieldTypesMappings mappings;
 
 	private final List<IndicesVersions> versions;
+
+	private final DenseVectorStats denseVector;
+
+	private final SparseVectorStats sparseVector;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ClusterIndices(Builder builder) {
 
-		this.analysis = ApiTypeHelper.requireNonNull(builder.analysis, this, "analysis");
+		this.analysis = builder.analysis;
 		this.completion = ApiTypeHelper.requireNonNull(builder.completion, this, "completion");
 		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.docs = ApiTypeHelper.requireNonNull(builder.docs, this, "docs");
 		this.fielddata = ApiTypeHelper.requireNonNull(builder.fielddata, this, "fielddata");
 		this.queryCache = ApiTypeHelper.requireNonNull(builder.queryCache, this, "queryCache");
+		this.search = ApiTypeHelper.requireNonNull(builder.search, this, "search");
 		this.segments = ApiTypeHelper.requireNonNull(builder.segments, this, "segments");
 		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 		this.store = ApiTypeHelper.requireNonNull(builder.store, this, "store");
-		this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
+		this.mappings = builder.mappings;
 		this.versions = ApiTypeHelper.unmodifiable(builder.versions);
+		this.denseVector = ApiTypeHelper.requireNonNull(builder.denseVector, this, "denseVector");
+		this.sparseVector = ApiTypeHelper.requireNonNull(builder.sparseVector, this, "sparseVector");
 
 	}
 
@@ -111,11 +122,12 @@ public class ClusterIndices implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Contains statistics about analyzers and analyzer components used
-	 * in selected nodes.
+	 * Contains statistics about analyzers and analyzer components used in selected
+	 * nodes.
 	 * <p>
 	 * API name: {@code analysis}
 	 */
+	@Nullable
 	public final CharFilterTypes analysis() {
 		return this.analysis;
 	}
@@ -167,6 +179,18 @@ public class ClusterIndices implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - Holds a snapshot of the search usage statistics. Used to hold the
+	 * stats for a single node that's part of a ClusterStatsNodeResponse, as well as
+	 * to accumulate stats for the entire cluster and return them as part of the
+	 * ClusterStatsResponse.
+	 * <p>
+	 * API name: {@code search}
+	 */
+	public final SearchUsageStats search() {
+		return this.search;
+	}
+
+	/**
 	 * Required - Contains statistics about segments in selected nodes.
 	 * <p>
 	 * API name: {@code segments}
@@ -196,10 +220,11 @@ public class ClusterIndices implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Contains statistics about field mappings in selected nodes.
+	 * Contains statistics about field mappings in selected nodes.
 	 * <p>
 	 * API name: {@code mappings}
 	 */
+	@Nullable
 	public final FieldTypesMappings mappings() {
 		return this.mappings;
 	}
@@ -215,6 +240,24 @@ public class ClusterIndices implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - Contains statistics about indexed dense vector
+	 * <p>
+	 * API name: {@code dense_vector}
+	 */
+	public final DenseVectorStats denseVector() {
+		return this.denseVector;
+	}
+
+	/**
+	 * Required - Contains statistics about indexed sparse vector
+	 * <p>
+	 * API name: {@code sparse_vector}
+	 */
+	public final SparseVectorStats sparseVector() {
+		return this.sparseVector;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -225,9 +268,11 @@ public class ClusterIndices implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("analysis");
-		this.analysis.serialize(generator, mapper);
+		if (this.analysis != null) {
+			generator.writeKey("analysis");
+			this.analysis.serialize(generator, mapper);
 
+		}
 		generator.writeKey("completion");
 		this.completion.serialize(generator, mapper);
 
@@ -243,6 +288,9 @@ public class ClusterIndices implements JsonpSerializable {
 		generator.writeKey("query_cache");
 		this.queryCache.serialize(generator, mapper);
 
+		generator.writeKey("search");
+		this.search.serialize(generator, mapper);
+
 		generator.writeKey("segments");
 		this.segments.serialize(generator, mapper);
 
@@ -252,9 +300,11 @@ public class ClusterIndices implements JsonpSerializable {
 		generator.writeKey("store");
 		this.store.serialize(generator, mapper);
 
-		generator.writeKey("mappings");
-		this.mappings.serialize(generator, mapper);
+		if (this.mappings != null) {
+			generator.writeKey("mappings");
+			this.mappings.serialize(generator, mapper);
 
+		}
 		if (ApiTypeHelper.isDefined(this.versions)) {
 			generator.writeKey("versions");
 			generator.writeStartArray();
@@ -265,6 +315,11 @@ public class ClusterIndices implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		generator.writeKey("dense_vector");
+		this.denseVector.serialize(generator, mapper);
+
+		generator.writeKey("sparse_vector");
+		this.sparseVector.serialize(generator, mapper);
 
 	}
 
@@ -280,6 +335,7 @@ public class ClusterIndices implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ClusterIndices> {
+		@Nullable
 		private CharFilterTypes analysis;
 
 		private CompletionStats completion;
@@ -292,31 +348,38 @@ public class ClusterIndices implements JsonpSerializable {
 
 		private QueryCacheStats queryCache;
 
+		private SearchUsageStats search;
+
 		private SegmentsStats segments;
 
 		private ClusterIndicesShards shards;
 
 		private StoreStats store;
 
+		@Nullable
 		private FieldTypesMappings mappings;
 
 		@Nullable
 		private List<IndicesVersions> versions;
 
+		private DenseVectorStats denseVector;
+
+		private SparseVectorStats sparseVector;
+
 		/**
-		 * Required - Contains statistics about analyzers and analyzer components used
-		 * in selected nodes.
+		 * Contains statistics about analyzers and analyzer components used in selected
+		 * nodes.
 		 * <p>
 		 * API name: {@code analysis}
 		 */
-		public final Builder analysis(CharFilterTypes value) {
+		public final Builder analysis(@Nullable CharFilterTypes value) {
 			this.analysis = value;
 			return this;
 		}
 
 		/**
-		 * Required - Contains statistics about analyzers and analyzer components used
-		 * in selected nodes.
+		 * Contains statistics about analyzers and analyzer components used in selected
+		 * nodes.
 		 * <p>
 		 * API name: {@code analysis}
 		 */
@@ -413,6 +476,31 @@ public class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - Holds a snapshot of the search usage statistics. Used to hold the
+		 * stats for a single node that's part of a ClusterStatsNodeResponse, as well as
+		 * to accumulate stats for the entire cluster and return them as part of the
+		 * ClusterStatsResponse.
+		 * <p>
+		 * API name: {@code search}
+		 */
+		public final Builder search(SearchUsageStats value) {
+			this.search = value;
+			return this;
+		}
+
+		/**
+		 * Required - Holds a snapshot of the search usage statistics. Used to hold the
+		 * stats for a single node that's part of a ClusterStatsNodeResponse, as well as
+		 * to accumulate stats for the entire cluster and return them as part of the
+		 * ClusterStatsResponse.
+		 * <p>
+		 * API name: {@code search}
+		 */
+		public final Builder search(Function<SearchUsageStats.Builder, ObjectBuilder<SearchUsageStats>> fn) {
+			return this.search(fn.apply(new SearchUsageStats.Builder()).build());
+		}
+
+		/**
 		 * Required - Contains statistics about segments in selected nodes.
 		 * <p>
 		 * API name: {@code segments}
@@ -474,17 +562,17 @@ public class ClusterIndices implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Contains statistics about field mappings in selected nodes.
+		 * Contains statistics about field mappings in selected nodes.
 		 * <p>
 		 * API name: {@code mappings}
 		 */
-		public final Builder mappings(FieldTypesMappings value) {
+		public final Builder mappings(@Nullable FieldTypesMappings value) {
 			this.mappings = value;
 			return this;
 		}
 
 		/**
-		 * Required - Contains statistics about field mappings in selected nodes.
+		 * Contains statistics about field mappings in selected nodes.
 		 * <p>
 		 * API name: {@code mappings}
 		 */
@@ -530,6 +618,44 @@ public class ClusterIndices implements JsonpSerializable {
 			return versions(fn.apply(new IndicesVersions.Builder()).build());
 		}
 
+		/**
+		 * Required - Contains statistics about indexed dense vector
+		 * <p>
+		 * API name: {@code dense_vector}
+		 */
+		public final Builder denseVector(DenseVectorStats value) {
+			this.denseVector = value;
+			return this;
+		}
+
+		/**
+		 * Required - Contains statistics about indexed dense vector
+		 * <p>
+		 * API name: {@code dense_vector}
+		 */
+		public final Builder denseVector(Function<DenseVectorStats.Builder, ObjectBuilder<DenseVectorStats>> fn) {
+			return this.denseVector(fn.apply(new DenseVectorStats.Builder()).build());
+		}
+
+		/**
+		 * Required - Contains statistics about indexed sparse vector
+		 * <p>
+		 * API name: {@code sparse_vector}
+		 */
+		public final Builder sparseVector(SparseVectorStats value) {
+			this.sparseVector = value;
+			return this;
+		}
+
+		/**
+		 * Required - Contains statistics about indexed sparse vector
+		 * <p>
+		 * API name: {@code sparse_vector}
+		 */
+		public final Builder sparseVector(Function<SparseVectorStats.Builder, ObjectBuilder<SparseVectorStats>> fn) {
+			return this.sparseVector(fn.apply(new SparseVectorStats.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -564,11 +690,14 @@ public class ClusterIndices implements JsonpSerializable {
 		op.add(Builder::docs, DocStats._DESERIALIZER, "docs");
 		op.add(Builder::fielddata, FielddataStats._DESERIALIZER, "fielddata");
 		op.add(Builder::queryCache, QueryCacheStats._DESERIALIZER, "query_cache");
+		op.add(Builder::search, SearchUsageStats._DESERIALIZER, "search");
 		op.add(Builder::segments, SegmentsStats._DESERIALIZER, "segments");
 		op.add(Builder::shards, ClusterIndicesShards._DESERIALIZER, "shards");
 		op.add(Builder::store, StoreStats._DESERIALIZER, "store");
 		op.add(Builder::mappings, FieldTypesMappings._DESERIALIZER, "mappings");
 		op.add(Builder::versions, JsonpDeserializer.arrayDeserializer(IndicesVersions._DESERIALIZER), "versions");
+		op.add(Builder::denseVector, DenseVectorStats._DESERIALIZER, "dense_vector");
+		op.add(Builder::sparseVector, SparseVectorStats._DESERIALIZER, "sparse_vector");
 
 	}
 

@@ -95,7 +95,8 @@ import javax.annotation.Nullable;
  * to <code>_source</code>, you can access the following variables through the
  * <code>ctx</code> map: <code>_index</code>, <code>_type</code>,
  * <code>_id</code>, <code>_version</code>, <code>_routing</code>, and
- * <code>_now</code> (the current timestamp).
+ * <code>_now</code> (the current timestamp). For usage examples such as partial
+ * updates, upserts, and scripted updates, see the External documentation.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.update.Request">API
  *      specification</a>

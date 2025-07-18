@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.indices.add_block;
+package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -41,36 +41,20 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#indices.add_block.IndicesBlockOptions">API
+ *      "../doc-files/api-spec.html#inference._types.TaskTypeDeepSeek">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum IndicesBlockOptions implements JsonEnum {
-	/**
-	 * Disable metadata changes, such as closing the index.
-	 */
-	Metadata("metadata"),
+public enum TaskTypeDeepSeek implements JsonEnum {
+	Completion("completion"),
 
-	/**
-	 * Disable read operations.
-	 */
-	Read("read"),
-
-	/**
-	 * Disable write operations and metadata changes.
-	 */
-	ReadOnly("read_only"),
-
-	/**
-	 * Disable write operations. However, metadata changes are still allowed.
-	 */
-	Write("write"),
+	ChatCompletion("chat_completion"),
 
 	;
 
 	private final String jsonValue;
 
-	IndicesBlockOptions(String jsonValue) {
+	TaskTypeDeepSeek(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -78,6 +62,6 @@ public enum IndicesBlockOptions implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<IndicesBlockOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			IndicesBlockOptions.values());
+	public static final JsonEnum.Deserializer<TaskTypeDeepSeek> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			TaskTypeDeepSeek.values());
 }

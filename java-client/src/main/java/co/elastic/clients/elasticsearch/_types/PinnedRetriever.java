@@ -64,7 +64,8 @@ public class PinnedRetriever extends RetrieverBase implements RetrieverVariant {
 
 	private final List<SpecifiedDocument> docs;
 
-	private final int rankWindowSize;
+	@Nullable
+	private final Integer rankWindowSize;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,7 +75,7 @@ public class PinnedRetriever extends RetrieverBase implements RetrieverVariant {
 		this.retriever = ApiTypeHelper.requireNonNull(builder.retriever, this, "retriever");
 		this.ids = ApiTypeHelper.unmodifiable(builder.ids);
 		this.docs = ApiTypeHelper.unmodifiable(builder.docs);
-		this.rankWindowSize = ApiTypeHelper.requireNonNull(builder.rankWindowSize, this, "rankWindowSize", 0);
+		this.rankWindowSize = builder.rankWindowSize;
 
 	}
 
@@ -114,9 +115,10 @@ public class PinnedRetriever extends RetrieverBase implements RetrieverVariant {
 	}
 
 	/**
-	 * Required - API name: {@code rank_window_size}
+	 * API name: {@code rank_window_size}
 	 */
-	public final int rankWindowSize() {
+	@Nullable
+	public final Integer rankWindowSize() {
 		return this.rankWindowSize;
 	}
 
@@ -146,8 +148,11 @@ public class PinnedRetriever extends RetrieverBase implements RetrieverVariant {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("rank_window_size");
-		generator.write(this.rankWindowSize);
+		if (this.rankWindowSize != null) {
+			generator.writeKey("rank_window_size");
+			generator.write(this.rankWindowSize);
+
+		}
 
 	}
 
@@ -168,6 +173,7 @@ public class PinnedRetriever extends RetrieverBase implements RetrieverVariant {
 		@Nullable
 		private List<SpecifiedDocument> docs;
 
+		@Nullable
 		private Integer rankWindowSize;
 
 		/**
@@ -249,9 +255,9 @@ public class PinnedRetriever extends RetrieverBase implements RetrieverVariant {
 		}
 
 		/**
-		 * Required - API name: {@code rank_window_size}
+		 * API name: {@code rank_window_size}
 		 */
-		public final Builder rankWindowSize(int value) {
+		public final Builder rankWindowSize(@Nullable Integer value) {
 			this.rankWindowSize = value;
 			return this;
 		}

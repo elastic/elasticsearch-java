@@ -17,8 +17,10 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.nodes.info;
+package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.elasticsearch._types.AcknowledgedResponse;
+import co.elastic.clients.elasticsearch.indices.remove_block.RemoveIndicesBlockStatus;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,7 +32,8 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.lang.Boolean;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,55 +53,44 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: nodes.info.NodeInfoNetworkInterface
+// typedef: indices.remove_block.Response
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#nodes.info.NodeInfoNetworkInterface">API
+ * @see <a href="../doc-files/api-spec.html#indices.remove_block.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class NodeInfoNetworkInterface implements JsonpSerializable {
-	private final String address;
+public class RemoveBlockResponse implements AcknowledgedResponse, JsonpSerializable {
+	private final boolean acknowledged;
 
-	private final String macAddress;
-
-	private final String name;
+	private final List<RemoveIndicesBlockStatus> indices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private NodeInfoNetworkInterface(Builder builder) {
+	private RemoveBlockResponse(Builder builder) {
 
-		this.address = ApiTypeHelper.requireNonNull(builder.address, this, "address");
-		this.macAddress = ApiTypeHelper.requireNonNull(builder.macAddress, this, "macAddress");
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged", false);
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}
 
-	public static NodeInfoNetworkInterface of(Function<Builder, ObjectBuilder<NodeInfoNetworkInterface>> fn) {
+	public static RemoveBlockResponse of(Function<Builder, ObjectBuilder<RemoveBlockResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code address}
+	 * Required - API name: {@code acknowledged}
 	 */
-	public final String address() {
-		return this.address;
+	public final boolean acknowledged() {
+		return this.acknowledged;
 	}
 
 	/**
-	 * Required - API name: {@code mac_address}
+	 * Required - API name: {@code indices}
 	 */
-	public final String macAddress() {
-		return this.macAddress;
-	}
-
-	/**
-	 * Required - API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
+	public final List<RemoveIndicesBlockStatus> indices() {
+		return this.indices;
 	}
 
 	/**
@@ -112,14 +104,19 @@ public class NodeInfoNetworkInterface implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("address");
-		generator.write(this.address);
+		generator.writeKey("acknowledged");
+		generator.write(this.acknowledged);
 
-		generator.writeKey("mac_address");
-		generator.write(this.macAddress);
+		if (ApiTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (RemoveIndicesBlockStatus item0 : this.indices) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("name");
-		generator.write(this.name);
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -131,40 +128,52 @@ public class NodeInfoNetworkInterface implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link NodeInfoNetworkInterface}.
+	 * Builder for {@link RemoveBlockResponse}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<NodeInfoNetworkInterface> {
-		private String address;
+				ObjectBuilder<RemoveBlockResponse> {
+		private Boolean acknowledged;
 
-		private String macAddress;
-
-		private String name;
+		private List<RemoveIndicesBlockStatus> indices;
 
 		/**
-		 * Required - API name: {@code address}
+		 * Required - API name: {@code acknowledged}
 		 */
-		public final Builder address(String value) {
-			this.address = value;
+		public final Builder acknowledged(boolean value) {
+			this.acknowledged = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code mac_address}
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder macAddress(String value) {
-			this.macAddress = value;
+		public final Builder indices(List<RemoveIndicesBlockStatus> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code name}
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder name(String value) {
-			this.name = value;
+		public final Builder indices(RemoveIndicesBlockStatus value, RemoveIndicesBlockStatus... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds a value to <code>indices</code> using a builder lambda.
+		 */
+		public final Builder indices(
+				Function<RemoveIndicesBlockStatus.Builder, ObjectBuilder<RemoveIndicesBlockStatus>> fn) {
+			return indices(fn.apply(new RemoveIndicesBlockStatus.Builder()).build());
 		}
 
 		@Override
@@ -173,32 +182,31 @@ public class NodeInfoNetworkInterface implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link NodeInfoNetworkInterface}.
+		 * Builds a {@link RemoveBlockResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public NodeInfoNetworkInterface build() {
+		public RemoveBlockResponse build() {
 			_checkSingleUse();
 
-			return new NodeInfoNetworkInterface(this);
+			return new RemoveBlockResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link NodeInfoNetworkInterface}
+	 * Json deserializer for {@link RemoveBlockResponse}
 	 */
-	public static final JsonpDeserializer<NodeInfoNetworkInterface> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoNetworkInterface::setupNodeInfoNetworkInterfaceDeserializer);
+	public static final JsonpDeserializer<RemoveBlockResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RemoveBlockResponse::setupRemoveBlockResponseDeserializer);
 
-	protected static void setupNodeInfoNetworkInterfaceDeserializer(
-			ObjectDeserializer<NodeInfoNetworkInterface.Builder> op) {
+	protected static void setupRemoveBlockResponseDeserializer(ObjectDeserializer<RemoveBlockResponse.Builder> op) {
 
-		op.add(Builder::address, JsonpDeserializer.stringDeserializer(), "address");
-		op.add(Builder::macAddress, JsonpDeserializer.stringDeserializer(), "mac_address");
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(RemoveIndicesBlockStatus._DESERIALIZER),
+				"indices");
 
 	}
 

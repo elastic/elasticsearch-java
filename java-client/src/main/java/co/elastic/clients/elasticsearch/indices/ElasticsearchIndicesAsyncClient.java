@@ -1913,6 +1913,44 @@ public class ElasticsearchIndicesAsyncClient
 				GetDataStreamRequest._ENDPOINT, this.transportOptions);
 	}
 
+	// ----- Endpoint: indices.get_data_stream_mappings
+
+	/**
+	 * Get data stream mappings.
+	 * <p>
+	 * Get mapping information for one or more data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-data-stream-mappings">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetDataStreamMappingsResponse> getDataStreamMappings(
+			GetDataStreamMappingsRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetDataStreamMappingsRequest, GetDataStreamMappingsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDataStreamMappingsRequest, GetDataStreamMappingsResponse, ErrorResponse>) GetDataStreamMappingsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get data stream mappings.
+	 * <p>
+	 * Get mapping information for one or more data streams.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetDataStreamMappingsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-data-stream-mappings">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<GetDataStreamMappingsResponse> getDataStreamMappings(
+			Function<GetDataStreamMappingsRequest.Builder, ObjectBuilder<GetDataStreamMappingsRequest>> fn) {
+		return getDataStreamMappings(fn.apply(new GetDataStreamMappingsRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.get_data_stream_options
 
 	/**
@@ -2641,6 +2679,52 @@ public class ElasticsearchIndicesAsyncClient
 	public final CompletableFuture<PutDataLifecycleResponse> putDataLifecycle(
 			Function<PutDataLifecycleRequest.Builder, ObjectBuilder<PutDataLifecycleRequest>> fn) {
 		return putDataLifecycle(fn.apply(new PutDataLifecycleRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.put_data_stream_mappings
+
+	/**
+	 * Update data stream mappings.
+	 * <p>
+	 * This API can be used to override mappings on specific data streams. These
+	 * overrides will take precedence over what is specified in the template that
+	 * the data stream matches. The mapping change is only applied to new write
+	 * indices that are created during rollover after this API is called. No indices
+	 * are changed by this API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-data-stream-mappings">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutDataStreamMappingsResponse> putDataStreamMappings(
+			PutDataStreamMappingsRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutDataStreamMappingsRequest, PutDataStreamMappingsResponse, ErrorResponse> endpoint = (JsonEndpoint<PutDataStreamMappingsRequest, PutDataStreamMappingsResponse, ErrorResponse>) PutDataStreamMappingsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Update data stream mappings.
+	 * <p>
+	 * This API can be used to override mappings on specific data streams. These
+	 * overrides will take precedence over what is specified in the template that
+	 * the data stream matches. The mapping change is only applied to new write
+	 * indices that are created during rollover after this API is called. No indices
+	 * are changed by this API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutDataStreamMappingsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-data-stream-mappings">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PutDataStreamMappingsResponse> putDataStreamMappings(
+			Function<PutDataStreamMappingsRequest.Builder, ObjectBuilder<PutDataStreamMappingsRequest>> fn) {
+		return putDataStreamMappings(fn.apply(new PutDataStreamMappingsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.put_data_stream_options
@@ -3568,6 +3652,45 @@ public class ElasticsearchIndicesAsyncClient
 	public final CompletableFuture<ReloadSearchAnalyzersResponse> reloadSearchAnalyzers(
 			Function<ReloadSearchAnalyzersRequest.Builder, ObjectBuilder<ReloadSearchAnalyzersRequest>> fn) {
 		return reloadSearchAnalyzers(fn.apply(new ReloadSearchAnalyzersRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.remove_block
+
+	/**
+	 * Remove an index block.
+	 * <p>
+	 * Remove an index block from an index. Index blocks limit the operations
+	 * allowed on an index by blocking specific operation types.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-remove-block">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<RemoveBlockResponse> removeBlock(RemoveBlockRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RemoveBlockRequest, RemoveBlockResponse, ErrorResponse> endpoint = (JsonEndpoint<RemoveBlockRequest, RemoveBlockResponse, ErrorResponse>) RemoveBlockRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Remove an index block.
+	 * <p>
+	 * Remove an index block from an index. Index blocks limit the operations
+	 * allowed on an index by blocking specific operation types.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link RemoveBlockRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-remove-block">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<RemoveBlockResponse> removeBlock(
+			Function<RemoveBlockRequest.Builder, ObjectBuilder<RemoveBlockRequest>> fn) {
+		return removeBlock(fn.apply(new RemoveBlockRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.resolve_cluster

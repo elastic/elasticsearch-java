@@ -78,7 +78,13 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 
 		ArabicNormalization("arabic_normalization"),
 
+		ArabicStem("arabic_stem"),
+
 		Asciifolding("asciifolding"),
+
+		BengaliNormalization("bengali_normalization"),
+
+		BrazilianStem("brazilian_stem"),
 
 		CjkBigram("cjk_bigram"),
 
@@ -90,11 +96,15 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 
 		Condition("condition"),
 
+		CzechStem("czech_stem"),
+
 		DecimalDigit("decimal_digit"),
 
 		DelimitedPayload("delimited_payload"),
 
 		DictionaryDecompounder("dictionary_decompounder"),
+
+		DutchStem("dutch_stem"),
 
 		EdgeNgram("edge_ngram"),
 
@@ -104,7 +114,11 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 
 		FlattenGraph("flatten_graph"),
 
+		FrenchStem("french_stem"),
+
 		GermanNormalization("german_normalization"),
+
+		GermanStem("german_stem"),
 
 		HindiNormalization("hindi_normalization"),
 
@@ -160,6 +174,8 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 
 		PersianNormalization("persian_normalization"),
 
+		PersianStem("persian_stem"),
+
 		Phonetic("phonetic"),
 
 		PorterStem("porter_stem"),
@@ -169,6 +185,8 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 		RemoveDuplicates("remove_duplicates"),
 
 		Reverse("reverse"),
+
+		RussianStem("russian_stem"),
 
 		ScandinavianFolding("scandinavian_folding"),
 
@@ -300,6 +318,23 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 	}
 
 	/**
+	 * Is this variant instance of kind {@code arabic_stem}?
+	 */
+	public boolean isArabicStem() {
+		return _kind == Kind.ArabicStem;
+	}
+
+	/**
+	 * Get the {@code arabic_stem} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code arabic_stem} kind.
+	 */
+	public ArabicStemTokenFilter arabicStem() {
+		return TaggedUnionUtils.get(this, Kind.ArabicStem);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code asciifolding}?
 	 */
 	public boolean isAsciifolding() {
@@ -314,6 +349,41 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 	 */
 	public AsciiFoldingTokenFilter asciifolding() {
 		return TaggedUnionUtils.get(this, Kind.Asciifolding);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code bengali_normalization}?
+	 */
+	public boolean isBengaliNormalization() {
+		return _kind == Kind.BengaliNormalization;
+	}
+
+	/**
+	 * Get the {@code bengali_normalization} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the
+	 *             {@code bengali_normalization} kind.
+	 */
+	public BengaliNormalizationTokenFilter bengaliNormalization() {
+		return TaggedUnionUtils.get(this, Kind.BengaliNormalization);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code brazilian_stem}?
+	 */
+	public boolean isBrazilianStem() {
+		return _kind == Kind.BrazilianStem;
+	}
+
+	/**
+	 * Get the {@code brazilian_stem} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code brazilian_stem} kind.
+	 */
+	public BrazilianStemTokenFilter brazilianStem() {
+		return TaggedUnionUtils.get(this, Kind.BrazilianStem);
 	}
 
 	/**
@@ -402,6 +472,23 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 	}
 
 	/**
+	 * Is this variant instance of kind {@code czech_stem}?
+	 */
+	public boolean isCzechStem() {
+		return _kind == Kind.CzechStem;
+	}
+
+	/**
+	 * Get the {@code czech_stem} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code czech_stem} kind.
+	 */
+	public CzechStemTokenFilter czechStem() {
+		return TaggedUnionUtils.get(this, Kind.CzechStem);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code decimal_digit}?
 	 */
 	public boolean isDecimalDigit() {
@@ -452,6 +539,23 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 	 */
 	public DictionaryDecompounderTokenFilter dictionaryDecompounder() {
 		return TaggedUnionUtils.get(this, Kind.DictionaryDecompounder);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code dutch_stem}?
+	 */
+	public boolean isDutchStem() {
+		return _kind == Kind.DutchStem;
+	}
+
+	/**
+	 * Get the {@code dutch_stem} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code dutch_stem} kind.
+	 */
+	public DutchStemTokenFilter dutchStem() {
+		return TaggedUnionUtils.get(this, Kind.DutchStem);
 	}
 
 	/**
@@ -523,6 +627,23 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 	}
 
 	/**
+	 * Is this variant instance of kind {@code french_stem}?
+	 */
+	public boolean isFrenchStem() {
+		return _kind == Kind.FrenchStem;
+	}
+
+	/**
+	 * Get the {@code french_stem} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code french_stem} kind.
+	 */
+	public FrenchStemTokenFilter frenchStem() {
+		return TaggedUnionUtils.get(this, Kind.FrenchStem);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code german_normalization}?
 	 */
 	public boolean isGermanNormalization() {
@@ -538,6 +659,23 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 	 */
 	public GermanNormalizationTokenFilter germanNormalization() {
 		return TaggedUnionUtils.get(this, Kind.GermanNormalization);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code german_stem}?
+	 */
+	public boolean isGermanStem() {
+		return _kind == Kind.GermanStem;
+	}
+
+	/**
+	 * Get the {@code german_stem} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code german_stem} kind.
+	 */
+	public GermanStemTokenFilter germanStem() {
+		return TaggedUnionUtils.get(this, Kind.GermanStem);
 	}
 
 	/**
@@ -1010,6 +1148,23 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 	}
 
 	/**
+	 * Is this variant instance of kind {@code persian_stem}?
+	 */
+	public boolean isPersianStem() {
+		return _kind == Kind.PersianStem;
+	}
+
+	/**
+	 * Get the {@code persian_stem} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code persian_stem} kind.
+	 */
+	public PersianStemTokenFilter persianStem() {
+		return TaggedUnionUtils.get(this, Kind.PersianStem);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code phonetic}?
 	 */
 	public boolean isPhonetic() {
@@ -1094,6 +1249,23 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 	 */
 	public ReverseTokenFilter reverse() {
 		return TaggedUnionUtils.get(this, Kind.Reverse);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code russian_stem}?
+	 */
+	public boolean isRussianStem() {
+		return _kind == Kind.RussianStem;
+	}
+
+	/**
+	 * Get the {@code russian_stem} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code russian_stem} kind.
+	 */
+	public RussianStemTokenFilter russianStem() {
+		return TaggedUnionUtils.get(this, Kind.RussianStem);
 	}
 
 	/**
@@ -1465,6 +1637,17 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 			return this.arabicNormalization(fn.apply(new ArabicNormalizationTokenFilter.Builder()).build());
 		}
 
+		public ObjectBuilder<TokenFilterDefinition> arabicStem(ArabicStemTokenFilter v) {
+			this._kind = Kind.ArabicStem;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<TokenFilterDefinition> arabicStem(
+				Function<ArabicStemTokenFilter.Builder, ObjectBuilder<ArabicStemTokenFilter>> fn) {
+			return this.arabicStem(fn.apply(new ArabicStemTokenFilter.Builder()).build());
+		}
+
 		public ObjectBuilder<TokenFilterDefinition> asciifolding(AsciiFoldingTokenFilter v) {
 			this._kind = Kind.Asciifolding;
 			this._value = v;
@@ -1474,6 +1657,28 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 		public ObjectBuilder<TokenFilterDefinition> asciifolding(
 				Function<AsciiFoldingTokenFilter.Builder, ObjectBuilder<AsciiFoldingTokenFilter>> fn) {
 			return this.asciifolding(fn.apply(new AsciiFoldingTokenFilter.Builder()).build());
+		}
+
+		public ObjectBuilder<TokenFilterDefinition> bengaliNormalization(BengaliNormalizationTokenFilter v) {
+			this._kind = Kind.BengaliNormalization;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<TokenFilterDefinition> bengaliNormalization(
+				Function<BengaliNormalizationTokenFilter.Builder, ObjectBuilder<BengaliNormalizationTokenFilter>> fn) {
+			return this.bengaliNormalization(fn.apply(new BengaliNormalizationTokenFilter.Builder()).build());
+		}
+
+		public ObjectBuilder<TokenFilterDefinition> brazilianStem(BrazilianStemTokenFilter v) {
+			this._kind = Kind.BrazilianStem;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<TokenFilterDefinition> brazilianStem(
+				Function<BrazilianStemTokenFilter.Builder, ObjectBuilder<BrazilianStemTokenFilter>> fn) {
+			return this.brazilianStem(fn.apply(new BrazilianStemTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> cjkBigram(CjkBigramTokenFilter v) {
@@ -1531,6 +1736,17 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 			return this.condition(fn.apply(new ConditionTokenFilter.Builder()).build());
 		}
 
+		public ObjectBuilder<TokenFilterDefinition> czechStem(CzechStemTokenFilter v) {
+			this._kind = Kind.CzechStem;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<TokenFilterDefinition> czechStem(
+				Function<CzechStemTokenFilter.Builder, ObjectBuilder<CzechStemTokenFilter>> fn) {
+			return this.czechStem(fn.apply(new CzechStemTokenFilter.Builder()).build());
+		}
+
 		public ObjectBuilder<TokenFilterDefinition> decimalDigit(DecimalDigitTokenFilter v) {
 			this._kind = Kind.DecimalDigit;
 			this._value = v;
@@ -1562,6 +1778,17 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 		public ObjectBuilder<TokenFilterDefinition> dictionaryDecompounder(
 				Function<DictionaryDecompounderTokenFilter.Builder, ObjectBuilder<DictionaryDecompounderTokenFilter>> fn) {
 			return this.dictionaryDecompounder(fn.apply(new DictionaryDecompounderTokenFilter.Builder()).build());
+		}
+
+		public ObjectBuilder<TokenFilterDefinition> dutchStem(DutchStemTokenFilter v) {
+			this._kind = Kind.DutchStem;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<TokenFilterDefinition> dutchStem(
+				Function<DutchStemTokenFilter.Builder, ObjectBuilder<DutchStemTokenFilter>> fn) {
+			return this.dutchStem(fn.apply(new DutchStemTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> edgeNgram(EdgeNGramTokenFilter v) {
@@ -1608,6 +1835,17 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 			return this.flattenGraph(fn.apply(new FlattenGraphTokenFilter.Builder()).build());
 		}
 
+		public ObjectBuilder<TokenFilterDefinition> frenchStem(FrenchStemTokenFilter v) {
+			this._kind = Kind.FrenchStem;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<TokenFilterDefinition> frenchStem(
+				Function<FrenchStemTokenFilter.Builder, ObjectBuilder<FrenchStemTokenFilter>> fn) {
+			return this.frenchStem(fn.apply(new FrenchStemTokenFilter.Builder()).build());
+		}
+
 		public ObjectBuilder<TokenFilterDefinition> germanNormalization(GermanNormalizationTokenFilter v) {
 			this._kind = Kind.GermanNormalization;
 			this._value = v;
@@ -1617,6 +1855,17 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 		public ObjectBuilder<TokenFilterDefinition> germanNormalization(
 				Function<GermanNormalizationTokenFilter.Builder, ObjectBuilder<GermanNormalizationTokenFilter>> fn) {
 			return this.germanNormalization(fn.apply(new GermanNormalizationTokenFilter.Builder()).build());
+		}
+
+		public ObjectBuilder<TokenFilterDefinition> germanStem(GermanStemTokenFilter v) {
+			this._kind = Kind.GermanStem;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<TokenFilterDefinition> germanStem(
+				Function<GermanStemTokenFilter.Builder, ObjectBuilder<GermanStemTokenFilter>> fn) {
+			return this.germanStem(fn.apply(new GermanStemTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> hindiNormalization(HindiNormalizationTokenFilter v) {
@@ -1916,6 +2165,17 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 			return this.persianNormalization(fn.apply(new PersianNormalizationTokenFilter.Builder()).build());
 		}
 
+		public ObjectBuilder<TokenFilterDefinition> persianStem(PersianStemTokenFilter v) {
+			this._kind = Kind.PersianStem;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<TokenFilterDefinition> persianStem(
+				Function<PersianStemTokenFilter.Builder, ObjectBuilder<PersianStemTokenFilter>> fn) {
+			return this.persianStem(fn.apply(new PersianStemTokenFilter.Builder()).build());
+		}
+
 		public ObjectBuilder<TokenFilterDefinition> phonetic(PhoneticTokenFilter v) {
 			this._kind = Kind.Phonetic;
 			this._value = v;
@@ -1969,6 +2229,17 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 		public ObjectBuilder<TokenFilterDefinition> reverse(
 				Function<ReverseTokenFilter.Builder, ObjectBuilder<ReverseTokenFilter>> fn) {
 			return this.reverse(fn.apply(new ReverseTokenFilter.Builder()).build());
+		}
+
+		public ObjectBuilder<TokenFilterDefinition> russianStem(RussianStemTokenFilter v) {
+			this._kind = Kind.RussianStem;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<TokenFilterDefinition> russianStem(
+				Function<RussianStemTokenFilter.Builder, ObjectBuilder<RussianStemTokenFilter>> fn) {
+			return this.russianStem(fn.apply(new RussianStemTokenFilter.Builder()).build());
 		}
 
 		public ObjectBuilder<TokenFilterDefinition> scandinavianFolding(ScandinavianFoldingTokenFilter v) {
@@ -2185,21 +2456,28 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 
 		op.add(Builder::apostrophe, ApostropheTokenFilter._DESERIALIZER, "apostrophe");
 		op.add(Builder::arabicNormalization, ArabicNormalizationTokenFilter._DESERIALIZER, "arabic_normalization");
+		op.add(Builder::arabicStem, ArabicStemTokenFilter._DESERIALIZER, "arabic_stem");
 		op.add(Builder::asciifolding, AsciiFoldingTokenFilter._DESERIALIZER, "asciifolding");
+		op.add(Builder::bengaliNormalization, BengaliNormalizationTokenFilter._DESERIALIZER, "bengali_normalization");
+		op.add(Builder::brazilianStem, BrazilianStemTokenFilter._DESERIALIZER, "brazilian_stem");
 		op.add(Builder::cjkBigram, CjkBigramTokenFilter._DESERIALIZER, "cjk_bigram");
 		op.add(Builder::cjkWidth, CjkWidthTokenFilter._DESERIALIZER, "cjk_width");
 		op.add(Builder::classic, ClassicTokenFilter._DESERIALIZER, "classic");
 		op.add(Builder::commonGrams, CommonGramsTokenFilter._DESERIALIZER, "common_grams");
 		op.add(Builder::condition, ConditionTokenFilter._DESERIALIZER, "condition");
+		op.add(Builder::czechStem, CzechStemTokenFilter._DESERIALIZER, "czech_stem");
 		op.add(Builder::decimalDigit, DecimalDigitTokenFilter._DESERIALIZER, "decimal_digit");
 		op.add(Builder::delimitedPayload, DelimitedPayloadTokenFilter._DESERIALIZER, "delimited_payload");
 		op.add(Builder::dictionaryDecompounder, DictionaryDecompounderTokenFilter._DESERIALIZER,
 				"dictionary_decompounder");
+		op.add(Builder::dutchStem, DutchStemTokenFilter._DESERIALIZER, "dutch_stem");
 		op.add(Builder::edgeNgram, EdgeNGramTokenFilter._DESERIALIZER, "edge_ngram");
 		op.add(Builder::elision, ElisionTokenFilter._DESERIALIZER, "elision");
 		op.add(Builder::fingerprint, FingerprintTokenFilter._DESERIALIZER, "fingerprint");
 		op.add(Builder::flattenGraph, FlattenGraphTokenFilter._DESERIALIZER, "flatten_graph");
+		op.add(Builder::frenchStem, FrenchStemTokenFilter._DESERIALIZER, "french_stem");
 		op.add(Builder::germanNormalization, GermanNormalizationTokenFilter._DESERIALIZER, "german_normalization");
+		op.add(Builder::germanStem, GermanStemTokenFilter._DESERIALIZER, "german_stem");
 		op.add(Builder::hindiNormalization, HindiNormalizationTokenFilter._DESERIALIZER, "hindi_normalization");
 		op.add(Builder::hunspell, HunspellTokenFilter._DESERIALIZER, "hunspell");
 		op.add(Builder::hyphenationDecompounder, HyphenationDecompounderTokenFilter._DESERIALIZER,
@@ -2228,11 +2506,13 @@ public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinit
 		op.add(Builder::patternCapture, PatternCaptureTokenFilter._DESERIALIZER, "pattern_capture");
 		op.add(Builder::patternReplace, PatternReplaceTokenFilter._DESERIALIZER, "pattern_replace");
 		op.add(Builder::persianNormalization, PersianNormalizationTokenFilter._DESERIALIZER, "persian_normalization");
+		op.add(Builder::persianStem, PersianStemTokenFilter._DESERIALIZER, "persian_stem");
 		op.add(Builder::phonetic, PhoneticTokenFilter._DESERIALIZER, "phonetic");
 		op.add(Builder::porterStem, PorterStemTokenFilter._DESERIALIZER, "porter_stem");
 		op.add(Builder::predicateTokenFilter, PredicateTokenFilter._DESERIALIZER, "predicate_token_filter");
 		op.add(Builder::removeDuplicates, RemoveDuplicatesTokenFilter._DESERIALIZER, "remove_duplicates");
 		op.add(Builder::reverse, ReverseTokenFilter._DESERIALIZER, "reverse");
+		op.add(Builder::russianStem, RussianStemTokenFilter._DESERIALIZER, "russian_stem");
 		op.add(Builder::scandinavianFolding, ScandinavianFoldingTokenFilter._DESERIALIZER, "scandinavian_folding");
 		op.add(Builder::scandinavianNormalization, ScandinavianNormalizationTokenFilter._DESERIALIZER,
 				"scandinavian_normalization");

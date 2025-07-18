@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,7 +34,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -130,6 +130,9 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 
 	private final HuggingFaceTaskType taskType;
 
+	@Nullable
+	private final Time timeout;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private PutHuggingFaceRequest(Builder builder) {
@@ -141,6 +144,7 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
 		this.taskSettings = builder.taskSettings;
 		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
+		this.timeout = builder.timeout;
 
 	}
 
@@ -208,6 +212,17 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
+	 * Specifies the amount of time to wait for the inference endpoint to be
+	 * created.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -258,6 +273,9 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 		private HuggingFaceTaskSettings taskSettings;
 
 		private HuggingFaceTaskType taskType;
+
+		@Nullable
+		private Time timeout;
 
 		/**
 		 * The chunking configuration object.
@@ -354,6 +372,27 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 			return this;
 		}
 
+		/**
+		 * Specifies the amount of time to wait for the inference endpoint to be
+		 * created.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Specifies the amount of time to wait for the inference endpoint to be
+		 * created.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -446,7 +485,11 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, PutHuggingFaceResponse._DESERIALIZER);
 }

@@ -128,7 +128,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node.
+	 * The period to wait for a connection to the master node.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -138,9 +138,9 @@ public class ThreadPoolRequest extends CatRequestBase {
 	}
 
 	/**
-	 * List of columns that determine how the table should be sorted. Sorting
-	 * defaults to ascending and can be changed by setting <code>:asc</code> or
-	 * <code>:desc</code> as a suffix to the column name.
+	 * A comma-separated list of column names or aliases that determines the sort
+	 * order. Sorting defaults to ascending and can be changed by setting
+	 * <code>:asc</code> or <code>:desc</code> as a suffix to the column name.
 	 * <p>
 	 * API name: {@code s}
 	 */
@@ -234,7 +234,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -244,7 +244,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -253,9 +253,9 @@ public class ThreadPoolRequest extends CatRequestBase {
 		}
 
 		/**
-		 * List of columns that determine how the table should be sorted. Sorting
-		 * defaults to ascending and can be changed by setting <code>:asc</code> or
-		 * <code>:desc</code> as a suffix to the column name.
+		 * A comma-separated list of column names or aliases that determines the sort
+		 * order. Sorting defaults to ascending and can be changed by setting
+		 * <code>:asc</code> or <code>:desc</code> as a suffix to the column name.
 		 * <p>
 		 * API name: {@code s}
 		 * <p>
@@ -267,9 +267,9 @@ public class ThreadPoolRequest extends CatRequestBase {
 		}
 
 		/**
-		 * List of columns that determine how the table should be sorted. Sorting
-		 * defaults to ascending and can be changed by setting <code>:asc</code> or
-		 * <code>:desc</code> as a suffix to the column name.
+		 * A comma-separated list of column names or aliases that determines the sort
+		 * order. Sorting defaults to ascending and can be changed by setting
+		 * <code>:asc</code> or <code>:desc</code> as a suffix to the column name.
 		 * <p>
 		 * API name: {@code s}
 		 * <p>

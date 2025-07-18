@@ -142,6 +142,9 @@ public class GetRequest extends RequestBase {
 	@Nullable
 	private final SourceConfigParam source;
 
+	@Nullable
+	private final Boolean sourceExcludeVectors;
+
 	private final List<String> sourceExcludes;
 
 	private final List<String> sourceIncludes;
@@ -178,6 +181,7 @@ public class GetRequest extends RequestBase {
 	private GetRequest(Builder builder) {
 
 		this.source = builder.source;
+		this.sourceExcludeVectors = builder.sourceExcludeVectors;
 		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
 		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
 		this.forceSyntheticSource = builder.forceSyntheticSource;
@@ -206,6 +210,16 @@ public class GetRequest extends RequestBase {
 	@Nullable
 	public final SourceConfigParam source() {
 		return this.source;
+	}
+
+	/**
+	 * Whether vectors should be excluded from _source
+	 * <p>
+	 * API name: {@code _source_exclude_vectors}
+	 */
+	@Nullable
+	public final Boolean sourceExcludeVectors() {
+		return this.sourceExcludeVectors;
 	}
 
 	/**
@@ -361,6 +375,9 @@ public class GetRequest extends RequestBase {
 		private SourceConfigParam source;
 
 		@Nullable
+		private Boolean sourceExcludeVectors;
+
+		@Nullable
 		private List<String> sourceExcludes;
 
 		@Nullable
@@ -413,6 +430,16 @@ public class GetRequest extends RequestBase {
 		 */
 		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
 			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
+		}
+
+		/**
+		 * Whether vectors should be excluded from _source
+		 * <p>
+		 * API name: {@code _source_exclude_vectors}
+		 */
+		public final Builder sourceExcludeVectors(@Nullable Boolean value) {
+			this.sourceExcludeVectors = value;
+			return this;
 		}
 
 		/**
@@ -699,6 +726,9 @@ public class GetRequest extends RequestBase {
 				}
 				if (request.versionType != null) {
 					params.put("version_type", request.versionType.jsonValue());
+				}
+				if (request.sourceExcludeVectors != null) {
+					params.put("_source_exclude_vectors", String.valueOf(request.sourceExcludeVectors));
 				}
 				if (ApiTypeHelper.isDefined(request.storedFields)) {
 					params.put("stored_fields",

@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
@@ -100,6 +101,9 @@ public class SearchStats implements JsonpSerializable {
 
 	private final long suggestTotal;
 
+	@Nullable
+	private final Double recentSearchLoad;
+
 	private final Map<String, SearchStats> groups;
 
 	// ---------------------------------------------------------------------------------------------
@@ -125,6 +129,7 @@ public class SearchStats implements JsonpSerializable {
 		this.suggestTimeInMillis = ApiTypeHelper.requireNonNull(builder.suggestTimeInMillis, this,
 				"suggestTimeInMillis", 0);
 		this.suggestTotal = ApiTypeHelper.requireNonNull(builder.suggestTotal, this, "suggestTotal", 0);
+		this.recentSearchLoad = builder.recentSearchLoad;
 		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
 
 	}
@@ -258,6 +263,14 @@ public class SearchStats implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code recent_search_load}
+	 */
+	@Nullable
+	public final Double recentSearchLoad() {
+		return this.recentSearchLoad;
+	}
+
+	/**
 	 * API name: {@code groups}
 	 */
 	public final Map<String, SearchStats> groups() {
@@ -336,6 +349,11 @@ public class SearchStats implements JsonpSerializable {
 		generator.writeKey("suggest_total");
 		generator.write(this.suggestTotal);
 
+		if (this.recentSearchLoad != null) {
+			generator.writeKey("recent_search_load");
+			generator.write(this.recentSearchLoad);
+
+		}
 		if (ApiTypeHelper.isDefined(this.groups)) {
 			generator.writeKey("groups");
 			generator.writeStartObject();
@@ -400,6 +418,9 @@ public class SearchStats implements JsonpSerializable {
 		private Long suggestTimeInMillis;
 
 		private Long suggestTotal;
+
+		@Nullable
+		private Double recentSearchLoad;
 
 		@Nullable
 		private Map<String, SearchStats> groups;
@@ -569,6 +590,14 @@ public class SearchStats implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code recent_search_load}
+		 */
+		public final Builder recentSearchLoad(@Nullable Double value) {
+			this.recentSearchLoad = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code groups}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>groups</code>.
@@ -642,6 +671,7 @@ public class SearchStats implements JsonpSerializable {
 		op.add(Builder::suggestTime, Time._DESERIALIZER, "suggest_time");
 		op.add(Builder::suggestTimeInMillis, JsonpDeserializer.longDeserializer(), "suggest_time_in_millis");
 		op.add(Builder::suggestTotal, JsonpDeserializer.longDeserializer(), "suggest_total");
+		op.add(Builder::recentSearchLoad, JsonpDeserializer.doubleDeserializer(), "recent_search_load");
 		op.add(Builder::groups, JsonpDeserializer.stringMapDeserializer(SearchStats._DESERIALIZER), "groups");
 
 	}

@@ -304,6 +304,9 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	 * synonyms set are reloaded automatically for all indices. This is equivalent
 	 * to invoking the reload search analyzers API for all indices that use the
 	 * synonyms set.
+	 * <p>
+	 * For practical examples of how to create or update a synonyms set, refer to
+	 * the External documentation.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-put-synonym">Documentation
@@ -326,6 +329,9 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	 * synonyms set are reloaded automatically for all indices. This is equivalent
 	 * to invoking the reload search analyzers API for all indices that use the
 	 * synonyms set.
+	 * <p>
+	 * For practical examples of how to create or update a synonyms set, refer to
+	 * the External documentation.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

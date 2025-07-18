@@ -26,6 +26,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -60,7 +61,6 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class CohereTaskSettings implements JsonpSerializable {
-	@Nullable
 	private final CohereInputType inputType;
 
 	@Nullable
@@ -76,7 +76,7 @@ public class CohereTaskSettings implements JsonpSerializable {
 
 	private CohereTaskSettings(Builder builder) {
 
-		this.inputType = builder.inputType;
+		this.inputType = ApiTypeHelper.requireNonNull(builder.inputType, this, "inputType");
 		this.returnDocuments = builder.returnDocuments;
 		this.topN = builder.topN;
 		this.truncate = builder.truncate;
@@ -88,8 +88,8 @@ public class CohereTaskSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For a <code>text_embedding</code> task, the type of input passed to the
-	 * model. Valid values are:
+	 * Required - For a <code>text_embedding</code> task, the type of input passed
+	 * to the model. Valid values are:
 	 * <ul>
 	 * <li><code>classification</code>: Use it for embeddings passed through a text
 	 * classifier.</li>
@@ -106,7 +106,6 @@ public class CohereTaskSettings implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code input_type}
 	 */
-	@Nullable
 	public final CohereInputType inputType() {
 		return this.inputType;
 	}
@@ -165,10 +164,8 @@ public class CohereTaskSettings implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.inputType != null) {
-			generator.writeKey("input_type");
-			this.inputType.serialize(generator, mapper);
-		}
+		generator.writeKey("input_type");
+		this.inputType.serialize(generator, mapper);
 		if (this.returnDocuments != null) {
 			generator.writeKey("return_documents");
 			generator.write(this.returnDocuments);
@@ -200,7 +197,6 @@ public class CohereTaskSettings implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<CohereTaskSettings> {
-		@Nullable
 		private CohereInputType inputType;
 
 		@Nullable
@@ -213,8 +209,8 @@ public class CohereTaskSettings implements JsonpSerializable {
 		private CohereTruncateType truncate;
 
 		/**
-		 * For a <code>text_embedding</code> task, the type of input passed to the
-		 * model. Valid values are:
+		 * Required - For a <code>text_embedding</code> task, the type of input passed
+		 * to the model. Valid values are:
 		 * <ul>
 		 * <li><code>classification</code>: Use it for embeddings passed through a text
 		 * classifier.</li>
@@ -231,7 +227,7 @@ public class CohereTaskSettings implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code input_type}
 		 */
-		public final Builder inputType(@Nullable CohereInputType value) {
+		public final Builder inputType(CohereInputType value) {
 			this.inputType = value;
 			return this;
 		}

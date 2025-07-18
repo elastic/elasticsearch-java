@@ -291,6 +291,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	private final Boolean requireAlias;
 
 	@Nullable
+	private final Boolean requireDataStream;
+
+	@Nullable
 	private final String routing;
 
 	@Nullable
@@ -323,6 +326,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		this.pipeline = builder.pipeline;
 		this.refresh = builder.refresh;
 		this.requireAlias = builder.requireAlias;
+		this.requireDataStream = builder.requireDataStream;
 		this.routing = builder.routing;
 		this.timeout = builder.timeout;
 		this.version = builder.version;
@@ -449,6 +453,17 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	}
 
 	/**
+	 * If <code>true</code>, the request's actions must target a data stream
+	 * (existing or to be created).
+	 * <p>
+	 * API name: {@code require_data_stream}
+	 */
+	@Nullable
+	public final Boolean requireDataStream() {
+		return this.requireDataStream;
+	}
+
+	/**
 	 * A custom value that is used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
@@ -561,6 +576,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 
 		@Nullable
 		private Boolean requireAlias;
+
+		@Nullable
+		private Boolean requireDataStream;
 
 		@Nullable
 		private String routing;
@@ -690,6 +708,17 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		 */
 		public final Builder<TDocument> requireAlias(@Nullable Boolean value) {
 			this.requireAlias = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the request's actions must target a data stream
+		 * (existing or to be created).
+		 * <p>
+		 * API name: {@code require_data_stream}
+		 */
+		public final Builder<TDocument> requireDataStream(@Nullable Boolean value) {
+			this.requireDataStream = value;
 			return this;
 		}
 
@@ -933,20 +962,32 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.includeSourceOnError != null) {
+					params.put("include_source_on_error", String.valueOf(request.includeSourceOnError));
+				}
+				if (request.versionType != null) {
+					params.put("version_type", request.versionType.jsonValue());
+				}
+				if (request.refresh != null) {
+					params.put("refresh", request.refresh.jsonValue());
+				}
+				if (request.version != null) {
+					params.put("version", String.valueOf(request.version));
+				}
+				if (request.requireDataStream != null) {
+					params.put("require_data_stream", String.valueOf(request.requireDataStream));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
+				}
 				if (request.pipeline != null) {
 					params.put("pipeline", request.pipeline);
 				}
 				if (request.routing != null) {
 					params.put("routing", request.routing);
 				}
-				if (request.includeSourceOnError != null) {
-					params.put("include_source_on_error", String.valueOf(request.includeSourceOnError));
-				}
 				if (request.requireAlias != null) {
 					params.put("require_alias", String.valueOf(request.requireAlias));
-				}
-				if (request.versionType != null) {
-					params.put("version_type", request.versionType.jsonValue());
 				}
 				if (request.ifPrimaryTerm != null) {
 					params.put("if_primary_term", String.valueOf(request.ifPrimaryTerm));
@@ -954,20 +995,11 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 				if (request.ifSeqNo != null) {
 					params.put("if_seq_no", String.valueOf(request.ifSeqNo));
 				}
-				if (request.refresh != null) {
-					params.put("refresh", request.refresh.jsonValue());
-				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
 				}
 				if (request.opType != null) {
 					params.put("op_type", request.opType.jsonValue());
-				}
-				if (request.version != null) {
-					params.put("version", String.valueOf(request.version));
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

@@ -65,10 +65,8 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 	@Nullable
 	private final String inferenceId;
 
-	@Nullable
 	private final String inferenceText;
 
-	@Nullable
 	private final String field;
 
 	// ---------------------------------------------------------------------------------------------
@@ -79,8 +77,8 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 		this.retriever = ApiTypeHelper.requireNonNull(builder.retriever, this, "retriever");
 		this.rankWindowSize = builder.rankWindowSize;
 		this.inferenceId = builder.inferenceId;
-		this.inferenceText = builder.inferenceText;
-		this.field = builder.field;
+		this.inferenceText = ApiTypeHelper.requireNonNull(builder.inferenceText, this, "inferenceText");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 	}
 
@@ -128,22 +126,21 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 	}
 
 	/**
-	 * The text snippet used as the basis for similarity comparison
+	 * Required - The text snippet used as the basis for similarity comparison
 	 * <p>
 	 * API name: {@code inference_text}
 	 */
-	@Nullable
 	public final String inferenceText() {
 		return this.inferenceText;
 	}
 
 	/**
-	 * The document field to be used for text similarity comparisons. This field
-	 * should contain the text that will be evaluated against the inference_text
+	 * Required - The document field to be used for text similarity comparisons.
+	 * This field should contain the text that will be evaluated against the
+	 * inference_text
 	 * <p>
 	 * API name: {@code field}
 	 */
-	@Nullable
 	public final String field() {
 		return this.field;
 	}
@@ -164,16 +161,11 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 			generator.write(this.inferenceId);
 
 		}
-		if (this.inferenceText != null) {
-			generator.writeKey("inference_text");
-			generator.write(this.inferenceText);
+		generator.writeKey("inference_text");
+		generator.write(this.inferenceText);
 
-		}
-		if (this.field != null) {
-			generator.writeKey("field");
-			generator.write(this.field);
-
-		}
+		generator.writeKey("field");
+		generator.write(this.field);
 
 	}
 
@@ -194,10 +186,8 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 		@Nullable
 		private String inferenceId;
 
-		@Nullable
 		private String inferenceText;
 
-		@Nullable
 		private String field;
 
 		/**
@@ -254,22 +244,23 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 		}
 
 		/**
-		 * The text snippet used as the basis for similarity comparison
+		 * Required - The text snippet used as the basis for similarity comparison
 		 * <p>
 		 * API name: {@code inference_text}
 		 */
-		public final Builder inferenceText(@Nullable String value) {
+		public final Builder inferenceText(String value) {
 			this.inferenceText = value;
 			return this;
 		}
 
 		/**
-		 * The document field to be used for text similarity comparisons. This field
-		 * should contain the text that will be evaluated against the inference_text
+		 * Required - The document field to be used for text similarity comparisons.
+		 * This field should contain the text that will be evaluated against the
+		 * inference_text
 		 * <p>
 		 * API name: {@code field}
 		 */
-		public final Builder field(@Nullable String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}

@@ -27,6 +27,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -60,6 +61,9 @@ import javax.annotation.Nullable;
 public class AggregateMetricDoubleProperty extends PropertyBase implements PropertyVariant {
 	private final String defaultMetric;
 
+	@Nullable
+	private final Boolean ignoreMalformed;
+
 	private final List<String> metrics;
 
 	@Nullable
@@ -71,6 +75,7 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 		super(builder);
 
 		this.defaultMetric = ApiTypeHelper.requireNonNull(builder.defaultMetric, this, "defaultMetric");
+		this.ignoreMalformed = builder.ignoreMalformed;
 		this.metrics = ApiTypeHelper.unmodifiableRequired(builder.metrics, this, "metrics");
 		this.timeSeriesMetric = builder.timeSeriesMetric;
 
@@ -96,6 +101,14 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 	}
 
 	/**
+	 * API name: {@code ignore_malformed}
+	 */
+	@Nullable
+	public final Boolean ignoreMalformed() {
+		return this.ignoreMalformed;
+	}
+
+	/**
 	 * Required - API name: {@code metrics}
 	 */
 	public final List<String> metrics() {
@@ -117,6 +130,11 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 		generator.writeKey("default_metric");
 		generator.write(this.defaultMetric);
 
+		if (this.ignoreMalformed != null) {
+			generator.writeKey("ignore_malformed");
+			generator.write(this.ignoreMalformed);
+
+		}
 		if (ApiTypeHelper.isDefined(this.metrics)) {
 			generator.writeKey("metrics");
 			generator.writeStartArray();
@@ -145,6 +163,9 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 				ObjectBuilder<AggregateMetricDoubleProperty> {
 		private String defaultMetric;
 
+		@Nullable
+		private Boolean ignoreMalformed;
+
 		private List<String> metrics;
 
 		@Nullable
@@ -155,6 +176,14 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 		 */
 		public final Builder defaultMetric(String value) {
 			this.defaultMetric = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code ignore_malformed}
+		 */
+		public final Builder ignoreMalformed(@Nullable Boolean value) {
+			this.ignoreMalformed = value;
 			return this;
 		}
 
@@ -216,6 +245,7 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 			ObjectDeserializer<AggregateMetricDoubleProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 		op.add(Builder::defaultMetric, JsonpDeserializer.stringDeserializer(), "default_metric");
+		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
 		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"metrics");
 		op.add(Builder::timeSeriesMetric, TimeSeriesMetricType._DESERIALIZER, "time_series_metric");

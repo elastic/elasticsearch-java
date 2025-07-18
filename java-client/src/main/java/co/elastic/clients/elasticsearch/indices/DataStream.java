@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.HealthStatus;
+import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -98,6 +99,9 @@ public class DataStream implements JsonpSerializable {
 
 	private final IndexSettings settings;
 
+	@Nullable
+	private final TypeMapping mappings;
+
 	private final HealthStatus status;
 
 	@Nullable
@@ -129,6 +133,7 @@ public class DataStream implements JsonpSerializable {
 		this.replicated = builder.replicated;
 		this.rolloverOnWrite = ApiTypeHelper.requireNonNull(builder.rolloverOnWrite, this, "rolloverOnWrite", false);
 		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
+		this.mappings = builder.mappings;
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.system = builder.system;
 		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
@@ -291,6 +296,17 @@ public class DataStream implements JsonpSerializable {
 	}
 
 	/**
+	 * The mappings specific to this data stream that will take precedence over the
+	 * mappings in the matching index template.
+	 * <p>
+	 * API name: {@code mappings}
+	 */
+	@Nullable
+	public final TypeMapping mappings() {
+		return this.mappings;
+	}
+
+	/**
 	 * Required - Health status of the data stream. This health status is based on
 	 * the state of the primary and replica shards of the stream’s backing indices.
 	 * <p>
@@ -420,6 +436,11 @@ public class DataStream implements JsonpSerializable {
 		generator.writeKey("settings");
 		this.settings.serialize(generator, mapper);
 
+		if (this.mappings != null) {
+			generator.writeKey("mappings");
+			this.mappings.serialize(generator, mapper);
+
+		}
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
 		if (this.system != null) {
@@ -485,6 +506,9 @@ public class DataStream implements JsonpSerializable {
 		private Boolean rolloverOnWrite;
 
 		private IndexSettings settings;
+
+		@Nullable
+		private TypeMapping mappings;
 
 		private HealthStatus status;
 
@@ -731,6 +755,27 @@ public class DataStream implements JsonpSerializable {
 		}
 
 		/**
+		 * The mappings specific to this data stream that will take precedence over the
+		 * mappings in the matching index template.
+		 * <p>
+		 * API name: {@code mappings}
+		 */
+		public final Builder mappings(@Nullable TypeMapping value) {
+			this.mappings = value;
+			return this;
+		}
+
+		/**
+		 * The mappings specific to this data stream that will take precedence over the
+		 * mappings in the matching index template.
+		 * <p>
+		 * API name: {@code mappings}
+		 */
+		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
+		}
+
+		/**
 		 * Required - Health status of the data stream. This health status is based on
 		 * the state of the primary and replica shards of the stream’s backing indices.
 		 * <p>
@@ -839,6 +884,7 @@ public class DataStream implements JsonpSerializable {
 		op.add(Builder::replicated, JsonpDeserializer.booleanDeserializer(), "replicated");
 		op.add(Builder::rolloverOnWrite, JsonpDeserializer.booleanDeserializer(), "rollover_on_write");
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
+		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::status, HealthStatus._DESERIALIZER, "status");
 		op.add(Builder::system, JsonpDeserializer.booleanDeserializer(), "system");
 		op.add(Builder::template, JsonpDeserializer.stringDeserializer(), "template");

@@ -17,8 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.cluster.stats;
+package co.elastic.clients.elasticsearch.indices.remove_block;
 
+import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,7 +31,8 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
+import java.lang.Boolean;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,55 +52,59 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: cluster.stats.IndexingPressureMemory
+// typedef: indices.remove_block.RemoveIndicesBlockStatus
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#cluster.stats.IndexingPressureMemory">API
+ *      "../../doc-files/api-spec.html#indices.remove_block.RemoveIndicesBlockStatus">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class IndexingPressureMemory implements JsonpSerializable {
-	private final IndexingPressureMemorySummary current;
+public class RemoveIndicesBlockStatus implements JsonpSerializable {
+	private final String name;
 
-	private final long limitInBytes;
+	@Nullable
+	private final Boolean unblocked;
 
-	private final IndexingPressureMemorySummary total;
+	@Nullable
+	private final ErrorCause exception;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private IndexingPressureMemory(Builder builder) {
+	private RemoveIndicesBlockStatus(Builder builder) {
 
-		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
-		this.limitInBytes = ApiTypeHelper.requireNonNull(builder.limitInBytes, this, "limitInBytes", 0);
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.unblocked = builder.unblocked;
+		this.exception = builder.exception;
 
 	}
 
-	public static IndexingPressureMemory of(Function<Builder, ObjectBuilder<IndexingPressureMemory>> fn) {
+	public static RemoveIndicesBlockStatus of(Function<Builder, ObjectBuilder<RemoveIndicesBlockStatus>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code current}
+	 * Required - API name: {@code name}
 	 */
-	public final IndexingPressureMemorySummary current() {
-		return this.current;
+	public final String name() {
+		return this.name;
 	}
 
 	/**
-	 * Required - API name: {@code limit_in_bytes}
+	 * API name: {@code unblocked}
 	 */
-	public final long limitInBytes() {
-		return this.limitInBytes;
+	@Nullable
+	public final Boolean unblocked() {
+		return this.unblocked;
 	}
 
 	/**
-	 * Required - API name: {@code total}
+	 * API name: {@code exception}
 	 */
-	public final IndexingPressureMemorySummary total() {
-		return this.total;
+	@Nullable
+	public final ErrorCause exception() {
+		return this.exception;
 	}
 
 	/**
@@ -112,14 +118,19 @@ public class IndexingPressureMemory implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("current");
-		this.current.serialize(generator, mapper);
+		generator.writeKey("name");
+		generator.write(this.name);
 
-		generator.writeKey("limit_in_bytes");
-		generator.write(this.limitInBytes);
+		if (this.unblocked != null) {
+			generator.writeKey("unblocked");
+			generator.write(this.unblocked);
 
-		generator.writeKey("total");
-		this.total.serialize(generator, mapper);
+		}
+		if (this.exception != null) {
+			generator.writeKey("exception");
+			this.exception.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -131,56 +142,49 @@ public class IndexingPressureMemory implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link IndexingPressureMemory}.
+	 * Builder for {@link RemoveIndicesBlockStatus}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<IndexingPressureMemory> {
-		private IndexingPressureMemorySummary current;
+				ObjectBuilder<RemoveIndicesBlockStatus> {
+		private String name;
 
-		private Long limitInBytes;
+		@Nullable
+		private Boolean unblocked;
 
-		private IndexingPressureMemorySummary total;
+		@Nullable
+		private ErrorCause exception;
 
 		/**
-		 * Required - API name: {@code current}
+		 * Required - API name: {@code name}
 		 */
-		public final Builder current(IndexingPressureMemorySummary value) {
-			this.current = value;
+		public final Builder name(String value) {
+			this.name = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code current}
+		 * API name: {@code unblocked}
 		 */
-		public final Builder current(
-				Function<IndexingPressureMemorySummary.Builder, ObjectBuilder<IndexingPressureMemorySummary>> fn) {
-			return this.current(fn.apply(new IndexingPressureMemorySummary.Builder()).build());
-		}
-
-		/**
-		 * Required - API name: {@code limit_in_bytes}
-		 */
-		public final Builder limitInBytes(long value) {
-			this.limitInBytes = value;
+		public final Builder unblocked(@Nullable Boolean value) {
+			this.unblocked = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * API name: {@code exception}
 		 */
-		public final Builder total(IndexingPressureMemorySummary value) {
-			this.total = value;
+		public final Builder exception(@Nullable ErrorCause value) {
+			this.exception = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * API name: {@code exception}
 		 */
-		public final Builder total(
-				Function<IndexingPressureMemorySummary.Builder, ObjectBuilder<IndexingPressureMemorySummary>> fn) {
-			return this.total(fn.apply(new IndexingPressureMemorySummary.Builder()).build());
+		public final Builder exception(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.exception(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		@Override
@@ -189,32 +193,32 @@ public class IndexingPressureMemory implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link IndexingPressureMemory}.
+		 * Builds a {@link RemoveIndicesBlockStatus}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public IndexingPressureMemory build() {
+		public RemoveIndicesBlockStatus build() {
 			_checkSingleUse();
 
-			return new IndexingPressureMemory(this);
+			return new RemoveIndicesBlockStatus(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link IndexingPressureMemory}
+	 * Json deserializer for {@link RemoveIndicesBlockStatus}
 	 */
-	public static final JsonpDeserializer<IndexingPressureMemory> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexingPressureMemory::setupIndexingPressureMemoryDeserializer);
+	public static final JsonpDeserializer<RemoveIndicesBlockStatus> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RemoveIndicesBlockStatus::setupRemoveIndicesBlockStatusDeserializer);
 
-	protected static void setupIndexingPressureMemoryDeserializer(
-			ObjectDeserializer<IndexingPressureMemory.Builder> op) {
+	protected static void setupRemoveIndicesBlockStatusDeserializer(
+			ObjectDeserializer<RemoveIndicesBlockStatus.Builder> op) {
 
-		op.add(Builder::current, IndexingPressureMemorySummary._DESERIALIZER, "current");
-		op.add(Builder::limitInBytes, JsonpDeserializer.longDeserializer(), "limit_in_bytes");
-		op.add(Builder::total, IndexingPressureMemorySummary._DESERIALIZER, "total");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::unblocked, JsonpDeserializer.booleanDeserializer(), "unblocked");
+		op.add(Builder::exception, ErrorCause._DESERIALIZER, "exception");
 
 	}
 

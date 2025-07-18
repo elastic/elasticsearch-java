@@ -210,10 +210,13 @@ public class StateRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * Timeout for waiting for new cluster state in case it is blocked
 	 * <p>
 	 * API name: {@code master_timeout}
+	 * 
+	 * @deprecated 9.2.0
 	 */
+	@Deprecated
 	@Nullable
 	public final Time masterTimeout() {
 		return this.masterTimeout;
@@ -383,20 +386,26 @@ public class StateRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Timeout for waiting for new cluster state in case it is blocked
 		 * <p>
 		 * API name: {@code master_timeout}
+		 * 
+		 * @deprecated 9.2.0
 		 */
+		@Deprecated
 		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * Timeout for waiting for new cluster state in case it is blocked
 		 * <p>
 		 * API name: {@code master_timeout}
+		 * 
+		 * @deprecated 9.2.0
 		 */
+		@Deprecated
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}

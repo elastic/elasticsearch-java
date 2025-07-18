@@ -93,6 +93,9 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> input;
 
 	@Nullable
+	private final String inputType;
+
+	@Nullable
 	private final String query;
 
 	@Nullable
@@ -110,6 +113,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 
 		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.input = ApiTypeHelper.unmodifiableRequired(builder.input, this, "input");
+		this.inputType = builder.inputType;
 		this.query = builder.query;
 		this.taskSettings = builder.taskSettings;
 		this.taskType = builder.taskType;
@@ -143,6 +147,34 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final List<String> input() {
 		return this.input;
+	}
+
+	/**
+	 * Specifies the input data type for the text embedding model. The
+	 * <code>input_type</code> parameter only applies to Inference Endpoints with
+	 * the <code>text_embedding</code> task type. Possible values include:
+	 * <ul>
+	 * <li><code>SEARCH</code></li>
+	 * <li><code>INGEST</code></li>
+	 * <li><code>CLASSIFICATION</code></li>
+	 * <li><code>CLUSTERING</code> Not all services support all values. Unsupported
+	 * values will trigger a validation exception. Accepted values depend on the
+	 * configured inference service, refer to the relevant service-specific
+	 * documentation for more info.</li>
+	 * </ul>
+	 * <blockquote>
+	 * <p>
+	 * info The <code>input_type</code> parameter specified on the root level of the
+	 * request body will take precedence over the <code>input_type</code> parameter
+	 * specified in <code>task_settings</code>.
+	 * </p>
+	 * </blockquote>
+	 * <p>
+	 * API name: {@code input_type}
+	 */
+	@Nullable
+	public final String inputType() {
+		return this.inputType;
 	}
 
 	/**
@@ -209,6 +241,11 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.inputType != null) {
+			generator.writeKey("input_type");
+			generator.write(this.inputType);
+
+		}
 		if (this.query != null) {
 			generator.writeKey("query");
 			generator.write(this.query);
@@ -234,6 +271,9 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		private String inferenceId;
 
 		private List<String> input;
+
+		@Nullable
+		private String inputType;
 
 		@Nullable
 		private String query;
@@ -290,6 +330,34 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder input(String value, String... values) {
 			this.input = _listAdd(this.input, value, values);
+			return this;
+		}
+
+		/**
+		 * Specifies the input data type for the text embedding model. The
+		 * <code>input_type</code> parameter only applies to Inference Endpoints with
+		 * the <code>text_embedding</code> task type. Possible values include:
+		 * <ul>
+		 * <li><code>SEARCH</code></li>
+		 * <li><code>INGEST</code></li>
+		 * <li><code>CLASSIFICATION</code></li>
+		 * <li><code>CLUSTERING</code> Not all services support all values. Unsupported
+		 * values will trigger a validation exception. Accepted values depend on the
+		 * configured inference service, refer to the relevant service-specific
+		 * documentation for more info.</li>
+		 * </ul>
+		 * <blockquote>
+		 * <p>
+		 * info The <code>input_type</code> parameter specified on the root level of the
+		 * request body will take precedence over the <code>input_type</code> parameter
+		 * specified in <code>task_settings</code>.
+		 * </p>
+		 * </blockquote>
+		 * <p>
+		 * API name: {@code input_type}
+		 */
+		public final Builder inputType(@Nullable String value) {
+			this.inputType = value;
 			return this;
 		}
 
@@ -374,6 +442,7 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	protected static void setupInferenceRequestDeserializer(ObjectDeserializer<InferenceRequest.Builder> op) {
 
 		op.add(Builder::input, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "input");
+		op.add(Builder::inputType, JsonpDeserializer.stringDeserializer(), "input_type");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::taskSettings, JsonData._DESERIALIZER, "task_settings");
 

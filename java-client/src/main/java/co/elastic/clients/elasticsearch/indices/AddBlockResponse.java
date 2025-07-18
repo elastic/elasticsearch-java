@@ -20,7 +20,7 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponse;
-import co.elastic.clients.elasticsearch.indices.add_block.IndicesBlockStatus;
+import co.elastic.clients.elasticsearch.indices.add_block.AddIndicesBlockStatus;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -66,7 +66,7 @@ public class AddBlockResponse implements AcknowledgedResponse, JsonpSerializable
 
 	private final boolean shardsAcknowledged;
 
-	private final List<IndicesBlockStatus> indices;
+	private final List<AddIndicesBlockStatus> indices;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -100,7 +100,7 @@ public class AddBlockResponse implements AcknowledgedResponse, JsonpSerializable
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public final List<IndicesBlockStatus> indices() {
+	public final List<AddIndicesBlockStatus> indices() {
 		return this.indices;
 	}
 
@@ -124,7 +124,7 @@ public class AddBlockResponse implements AcknowledgedResponse, JsonpSerializable
 		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
-			for (IndicesBlockStatus item0 : this.indices) {
+			for (AddIndicesBlockStatus item0 : this.indices) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -150,7 +150,7 @@ public class AddBlockResponse implements AcknowledgedResponse, JsonpSerializable
 
 		private Boolean shardsAcknowledged;
 
-		private List<IndicesBlockStatus> indices;
+		private List<AddIndicesBlockStatus> indices;
 
 		/**
 		 * Required - API name: {@code acknowledged}
@@ -173,7 +173,7 @@ public class AddBlockResponse implements AcknowledgedResponse, JsonpSerializable
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(List<IndicesBlockStatus> list) {
+		public final Builder indices(List<AddIndicesBlockStatus> list) {
 			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
@@ -183,7 +183,7 @@ public class AddBlockResponse implements AcknowledgedResponse, JsonpSerializable
 		 * <p>
 		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(IndicesBlockStatus value, IndicesBlockStatus... values) {
+		public final Builder indices(AddIndicesBlockStatus value, AddIndicesBlockStatus... values) {
 			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
@@ -193,8 +193,8 @@ public class AddBlockResponse implements AcknowledgedResponse, JsonpSerializable
 		 * <p>
 		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */
-		public final Builder indices(Function<IndicesBlockStatus.Builder, ObjectBuilder<IndicesBlockStatus>> fn) {
-			return indices(fn.apply(new IndicesBlockStatus.Builder()).build());
+		public final Builder indices(Function<AddIndicesBlockStatus.Builder, ObjectBuilder<AddIndicesBlockStatus>> fn) {
+			return indices(fn.apply(new AddIndicesBlockStatus.Builder()).build());
 		}
 
 		@Override
@@ -227,7 +227,7 @@ public class AddBlockResponse implements AcknowledgedResponse, JsonpSerializable
 
 		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
 		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesBlockStatus._DESERIALIZER), "indices");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(AddIndicesBlockStatus._DESERIALIZER), "indices");
 
 	}
 
