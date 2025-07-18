@@ -54,6 +54,8 @@ public enum IndicatorHealthStatus implements JsonEnum {
 
 	Unknown("unknown"),
 
+	Unavailable("unavailable"),
+
 	;
 
 	private final String jsonValue;

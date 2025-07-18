@@ -61,6 +61,9 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 	@Nullable
 	private final Boolean all;
 
+	@Nullable
+	private final String flags;
+
 	private final String pattern;
 
 	@Nullable
@@ -72,6 +75,7 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 		super(builder);
 
 		this.all = builder.all;
+		this.flags = builder.flags;
 		this.pattern = ApiTypeHelper.requireNonNull(builder.pattern, this, "pattern");
 		this.replacement = builder.replacement;
 
@@ -99,6 +103,14 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 	@Nullable
 	public final Boolean all() {
 		return this.all;
+	}
+
+	/**
+	 * API name: {@code flags}
+	 */
+	@Nullable
+	public final String flags() {
+		return this.flags;
 	}
 
 	/**
@@ -132,6 +144,11 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 			generator.write(this.all);
 
 		}
+		if (this.flags != null) {
+			generator.writeKey("flags");
+			generator.write(this.flags);
+
+		}
 		generator.writeKey("pattern");
 		generator.write(this.pattern);
 
@@ -155,6 +172,9 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 		@Nullable
 		private Boolean all;
 
+		@Nullable
+		private String flags;
+
 		private String pattern;
 
 		@Nullable
@@ -169,6 +189,14 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 		 */
 		public final Builder all(@Nullable Boolean value) {
 			this.all = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code flags}
+		 */
+		public final Builder flags(@Nullable String value) {
+			this.flags = value;
 			return this;
 		}
 
@@ -225,6 +253,7 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 			ObjectDeserializer<PatternReplaceTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::all, JsonpDeserializer.booleanDeserializer(), "all");
+		op.add(Builder::flags, JsonpDeserializer.stringDeserializer(), "flags");
 		op.add(Builder::pattern, JsonpDeserializer.stringDeserializer(), "pattern");
 		op.add(Builder::replacement, JsonpDeserializer.stringDeserializer(), "replacement");
 

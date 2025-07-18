@@ -32,6 +32,7 @@ import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -69,6 +70,11 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 
 	private final ClusterNodes nodes;
 
+	private final Map<String, Map<String, Long>> repositories;
+
+	private final ClusterSnapshotStats snapshots;
+
+	@Nullable
 	private final HealthStatus status;
 
 	private final long timestamp;
@@ -84,7 +90,9 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 		this.clusterUuid = ApiTypeHelper.requireNonNull(builder.clusterUuid, this, "clusterUuid");
 		this.indices = ApiTypeHelper.requireNonNull(builder.indices, this, "indices");
 		this.nodes = ApiTypeHelper.requireNonNull(builder.nodes, this, "nodes");
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.repositories = ApiTypeHelper.unmodifiableRequired(builder.repositories, this, "repositories");
+		this.snapshots = ApiTypeHelper.requireNonNull(builder.snapshots, this, "snapshots");
+		this.status = builder.status;
 		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp", 0);
 		this.ccs = ApiTypeHelper.requireNonNull(builder.ccs, this, "ccs");
 
@@ -129,11 +137,31 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 	}
 
 	/**
-	 * Required - Health status of the cluster, based on the state of its primary
-	 * and replica shards.
+	 * Required - Contains stats on repository feature usage exposed in cluster
+	 * stats for telemetry.
+	 * <p>
+	 * API name: {@code repositories}
+	 */
+	public final Map<String, Map<String, Long>> repositories() {
+		return this.repositories;
+	}
+
+	/**
+	 * Required - Contains stats cluster snapshots.
+	 * <p>
+	 * API name: {@code snapshots}
+	 */
+	public final ClusterSnapshotStats snapshots() {
+		return this.snapshots;
+	}
+
+	/**
+	 * Health status of the cluster, based on the state of its primary and replica
+	 * shards.
 	 * <p>
 	 * API name: {@code status}
 	 */
+	@Nullable
 	public final HealthStatus status() {
 		return this.status;
 	}
@@ -172,8 +200,32 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 		generator.writeKey("nodes");
 		this.nodes.serialize(generator, mapper);
 
-		generator.writeKey("status");
-		this.status.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.repositories)) {
+			generator.writeKey("repositories");
+			generator.writeStartObject();
+			for (Map.Entry<String, Map<String, Long>> item0 : this.repositories.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartObject();
+				if (item0.getValue() != null) {
+					for (Map.Entry<String, Long> item1 : item0.getValue().entrySet()) {
+						generator.writeKey(item1.getKey());
+						generator.write(item1.getValue());
+
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
+
+		}
+		generator.writeKey("snapshots");
+		this.snapshots.serialize(generator, mapper);
+
+		if (this.status != null) {
+			generator.writeKey("status");
+			this.status.serialize(generator, mapper);
+		}
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp);
 
@@ -193,6 +245,11 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 
 		private ClusterNodes nodes;
 
+		private Map<String, Map<String, Long>> repositories;
+
+		private ClusterSnapshotStats snapshots;
+
+		@Nullable
 		private HealthStatus status;
 
 		private Long timestamp;
@@ -262,12 +319,58 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 		}
 
 		/**
-		 * Required - Health status of the cluster, based on the state of its primary
-		 * and replica shards.
+		 * Required - Contains stats on repository feature usage exposed in cluster
+		 * stats for telemetry.
+		 * <p>
+		 * API name: {@code repositories}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>repositories</code>.
+		 */
+		public final BuilderT repositories(Map<String, Map<String, Long>> map) {
+			this.repositories = _mapPutAll(this.repositories, map);
+			return self();
+		}
+
+		/**
+		 * Required - Contains stats on repository feature usage exposed in cluster
+		 * stats for telemetry.
+		 * <p>
+		 * API name: {@code repositories}
+		 * <p>
+		 * Adds an entry to <code>repositories</code>.
+		 */
+		public final BuilderT repositories(String key, Map<String, Long> value) {
+			this.repositories = _mapPut(this.repositories, key, value);
+			return self();
+		}
+
+		/**
+		 * Required - Contains stats cluster snapshots.
+		 * <p>
+		 * API name: {@code snapshots}
+		 */
+		public final BuilderT snapshots(ClusterSnapshotStats value) {
+			this.snapshots = value;
+			return self();
+		}
+
+		/**
+		 * Required - Contains stats cluster snapshots.
+		 * <p>
+		 * API name: {@code snapshots}
+		 */
+		public final BuilderT snapshots(
+				Function<ClusterSnapshotStats.Builder, ObjectBuilder<ClusterSnapshotStats>> fn) {
+			return this.snapshots(fn.apply(new ClusterSnapshotStats.Builder()).build());
+		}
+
+		/**
+		 * Health status of the cluster, based on the state of its primary and replica
+		 * shards.
 		 * <p>
 		 * API name: {@code status}
 		 */
-		public final BuilderT status(HealthStatus value) {
+		public final BuilderT status(@Nullable HealthStatus value) {
 			this.status = value;
 			return self();
 		}
@@ -312,6 +415,9 @@ public abstract class StatsResponseBase extends NodesResponseBase {
 		op.add(AbstractBuilder::clusterUuid, JsonpDeserializer.stringDeserializer(), "cluster_uuid");
 		op.add(AbstractBuilder::indices, ClusterIndices._DESERIALIZER, "indices");
 		op.add(AbstractBuilder::nodes, ClusterNodes._DESERIALIZER, "nodes");
+		op.add(AbstractBuilder::repositories, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.longDeserializer())), "repositories");
+		op.add(AbstractBuilder::snapshots, ClusterSnapshotStats._DESERIALIZER, "snapshots");
 		op.add(AbstractBuilder::status, HealthStatus._DESERIALIZER, "status");
 		op.add(AbstractBuilder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 		op.add(AbstractBuilder::ccs, CCSStats._DESERIALIZER, "ccs");

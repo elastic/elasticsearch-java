@@ -31,8 +31,8 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.lang.Long;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -68,16 +68,22 @@ public class FieldTypes implements JsonpSerializable {
 	private final int indexCount;
 
 	@Nullable
-	private final Long indexedVectorCount;
+	private final Integer indexedVectorCount;
 
 	@Nullable
-	private final Long indexedVectorDimMax;
+	private final Integer indexedVectorDimMax;
 
 	@Nullable
-	private final Long indexedVectorDimMin;
+	private final Integer indexedVectorDimMin;
 
 	@Nullable
 	private final Integer scriptCount;
+
+	private final Map<String, Integer> vectorIndexTypeCount;
+
+	private final Map<String, Integer> vectorSimilarityTypeCount;
+
+	private final Map<String, Integer> vectorElementTypeCount;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -90,6 +96,9 @@ public class FieldTypes implements JsonpSerializable {
 		this.indexedVectorDimMax = builder.indexedVectorDimMax;
 		this.indexedVectorDimMin = builder.indexedVectorDimMin;
 		this.scriptCount = builder.scriptCount;
+		this.vectorIndexTypeCount = ApiTypeHelper.unmodifiable(builder.vectorIndexTypeCount);
+		this.vectorSimilarityTypeCount = ApiTypeHelper.unmodifiable(builder.vectorSimilarityTypeCount);
+		this.vectorElementTypeCount = ApiTypeHelper.unmodifiable(builder.vectorElementTypeCount);
 
 	}
 
@@ -131,7 +140,7 @@ public class FieldTypes implements JsonpSerializable {
 	 * API name: {@code indexed_vector_count}
 	 */
 	@Nullable
-	public final Long indexedVectorCount() {
+	public final Integer indexedVectorCount() {
 		return this.indexedVectorCount;
 	}
 
@@ -142,7 +151,7 @@ public class FieldTypes implements JsonpSerializable {
 	 * API name: {@code indexed_vector_dim_max}
 	 */
 	@Nullable
-	public final Long indexedVectorDimMax() {
+	public final Integer indexedVectorDimMax() {
 		return this.indexedVectorDimMax;
 	}
 
@@ -153,7 +162,7 @@ public class FieldTypes implements JsonpSerializable {
 	 * API name: {@code indexed_vector_dim_min}
 	 */
 	@Nullable
-	public final Long indexedVectorDimMin() {
+	public final Integer indexedVectorDimMin() {
 		return this.indexedVectorDimMin;
 	}
 
@@ -165,6 +174,33 @@ public class FieldTypes implements JsonpSerializable {
 	@Nullable
 	public final Integer scriptCount() {
 		return this.scriptCount;
+	}
+
+	/**
+	 * For dense_vector field types, count of mappings by index type
+	 * <p>
+	 * API name: {@code vector_index_type_count}
+	 */
+	public final Map<String, Integer> vectorIndexTypeCount() {
+		return this.vectorIndexTypeCount;
+	}
+
+	/**
+	 * For dense_vector field types, count of mappings by similarity
+	 * <p>
+	 * API name: {@code vector_similarity_type_count}
+	 */
+	public final Map<String, Integer> vectorSimilarityTypeCount() {
+		return this.vectorSimilarityTypeCount;
+	}
+
+	/**
+	 * For dense_vector field types, count of mappings by element type
+	 * <p>
+	 * API name: {@code vector_element_type_count}
+	 */
+	public final Map<String, Integer> vectorElementTypeCount() {
+		return this.vectorElementTypeCount;
 	}
 
 	/**
@@ -207,6 +243,39 @@ public class FieldTypes implements JsonpSerializable {
 			generator.write(this.scriptCount);
 
 		}
+		if (ApiTypeHelper.isDefined(this.vectorIndexTypeCount)) {
+			generator.writeKey("vector_index_type_count");
+			generator.writeStartObject();
+			for (Map.Entry<String, Integer> item0 : this.vectorIndexTypeCount.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.vectorSimilarityTypeCount)) {
+			generator.writeKey("vector_similarity_type_count");
+			generator.writeStartObject();
+			for (Map.Entry<String, Integer> item0 : this.vectorSimilarityTypeCount.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.vectorElementTypeCount)) {
+			generator.writeKey("vector_element_type_count");
+			generator.writeStartObject();
+			for (Map.Entry<String, Integer> item0 : this.vectorElementTypeCount.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -229,16 +298,25 @@ public class FieldTypes implements JsonpSerializable {
 		private Integer indexCount;
 
 		@Nullable
-		private Long indexedVectorCount;
+		private Integer indexedVectorCount;
 
 		@Nullable
-		private Long indexedVectorDimMax;
+		private Integer indexedVectorDimMax;
 
 		@Nullable
-		private Long indexedVectorDimMin;
+		private Integer indexedVectorDimMin;
 
 		@Nullable
 		private Integer scriptCount;
+
+		@Nullable
+		private Map<String, Integer> vectorIndexTypeCount;
+
+		@Nullable
+		private Map<String, Integer> vectorSimilarityTypeCount;
+
+		@Nullable
+		private Map<String, Integer> vectorElementTypeCount;
 
 		/**
 		 * Required - The name for the field type in selected nodes.
@@ -276,7 +354,7 @@ public class FieldTypes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexed_vector_count}
 		 */
-		public final Builder indexedVectorCount(@Nullable Long value) {
+		public final Builder indexedVectorCount(@Nullable Integer value) {
 			this.indexedVectorCount = value;
 			return this;
 		}
@@ -287,7 +365,7 @@ public class FieldTypes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexed_vector_dim_max}
 		 */
-		public final Builder indexedVectorDimMax(@Nullable Long value) {
+		public final Builder indexedVectorDimMax(@Nullable Integer value) {
 			this.indexedVectorDimMax = value;
 			return this;
 		}
@@ -298,7 +376,7 @@ public class FieldTypes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexed_vector_dim_min}
 		 */
-		public final Builder indexedVectorDimMin(@Nullable Long value) {
+		public final Builder indexedVectorDimMin(@Nullable Integer value) {
 			this.indexedVectorDimMin = value;
 			return this;
 		}
@@ -310,6 +388,79 @@ public class FieldTypes implements JsonpSerializable {
 		 */
 		public final Builder scriptCount(@Nullable Integer value) {
 			this.scriptCount = value;
+			return this;
+		}
+
+		/**
+		 * For dense_vector field types, count of mappings by index type
+		 * <p>
+		 * API name: {@code vector_index_type_count}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>vectorIndexTypeCount</code>.
+		 */
+		public final Builder vectorIndexTypeCount(Map<String, Integer> map) {
+			this.vectorIndexTypeCount = _mapPutAll(this.vectorIndexTypeCount, map);
+			return this;
+		}
+
+		/**
+		 * For dense_vector field types, count of mappings by index type
+		 * <p>
+		 * API name: {@code vector_index_type_count}
+		 * <p>
+		 * Adds an entry to <code>vectorIndexTypeCount</code>.
+		 */
+		public final Builder vectorIndexTypeCount(String key, Integer value) {
+			this.vectorIndexTypeCount = _mapPut(this.vectorIndexTypeCount, key, value);
+			return this;
+		}
+
+		/**
+		 * For dense_vector field types, count of mappings by similarity
+		 * <p>
+		 * API name: {@code vector_similarity_type_count}
+		 * <p>
+		 * Adds all entries of <code>map</code> to
+		 * <code>vectorSimilarityTypeCount</code>.
+		 */
+		public final Builder vectorSimilarityTypeCount(Map<String, Integer> map) {
+			this.vectorSimilarityTypeCount = _mapPutAll(this.vectorSimilarityTypeCount, map);
+			return this;
+		}
+
+		/**
+		 * For dense_vector field types, count of mappings by similarity
+		 * <p>
+		 * API name: {@code vector_similarity_type_count}
+		 * <p>
+		 * Adds an entry to <code>vectorSimilarityTypeCount</code>.
+		 */
+		public final Builder vectorSimilarityTypeCount(String key, Integer value) {
+			this.vectorSimilarityTypeCount = _mapPut(this.vectorSimilarityTypeCount, key, value);
+			return this;
+		}
+
+		/**
+		 * For dense_vector field types, count of mappings by element type
+		 * <p>
+		 * API name: {@code vector_element_type_count}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>vectorElementTypeCount</code>.
+		 */
+		public final Builder vectorElementTypeCount(Map<String, Integer> map) {
+			this.vectorElementTypeCount = _mapPutAll(this.vectorElementTypeCount, map);
+			return this;
+		}
+
+		/**
+		 * For dense_vector field types, count of mappings by element type
+		 * <p>
+		 * API name: {@code vector_element_type_count}
+		 * <p>
+		 * Adds an entry to <code>vectorElementTypeCount</code>.
+		 */
+		public final Builder vectorElementTypeCount(String key, Integer value) {
+			this.vectorElementTypeCount = _mapPut(this.vectorElementTypeCount, key, value);
 			return this;
 		}
 
@@ -344,10 +495,19 @@ public class FieldTypes implements JsonpSerializable {
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 		op.add(Builder::indexCount, JsonpDeserializer.integerDeserializer(), "index_count");
-		op.add(Builder::indexedVectorCount, JsonpDeserializer.longDeserializer(), "indexed_vector_count");
-		op.add(Builder::indexedVectorDimMax, JsonpDeserializer.longDeserializer(), "indexed_vector_dim_max");
-		op.add(Builder::indexedVectorDimMin, JsonpDeserializer.longDeserializer(), "indexed_vector_dim_min");
+		op.add(Builder::indexedVectorCount, JsonpDeserializer.integerDeserializer(), "indexed_vector_count");
+		op.add(Builder::indexedVectorDimMax, JsonpDeserializer.integerDeserializer(), "indexed_vector_dim_max");
+		op.add(Builder::indexedVectorDimMin, JsonpDeserializer.integerDeserializer(), "indexed_vector_dim_min");
 		op.add(Builder::scriptCount, JsonpDeserializer.integerDeserializer(), "script_count");
+		op.add(Builder::vectorIndexTypeCount,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()),
+				"vector_index_type_count");
+		op.add(Builder::vectorSimilarityTypeCount,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()),
+				"vector_similarity_type_count");
+		op.add(Builder::vectorElementTypeCount,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()),
+				"vector_element_type_count");
 
 	}
 

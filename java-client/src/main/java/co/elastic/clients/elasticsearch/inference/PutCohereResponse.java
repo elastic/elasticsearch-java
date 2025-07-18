@@ -51,7 +51,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class PutCohereResponse extends InferenceEndpointInfo {
+public class PutCohereResponse extends InferenceEndpointInfoCohere {
 	// ---------------------------------------------------------------------------------------------
 
 	private PutCohereResponse(Builder builder) {
@@ -69,7 +69,7 @@ public class PutCohereResponse extends InferenceEndpointInfo {
 	 * Builder for {@link PutCohereResponse}.
 	 */
 
-	public static class Builder extends InferenceEndpointInfo.AbstractBuilder<Builder>
+	public static class Builder extends InferenceEndpointInfoCohere.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutCohereResponse> {
 		@Override
@@ -99,7 +99,7 @@ public class PutCohereResponse extends InferenceEndpointInfo {
 			.lazy(Builder::new, PutCohereResponse::setupPutCohereResponseDeserializer);
 
 	protected static void setupPutCohereResponseDeserializer(ObjectDeserializer<PutCohereResponse.Builder> op) {
-		InferenceEndpointInfo.setupInferenceEndpointInfoDeserializer(op);
+		InferenceEndpointInfoCohere.setupInferenceEndpointInfoCohereDeserializer(op);
 
 	}
 

@@ -52,7 +52,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class PutGooglevertexaiResponse extends InferenceEndpointInfo {
+public class PutGooglevertexaiResponse extends InferenceEndpointInfoGoogleVertexAI {
 	// ---------------------------------------------------------------------------------------------
 
 	private PutGooglevertexaiResponse(Builder builder) {
@@ -70,7 +70,7 @@ public class PutGooglevertexaiResponse extends InferenceEndpointInfo {
 	 * Builder for {@link PutGooglevertexaiResponse}.
 	 */
 
-	public static class Builder extends InferenceEndpointInfo.AbstractBuilder<Builder>
+	public static class Builder extends InferenceEndpointInfoGoogleVertexAI.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutGooglevertexaiResponse> {
 		@Override
@@ -101,7 +101,7 @@ public class PutGooglevertexaiResponse extends InferenceEndpointInfo {
 
 	protected static void setupPutGooglevertexaiResponseDeserializer(
 			ObjectDeserializer<PutGooglevertexaiResponse.Builder> op) {
-		InferenceEndpointInfo.setupInferenceEndpointInfoDeserializer(op);
+		InferenceEndpointInfoGoogleVertexAI.setupInferenceEndpointInfoGoogleVertexAIDeserializer(op);
 
 	}
 

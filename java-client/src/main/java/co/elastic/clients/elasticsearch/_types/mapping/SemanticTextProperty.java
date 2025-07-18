@@ -70,6 +70,9 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 	private final String searchInferenceId;
 
 	@Nullable
+	private final SemanticTextIndexOptions indexOptions;
+
+	@Nullable
 	private final ChunkingSettings chunkingSettings;
 
 	// ---------------------------------------------------------------------------------------------
@@ -79,6 +82,7 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.inferenceId = builder.inferenceId;
 		this.searchInferenceId = builder.searchInferenceId;
+		this.indexOptions = builder.indexOptions;
 		this.chunkingSettings = builder.chunkingSettings;
 
 	}
@@ -129,6 +133,17 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 	}
 
 	/**
+	 * Settings for index_options that override any defaults used by semantic_text,
+	 * for example specific quantization settings.
+	 * <p>
+	 * API name: {@code index_options}
+	 */
+	@Nullable
+	public final SemanticTextIndexOptions indexOptions() {
+		return this.indexOptions;
+	}
+
+	/**
 	 * Settings for chunking text into smaller passages. If specified, these will
 	 * override the chunking settings sent in the inference endpoint associated with
 	 * inference_id. If chunking settings are updated, they will not be applied to
@@ -175,6 +190,11 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 			generator.write(this.searchInferenceId);
 
 		}
+		if (this.indexOptions != null) {
+			generator.writeKey("index_options");
+			this.indexOptions.serialize(generator, mapper);
+
+		}
 		if (this.chunkingSettings != null) {
 			generator.writeKey("chunking_settings");
 			this.chunkingSettings.serialize(generator, mapper);
@@ -205,6 +225,9 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 
 		@Nullable
 		private String searchInferenceId;
+
+		@Nullable
+		private SemanticTextIndexOptions indexOptions;
 
 		@Nullable
 		private ChunkingSettings chunkingSettings;
@@ -253,6 +276,28 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 		public final Builder searchInferenceId(@Nullable String value) {
 			this.searchInferenceId = value;
 			return this;
+		}
+
+		/**
+		 * Settings for index_options that override any defaults used by semantic_text,
+		 * for example specific quantization settings.
+		 * <p>
+		 * API name: {@code index_options}
+		 */
+		public final Builder indexOptions(@Nullable SemanticTextIndexOptions value) {
+			this.indexOptions = value;
+			return this;
+		}
+
+		/**
+		 * Settings for index_options that override any defaults used by semantic_text,
+		 * for example specific quantization settings.
+		 * <p>
+		 * API name: {@code index_options}
+		 */
+		public final Builder indexOptions(
+				Function<SemanticTextIndexOptions.Builder, ObjectBuilder<SemanticTextIndexOptions>> fn) {
+			return this.indexOptions(fn.apply(new SemanticTextIndexOptions.Builder()).build());
 		}
 
 		/**
@@ -311,6 +356,7 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "meta");
 		op.add(Builder::inferenceId, JsonpDeserializer.stringDeserializer(), "inference_id");
 		op.add(Builder::searchInferenceId, JsonpDeserializer.stringDeserializer(), "search_inference_id");
+		op.add(Builder::indexOptions, SemanticTextIndexOptions._DESERIALIZER, "index_options");
 		op.add(Builder::chunkingSettings, ChunkingSettings._DESERIALIZER, "chunking_settings");
 
 		op.ignore("type");

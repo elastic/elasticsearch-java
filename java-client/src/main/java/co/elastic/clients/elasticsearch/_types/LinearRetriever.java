@@ -28,6 +28,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -59,7 +60,16 @@ import javax.annotation.Nullable;
 public class LinearRetriever extends RetrieverBase implements RetrieverVariant {
 	private final List<InnerRetriever> retrievers;
 
-	private final int rankWindowSize;
+	@Nullable
+	private final Integer rankWindowSize;
+
+	@Nullable
+	private final String query;
+
+	private final List<String> fields;
+
+	@Nullable
+	private final ScoreNormalizer normalizer;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -67,7 +77,10 @@ public class LinearRetriever extends RetrieverBase implements RetrieverVariant {
 		super(builder);
 
 		this.retrievers = ApiTypeHelper.unmodifiable(builder.retrievers);
-		this.rankWindowSize = ApiTypeHelper.requireNonNull(builder.rankWindowSize, this, "rankWindowSize", 0);
+		this.rankWindowSize = builder.rankWindowSize;
+		this.query = builder.query;
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.normalizer = builder.normalizer;
 
 	}
 
@@ -93,10 +106,34 @@ public class LinearRetriever extends RetrieverBase implements RetrieverVariant {
 	}
 
 	/**
-	 * Required - API name: {@code rank_window_size}
+	 * API name: {@code rank_window_size}
 	 */
-	public final int rankWindowSize() {
+	@Nullable
+	public final Integer rankWindowSize() {
 		return this.rankWindowSize;
+	}
+
+	/**
+	 * API name: {@code query}
+	 */
+	@Nullable
+	public final String query() {
+		return this.query;
+	}
+
+	/**
+	 * API name: {@code fields}
+	 */
+	public final List<String> fields() {
+		return this.fields;
+	}
+
+	/**
+	 * API name: {@code normalizer}
+	 */
+	@Nullable
+	public final ScoreNormalizer normalizer() {
+		return this.normalizer;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -112,8 +149,30 @@ public class LinearRetriever extends RetrieverBase implements RetrieverVariant {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("rank_window_size");
-		generator.write(this.rankWindowSize);
+		if (this.rankWindowSize != null) {
+			generator.writeKey("rank_window_size");
+			generator.write(this.rankWindowSize);
+
+		}
+		if (this.query != null) {
+			generator.writeKey("query");
+			generator.write(this.query);
+
+		}
+		if (ApiTypeHelper.isDefined(this.fields)) {
+			generator.writeKey("fields");
+			generator.writeStartArray();
+			for (String item0 : this.fields) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.normalizer != null) {
+			generator.writeKey("normalizer");
+			this.normalizer.serialize(generator, mapper);
+		}
 
 	}
 
@@ -129,7 +188,17 @@ public class LinearRetriever extends RetrieverBase implements RetrieverVariant {
 		@Nullable
 		private List<InnerRetriever> retrievers;
 
+		@Nullable
 		private Integer rankWindowSize;
+
+		@Nullable
+		private String query;
+
+		@Nullable
+		private List<String> fields;
+
+		@Nullable
+		private ScoreNormalizer normalizer;
 
 		/**
 		 * Inner retrievers.
@@ -167,10 +236,46 @@ public class LinearRetriever extends RetrieverBase implements RetrieverVariant {
 		}
 
 		/**
-		 * Required - API name: {@code rank_window_size}
+		 * API name: {@code rank_window_size}
 		 */
-		public final Builder rankWindowSize(int value) {
+		public final Builder rankWindowSize(@Nullable Integer value) {
 			this.rankWindowSize = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code query}
+		 */
+		public final Builder query(@Nullable String value) {
+			this.query = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
+		 */
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
+		 */
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code normalizer}
+		 */
+		public final Builder normalizer(@Nullable ScoreNormalizer value) {
+			this.normalizer = value;
 			return this;
 		}
 
@@ -204,6 +309,9 @@ public class LinearRetriever extends RetrieverBase implements RetrieverVariant {
 		RetrieverBase.setupRetrieverBaseDeserializer(op);
 		op.add(Builder::retrievers, JsonpDeserializer.arrayDeserializer(InnerRetriever._DESERIALIZER), "retrievers");
 		op.add(Builder::rankWindowSize, JsonpDeserializer.integerDeserializer(), "rank_window_size");
+		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
+		op.add(Builder::normalizer, ScoreNormalizer._DESERIALIZER, "normalizer");
 
 	}
 

@@ -30,7 +30,9 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -76,6 +78,8 @@ public class CharFilterTypes implements JsonpSerializable {
 
 	private final List<FieldTypes> tokenizerTypes;
 
+	private final Map<String, SynonymsStats> synonyms;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private CharFilterTypes(Builder builder) {
@@ -90,6 +94,7 @@ public class CharFilterTypes implements JsonpSerializable {
 		this.charFilterTypes = ApiTypeHelper.unmodifiableRequired(builder.charFilterTypes, this, "charFilterTypes");
 		this.filterTypes = ApiTypeHelper.unmodifiableRequired(builder.filterTypes, this, "filterTypes");
 		this.tokenizerTypes = ApiTypeHelper.unmodifiableRequired(builder.tokenizerTypes, this, "tokenizerTypes");
+		this.synonyms = ApiTypeHelper.unmodifiableRequired(builder.synonyms, this, "synonyms");
 
 	}
 
@@ -173,6 +178,15 @@ public class CharFilterTypes implements JsonpSerializable {
 	 */
 	public final List<FieldTypes> tokenizerTypes() {
 		return this.tokenizerTypes;
+	}
+
+	/**
+	 * Required - Contains statistics about synonyms types used in selected nodes.
+	 * <p>
+	 * API name: {@code synonyms}
+	 */
+	public final Map<String, SynonymsStats> synonyms() {
+		return this.synonyms;
 	}
 
 	/**
@@ -266,6 +280,17 @@ public class CharFilterTypes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (ApiTypeHelper.isDefined(this.synonyms)) {
+			generator.writeKey("synonyms");
+			generator.writeStartObject();
+			for (Map.Entry<String, SynonymsStats> item0 : this.synonyms.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -296,6 +321,8 @@ public class CharFilterTypes implements JsonpSerializable {
 		private List<FieldTypes> filterTypes;
 
 		private List<FieldTypes> tokenizerTypes;
+
+		private Map<String, SynonymsStats> synonyms;
 
 		/**
 		 * Required - Contains statistics about analyzer types used in selected nodes.
@@ -595,6 +622,41 @@ public class CharFilterTypes implements JsonpSerializable {
 			return tokenizerTypes(fn.apply(new FieldTypes.Builder()).build());
 		}
 
+		/**
+		 * Required - Contains statistics about synonyms types used in selected nodes.
+		 * <p>
+		 * API name: {@code synonyms}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>synonyms</code>.
+		 */
+		public final Builder synonyms(Map<String, SynonymsStats> map) {
+			this.synonyms = _mapPutAll(this.synonyms, map);
+			return this;
+		}
+
+		/**
+		 * Required - Contains statistics about synonyms types used in selected nodes.
+		 * <p>
+		 * API name: {@code synonyms}
+		 * <p>
+		 * Adds an entry to <code>synonyms</code>.
+		 */
+		public final Builder synonyms(String key, SynonymsStats value) {
+			this.synonyms = _mapPut(this.synonyms, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - Contains statistics about synonyms types used in selected nodes.
+		 * <p>
+		 * API name: {@code synonyms}
+		 * <p>
+		 * Adds an entry to <code>synonyms</code> using a builder lambda.
+		 */
+		public final Builder synonyms(String key, Function<SynonymsStats.Builder, ObjectBuilder<SynonymsStats>> fn) {
+			return synonyms(key, fn.apply(new SynonymsStats.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -637,6 +699,7 @@ public class CharFilterTypes implements JsonpSerializable {
 		op.add(Builder::filterTypes, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER), "filter_types");
 		op.add(Builder::tokenizerTypes, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER),
 				"tokenizer_types");
+		op.add(Builder::synonyms, JsonpDeserializer.stringMapDeserializer(SynonymsStats._DESERIALIZER), "synonyms");
 
 	}
 

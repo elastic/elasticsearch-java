@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.nodes.info;
+package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -30,10 +30,9 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -50,55 +49,35 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: nodes.info.NodeInfoNetworkInterface
+// typedef: cluster.stats.SparseVectorStats
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#nodes.info.NodeInfoNetworkInterface">API
+ *      "../../doc-files/api-spec.html#cluster.stats.SparseVectorStats">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class NodeInfoNetworkInterface implements JsonpSerializable {
-	private final String address;
-
-	private final String macAddress;
-
-	private final String name;
+public class SparseVectorStats implements JsonpSerializable {
+	private final long valueCount;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private NodeInfoNetworkInterface(Builder builder) {
+	private SparseVectorStats(Builder builder) {
 
-		this.address = ApiTypeHelper.requireNonNull(builder.address, this, "address");
-		this.macAddress = ApiTypeHelper.requireNonNull(builder.macAddress, this, "macAddress");
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.valueCount = ApiTypeHelper.requireNonNull(builder.valueCount, this, "valueCount", 0);
 
 	}
 
-	public static NodeInfoNetworkInterface of(Function<Builder, ObjectBuilder<NodeInfoNetworkInterface>> fn) {
+	public static SparseVectorStats of(Function<Builder, ObjectBuilder<SparseVectorStats>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code address}
+	 * Required - API name: {@code value_count}
 	 */
-	public final String address() {
-		return this.address;
-	}
-
-	/**
-	 * Required - API name: {@code mac_address}
-	 */
-	public final String macAddress() {
-		return this.macAddress;
-	}
-
-	/**
-	 * Required - API name: {@code name}
-	 */
-	public final String name() {
-		return this.name;
+	public final long valueCount() {
+		return this.valueCount;
 	}
 
 	/**
@@ -112,14 +91,8 @@ public class NodeInfoNetworkInterface implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("address");
-		generator.write(this.address);
-
-		generator.writeKey("mac_address");
-		generator.write(this.macAddress);
-
-		generator.writeKey("name");
-		generator.write(this.name);
+		generator.writeKey("value_count");
+		generator.write(this.valueCount);
 
 	}
 
@@ -131,39 +104,17 @@ public class NodeInfoNetworkInterface implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link NodeInfoNetworkInterface}.
+	 * Builder for {@link SparseVectorStats}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
-			implements
-				ObjectBuilder<NodeInfoNetworkInterface> {
-		private String address;
-
-		private String macAddress;
-
-		private String name;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SparseVectorStats> {
+		private Long valueCount;
 
 		/**
-		 * Required - API name: {@code address}
+		 * Required - API name: {@code value_count}
 		 */
-		public final Builder address(String value) {
-			this.address = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code mac_address}
-		 */
-		public final Builder macAddress(String value) {
-			this.macAddress = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code name}
-		 */
-		public final Builder name(String value) {
-			this.name = value;
+		public final Builder valueCount(long value) {
+			this.valueCount = value;
 			return this;
 		}
 
@@ -173,32 +124,29 @@ public class NodeInfoNetworkInterface implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link NodeInfoNetworkInterface}.
+		 * Builds a {@link SparseVectorStats}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public NodeInfoNetworkInterface build() {
+		public SparseVectorStats build() {
 			_checkSingleUse();
 
-			return new NodeInfoNetworkInterface(this);
+			return new SparseVectorStats(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link NodeInfoNetworkInterface}
+	 * Json deserializer for {@link SparseVectorStats}
 	 */
-	public static final JsonpDeserializer<NodeInfoNetworkInterface> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoNetworkInterface::setupNodeInfoNetworkInterfaceDeserializer);
+	public static final JsonpDeserializer<SparseVectorStats> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SparseVectorStats::setupSparseVectorStatsDeserializer);
 
-	protected static void setupNodeInfoNetworkInterfaceDeserializer(
-			ObjectDeserializer<NodeInfoNetworkInterface.Builder> op) {
+	protected static void setupSparseVectorStatsDeserializer(ObjectDeserializer<SparseVectorStats.Builder> op) {
 
-		op.add(Builder::address, JsonpDeserializer.stringDeserializer(), "address");
-		op.add(Builder::macAddress, JsonpDeserializer.stringDeserializer(), "mac_address");
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::valueCount, JsonpDeserializer.longDeserializer(), "value_count");
 
 	}
 

@@ -76,6 +76,9 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 	@Nullable
 	private final Script script;
 
+	@Nullable
+	private final GeoPointMetricType timeSeriesMetric;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GeoPointProperty(Builder builder) {
@@ -87,6 +90,7 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 		this.index = builder.index;
 		this.onScriptError = builder.onScriptError;
 		this.script = builder.script;
+		this.timeSeriesMetric = builder.timeSeriesMetric;
 
 	}
 
@@ -150,6 +154,14 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 		return this.script;
 	}
 
+	/**
+	 * API name: {@code time_series_metric}
+	 */
+	@Nullable
+	public final GeoPointMetricType timeSeriesMetric() {
+		return this.timeSeriesMetric;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "geo_point");
@@ -183,6 +195,10 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 			this.script.serialize(generator, mapper);
 
 		}
+		if (this.timeSeriesMetric != null) {
+			generator.writeKey("time_series_metric");
+			this.timeSeriesMetric.serialize(generator, mapper);
+		}
 
 	}
 
@@ -212,6 +228,9 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 
 		@Nullable
 		private Script script;
+
+		@Nullable
+		private GeoPointMetricType timeSeriesMetric;
 
 		/**
 		 * API name: {@code ignore_malformed}
@@ -275,6 +294,14 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code time_series_metric}
+		 */
+		public final Builder timeSeriesMetric(@Nullable GeoPointMetricType value) {
+			this.timeSeriesMetric = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -309,6 +336,7 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 		op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");
 		op.add(Builder::onScriptError, OnScriptError._DESERIALIZER, "on_script_error");
 		op.add(Builder::script, Script._DESERIALIZER, "script");
+		op.add(Builder::timeSeriesMetric, GeoPointMetricType._DESERIALIZER, "time_series_metric");
 
 		op.ignore("type");
 	}

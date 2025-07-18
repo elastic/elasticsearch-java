@@ -74,6 +74,9 @@ public class JvmMemoryStats implements JsonpSerializable {
 	private final Long heapMaxInBytes;
 
 	@Nullable
+	private final String heapMax;
+
+	@Nullable
 	private final Long nonHeapUsedInBytes;
 
 	@Nullable
@@ -89,6 +92,7 @@ public class JvmMemoryStats implements JsonpSerializable {
 		this.heapUsedPercent = builder.heapUsedPercent;
 		this.heapCommittedInBytes = builder.heapCommittedInBytes;
 		this.heapMaxInBytes = builder.heapMaxInBytes;
+		this.heapMax = builder.heapMax;
 		this.nonHeapUsedInBytes = builder.nonHeapUsedInBytes;
 		this.nonHeapCommittedInBytes = builder.nonHeapCommittedInBytes;
 		this.pools = ApiTypeHelper.unmodifiable(builder.pools);
@@ -137,6 +141,16 @@ public class JvmMemoryStats implements JsonpSerializable {
 	@Nullable
 	public final Long heapMaxInBytes() {
 		return this.heapMaxInBytes;
+	}
+
+	/**
+	 * Maximum amount of memory, available for use by the heap.
+	 * <p>
+	 * API name: {@code heap_max}
+	 */
+	@Nullable
+	public final String heapMax() {
+		return this.heapMax;
 	}
 
 	/**
@@ -199,6 +213,11 @@ public class JvmMemoryStats implements JsonpSerializable {
 			generator.write(this.heapMaxInBytes);
 
 		}
+		if (this.heapMax != null) {
+			generator.writeKey("heap_max");
+			generator.write(this.heapMax);
+
+		}
 		if (this.nonHeapUsedInBytes != null) {
 			generator.writeKey("non_heap_used_in_bytes");
 			generator.write(this.nonHeapUsedInBytes);
@@ -248,6 +267,9 @@ public class JvmMemoryStats implements JsonpSerializable {
 		private Long heapMaxInBytes;
 
 		@Nullable
+		private String heapMax;
+
+		@Nullable
 		private Long nonHeapUsedInBytes;
 
 		@Nullable
@@ -293,6 +315,16 @@ public class JvmMemoryStats implements JsonpSerializable {
 		 */
 		public final Builder heapMaxInBytes(@Nullable Long value) {
 			this.heapMaxInBytes = value;
+			return this;
+		}
+
+		/**
+		 * Maximum amount of memory, available for use by the heap.
+		 * <p>
+		 * API name: {@code heap_max}
+		 */
+		public final Builder heapMax(@Nullable String value) {
+			this.heapMax = value;
 			return this;
 		}
 
@@ -383,6 +415,7 @@ public class JvmMemoryStats implements JsonpSerializable {
 		op.add(Builder::heapUsedPercent, JsonpDeserializer.longDeserializer(), "heap_used_percent");
 		op.add(Builder::heapCommittedInBytes, JsonpDeserializer.longDeserializer(), "heap_committed_in_bytes");
 		op.add(Builder::heapMaxInBytes, JsonpDeserializer.longDeserializer(), "heap_max_in_bytes");
+		op.add(Builder::heapMax, JsonpDeserializer.stringDeserializer(), "heap_max");
 		op.add(Builder::nonHeapUsedInBytes, JsonpDeserializer.longDeserializer(), "non_heap_used_in_bytes");
 		op.add(Builder::nonHeapCommittedInBytes, JsonpDeserializer.longDeserializer(), "non_heap_committed_in_bytes");
 		op.add(Builder::pools, JsonpDeserializer.stringMapDeserializer(Pool._DESERIALIZER), "pools");

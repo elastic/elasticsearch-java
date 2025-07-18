@@ -106,8 +106,6 @@ public class GetSourceRequest extends RequestBase {
 	@Nullable
 	private final String routing;
 
-	private final List<String> storedFields;
-
 	@Nullable
 	private final Long version;
 
@@ -127,7 +125,6 @@ public class GetSourceRequest extends RequestBase {
 		this.realtime = builder.realtime;
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
-		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
@@ -229,15 +226,6 @@ public class GetSourceRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of stored fields to return as part of a hit.
-	 * <p>
-	 * API name: {@code stored_fields}
-	 */
-	public final List<String> storedFields() {
-		return this.storedFields;
-	}
-
-	/**
 	 * The version number for concurrency control. It must match the current version
 	 * of the document for the request to succeed.
 	 * <p>
@@ -291,9 +279,6 @@ public class GetSourceRequest extends RequestBase {
 
 		@Nullable
 		private String routing;
-
-		@Nullable
-		private List<String> storedFields;
 
 		@Nullable
 		private Long version;
@@ -435,30 +420,6 @@ public class GetSourceRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of stored fields to return as part of a hit.
-		 * <p>
-		 * API name: {@code stored_fields}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
-		 */
-		public final Builder storedFields(List<String> list) {
-			this.storedFields = _listAddAll(this.storedFields, list);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of stored fields to return as part of a hit.
-		 * <p>
-		 * API name: {@code stored_fields}
-		 * <p>
-		 * Adds one or more values to <code>storedFields</code>.
-		 */
-		public final Builder storedFields(String value, String... values) {
-			this.storedFields = _listAdd(this.storedFields, value, values);
-			return this;
-		}
-
-		/**
 		 * The version number for concurrency control. It must match the current version
 		 * of the document for the request to succeed.
 		 * <p>
@@ -562,10 +523,6 @@ public class GetSourceRequest extends RequestBase {
 				}
 				if (request.versionType != null) {
 					params.put("version_type", request.versionType.jsonValue());
-				}
-				if (ApiTypeHelper.isDefined(request.storedFields)) {
-					params.put("stored_fields",
-							request.storedFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);

@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
+import co.elastic.clients.elasticsearch.nodes.IndexingPressureMemory;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;

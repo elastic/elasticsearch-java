@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -102,7 +103,15 @@ public class RecoveryRequest extends RequestBase {
 	private final Boolean activeOnly;
 
 	@Nullable
+	private final Boolean allowNoIndices;
+
+	@Nullable
 	private final Boolean detailed;
+
+	private final List<ExpandWildcard> expandWildcards;
+
+	@Nullable
+	private final Boolean ignoreUnavailable;
 
 	private final List<String> index;
 
@@ -111,7 +120,10 @@ public class RecoveryRequest extends RequestBase {
 	private RecoveryRequest(Builder builder) {
 
 		this.activeOnly = builder.activeOnly;
+		this.allowNoIndices = builder.allowNoIndices;
 		this.detailed = builder.detailed;
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 
 	}
@@ -131,6 +143,19 @@ public class RecoveryRequest extends RequestBase {
 	}
 
 	/**
+	 * If <code>false</code>, the request returns an error if any wildcard
+	 * expression, index alias, or <code>_all</code> value targets only missing or
+	 * closed indices. This behavior applies even if the request targets other open
+	 * indices.
+	 * <p>
+	 * API name: {@code allow_no_indices}
+	 */
+	@Nullable
+	public final Boolean allowNoIndices() {
+		return this.allowNoIndices;
+	}
+
+	/**
 	 * If <code>true</code>, the response includes detailed information about shard
 	 * recoveries.
 	 * <p>
@@ -139,6 +164,29 @@ public class RecoveryRequest extends RequestBase {
 	@Nullable
 	public final Boolean detailed() {
 		return this.detailed;
+	}
+
+	/**
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as
+	 * <code>open,hidden</code>.
+	 * <p>
+	 * API name: {@code expand_wildcards}
+	 */
+	public final List<ExpandWildcard> expandWildcards() {
+		return this.expandWildcards;
+	}
+
+	/**
+	 * If <code>false</code>, the request returns an error if it targets a missing
+	 * or closed index.
+	 * <p>
+	 * API name: {@code ignore_unavailable}
+	 */
+	@Nullable
+	public final Boolean ignoreUnavailable() {
+		return this.ignoreUnavailable;
 	}
 
 	/**
@@ -163,7 +211,16 @@ public class RecoveryRequest extends RequestBase {
 		private Boolean activeOnly;
 
 		@Nullable
+		private Boolean allowNoIndices;
+
+		@Nullable
 		private Boolean detailed;
+
+		@Nullable
+		private List<ExpandWildcard> expandWildcards;
+
+		@Nullable
+		private Boolean ignoreUnavailable;
 
 		@Nullable
 		private List<String> index;
@@ -179,6 +236,19 @@ public class RecoveryRequest extends RequestBase {
 		}
 
 		/**
+		 * If <code>false</code>, the request returns an error if any wildcard
+		 * expression, index alias, or <code>_all</code> value targets only missing or
+		 * closed indices. This behavior applies even if the request targets other open
+		 * indices.
+		 * <p>
+		 * API name: {@code allow_no_indices}
+		 */
+		public final Builder allowNoIndices(@Nullable Boolean value) {
+			this.allowNoIndices = value;
+			return this;
+		}
+
+		/**
 		 * If <code>true</code>, the response includes detailed information about shard
 		 * recoveries.
 		 * <p>
@@ -186,6 +256,47 @@ public class RecoveryRequest extends RequestBase {
 		 */
 		public final Builder detailed(@Nullable Boolean value) {
 			this.detailed = value;
+			return this;
+		}
+
+		/**
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
+			return this;
+		}
+
+		/**
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+			return this;
+		}
+
+		/**
+		 * If <code>false</code>, the request returns an error if it targets a missing
+		 * or closed index.
+		 * <p>
+		 * API name: {@code ignore_unavailable}
+		 */
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
+			this.ignoreUnavailable = value;
 			return this;
 		}
 
@@ -298,8 +409,18 @@ public class RecoveryRequest extends RequestBase {
 				if (request.detailed != null) {
 					params.put("detailed", String.valueOf(request.detailed));
 				}
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
+				if (request.ignoreUnavailable != null) {
+					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
 				if (request.activeOnly != null) {
 					params.put("active_only", String.valueOf(request.activeOnly));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				return params;
 

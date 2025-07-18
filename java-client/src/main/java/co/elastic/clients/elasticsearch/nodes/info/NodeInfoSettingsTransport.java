@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -68,6 +69,9 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 	@Nullable
 	private final NodeInfoSettingsTransportFeatures features;
 
+	@Nullable
+	private final Boolean ignoreDeserializationErrors;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private NodeInfoSettingsTransport(Builder builder) {
@@ -75,6 +79,7 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.typeDefault = builder.typeDefault;
 		this.features = builder.features;
+		this.ignoreDeserializationErrors = builder.ignoreDeserializationErrors;
 
 	}
 
@@ -106,6 +111,16 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 	}
 
 	/**
+	 * Only used in unit tests
+	 * <p>
+	 * API name: {@code ignore_deserialization_errors}
+	 */
+	@Nullable
+	public final Boolean ignoreDeserializationErrors() {
+		return this.ignoreDeserializationErrors;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -127,6 +142,11 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 		if (this.features != null) {
 			generator.writeKey("features");
 			this.features.serialize(generator, mapper);
+
+		}
+		if (this.ignoreDeserializationErrors != null) {
+			generator.writeKey("ignore_deserialization_errors");
+			generator.write(this.ignoreDeserializationErrors);
 
 		}
 
@@ -153,6 +173,9 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 
 		@Nullable
 		private NodeInfoSettingsTransportFeatures features;
+
+		@Nullable
+		private Boolean ignoreDeserializationErrors;
 
 		/**
 		 * Required - API name: {@code type}
@@ -194,6 +217,16 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 			return this.features(fn.apply(new NodeInfoSettingsTransportFeatures.Builder()).build());
 		}
 
+		/**
+		 * Only used in unit tests
+		 * <p>
+		 * API name: {@code ignore_deserialization_errors}
+		 */
+		public final Builder ignoreDeserializationErrors(@Nullable Boolean value) {
+			this.ignoreDeserializationErrors = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -226,6 +259,8 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 		op.add(Builder::type, NodeInfoSettingsTransportType._DESERIALIZER, "type");
 		op.add(Builder::typeDefault, JsonpDeserializer.stringDeserializer(), "type.default");
 		op.add(Builder::features, NodeInfoSettingsTransportFeatures._DESERIALIZER, "features");
+		op.add(Builder::ignoreDeserializationErrors, JsonpDeserializer.booleanDeserializer(),
+				"ignore_deserialization_errors");
 
 	}
 

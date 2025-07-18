@@ -32,6 +32,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.List;
@@ -72,10 +73,14 @@ public class NodeInfo implements JsonpSerializable {
 
 	private final String buildType;
 
+	private final Map<String, Integer> componentVersions;
+
 	private final String host;
 
 	@Nullable
 	private final NodeInfoHttp http;
+
+	private final long indexVersion;
 
 	private final String ip;
 
@@ -83,9 +88,6 @@ public class NodeInfo implements JsonpSerializable {
 	private final NodeJvmInfo jvm;
 
 	private final String name;
-
-	@Nullable
-	private final NodeInfoNetwork network;
 
 	@Nullable
 	private final NodeOperatingSystemInfo os;
@@ -113,6 +115,8 @@ public class NodeInfo implements JsonpSerializable {
 
 	private final String transportAddress;
 
+	private final long transportVersion;
+
 	private final String version;
 
 	private final List<PluginStats> modules;
@@ -122,6 +126,9 @@ public class NodeInfo implements JsonpSerializable {
 
 	private final Map<String, NodeInfoAggregation> aggregations;
 
+	@Nullable
+	private final RemoveClusterServer remoteClusterServer;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private NodeInfo(Builder builder) {
@@ -130,12 +137,14 @@ public class NodeInfo implements JsonpSerializable {
 		this.buildFlavor = ApiTypeHelper.requireNonNull(builder.buildFlavor, this, "buildFlavor");
 		this.buildHash = ApiTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
 		this.buildType = ApiTypeHelper.requireNonNull(builder.buildType, this, "buildType");
+		this.componentVersions = ApiTypeHelper.unmodifiableRequired(builder.componentVersions, this,
+				"componentVersions");
 		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
 		this.http = builder.http;
+		this.indexVersion = ApiTypeHelper.requireNonNull(builder.indexVersion, this, "indexVersion", 0);
 		this.ip = ApiTypeHelper.requireNonNull(builder.ip, this, "ip");
 		this.jvm = builder.jvm;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.network = builder.network;
 		this.os = builder.os;
 		this.plugins = ApiTypeHelper.unmodifiable(builder.plugins);
 		this.process = builder.process;
@@ -146,10 +155,12 @@ public class NodeInfo implements JsonpSerializable {
 		this.totalIndexingBufferInBytes = builder.totalIndexingBufferInBytes;
 		this.transport = builder.transport;
 		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+		this.transportVersion = ApiTypeHelper.requireNonNull(builder.transportVersion, this, "transportVersion", 0);
 		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.modules = ApiTypeHelper.unmodifiable(builder.modules);
 		this.ingest = builder.ingest;
 		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
+		this.remoteClusterServer = builder.remoteClusterServer;
 
 	}
 
@@ -188,6 +199,13 @@ public class NodeInfo implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code component_versions}
+	 */
+	public final Map<String, Integer> componentVersions() {
+		return this.componentVersions;
+	}
+
+	/**
 	 * Required - The node’s host name.
 	 * <p>
 	 * API name: {@code host}
@@ -202,6 +220,13 @@ public class NodeInfo implements JsonpSerializable {
 	@Nullable
 	public final NodeInfoHttp http() {
 		return this.http;
+	}
+
+	/**
+	 * Required - API name: {@code index_version}
+	 */
+	public final long indexVersion() {
+		return this.indexVersion;
 	}
 
 	/**
@@ -228,14 +253,6 @@ public class NodeInfo implements JsonpSerializable {
 	 */
 	public final String name() {
 		return this.name;
-	}
-
-	/**
-	 * API name: {@code network}
-	 */
-	@Nullable
-	public final NodeInfoNetwork network() {
-		return this.network;
 	}
 
 	/**
@@ -323,6 +340,13 @@ public class NodeInfo implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code transport_version}
+	 */
+	public final long transportVersion() {
+		return this.transportVersion;
+	}
+
+	/**
 	 * Required - Elasticsearch version running on this node.
 	 * <p>
 	 * API name: {@code version}
@@ -351,6 +375,14 @@ public class NodeInfo implements JsonpSerializable {
 	 */
 	public final Map<String, NodeInfoAggregation> aggregations() {
 		return this.aggregations;
+	}
+
+	/**
+	 * API name: {@code remote_cluster_server}
+	 */
+	@Nullable
+	public final RemoveClusterServer remoteClusterServer() {
+		return this.remoteClusterServer;
 	}
 
 	/**
@@ -384,6 +416,17 @@ public class NodeInfo implements JsonpSerializable {
 		generator.writeKey("build_type");
 		generator.write(this.buildType);
 
+		if (ApiTypeHelper.isDefined(this.componentVersions)) {
+			generator.writeKey("component_versions");
+			generator.writeStartObject();
+			for (Map.Entry<String, Integer> item0 : this.componentVersions.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
+
+		}
 		generator.writeKey("host");
 		generator.write(this.host);
 
@@ -392,6 +435,9 @@ public class NodeInfo implements JsonpSerializable {
 			this.http.serialize(generator, mapper);
 
 		}
+		generator.writeKey("index_version");
+		generator.write(this.indexVersion);
+
 		generator.writeKey("ip");
 		generator.write(this.ip);
 
@@ -403,11 +449,6 @@ public class NodeInfo implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		if (this.network != null) {
-			generator.writeKey("network");
-			this.network.serialize(generator, mapper);
-
-		}
 		if (this.os != null) {
 			generator.writeKey("os");
 			this.os.serialize(generator, mapper);
@@ -471,6 +512,9 @@ public class NodeInfo implements JsonpSerializable {
 		generator.writeKey("transport_address");
 		generator.write(this.transportAddress);
 
+		generator.writeKey("transport_version");
+		generator.write(this.transportVersion);
+
 		generator.writeKey("version");
 		generator.write(this.version);
 
@@ -500,6 +544,11 @@ public class NodeInfo implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.remoteClusterServer != null) {
+			generator.writeKey("remote_cluster_server");
+			this.remoteClusterServer.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -523,10 +572,14 @@ public class NodeInfo implements JsonpSerializable {
 
 		private String buildType;
 
+		private Map<String, Integer> componentVersions;
+
 		private String host;
 
 		@Nullable
 		private NodeInfoHttp http;
+
+		private Long indexVersion;
 
 		private String ip;
 
@@ -534,9 +587,6 @@ public class NodeInfo implements JsonpSerializable {
 		private NodeJvmInfo jvm;
 
 		private String name;
-
-		@Nullable
-		private NodeInfoNetwork network;
 
 		@Nullable
 		private NodeOperatingSystemInfo os;
@@ -566,6 +616,8 @@ public class NodeInfo implements JsonpSerializable {
 
 		private String transportAddress;
 
+		private Long transportVersion;
+
 		private String version;
 
 		@Nullable
@@ -576,6 +628,9 @@ public class NodeInfo implements JsonpSerializable {
 
 		@Nullable
 		private Map<String, NodeInfoAggregation> aggregations;
+
+		@Nullable
+		private RemoveClusterServer remoteClusterServer;
 
 		/**
 		 * Required - API name: {@code attributes}
@@ -624,6 +679,26 @@ public class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - API name: {@code component_versions}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>componentVersions</code>.
+		 */
+		public final Builder componentVersions(Map<String, Integer> map) {
+			this.componentVersions = _mapPutAll(this.componentVersions, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code component_versions}
+		 * <p>
+		 * Adds an entry to <code>componentVersions</code>.
+		 */
+		public final Builder componentVersions(String key, Integer value) {
+			this.componentVersions = _mapPut(this.componentVersions, key, value);
+			return this;
+		}
+
+		/**
 		 * Required - The node’s host name.
 		 * <p>
 		 * API name: {@code host}
@@ -646,6 +721,14 @@ public class NodeInfo implements JsonpSerializable {
 		 */
 		public final Builder http(Function<NodeInfoHttp.Builder, ObjectBuilder<NodeInfoHttp>> fn) {
 			return this.http(fn.apply(new NodeInfoHttp.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code index_version}
+		 */
+		public final Builder indexVersion(long value) {
+			this.indexVersion = value;
+			return this;
 		}
 
 		/**
@@ -681,21 +764,6 @@ public class NodeInfo implements JsonpSerializable {
 		public final Builder name(String value) {
 			this.name = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code network}
-		 */
-		public final Builder network(@Nullable NodeInfoNetwork value) {
-			this.network = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code network}
-		 */
-		public final Builder network(Function<NodeInfoNetwork.Builder, ObjectBuilder<NodeInfoNetwork>> fn) {
-			return this.network(fn.apply(new NodeInfoNetwork.Builder()).build());
 		}
 
 		/**
@@ -870,6 +938,14 @@ public class NodeInfo implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - API name: {@code transport_version}
+		 */
+		public final Builder transportVersion(long value) {
+			this.transportVersion = value;
+			return this;
+		}
+
+		/**
 		 * Required - Elasticsearch version running on this node.
 		 * <p>
 		 * API name: {@code version}
@@ -953,6 +1029,22 @@ public class NodeInfo implements JsonpSerializable {
 			return aggregations(key, fn.apply(new NodeInfoAggregation.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code remote_cluster_server}
+		 */
+		public final Builder remoteClusterServer(@Nullable RemoveClusterServer value) {
+			this.remoteClusterServer = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code remote_cluster_server}
+		 */
+		public final Builder remoteClusterServer(
+				Function<RemoveClusterServer.Builder, ObjectBuilder<RemoveClusterServer>> fn) {
+			return this.remoteClusterServer(fn.apply(new RemoveClusterServer.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -986,12 +1078,14 @@ public class NodeInfo implements JsonpSerializable {
 		op.add(Builder::buildFlavor, JsonpDeserializer.stringDeserializer(), "build_flavor");
 		op.add(Builder::buildHash, JsonpDeserializer.stringDeserializer(), "build_hash");
 		op.add(Builder::buildType, JsonpDeserializer.stringDeserializer(), "build_type");
+		op.add(Builder::componentVersions,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()), "component_versions");
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
 		op.add(Builder::http, NodeInfoHttp._DESERIALIZER, "http");
+		op.add(Builder::indexVersion, JsonpDeserializer.longDeserializer(), "index_version");
 		op.add(Builder::ip, JsonpDeserializer.stringDeserializer(), "ip");
 		op.add(Builder::jvm, NodeJvmInfo._DESERIALIZER, "jvm");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::network, NodeInfoNetwork._DESERIALIZER, "network");
 		op.add(Builder::os, NodeOperatingSystemInfo._DESERIALIZER, "os");
 		op.add(Builder::plugins, JsonpDeserializer.arrayDeserializer(PluginStats._DESERIALIZER), "plugins");
 		op.add(Builder::process, NodeProcessInfo._DESERIALIZER, "process");
@@ -1004,11 +1098,13 @@ public class NodeInfo implements JsonpSerializable {
 				"total_indexing_buffer_in_bytes");
 		op.add(Builder::transport, NodeInfoTransport._DESERIALIZER, "transport");
 		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
+		op.add(Builder::transportVersion, JsonpDeserializer.longDeserializer(), "transport_version");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 		op.add(Builder::modules, JsonpDeserializer.arrayDeserializer(PluginStats._DESERIALIZER), "modules");
 		op.add(Builder::ingest, NodeInfoIngest._DESERIALIZER, "ingest");
 		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(NodeInfoAggregation._DESERIALIZER),
 				"aggregations");
+		op.add(Builder::remoteClusterServer, RemoveClusterServer._DESERIALIZER, "remote_cluster_server");
 
 	}
 

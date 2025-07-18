@@ -341,6 +341,7 @@ public class ElasticsearchInferenceAsyncClient
 	 * <li>Azure OpenAI (<code>completion</code>, <code>text_embedding</code>)</li>
 	 * <li>Cohere (<code>completion</code>, <code>rerank</code>,
 	 * <code>text_embedding</code>)</li>
+	 * <li>DeepSeek (<code>completion</code>, <code>chat_completion</code>)</li>
 	 * <li>Elasticsearch (<code>rerank</code>, <code>sparse_embedding</code>,
 	 * <code>text_embedding</code> - this service is for built-in models and models
 	 * uploaded through Eland)</li>
@@ -396,6 +397,7 @@ public class ElasticsearchInferenceAsyncClient
 	 * <li>Azure OpenAI (<code>completion</code>, <code>text_embedding</code>)</li>
 	 * <li>Cohere (<code>completion</code>, <code>rerank</code>,
 	 * <code>text_embedding</code>)</li>
+	 * <li>DeepSeek (<code>completion</code>, <code>chat_completion</code>)</li>
 	 * <li>Elasticsearch (<code>rerank</code>, <code>sparse_embedding</code>,
 	 * <code>text_embedding</code> - this service is for built-in models and models
 	 * uploaded through Eland)</li>
@@ -706,6 +708,45 @@ public class ElasticsearchInferenceAsyncClient
 	public final CompletableFuture<PutCohereResponse> putCohere(
 			Function<PutCohereRequest.Builder, ObjectBuilder<PutCohereRequest>> fn) {
 		return putCohere(fn.apply(new PutCohereRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_deepseek
+
+	/**
+	 * Create a DeepSeek inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>deepseek</code> service.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/infer-service-deepseek.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutDeepseekResponse> putDeepseek(PutDeepseekRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutDeepseekRequest, PutDeepseekResponse, ErrorResponse> endpoint = (JsonEndpoint<PutDeepseekRequest, PutDeepseekResponse, ErrorResponse>) PutDeepseekRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create a DeepSeek inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>deepseek</code> service.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutDeepseekRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/infer-service-deepseek.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PutDeepseekResponse> putDeepseek(
+			Function<PutDeepseekRequest.Builder, ObjectBuilder<PutDeepseekRequest>> fn) {
+		return putDeepseek(fn.apply(new PutDeepseekRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: inference.put_elasticsearch
@@ -1325,7 +1366,7 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.rerank
 
 	/**
-	 * Perform rereanking inference on the service
+	 * Perform reranking inference on the service
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/post-inference-api.html">Documentation
@@ -1340,7 +1381,7 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform rereanking inference on the service
+	 * Perform reranking inference on the service
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

@@ -1994,50 +1994,8 @@ public class ElasticsearchSecurityAsyncClient
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-user-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
-
-	public CompletableFuture<GetUserPrivilegesResponse> getUserPrivileges(GetUserPrivilegesRequest request) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetUserPrivilegesRequest, GetUserPrivilegesResponse, ErrorResponse> endpoint = (JsonEndpoint<GetUserPrivilegesRequest, GetUserPrivilegesResponse, ErrorResponse>) GetUserPrivilegesRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Get user privileges.
-	 * <p>
-	 * Get the security privileges for the logged in user. All users can use this
-	 * API, but only to determine their own privileges. To check the privileges of
-	 * other users, you must use the run as feature. To check whether a user has a
-	 * specific list of privileges, use the has privileges API.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link GetUserPrivilegesRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-user-privileges.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<GetUserPrivilegesResponse> getUserPrivileges(
-			Function<GetUserPrivilegesRequest.Builder, ObjectBuilder<GetUserPrivilegesRequest>> fn) {
-		return getUserPrivileges(fn.apply(new GetUserPrivilegesRequest.Builder()).build());
-	}
-
-	/**
-	 * Get user privileges.
-	 * <p>
-	 * Get the security privileges for the logged in user. All users can use this
-	 * API, but only to determine their own privileges. To check the privileges of
-	 * other users, you must use the run as feature. To check whether a user has a
-	 * specific list of privileges, use the has privileges API.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/security-api-get-user-privileges.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
 	public CompletableFuture<GetUserPrivilegesResponse> getUserPrivileges() {
-		return this.transport.performRequestAsync(new GetUserPrivilegesRequest.Builder().build(),
+		return this.transport.performRequestAsync(GetUserPrivilegesRequest._INSTANCE,
 				GetUserPrivilegesRequest._ENDPOINT, this.transportOptions);
 	}
 
