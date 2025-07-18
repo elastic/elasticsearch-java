@@ -3626,6 +3626,46 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 		return reloadSearchAnalyzers(fn.apply(new ReloadSearchAnalyzersRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: indices.remove_block
+
+	/**
+	 * Remove an index block.
+	 * <p>
+	 * Remove an index block from an index. Index blocks limit the operations
+	 * allowed on an index by blocking specific operation types.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-remove-block">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public RemoveBlockResponse removeBlock(RemoveBlockRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RemoveBlockRequest, RemoveBlockResponse, ErrorResponse> endpoint = (JsonEndpoint<RemoveBlockRequest, RemoveBlockResponse, ErrorResponse>) RemoveBlockRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Remove an index block.
+	 * <p>
+	 * Remove an index block from an index. Index blocks limit the operations
+	 * allowed on an index by blocking specific operation types.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link RemoveBlockRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-remove-block">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final RemoveBlockResponse removeBlock(
+			Function<RemoveBlockRequest.Builder, ObjectBuilder<RemoveBlockRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return removeBlock(fn.apply(new RemoveBlockRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.resolve_cluster
 
 	/**

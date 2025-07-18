@@ -24,12 +24,14 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -86,6 +88,8 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 	@Nullable
 	private final Boolean splitQueriesOnWhitespace;
 
+	private final List<String> timeSeriesDimensions;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private FlattenedProperty(Builder builder) {
@@ -100,6 +104,7 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 		this.nullValue = builder.nullValue;
 		this.similarity = builder.similarity;
 		this.splitQueriesOnWhitespace = builder.splitQueriesOnWhitespace;
+		this.timeSeriesDimensions = ApiTypeHelper.unmodifiable(builder.timeSeriesDimensions);
 
 	}
 
@@ -187,6 +192,13 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 		return this.splitQueriesOnWhitespace;
 	}
 
+	/**
+	 * API name: {@code time_series_dimensions}
+	 */
+	public final List<String> timeSeriesDimensions() {
+		return this.timeSeriesDimensions;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "flattened");
@@ -235,6 +247,16 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 			generator.write(this.splitQueriesOnWhitespace);
 
 		}
+		if (ApiTypeHelper.isDefined(this.timeSeriesDimensions)) {
+			generator.writeKey("time_series_dimensions");
+			generator.writeStartArray();
+			for (String item0 : this.timeSeriesDimensions) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -273,6 +295,9 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 
 		@Nullable
 		private Boolean splitQueriesOnWhitespace;
+
+		@Nullable
+		private List<String> timeSeriesDimensions;
 
 		/**
 		 * API name: {@code boost}
@@ -346,6 +371,26 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 			return this;
 		}
 
+		/**
+		 * API name: {@code time_series_dimensions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>timeSeriesDimensions</code>.
+		 */
+		public final Builder timeSeriesDimensions(List<String> list) {
+			this.timeSeriesDimensions = _listAddAll(this.timeSeriesDimensions, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code time_series_dimensions}
+		 * <p>
+		 * Adds one or more values to <code>timeSeriesDimensions</code>.
+		 */
+		public final Builder timeSeriesDimensions(String value, String... values) {
+			this.timeSeriesDimensions = _listAdd(this.timeSeriesDimensions, value, values);
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -384,6 +429,8 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 		op.add(Builder::similarity, JsonpDeserializer.stringDeserializer(), "similarity");
 		op.add(Builder::splitQueriesOnWhitespace, JsonpDeserializer.booleanDeserializer(),
 				"split_queries_on_whitespace");
+		op.add(Builder::timeSeriesDimensions,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "time_series_dimensions");
 
 		op.ignore("type");
 	}

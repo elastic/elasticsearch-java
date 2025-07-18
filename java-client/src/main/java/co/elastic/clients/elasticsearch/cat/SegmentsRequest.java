@@ -115,7 +115,8 @@ public class SegmentsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * List of columns to appear in the response. Supports simple wildcards.
+	 * A comma-separated list of columns names to display. It supports simple
+	 * wildcards.
 	 * <p>
 	 * API name: {@code h}
 	 */
@@ -159,9 +160,9 @@ public class SegmentsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * List of columns that determine how the table should be sorted. Sorting
-	 * defaults to ascending and can be changed by setting <code>:asc</code> or
-	 * <code>:desc</code> as a suffix to the column name.
+	 * A comma-separated list of column names or aliases that determines the sort
+	 * order. Sorting defaults to ascending and can be changed by setting
+	 * <code>:asc</code> or <code>:desc</code> as a suffix to the column name.
 	 * <p>
 	 * API name: {@code s}
 	 */
@@ -207,7 +208,8 @@ public class SegmentsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * List of columns to appear in the response. Supports simple wildcards.
+		 * A comma-separated list of columns names to display. It supports simple
+		 * wildcards.
 		 * <p>
 		 * API name: {@code h}
 		 * <p>
@@ -219,7 +221,8 @@ public class SegmentsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * List of columns to appear in the response. Supports simple wildcards.
+		 * A comma-separated list of columns names to display. It supports simple
+		 * wildcards.
 		 * <p>
 		 * API name: {@code h}
 		 * <p>
@@ -292,9 +295,9 @@ public class SegmentsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * List of columns that determine how the table should be sorted. Sorting
-		 * defaults to ascending and can be changed by setting <code>:asc</code> or
-		 * <code>:desc</code> as a suffix to the column name.
+		 * A comma-separated list of column names or aliases that determines the sort
+		 * order. Sorting defaults to ascending and can be changed by setting
+		 * <code>:asc</code> or <code>:desc</code> as a suffix to the column name.
 		 * <p>
 		 * API name: {@code s}
 		 * <p>
@@ -306,9 +309,9 @@ public class SegmentsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * List of columns that determine how the table should be sorted. Sorting
-		 * defaults to ascending and can be changed by setting <code>:asc</code> or
-		 * <code>:desc</code> as a suffix to the column name.
+		 * A comma-separated list of column names or aliases that determines the sort
+		 * order. Sorting defaults to ascending and can be changed by setting
+		 * <code>:asc</code> or <code>:desc</code> as a suffix to the column name.
 		 * <p>
 		 * API name: {@code s}
 		 * <p>

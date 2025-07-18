@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: inference.rerank.Request
 
 /**
- * Perform rereanking inference on the service
+ * Perform reranking inference on the service
  * 
  * @see <a href="../doc-files/api-spec.html#inference.rerank.Request">API
  *      specification</a>

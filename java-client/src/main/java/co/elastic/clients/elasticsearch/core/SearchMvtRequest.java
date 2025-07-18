@@ -99,58 +99,6 @@ import javax.annotation.Nullable;
  * labels, so that, for example, multi-polygons will have only one label.</li>
  * </ul>
  * <p>
- * For example, Elasticsearch may translate a vector tile search API request
- * with a <code>grid_agg</code> argument of <code>geotile</code> and an
- * <code>exact_bounds</code> argument of <code>true</code> into the following
- * search
- * 
- * <pre>
- * <code>GET my-index/_search
- * {
- *   &quot;size&quot;: 10000,
- *   &quot;query&quot;: {
- *     &quot;geo_bounding_box&quot;: {
- *       &quot;my-geo-field&quot;: {
- *         &quot;top_left&quot;: {
- *           &quot;lat&quot;: -40.979898069620134,
- *           &quot;lon&quot;: -45
- *         },
- *         &quot;bottom_right&quot;: {
- *           &quot;lat&quot;: -66.51326044311186,
- *           &quot;lon&quot;: 0
- *         }
- *       }
- *     }
- *   },
- *   &quot;aggregations&quot;: {
- *     &quot;grid&quot;: {
- *       &quot;geotile_grid&quot;: {
- *         &quot;field&quot;: &quot;my-geo-field&quot;,
- *         &quot;precision&quot;: 11,
- *         &quot;size&quot;: 65536,
- *         &quot;bounds&quot;: {
- *           &quot;top_left&quot;: {
- *             &quot;lat&quot;: -40.979898069620134,
- *             &quot;lon&quot;: -45
- *           },
- *           &quot;bottom_right&quot;: {
- *             &quot;lat&quot;: -66.51326044311186,
- *             &quot;lon&quot;: 0
- *           }
- *         }
- *       }
- *     },
- *     &quot;bounds&quot;: {
- *       &quot;geo_bounds&quot;: {
- *         &quot;field&quot;: &quot;my-geo-field&quot;,
- *         &quot;wrap_longitude&quot;: false
- *       }
- *     }
- *   }
- * }
- * </code>
- * </pre>
- * <p>
  * The API returns results as a binary Mapbox vector tile. Mapbox vector tiles
  * are encoded as Google Protobufs (PBF). By default, the tile contains three
  * layers:
@@ -430,6 +378,11 @@ import javax.annotation.Nullable;
  * each resolution with the average density of tile bins at each zoom level.
  * Elasticsearch uses the H3 resolution that is closest to the corresponding
  * geotile density.
+ * <p>
+ * Learn how to use the vector tile search API with practical examples in the
+ * <a href=
+ * "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/vector-tile-search">Vector
+ * tile search examples</a> guide.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.search_mvt.Request">API
  *      specification</a>

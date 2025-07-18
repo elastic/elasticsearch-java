@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.query_dsl;
+package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -51,12 +51,11 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.query_dsl.TokenPruningConfig
+// typedef: _types.TokenPruningConfig
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#_types.query_dsl.TokenPruningConfig">API
+ * @see <a href="../doc-files/api-spec.html#_types.TokenPruningConfig">API
  *      specification</a>
  */
 @JsonpDeserializable

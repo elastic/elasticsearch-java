@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -65,12 +66,16 @@ public class Storage implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowMmap;
 
+	@Nullable
+	private final Time statsRefreshInterval;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private Storage(Builder builder) {
 
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.allowMmap = builder.allowMmap;
+		this.statsRefreshInterval = builder.statsRefreshInterval;
 
 	}
 
@@ -101,6 +106,16 @@ public class Storage implements JsonpSerializable {
 	}
 
 	/**
+	 * How often store statistics are refreshed
+	 * <p>
+	 * API name: {@code stats_refresh_interval}
+	 */
+	@Nullable
+	public final Time statsRefreshInterval() {
+		return this.statsRefreshInterval;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -117,6 +132,11 @@ public class Storage implements JsonpSerializable {
 		if (this.allowMmap != null) {
 			generator.writeKey("allow_mmap");
 			generator.write(this.allowMmap);
+
+		}
+		if (this.statsRefreshInterval != null) {
+			generator.writeKey("stats_refresh_interval");
+			this.statsRefreshInterval.serialize(generator, mapper);
 
 		}
 
@@ -138,6 +158,9 @@ public class Storage implements JsonpSerializable {
 
 		@Nullable
 		private Boolean allowMmap;
+
+		@Nullable
+		private Time statsRefreshInterval;
 
 		/**
 		 * Required - API name: {@code type}
@@ -170,6 +193,25 @@ public class Storage implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * How often store statistics are refreshed
+		 * <p>
+		 * API name: {@code stats_refresh_interval}
+		 */
+		public final Builder statsRefreshInterval(@Nullable Time value) {
+			this.statsRefreshInterval = value;
+			return this;
+		}
+
+		/**
+		 * How often store statistics are refreshed
+		 * <p>
+		 * API name: {@code stats_refresh_interval}
+		 */
+		public final Builder statsRefreshInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.statsRefreshInterval(fn.apply(new Time.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -200,6 +242,7 @@ public class Storage implements JsonpSerializable {
 
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(Builder::allowMmap, JsonpDeserializer.booleanDeserializer(), "allow_mmap");
+		op.add(Builder::statsRefreshInterval, Time._DESERIALIZER, "stats_refresh_interval");
 
 	}
 

@@ -17,21 +17,16 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.indices.add_block;
+package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.String;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -51,97 +46,105 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: indices.add_block.IndicesBlockStatus
+// typedef: _types.mapping.RankVectorProperty
 
 /**
- *
+ * Technical preview
+ * 
  * @see <a href=
- *      "../../doc-files/api-spec.html#indices.add_block.IndicesBlockStatus">API
+ *      "../../doc-files/api-spec.html#_types.mapping.RankVectorProperty">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class IndicesBlockStatus implements JsonpSerializable {
-	private final String name;
+public class RankVectorProperty extends PropertyBase implements PropertyVariant {
+	@Nullable
+	private final RankVectorElementType elementType;
 
-	private final boolean blocked;
+	@Nullable
+	private final Integer dims;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private IndicesBlockStatus(Builder builder) {
+	private RankVectorProperty(Builder builder) {
+		super(builder);
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.blocked = ApiTypeHelper.requireNonNull(builder.blocked, this, "blocked", false);
+		this.elementType = builder.elementType;
+		this.dims = builder.dims;
 
 	}
 
-	public static IndicesBlockStatus of(Function<Builder, ObjectBuilder<IndicesBlockStatus>> fn) {
+	public static RankVectorProperty of(Function<Builder, ObjectBuilder<RankVectorProperty>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code name}
+	 * Property variant kind.
 	 */
-	public final String name() {
-		return this.name;
+	@Override
+	public Property.Kind _propertyKind() {
+		return Property.Kind.RankVectors;
 	}
 
 	/**
-	 * Required - API name: {@code blocked}
+	 * API name: {@code element_type}
 	 */
-	public final boolean blocked() {
-		return this.blocked;
+	@Nullable
+	public final RankVectorElementType elementType() {
+		return this.elementType;
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * API name: {@code dims}
 	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
+	@Nullable
+	public final Integer dims() {
+		return this.dims;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
+		generator.write("type", "rank_vectors");
+		super.serializeInternal(generator, mapper);
+		if (this.elementType != null) {
+			generator.writeKey("element_type");
+			this.elementType.serialize(generator, mapper);
+		}
+		if (this.dims != null) {
+			generator.writeKey("dims");
+			generator.write(this.dims);
 
-		generator.writeKey("blocked");
-		generator.write(this.blocked);
+		}
 
-	}
-
-	@Override
-	public String toString() {
-		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link IndicesBlockStatus}.
+	 * Builder for {@link RankVectorProperty}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<IndicesBlockStatus> {
-		private String name;
+				ObjectBuilder<RankVectorProperty> {
+		@Nullable
+		private RankVectorElementType elementType;
 
-		private Boolean blocked;
+		@Nullable
+		private Integer dims;
 
 		/**
-		 * Required - API name: {@code name}
+		 * API name: {@code element_type}
 		 */
-		public final Builder name(String value) {
-			this.name = value;
+		public final Builder elementType(@Nullable RankVectorElementType value) {
+			this.elementType = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code blocked}
+		 * API name: {@code dims}
 		 */
-		public final Builder blocked(boolean value) {
-			this.blocked = value;
+		public final Builder dims(@Nullable Integer value) {
+			this.dims = value;
 			return this;
 		}
 
@@ -151,31 +154,32 @@ public class IndicesBlockStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link IndicesBlockStatus}.
+		 * Builds a {@link RankVectorProperty}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public IndicesBlockStatus build() {
+		public RankVectorProperty build() {
 			_checkSingleUse();
 
-			return new IndicesBlockStatus(this);
+			return new RankVectorProperty(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link IndicesBlockStatus}
+	 * Json deserializer for {@link RankVectorProperty}
 	 */
-	public static final JsonpDeserializer<IndicesBlockStatus> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndicesBlockStatus::setupIndicesBlockStatusDeserializer);
+	public static final JsonpDeserializer<RankVectorProperty> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RankVectorProperty::setupRankVectorPropertyDeserializer);
 
-	protected static void setupIndicesBlockStatusDeserializer(ObjectDeserializer<IndicesBlockStatus.Builder> op) {
+	protected static void setupRankVectorPropertyDeserializer(ObjectDeserializer<RankVectorProperty.Builder> op) {
+		PropertyBase.setupPropertyBaseDeserializer(op);
+		op.add(Builder::elementType, RankVectorElementType._DESERIALIZER, "element_type");
+		op.add(Builder::dims, JsonpDeserializer.integerDeserializer(), "dims");
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::blocked, JsonpDeserializer.booleanDeserializer(), "blocked");
-
+		op.ignore("type");
 	}
 
 }

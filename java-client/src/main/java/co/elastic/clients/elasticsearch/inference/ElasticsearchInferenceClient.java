@@ -342,6 +342,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * <li>Azure OpenAI (<code>completion</code>, <code>text_embedding</code>)</li>
 	 * <li>Cohere (<code>completion</code>, <code>rerank</code>,
 	 * <code>text_embedding</code>)</li>
+	 * <li>DeepSeek (<code>completion</code>, <code>chat_completion</code>)</li>
 	 * <li>Elasticsearch (<code>rerank</code>, <code>sparse_embedding</code>,
 	 * <code>text_embedding</code> - this service is for built-in models and models
 	 * uploaded through Eland)</li>
@@ -397,6 +398,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * <li>Azure OpenAI (<code>completion</code>, <code>text_embedding</code>)</li>
 	 * <li>Cohere (<code>completion</code>, <code>rerank</code>,
 	 * <code>text_embedding</code>)</li>
+	 * <li>DeepSeek (<code>completion</code>, <code>chat_completion</code>)</li>
 	 * <li>Elasticsearch (<code>rerank</code>, <code>sparse_embedding</code>,
 	 * <code>text_embedding</code> - this service is for built-in models and models
 	 * uploaded through Eland)</li>
@@ -717,6 +719,46 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	public final PutCohereResponse putCohere(Function<PutCohereRequest.Builder, ObjectBuilder<PutCohereRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return putCohere(fn.apply(new PutCohereRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_deepseek
+
+	/**
+	 * Create a DeepSeek inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>deepseek</code> service.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-deepseek">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutDeepseekResponse putDeepseek(PutDeepseekRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutDeepseekRequest, PutDeepseekResponse, ErrorResponse> endpoint = (JsonEndpoint<PutDeepseekRequest, PutDeepseekResponse, ErrorResponse>) PutDeepseekRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create a DeepSeek inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>deepseek</code> service.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutDeepseekRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-deepseek">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutDeepseekResponse putDeepseek(
+			Function<PutDeepseekRequest.Builder, ObjectBuilder<PutDeepseekRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putDeepseek(fn.apply(new PutDeepseekRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: inference.put_elasticsearch
@@ -1345,7 +1387,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: inference.rerank
 
 	/**
-	 * Perform rereanking inference on the service
+	 * Perform reranking inference on the service
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
@@ -1360,7 +1402,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Perform rereanking inference on the service
+	 * Perform reranking inference on the service
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

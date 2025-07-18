@@ -31,8 +31,10 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -61,14 +63,22 @@ import java.util.function.Function;
 public class ClusterJvmMemory implements JsonpSerializable {
 	private final long heapMaxInBytes;
 
+	@Nullable
+	private final String heapMax;
+
 	private final long heapUsedInBytes;
+
+	@Nullable
+	private final String heapUsed;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ClusterJvmMemory(Builder builder) {
 
 		this.heapMaxInBytes = ApiTypeHelper.requireNonNull(builder.heapMaxInBytes, this, "heapMaxInBytes", 0);
+		this.heapMax = builder.heapMax;
 		this.heapUsedInBytes = ApiTypeHelper.requireNonNull(builder.heapUsedInBytes, this, "heapUsedInBytes", 0);
+		this.heapUsed = builder.heapUsed;
 
 	}
 
@@ -87,6 +97,17 @@ public class ClusterJvmMemory implements JsonpSerializable {
 	}
 
 	/**
+	 * Maximum amount of memory available for use by the heap across all selected
+	 * nodes.
+	 * <p>
+	 * API name: {@code heap_max}
+	 */
+	@Nullable
+	public final String heapMax() {
+		return this.heapMax;
+	}
+
+	/**
 	 * Required - Memory, in bytes, currently in use by the heap across all selected
 	 * nodes.
 	 * <p>
@@ -94,6 +115,16 @@ public class ClusterJvmMemory implements JsonpSerializable {
 	 */
 	public final long heapUsedInBytes() {
 		return this.heapUsedInBytes;
+	}
+
+	/**
+	 * Memory currently in use by the heap across all selected nodes.
+	 * <p>
+	 * API name: {@code heap_used}
+	 */
+	@Nullable
+	public final String heapUsed() {
+		return this.heapUsed;
 	}
 
 	/**
@@ -110,8 +141,19 @@ public class ClusterJvmMemory implements JsonpSerializable {
 		generator.writeKey("heap_max_in_bytes");
 		generator.write(this.heapMaxInBytes);
 
+		if (this.heapMax != null) {
+			generator.writeKey("heap_max");
+			generator.write(this.heapMax);
+
+		}
 		generator.writeKey("heap_used_in_bytes");
 		generator.write(this.heapUsedInBytes);
+
+		if (this.heapUsed != null) {
+			generator.writeKey("heap_used");
+			generator.write(this.heapUsed);
+
+		}
 
 	}
 
@@ -129,7 +171,13 @@ public class ClusterJvmMemory implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ClusterJvmMemory> {
 		private Long heapMaxInBytes;
 
+		@Nullable
+		private String heapMax;
+
 		private Long heapUsedInBytes;
+
+		@Nullable
+		private String heapUsed;
 
 		/**
 		 * Required - Maximum amount of memory, in bytes, available for use by the heap
@@ -143,6 +191,17 @@ public class ClusterJvmMemory implements JsonpSerializable {
 		}
 
 		/**
+		 * Maximum amount of memory available for use by the heap across all selected
+		 * nodes.
+		 * <p>
+		 * API name: {@code heap_max}
+		 */
+		public final Builder heapMax(@Nullable String value) {
+			this.heapMax = value;
+			return this;
+		}
+
+		/**
 		 * Required - Memory, in bytes, currently in use by the heap across all selected
 		 * nodes.
 		 * <p>
@@ -150,6 +209,16 @@ public class ClusterJvmMemory implements JsonpSerializable {
 		 */
 		public final Builder heapUsedInBytes(long value) {
 			this.heapUsedInBytes = value;
+			return this;
+		}
+
+		/**
+		 * Memory currently in use by the heap across all selected nodes.
+		 * <p>
+		 * API name: {@code heap_used}
+		 */
+		public final Builder heapUsed(@Nullable String value) {
+			this.heapUsed = value;
 			return this;
 		}
 
@@ -182,7 +251,9 @@ public class ClusterJvmMemory implements JsonpSerializable {
 	protected static void setupClusterJvmMemoryDeserializer(ObjectDeserializer<ClusterJvmMemory.Builder> op) {
 
 		op.add(Builder::heapMaxInBytes, JsonpDeserializer.longDeserializer(), "heap_max_in_bytes");
+		op.add(Builder::heapMax, JsonpDeserializer.stringDeserializer(), "heap_max");
 		op.add(Builder::heapUsedInBytes, JsonpDeserializer.longDeserializer(), "heap_used_in_bytes");
+		op.add(Builder::heapUsed, JsonpDeserializer.stringDeserializer(), "heap_used");
 
 	}
 

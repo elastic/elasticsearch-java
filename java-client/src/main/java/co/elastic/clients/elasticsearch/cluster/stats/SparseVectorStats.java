@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.nodes.info;
+package co.elastic.clients.elasticsearch.cluster.stats;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -30,10 +30,9 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -50,44 +49,35 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: nodes.info.NodeInfoNetwork
+// typedef: cluster.stats.SparseVectorStats
 
 /**
  *
- * @see <a href="../../doc-files/api-spec.html#nodes.info.NodeInfoNetwork">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#cluster.stats.SparseVectorStats">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class NodeInfoNetwork implements JsonpSerializable {
-	private final NodeInfoNetworkInterface primaryInterface;
-
-	private final int refreshInterval;
+public class SparseVectorStats implements JsonpSerializable {
+	private final long valueCount;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private NodeInfoNetwork(Builder builder) {
+	private SparseVectorStats(Builder builder) {
 
-		this.primaryInterface = ApiTypeHelper.requireNonNull(builder.primaryInterface, this, "primaryInterface");
-		this.refreshInterval = ApiTypeHelper.requireNonNull(builder.refreshInterval, this, "refreshInterval", 0);
+		this.valueCount = ApiTypeHelper.requireNonNull(builder.valueCount, this, "valueCount", 0);
 
 	}
 
-	public static NodeInfoNetwork of(Function<Builder, ObjectBuilder<NodeInfoNetwork>> fn) {
+	public static SparseVectorStats of(Function<Builder, ObjectBuilder<SparseVectorStats>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code primary_interface}
+	 * Required - API name: {@code value_count}
 	 */
-	public final NodeInfoNetworkInterface primaryInterface() {
-		return this.primaryInterface;
-	}
-
-	/**
-	 * Required - API name: {@code refresh_interval}
-	 */
-	public final int refreshInterval() {
-		return this.refreshInterval;
+	public final long valueCount() {
+		return this.valueCount;
 	}
 
 	/**
@@ -101,11 +91,8 @@ public class NodeInfoNetwork implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("primary_interface");
-		this.primaryInterface.serialize(generator, mapper);
-
-		generator.writeKey("refresh_interval");
-		generator.write(this.refreshInterval);
+		generator.writeKey("value_count");
+		generator.write(this.valueCount);
 
 	}
 
@@ -117,35 +104,17 @@ public class NodeInfoNetwork implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link NodeInfoNetwork}.
+	 * Builder for {@link SparseVectorStats}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeInfoNetwork> {
-		private NodeInfoNetworkInterface primaryInterface;
-
-		private Integer refreshInterval;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SparseVectorStats> {
+		private Long valueCount;
 
 		/**
-		 * Required - API name: {@code primary_interface}
+		 * Required - API name: {@code value_count}
 		 */
-		public final Builder primaryInterface(NodeInfoNetworkInterface value) {
-			this.primaryInterface = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code primary_interface}
-		 */
-		public final Builder primaryInterface(
-				Function<NodeInfoNetworkInterface.Builder, ObjectBuilder<NodeInfoNetworkInterface>> fn) {
-			return this.primaryInterface(fn.apply(new NodeInfoNetworkInterface.Builder()).build());
-		}
-
-		/**
-		 * Required - API name: {@code refresh_interval}
-		 */
-		public final Builder refreshInterval(int value) {
-			this.refreshInterval = value;
+		public final Builder valueCount(long value) {
+			this.valueCount = value;
 			return this;
 		}
 
@@ -155,30 +124,29 @@ public class NodeInfoNetwork implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link NodeInfoNetwork}.
+		 * Builds a {@link SparseVectorStats}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public NodeInfoNetwork build() {
+		public SparseVectorStats build() {
 			_checkSingleUse();
 
-			return new NodeInfoNetwork(this);
+			return new SparseVectorStats(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link NodeInfoNetwork}
+	 * Json deserializer for {@link SparseVectorStats}
 	 */
-	public static final JsonpDeserializer<NodeInfoNetwork> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeInfoNetwork::setupNodeInfoNetworkDeserializer);
+	public static final JsonpDeserializer<SparseVectorStats> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SparseVectorStats::setupSparseVectorStatsDeserializer);
 
-	protected static void setupNodeInfoNetworkDeserializer(ObjectDeserializer<NodeInfoNetwork.Builder> op) {
+	protected static void setupSparseVectorStatsDeserializer(ObjectDeserializer<SparseVectorStats.Builder> op) {
 
-		op.add(Builder::primaryInterface, NodeInfoNetworkInterface._DESERIALIZER, "primary_interface");
-		op.add(Builder::refreshInterval, JsonpDeserializer.integerDeserializer(), "refresh_interval");
+		op.add(Builder::valueCount, JsonpDeserializer.longDeserializer(), "value_count");
 
 	}
 

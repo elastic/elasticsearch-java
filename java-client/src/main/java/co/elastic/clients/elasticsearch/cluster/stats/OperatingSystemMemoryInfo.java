@@ -32,6 +32,7 @@ import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -64,13 +65,25 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 	@Nullable
 	private final Long adjustedTotalInBytes;
 
+	@Nullable
+	private final String adjustedTotal;
+
 	private final long freeInBytes;
+
+	@Nullable
+	private final String free;
 
 	private final int freePercent;
 
 	private final long totalInBytes;
 
+	@Nullable
+	private final String total;
+
 	private final long usedInBytes;
+
+	@Nullable
+	private final String used;
 
 	private final int usedPercent;
 
@@ -79,10 +92,14 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 	private OperatingSystemMemoryInfo(Builder builder) {
 
 		this.adjustedTotalInBytes = builder.adjustedTotalInBytes;
+		this.adjustedTotal = builder.adjustedTotal;
 		this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes", 0);
+		this.free = builder.free;
 		this.freePercent = ApiTypeHelper.requireNonNull(builder.freePercent, this, "freePercent", 0);
 		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes", 0);
+		this.total = builder.total;
 		this.usedInBytes = ApiTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes", 0);
+		this.used = builder.used;
 		this.usedPercent = ApiTypeHelper.requireNonNull(builder.usedPercent, this, "usedPercent", 0);
 
 	}
@@ -105,6 +122,19 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 	}
 
 	/**
+	 * Total amount of memory across all selected nodes, but using the value
+	 * specified using the <code>es.total_memory_bytes</code> system property
+	 * instead of measured total memory for those nodes where that system property
+	 * was set.
+	 * <p>
+	 * API name: {@code adjusted_total}
+	 */
+	@Nullable
+	public final String adjustedTotal() {
+		return this.adjustedTotal;
+	}
+
+	/**
 	 * Required - Amount, in bytes, of free physical memory across all selected
 	 * nodes.
 	 * <p>
@@ -112,6 +142,16 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 	 */
 	public final long freeInBytes() {
 		return this.freeInBytes;
+	}
+
+	/**
+	 * Amount of free physical memory across all selected nodes.
+	 * <p>
+	 * API name: {@code free}
+	 */
+	@Nullable
+	public final String free() {
+		return this.free;
 	}
 
 	/**
@@ -134,6 +174,16 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 	}
 
 	/**
+	 * Total amount of physical memory across all selected nodes.
+	 * <p>
+	 * API name: {@code total}
+	 */
+	@Nullable
+	public final String total() {
+		return this.total;
+	}
+
+	/**
 	 * Required - Amount, in bytes, of physical memory in use across all selected
 	 * nodes.
 	 * <p>
@@ -141,6 +191,16 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 	 */
 	public final long usedInBytes() {
 		return this.usedInBytes;
+	}
+
+	/**
+	 * Amount of physical memory in use across all selected nodes.
+	 * <p>
+	 * API name: {@code used}
+	 */
+	@Nullable
+	public final String used() {
+		return this.used;
 	}
 
 	/**
@@ -168,18 +228,38 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 			generator.write(this.adjustedTotalInBytes);
 
 		}
+		if (this.adjustedTotal != null) {
+			generator.writeKey("adjusted_total");
+			generator.write(this.adjustedTotal);
+
+		}
 		generator.writeKey("free_in_bytes");
 		generator.write(this.freeInBytes);
 
+		if (this.free != null) {
+			generator.writeKey("free");
+			generator.write(this.free);
+
+		}
 		generator.writeKey("free_percent");
 		generator.write(this.freePercent);
 
 		generator.writeKey("total_in_bytes");
 		generator.write(this.totalInBytes);
 
+		if (this.total != null) {
+			generator.writeKey("total");
+			generator.write(this.total);
+
+		}
 		generator.writeKey("used_in_bytes");
 		generator.write(this.usedInBytes);
 
+		if (this.used != null) {
+			generator.writeKey("used");
+			generator.write(this.used);
+
+		}
 		generator.writeKey("used_percent");
 		generator.write(this.usedPercent);
 
@@ -202,13 +282,25 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 		@Nullable
 		private Long adjustedTotalInBytes;
 
+		@Nullable
+		private String adjustedTotal;
+
 		private Long freeInBytes;
+
+		@Nullable
+		private String free;
 
 		private Integer freePercent;
 
 		private Long totalInBytes;
 
+		@Nullable
+		private String total;
+
 		private Long usedInBytes;
+
+		@Nullable
+		private String used;
 
 		private Integer usedPercent;
 
@@ -226,6 +318,19 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 		}
 
 		/**
+		 * Total amount of memory across all selected nodes, but using the value
+		 * specified using the <code>es.total_memory_bytes</code> system property
+		 * instead of measured total memory for those nodes where that system property
+		 * was set.
+		 * <p>
+		 * API name: {@code adjusted_total}
+		 */
+		public final Builder adjustedTotal(@Nullable String value) {
+			this.adjustedTotal = value;
+			return this;
+		}
+
+		/**
 		 * Required - Amount, in bytes, of free physical memory across all selected
 		 * nodes.
 		 * <p>
@@ -233,6 +338,16 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 		 */
 		public final Builder freeInBytes(long value) {
 			this.freeInBytes = value;
+			return this;
+		}
+
+		/**
+		 * Amount of free physical memory across all selected nodes.
+		 * <p>
+		 * API name: {@code free}
+		 */
+		public final Builder free(@Nullable String value) {
+			this.free = value;
 			return this;
 		}
 
@@ -258,6 +373,16 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 		}
 
 		/**
+		 * Total amount of physical memory across all selected nodes.
+		 * <p>
+		 * API name: {@code total}
+		 */
+		public final Builder total(@Nullable String value) {
+			this.total = value;
+			return this;
+		}
+
+		/**
 		 * Required - Amount, in bytes, of physical memory in use across all selected
 		 * nodes.
 		 * <p>
@@ -265,6 +390,16 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 		 */
 		public final Builder usedInBytes(long value) {
 			this.usedInBytes = value;
+			return this;
+		}
+
+		/**
+		 * Amount of physical memory in use across all selected nodes.
+		 * <p>
+		 * API name: {@code used}
+		 */
+		public final Builder used(@Nullable String value) {
+			this.used = value;
 			return this;
 		}
 
@@ -308,10 +443,14 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 			ObjectDeserializer<OperatingSystemMemoryInfo.Builder> op) {
 
 		op.add(Builder::adjustedTotalInBytes, JsonpDeserializer.longDeserializer(), "adjusted_total_in_bytes");
+		op.add(Builder::adjustedTotal, JsonpDeserializer.stringDeserializer(), "adjusted_total");
 		op.add(Builder::freeInBytes, JsonpDeserializer.longDeserializer(), "free_in_bytes");
+		op.add(Builder::free, JsonpDeserializer.stringDeserializer(), "free");
 		op.add(Builder::freePercent, JsonpDeserializer.integerDeserializer(), "free_percent");
 		op.add(Builder::totalInBytes, JsonpDeserializer.longDeserializer(), "total_in_bytes");
+		op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
 		op.add(Builder::usedInBytes, JsonpDeserializer.longDeserializer(), "used_in_bytes");
+		op.add(Builder::used, JsonpDeserializer.stringDeserializer(), "used");
 		op.add(Builder::usedPercent, JsonpDeserializer.integerDeserializer(), "used_percent");
 
 	}

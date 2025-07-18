@@ -26,8 +26,10 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -54,10 +56,19 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class SparseVectorProperty extends PropertyBase implements PropertyVariant {
+	@Nullable
+	private final Boolean store;
+
+	@Nullable
+	private final SparseVectorIndexOptions indexOptions;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private SparseVectorProperty(Builder builder) {
 		super(builder);
+
+		this.store = builder.store;
+		this.indexOptions = builder.indexOptions;
 
 	}
 
@@ -73,10 +84,39 @@ public class SparseVectorProperty extends PropertyBase implements PropertyVarian
 		return Property.Kind.SparseVector;
 	}
 
+	/**
+	 * API name: {@code store}
+	 */
+	@Nullable
+	public final Boolean store() {
+		return this.store;
+	}
+
+	/**
+	 * Additional index options for the sparse vector field that controls the token
+	 * pruning behavior of the sparse vector field.
+	 * <p>
+	 * API name: {@code index_options}
+	 */
+	@Nullable
+	public final SparseVectorIndexOptions indexOptions() {
+		return this.indexOptions;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "sparse_vector");
 		super.serializeInternal(generator, mapper);
+		if (this.store != null) {
+			generator.writeKey("store");
+			generator.write(this.store);
+
+		}
+		if (this.indexOptions != null) {
+			generator.writeKey("index_options");
+			this.indexOptions.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -89,6 +129,42 @@ public class SparseVectorProperty extends PropertyBase implements PropertyVarian
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SparseVectorProperty> {
+		@Nullable
+		private Boolean store;
+
+		@Nullable
+		private SparseVectorIndexOptions indexOptions;
+
+		/**
+		 * API name: {@code store}
+		 */
+		public final Builder store(@Nullable Boolean value) {
+			this.store = value;
+			return this;
+		}
+
+		/**
+		 * Additional index options for the sparse vector field that controls the token
+		 * pruning behavior of the sparse vector field.
+		 * <p>
+		 * API name: {@code index_options}
+		 */
+		public final Builder indexOptions(@Nullable SparseVectorIndexOptions value) {
+			this.indexOptions = value;
+			return this;
+		}
+
+		/**
+		 * Additional index options for the sparse vector field that controls the token
+		 * pruning behavior of the sparse vector field.
+		 * <p>
+		 * API name: {@code index_options}
+		 */
+		public final Builder indexOptions(
+				Function<SparseVectorIndexOptions.Builder, ObjectBuilder<SparseVectorIndexOptions>> fn) {
+			return this.indexOptions(fn.apply(new SparseVectorIndexOptions.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -117,6 +193,8 @@ public class SparseVectorProperty extends PropertyBase implements PropertyVarian
 
 	protected static void setupSparseVectorPropertyDeserializer(ObjectDeserializer<SparseVectorProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
+		op.add(Builder::store, JsonpDeserializer.booleanDeserializer(), "store");
+		op.add(Builder::indexOptions, SparseVectorIndexOptions._DESERIALIZER, "index_options");
 
 		op.ignore("type");
 	}

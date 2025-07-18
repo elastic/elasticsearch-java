@@ -20,7 +20,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.OpType;
 import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
@@ -201,18 +200,9 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	private final String id;
 
 	@Nullable
-	private final Long ifPrimaryTerm;
-
-	@Nullable
-	private final Long ifSeqNo;
-
-	@Nullable
 	private final Boolean includeSourceOnError;
 
 	private final String index;
-
-	@Nullable
-	private final OpType opType;
 
 	@Nullable
 	private final String pipeline;
@@ -251,11 +241,8 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	private CreateRequest(Builder<TDocument> builder) {
 
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.ifPrimaryTerm = builder.ifPrimaryTerm;
-		this.ifSeqNo = builder.ifSeqNo;
 		this.includeSourceOnError = builder.includeSourceOnError;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.opType = builder.opType;
 		this.pipeline = builder.pipeline;
 		this.refresh = builder.refresh;
 		this.requireAlias = builder.requireAlias;
@@ -286,26 +273,6 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Only perform the operation if the document has this primary term.
-	 * <p>
-	 * API name: {@code if_primary_term}
-	 */
-	@Nullable
-	public final Long ifPrimaryTerm() {
-		return this.ifPrimaryTerm;
-	}
-
-	/**
-	 * Only perform the operation if the document has this sequence number.
-	 * <p>
-	 * API name: {@code if_seq_no}
-	 */
-	@Nullable
-	public final Long ifSeqNo() {
-		return this.ifSeqNo;
-	}
-
-	/**
 	 * True or false if to include the document source in the error message in case
 	 * of parsing errors.
 	 * <p>
@@ -327,22 +294,6 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	 */
 	public final String index() {
 		return this.index;
-	}
-
-	/**
-	 * Set to <code>create</code> to only index the document if it does not already
-	 * exist (put if absent). If a document with the specified <code>_id</code>
-	 * already exists, the indexing operation will fail. The behavior is the same as
-	 * using the <code>&lt;index&gt;/_create</code> endpoint. If a document ID is
-	 * specified, this paramater defaults to <code>index</code>. Otherwise, it
-	 * defaults to <code>create</code>. If the request targets a data stream, an
-	 * <code>op_type</code> of <code>create</code> is required.
-	 * <p>
-	 * API name: {@code op_type}
-	 */
-	@Nullable
-	public final OpType opType() {
-		return this.opType;
 	}
 
 	/**
@@ -486,18 +437,9 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		private String id;
 
 		@Nullable
-		private Long ifPrimaryTerm;
-
-		@Nullable
-		private Long ifSeqNo;
-
-		@Nullable
 		private Boolean includeSourceOnError;
 
 		private String index;
-
-		@Nullable
-		private OpType opType;
 
 		@Nullable
 		private String pipeline;
@@ -543,26 +485,6 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Only perform the operation if the document has this primary term.
-		 * <p>
-		 * API name: {@code if_primary_term}
-		 */
-		public final Builder<TDocument> ifPrimaryTerm(@Nullable Long value) {
-			this.ifPrimaryTerm = value;
-			return this;
-		}
-
-		/**
-		 * Only perform the operation if the document has this sequence number.
-		 * <p>
-		 * API name: {@code if_seq_no}
-		 */
-		public final Builder<TDocument> ifSeqNo(@Nullable Long value) {
-			this.ifSeqNo = value;
-			return this;
-		}
-
-		/**
 		 * True or false if to include the document source in the error message in case
 		 * of parsing errors.
 		 * <p>
@@ -584,22 +506,6 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		 */
 		public final Builder<TDocument> index(String value) {
 			this.index = value;
-			return this;
-		}
-
-		/**
-		 * Set to <code>create</code> to only index the document if it does not already
-		 * exist (put if absent). If a document with the specified <code>_id</code>
-		 * already exists, the indexing operation will fail. The behavior is the same as
-		 * using the <code>&lt;index&gt;/_create</code> endpoint. If a document ID is
-		 * specified, this paramater defaults to <code>index</code>. Otherwise, it
-		 * defaults to <code>create</code>. If the request targets a data stream, an
-		 * <code>op_type</code> of <code>create</code> is required.
-		 * <p>
-		 * API name: {@code op_type}
-		 */
-		public final Builder<TDocument> opType(@Nullable OpType value) {
-			this.opType = value;
 			return this;
 		}
 
@@ -870,14 +776,26 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.pipeline != null) {
+					params.put("pipeline", request.pipeline);
+				}
+				if (request.routing != null) {
+					params.put("routing", request.routing);
+				}
 				if (request.includeSourceOnError != null) {
 					params.put("include_source_on_error", String.valueOf(request.includeSourceOnError));
+				}
+				if (request.requireAlias != null) {
+					params.put("require_alias", String.valueOf(request.requireAlias));
 				}
 				if (request.versionType != null) {
 					params.put("version_type", request.versionType.jsonValue());
 				}
 				if (request.refresh != null) {
 					params.put("refresh", request.refresh.jsonValue());
+				}
+				if (request.waitForActiveShards != null) {
+					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
 				}
 				if (request.requireDataStream != null) {
 					params.put("require_data_stream", String.valueOf(request.requireDataStream));
@@ -887,27 +805,6 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());
-				}
-				if (request.pipeline != null) {
-					params.put("pipeline", request.pipeline);
-				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
-				}
-				if (request.requireAlias != null) {
-					params.put("require_alias", String.valueOf(request.requireAlias));
-				}
-				if (request.ifPrimaryTerm != null) {
-					params.put("if_primary_term", String.valueOf(request.ifPrimaryTerm));
-				}
-				if (request.ifSeqNo != null) {
-					params.put("if_seq_no", String.valueOf(request.ifSeqNo));
-				}
-				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
-				}
-				if (request.opType != null) {
-					params.put("op_type", request.opType.jsonValue());
 				}
 				return params;
 

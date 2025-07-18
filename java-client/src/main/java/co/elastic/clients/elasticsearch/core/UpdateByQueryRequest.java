@@ -112,6 +112,34 @@ import javax.annotation.Nullable;
  * are shown in the response. Any update requests that completed successfully
  * still stick, they are not rolled back.
  * <p>
+ * <strong>Refreshing shards</strong>
+ * <p>
+ * Specifying the <code>refresh</code> parameter refreshes all shards once the
+ * request completes. This is different to the update API's <code>refresh</code>
+ * parameter, which causes only the shard that received the request to be
+ * refreshed. Unlike the update API, it does not support <code>wait_for</code>.
+ * <p>
+ * <strong>Running update by query asynchronously</strong>
+ * <p>
+ * If the request contains <code>wait_for_completion=false</code>, Elasticsearch
+ * performs some preflight checks, launches the request, and returns a <a href=
+ * "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-tasks">task</a>
+ * you can use to cancel or get the status of the task. Elasticsearch creates a
+ * record of this task as a document at <code>.tasks/task/${taskId}</code>.
+ * <p>
+ * <strong>Waiting for active shards</strong>
+ * <p>
+ * <code>wait_for_active_shards</code> controls how many copies of a shard must
+ * be active before proceeding with the request. See <a href=
+ * "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-create#operation-create-wait_for_active_shards"><code>wait_for_active_shards</code></a>
+ * for details. <code>timeout</code> controls how long each write request waits
+ * for unavailable shards to become available. Both work exactly the way they
+ * work in the <a href=
+ * "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-bulk">Bulk
+ * API</a>. Update by query uses scrolled searches, so you can also specify the
+ * <code>scroll</code> parameter to control how long it keeps the search context
+ * alive, for example <code>?scroll=10m</code>. The default is 5 minutes.
+ * <p>
  * <strong>Throttling update requests</strong>
  * <p>
  * To control the rate at which update by query issues batches of update
@@ -189,27 +217,9 @@ import javax.annotation.Nullable;
  * </ul>
  * <p>
  * Whether query or update performance dominates the runtime depends on the
- * documents being reindexed and cluster resources.
- * <p>
- * <strong>Update the document source</strong>
- * <p>
- * Update by query supports scripts to update the document source. As with the
- * update API, you can set <code>ctx.op</code> to change the operation that is
- * performed.
- * <p>
- * Set <code>ctx.op = &quot;noop&quot;</code> if your script decides that it
- * doesn't have to make any changes. The update by query operation skips
- * updating the document and increments the <code>noop</code> counter.
- * <p>
- * Set <code>ctx.op = &quot;delete&quot;</code> if your script decides that the
- * document should be deleted. The update by query operation deletes the
- * document and increments the <code>deleted</code> counter.
- * <p>
- * Update by query supports only <code>index</code>, <code>noop</code>, and
- * <code>delete</code>. Setting <code>ctx.op</code> to anything else is an
- * error. Setting any other field in <code>ctx</code> is an error. This API
- * enables you to only modify the source of matching documents; you cannot move
- * them.
+ * documents being reindexed and cluster resources. Refer to the linked
+ * documentation for examples of how to update documents using the
+ * <code>_update_by_query</code> API:
  * 
  * @see <a href="../doc-files/api-spec.html#_global.update_by_query.Request">API
  *      specification</a>
