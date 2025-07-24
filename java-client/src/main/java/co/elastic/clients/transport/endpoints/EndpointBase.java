@@ -21,6 +21,7 @@ package co.elastic.clients.transport.endpoints;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpDeserializerBase;
 import co.elastic.clients.json.JsonpMapper;
@@ -145,6 +146,8 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
             @Override
             public ErrorResponse deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
                 ErrorResponse.Builder builder = new ErrorResponse.Builder();
+                ErrorCause.Builder errorCauseBuilder = new ErrorCause.Builder();
+                ErrorCause errorCause = null;
                 builder.status(statusCode);
                 while ((event = parser.next()) != JsonParser.Event.END_OBJECT) {
                     JsonpUtils.expectEvent(parser, JsonParser.Event.KEY_NAME, event);
@@ -152,11 +155,11 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
                         case "error":
                             switch (event = parser.next()) {
                                 case VALUE_STRING:
-                                    builder.error(e -> e.reason(parser.getString()).type("http_status_" + statusCode));
+                                    errorCauseBuilder.reason(parser.getString()).type("http_status_" + statusCode);
                                     break;
                                 default:
                                     JsonpUtils.expectEvent(parser, JsonParser.Event.START_OBJECT, event);
-                                    builder.error(ErrorCause._DESERIALIZER.deserialize(parser, mapper, event));
+                                    errorCause = ErrorCause._DESERIALIZER.deserialize(parser, mapper, event);
                                     break;
                             }
                             break;
@@ -164,9 +167,22 @@ public class EndpointBase<RequestT, ResponseT> implements Endpoint<RequestT, Res
                             JsonpUtils.expectNextEvent(parser, JsonParser.Event.VALUE_NUMBER);
                             builder.status(parser.getInt());
                             break;
+                        // could be additional information, deserializing it into error cause's metadata
+                        // for example 404 on GetAliasRequest
+                        default:
+                            String key = parser.getString();
+                            event = parser.next();
+                            JsonpUtils.expectEvent(parser, JsonParser.Event.START_OBJECT, event);
+                            errorCauseBuilder.metadata(key, JsonData._DESERIALIZER.deserialize(parser, mapper));
+                            break;
                     }
                 }
-
+                if (errorCause != null) {
+                    builder.error(errorCause);
+                }
+                else {
+                    builder.error(errorCauseBuilder.build());
+                }
                 return builder.build();
             }
         };
