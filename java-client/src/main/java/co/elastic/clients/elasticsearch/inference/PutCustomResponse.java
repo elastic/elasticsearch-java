@@ -17,20 +17,16 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.core;
+package co.elastic.clients.elasticsearch.inference;
 
-import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Collections;
 import java.util.Objects;
+import java.util.function.Function;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -47,53 +43,64 @@ import java.util.Objects;
 //
 //----------------------------------------------------------------
 
-// typedef: _global.info.Request
+// typedef: inference.put_custom.Response
 
 /**
- * Get cluster info. Get basic build, version, and cluster information. ::: In
- * Serverless, this API is retained for backward compatibility only. Some
- * response fields, such as the version number, should be ignored.
- * 
- * @see <a href="../doc-files/api-spec.html#_global.info.Request">API
+ *
+ * @see <a href="../doc-files/api-spec.html#inference.put_custom.Response">API
  *      specification</a>
  */
+@JsonpDeserializable
+public class PutCustomResponse extends InferenceEndpointInfoCustom {
+	// ---------------------------------------------------------------------------------------------
 
-public class InfoRequest extends RequestBase {
-	public InfoRequest() {
+	private PutCustomResponse(Builder builder) {
+		super(builder);
+
 	}
 
-	/**
-	 * Singleton instance for {@link InfoRequest}.
-	 */
-	public static final InfoRequest _INSTANCE = new InfoRequest();
+	public static PutCustomResponse of(Function<Builder, ObjectBuilder<PutCustomResponse>> fn) {
+		return fn.apply(new Builder()).build();
+	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code info}".
+	 * Builder for {@link PutCustomResponse}.
 	 */
-	public static final Endpoint<InfoRequest, InfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>("es/info",
 
-			// Request method
-			request -> {
-				return "GET";
+	public static class Builder extends InferenceEndpointInfoCustom.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<PutCustomResponse> {
+		@Override
+		protected Builder self() {
+			return this;
+		}
 
-			},
+		/**
+		 * Builds a {@link PutCustomResponse}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public PutCustomResponse build() {
+			_checkSingleUse();
 
-			// Request path
-			request -> {
-				return "/";
+			return new PutCustomResponse(this);
+		}
+	}
 
-			},
+	// ---------------------------------------------------------------------------------------------
 
-			// Path parameters
-			request -> {
-				return Collections.emptyMap();
-			},
+	/**
+	 * Json deserializer for {@link PutCustomResponse}
+	 */
+	public static final JsonpDeserializer<PutCustomResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutCustomResponse::setupPutCustomResponseDeserializer);
 
-			// Request parameters
-			request -> {
-				return Collections.emptyMap();
+	protected static void setupPutCustomResponseDeserializer(ObjectDeserializer<PutCustomResponse.Builder> op) {
+		InferenceEndpointInfoCustom.setupInferenceEndpointInfoCustomDeserializer(op);
 
-			}, SimpleEndpoint.emptyMap(), false, InfoResponse._DESERIALIZER);
+	}
+
 }
