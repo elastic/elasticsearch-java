@@ -21,7 +21,6 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -80,9 +79,6 @@ public class AliasesRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean local;
 
-	@Nullable
-	private final Time masterTimeout;
-
 	private final List<String> name;
 
 	private final List<String> s;
@@ -94,7 +90,6 @@ public class AliasesRequest extends CatRequestBase {
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.h = ApiTypeHelper.unmodifiable(builder.h);
 		this.local = builder.local;
-		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.unmodifiable(builder.name);
 		this.s = ApiTypeHelper.unmodifiable(builder.s);
 
@@ -140,19 +135,6 @@ public class AliasesRequest extends CatRequestBase {
 	}
 
 	/**
-	 * The period to wait for a connection to the master node. If the master node is
-	 * not available before the timeout expires, the request fails and returns an
-	 * error. To indicated that the request should never timeout, you can set it to
-	 * <code>-1</code>.
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
-	}
-
-	/**
 	 * A comma-separated list of aliases to retrieve. Supports wildcards
 	 * (<code>*</code>). To retrieve all aliases, omit this parameter or use
 	 * <code>*</code> or <code>_all</code>.
@@ -191,9 +173,6 @@ public class AliasesRequest extends CatRequestBase {
 
 		@Nullable
 		private Boolean local;
-
-		@Nullable
-		private Time masterTimeout;
 
 		@Nullable
 		private List<String> name;
@@ -267,31 +246,6 @@ public class AliasesRequest extends CatRequestBase {
 		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
-		}
-
-		/**
-		 * The period to wait for a connection to the master node. If the master node is
-		 * not available before the timeout expires, the request fails and returns an
-		 * error. To indicated that the request should never timeout, you can set it to
-		 * <code>-1</code>.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * The period to wait for a connection to the master node. If the master node is
-		 * not available before the timeout expires, the request fails and returns an
-		 * error. To indicated that the request should never timeout, you can set it to
-		 * <code>-1</code>.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -431,9 +385,6 @@ public class AliasesRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
 				if (ApiTypeHelper.isDefined(request.s)) {
 					params.put("s", request.s.stream().map(v -> v).collect(Collectors.joining(",")));
 				}

@@ -17,17 +17,20 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch.indices.delete_alias;
 
-import co.elastic.clients.elasticsearch.indices.delete_alias.IndicesAliasesResponseBody;
+import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -44,63 +47,68 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: indices.delete_alias.Response
+// typedef: indices.delete_alias.IndicesAliasesResponseBody
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#indices.delete_alias.Response">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#indices.delete_alias.IndicesAliasesResponseBody">API
  *      specification</a>
  */
-@JsonpDeserializable
-public class DeleteAliasResponse extends IndicesAliasesResponseBody {
+
+public abstract class IndicesAliasesResponseBody extends AcknowledgedResponseBase {
+	@Nullable
+	private final Boolean errors;
+
 	// ---------------------------------------------------------------------------------------------
 
-	private DeleteAliasResponse(Builder builder) {
+	protected IndicesAliasesResponseBody(AbstractBuilder<?> builder) {
 		super(builder);
 
-	}
+		this.errors = builder.errors;
 
-	public static DeleteAliasResponse of(Function<Builder, ObjectBuilder<DeleteAliasResponse>> fn) {
-		return fn.apply(new Builder()).build();
 	}
-
-	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DeleteAliasResponse}.
+	 * API name: {@code errors}
 	 */
+	@Nullable
+	public final Boolean errors() {
+		return this.errors;
+	}
 
-	public static class Builder extends IndicesAliasesResponseBody.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DeleteAliasResponse> {
-		@Override
-		protected Builder self() {
-			return this;
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
+		if (this.errors != null) {
+			generator.writeKey("errors");
+			generator.write(this.errors);
+
 		}
+
+	}
+
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				AcknowledgedResponseBase.AbstractBuilder<BuilderT> {
+		@Nullable
+		private Boolean errors;
 
 		/**
-		 * Builds a {@link DeleteAliasResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
+		 * API name: {@code errors}
 		 */
-		public DeleteAliasResponse build() {
-			_checkSingleUse();
-
-			return new DeleteAliasResponse(this);
+		public final BuilderT errors(@Nullable Boolean value) {
+			this.errors = value;
+			return self();
 		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for {@link DeleteAliasResponse}
-	 */
-	public static final JsonpDeserializer<DeleteAliasResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteAliasResponse::setupDeleteAliasResponseDeserializer);
-
-	protected static void setupDeleteAliasResponseDeserializer(ObjectDeserializer<DeleteAliasResponse.Builder> op) {
-		IndicesAliasesResponseBody.setupIndicesAliasesResponseBodyDeserializer(op);
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupIndicesAliasesResponseBodyDeserializer(
+			ObjectDeserializer<BuilderT> op) {
+		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+		op.add(AbstractBuilder::errors, JsonpDeserializer.booleanDeserializer(), "errors");
 
 	}
 

@@ -17,18 +17,19 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.aggregations;
+package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -46,100 +47,94 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.aggregations.FiltersBucket
+// typedef: inference._types.InferenceEndpointInfoCustom
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.aggregations.FiltersBucket">API
+ *      "../doc-files/api-spec.html#inference._types.InferenceEndpointInfoCustom">API
  *      specification</a>
  */
-@JsonpDeserializable
-public class FiltersBucket extends MultiBucketBase {
-	@Nullable
-	private final String key;
+
+public abstract class InferenceEndpointInfoCustom extends InferenceEndpoint {
+	private final String inferenceId;
+
+	private final TaskTypeCustom taskType;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private FiltersBucket(Builder builder) {
+	protected InferenceEndpointInfoCustom(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.key = builder.key;
+		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
+		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
 
-	}
-
-	public static FiltersBucket of(Function<Builder, ObjectBuilder<FiltersBucket>> fn) {
-		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code key}
+	 * Required - The inference Id
+	 * <p>
+	 * API name: {@code inference_id}
 	 */
-	@Nullable
-	public final String key() {
-		return this.key;
+	public final String inferenceId() {
+		return this.inferenceId;
+	}
+
+	/**
+	 * Required - The task type
+	 * <p>
+	 * API name: {@code task_type}
+	 */
+	public final TaskTypeCustom taskType() {
+		return this.taskType;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.key != null) {
-			generator.writeKey("key");
-			generator.write(this.key);
+		generator.writeKey("inference_id");
+		generator.write(this.inferenceId);
 
+		generator.writeKey("task_type");
+		this.taskType.serialize(generator, mapper);
+
+	}
+
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				InferenceEndpoint.AbstractBuilder<BuilderT> {
+		private String inferenceId;
+
+		private TaskTypeCustom taskType;
+
+		/**
+		 * Required - The inference Id
+		 * <p>
+		 * API name: {@code inference_id}
+		 */
+		public final BuilderT inferenceId(String value) {
+			this.inferenceId = value;
+			return self();
+		}
+
+		/**
+		 * Required - The task type
+		 * <p>
+		 * API name: {@code task_type}
+		 */
+		public final BuilderT taskType(TaskTypeCustom value) {
+			this.taskType = value;
+			return self();
 		}
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link FiltersBucket}.
-	 */
-
-	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<FiltersBucket> {
-		@Nullable
-		private String key;
-
-		/**
-		 * API name: {@code key}
-		 */
-		public final Builder key(@Nullable String value) {
-			this.key = value;
-			return this;
-		}
-
-		@Override
-		protected Builder self() {
-			return this;
-		}
-
-		/**
-		 * Builds a {@link FiltersBucket}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public FiltersBucket build() {
-			_checkSingleUse();
-
-			return new FiltersBucket(this);
-		}
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for {@link FiltersBucket}
-	 */
-	public static final JsonpDeserializer<FiltersBucket> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FiltersBucket::setupFiltersBucketDeserializer);
-
-	protected static void setupFiltersBucketDeserializer(ObjectDeserializer<FiltersBucket.Builder> op) {
-		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
-		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupInferenceEndpointInfoCustomDeserializer(
+			ObjectDeserializer<BuilderT> op) {
+		InferenceEndpoint.setupInferenceEndpointDeserializer(op);
+		op.add(AbstractBuilder::inferenceId, JsonpDeserializer.stringDeserializer(), "inference_id");
+		op.add(AbstractBuilder::taskType, TaskTypeCustom._DESERIALIZER, "task_type");
 
 	}
 
