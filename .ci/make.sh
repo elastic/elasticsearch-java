@@ -188,6 +188,7 @@ fi
 
 if [[ "$CMD" == "release" ]]; then
   rm -rf .ci/output/repository
+  rm -rf signed-artifacts
   build_image
   echo -e "\033[34;1mINFO:\033[0m Building version ${VERSION}\033[0m"
 
@@ -203,6 +204,9 @@ if [[ "$CMD" == "release" ]]; then
     -v /tmp/secured:/tmp/secured \
     $docker_image \
     $gradle_task
+
+  mkdir signed-artifacts
+  cp .ci/output/repository/co/elastic/clients/elasticsearch-java/$VERSION/elasticsearch-java-${VERSION}-javadoc.jar signed-artifacts/elasticsearch-java-${VERSION}-javadoc.jar
 fi
 
 if [[ "$CMD" == "bump" ]]; then
