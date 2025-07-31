@@ -194,7 +194,7 @@ if [[ "$CMD" == "release" ]]; then
 
   if [[ "$DRY_RUN" = "true" ]]; then
     echo "Dry run: building and publishing to the local repository"
-    gradle_task="publishAllPublicationsToDryRunRepository"
+    gradle_task="publishForReleaseManager"
   else
     echo "Releasing to Maven snapshot repo"
 #    gradle_task="publishToSonatype closeAndReleaseStagingRepositories"
