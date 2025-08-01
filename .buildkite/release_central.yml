@@ -7,7 +7,7 @@ steps:
     command: ".ci/release_central.sh"
     artifact_paths:
       - ".ci/output/repository/**/*"
-      - "signed-artifacts"
+      - "signed-artifacts/*"
   - wait: ~
   - label: "Publish S3 Artifacts :s3:"
     trigger: unified-release-publish-s3-artifacts
