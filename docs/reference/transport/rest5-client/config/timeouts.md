@@ -1,26 +1,36 @@
-
 # Timeouts
 
-Configuring requests timeouts can be done by using the `setRequestConfigCallback` method while building the `RestClient`. In the following example we increase the connect timeout (defaults to 30 second) and the response timeout (defaults to 0, which is infinite).
+You can set timeouts when building the `Rest5Client`:
+
+- The **connect timeout** is the maximum time for establishing a TCP connection, including the TLS handshake. The connect timeout is set on `ConnectionConfig`.
+- The **response timeout** is the maximum period to wait for response data. The response timeout is set on `RequestConfig`. 
+- The **connection request timeout** is the maximum time for leasing a connection from the pool. The connection request timeout is set on `RequestConfig`. 
+
+To configure timeouts, use `setHttpClientConfigCallback` and `setRequestConfigCallback` while building the `Rest5Client`. The following example sets a 10-second connect timeout and a 20-second response timeout:
 
 % :::{include-code} src={{doc-tests-src}}/rest5_client/RestClientDocumentation.java tag=rest-client-config-timeouts
 ```java
 Rest5ClientBuilder builder = Rest5Client
-    .builder(new HttpHost("localhost", 9200))
+    .builder(new HttpHost("http", "localhost", 9200)) <1>
+    .setHttpClientConfigCallback(c -> c.setDefaultConnectionConfig(
+        ConnectionConfig.custom()
+            .setConnectTimeout(Timeout.ofSeconds(10))
+            .build()
+    ))
     .setRequestConfigCallback(r -> r
-        .setConnectTimeout(Timeout.of(5000, TimeUnit.MILLISECONDS))
-        .setResponseTimeout(Timeout.of(30000, TimeUnit.MILLISECONDS))
-        .build()
+        .setResponseTimeout(Timeout.ofSeconds(20))
     );
 ```
 
-Timeouts also can be set per request with RequestOptions, which overrides RestClient's builder. The RequestOptions can then be set in the Rest5ClientTransport constructor.
+1. Specify `https` for TLS.
+
+You can also set per-request timeouts using `RequestOptions`, which override the builder defaults. The following example sets a response timeout of 60 seconds, as well as a connection request timeout of 1 second (to limit pooled connection wait time):
 
 % :::{include-code} src={{doc-tests-src}}/rest5_client/RestClientDocumentation.java tag=rest-client-config-request-options-timeouts
 ```java
-RequestConfig requestConfig = RequestConfig.custom()
-    .setConnectTimeout(Timeout.ofMilliseconds(5000))
-    .setConnectionRequestTimeout(Timeout.ofMilliseconds(60000))
+RequestConfig requestConfig = RequestConfig.custom()   
+    .setResponseTimeout(Timeout.ofSeconds(60))
+    .setConnectionRequestTimeout(Timeout.ofSeconds(1))
     .build();
 
 RequestOptions options = RequestOptions.DEFAULT.toBuilder()
@@ -30,4 +40,3 @@ RequestOptions options = RequestOptions.DEFAULT.toBuilder()
 ElasticsearchTransport transport = new Rest5ClientTransport(
     restClient, new JacksonJsonpMapper(), options);
 ```
-
