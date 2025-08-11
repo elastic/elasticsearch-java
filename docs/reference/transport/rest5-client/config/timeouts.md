@@ -11,7 +11,7 @@ To configure timeouts, use `setHttpClientConfigCallback` and `setRequestConfigCa
 % :::{include-code} src={{doc-tests-src}}/rest5_client/RestClientDocumentation.java tag=rest-client-config-timeouts
 ```java
 Rest5ClientBuilder builder = Rest5Client
-    .builder(new HttpHost("http", "localhost", 9200)) <1>
+    .builder(new HttpHost("localhost", 9200, "http")) <1>
     .setHttpClientConfigCallback(c -> c.setDefaultConnectionConfig(
         ConnectionConfig.custom()
             .setConnectTimeout(Timeout.ofSeconds(10))
