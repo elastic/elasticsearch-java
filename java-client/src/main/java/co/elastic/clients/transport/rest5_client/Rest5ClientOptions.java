@@ -24,7 +24,6 @@ import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.http.HeaderMap;
 import co.elastic.clients.transport.rest5_client.low_level.RequestOptions;
 import co.elastic.clients.transport.rest5_client.low_level.WarningsHandler;
-import co.elastic.clients.transport.rest5_client.SafeResponseConsumer;
 import co.elastic.clients.util.LanguageRuntimeVersions;
 import co.elastic.clients.util.VisibleForTesting;
 import org.apache.hc.client5.http.impl.async.HttpAsyncClientBuilder;
