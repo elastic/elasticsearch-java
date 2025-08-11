@@ -24,6 +24,7 @@ import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.http.HeaderMap;
 import co.elastic.clients.transport.rest5_client.low_level.RequestOptions;
 import co.elastic.clients.transport.rest5_client.low_level.WarningsHandler;
+import co.elastic.clients.transport.rest5_client.SafeResponseConsumer;
 import co.elastic.clients.util.LanguageRuntimeVersions;
 import co.elastic.clients.util.VisibleForTesting;
 import org.apache.hc.client5.http.impl.async.HttpAsyncClientBuilder;
@@ -209,7 +210,7 @@ public class Rest5ClientOptions implements TransportOptions {
     }
 
     static Rest5ClientOptions initialOptions() {
-        return new Rest5ClientOptions(RequestOptions.DEFAULT, false);
+        return new Rest5ClientOptions(SafeResponseConsumer.DEFAULT_REQUEST_OPTIONS, false);
     }
 
     private static RequestOptions.Builder addBuiltinHeaders(RequestOptions.Builder builder) {
