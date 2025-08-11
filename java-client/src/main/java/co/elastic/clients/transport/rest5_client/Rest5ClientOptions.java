@@ -209,7 +209,7 @@ public class Rest5ClientOptions implements TransportOptions {
     }
 
     static Rest5ClientOptions initialOptions() {
-        return new Rest5ClientOptions(RequestOptions.DEFAULT, false);
+        return new Rest5ClientOptions(SafeResponseConsumer.DEFAULT_REQUEST_OPTIONS, false);
     }
 
     private static RequestOptions.Builder addBuiltinHeaders(RequestOptions.Builder builder) {
