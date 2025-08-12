@@ -151,6 +151,7 @@ public class Highlight extends HighlightBase {
 		 * <p>
 		 * Adds one or more values to <code>fields</code>.
 		 */
+		@SafeVarargs
 		public final Builder fields(NamedValue<HighlightField> value, NamedValue<HighlightField>... values) {
 			this.fields = _listAdd(this.fields, value, values);
 			return this;

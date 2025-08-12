@@ -26,11 +26,13 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -70,6 +72,10 @@ public class InferenceChunkingSettings implements JsonpSerializable {
 	@Nullable
 	private final Integer sentenceOverlap;
 
+	private final String separatorGroup;
+
+	private final List<String> separators;
+
 	@Nullable
 	private final String strategy;
 
@@ -80,6 +86,8 @@ public class InferenceChunkingSettings implements JsonpSerializable {
 		this.maxChunkSize = builder.maxChunkSize;
 		this.overlap = builder.overlap;
 		this.sentenceOverlap = builder.sentenceOverlap;
+		this.separatorGroup = ApiTypeHelper.requireNonNull(builder.separatorGroup, this, "separatorGroup");
+		this.separators = ApiTypeHelper.unmodifiableRequired(builder.separators, this, "separators");
 		this.strategy = builder.strategy;
 
 	}
@@ -125,7 +133,53 @@ public class InferenceChunkingSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * The chunking strategy: <code>sentence</code> or <code>word</code>.
+	 * Required - This parameter is only applicable when using the
+	 * <code>recursive</code> chunking strategy.
+	 * <p>
+	 * Sets a predefined list of separators in the saved chunking settings based on
+	 * the selected text type. Values can be <code>markdown</code> or
+	 * <code>plaintext</code>.
+	 * <p>
+	 * Using this parameter is an alternative to manually specifying a custom
+	 * <code>separators</code> list.
+	 * <p>
+	 * API name: {@code separator_group}
+	 */
+	public final String separatorGroup() {
+		return this.separatorGroup;
+	}
+
+	/**
+	 * Required - A list of strings used as possible split points when chunking text
+	 * with the <code>recursive</code> strategy.
+	 * <p>
+	 * Each string can be a plain string or a regular expression (regex) pattern.
+	 * The system tries each separator in order to split the text, starting from the
+	 * first item in the list.
+	 * <p>
+	 * After splitting, it attempts to recombine smaller pieces into larger chunks
+	 * that stay within the <code>max_chunk_size</code> limit, to reduce the total
+	 * number of chunks generated.
+	 * <p>
+	 * API name: {@code separators}
+	 */
+	public final List<String> separators() {
+		return this.separators;
+	}
+
+	/**
+	 * The chunking strategy: <code>sentence</code>, <code>word</code>,
+	 * <code>none</code> or <code>recursive</code>.
+	 * <ul>
+	 * <li>If <code>strategy</code> is set to <code>recursive</code>, you must also
+	 * specify:</li>
+	 * </ul>
+	 * <ul>
+	 * <li><code>max_chunk_size</code></li>
+	 * <li>either <code>separators</code> or<code>separator_group</code></li>
+	 * </ul>
+	 * <p>
+	 * Learn more about different chunking strategies in the linked documentation.
 	 * <p>
 	 * API name: {@code strategy}
 	 */
@@ -160,6 +214,19 @@ public class InferenceChunkingSettings implements JsonpSerializable {
 			generator.write(this.sentenceOverlap);
 
 		}
+		generator.writeKey("separator_group");
+		generator.write(this.separatorGroup);
+
+		if (ApiTypeHelper.isDefined(this.separators)) {
+			generator.writeKey("separators");
+			generator.writeStartArray();
+			for (String item0 : this.separators) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.strategy != null) {
 			generator.writeKey("strategy");
 			generator.write(this.strategy);
@@ -190,6 +257,10 @@ public class InferenceChunkingSettings implements JsonpSerializable {
 
 		@Nullable
 		private Integer sentenceOverlap;
+
+		private String separatorGroup;
+
+		private List<String> separators;
 
 		@Nullable
 		private String strategy;
@@ -231,7 +302,78 @@ public class InferenceChunkingSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * The chunking strategy: <code>sentence</code> or <code>word</code>.
+		 * Required - This parameter is only applicable when using the
+		 * <code>recursive</code> chunking strategy.
+		 * <p>
+		 * Sets a predefined list of separators in the saved chunking settings based on
+		 * the selected text type. Values can be <code>markdown</code> or
+		 * <code>plaintext</code>.
+		 * <p>
+		 * Using this parameter is an alternative to manually specifying a custom
+		 * <code>separators</code> list.
+		 * <p>
+		 * API name: {@code separator_group}
+		 */
+		public final Builder separatorGroup(String value) {
+			this.separatorGroup = value;
+			return this;
+		}
+
+		/**
+		 * Required - A list of strings used as possible split points when chunking text
+		 * with the <code>recursive</code> strategy.
+		 * <p>
+		 * Each string can be a plain string or a regular expression (regex) pattern.
+		 * The system tries each separator in order to split the text, starting from the
+		 * first item in the list.
+		 * <p>
+		 * After splitting, it attempts to recombine smaller pieces into larger chunks
+		 * that stay within the <code>max_chunk_size</code> limit, to reduce the total
+		 * number of chunks generated.
+		 * <p>
+		 * API name: {@code separators}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>separators</code>.
+		 */
+		public final Builder separators(List<String> list) {
+			this.separators = _listAddAll(this.separators, list);
+			return this;
+		}
+
+		/**
+		 * Required - A list of strings used as possible split points when chunking text
+		 * with the <code>recursive</code> strategy.
+		 * <p>
+		 * Each string can be a plain string or a regular expression (regex) pattern.
+		 * The system tries each separator in order to split the text, starting from the
+		 * first item in the list.
+		 * <p>
+		 * After splitting, it attempts to recombine smaller pieces into larger chunks
+		 * that stay within the <code>max_chunk_size</code> limit, to reduce the total
+		 * number of chunks generated.
+		 * <p>
+		 * API name: {@code separators}
+		 * <p>
+		 * Adds one or more values to <code>separators</code>.
+		 */
+		public final Builder separators(String value, String... values) {
+			this.separators = _listAdd(this.separators, value, values);
+			return this;
+		}
+
+		/**
+		 * The chunking strategy: <code>sentence</code>, <code>word</code>,
+		 * <code>none</code> or <code>recursive</code>.
+		 * <ul>
+		 * <li>If <code>strategy</code> is set to <code>recursive</code>, you must also
+		 * specify:</li>
+		 * </ul>
+		 * <ul>
+		 * <li><code>max_chunk_size</code></li>
+		 * <li>either <code>separators</code> or<code>separator_group</code></li>
+		 * </ul>
+		 * <p>
+		 * Learn more about different chunking strategies in the linked documentation.
 		 * <p>
 		 * API name: {@code strategy}
 		 */
@@ -272,6 +414,9 @@ public class InferenceChunkingSettings implements JsonpSerializable {
 		op.add(Builder::maxChunkSize, JsonpDeserializer.integerDeserializer(), "max_chunk_size");
 		op.add(Builder::overlap, JsonpDeserializer.integerDeserializer(), "overlap");
 		op.add(Builder::sentenceOverlap, JsonpDeserializer.integerDeserializer(), "sentence_overlap");
+		op.add(Builder::separatorGroup, JsonpDeserializer.stringDeserializer(), "separator_group");
+		op.add(Builder::separators, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"separators");
 		op.add(Builder::strategy, JsonpDeserializer.stringDeserializer(), "strategy");
 
 	}

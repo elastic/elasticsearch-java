@@ -2908,7 +2908,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * <p>
 	 * Learn how to use the update mapping API with practical examples in the
 	 * <a href=
-	 * "https://www.elastic.co/docs//manage-data/data-store/mapping/update-mappings-examples">Update
+	 * "https://www.elastic.co/docs/manage-data/data-store/mapping/update-mappings-examples">Update
 	 * mapping API examples</a> guide.
 	 * 
 	 * @see <a href=
@@ -2938,7 +2938,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * <p>
 	 * Learn how to use the update mapping API with practical examples in the
 	 * <a href=
-	 * "https://www.elastic.co/docs//manage-data/data-store/mapping/update-mappings-examples">Update
+	 * "https://www.elastic.co/docs/manage-data/data-store/mapping/update-mappings-examples">Update
 	 * mapping API examples</a> guide.
 	 * 
 	 * @param fn

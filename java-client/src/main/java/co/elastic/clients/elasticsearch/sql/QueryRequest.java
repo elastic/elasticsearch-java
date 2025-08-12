@@ -43,6 +43,7 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -109,7 +110,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Time pageTimeout;
 
-	private final Map<String, JsonData> params;
+	private final List<JsonData> params;
 
 	@Nullable
 	private final String query;
@@ -299,7 +300,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code params}
 	 */
-	public final Map<String, JsonData> params() {
+	public final List<JsonData> params() {
 		return this.params;
 	}
 
@@ -426,10 +427,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
+			generator.writeStartArray();
+			for (JsonData item0 : this.params) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -513,7 +513,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		private Time pageTimeout;
 
 		@Nullable
-		private Map<String, JsonData> params;
+		private List<JsonData> params;
 
 		@Nullable
 		private String query;
@@ -715,10 +715,10 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code params}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>params</code>.
+		 * Adds all elements of <code>list</code> to <code>params</code>.
 		 */
-		public final Builder params(Map<String, JsonData> map) {
-			this.params = _mapPutAll(this.params, map);
+		public final Builder params(List<JsonData> list) {
+			this.params = _listAddAll(this.params, list);
 			return this;
 		}
 
@@ -727,10 +727,10 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code params}
 		 * <p>
-		 * Adds an entry to <code>params</code>.
+		 * Adds one or more values to <code>params</code>.
 		 */
-		public final Builder params(String key, JsonData value) {
-			this.params = _mapPut(this.params, key, value);
+		public final Builder params(JsonData value, JsonData... values) {
+			this.params = _listAdd(this.params, value, values);
 			return this;
 		}
 
@@ -881,7 +881,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::keepAlive, Time._DESERIALIZER, "keep_alive");
 		op.add(Builder::keepOnCompletion, JsonpDeserializer.booleanDeserializer(), "keep_on_completion");
 		op.add(Builder::pageTimeout, Time._DESERIALIZER, "page_timeout");
-		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
+		op.add(Builder::params, JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER), "params");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::requestTimeout, Time._DESERIALIZER, "request_timeout");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),

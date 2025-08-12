@@ -65,7 +65,6 @@ public class CohereServiceSettings implements JsonpSerializable {
 	@Nullable
 	private final CohereEmbeddingType embeddingType;
 
-	@Nullable
 	private final String modelId;
 
 	@Nullable
@@ -80,7 +79,7 @@ public class CohereServiceSettings implements JsonpSerializable {
 
 		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
 		this.embeddingType = builder.embeddingType;
-		this.modelId = builder.modelId;
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.rateLimit = builder.rateLimit;
 		this.similarity = builder.similarity;
 
@@ -123,7 +122,7 @@ public class CohereServiceSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For a <code>completion</code>, <code>rerank</code>, or
+	 * Required - For a <code>completion</code>, <code>rerank</code>, or
 	 * <code>text_embedding</code> task, the name of the model to use for the
 	 * inference task.
 	 * <ul>
@@ -137,12 +136,8 @@ public class CohereServiceSettings implements JsonpSerializable {
 	 * <a href="https://docs.cohere.com/reference/embed">Cohere embed docs</a>.</li>
 	 * </ul>
 	 * <p>
-	 * The default value for a text embedding task is
-	 * <code>embed-english-v2.0</code>.
-	 * <p>
 	 * API name: {@code model_id}
 	 */
-	@Nullable
 	public final String modelId() {
 		return this.modelId;
 	}
@@ -190,11 +185,9 @@ public class CohereServiceSettings implements JsonpSerializable {
 			generator.writeKey("embedding_type");
 			this.embeddingType.serialize(generator, mapper);
 		}
-		if (this.modelId != null) {
-			generator.writeKey("model_id");
-			generator.write(this.modelId);
+		generator.writeKey("model_id");
+		generator.write(this.modelId);
 
-		}
 		if (this.rateLimit != null) {
 			generator.writeKey("rate_limit");
 			this.rateLimit.serialize(generator, mapper);
@@ -226,7 +219,6 @@ public class CohereServiceSettings implements JsonpSerializable {
 		@Nullable
 		private CohereEmbeddingType embeddingType;
 
-		@Nullable
 		private String modelId;
 
 		@Nullable
@@ -269,7 +261,7 @@ public class CohereServiceSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * For a <code>completion</code>, <code>rerank</code>, or
+		 * Required - For a <code>completion</code>, <code>rerank</code>, or
 		 * <code>text_embedding</code> task, the name of the model to use for the
 		 * inference task.
 		 * <ul>
@@ -283,12 +275,9 @@ public class CohereServiceSettings implements JsonpSerializable {
 		 * <a href="https://docs.cohere.com/reference/embed">Cohere embed docs</a>.</li>
 		 * </ul>
 		 * <p>
-		 * The default value for a text embedding task is
-		 * <code>embed-english-v2.0</code>.
-		 * <p>
 		 * API name: {@code model_id}
 		 */
-		public final Builder modelId(@Nullable String value) {
+		public final Builder modelId(String value) {
 			this.modelId = value;
 			return this;
 		}

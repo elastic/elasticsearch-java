@@ -85,7 +85,7 @@ import javax.annotation.Nullable;
  * <p>
  * Learn how to use the update mapping API with practical examples in the
  * <a href=
- * "https://www.elastic.co/docs//manage-data/data-store/mapping/update-mappings-examples">Update
+ * "https://www.elastic.co/docs/manage-data/data-store/mapping/update-mappings-examples">Update
  * mapping API examples</a> guide.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.put_mapping.Request">API
@@ -690,6 +690,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * Adds one or more values to <code>dynamicTemplates</code>.
 		 */
+		@SafeVarargs
 		public final Builder dynamicTemplates(NamedValue<DynamicTemplate> value,
 				NamedValue<DynamicTemplate>... values) {
 			this.dynamicTemplates = _listAdd(this.dynamicTemplates, value, values);
