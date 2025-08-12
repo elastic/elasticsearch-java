@@ -1128,6 +1128,7 @@ public class MultisearchBody implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>indicesBoost</code>.
 		 */
+		@SafeVarargs
 		public final Builder indicesBoost(NamedValue<Double> value, NamedValue<Double>... values) {
 			this.indicesBoost = _listAdd(this.indicesBoost, value, values);
 			return this;

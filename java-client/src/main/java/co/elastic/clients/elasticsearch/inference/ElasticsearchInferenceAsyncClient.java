@@ -335,29 +335,35 @@ public class ElasticsearchInferenceAsyncClient
 	 * <code>sparse_embedding</code>, <code>text_embedding</code>)</li>
 	 * <li>Amazon Bedrock (<code>completion</code>,
 	 * <code>text_embedding</code>)</li>
+	 * <li>Amazon SageMaker (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>rerank</code>, <code>sparse_embedding</code>,
+	 * <code>text_embedding</code>)</li>
 	 * <li>Anthropic (<code>completion</code>)</li>
 	 * <li>Azure AI Studio (<code>completion</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>Azure OpenAI (<code>completion</code>, <code>text_embedding</code>)</li>
 	 * <li>Cohere (<code>completion</code>, <code>rerank</code>,
 	 * <code>text_embedding</code>)</li>
-	 * <li>DeepSeek (<code>completion</code>, <code>chat_completion</code>)</li>
+	 * <li>DeepSeek (<code>chat_completion</code>, <code>completion</code>)</li>
 	 * <li>Elasticsearch (<code>rerank</code>, <code>sparse_embedding</code>,
 	 * <code>text_embedding</code> - this service is for built-in models and models
 	 * uploaded through Eland)</li>
 	 * <li>ELSER (<code>sparse_embedding</code>)</li>
 	 * <li>Google AI Studio (<code>completion</code>,
 	 * <code>text_embedding</code>)</li>
-	 * <li>Google Vertex AI (<code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>Google Vertex AI (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>rerank</code>, <code>text_embedding</code>)</li>
 	 * <li>Hugging Face (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>JinaAI (<code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>Llama (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>)</li>
 	 * <li>Mistral (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>OpenAI (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>text_embedding</code>)</li>
-	 * <li>VoyageAI (<code>text_embedding</code>, <code>rerank</code>)</li>
+	 * <li>VoyageAI (<code>rerank</code>, <code>text_embedding</code>)</li>
 	 * <li>Watsonx inference integration (<code>text_embedding</code>)</li>
-	 * <li>JinaAI (<code>text_embedding</code>, <code>rerank</code>)</li>
 	 * </ul>
 	 *
 	 * @see <a href=
@@ -391,29 +397,35 @@ public class ElasticsearchInferenceAsyncClient
 	 * <code>sparse_embedding</code>, <code>text_embedding</code>)</li>
 	 * <li>Amazon Bedrock (<code>completion</code>,
 	 * <code>text_embedding</code>)</li>
+	 * <li>Amazon SageMaker (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>rerank</code>, <code>sparse_embedding</code>,
+	 * <code>text_embedding</code>)</li>
 	 * <li>Anthropic (<code>completion</code>)</li>
 	 * <li>Azure AI Studio (<code>completion</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>Azure OpenAI (<code>completion</code>, <code>text_embedding</code>)</li>
 	 * <li>Cohere (<code>completion</code>, <code>rerank</code>,
 	 * <code>text_embedding</code>)</li>
-	 * <li>DeepSeek (<code>completion</code>, <code>chat_completion</code>)</li>
+	 * <li>DeepSeek (<code>chat_completion</code>, <code>completion</code>)</li>
 	 * <li>Elasticsearch (<code>rerank</code>, <code>sparse_embedding</code>,
 	 * <code>text_embedding</code> - this service is for built-in models and models
 	 * uploaded through Eland)</li>
 	 * <li>ELSER (<code>sparse_embedding</code>)</li>
 	 * <li>Google AI Studio (<code>completion</code>,
 	 * <code>text_embedding</code>)</li>
-	 * <li>Google Vertex AI (<code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>Google Vertex AI (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>rerank</code>, <code>text_embedding</code>)</li>
 	 * <li>Hugging Face (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>JinaAI (<code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>Llama (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>)</li>
 	 * <li>Mistral (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>OpenAI (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>text_embedding</code>)</li>
-	 * <li>VoyageAI (<code>text_embedding</code>, <code>rerank</code>)</li>
+	 * <li>VoyageAI (<code>rerank</code>, <code>text_embedding</code>)</li>
 	 * <li>Watsonx inference integration (<code>text_embedding</code>)</li>
-	 * <li>JinaAI (<code>text_embedding</code>, <code>rerank</code>)</li>
 	 * </ul>
 	 *
 	 * @param fn
@@ -522,6 +534,45 @@ public class ElasticsearchInferenceAsyncClient
 	public final CompletableFuture<PutAmazonbedrockResponse> putAmazonbedrock(
 			Function<PutAmazonbedrockRequest.Builder, ObjectBuilder<PutAmazonbedrockRequest>> fn) {
 		return putAmazonbedrock(fn.apply(new PutAmazonbedrockRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_amazonsagemaker
+
+	/**
+	 * Create an Amazon SageMaker inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>amazon_sagemaker</code> service.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-amazonsagemaker">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutAmazonsagemakerResponse> putAmazonsagemaker(PutAmazonsagemakerRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutAmazonsagemakerRequest, PutAmazonsagemakerResponse, ErrorResponse> endpoint = (JsonEndpoint<PutAmazonsagemakerRequest, PutAmazonsagemakerResponse, ErrorResponse>) PutAmazonsagemakerRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create an Amazon SageMaker inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>amazon_sagemaker</code> service.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutAmazonsagemakerRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-amazonsagemaker">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PutAmazonsagemakerResponse> putAmazonsagemaker(
+			Function<PutAmazonsagemakerRequest.Builder, ObjectBuilder<PutAmazonsagemakerRequest>> fn) {
+		return putAmazonsagemaker(fn.apply(new PutAmazonsagemakerRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: inference.put_anthropic

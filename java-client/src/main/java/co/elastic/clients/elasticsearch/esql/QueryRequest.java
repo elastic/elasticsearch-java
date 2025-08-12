@@ -198,6 +198,10 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	/**
 	 * A short version of the Accept header, e.g. json, yaml.
 	 * <p>
+	 * <code>csv</code>, <code>tsv</code>, and <code>txt</code> formats will return
+	 * results in a tabular format, excluding other metadata fields from the
+	 * response.
+	 * <p>
 	 * API name: {@code format}
 	 */
 	@Nullable
@@ -471,6 +475,10 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * A short version of the Accept header, e.g. json, yaml.
+		 * <p>
+		 * <code>csv</code>, <code>tsv</code>, and <code>txt</code> formats will return
+		 * results in a tabular format, excluding other metadata fields from the
+		 * response.
 		 * <p>
 		 * API name: {@code format}
 		 */

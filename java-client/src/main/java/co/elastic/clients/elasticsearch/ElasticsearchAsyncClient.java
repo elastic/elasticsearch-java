@@ -459,6 +459,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * <li>JavaScript: Check out <code>client.helpers.*</code></li>
 	 * <li>.NET: Check out <code>BulkAllObservable</code></li>
 	 * <li>PHP: Check out bulk indexing.</li>
+	 * <li>Ruby: Check out <code>Elasticsearch::Helpers::BulkHelper</code></li>
 	 * </ul>
 	 * <p>
 	 * <strong>Submitting bulk requests with cURL</strong>
@@ -633,6 +634,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * <li>JavaScript: Check out <code>client.helpers.*</code></li>
 	 * <li>.NET: Check out <code>BulkAllObservable</code></li>
 	 * <li>PHP: Check out bulk indexing.</li>
+	 * <li>Ruby: Check out <code>Elasticsearch::Helpers::BulkHelper</code></li>
 	 * </ul>
 	 * <p>
 	 * <strong>Submitting bulk requests with cURL</strong>
@@ -807,6 +809,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * <li>JavaScript: Check out <code>client.helpers.*</code></li>
 	 * <li>.NET: Check out <code>BulkAllObservable</code></li>
 	 * <li>PHP: Check out bulk indexing.</li>
+	 * <li>Ruby: Check out <code>Elasticsearch::Helpers::BulkHelper</code></li>
 	 * </ul>
 	 * <p>
 	 * <strong>Submitting bulk requests with cURL</strong>
