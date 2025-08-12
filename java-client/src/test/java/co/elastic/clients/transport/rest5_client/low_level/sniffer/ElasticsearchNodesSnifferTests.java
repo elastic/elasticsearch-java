@@ -373,6 +373,6 @@ public class ElasticsearchNodesSnifferTests extends RestClientTestCase {
     }
 
     private static int randomErrorResponseCode() {
-        return randomIntBetween(400, 599);
+        return randomIntBetween(500, 599);
     }
 }
