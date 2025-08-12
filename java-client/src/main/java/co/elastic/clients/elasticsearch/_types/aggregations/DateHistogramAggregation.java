@@ -656,6 +656,7 @@ public class DateHistogramAggregation extends BucketAggregationBase
 		 * <p>
 		 * Adds one or more values to <code>order</code>.
 		 */
+		@SafeVarargs
 		public final Builder order(NamedValue<SortOrder> value, NamedValue<SortOrder>... values) {
 			this.order = _listAdd(this.order, value, values);
 			return this;

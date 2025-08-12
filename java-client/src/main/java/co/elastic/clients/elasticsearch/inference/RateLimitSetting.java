@@ -94,6 +94,7 @@ public class RateLimitSetting implements JsonpSerializable {
 	 * <li><code>googlevertexai</code> service: <code>30000</code></li>
 	 * <li><code>hugging_face</code> service: <code>3000</code></li>
 	 * <li><code>jinaai</code> service: <code>2000</code></li>
+	 * <li><code>llama</code> service: <code>3000</code></li>
 	 * <li><code>mistral</code> service: <code>240</code></li>
 	 * <li><code>openai</code> service and task type <code>text_embedding</code>:
 	 * <code>3000</code></li>
@@ -162,6 +163,7 @@ public class RateLimitSetting implements JsonpSerializable {
 		 * <li><code>googlevertexai</code> service: <code>30000</code></li>
 		 * <li><code>hugging_face</code> service: <code>3000</code></li>
 		 * <li><code>jinaai</code> service: <code>2000</code></li>
+		 * <li><code>llama</code> service: <code>3000</code></li>
 		 * <li><code>mistral</code> service: <code>240</code></li>
 		 * <li><code>openai</code> service and task type <code>text_embedding</code>:
 		 * <code>3000</code></li>

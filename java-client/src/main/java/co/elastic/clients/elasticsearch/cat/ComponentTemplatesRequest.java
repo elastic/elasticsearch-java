@@ -103,7 +103,8 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 	}
 
 	/**
-	 * List of columns to appear in the response. Supports simple wildcards.
+	 * A comma-separated list of columns names to display. It supports simple
+	 * wildcards.
 	 * <p>
 	 * API name: {@code h}
 	 */
@@ -182,7 +183,8 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 		private List<String> s;
 
 		/**
-		 * List of columns to appear in the response. Supports simple wildcards.
+		 * A comma-separated list of columns names to display. It supports simple
+		 * wildcards.
 		 * <p>
 		 * API name: {@code h}
 		 * <p>
@@ -194,7 +196,8 @@ public class ComponentTemplatesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * List of columns to appear in the response. Supports simple wildcards.
+		 * A comma-separated list of columns names to display. It supports simple
+		 * wildcards.
 		 * <p>
 		 * API name: {@code h}
 		 * <p>

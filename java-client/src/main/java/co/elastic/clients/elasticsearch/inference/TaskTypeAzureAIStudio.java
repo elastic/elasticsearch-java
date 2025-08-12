@@ -50,6 +50,8 @@ public enum TaskTypeAzureAIStudio implements JsonEnum {
 
 	Completion("completion"),
 
+	Rerank("rerank"),
+
 	;
 
 	private final String jsonValue;

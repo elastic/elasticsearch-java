@@ -29,6 +29,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Float;
 import java.lang.Integer;
 import java.lang.String;
@@ -76,6 +77,12 @@ public class AzureAiStudioTaskSettings implements JsonpSerializable {
 	@Nullable
 	private final String user;
 
+	@Nullable
+	private final Boolean returnDocuments;
+
+	@Nullable
+	private final Integer topN;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private AzureAiStudioTaskSettings(Builder builder) {
@@ -85,6 +92,8 @@ public class AzureAiStudioTaskSettings implements JsonpSerializable {
 		this.temperature = builder.temperature;
 		this.topP = builder.topP;
 		this.user = builder.user;
+		this.returnDocuments = builder.returnDocuments;
+		this.topN = builder.topN;
 
 	}
 
@@ -153,6 +162,27 @@ public class AzureAiStudioTaskSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * For a <code>rerank</code> task, return doc text within the results.
+	 * <p>
+	 * API name: {@code return_documents}
+	 */
+	@Nullable
+	public final Boolean returnDocuments() {
+		return this.returnDocuments;
+	}
+
+	/**
+	 * For a <code>rerank</code> task, the number of most relevant documents to
+	 * return. It defaults to the number of the documents.
+	 * <p>
+	 * API name: {@code top_n}
+	 */
+	@Nullable
+	public final Integer topN() {
+		return this.topN;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -188,6 +218,16 @@ public class AzureAiStudioTaskSettings implements JsonpSerializable {
 			generator.write(this.user);
 
 		}
+		if (this.returnDocuments != null) {
+			generator.writeKey("return_documents");
+			generator.write(this.returnDocuments);
+
+		}
+		if (this.topN != null) {
+			generator.writeKey("top_n");
+			generator.write(this.topN);
+
+		}
 
 	}
 
@@ -219,6 +259,12 @@ public class AzureAiStudioTaskSettings implements JsonpSerializable {
 
 		@Nullable
 		private String user;
+
+		@Nullable
+		private Boolean returnDocuments;
+
+		@Nullable
+		private Integer topN;
 
 		/**
 		 * For a <code>completion</code> task, instruct the inference process to perform
@@ -280,6 +326,27 @@ public class AzureAiStudioTaskSettings implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * For a <code>rerank</code> task, return doc text within the results.
+		 * <p>
+		 * API name: {@code return_documents}
+		 */
+		public final Builder returnDocuments(@Nullable Boolean value) {
+			this.returnDocuments = value;
+			return this;
+		}
+
+		/**
+		 * For a <code>rerank</code> task, the number of most relevant documents to
+		 * return. It defaults to the number of the documents.
+		 * <p>
+		 * API name: {@code top_n}
+		 */
+		public final Builder topN(@Nullable Integer value) {
+			this.topN = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -314,6 +381,8 @@ public class AzureAiStudioTaskSettings implements JsonpSerializable {
 		op.add(Builder::temperature, JsonpDeserializer.floatDeserializer(), "temperature");
 		op.add(Builder::topP, JsonpDeserializer.floatDeserializer(), "top_p");
 		op.add(Builder::user, JsonpDeserializer.stringDeserializer(), "user");
+		op.add(Builder::returnDocuments, JsonpDeserializer.booleanDeserializer(), "return_documents");
+		op.add(Builder::topN, JsonpDeserializer.integerDeserializer(), "top_n");
 
 	}
 
