@@ -146,6 +146,7 @@ public class ChainInput implements InputVariant, JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>inputs</code>.
 		 */
+		@SafeVarargs
 		public final Builder inputs(NamedValue<Input> value, NamedValue<Input>... values) {
 			this.inputs = _listAdd(this.inputs, value, values);
 			return this;

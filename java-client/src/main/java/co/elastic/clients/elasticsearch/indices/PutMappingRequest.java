@@ -709,6 +709,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * Adds one or more values to <code>dynamicTemplates</code>.
 		 */
+		@SafeVarargs
 		public final Builder dynamicTemplates(NamedValue<DynamicTemplate> value,
 				NamedValue<DynamicTemplate>... values) {
 			this.dynamicTemplates = _listAdd(this.dynamicTemplates, value, values);

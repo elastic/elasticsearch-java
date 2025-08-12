@@ -459,6 +459,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * <li>JavaScript: Check out <code>client.helpers.*</code></li>
 	 * <li>.NET: Check out <code>BulkAllObservable</code></li>
 	 * <li>PHP: Check out bulk indexing.</li>
+	 * <li>Ruby: Check out <code>Elasticsearch::Helpers::BulkHelper</code></li>
 	 * </ul>
 	 * <p>
 	 * <strong>Submitting bulk requests with cURL</strong>
@@ -633,6 +634,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * <li>JavaScript: Check out <code>client.helpers.*</code></li>
 	 * <li>.NET: Check out <code>BulkAllObservable</code></li>
 	 * <li>PHP: Check out bulk indexing.</li>
+	 * <li>Ruby: Check out <code>Elasticsearch::Helpers::BulkHelper</code></li>
 	 * </ul>
 	 * <p>
 	 * <strong>Submitting bulk requests with cURL</strong>
@@ -807,6 +809,7 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * <li>JavaScript: Check out <code>client.helpers.*</code></li>
 	 * <li>.NET: Check out <code>BulkAllObservable</code></li>
 	 * <li>PHP: Check out bulk indexing.</li>
+	 * <li>Ruby: Check out <code>Elasticsearch::Helpers::BulkHelper</code></li>
 	 * </ul>
 	 * <p>
 	 * <strong>Submitting bulk requests with cURL</strong>
@@ -3256,7 +3259,9 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: info
 
 	/**
-	 * Get cluster info. Get basic build, version, and cluster information.
+	 * Get cluster info. Get basic build, version, and cluster information. ::: In
+	 * Serverless, this API is retained for backward compatibility only. Some
+	 * response fields, such as the version number, should be ignored.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.18/rest-api-root.html">Documentation

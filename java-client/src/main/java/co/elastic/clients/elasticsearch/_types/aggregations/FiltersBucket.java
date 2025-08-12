@@ -21,12 +21,15 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -53,15 +56,39 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class FiltersBucket extends MultiBucketBase {
+	@Nullable
+	private final String key;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private FiltersBucket(Builder builder) {
 		super(builder);
 
+		this.key = builder.key;
+
 	}
 
 	public static FiltersBucket of(Function<Builder, ObjectBuilder<FiltersBucket>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code key}
+	 */
+	@Nullable
+	public final String key() {
+		return this.key;
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
+		if (this.key != null) {
+			generator.writeKey("key");
+			generator.write(this.key);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -73,6 +100,17 @@ public class FiltersBucket extends MultiBucketBase {
 	public static class Builder extends MultiBucketBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FiltersBucket> {
+		@Nullable
+		private String key;
+
+		/**
+		 * API name: {@code key}
+		 */
+		public final Builder key(@Nullable String value) {
+			this.key = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -101,6 +139,7 @@ public class FiltersBucket extends MultiBucketBase {
 
 	protected static void setupFiltersBucketDeserializer(ObjectDeserializer<FiltersBucket.Builder> op) {
 		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
+		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
 
 	}
 
