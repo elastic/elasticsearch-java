@@ -50,7 +50,9 @@ import java.util.Objects;
 // typedef: _global.info.Request
 
 /**
- * Get cluster info. Get basic build, version, and cluster information.
+ * Get cluster info. Get basic build, version, and cluster information. ::: In
+ * Serverless, this API is retained for backward compatibility only. Some
+ * response fields, such as the version number, should be ignored.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.info.Request">API
  *      specification</a>

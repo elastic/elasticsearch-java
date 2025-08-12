@@ -48,6 +48,8 @@ import co.elastic.clients.json.JsonpDeserializer;
 public enum AzureAiStudioTaskType implements JsonEnum {
 	Completion("completion"),
 
+	Rerank("rerank"),
+
 	TextEmbedding("text_embedding"),
 
 	;
