@@ -26,6 +26,10 @@ To view release notes for earlier versions, use the version dropdown in the top 
 
 ### Recent releases
 
+#### 8.19 [_version_8_19]
+
+[Release notes](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/8.19/release-highlights.html)
+
 #### 8.18 [_version_8_18]
 
 [Release notes](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/8.18/release-highlights.html)
