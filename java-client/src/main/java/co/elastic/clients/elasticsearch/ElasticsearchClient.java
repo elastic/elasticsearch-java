@@ -475,6 +475,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * <li>JavaScript: Check out <code>client.helpers.*</code></li>
 	 * <li>.NET: Check out <code>BulkAllObservable</code></li>
 	 * <li>PHP: Check out bulk indexing.</li>
+	 * <li>Ruby: Check out <code>Elasticsearch::Helpers::BulkHelper</code></li>
 	 * </ul>
 	 * <p>
 	 * <strong>Submitting bulk requests with cURL</strong>
@@ -653,6 +654,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * <li>JavaScript: Check out <code>client.helpers.*</code></li>
 	 * <li>.NET: Check out <code>BulkAllObservable</code></li>
 	 * <li>PHP: Check out bulk indexing.</li>
+	 * <li>Ruby: Check out <code>Elasticsearch::Helpers::BulkHelper</code></li>
 	 * </ul>
 	 * <p>
 	 * <strong>Submitting bulk requests with cURL</strong>
@@ -832,6 +834,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * <li>JavaScript: Check out <code>client.helpers.*</code></li>
 	 * <li>.NET: Check out <code>BulkAllObservable</code></li>
 	 * <li>PHP: Check out bulk indexing.</li>
+	 * <li>Ruby: Check out <code>Elasticsearch::Helpers::BulkHelper</code></li>
 	 * </ul>
 	 * <p>
 	 * <strong>Submitting bulk requests with cURL</strong>
@@ -4215,6 +4218,20 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * until it has successfully indexed <code>max_docs</code> documents into the
 	 * target or it has gone through every document in the source query.
 	 * <p>
+	 * It's recommended to reindex on indices with a green status. Reindexing can
+	 * fail when a node shuts down or crashes.
+	 * <ul>
+	 * <li>When requested with <code>wait_for_completion=true</code> (default), the
+	 * request fails if the node shuts down.</li>
+	 * <li>When requested with <code>wait_for_completion=false</code>, a task id is
+	 * returned, which can be used via the task management API to monitor, debug, or
+	 * cancel the task. The task may disappear or fail if the node shuts down. When
+	 * retrying a failed reindex operation, it might be necessary to set
+	 * <code>conflicts=proceed</code> or to first delete the partial destination
+	 * index. Additionally, dry runs, checking disk space, and fetching index
+	 * recovery information can help address the root cause.</li>
+	 * </ul>
+	 * <p>
 	 * Refer to the linked documentation for examples of how to reindex documents.
 	 * 
 	 * @see <a href=
@@ -4293,6 +4310,20 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * attempt to reindex more documents from the source than <code>max_docs</code>
 	 * until it has successfully indexed <code>max_docs</code> documents into the
 	 * target or it has gone through every document in the source query.
+	 * <p>
+	 * It's recommended to reindex on indices with a green status. Reindexing can
+	 * fail when a node shuts down or crashes.
+	 * <ul>
+	 * <li>When requested with <code>wait_for_completion=true</code> (default), the
+	 * request fails if the node shuts down.</li>
+	 * <li>When requested with <code>wait_for_completion=false</code>, a task id is
+	 * returned, which can be used via the task management API to monitor, debug, or
+	 * cancel the task. The task may disappear or fail if the node shuts down. When
+	 * retrying a failed reindex operation, it might be necessary to set
+	 * <code>conflicts=proceed</code> or to first delete the partial destination
+	 * index. Additionally, dry runs, checking disk space, and fetching index
+	 * recovery information can help address the root cause.</li>
+	 * </ul>
 	 * <p>
 	 * Refer to the linked documentation for examples of how to reindex documents.
 	 * 
