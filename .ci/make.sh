@@ -188,21 +188,26 @@ fi
 
 if [[ "$CMD" == "release" ]]; then
   rm -rf .ci/output/repository
+  rm -rf signed-artifacts
   build_image
   echo -e "\033[34;1mINFO:\033[0m Building version ${VERSION}\033[0m"
 
   if [[ "$DRY_RUN" = "true" ]]; then
     echo "Dry run: building and publishing to the local repository"
-    gradle_task="publishAllPublicationsToDryRunRepository"
+    gradle_task="publishForReleaseManager"
   else
     echo "Releasing to Maven snapshot repo"
-    gradle_task="publishToSonatype closeAndReleaseStagingRepositories"
+#    gradle_task="publishToSonatype closeAndReleaseStagingRepositories"
+    gradle_task="publishForReleaseManager"
   fi
   docker run --rm --env VERSION=$VERSION -u "$(id -u)" \
     $git_mount $src_mount $output_mount \
     -v /tmp/secured:/tmp/secured \
     $docker_image \
     $gradle_task
+
+  mkdir signed-artifacts
+  cp .ci/output/repository/co/elastic/clients/elasticsearch-java/$VERSION/elasticsearch-java-${VERSION}-javadoc.jar signed-artifacts/elasticsearch-java-${VERSION}-javadoc.jar
 fi
 
 if [[ "$CMD" == "bump" ]]; then
