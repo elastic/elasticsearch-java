@@ -3,7 +3,7 @@
 You can set timeouts when building the `Rest5Client`:
 
 - The **connect timeout** is the maximum time for establishing a TCP connection, including the TLS handshake. The connect timeout is set on `ConnectionConfig`.
-- The **socket timeout** is the maximum idle time waiting for I/O on an established socket. The socket timeout is set on `ConnectionConfig`.
+- The **socket timeout** is the maximum time to wait for I/O on an established socket. The socket timeout is set on `ConnectionConfig`.
 - The **response timeout** is the maximum period to wait for response data. The response timeout is set on `RequestConfig`. 
 - The **connection request timeout** is the maximum time for leasing a connection from the pool. The connection request timeout is set on `RequestConfig`. 
 
