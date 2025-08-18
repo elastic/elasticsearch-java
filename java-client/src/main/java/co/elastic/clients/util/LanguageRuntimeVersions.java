@@ -21,8 +21,10 @@ package co.elastic.clients.util;
 
 // Copied verbatim from https://github.com/elastic/jvm-languages-sniffer
 
+import javax.annotation.Nullable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Properties;
 
 public class LanguageRuntimeVersions {
 
@@ -59,6 +61,11 @@ public class LanguageRuntimeVersions {
             s.append(",jrb=").append(version);
         }
 
+        version = springDataVersion();
+        if (version != null) {
+            s.append(",sd-es=").append(version);
+        }
+
         return s.toString();
     }
 
@@ -87,6 +94,18 @@ public class LanguageRuntimeVersions {
     public static String jRubyVersion() {
         // org.jruby.runtime.Constants.VERSION
         return keepMajorMinor(getStaticField("org.jruby.runtime.Constants", "VERSION"));
+    }
+
+    public static String springDataVersion() {
+        // org.springframework.data.elasticsearch.support.VersionInfo.versionProperties()
+        Properties springProp = (Properties) callStaticMethodObject(
+            "org.springframework.data.elasticsearch.support.VersionInfo",
+            "versionProperties");
+        if (springProp != null) {
+            return keepMajorMinor(springProp.getProperty("version.spring-data-elasticsearch"));
+        }
+        return "";
+
     }
 
     private static String getStaticField(String className, String fieldName) {
@@ -118,6 +137,22 @@ public class LanguageRuntimeVersions {
             return m.invoke(null).toString();
         } catch (Exception e) {
             return ""; // can't get version information
+        }
+    }
+
+    private static Object callStaticMethodObject(String className, String methodName) {
+        Class<?> clazz;
+        try {
+            clazz = Class.forName(className);
+        } catch (ClassNotFoundException e) {
+            return null;
+        }
+
+        try {
+            Method m = clazz.getMethod(methodName);
+            return m.invoke(null);
+        } catch (Exception e) {
+            return null; // can't get version information
         }
     }
 
