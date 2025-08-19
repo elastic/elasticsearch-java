@@ -19,9 +19,8 @@
 
 package co.elastic.clients.util;
 
-// Copied verbatim from https://github.com/elastic/jvm-languages-sniffer
+// Based on https://github.com/elastic/jvm-languages-sniffer
 
-import javax.annotation.Nullable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Properties;
@@ -63,7 +62,7 @@ public class LanguageRuntimeVersions {
 
         version = springDataVersion();
         if (version != null) {
-            s.append(",sd-es=").append(version);
+            s.append(",sd_es=").append(version);
         }
 
         return s.toString();
