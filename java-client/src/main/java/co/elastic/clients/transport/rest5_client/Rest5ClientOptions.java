@@ -238,6 +238,7 @@ public class Rest5ClientOptions implements TransportOptions {
         VersionInfo httpClientVersion = null;
         try {
             httpClientVersion = VersionInfo.loadVersionInfo(
+                // TODO fix
                 "org.apache.http.nio.client",
                 HttpAsyncClientBuilder.class.getClassLoader()
             );
