@@ -243,7 +243,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         Map<String, String> params = endpoint.queryParameters(request);
 
         List<ByteBuffer> bodyBuffers = null;
-        HeaderMap headers = DefaultHeaders;
+        HeaderMap headers = JsonContentTypeHeaders;
 
         Object body = endpoint.body(request);
         if (body != null) {
@@ -251,17 +251,12 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
             if (body instanceof NdJsonpSerializable) {
                 bodyBuffers = new ArrayList<>();
                 collectNdJsonLines(bodyBuffers, (NdJsonpSerializable) request);
-                headers = JsonContentTypeHeaders;
-
             } else if (body instanceof BinaryData) {
                 BinaryData data = (BinaryData) body;
 
                 // ES expects the Accept and Content-Type headers to be consistent.
                 String dataContentType = data.contentType();
-                if (ContentType.APPLICATION_JSON.equals(dataContentType)) {
-                    // Fast path
-                    headers = JsonContentTypeHeaders;
-                } else {
+                if (!ContentType.APPLICATION_JSON.equals(dataContentType)) {
                     headers = new HeaderMap(DefaultHeaders);
                     headers.put(HeaderMap.CONTENT_TYPE, dataContentType);
                 }
