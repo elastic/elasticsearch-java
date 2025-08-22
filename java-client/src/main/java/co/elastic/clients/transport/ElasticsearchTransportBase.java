@@ -243,6 +243,10 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         Map<String, String> params = endpoint.queryParameters(request);
 
         List<ByteBuffer> bodyBuffers = null;
+        // Setting the Content-type header for all requests, even the ones without body.
+        // This is a workaround for a bug with server version 9.1.2 and http2, where
+        // http2 stream requests are considered not to have a body. So if the client doesn't always send
+        // the Content-type header, empty body requests will fail with the above-described conditions.
         HeaderMap headers = JsonContentTypeHeaders;
 
         Object body = endpoint.body(request);
