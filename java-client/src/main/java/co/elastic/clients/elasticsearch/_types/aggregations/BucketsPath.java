@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -90,6 +91,21 @@ public class BucketsPath implements TaggedUnion<BucketsPath.Kind, Object>, Jsonp
 	private BucketsPath(Kind kind, Object value) {
 		this._kind = kind;
 		this._value = value;
+	}
+
+	public String _toJsonString() {
+		switch (_kind) {
+			case Array :
+				return this.array().stream().map(v -> v).collect(Collectors.joining(","));
+			case Dict :
+				return this.dict().entrySet().stream().map(e -> e.getKey() + ":" + e.getValue())
+						.collect(Collectors.joining(","));
+			case Single :
+				return this.single();
+
+			default :
+				throw new IllegalStateException("Unknown kind " + _kind);
+		}
 	}
 
 	private BucketsPath(Builder builder) {
