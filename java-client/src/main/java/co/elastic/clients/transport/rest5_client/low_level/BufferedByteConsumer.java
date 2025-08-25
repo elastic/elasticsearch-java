@@ -57,7 +57,7 @@ class BufferedByteConsumer extends AbstractBinAsyncEntityConsumer<ByteArrayEntit
     protected void data(final ByteBuffer src, final boolean endOfStream) throws ContentTooLongException {
         if (buffer.length() + src.limit() > limit) {
             throw new ContentTooLongException(
-                "entity content is too long [" + src.capacity() + "] for the configured buffer limit [" + limit + "]"
+                "entity content is too long [" + src.limit() + "] for the configured buffer limit [" + limit + "]"
             );
         }
         buffer.append(src);
