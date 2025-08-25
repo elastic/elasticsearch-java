@@ -206,8 +206,8 @@ if [[ "$CMD" == "release" ]]; then
     $docker_image \
     $gradle_task
 
-  mkdir signed-artifacts
-  cp .ci/output/repository/co/elastic/clients/elasticsearch-java/$VERSION/elasticsearch-java-${VERSION}-javadoc.jar signed-artifacts/elasticsearch-java-${VERSION}-javadoc.jar
+  mkdir -p signed-artifacts/$VERSION
+  cp .ci/output/repository/co/elastic/clients/elasticsearch-java/$VERSION/elasticsearch-java-${VERSION}-javadoc.jar signed-artifacts/$VERSION/elasticsearch-java-${VERSION}-javadoc.jar
 fi
 
 if [[ "$CMD" == "bump" ]]; then
