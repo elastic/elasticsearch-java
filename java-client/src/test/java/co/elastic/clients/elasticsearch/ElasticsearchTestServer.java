@@ -111,8 +111,9 @@ public class ElasticsearchTestServer implements AutoCloseable {
             throw new RuntimeException("Elasticsearch server container version: " + version + " not yet " +
                 "available");
         }
+        String prerelease = version.isPreRelease() ? "SNAPSHOT" : null;
         return selectLatestVersion(new Version(version.major(), version.minor(), version.maintenance() - 1,
-            false), info);
+            prerelease, null), info);
     }
 
     private String fetchAndWriteVersionInfo(File file) throws IOException {
