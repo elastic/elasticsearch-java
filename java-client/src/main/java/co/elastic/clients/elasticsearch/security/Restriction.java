@@ -31,6 +31,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -148,6 +149,21 @@ public class Restriction implements JsonpSerializable {
 		 */
 		public final Builder workflows(String value, String... values) {
 			this.workflows = _listAdd(this.workflows, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - A list of workflows to which the API key is restricted. NOTE: In
+		 * order to use a role restriction, an API key must be created with a single
+		 * role descriptor.
+		 * <p>
+		 * API name: {@code workflows}
+		 * <p>
+		 * Adds one or more enum values to <code>workflows</code>.
+		 */
+		public final Builder workflows(RestrictionWorkflow value, RestrictionWorkflow... values) {
+			this.workflows = _listAdd(this.workflows, value.jsonValue(),
+					Arrays.stream(values).map(RestrictionWorkflow::jsonValue).toArray(String[]::new));
 			return this;
 		}
 

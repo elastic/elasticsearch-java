@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.simulate.ingest;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
+import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -88,6 +89,9 @@ public class IngestDocumentSimulation implements JsonpSerializable {
 	@Nullable
 	private final ErrorCause error;
 
+	@Nullable
+	private final TypeMapping effectiveMapping;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IngestDocumentSimulation(Builder builder) {
@@ -102,6 +106,7 @@ public class IngestDocumentSimulation implements JsonpSerializable {
 				"executedPipelines");
 		this.ignoredFields = ApiTypeHelper.unmodifiable(builder.ignoredFields);
 		this.error = builder.error;
+		this.effectiveMapping = builder.effectiveMapping;
 
 	}
 
@@ -186,6 +191,14 @@ public class IngestDocumentSimulation implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code effective_mapping}
+	 */
+	@Nullable
+	public final TypeMapping effectiveMapping() {
+		return this.effectiveMapping;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -255,6 +268,11 @@ public class IngestDocumentSimulation implements JsonpSerializable {
 			this.error.serialize(generator, mapper);
 
 		}
+		if (this.effectiveMapping != null) {
+			generator.writeKey("effective_mapping");
+			this.effectiveMapping.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -310,6 +328,9 @@ public class IngestDocumentSimulation implements JsonpSerializable {
 
 		@Nullable
 		private ErrorCause error;
+
+		@Nullable
+		private TypeMapping effectiveMapping;
 
 		/**
 		 * Required - Identifier for the document.
@@ -441,6 +462,21 @@ public class IngestDocumentSimulation implements JsonpSerializable {
 			return this.error(fn.apply(new ErrorCause.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code effective_mapping}
+		 */
+		public final Builder effectiveMapping(@Nullable TypeMapping value) {
+			this.effectiveMapping = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code effective_mapping}
+		 */
+		public final Builder effectiveMapping(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+			return this.effectiveMapping(fn.apply(new TypeMapping.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -481,6 +517,7 @@ public class IngestDocumentSimulation implements JsonpSerializable {
 						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer())),
 				"ignored_fields");
 		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
+		op.add(Builder::effectiveMapping, TypeMapping._DESERIALIZER, "effective_mapping");
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
 			builder.metadata(name, JsonpDeserializer.stringDeserializer().deserialize(parser, mapper));

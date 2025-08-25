@@ -4224,12 +4224,11 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * <li>When requested with <code>wait_for_completion=true</code> (default), the
 	 * request fails if the node shuts down.</li>
 	 * <li>When requested with <code>wait_for_completion=false</code>, a task id is
-	 * returned, which can be used via the task management API to monitor, debug, or
-	 * cancel the task. The task may disappear or fail if the node shuts down. When
-	 * retrying a failed reindex operation, it might be necessary to set
-	 * <code>conflicts=proceed</code> or to first delete the partial destination
-	 * index. Additionally, dry runs, checking disk space, and fetching index
-	 * recovery information can help address the root cause.</li>
+	 * returned, for use with the task management APIs. The task may disappear or
+	 * fail if the node shuts down. When retrying a failed reindex operation, it
+	 * might be necessary to set <code>conflicts=proceed</code> or to first delete
+	 * the partial destination index. Additionally, dry runs, checking disk space,
+	 * and fetching index recovery information can help address the root cause.</li>
 	 * </ul>
 	 * <p>
 	 * Refer to the linked documentation for examples of how to reindex documents.
@@ -4317,12 +4316,11 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * <li>When requested with <code>wait_for_completion=true</code> (default), the
 	 * request fails if the node shuts down.</li>
 	 * <li>When requested with <code>wait_for_completion=false</code>, a task id is
-	 * returned, which can be used via the task management API to monitor, debug, or
-	 * cancel the task. The task may disappear or fail if the node shuts down. When
-	 * retrying a failed reindex operation, it might be necessary to set
-	 * <code>conflicts=proceed</code> or to first delete the partial destination
-	 * index. Additionally, dry runs, checking disk space, and fetching index
-	 * recovery information can help address the root cause.</li>
+	 * returned, for use with the task management APIs. The task may disappear or
+	 * fail if the node shuts down. When retrying a failed reindex operation, it
+	 * might be necessary to set <code>conflicts=proceed</code> or to first delete
+	 * the partial destination index. Additionally, dry runs, checking disk space,
+	 * and fetching index recovery information can help address the root cause.</li>
 	 * </ul>
 	 * <p>
 	 * Refer to the linked documentation for examples of how to reindex documents.

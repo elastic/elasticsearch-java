@@ -28,6 +28,7 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -90,6 +91,18 @@ public class IndexTemplate implements JsonpSerializable {
 
 	private final List<String> ignoreMissingComponentTemplates;
 
+	@Nullable
+	private final DateTime createdDate;
+
+	@Nullable
+	private final Long createdDateMillis;
+
+	@Nullable
+	private final DateTime modifiedDate;
+
+	@Nullable
+	private final Long modifiedDateMillis;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexTemplate(Builder builder) {
@@ -104,6 +117,10 @@ public class IndexTemplate implements JsonpSerializable {
 		this.dataStream = builder.dataStream;
 		this.deprecated = builder.deprecated;
 		this.ignoreMissingComponentTemplates = ApiTypeHelper.unmodifiable(builder.ignoreMissingComponentTemplates);
+		this.createdDate = builder.createdDate;
+		this.createdDateMillis = builder.createdDateMillis;
+		this.modifiedDate = builder.modifiedDate;
+		this.modifiedDateMillis = builder.modifiedDateMillis;
 
 	}
 
@@ -219,6 +236,50 @@ public class IndexTemplate implements JsonpSerializable {
 	}
 
 	/**
+	 * Date and time when the index template was created. Only returned if the
+	 * <code>human</code> query parameter is <code>true</code>.
+	 * <p>
+	 * API name: {@code created_date}
+	 */
+	@Nullable
+	public final DateTime createdDate() {
+		return this.createdDate;
+	}
+
+	/**
+	 * Date and time when the index template was created, in milliseconds since the
+	 * epoch.
+	 * <p>
+	 * API name: {@code created_date_millis}
+	 */
+	@Nullable
+	public final Long createdDateMillis() {
+		return this.createdDateMillis;
+	}
+
+	/**
+	 * Date and time when the index template was last modified. Only returned if the
+	 * <code>human</code> query parameter is <code>true</code>.
+	 * <p>
+	 * API name: {@code modified_date}
+	 */
+	@Nullable
+	public final DateTime modifiedDate() {
+		return this.modifiedDate;
+	}
+
+	/**
+	 * Date and time when the index template was last modified, in milliseconds
+	 * since the epoch.
+	 * <p>
+	 * API name: {@code modified_date_millis}
+	 */
+	@Nullable
+	public final Long modifiedDateMillis() {
+		return this.modifiedDateMillis;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -300,6 +361,24 @@ public class IndexTemplate implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.createdDate != null) {
+			generator.writeKey("created_date");
+			this.createdDate.serialize(generator, mapper);
+		}
+		if (this.createdDateMillis != null) {
+			generator.writeKey("created_date_millis");
+			generator.write(this.createdDateMillis);
+
+		}
+		if (this.modifiedDate != null) {
+			generator.writeKey("modified_date");
+			this.modifiedDate.serialize(generator, mapper);
+		}
+		if (this.modifiedDateMillis != null) {
+			generator.writeKey("modified_date_millis");
+			generator.write(this.modifiedDateMillis);
+
+		}
 
 	}
 
@@ -342,6 +421,18 @@ public class IndexTemplate implements JsonpSerializable {
 
 		@Nullable
 		private List<String> ignoreMissingComponentTemplates;
+
+		@Nullable
+		private DateTime createdDate;
+
+		@Nullable
+		private Long createdDateMillis;
+
+		@Nullable
+		private DateTime modifiedDate;
+
+		@Nullable
+		private Long modifiedDateMillis;
 
 		/**
 		 * Required - Name of the index template.
@@ -536,6 +627,50 @@ public class IndexTemplate implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * Date and time when the index template was created. Only returned if the
+		 * <code>human</code> query parameter is <code>true</code>.
+		 * <p>
+		 * API name: {@code created_date}
+		 */
+		public final Builder createdDate(@Nullable DateTime value) {
+			this.createdDate = value;
+			return this;
+		}
+
+		/**
+		 * Date and time when the index template was created, in milliseconds since the
+		 * epoch.
+		 * <p>
+		 * API name: {@code created_date_millis}
+		 */
+		public final Builder createdDateMillis(@Nullable Long value) {
+			this.createdDateMillis = value;
+			return this;
+		}
+
+		/**
+		 * Date and time when the index template was last modified. Only returned if the
+		 * <code>human</code> query parameter is <code>true</code>.
+		 * <p>
+		 * API name: {@code modified_date}
+		 */
+		public final Builder modifiedDate(@Nullable DateTime value) {
+			this.modifiedDate = value;
+			return this;
+		}
+
+		/**
+		 * Date and time when the index template was last modified, in milliseconds
+		 * since the epoch.
+		 * <p>
+		 * API name: {@code modified_date_millis}
+		 */
+		public final Builder modifiedDateMillis(@Nullable Long value) {
+			this.modifiedDateMillis = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -578,6 +713,10 @@ public class IndexTemplate implements JsonpSerializable {
 		op.add(Builder::ignoreMissingComponentTemplates,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"ignore_missing_component_templates");
+		op.add(Builder::createdDate, DateTime._DESERIALIZER, "created_date");
+		op.add(Builder::createdDateMillis, JsonpDeserializer.longDeserializer(), "created_date_millis");
+		op.add(Builder::modifiedDate, DateTime._DESERIALIZER, "modified_date");
+		op.add(Builder::modifiedDateMillis, JsonpDeserializer.longDeserializer(), "modified_date_millis");
 
 	}
 

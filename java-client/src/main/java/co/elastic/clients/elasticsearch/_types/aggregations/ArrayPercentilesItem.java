@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ArrayPercentilesItem implements JsonpSerializable {
-	private final String key;
+	private final double key;
 
 	@Nullable
 	private final Double value;
@@ -73,7 +73,7 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 
 	private ArrayPercentilesItem(Builder builder) {
 
-		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key");
+		this.key = ApiTypeHelper.requireNonNull(builder.key, this, "key", 0);
 		this.value = builder.value;
 		this.valueAsString = builder.valueAsString;
 
@@ -86,7 +86,7 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code key}
 	 */
-	public final String key() {
+	public final double key() {
 		return this.key;
 	}
 
@@ -147,7 +147,7 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<ArrayPercentilesItem> {
-		private String key;
+		private Double key;
 
 		@Nullable
 		private Double value;
@@ -158,7 +158,7 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code key}
 		 */
-		public final Builder key(String value) {
+		public final Builder key(double value) {
 			this.key = value;
 			return this;
 		}
@@ -207,7 +207,7 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 
 	protected static void setupArrayPercentilesItemDeserializer(ObjectDeserializer<ArrayPercentilesItem.Builder> op) {
 
-		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
+		op.add(Builder::key, JsonpDeserializer.doubleDeserializer(), "key");
 		op.add(Builder::value, JsonpDeserializer.doubleDeserializer(), "value");
 		op.add(Builder::valueAsString, JsonpDeserializer.stringDeserializer(), "value_as_string");
 

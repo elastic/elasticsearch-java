@@ -26,6 +26,7 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
 import co.elastic.clients.elasticsearch._types.Slices;
+import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
 import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
@@ -281,7 +282,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final Slices slices;
 
-	private final List<String> sort;
+	private final List<SortOptions> sort;
 
 	private final List<String> stats;
 
@@ -621,11 +622,11 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * A comma-separated list of <code>&lt;field&gt;:&lt;direction&gt;</code> pairs.
+	 * A sort object that specifies the order of deleted documents.
 	 * <p>
 	 * API name: {@code sort}
 	 */
-	public final List<String> sort() {
+	public final List<SortOptions> sort() {
 		return this.sort;
 	}
 
@@ -731,6 +732,16 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 			this.slice.serialize(generator, mapper);
 
 		}
+		if (ApiTypeHelper.isDefined(this.sort)) {
+			generator.writeKey("sort");
+			generator.writeStartArray();
+			for (SortOptions item0 : this.sort) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -818,7 +829,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		private Slices slices;
 
 		@Nullable
-		private List<String> sort;
+		private List<SortOptions> sort;
 
 		@Nullable
 		private List<String> stats;
@@ -1207,27 +1218,38 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * A comma-separated list of <code>&lt;field&gt;:&lt;direction&gt;</code> pairs.
+		 * A sort object that specifies the order of deleted documents.
 		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 */
-		public final Builder sort(List<String> list) {
+		public final Builder sort(List<SortOptions> list) {
 			this.sort = _listAddAll(this.sort, list);
 			return this;
 		}
 
 		/**
-		 * A comma-separated list of <code>&lt;field&gt;:&lt;direction&gt;</code> pairs.
+		 * A sort object that specifies the order of deleted documents.
 		 * <p>
 		 * API name: {@code sort}
 		 * <p>
 		 * Adds one or more values to <code>sort</code>.
 		 */
-		public final Builder sort(String value, String... values) {
+		public final Builder sort(SortOptions value, SortOptions... values) {
 			this.sort = _listAdd(this.sort, value, values);
 			return this;
+		}
+
+		/**
+		 * A sort object that specifies the order of deleted documents.
+		 * <p>
+		 * API name: {@code sort}
+		 * <p>
+		 * Adds a value to <code>sort</code> using a builder lambda.
+		 */
+		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
+			return sort(fn.apply(new SortOptions.Builder()).build());
 		}
 
 		/**
@@ -1376,6 +1398,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
 
 	}
 
@@ -1493,9 +1516,6 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 				}
 				if (request.refresh != null) {
 					params.put("refresh", String.valueOf(request.refresh));
-				}
-				if (ApiTypeHelper.isDefined(request.sort)) {
-					params.put("sort", request.sort.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.jsonValue());
