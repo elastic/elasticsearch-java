@@ -33,6 +33,7 @@ import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -226,6 +227,20 @@ public class IndexPrivilegesCheck implements JsonpSerializable {
 		 */
 		public final Builder privileges(String value, String... values) {
 			this.privileges = _listAdd(this.privileges, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - A list of the privileges that you want to check for the specified
+		 * indices.
+		 * <p>
+		 * API name: {@code privileges}
+		 * <p>
+		 * Adds one or more enum values to <code>privileges</code>.
+		 */
+		public final Builder privileges(IndexPrivilege value, IndexPrivilege... values) {
+			this.privileges = _listAdd(this.privileges, value.jsonValue(),
+					Arrays.stream(values).map(IndexPrivilege::jsonValue).toArray(String[]::new));
 			return this;
 		}
 

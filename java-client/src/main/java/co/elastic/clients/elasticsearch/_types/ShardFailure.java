@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -68,10 +69,14 @@ public class ShardFailure implements JsonpSerializable {
 
 	private final ErrorCause reason;
 
-	private final int shard;
+	@Nullable
+	private final Integer shard;
 
 	@Nullable
 	private final String status;
+
+	@Nullable
+	private final Boolean primary;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -80,8 +85,9 @@ public class ShardFailure implements JsonpSerializable {
 		this.index = builder.index;
 		this.node = builder.node;
 		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
-		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard", 0);
+		this.shard = builder.shard;
 		this.status = builder.status;
+		this.primary = builder.primary;
 
 	}
 
@@ -113,9 +119,10 @@ public class ShardFailure implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code shard}
+	 * API name: {@code shard}
 	 */
-	public final int shard() {
+	@Nullable
+	public final Integer shard() {
 		return this.shard;
 	}
 
@@ -125,6 +132,14 @@ public class ShardFailure implements JsonpSerializable {
 	@Nullable
 	public final String status() {
 		return this.status;
+	}
+
+	/**
+	 * API name: {@code primary}
+	 */
+	@Nullable
+	public final Boolean primary() {
+		return this.primary;
 	}
 
 	/**
@@ -151,12 +166,19 @@ public class ShardFailure implements JsonpSerializable {
 		generator.writeKey("reason");
 		this.reason.serialize(generator, mapper);
 
-		generator.writeKey("shard");
-		generator.write(this.shard);
+		if (this.shard != null) {
+			generator.writeKey("shard");
+			generator.write(this.shard);
 
+		}
 		if (this.status != null) {
 			generator.writeKey("status");
 			generator.write(this.status);
+
+		}
+		if (this.primary != null) {
+			generator.writeKey("primary");
+			generator.write(this.primary);
 
 		}
 
@@ -182,10 +204,14 @@ public class ShardFailure implements JsonpSerializable {
 
 		private ErrorCause reason;
 
+		@Nullable
 		private Integer shard;
 
 		@Nullable
 		private String status;
+
+		@Nullable
+		private Boolean primary;
 
 		/**
 		 * API name: {@code index}
@@ -219,9 +245,9 @@ public class ShardFailure implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code shard}
+		 * API name: {@code shard}
 		 */
-		public final Builder shard(int value) {
+		public final Builder shard(@Nullable Integer value) {
 			this.shard = value;
 			return this;
 		}
@@ -231,6 +257,14 @@ public class ShardFailure implements JsonpSerializable {
 		 */
 		public final Builder status(@Nullable String value) {
 			this.status = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code primary}
+		 */
+		public final Builder primary(@Nullable Boolean value) {
+			this.primary = value;
 			return this;
 		}
 
@@ -262,11 +296,12 @@ public class ShardFailure implements JsonpSerializable {
 
 	protected static void setupShardFailureDeserializer(ObjectDeserializer<ShardFailure.Builder> op) {
 
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index", "_index");
+		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node", "_node");
 		op.add(Builder::reason, ErrorCause._DESERIALIZER, "reason");
-		op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
+		op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard", "_shard");
 		op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
+		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
 
 	}
 

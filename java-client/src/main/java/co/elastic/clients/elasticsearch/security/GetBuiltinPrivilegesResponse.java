@@ -31,6 +31,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -197,6 +198,20 @@ public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 		 */
 		public final Builder cluster(String value, String... values) {
 			this.cluster = _listAdd(this.cluster, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - The list of cluster privileges that are understood by this version
+		 * of Elasticsearch.
+		 * <p>
+		 * API name: {@code cluster}
+		 * <p>
+		 * Adds one or more enum values to <code>cluster</code>.
+		 */
+		public final Builder cluster(ClusterPrivilege value, ClusterPrivilege... values) {
+			this.cluster = _listAdd(this.cluster, value.jsonValue(),
+					Arrays.stream(values).map(ClusterPrivilege::jsonValue).toArray(String[]::new));
 			return this;
 		}
 
