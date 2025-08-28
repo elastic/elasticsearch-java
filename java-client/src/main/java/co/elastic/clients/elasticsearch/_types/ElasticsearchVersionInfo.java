@@ -181,6 +181,11 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 	/**
 	 * Required - The Elasticsearch version number.
 	 * <p>
+	 * ::: IMPORTANT: For Serverless deployments, this static value is always
+	 * <code>8.11.0</code> and is used solely for backward compatibility with legacy
+	 * clients. Serverless environments are versionless and automatically upgraded,
+	 * so this value can be safely ignored.
+	 * <p>
 	 * API name: {@code number}
 	 */
 	public final String number() {
@@ -345,6 +350,11 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 
 		/**
 		 * Required - The Elasticsearch version number.
+		 * <p>
+		 * ::: IMPORTANT: For Serverless deployments, this static value is always
+		 * <code>8.11.0</code> and is used solely for backward compatibility with legacy
+		 * clients. Serverless environments are versionless and automatically upgraded,
+		 * so this value can be safely ignored.
 		 * <p>
 		 * API name: {@code number}
 		 */

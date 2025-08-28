@@ -13,5 +13,5 @@ To check for security updates, go to [Security announcements for the Elastic sta
 ## 9.0.0
 [Release notes](../release-notes/9-0-0.md)
 
-## 9.0.1
+## 9.1.0
 [Release notes](../release-notes/9-1-0.md)

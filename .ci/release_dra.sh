@@ -22,12 +22,11 @@ set -euo pipefail
 
 WORKFLOW=$1
 STACK_VERSION=$(cat config/version.txt)
-VERSION_QUALIFIER=$(cat config/version-qualifier.txt)
 
 # Branch: BRANCH env var > Buildkite's BUILDKITE_BRANCH var > minor version
 BRANCH=${BRANCH:-${BUILDKITE_BRANCH:-${STACK_VERSION%.*}}}
 
-if [[ "$BRANCH" = "main" && "$WORKFLOW" = "staging" && "$VERSION_QUALIFIER" = "" ]]; then
+if [[ "$BRANCH" = "main" && "$WORKFLOW" = "staging" ]]; then
   echo "No staging build for the main branch - skipping"
   exit 0
 fi
@@ -36,7 +35,7 @@ fi
 BUILD_VERSION=$STACK_VERSION
 [ "$WORKFLOW" = "snapshot" ] && BUILD_VERSION="${BUILD_VERSION}-SNAPSHOT"
 
-echo "Releasing version $STACK_VERSION, branch: $BRANCH, workflow: $WORKFLOW, qualifier: $VERSION_QUALIFIER"
+echo "Releasing version $STACK_VERSION, branch: $BRANCH, workflow: $WORKFLOW"
 
 DRA_CREDS=$(vault kv get -field=data -format=json kv/ci-shared/release/dra-role)
 
@@ -76,6 +75,5 @@ if [ "$WORKFLOW" = "staging" ]; then
          --commit "$(git rev-parse HEAD)" \
          --workflow "$WORKFLOW" \
          --version "$STACK_VERSION" \
-         --qualifier "$VERSION_QUALIFIER" \
          --artifact-set main
 fi

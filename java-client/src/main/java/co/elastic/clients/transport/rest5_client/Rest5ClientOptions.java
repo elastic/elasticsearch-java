@@ -209,7 +209,7 @@ public class Rest5ClientOptions implements TransportOptions {
     }
 
     static Rest5ClientOptions initialOptions() {
-        return new Rest5ClientOptions(RequestOptions.DEFAULT, false);
+        return new Rest5ClientOptions(SafeResponseConsumer.DEFAULT_REQUEST_OPTIONS, false);
     }
 
     private static RequestOptions.Builder addBuiltinHeaders(RequestOptions.Builder builder) {
@@ -238,7 +238,7 @@ public class Rest5ClientOptions implements TransportOptions {
         VersionInfo httpClientVersion = null;
         try {
             httpClientVersion = VersionInfo.loadVersionInfo(
-                "org.apache.http.nio.client",
+                "org.apache.hc.core5",
                 HttpAsyncClientBuilder.class.getClassLoader()
             );
         } catch (Exception e) {

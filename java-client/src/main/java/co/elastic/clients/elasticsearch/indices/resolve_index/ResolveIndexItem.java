@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.indices.resolve_index;
 
+import co.elastic.clients.elasticsearch.indices.IndexMode;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -70,6 +71,9 @@ public class ResolveIndexItem implements JsonpSerializable {
 	@Nullable
 	private final String dataStream;
 
+	@Nullable
+	private final IndexMode mode;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ResolveIndexItem(Builder builder) {
@@ -78,6 +82,7 @@ public class ResolveIndexItem implements JsonpSerializable {
 		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
 		this.dataStream = builder.dataStream;
+		this.mode = builder.mode;
 
 	}
 
@@ -112,6 +117,14 @@ public class ResolveIndexItem implements JsonpSerializable {
 	@Nullable
 	public final String dataStream() {
 		return this.dataStream;
+	}
+
+	/**
+	 * API name: {@code mode}
+	 */
+	@Nullable
+	public final IndexMode mode() {
+		return this.mode;
 	}
 
 	/**
@@ -153,6 +166,10 @@ public class ResolveIndexItem implements JsonpSerializable {
 			generator.write(this.dataStream);
 
 		}
+		if (this.mode != null) {
+			generator.writeKey("mode");
+			this.mode.serialize(generator, mapper);
+		}
 
 	}
 
@@ -177,6 +194,9 @@ public class ResolveIndexItem implements JsonpSerializable {
 
 		@Nullable
 		private String dataStream;
+
+		@Nullable
+		private IndexMode mode;
 
 		/**
 		 * Required - API name: {@code name}
@@ -234,6 +254,14 @@ public class ResolveIndexItem implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code mode}
+		 */
+		public final Builder mode(@Nullable IndexMode value) {
+			this.mode = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -268,6 +296,7 @@ public class ResolveIndexItem implements JsonpSerializable {
 		op.add(Builder::attributes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"attributes");
 		op.add(Builder::dataStream, JsonpDeserializer.stringDeserializer(), "data_stream");
+		op.add(Builder::mode, IndexMode._DESERIALIZER, "mode");
 
 	}
 

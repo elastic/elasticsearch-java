@@ -26,6 +26,7 @@ import co.elastic.clients.elasticsearch.cluster.ComponentTemplateNode;
 import co.elastic.clients.elasticsearch.indices.IndexTemplate;
 import co.elastic.clients.elasticsearch.ingest.Document;
 import co.elastic.clients.elasticsearch.ingest.Pipeline;
+import co.elastic.clients.elasticsearch.simulate.ingest.MergeType;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -112,6 +113,9 @@ public class IngestRequest extends RequestBase implements JsonpSerializable {
 	private final TypeMapping mappingAddition;
 
 	@Nullable
+	private final MergeType mergeType;
+
+	@Nullable
 	private final String pipeline;
 
 	private final Map<String, Pipeline> pipelineSubstitutions;
@@ -125,6 +129,7 @@ public class IngestRequest extends RequestBase implements JsonpSerializable {
 		this.index = builder.index;
 		this.indexTemplateSubstitutions = ApiTypeHelper.unmodifiable(builder.indexTemplateSubstitutions);
 		this.mappingAddition = builder.mappingAddition;
+		this.mergeType = builder.mergeType;
 		this.pipeline = builder.pipeline;
 		this.pipelineSubstitutions = ApiTypeHelper.unmodifiable(builder.pipelineSubstitutions);
 
@@ -182,6 +187,20 @@ public class IngestRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final TypeMapping mappingAddition() {
 		return this.mappingAddition;
+	}
+
+	/**
+	 * The mapping merge type if mapping overrides are being provided in
+	 * mapping_addition. The allowed values are one of index or template. The index
+	 * option merges mappings the way they would be merged into an existing index.
+	 * The template option merges mappings the way they would be merged into a
+	 * template.
+	 * <p>
+	 * API name: {@code merge_type}
+	 */
+	@Nullable
+	public final MergeType mergeType() {
+		return this.mergeType;
 	}
 
 	/**
@@ -288,6 +307,9 @@ public class IngestRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private TypeMapping mappingAddition;
+
+		@Nullable
+		private MergeType mergeType;
 
 		@Nullable
 		private String pipeline;
@@ -438,6 +460,20 @@ public class IngestRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder mappingAddition(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
 			return this.mappingAddition(fn.apply(new TypeMapping.Builder()).build());
+		}
+
+		/**
+		 * The mapping merge type if mapping overrides are being provided in
+		 * mapping_addition. The allowed values are one of index or template. The index
+		 * option merges mappings the way they would be merged into an existing index.
+		 * The template option merges mappings the way they would be merged into a
+		 * template.
+		 * <p>
+		 * API name: {@code merge_type}
+		 */
+		public final Builder mergeType(@Nullable MergeType value) {
+			this.mergeType = value;
+			return this;
 		}
 
 		/**
@@ -596,6 +632,9 @@ public class IngestRequest extends RequestBase implements JsonpSerializable {
 				Map<String, String> params = new HashMap<>();
 				if (request.pipeline != null) {
 					params.put("pipeline", request.pipeline);
+				}
+				if (request.mergeType != null) {
+					params.put("merge_type", request.mergeType.jsonValue());
 				}
 				return params;
 
