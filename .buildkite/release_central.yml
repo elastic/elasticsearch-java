@@ -7,6 +7,15 @@ steps:
     command: ".ci/release_central.sh"
     artifact_paths:
       - ".ci/output/repository/**/*"
+      - "signed-artifacts/**/*"
+  - wait: ~
+  - label: "Publish S3 Artifacts :s3:"
+    trigger: unified-release-publish-s3-artifacts
+    key: publish-s3-service
+    build:
+      env:
+        DESTINATION_PATH: "s3://artifacts.elastic.co/javadoc/co/elastic/clients/elasticsearch-java/"
+        EXTRACT_ARTIFACT: "${VERSION}/elasticsearch-java-${VERSION}-javadoc.jar"
 
 #notify:
 #  - slack: "#devtools-notify"
