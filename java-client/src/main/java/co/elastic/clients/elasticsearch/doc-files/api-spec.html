@@ -27,7 +27,7 @@
 '_global.create.Response': '_global/create/CreateResponse.ts#L22-L24',
 '_global.delete.Request': '_global/delete/DeleteRequest.ts#L34-L146',
 '_global.delete.Response': '_global/delete/DeleteResponse.ts#L22-L34',
-'_global.delete_by_query.Request': '_global/delete_by_query/DeleteByQueryRequest.ts#L36-L314',
+'_global.delete_by_query.Request': '_global/delete_by_query/DeleteByQueryRequest.ts#L37-L319',
 '_global.delete_by_query.Response': '_global/delete_by_query/DeleteByQueryResponse.ts#L26-L88',
 '_global.delete_by_query_rethrottle.Request': '_global/delete_by_query_rethrottle/DeleteByQueryRethrottleRequest.ts#L24-L55',
 '_global.delete_by_query_rethrottle.Response': '_global/delete_by_query_rethrottle/DeleteByQueryRethrottleResponse.ts#L22-L24',
@@ -260,7 +260,7 @@
 '_global.update_by_query_rethrottle.UpdateByQueryRethrottleNode': '_global/update_by_query_rethrottle/UpdateByQueryRethrottleNode.ts#L25-L27',
 '_spec_utils.BaseNode': '_spec_utils/BaseNode.ts#L25-L32',
 '_types.AcknowledgedResponseBase': '_types/Base.ts#L69-L72',
-'_types.BulkIndexByScrollFailure': '_types/Errors.ts#L60-L65',
+'_types.BulkIndexByScrollFailure': '_types/Errors.ts#L64-L69',
 '_types.BulkStats': '_types/Stats.ts#L71-L81',
 '_types.Bytes': '_types/common.ts#L173-L185',
 '_types.ClusterDetails': '_types/Stats.ts#L45-L52',
@@ -354,7 +354,7 @@
 '_types.SearchTransform': '_types/Transform.ts#L46-L49',
 '_types.SearchType': '_types/common.ts#L281-L286',
 '_types.SegmentsStats': '_types/Stats.ts#L298-L393',
-'_types.ShardFailure': '_types/Errors.ts#L52-L58',
+'_types.ShardFailure': '_types/Errors.ts#L52-L62',
 '_types.ShardStatistics': '_types/Stats.ts#L54-L69',
 '_types.ShardsOperationResponseBase': '_types/Base.ts#L145-L148',
 '_types.SlicedScroll': '_types/SlicedScroll.ts#L23-L27',
@@ -368,7 +368,7 @@
 '_types.StoreStats': '_types/Stats.ts#L395-L422',
 '_types.StoredScript': '_types/Scripting.ts#L47-L59',
 '_types.SuggestMode': '_types/common.ts#L288-L301',
-'_types.TaskFailure': '_types/Errors.ts#L67-L72',
+'_types.TaskFailure': '_types/Errors.ts#L71-L76',
 '_types.TextEmbedding': '_types/Knn.ts#L94-L97',
 '_types.TextSimilarityReranker': '_types/Retriever.ts#L140-L151',
 '_types.ThreadType': '_types/common.ts#L303-L309',
@@ -1063,18 +1063,23 @@
 'autoscaling.get_autoscaling_policy.Response': 'autoscaling/get_autoscaling_policy/GetAutoscalingPolicyResponse.ts#L22-L24',
 'autoscaling.put_autoscaling_policy.Request': 'autoscaling/put_autoscaling_policy/PutAutoscalingPolicyRequest.ts#L25-L57',
 'autoscaling.put_autoscaling_policy.Response': 'autoscaling/put_autoscaling_policy/PutAutoscalingPolicyResponse.ts#L22-L24',
+'cat._types.CatAliasesColumn': 'cat/_types/CatBase.ts#L1283-L1315',
+'cat._types.CatAllocationColumn': 'cat/_types/CatBase.ts#L1317-L1382',
 'cat._types.CatAnomalyDetectorColumn': 'cat/_types/CatBase.ts#L32-L401',
+'cat._types.CatComponentColumn': 'cat/_types/CatBase.ts#L1384-L1421',
+'cat._types.CatCountColumn': 'cat/_types/CatBase.ts#L1423-L1440',
 'cat._types.CatDatafeedColumn': 'cat/_types/CatBase.ts#L405-L471',
 'cat._types.CatDfaColumn': 'cat/_types/CatBase.ts#L473-L558',
+'cat._types.CatFieldDataColumn': 'cat/_types/CatBase.ts#L1442-L1472',
 'cat._types.CatNodeColumn': 'cat/_types/CatBase.ts#L560-L1012',
 'cat._types.CatRecoveryColumn': 'cat/_types/CatBase.ts#L1014-L1145',
 'cat._types.CatRequestBase': 'cat/_types/CatBase.ts#L28-L30',
 'cat._types.CatSegmentsColumn': 'cat/_types/CatBase.ts#L1147-L1212',
-'cat._types.CatShardColumn': 'cat/_types/CatBase.ts#L1576-L1949',
+'cat._types.CatShardColumn': 'cat/_types/CatBase.ts#L1772-L2145',
 'cat._types.CatSnapshotsColumn': 'cat/_types/CatBase.ts#L1214-L1281',
-'cat._types.CatThreadPoolColumn': 'cat/_types/CatBase.ts#L1952-L2052',
-'cat._types.CatTrainedModelsColumn': 'cat/_types/CatBase.ts#L1290-L1364',
-'cat._types.CatTransformColumn': 'cat/_types/CatBase.ts#L1369-L1573',
+'cat._types.CatThreadPoolColumn': 'cat/_types/CatBase.ts#L2148-L2248',
+'cat._types.CatTrainedModelsColumn': 'cat/_types/CatBase.ts#L1486-L1560',
+'cat._types.CatTransformColumn': 'cat/_types/CatBase.ts#L1565-L1769',
 'cat.aliases.AliasesRecord': 'cat/aliases/types.ts#L22-L53',
 'cat.aliases.Request': 'cat/aliases/CatAliasesRequest.ts#L23-L77',
 'cat.aliases.Response': 'cat/aliases/CatAliasesResponse.ts#L22-L24',
@@ -3078,6 +3083,8 @@
 'transform.reset_transform.Response': 'transform/reset_transform/ResetTransformResponse.ts#L22-L24',
 'transform.schedule_now_transform.Request': 'transform/schedule_now_transform/ScheduleNowTransformRequest.ts#L23-L57',
 'transform.schedule_now_transform.Response': 'transform/schedule_now_transform/ScheduleNowTransformResponse.ts#L21-L23',
+'transform.set_upgrade_mode.Request': 'transform/set_upgrade_mode/TransformSetUpgradeModeRequest.ts#L23-L64',
+'transform.set_upgrade_mode.Response': 'transform/set_upgrade_mode/TransformSetUpgradeModeResponse.ts#L22-L25',
 'transform.start_transform.Request': 'transform/start_transform/StartTransformRequest.ts#L24-L72',
 'transform.start_transform.Response': 'transform/start_transform/StartTransformResponse.ts#L22-L24',
 'transform.stop_transform.Request': 'transform/stop_transform/StopTransformRequest.ts#L24-L84',
@@ -3291,10 +3298,10 @@
         if (hash.length > 1) {
             hash = hash.substring(1);
         }
-        window.location = "https://github.com/elastic/elasticsearch-specification/tree/9f69d0af9f47964b53f5a3fb1e916672f8aa0784/specification/" + (paths[hash] || "");
+        window.location = "https://github.com/elastic/elasticsearch-specification/tree/79d745c2e17859dddd5fa277ef804289f4fa98ad/specification/" + (paths[hash] || "");
     </script>
 </head>
 <body>
-    Please see the <a href="https://github.com/elastic/elasticsearch-specification/tree/9f69d0af9f47964b53f5a3fb1e916672f8aa0784/specification/">Elasticsearch API specification</a>.
+    Please see the <a href="https://github.com/elastic/elasticsearch-specification/tree/79d745c2e17859dddd5fa277ef804289f4fa98ad/specification/">Elasticsearch API specification</a>.
 </body>
 </html>
