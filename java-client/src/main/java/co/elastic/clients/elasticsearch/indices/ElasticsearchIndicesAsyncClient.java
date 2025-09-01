@@ -903,7 +903,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * stream.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-delete-data-stream-options">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -923,7 +923,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteDataStreamOptionsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-delete-data-stream-options">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1921,7 +1921,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Get the data stream options configuration of one or more data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-data-stream-options">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1941,7 +1941,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetDataStreamOptionsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-data-stream-options">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2650,7 +2650,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-data-stream-options">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2669,7 +2669,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutDataStreamOptionsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-data-stream-options">Documentation
 	 *      on elastic.co</a>
 	 */
 

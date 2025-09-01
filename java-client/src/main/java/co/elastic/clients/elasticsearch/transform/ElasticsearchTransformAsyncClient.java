@@ -480,6 +480,82 @@ public class ElasticsearchTransformAsyncClient
 		return scheduleNowTransform(fn.apply(new ScheduleNowTransformRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: transform.set_upgrade_mode
+
+	/**
+	 * Set upgrade_mode for transform indices. Sets a cluster wide upgrade_mode
+	 * setting that prepares transform indices for an upgrade. When upgrading your
+	 * cluster, in some circumstances you must restart your nodes and reindex your
+	 * transform indices. In those circumstances, there must be no transforms
+	 * running. You can close the transforms, do the upgrade, then open all the
+	 * transforms again. Alternatively, you can use this API to temporarily halt
+	 * tasks associated with the transforms and prevent new transforms from opening.
+	 * You can also use this API during upgrades that do not require you to reindex
+	 * your transform indices, though stopping transforms is not a requirement in
+	 * that case. You can see the current value for the upgrade_mode setting by
+	 * using the get transform info API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-set-upgrade-mode">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SetUpgradeModeResponse> setUpgradeMode(SetUpgradeModeRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SetUpgradeModeRequest, SetUpgradeModeResponse, ErrorResponse> endpoint = (JsonEndpoint<SetUpgradeModeRequest, SetUpgradeModeResponse, ErrorResponse>) SetUpgradeModeRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Set upgrade_mode for transform indices. Sets a cluster wide upgrade_mode
+	 * setting that prepares transform indices for an upgrade. When upgrading your
+	 * cluster, in some circumstances you must restart your nodes and reindex your
+	 * transform indices. In those circumstances, there must be no transforms
+	 * running. You can close the transforms, do the upgrade, then open all the
+	 * transforms again. Alternatively, you can use this API to temporarily halt
+	 * tasks associated with the transforms and prevent new transforms from opening.
+	 * You can also use this API during upgrades that do not require you to reindex
+	 * your transform indices, though stopping transforms is not a requirement in
+	 * that case. You can see the current value for the upgrade_mode setting by
+	 * using the get transform info API.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SetUpgradeModeRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-set-upgrade-mode">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<SetUpgradeModeResponse> setUpgradeMode(
+			Function<SetUpgradeModeRequest.Builder, ObjectBuilder<SetUpgradeModeRequest>> fn) {
+		return setUpgradeMode(fn.apply(new SetUpgradeModeRequest.Builder()).build());
+	}
+
+	/**
+	 * Set upgrade_mode for transform indices. Sets a cluster wide upgrade_mode
+	 * setting that prepares transform indices for an upgrade. When upgrading your
+	 * cluster, in some circumstances you must restart your nodes and reindex your
+	 * transform indices. In those circumstances, there must be no transforms
+	 * running. You can close the transforms, do the upgrade, then open all the
+	 * transforms again. Alternatively, you can use this API to temporarily halt
+	 * tasks associated with the transforms and prevent new transforms from opening.
+	 * You can also use this API during upgrades that do not require you to reindex
+	 * your transform indices, though stopping transforms is not a requirement in
+	 * that case. You can see the current value for the upgrade_mode setting by
+	 * using the get transform info API.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-set-upgrade-mode">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SetUpgradeModeResponse> setUpgradeMode() {
+		return this.transport.performRequestAsync(new SetUpgradeModeRequest.Builder().build(),
+				SetUpgradeModeRequest._ENDPOINT, this.transportOptions);
+	}
+
 	// ----- Endpoint: transform.start_transform
 
 	/**

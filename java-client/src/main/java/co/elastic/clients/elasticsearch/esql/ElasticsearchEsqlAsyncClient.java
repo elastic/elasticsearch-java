@@ -73,7 +73,9 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	 * Get a specific running ES|QL query information. Returns an object extended
 	 * information about a running ES|QL query.
 	 * 
-	 * @see <a href="null">Documentation on elastic.co</a>
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-get-query">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public CompletableFuture<GetQueryResponse> getQuery(GetQueryRequest request) {
@@ -90,7 +92,9 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetQueryRequest}
-	 * @see <a href="null">Documentation on elastic.co</a>
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-get-query">Documentation
+	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetQueryResponse> getQuery(
@@ -104,7 +108,9 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	 * Get running ES|QL queries information. Returns an object containing IDs and
 	 * other information about the running ES|QL queries.
 	 * 
-	 * @see <a href="null">Documentation on elastic.co</a>
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-list-queries">Documentation
+	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<ListQueriesResponse> listQueries() {
 		return this.transport.performRequestAsync(ListQueriesRequest._INSTANCE, ListQueriesRequest._ENDPOINT,

@@ -72,6 +72,7 @@ public class InferenceChunkingSettings implements JsonpSerializable {
 	@Nullable
 	private final Integer sentenceOverlap;
 
+	@Nullable
 	private final String separatorGroup;
 
 	private final List<String> separators;
@@ -86,8 +87,8 @@ public class InferenceChunkingSettings implements JsonpSerializable {
 		this.maxChunkSize = builder.maxChunkSize;
 		this.overlap = builder.overlap;
 		this.sentenceOverlap = builder.sentenceOverlap;
-		this.separatorGroup = ApiTypeHelper.requireNonNull(builder.separatorGroup, this, "separatorGroup");
-		this.separators = ApiTypeHelper.unmodifiableRequired(builder.separators, this, "separators");
+		this.separatorGroup = builder.separatorGroup;
+		this.separators = ApiTypeHelper.unmodifiable(builder.separators);
 		this.strategy = builder.strategy;
 
 	}
@@ -133,8 +134,8 @@ public class InferenceChunkingSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - This parameter is only applicable when using the
-	 * <code>recursive</code> chunking strategy.
+	 * Only applicable to the <code>recursive</code> strategy and required when
+	 * using it.
 	 * <p>
 	 * Sets a predefined list of separators in the saved chunking settings based on
 	 * the selected text type. Values can be <code>markdown</code> or
@@ -145,13 +146,16 @@ public class InferenceChunkingSettings implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code separator_group}
 	 */
+	@Nullable
 	public final String separatorGroup() {
 		return this.separatorGroup;
 	}
 
 	/**
-	 * Required - A list of strings used as possible split points when chunking text
-	 * with the <code>recursive</code> strategy.
+	 * Only applicable to the <code>recursive</code> strategy and required when
+	 * using it.
+	 * <p>
+	 * A list of strings used as possible split points when chunking text.
 	 * <p>
 	 * Each string can be a plain string or a regular expression (regex) pattern.
 	 * The system tries each separator in order to split the text, starting from the
@@ -214,9 +218,11 @@ public class InferenceChunkingSettings implements JsonpSerializable {
 			generator.write(this.sentenceOverlap);
 
 		}
-		generator.writeKey("separator_group");
-		generator.write(this.separatorGroup);
+		if (this.separatorGroup != null) {
+			generator.writeKey("separator_group");
+			generator.write(this.separatorGroup);
 
+		}
 		if (ApiTypeHelper.isDefined(this.separators)) {
 			generator.writeKey("separators");
 			generator.writeStartArray();
@@ -258,8 +264,10 @@ public class InferenceChunkingSettings implements JsonpSerializable {
 		@Nullable
 		private Integer sentenceOverlap;
 
+		@Nullable
 		private String separatorGroup;
 
+		@Nullable
 		private List<String> separators;
 
 		@Nullable
@@ -302,8 +310,8 @@ public class InferenceChunkingSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - This parameter is only applicable when using the
-		 * <code>recursive</code> chunking strategy.
+		 * Only applicable to the <code>recursive</code> strategy and required when
+		 * using it.
 		 * <p>
 		 * Sets a predefined list of separators in the saved chunking settings based on
 		 * the selected text type. Values can be <code>markdown</code> or
@@ -314,14 +322,16 @@ public class InferenceChunkingSettings implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code separator_group}
 		 */
-		public final Builder separatorGroup(String value) {
+		public final Builder separatorGroup(@Nullable String value) {
 			this.separatorGroup = value;
 			return this;
 		}
 
 		/**
-		 * Required - A list of strings used as possible split points when chunking text
-		 * with the <code>recursive</code> strategy.
+		 * Only applicable to the <code>recursive</code> strategy and required when
+		 * using it.
+		 * <p>
+		 * A list of strings used as possible split points when chunking text.
 		 * <p>
 		 * Each string can be a plain string or a regular expression (regex) pattern.
 		 * The system tries each separator in order to split the text, starting from the
@@ -341,8 +351,10 @@ public class InferenceChunkingSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A list of strings used as possible split points when chunking text
-		 * with the <code>recursive</code> strategy.
+		 * Only applicable to the <code>recursive</code> strategy and required when
+		 * using it.
+		 * <p>
+		 * A list of strings used as possible split points when chunking text.
 		 * <p>
 		 * Each string can be a plain string or a regular expression (regex) pattern.
 		 * The system tries each separator in order to split the text, starting from the
