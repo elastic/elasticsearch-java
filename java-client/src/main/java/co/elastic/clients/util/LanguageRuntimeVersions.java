@@ -62,7 +62,7 @@ public class LanguageRuntimeVersions {
 
         version = springDataVersion();
         if (version != null) {
-            s.append(",sd_es=").append(version);
+            s.append(",sde=").append(version);
         }
 
         return s.toString();
