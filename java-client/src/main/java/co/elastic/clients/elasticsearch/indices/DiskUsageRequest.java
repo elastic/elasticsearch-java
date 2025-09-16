@@ -71,6 +71,10 @@ import javax.annotation.Nullable;
  * compressed format, the sizes of stored fields are also estimates and can be
  * inaccurate. The stored size of the <code>_id</code> field is likely
  * underestimated while the <code>_source</code> field is overestimated.
+ * <p>
+ * For usage examples see the External documentation or refer to <a href=
+ * "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/index-disk-usage">Analyze
+ * the index disk usage example</a> for an example.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.disk_usage.Request">API
  *      specification</a>

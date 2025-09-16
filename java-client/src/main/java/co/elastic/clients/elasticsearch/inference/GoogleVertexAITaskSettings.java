@@ -66,12 +66,16 @@ public class GoogleVertexAITaskSettings implements JsonpSerializable {
 	@Nullable
 	private final Integer topN;
 
+	@Nullable
+	private final ThinkingConfig thinkingConfig;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GoogleVertexAITaskSettings(Builder builder) {
 
 		this.autoTruncate = builder.autoTruncate;
 		this.topN = builder.topN;
+		this.thinkingConfig = builder.thinkingConfig;
 
 	}
 
@@ -102,6 +106,18 @@ public class GoogleVertexAITaskSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * For a <code>completion</code> or <code>chat_completion</code> task, allows
+	 * configuration of the thinking features for the model. Refer to the Google
+	 * documentation for the allowable configurations for each model type.
+	 * <p>
+	 * API name: {@code thinking_config}
+	 */
+	@Nullable
+	public final ThinkingConfig thinkingConfig() {
+		return this.thinkingConfig;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -120,6 +136,11 @@ public class GoogleVertexAITaskSettings implements JsonpSerializable {
 		if (this.topN != null) {
 			generator.writeKey("top_n");
 			generator.write(this.topN);
+
+		}
+		if (this.thinkingConfig != null) {
+			generator.writeKey("thinking_config");
+			this.thinkingConfig.serialize(generator, mapper);
 
 		}
 
@@ -145,6 +166,9 @@ public class GoogleVertexAITaskSettings implements JsonpSerializable {
 		@Nullable
 		private Integer topN;
 
+		@Nullable
+		private ThinkingConfig thinkingConfig;
+
 		/**
 		 * For a <code>text_embedding</code> task, truncate inputs longer than the
 		 * maximum token length automatically.
@@ -165,6 +189,29 @@ public class GoogleVertexAITaskSettings implements JsonpSerializable {
 		public final Builder topN(@Nullable Integer value) {
 			this.topN = value;
 			return this;
+		}
+
+		/**
+		 * For a <code>completion</code> or <code>chat_completion</code> task, allows
+		 * configuration of the thinking features for the model. Refer to the Google
+		 * documentation for the allowable configurations for each model type.
+		 * <p>
+		 * API name: {@code thinking_config}
+		 */
+		public final Builder thinkingConfig(@Nullable ThinkingConfig value) {
+			this.thinkingConfig = value;
+			return this;
+		}
+
+		/**
+		 * For a <code>completion</code> or <code>chat_completion</code> task, allows
+		 * configuration of the thinking features for the model. Refer to the Google
+		 * documentation for the allowable configurations for each model type.
+		 * <p>
+		 * API name: {@code thinking_config}
+		 */
+		public final Builder thinkingConfig(Function<ThinkingConfig.Builder, ObjectBuilder<ThinkingConfig>> fn) {
+			return this.thinkingConfig(fn.apply(new ThinkingConfig.Builder()).build());
 		}
 
 		@Override
@@ -198,6 +245,7 @@ public class GoogleVertexAITaskSettings implements JsonpSerializable {
 
 		op.add(Builder::autoTruncate, JsonpDeserializer.booleanDeserializer(), "auto_truncate");
 		op.add(Builder::topN, JsonpDeserializer.integerDeserializer(), "top_n");
+		op.add(Builder::thinkingConfig, ThinkingConfig._DESERIALIZER, "thinking_config");
 
 	}
 

@@ -197,6 +197,9 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	private final Boolean profile;
 
 	@Nullable
+	private final String projectRouting;
+
+	@Nullable
 	private final String q;
 
 	@Nullable
@@ -291,6 +294,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		this.postFilter = builder.postFilter;
 		this.preference = builder.preference;
 		this.profile = builder.profile;
+		this.projectRouting = builder.projectRouting;
 		this.q = builder.q;
 		this.query = builder.query;
 		this.requestCache = builder.requestCache;
@@ -646,6 +650,19 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Boolean profile() {
 		return this.profile;
+	}
+
+	/**
+	 * Specifies a subset of projects to target for a search using project metadata
+	 * tags in a subset Lucene syntax. Allowed Lucene queries: the _alias tag and a
+	 * single value (possible wildcarded). Examples: _alias:my-project
+	 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
 	}
 
 	/**
@@ -1227,6 +1244,9 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Boolean profile;
+
+		@Nullable
+		private String projectRouting;
 
 		@Nullable
 		private String q;
@@ -1855,6 +1875,19 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder profile(@Nullable Boolean value) {
 			this.profile = value;
+			return this;
+		}
+
+		/**
+		 * Specifies a subset of projects to target for a search using project metadata
+		 * tags in a subset Lucene syntax. Allowed Lucene queries: the _alias tag and a
+		 * single value (possible wildcarded). Examples: _alias:my-project
+		 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
 			return this;
 		}
 
@@ -2490,6 +2523,9 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 				params.put("typed_keys", "true");
 				if (request.df != null) {
 					params.put("df", request.df);
+				}
+				if (request.projectRouting != null) {
+					params.put("project_routing", request.projectRouting);
 				}
 				if (request.lenient != null) {
 					params.put("lenient", String.valueOf(request.lenient));

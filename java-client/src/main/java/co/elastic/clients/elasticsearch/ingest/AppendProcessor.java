@@ -64,6 +64,9 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 	private final List<JsonData> value;
 
 	@Nullable
+	private final String copyFrom;
+
+	@Nullable
 	private final Boolean allowDuplicates;
 
 	// ---------------------------------------------------------------------------------------------
@@ -72,7 +75,8 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		super(builder);
 
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.value = ApiTypeHelper.unmodifiableRequired(builder.value, this, "value");
+		this.value = ApiTypeHelper.unmodifiable(builder.value);
+		this.copyFrom = builder.copyFrom;
 		this.allowDuplicates = builder.allowDuplicates;
 
 	}
@@ -99,12 +103,24 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - The value to be appended. Supports template snippets.
+	 * The value to be appended. Supports template snippets. May specify only one of
+	 * <code>value</code> or <code>copy_from</code>.
 	 * <p>
 	 * API name: {@code value}
 	 */
 	public final List<JsonData> value() {
 		return this.value;
+	}
+
+	/**
+	 * The origin field which will be appended to <code>field</code>, cannot set
+	 * <code>value</code> simultaneously.
+	 * <p>
+	 * API name: {@code copy_from}
+	 */
+	@Nullable
+	public final String copyFrom() {
+		return this.copyFrom;
 	}
 
 	/**
@@ -134,6 +150,11 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 			generator.writeEnd();
 
 		}
+		if (this.copyFrom != null) {
+			generator.writeKey("copy_from");
+			generator.write(this.copyFrom);
+
+		}
 		if (this.allowDuplicates != null) {
 			generator.writeKey("allow_duplicates");
 			generator.write(this.allowDuplicates);
@@ -153,7 +174,11 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 				ObjectBuilder<AppendProcessor> {
 		private String field;
 
+		@Nullable
 		private List<JsonData> value;
+
+		@Nullable
+		private String copyFrom;
 
 		@Nullable
 		private Boolean allowDuplicates;
@@ -169,7 +194,8 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - The value to be appended. Supports template snippets.
+		 * The value to be appended. Supports template snippets. May specify only one of
+		 * <code>value</code> or <code>copy_from</code>.
 		 * <p>
 		 * API name: {@code value}
 		 * <p>
@@ -181,7 +207,8 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - The value to be appended. Supports template snippets.
+		 * The value to be appended. Supports template snippets. May specify only one of
+		 * <code>value</code> or <code>copy_from</code>.
 		 * <p>
 		 * API name: {@code value}
 		 * <p>
@@ -189,6 +216,17 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		 */
 		public final Builder value(JsonData value, JsonData... values) {
 			this.value = _listAdd(this.value, value, values);
+			return this;
+		}
+
+		/**
+		 * The origin field which will be appended to <code>field</code>, cannot set
+		 * <code>value</code> simultaneously.
+		 * <p>
+		 * API name: {@code copy_from}
+		 */
+		public final Builder copyFrom(@Nullable String value) {
+			this.copyFrom = value;
 			return this;
 		}
 
@@ -233,6 +271,7 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER), "value");
+		op.add(Builder::copyFrom, JsonpDeserializer.stringDeserializer(), "copy_from");
 		op.add(Builder::allowDuplicates, JsonpDeserializer.booleanDeserializer(), "allow_duplicates");
 
 	}

@@ -131,7 +131,8 @@ public class PutElserRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The chunking configuration object.
+	 * The chunking configuration object. Note that for ELSER endpoints, the
+	 * max_chunk_size may not exceed <code>300</code>.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -234,7 +235,8 @@ public class PutElserRequest extends RequestBase implements JsonpSerializable {
 		private Time timeout;
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Note that for ELSER endpoints, the
+		 * max_chunk_size may not exceed <code>300</code>.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -244,7 +246,8 @@ public class PutElserRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Note that for ELSER endpoints, the
+		 * max_chunk_size may not exceed <code>300</code>.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */

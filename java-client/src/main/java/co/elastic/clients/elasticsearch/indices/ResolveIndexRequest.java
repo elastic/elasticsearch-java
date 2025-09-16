@@ -76,6 +76,8 @@ public class ResolveIndexRequest extends RequestBase {
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
+	private final List<IndexMode> mode;
+
 	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
@@ -85,6 +87,7 @@ public class ResolveIndexRequest extends RequestBase {
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.mode = ApiTypeHelper.unmodifiable(builder.mode);
 		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 
 	}
@@ -132,6 +135,16 @@ public class ResolveIndexRequest extends RequestBase {
 	}
 
 	/**
+	 * Filter indices by index mode - standard, lookup, time_series, etc.
+	 * Comma-separated list of IndexMode. Empty means no filter.
+	 * <p>
+	 * API name: {@code mode}
+	 */
+	public final List<IndexMode> mode() {
+		return this.mode;
+	}
+
+	/**
 	 * Required - Comma-separated name(s) or index pattern(s) of the indices,
 	 * aliases, and data streams to resolve. Resources on remote clusters can be
 	 * specified using the <code>&lt;cluster&gt;</code>:<code>&lt;name&gt;</code>
@@ -160,6 +173,9 @@ public class ResolveIndexRequest extends RequestBase {
 
 		@Nullable
 		private Boolean ignoreUnavailable;
+
+		@Nullable
+		private List<IndexMode> mode;
 
 		private List<String> name;
 
@@ -216,6 +232,32 @@ public class ResolveIndexRequest extends RequestBase {
 		 */
 		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * Filter indices by index mode - standard, lookup, time_series, etc.
+		 * Comma-separated list of IndexMode. Empty means no filter.
+		 * <p>
+		 * API name: {@code mode}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>mode</code>.
+		 */
+		public final Builder mode(List<IndexMode> list) {
+			this.mode = _listAddAll(this.mode, list);
+			return this;
+		}
+
+		/**
+		 * Filter indices by index mode - standard, lookup, time_series, etc.
+		 * Comma-separated list of IndexMode. Empty means no filter.
+		 * <p>
+		 * API name: {@code mode}
+		 * <p>
+		 * Adds one or more values to <code>mode</code>.
+		 */
+		public final Builder mode(IndexMode value, IndexMode... values) {
+			this.mode = _listAdd(this.mode, value, values);
 			return this;
 		}
 
@@ -319,6 +361,9 @@ public class ResolveIndexRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (ApiTypeHelper.isDefined(request.mode)) {
+					params.put("mode", request.mode.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));

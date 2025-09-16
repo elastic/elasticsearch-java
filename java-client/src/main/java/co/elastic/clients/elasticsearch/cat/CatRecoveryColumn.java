@@ -46,77 +46,92 @@ import co.elastic.clients.json.JsonpDeserializer;
 @JsonpDeserializable
 public enum CatRecoveryColumn implements JsonEnum {
 	/**
-	 * The name of the index.
+	 * The index name.
 	 */
 	Index("index", "i", "idx"),
 
 	/**
-	 * The name of the shard.
+	 * The shard name.
 	 */
 	Shard("shard", "s", "sh"),
 
 	/**
-	 * The recovery time elasped.
+	 * The recovery start time.
 	 */
-	Time("time", "t", "ti", "primaryOrReplica"),
+	StartTime("start_time", "start"),
 
 	/**
-	 * The type of recovery, from a peer or a snapshot.
+	 * The recovery start time in epoch milliseconds.
 	 */
-	Type("type"),
+	StartTimeMillis("start_time_millis", "start_millis"),
 
 	/**
-	 * The stage of the recovery. Returned values are: <code>INIT</code>,
-	 * <code>INDEX</code>: recovery of lucene files, either reusing local ones are
-	 * copying new ones, <code>VERIFY_INDEX</code>: potentially running check index,
-	 * <code>TRANSLOG</code>: starting up the engine, replaying the translog,
-	 * <code>FINALIZE</code>: performing final task after all translog ops have been
-	 * done, <code>DONE</code>
+	 * The recovery stop time.
+	 */
+	StopTime("stop_time", "stop"),
+
+	/**
+	 * The recovery stop time in epoch milliseconds.
+	 */
+	StopTimeMillis("stop_time_millis", "stop_millis"),
+
+	/**
+	 * The recovery time.
+	 */
+	Time("time", "t", "ti"),
+
+	/**
+	 * The recovery type.
+	 */
+	Type("type", "ty"),
+
+	/**
+	 * The recovery stage.
 	 */
 	Stage("stage", "st"),
 
 	/**
-	 * The host address the index is moving from.
+	 * The source host.
 	 */
 	SourceHost("source_host", "shost"),
 
 	/**
-	 * The node name the index is moving from.
+	 * The source node name.
 	 */
 	SourceNode("source_node", "snode"),
 
 	/**
-	 * The host address the index is moving to.
+	 * The target host.
 	 */
 	TargetHost("target_host", "thost"),
 
 	/**
-	 * The node name the index is moving to.
+	 * The target node name.
 	 */
 	TargetNode("target_node", "tnode"),
 
 	/**
-	 * The name of the repository being used. if not relevant 'n/a'.
+	 * The repository.
 	 */
-	Repository("repository", "tnode"),
+	Repository("repository", "rep"),
 
 	/**
-	 * The name of the snapshot being used. if not relevant 'n/a'.
+	 * The snapshot.
 	 */
 	Snapshot("snapshot", "snap"),
 
 	/**
-	 * The total number of files to recover.
+	 * The number of files to recover.
 	 */
 	Files("files", "f"),
 
 	/**
-	 * The number of files currently recovered.
+	 * The files recovered.
 	 */
 	FilesRecovered("files_recovered", "fr"),
 
 	/**
-	 * The percentage of files currently recovered.
+	 * The percent of files recovered.
 	 */
 	FilesPercent("files_percent", "fp"),
 
@@ -126,17 +141,17 @@ public enum CatRecoveryColumn implements JsonEnum {
 	FilesTotal("files_total", "tf"),
 
 	/**
-	 * The total number of bytes to recover.
+	 * The number of bytes to recover.
 	 */
 	Bytes("bytes", "b"),
 
 	/**
-	 * Total number of bytes currently recovered.
+	 * The bytes recovered.
 	 */
 	BytesRecovered("bytes_recovered", "br"),
 
 	/**
-	 * The percentage of bytes currently recovered.
+	 * The percent of bytes recovered.
 	 */
 	BytesPercent("bytes_percent", "bp"),
 
@@ -146,39 +161,19 @@ public enum CatRecoveryColumn implements JsonEnum {
 	BytesTotal("bytes_total", "tb"),
 
 	/**
-	 * The total number of translog ops to recover.
+	 * The number of translog ops to recover.
 	 */
 	TranslogOps("translog_ops", "to"),
 
 	/**
-	 * The total number of translog ops currently recovered.
+	 * The translog ops recovered.
 	 */
 	TranslogOpsRecovered("translog_ops_recovered", "tor"),
 
 	/**
-	 * The percentage of translog ops currently recovered.
+	 * The percent of translog ops recovered.
 	 */
 	TranslogOpsPercent("translog_ops_percent", "top"),
-
-	/**
-	 * The start time of the recovery operation.
-	 */
-	StartTime("start_time", "start"),
-
-	/**
-	 * The start time of the recovery operation in eopch milliseconds.
-	 */
-	StartTimeMillis("start_time_millis", "start_millis"),
-
-	/**
-	 * The end time of the recovery operation. If ongoing '1970-01-01T00:00:00.000Z'
-	 */
-	StopTime("stop_time", "stop"),
-
-	/**
-	 * The end time of the recovery operation in eopch milliseconds. If ongoing '0'
-	 */
-	StopTimeMillis("stop_time_millis", "stop_millis"),
 
 	;
 

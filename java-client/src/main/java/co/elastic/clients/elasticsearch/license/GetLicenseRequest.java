@@ -109,9 +109,10 @@ public class GetLicenseRequest extends RequestBase {
 	}
 
 	/**
-	 * Specifies whether to retrieve local information. The default value is
-	 * <code>false</code>, which means the information is retrieved from the master
-	 * node.
+	 * Specifies whether to retrieve local information. From 9.2 onwards the default
+	 * value is <code>true</code>, which means the information is retrieved from the
+	 * responding node. In earlier versions the default is <code>false</code>, which
+	 * means the information is retrieved from the elected master node.
 	 * <p>
 	 * API name: {@code local}
 	 */
@@ -153,9 +154,10 @@ public class GetLicenseRequest extends RequestBase {
 		}
 
 		/**
-		 * Specifies whether to retrieve local information. The default value is
-		 * <code>false</code>, which means the information is retrieved from the master
-		 * node.
+		 * Specifies whether to retrieve local information. From 9.2 onwards the default
+		 * value is <code>true</code>, which means the information is retrieved from the
+		 * responding node. In earlier versions the default is <code>false</code>, which
+		 * means the information is retrieved from the elected master node.
 		 * <p>
 		 * API name: {@code local}
 		 */

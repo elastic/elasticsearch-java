@@ -20,7 +20,7 @@
 package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.Level;
+import co.elastic.clients.elasticsearch._types.NodeStatsLevel;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -86,7 +86,7 @@ public class NodesStatsRequest extends RequestBase {
 	private final List<String> indexMetric;
 
 	@Nullable
-	private final Level level;
+	private final NodeStatsLevel level;
 
 	private final List<String> metric;
 
@@ -199,7 +199,7 @@ public class NodesStatsRequest extends RequestBase {
 	 * API name: {@code level}
 	 */
 	@Nullable
-	public final Level level() {
+	public final NodeStatsLevel level() {
 		return this.level;
 	}
 
@@ -272,7 +272,7 @@ public class NodesStatsRequest extends RequestBase {
 		private List<String> indexMetric;
 
 		@Nullable
-		private Level level;
+		private NodeStatsLevel level;
 
 		@Nullable
 		private List<String> metric;
@@ -428,7 +428,7 @@ public class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code level}
 		 */
-		public final Builder level(@Nullable Level value) {
+		public final Builder level(@Nullable NodeStatsLevel value) {
 			this.level = value;
 			return this;
 		}

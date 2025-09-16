@@ -308,7 +308,7 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 
 	/**
 	 * The total number of blobs to write to the repository during the test. For
-	 * realistic experiments, you should set it to at least <code>2000</code>.
+	 * realistic experiments, set this parameter to at least <code>2000</code>.
 	 * <p>
 	 * API name: {@code blob_count}
 	 */
@@ -318,7 +318,8 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 	}
 
 	/**
-	 * The number of operations to run concurrently during the test.
+	 * The number of operations to run concurrently during the test. For realistic
+	 * experiments, leave this parameter unset.
 	 * <p>
 	 * API name: {@code concurrency}
 	 */
@@ -341,7 +342,8 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 
 	/**
 	 * The number of nodes on which to perform an early read operation while writing
-	 * each blob. Early read operations are only rarely performed.
+	 * each blob. Early read operations are only rarely performed. For realistic
+	 * experiments, leave this parameter unset.
 	 * <p>
 	 * API name: {@code early_read_node_count}
 	 */
@@ -352,7 +354,7 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 
 	/**
 	 * The maximum size of a blob to be written during the test. For realistic
-	 * experiments, you should set it to at least <code>2gb</code>.
+	 * experiments, set this parameter to at least <code>2gb</code>.
 	 * <p>
 	 * API name: {@code max_blob_size}
 	 */
@@ -363,7 +365,7 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 
 	/**
 	 * An upper limit on the total size of all the blobs written during the test.
-	 * For realistic experiments, you should set it to at least <code>1tb</code>.
+	 * For realistic experiments, set this parameter to at least <code>1tb</code>.
 	 * <p>
 	 * API name: {@code max_total_data_size}
 	 */
@@ -383,7 +385,8 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 
 	/**
 	 * The probability of performing a rare action such as an early read, an
-	 * overwrite, or an aborted write on each blob.
+	 * overwrite, or an aborted write on each blob. For realistic experiments, leave
+	 * this parameter unset.
 	 * <p>
 	 * API name: {@code rare_action_probability}
 	 */
@@ -393,7 +396,8 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 	}
 
 	/**
-	 * Indicates whether to rarely cancel writes before they complete.
+	 * Indicates whether to rarely cancel writes before they complete. For realistic
+	 * experiments, leave this parameter unset.
 	 * <p>
 	 * API name: {@code rarely_abort_writes}
 	 */
@@ -403,7 +407,8 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 	}
 
 	/**
-	 * The number of nodes on which to read a blob after writing.
+	 * The number of nodes on which to read a blob after writing. For realistic
+	 * experiments, leave this parameter unset.
 	 * <p>
 	 * API name: {@code read_node_count}
 	 */
@@ -414,7 +419,7 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 
 	/**
 	 * The minimum number of linearizable register operations to perform in total.
-	 * For realistic experiments, you should set it to at least <code>100</code>.
+	 * For realistic experiments, set this parameter to at least <code>100</code>.
 	 * <p>
 	 * API name: {@code register_operation_count}
 	 */
@@ -428,7 +433,7 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 	 * operations performed during the test. To repeat the same set of operations in
 	 * multiple experiments, use the same seed in each experiment. Note that the
 	 * operations are performed concurrently so might not always happen in the same
-	 * order on each run.
+	 * order on each run. For realistic experiments, leave this parameter unset.
 	 * <p>
 	 * API name: {@code seed}
 	 */
@@ -440,7 +445,8 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 	/**
 	 * The period of time to wait for the test to complete. If no response is
 	 * received before the timeout expires, the test is cancelled and returns an
-	 * error.
+	 * error. For realistic experiments, set this parameter sufficiently long to
+	 * allow the test to complete.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -498,7 +504,7 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 
 		/**
 		 * The total number of blobs to write to the repository during the test. For
-		 * realistic experiments, you should set it to at least <code>2000</code>.
+		 * realistic experiments, set this parameter to at least <code>2000</code>.
 		 * <p>
 		 * API name: {@code blob_count}
 		 */
@@ -508,7 +514,8 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 		}
 
 		/**
-		 * The number of operations to run concurrently during the test.
+		 * The number of operations to run concurrently during the test. For realistic
+		 * experiments, leave this parameter unset.
 		 * <p>
 		 * API name: {@code concurrency}
 		 */
@@ -531,7 +538,8 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 
 		/**
 		 * The number of nodes on which to perform an early read operation while writing
-		 * each blob. Early read operations are only rarely performed.
+		 * each blob. Early read operations are only rarely performed. For realistic
+		 * experiments, leave this parameter unset.
 		 * <p>
 		 * API name: {@code early_read_node_count}
 		 */
@@ -542,7 +550,7 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 
 		/**
 		 * The maximum size of a blob to be written during the test. For realistic
-		 * experiments, you should set it to at least <code>2gb</code>.
+		 * experiments, set this parameter to at least <code>2gb</code>.
 		 * <p>
 		 * API name: {@code max_blob_size}
 		 */
@@ -553,7 +561,7 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 
 		/**
 		 * An upper limit on the total size of all the blobs written during the test.
-		 * For realistic experiments, you should set it to at least <code>1tb</code>.
+		 * For realistic experiments, set this parameter to at least <code>1tb</code>.
 		 * <p>
 		 * API name: {@code max_total_data_size}
 		 */
@@ -574,7 +582,8 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 
 		/**
 		 * The probability of performing a rare action such as an early read, an
-		 * overwrite, or an aborted write on each blob.
+		 * overwrite, or an aborted write on each blob. For realistic experiments, leave
+		 * this parameter unset.
 		 * <p>
 		 * API name: {@code rare_action_probability}
 		 */
@@ -584,7 +593,8 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 		}
 
 		/**
-		 * Indicates whether to rarely cancel writes before they complete.
+		 * Indicates whether to rarely cancel writes before they complete. For realistic
+		 * experiments, leave this parameter unset.
 		 * <p>
 		 * API name: {@code rarely_abort_writes}
 		 */
@@ -594,7 +604,8 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 		}
 
 		/**
-		 * The number of nodes on which to read a blob after writing.
+		 * The number of nodes on which to read a blob after writing. For realistic
+		 * experiments, leave this parameter unset.
 		 * <p>
 		 * API name: {@code read_node_count}
 		 */
@@ -605,7 +616,7 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 
 		/**
 		 * The minimum number of linearizable register operations to perform in total.
-		 * For realistic experiments, you should set it to at least <code>100</code>.
+		 * For realistic experiments, set this parameter to at least <code>100</code>.
 		 * <p>
 		 * API name: {@code register_operation_count}
 		 */
@@ -619,7 +630,7 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 		 * operations performed during the test. To repeat the same set of operations in
 		 * multiple experiments, use the same seed in each experiment. Note that the
 		 * operations are performed concurrently so might not always happen in the same
-		 * order on each run.
+		 * order on each run. For realistic experiments, leave this parameter unset.
 		 * <p>
 		 * API name: {@code seed}
 		 */
@@ -631,7 +642,8 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 		/**
 		 * The period of time to wait for the test to complete. If no response is
 		 * received before the timeout expires, the test is cancelled and returns an
-		 * error.
+		 * error. For realistic experiments, set this parameter sufficiently long to
+		 * allow the test to complete.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -643,7 +655,8 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 		/**
 		 * The period of time to wait for the test to complete. If no response is
 		 * received before the timeout expires, the test is cancelled and returns an
-		 * error.
+		 * error. For realistic experiments, set this parameter sufficiently long to
+		 * allow the test to complete.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

@@ -218,6 +218,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	private final Boolean profile;
 
 	@Nullable
+	private final String projectRouting;
+
+	@Nullable
 	private final String q;
 
 	@Nullable
@@ -319,6 +322,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		this.preFilterShardSize = builder.preFilterShardSize;
 		this.preference = builder.preference;
 		this.profile = builder.profile;
+		this.projectRouting = builder.projectRouting;
 		this.q = builder.q;
 		this.query = builder.query;
 		this.rank = builder.rank;
@@ -773,6 +777,19 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Boolean profile() {
 		return this.profile;
+	}
+
+	/**
+	 * Specifies a subset of projects to target for a search using project metadata
+	 * tags in a subset Lucene syntax. Allowed Lucene queries: the _alias tag and a
+	 * single value (possible wildcarded). Examples: _alias:my-project
+	 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
 	}
 
 	/**
@@ -1420,6 +1437,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Boolean profile;
+
+		@Nullable
+		private String projectRouting;
 
 		@Nullable
 		private String q;
@@ -2173,6 +2193,19 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder profile(@Nullable Boolean value) {
 			this.profile = value;
+			return this;
+		}
+
+		/**
+		 * Specifies a subset of projects to target for a search using project metadata
+		 * tags in a subset Lucene syntax. Allowed Lucene queries: the _alias tag and a
+		 * single value (possible wildcarded). Examples: _alias:my-project
+		 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
 			return this;
 		}
 
@@ -2949,6 +2982,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.preFilterShardSize != null) {
 					params.put("pre_filter_shard_size", String.valueOf(request.preFilterShardSize));
+				}
+				if (request.projectRouting != null) {
+					params.put("project_routing", request.projectRouting);
 				}
 				if (request.forceSyntheticSource != null) {
 					params.put("force_synthetic_source", String.valueOf(request.forceSyntheticSource));

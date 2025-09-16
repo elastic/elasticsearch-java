@@ -64,6 +64,7 @@ import javax.annotation.Nullable;
 public class ChunkingSettings implements JsonpSerializable {
 	private final String strategy;
 
+	@Nullable
 	private final String separatorGroup;
 
 	private final List<String> separators;
@@ -81,8 +82,8 @@ public class ChunkingSettings implements JsonpSerializable {
 	private ChunkingSettings(Builder builder) {
 
 		this.strategy = ApiTypeHelper.requireNonNull(builder.strategy, this, "strategy");
-		this.separatorGroup = ApiTypeHelper.requireNonNull(builder.separatorGroup, this, "separatorGroup");
-		this.separators = ApiTypeHelper.unmodifiableRequired(builder.separators, this, "separators");
+		this.separatorGroup = builder.separatorGroup;
+		this.separators = ApiTypeHelper.unmodifiable(builder.separators);
 		this.maxChunkSize = ApiTypeHelper.requireNonNull(builder.maxChunkSize, this, "maxChunkSize", 0);
 		this.overlap = builder.overlap;
 		this.sentenceOverlap = builder.sentenceOverlap;
@@ -114,8 +115,8 @@ public class ChunkingSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - This parameter is only applicable when using the
-	 * <code>recursive</code> chunking strategy.
+	 * Only applicable to the <code>recursive</code> strategy and required when
+	 * using it.
 	 * <p>
 	 * Sets a predefined list of separators in the saved chunking settings based on
 	 * the selected text type. Values can be <code>markdown</code> or
@@ -126,13 +127,16 @@ public class ChunkingSettings implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code separator_group}
 	 */
+	@Nullable
 	public final String separatorGroup() {
 		return this.separatorGroup;
 	}
 
 	/**
-	 * Required - A list of strings used as possible split points when chunking text
-	 * with the <code>recursive</code> strategy.
+	 * Only applicable to the <code>recursive</code> strategy and required when
+	 * using it.
+	 * <p>
+	 * A list of strings used as possible split points when chunking text.
 	 * <p>
 	 * Each string can be a plain string or a regular expression (regex) pattern.
 	 * The system tries each separator in order to split the text, starting from the
@@ -149,10 +153,10 @@ public class ChunkingSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The maximum size of a chunk in words. This value cannot be higher
-	 * than <code>300</code> or lower than <code>20</code> (for
-	 * <code>sentence</code> strategy) or <code>10</code> (for <code>word</code>
-	 * strategy).
+	 * Required - The maximum size of a chunk in words. This value cannot be lower
+	 * than <code>20</code> (for <code>sentence</code> strategy) or <code>10</code>
+	 * (for <code>word</code> strategy). This value should not exceed the window
+	 * size for the associated model.
 	 * <p>
 	 * API name: {@code max_chunk_size}
 	 */
@@ -198,9 +202,11 @@ public class ChunkingSettings implements JsonpSerializable {
 		generator.writeKey("strategy");
 		generator.write(this.strategy);
 
-		generator.writeKey("separator_group");
-		generator.write(this.separatorGroup);
+		if (this.separatorGroup != null) {
+			generator.writeKey("separator_group");
+			generator.write(this.separatorGroup);
 
+		}
 		if (ApiTypeHelper.isDefined(this.separators)) {
 			generator.writeKey("separators");
 			generator.writeStartArray();
@@ -241,8 +247,10 @@ public class ChunkingSettings implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ChunkingSettings> {
 		private String strategy;
 
+		@Nullable
 		private String separatorGroup;
 
+		@Nullable
 		private List<String> separators;
 
 		private Integer maxChunkSize;
@@ -275,8 +283,8 @@ public class ChunkingSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - This parameter is only applicable when using the
-		 * <code>recursive</code> chunking strategy.
+		 * Only applicable to the <code>recursive</code> strategy and required when
+		 * using it.
 		 * <p>
 		 * Sets a predefined list of separators in the saved chunking settings based on
 		 * the selected text type. Values can be <code>markdown</code> or
@@ -287,14 +295,16 @@ public class ChunkingSettings implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code separator_group}
 		 */
-		public final Builder separatorGroup(String value) {
+		public final Builder separatorGroup(@Nullable String value) {
 			this.separatorGroup = value;
 			return this;
 		}
 
 		/**
-		 * Required - A list of strings used as possible split points when chunking text
-		 * with the <code>recursive</code> strategy.
+		 * Only applicable to the <code>recursive</code> strategy and required when
+		 * using it.
+		 * <p>
+		 * A list of strings used as possible split points when chunking text.
 		 * <p>
 		 * Each string can be a plain string or a regular expression (regex) pattern.
 		 * The system tries each separator in order to split the text, starting from the
@@ -314,8 +324,10 @@ public class ChunkingSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A list of strings used as possible split points when chunking text
-		 * with the <code>recursive</code> strategy.
+		 * Only applicable to the <code>recursive</code> strategy and required when
+		 * using it.
+		 * <p>
+		 * A list of strings used as possible split points when chunking text.
 		 * <p>
 		 * Each string can be a plain string or a regular expression (regex) pattern.
 		 * The system tries each separator in order to split the text, starting from the
@@ -335,10 +347,10 @@ public class ChunkingSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The maximum size of a chunk in words. This value cannot be higher
-		 * than <code>300</code> or lower than <code>20</code> (for
-		 * <code>sentence</code> strategy) or <code>10</code> (for <code>word</code>
-		 * strategy).
+		 * Required - The maximum size of a chunk in words. This value cannot be lower
+		 * than <code>20</code> (for <code>sentence</code> strategy) or <code>10</code>
+		 * (for <code>word</code> strategy). This value should not exceed the window
+		 * size for the associated model.
 		 * <p>
 		 * API name: {@code max_chunk_size}
 		 */

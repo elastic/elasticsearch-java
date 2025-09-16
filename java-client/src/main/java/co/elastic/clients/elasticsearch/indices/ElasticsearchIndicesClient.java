@@ -912,7 +912,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * stream.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-delete-data-stream-options">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -932,7 +932,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteDataStreamOptionsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-delete-data-stream-options">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1037,6 +1037,10 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * compressed format, the sizes of stored fields are also estimates and can be
 	 * inaccurate. The stored size of the <code>_id</code> field is likely
 	 * underestimated while the <code>_source</code> field is overestimated.
+	 * <p>
+	 * For usage examples see the External documentation or refer to <a href=
+	 * "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/index-disk-usage">Analyze
+	 * the index disk usage example</a> for an example.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-disk-usage">Documentation
@@ -1063,6 +1067,10 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * compressed format, the sizes of stored fields are also estimates and can be
 	 * inaccurate. The stored size of the <code>_id</code> field is likely
 	 * underestimated while the <code>_source</code> field is overestimated.
+	 * <p>
+	 * For usage examples see the External documentation or refer to <a href=
+	 * "https://www.elastic.co/docs/reference/elasticsearch/rest-apis/index-disk-usage">Analyze
+	 * the index disk usage example</a> for an example.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1985,7 +1993,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Get the data stream options configuration of one or more data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-data-stream-options">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2006,7 +2014,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link GetDataStreamOptionsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-data-stream-options">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2783,7 +2791,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * data streams.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-data-stream-options">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2803,7 +2811,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PutDataStreamOptionsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-data-stream-options">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4081,8 +4089,10 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: indices.rollover
 
 	/**
-	 * Roll over to a new index. TIP: It is recommended to use the index lifecycle
-	 * rollover action to automate rollovers.
+	 * Roll over to a new index. TIP: We recommend using the index lifecycle
+	 * rollover action to automate rollovers. However, Serverless does not support
+	 * Index Lifecycle Management (ILM), so don't use this approach in the
+	 * Serverless context.
 	 * <p>
 	 * The rollover API creates a new index for a data stream or index alias. The
 	 * API behavior depends on the rollover target.
@@ -4146,8 +4156,10 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Roll over to a new index. TIP: It is recommended to use the index lifecycle
-	 * rollover action to automate rollovers.
+	 * Roll over to a new index. TIP: We recommend using the index lifecycle
+	 * rollover action to automate rollovers. However, Serverless does not support
+	 * Index Lifecycle Management (ILM), so don't use this approach in the
+	 * Serverless context.
 	 * <p>
 	 * The rollover API creates a new index for a data stream or index alias. The
 	 * API behavior depends on the rollover target.

@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.security.authenticate;
 
+import co.elastic.clients.elasticsearch.security.ApiKeyManagedBy;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,6 +31,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -65,12 +67,18 @@ public class AuthenticateApiKey implements JsonpSerializable {
 	@Nullable
 	private final String name;
 
+	private final ApiKeyManagedBy managedBy;
+
+	private final boolean internal;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private AuthenticateApiKey(Builder builder) {
 
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.name = builder.name;
+		this.managedBy = ApiTypeHelper.requireNonNull(builder.managedBy, this, "managedBy");
+		this.internal = ApiTypeHelper.requireNonNull(builder.internal, this, "internal", false);
 
 	}
 
@@ -94,6 +102,20 @@ public class AuthenticateApiKey implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code managed_by}
+	 */
+	public final ApiKeyManagedBy managedBy() {
+		return this.managedBy;
+	}
+
+	/**
+	 * Required - API name: {@code internal}
+	 */
+	public final boolean internal() {
+		return this.internal;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -112,6 +134,10 @@ public class AuthenticateApiKey implements JsonpSerializable {
 			generator.write(this.name);
 
 		}
+		generator.writeKey("managed_by");
+		this.managedBy.serialize(generator, mapper);
+		generator.writeKey("internal");
+		generator.write(this.internal);
 
 	}
 
@@ -134,6 +160,10 @@ public class AuthenticateApiKey implements JsonpSerializable {
 		@Nullable
 		private String name;
 
+		private ApiKeyManagedBy managedBy;
+
+		private Boolean internal;
+
 		/**
 		 * Required - API name: {@code id}
 		 */
@@ -147,6 +177,22 @@ public class AuthenticateApiKey implements JsonpSerializable {
 		 */
 		public final Builder name(@Nullable String value) {
 			this.name = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code managed_by}
+		 */
+		public final Builder managedBy(ApiKeyManagedBy value) {
+			this.managedBy = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code internal}
+		 */
+		public final Builder internal(boolean value) {
+			this.internal = value;
 			return this;
 		}
 
@@ -180,6 +226,8 @@ public class AuthenticateApiKey implements JsonpSerializable {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::managedBy, ApiKeyManagedBy._DESERIALIZER, "managed_by");
+		op.add(Builder::internal, JsonpDeserializer.booleanDeserializer(), "internal");
 
 	}
 
