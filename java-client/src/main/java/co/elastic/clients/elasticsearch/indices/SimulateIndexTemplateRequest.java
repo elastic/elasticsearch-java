@@ -24,6 +24,8 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -31,6 +33,7 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
@@ -64,8 +67,8 @@ import javax.annotation.Nullable;
  *      "../doc-files/api-spec.html#indices.simulate_index_template.Request">API
  *      specification</a>
  */
-
-public class SimulateIndexTemplateRequest extends RequestBase {
+@JsonpDeserializable
+public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String cause;
 
@@ -80,6 +83,8 @@ public class SimulateIndexTemplateRequest extends RequestBase {
 
 	private final String name;
 
+	private final IndexTemplate indexTemplate;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private SimulateIndexTemplateRequest(Builder builder) {
@@ -89,6 +94,7 @@ public class SimulateIndexTemplateRequest extends RequestBase {
 		this.includeDefaults = builder.includeDefaults;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.indexTemplate = ApiTypeHelper.requireNonNull(builder.indexTemplate, this, "indexTemplate");
 
 	}
 
@@ -148,6 +154,21 @@ public class SimulateIndexTemplateRequest extends RequestBase {
 		return this.name;
 	}
 
+	/**
+	 * Required - Request body.
+	 */
+	public final IndexTemplate indexTemplate() {
+		return this.indexTemplate;
+	}
+
+	/**
+	 * Serialize this value to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		this.indexTemplate.serialize(generator, mapper);
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -170,6 +191,8 @@ public class SimulateIndexTemplateRequest extends RequestBase {
 		private Time masterTimeout;
 
 		private String name;
+
+		private IndexTemplate indexTemplate;
 
 		/**
 		 * User defined reason for dry-run creating the new template for simulation
@@ -234,6 +257,29 @@ public class SimulateIndexTemplateRequest extends RequestBase {
 			return this;
 		}
 
+		/**
+		 * Required - Request body.
+		 */
+		public final Builder indexTemplate(IndexTemplate value) {
+			this.indexTemplate = value;
+			return this;
+		}
+
+		/**
+		 * Required - Request body.
+		 */
+		public final Builder indexTemplate(Function<IndexTemplate.Builder, ObjectBuilder<IndexTemplate>> fn) {
+			return this.indexTemplate(fn.apply(new IndexTemplate.Builder()).build());
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			IndexTemplate value = (IndexTemplate) IndexTemplate._DESERIALIZER.deserialize(parser, mapper);
+			return this.indexTemplate(value);
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -250,6 +296,15 @@ public class SimulateIndexTemplateRequest extends RequestBase {
 
 			return new SimulateIndexTemplateRequest(this);
 		}
+	}
+
+	public static final JsonpDeserializer<SimulateIndexTemplateRequest> _DESERIALIZER = createSimulateIndexTemplateRequestDeserializer();
+	protected static JsonpDeserializer<SimulateIndexTemplateRequest> createSimulateIndexTemplateRequestDeserializer() {
+
+		JsonpDeserializer<IndexTemplate> valueDeserializer = IndexTemplate._DESERIALIZER;
+
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.indexTemplate(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -318,5 +373,5 @@ public class SimulateIndexTemplateRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, SimulateIndexTemplateResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, SimulateIndexTemplateResponse._DESERIALIZER);
 }

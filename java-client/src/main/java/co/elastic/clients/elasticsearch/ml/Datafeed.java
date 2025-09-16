@@ -172,6 +172,15 @@ public class Datafeed implements JsonpSerializable {
 	}
 
 	/**
+	 * The interval at which scheduled queries are made while the datafeed runs in
+	 * real time. The default value is either the bucket span for short bucket
+	 * spans, or, for longer bucket spans, a sensible fraction of the bucket span.
+	 * For example: <code>150s</code>. When <code>frequency</code> is shorter than
+	 * the bucket span, interim results for the last (partial) bucket are written
+	 * then eventually overwritten by the full bucket results. If the datafeed uses
+	 * aggregations, this value must be divisible by the interval of the date
+	 * histogram aggregation.
+	 * <p>
 	 * API name: {@code frequency}
 	 */
 	@Nullable
@@ -516,6 +525,15 @@ public class Datafeed implements JsonpSerializable {
 		}
 
 		/**
+		 * The interval at which scheduled queries are made while the datafeed runs in
+		 * real time. The default value is either the bucket span for short bucket
+		 * spans, or, for longer bucket spans, a sensible fraction of the bucket span.
+		 * For example: <code>150s</code>. When <code>frequency</code> is shorter than
+		 * the bucket span, interim results for the last (partial) bucket are written
+		 * then eventually overwritten by the full bucket results. If the datafeed uses
+		 * aggregations, this value must be divisible by the interval of the date
+		 * histogram aggregation.
+		 * <p>
 		 * API name: {@code frequency}
 		 */
 		public final Builder frequency(@Nullable Time value) {
@@ -524,6 +542,15 @@ public class Datafeed implements JsonpSerializable {
 		}
 
 		/**
+		 * The interval at which scheduled queries are made while the datafeed runs in
+		 * real time. The default value is either the bucket span for short bucket
+		 * spans, or, for longer bucket spans, a sensible fraction of the bucket span.
+		 * For example: <code>150s</code>. When <code>frequency</code> is shorter than
+		 * the bucket span, interim results for the last (partial) bucket are written
+		 * then eventually overwritten by the full bucket results. If the datafeed uses
+		 * aggregations, this value must be divisible by the interval of the date
+		 * histogram aggregation.
+		 * <p>
 		 * API name: {@code frequency}
 		 */
 		public final Builder frequency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
