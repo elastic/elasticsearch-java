@@ -75,7 +75,11 @@ public class CompactNodeInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code name}
+	 * Required - A human-readable name for the node. You can set this name using
+	 * the <code>node.name</code> property in <code>elasticsearch.yml</code>. The
+	 * default value is the machine's hostname.
+	 * <p>
+	 * API name: {@code name}
 	 */
 	public final String name() {
 		return this.name;
@@ -112,7 +116,11 @@ public class CompactNodeInfo implements JsonpSerializable {
 		private String name;
 
 		/**
-		 * Required - API name: {@code name}
+		 * Required - A human-readable name for the node. You can set this name using
+		 * the <code>node.name</code> property in <code>elasticsearch.yml</code>. The
+		 * default value is the machine's hostname.
+		 * <p>
+		 * API name: {@code name}
 		 */
 		public final Builder name(String value) {
 			this.name = value;

@@ -88,42 +88,55 @@ public class ShardsStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code done}
+	 * Required - The number of shards that initialized, started, and finalized
+	 * successfully.
+	 * <p>
+	 * API name: {@code done}
 	 */
 	public final long done() {
 		return this.done;
 	}
 
 	/**
-	 * Required - API name: {@code failed}
+	 * Required - The number of shards that failed to be included in the snapshot.
+	 * <p>
+	 * API name: {@code failed}
 	 */
 	public final long failed() {
 		return this.failed;
 	}
 
 	/**
-	 * Required - API name: {@code finalizing}
+	 * Required - The number of shards that are finalizing but are not done.
+	 * <p>
+	 * API name: {@code finalizing}
 	 */
 	public final long finalizing() {
 		return this.finalizing;
 	}
 
 	/**
-	 * Required - API name: {@code initializing}
+	 * Required - The number of shards that are still initializing.
+	 * <p>
+	 * API name: {@code initializing}
 	 */
 	public final long initializing() {
 		return this.initializing;
 	}
 
 	/**
-	 * Required - API name: {@code started}
+	 * Required - The number of shards that have started but are not finalized.
+	 * <p>
+	 * API name: {@code started}
 	 */
 	public final long started() {
 		return this.started;
 	}
 
 	/**
-	 * Required - API name: {@code total}
+	 * Required - The total number of shards included in the snapshot.
+	 * <p>
+	 * API name: {@code total}
 	 */
 	public final long total() {
 		return this.total;
@@ -185,7 +198,10 @@ public class ShardsStats implements JsonpSerializable {
 		private Long total;
 
 		/**
-		 * Required - API name: {@code done}
+		 * Required - The number of shards that initialized, started, and finalized
+		 * successfully.
+		 * <p>
+		 * API name: {@code done}
 		 */
 		public final Builder done(long value) {
 			this.done = value;
@@ -193,7 +209,9 @@ public class ShardsStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code failed}
+		 * Required - The number of shards that failed to be included in the snapshot.
+		 * <p>
+		 * API name: {@code failed}
 		 */
 		public final Builder failed(long value) {
 			this.failed = value;
@@ -201,7 +219,9 @@ public class ShardsStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code finalizing}
+		 * Required - The number of shards that are finalizing but are not done.
+		 * <p>
+		 * API name: {@code finalizing}
 		 */
 		public final Builder finalizing(long value) {
 			this.finalizing = value;
@@ -209,7 +229,9 @@ public class ShardsStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code initializing}
+		 * Required - The number of shards that are still initializing.
+		 * <p>
+		 * API name: {@code initializing}
 		 */
 		public final Builder initializing(long value) {
 			this.initializing = value;
@@ -217,7 +239,9 @@ public class ShardsStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code started}
+		 * Required - The number of shards that have started but are not finalized.
+		 * <p>
+		 * API name: {@code started}
 		 */
 		public final Builder started(long value) {
 			this.started = value;
@@ -225,7 +249,9 @@ public class ShardsStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * Required - The total number of shards included in the snapshot.
+		 * <p>
+		 * API name: {@code total}
 		 */
 		public final Builder total(long value) {
 			this.total = value;

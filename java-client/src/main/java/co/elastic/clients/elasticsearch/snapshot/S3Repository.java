@@ -79,7 +79,16 @@ public class S3Repository extends RepositoryBase implements RepositoryVariant {
 	}
 
 	/**
-	 * Required - API name: {@code settings}
+	 * Required - The repository settings.
+	 * <p>
+	 * NOTE: In addition to the specified settings, you can also use all non-secure
+	 * client settings in the repository settings. In this case, the client settings
+	 * found in the repository settings will be merged with those of the named
+	 * client used by the repository. Conflicts between client and repository
+	 * settings are resolved by the repository settings taking precedence over
+	 * client settings.
+	 * <p>
+	 * API name: {@code settings}
 	 */
 	public final S3RepositorySettings settings() {
 		return this.settings;
@@ -104,7 +113,16 @@ public class S3Repository extends RepositoryBase implements RepositoryVariant {
 		private S3RepositorySettings settings;
 
 		/**
-		 * Required - API name: {@code settings}
+		 * Required - The repository settings.
+		 * <p>
+		 * NOTE: In addition to the specified settings, you can also use all non-secure
+		 * client settings in the repository settings. In this case, the client settings
+		 * found in the repository settings will be merged with those of the named
+		 * client used by the repository. Conflicts between client and repository
+		 * settings are resolved by the repository settings taking precedence over
+		 * client settings.
+		 * <p>
+		 * API name: {@code settings}
 		 */
 		public final Builder settings(S3RepositorySettings value) {
 			this.settings = value;
@@ -112,7 +130,16 @@ public class S3Repository extends RepositoryBase implements RepositoryVariant {
 		}
 
 		/**
-		 * Required - API name: {@code settings}
+		 * Required - The repository settings.
+		 * <p>
+		 * NOTE: In addition to the specified settings, you can also use all non-secure
+		 * client settings in the repository settings. In this case, the client settings
+		 * found in the repository settings will be merged with those of the named
+		 * client used by the repository. Conflicts between client and repository
+		 * settings are resolved by the repository settings taking precedence over
+		 * client settings.
+		 * <p>
+		 * API name: {@code settings}
 		 */
 		public final Builder settings(Function<S3RepositorySettings.Builder, ObjectBuilder<S3RepositorySettings>> fn) {
 			return this.settings(fn.apply(new S3RepositorySettings.Builder()).build());

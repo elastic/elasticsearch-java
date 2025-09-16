@@ -80,7 +80,9 @@ public class SharedFileSystemRepository extends RepositoryBase implements Reposi
 	}
 
 	/**
-	 * Required - API name: {@code settings}
+	 * Required - The repository settings.
+	 * <p>
+	 * API name: {@code settings}
 	 */
 	public final SharedFileSystemRepositorySettings settings() {
 		return this.settings;
@@ -107,7 +109,9 @@ public class SharedFileSystemRepository extends RepositoryBase implements Reposi
 		private SharedFileSystemRepositorySettings settings;
 
 		/**
-		 * Required - API name: {@code settings}
+		 * Required - The repository settings.
+		 * <p>
+		 * API name: {@code settings}
 		 */
 		public final Builder settings(SharedFileSystemRepositorySettings value) {
 			this.settings = value;
@@ -115,7 +119,9 @@ public class SharedFileSystemRepository extends RepositoryBase implements Reposi
 		}
 
 		/**
-		 * Required - API name: {@code settings}
+		 * Required - The repository settings.
+		 * <p>
+		 * API name: {@code settings}
 		 */
 		public final Builder settings(
 				Function<SharedFileSystemRepositorySettings.Builder, ObjectBuilder<SharedFileSystemRepositorySettings>> fn) {

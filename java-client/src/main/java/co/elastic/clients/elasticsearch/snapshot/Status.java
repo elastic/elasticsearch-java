@@ -98,7 +98,10 @@ public class Status implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code include_global_state}
+	 * Required - Indicates whether the current cluster state is included in the
+	 * snapshot.
+	 * <p>
+	 * API name: {@code include_global_state}
 	 */
 	public final boolean includeGlobalState() {
 		return this.includeGlobalState;
@@ -112,42 +115,61 @@ public class Status implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code repository}
+	 * Required - The name of the repository that includes the snapshot.
+	 * <p>
+	 * API name: {@code repository}
 	 */
 	public final String repository() {
 		return this.repository;
 	}
 
 	/**
-	 * Required - API name: {@code shards_stats}
+	 * Required - Statistics for the shards in the snapshot.
+	 * <p>
+	 * API name: {@code shards_stats}
 	 */
 	public final ShardsStats shardsStats() {
 		return this.shardsStats;
 	}
 
 	/**
-	 * Required - API name: {@code snapshot}
+	 * Required - The name of the snapshot.
+	 * <p>
+	 * API name: {@code snapshot}
 	 */
 	public final String snapshot() {
 		return this.snapshot;
 	}
 
 	/**
-	 * Required - API name: {@code state}
+	 * Required - The current snapshot state:
+	 * <ul>
+	 * <li><code>FAILED</code>: The snapshot finished with an error and failed to
+	 * store any data.</li>
+	 * <li><code>STARTED</code>: The snapshot is currently running.</li>
+	 * <li><code>SUCCESS</code>: The snapshot completed.</li>
+	 * </ul>
+	 * <p>
+	 * API name: {@code state}
 	 */
 	public final String state() {
 		return this.state;
 	}
 
 	/**
-	 * Required - API name: {@code stats}
+	 * Required - Details about the number (<code>file_count</code>) and size
+	 * (<code>size_in_bytes</code>) of files included in the snapshot.
+	 * <p>
+	 * API name: {@code stats}
 	 */
 	public final SnapshotStats stats() {
 		return this.stats;
 	}
 
 	/**
-	 * Required - API name: {@code uuid}
+	 * Required - The universally unique identifier (UUID) for the snapshot.
+	 * <p>
+	 * API name: {@code uuid}
 	 */
 	public final String uuid() {
 		return this.uuid;
@@ -227,7 +249,10 @@ public class Status implements JsonpSerializable {
 		private String uuid;
 
 		/**
-		 * Required - API name: {@code include_global_state}
+		 * Required - Indicates whether the current cluster state is included in the
+		 * snapshot.
+		 * <p>
+		 * API name: {@code include_global_state}
 		 */
 		public final Builder includeGlobalState(boolean value) {
 			this.includeGlobalState = value;
@@ -265,7 +290,9 @@ public class Status implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code repository}
+		 * Required - The name of the repository that includes the snapshot.
+		 * <p>
+		 * API name: {@code repository}
 		 */
 		public final Builder repository(String value) {
 			this.repository = value;
@@ -273,7 +300,9 @@ public class Status implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code shards_stats}
+		 * Required - Statistics for the shards in the snapshot.
+		 * <p>
+		 * API name: {@code shards_stats}
 		 */
 		public final Builder shardsStats(ShardsStats value) {
 			this.shardsStats = value;
@@ -281,14 +310,18 @@ public class Status implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code shards_stats}
+		 * Required - Statistics for the shards in the snapshot.
+		 * <p>
+		 * API name: {@code shards_stats}
 		 */
 		public final Builder shardsStats(Function<ShardsStats.Builder, ObjectBuilder<ShardsStats>> fn) {
 			return this.shardsStats(fn.apply(new ShardsStats.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code snapshot}
+		 * Required - The name of the snapshot.
+		 * <p>
+		 * API name: {@code snapshot}
 		 */
 		public final Builder snapshot(String value) {
 			this.snapshot = value;
@@ -296,7 +329,15 @@ public class Status implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code state}
+		 * Required - The current snapshot state:
+		 * <ul>
+		 * <li><code>FAILED</code>: The snapshot finished with an error and failed to
+		 * store any data.</li>
+		 * <li><code>STARTED</code>: The snapshot is currently running.</li>
+		 * <li><code>SUCCESS</code>: The snapshot completed.</li>
+		 * </ul>
+		 * <p>
+		 * API name: {@code state}
 		 */
 		public final Builder state(String value) {
 			this.state = value;
@@ -304,7 +345,10 @@ public class Status implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code stats}
+		 * Required - Details about the number (<code>file_count</code>) and size
+		 * (<code>size_in_bytes</code>) of files included in the snapshot.
+		 * <p>
+		 * API name: {@code stats}
 		 */
 		public final Builder stats(SnapshotStats value) {
 			this.stats = value;
@@ -312,14 +356,19 @@ public class Status implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code stats}
+		 * Required - Details about the number (<code>file_count</code>) and size
+		 * (<code>size_in_bytes</code>) of files included in the snapshot.
+		 * <p>
+		 * API name: {@code stats}
 		 */
 		public final Builder stats(Function<SnapshotStats.Builder, ObjectBuilder<SnapshotStats>> fn) {
 			return this.stats(fn.apply(new SnapshotStats.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code uuid}
+		 * Required - The universally unique identifier (UUID) for the snapshot.
+		 * <p>
+		 * API name: {@code uuid}
 		 */
 		public final Builder uuid(String value) {
 			this.uuid = value;

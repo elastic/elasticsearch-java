@@ -80,7 +80,9 @@ public class SourceOnlyRepository extends RepositoryBase implements RepositoryVa
 	}
 
 	/**
-	 * Required - API name: {@code settings}
+	 * Required - The repository settings.
+	 * <p>
+	 * API name: {@code settings}
 	 */
 	public final SourceOnlyRepositorySettings settings() {
 		return this.settings;
@@ -107,7 +109,9 @@ public class SourceOnlyRepository extends RepositoryBase implements RepositoryVa
 		private SourceOnlyRepositorySettings settings;
 
 		/**
-		 * Required - API name: {@code settings}
+		 * Required - The repository settings.
+		 * <p>
+		 * API name: {@code settings}
 		 */
 		public final Builder settings(SourceOnlyRepositorySettings value) {
 			this.settings = value;
@@ -115,7 +119,9 @@ public class SourceOnlyRepository extends RepositoryBase implements RepositoryVa
 		}
 
 		/**
-		 * Required - API name: {@code settings}
+		 * Required - The repository settings.
+		 * <p>
+		 * API name: {@code settings}
 		 */
 		public final Builder settings(
 				Function<SourceOnlyRepositorySettings.Builder, ObjectBuilder<SourceOnlyRepositorySettings>> fn) {

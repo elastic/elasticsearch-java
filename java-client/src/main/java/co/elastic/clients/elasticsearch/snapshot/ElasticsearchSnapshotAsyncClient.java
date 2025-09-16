@@ -184,9 +184,13 @@ public class ElasticsearchSnapshotAsyncClient
 	 * <code>cluster.blocks.read_only</code> and
 	 * <code>clsuter.blocks.read_only_allow_delete</code> settings) that prevent
 	 * write access.
+	 * <p>
+	 * Several options for this API can be specified using a query parameter or a
+	 * request body parameter. If both parameters are specified, only the query
+	 * parameter is used.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/put-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -205,12 +209,16 @@ public class ElasticsearchSnapshotAsyncClient
 	 * <code>cluster.blocks.read_only</code> and
 	 * <code>clsuter.blocks.read_only_allow_delete</code> settings) that prevent
 	 * write access.
+	 * <p>
+	 * Several options for this API can be specified using a query parameter or a
+	 * request body parameter. If both parameters are specified, only the query
+	 * parameter is used.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/put-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -295,6 +303,13 @@ public class ElasticsearchSnapshotAsyncClient
 
 	/**
 	 * Get snapshot information.
+	 * <p>
+	 * NOTE: The <code>after</code> parameter and <code>next</code> field enable you
+	 * to iterate through snapshots with some consistency guarantees regarding
+	 * concurrent creation or deletion of snapshots. It is guaranteed that any
+	 * snapshot that exists at the beginning of the iteration and is not
+	 * concurrently deleted will be seen during the iteration. Snapshots
+	 * concurrently created may be seen during an iteration.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/get-snapshot-api.html">Documentation
@@ -310,6 +325,13 @@ public class ElasticsearchSnapshotAsyncClient
 
 	/**
 	 * Get snapshot information.
+	 * <p>
+	 * NOTE: The <code>after</code> parameter and <code>next</code> field enable you
+	 * to iterate through snapshots with some consistency guarantees regarding
+	 * concurrent creation or deletion of snapshots. It is guaranteed that any
+	 * snapshot that exists at the beginning of the iteration and is not
+	 * concurrently deleted will be seen during the iteration. Snapshots
+	 * concurrently created may be seen during an iteration.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -768,6 +790,20 @@ public class ElasticsearchSnapshotAsyncClient
 	 * the request parameters and the response format to vary in future versions.
 	 * <p>
 	 * NOTE: This API may not work correctly in a mixed-version cluster.
+	 * <p>
+	 * The default values for the parameters of this API are designed to limit the
+	 * impact of the integrity verification on other activities in your cluster. For
+	 * instance, by default it will only use at most half of the
+	 * <code>snapshot_meta</code> threads to verify the integrity of each snapshot,
+	 * allowing other snapshot operations to use the other half of this thread pool.
+	 * If you modify these parameters to speed up the verification process, you risk
+	 * disrupting other snapshot-related operations in your cluster. For large
+	 * repositories, consider setting up a separate single-node Elasticsearch
+	 * cluster just for running the integrity verification API.
+	 * <p>
+	 * The response exposes implementation details of the analysis which may change
+	 * from version to version. The response body format is therefore not considered
+	 * stable and may be different in newer versions.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/verify-repo-integrity-api.html">Documentation
@@ -833,6 +869,20 @@ public class ElasticsearchSnapshotAsyncClient
 	 * the request parameters and the response format to vary in future versions.
 	 * <p>
 	 * NOTE: This API may not work correctly in a mixed-version cluster.
+	 * <p>
+	 * The default values for the parameters of this API are designed to limit the
+	 * impact of the integrity verification on other activities in your cluster. For
+	 * instance, by default it will only use at most half of the
+	 * <code>snapshot_meta</code> threads to verify the integrity of each snapshot,
+	 * allowing other snapshot operations to use the other half of this thread pool.
+	 * If you modify these parameters to speed up the verification process, you risk
+	 * disrupting other snapshot-related operations in your cluster. For large
+	 * repositories, consider setting up a separate single-node Elasticsearch
+	 * cluster just for running the integrity verification API.
+	 * <p>
+	 * The response exposes implementation details of the analysis which may change
+	 * from version to version. The response body format is therefore not considered
+	 * stable and may be different in newer versions.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -934,10 +984,18 @@ public class ElasticsearchSnapshotAsyncClient
 
 	/**
 	 * Get the snapshot status. Get a detailed description of the current state for
-	 * each shard participating in the snapshot. Note that this API should be used
-	 * only to obtain detailed shard-level information for ongoing snapshots. If
-	 * this detail is not needed or you want to obtain information about one or more
-	 * existing snapshots, use the get snapshot API.
+	 * each shard participating in the snapshot.
+	 * <p>
+	 * Note that this API should be used only to obtain detailed shard-level
+	 * information for ongoing snapshots. If this detail is not needed or you want
+	 * to obtain information about one or more existing snapshots, use the get
+	 * snapshot API.
+	 * <p>
+	 * If you omit the <code>&lt;snapshot&gt;</code> request path parameter, the
+	 * request retrieves information only for currently running snapshots. This
+	 * usage is preferred. If needed, you can specify
+	 * <code>&lt;repository&gt;</code> and <code>&lt;snapshot&gt;</code> to retrieve
+	 * information for specific snapshots, even if they're not currently running.
 	 * <p>
 	 * WARNING: Using the API to return the status of any snapshots other than
 	 * currently running snapshots can be expensive. The API requires a read from
@@ -963,10 +1021,18 @@ public class ElasticsearchSnapshotAsyncClient
 
 	/**
 	 * Get the snapshot status. Get a detailed description of the current state for
-	 * each shard participating in the snapshot. Note that this API should be used
-	 * only to obtain detailed shard-level information for ongoing snapshots. If
-	 * this detail is not needed or you want to obtain information about one or more
-	 * existing snapshots, use the get snapshot API.
+	 * each shard participating in the snapshot.
+	 * <p>
+	 * Note that this API should be used only to obtain detailed shard-level
+	 * information for ongoing snapshots. If this detail is not needed or you want
+	 * to obtain information about one or more existing snapshots, use the get
+	 * snapshot API.
+	 * <p>
+	 * If you omit the <code>&lt;snapshot&gt;</code> request path parameter, the
+	 * request retrieves information only for currently running snapshots. This
+	 * usage is preferred. If needed, you can specify
+	 * <code>&lt;repository&gt;</code> and <code>&lt;snapshot&gt;</code> to retrieve
+	 * information for specific snapshots, even if they're not currently running.
 	 * <p>
 	 * WARNING: Using the API to return the status of any snapshots other than
 	 * currently running snapshots can be expensive. The API requires a read from
@@ -993,10 +1059,18 @@ public class ElasticsearchSnapshotAsyncClient
 
 	/**
 	 * Get the snapshot status. Get a detailed description of the current state for
-	 * each shard participating in the snapshot. Note that this API should be used
-	 * only to obtain detailed shard-level information for ongoing snapshots. If
-	 * this detail is not needed or you want to obtain information about one or more
-	 * existing snapshots, use the get snapshot API.
+	 * each shard participating in the snapshot.
+	 * <p>
+	 * Note that this API should be used only to obtain detailed shard-level
+	 * information for ongoing snapshots. If this detail is not needed or you want
+	 * to obtain information about one or more existing snapshots, use the get
+	 * snapshot API.
+	 * <p>
+	 * If you omit the <code>&lt;snapshot&gt;</code> request path parameter, the
+	 * request retrieves information only for currently running snapshots. This
+	 * usage is preferred. If needed, you can specify
+	 * <code>&lt;repository&gt;</code> and <code>&lt;snapshot&gt;</code> to retrieve
+	 * information for specific snapshots, even if they're not currently running.
 	 * <p>
 	 * WARNING: Using the API to return the status of any snapshots other than
 	 * currently running snapshots can be expensive. The API requires a read from

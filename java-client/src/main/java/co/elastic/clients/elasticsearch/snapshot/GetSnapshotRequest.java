@@ -62,6 +62,13 @@ import javax.annotation.Nullable;
 
 /**
  * Get snapshot information.
+ * <p>
+ * NOTE: The <code>after</code> parameter and <code>next</code> field enable you
+ * to iterate through snapshots with some consistency guarantees regarding
+ * concurrent creation or deletion of snapshots. It is guaranteed that any
+ * snapshot that exists at the beginning of the iteration and is not
+ * concurrently deleted will be seen during the iteration. Snapshots
+ * concurrently created may be seen during an iteration.
  * 
  * @see <a href="../doc-files/api-spec.html#snapshot.get.Request">API
  *      specification</a>
@@ -138,8 +145,8 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Offset identifier to start pagination from as returned by the next field in
-	 * the response body.
+	 * An offset identifier to start pagination from as returned by the next field
+	 * in the response body.
 	 * <p>
 	 * API name: {@code after}
 	 */
@@ -149,10 +156,10 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Value of the current sort column at which to start retrieval. Can either be a
-	 * string snapshot- or repository name when sorting by snapshot or repository
-	 * name, a millisecond time value or a number when sorting by index- or shard
-	 * count.
+	 * The value of the current sort column at which to start retrieval. It can be a
+	 * string <code>snapshot-</code> or a repository name when sorting by snapshot
+	 * or repository name. It can be a millisecond time value or a number when
+	 * sorting by <code>index-</code> or shard count.
 	 * <p>
 	 * API name: {@code from_sort_value}
 	 */
@@ -162,8 +169,8 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * If false, the request returns an error for any snapshots that are
-	 * unavailable.
+	 * If <code>false</code>, the request returns an error for any snapshots that
+	 * are unavailable.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -173,7 +180,8 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * If true, returns the repository name in each snapshot.
+	 * If <code>true</code>, the response includes the repository name in each
+	 * snapshot.
 	 * <p>
 	 * API name: {@code include_repository}
 	 */
@@ -183,10 +191,11 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * If true, returns additional information about each index in the snapshot
-	 * comprising the number of shards in the index, the total size of the index in
-	 * bytes, and the maximum number of segments per shard in the index. Defaults to
-	 * false, meaning that this information is omitted.
+	 * If <code>true</code>, the response includes additional information about each
+	 * index in the snapshot comprising the number of shards in the index, the total
+	 * size of the index in bytes, and the maximum number of segments per shard in
+	 * the index. The default is <code>false</code>, meaning that this information
+	 * is omitted.
 	 * <p>
 	 * API name: {@code index_details}
 	 */
@@ -196,7 +205,8 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * If true, returns the name of each index in each snapshot.
+	 * If <code>true</code>, the response includes the name of each index in each
+	 * snapshot.
 	 * <p>
 	 * API name: {@code index_names}
 	 */
@@ -206,7 +216,7 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node. If no response is
+	 * The period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
@@ -229,8 +239,9 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Sort order. Valid values are asc for ascending and desc for descending order.
-	 * Defaults to asc, meaning ascending order.
+	 * The sort order. Valid values are <code>asc</code> for ascending and
+	 * <code>desc</code> for descending order. The default behavior is ascending
+	 * order.
 	 * <p>
 	 * API name: {@code order}
 	 */
@@ -240,8 +251,8 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Comma-separated list of snapshot repository names used to limit
-	 * the request. Wildcard (*) expressions are supported.
+	 * Required - A comma-separated list of snapshot repository names used to limit
+	 * the request. Wildcard (<code>*</code>) expressions are supported.
 	 * <p>
 	 * API name: {@code repository}
 	 */
@@ -250,8 +261,8 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Maximum number of snapshots to return. Defaults to 0 which means return all
-	 * that match the request without limit.
+	 * The maximum number of snapshots to return. The default is 0, which means to
+	 * return all that match the request without limit.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -261,11 +272,18 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Filter snapshots by a comma-separated list of SLM policy names that snapshots
-	 * belong to. Also accepts wildcards (*) and combinations of wildcards followed
-	 * by exclude patterns starting with -. To include snapshots not created by an
-	 * SLM policy you can use the special pattern _none that will match all
-	 * snapshots without an SLM policy.
+	 * Filter snapshots by a comma-separated list of snapshot lifecycle management
+	 * (SLM) policy names that snapshots belong to.
+	 * <p>
+	 * You can use wildcards (<code>*</code>) and combinations of wildcards followed
+	 * by exclude patterns starting with <code>-</code>. For example, the pattern
+	 * <code>*,-policy-a-\*</code> will return all snapshots except for those that
+	 * were created by an SLM policy with a name starting with
+	 * <code>policy-a-</code>. Note that the wildcard pattern <code>*</code> matches
+	 * all snapshots created by an SLM policy but not those snapshots that were not
+	 * created by an SLM policy. To include snapshots that were not created by an
+	 * SLM policy, you can use the special pattern <code>_none</code> that will
+	 * match all snapshots without an SLM policy.
 	 * <p>
 	 * API name: {@code slm_policy_filter}
 	 */
@@ -275,13 +293,13 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Comma-separated list of snapshot names to retrieve. Also accepts
-	 * wildcards (*).
+	 * Required - A comma-separated list of snapshot names to retrieve Wildcards
+	 * (<code>*</code>) are supported.
 	 * <ul>
 	 * <li>To get information about all snapshots in a registered repository, use a
-	 * wildcard (*) or _all.</li>
+	 * wildcard (<code>*</code>) or <code>_all</code>.</li>
 	 * <li>To get information about any snapshots that are currently running, use
-	 * _current.</li>
+	 * <code>_current</code>.</li>
 	 * </ul>
 	 * <p>
 	 * API name: {@code snapshot}
@@ -291,8 +309,8 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Allows setting a sort order for the result. Defaults to start_time, i.e.
-	 * sorting by snapshot start time stamp.
+	 * The sort order for the result. The default behavior is sorting by snapshot
+	 * start time stamp.
 	 * <p>
 	 * API name: {@code sort}
 	 */
@@ -302,9 +320,15 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * If true, returns additional information about each snapshot such as the
-	 * version of Elasticsearch which took the snapshot, the start and end times of
-	 * the snapshot, and the number of shards snapshotted.
+	 * If <code>true</code>, returns additional information about each snapshot such
+	 * as the version of Elasticsearch which took the snapshot, the start and end
+	 * times of the snapshot, and the number of shards snapshotted.
+	 * <p>
+	 * NOTE: The parameters <code>size</code>, <code>order</code>,
+	 * <code>after</code>, <code>from_sort_value</code>, <code>offset</code>,
+	 * <code>slm_policy_filter</code>, and <code>sort</code> are not supported when
+	 * you set <code>verbose=false</code> and the sort order for requests with
+	 * <code>verbose=false</code> is undefined.
 	 * <p>
 	 * API name: {@code verbose}
 	 */
@@ -366,8 +390,8 @@ public class GetSnapshotRequest extends RequestBase {
 		private Boolean verbose;
 
 		/**
-		 * Offset identifier to start pagination from as returned by the next field in
-		 * the response body.
+		 * An offset identifier to start pagination from as returned by the next field
+		 * in the response body.
 		 * <p>
 		 * API name: {@code after}
 		 */
@@ -377,10 +401,10 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * Value of the current sort column at which to start retrieval. Can either be a
-		 * string snapshot- or repository name when sorting by snapshot or repository
-		 * name, a millisecond time value or a number when sorting by index- or shard
-		 * count.
+		 * The value of the current sort column at which to start retrieval. It can be a
+		 * string <code>snapshot-</code> or a repository name when sorting by snapshot
+		 * or repository name. It can be a millisecond time value or a number when
+		 * sorting by <code>index-</code> or shard count.
 		 * <p>
 		 * API name: {@code from_sort_value}
 		 */
@@ -390,8 +414,8 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * If false, the request returns an error for any snapshots that are
-		 * unavailable.
+		 * If <code>false</code>, the request returns an error for any snapshots that
+		 * are unavailable.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
@@ -401,7 +425,8 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * If true, returns the repository name in each snapshot.
+		 * If <code>true</code>, the response includes the repository name in each
+		 * snapshot.
 		 * <p>
 		 * API name: {@code include_repository}
 		 */
@@ -411,10 +436,11 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * If true, returns additional information about each index in the snapshot
-		 * comprising the number of shards in the index, the total size of the index in
-		 * bytes, and the maximum number of segments per shard in the index. Defaults to
-		 * false, meaning that this information is omitted.
+		 * If <code>true</code>, the response includes additional information about each
+		 * index in the snapshot comprising the number of shards in the index, the total
+		 * size of the index in bytes, and the maximum number of segments per shard in
+		 * the index. The default is <code>false</code>, meaning that this information
+		 * is omitted.
 		 * <p>
 		 * API name: {@code index_details}
 		 */
@@ -424,7 +450,8 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * If true, returns the name of each index in each snapshot.
+		 * If <code>true</code>, the response includes the name of each index in each
+		 * snapshot.
 		 * <p>
 		 * API name: {@code index_names}
 		 */
@@ -434,7 +461,7 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
@@ -445,7 +472,7 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
@@ -467,8 +494,9 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * Sort order. Valid values are asc for ascending and desc for descending order.
-		 * Defaults to asc, meaning ascending order.
+		 * The sort order. Valid values are <code>asc</code> for ascending and
+		 * <code>desc</code> for descending order. The default behavior is ascending
+		 * order.
 		 * <p>
 		 * API name: {@code order}
 		 */
@@ -478,8 +506,8 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Comma-separated list of snapshot repository names used to limit
-		 * the request. Wildcard (*) expressions are supported.
+		 * Required - A comma-separated list of snapshot repository names used to limit
+		 * the request. Wildcard (<code>*</code>) expressions are supported.
 		 * <p>
 		 * API name: {@code repository}
 		 */
@@ -489,8 +517,8 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * Maximum number of snapshots to return. Defaults to 0 which means return all
-		 * that match the request without limit.
+		 * The maximum number of snapshots to return. The default is 0, which means to
+		 * return all that match the request without limit.
 		 * <p>
 		 * API name: {@code size}
 		 */
@@ -500,11 +528,18 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * Filter snapshots by a comma-separated list of SLM policy names that snapshots
-		 * belong to. Also accepts wildcards (*) and combinations of wildcards followed
-		 * by exclude patterns starting with -. To include snapshots not created by an
-		 * SLM policy you can use the special pattern _none that will match all
-		 * snapshots without an SLM policy.
+		 * Filter snapshots by a comma-separated list of snapshot lifecycle management
+		 * (SLM) policy names that snapshots belong to.
+		 * <p>
+		 * You can use wildcards (<code>*</code>) and combinations of wildcards followed
+		 * by exclude patterns starting with <code>-</code>. For example, the pattern
+		 * <code>*,-policy-a-\*</code> will return all snapshots except for those that
+		 * were created by an SLM policy with a name starting with
+		 * <code>policy-a-</code>. Note that the wildcard pattern <code>*</code> matches
+		 * all snapshots created by an SLM policy but not those snapshots that were not
+		 * created by an SLM policy. To include snapshots that were not created by an
+		 * SLM policy, you can use the special pattern <code>_none</code> that will
+		 * match all snapshots without an SLM policy.
 		 * <p>
 		 * API name: {@code slm_policy_filter}
 		 */
@@ -514,13 +549,13 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Comma-separated list of snapshot names to retrieve. Also accepts
-		 * wildcards (*).
+		 * Required - A comma-separated list of snapshot names to retrieve Wildcards
+		 * (<code>*</code>) are supported.
 		 * <ul>
 		 * <li>To get information about all snapshots in a registered repository, use a
-		 * wildcard (*) or _all.</li>
+		 * wildcard (<code>*</code>) or <code>_all</code>.</li>
 		 * <li>To get information about any snapshots that are currently running, use
-		 * _current.</li>
+		 * <code>_current</code>.</li>
 		 * </ul>
 		 * <p>
 		 * API name: {@code snapshot}
@@ -533,13 +568,13 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Comma-separated list of snapshot names to retrieve. Also accepts
-		 * wildcards (*).
+		 * Required - A comma-separated list of snapshot names to retrieve Wildcards
+		 * (<code>*</code>) are supported.
 		 * <ul>
 		 * <li>To get information about all snapshots in a registered repository, use a
-		 * wildcard (*) or _all.</li>
+		 * wildcard (<code>*</code>) or <code>_all</code>.</li>
 		 * <li>To get information about any snapshots that are currently running, use
-		 * _current.</li>
+		 * <code>_current</code>.</li>
 		 * </ul>
 		 * <p>
 		 * API name: {@code snapshot}
@@ -552,8 +587,8 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * Allows setting a sort order for the result. Defaults to start_time, i.e.
-		 * sorting by snapshot start time stamp.
+		 * The sort order for the result. The default behavior is sorting by snapshot
+		 * start time stamp.
 		 * <p>
 		 * API name: {@code sort}
 		 */
@@ -563,9 +598,15 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * If true, returns additional information about each snapshot such as the
-		 * version of Elasticsearch which took the snapshot, the start and end times of
-		 * the snapshot, and the number of shards snapshotted.
+		 * If <code>true</code>, returns additional information about each snapshot such
+		 * as the version of Elasticsearch which took the snapshot, the start and end
+		 * times of the snapshot, and the number of shards snapshotted.
+		 * <p>
+		 * NOTE: The parameters <code>size</code>, <code>order</code>,
+		 * <code>after</code>, <code>from_sort_value</code>, <code>offset</code>,
+		 * <code>slm_policy_filter</code>, and <code>sort</code> are not supported when
+		 * you set <code>verbose=false</code> and the sort order for requests with
+		 * <code>verbose=false</code> is undefined.
 		 * <p>
 		 * API name: {@code verbose}
 		 */

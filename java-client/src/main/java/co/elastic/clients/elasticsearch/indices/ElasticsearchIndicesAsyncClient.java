@@ -3719,8 +3719,10 @@ public class ElasticsearchIndicesAsyncClient
 	// ----- Endpoint: indices.rollover
 
 	/**
-	 * Roll over to a new index. TIP: It is recommended to use the index lifecycle
-	 * rollover action to automate rollovers.
+	 * Roll over to a new index. TIP: We recommend using the index lifecycle
+	 * rollover action to automate rollovers. However, Serverless does not support
+	 * Index Lifecycle Management (ILM), so don't use this approach in the
+	 * Serverless context.
 	 * <p>
 	 * The rollover API creates a new index for a data stream or index alias. The
 	 * API behavior depends on the rollover target.
@@ -3784,8 +3786,10 @@ public class ElasticsearchIndicesAsyncClient
 	}
 
 	/**
-	 * Roll over to a new index. TIP: It is recommended to use the index lifecycle
-	 * rollover action to automate rollovers.
+	 * Roll over to a new index. TIP: We recommend using the index lifecycle
+	 * rollover action to automate rollovers. However, Serverless does not support
+	 * Index Lifecycle Management (ILM), so don't use this approach in the
+	 * Serverless context.
 	 * <p>
 	 * The rollover API creates a new index for a data stream or index alias. The
 	 * API behavior depends on the rollover target.

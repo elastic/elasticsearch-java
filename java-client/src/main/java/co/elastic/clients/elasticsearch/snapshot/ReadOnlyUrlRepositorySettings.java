@@ -87,6 +87,8 @@ public class ReadOnlyUrlRepositorySettings extends RepositorySettingsBase {
 	}
 
 	/**
+	 * The maximum number of retries for HTTP and HTTPS URLs.
+	 * <p>
 	 * API name: {@code http_max_retries}
 	 */
 	@Nullable
@@ -95,6 +97,8 @@ public class ReadOnlyUrlRepositorySettings extends RepositorySettingsBase {
 	}
 
 	/**
+	 * The maximum wait time for data transfers over a connection.
+	 * <p>
 	 * API name: {@code http_socket_timeout}
 	 */
 	@Nullable
@@ -103,6 +107,9 @@ public class ReadOnlyUrlRepositorySettings extends RepositorySettingsBase {
 	}
 
 	/**
+	 * The maximum number of snapshots the repository can contain. The default is
+	 * <code>Integer.MAX_VALUE</code>, which is 2^31-1 or <code>2147483647</code>.
+	 * <p>
 	 * API name: {@code max_number_of_snapshots}
 	 */
 	@Nullable
@@ -111,7 +118,28 @@ public class ReadOnlyUrlRepositorySettings extends RepositorySettingsBase {
 	}
 
 	/**
-	 * Required - API name: {@code url}
+	 * Required - The URL location of the root of the shared filesystem repository.
+	 * The following protocols are supported:
+	 * <ul>
+	 * <li><code>file</code></li>
+	 * <li><code>ftp</code></li>
+	 * <li><code>http</code></li>
+	 * <li><code>https</code></li>
+	 * <li><code>jar</code></li>
+	 * </ul>
+	 * <p>
+	 * URLs using the HTTP, HTTPS, or FTP protocols must be explicitly allowed with
+	 * the <code>repositories.url.allowed_urls</code> cluster setting. This setting
+	 * supports wildcards in the place of a host, path, query, or fragment in the
+	 * URL.
+	 * <p>
+	 * URLs using the file protocol must point to the location of a shared
+	 * filesystem accessible to all master and data nodes in the cluster. This
+	 * location must be registered in the <code>path.repo</code> setting. You don't
+	 * need to register URLs using the FTP, HTTP, HTTPS, or JAR protocols in the
+	 * <code>path.repo</code> setting.
+	 * <p>
+	 * API name: {@code url}
 	 */
 	public final String url() {
 		return this.url;
@@ -161,6 +189,8 @@ public class ReadOnlyUrlRepositorySettings extends RepositorySettingsBase {
 		private String url;
 
 		/**
+		 * The maximum number of retries for HTTP and HTTPS URLs.
+		 * <p>
 		 * API name: {@code http_max_retries}
 		 */
 		public final Builder httpMaxRetries(@Nullable Integer value) {
@@ -169,6 +199,8 @@ public class ReadOnlyUrlRepositorySettings extends RepositorySettingsBase {
 		}
 
 		/**
+		 * The maximum wait time for data transfers over a connection.
+		 * <p>
 		 * API name: {@code http_socket_timeout}
 		 */
 		public final Builder httpSocketTimeout(@Nullable Time value) {
@@ -177,6 +209,8 @@ public class ReadOnlyUrlRepositorySettings extends RepositorySettingsBase {
 		}
 
 		/**
+		 * The maximum wait time for data transfers over a connection.
+		 * <p>
 		 * API name: {@code http_socket_timeout}
 		 */
 		public final Builder httpSocketTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
@@ -184,6 +218,9 @@ public class ReadOnlyUrlRepositorySettings extends RepositorySettingsBase {
 		}
 
 		/**
+		 * The maximum number of snapshots the repository can contain. The default is
+		 * <code>Integer.MAX_VALUE</code>, which is 2^31-1 or <code>2147483647</code>.
+		 * <p>
 		 * API name: {@code max_number_of_snapshots}
 		 */
 		public final Builder maxNumberOfSnapshots(@Nullable Integer value) {
@@ -192,7 +229,28 @@ public class ReadOnlyUrlRepositorySettings extends RepositorySettingsBase {
 		}
 
 		/**
-		 * Required - API name: {@code url}
+		 * Required - The URL location of the root of the shared filesystem repository.
+		 * The following protocols are supported:
+		 * <ul>
+		 * <li><code>file</code></li>
+		 * <li><code>ftp</code></li>
+		 * <li><code>http</code></li>
+		 * <li><code>https</code></li>
+		 * <li><code>jar</code></li>
+		 * </ul>
+		 * <p>
+		 * URLs using the HTTP, HTTPS, or FTP protocols must be explicitly allowed with
+		 * the <code>repositories.url.allowed_urls</code> cluster setting. This setting
+		 * supports wildcards in the place of a host, path, query, or fragment in the
+		 * URL.
+		 * <p>
+		 * URLs using the file protocol must point to the location of a shared
+		 * filesystem accessible to all master and data nodes in the cluster. This
+		 * location must be registered in the <code>path.repo</code> setting. You don't
+		 * need to register URLs using the FTP, HTTP, HTTPS, or JAR protocols in the
+		 * <code>path.repo</code> setting.
+		 * <p>
+		 * API name: {@code url}
 		 */
 		public final Builder url(String value) {
 			this.url = value;

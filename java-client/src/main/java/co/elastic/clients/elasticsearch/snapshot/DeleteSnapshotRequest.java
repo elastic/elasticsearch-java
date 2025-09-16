@@ -90,7 +90,9 @@ public class DeleteSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout for connection to master node
+	 * The period to wait for the master node. If the master node is not available
+	 * before the timeout expires, the request fails and returns an error. To
+	 * indicate that the request should never timeout, set it to <code>-1</code>.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -100,7 +102,7 @@ public class DeleteSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A repository name
+	 * Required - The name of the repository to delete a snapshot from.
 	 * <p>
 	 * API name: {@code repository}
 	 */
@@ -109,7 +111,8 @@ public class DeleteSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A comma-separated list of snapshot names
+	 * Required - A comma-separated list of snapshot names to delete. It also
+	 * accepts wildcards (<code>*</code>).
 	 * <p>
 	 * API name: {@code snapshot}
 	 */
@@ -149,7 +152,9 @@ public class DeleteSnapshotRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * The period to wait for the master node. If the master node is not available
+		 * before the timeout expires, the request fails and returns an error. To
+		 * indicate that the request should never timeout, set it to <code>-1</code>.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -159,7 +164,9 @@ public class DeleteSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * The period to wait for the master node. If the master node is not available
+		 * before the timeout expires, the request fails and returns an error. To
+		 * indicate that the request should never timeout, set it to <code>-1</code>.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -168,7 +175,7 @@ public class DeleteSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A repository name
+		 * Required - The name of the repository to delete a snapshot from.
 		 * <p>
 		 * API name: {@code repository}
 		 */
@@ -178,7 +185,8 @@ public class DeleteSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of snapshot names
+		 * Required - A comma-separated list of snapshot names to delete. It also
+		 * accepts wildcards (<code>*</code>).
 		 * <p>
 		 * API name: {@code snapshot}
 		 */

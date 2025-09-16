@@ -73,6 +73,9 @@ public class TextEmbeddingRequest extends RequestBase implements JsonpSerializab
 	private final List<String> input;
 
 	@Nullable
+	private final String inputType;
+
+	@Nullable
 	private final JsonData taskSettings;
 
 	@Nullable
@@ -84,6 +87,7 @@ public class TextEmbeddingRequest extends RequestBase implements JsonpSerializab
 
 		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.input = ApiTypeHelper.unmodifiableRequired(builder.input, this, "input");
+		this.inputType = builder.inputType;
 		this.taskSettings = builder.taskSettings;
 		this.timeout = builder.timeout;
 
@@ -109,6 +113,32 @@ public class TextEmbeddingRequest extends RequestBase implements JsonpSerializab
 	 */
 	public final List<String> input() {
 		return this.input;
+	}
+
+	/**
+	 * The input data type for the text embedding model. Possible values include:
+	 * <ul>
+	 * <li><code>SEARCH</code></li>
+	 * <li><code>INGEST</code></li>
+	 * <li><code>CLASSIFICATION</code></li>
+	 * <li><code>CLUSTERING</code> Not all services support all values. Unsupported
+	 * values will trigger a validation exception. Accepted values depend on the
+	 * configured inference service, refer to the relevant service-specific
+	 * documentation for more info.</li>
+	 * </ul>
+	 * <blockquote>
+	 * <p>
+	 * info The <code>input_type</code> parameter specified on the root level of the
+	 * request body will take precedence over the <code>input_type</code> parameter
+	 * specified in <code>task_settings</code>.
+	 * </p>
+	 * </blockquote>
+	 * <p>
+	 * API name: {@code input_type}
+	 */
+	@Nullable
+	public final String inputType() {
+		return this.inputType;
 	}
 
 	/**
@@ -152,6 +182,11 @@ public class TextEmbeddingRequest extends RequestBase implements JsonpSerializab
 			generator.writeEnd();
 
 		}
+		if (this.inputType != null) {
+			generator.writeKey("input_type");
+			generator.write(this.inputType);
+
+		}
 		if (this.taskSettings != null) {
 			generator.writeKey("task_settings");
 			this.taskSettings.serialize(generator, mapper);
@@ -172,6 +207,9 @@ public class TextEmbeddingRequest extends RequestBase implements JsonpSerializab
 		private String inferenceId;
 
 		private List<String> input;
+
+		@Nullable
+		private String inputType;
 
 		@Nullable
 		private JsonData taskSettings;
@@ -210,6 +248,32 @@ public class TextEmbeddingRequest extends RequestBase implements JsonpSerializab
 		 */
 		public final Builder input(String value, String... values) {
 			this.input = _listAdd(this.input, value, values);
+			return this;
+		}
+
+		/**
+		 * The input data type for the text embedding model. Possible values include:
+		 * <ul>
+		 * <li><code>SEARCH</code></li>
+		 * <li><code>INGEST</code></li>
+		 * <li><code>CLASSIFICATION</code></li>
+		 * <li><code>CLUSTERING</code> Not all services support all values. Unsupported
+		 * values will trigger a validation exception. Accepted values depend on the
+		 * configured inference service, refer to the relevant service-specific
+		 * documentation for more info.</li>
+		 * </ul>
+		 * <blockquote>
+		 * <p>
+		 * info The <code>input_type</code> parameter specified on the root level of the
+		 * request body will take precedence over the <code>input_type</code> parameter
+		 * specified in <code>task_settings</code>.
+		 * </p>
+		 * </blockquote>
+		 * <p>
+		 * API name: {@code input_type}
+		 */
+		public final Builder inputType(@Nullable String value) {
+			this.inputType = value;
 			return this;
 		}
 
@@ -271,6 +335,7 @@ public class TextEmbeddingRequest extends RequestBase implements JsonpSerializab
 	protected static void setupTextEmbeddingRequestDeserializer(ObjectDeserializer<TextEmbeddingRequest.Builder> op) {
 
 		op.add(Builder::input, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "input");
+		op.add(Builder::inputType, JsonpDeserializer.stringDeserializer(), "input_type");
 		op.add(Builder::taskSettings, JsonData._DESERIALIZER, "task_settings");
 
 	}

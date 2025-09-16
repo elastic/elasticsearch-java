@@ -89,7 +89,10 @@ public class CleanupRepositoryRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node.
+	 * The period to wait for a connection to the master node. If the master node is
+	 * not available before the timeout expires, the request fails and returns an
+	 * error. To indicate that the request should never timeout, set it to
+	 * <code>-1</code>
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -99,7 +102,7 @@ public class CleanupRepositoryRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - Snapshot repository to clean up.
+	 * Required - The name of the snapshot repository to clean up.
 	 * <p>
 	 * API name: {@code repository}
 	 */
@@ -108,7 +111,11 @@ public class CleanupRepositoryRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a response.
+	 * The period to wait for a response from all relevant nodes in the cluster
+	 * after updating the cluster metadata. If no response is received before the
+	 * timeout expires, the cluster metadata update still applies but the response
+	 * will indicate that it was not completely acknowledged. To indicate that the
+	 * request should never timeout, set it to <code>-1</code>.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -135,7 +142,10 @@ public class CleanupRepositoryRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node. If the master node is
+		 * not available before the timeout expires, the request fails and returns an
+		 * error. To indicate that the request should never timeout, set it to
+		 * <code>-1</code>
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -145,7 +155,10 @@ public class CleanupRepositoryRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node.
+		 * The period to wait for a connection to the master node. If the master node is
+		 * not available before the timeout expires, the request fails and returns an
+		 * error. To indicate that the request should never timeout, set it to
+		 * <code>-1</code>
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -154,7 +167,7 @@ public class CleanupRepositoryRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - Snapshot repository to clean up.
+		 * Required - The name of the snapshot repository to clean up.
 		 * <p>
 		 * API name: {@code repository}
 		 */
@@ -164,7 +177,11 @@ public class CleanupRepositoryRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response.
+		 * The period to wait for a response from all relevant nodes in the cluster
+		 * after updating the cluster metadata. If no response is received before the
+		 * timeout expires, the cluster metadata update still applies but the response
+		 * will indicate that it was not completely acknowledged. To indicate that the
+		 * request should never timeout, set it to <code>-1</code>.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -174,7 +191,11 @@ public class CleanupRepositoryRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response.
+		 * The period to wait for a response from all relevant nodes in the cluster
+		 * after updating the cluster metadata. If no response is received before the
+		 * timeout expires, the cluster metadata update still applies but the response
+		 * will indicate that it was not completely acknowledged. To indicate that the
+		 * request should never timeout, set it to <code>-1</code>.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

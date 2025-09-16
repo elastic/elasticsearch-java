@@ -109,6 +109,20 @@ import javax.annotation.Nullable;
  * the request parameters and the response format to vary in future versions.
  * <p>
  * NOTE: This API may not work correctly in a mixed-version cluster.
+ * <p>
+ * The default values for the parameters of this API are designed to limit the
+ * impact of the integrity verification on other activities in your cluster. For
+ * instance, by default it will only use at most half of the
+ * <code>snapshot_meta</code> threads to verify the integrity of each snapshot,
+ * allowing other snapshot operations to use the other half of this thread pool.
+ * If you modify these parameters to speed up the verification process, you risk
+ * disrupting other snapshot-related operations in your cluster. For large
+ * repositories, consider setting up a separate single-node Elasticsearch
+ * cluster just for running the integrity verification API.
+ * <p>
+ * The response exposes implementation details of the analysis which may change
+ * from version to version. The response body format is therefore not considered
+ * stable and may be different in newer versions.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#snapshot.repository_verify_integrity.Request">API
@@ -164,7 +178,8 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 	}
 
 	/**
-	 * Number of threads to use for reading blob contents
+	 * If <code>verify_blob_contents</code> is <code>true</code>, this parameter
+	 * specifies how many blobs to verify at once.
 	 * <p>
 	 * API name: {@code blob_thread_pool_concurrency}
 	 */
@@ -174,7 +189,8 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 	}
 
 	/**
-	 * Number of snapshots to verify concurrently within each index
+	 * The maximum number of index snapshots to verify concurrently within each
+	 * index verification.
 	 * <p>
 	 * API name: {@code index_snapshot_verification_concurrency}
 	 */
@@ -184,7 +200,8 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 	}
 
 	/**
-	 * Number of indices to verify concurrently
+	 * The number of indices to verify concurrently. The default behavior is to use
+	 * the entire <code>snapshot_meta</code> thread pool.
 	 * <p>
 	 * API name: {@code index_verification_concurrency}
 	 */
@@ -194,7 +211,9 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 	}
 
 	/**
-	 * Rate limit for individual blob verification
+	 * If <code>verify_blob_contents</code> is <code>true</code>, this parameter
+	 * specifies the maximum amount of data that Elasticsearch will read from the
+	 * repository every second.
 	 * <p>
 	 * API name: {@code max_bytes_per_sec}
 	 */
@@ -204,7 +223,9 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 	}
 
 	/**
-	 * Maximum permitted number of failed shard snapshots
+	 * The number of shard snapshot failures to track during integrity verification,
+	 * in order to avoid excessive resource usage. If your repository contains more
+	 * than this number of shard snapshot failures, the verification will fail.
 	 * <p>
 	 * API name: {@code max_failed_shard_snapshots}
 	 */
@@ -214,7 +235,9 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 	}
 
 	/**
-	 * Number of threads to use for reading metadata
+	 * The maximum number of snapshot metadata operations to run concurrently. The
+	 * default behavior is to use at most half of the <code>snapshot_meta</code>
+	 * thread pool at once.
 	 * <p>
 	 * API name: {@code meta_thread_pool_concurrency}
 	 */
@@ -224,7 +247,7 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A repository name
+	 * Required - The name of the snapshot repository.
 	 * <p>
 	 * API name: {@code repository}
 	 */
@@ -233,7 +256,8 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 	}
 
 	/**
-	 * Number of snapshots to verify concurrently
+	 * The number of snapshots to verify concurrently. The default behavior is to
+	 * use at most half of the <code>snapshot_meta</code> thread pool at once.
 	 * <p>
 	 * API name: {@code snapshot_verification_concurrency}
 	 */
@@ -243,7 +267,9 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to verify the contents of individual blobs
+	 * Indicates whether to verify the checksum of every data blob in the
+	 * repository. If this feature is enabled, Elasticsearch will read the entire
+	 * repository contents, which may be extremely slow and expensive.
 	 * <p>
 	 * API name: {@code verify_blob_contents}
 	 */
@@ -288,7 +314,8 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 		private Boolean verifyBlobContents;
 
 		/**
-		 * Number of threads to use for reading blob contents
+		 * If <code>verify_blob_contents</code> is <code>true</code>, this parameter
+		 * specifies how many blobs to verify at once.
 		 * <p>
 		 * API name: {@code blob_thread_pool_concurrency}
 		 */
@@ -298,7 +325,8 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 		}
 
 		/**
-		 * Number of snapshots to verify concurrently within each index
+		 * The maximum number of index snapshots to verify concurrently within each
+		 * index verification.
 		 * <p>
 		 * API name: {@code index_snapshot_verification_concurrency}
 		 */
@@ -308,7 +336,8 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 		}
 
 		/**
-		 * Number of indices to verify concurrently
+		 * The number of indices to verify concurrently. The default behavior is to use
+		 * the entire <code>snapshot_meta</code> thread pool.
 		 * <p>
 		 * API name: {@code index_verification_concurrency}
 		 */
@@ -318,7 +347,9 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 		}
 
 		/**
-		 * Rate limit for individual blob verification
+		 * If <code>verify_blob_contents</code> is <code>true</code>, this parameter
+		 * specifies the maximum amount of data that Elasticsearch will read from the
+		 * repository every second.
 		 * <p>
 		 * API name: {@code max_bytes_per_sec}
 		 */
@@ -328,7 +359,9 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 		}
 
 		/**
-		 * Maximum permitted number of failed shard snapshots
+		 * The number of shard snapshot failures to track during integrity verification,
+		 * in order to avoid excessive resource usage. If your repository contains more
+		 * than this number of shard snapshot failures, the verification will fail.
 		 * <p>
 		 * API name: {@code max_failed_shard_snapshots}
 		 */
@@ -338,7 +371,9 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 		}
 
 		/**
-		 * Number of threads to use for reading metadata
+		 * The maximum number of snapshot metadata operations to run concurrently. The
+		 * default behavior is to use at most half of the <code>snapshot_meta</code>
+		 * thread pool at once.
 		 * <p>
 		 * API name: {@code meta_thread_pool_concurrency}
 		 */
@@ -348,7 +383,7 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A repository name
+		 * Required - The name of the snapshot repository.
 		 * <p>
 		 * API name: {@code repository}
 		 * <p>
@@ -360,7 +395,7 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A repository name
+		 * Required - The name of the snapshot repository.
 		 * <p>
 		 * API name: {@code repository}
 		 * <p>
@@ -372,7 +407,8 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 		}
 
 		/**
-		 * Number of snapshots to verify concurrently
+		 * The number of snapshots to verify concurrently. The default behavior is to
+		 * use at most half of the <code>snapshot_meta</code> thread pool at once.
 		 * <p>
 		 * API name: {@code snapshot_verification_concurrency}
 		 */
@@ -382,7 +418,9 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to verify the contents of individual blobs
+		 * Indicates whether to verify the checksum of every data blob in the
+		 * repository. If this feature is enabled, Elasticsearch will read the entire
+		 * repository contents, which may be extremely slow and expensive.
 		 * <p>
 		 * API name: {@code verify_blob_contents}
 		 */
