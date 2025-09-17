@@ -1,9 +1,10 @@
 ---
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/getting-started-java.html
+navigation_title: Getting started
 ---
 
-# Getting started
+# Getting started with the {{es}} Java client
 
 This page guides you through the installation process of the Java client, shows you how to instantiate the client, and how to perform basic Elasticsearch operations with it.
 

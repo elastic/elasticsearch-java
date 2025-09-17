@@ -1,9 +1,10 @@
 ---
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/_maven_repository.html
+navigation_title: Maven Repository
 ---
 
-# Maven Repository [_maven_repository]
+# Maven repository for {{es}} Java REST client sniffer [_maven_repository]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::

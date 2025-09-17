@@ -1,9 +1,10 @@
 ---
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/java-rest-low-usage-maven.html
+navigation_title: Maven repository
 ---
 
-# Maven Repository [java-rest-low-usage-maven]
+# Maven repository for {{es}} Java REST client [java-rest-low-usage-maven]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::

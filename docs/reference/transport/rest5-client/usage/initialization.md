@@ -1,5 +1,10 @@
+---
+mapped_pages:
+  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest5-client/usage/initialization.html
+navigation_title: Initialization
+---
 
-# Initialization
+# Initializing the {{es}} Java REST 5 client 
 
 A `Rest5Client` instance can be built through the corresponding `Rest5ClientBuilder` class, created via `Rest5Client#builder(...)` static method. The only required argument is one or more URLs or `HttpHost` that the client will communicate with as follows:
 

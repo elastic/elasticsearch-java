@@ -1,9 +1,10 @@
 ---
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/java-rest-low-config.html
+navigation_title: Common configuration
 ---
 
-# Common configuration [java-rest-low-config]
+# {{es}} Java REST client configuration [java-rest-low-config]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::

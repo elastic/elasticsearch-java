@@ -1,9 +1,10 @@
 ---
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/java-rest-low-usage-initialization.html
+navigation_title: Initialization
 ---
 
-# Initialization [java-rest-low-usage-initialization]
+# Initializing the {{es}} Java REST client [java-rest-low-usage-initialization]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::
