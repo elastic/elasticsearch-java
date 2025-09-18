@@ -1,9 +1,10 @@
 ---
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/_encrypted_communication.html
+navigation_title: Encrypted communication
 ---
 
-# Encrypted communication [_encrypted_communication]
+# Encrypted communication and TLS setup in Java REST client [_encrypted_communication]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::
