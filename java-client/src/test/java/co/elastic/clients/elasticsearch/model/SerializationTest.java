@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.model;
 
-import co.elastic.clients.elasticsearch._types.GeoDistanceSort;
 import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch.cat.NodesResponse;
 import co.elastic.clients.elasticsearch.core.GetSourceResponse;
