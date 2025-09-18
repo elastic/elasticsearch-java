@@ -4,7 +4,7 @@ mapped_pages:
 navigation_title: Timeouts
 ---
 
-# Configuring Timeouts in the {{es}} Java REST 5 client
+# Configuring timeouts in the {{es}} Java REST 5 client
 
 You can set timeouts when building the `Rest5Client`:
 

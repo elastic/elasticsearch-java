@@ -4,7 +4,7 @@ mapped_pages:
 navigation_title: Timeouts
 ---
 
-# Configuring Timeouts in the {{es}} Java REST client [_timeouts]
+# Configuring timeouts in the {{es}} Java REST client [_timeouts]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::
