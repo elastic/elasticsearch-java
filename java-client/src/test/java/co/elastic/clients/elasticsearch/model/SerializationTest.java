@@ -19,6 +19,8 @@
 
 package co.elastic.clients.elasticsearch.model;
 
+import co.elastic.clients.elasticsearch._types.GeoDistanceSort;
+import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch.cat.NodesResponse;
 import co.elastic.clients.elasticsearch.core.GetSourceResponse;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -130,5 +132,39 @@ public class SerializationTest extends ModelTestCase {
         assertThrows(IllegalArgumentException.class, () -> {
             JsonpUtils.toString(Json.createObjectBuilder().build());
         });
+    }
+
+    @Test
+    public void testSortOptionsDeserializer() {
+
+        String customField = """
+                {
+                   "term" : "asc"
+                }
+                """;
+
+        SortOptions so = SortOptions.of(b->b.withJson(new StringReader(customField)));
+
+        String score = """
+                   "_score"
+                """;
+
+        so = SortOptions.of(b->b.withJson(new StringReader(score)));
+
+        String geoDistance = """
+                {
+                  "_geo_distance" : {
+                      "pin.location" : "<-70>, <40>",
+                      "order" : "asc",
+                      "unit" : "km",
+                      "mode" : "min",
+                      "distance_type" : "arc",
+                      "ignore_unmapped": true
+                  }
+                }
+            """;
+
+        so = SortOptions.of(b->b.withJson(new StringReader(geoDistance)));
+
     }
 }
