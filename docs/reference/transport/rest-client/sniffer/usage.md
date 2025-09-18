@@ -1,10 +1,10 @@
 ---
 mapped_pages:
-  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest-client/usage.html
+  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest-client/sniffer/usage.html
 navigation_title: Usage
 ---
 
-# Getting started with the {{es}} Java REST client [_usage]
+# Usage [_usage]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::

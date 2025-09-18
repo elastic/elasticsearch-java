@@ -1,9 +1,10 @@
 ---
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/java-rest-low-usage-requests.html
+navigation_title: Performing requests
 ---
 
-# Performing requests [java-rest-low-usage-requests]
+# Performing requests with the {{es}} Java REST client [java-rest-low-usage-requests]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::

@@ -1,5 +1,10 @@
+---
+mapped_pages:
+  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest5-client/config/number_of_threads.html
+navigation_title: Number of threads
+---
 
-# Number of threads
+# Setting number of threads in the {{es}} Java REST 5 client
 
 The Apache Http Async Client starts by default one dispatcher thread, and a number of worker threads used by the connection manager, as many as the number of locally detected processors (depending on what `Runtime.getRuntime().availableProcessors()` returns). The number of threads can be modified as follows:
 
