@@ -4,7 +4,7 @@ mapped_pages:
 navigation_title: Basic authentication
 ---
 
-# Basic authentication setup for {{es}} Java REST client [_basic_authentication]
+# Basic authentication setup for the {{es}} Java REST client [_basic_authentication]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::
