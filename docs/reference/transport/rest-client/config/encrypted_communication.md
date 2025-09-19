@@ -4,7 +4,7 @@ mapped_pages:
 navigation_title: Encrypted communication
 ---
 
-# Encrypted communication and TLS setup in Java REST client [_encrypted_communication]
+# Encrypted communication and TLS setup in the {{es}} Java REST client [_encrypted_communication]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::
