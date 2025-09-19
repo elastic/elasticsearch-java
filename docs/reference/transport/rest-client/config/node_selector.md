@@ -4,7 +4,7 @@ mapped_pages:
 navigation_title: Node selector
 ---
 
-# Configuring node selector in the {{es}} Java REST client [_node_selector]
+# Configuring node selectors in the {{es}} Java REST client [_node_selector]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::
