@@ -302,48 +302,57 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 			return new SortOptions(this);
 		}
 
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+			deserializeBuilder(this, parser.next(), parser, mapper);
+			return this;
+		}
 	}
 
 	public static final JsonpDeserializer<SortOptions> _DESERIALIZER = JsonpDeserializer.lazy(() -> JsonpDeserializer
 			.of(EnumSet.of(JsonParser.Event.START_OBJECT, JsonParser.Event.VALUE_STRING), (parser, mapper, event) -> {
 				SortOptions.Builder b = new SortOptions.Builder();
-
-				if (event == JsonParser.Event.VALUE_STRING) {
-					switch (parser.getString()) {
-						case "_score" :
-							b.score(s -> s);
-							break;
-						case "_doc" :
-							b.doc(d -> d);
-							break;
-						default :
-							b.field(f -> f.field(parser.getString()));
-					}
-					return b.build();
-				}
-
-				JsonpUtils.expectEvent(parser, JsonParser.Event.START_OBJECT, event);
-				JsonpUtils.expectNextEvent(parser, JsonParser.Event.KEY_NAME);
-				switch (parser.getString()) {
-					case "_score" :
-						b.score(ScoreSort._DESERIALIZER.deserialize(parser, mapper));
-						break;
-					case "_doc" :
-						b.doc(ScoreSort._DESERIALIZER.deserialize(parser, mapper));
-						break;
-					case "_geo_distance" :
-						b.geoDistance(GeoDistanceSort._DESERIALIZER.deserialize(parser, mapper));
-						break;
-					case "_script" :
-						b.script(ScriptSort._DESERIALIZER.deserialize(parser, mapper));
-						break;
-					default :
-						// Consumes END_OBJECT
-						return b.field(FieldSort._DESERIALIZER.deserialize(parser, mapper, JsonParser.Event.KEY_NAME))
-								.build();
-				}
-
-				JsonpUtils.expectNextEvent(parser, JsonParser.Event.END_OBJECT);
+				deserializeBuilder(b, event, parser, mapper);
 				return b.build();
 			}));
+
+	private static void deserializeBuilder(SortOptions.Builder b, JsonParser.Event event, JsonParser parser,
+			JsonpMapper mapper) {
+		if (event == JsonParser.Event.VALUE_STRING) {
+			switch (parser.getString()) {
+				case "_score" :
+					b.score(s -> s);
+					break;
+				case "_doc" :
+					b.doc(d -> d);
+					break;
+				default :
+					b.field(f -> f.field(parser.getString()));
+			}
+			return;
+		}
+
+		JsonpUtils.expectEvent(parser, JsonParser.Event.START_OBJECT, event);
+		JsonpUtils.expectNextEvent(parser, JsonParser.Event.KEY_NAME);
+		switch (parser.getString()) {
+			case "_score" :
+				b.score(ScoreSort._DESERIALIZER.deserialize(parser, mapper));
+				break;
+			case "_doc" :
+				b.doc(ScoreSort._DESERIALIZER.deserialize(parser, mapper));
+				break;
+			case "_geo_distance" :
+				b.geoDistance(GeoDistanceSort._DESERIALIZER.deserialize(parser, mapper));
+				break;
+			case "_script" :
+				b.script(ScriptSort._DESERIALIZER.deserialize(parser, mapper));
+				break;
+			default :
+				// Consumes END_OBJECT
+				b.field(FieldSort._DESERIALIZER.deserialize(parser, mapper, JsonParser.Event.KEY_NAME));
+				return;
+		}
+
+		JsonpUtils.expectNextEvent(parser, JsonParser.Event.END_OBJECT);
+	}
 }
