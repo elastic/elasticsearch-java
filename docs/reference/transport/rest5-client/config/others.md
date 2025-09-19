@@ -1,5 +1,10 @@
+---
+mapped_pages:
+  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest5-client/config/others.html
+navigation_title: More config options
+---
 
-# Others
+# Other configuration options in the {{es}} Java REST 5 client
 
 For any other required configuration needed, the Apache HttpAsyncClient docs should be consulted: [https://hc.apache.org/httpcomponents-asyncclient-4.1.x/](https://hc.apache.org/httpcomponents-asyncclient-4.1.x/) .
 

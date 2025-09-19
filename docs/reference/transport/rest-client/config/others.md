@@ -1,9 +1,10 @@
 ---
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/_others.html
+navigation_title: More config options
 ---
 
-# Others [_others]
+# Other configuration options in the {{es}} Java REST client [_others]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::

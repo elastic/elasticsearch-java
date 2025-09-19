@@ -1,9 +1,10 @@
 ---
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/_number_of_threads.html
+navigation_title: Number of threads
 ---
 
-# Number of threads [_number_of_threads]
+# Setting number of threads in the {{es}} Java REST client [_number_of_threads]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::

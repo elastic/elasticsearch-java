@@ -1,9 +1,10 @@
 ---
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/_basic_authentication.html
+navigation_title: Basic authentication
 ---
 
-# Basic authentication [_basic_authentication]
+# Basic authentication setup for the {{es}} Java REST client [_basic_authentication]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::

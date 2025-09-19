@@ -1,5 +1,10 @@
+---
+mapped_pages:
+  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest5-client/usage/responses.html
+navigation_title: Reading responses
+---
 
-# Reading responses
+# Reading responses with the {{es}} Java REST 5 client
 
 The `Response` object, either returned by the synchronous `performRequest` methods or received as an argument in `ResponseListener#onSuccess(Response)`, wraps the response object returned by the http client and exposes some additional information.
 

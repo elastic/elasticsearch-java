@@ -1,4 +1,10 @@
-# Logging
+---
+mapped_pages:
+  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest5-client/usage/logging.html
+navigation_title: Logging
+---
+
+# Logging in the {{es}} Java REST 5 client
 
 The Java REST 5 client uses the same logging library that the Apache Async Http Client uses: [Apache Commons Logging](https://commons.apache.org/proper/commons-logging/), which comes with support for a number of popular logging implementations. The java packages to enable logging for is `co.elastic.clients.transport.rest5_client`.
 

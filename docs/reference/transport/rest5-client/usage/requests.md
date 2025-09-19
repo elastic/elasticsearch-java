@@ -1,5 +1,10 @@
+---
+mapped_pages:
+  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest5-client/usage/requests.html
+navigation_title: Performing requests
+---
 
-# Performing requests
+# Performing requests with the {{es}} Java REST 5 client
 
 Once the `RestClient` has been created, requests can be sent by calling either `performRequest` or `performRequestAsync`. `performRequest` is synchronous and will block the calling thread and return the `Response` when the request is successful or throw an exception if it fails. `performRequestAsync` is asynchronous and accepts a `ResponseListener` argument that it calls with a `Response` when the request is successful or with an `Exception` if it fails.
 

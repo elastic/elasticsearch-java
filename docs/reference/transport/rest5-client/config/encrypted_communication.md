@@ -1,5 +1,10 @@
+---
+mapped_pages:
+  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest5-client/config/encrypted_communication.html
+navigation_title: Encrypted communication
+---
 
-# Encrypted communication
+# Encrypted communication and TLS setup in the {{es}} Java REST 5 client
 
 Encrypted communication using TLS can also be configured through the `HttpClientConfigCallback`. The [`org.apache.http.impl.nio.client.HttpAsyncClientBuilder`](https://hc.apache.org/httpcomponents-asyncclient-4.1.x/current/httpasyncclient/apidocs/org/apache/http/impl/nio/client/HttpAsyncClientBuilder.html) received as an argument exposes multiple methods to configure encrypted communication: `setSSLContext`, `setSSLSessionStrategy` and `setConnectionManager`, in order of precedence from the least important.
 

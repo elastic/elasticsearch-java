@@ -1,5 +1,10 @@
+---
+mapped_pages:
+  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest5-client/config/node_selector.html
+navigation_title: Node selector
+---
 
-# Node selector
+# Configuring node selectors in the {{es}} Java REST 5 client
 
 The client sends each request to one of the configured nodes in round-robin fashion. Nodes can optionally be filtered through a node selector that needs to be provided when initializing the client. This is useful when sniffing is enabled, in case no dedicated master nodes should be hit by HTTP requests. For each request the client will run the eventually configured node selector to filter the node candidates, then select the next one in the list out of the remaining ones.
 

@@ -1,9 +1,10 @@
 ---
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/_node_selector.html
+navigation_title: Node selector
 ---
 
-# Node selector [_node_selector]
+# Configuring node selectors in the {{es}} Java REST client [_node_selector]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::

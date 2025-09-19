@@ -1,9 +1,10 @@
 ---
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/_timeouts.html
+navigation_title: Timeouts
 ---
 
-# Timeouts [_timeouts]
+# Configuring timeouts in the {{es}} Java REST client [_timeouts]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::

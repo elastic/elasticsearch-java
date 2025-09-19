@@ -1,9 +1,10 @@
 ---
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/java-rest-sniffer-javadoc.html
+navigation_title: Javadoc
 ---
 
-# Javadoc [java-rest-sniffer-javadoc]
+# Javadoc for the {{es}} Java REST client sniffer [java-rest-sniffer-javadoc]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::

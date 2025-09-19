@@ -1,5 +1,9 @@
-
-# Sniffer
+---
+mapped_pages:
+  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest5-client/sniffer.html
+navigation_title: Sniffer
+---
+# Sniffer in the {{es}} Java REST 5 client
 
 Minimal library that allows to automatically discover nodes from a running Elasticsearch cluster and set them to an existing `RestClient` instance. It retrieves by default the nodes that belong to the cluster using the Nodes Info api and uses jackson to parse the obtained json response.
 

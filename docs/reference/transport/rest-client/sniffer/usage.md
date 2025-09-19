@@ -1,6 +1,7 @@
 ---
 mapped_pages:
-  - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/_usage.html
+  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest-client/sniffer/usage.html
+navigation_title: Usage
 ---
 
 # Usage [_usage]

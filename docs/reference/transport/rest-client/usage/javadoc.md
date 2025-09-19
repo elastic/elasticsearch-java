@@ -1,9 +1,10 @@
 ---
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/java-rest-low-javadoc.html
+navigation_title: Javadoc
 ---
 
-# Javadoc [java-rest-low-javadoc]
+# Javadoc for the {{es}} Java REST client [java-rest-low-javadoc]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::

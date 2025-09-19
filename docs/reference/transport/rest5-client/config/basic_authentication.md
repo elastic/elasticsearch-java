@@ -1,5 +1,10 @@
+---
+mapped_pages: 
+  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest5-client/config/basic_authentication.html
+navigation_title: Basic authentication
+---
 
-# Basic authentication
+# Basic authentication setup for {{es}} Java REST 5 client
 
 To use basic authentication in the REST 5 client, set a default authorization header:
 

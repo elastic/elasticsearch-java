@@ -1,4 +1,10 @@
-# Timeouts
+---
+mapped_pages:
+  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest5-client/config/timeouts.html
+navigation_title: Timeouts
+---
+
+# Configuring timeouts in the {{es}} Java REST 5 client
 
 You can set timeouts when building the `Rest5Client`:
 

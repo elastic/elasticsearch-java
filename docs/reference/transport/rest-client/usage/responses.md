@@ -1,9 +1,10 @@
 ---
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/java-rest-low-usage-responses.html
+navigation_title: Reading responses
 ---
 
-# Reading responses [java-rest-low-usage-responses]
+# Reading responses with the {{es}} Java REST client [java-rest-low-usage-responses]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::

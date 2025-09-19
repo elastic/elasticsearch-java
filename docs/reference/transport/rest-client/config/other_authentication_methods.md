@@ -1,9 +1,10 @@
 ---
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/_other_authentication_methods.html
+navigation_title: Other authentication methods
 ---
 
-# Other authentication methods [_other_authentication_methods]
+# Other authentication methods in the {{es}} Java REST client [_other_authentication_methods]
 
 :::{include} /reference/_snippets/legacy-rest-client.md
 :::
