@@ -1,6 +1,4 @@
 ---
-mapped_pages:
-  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest5-client/sniffer.html
 navigation_title: Sniffer
 ---
 # Sniffer in the {{es}} Java REST 5 client

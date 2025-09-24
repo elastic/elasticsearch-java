@@ -1,6 +1,4 @@
 ---
-mapped_pages:
-  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest-client/sniffer/usage.html
 navigation_title: Usage
 ---
 

@@ -1,6 +1,4 @@
 ---
-mapped_pages:
-  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest5-client/config/node_selector.html
 navigation_title: Node selector
 ---
 

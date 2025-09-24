@@ -1,6 +1,4 @@
 ---
-mapped_pages:
-  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest5-client/config/timeouts.html
 navigation_title: Timeouts
 ---
 

@@ -1,6 +1,4 @@
 ---
-mapped_pages:
-  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest5-client/config/encrypted_communication.html
 navigation_title: Encrypted communication
 ---
 

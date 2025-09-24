@@ -1,4 +1,4 @@
-<img alt="Elastic logo" align="right" width="auto" height="auto" src="https://www.elastic.co/static-res/images/elastic-logo-200.png">
+\<img alt="Elastic logo" align="right" width="auto" height="auto" src="https://www.elastic.co/static-res/images/elastic-logo-200.png">
 
 # Elasticsearch Java Client
 Elasticsearch is a distributed, RESTful search engine optimized for speed and relevance on production-scale workloads. You can use Elasticsearch to perform real-time search over massive datasets for applications including Vector search, Full-text search, Logs, Metrics, Application Performance Monitoring, Security Logs and more ! 

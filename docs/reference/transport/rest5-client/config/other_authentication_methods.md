@@ -1,6 +1,4 @@
 ---
-mapped_pages:
-  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest5-client/config/other_authentication_methods.html
 navigation_title: Other authentication methods
 ---
 
