@@ -1,6 +1,4 @@
 ---
-mapped_pages: 
-  - https://www.elastic.co/docs/reference/elasticsearch/clients/java/transport/rest5-client/config/basic_authentication.html
 navigation_title: Basic authentication
 ---
 
