@@ -10,7 +10,7 @@ For detailed issues, refer to the [Java client repo](https://github.com/elastic/
 
 ## 9.0.0 [known-issues-9-0-0]
 
-The latest major version of the client uses the new built-in Rest5Client, instead of depending on `elasticsearch-rest-client`. But the client still depends on Apache `commons-logging`, which causes the following exception when not available:
+The latest major version of the client uses the new built-in `Rest5Client`, instead of depending on `elasticsearch-rest-client`. But the client still depends on Apache `commons-logging`, which causes the following exception when not available:
 ```
 Exception in thread "main" java.lang.NoClassDefFoundError: org/apache/commons/logging/LogFactory
 	at co.elastic.clients.transport.rest5_client.low_level.Rest5Client.<clinit>(Rest5Client.java:115)
@@ -19,7 +19,7 @@ Exception in thread "main" java.lang.NoClassDefFoundError: org/apache/commons/lo
 	at co.elastic.clients.transport.ElasticsearchTransportConfig$Default.buildTransport(ElasticsearchTransportConfig.java:110)
 	at co.elastic.clients.elasticsearch.ElasticsearchClient.of(ElasticsearchClient.java:190)
 ```
-To fix this and use the new Rest5Client, add the `commons-logging` dependency:
+To fix this and use the new `Rest5Client`, add the `commons-logging` dependency:
 ```kotlin
 // gradle
 implementation("commons-logging:commons-logging:1.3.5")
