@@ -19,7 +19,9 @@ Exception in thread "main" java.lang.NoClassDefFoundError: org/apache/commons/lo
 	at co.elastic.clients.transport.ElasticsearchTransportConfig$Default.buildTransport(ElasticsearchTransportConfig.java:110)
 	at co.elastic.clients.elasticsearch.ElasticsearchClient.of(ElasticsearchClient.java:190)
 ```
-To fix this and use the new `Rest5Client`, add the `commons-logging` dependency:
+This problem was [fixed](https://github.com/elastic/elasticsearch-java/pull/1010) in 9.0.1.
+
+To fix this issue in 9.0.0 and use the new `Rest5Client`, add the `commons-logging` dependency:
 ```kotlin
 // gradle
 implementation("commons-logging:commons-logging:1.3.5")
