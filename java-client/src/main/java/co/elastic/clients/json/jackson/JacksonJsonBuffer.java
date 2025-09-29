@@ -112,7 +112,7 @@ class JacksonJsonBuffer implements JsonBuffer, JsonData {
         generator.close();
         return writer.toString();
       } catch (IOException e) {
-        return "<JacksonJsonBuffer: error rendering JSON: " + e.getMessage() + ">";
+        return String.format("JacksonJsonBuffer: error rendering JSON: %s", e.getMessage());
       }
     }
 }
