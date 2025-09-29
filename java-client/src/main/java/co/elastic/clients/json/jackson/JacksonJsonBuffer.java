@@ -30,6 +30,7 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
 import java.io.IOException;
+import java.io.StringWriter;
 import java.lang.reflect.Type;
 
 class JacksonJsonBuffer implements JsonBuffer, JsonData {
@@ -98,5 +99,20 @@ class JacksonJsonBuffer implements JsonBuffer, JsonData {
                 JsonpUtils.copy(parser, generator);
             }
         }
+    }
+
+    /**
+     * Renders this buffer as a JSON string for debugger and logging convenience.
+     */
+    @Override
+    public String toString() {
+      StringWriter writer = new StringWriter();
+      try (JacksonJsonpGenerator generator = new JacksonJsonpGenerator(mapper.objectMapper().createGenerator(writer))) {
+        serialize(generator, mapper);
+        generator.close();
+        return writer.toString();
+      } catch (IOException e) {
+        return String.format("JacksonJsonBuffer: error rendering JSON: %s", e.getMessage());
+      }
     }
 }
