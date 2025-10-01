@@ -41,6 +41,7 @@ import java.io.StringReader;
 
 public class SerializationTest extends ModelTestCase {
 
+    // TODO Jackson 3 doesn't work
     @Test
     public void loadAllDeserializers() throws Exception {
 
