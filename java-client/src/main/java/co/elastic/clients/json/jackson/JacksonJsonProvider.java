@@ -49,7 +49,9 @@ import java.util.Map;
 
 /**
  * A partial implementation of JSONP's SPI on top of Jackson.
+ * @deprecated Use {@link Jackson3JsonProvider}
  */
+@Deprecated
 public class JacksonJsonProvider extends JsonProvider {
 
     private final JacksonJsonpMapper mapper;

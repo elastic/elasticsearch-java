@@ -48,7 +48,9 @@ import java.util.stream.Stream;
  * moves forward the underlying Jackson parser as Jackson doesn't provide an equivalent method. This means no value
  * getter method (e.g. {@link #getInt()} or {@link #getString()} should be called until the next call to {@link #next()}.
  * Such calls will throw an {@code IllegalStateException}.
+ * @deprecated Use {@link Jackson3JsonpParser}
  */
+@Deprecated
 public class JacksonJsonpParser implements LookAheadJsonParser, BufferingJsonParser {
 
     private final com.fasterxml.jackson.core.JsonParser parser;
