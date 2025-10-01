@@ -50,7 +50,7 @@ public class Jackson3JsonpGenerator implements JsonGenerator {
         private final Jackson3JsonpMapper mapper;
 
         public Buffering(Jackson3JsonpMapper mapper) {
-            super(TokenBuffer.forGeneration()); // TODO probably not
+            super(TokenBuffer.forGeneration());
             this.mapper = mapper;
         }
 
