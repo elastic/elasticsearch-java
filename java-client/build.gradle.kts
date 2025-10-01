@@ -224,6 +224,12 @@ dependencies {
     implementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
     implementation("com.fasterxml.jackson.core", "jackson-databind", jacksonVersion)
 
+    // Apache 2.0
+    // https://github.com/FasterXML/jackson
+    implementation("tools.jackson.core", "jackson-databind", "3.0.0-rc10")
+    implementation("tools.jackson.core", "jackson-core", "3.0.0-rc10")
+    implementation("com.fasterxml.jackson.core","jackson-annotations","3.0-rc5")
+
     // EPL-2.0 OR BSD-3-Clause
     // https://eclipse-ee4j.github.io/yasson/
     testImplementation("org.eclipse", "yasson", "3.0.4")
