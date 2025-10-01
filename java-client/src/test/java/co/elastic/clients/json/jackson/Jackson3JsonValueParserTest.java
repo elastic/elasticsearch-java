@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 import java.io.StringReader;
 import java.util.Map;
 
-public class JsonValueParserTest extends Assertions {
+public class Jackson3JsonValueParserTest extends Assertions {
 
     public static class Data {
         public Map<String, Object> data;
@@ -43,7 +43,7 @@ public class JsonValueParserTest extends Assertions {
         // See https://github.com/elastic/elasticsearch-java/issues/156
 
         String json = "{\"data\": {\"value\": 1.4778125E7, \"value2\": 1.4778125E7 }}";
-        JsonpMapper mapper = new JacksonJsonpMapper();
+        JsonpMapper mapper = new Jackson3JsonpMapper();
 
         {
             JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));

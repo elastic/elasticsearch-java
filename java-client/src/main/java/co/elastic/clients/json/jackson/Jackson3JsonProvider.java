@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonGeneratorFactory;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParserFactory;
+import tools.jackson.core.ObjectReadContext;
 import tools.jackson.core.json.JsonFactory;
 
 import java.io.InputStream;
@@ -102,17 +103,17 @@ public class Jackson3JsonProvider extends JsonProvider {
 
         @Override
         public JsonParser createParser(Reader reader) {
-            return new Jackson3JsonpParser(jsonFactory.createParser(reader), mapper);
+            return new Jackson3JsonpParser(mapper.objectMapper().createParser(reader), mapper);
         }
 
         @Override
         public JsonParser createParser(InputStream in) {
-            return new Jackson3JsonpParser(jsonFactory.createParser(in), mapper);
+            return new Jackson3JsonpParser(mapper.objectMapper().createParser(in), mapper);
         }
 
         @Override
         public JsonParser createParser(InputStream in, Charset charset) {
-            return new Jackson3JsonpParser(jsonFactory.createParser(new InputStreamReader(in, charset)),
+            return new Jackson3JsonpParser(mapper.objectMapper().createParser(new InputStreamReader(in, charset)),
                 mapper);
         }
 
