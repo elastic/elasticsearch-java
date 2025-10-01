@@ -70,7 +70,10 @@ public class Jackson3JsonpMapper extends JsonpMapperBase implements BufferingJso
         // Accept single objects as collections. This is useful in the context of Elasticsearch since
         // Lucene has no concept of multivalued field and fields with a single value will be returned
         // as a single object even if other instances of the same field have multiple values.
-        return builder.rebuild().enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY).build();
+        return builder.rebuild()
+            .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+            .disable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS)
+            .build();
     }
 
     @Override
