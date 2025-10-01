@@ -19,23 +19,24 @@
 
 package co.elastic.clients.json.jackson;
 
+
 import jakarta.json.stream.JsonLocation;
+import tools.jackson.core.JsonParser;
+import tools.jackson.core.TokenStreamLocation;
 
 /**
  * Translate a Jackson location to a JSONP location.
- * @deprecated Use {@link Jackson3JsonpLocation}
  */
-@Deprecated
-public class JacksonJsonpLocation implements JsonLocation {
+public class Jackson3JsonpLocation implements JsonLocation {
 
-    private final com.fasterxml.jackson.core.JsonLocation location;
+    private final TokenStreamLocation location;
 
-    JacksonJsonpLocation(com.fasterxml.jackson.core.JsonLocation location) {
+    Jackson3JsonpLocation(TokenStreamLocation location) {
         this.location = location;
     }
 
-    JacksonJsonpLocation(com.fasterxml.jackson.core.JsonParser parser) {
-        this(parser.getTokenLocation());
+    Jackson3JsonpLocation(JsonParser parser) {
+        this(parser.currentLocation());
     }
 
     @Override
@@ -56,6 +57,6 @@ public class JacksonJsonpLocation implements JsonLocation {
 
     @Override
     public String toString() {
-        return "(line no="+location.getLineNr()+", column no="+location.getColumnNr()+", offset="+ location.getCharOffset() +")";
+        return "(line no=" + location.getLineNr() + ", column no=" + location.getColumnNr() + ", offset=" + location.getCharOffset() + ")";
     }
 }

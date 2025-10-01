@@ -160,6 +160,9 @@ public class JsonDataTest extends ModelTestCase {
             case Jackson:
                 assertEquals(name, "co.elastic.clients.json.jackson.JacksonJsonBuffer");
                 break;
+            case Jackson3:
+                assertEquals(name, "co.elastic.clients.json.jackson.Jackson3JsonBuffer");
+                break;
 
             case Jsonb:
             case Simple:
