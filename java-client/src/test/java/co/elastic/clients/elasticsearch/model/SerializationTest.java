@@ -26,6 +26,7 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapperBase;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.jackson.Jackson3JsonpMapper;
 import co.elastic.clients.testkit.ModelTestCase;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassInfo;
