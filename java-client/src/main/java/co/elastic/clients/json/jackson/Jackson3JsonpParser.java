@@ -28,8 +28,10 @@ import jakarta.json.JsonObject;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonLocation;
 import jakarta.json.stream.JsonParsingException;
+import tools.jackson.core.JacksonException;
 import tools.jackson.core.JsonParser;
 import tools.jackson.core.JsonToken;
+import tools.jackson.core.exc.StreamReadException;
 import tools.jackson.core.util.JsonParserSequence;
 import tools.jackson.databind.util.TokenBuffer;
 
@@ -92,6 +94,18 @@ public class Jackson3JsonpParser implements LookAheadJsonParser, BufferingJsonPa
         return this.parser;
     }
 
+    private JsonParsingException convertException(StreamReadException ex) {
+        return new JsonParsingException("Jackson exception: " + ex.getMessage(), ex, getLocation());
+    }
+
+    private JsonToken fetchNextToken() {
+        try {
+            return parser.nextToken();
+        } catch(StreamReadException e) {
+            throw convertException(e);
+        }
+    }
+
     private void ensureTokenIsCurrent() {
         if (hasNextWasCalled) {
             throw new IllegalStateException("Cannot get event data as parser as already been moved to the " +
@@ -105,7 +119,7 @@ public class Jackson3JsonpParser implements LookAheadJsonParser, BufferingJsonPa
             return parser.currentToken() != null;
         } else {
             hasNextWasCalled = true;
-            return parser.nextToken() != null;
+            return fetchNextToken() != null;
         }
     }
 
@@ -115,7 +129,7 @@ public class Jackson3JsonpParser implements LookAheadJsonParser, BufferingJsonPa
         if (hasNextWasCalled) {
             token = parser.currentToken();
             hasNextWasCalled = false;
-        } else token = parser.nextToken();
+        } else token = fetchNextToken();
 
         if (token == null) {
             throw new NoSuchElementException();
