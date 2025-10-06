@@ -35,6 +35,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.BiFunction;
 
+/**
+ * A deserializer for union types that finds the actual variant using structural inspection of the JSON value.
+ *
+ * @param <Union>  The union type we want to deserialize into
+ * @param <Kind>   The union's discriminant type
+ * @param <Member> The base type of possible member values in the union.
+ */
 public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer<Union> {
 
     public static class AmbiguousUnionException extends RuntimeException {
@@ -48,6 +55,11 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
         abstract EnumSet<Event> nativeEvents();
     }
 
+    /**
+     * Handler for a single member (kind) of the union. It holds the list of properties that are unique to it
+     * among all handlers, so that we can unambiguously identify it by looking at the properties that exist
+     * in a JSON object.
+     */
     private static class SingleMemberHandler<Union, Kind, Member> extends EventHandler<Union, Kind, Member> {
         private final JsonpDeserializer<? extends Member> deserializer;
         private final Kind tag;
@@ -109,7 +121,7 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
 
         private final BiFunction<Kind, Member, Union> buildFn;
 
-        private final List<UnionDeserializer.SingleMemberHandler<Union, Kind, Member>> objectMembers = new ArrayList<>();
+        private final List<SingleMemberHandler<Union, Kind, Member>> objectMembers = new ArrayList<>();
         private final Map<Event, EventHandler<Union, Kind, Member>> otherMembers = new HashMap<>();
         private final boolean allowAmbiguousPrimitive;
 
@@ -135,7 +147,7 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
             mmh.handlers.sort(Comparator.comparingInt(a -> a.deserializer.acceptedEvents().size()));
         }
 
-        private void addMember(Event e, Kind tag, UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member) {
+        private void addMember(Event e, Kind tag, SingleMemberHandler<Union, Kind, Member> member) {
             if (otherMembers.containsKey(e)) {
                 if (!allowAmbiguousPrimitive || e == Event.START_OBJECT || e == Event.START_ARRAY) {
                     throw new AmbiguousUnionException("Union member '" + tag + "' conflicts with other members");
@@ -150,26 +162,31 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
             }
         }
 
+        /**
+         * Adds a member to the union deserializer.
+         */
         public Builder<Union, Kind, Member> addMember(Kind tag, JsonpDeserializer<? extends Member> deserializer) {
 
             JsonpDeserializer<?> unwrapped = DelegatingDeserializer.unwrap(deserializer);
             if (unwrapped instanceof ObjectDeserializer) {
                 ObjectDeserializer<?> od = (ObjectDeserializer<?>) unwrapped;
                 Set<String> allFields = od.fieldNames();
-                Set<String> fields = new HashSet<>(allFields); // copy to update
-                for (UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member: objectMembers) {
-                    // Remove respective fields on both sides to keep specific ones
-                    fields.removeAll(member.fields);
+
+                Set<String> uniqueFields = new HashSet<>(allFields); // copy that we'll update
+                for (SingleMemberHandler<Union, Kind, Member> member: objectMembers) {
+                    // Keep fields that are unique to this member
+                    uniqueFields.removeAll(member.fields);
+                    // Remove the new member's fields from the existing member to ensure uniqueness
                     member.fields.removeAll(allFields);
                 }
-                UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member = new SingleMemberHandler<>(tag, deserializer, fields);
+                SingleMemberHandler<Union, Kind, Member> member = new SingleMemberHandler<>(tag, deserializer, uniqueFields);
                 objectMembers.add(member);
                 if (od.shortcutProperty() != null) {
                     // also add it as a string
                     addMember(Event.VALUE_STRING, tag, member);
                 }
             } else {
-                UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member = new SingleMemberHandler<>(tag, deserializer);
+                SingleMemberHandler<Union, Kind, Member> member = new SingleMemberHandler<>(tag, deserializer);
                 for (Event e: deserializer.nativeEvents()) {
                     addMember(e, tag, member);
                 }
@@ -181,7 +198,7 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
         @Override
         public JsonpDeserializer<Union> build() {
             // Check that no object member had all its fields removed
-            for (UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member: objectMembers) {
+            for (SingleMemberHandler<Union, Kind, Member> member: objectMembers) {
                 if (member.fields.isEmpty()) {
                     throw new AmbiguousUnionException("All properties of '" + member.tag + "' also exist in other object members");
                 }
