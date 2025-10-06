@@ -20,7 +20,6 @@
 package co.elastic.clients.transport.rest5_client.low_level;
 
 import org.apache.hc.core5.http.HttpHost;
-import org.elasticsearch.client.RestClient;
 
 import java.util.HashSet;
 import java.util.List;
@@ -31,7 +30,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 /**
- * {@link RestClient.FailureListener} impl that allows to track when it gets called for which host.
+ * {@link Rest5Client.FailureListener} impl that allows to track when it gets called for which host.
  */
 class HostsTrackingFailureListener extends Rest5Client.FailureListener {
     private volatile Set<HttpHost> httpHosts = new HashSet<>();
