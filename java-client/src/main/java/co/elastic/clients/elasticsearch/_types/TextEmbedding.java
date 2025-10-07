@@ -59,6 +59,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializable {
+	@Nullable
 	private final String modelId;
 
 	private final String modelText;
@@ -67,7 +68,7 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 
 	private TextEmbedding(Builder builder) {
 
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelId = builder.modelId;
 		this.modelText = ApiTypeHelper.requireNonNull(builder.modelText, this, "modelText");
 
 	}
@@ -85,8 +86,12 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 	}
 
 	/**
-	 * Required - API name: {@code model_id}
+	 * Model ID is required for all dense_vector fields but may be inferred for
+	 * semantic_text fields
+	 * <p>
+	 * API name: {@code model_id}
 	 */
+	@Nullable
 	public final String modelId() {
 		return this.modelId;
 	}
@@ -109,9 +114,11 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("model_id");
-		generator.write(this.modelId);
+		if (this.modelId != null) {
+			generator.writeKey("model_id");
+			generator.write(this.modelId);
 
+		}
 		generator.writeKey("model_text");
 		generator.write(this.modelText);
 
@@ -129,14 +136,18 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TextEmbedding> {
+		@Nullable
 		private String modelId;
 
 		private String modelText;
 
 		/**
-		 * Required - API name: {@code model_id}
+		 * Model ID is required for all dense_vector fields but may be inferred for
+		 * semantic_text fields
+		 * <p>
+		 * API name: {@code model_id}
 		 */
-		public final Builder modelId(String value) {
+		public final Builder modelId(@Nullable String value) {
 			this.modelId = value;
 			return this;
 		}
