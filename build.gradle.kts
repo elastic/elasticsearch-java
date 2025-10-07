@@ -79,14 +79,15 @@ tasks.register<Task>(name = "resolveDependencies") {
     }
 }
 
+
 tasks.register<Task>(name = "publishForMavenCentral") {
-    group = "Publishing"
+    group = "Custom"
     description = "Publishes artifacts to Maven Central"
     dependsOn(
         ":java-client:publishAllPublicationsToBuildRepository",
         ":java-client:generateLicenseReport",
-        tasks.named("publishToSonatype"),
-        tasks.named("closeAndReleaseStagingRepositories"),
+        ":java-client:publishToSonatype",
+        "closeAndReleaseStagingRepositories",
     )
     doLast {
         val version = this.project.version.toString()
