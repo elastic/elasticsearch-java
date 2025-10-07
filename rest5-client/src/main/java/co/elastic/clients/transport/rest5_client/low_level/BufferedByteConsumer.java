@@ -28,13 +28,13 @@ import java.nio.ByteBuffer;
 
 import static co.elastic.clients.transport.rest5_client.low_level.Constants.DEFAULT_BUFFER_INITIAL_CAPACITY;
 
-class BufferedByteConsumer extends AbstractBinAsyncEntityConsumer<ByteArrayEntity> {
+public class BufferedByteConsumer extends AbstractBinAsyncEntityConsumer<ByteArrayEntity> {
 
     private volatile ByteArrayBuffer buffer;
     private final int limit;
     private ContentType contentType;
 
-    BufferedByteConsumer(int bufferLimit) {
+    public BufferedByteConsumer(int bufferLimit) {
         super();
         if (bufferLimit <= 0) {
             throw new IllegalArgumentException("Buffer limit must be greater than 0");

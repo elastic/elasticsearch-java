@@ -17,21 +17,32 @@
  * under the License.
  */
 
-package co.elastic.clients.transport.rest5_client.low_level;
+package co.elastic.clients.transport.rest5_client;
 
-import co.elastic.clients.transport.rest5_client.SafeResponseConsumer;
+import co.elastic.clients.transport.rest5_client.low_level.BufferedByteConsumer;
+import co.elastic.clients.transport.rest5_client.low_level.HttpAsyncResponseConsumerFactory;
+import co.elastic.clients.transport.rest5_client.low_level.Request;
+import co.elastic.clients.transport.rest5_client.low_level.RequestOptions;
+import co.elastic.clients.transport.rest5_client.low_level.Response;
+import co.elastic.clients.transport.rest5_client.low_level.Rest5Client;
 import com.sun.net.httpserver.HttpServer;
+import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.HttpException;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.io.entity.ByteArrayEntity;
 import org.apache.hc.core5.http.message.BasicClassicHttpResponse;
-import org.apache.hc.core5.http.protocol.HttpContext;
+import org.apache.hc.core5.http.nio.AsyncResponseConsumer;
+import org.apache.hc.core5.http.nio.entity.AbstractBinAsyncEntityConsumer;
+import org.apache.hc.core5.http.nio.support.AbstractAsyncResponseConsumer;
+import org.apache.http.protocol.HttpContext;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
@@ -42,20 +53,36 @@ public class SafeResponseConsumerTest {
     static HttpHost ESHost;
 
     // A consumer factory that throws an Error, to simulate the effect of an OOME
-    static HttpAsyncResponseConsumerFactory FailingConsumerFactory =
-        () -> new BasicAsyncResponseConsumer(new BufferedByteConsumer(100 * 1024 * 1024)) {
-            @Override
-            public void informationResponse(HttpResponse response, HttpContext context) {
-                super.informationResponse(response, context);
-            }
+    static HttpAsyncResponseConsumerFactory FailingConsumerFactory = new FailingAsyncResponseConsumerFactory();
 
-            @Override
-            protected BasicClassicHttpResponse buildResult(HttpResponse response, ByteArrayEntity entity,
-                                                           ContentType contentType) {
-                super.buildResult(response, entity, contentType);
-                throw new Error("Error in buildResult");
-            }
-        };
+    static class FailingAsyncResponseConsumerFactory implements HttpAsyncResponseConsumerFactory {
+        @Override
+        public AsyncResponseConsumer<ClassicHttpResponse> createHttpAsyncResponseConsumer() {
+            return new FailingAsyncResponseConsumer();
+        }
+    }
+
+    static class FailingAsyncResponseConsumer extends AbstractAsyncResponseConsumer<ClassicHttpResponse,
+        ByteArrayEntity> {
+
+        FailingAsyncResponseConsumer() {
+            super(new BufferedByteConsumer(100));
+        }
+
+        @Override
+        public void informationResponse(HttpResponse response, org.apache.hc.core5.http.protocol.HttpContext context)
+            throws HttpException, IOException {
+            throw new Error("Error in informationResponse");
+        }
+
+        @Override
+        protected BasicClassicHttpResponse buildResult(
+            HttpResponse response, ByteArrayEntity entity,
+            ContentType contentType
+        ) {
+            throw new Error("Error in buildResult");
+        }
+    }
 
     @BeforeAll
     public static void setup() throws Exception {
