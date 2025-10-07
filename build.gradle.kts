@@ -85,6 +85,7 @@ tasks.register<Task>(name = "resolveDependencies") {
     }
 }
 
+// gradle tasks --all to check tasks in subprojects
 tasks.register<Task>(name = "publishForMavenCentral") {
     group = "Publishing"
     description = "Publishes artifacts to Maven Central"
@@ -92,7 +93,7 @@ tasks.register<Task>(name = "publishForMavenCentral") {
         ":java-client:publishAllPublicationsToBuildRepository",
         ":java-client:generateLicenseReport",
         ":java-client:publishToSonatype",
-        ":java-client:closeAndReleaseStagingRepositories",
+        "closeAndReleaseStagingRepositories",
     )
     doLast {
         val version = this.project.version.toString()
