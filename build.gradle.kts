@@ -86,6 +86,40 @@ tasks.register<Task>(name = "resolveDependencies") {
     }
 }
 
+// gradle tasks --all to check tasks in subprojects
+tasks.register<Task>(name = "publishForMavenCentral") {
+    group = "Publishing"
+    description = "Publishes artifacts to Maven Central"
+    dependsOn(
+        ":java-client:publishAllPublicationsToBuildRepository",
+        ":java-client:generateLicenseReport",
+        ":java-client:publishToSonatype",
+        "closeAndReleaseStagingRepositories",
+    )
+    doLast {
+        val version = this.project.version.toString()
+        println("Releasing version $version")
+
+        val releaseDir = File(rootProject.layout.buildDirectory.get().asFile, "release")
+        releaseDir.mkdirs()
+
+        File(rootProject.layout.buildDirectory.get().asFile, "repository/co/elastic/clients").listFiles()?.forEach { artifact ->
+            println("Releasing artifact " + artifact.name)
+
+            val versionDir = File(artifact, version)
+
+            versionDir.listFiles()?.forEach { file ->
+                if (file.name.endsWith(".jar") || file.name.endsWith(".pom")) {
+                    var name = file.name
+
+                    file.copyTo(File(releaseDir, name), overwrite = true)
+                }
+            }
+        }
+    }
+}
+
+// TODO delete
 tasks.register<Task>(name = "publishForReleaseManager") {
     group = "Publishing"
     description = "Publishes artifacts in a format suitable for the Elastic release manager"
