@@ -44,10 +44,13 @@ RUN ./gradlew
 
 COPY --chown=$BUILDER_UID:$BUILDER_GID LICENSE.txt NOTICE.txt ./
 
+
+
 # Prefetch and cache dependencies
 COPY --chown=$BUILDER_UID:$BUILDER_GID build.gradle.kts settings.gradle.kts ./
 COPY --chown=$BUILDER_UID:$BUILDER_GID buildSrc ./buildSrc/
 COPY --chown=$BUILDER_UID:$BUILDER_GID config ./config/
+COPY --chown=$BUILDER_UID:$BUILDER_GID rest5-client ./rest5-client/
 COPY --chown=$BUILDER_UID:$BUILDER_GID java-client/build.gradle.kts ./java-client/
 RUN ./gradlew resolveDependencies
 
