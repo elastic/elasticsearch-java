@@ -127,6 +127,7 @@ import co.elastic.clients.elasticsearch.migration.ElasticsearchMigrationClient;
 import co.elastic.clients.elasticsearch.ml.ElasticsearchMlClient;
 import co.elastic.clients.elasticsearch.monitoring.ElasticsearchMonitoringClient;
 import co.elastic.clients.elasticsearch.nodes.ElasticsearchNodesClient;
+import co.elastic.clients.elasticsearch.project.ElasticsearchProjectClient;
 import co.elastic.clients.elasticsearch.query_rules.ElasticsearchQueryRulesClient;
 import co.elastic.clients.elasticsearch.rollup.ElasticsearchRollupClient;
 import co.elastic.clients.elasticsearch.search_application.ElasticsearchSearchApplicationClient;
@@ -138,6 +139,7 @@ import co.elastic.clients.elasticsearch.slm.ElasticsearchSlmClient;
 import co.elastic.clients.elasticsearch.snapshot.ElasticsearchSnapshotClient;
 import co.elastic.clients.elasticsearch.sql.ElasticsearchSqlClient;
 import co.elastic.clients.elasticsearch.ssl.ElasticsearchSslClient;
+import co.elastic.clients.elasticsearch.streams.ElasticsearchStreamsClient;
 import co.elastic.clients.elasticsearch.synonyms.ElasticsearchSynonymsClient;
 import co.elastic.clients.elasticsearch.tasks.ElasticsearchTasksClient;
 import co.elastic.clients.elasticsearch.text_structure.ElasticsearchTextStructureClient;
@@ -302,6 +304,10 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		return new ElasticsearchNodesClient(this.transport, this.transportOptions);
 	}
 
+	public ElasticsearchProjectClient project() {
+		return new ElasticsearchProjectClient(this.transport, this.transportOptions);
+	}
+
 	public ElasticsearchQueryRulesClient queryRules() {
 		return new ElasticsearchQueryRulesClient(this.transport, this.transportOptions);
 	}
@@ -344,6 +350,10 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public ElasticsearchSslClient ssl() {
 		return new ElasticsearchSslClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchStreamsClient streams() {
+		return new ElasticsearchStreamsClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchSynonymsClient synonyms() {

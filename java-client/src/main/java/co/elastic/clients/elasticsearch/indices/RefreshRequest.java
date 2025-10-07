@@ -68,6 +68,9 @@ import javax.annotation.Nullable;
  * seconds. You can change this default interval with the
  * <code>index.refresh_interval</code> setting.
  * <p>
+ * In Elastic Cloud Serverless, the default refresh interval is 5 seconds across
+ * all indices.
+ * <p>
  * Refresh requests are synchronous and do not return a response until the
  * refresh operation completes.
  * <p>

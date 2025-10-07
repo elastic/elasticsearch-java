@@ -21,7 +21,7 @@ package co.elastic.clients.elasticsearch.shutdown;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.TimeUnit;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -91,7 +91,7 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 	private final String allocationDelay;
 
 	@Nullable
-	private final TimeUnit masterTimeout;
+	private final Time masterTimeout;
 
 	private final String nodeId;
 
@@ -101,7 +101,7 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 	private final String targetNodeName;
 
 	@Nullable
-	private final TimeUnit timeout;
+	private final Time timeout;
 
 	private final Type type;
 
@@ -145,7 +145,7 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final TimeUnit masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -192,7 +192,7 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public final TimeUnit timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -255,7 +255,7 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 		private String allocationDelay;
 
 		@Nullable
-		private TimeUnit masterTimeout;
+		private Time masterTimeout;
 
 		private String nodeId;
 
@@ -265,7 +265,7 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 		private String targetNodeName;
 
 		@Nullable
-		private TimeUnit timeout;
+		private Time timeout;
 
 		private Type type;
 
@@ -290,9 +290,19 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable TimeUnit value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * The period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -339,9 +349,19 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(@Nullable TimeUnit value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -452,10 +472,10 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.jsonValue());
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout.jsonValue());
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

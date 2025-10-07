@@ -35,6 +35,7 @@ import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
@@ -102,7 +103,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 	private final String jobId;
 
 	@Nullable
-	private final String overallScore;
+	private final Double overallScore;
 
 	@Nullable
 	private final DateTime start;
@@ -191,7 +192,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code overall_score}
 	 */
 	@Nullable
-	public final String overallScore() {
+	public final Double overallScore() {
 		return this.overallScore;
 	}
 
@@ -286,7 +287,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		private String jobId;
 
 		@Nullable
-		private String overallScore;
+		private Double overallScore;
 
 		@Nullable
 		private DateTime start;
@@ -365,7 +366,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code overall_score}
 		 */
-		public final Builder overallScore(@Nullable String value) {
+		public final Builder overallScore(@Nullable Double value) {
 			this.overallScore = value;
 			return this;
 		}
@@ -423,7 +424,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		op.add(Builder::bucketSpan, Time._DESERIALIZER, "bucket_span");
 		op.add(Builder::end, DateTime._DESERIALIZER, "end");
 		op.add(Builder::excludeInterim, JsonpDeserializer.booleanDeserializer(), "exclude_interim");
-		op.add(Builder::overallScore, JsonpDeserializer.stringDeserializer(), "overall_score");
+		op.add(Builder::overallScore, JsonpDeserializer.doubleDeserializer(), "overall_score");
 		op.add(Builder::start, DateTime._DESERIALIZER, "start");
 		op.add(Builder::topN, JsonpDeserializer.integerDeserializer(), "top_n");
 

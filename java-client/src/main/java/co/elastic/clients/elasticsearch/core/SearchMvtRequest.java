@@ -46,7 +46,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -416,6 +415,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> index;
 
 	@Nullable
+	private final String projectRouting;
+
+	@Nullable
 	private final Query query;
 
 	private final Map<String, RuntimeField> runtimeMappings;
@@ -451,6 +453,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		this.gridPrecision = builder.gridPrecision;
 		this.gridType = builder.gridType;
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.projectRouting = builder.projectRouting;
 		this.query = builder.query;
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.size = builder.size;
@@ -598,6 +601,20 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final List<String> index() {
 		return this.index;
+	}
+
+	/**
+	 * Specifies a subset of projects to target for the search using project
+	 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
+	 * _alias tag and a single value (possibly wildcarded). Examples:
+	 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+	 * only.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
 	}
 
 	/**
@@ -848,6 +865,9 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		private GridType gridType;
 
 		private List<String> index;
+
+		@Nullable
+		private String projectRouting;
 
 		@Nullable
 		private Query query;
@@ -1132,6 +1152,20 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder index(String value, String... values) {
 			this.index = _listAdd(this.index, value, values);
+			return this;
+		}
+
+		/**
+		 * Specifies a subset of projects to target for the search using project
+		 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
+		 * _alias tag and a single value (possibly wildcarded). Examples:
+		 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+		 * only.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
 			return this;
 		}
 
@@ -1460,7 +1494,11 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.projectRouting != null) {
+					params.put("project_routing", request.projectRouting);
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, null);
 }

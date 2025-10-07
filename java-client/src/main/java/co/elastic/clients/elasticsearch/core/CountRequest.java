@@ -120,6 +120,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	private final String preference;
 
 	@Nullable
+	private final String projectRouting;
+
+	@Nullable
 	private final String q;
 
 	@Nullable
@@ -147,6 +150,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		this.lenient = builder.lenient;
 		this.minScore = builder.minScore;
 		this.preference = builder.preference;
+		this.projectRouting = builder.projectRouting;
 		this.q = builder.q;
 		this.query = builder.query;
 		this.routing = builder.routing;
@@ -303,6 +307,20 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Specifies a subset of projects to target for the search using project
+	 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
+	 * _alias tag and a single value (possibly wildcarded). Examples:
+	 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+	 * only.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
+	}
+
+	/**
 	 * The query in Lucene query string syntax. This parameter cannot be used with a
 	 * request body.
 	 * <p>
@@ -412,6 +430,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private String preference;
+
+		@Nullable
+		private String projectRouting;
 
 		@Nullable
 		private String q;
@@ -605,6 +626,20 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies a subset of projects to target for the search using project
+		 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
+		 * _alias tag and a single value (possibly wildcarded). Examples:
+		 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+		 * only.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
+			return this;
+		}
+
+		/**
 		 * The query in Lucene query string syntax. This parameter cannot be used with a
 		 * request body.
 		 * <p>
@@ -781,6 +816,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.terminateAfter != null) {
 					params.put("terminate_after", String.valueOf(request.terminateAfter));
+				}
+				if (request.projectRouting != null) {
+					params.put("project_routing", request.projectRouting);
 				}
 				if (request.lenient != null) {
 					params.put("lenient", String.valueOf(request.lenient));

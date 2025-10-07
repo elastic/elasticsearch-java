@@ -80,6 +80,9 @@ public class MultisearchHeader implements JsonpSerializable {
 	private final String preference;
 
 	@Nullable
+	private final String projectRouting;
+
+	@Nullable
 	private final Boolean requestCache;
 
 	@Nullable
@@ -106,6 +109,7 @@ public class MultisearchHeader implements JsonpSerializable {
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.preference = builder.preference;
+		this.projectRouting = builder.projectRouting;
 		this.requestCache = builder.requestCache;
 		this.routing = builder.routing;
 		this.searchType = builder.searchType;
@@ -155,6 +159,14 @@ public class MultisearchHeader implements JsonpSerializable {
 	@Nullable
 	public final String preference() {
 		return this.preference;
+	}
+
+	/**
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
 	}
 
 	/**
@@ -250,6 +262,11 @@ public class MultisearchHeader implements JsonpSerializable {
 			generator.write(this.preference);
 
 		}
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
 		if (this.requestCache != null) {
 			generator.writeKey("request_cache");
 			generator.write(this.requestCache);
@@ -308,6 +325,9 @@ public class MultisearchHeader implements JsonpSerializable {
 
 		@Nullable
 		private String preference;
+
+		@Nullable
+		private String projectRouting;
 
 		@Nullable
 		private Boolean requestCache;
@@ -388,6 +408,14 @@ public class MultisearchHeader implements JsonpSerializable {
 		 */
 		public final Builder preference(@Nullable String value) {
 			this.preference = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
 			return this;
 		}
 
@@ -473,6 +501,7 @@ public class MultisearchHeader implements JsonpSerializable {
 		op.add(Builder::ignoreUnavailable, JsonpDeserializer.booleanDeserializer(), "ignore_unavailable");
 		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index");
 		op.add(Builder::preference, JsonpDeserializer.stringDeserializer(), "preference");
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 		op.add(Builder::requestCache, JsonpDeserializer.booleanDeserializer(), "request_cache");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
 		op.add(Builder::searchType, SearchType._DESERIALIZER, "search_type");

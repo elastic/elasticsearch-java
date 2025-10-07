@@ -173,8 +173,14 @@ public class RolloverConditions implements JsonpSerializable {
 	}
 
 	/**
+	 * The <code>max_size</code> condition has been deprecated in 9.3.0 and
+	 * <code>max_primary_shard_size</code> should be used instead
+	 * <p>
 	 * API name: {@code max_size}
+	 * 
+	 * @deprecated 9.3.0
 	 */
+	@Deprecated
 	@Nullable
 	public final String maxSize() {
 		return this.maxSize;
@@ -455,8 +461,14 @@ public class RolloverConditions implements JsonpSerializable {
 		}
 
 		/**
+		 * The <code>max_size</code> condition has been deprecated in 9.3.0 and
+		 * <code>max_primary_shard_size</code> should be used instead
+		 * <p>
 		 * API name: {@code max_size}
+		 * 
+		 * @deprecated 9.3.0
 		 */
+		@Deprecated
 		public final Builder maxSize(@Nullable String value) {
 			this.maxSize = value;
 			return this;

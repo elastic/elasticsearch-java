@@ -156,6 +156,63 @@ public class AggregateBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link CartesianBoundsAggregate cartesian_bounds}
+	 * {@code Aggregate} variant.
+	 */
+	public static CartesianBoundsAggregate.Builder cartesianBounds() {
+		return new CartesianBoundsAggregate.Builder();
+	}
+
+	/**
+	 * Creates a Aggregate of the {@link CartesianBoundsAggregate cartesian_bounds}
+	 * {@code Aggregate} variant.
+	 */
+	public static Aggregate cartesianBounds(
+			Function<CartesianBoundsAggregate.Builder, ObjectBuilder<CartesianBoundsAggregate>> fn) {
+		Aggregate.Builder builder = new Aggregate.Builder();
+		builder.cartesianBounds(fn.apply(new CartesianBoundsAggregate.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link CartesianCentroidAggregate
+	 * cartesian_centroid} {@code Aggregate} variant.
+	 */
+	public static CartesianCentroidAggregate.Builder cartesianCentroid() {
+		return new CartesianCentroidAggregate.Builder();
+	}
+
+	/**
+	 * Creates a Aggregate of the {@link CartesianCentroidAggregate
+	 * cartesian_centroid} {@code Aggregate} variant.
+	 */
+	public static Aggregate cartesianCentroid(
+			Function<CartesianCentroidAggregate.Builder, ObjectBuilder<CartesianCentroidAggregate>> fn) {
+		Aggregate.Builder builder = new Aggregate.Builder();
+		builder.cartesianCentroid(fn.apply(new CartesianCentroidAggregate.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link ChangePointAggregate change_point}
+	 * {@code Aggregate} variant.
+	 */
+	public static ChangePointAggregate.Builder changePoint() {
+		return new ChangePointAggregate.Builder();
+	}
+
+	/**
+	 * Creates a Aggregate of the {@link ChangePointAggregate change_point}
+	 * {@code Aggregate} variant.
+	 */
+	public static Aggregate changePoint(
+			Function<ChangePointAggregate.Builder, ObjectBuilder<ChangePointAggregate>> fn) {
+		Aggregate.Builder builder = new Aggregate.Builder();
+		builder.changePoint(fn.apply(new ChangePointAggregate.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link ChildrenAggregate children}
 	 * {@code Aggregate} variant.
 	 */

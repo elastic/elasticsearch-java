@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class CompositeDateHistogramAggregation extends CompositeAggregationBase {
+public class CompositeDateHistogramAggregation extends CompositeAggregationBase
+		implements
+			CompositeAggregationSourceVariant {
 	@Nullable
 	private final String format;
 
@@ -88,6 +90,14 @@ public class CompositeDateHistogramAggregation extends CompositeAggregationBase 
 	public static CompositeDateHistogramAggregation of(
 			Function<Builder, ObjectBuilder<CompositeDateHistogramAggregation>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * CompositeAggregationSource variant kind.
+	 */
+	@Override
+	public CompositeAggregationSource.Kind _compositeAggregationSourceKind() {
+		return CompositeAggregationSource.Kind.DateHistogram;
 	}
 
 	/**

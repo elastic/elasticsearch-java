@@ -89,7 +89,9 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * Required - An identifier for the pipeline.
+	 * Required - An identifier for the pipeline. Pipeline IDs must begin with a
+	 * letter or underscore and contain only letters, underscores, dashes, hyphens
+	 * and numbers.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -126,7 +128,9 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		private Pipeline pipeline;
 
 		/**
-		 * Required - An identifier for the pipeline.
+		 * Required - An identifier for the pipeline. Pipeline IDs must begin with a
+		 * letter or underscore and contain only letters, underscores, dashes, hyphens
+		 * and numbers.
 		 * <p>
 		 * API name: {@code id}
 		 */

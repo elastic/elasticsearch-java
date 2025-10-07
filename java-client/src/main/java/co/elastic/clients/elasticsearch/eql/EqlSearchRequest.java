@@ -119,6 +119,9 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Integer maxSamplesPerKey;
 
+	@Nullable
+	private final String projectRouting;
+
 	private final String query;
 
 	@Nullable
@@ -157,6 +160,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		this.keepAlive = builder.keepAlive;
 		this.keepOnCompletion = builder.keepOnCompletion;
 		this.maxSamplesPerKey = builder.maxSamplesPerKey;
+		this.projectRouting = builder.projectRouting;
 		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.resultPosition = builder.resultPosition;
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
@@ -326,6 +330,20 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Integer maxSamplesPerKey() {
 		return this.maxSamplesPerKey;
+	}
+
+	/**
+	 * Specifies a subset of projects to target for the search using project
+	 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
+	 * _alias tag and a single value (possibly wildcarded). Examples:
+	 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+	 * only.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
 	}
 
 	/**
@@ -555,6 +573,9 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Integer maxSamplesPerKey;
+
+		@Nullable
+		private String projectRouting;
 
 		private String query;
 
@@ -844,6 +865,20 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies a subset of projects to target for the search using project
+		 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
+		 * _alias tag and a single value (possibly wildcarded). Examples:
+		 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+		 * only.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
+			return this;
+		}
+
+		/**
 		 * Required - EQL query you wish to run.
 		 * <p>
 		 * API name: {@code query}
@@ -1048,6 +1083,9 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.projectRouting != null) {
+					params.put("project_routing", request.projectRouting);
 				}
 				if (request.ccsMinimizeRoundtrips != null) {
 					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));

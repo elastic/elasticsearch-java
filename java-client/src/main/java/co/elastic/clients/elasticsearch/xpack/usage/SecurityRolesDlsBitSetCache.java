@@ -31,6 +31,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.Long;
 import java.lang.Number;
 import java.lang.String;
 import java.util.Objects;
@@ -69,6 +70,16 @@ public class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 
 	private final Number memoryInBytes;
 
+	private final long hits;
+
+	private final long misses;
+
+	private final long evictions;
+
+	private final long hitsTimeInMillis;
+
+	private final long missesTimeInMillis;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private SecurityRolesDlsBitSetCache(Builder builder) {
@@ -76,6 +87,12 @@ public class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.memory = builder.memory;
 		this.memoryInBytes = ApiTypeHelper.requireNonNull(builder.memoryInBytes, this, "memoryInBytes");
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits", 0);
+		this.misses = ApiTypeHelper.requireNonNull(builder.misses, this, "misses", 0);
+		this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions", 0);
+		this.hitsTimeInMillis = ApiTypeHelper.requireNonNull(builder.hitsTimeInMillis, this, "hitsTimeInMillis", 0);
+		this.missesTimeInMillis = ApiTypeHelper.requireNonNull(builder.missesTimeInMillis, this, "missesTimeInMillis",
+				0);
 
 	}
 
@@ -84,13 +101,17 @@ public class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code count}
+	 * Required - Number of entries in the cache.
+	 * <p>
+	 * API name: {@code count}
 	 */
 	public final int count() {
 		return this.count;
 	}
 
 	/**
+	 * Human-readable amount of memory taken up by the cache.
+	 * <p>
 	 * API name: {@code memory}
 	 */
 	@Nullable
@@ -99,10 +120,57 @@ public class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code memory_in_bytes}
+	 * Required - Memory taken up by the cache in bytes.
+	 * <p>
+	 * API name: {@code memory_in_bytes}
 	 */
 	public final Number memoryInBytes() {
 		return this.memoryInBytes;
+	}
+
+	/**
+	 * Required - Total number of cache hits.
+	 * <p>
+	 * API name: {@code hits}
+	 */
+	public final long hits() {
+		return this.hits;
+	}
+
+	/**
+	 * Required - Total number of cache misses.
+	 * <p>
+	 * API name: {@code misses}
+	 */
+	public final long misses() {
+		return this.misses;
+	}
+
+	/**
+	 * Required - Total number of cache evictions.
+	 * <p>
+	 * API name: {@code evictions}
+	 */
+	public final long evictions() {
+		return this.evictions;
+	}
+
+	/**
+	 * Required - Total combined time spent in cache for hits in milliseconds.
+	 * <p>
+	 * API name: {@code hits_time_in_millis}
+	 */
+	public final long hitsTimeInMillis() {
+		return this.hitsTimeInMillis;
+	}
+
+	/**
+	 * Required - Total combined time spent in cache for misses in milliseconds.
+	 * <p>
+	 * API name: {@code misses_time_in_millis}
+	 */
+	public final long missesTimeInMillis() {
+		return this.missesTimeInMillis;
 	}
 
 	/**
@@ -127,6 +195,21 @@ public class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 		generator.writeKey("memory_in_bytes");
 		generator.write(this.memoryInBytes.doubleValue());
 
+		generator.writeKey("hits");
+		generator.write(this.hits);
+
+		generator.writeKey("misses");
+		generator.write(this.misses);
+
+		generator.writeKey("evictions");
+		generator.write(this.evictions);
+
+		generator.writeKey("hits_time_in_millis");
+		generator.write(this.hitsTimeInMillis);
+
+		generator.writeKey("misses_time_in_millis");
+		generator.write(this.missesTimeInMillis);
+
 	}
 
 	@Override
@@ -150,8 +233,20 @@ public class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 
 		private Number memoryInBytes;
 
+		private Long hits;
+
+		private Long misses;
+
+		private Long evictions;
+
+		private Long hitsTimeInMillis;
+
+		private Long missesTimeInMillis;
+
 		/**
-		 * Required - API name: {@code count}
+		 * Required - Number of entries in the cache.
+		 * <p>
+		 * API name: {@code count}
 		 */
 		public final Builder count(int value) {
 			this.count = value;
@@ -159,6 +254,8 @@ public class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 		}
 
 		/**
+		 * Human-readable amount of memory taken up by the cache.
+		 * <p>
 		 * API name: {@code memory}
 		 */
 		public final Builder memory(@Nullable String value) {
@@ -167,10 +264,62 @@ public class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code memory_in_bytes}
+		 * Required - Memory taken up by the cache in bytes.
+		 * <p>
+		 * API name: {@code memory_in_bytes}
 		 */
 		public final Builder memoryInBytes(Number value) {
 			this.memoryInBytes = value;
+			return this;
+		}
+
+		/**
+		 * Required - Total number of cache hits.
+		 * <p>
+		 * API name: {@code hits}
+		 */
+		public final Builder hits(long value) {
+			this.hits = value;
+			return this;
+		}
+
+		/**
+		 * Required - Total number of cache misses.
+		 * <p>
+		 * API name: {@code misses}
+		 */
+		public final Builder misses(long value) {
+			this.misses = value;
+			return this;
+		}
+
+		/**
+		 * Required - Total number of cache evictions.
+		 * <p>
+		 * API name: {@code evictions}
+		 */
+		public final Builder evictions(long value) {
+			this.evictions = value;
+			return this;
+		}
+
+		/**
+		 * Required - Total combined time spent in cache for hits in milliseconds.
+		 * <p>
+		 * API name: {@code hits_time_in_millis}
+		 */
+		public final Builder hitsTimeInMillis(long value) {
+			this.hitsTimeInMillis = value;
+			return this;
+		}
+
+		/**
+		 * Required - Total combined time spent in cache for misses in milliseconds.
+		 * <p>
+		 * API name: {@code misses_time_in_millis}
+		 */
+		public final Builder missesTimeInMillis(long value) {
+			this.missesTimeInMillis = value;
 			return this;
 		}
 
@@ -206,6 +355,11 @@ public class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 		op.add(Builder::memory, JsonpDeserializer.stringDeserializer(), "memory");
 		op.add(Builder::memoryInBytes, JsonpDeserializer.numberDeserializer(), "memory_in_bytes");
+		op.add(Builder::hits, JsonpDeserializer.longDeserializer(), "hits");
+		op.add(Builder::misses, JsonpDeserializer.longDeserializer(), "misses");
+		op.add(Builder::evictions, JsonpDeserializer.longDeserializer(), "evictions");
+		op.add(Builder::hitsTimeInMillis, JsonpDeserializer.longDeserializer(), "hits_time_in_millis");
+		op.add(Builder::missesTimeInMillis, JsonpDeserializer.longDeserializer(), "misses_time_in_millis");
 
 	}
 

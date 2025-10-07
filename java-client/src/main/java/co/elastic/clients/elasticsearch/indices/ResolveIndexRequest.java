@@ -80,6 +80,9 @@ public class ResolveIndexRequest extends RequestBase {
 
 	private final List<String> name;
 
+	@Nullable
+	private final String projectRouting;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ResolveIndexRequest(Builder builder) {
@@ -89,6 +92,7 @@ public class ResolveIndexRequest extends RequestBase {
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.mode = ApiTypeHelper.unmodifiable(builder.mode);
 		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
+		this.projectRouting = builder.projectRouting;
 
 	}
 
@@ -156,6 +160,19 @@ public class ResolveIndexRequest extends RequestBase {
 		return this.name;
 	}
 
+	/**
+	 * Specifies a subset of projects to target using project metadata tags in a
+	 * subset of Lucene query syntax. Allowed Lucene queries: the _alias tag and a
+	 * single value (possibly wildcarded). Examples: _alias:my-project
+	 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -178,6 +195,9 @@ public class ResolveIndexRequest extends RequestBase {
 		private List<IndexMode> mode;
 
 		private List<String> name;
+
+		@Nullable
+		private String projectRouting;
 
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
@@ -291,6 +311,19 @@ public class ResolveIndexRequest extends RequestBase {
 			return this;
 		}
 
+		/**
+		 * Specifies a subset of projects to target using project metadata tags in a
+		 * subset of Lucene query syntax. Allowed Lucene queries: the _alias tag and a
+		 * single value (possibly wildcarded). Examples: _alias:my-project
+		 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -373,6 +406,9 @@ public class ResolveIndexRequest extends RequestBase {
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.projectRouting != null) {
+					params.put("project_routing", request.projectRouting);
 				}
 				return params;
 

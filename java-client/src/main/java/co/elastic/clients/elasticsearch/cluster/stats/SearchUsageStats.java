@@ -72,6 +72,8 @@ public class SearchUsageStats implements JsonpSerializable {
 
 	private final Map<String, Long> retrievers;
 
+	private final ExtendedSearchUsage extended;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private SearchUsageStats(Builder builder) {
@@ -81,6 +83,7 @@ public class SearchUsageStats implements JsonpSerializable {
 		this.rescorers = ApiTypeHelper.unmodifiableRequired(builder.rescorers, this, "rescorers");
 		this.sections = ApiTypeHelper.unmodifiableRequired(builder.sections, this, "sections");
 		this.retrievers = ApiTypeHelper.unmodifiableRequired(builder.retrievers, this, "retrievers");
+		this.extended = ApiTypeHelper.requireNonNull(builder.extended, this, "extended");
 
 	}
 
@@ -121,6 +124,13 @@ public class SearchUsageStats implements JsonpSerializable {
 	 */
 	public final Map<String, Long> retrievers() {
 		return this.retrievers;
+	}
+
+	/**
+	 * Required - API name: {@code extended}
+	 */
+	public final ExtendedSearchUsage extended() {
+		return this.extended;
 	}
 
 	/**
@@ -181,6 +191,8 @@ public class SearchUsageStats implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		generator.writeKey("extended");
+		this.extended.serialize(generator, mapper);
 
 	}
 
@@ -205,6 +217,8 @@ public class SearchUsageStats implements JsonpSerializable {
 		private Map<String, Long> sections;
 
 		private Map<String, Long> retrievers;
+
+		private ExtendedSearchUsage extended;
 
 		/**
 		 * Required - API name: {@code total}
@@ -294,6 +308,21 @@ public class SearchUsageStats implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * Required - API name: {@code extended}
+		 */
+		public final Builder extended(ExtendedSearchUsage value) {
+			this.extended = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code extended}
+		 */
+		public final Builder extended(Function<ExtendedSearchUsage.Builder, ObjectBuilder<ExtendedSearchUsage>> fn) {
+			return this.extended(fn.apply(new ExtendedSearchUsage.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -331,6 +360,7 @@ public class SearchUsageStats implements JsonpSerializable {
 				"sections");
 		op.add(Builder::retrievers, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.longDeserializer()),
 				"retrievers");
+		op.add(Builder::extended, ExtendedSearchUsage._DESERIALIZER, "extended");
 
 	}
 

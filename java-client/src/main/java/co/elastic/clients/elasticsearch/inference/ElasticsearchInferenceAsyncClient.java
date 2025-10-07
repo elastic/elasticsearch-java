@@ -802,6 +802,51 @@ public class ElasticsearchInferenceAsyncClient
 		return putCohere(fn.apply(new PutCohereRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: inference.put_contextualai
+
+	/**
+	 * Create an Contextual AI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>contexualai</code> service.
+	 * <p>
+	 * To review the available <code>rerank</code> models, refer to <a href=
+	 * "https://docs.contextual.ai/api-reference/rerank/rerank#body-model">https://docs.contextual.ai/api-reference/rerank/rerank#body-model</a>.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-contextualai">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutContextualaiResponse> putContextualai(PutContextualaiRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutContextualaiRequest, PutContextualaiResponse, ErrorResponse> endpoint = (JsonEndpoint<PutContextualaiRequest, PutContextualaiResponse, ErrorResponse>) PutContextualaiRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create an Contextual AI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>contexualai</code> service.
+	 * <p>
+	 * To review the available <code>rerank</code> models, refer to <a href=
+	 * "https://docs.contextual.ai/api-reference/rerank/rerank#body-model">https://docs.contextual.ai/api-reference/rerank/rerank#body-model</a>.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutContextualaiRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-contextualai">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PutContextualaiResponse> putContextualai(
+			Function<PutContextualaiRequest.Builder, ObjectBuilder<PutContextualaiRequest>> fn) {
+		return putContextualai(fn.apply(new PutContextualaiRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: inference.put_custom
 
 	/**

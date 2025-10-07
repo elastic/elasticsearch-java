@@ -21,7 +21,7 @@ package co.elastic.clients.elasticsearch.shutdown;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.TimeUnit;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -77,7 +77,7 @@ import javax.annotation.Nullable;
 
 public class GetNodeRequest extends RequestBase {
 	@Nullable
-	private final TimeUnit masterTimeout;
+	private final Time masterTimeout;
 
 	private final List<String> nodeId;
 
@@ -101,7 +101,7 @@ public class GetNodeRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public final TimeUnit masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -122,7 +122,7 @@ public class GetNodeRequest extends RequestBase {
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<GetNodeRequest> {
 		@Nullable
-		private TimeUnit masterTimeout;
+		private Time masterTimeout;
 
 		@Nullable
 		private List<String> nodeId;
@@ -133,9 +133,19 @@ public class GetNodeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public final Builder masterTimeout(@Nullable TimeUnit value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -244,7 +254,7 @@ public class GetNodeRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.jsonValue());
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				return params;
 

@@ -98,6 +98,9 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 	private final Long maxConcurrentSearches;
 
 	@Nullable
+	private final String projectRouting;
+
+	@Nullable
 	private final SearchType searchType;
 
 	private final List<RequestItem> searchTemplates;
@@ -109,6 +112,7 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.maxConcurrentSearches = builder.maxConcurrentSearches;
+		this.projectRouting = builder.projectRouting;
 		this.searchType = builder.searchType;
 		this.searchTemplates = ApiTypeHelper.unmodifiableRequired(builder.searchTemplates, this, "searchTemplates");
 
@@ -152,6 +156,20 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 	@Nullable
 	public final Long maxConcurrentSearches() {
 		return this.maxConcurrentSearches;
+	}
+
+	/**
+	 * Specifies a subset of projects to target for the search using project
+	 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
+	 * _alias tag and a single value (possibly wildcarded). Examples:
+	 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+	 * only.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
 	}
 
 	/**
@@ -201,6 +219,9 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 
 		@Nullable
 		private Long maxConcurrentSearches;
+
+		@Nullable
+		private String projectRouting;
 
 		@Nullable
 		private SearchType searchType;
@@ -253,6 +274,20 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		 */
 		public final Builder maxConcurrentSearches(@Nullable Long value) {
 			this.maxConcurrentSearches = value;
+			return this;
+		}
+
+		/**
+		 * Specifies a subset of projects to target for the search using project
+		 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
+		 * _alias tag and a single value (possibly wildcarded). Examples:
+		 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+		 * only.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
 			return this;
 		}
 
@@ -378,6 +413,9 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 				params.put("typed_keys", "true");
 				if (request.maxConcurrentSearches != null) {
 					params.put("max_concurrent_searches", String.valueOf(request.maxConcurrentSearches));
+				}
+				if (request.projectRouting != null) {
+					params.put("project_routing", request.projectRouting);
 				}
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.jsonValue());
