@@ -61,11 +61,15 @@ public class SemanticTextIndexOptions implements JsonpSerializable {
 	@Nullable
 	private final DenseVectorIndexOptions denseVector;
 
+	@Nullable
+	private final SparseVectorIndexOptions sparseVector;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private SemanticTextIndexOptions(Builder builder) {
 
 		this.denseVector = builder.denseVector;
+		this.sparseVector = builder.sparseVector;
 
 	}
 
@@ -82,6 +86,14 @@ public class SemanticTextIndexOptions implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code sparse_vector}
+	 */
+	@Nullable
+	public final SparseVectorIndexOptions sparseVector() {
+		return this.sparseVector;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -95,6 +107,11 @@ public class SemanticTextIndexOptions implements JsonpSerializable {
 		if (this.denseVector != null) {
 			generator.writeKey("dense_vector");
 			this.denseVector.serialize(generator, mapper);
+
+		}
+		if (this.sparseVector != null) {
+			generator.writeKey("sparse_vector");
+			this.sparseVector.serialize(generator, mapper);
 
 		}
 
@@ -117,6 +134,9 @@ public class SemanticTextIndexOptions implements JsonpSerializable {
 		@Nullable
 		private DenseVectorIndexOptions denseVector;
 
+		@Nullable
+		private SparseVectorIndexOptions sparseVector;
+
 		/**
 		 * API name: {@code dense_vector}
 		 */
@@ -131,6 +151,22 @@ public class SemanticTextIndexOptions implements JsonpSerializable {
 		public final Builder denseVector(
 				Function<DenseVectorIndexOptions.Builder, ObjectBuilder<DenseVectorIndexOptions>> fn) {
 			return this.denseVector(fn.apply(new DenseVectorIndexOptions.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code sparse_vector}
+		 */
+		public final Builder sparseVector(@Nullable SparseVectorIndexOptions value) {
+			this.sparseVector = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code sparse_vector}
+		 */
+		public final Builder sparseVector(
+				Function<SparseVectorIndexOptions.Builder, ObjectBuilder<SparseVectorIndexOptions>> fn) {
+			return this.sparseVector(fn.apply(new SparseVectorIndexOptions.Builder()).build());
 		}
 
 		@Override
@@ -163,6 +199,7 @@ public class SemanticTextIndexOptions implements JsonpSerializable {
 			ObjectDeserializer<SemanticTextIndexOptions.Builder> op) {
 
 		op.add(Builder::denseVector, DenseVectorIndexOptions._DESERIALIZER, "dense_vector");
+		op.add(Builder::sparseVector, SparseVectorIndexOptions._DESERIALIZER, "sparse_vector");
 
 	}
 

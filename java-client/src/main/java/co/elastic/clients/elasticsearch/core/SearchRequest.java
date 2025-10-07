@@ -780,10 +780,11 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies a subset of projects to target for a search using project metadata
-	 * tags in a subset Lucene syntax. Allowed Lucene queries: the _alias tag and a
-	 * single value (possible wildcarded). Examples: _alias:my-project
-	 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
+	 * Specifies a subset of projects to target for the search using project
+	 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
+	 * _alias tag and a single value (possibly wildcarded). Examples:
+	 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+	 * only.
 	 * <p>
 	 * API name: {@code project_routing}
 	 */
@@ -2197,10 +2198,11 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies a subset of projects to target for a search using project metadata
-		 * tags in a subset Lucene syntax. Allowed Lucene queries: the _alias tag and a
-		 * single value (possible wildcarded). Examples: _alias:my-project
-		 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
+		 * Specifies a subset of projects to target for the search using project
+		 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
+		 * _alias tag and a single value (possibly wildcarded). Examples:
+		 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+		 * only.
 		 * <p>
 		 * API name: {@code project_routing}
 		 */

@@ -69,6 +69,9 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 
 	private final String field;
 
+	@Nullable
+	private final ChunkRescorer chunkRescorer;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private TextSimilarityReranker(Builder builder) {
@@ -79,6 +82,7 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 		this.inferenceId = builder.inferenceId;
 		this.inferenceText = ApiTypeHelper.requireNonNull(builder.inferenceText, this, "inferenceText");
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.chunkRescorer = builder.chunkRescorer;
 
 	}
 
@@ -126,7 +130,7 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 	}
 
 	/**
-	 * Required - The text snippet used as the basis for similarity comparison
+	 * Required - The text snippet used as the basis for similarity comparison.
 	 * <p>
 	 * API name: {@code inference_text}
 	 */
@@ -137,12 +141,22 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 	/**
 	 * Required - The document field to be used for text similarity comparisons.
 	 * This field should contain the text that will be evaluated against the
-	 * inference_text
+	 * inference_text.
 	 * <p>
 	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
+	}
+
+	/**
+	 * Whether to rescore on only the best matching chunks.
+	 * <p>
+	 * API name: {@code chunk_rescorer}
+	 */
+	@Nullable
+	public final ChunkRescorer chunkRescorer() {
+		return this.chunkRescorer;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -167,6 +181,12 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 		generator.writeKey("field");
 		generator.write(this.field);
 
+		if (this.chunkRescorer != null) {
+			generator.writeKey("chunk_rescorer");
+			this.chunkRescorer.serialize(generator, mapper);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -189,6 +209,9 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 		private String inferenceText;
 
 		private String field;
+
+		@Nullable
+		private ChunkRescorer chunkRescorer;
 
 		/**
 		 * Required - The nested retriever which will produce the first-level results,
@@ -244,7 +267,7 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 		}
 
 		/**
-		 * Required - The text snippet used as the basis for similarity comparison
+		 * Required - The text snippet used as the basis for similarity comparison.
 		 * <p>
 		 * API name: {@code inference_text}
 		 */
@@ -256,13 +279,32 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 		/**
 		 * Required - The document field to be used for text similarity comparisons.
 		 * This field should contain the text that will be evaluated against the
-		 * inference_text
+		 * inference_text.
 		 * <p>
 		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
 			return this;
+		}
+
+		/**
+		 * Whether to rescore on only the best matching chunks.
+		 * <p>
+		 * API name: {@code chunk_rescorer}
+		 */
+		public final Builder chunkRescorer(@Nullable ChunkRescorer value) {
+			this.chunkRescorer = value;
+			return this;
+		}
+
+		/**
+		 * Whether to rescore on only the best matching chunks.
+		 * <p>
+		 * API name: {@code chunk_rescorer}
+		 */
+		public final Builder chunkRescorer(Function<ChunkRescorer.Builder, ObjectBuilder<ChunkRescorer>> fn) {
+			return this.chunkRescorer(fn.apply(new ChunkRescorer.Builder()).build());
 		}
 
 		@Override
@@ -299,6 +341,7 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 		op.add(Builder::inferenceId, JsonpDeserializer.stringDeserializer(), "inference_id");
 		op.add(Builder::inferenceText, JsonpDeserializer.stringDeserializer(), "inference_text");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
+		op.add(Builder::chunkRescorer, ChunkRescorer._DESERIALIZER, "chunk_rescorer");
 
 	}
 

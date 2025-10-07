@@ -26,6 +26,7 @@ import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.elasticsearch.core.search.SourceConfig;
+import co.elastic.clients.elasticsearch.core.search.TrackHits;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -84,6 +85,9 @@ public class TranslateResponse implements JsonpSerializable {
 
 	private final List<SortOptions> sort;
 
+	@Nullable
+	private final TrackHits trackTotalHits;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private TranslateResponse(Builder builder) {
@@ -94,6 +98,7 @@ public class TranslateResponse implements JsonpSerializable {
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.query = builder.query;
 		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
+		this.trackTotalHits = builder.trackTotalHits;
 
 	}
 
@@ -144,6 +149,14 @@ public class TranslateResponse implements JsonpSerializable {
 	 */
 	public final List<SortOptions> sort() {
 		return this.sort;
+	}
+
+	/**
+	 * API name: {@code track_total_hits}
+	 */
+	@Nullable
+	public final TrackHits trackTotalHits() {
+		return this.trackTotalHits;
 	}
 
 	/**
@@ -203,6 +216,11 @@ public class TranslateResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.trackTotalHits != null) {
+			generator.writeKey("track_total_hits");
+			this.trackTotalHits.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -235,6 +253,9 @@ public class TranslateResponse implements JsonpSerializable {
 
 		@Nullable
 		private List<SortOptions> sort;
+
+		@Nullable
+		private TrackHits trackTotalHits;
 
 		/**
 		 * API name: {@code aggregations}
@@ -379,6 +400,21 @@ public class TranslateResponse implements JsonpSerializable {
 			return sort(fn.apply(new SortOptions.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code track_total_hits}
+		 */
+		public final Builder trackTotalHits(@Nullable TrackHits value) {
+			this.trackTotalHits = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code track_total_hits}
+		 */
+		public final Builder trackTotalHits(Function<TrackHits.Builder, ObjectBuilder<TrackHits>> fn) {
+			return this.trackTotalHits(fn.apply(new TrackHits.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -414,6 +450,7 @@ public class TranslateResponse implements JsonpSerializable {
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "fields");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
+		op.add(Builder::trackTotalHits, TrackHits._DESERIALIZER, "track_total_hits");
 
 	}
 

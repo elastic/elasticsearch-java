@@ -80,6 +80,9 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	private final Time age;
 
 	@Nullable
+	private final Long ageInMillis;
+
+	@Nullable
 	private final String failedStep;
 
 	@Nullable
@@ -152,6 +155,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		this.actionTime = builder.actionTime;
 		this.actionTimeMillis = builder.actionTimeMillis;
 		this.age = builder.age;
+		this.ageInMillis = builder.ageInMillis;
 		this.failedStep = builder.failedStep;
 		this.failedStepRetryCount = builder.failedStepRetryCount;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
@@ -220,6 +224,14 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	@Nullable
 	public final Time age() {
 		return this.age;
+	}
+
+	/**
+	 * API name: {@code age_in_millis}
+	 */
+	@Nullable
+	public final Long ageInMillis() {
+		return this.ageInMillis;
 	}
 
 	/**
@@ -434,6 +446,11 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 			this.age.serialize(generator, mapper);
 
 		}
+		if (this.ageInMillis != null) {
+			generator.writeKey("age_in_millis");
+			generator.write(this.ageInMillis);
+
+		}
 		if (this.failedStep != null) {
 			generator.writeKey("failed_step");
 			generator.write(this.failedStep);
@@ -582,6 +599,9 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		private Time age;
 
 		@Nullable
+		private Long ageInMillis;
+
+		@Nullable
 		private String failedStep;
 
 		@Nullable
@@ -685,6 +705,14 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		 */
 		public final Builder age(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.age(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code age_in_millis}
+		 */
+		public final Builder ageInMillis(@Nullable Long value) {
+			this.ageInMillis = value;
+			return this;
 		}
 
 		/**
@@ -943,6 +971,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		op.add(Builder::actionTime, DateTime._DESERIALIZER, "action_time");
 		op.add(Builder::actionTimeMillis, JsonpDeserializer.longDeserializer(), "action_time_millis");
 		op.add(Builder::age, Time._DESERIALIZER, "age");
+		op.add(Builder::ageInMillis, JsonpDeserializer.longDeserializer(), "age_in_millis");
 		op.add(Builder::failedStep, JsonpDeserializer.stringDeserializer(), "failed_step");
 		op.add(Builder::failedStepRetryCount, JsonpDeserializer.integerDeserializer(), "failed_step_retry_count");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");

@@ -3552,6 +3552,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * seconds. You can change this default interval with the
 	 * <code>index.refresh_interval</code> setting.
 	 * <p>
+	 * In Elastic Cloud Serverless, the default refresh interval is 5 seconds across
+	 * all indices.
+	 * <p>
 	 * Refresh requests are synchronous and do not return a response until the
 	 * refresh operation completes.
 	 * <p>
@@ -3585,6 +3588,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * only on indices that have received one search request or more in the last 30
 	 * seconds. You can change this default interval with the
 	 * <code>index.refresh_interval</code> setting.
+	 * <p>
+	 * In Elastic Cloud Serverless, the default refresh interval is 5 seconds across
+	 * all indices.
 	 * <p>
 	 * Refresh requests are synchronous and do not return a response until the
 	 * refresh operation completes.
@@ -3620,6 +3626,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * only on indices that have received one search request or more in the last 30
 	 * seconds. You can change this default interval with the
 	 * <code>index.refresh_interval</code> setting.
+	 * <p>
+	 * In Elastic Cloud Serverless, the default refresh interval is 5 seconds across
+	 * all indices.
 	 * <p>
 	 * Refresh requests are synchronous and do not return a response until the
 	 * refresh operation completes.

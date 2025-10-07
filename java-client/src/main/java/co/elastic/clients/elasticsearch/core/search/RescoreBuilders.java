@@ -78,4 +78,22 @@ public class RescoreBuilders {
 		return builder.build();
 	}
 
+	/**
+	 * Creates a builder for the {@link ScriptRescore script} {@code Rescore}
+	 * variant.
+	 */
+	public static ScriptRescore.Builder script() {
+		return new ScriptRescore.Builder();
+	}
+
+	/**
+	 * Creates a Rescore of the {@link ScriptRescore script} {@code Rescore}
+	 * variant.
+	 */
+	public static Rescore script(Function<ScriptRescore.Builder, ObjectBuilder<ScriptRescore>> fn) {
+		Rescore.Builder builder = new Rescore.Builder();
+		builder.script(fn.apply(new ScriptRescore.Builder()).build());
+		return builder.build();
+	}
+
 }

@@ -75,6 +75,8 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 	@Nullable
 	private final ChunkingSettings chunkingSettings;
 
+	private final Map<String, Property> fields;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private SemanticTextProperty(Builder builder) {
@@ -84,6 +86,7 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 		this.searchInferenceId = builder.searchInferenceId;
 		this.indexOptions = builder.indexOptions;
 		this.chunkingSettings = builder.chunkingSettings;
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 
 	}
 
@@ -157,6 +160,18 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 	}
 
 	/**
+	 * Multi-fields allow the same string value to be indexed in multiple ways for
+	 * different purposes, such as one field for search and a multi-field for
+	 * sorting and aggregations, or the same string value analyzed by different
+	 * analyzers.
+	 * <p>
+	 * API name: {@code fields}
+	 */
+	public final Map<String, Property> fields() {
+		return this.fields;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -200,6 +215,17 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 			this.chunkingSettings.serialize(generator, mapper);
 
 		}
+		if (ApiTypeHelper.isDefined(this.fields)) {
+			generator.writeKey("fields");
+			generator.writeStartObject();
+			for (Map.Entry<String, Property> item0 : this.fields.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -231,6 +257,9 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 
 		@Nullable
 		private ChunkingSettings chunkingSettings;
+
+		@Nullable
+		private Map<String, Property> fields;
 
 		/**
 		 * API name: {@code meta}
@@ -325,6 +354,50 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 			return this.chunkingSettings(fn.apply(new ChunkingSettings.Builder()).build());
 		}
 
+		/**
+		 * Multi-fields allow the same string value to be indexed in multiple ways for
+		 * different purposes, such as one field for search and a multi-field for
+		 * sorting and aggregations, or the same string value analyzed by different
+		 * analyzers.
+		 * <p>
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
+		 */
+		public final Builder fields(Map<String, Property> map) {
+			this.fields = _mapPutAll(this.fields, map);
+			return this;
+		}
+
+		/**
+		 * Multi-fields allow the same string value to be indexed in multiple ways for
+		 * different purposes, such as one field for search and a multi-field for
+		 * sorting and aggregations, or the same string value analyzed by different
+		 * analyzers.
+		 * <p>
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
+		 */
+		public final Builder fields(String key, Property value) {
+			this.fields = _mapPut(this.fields, key, value);
+			return this;
+		}
+
+		/**
+		 * Multi-fields allow the same string value to be indexed in multiple ways for
+		 * different purposes, such as one field for search and a multi-field for
+		 * sorting and aggregations, or the same string value analyzed by different
+		 * analyzers.
+		 * <p>
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code> using a builder lambda.
+		 */
+		public final Builder fields(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
+			return fields(key, fn.apply(new Property.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -358,6 +431,7 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 		op.add(Builder::searchInferenceId, JsonpDeserializer.stringDeserializer(), "search_inference_id");
 		op.add(Builder::indexOptions, SemanticTextIndexOptions._DESERIALIZER, "index_options");
 		op.add(Builder::chunkingSettings, ChunkingSettings._DESERIALIZER, "chunking_settings");
+		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(Property._DESERIALIZER), "fields");
 
 		op.ignore("type");
 	}

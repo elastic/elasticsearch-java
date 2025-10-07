@@ -69,7 +69,8 @@ public class AuthenticateApiKey implements JsonpSerializable {
 
 	private final ApiKeyManagedBy managedBy;
 
-	private final boolean internal;
+	@Nullable
+	private final Boolean internal;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -78,7 +79,7 @@ public class AuthenticateApiKey implements JsonpSerializable {
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.name = builder.name;
 		this.managedBy = ApiTypeHelper.requireNonNull(builder.managedBy, this, "managedBy");
-		this.internal = ApiTypeHelper.requireNonNull(builder.internal, this, "internal", false);
+		this.internal = builder.internal;
 
 	}
 
@@ -109,9 +110,10 @@ public class AuthenticateApiKey implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code internal}
+	 * API name: {@code internal}
 	 */
-	public final boolean internal() {
+	@Nullable
+	public final Boolean internal() {
 		return this.internal;
 	}
 
@@ -136,8 +138,11 @@ public class AuthenticateApiKey implements JsonpSerializable {
 		}
 		generator.writeKey("managed_by");
 		this.managedBy.serialize(generator, mapper);
-		generator.writeKey("internal");
-		generator.write(this.internal);
+		if (this.internal != null) {
+			generator.writeKey("internal");
+			generator.write(this.internal);
+
+		}
 
 	}
 
@@ -162,6 +167,7 @@ public class AuthenticateApiKey implements JsonpSerializable {
 
 		private ApiKeyManagedBy managedBy;
 
+		@Nullable
 		private Boolean internal;
 
 		/**
@@ -189,9 +195,9 @@ public class AuthenticateApiKey implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code internal}
+		 * API name: {@code internal}
 		 */
-		public final Builder internal(boolean value) {
+		public final Builder internal(@Nullable Boolean value) {
 			this.internal = value;
 			return this;
 		}

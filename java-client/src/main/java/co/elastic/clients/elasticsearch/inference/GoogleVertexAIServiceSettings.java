@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -71,6 +72,9 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 
 	private final String serviceAccountJson;
 
+	@Nullable
+	private final Integer dimensions;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GoogleVertexAIServiceSettings(Builder builder) {
@@ -80,6 +84,7 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 		this.projectId = ApiTypeHelper.requireNonNull(builder.projectId, this, "projectId");
 		this.rateLimit = builder.rateLimit;
 		this.serviceAccountJson = ApiTypeHelper.requireNonNull(builder.serviceAccountJson, this, "serviceAccountJson");
+		this.dimensions = builder.dimensions;
 
 	}
 
@@ -139,6 +144,19 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * For a <code>text_embedding</code> task, the number of dimensions the
+	 * resulting output embeddings should have. By default, the model's standard
+	 * output dimension is used. Refer to the Google documentation for more
+	 * information.
+	 * <p>
+	 * API name: {@code dimensions}
+	 */
+	@Nullable
+	public final Integer dimensions() {
+		return this.dimensions;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -166,6 +184,12 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 		generator.writeKey("service_account_json");
 		generator.write(this.serviceAccountJson);
 
+		if (this.dimensions != null) {
+			generator.writeKey("dimensions");
+			generator.write(this.dimensions);
+
+		}
+
 	}
 
 	@Override
@@ -192,6 +216,9 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 		private RateLimitSetting rateLimit;
 
 		private String serviceAccountJson;
+
+		@Nullable
+		private Integer dimensions;
 
 		/**
 		 * Required - The name of the location to use for the inference task. Refer to
@@ -259,6 +286,19 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * For a <code>text_embedding</code> task, the number of dimensions the
+		 * resulting output embeddings should have. By default, the model's standard
+		 * output dimension is used. Refer to the Google documentation for more
+		 * information.
+		 * <p>
+		 * API name: {@code dimensions}
+		 */
+		public final Builder dimensions(@Nullable Integer value) {
+			this.dimensions = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -293,6 +333,7 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 		op.add(Builder::projectId, JsonpDeserializer.stringDeserializer(), "project_id");
 		op.add(Builder::rateLimit, RateLimitSetting._DESERIALIZER, "rate_limit");
 		op.add(Builder::serviceAccountJson, JsonpDeserializer.stringDeserializer(), "service_account_json");
+		op.add(Builder::dimensions, JsonpDeserializer.integerDeserializer(), "dimensions");
 
 	}
 

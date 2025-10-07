@@ -113,6 +113,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	private final List<JsonData> params;
 
 	@Nullable
+	private final String projectRouting;
+
+	@Nullable
 	private final String query;
 
 	@Nullable
@@ -143,6 +146,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		this.keepOnCompletion = builder.keepOnCompletion;
 		this.pageTimeout = builder.pageTimeout;
 		this.params = ApiTypeHelper.unmodifiable(builder.params);
+		this.projectRouting = builder.projectRouting;
 		this.query = builder.query;
 		this.requestTimeout = builder.requestTimeout;
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
@@ -302,6 +306,20 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final List<JsonData> params() {
 		return this.params;
+	}
+
+	/**
+	 * Specifies a subset of projects to target for the search using project
+	 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
+	 * _alias tag and a single value (possibly wildcarded). Examples:
+	 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+	 * only.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
 	}
 
 	/**
@@ -514,6 +532,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private List<JsonData> params;
+
+		@Nullable
+		private String projectRouting;
 
 		@Nullable
 		private String query;
@@ -735,6 +756,20 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies a subset of projects to target for the search using project
+		 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
+		 * _alias tag and a single value (possibly wildcarded). Examples:
+		 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+		 * only.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
+			return this;
+		}
+
+		/**
 		 * The SQL query to run.
 		 * <p>
 		 * API name: {@code query}
@@ -921,6 +956,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 				Map<String, String> params = new HashMap<>();
 				if (request.format != null) {
 					params.put("format", request.format.jsonValue());
+				}
+				if (request.projectRouting != null) {
+					params.put("project_routing", request.projectRouting);
 				}
 				return params;
 

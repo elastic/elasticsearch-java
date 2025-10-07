@@ -78,6 +78,9 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	private final String description;
 
+	@Nullable
+	private final FieldAccessPattern fieldAccessPattern;
+
 	private final String id;
 
 	@Nullable
@@ -103,6 +106,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.deprecated = builder.deprecated;
 		this.description = builder.description;
+		this.fieldAccessPattern = builder.fieldAccessPattern;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.ifVersion = builder.ifVersion;
 		this.masterTimeout = builder.masterTimeout;
@@ -147,6 +151,17 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	public final String description() {
 		return this.description;
+	}
+
+	/**
+	 * Controls how processors in this pipeline should read and write data on a
+	 * document's source.
+	 * <p>
+	 * API name: {@code field_access_pattern}
+	 */
+	@Nullable
+	public final FieldAccessPattern fieldAccessPattern() {
+		return this.fieldAccessPattern;
 	}
 
 	/**
@@ -258,6 +273,10 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 			generator.write(this.description);
 
 		}
+		if (this.fieldAccessPattern != null) {
+			generator.writeKey("field_access_pattern");
+			this.fieldAccessPattern.serialize(generator, mapper);
+		}
 		if (ApiTypeHelper.isDefined(this.onFailure)) {
 			generator.writeKey("on_failure");
 			generator.writeStartArray();
@@ -303,6 +322,9 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 
 		@Nullable
 		private String description;
+
+		@Nullable
+		private FieldAccessPattern fieldAccessPattern;
 
 		private String id;
 
@@ -369,6 +391,17 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		 */
 		public final Builder description(@Nullable String value) {
 			this.description = value;
+			return this;
+		}
+
+		/**
+		 * Controls how processors in this pipeline should read and write data on a
+		 * document's source.
+		 * <p>
+		 * API name: {@code field_access_pattern}
+		 */
+		public final Builder fieldAccessPattern(@Nullable FieldAccessPattern value) {
+			this.fieldAccessPattern = value;
 			return this;
 		}
 
@@ -601,6 +634,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::deprecated, JsonpDeserializer.booleanDeserializer(), "deprecated");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::fieldAccessPattern, FieldAccessPattern._DESERIALIZER, "field_access_pattern");
 		op.add(Builder::onFailure, JsonpDeserializer.arrayDeserializer(Processor._DESERIALIZER), "on_failure");
 		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(Processor._DESERIALIZER), "processors");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
