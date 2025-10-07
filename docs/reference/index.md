@@ -29,3 +29,4 @@ The {{es}} Java client is forward compatible; meaning that the client supports c
 | 9.x                   | 9.x                       | 9.x       |
 | 8.x                   | 8.x                       | 8.17      |
 
+Java client releases are synchronized with the Elasticsearch server for major and minor versions, while patches are released independently, to allow for faster bugfixes. This does not affect compatibility: for example, version 8.13.x of the client will be compatible with versions of the server 8.13.y where y >= x. 
