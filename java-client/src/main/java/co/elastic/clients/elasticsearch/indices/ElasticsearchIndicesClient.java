@@ -1901,6 +1901,45 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 				this.transportOptions);
 	}
 
+	// ----- Endpoint: indices.get_data_stream_settings
+
+	/**
+	 * Get data stream settings.
+	 * <p>
+	 * Get setting information for one or more data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-data-stream-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetDataStreamSettingsResponse getDataStreamSettings(GetDataStreamSettingsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetDataStreamSettingsRequest, GetDataStreamSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDataStreamSettingsRequest, GetDataStreamSettingsResponse, ErrorResponse>) GetDataStreamSettingsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get data stream settings.
+	 * <p>
+	 * Get setting information for one or more data streams.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetDataStreamSettingsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-get-data-stream-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetDataStreamSettingsResponse getDataStreamSettings(
+			Function<GetDataStreamSettingsRequest.Builder, ObjectBuilder<GetDataStreamSettingsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getDataStreamSettings(fn.apply(new GetDataStreamSettingsRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.get_field_mapping
 
 	/**
@@ -2573,6 +2612,55 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 			Function<PutDataLifecycleRequest.Builder, ObjectBuilder<PutDataLifecycleRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return putDataLifecycle(fn.apply(new PutDataLifecycleRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.put_data_stream_settings
+
+	/**
+	 * Update data stream settings.
+	 * <p>
+	 * This API can be used to override settings on specific data streams. These
+	 * overrides will take precedence over what is specified in the template that
+	 * the data stream matches. To prevent your data stream from getting into an
+	 * invalid state, only certain settings are allowed. If possible, the setting
+	 * change is applied to all backing indices. Otherwise, it will be applied when
+	 * the data stream is next rolled over.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-put-data-stream-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutDataStreamSettingsResponse putDataStreamSettings(PutDataStreamSettingsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutDataStreamSettingsRequest, PutDataStreamSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<PutDataStreamSettingsRequest, PutDataStreamSettingsResponse, ErrorResponse>) PutDataStreamSettingsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Update data stream settings.
+	 * <p>
+	 * This API can be used to override settings on specific data streams. These
+	 * overrides will take precedence over what is specified in the template that
+	 * the data stream matches. To prevent your data stream from getting into an
+	 * invalid state, only certain settings are allowed. If possible, the setting
+	 * change is applied to all backing indices. Otherwise, it will be applied when
+	 * the data stream is next rolled over.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutDataStreamSettingsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/indices-put-data-stream-settings.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutDataStreamSettingsResponse putDataStreamSettings(
+			Function<PutDataStreamSettingsRequest.Builder, ObjectBuilder<PutDataStreamSettingsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putDataStreamSettings(fn.apply(new PutDataStreamSettingsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.put_index_template
@@ -3274,6 +3362,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * seconds. You can change this default interval with the
 	 * <code>index.refresh_interval</code> setting.
 	 * <p>
+	 * In Elastic Cloud Serverless, the default refresh interval is 5 seconds across
+	 * all indices.
+	 * <p>
 	 * Refresh requests are synchronous and do not return a response until the
 	 * refresh operation completes.
 	 * <p>
@@ -3307,6 +3398,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * only on indices that have received one search request or more in the last 30
 	 * seconds. You can change this default interval with the
 	 * <code>index.refresh_interval</code> setting.
+	 * <p>
+	 * In Elastic Cloud Serverless, the default refresh interval is 5 seconds across
+	 * all indices.
 	 * <p>
 	 * Refresh requests are synchronous and do not return a response until the
 	 * refresh operation completes.
@@ -3342,6 +3436,9 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * only on indices that have received one search request or more in the last 30
 	 * seconds. You can change this default interval with the
 	 * <code>index.refresh_interval</code> setting.
+	 * <p>
+	 * In Elastic Cloud Serverless, the default refresh interval is 5 seconds across
+	 * all indices.
 	 * <p>
 	 * Refresh requests are synchronous and do not return a response until the
 	 * refresh operation completes.

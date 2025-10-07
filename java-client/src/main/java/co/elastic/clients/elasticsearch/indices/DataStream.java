@@ -96,6 +96,8 @@ public class DataStream implements JsonpSerializable {
 
 	private final boolean rolloverOnWrite;
 
+	private final IndexSettings settings;
+
 	private final HealthStatus status;
 
 	@Nullable
@@ -123,6 +125,7 @@ public class DataStream implements JsonpSerializable {
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.replicated = builder.replicated;
 		this.rolloverOnWrite = ApiTypeHelper.requireNonNull(builder.rolloverOnWrite, this, "rolloverOnWrite", false);
+		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.system = builder.system;
 		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
@@ -274,6 +277,16 @@ public class DataStream implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - The settings specific to this data stream that will take
+	 * precedence over the settings in the matching index template.
+	 * <p>
+	 * API name: {@code settings}
+	 */
+	public final IndexSettings settings() {
+		return this.settings;
+	}
+
+	/**
 	 * Required - Health status of the data stream. This health status is based on
 	 * the state of the primary and replica shards of the stream’s backing indices.
 	 * <p>
@@ -389,6 +402,9 @@ public class DataStream implements JsonpSerializable {
 		generator.writeKey("rollover_on_write");
 		generator.write(this.rolloverOnWrite);
 
+		generator.writeKey("settings");
+		this.settings.serialize(generator, mapper);
+
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
 		if (this.system != null) {
@@ -447,6 +463,8 @@ public class DataStream implements JsonpSerializable {
 		private Boolean replicated;
 
 		private Boolean rolloverOnWrite;
+
+		private IndexSettings settings;
 
 		private HealthStatus status;
 
@@ -669,6 +687,27 @@ public class DataStream implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - The settings specific to this data stream that will take
+		 * precedence over the settings in the matching index template.
+		 * <p>
+		 * API name: {@code settings}
+		 */
+		public final Builder settings(IndexSettings value) {
+			this.settings = value;
+			return this;
+		}
+
+		/**
+		 * Required - The settings specific to this data stream that will take
+		 * precedence over the settings in the matching index template.
+		 * <p>
+		 * API name: {@code settings}
+		 */
+		public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
+			return this.settings(fn.apply(new IndexSettings.Builder()).build());
+		}
+
+		/**
 		 * Required - Health status of the data stream. This health status is based on
 		 * the state of the primary and replica shards of the stream’s backing indices.
 		 * <p>
@@ -765,6 +804,7 @@ public class DataStream implements JsonpSerializable {
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::replicated, JsonpDeserializer.booleanDeserializer(), "replicated");
 		op.add(Builder::rolloverOnWrite, JsonpDeserializer.booleanDeserializer(), "rollover_on_write");
+		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 		op.add(Builder::status, HealthStatus._DESERIALIZER, "status");
 		op.add(Builder::system, JsonpDeserializer.booleanDeserializer(), "system");
 		op.add(Builder::template, JsonpDeserializer.stringDeserializer(), "template");

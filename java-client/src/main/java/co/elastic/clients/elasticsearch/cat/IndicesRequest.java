@@ -139,7 +139,15 @@ public class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
-	 * The unit used to display byte values.
+	 * Sets the units for columns that contain a byte-size value. Note that
+	 * byte-size value units work in terms of powers of 1024. For instance
+	 * <code>1kb</code> means 1024 bytes, not 1000 bytes. If omitted, byte-size
+	 * values are rendered with a suffix such as <code>kb</code>, <code>mb</code>,
+	 * or <code>gb</code>, chosen such that the numeric value of the column is as
+	 * small as possible whilst still being at least <code>1.0</code>. If given,
+	 * byte-size values are rendered as an integer with no suffix, representing the
+	 * value of the column in the chosen unit. Values that are not an exact multiple
+	 * of the chosen unit are rounded down.
 	 * <p>
 	 * API name: {@code bytes}
 	 */
@@ -231,7 +239,13 @@ public class IndicesRequest extends CatRequestBase {
 	}
 
 	/**
-	 * The unit used to display time values.
+	 * Sets the units for columns that contain a time duration. If omitted, time
+	 * duration values are rendered with a suffix such as <code>ms</code>,
+	 * <code>s</code>, <code>m</code> or <code>h</code>, chosen such that the
+	 * numeric value of the column is as small as possible whilst still being at
+	 * least <code>1.0</code>. If given, time duration values are rendered as an
+	 * integer with no suffix. Values that are not an exact multiple of the chosen
+	 * unit are rounded down.
 	 * <p>
 	 * API name: {@code time}
 	 */
@@ -280,7 +294,15 @@ public class IndicesRequest extends CatRequestBase {
 		private TimeUnit time;
 
 		/**
-		 * The unit used to display byte values.
+		 * Sets the units for columns that contain a byte-size value. Note that
+		 * byte-size value units work in terms of powers of 1024. For instance
+		 * <code>1kb</code> means 1024 bytes, not 1000 bytes. If omitted, byte-size
+		 * values are rendered with a suffix such as <code>kb</code>, <code>mb</code>,
+		 * or <code>gb</code>, chosen such that the numeric value of the column is as
+		 * small as possible whilst still being at least <code>1.0</code>. If given,
+		 * byte-size values are rendered as an integer with no suffix, representing the
+		 * value of the column in the chosen unit. Values that are not an exact multiple
+		 * of the chosen unit are rounded down.
 		 * <p>
 		 * API name: {@code bytes}
 		 */
@@ -445,7 +467,13 @@ public class IndicesRequest extends CatRequestBase {
 		}
 
 		/**
-		 * The unit used to display time values.
+		 * Sets the units for columns that contain a time duration. If omitted, time
+		 * duration values are rendered with a suffix such as <code>ms</code>,
+		 * <code>s</code>, <code>m</code> or <code>h</code>, chosen such that the
+		 * numeric value of the column is as small as possible whilst still being at
+		 * least <code>1.0</code>. If given, time duration values are rendered as an
+		 * integer with no suffix. Values that are not an exact multiple of the chosen
+		 * unit are rounded down.
 		 * <p>
 		 * API name: {@code time}
 		 */
@@ -545,11 +573,11 @@ public class IndicesRequest extends CatRequestBase {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
-				if (request.bytes != null) {
-					params.put("bytes", request.bytes.jsonValue());
-				}
 				if (request.pri != null) {
 					params.put("pri", String.valueOf(request.pri));
+				}
+				if (request.bytes != null) {
+					params.put("bytes", request.bytes.jsonValue());
 				}
 				if (ApiTypeHelper.isDefined(request.h)) {
 					params.put("h", request.h.stream().map(v -> v).collect(Collectors.joining(",")));

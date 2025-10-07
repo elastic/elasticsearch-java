@@ -19,8 +19,10 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
+import co.elastic.clients.elasticsearch._types.Bytes;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.TimeUnit;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -71,6 +73,9 @@ import javax.annotation.Nullable;
  */
 
 public class TemplatesRequest extends CatRequestBase {
+	@Nullable
+	private final Bytes bytes;
+
 	private final List<String> h;
 
 	@Nullable
@@ -84,20 +89,43 @@ public class TemplatesRequest extends CatRequestBase {
 
 	private final List<String> s;
 
+	@Nullable
+	private final TimeUnit time;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private TemplatesRequest(Builder builder) {
 
+		this.bytes = builder.bytes;
 		this.h = ApiTypeHelper.unmodifiable(builder.h);
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = builder.name;
 		this.s = ApiTypeHelper.unmodifiable(builder.s);
+		this.time = builder.time;
 
 	}
 
 	public static TemplatesRequest of(Function<Builder, ObjectBuilder<TemplatesRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Sets the units for columns that contain a byte-size value. Note that
+	 * byte-size value units work in terms of powers of 1024. For instance
+	 * <code>1kb</code> means 1024 bytes, not 1000 bytes. If omitted, byte-size
+	 * values are rendered with a suffix such as <code>kb</code>, <code>mb</code>,
+	 * or <code>gb</code>, chosen such that the numeric value of the column is as
+	 * small as possible whilst still being at least <code>1.0</code>. If given,
+	 * byte-size values are rendered as an integer with no suffix, representing the
+	 * value of the column in the chosen unit. Values that are not an exact multiple
+	 * of the chosen unit are rounded down.
+	 * <p>
+	 * API name: {@code bytes}
+	 */
+	@Nullable
+	public final Bytes bytes() {
+		return this.bytes;
 	}
 
 	/**
@@ -155,6 +183,22 @@ public class TemplatesRequest extends CatRequestBase {
 		return this.s;
 	}
 
+	/**
+	 * Sets the units for columns that contain a time duration. If omitted, time
+	 * duration values are rendered with a suffix such as <code>ms</code>,
+	 * <code>s</code>, <code>m</code> or <code>h</code>, chosen such that the
+	 * numeric value of the column is as small as possible whilst still being at
+	 * least <code>1.0</code>. If given, time duration values are rendered as an
+	 * integer with no suffix. Values that are not an exact multiple of the chosen
+	 * unit are rounded down.
+	 * <p>
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public final TimeUnit time() {
+		return this.time;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -164,6 +208,9 @@ public class TemplatesRequest extends CatRequestBase {
 	public static class Builder extends CatRequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TemplatesRequest> {
+		@Nullable
+		private Bytes bytes;
+
 		@Nullable
 		private List<String> h;
 
@@ -178,6 +225,27 @@ public class TemplatesRequest extends CatRequestBase {
 
 		@Nullable
 		private List<String> s;
+
+		@Nullable
+		private TimeUnit time;
+
+		/**
+		 * Sets the units for columns that contain a byte-size value. Note that
+		 * byte-size value units work in terms of powers of 1024. For instance
+		 * <code>1kb</code> means 1024 bytes, not 1000 bytes. If omitted, byte-size
+		 * values are rendered with a suffix such as <code>kb</code>, <code>mb</code>,
+		 * or <code>gb</code>, chosen such that the numeric value of the column is as
+		 * small as possible whilst still being at least <code>1.0</code>. If given,
+		 * byte-size values are rendered as an integer with no suffix, representing the
+		 * value of the column in the chosen unit. Values that are not an exact multiple
+		 * of the chosen unit are rounded down.
+		 * <p>
+		 * API name: {@code bytes}
+		 */
+		public final Builder bytes(@Nullable Bytes value) {
+			this.bytes = value;
+			return this;
+		}
 
 		/**
 		 * List of columns to appear in the response. Supports simple wildcards.
@@ -275,6 +343,22 @@ public class TemplatesRequest extends CatRequestBase {
 			return this;
 		}
 
+		/**
+		 * Sets the units for columns that contain a time duration. If omitted, time
+		 * duration values are rendered with a suffix such as <code>ms</code>,
+		 * <code>s</code>, <code>m</code> or <code>h</code>, chosen such that the
+		 * numeric value of the column is as small as possible whilst still being at
+		 * least <code>1.0</code>. If given, time duration values are rendered as an
+		 * integer with no suffix. Values that are not an exact multiple of the chosen
+		 * unit are rounded down.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(@Nullable TimeUnit value) {
+			this.time = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -362,8 +446,14 @@ public class TemplatesRequest extends CatRequestBase {
 				if (ApiTypeHelper.isDefined(request.s)) {
 					params.put("s", request.s.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
+				if (request.bytes != null) {
+					params.put("bytes", request.bytes.jsonValue());
+				}
 				if (ApiTypeHelper.isDefined(request.h)) {
 					params.put("h", request.h.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.time != null) {
+					params.put("time", request.time.jsonValue());
 				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));
