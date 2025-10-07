@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types;
+package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -26,11 +26,11 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.lang.Boolean;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,57 +50,53 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.TextEmbedding
+// typedef: _types.aggregations.PValueHeuristic
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#_types.TextEmbedding">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#_types.aggregations.PValueHeuristic">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializable {
+public class PValueHeuristic implements JsonpSerializable {
 	@Nullable
-	private final String modelId;
+	private final Boolean backgroundIsSuperset;
 
-	private final String modelText;
+	@Nullable
+	private final Long normalizeAbove;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TextEmbedding(Builder builder) {
+	private PValueHeuristic(Builder builder) {
 
-		this.modelId = builder.modelId;
-		this.modelText = ApiTypeHelper.requireNonNull(builder.modelText, this, "modelText");
+		this.backgroundIsSuperset = builder.backgroundIsSuperset;
+		this.normalizeAbove = builder.normalizeAbove;
 
 	}
 
-	public static TextEmbedding of(Function<Builder, ObjectBuilder<TextEmbedding>> fn) {
+	public static PValueHeuristic of(Function<Builder, ObjectBuilder<PValueHeuristic>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * QueryVectorBuilder variant kind.
-	 */
-	@Override
-	public QueryVectorBuilder.Kind _queryVectorBuilderKind() {
-		return QueryVectorBuilder.Kind.TextEmbedding;
-	}
-
-	/**
-	 * Model ID is required for all dense_vector fields but may be inferred for
-	 * semantic_text fields
-	 * <p>
-	 * API name: {@code model_id}
+	 * API name: {@code background_is_superset}
 	 */
 	@Nullable
-	public final String modelId() {
-		return this.modelId;
+	public final Boolean backgroundIsSuperset() {
+		return this.backgroundIsSuperset;
 	}
 
 	/**
-	 * Required - API name: {@code model_text}
+	 * Should the results be normalized when above the given value. Allows for
+	 * consistent significance results at various scales. Note: <code>0</code> is a
+	 * special value which means no normalization
+	 * <p>
+	 * API name: {@code normalize_above}
 	 */
-	public final String modelText() {
-		return this.modelText;
+	@Nullable
+	public final Long normalizeAbove() {
+		return this.normalizeAbove;
 	}
 
 	/**
@@ -114,13 +110,16 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.modelId != null) {
-			generator.writeKey("model_id");
-			generator.write(this.modelId);
+		if (this.backgroundIsSuperset != null) {
+			generator.writeKey("background_is_superset");
+			generator.write(this.backgroundIsSuperset);
 
 		}
-		generator.writeKey("model_text");
-		generator.write(this.modelText);
+		if (this.normalizeAbove != null) {
+			generator.writeKey("normalize_above");
+			generator.write(this.normalizeAbove);
+
+		}
 
 	}
 
@@ -132,31 +131,33 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TextEmbedding}.
+	 * Builder for {@link PValueHeuristic}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TextEmbedding> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<PValueHeuristic> {
 		@Nullable
-		private String modelId;
+		private Boolean backgroundIsSuperset;
 
-		private String modelText;
+		@Nullable
+		private Long normalizeAbove;
 
 		/**
-		 * Model ID is required for all dense_vector fields but may be inferred for
-		 * semantic_text fields
-		 * <p>
-		 * API name: {@code model_id}
+		 * API name: {@code background_is_superset}
 		 */
-		public final Builder modelId(@Nullable String value) {
-			this.modelId = value;
+		public final Builder backgroundIsSuperset(@Nullable Boolean value) {
+			this.backgroundIsSuperset = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code model_text}
+		 * Should the results be normalized when above the given value. Allows for
+		 * consistent significance results at various scales. Note: <code>0</code> is a
+		 * special value which means no normalization
+		 * <p>
+		 * API name: {@code normalize_above}
 		 */
-		public final Builder modelText(String value) {
-			this.modelText = value;
+		public final Builder normalizeAbove(@Nullable Long value) {
+			this.normalizeAbove = value;
 			return this;
 		}
 
@@ -166,30 +167,30 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 		}
 
 		/**
-		 * Builds a {@link TextEmbedding}.
+		 * Builds a {@link PValueHeuristic}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TextEmbedding build() {
+		public PValueHeuristic build() {
 			_checkSingleUse();
 
-			return new TextEmbedding(this);
+			return new PValueHeuristic(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TextEmbedding}
+	 * Json deserializer for {@link PValueHeuristic}
 	 */
-	public static final JsonpDeserializer<TextEmbedding> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TextEmbedding::setupTextEmbeddingDeserializer);
+	public static final JsonpDeserializer<PValueHeuristic> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			PValueHeuristic::setupPValueHeuristicDeserializer);
 
-	protected static void setupTextEmbeddingDeserializer(ObjectDeserializer<TextEmbedding.Builder> op) {
+	protected static void setupPValueHeuristicDeserializer(ObjectDeserializer<PValueHeuristic.Builder> op) {
 
-		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
-		op.add(Builder::modelText, JsonpDeserializer.stringDeserializer(), "model_text");
+		op.add(Builder::backgroundIsSuperset, JsonpDeserializer.booleanDeserializer(), "background_is_superset");
+		op.add(Builder::normalizeAbove, JsonpDeserializer.longDeserializer(), "normalize_above");
 
 	}
 

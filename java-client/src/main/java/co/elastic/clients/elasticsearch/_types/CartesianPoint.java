@@ -30,10 +30,9 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.lang.Double;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -50,57 +49,44 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.TextEmbedding
+// typedef: _types.CartesianPoint
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#_types.TextEmbedding">API
+ * @see <a href="../doc-files/api-spec.html#_types.CartesianPoint">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializable {
-	@Nullable
-	private final String modelId;
+public class CartesianPoint implements JsonpSerializable {
+	private final double x;
 
-	private final String modelText;
+	private final double y;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TextEmbedding(Builder builder) {
+	private CartesianPoint(Builder builder) {
 
-		this.modelId = builder.modelId;
-		this.modelText = ApiTypeHelper.requireNonNull(builder.modelText, this, "modelText");
+		this.x = ApiTypeHelper.requireNonNull(builder.x, this, "x", 0);
+		this.y = ApiTypeHelper.requireNonNull(builder.y, this, "y", 0);
 
 	}
 
-	public static TextEmbedding of(Function<Builder, ObjectBuilder<TextEmbedding>> fn) {
+	public static CartesianPoint of(Function<Builder, ObjectBuilder<CartesianPoint>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * QueryVectorBuilder variant kind.
+	 * Required - API name: {@code x}
 	 */
-	@Override
-	public QueryVectorBuilder.Kind _queryVectorBuilderKind() {
-		return QueryVectorBuilder.Kind.TextEmbedding;
+	public final double x() {
+		return this.x;
 	}
 
 	/**
-	 * Model ID is required for all dense_vector fields but may be inferred for
-	 * semantic_text fields
-	 * <p>
-	 * API name: {@code model_id}
+	 * Required - API name: {@code y}
 	 */
-	@Nullable
-	public final String modelId() {
-		return this.modelId;
-	}
-
-	/**
-	 * Required - API name: {@code model_text}
-	 */
-	public final String modelText() {
-		return this.modelText;
+	public final double y() {
+		return this.y;
 	}
 
 	/**
@@ -114,13 +100,11 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.modelId != null) {
-			generator.writeKey("model_id");
-			generator.write(this.modelId);
+		generator.writeKey("x");
+		generator.write(this.x);
 
-		}
-		generator.writeKey("model_text");
-		generator.write(this.modelText);
+		generator.writeKey("y");
+		generator.write(this.y);
 
 	}
 
@@ -132,31 +116,27 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TextEmbedding}.
+	 * Builder for {@link CartesianPoint}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TextEmbedding> {
-		@Nullable
-		private String modelId;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CartesianPoint> {
+		private Double x;
 
-		private String modelText;
+		private Double y;
 
 		/**
-		 * Model ID is required for all dense_vector fields but may be inferred for
-		 * semantic_text fields
-		 * <p>
-		 * API name: {@code model_id}
+		 * Required - API name: {@code x}
 		 */
-		public final Builder modelId(@Nullable String value) {
-			this.modelId = value;
+		public final Builder x(double value) {
+			this.x = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code model_text}
+		 * Required - API name: {@code y}
 		 */
-		public final Builder modelText(String value) {
-			this.modelText = value;
+		public final Builder y(double value) {
+			this.y = value;
 			return this;
 		}
 
@@ -166,30 +146,30 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 		}
 
 		/**
-		 * Builds a {@link TextEmbedding}.
+		 * Builds a {@link CartesianPoint}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TextEmbedding build() {
+		public CartesianPoint build() {
 			_checkSingleUse();
 
-			return new TextEmbedding(this);
+			return new CartesianPoint(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TextEmbedding}
+	 * Json deserializer for {@link CartesianPoint}
 	 */
-	public static final JsonpDeserializer<TextEmbedding> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TextEmbedding::setupTextEmbeddingDeserializer);
+	public static final JsonpDeserializer<CartesianPoint> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CartesianPoint::setupCartesianPointDeserializer);
 
-	protected static void setupTextEmbeddingDeserializer(ObjectDeserializer<TextEmbedding.Builder> op) {
+	protected static void setupCartesianPointDeserializer(ObjectDeserializer<CartesianPoint.Builder> op) {
 
-		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
-		op.add(Builder::modelText, JsonpDeserializer.stringDeserializer(), "model_text");
+		op.add(Builder::x, JsonpDeserializer.doubleDeserializer(), "x");
+		op.add(Builder::y, JsonpDeserializer.doubleDeserializer(), "y");
 
 	}
 

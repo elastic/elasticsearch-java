@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types;
+package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -50,57 +50,43 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.TextEmbedding
+// typedef: _types.aggregations.Indeterminable
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#_types.TextEmbedding">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#_types.aggregations.Indeterminable">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializable {
-	@Nullable
-	private final String modelId;
-
-	private final String modelText;
+public class Indeterminable implements ChangeTypeVariant, JsonpSerializable {
+	private final String reason;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TextEmbedding(Builder builder) {
+	private Indeterminable(Builder builder) {
 
-		this.modelId = builder.modelId;
-		this.modelText = ApiTypeHelper.requireNonNull(builder.modelText, this, "modelText");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 
 	}
 
-	public static TextEmbedding of(Function<Builder, ObjectBuilder<TextEmbedding>> fn) {
+	public static Indeterminable of(Function<Builder, ObjectBuilder<Indeterminable>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * QueryVectorBuilder variant kind.
+	 * ChangeType variant kind.
 	 */
 	@Override
-	public QueryVectorBuilder.Kind _queryVectorBuilderKind() {
-		return QueryVectorBuilder.Kind.TextEmbedding;
+	public ChangeType.Kind _changeTypeKind() {
+		return ChangeType.Kind.Indeterminable;
 	}
 
 	/**
-	 * Model ID is required for all dense_vector fields but may be inferred for
-	 * semantic_text fields
-	 * <p>
-	 * API name: {@code model_id}
+	 * Required - API name: {@code reason}
 	 */
-	@Nullable
-	public final String modelId() {
-		return this.modelId;
-	}
-
-	/**
-	 * Required - API name: {@code model_text}
-	 */
-	public final String modelText() {
-		return this.modelText;
+	public final String reason() {
+		return this.reason;
 	}
 
 	/**
@@ -114,13 +100,8 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.modelId != null) {
-			generator.writeKey("model_id");
-			generator.write(this.modelId);
-
-		}
-		generator.writeKey("model_text");
-		generator.write(this.modelText);
+		generator.writeKey("reason");
+		generator.write(this.reason);
 
 	}
 
@@ -132,31 +113,17 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TextEmbedding}.
+	 * Builder for {@link Indeterminable}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TextEmbedding> {
-		@Nullable
-		private String modelId;
-
-		private String modelText;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Indeterminable> {
+		private String reason;
 
 		/**
-		 * Model ID is required for all dense_vector fields but may be inferred for
-		 * semantic_text fields
-		 * <p>
-		 * API name: {@code model_id}
+		 * Required - API name: {@code reason}
 		 */
-		public final Builder modelId(@Nullable String value) {
-			this.modelId = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code model_text}
-		 */
-		public final Builder modelText(String value) {
-			this.modelText = value;
+		public final Builder reason(String value) {
+			this.reason = value;
 			return this;
 		}
 
@@ -166,30 +133,29 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 		}
 
 		/**
-		 * Builds a {@link TextEmbedding}.
+		 * Builds a {@link Indeterminable}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TextEmbedding build() {
+		public Indeterminable build() {
 			_checkSingleUse();
 
-			return new TextEmbedding(this);
+			return new Indeterminable(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TextEmbedding}
+	 * Json deserializer for {@link Indeterminable}
 	 */
-	public static final JsonpDeserializer<TextEmbedding> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TextEmbedding::setupTextEmbeddingDeserializer);
+	public static final JsonpDeserializer<Indeterminable> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Indeterminable::setupIndeterminableDeserializer);
 
-	protected static void setupTextEmbeddingDeserializer(ObjectDeserializer<TextEmbedding.Builder> op) {
+	protected static void setupIndeterminableDeserializer(ObjectDeserializer<Indeterminable.Builder> op) {
 
-		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
-		op.add(Builder::modelText, JsonpDeserializer.stringDeserializer(), "model_text");
+		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
 
 	}
 

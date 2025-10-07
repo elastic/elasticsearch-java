@@ -88,6 +88,12 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 
 		Cardinality("cardinality"),
 
+		CartesianBounds("cartesian_bounds"),
+
+		CartesianCentroid("cartesian_centroid"),
+
+		ChangePoint("change_point"),
+
 		Children("children"),
 
 		Composite("composite"),
@@ -379,6 +385,59 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 	 */
 	public CardinalityAggregate cardinality() {
 		return TaggedUnionUtils.get(this, Kind.Cardinality);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code cartesian_bounds}?
+	 */
+	public boolean isCartesianBounds() {
+		return _kind == Kind.CartesianBounds;
+	}
+
+	/**
+	 * Get the {@code cartesian_bounds} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code cartesian_bounds}
+	 *             kind.
+	 */
+	public CartesianBoundsAggregate cartesianBounds() {
+		return TaggedUnionUtils.get(this, Kind.CartesianBounds);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code cartesian_centroid}?
+	 */
+	public boolean isCartesianCentroid() {
+		return _kind == Kind.CartesianCentroid;
+	}
+
+	/**
+	 * Get the {@code cartesian_centroid} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code cartesian_centroid}
+	 *             kind.
+	 */
+	public CartesianCentroidAggregate cartesianCentroid() {
+		return TaggedUnionUtils.get(this, Kind.CartesianCentroid);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code change_point}?
+	 */
+	public boolean isChangePoint() {
+		return _kind == Kind.ChangePoint;
+	}
+
+	/**
+	 * Get the {@code change_point} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code change_point} kind.
+	 */
+	public ChangePointAggregate changePoint() {
+		return TaggedUnionUtils.get(this, Kind.ChangePoint);
 	}
 
 	/**
@@ -1592,6 +1651,39 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 			return this.cardinality(fn.apply(new CardinalityAggregate.Builder()).build());
 		}
 
+		public ObjectBuilder<Aggregate> cartesianBounds(CartesianBoundsAggregate v) {
+			this._kind = Kind.CartesianBounds;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Aggregate> cartesianBounds(
+				Function<CartesianBoundsAggregate.Builder, ObjectBuilder<CartesianBoundsAggregate>> fn) {
+			return this.cartesianBounds(fn.apply(new CartesianBoundsAggregate.Builder()).build());
+		}
+
+		public ObjectBuilder<Aggregate> cartesianCentroid(CartesianCentroidAggregate v) {
+			this._kind = Kind.CartesianCentroid;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Aggregate> cartesianCentroid(
+				Function<CartesianCentroidAggregate.Builder, ObjectBuilder<CartesianCentroidAggregate>> fn) {
+			return this.cartesianCentroid(fn.apply(new CartesianCentroidAggregate.Builder()).build());
+		}
+
+		public ObjectBuilder<Aggregate> changePoint(ChangePointAggregate v) {
+			this._kind = Kind.ChangePoint;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Aggregate> changePoint(
+				Function<ChangePointAggregate.Builder, ObjectBuilder<ChangePointAggregate>> fn) {
+			return this.changePoint(fn.apply(new ChangePointAggregate.Builder()).build());
+		}
+
 		public ObjectBuilder<Aggregate> children(ChildrenAggregate v) {
 			this._kind = Kind.Children;
 			this._value = v;
@@ -2318,6 +2410,9 @@ public class Aggregate implements OpenTaggedUnion<Aggregate.Kind, Object>, Jsonp
 		deserializers.put("boxplot", BoxPlotAggregate._DESERIALIZER);
 		deserializers.put("bucket_metric_value", BucketMetricValueAggregate._DESERIALIZER);
 		deserializers.put("cardinality", CardinalityAggregate._DESERIALIZER);
+		deserializers.put("cartesian_bounds", CartesianBoundsAggregate._DESERIALIZER);
+		deserializers.put("cartesian_centroid", CartesianCentroidAggregate._DESERIALIZER);
+		deserializers.put("change_point", ChangePointAggregate._DESERIALIZER);
 		deserializers.put("children", ChildrenAggregate._DESERIALIZER);
 		deserializers.put("composite", CompositeAggregate._DESERIALIZER);
 		deserializers.put("simple_long_value", CumulativeCardinalityAggregate._DESERIALIZER);

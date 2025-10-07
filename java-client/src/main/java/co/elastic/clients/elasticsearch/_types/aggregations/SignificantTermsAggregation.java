@@ -103,6 +103,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase
 	private final ScriptedHeuristic scriptHeuristic;
 
 	@Nullable
+	private final PValueHeuristic pValue;
+
+	@Nullable
 	private final Long shardMinDocCount;
 
 	@Nullable
@@ -127,6 +130,7 @@ public class SignificantTermsAggregation extends BucketAggregationBase
 		this.mutualInformation = builder.mutualInformation;
 		this.percentage = builder.percentage;
 		this.scriptHeuristic = builder.scriptHeuristic;
+		this.pValue = builder.pValue;
 		this.shardMinDocCount = builder.shardMinDocCount;
 		this.shardSize = builder.shardSize;
 		this.size = builder.size;
@@ -273,6 +277,24 @@ public class SignificantTermsAggregation extends BucketAggregationBase
 	}
 
 	/**
+	 * Significant terms heuristic that calculates the p-value between the term
+	 * existing in foreground and background sets.
+	 * <p>
+	 * The p-value is the probability of obtaining test results at least as extreme
+	 * as the results actually observed, under the assumption that the null
+	 * hypothesis is correct. The p-value is calculated assuming that the foreground
+	 * set and the background set are independent <a href=
+	 * "https://en.wikipedia.org/wiki/Bernoulli_trial">https://en.wikipedia.org/wiki/Bernoulli_trial</a>,
+	 * with the null hypothesis that the probabilities are the same.
+	 * <p>
+	 * API name: {@code p_value}
+	 */
+	@Nullable
+	public final PValueHeuristic pValue() {
+		return this.pValue;
+	}
+
+	/**
 	 * Regulates the certainty a shard has if the term should actually be added to
 	 * the candidate list or not with respect to the <code>min_doc_count</code>.
 	 * Terms will only be considered if their local shard frequency within the set
@@ -377,6 +399,11 @@ public class SignificantTermsAggregation extends BucketAggregationBase
 			this.scriptHeuristic.serialize(generator, mapper);
 
 		}
+		if (this.pValue != null) {
+			generator.writeKey("p_value");
+			this.pValue.serialize(generator, mapper);
+
+		}
 		if (this.shardMinDocCount != null) {
 			generator.writeKey("shard_min_doc_count");
 			generator.write(this.shardMinDocCount);
@@ -444,6 +471,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase
 
 		@Nullable
 		private ScriptedHeuristic scriptHeuristic;
+
+		@Nullable
+		private PValueHeuristic pValue;
 
 		@Nullable
 		private Long shardMinDocCount;
@@ -682,6 +712,41 @@ public class SignificantTermsAggregation extends BucketAggregationBase
 		}
 
 		/**
+		 * Significant terms heuristic that calculates the p-value between the term
+		 * existing in foreground and background sets.
+		 * <p>
+		 * The p-value is the probability of obtaining test results at least as extreme
+		 * as the results actually observed, under the assumption that the null
+		 * hypothesis is correct. The p-value is calculated assuming that the foreground
+		 * set and the background set are independent <a href=
+		 * "https://en.wikipedia.org/wiki/Bernoulli_trial">https://en.wikipedia.org/wiki/Bernoulli_trial</a>,
+		 * with the null hypothesis that the probabilities are the same.
+		 * <p>
+		 * API name: {@code p_value}
+		 */
+		public final Builder pValue(@Nullable PValueHeuristic value) {
+			this.pValue = value;
+			return this;
+		}
+
+		/**
+		 * Significant terms heuristic that calculates the p-value between the term
+		 * existing in foreground and background sets.
+		 * <p>
+		 * The p-value is the probability of obtaining test results at least as extreme
+		 * as the results actually observed, under the assumption that the null
+		 * hypothesis is correct. The p-value is calculated assuming that the foreground
+		 * set and the background set are independent <a href=
+		 * "https://en.wikipedia.org/wiki/Bernoulli_trial">https://en.wikipedia.org/wiki/Bernoulli_trial</a>,
+		 * with the null hypothesis that the probabilities are the same.
+		 * <p>
+		 * API name: {@code p_value}
+		 */
+		public final Builder pValue(Function<PValueHeuristic.Builder, ObjectBuilder<PValueHeuristic>> fn) {
+			return this.pValue(fn.apply(new PValueHeuristic.Builder()).build());
+		}
+
+		/**
 		 * Regulates the certainty a shard has if the term should actually be added to
 		 * the candidate list or not with respect to the <code>min_doc_count</code>.
 		 * Terms will only be considered if their local shard frequency within the set
@@ -757,6 +822,7 @@ public class SignificantTermsAggregation extends BucketAggregationBase
 		op.add(Builder::mutualInformation, MutualInformationHeuristic._DESERIALIZER, "mutual_information");
 		op.add(Builder::percentage, PercentageScoreHeuristic._DESERIALIZER, "percentage");
 		op.add(Builder::scriptHeuristic, ScriptedHeuristic._DESERIALIZER, "script_heuristic");
+		op.add(Builder::pValue, PValueHeuristic._DESERIALIZER, "p_value");
 		op.add(Builder::shardMinDocCount, JsonpDeserializer.longDeserializer(), "shard_min_doc_count");
 		op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");

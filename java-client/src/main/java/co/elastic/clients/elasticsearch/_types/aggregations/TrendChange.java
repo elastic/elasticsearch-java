@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types;
+package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -30,10 +30,10 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.lang.Double;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -50,57 +50,63 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.TextEmbedding
+// typedef: _types.aggregations.TrendChange
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#_types.TextEmbedding">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#_types.aggregations.TrendChange">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializable {
-	@Nullable
-	private final String modelId;
+public class TrendChange implements ChangeTypeVariant, JsonpSerializable {
+	private final double pValue;
 
-	private final String modelText;
+	private final double rValue;
+
+	private final int changePoint;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TextEmbedding(Builder builder) {
+	private TrendChange(Builder builder) {
 
-		this.modelId = builder.modelId;
-		this.modelText = ApiTypeHelper.requireNonNull(builder.modelText, this, "modelText");
+		this.pValue = ApiTypeHelper.requireNonNull(builder.pValue, this, "pValue", 0);
+		this.rValue = ApiTypeHelper.requireNonNull(builder.rValue, this, "rValue", 0);
+		this.changePoint = ApiTypeHelper.requireNonNull(builder.changePoint, this, "changePoint", 0);
 
 	}
 
-	public static TextEmbedding of(Function<Builder, ObjectBuilder<TextEmbedding>> fn) {
+	public static TrendChange of(Function<Builder, ObjectBuilder<TrendChange>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * QueryVectorBuilder variant kind.
+	 * ChangeType variant kind.
 	 */
 	@Override
-	public QueryVectorBuilder.Kind _queryVectorBuilderKind() {
-		return QueryVectorBuilder.Kind.TextEmbedding;
+	public ChangeType.Kind _changeTypeKind() {
+		return ChangeType.Kind.TrendChange;
 	}
 
 	/**
-	 * Model ID is required for all dense_vector fields but may be inferred for
-	 * semantic_text fields
-	 * <p>
-	 * API name: {@code model_id}
+	 * Required - API name: {@code p_value}
 	 */
-	@Nullable
-	public final String modelId() {
-		return this.modelId;
+	public final double pValue() {
+		return this.pValue;
 	}
 
 	/**
-	 * Required - API name: {@code model_text}
+	 * Required - API name: {@code r_value}
 	 */
-	public final String modelText() {
-		return this.modelText;
+	public final double rValue() {
+		return this.rValue;
+	}
+
+	/**
+	 * Required - API name: {@code change_point}
+	 */
+	public final int changePoint() {
+		return this.changePoint;
 	}
 
 	/**
@@ -114,13 +120,14 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.modelId != null) {
-			generator.writeKey("model_id");
-			generator.write(this.modelId);
+		generator.writeKey("p_value");
+		generator.write(this.pValue);
 
-		}
-		generator.writeKey("model_text");
-		generator.write(this.modelText);
+		generator.writeKey("r_value");
+		generator.write(this.rValue);
+
+		generator.writeKey("change_point");
+		generator.write(this.changePoint);
 
 	}
 
@@ -132,31 +139,37 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TextEmbedding}.
+	 * Builder for {@link TrendChange}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TextEmbedding> {
-		@Nullable
-		private String modelId;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TrendChange> {
+		private Double pValue;
 
-		private String modelText;
+		private Double rValue;
+
+		private Integer changePoint;
 
 		/**
-		 * Model ID is required for all dense_vector fields but may be inferred for
-		 * semantic_text fields
-		 * <p>
-		 * API name: {@code model_id}
+		 * Required - API name: {@code p_value}
 		 */
-		public final Builder modelId(@Nullable String value) {
-			this.modelId = value;
+		public final Builder pValue(double value) {
+			this.pValue = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code model_text}
+		 * Required - API name: {@code r_value}
 		 */
-		public final Builder modelText(String value) {
-			this.modelText = value;
+		public final Builder rValue(double value) {
+			this.rValue = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code change_point}
+		 */
+		public final Builder changePoint(int value) {
+			this.changePoint = value;
 			return this;
 		}
 
@@ -166,30 +179,31 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 		}
 
 		/**
-		 * Builds a {@link TextEmbedding}.
+		 * Builds a {@link TrendChange}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TextEmbedding build() {
+		public TrendChange build() {
 			_checkSingleUse();
 
-			return new TextEmbedding(this);
+			return new TrendChange(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TextEmbedding}
+	 * Json deserializer for {@link TrendChange}
 	 */
-	public static final JsonpDeserializer<TextEmbedding> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TextEmbedding::setupTextEmbeddingDeserializer);
+	public static final JsonpDeserializer<TrendChange> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TrendChange::setupTrendChangeDeserializer);
 
-	protected static void setupTextEmbeddingDeserializer(ObjectDeserializer<TextEmbedding.Builder> op) {
+	protected static void setupTrendChangeDeserializer(ObjectDeserializer<TrendChange.Builder> op) {
 
-		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
-		op.add(Builder::modelText, JsonpDeserializer.stringDeserializer(), "model_text");
+		op.add(Builder::pValue, JsonpDeserializer.doubleDeserializer(), "p_value");
+		op.add(Builder::rValue, JsonpDeserializer.doubleDeserializer(), "r_value");
+		op.add(Builder::changePoint, JsonpDeserializer.integerDeserializer(), "change_point");
 
 	}
 

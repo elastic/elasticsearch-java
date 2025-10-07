@@ -32,6 +32,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -99,7 +100,8 @@ public class MasterRequest extends CatRequestBase {
 	}
 
 	/**
-	 * List of columns to appear in the response. Supports simple wildcards.
+	 * A comma-separated list of columns names to display. It supports simple
+	 * wildcards.
 	 * <p>
 	 * API name: {@code h}
 	 */
@@ -164,7 +166,8 @@ public class MasterRequest extends CatRequestBase {
 		private List<String> s;
 
 		/**
-		 * List of columns to appear in the response. Supports simple wildcards.
+		 * A comma-separated list of columns names to display. It supports simple
+		 * wildcards.
 		 * <p>
 		 * API name: {@code h}
 		 * <p>
@@ -176,7 +179,8 @@ public class MasterRequest extends CatRequestBase {
 		}
 
 		/**
-		 * List of columns to appear in the response. Supports simple wildcards.
+		 * A comma-separated list of columns names to display. It supports simple
+		 * wildcards.
 		 * <p>
 		 * API name: {@code h}
 		 * <p>
@@ -184,6 +188,20 @@ public class MasterRequest extends CatRequestBase {
 		 */
 		public final Builder h(String value, String... values) {
 			this.h = _listAdd(this.h, value, values);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of columns names to display. It supports simple
+		 * wildcards.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds one or more enum values to <code>h</code>.
+		 */
+		public final Builder h(CatMasterColumn value, CatMasterColumn... values) {
+			this.h = _listAdd(this.h, value.jsonValue(),
+					Arrays.stream(values).map(CatMasterColumn::jsonValue).toArray(String[]::new));
 			return this;
 		}
 
