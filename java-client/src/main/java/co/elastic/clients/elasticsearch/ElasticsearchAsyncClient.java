@@ -137,6 +137,7 @@ import co.elastic.clients.elasticsearch.slm.ElasticsearchSlmAsyncClient;
 import co.elastic.clients.elasticsearch.snapshot.ElasticsearchSnapshotAsyncClient;
 import co.elastic.clients.elasticsearch.sql.ElasticsearchSqlAsyncClient;
 import co.elastic.clients.elasticsearch.ssl.ElasticsearchSslAsyncClient;
+import co.elastic.clients.elasticsearch.streams.ElasticsearchStreamsAsyncClient;
 import co.elastic.clients.elasticsearch.synonyms.ElasticsearchSynonymsAsyncClient;
 import co.elastic.clients.elasticsearch.tasks.ElasticsearchTasksAsyncClient;
 import co.elastic.clients.elasticsearch.text_structure.ElasticsearchTextStructureAsyncClient;
@@ -344,6 +345,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 
 	public ElasticsearchSslAsyncClient ssl() {
 		return new ElasticsearchSslAsyncClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchStreamsAsyncClient streams() {
+		return new ElasticsearchStreamsAsyncClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchSynonymsAsyncClient synonyms() {

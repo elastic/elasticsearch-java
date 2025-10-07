@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.elasticsearch.core.bulk.FailureStoreStatus;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -78,6 +79,9 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 	private final long version;
 
 	@Nullable
+	private final FailureStoreStatus failureStore;
+
+	@Nullable
 	private final Boolean forcedRefresh;
 
 	// ---------------------------------------------------------------------------------------------
@@ -91,6 +95,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		this.seqNo = builder.seqNo;
 		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version", 0);
+		this.failureStore = builder.failureStore;
 		this.forcedRefresh = builder.forcedRefresh;
 
 	}
@@ -165,6 +170,16 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The role of the failure store in this document response
+	 * <p>
+	 * API name: {@code failure_store}
+	 */
+	@Nullable
+	public final FailureStoreStatus failureStore() {
+		return this.failureStore;
+	}
+
+	/**
 	 * API name: {@code forced_refresh}
 	 */
 	@Nullable
@@ -207,6 +222,10 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		generator.writeKey("_version");
 		generator.write(this.version);
 
+		if (this.failureStore != null) {
+			generator.writeKey("failure_store");
+			this.failureStore.serialize(generator, mapper);
+		}
 		if (this.forcedRefresh != null) {
 			generator.writeKey("forced_refresh");
 			generator.write(this.forcedRefresh);
@@ -238,6 +257,9 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		private ShardStatistics shards;
 
 		private Long version;
+
+		@Nullable
+		private FailureStoreStatus failureStore;
 
 		@Nullable
 		private Boolean forcedRefresh;
@@ -326,6 +348,16 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The role of the failure store in this document response
+		 * <p>
+		 * API name: {@code failure_store}
+		 */
+		public final BuilderT failureStore(@Nullable FailureStoreStatus value) {
+			this.failureStore = value;
+			return self();
+		}
+
+		/**
 		 * API name: {@code forced_refresh}
 		 */
 		public final BuilderT forcedRefresh(@Nullable Boolean value) {
@@ -348,6 +380,7 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		op.add(AbstractBuilder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
 		op.add(AbstractBuilder::version, JsonpDeserializer.longDeserializer(), "_version");
+		op.add(AbstractBuilder::failureStore, FailureStoreStatus._DESERIALIZER, "failure_store");
 		op.add(AbstractBuilder::forcedRefresh, JsonpDeserializer.booleanDeserializer(), "forced_refresh");
 
 	}

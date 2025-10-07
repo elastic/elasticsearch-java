@@ -99,7 +99,13 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 
 		Cardinality("cardinality"),
 
+		CartesianBounds("cartesian_bounds"),
+
+		CartesianCentroid("cartesian_centroid"),
+
 		CategorizeText("categorize_text"),
+
+		ChangePoint("change_point"),
 
 		Children("children"),
 
@@ -121,7 +127,7 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 
 		ExtendedStatsBucket("extended_stats_bucket"),
 
-		FrequentItemSets("frequent_item_sets"),
+		FrequentItemSets("frequent_item_sets", "frequent_items"),
 
 		Filter("filter"),
 
@@ -237,13 +243,19 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 		;
 
 		private final String jsonValue;
+		private final String[] aliases;
 
-		Kind(String jsonValue) {
+		Kind(String jsonValue, String... aliases) {
 			this.jsonValue = jsonValue;
+			this.aliases = aliases;
 		}
 
 		public String jsonValue() {
 			return this.jsonValue;
+		}
+
+		public String[] aliases() {
+			return this.aliases;
 		}
 
 	}
@@ -500,6 +512,42 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 	}
 
 	/**
+	 * Is this variant instance of kind {@code cartesian_bounds}?
+	 */
+	public boolean isCartesianBounds() {
+		return _kind == Kind.CartesianBounds;
+	}
+
+	/**
+	 * Get the {@code cartesian_bounds} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code cartesian_bounds}
+	 *             kind.
+	 */
+	public CartesianBoundsAggregation cartesianBounds() {
+		return TaggedUnionUtils.get(this, Kind.CartesianBounds);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code cartesian_centroid}?
+	 */
+	public boolean isCartesianCentroid() {
+		return _kind == Kind.CartesianCentroid;
+	}
+
+	/**
+	 * Get the {@code cartesian_centroid} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code cartesian_centroid}
+	 *             kind.
+	 */
+	public CartesianCentroidAggregation cartesianCentroid() {
+		return TaggedUnionUtils.get(this, Kind.CartesianCentroid);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code categorize_text}?
 	 */
 	public boolean isCategorizeText() {
@@ -515,6 +563,23 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 	 */
 	public CategorizeTextAggregation categorizeText() {
 		return TaggedUnionUtils.get(this, Kind.CategorizeText);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code change_point}?
+	 */
+	public boolean isChangePoint() {
+		return _kind == Kind.ChangePoint;
+	}
+
+	/**
+	 * Get the {@code change_point} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code change_point} kind.
+	 */
+	public ChangePointAggregation changePoint() {
+		return TaggedUnionUtils.get(this, Kind.ChangePoint);
 	}
 
 	/**
@@ -1907,6 +1972,28 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 			return this.cardinality(fn.apply(new CardinalityAggregation.Builder()).build());
 		}
 
+		public ContainerBuilder cartesianBounds(CartesianBoundsAggregation v) {
+			this._kind = Kind.CartesianBounds;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder cartesianBounds(
+				Function<CartesianBoundsAggregation.Builder, ObjectBuilder<CartesianBoundsAggregation>> fn) {
+			return this.cartesianBounds(fn.apply(new CartesianBoundsAggregation.Builder()).build());
+		}
+
+		public ContainerBuilder cartesianCentroid(CartesianCentroidAggregation v) {
+			this._kind = Kind.CartesianCentroid;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder cartesianCentroid(
+				Function<CartesianCentroidAggregation.Builder, ObjectBuilder<CartesianCentroidAggregation>> fn) {
+			return this.cartesianCentroid(fn.apply(new CartesianCentroidAggregation.Builder()).build());
+		}
+
 		public ContainerBuilder categorizeText(CategorizeTextAggregation v) {
 			this._kind = Kind.CategorizeText;
 			this._value = v;
@@ -1916,6 +2003,17 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 		public ContainerBuilder categorizeText(
 				Function<CategorizeTextAggregation.Builder, ObjectBuilder<CategorizeTextAggregation>> fn) {
 			return this.categorizeText(fn.apply(new CategorizeTextAggregation.Builder()).build());
+		}
+
+		public ContainerBuilder changePoint(ChangePointAggregation v) {
+			this._kind = Kind.ChangePoint;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder changePoint(
+				Function<ChangePointAggregation.Builder, ObjectBuilder<ChangePointAggregation>> fn) {
+			return this.changePoint(fn.apply(new ChangePointAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder children(ChildrenAggregation v) {
@@ -2726,7 +2824,10 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 		op.add(Builder::bucketCountKsTest, BucketKsAggregation._DESERIALIZER, "bucket_count_ks_test");
 		op.add(Builder::bucketCorrelation, BucketCorrelationAggregation._DESERIALIZER, "bucket_correlation");
 		op.add(Builder::cardinality, CardinalityAggregation._DESERIALIZER, "cardinality");
+		op.add(Builder::cartesianBounds, CartesianBoundsAggregation._DESERIALIZER, "cartesian_bounds");
+		op.add(Builder::cartesianCentroid, CartesianCentroidAggregation._DESERIALIZER, "cartesian_centroid");
 		op.add(Builder::categorizeText, CategorizeTextAggregation._DESERIALIZER, "categorize_text");
+		op.add(Builder::changePoint, ChangePointAggregation._DESERIALIZER, "change_point");
 		op.add(Builder::children, ChildrenAggregation._DESERIALIZER, "children");
 		op.add(Builder::composite, CompositeAggregation._DESERIALIZER, "composite");
 		op.add(Builder::cumulativeCardinality, CumulativeCardinalityAggregation._DESERIALIZER,
@@ -2738,7 +2839,8 @@ public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, J
 		op.add(Builder::diversifiedSampler, DiversifiedSamplerAggregation._DESERIALIZER, "diversified_sampler");
 		op.add(Builder::extendedStats, ExtendedStatsAggregation._DESERIALIZER, "extended_stats");
 		op.add(Builder::extendedStatsBucket, ExtendedStatsBucketAggregation._DESERIALIZER, "extended_stats_bucket");
-		op.add(Builder::frequentItemSets, FrequentItemSetsAggregation._DESERIALIZER, "frequent_item_sets");
+		op.add(Builder::frequentItemSets, FrequentItemSetsAggregation._DESERIALIZER, "frequent_item_sets",
+				"frequent_items");
 		op.add(Builder::filter, Query._DESERIALIZER, "filter");
 		op.add(Builder::filters, FiltersAggregation._DESERIALIZER, "filters");
 		op.add(Builder::geoBounds, GeoBoundsAggregation._DESERIALIZER, "geo_bounds");

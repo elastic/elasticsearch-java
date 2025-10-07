@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
+import co.elastic.clients.elasticsearch._types.Bytes;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.TimeUnit;
@@ -76,6 +77,9 @@ public class TasksRequest extends CatRequestBase {
 	private final List<String> actions;
 
 	@Nullable
+	private final Bytes bytes;
+
+	@Nullable
 	private final Boolean detailed;
 
 	private final List<String> h;
@@ -101,6 +105,7 @@ public class TasksRequest extends CatRequestBase {
 	private TasksRequest(Builder builder) {
 
 		this.actions = ApiTypeHelper.unmodifiable(builder.actions);
+		this.bytes = builder.bytes;
 		this.detailed = builder.detailed;
 		this.h = ApiTypeHelper.unmodifiable(builder.h);
 		this.nodes = ApiTypeHelper.unmodifiable(builder.nodes);
@@ -123,6 +128,24 @@ public class TasksRequest extends CatRequestBase {
 	 */
 	public final List<String> actions() {
 		return this.actions;
+	}
+
+	/**
+	 * Sets the units for columns that contain a byte-size value. Note that
+	 * byte-size value units work in terms of powers of 1024. For instance
+	 * <code>1kb</code> means 1024 bytes, not 1000 bytes. If omitted, byte-size
+	 * values are rendered with a suffix such as <code>kb</code>, <code>mb</code>,
+	 * or <code>gb</code>, chosen such that the numeric value of the column is as
+	 * small as possible whilst still being at least <code>1.0</code>. If given,
+	 * byte-size values are rendered as an integer with no suffix, representing the
+	 * value of the column in the chosen unit. Values that are not an exact multiple
+	 * of the chosen unit are rounded down.
+	 * <p>
+	 * API name: {@code bytes}
+	 */
+	@Nullable
+	public final Bytes bytes() {
+		return this.bytes;
 	}
 
 	/**
@@ -177,7 +200,13 @@ public class TasksRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Unit used to display time values.
+	 * Sets the units for columns that contain a time duration. If omitted, time
+	 * duration values are rendered with a suffix such as <code>ms</code>,
+	 * <code>s</code>, <code>m</code> or <code>h</code>, chosen such that the
+	 * numeric value of the column is as small as possible whilst still being at
+	 * least <code>1.0</code>. If given, time duration values are rendered as an
+	 * integer with no suffix. Values that are not an exact multiple of the chosen
+	 * unit are rounded down.
 	 * <p>
 	 * API name: {@code time}
 	 */
@@ -216,6 +245,9 @@ public class TasksRequest extends CatRequestBase {
 	public static class Builder extends CatRequestBase.AbstractBuilder<Builder> implements ObjectBuilder<TasksRequest> {
 		@Nullable
 		private List<String> actions;
+
+		@Nullable
+		private Bytes bytes;
 
 		@Nullable
 		private Boolean detailed;
@@ -262,6 +294,24 @@ public class TasksRequest extends CatRequestBase {
 		 */
 		public final Builder actions(String value, String... values) {
 			this.actions = _listAdd(this.actions, value, values);
+			return this;
+		}
+
+		/**
+		 * Sets the units for columns that contain a byte-size value. Note that
+		 * byte-size value units work in terms of powers of 1024. For instance
+		 * <code>1kb</code> means 1024 bytes, not 1000 bytes. If omitted, byte-size
+		 * values are rendered with a suffix such as <code>kb</code>, <code>mb</code>,
+		 * or <code>gb</code>, chosen such that the numeric value of the column is as
+		 * small as possible whilst still being at least <code>1.0</code>. If given,
+		 * byte-size values are rendered as an integer with no suffix, representing the
+		 * value of the column in the chosen unit. Values that are not an exact multiple
+		 * of the chosen unit are rounded down.
+		 * <p>
+		 * API name: {@code bytes}
+		 */
+		public final Builder bytes(@Nullable Bytes value) {
+			this.bytes = value;
 			return this;
 		}
 
@@ -379,7 +429,13 @@ public class TasksRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Unit used to display time values.
+		 * Sets the units for columns that contain a time duration. If omitted, time
+		 * duration values are rendered with a suffix such as <code>ms</code>,
+		 * <code>s</code>, <code>m</code> or <code>h</code>, chosen such that the
+		 * numeric value of the column is as small as possible whilst still being at
+		 * least <code>1.0</code>. If given, time duration values are rendered as an
+		 * integer with no suffix. Values that are not an exact multiple of the chosen
+		 * unit are rounded down.
 		 * <p>
 		 * API name: {@code time}
 		 */
@@ -477,6 +533,9 @@ public class TasksRequest extends CatRequestBase {
 				}
 				if (request.detailed != null) {
 					params.put("detailed", String.valueOf(request.detailed));
+				}
+				if (request.bytes != null) {
+					params.put("bytes", request.bytes.jsonValue());
 				}
 				if (ApiTypeHelper.isDefined(request.h)) {
 					params.put("h", request.h.stream().map(v -> v).collect(Collectors.joining(",")));

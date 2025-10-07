@@ -138,6 +138,7 @@ import co.elastic.clients.elasticsearch.slm.ElasticsearchSlmClient;
 import co.elastic.clients.elasticsearch.snapshot.ElasticsearchSnapshotClient;
 import co.elastic.clients.elasticsearch.sql.ElasticsearchSqlClient;
 import co.elastic.clients.elasticsearch.ssl.ElasticsearchSslClient;
+import co.elastic.clients.elasticsearch.streams.ElasticsearchStreamsClient;
 import co.elastic.clients.elasticsearch.synonyms.ElasticsearchSynonymsClient;
 import co.elastic.clients.elasticsearch.tasks.ElasticsearchTasksClient;
 import co.elastic.clients.elasticsearch.text_structure.ElasticsearchTextStructureClient;
@@ -344,6 +345,10 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public ElasticsearchSslClient ssl() {
 		return new ElasticsearchSslClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchStreamsClient streams() {
+		return new ElasticsearchStreamsClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchSynonymsClient synonyms() {
