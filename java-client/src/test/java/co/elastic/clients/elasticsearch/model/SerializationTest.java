@@ -41,6 +41,11 @@ import java.io.StringReader;
 
 public class SerializationTest extends ModelTestCase {
 
+    /**
+     * Loads all {@code _DESERIALIER} fields. Since the actual deserializers are lazily constructed at runtime
+     * the first time a deserializer is used, we load them all to make sure they can be created and initialized
+     * successfully.
+     */
     @Test
     public void loadAllDeserializers() throws Exception {
 
@@ -67,20 +72,6 @@ public class SerializationTest extends ModelTestCase {
         // Check that all classes that have a _DESERIALIZER field also have the annotation
         ClassInfoList withDeserializer = scan.getAllClasses().filter((c) -> c.hasDeclaredField("_DESERIALIZER"));
         assertFalse(withDeserializer.isEmpty(), "No classes with a _DESERIALIZER field");
-
-// Disabled for now, empty response classes still need a deserializer object
-// e.g. ExistsIndexTemplateResponse, PingResponse, ExistsResponse, ExistsAliasResponse
-//
-//        Set<String> annotationNames = withAnnotation.stream().map(c -> c.getName()).collect(Collectors.toSet());
-//        Set<String> withFieldNames = withDeserializer.stream().map(c -> c.getName()).collect(Collectors.toSet());
-//
-//        withFieldNames.removeAll(annotationNames);
-//
-//        assertFalse(
-//            withFieldNames.size() + " classes with the field but not the annotation: " + withFieldNames,
-//            !withFieldNames.isEmpty()
-//        );
-
     }
 
     @Test
