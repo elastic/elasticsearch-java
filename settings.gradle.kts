@@ -22,4 +22,5 @@ import java.nio.file.Paths
 rootProject.name = "elasticsearch-java"
 
 include("java-client")
+include("rest5-client")
 include("tools")
