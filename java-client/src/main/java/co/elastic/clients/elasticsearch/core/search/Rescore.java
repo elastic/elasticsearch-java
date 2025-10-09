@@ -79,6 +79,8 @@ public class Rescore implements OpenTaggedUnion<Rescore.Kind, Object>, JsonpSeri
 
 		LearningToRank("learning_to_rank"),
 
+		Script("script"),
+
 		/** A custom {@code Rescore} defined by a plugin */
 		_Custom(null)
 
@@ -179,6 +181,23 @@ public class Rescore implements OpenTaggedUnion<Rescore.Kind, Object>, JsonpSeri
 		return TaggedUnionUtils.get(this, Kind.LearningToRank);
 	}
 
+	/**
+	 * Is this variant instance of kind {@code script}?
+	 */
+	public boolean isScript() {
+		return _kind == Kind.Script;
+	}
+
+	/**
+	 * Get the {@code script} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code script} kind.
+	 */
+	public ScriptRescore script() {
+		return TaggedUnionUtils.get(this, Kind.Script);
+	}
+
 	@Nullable
 	private final String _customKind;
 
@@ -274,6 +293,16 @@ public class Rescore implements OpenTaggedUnion<Rescore.Kind, Object>, JsonpSeri
 			return this.learningToRank(fn.apply(new LearningToRank.Builder()).build());
 		}
 
+		public ContainerBuilder script(ScriptRescore v) {
+			this._kind = Kind.Script;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder script(Function<ScriptRescore.Builder, ObjectBuilder<ScriptRescore>> fn) {
+			return this.script(fn.apply(new ScriptRescore.Builder()).build());
+		}
+
 		/**
 		 * Define this {@code Rescore} as a plugin-defined variant.
 		 *
@@ -316,6 +345,7 @@ public class Rescore implements OpenTaggedUnion<Rescore.Kind, Object>, JsonpSeri
 		op.add(Builder::windowSize, JsonpDeserializer.integerDeserializer(), "window_size");
 		op.add(Builder::query, RescoreQuery._DESERIALIZER, "query");
 		op.add(Builder::learningToRank, LearningToRank._DESERIALIZER, "learning_to_rank");
+		op.add(Builder::script, ScriptRescore._DESERIALIZER, "script");
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
 			JsonpUtils.ensureCustomVariantsAllowed(parser, mapper);

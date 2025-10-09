@@ -1856,6 +1856,22 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 				GetSecuritySettingsRequest._ENDPOINT, this.transportOptions);
 	}
 
+	// ----- Endpoint: security.get_stats
+
+	/**
+	 * Get security stats.
+	 * <p>
+	 * Gather security usage statistics from all node(s) within the cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-stats">Documentation
+	 *      on elastic.co</a>
+	 */
+	public GetStatsResponse getStats() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(GetStatsRequest._INSTANCE, GetStatsRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
 	// ----- Endpoint: security.get_token
 
 	/**

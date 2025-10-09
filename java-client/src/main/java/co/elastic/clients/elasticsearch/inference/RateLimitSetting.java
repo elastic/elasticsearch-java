@@ -88,6 +88,7 @@ public class RateLimitSetting implements JsonpSerializable {
 	 * <li><code>azureopenai</code> service and task type <code>completion</code>:
 	 * <code>120</code></li>
 	 * <li><code>cohere</code> service: <code>10000</code></li>
+	 * <li><code>contextualai</code> service: <code>1000</code></li>
 	 * <li><code>elastic</code> service and task type <code>chat_completion</code>:
 	 * <code>240</code></li>
 	 * <li><code>googleaistudio</code> service: <code>360</code></li>
@@ -157,6 +158,7 @@ public class RateLimitSetting implements JsonpSerializable {
 		 * <li><code>azureopenai</code> service and task type <code>completion</code>:
 		 * <code>120</code></li>
 		 * <li><code>cohere</code> service: <code>10000</code></li>
+		 * <li><code>contextualai</code> service: <code>1000</code></li>
 		 * <li><code>elastic</code> service and task type <code>chat_completion</code>:
 		 * <code>240</code></li>
 		 * <li><code>googleaistudio</code> service: <code>360</code></li>

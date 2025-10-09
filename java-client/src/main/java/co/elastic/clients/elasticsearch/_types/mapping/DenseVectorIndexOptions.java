@@ -153,9 +153,10 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	}
 
 	/**
-	 * The rescore vector options. This is only applicable to <code>bbq_hnsw</code>,
-	 * <code>int4_hnsw</code>, <code>int8_hnsw</code>, <code>bbq_flat</code>,
-	 * <code>int4_flat</code>, and <code>int8_flat</code> index types.
+	 * The rescore vector options. This is only applicable to <code>bbq_disk</code>,
+	 * <code>bbq_hnsw</code>, <code>int4_hnsw</code>, <code>int8_hnsw</code>,
+	 * <code>bbq_flat</code>, <code>int4_flat</code>, and <code>int8_flat</code>
+	 * index types.
 	 * <p>
 	 * API name: {@code rescore_vector}
 	 */
@@ -291,9 +292,10 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		}
 
 		/**
-		 * The rescore vector options. This is only applicable to <code>bbq_hnsw</code>,
-		 * <code>int4_hnsw</code>, <code>int8_hnsw</code>, <code>bbq_flat</code>,
-		 * <code>int4_flat</code>, and <code>int8_flat</code> index types.
+		 * The rescore vector options. This is only applicable to <code>bbq_disk</code>,
+		 * <code>bbq_hnsw</code>, <code>int4_hnsw</code>, <code>int8_hnsw</code>,
+		 * <code>bbq_flat</code>, <code>int4_flat</code>, and <code>int8_flat</code>
+		 * index types.
 		 * <p>
 		 * API name: {@code rescore_vector}
 		 */
@@ -303,9 +305,10 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		}
 
 		/**
-		 * The rescore vector options. This is only applicable to <code>bbq_hnsw</code>,
-		 * <code>int4_hnsw</code>, <code>int8_hnsw</code>, <code>bbq_flat</code>,
-		 * <code>int4_flat</code>, and <code>int8_flat</code> index types.
+		 * The rescore vector options. This is only applicable to <code>bbq_disk</code>,
+		 * <code>bbq_hnsw</code>, <code>int4_hnsw</code>, <code>int8_hnsw</code>,
+		 * <code>bbq_flat</code>, <code>int4_flat</code>, and <code>int8_flat</code>
+		 * index types.
 		 * <p>
 		 * API name: {@code rescore_vector}
 		 */

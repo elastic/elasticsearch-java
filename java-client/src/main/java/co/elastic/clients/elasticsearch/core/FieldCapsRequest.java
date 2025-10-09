@@ -102,6 +102,9 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Query indexFilter;
 
+	@Nullable
+	private final String projectRouting;
+
 	private final Map<String, RuntimeField> runtimeMappings;
 
 	private final List<String> types;
@@ -119,6 +122,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		this.includeUnmapped = builder.includeUnmapped;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.indexFilter = builder.indexFilter;
+		this.projectRouting = builder.projectRouting;
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.types = ApiTypeHelper.unmodifiable(builder.types);
 
@@ -236,6 +240,20 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Specifies a subset of projects to target for the field-caps query using
+	 * project metadata tags in a subset of Lucene query syntax. Allowed Lucene
+	 * queries: the _alias tag and a single value (possibly wildcarded). Examples:
+	 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+	 * only.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
+	}
+
+	/**
 	 * Define ad-hoc runtime fields in the request similar to the way it is done in
 	 * search requests. These fields exist only as part of the query and take
 	 * precedence over fields defined with the same name in the index mappings.
@@ -332,6 +350,9 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Query indexFilter;
+
+		@Nullable
+		private String projectRouting;
 
 		@Nullable
 		private Map<String, RuntimeField> runtimeMappings;
@@ -535,6 +556,20 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies a subset of projects to target for the field-caps query using
+		 * project metadata tags in a subset of Lucene query syntax. Allowed Lucene
+		 * queries: the _alias tag and a single value (possibly wildcarded). Examples:
+		 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+		 * only.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
+			return this;
+		}
+
+		/**
 		 * Define ad-hoc runtime fields in the request similar to the way it is done in
 		 * search requests. These fields exist only as part of the query and take
 		 * precedence over fields defined with the same name in the index mappings.
@@ -717,6 +752,9 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.filters != null) {
 					params.put("filters", request.filters);
+				}
+				if (request.projectRouting != null) {
+					params.put("project_routing", request.projectRouting);
 				}
 				if (request.includeUnmapped != null) {
 					params.put("include_unmapped", String.valueOf(request.includeUnmapped));

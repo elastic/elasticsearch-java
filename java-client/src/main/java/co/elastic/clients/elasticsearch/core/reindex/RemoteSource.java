@@ -75,6 +75,9 @@ public class RemoteSource implements JsonpSerializable {
 	private final String password;
 
 	@Nullable
+	private final String apiKey;
+
+	@Nullable
 	private final Time socketTimeout;
 
 	// ---------------------------------------------------------------------------------------------
@@ -86,6 +89,7 @@ public class RemoteSource implements JsonpSerializable {
 		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
 		this.username = builder.username;
 		this.password = builder.password;
+		this.apiKey = builder.apiKey;
 		this.socketTimeout = builder.socketTimeout;
 
 	}
@@ -124,7 +128,8 @@ public class RemoteSource implements JsonpSerializable {
 	}
 
 	/**
-	 * The username to use for authentication with the remote host.
+	 * The username to use for authentication with the remote host (required when
+	 * using basic auth).
 	 * <p>
 	 * API name: {@code username}
 	 */
@@ -134,13 +139,27 @@ public class RemoteSource implements JsonpSerializable {
 	}
 
 	/**
-	 * The password to use for authentication with the remote host.
+	 * The password to use for authentication with the remote host (required when
+	 * using basic auth).
 	 * <p>
 	 * API name: {@code password}
 	 */
 	@Nullable
 	public final String password() {
 		return this.password;
+	}
+
+	/**
+	 * The API key to use for authentication with the remote host (as an alternative
+	 * to basic auth when the remote cluster is in Elastic Cloud). (It is not
+	 * permitted to set this and also to set an <code>Authorization</code> header
+	 * via <code>headers</code>.)
+	 * <p>
+	 * API name: {@code api_key}
+	 */
+	@Nullable
+	public final String apiKey() {
+		return this.apiKey;
 	}
 
 	/**
@@ -193,6 +212,11 @@ public class RemoteSource implements JsonpSerializable {
 			generator.write(this.password);
 
 		}
+		if (this.apiKey != null) {
+			generator.writeKey("api_key");
+			generator.write(this.apiKey);
+
+		}
 		if (this.socketTimeout != null) {
 			generator.writeKey("socket_timeout");
 			this.socketTimeout.serialize(generator, mapper);
@@ -226,6 +250,9 @@ public class RemoteSource implements JsonpSerializable {
 
 		@Nullable
 		private String password;
+
+		@Nullable
+		private String apiKey;
 
 		@Nullable
 		private Time socketTimeout;
@@ -285,7 +312,8 @@ public class RemoteSource implements JsonpSerializable {
 		}
 
 		/**
-		 * The username to use for authentication with the remote host.
+		 * The username to use for authentication with the remote host (required when
+		 * using basic auth).
 		 * <p>
 		 * API name: {@code username}
 		 */
@@ -295,12 +323,26 @@ public class RemoteSource implements JsonpSerializable {
 		}
 
 		/**
-		 * The password to use for authentication with the remote host.
+		 * The password to use for authentication with the remote host (required when
+		 * using basic auth).
 		 * <p>
 		 * API name: {@code password}
 		 */
 		public final Builder password(@Nullable String value) {
 			this.password = value;
+			return this;
+		}
+
+		/**
+		 * The API key to use for authentication with the remote host (as an alternative
+		 * to basic auth when the remote cluster is in Elastic Cloud). (It is not
+		 * permitted to set this and also to set an <code>Authorization</code> header
+		 * via <code>headers</code>.)
+		 * <p>
+		 * API name: {@code api_key}
+		 */
+		public final Builder apiKey(@Nullable String value) {
+			this.apiKey = value;
 			return this;
 		}
 
@@ -357,6 +399,7 @@ public class RemoteSource implements JsonpSerializable {
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
+		op.add(Builder::apiKey, JsonpDeserializer.stringDeserializer(), "api_key");
 		op.add(Builder::socketTimeout, Time._DESERIALIZER, "socket_timeout");
 
 	}

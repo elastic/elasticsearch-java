@@ -253,6 +253,44 @@ public class AggregationBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link CartesianBoundsAggregation cartesian_bounds}
+	 * {@code Aggregation} variant.
+	 */
+	public static CartesianBoundsAggregation.Builder cartesianBounds() {
+		return new CartesianBoundsAggregation.Builder();
+	}
+
+	/**
+	 * Creates a Aggregation of the {@link CartesianBoundsAggregation
+	 * cartesian_bounds} {@code Aggregation} variant.
+	 */
+	public static Aggregation cartesianBounds(
+			Function<CartesianBoundsAggregation.Builder, ObjectBuilder<CartesianBoundsAggregation>> fn) {
+		Aggregation.Builder builder = new Aggregation.Builder();
+		builder.cartesianBounds(fn.apply(new CartesianBoundsAggregation.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link CartesianCentroidAggregation
+	 * cartesian_centroid} {@code Aggregation} variant.
+	 */
+	public static CartesianCentroidAggregation.Builder cartesianCentroid() {
+		return new CartesianCentroidAggregation.Builder();
+	}
+
+	/**
+	 * Creates a Aggregation of the {@link CartesianCentroidAggregation
+	 * cartesian_centroid} {@code Aggregation} variant.
+	 */
+	public static Aggregation cartesianCentroid(
+			Function<CartesianCentroidAggregation.Builder, ObjectBuilder<CartesianCentroidAggregation>> fn) {
+		Aggregation.Builder builder = new Aggregation.Builder();
+		builder.cartesianCentroid(fn.apply(new CartesianCentroidAggregation.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link CategorizeTextAggregation categorize_text}
 	 * {@code Aggregation} variant.
 	 */
@@ -268,6 +306,25 @@ public class AggregationBuilders {
 			Function<CategorizeTextAggregation.Builder, ObjectBuilder<CategorizeTextAggregation>> fn) {
 		Aggregation.Builder builder = new Aggregation.Builder();
 		builder.categorizeText(fn.apply(new CategorizeTextAggregation.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link ChangePointAggregation change_point}
+	 * {@code Aggregation} variant.
+	 */
+	public static ChangePointAggregation.Builder changePoint() {
+		return new ChangePointAggregation.Builder();
+	}
+
+	/**
+	 * Creates a Aggregation of the {@link ChangePointAggregation change_point}
+	 * {@code Aggregation} variant.
+	 */
+	public static Aggregation changePoint(
+			Function<ChangePointAggregation.Builder, ObjectBuilder<ChangePointAggregation>> fn) {
+		Aggregation.Builder builder = new Aggregation.Builder();
+		builder.changePoint(fn.apply(new ChangePointAggregation.Builder()).build());
 		return builder.build();
 	}
 

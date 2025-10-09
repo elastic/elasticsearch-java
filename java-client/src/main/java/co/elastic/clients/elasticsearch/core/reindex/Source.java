@@ -24,6 +24,7 @@ import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
+import co.elastic.clients.elasticsearch.core.search.SourceConfig;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -83,7 +84,8 @@ public class Source implements JsonpSerializable {
 
 	private final List<SortOptions> sort;
 
-	private final List<String> sourceFields;
+	@Nullable
+	private final SourceConfig sourceFields;
 
 	private final Map<String, RuntimeField> runtimeMappings;
 
@@ -97,7 +99,7 @@ public class Source implements JsonpSerializable {
 		this.size = builder.size;
 		this.slice = builder.slice;
 		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
-		this.sourceFields = ApiTypeHelper.unmodifiable(builder.sourceFields);
+		this.sourceFields = builder.sourceFields;
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 
 	}
@@ -185,7 +187,8 @@ public class Source implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _source}
 	 */
-	public final List<String> sourceFields() {
+	@Nullable
+	public final SourceConfig sourceFields() {
 		return this.sourceFields;
 	}
 
@@ -247,14 +250,9 @@ public class Source implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ApiTypeHelper.isDefined(this.sourceFields)) {
+		if (this.sourceFields != null) {
 			generator.writeKey("_source");
-			generator.writeStartArray();
-			for (String item0 : this.sourceFields) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			this.sourceFields.serialize(generator, mapper);
 
 		}
 		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
@@ -301,7 +299,7 @@ public class Source implements JsonpSerializable {
 		private List<SortOptions> sort;
 
 		@Nullable
-		private List<String> sourceFields;
+		private SourceConfig sourceFields;
 
 		@Nullable
 		private Map<String, RuntimeField> runtimeMappings;
@@ -486,11 +484,9 @@ public class Source implements JsonpSerializable {
 		 * select fields.
 		 * <p>
 		 * API name: {@code _source}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sourceFields</code>.
 		 */
-		public final Builder sourceFields(List<String> list) {
-			this.sourceFields = _listAddAll(this.sourceFields, list);
+		public final Builder sourceFields(@Nullable SourceConfig value) {
+			this.sourceFields = value;
 			return this;
 		}
 
@@ -499,12 +495,9 @@ public class Source implements JsonpSerializable {
 		 * select fields.
 		 * <p>
 		 * API name: {@code _source}
-		 * <p>
-		 * Adds one or more values to <code>sourceFields</code>.
 		 */
-		public final Builder sourceFields(String value, String... values) {
-			this.sourceFields = _listAdd(this.sourceFields, value, values);
-			return this;
+		public final Builder sourceFields(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.sourceFields(fn.apply(new SourceConfig.Builder()).build());
 		}
 
 		/**
@@ -571,8 +564,7 @@ public class Source implements JsonpSerializable {
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
-		op.add(Builder::sourceFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"_source");
+		op.add(Builder::sourceFields, SourceConfig._DESERIALIZER, "_source");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
 

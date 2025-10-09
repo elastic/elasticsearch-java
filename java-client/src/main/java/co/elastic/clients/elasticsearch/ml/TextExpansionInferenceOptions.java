@@ -26,7 +26,6 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -67,6 +66,7 @@ public class TextExpansionInferenceOptions implements InferenceConfigCreateVaria
 	@Nullable
 	private final String resultsField;
 
+	@Nullable
 	private final Vocabulary vocabulary;
 
 	// ---------------------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ public class TextExpansionInferenceOptions implements InferenceConfigCreateVaria
 
 		this.tokenization = builder.tokenization;
 		this.resultsField = builder.resultsField;
-		this.vocabulary = ApiTypeHelper.requireNonNull(builder.vocabulary, this, "vocabulary");
+		this.vocabulary = builder.vocabulary;
 
 	}
 
@@ -113,8 +113,9 @@ public class TextExpansionInferenceOptions implements InferenceConfigCreateVaria
 	}
 
 	/**
-	 * Required - API name: {@code vocabulary}
+	 * API name: {@code vocabulary}
 	 */
+	@Nullable
 	public final Vocabulary vocabulary() {
 		return this.vocabulary;
 	}
@@ -140,8 +141,11 @@ public class TextExpansionInferenceOptions implements InferenceConfigCreateVaria
 			generator.write(this.resultsField);
 
 		}
-		generator.writeKey("vocabulary");
-		this.vocabulary.serialize(generator, mapper);
+		if (this.vocabulary != null) {
+			generator.writeKey("vocabulary");
+			this.vocabulary.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -165,6 +169,7 @@ public class TextExpansionInferenceOptions implements InferenceConfigCreateVaria
 		@Nullable
 		private String resultsField;
 
+		@Nullable
 		private Vocabulary vocabulary;
 
 		/**
@@ -208,15 +213,15 @@ public class TextExpansionInferenceOptions implements InferenceConfigCreateVaria
 		}
 
 		/**
-		 * Required - API name: {@code vocabulary}
+		 * API name: {@code vocabulary}
 		 */
-		public final Builder vocabulary(Vocabulary value) {
+		public final Builder vocabulary(@Nullable Vocabulary value) {
 			this.vocabulary = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code vocabulary}
+		 * API name: {@code vocabulary}
 		 */
 		public final Builder vocabulary(Function<Vocabulary.Builder, ObjectBuilder<Vocabulary>> fn) {
 			return this.vocabulary(fn.apply(new Vocabulary.Builder()).build());

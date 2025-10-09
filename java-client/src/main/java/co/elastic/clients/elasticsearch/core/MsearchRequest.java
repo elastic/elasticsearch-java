@@ -123,6 +123,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	private final Long preFilterShardSize;
 
 	@Nullable
+	private final String projectRouting;
+
+	@Nullable
 	private final String routing;
 
 	@Nullable
@@ -144,6 +147,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		this.maxConcurrentSearches = builder.maxConcurrentSearches;
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.preFilterShardSize = builder.preFilterShardSize;
+		this.projectRouting = builder.projectRouting;
 		this.routing = builder.routing;
 		this.searchType = builder.searchType;
 		this.searches = ApiTypeHelper.unmodifiableRequired(builder.searches, this, "searches");
@@ -278,6 +282,19 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	}
 
 	/**
+	 * Specifies a subset of projects to target for a search using project metadata
+	 * tags in a subset Lucene syntax. Allowed Lucene queries: the _alias tag and a
+	 * single value (possible wildcarded). Examples: _alias:my-project
+	 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
+	}
+
+	/**
 	 * Custom routing value used to route search operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
@@ -354,6 +371,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 
 		@Nullable
 		private Long preFilterShardSize;
+
+		@Nullable
+		private String projectRouting;
 
 		@Nullable
 		private String routing;
@@ -515,6 +535,19 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		}
 
 		/**
+		 * Specifies a subset of projects to target for a search using project metadata
+		 * tags in a subset Lucene syntax. Allowed Lucene queries: the _alias tag and a
+		 * single value (possible wildcarded). Examples: _alias:my-project
+		 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
+			return this;
+		}
+
+		/**
 		 * Custom routing value used to route search operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
@@ -651,6 +684,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
+				if (request.projectRouting != null) {
+					params.put("project_routing", request.projectRouting);
 				}
 				if (request.includeNamedQueriesScore != null) {
 					params.put("include_named_queries_score", String.valueOf(request.includeNamedQueriesScore));

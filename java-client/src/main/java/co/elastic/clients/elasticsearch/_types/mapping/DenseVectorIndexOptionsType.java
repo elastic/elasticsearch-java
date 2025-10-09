@@ -64,6 +64,18 @@ public enum DenseVectorIndexOptionsType implements JsonEnum {
 	BbqHnsw("bbq_hnsw"),
 
 	/**
+	 * This utilizes the DiskBBQ algorithm, a version of Inverted Vector File (IVF)
+	 * that uses BBQ to quantize vectors. Only supports <code>element_type</code> of
+	 * <code>float</code>.
+	 * <p>
+	 * This not only significantly reduces memory usage, but also allows for
+	 * indexing and searching of very large datasets that do not fit in memory.
+	 * Unlike HNSW, this index type loses performance gracefully as the index grows
+	 * larger than memory.
+	 */
+	BbqDisk("bbq_disk"),
+
+	/**
 	 * This utilizes a brute-force search algorithm for exact kNN search. This
 	 * supports all <code>element_type</code> values.
 	 */

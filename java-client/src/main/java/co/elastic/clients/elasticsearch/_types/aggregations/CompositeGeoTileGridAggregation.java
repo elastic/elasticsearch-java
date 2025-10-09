@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class CompositeGeoTileGridAggregation extends CompositeAggregationBase {
+public class CompositeGeoTileGridAggregation extends CompositeAggregationBase
+		implements
+			CompositeAggregationSourceVariant {
 	@Nullable
 	private final Integer precision;
 
@@ -76,6 +78,14 @@ public class CompositeGeoTileGridAggregation extends CompositeAggregationBase {
 	public static CompositeGeoTileGridAggregation of(
 			Function<Builder, ObjectBuilder<CompositeGeoTileGridAggregation>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * CompositeAggregationSource variant kind.
+	 */
+	@Override
+	public CompositeAggregationSource.Kind _compositeAggregationSourceKind() {
+		return CompositeAggregationSource.Kind.GeotileGrid;
 	}
 
 	/**

@@ -58,6 +58,10 @@ compatible with default distributions and without guarantees made.
 | 9.x                   | 9.x                       | 9.x       |
 | 8.x                   | 8.x                       | 8.17      |
 
+Java client releases are synchronized with the Elasticsearch server for major and minor versions, 
+while patches are released independently, to allow for faster bugfixes. This does not affect compatibility: 
+for example, version 8.13.x of the client will be compatible with versions of the server 8.13.y where y >= x. 
+
 ## Usage
 
 - [Creating an index](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/getting-started-java.html#_creating_an_index)

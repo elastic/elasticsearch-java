@@ -92,6 +92,9 @@ public class Pipeline implements JsonpSerializable {
 	@Nullable
 	private final Long modifiedDateMillis;
 
+	@Nullable
+	private final FieldAccessPattern fieldAccessPattern;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private Pipeline(Builder builder) {
@@ -106,6 +109,7 @@ public class Pipeline implements JsonpSerializable {
 		this.createdDateMillis = builder.createdDateMillis;
 		this.modifiedDate = builder.modifiedDate;
 		this.modifiedDateMillis = builder.modifiedDateMillis;
+		this.fieldAccessPattern = builder.fieldAccessPattern;
 
 	}
 
@@ -218,6 +222,17 @@ public class Pipeline implements JsonpSerializable {
 	}
 
 	/**
+	 * Controls how processors in this pipeline should read and write data on a
+	 * document's source.
+	 * <p>
+	 * API name: {@code field_access_pattern}
+	 */
+	@Nullable
+	public final FieldAccessPattern fieldAccessPattern() {
+		return this.fieldAccessPattern;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -292,6 +307,10 @@ public class Pipeline implements JsonpSerializable {
 			generator.write(this.modifiedDateMillis);
 
 		}
+		if (this.fieldAccessPattern != null) {
+			generator.writeKey("field_access_pattern");
+			this.fieldAccessPattern.serialize(generator, mapper);
+		}
 
 	}
 
@@ -336,6 +355,9 @@ public class Pipeline implements JsonpSerializable {
 
 		@Nullable
 		private Long modifiedDateMillis;
+
+		@Nullable
+		private FieldAccessPattern fieldAccessPattern;
 
 		/**
 		 * Description of the ingest pipeline.
@@ -542,6 +564,17 @@ public class Pipeline implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * Controls how processors in this pipeline should read and write data on a
+		 * document's source.
+		 * <p>
+		 * API name: {@code field_access_pattern}
+		 */
+		public final Builder fieldAccessPattern(@Nullable FieldAccessPattern value) {
+			this.fieldAccessPattern = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -580,6 +613,7 @@ public class Pipeline implements JsonpSerializable {
 		op.add(Builder::createdDateMillis, JsonpDeserializer.longDeserializer(), "created_date_millis");
 		op.add(Builder::modifiedDate, DateTime._DESERIALIZER, "modified_date");
 		op.add(Builder::modifiedDateMillis, JsonpDeserializer.longDeserializer(), "modified_date_millis");
+		op.add(Builder::fieldAccessPattern, FieldAccessPattern._DESERIALIZER, "field_access_pattern");
 
 	}
 

@@ -55,7 +55,9 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class CompositeHistogramAggregation extends CompositeAggregationBase {
+public class CompositeHistogramAggregation extends CompositeAggregationBase
+		implements
+			CompositeAggregationSourceVariant {
 	private final double interval;
 
 	// ---------------------------------------------------------------------------------------------
@@ -69,6 +71,14 @@ public class CompositeHistogramAggregation extends CompositeAggregationBase {
 
 	public static CompositeHistogramAggregation of(Function<Builder, ObjectBuilder<CompositeHistogramAggregation>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * CompositeAggregationSource variant kind.
+	 */
+	@Override
+	public CompositeAggregationSource.Kind _compositeAggregationSourceKind() {
+		return CompositeAggregationSource.Kind.Histogram;
 	}
 
 	/**

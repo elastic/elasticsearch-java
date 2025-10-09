@@ -150,6 +150,9 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 	private final String preference;
 
 	@Nullable
+	private final String projectRouting;
+
+	@Nullable
 	private final String routing;
 
 	// ---------------------------------------------------------------------------------------------
@@ -164,6 +167,7 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		this.keepAlive = ApiTypeHelper.requireNonNull(builder.keepAlive, this, "keepAlive");
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.preference = builder.preference;
+		this.projectRouting = builder.projectRouting;
 		this.routing = builder.routing;
 
 	}
@@ -262,6 +266,20 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
+	 * Specifies a subset of projects to target for the PIT request using project
+	 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
+	 * _alias tag and a single value (possibly wildcarded). Examples:
+	 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+	 * only.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
+	}
+
+	/**
 	 * A custom value that is used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
@@ -320,6 +338,9 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 
 		@Nullable
 		private String preference;
+
+		@Nullable
+		private String projectRouting;
 
 		@Nullable
 		private String routing;
@@ -479,6 +500,20 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
+		 * Specifies a subset of projects to target for the PIT request using project
+		 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
+		 * _alias tag and a single value (possibly wildcarded). Examples:
+		 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+		 * only.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
+			return this;
+		}
+
+		/**
 		 * A custom value that is used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
@@ -592,6 +627,9 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 					params.put("preference", request.preference);
 				}
 				params.put("keep_alive", request.keepAlive._toJsonString());
+				if (request.projectRouting != null) {
+					params.put("project_routing", request.projectRouting);
+				}
 				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, OpenPointInTimeResponse._DESERIALIZER);

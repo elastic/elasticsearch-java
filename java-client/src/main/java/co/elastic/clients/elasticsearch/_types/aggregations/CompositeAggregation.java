@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.NamedValue;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -74,7 +75,7 @@ public class CompositeAggregation extends BucketAggregationBase
 	@Nullable
 	private final Integer size;
 
-	private final List<Map<String, CompositeAggregationSource>> sources;
+	private final List<NamedValue<CompositeAggregationSource>> sources;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -132,7 +133,7 @@ public class CompositeAggregation extends BucketAggregationBase
 	 * <p>
 	 * API name: {@code sources}
 	 */
-	public final List<Map<String, CompositeAggregationSource>> sources() {
+	public final List<NamedValue<CompositeAggregationSource>> sources() {
 		return this.sources;
 	}
 
@@ -166,15 +167,11 @@ public class CompositeAggregation extends BucketAggregationBase
 		if (ApiTypeHelper.isDefined(this.sources)) {
 			generator.writeKey("sources");
 			generator.writeStartArray();
-			for (Map<String, CompositeAggregationSource> item0 : this.sources) {
+			for (NamedValue<CompositeAggregationSource> item0 : this.sources) {
 				generator.writeStartObject();
-				if (item0 != null) {
-					for (Map.Entry<String, CompositeAggregationSource> item1 : item0.entrySet()) {
-						generator.writeKey(item1.getKey());
-						item1.getValue().serialize(generator, mapper);
+				generator.writeKey(item0.name());
+				item0.value().serialize(generator, mapper);
 
-					}
-				}
 				generator.writeEnd();
 
 			}
@@ -205,7 +202,7 @@ public class CompositeAggregation extends BucketAggregationBase
 		private Integer size;
 
 		@Nullable
-		private List<Map<String, CompositeAggregationSource>> sources;
+		private List<NamedValue<CompositeAggregationSource>> sources;
 
 		/**
 		 * When paginating, use the <code>after_key</code> value returned in the
@@ -315,7 +312,7 @@ public class CompositeAggregation extends BucketAggregationBase
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sources</code>.
 		 */
-		public final Builder sources(List<Map<String, CompositeAggregationSource>> list) {
+		public final Builder sources(List<NamedValue<CompositeAggregationSource>> list) {
 			this.sources = _listAddAll(this.sources, list);
 			return this;
 		}
@@ -328,8 +325,9 @@ public class CompositeAggregation extends BucketAggregationBase
 		 * <p>
 		 * Adds one or more values to <code>sources</code>.
 		 */
-		public final Builder sources(Map<String, CompositeAggregationSource> value,
-				Map<String, CompositeAggregationSource>... values) {
+		@SafeVarargs
+		public final Builder sources(NamedValue<CompositeAggregationSource> value,
+				NamedValue<CompositeAggregationSource>... values) {
 			this.sources = _listAdd(this.sources, value, values);
 			return this;
 		}
@@ -364,8 +362,8 @@ public class CompositeAggregation extends BucketAggregationBase
 
 		op.add(Builder::after, JsonpDeserializer.stringMapDeserializer(FieldValue._DESERIALIZER), "after");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
-		op.add(Builder::sources, JsonpDeserializer.arrayDeserializer(
-				JsonpDeserializer.stringMapDeserializer(CompositeAggregationSource._DESERIALIZER)), "sources");
+		op.add(Builder::sources, JsonpDeserializer
+				.arrayDeserializer(NamedValue.deserializer(() -> CompositeAggregationSource._DESERIALIZER)), "sources");
 
 	}
 

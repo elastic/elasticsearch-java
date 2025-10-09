@@ -52,7 +52,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class CompositeTermsAggregation extends CompositeAggregationBase {
+public class CompositeTermsAggregation extends CompositeAggregationBase implements CompositeAggregationSourceVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private CompositeTermsAggregation(Builder builder) {
@@ -62,6 +62,14 @@ public class CompositeTermsAggregation extends CompositeAggregationBase {
 
 	public static CompositeTermsAggregation of(Function<Builder, ObjectBuilder<CompositeTermsAggregation>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * CompositeAggregationSource variant kind.
+	 */
+	@Override
+	public CompositeAggregationSource.Kind _compositeAggregationSourceKind() {
+		return CompositeAggregationSource.Kind.Terms;
 	}
 
 	// ---------------------------------------------------------------------------------------------
