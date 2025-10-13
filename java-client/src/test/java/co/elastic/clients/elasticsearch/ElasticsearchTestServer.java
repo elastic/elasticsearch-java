@@ -25,24 +25,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.endpoints.DelegatingJsonEndpoint;
-import org.apache.commons.io.FileUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.testcontainers.elasticsearch.ElasticsearchContainer;
 import org.testcontainers.images.builder.ImageFromDockerfile;
 import org.testcontainers.shaded.org.apache.commons.io.IOUtils;
 import org.testcontainers.utility.DockerImageName;
 
 import javax.net.ssl.SSLContext;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.Base64;
+import java.util.Map;
 import java.util.Random;
+import java.util.Scanner;
 
 public class ElasticsearchTestServer implements AutoCloseable {
 
@@ -53,8 +53,10 @@ public class ElasticsearchTestServer implements AutoCloseable {
     private ElasticsearchClient client;
 
     private static ElasticsearchTestServer global;
-    // TODO problem: missing preview versions
-    private static final String artifactsApiUrl = "https://artifacts.elastic.co/releases/stack.json";
+    private static final String artifactsSnapshotUrl = "https://artifacts-snapshot.elastic" +
+                                                       ".co/elasticsearch/latest/";
+    private static final String artifactLatest = "https://artifacts-snapshot.elastic" +
+                                                 ".co/elasticsearch/latest/master.json";
 
     public static synchronized ElasticsearchTestServer global() {
         if (global == null) {
@@ -64,7 +66,8 @@ public class ElasticsearchTestServer implements AutoCloseable {
                 String localUrl = "http://localhost:9200";
                 HttpURLConnection connection = (HttpURLConnection) new URL(localUrl).openConnection();
                 connection.setRequestProperty("Authorization", "Basic " +
-                    Base64.getEncoder().encodeToString("elastic:changeme".getBytes(StandardCharsets.UTF_8)));
+                                                               Base64.getEncoder().encodeToString(("elastic" +
+                                                               ":changeme").getBytes(StandardCharsets.UTF_8)));
 
                 try (InputStream input = connection.getInputStream()) {
                     String content = IOUtils.toString(input, StandardCharsets.UTF_8);
@@ -103,56 +106,38 @@ public class ElasticsearchTestServer implements AutoCloseable {
         this.client = ElasticsearchTestClient.createClient(url, null, sslContext);
     }
 
-    private Version selectLatestVersion(Version version, String info) {
-        if (info.contains(version.toString())) {
-            return version;
-        }
-        // if no version X.Y.0 was found, we give up
-        if (version.maintenance() == 0) {
-            throw new RuntimeException("Elasticsearch server container version: " + version + " not yet " +
-                "available");
-        }
-        String prerelease = version.isPreRelease() ? "SNAPSHOT" : null;
-        return selectLatestVersion(new Version(version.major(), version.minor(), version.maintenance() - 1,
-            prerelease, null), info);
-    }
+    private Version selectLatestVersion(Version version) {
 
-    private String fetchAndWriteVersionInfo(File file) throws IOException {
-        String versionInfo = IOUtils.toString(new URL(artifactsApiUrl), StandardCharsets.UTF_8);
-        FileUtils.writeStringToFile(file, versionInfo, StandardCharsets.UTF_8);
-        return versionInfo;
-    }
-
-    private Version getLatestAvailableServerVersion(Version version) {
+        String out;
         try {
-            // check if there's cached information
-            ClassLoader classLoader = getClass().getClassLoader();
-            URL location = classLoader.getResource("./co/elastic/clients/version.json");
+            String url = artifactsSnapshotUrl +
+                         version.major() +
+                         '.' +
+                         version.minor() +
+                         ".json";
 
-            // writing the info on file before returning
-            if (location == null) {
-                File file = new File(classLoader.getResource("./co/elastic/clients").getFile() + "/version" +
-                    ".json");
-                String versionInfo = fetchAndWriteVersionInfo(file);
-                return selectLatestVersion(version, versionInfo);
-            }
-
-            File file = new File(location.getFile());
-
-            // info file was found, but it's expired
-            if (Instant.ofEpochMilli(file.lastModified()).isBefore(Instant.now().minus(24,
-                ChronoUnit.HOURS))) {
-                String versionInfo = fetchAndWriteVersionInfo(file);
-                return selectLatestVersion(version, versionInfo);
-            }
-
-            // info file exists and it has new info
-            String versionInfo = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
-            return selectLatestVersion(version, versionInfo);
-
+            out = new Scanner(new URL(url).openStream(), "UTF-8")
+                .useDelimiter("\\A").next();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            // Version not available, trying preview version
+            try {
+                out = new Scanner(new URL(artifactLatest).openStream(), "UTF-8")
+                    .useDelimiter("\\A").next();
+            } catch (IOException ex) {
+                throw new RuntimeException("Elasticsearch server container version " + version + "not " +
+                                           "available, exception is: " + ex.getMessage());
+            }
         }
+
+        ObjectMapper mapper = new ObjectMapper();
+        Map info = null;
+        try {
+            info = mapper.readValue(out, Map.class);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Could not parse version info from artifact api, exception is: " + e.getMessage());
+        }
+
+        return Version.parse(info.get("version").toString());
     }
 
     public synchronized ElasticsearchTestServer start() {
@@ -160,7 +145,7 @@ public class ElasticsearchTestServer implements AutoCloseable {
             return this;
         }
 
-        Version version = getLatestAvailableServerVersion(Version.VERSION);
+        Version version = selectLatestVersion(Version.VERSION);
 
         // using specific stable version for tests with plugins
         if (plugins.length > 0) {
