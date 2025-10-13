@@ -28,9 +28,9 @@ import org.apache.hc.client5.http.impl.async.HttpAsyncClientBuilder;
 import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManager;
 import org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManagerBuilder;
 import org.apache.hc.client5.http.routing.HttpRoutePlanner;
+import org.apache.hc.client5.http.ssl.DefaultClientTlsStrategy;
 import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpHost;
-import org.apache.hc.core5.http.nio.ssl.BasicClientTlsStrategy;
 import org.apache.hc.core5.util.Timeout;
 import org.apache.hc.core5.util.VersionInfo;
 
@@ -451,7 +451,7 @@ public final class Rest5ClientBuilder {
                     .setDefaultConnectionConfig(connectionConfigBuilder.build())
                     .setMaxConnPerRoute(DEFAULT_MAX_CONN_PER_ROUTE)
                     .setMaxConnTotal(DEFAULT_MAX_CONN_TOTAL)
-                    .setTlsStrategy(new BasicClientTlsStrategy(sslContext));
+                    .setTlsStrategy(new DefaultClientTlsStrategy(sslContext));
 
             if (connectionManagerCallback != null) {
                 connectionManagerCallback.accept(connectionManagerBuilder);
