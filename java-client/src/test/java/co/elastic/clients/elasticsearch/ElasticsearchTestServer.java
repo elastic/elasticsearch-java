@@ -53,7 +53,8 @@ public class ElasticsearchTestServer implements AutoCloseable {
     private ElasticsearchClient client;
 
     private static ElasticsearchTestServer global;
-    private static final String artifactsApiUrl = "https://artifacts-api.elastic.co/v1/versions/";
+    // TODO problem: missing preview versions
+    private static final String artifactsApiUrl = "https://artifacts.elastic.co/releases/stack.json";
 
     public static synchronized ElasticsearchTestServer global() {
         if (global == null) {
