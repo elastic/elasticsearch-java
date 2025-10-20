@@ -83,6 +83,41 @@ public class EsqlAdapterTest extends Assertions {
     }
 
     @Test
+    public void testProfilingInfo() throws IOException {
+        String badJson = """
+            {
+               "took": 10,
+               "columns": [
+                 {"name": "avg_salary", "type": "double"},
+                 {"name": "lang", "type": "keyword"}
+               ],
+               "values": [
+                 [43760.0, "Spanish"],
+                 [48644.0, "French"],
+                 [48832.0, "German"]
+               ],
+               "profile": {
+                 "query": {
+                   "start_millis": 1760459492830,
+                   "stop_millis": 1760459492853,
+                   "took_millis": 23,
+                   "took_nanos": 23290250
+                 }
+               }
+            }
+            """;
+
+        ElasticsearchClient esClient = new MockHttpClient()
+            .add("/_query", "application/json", badJson)
+            .client(new JacksonJsonpMapper());
+
+        esClient.esql().query(
+            new ObjectsEsqlAdapter<>(Data.class),
+            "FROM employees | STATS avg_salary = AVG(salary) by country"
+        );
+    }
+
+    @Test
     public void testObjectDeserializer() throws IOException {
 
         BinaryResponse response = esClient.esql().query(q -> q
