@@ -66,9 +66,11 @@ public class ElasticsearchProjectClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: project.tags
 
 	/**
-	 * Return tags defined for the project
+	 * Get tags. Get the tags that are defined for the project.
 	 * 
-	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch-serverless/operation/operation-project-tags">Documentation
+	 *      on elastic.co</a>
 	 */
 	public TagsResponse tags() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(TagsRequest._INSTANCE, TagsRequest._ENDPOINT, this.transportOptions);

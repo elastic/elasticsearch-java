@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Float;
 import java.lang.Integer;
 import java.util.Objects;
@@ -75,6 +76,9 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	@Nullable
 	private final DenseVectorIndexOptionsRescoreVector rescoreVector;
 
+	@Nullable
+	private final Boolean onDiskRescore;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DenseVectorIndexOptions(Builder builder) {
@@ -84,6 +88,7 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		this.m = builder.m;
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.rescoreVector = builder.rescoreVector;
+		this.onDiskRescore = builder.onDiskRescore;
 
 	}
 
@@ -166,6 +171,18 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	}
 
 	/**
+	 * <code>true</code> if vector rescoring should be done on-disk
+	 * <p>
+	 * Only applicable to <code>bbq_hnsw</code>
+	 * <p>
+	 * API name: {@code on_disk_rescore}
+	 */
+	@Nullable
+	public final Boolean onDiskRescore() {
+		return this.onDiskRescore;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -198,6 +215,11 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 			this.rescoreVector.serialize(generator, mapper);
 
 		}
+		if (this.onDiskRescore != null) {
+			generator.writeKey("on_disk_rescore");
+			generator.write(this.onDiskRescore);
+
+		}
 
 	}
 
@@ -228,6 +250,9 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 
 		@Nullable
 		private DenseVectorIndexOptionsRescoreVector rescoreVector;
+
+		@Nullable
+		private Boolean onDiskRescore;
 
 		/**
 		 * The confidence interval to use when quantizing the vectors. Can be any value
@@ -317,6 +342,18 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 			return this.rescoreVector(fn.apply(new DenseVectorIndexOptionsRescoreVector.Builder()).build());
 		}
 
+		/**
+		 * <code>true</code> if vector rescoring should be done on-disk
+		 * <p>
+		 * Only applicable to <code>bbq_hnsw</code>
+		 * <p>
+		 * API name: {@code on_disk_rescore}
+		 */
+		public final Builder onDiskRescore(@Nullable Boolean value) {
+			this.onDiskRescore = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -351,6 +388,7 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		op.add(Builder::m, JsonpDeserializer.integerDeserializer(), "m");
 		op.add(Builder::type, DenseVectorIndexOptionsType._DESERIALIZER, "type");
 		op.add(Builder::rescoreVector, DenseVectorIndexOptionsRescoreVector._DESERIALIZER, "rescore_vector");
+		op.add(Builder::onDiskRescore, JsonpDeserializer.booleanDeserializer(), "on_disk_rescore");
 
 	}
 

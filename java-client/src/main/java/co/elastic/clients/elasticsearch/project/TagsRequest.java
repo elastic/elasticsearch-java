@@ -50,7 +50,7 @@ import java.util.Objects;
 // typedef: project.tags.Request
 
 /**
- * Return tags defined for the project
+ * Get tags. Get the tags that are defined for the project.
  * 
  * @see <a href="../doc-files/api-spec.html#project.tags.Request">API
  *      specification</a>

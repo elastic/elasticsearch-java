@@ -246,6 +246,11 @@ public enum CatNodeColumn implements JsonEnum {
 	Load_15m("load_15m", "l"),
 
 	/**
+	 * The number of available processors (logical CPU cores available to the JVM).
+	 */
+	AvailableProcessors("available_processors", "ap"),
+
+	/**
 	 * The number of mappings, including runtime and object fields.
 	 */
 	MappingsTotalCount("mappings.total_count", "mtc", "mappingsTotalCount"),

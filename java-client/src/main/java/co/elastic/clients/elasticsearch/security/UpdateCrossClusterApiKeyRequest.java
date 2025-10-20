@@ -97,6 +97,9 @@ public class UpdateCrossClusterApiKeyRequest extends RequestBase implements Json
 	private final Access access;
 
 	@Nullable
+	private final String certificateIdentity;
+
+	@Nullable
 	private final Time expiration;
 
 	private final String id;
@@ -108,6 +111,7 @@ public class UpdateCrossClusterApiKeyRequest extends RequestBase implements Json
 	private UpdateCrossClusterApiKeyRequest(Builder builder) {
 
 		this.access = ApiTypeHelper.requireNonNull(builder.access, this, "access");
+		this.certificateIdentity = builder.certificateIdentity;
 		this.expiration = builder.expiration;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
@@ -129,6 +133,22 @@ public class UpdateCrossClusterApiKeyRequest extends RequestBase implements Json
 	 */
 	public final Access access() {
 		return this.access;
+	}
+
+	/**
+	 * The certificate identity to associate with this API key. This field is used
+	 * to restrict the API key to connections authenticated by a specific TLS
+	 * certificate. The value should match the certificate's distinguished name (DN)
+	 * pattern. When specified, this fully replaces any previously assigned
+	 * certificate identity. To clear an existing certificate identity, explicitly
+	 * set this field to <code>null</code>. When omitted, the existing certificate
+	 * identity remains unchanged.
+	 * <p>
+	 * API name: {@code certificate_identity}
+	 */
+	@Nullable
+	public final String certificateIdentity() {
+		return this.certificateIdentity;
 	}
 
 	/**
@@ -177,6 +197,11 @@ public class UpdateCrossClusterApiKeyRequest extends RequestBase implements Json
 		generator.writeKey("access");
 		this.access.serialize(generator, mapper);
 
+		if (this.certificateIdentity != null) {
+			generator.writeKey("certificate_identity");
+			generator.write(this.certificateIdentity);
+
+		}
 		if (this.expiration != null) {
 			generator.writeKey("expiration");
 			this.expiration.serialize(generator, mapper);
@@ -206,6 +231,9 @@ public class UpdateCrossClusterApiKeyRequest extends RequestBase implements Json
 			implements
 				ObjectBuilder<UpdateCrossClusterApiKeyRequest> {
 		private Access access;
+
+		@Nullable
+		private String certificateIdentity;
 
 		@Nullable
 		private Time expiration;
@@ -238,6 +266,22 @@ public class UpdateCrossClusterApiKeyRequest extends RequestBase implements Json
 		 */
 		public final Builder access(Function<Access.Builder, ObjectBuilder<Access>> fn) {
 			return this.access(fn.apply(new Access.Builder()).build());
+		}
+
+		/**
+		 * The certificate identity to associate with this API key. This field is used
+		 * to restrict the API key to connections authenticated by a specific TLS
+		 * certificate. The value should match the certificate's distinguished name (DN)
+		 * pattern. When specified, this fully replaces any previously assigned
+		 * certificate identity. To clear an existing certificate identity, explicitly
+		 * set this field to <code>null</code>. When omitted, the existing certificate
+		 * identity remains unchanged.
+		 * <p>
+		 * API name: {@code certificate_identity}
+		 */
+		public final Builder certificateIdentity(@Nullable String value) {
+			this.certificateIdentity = value;
+			return this;
 		}
 
 		/**
@@ -331,6 +375,7 @@ public class UpdateCrossClusterApiKeyRequest extends RequestBase implements Json
 			ObjectDeserializer<UpdateCrossClusterApiKeyRequest.Builder> op) {
 
 		op.add(Builder::access, Access._DESERIALIZER, "access");
+		op.add(Builder::certificateIdentity, JsonpDeserializer.stringDeserializer(), "certificate_identity");
 		op.add(Builder::expiration, Time._DESERIALIZER, "expiration");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 

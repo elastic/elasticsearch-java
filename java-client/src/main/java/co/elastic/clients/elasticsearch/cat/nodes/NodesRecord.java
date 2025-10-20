@@ -140,6 +140,9 @@ public class NodesRecord implements JsonpSerializable {
 	private final String load15m;
 
 	@Nullable
+	private final String availableProcessors;
+
+	@Nullable
 	private final String uptime;
 
 	@Nullable
@@ -377,6 +380,7 @@ public class NodesRecord implements JsonpSerializable {
 		this.load1m = builder.load1m;
 		this.load5m = builder.load5m;
 		this.load15m = builder.load15m;
+		this.availableProcessors = builder.availableProcessors;
 		this.uptime = builder.uptime;
 		this.nodeRole = builder.nodeRole;
 		this.master = builder.master;
@@ -721,6 +725,16 @@ public class NodesRecord implements JsonpSerializable {
 	@Nullable
 	public final String load15m() {
 		return this.load15m;
+	}
+
+	/**
+	 * The number of available processors (logical CPU cores available to the JVM).
+	 * <p>
+	 * API name: {@code available_processors}
+	 */
+	@Nullable
+	public final String availableProcessors() {
+		return this.availableProcessors;
 	}
 
 	/**
@@ -1568,6 +1582,11 @@ public class NodesRecord implements JsonpSerializable {
 			generator.write(this.load15m);
 
 		}
+		if (this.availableProcessors != null) {
+			generator.writeKey("available_processors");
+			generator.write(this.availableProcessors);
+
+		}
 		if (this.uptime != null) {
 			generator.writeKey("uptime");
 			generator.write(this.uptime);
@@ -2008,6 +2027,9 @@ public class NodesRecord implements JsonpSerializable {
 
 		@Nullable
 		private String load15m;
+
+		@Nullable
+		private String availableProcessors;
 
 		@Nullable
 		private String uptime;
@@ -2483,6 +2505,16 @@ public class NodesRecord implements JsonpSerializable {
 		 */
 		public final Builder load15m(@Nullable String value) {
 			this.load15m = value;
+			return this;
+		}
+
+		/**
+		 * The number of available processors (logical CPU cores available to the JVM).
+		 * <p>
+		 * API name: {@code available_processors}
+		 */
+		public final Builder availableProcessors(@Nullable String value) {
+			this.availableProcessors = value;
 			return this;
 		}
 
@@ -3245,6 +3277,7 @@ public class NodesRecord implements JsonpSerializable {
 		op.add(Builder::load1m, JsonpDeserializer.stringDeserializer(), "load_1m");
 		op.add(Builder::load5m, JsonpDeserializer.stringDeserializer(), "load_5m");
 		op.add(Builder::load15m, JsonpDeserializer.stringDeserializer(), "load_15m", "l");
+		op.add(Builder::availableProcessors, JsonpDeserializer.stringDeserializer(), "available_processors", "ap");
 		op.add(Builder::uptime, JsonpDeserializer.stringDeserializer(), "uptime", "u");
 		op.add(Builder::nodeRole, JsonpDeserializer.stringDeserializer(), "node.role", "r", "role", "nodeRole");
 		op.add(Builder::master, JsonpDeserializer.stringDeserializer(), "master", "m");

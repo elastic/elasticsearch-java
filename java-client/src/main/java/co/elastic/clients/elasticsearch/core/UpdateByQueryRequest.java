@@ -423,8 +423,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The default operator for query string query: <code>AND</code> or
-	 * <code>OR</code>. This parameter can be used only when the <code>q</code>
+	 * The default operator for query string query: <code>and</code> or
+	 * <code>or</code>. This parameter can be used only when the <code>q</code>
 	 * query string parameter is specified.
 	 * <p>
 	 * API name: {@code default_operator}
@@ -973,8 +973,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * The default operator for query string query: <code>AND</code> or
-		 * <code>OR</code>. This parameter can be used only when the <code>q</code>
+		 * The default operator for query string query: <code>and</code> or
+		 * <code>or</code>. This parameter can be used only when the <code>q</code>
 		 * query string parameter is specified.
 		 * <p>
 		 * API name: {@code default_operator}

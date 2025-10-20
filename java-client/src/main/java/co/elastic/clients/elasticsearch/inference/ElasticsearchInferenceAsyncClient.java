@@ -71,7 +71,7 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.chat_completion_unified
 
 	/**
-	 * Perform chat completion inference
+	 * Perform chat completion inference on the service
 	 * <p>
 	 * The chat completion inference API enables real-time responses for chat
 	 * completion tasks by delivering answers incrementally, reducing response times
@@ -99,7 +99,7 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform chat completion inference
+	 * Perform chat completion inference on the service
 	 * <p>
 	 * The chat completion inference API enables real-time responses for chat
 	 * completion tasks by delivering answers incrementally, reducing response times
@@ -130,7 +130,21 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.completion
 
 	/**
-	 * Perform completion inference on the service
+	 * Perform completion inference on the service Get responses for completion
+	 * tasks. This API works only with the completion task type.
+	 * <p>
+	 * IMPORTANT: The inference APIs enable you to use certain services, such as
+	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
+	 * Cohere, OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic,
+	 * Watsonx.ai, or Hugging Face. For built-in models and models uploaded through
+	 * Eland, the inference APIs offer an alternative way to use and manage trained
+	 * models. However, if you do not plan to use the inference APIs to use these
+	 * models or if you want to use non-NLP models, use the machine learning trained
+	 * model APIs.
+	 * <p>
+	 * This API requires the <code>monitor_inference</code> cluster privilege (the
+	 * built-in <code>inference_admin</code> and <code>inference_user</code> roles
+	 * grant this privilege).
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
@@ -145,7 +159,21 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform completion inference on the service
+	 * Perform completion inference on the service Get responses for completion
+	 * tasks. This API works only with the completion task type.
+	 * <p>
+	 * IMPORTANT: The inference APIs enable you to use certain services, such as
+	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
+	 * Cohere, OpenAI, Azure, Google AI Studio, Google Vertex AI, Anthropic,
+	 * Watsonx.ai, or Hugging Face. For built-in models and models uploaded through
+	 * Eland, the inference APIs offer an alternative way to use and manage trained
+	 * models. However, if you do not plan to use the inference APIs to use these
+	 * models or if you want to use non-NLP models, use the machine learning trained
+	 * model APIs.
+	 * <p>
+	 * This API requires the <code>monitor_inference</code> cluster privilege (the
+	 * built-in <code>inference_admin</code> and <code>inference_user</code> roles
+	 * grant this privilege).
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1763,9 +1791,9 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.stream_completion
 
 	/**
-	 * Perform streaming inference. Get real-time responses for completion tasks by
-	 * delivering answers incrementally, reducing response times during computation.
-	 * This API works only with the completion task type.
+	 * Perform streaming completion inference on the service Get real-time responses
+	 * for completion tasks by delivering answers incrementally, reducing response
+	 * times during computation. This API works only with the completion task type.
 	 * <p>
 	 * IMPORTANT: The inference APIs enable you to use certain services, such as
 	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
@@ -1793,9 +1821,9 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform streaming inference. Get real-time responses for completion tasks by
-	 * delivering answers incrementally, reducing response times during computation.
-	 * This API works only with the completion task type.
+	 * Perform streaming completion inference on the service Get real-time responses
+	 * for completion tasks by delivering answers incrementally, reducing response
+	 * times during computation. This API works only with the completion task type.
 	 * <p>
 	 * IMPORTANT: The inference APIs enable you to use certain services, such as
 	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,

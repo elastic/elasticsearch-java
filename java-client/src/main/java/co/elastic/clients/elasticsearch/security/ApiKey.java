@@ -98,6 +98,9 @@ public class ApiKey implements JsonpSerializable {
 	private final Access access;
 
 	@Nullable
+	private final String certificateIdentity;
+
+	@Nullable
 	private final String profileUid;
 
 	private final List<FieldValue> sort;
@@ -120,6 +123,7 @@ public class ApiKey implements JsonpSerializable {
 		this.roleDescriptors = ApiTypeHelper.unmodifiable(builder.roleDescriptors);
 		this.limitedBy = ApiTypeHelper.unmodifiable(builder.limitedBy);
 		this.access = builder.access;
+		this.certificateIdentity = builder.certificateIdentity;
 		this.profileUid = builder.profileUid;
 		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 
@@ -271,6 +275,18 @@ public class ApiKey implements JsonpSerializable {
 	}
 
 	/**
+	 * The certificate identity associated with a cross-cluster API key. Restricts
+	 * the API key to connections authenticated by a specific TLS certificate. Only
+	 * applicable to cross-cluster API keys.
+	 * <p>
+	 * API name: {@code certificate_identity}
+	 */
+	@Nullable
+	public final String certificateIdentity() {
+		return this.certificateIdentity;
+	}
+
+	/**
 	 * The profile uid for the API key owner principal, if requested and if it
 	 * exists
 	 * <p>
@@ -382,6 +398,11 @@ public class ApiKey implements JsonpSerializable {
 			this.access.serialize(generator, mapper);
 
 		}
+		if (this.certificateIdentity != null) {
+			generator.writeKey("certificate_identity");
+			generator.write(this.certificateIdentity);
+
+		}
 		if (this.profileUid != null) {
 			generator.writeKey("profile_uid");
 			generator.write(this.profileUid);
@@ -445,6 +466,9 @@ public class ApiKey implements JsonpSerializable {
 
 		@Nullable
 		private Access access;
+
+		@Nullable
+		private String certificateIdentity;
 
 		@Nullable
 		private String profileUid;
@@ -677,6 +701,18 @@ public class ApiKey implements JsonpSerializable {
 		}
 
 		/**
+		 * The certificate identity associated with a cross-cluster API key. Restricts
+		 * the API key to connections authenticated by a specific TLS certificate. Only
+		 * applicable to cross-cluster API keys.
+		 * <p>
+		 * API name: {@code certificate_identity}
+		 */
+		public final Builder certificateIdentity(@Nullable String value) {
+			this.certificateIdentity = value;
+			return this;
+		}
+
+		/**
 		 * The profile uid for the API key owner principal, if requested and if it
 		 * exists
 		 * <p>
@@ -833,6 +869,7 @@ public class ApiKey implements JsonpSerializable {
 		op.add(Builder::limitedBy, JsonpDeserializer.arrayDeserializer(
 				JsonpDeserializer.stringMapDeserializer(RoleDescriptor._DESERIALIZER)), "limited_by");
 		op.add(Builder::access, Access._DESERIALIZER, "access");
+		op.add(Builder::certificateIdentity, JsonpDeserializer.stringDeserializer(), "certificate_identity");
 		op.add(Builder::profileUid, JsonpDeserializer.stringDeserializer(), "profile_uid");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "_sort");
 

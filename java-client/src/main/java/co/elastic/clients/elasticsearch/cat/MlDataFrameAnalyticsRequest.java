@@ -109,7 +109,7 @@ public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 
 	/**
 	 * Whether to ignore if a wildcard expression matches no configs. (This includes
-	 * <code>_all</code> string or when no configs have been specified)
+	 * <code>_all</code> string or when no configs have been specified.)
 	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
@@ -210,7 +210,7 @@ public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 
 		/**
 		 * Whether to ignore if a wildcard expression matches no configs. (This includes
-		 * <code>_all</code> string or when no configs have been specified)
+		 * <code>_all</code> string or when no configs have been specified.)
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */

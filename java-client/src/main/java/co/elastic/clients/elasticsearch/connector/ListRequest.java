@@ -115,7 +115,7 @@ public class ListRequest extends RequestBase {
 	}
 
 	/**
-	 * Starting offset (default: 0)
+	 * Starting offset
 	 * <p>
 	 * API name: {@code from}
 	 */
@@ -229,7 +229,7 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * Starting offset (default: 0)
+		 * Starting offset
 		 * <p>
 		 * API name: {@code from}
 		 */
