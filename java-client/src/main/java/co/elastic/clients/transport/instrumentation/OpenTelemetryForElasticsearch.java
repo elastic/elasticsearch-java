@@ -27,6 +27,7 @@ import io.opentelemetry.api.GlobalOpenTelemetry;
 import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.common.AttributeKey;
 import io.opentelemetry.api.trace.Span;
+import io.opentelemetry.api.trace.SpanBuilder;
 import io.opentelemetry.api.trace.SpanKind;
 import io.opentelemetry.api.trace.StatusCode;
 import io.opentelemetry.api.trace.Tracer;
@@ -185,10 +186,13 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
                 }
                 this.endpointId = endpointId;
 
-                span = tracer.spanBuilder(endpointId).setSpanKind(SpanKind.CLIENT).startSpan();
+                span = tracer.spanBuilder(endpointId).setSpanKind(SpanKind.CLIENT)
+                    .setAttribute(ATTR_DB_SYSTEM, "elasticsearch")
+                    .setAttribute(ATTR_DB_OPERATION, endpointId)
+                    .startSpan();
+
                 if (span.isRecording()) {
-                    span.setAttribute(ATTR_DB_SYSTEM, "elasticsearch");
-                    span.setAttribute(ATTR_DB_OPERATION, endpointId);
+
                     span.setAttribute(ATTR_HTTP_REQUEST_METHOD, endpoint.method(request));
 
                     for (Map.Entry<String, String> pathParamEntry : endpoint.pathParameters(request).entrySet()) {
