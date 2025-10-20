@@ -74,10 +74,12 @@ public abstract class EsqlAdapterBase<T> implements EsqlAdapter<T> {
     }
 
     /**
-     * Checks the footer of an ES|QL response, once the values have been read.
+     * Reads the footer of an ES|QL response, once the values have been read.
      */
     public static void readFooter(JsonParser parser) {
-        JsonpUtils.expectNextEvent(parser, JsonParser.Event.END_OBJECT);
+        // Ignore everything until we reach the end of the response's top-level object
+        while (parser.next() != JsonParser.Event.END_OBJECT) {
+            JsonpUtils.skipValue(parser);
+        }
     }
-
 }
