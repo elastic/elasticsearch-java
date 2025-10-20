@@ -312,6 +312,7 @@ class SpdxReporter(val dest: File) : ReportRenderer {
                     "org.apache.httpcomponents.client5" -> "https://hc.apache.org/"
                     "org.apache.httpcomponents.core5" -> "https://hc.apache.org/"
                     "com.fasterxml.jackson" -> "https://github.com/FasterXML/jackson"
+                    "tools.jackson" -> " https://github.com/FasterXML/jackson-bom "
                     else -> if (info.moduleUrls.isEmpty()) {
                                 throw RuntimeException("No URL found for module '$depName'")
                             } else {
