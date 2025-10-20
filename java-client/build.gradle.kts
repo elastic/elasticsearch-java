@@ -177,6 +177,7 @@ signing {
 dependencies {
     val elasticsearchVersion = "9.0.0"
     val jacksonVersion = "2.18.3"
+    val jackson3Version = "3.0.0"
     val openTelemetryVersion = "1.32.0"
 
     api(project(":rest5-client"))
@@ -226,8 +227,8 @@ dependencies {
 
     // Apache 2.0
     // https://github.com/FasterXML/jackson
-    implementation("tools.jackson.core", "jackson-databind", "3.0.0")
-    implementation("tools.jackson.core", "jackson-core", "3.0.0")
+    implementation("tools.jackson.core", "jackson-databind", jackson3Version)
+    implementation("tools.jackson.core", "jackson-core", jackson3Version)
 
     // EPL-2.0 OR BSD-3-Clause
     // https://eclipse-ee4j.github.io/yasson/
