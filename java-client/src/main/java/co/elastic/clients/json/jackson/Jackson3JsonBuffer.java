@@ -24,31 +24,28 @@ import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpUtils;
-import com.fasterxml.jackson.databind.util.TokenBuffer;
+
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.util.TokenBuffer;
 
-import java.io.IOException;
 import java.io.StringWriter;
 import java.lang.reflect.Type;
 
-/**
- * @deprecated Use {@link Jackson3JsonBuffer}
- */
-@Deprecated
-class JacksonJsonBuffer implements JsonBuffer, JsonData {
+class Jackson3JsonBuffer implements JsonBuffer, JsonData {
     private final TokenBuffer buffer;
-    private final JacksonJsonpMapper mapper;
+    private final Jackson3JsonpMapper mapper;
 
-    JacksonJsonBuffer(TokenBuffer buffer, JacksonJsonpMapper mapper) {
+    Jackson3JsonBuffer(TokenBuffer buffer, Jackson3JsonpMapper mapper) {
         this.buffer = buffer;
         this.mapper = mapper;
     }
 
     @Override
     public JsonParser asParser() {
-        return new JacksonJsonpParser(buffer.asParser(), mapper);
+        return new Jackson3JsonpParser(buffer.asParser(), mapper);
     }
 
     @Override
@@ -91,12 +88,12 @@ class JacksonJsonBuffer implements JsonBuffer, JsonData {
 
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-        if (generator instanceof JacksonJsonpGenerator) {
-            JacksonJsonpGenerator jkGenerator = (JacksonJsonpGenerator) generator;
+        if (generator instanceof Jackson3JsonpGenerator) {
+            Jackson3JsonpGenerator jkGenerator = (Jackson3JsonpGenerator) generator;
             try {
                 buffer.serialize(jkGenerator.jacksonGenerator());
-            } catch (IOException e) {
-                throw JacksonUtils.convertException(e);
+            } catch (JacksonException e) {
+                throw Jackson3Utils.convertException(e);
             }
         } else {
             try (JsonParser parser = asParser()) {
@@ -110,13 +107,12 @@ class JacksonJsonBuffer implements JsonBuffer, JsonData {
      */
     @Override
     public String toString() {
-      StringWriter writer = new StringWriter();
-      try (JacksonJsonpGenerator generator = new JacksonJsonpGenerator(mapper.objectMapper().createGenerator(writer))) {
-        serialize(generator, mapper);
-        generator.close();
-        return writer.toString();
-      } catch (IOException e) {
-        return String.format("JacksonJsonBuffer: error rendering JSON: %s", e.getMessage());
-      }
+        StringWriter writer = new StringWriter();
+        try (Jackson3JsonpGenerator generator =
+                 new Jackson3JsonpGenerator(mapper.objectMapper().createGenerator(writer))) {
+            serialize(generator, mapper);
+            generator.close();
+            return writer.toString();
+        }
     }
 }
