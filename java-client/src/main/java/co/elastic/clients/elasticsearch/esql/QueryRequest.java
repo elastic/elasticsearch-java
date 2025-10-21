@@ -97,7 +97,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String locale;
 
-	private final List<List<FieldValue>> params;
+	private final List<FieldValue> params;
 
 	@Nullable
 	private final Boolean profile;
@@ -236,7 +236,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code params}
 	 */
-	public final List<List<FieldValue>> params() {
+	public final List<FieldValue> params() {
 		return this.params;
 	}
 
@@ -307,15 +307,8 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartArray();
-			for (List<FieldValue> item0 : this.params) {
-				generator.writeStartArray();
-				if (item0 != null) {
-					for (FieldValue item1 : item0) {
-						item1.serialize(generator, mapper);
-
-					}
-				}
-				generator.writeEnd();
+			for (FieldValue item0 : this.params) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -383,7 +376,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		private String locale;
 
 		@Nullable
-		private List<List<FieldValue>> params;
+		private List<FieldValue> params;
 
 		@Nullable
 		private Boolean profile;
@@ -523,7 +516,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>params</code>.
 		 */
-		public final Builder params(List<List<FieldValue>> list) {
+		public final Builder params(List<FieldValue> list) {
 			this.params = _listAddAll(this.params, list);
 			return this;
 		}
@@ -537,9 +530,90 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>params</code>.
 		 */
-		public final Builder params(List<FieldValue> value, List<FieldValue>... values) {
+		public final Builder params(FieldValue value, FieldValue... values) {
 			this.params = _listAdd(this.params, value, values);
 			return this;
+		}
+
+		/**
+		 * To avoid any attempts of hacking or code injection, extract the values in a
+		 * separate list of parameters. Use question mark placeholders (?) in the query
+		 * string for each of the parameters.
+		 * <p>
+		 * API name: {@code params}
+		 * <p>
+		 * Adds one or more values to <code>params</code>.
+		 */
+		public final Builder params(String value, String... values) {
+			this.params = _listAdd(this.params, FieldValue.of(value));
+			for (String v : values) {
+				_listAdd(this.params, FieldValue.of(v));
+			}
+			return this;
+		}
+
+		/**
+		 * To avoid any attempts of hacking or code injection, extract the values in a
+		 * separate list of parameters. Use question mark placeholders (?) in the query
+		 * string for each of the parameters.
+		 * <p>
+		 * API name: {@code params}
+		 * <p>
+		 * Adds one or more values to <code>params</code>.
+		 */
+		public final Builder params(long value, long... values) {
+			this.params = _listAdd(this.params, FieldValue.of(value));
+			for (long v : values) {
+				_listAdd(this.params, FieldValue.of(v));
+			}
+			return this;
+		}
+
+		/**
+		 * To avoid any attempts of hacking or code injection, extract the values in a
+		 * separate list of parameters. Use question mark placeholders (?) in the query
+		 * string for each of the parameters.
+		 * <p>
+		 * API name: {@code params}
+		 * <p>
+		 * Adds one or more values to <code>params</code>.
+		 */
+		public final Builder params(double value, double... values) {
+			this.params = _listAdd(this.params, FieldValue.of(value));
+			for (double v : values) {
+				_listAdd(this.params, FieldValue.of(v));
+			}
+			return this;
+		}
+
+		/**
+		 * To avoid any attempts of hacking or code injection, extract the values in a
+		 * separate list of parameters. Use question mark placeholders (?) in the query
+		 * string for each of the parameters.
+		 * <p>
+		 * API name: {@code params}
+		 * <p>
+		 * Adds one or more values to <code>params</code>.
+		 */
+		public final Builder params(boolean value, boolean... values) {
+			this.params = _listAdd(this.params, FieldValue.of(value));
+			for (boolean v : values) {
+				_listAdd(this.params, FieldValue.of(v));
+			}
+			return this;
+		}
+
+		/**
+		 * To avoid any attempts of hacking or code injection, extract the values in a
+		 * separate list of parameters. Use question mark placeholders (?) in the query
+		 * string for each of the parameters.
+		 * <p>
+		 * API name: {@code params}
+		 * <p>
+		 * Adds a value to <code>params</code> using a builder lambda.
+		 */
+		public final Builder params(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return params(fn.apply(new FieldValue.Builder()).build());
 		}
 
 		/**
@@ -625,9 +699,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::includeCcsMetadata, JsonpDeserializer.booleanDeserializer(), "include_ccs_metadata",
 				"include_execution_metadata");
 		op.add(Builder::locale, JsonpDeserializer.stringDeserializer(), "locale");
-		op.add(Builder::params,
-				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER)),
-				"params");
+		op.add(Builder::params, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "params");
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::tables, JsonpDeserializer

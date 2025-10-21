@@ -175,9 +175,6 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	private final Time scroll;
 
 	@Nullable
-	private final Long size;
-
-	@Nullable
 	private final Slices slices;
 
 	private final Source source;
@@ -203,7 +200,6 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		this.requireAlias = builder.requireAlias;
 		this.script = builder.script;
 		this.scroll = builder.scroll;
-		this.size = builder.size;
 		this.slices = builder.slices;
 		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.timeout = builder.timeout;
@@ -307,14 +303,6 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public final Long size() {
-		return this.size;
-	}
-
-	/**
 	 * The number of slices this task should be divided into. It defaults to one
 	 * slice, which means the task isn't sliced into subtasks.
 	 * <p>
@@ -411,11 +399,6 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 			this.script.serialize(generator, mapper);
 
 		}
-		if (this.size != null) {
-			generator.writeKey("size");
-			generator.write(this.size);
-
-		}
 		generator.writeKey("source");
 		this.source.serialize(generator, mapper);
 
@@ -450,9 +433,6 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Time scroll;
-
-		@Nullable
-		private Long size;
 
 		@Nullable
 		private Slices slices;
@@ -585,14 +565,6 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder scroll(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.scroll(fn.apply(new Time.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code size}
-		 */
-		public final Builder size(@Nullable Long value) {
-			this.size = value;
-			return this;
 		}
 
 		/**
@@ -754,7 +726,6 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::dest, Destination._DESERIALIZER, "dest");
 		op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");
 		op.add(Builder::script, Script._DESERIALIZER, "script");
-		op.add(Builder::size, JsonpDeserializer.longDeserializer(), "size");
 		op.add(Builder::source, Source._DESERIALIZER, "source");
 
 	}

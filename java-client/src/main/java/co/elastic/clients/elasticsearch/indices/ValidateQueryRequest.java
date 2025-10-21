@@ -182,8 +182,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The default operator for query string query: <code>AND</code> or
-	 * <code>OR</code>.
+	 * The default operator for query string query: <code>and</code> or
+	 * <code>or</code>.
 	 * <p>
 	 * API name: {@code default_operator}
 	 */
@@ -407,8 +407,8 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * The default operator for query string query: <code>AND</code> or
-		 * <code>OR</code>.
+		 * The default operator for query string query: <code>and</code> or
+		 * <code>or</code>.
 		 * <p>
 		 * API name: {@code default_operator}
 		 */

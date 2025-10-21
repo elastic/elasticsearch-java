@@ -98,8 +98,8 @@ public class CustomServiceSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies the HTTPS header parameters – such as <code>Authentication</code>
-	 * or <code>Contet-Type</code> – that are required to access the custom service.
+	 * Specifies the HTTP header parameters – such as <code>Authentication</code> or
+	 * <code>Content-Type</code> – that are required to access the custom service.
 	 * For example:
 	 * 
 	 * <pre>
@@ -298,8 +298,8 @@ public class CustomServiceSettings implements JsonpSerializable {
 		private String url;
 
 		/**
-		 * Specifies the HTTPS header parameters – such as <code>Authentication</code>
-		 * or <code>Contet-Type</code> – that are required to access the custom service.
+		 * Specifies the HTTP header parameters – such as <code>Authentication</code> or
+		 * <code>Content-Type</code> – that are required to access the custom service.
 		 * For example:
 		 * 
 		 * <pre>

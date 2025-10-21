@@ -65,12 +65,6 @@ public enum VersionType implements JsonEnum {
 	 */
 	ExternalGte("external_gte"),
 
-	/**
-	 * This option is deprecated because it can cause primary and replica shards to
-	 * diverge.
-	 */
-	Force("force"),
-
 	;
 
 	private final String jsonValue;
