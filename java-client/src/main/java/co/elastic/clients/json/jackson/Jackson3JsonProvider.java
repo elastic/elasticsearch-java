@@ -20,7 +20,6 @@
 package co.elastic.clients.json.jackson;
 
 import co.elastic.clients.json.JsonpUtils;
-import com.fasterxml.jackson.core.JsonFactory;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonBuilderFactory;
@@ -35,8 +34,9 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonGeneratorFactory;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParserFactory;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.json.JsonFactory;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -49,24 +49,22 @@ import java.util.Map;
 
 /**
  * A partial implementation of JSONP's SPI on top of Jackson.
- * @deprecated Use {@link Jackson3JsonProvider}
  */
-@Deprecated
-public class JacksonJsonProvider extends JsonProvider {
+public class Jackson3JsonProvider extends JsonProvider {
 
-    private final JacksonJsonpMapper mapper;
+    private final Jackson3JsonpMapper mapper;
     private final JsonFactory jsonFactory;
 
-    public JacksonJsonProvider(JacksonJsonpMapper mapper) {
+    public Jackson3JsonProvider(Jackson3JsonpMapper mapper) {
         this.mapper = mapper;
-        this.jsonFactory = mapper.objectMapper().getFactory();
+        this.jsonFactory = mapper.objectMapper().tokenStreamFactory();
     }
 
-    public JacksonJsonProvider() {
-        this(new JacksonJsonpMapper());
+    public Jackson3JsonProvider() {
+        this(new Jackson3JsonpMapper());
     }
 
-    public JacksonJsonpMapper mapper() {
+    public Jackson3JsonpMapper mapper() {
         return this.mapper;
     }
 
@@ -106,27 +104,29 @@ public class JacksonJsonProvider extends JsonProvider {
         @Override
         public JsonParser createParser(Reader reader) {
             try {
-                return new JacksonJsonpParser(jsonFactory.createParser(reader), mapper);
-            } catch (IOException ioe) {
-                throw JacksonUtils.convertException(ioe);
+                return new Jackson3JsonpParser(mapper.objectMapper().createParser(reader), mapper);
+            } catch (JacksonException e) {
+                throw Jackson3Utils.convertException(e);
             }
         }
 
         @Override
         public JsonParser createParser(InputStream in) {
             try {
-                return new JacksonJsonpParser(jsonFactory.createParser(in), mapper);
-            } catch (IOException ioe) {
-                throw JacksonUtils.convertException(ioe);
+                return new Jackson3JsonpParser(mapper.objectMapper().createParser(in), mapper);
+            } catch (JacksonException e) {
+                throw Jackson3Utils.convertException(e);
             }
         }
 
         @Override
         public JsonParser createParser(InputStream in, Charset charset) {
             try {
-                return new JacksonJsonpParser(jsonFactory.createParser(new InputStreamReader(in, charset)), mapper);
-            } catch (IOException ioe) {
-                throw JacksonUtils.convertException(ioe);
+                return new Jackson3JsonpParser(mapper.objectMapper().createParser(new InputStreamReader(in,
+                    charset)),
+                    mapper);
+            } catch (JacksonException e) {
+                throw Jackson3Utils.convertException(e);
             }
         }
 
@@ -191,29 +191,29 @@ public class JacksonJsonProvider extends JsonProvider {
         @Override
         public JsonGenerator createGenerator(Writer writer) {
             try {
-                return new JacksonJsonpGenerator(jsonFactory.createGenerator(writer));
-            } catch (IOException ioe) {
-                throw JacksonUtils.convertException(ioe);
+                return new Jackson3JsonpGenerator(jsonFactory.createGenerator(writer));
+            } catch (JacksonException e) {
+                throw Jackson3Utils.convertException(e);
             }
         }
 
         @Override
         public JsonGenerator createGenerator(OutputStream out) {
             try {
-                return new JacksonJsonpGenerator(jsonFactory.createGenerator(out));
-            } catch (IOException ioe) {
-                throw JacksonUtils.convertException(ioe);
+                return new Jackson3JsonpGenerator(jsonFactory.createGenerator(out));
+            } catch (JacksonException e) {
+                throw Jackson3Utils.convertException(e);
             }
         }
 
         @Override
         public JsonGenerator createGenerator(OutputStream out, Charset charset) {
             try {
-                return new JacksonJsonpGenerator(jsonFactory.createGenerator(new OutputStreamWriter(out, charset)));
-            } catch (IOException ioe) {
-                throw JacksonUtils.convertException(ioe);
+                return new Jackson3JsonpGenerator(jsonFactory.createGenerator(new OutputStreamWriter(out,
+                    charset)));
+            } catch (JacksonException e) {
+                throw Jackson3Utils.convertException(e);
             }
-
         }
 
         @Override

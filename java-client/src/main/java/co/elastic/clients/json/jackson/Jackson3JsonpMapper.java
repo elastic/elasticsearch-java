@@ -28,62 +28,64 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpMapperBase;
 import co.elastic.clients.json.JsonpSerializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.SerializationFeature;
+import tools.jackson.databind.json.JsonMapper;
 
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.EnumSet;
 
-/**
- * @deprecated Use {@link Jackson3JsonpMapper}
- */
-@Deprecated
-public class JacksonJsonpMapper extends JsonpMapperBase implements BufferingJsonpMapper {
+public class Jackson3JsonpMapper extends JsonpMapperBase implements BufferingJsonpMapper {
 
-    private final JacksonJsonProvider provider;
-    private final ObjectMapper objectMapper;
+    private final Jackson3JsonProvider provider;
+    private final JsonMapper objectMapper;
 
-    private JacksonJsonpMapper(ObjectMapper objectMapper, JacksonJsonProvider provider) {
+    private Jackson3JsonpMapper(JsonMapper objectMapper, Jackson3JsonProvider provider) {
         // No need to configure here, as this constructor is only called with the objectMapper
         // of an existing JacksonJsonpMapper, and has therefore alredy been configured.
         this.objectMapper = objectMapper;
         this.provider = provider;
     }
 
-    public JacksonJsonpMapper(ObjectMapper objectMapper) {
+    public Jackson3JsonpMapper(JsonMapper objectMapper) {
         this.objectMapper = configure(objectMapper);
         // Order is important as JacksonJsonProvider(this) will get ObjectMapper
-        this.provider = new JacksonJsonProvider(this);
+        this.provider = new Jackson3JsonProvider(this);
     }
 
-    public JacksonJsonpMapper() {
-        this(new ObjectMapper()
-            .configure(SerializationFeature.INDENT_OUTPUT, false)
-            .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+    public Jackson3JsonpMapper() {
+
+        this(JsonMapper.builder()
+            .enable(SerializationFeature.INDENT_OUTPUT)
+            .changeDefaultPropertyInclusion(p -> p
+                .withValueInclusion(JsonInclude.Include.NON_NULL))
+            .build()
         );
     }
 
-    private static ObjectMapper configure(ObjectMapper objectMapper) {
+    private static JsonMapper configure(JsonMapper builder) {
         // Accept single objects as collections. This is useful in the context of Elasticsearch since
         // Lucene has no concept of multivalued field and fields with a single value will be returned
         // as a single object even if other instances of the same field have multiple values.
-        return objectMapper.enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
+        return builder.rebuild()
+            .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+            .disable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS)
+            .build();
     }
 
     @Override
     public <T> JsonpMapper withAttribute(String name, T value) {
-        return new JacksonJsonpMapper(this.objectMapper, this.provider).addAttribute(name, value);
+        return new Jackson3JsonpMapper(this.objectMapper, this.provider).addAttribute(name, value);
     }
 
     /**
      * Returns the underlying Jackson mapper.
      */
-    public ObjectMapper objectMapper() {
+    public JsonMapper objectMapper() {
         return this.objectMapper;
     }
 
@@ -93,7 +95,7 @@ public class JacksonJsonpMapper extends JsonpMapperBase implements BufferingJson
     }
 
     @Override
-    protected  <T> JsonpDeserializer<T> getDefaultDeserializer(Type type) {
+    protected <T> JsonpDeserializer<T> getDefaultDeserializer(Type type) {
         return new JacksonValueParser<>(type);
     }
 
@@ -106,28 +108,32 @@ public class JacksonJsonpMapper extends JsonpMapperBase implements BufferingJson
             return;
         }
 
-        // Delegating generators are used in higher levels of serialization (e.g. filter empty top-level objects).
-        // At this point the object is not a JsonpSerializable and we can assume we're in a nested property holding
+        // Delegating generators are used in higher levels of serialization (e.g. filter empty top-level
+        // objects).
+        // At this point the object is not a JsonpSerializable and we can assume we're in a nested property
+        // holding
         // a user-provided type and can unwrap to find the underlying non-delegating generator.
         while (generator instanceof DelegatingJsonGenerator) {
             generator = ((DelegatingJsonGenerator) generator).unwrap();
         }
 
-        if (!(generator instanceof JacksonJsonpGenerator)) {
-            throw new IllegalArgumentException("Jackson's ObjectMapper can only be used with the JacksonJsonpProvider");
+        if (!(generator instanceof Jackson3JsonpGenerator)) {
+            throw new IllegalArgumentException("Jackson's ObjectMapper can only be used with the " +
+                                               "JacksonJsonpProvider");
         }
 
-        com.fasterxml.jackson.core.JsonGenerator jkGenerator = ((JacksonJsonpGenerator)generator).jacksonGenerator();
+        tools.jackson.core.JsonGenerator jkGenerator =
+            ((Jackson3JsonpGenerator) generator).jacksonGenerator();
         try {
             objectMapper.writeValue(jkGenerator, value);
-        } catch (IOException ioe) {
-            throw JacksonUtils.convertException(ioe);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
     }
 
     @Override
     public BufferingJsonGenerator createBufferingGenerator() {
-        return new JacksonJsonpGenerator.Buffering(this);
+        return new Jackson3JsonpGenerator.Buffering(this);
     }
 
     private class JacksonValueParser<T> extends JsonpDeserializerBase<T> {
@@ -142,16 +148,17 @@ public class JacksonJsonpMapper extends JsonpMapperBase implements BufferingJson
         @Override
         public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
 
-            if (!(parser instanceof JacksonJsonpParser)) {
-                throw new IllegalArgumentException("Jackson's ObjectMapper can only be used with the JacksonJsonpProvider");
+            if (!(parser instanceof Jackson3JsonpParser)) {
+                throw new IllegalArgumentException("Jackson's ObjectMapper can only be used with the " +
+                                                   "JacksonJsonpProvider");
             }
 
-            com.fasterxml.jackson.core.JsonParser jkParser = ((JacksonJsonpParser)parser).jacksonParser();
+            tools.jackson.core.JsonParser jkParser = ((Jackson3JsonpParser) parser).jacksonParser();
 
             try {
                 return objectMapper.readValue(jkParser, objectMapper().constructType(type));
-            } catch(IOException ioe) {
-                throw JacksonUtils.convertException(ioe);
+            } catch (JacksonException e) {
+                throw Jackson3Utils.convertException(e);
             }
         }
     }

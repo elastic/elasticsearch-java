@@ -19,25 +19,11 @@
 
 package co.elastic.clients.json.jackson;
 
-import com.fasterxml.jackson.core.JsonParseException;
 import jakarta.json.JsonException;
-import jakarta.json.stream.JsonGenerationException;
-import jakarta.json.stream.JsonParsingException;
+import tools.jackson.core.JacksonException;
 
-import java.io.IOException;
-
-@Deprecated
-class JacksonUtils {
-    public static JsonException convertException(IOException ioe) {
-        if (ioe instanceof com.fasterxml.jackson.core.JsonGenerationException) {
-            return new JsonGenerationException(ioe.getMessage(), ioe);
-
-        } else if (ioe instanceof com.fasterxml.jackson.core.JsonParseException) {
-            JsonParseException jpe = (JsonParseException) ioe;
-            return new JsonParsingException(ioe.getMessage(), jpe, new JacksonJsonpLocation(jpe.getLocation()));
-
-        } else {
-            return new JsonException("Jackson exception", ioe);
-        }
+class Jackson3Utils {
+    public static JsonException convertException(JacksonException je) {
+        return new JsonException("Jackson exception", je);
     }
 }

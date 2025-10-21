@@ -21,66 +21,64 @@ package co.elastic.clients.json.jackson;
 
 import co.elastic.clients.json.BufferingJsonGenerator;
 import co.elastic.clients.json.JsonData;
-import com.fasterxml.jackson.core.JsonStreamContext;
-import com.fasterxml.jackson.databind.util.TokenBuffer;
 import jakarta.json.JsonNumber;
 import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerationException;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
+import tools.jackson.core.JacksonException;
+import tools.jackson.core.TokenStreamContext;
+import tools.jackson.databind.util.TokenBuffer;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Map;
 
 /**
  * A JSONP generator implementation on top of Jackson.
- * @deprecated Use {@link Jackson3JsonpGenerator}
  */
-@Deprecated
-public class JacksonJsonpGenerator implements JsonGenerator {
+public class Jackson3JsonpGenerator implements JsonGenerator {
 
-    private final com.fasterxml.jackson.core.JsonGenerator generator;
+    private tools.jackson.core.JsonGenerator generator;
 
-    public JacksonJsonpGenerator(com.fasterxml.jackson.core.JsonGenerator generator) {
+    public Jackson3JsonpGenerator(tools.jackson.core.JsonGenerator generator) {
         this.generator = generator;
     }
 
-    public static class Buffering extends JacksonJsonpGenerator implements BufferingJsonGenerator {
+    public static class Buffering extends Jackson3JsonpGenerator implements BufferingJsonGenerator {
 
-        private final JacksonJsonpMapper mapper;
+        private final Jackson3JsonpMapper mapper;
 
-        public Buffering(JacksonJsonpMapper mapper) {
-            super(new TokenBuffer(mapper.objectMapper(), false));
+        public Buffering(Jackson3JsonpMapper mapper) {
+            super(TokenBuffer.forGeneration());
             this.mapper = mapper;
         }
 
         @Override
         public JsonData getJsonData() {
             this.close();
-            return new JacksonJsonBuffer((TokenBuffer)jacksonGenerator(), mapper);
+            return new Jackson3JsonBuffer((TokenBuffer) jacksonGenerator(), mapper);
         }
 
         @Override
         public JsonParser getParser() {
             this.close();
             TokenBuffer tokenBuffer = (TokenBuffer) jacksonGenerator();
-            return new JacksonJsonpParser(tokenBuffer.asParser(), mapper);
+            return new Jackson3JsonpParser(tokenBuffer.asParser(), mapper);
         }
 
         @Override
         public void copyValue(JsonParser parser) {
-            if (!(parser instanceof JacksonJsonpGenerator)) {
+            if (!(parser instanceof Jackson3JsonpGenerator)) {
                 throw new IllegalArgumentException("Can only be used with a JacksonJsonpGenerator");
             }
 
-            com.fasterxml.jackson.core.JsonParser jkParser = ((JacksonJsonpParser) parser).jacksonParser();
+            tools.jackson.core.JsonParser jkParser = ((Jackson3JsonpParser) parser).jacksonParser();
             try {
                 jacksonGenerator().copyCurrentStructure(jkParser);
-            } catch (IOException e) {
-                throw JacksonUtils.convertException(e);
+            } catch (JacksonException e) {
+                throw Jackson3Utils.convertException(e);
             }
         }
     }
@@ -88,7 +86,7 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     /**
      * Returns the underlying Jackson generator.
      */
-    public com.fasterxml.jackson.core.JsonGenerator jacksonGenerator() {
+    public tools.jackson.core.JsonGenerator jacksonGenerator() {
         return generator;
     }
 
@@ -96,8 +94,8 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     public JsonGenerator writeStartObject() {
         try {
             generator.writeStartObject();
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -105,10 +103,10 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     @Override
     public JsonGenerator writeStartObject(String name) {
         try {
-            generator.writeFieldName(name);
+            generator.writeName(name);
             generator.writeStartObject();
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -117,8 +115,8 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     public JsonGenerator writeStartArray() {
         try {
             generator.writeStartArray();
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -126,10 +124,10 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     @Override
     public JsonGenerator writeStartArray(String name) {
         try {
-            generator.writeFieldName(name);
+            generator.writeName(name);
             generator.writeStartArray();
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -137,9 +135,9 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     @Override
     public JsonGenerator writeKey(String name) {
         try {
-            generator.writeFieldName(name);
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+            generator.writeName(name);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -147,10 +145,10 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     @Override
     public JsonGenerator write(String name, JsonValue value) {
         try {
-            generator.writeFieldName(name);
+            generator.writeName(name);
             writeValue(value);
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -158,10 +156,10 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     @Override
     public JsonGenerator write(String name, String value) {
         try {
-            generator.writeFieldName(name);
+            generator.writeName(name);
             generator.writeString(value);
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -169,10 +167,10 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     @Override
     public JsonGenerator write(String name, BigInteger value) {
         try {
-            generator.writeFieldName(name);
+            generator.writeName(name);
             generator.writeNumber(value);
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -180,10 +178,10 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     @Override
     public JsonGenerator write(String name, BigDecimal value) {
         try {
-            generator.writeFieldName(name);
+            generator.writeName(name);
             generator.writeNumber(value);
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -191,10 +189,10 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     @Override
     public JsonGenerator write(String name, int value) {
         try {
-            generator.writeFieldName(name);
+            generator.writeName(name);
             generator.writeNumber(value);
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -202,10 +200,10 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     @Override
     public JsonGenerator write(String name, long value) {
         try {
-            generator.writeFieldName(name);
+            generator.writeName(name);
             generator.writeNumber(value);
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -213,10 +211,10 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     @Override
     public JsonGenerator write(String name, double value) {
         try {
-            generator.writeFieldName(name);
+            generator.writeName(name);
             generator.writeNumber(value);
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -224,10 +222,10 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     @Override
     public JsonGenerator write(String name, boolean value) {
         try {
-            generator.writeFieldName(name);
+            generator.writeName(name);
             generator.writeBoolean(value);
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -235,10 +233,10 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     @Override
     public JsonGenerator writeNull(String name) {
         try {
-            generator.writeFieldName(name);
+            generator.writeName(name);
             generator.writeNull();
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -246,7 +244,7 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     @Override
     public JsonGenerator writeEnd() {
         try {
-            JsonStreamContext ctx = generator.getOutputContext();
+            TokenStreamContext ctx = generator.streamWriteContext();
             if (ctx.inObject()) {
                 generator.writeEndObject();
             } else if (ctx.inArray()) {
@@ -254,8 +252,8 @@ public class JacksonJsonpGenerator implements JsonGenerator {
             } else {
                 throw new JsonGenerationException("Unexpected context: '" + ctx.typeDesc() + "'");
             }
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -264,8 +262,8 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     public JsonGenerator write(JsonValue value) {
         try {
             writeValue(value);
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -274,8 +272,8 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     public JsonGenerator write(String value) {
         try {
             generator.writeString(value);
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -284,8 +282,8 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     public JsonGenerator write(BigDecimal value) {
         try {
             generator.writeNumber(value);
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -294,8 +292,8 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     public JsonGenerator write(BigInteger value) {
         try {
             generator.writeNumber(value);
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -304,8 +302,8 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     public JsonGenerator write(int value) {
         try {
             generator.writeNumber(value);
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -314,8 +312,8 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     public JsonGenerator write(long value) {
         try {
             generator.writeNumber(value);
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -324,8 +322,8 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     public JsonGenerator write(double value) {
         try {
             generator.writeNumber(value);
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -334,8 +332,8 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     public JsonGenerator write(boolean value) {
         try {
             generator.writeBoolean(value);
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -344,8 +342,8 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     public JsonGenerator writeNull() {
         try {
             generator.writeNull();
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
         return this;
     }
@@ -354,8 +352,8 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     public void close() {
         try {
             generator.close();
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
     }
 
@@ -363,17 +361,17 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     public void flush() {
         try {
             generator.flush();
-        } catch (IOException e) {
-            throw JacksonUtils.convertException(e);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
     }
 
-    private void writeValue(JsonValue value) throws IOException {
-        switch(value.getValueType()) {
+    private void writeValue(JsonValue value) {
+        switch (value.getValueType()) {
             case OBJECT:
                 generator.writeStartObject();
-                for (Map.Entry<String, JsonValue> entry: value.asJsonObject().entrySet()) {
-                    generator.writeFieldName(entry.getKey());
+                for (Map.Entry<String, JsonValue> entry : value.asJsonObject().entrySet()) {
+                    generator.writeName(entry.getKey());
                     writeValue(entry.getValue());
                 }
                 generator.writeEndObject();
@@ -381,14 +379,14 @@ public class JacksonJsonpGenerator implements JsonGenerator {
 
             case ARRAY:
                 generator.writeStartArray();
-                for (JsonValue item: value.asJsonArray()) {
+                for (JsonValue item : value.asJsonArray()) {
                     writeValue(item);
                 }
                 generator.writeEndArray();
                 break;
 
             case STRING:
-                generator.writeString(((JsonString)value).getString());
+                generator.writeString(((JsonString) value).getString());
                 break;
 
             case FALSE:
