@@ -185,10 +185,13 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
                 }
                 this.endpointId = endpointId;
 
-                span = tracer.spanBuilder(endpointId).setSpanKind(SpanKind.CLIENT).startSpan();
+                span = tracer.spanBuilder(endpointId).setSpanKind(SpanKind.CLIENT)
+                    .setAttribute(ATTR_DB_SYSTEM, "elasticsearch")
+                    .setAttribute(ATTR_DB_OPERATION, endpointId)
+                    .startSpan();
+
                 if (span.isRecording()) {
-                    span.setAttribute(ATTR_DB_SYSTEM, "elasticsearch");
-                    span.setAttribute(ATTR_DB_OPERATION, endpointId);
+
                     span.setAttribute(ATTR_HTTP_REQUEST_METHOD, endpoint.method(request));
 
                     for (Map.Entry<String, String> pathParamEntry : endpoint.pathParameters(request).entrySet()) {
