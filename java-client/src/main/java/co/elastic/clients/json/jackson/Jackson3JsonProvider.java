@@ -34,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonGeneratorFactory;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParserFactory;
+import tools.jackson.core.JacksonException;
 import tools.jackson.core.json.JsonFactory;
 
 import java.io.InputStream;
@@ -102,18 +103,31 @@ public class Jackson3JsonProvider extends JsonProvider {
 
         @Override
         public JsonParser createParser(Reader reader) {
-            return new Jackson3JsonpParser(mapper.objectMapper().createParser(reader), mapper);
+            try {
+                return new Jackson3JsonpParser(mapper.objectMapper().createParser(reader), mapper);
+            } catch (JacksonException e) {
+                throw Jackson3Utils.convertException(e);
+            }
         }
 
         @Override
         public JsonParser createParser(InputStream in) {
-            return new Jackson3JsonpParser(mapper.objectMapper().createParser(in), mapper);
+            try {
+                return new Jackson3JsonpParser(mapper.objectMapper().createParser(in), mapper);
+            } catch (JacksonException e) {
+                throw Jackson3Utils.convertException(e);
+            }
         }
 
         @Override
         public JsonParser createParser(InputStream in, Charset charset) {
-            return new Jackson3JsonpParser(mapper.objectMapper().createParser(new InputStreamReader(in, charset)),
-                mapper);
+            try {
+                return new Jackson3JsonpParser(mapper.objectMapper().createParser(new InputStreamReader(in,
+                    charset)),
+                    mapper);
+            } catch (JacksonException e) {
+                throw Jackson3Utils.convertException(e);
+            }
         }
 
         /**
@@ -176,19 +190,30 @@ public class Jackson3JsonProvider extends JsonProvider {
 
         @Override
         public JsonGenerator createGenerator(Writer writer) {
-            return new Jackson3JsonpGenerator(jsonFactory.createGenerator(writer));
+            try {
+                return new Jackson3JsonpGenerator(jsonFactory.createGenerator(writer));
+            } catch (JacksonException e) {
+                throw Jackson3Utils.convertException(e);
+            }
         }
 
         @Override
         public JsonGenerator createGenerator(OutputStream out) {
-            return new Jackson3JsonpGenerator(jsonFactory.createGenerator(out));
+            try {
+                return new Jackson3JsonpGenerator(jsonFactory.createGenerator(out));
+            } catch (JacksonException e) {
+                throw Jackson3Utils.convertException(e);
+            }
         }
 
         @Override
         public JsonGenerator createGenerator(OutputStream out, Charset charset) {
-            return new Jackson3JsonpGenerator(jsonFactory.createGenerator(new OutputStreamWriter(out,
-                charset)));
-
+            try {
+                return new Jackson3JsonpGenerator(jsonFactory.createGenerator(new OutputStreamWriter(out,
+                    charset)));
+            } catch (JacksonException e) {
+                throw Jackson3Utils.convertException(e);
+            }
         }
 
         @Override

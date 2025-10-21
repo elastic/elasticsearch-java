@@ -28,6 +28,7 @@ import co.elastic.clients.json.JsonpUtils;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
+import tools.jackson.core.JacksonException;
 import tools.jackson.databind.util.TokenBuffer;
 
 import java.io.StringWriter;
@@ -89,7 +90,11 @@ class Jackson3JsonBuffer implements JsonBuffer, JsonData {
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         if (generator instanceof Jackson3JsonpGenerator) {
             Jackson3JsonpGenerator jkGenerator = (Jackson3JsonpGenerator) generator;
-            buffer.serialize(jkGenerator.jacksonGenerator());
+            try {
+                buffer.serialize(jkGenerator.jacksonGenerator());
+            } catch (JacksonException e) {
+                throw Jackson3Utils.convertException(e);
+            }
         } else {
             try (JsonParser parser = asParser()) {
                 JsonpUtils.copy(parser, generator);

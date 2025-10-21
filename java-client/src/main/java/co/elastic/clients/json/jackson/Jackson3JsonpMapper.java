@@ -31,6 +31,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
+import tools.jackson.core.JacksonException;
 import tools.jackson.databind.DeserializationFeature;
 import tools.jackson.databind.SerializationFeature;
 import tools.jackson.databind.json.JsonMapper;
@@ -121,8 +122,13 @@ public class Jackson3JsonpMapper extends JsonpMapperBase implements BufferingJso
                                                "JacksonJsonpProvider");
         }
 
-        tools.jackson.core.JsonGenerator jkGenerator = ((Jackson3JsonpGenerator) generator).jacksonGenerator();
-        objectMapper.writeValue(jkGenerator, value);
+        tools.jackson.core.JsonGenerator jkGenerator =
+            ((Jackson3JsonpGenerator) generator).jacksonGenerator();
+        try {
+            objectMapper.writeValue(jkGenerator, value);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
+        }
     }
 
     @Override
@@ -149,7 +155,11 @@ public class Jackson3JsonpMapper extends JsonpMapperBase implements BufferingJso
 
             tools.jackson.core.JsonParser jkParser = ((Jackson3JsonpParser) parser).jacksonParser();
 
-            return objectMapper.readValue(jkParser, objectMapper().constructType(type));
+            try {
+                return objectMapper.readValue(jkParser, objectMapper().constructType(type));
+            } catch (JacksonException e) {
+                throw Jackson3Utils.convertException(e);
+            }
         }
     }
 }

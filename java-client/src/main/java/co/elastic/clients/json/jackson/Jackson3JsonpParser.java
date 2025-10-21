@@ -28,6 +28,7 @@ import jakarta.json.JsonObject;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonLocation;
 import jakarta.json.stream.JsonParsingException;
+import tools.jackson.core.JacksonException;
 import tools.jackson.core.JsonParser;
 import tools.jackson.core.JsonToken;
 import tools.jackson.core.exc.StreamReadException;
@@ -100,7 +101,7 @@ public class Jackson3JsonpParser implements LookAheadJsonParser, BufferingJsonPa
     private JsonToken fetchNextToken() {
         try {
             return parser.nextToken();
-        } catch(StreamReadException e) {
+        } catch (StreamReadException e) {
             throw convertException(e);
         }
     }
@@ -283,53 +284,58 @@ public class Jackson3JsonpParser implements LookAheadJsonParser, BufferingJsonPa
 
     //----- Look ahead methods
 
-    public Map.Entry<String, jakarta.json.stream.JsonParser> lookAheadFieldValue(String name, String defaultValue) {
+    public Map.Entry<String, jakarta.json.stream.JsonParser> lookAheadFieldValue(String name,
+                                                                                 String defaultValue) {
 
         TokenBuffer tb = TokenBuffer.forBuffering(this.parser, this.parser.objectReadContext());
 
-        // The resulting parser must contain the full object, including START_EVENT
-        tb.copyCurrentEvent(parser);
-        while (parser.nextToken() != JsonToken.END_OBJECT) {
+        try {
+            // The resulting parser must contain the full object, including START_EVENT
+            tb.copyCurrentEvent(parser);
+            while (parser.nextToken() != JsonToken.END_OBJECT) {
 
-            expectEvent(JsonToken.PROPERTY_NAME);
-            // Do not copy current event here, each branch will take care of it
+                expectEvent(JsonToken.PROPERTY_NAME);
+                // Do not copy current event here, each branch will take care of it
 
-            String fieldName = parser.currentName();
-            if (fieldName.equals(name)) {
-                // Found
-                tb.copyCurrentEvent(parser);
+                String fieldName = parser.currentName();
+                if (fieldName.equals(name)) {
+                    // Found
+                    tb.copyCurrentEvent(parser);
 
-                String result = null;
-                switch (parser.nextToken()) {
-                    case VALUE_STRING:
-                        result = parser.getText();
-                        break;
-                    // Handle booleans promoted to enums
-                    case VALUE_TRUE:
-                        result = "true";
-                        break;
-                    case VALUE_FALSE:
-                        result = "false";
-                        break;
-                    default:
-                        expectEvent(JsonToken.VALUE_STRING);
+                    String result = null;
+                    switch (parser.nextToken()) {
+                        case VALUE_STRING:
+                            result = parser.getText();
+                            break;
+                        // Handle booleans promoted to enums
+                        case VALUE_TRUE:
+                            result = "true";
+                            break;
+                        case VALUE_FALSE:
+                            result = "false";
+                            break;
+                        default:
+                            expectEvent(JsonToken.VALUE_STRING);
+                    }
+
+                    tb.copyCurrentEvent(parser);
+
+                    return new AbstractMap.SimpleImmutableEntry<>(
+                        result,
+                        new Jackson3JsonpParser(
+                            JsonParserSequence.createFlattened(false, tb.asParser(), parser),
+                            mapper
+                        )
+                    );
+                } else {
+                    tb.copyCurrentStructure(parser);
                 }
-
-                tb.copyCurrentEvent(parser);
-
-                return new AbstractMap.SimpleImmutableEntry<>(
-                    result,
-                    new Jackson3JsonpParser(
-                        JsonParserSequence.createFlattened(false, tb.asParser(), parser),
-                        mapper
-                    )
-                );
-            } else {
-                tb.copyCurrentStructure(parser);
             }
+            // Copy ending END_OBJECT
+            tb.copyCurrentEvent(parser);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
-        // Copy ending END_OBJECT
-        tb.copyCurrentEvent(parser);
 
         // Field not found
         return new AbstractMap.SimpleImmutableEntry<>(
@@ -346,33 +352,37 @@ public class Jackson3JsonpParser implements LookAheadJsonParser, BufferingJsonPa
         // We're on a START_OBJECT event
         TokenBuffer tb = TokenBuffer.forBuffering(parser, parser.objectReadContext());
 
-        if (parser.currentToken() != JsonToken.START_OBJECT) {
-            // Primitive value or array
-            tb.copyCurrentStructure(parser);
-        } else {
-            // The resulting parser must contain the full object, including START_EVENT
-            tb.copyCurrentEvent(parser);
-            while (parser.nextToken() != JsonToken.END_OBJECT) {
+        try {
+            if (parser.currentToken() != JsonToken.START_OBJECT) {
+                // Primitive value or array
+                tb.copyCurrentStructure(parser);
+            } else {
+                // The resulting parser must contain the full object, including START_EVENT
+                tb.copyCurrentEvent(parser);
+                while (parser.nextToken() != JsonToken.END_OBJECT) {
 
-                expectEvent(JsonToken.PROPERTY_NAME);
-                String fieldName = parser.currentName();
+                    expectEvent(JsonToken.PROPERTY_NAME);
+                    String fieldName = parser.currentName();
 
-                Variant variant = variants.get(fieldName);
-                if (variant != null) {
-                    tb.copyCurrentEvent(parser);
-                    return new AbstractMap.SimpleImmutableEntry<>(
-                        variant,
-                        new Jackson3JsonpParser(
-                            JsonParserSequence.createFlattened(false, tb.asParser(), parser),
-                            mapper
-                        )
-                    );
-                } else {
-                    tb.copyCurrentStructure(parser);
+                    Variant variant = variants.get(fieldName);
+                    if (variant != null) {
+                        tb.copyCurrentEvent(parser);
+                        return new AbstractMap.SimpleImmutableEntry<>(
+                            variant,
+                            new Jackson3JsonpParser(
+                                JsonParserSequence.createFlattened(false, tb.asParser(), parser),
+                                mapper
+                            )
+                        );
+                    } else {
+                        tb.copyCurrentStructure(parser);
+                    }
                 }
+                // Copy ending END_OBJECT
+                tb.copyCurrentEvent(parser);
             }
-            // Copy ending END_OBJECT
-            tb.copyCurrentEvent(parser);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
         }
 
         // No variant found: return the buffered parser and let the caller decide what to do.
@@ -403,9 +413,13 @@ public class Jackson3JsonpParser implements LookAheadJsonParser, BufferingJsonPa
 
     @Override
     public JsonData getJsonData() {
-        TokenBuffer buffer = TokenBuffer.forBuffering(this.parser, this.parser.objectReadContext());
-        buffer.copyCurrentStructure(parser);
-        return new Jackson3JsonBuffer(buffer, mapper);
+        try {
+            TokenBuffer buffer = TokenBuffer.forBuffering(this.parser, this.parser.objectReadContext());
+            buffer.copyCurrentStructure(parser);
+            return new Jackson3JsonBuffer(buffer, mapper);
+        } catch (JacksonException e) {
+            throw Jackson3Utils.convertException(e);
+        }
     }
 }
 
