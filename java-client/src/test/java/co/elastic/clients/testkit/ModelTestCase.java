@@ -22,6 +22,7 @@ package co.elastic.clients.testkit;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.SimpleJsonpMapper;
+import co.elastic.clients.json.jackson.Jackson3JsonpMapper;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.spi.JsonProvider;
@@ -41,7 +42,7 @@ import java.util.Random;
  */
 public abstract class ModelTestCase extends Assertions {
 
-    protected enum JsonImpl { Jsonb, Jackson, Simple };
+    protected enum JsonImpl { Jsonb, Jackson, Jackson3, Simple };
 
     // Same value for all tests in a test run
     private static final int RAND = new Random().nextInt(100);
@@ -63,6 +64,10 @@ public abstract class ModelTestCase extends Assertions {
             case Jackson:
                 System.out.println("Using a Jackson mapper (rand = " + rand + ").");
                 return new JacksonJsonpMapper();
+
+            case Jackson3:
+                System.out.println("Using a Jackson 3 mapper (rand = " + rand + ").");
+                return new Jackson3JsonpMapper();
 
             default:
                 System.out.println("Using a simple mapper (rand = " + rand + ").");
