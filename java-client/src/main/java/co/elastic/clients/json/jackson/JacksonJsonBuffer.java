@@ -33,10 +33,6 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.lang.reflect.Type;
 
-/**
- * @deprecated Use {@link Jackson3JsonBuffer}
- */
-@Deprecated
 class JacksonJsonBuffer implements JsonBuffer, JsonData {
     private final TokenBuffer buffer;
     private final JacksonJsonpMapper mapper;
