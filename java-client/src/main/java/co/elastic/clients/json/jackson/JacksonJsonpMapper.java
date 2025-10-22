@@ -39,10 +39,6 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.EnumSet;
 
-/**
- * @deprecated Use {@link Jackson3JsonpMapper}
- */
-@Deprecated
 public class JacksonJsonpMapper extends JsonpMapperBase implements BufferingJsonpMapper {
 
     private final JacksonJsonProvider provider;

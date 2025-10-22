@@ -26,7 +26,6 @@ import jakarta.json.stream.JsonParsingException;
 
 import java.io.IOException;
 
-@Deprecated
 class JacksonUtils {
     public static JsonException convertException(IOException ioe) {
         if (ioe instanceof com.fasterxml.jackson.core.JsonGenerationException) {
