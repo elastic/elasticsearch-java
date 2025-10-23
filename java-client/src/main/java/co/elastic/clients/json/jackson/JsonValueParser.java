@@ -38,9 +38,7 @@ import java.math.BigInteger;
 /**
  * Reads a Jsonp value/object/array from a Jackson parser. The parser's current token should be the start of the
  * object (e.g. START_OBJECT, VALUE_NUMBER, etc).
- * @deprecated Use {@link Jackson3JsonValueParser}
  */
-@Deprecated
 class JsonValueParser {
     private final JsonProvider systemProvider = JsonpUtils.systemProvider();
 
