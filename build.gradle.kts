@@ -93,6 +93,9 @@ tasks.register<Task>(name = "publishForMavenCentral") {
         ":java-client:publishAllPublicationsToBuildRepository",
         ":java-client:generateLicenseReport",
         ":java-client:publishToSonatype",
+        ":rest5-client:publishAllPublicationsToBuildRepository",
+        ":rest5-client:generateLicenseReport",
+        ":rest5-client:publishToSonatype",
         "closeAndReleaseStagingRepositories",
     )
     doLast {
