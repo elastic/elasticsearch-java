@@ -14,6 +14,7 @@ navigation_title: Transport layer
 The Java API client comes with two JSON mapping implementations:
 
 * `JacksonJsonpMapper`, the default implementation based on the popular [Jackson](https://github.com/FasterXML/jackson) library.
+* `Jackson3JsonpMapper`, based on the new [Jackson](https://github.com/FasterXML/jackson) library version 3.
 * `JsonbJsonpMapper`, based on the JakartaEE JSONP specification, which allows using any implementation of this specification such as [Eclipse Parsson](https://github.com/eclipse-ee4j/parsson)
 
 Which implementation should you use?
