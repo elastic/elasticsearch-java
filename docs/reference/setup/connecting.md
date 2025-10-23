@@ -8,7 +8,7 @@ mapped_pages:
 The Java API Client is structured around three main components:
 
 * **API client classes**. These provide strongly typed data structures and methods for {{es}} APIs. Since the {{es}} API is large, it is structured in feature groups (also called “namespaces”), each having its own client class. {{es}} core features are implemented in the `ElasticsearchClient` class.
-* **A JSON object mapper**. This maps your application classes to JSON and seamlessly integrates them with the API client. The default implementation uses Jackson.
+* **A JSON object mapper**. This maps your application classes to JSON and seamlessly integrates them with the API client. The default implementation uses Jackson version 2.
 * **A transport layer implementation**. This is where all HTTP request handling takes place. The [default implementation](/reference/transport/rest5-client/index.md) is based on the [Apache http client library](https://hc.apache.org/).
 
 This code snippet uses the default configurations and only needs the location and credentials to connect to Elasticsearch:

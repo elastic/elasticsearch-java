@@ -12,6 +12,9 @@ To check for security updates, refer to [Security announcements for the Elastic 
 
 To check for issues, refer to [Known issues](../release-notes/known-issues.md).
 
+## 9.2.0
+[Release notes](../release-notes/9-2-0.md)
+
 ## 9.1.0
 [Release notes](../release-notes/9-1-0.md)
 
