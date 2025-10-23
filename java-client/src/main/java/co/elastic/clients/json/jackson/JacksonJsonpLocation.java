@@ -23,9 +23,7 @@ import jakarta.json.stream.JsonLocation;
 
 /**
  * Translate a Jackson location to a JSONP location.
- * @deprecated Use {@link Jackson3JsonpLocation}
  */
-@Deprecated
 public class JacksonJsonpLocation implements JsonLocation {
 
     private final com.fasterxml.jackson.core.JsonLocation location;

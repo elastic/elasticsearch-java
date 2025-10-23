@@ -37,9 +37,7 @@ import java.util.Map;
 
 /**
  * A JSONP generator implementation on top of Jackson.
- * @deprecated Use {@link Jackson3JsonpGenerator}
  */
-@Deprecated
 public class JacksonJsonpGenerator implements JsonGenerator {
 
     private final com.fasterxml.jackson.core.JsonGenerator generator;
