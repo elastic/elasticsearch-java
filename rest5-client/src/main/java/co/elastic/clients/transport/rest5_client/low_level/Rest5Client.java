@@ -276,12 +276,16 @@ public class Rest5Client implements Closeable {
      * exception this isn't always possible and likely haven't covered all of
      * the cases. You can get the original exception from
      * {@link Exception#getCause()}.
+     * <p>
+     * Differently from the legacy RestClient, this method does not throw exception
+     * in case of 4xx errors from the server, since often the server returns 4xx exceptions with
+     * bodies as part of the standard workflow.
      *
      * @param request the request to perform
      * @return the response returned by Elasticsearch
      * @throws IOException             in case of a problem or the connection was aborted
      * @throws ClientProtocolException in case of an http protocol error
-     * @throws ResponseException       in case Elasticsearch responded with a status code that indicated an
+     * @throws ResponseException       in case Elasticsearch responded with a 5xx status code that indicated an
      *                                 error
      */
     public Response performRequest(Request request) throws IOException {
