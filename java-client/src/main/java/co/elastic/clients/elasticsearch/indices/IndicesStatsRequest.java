@@ -223,8 +223,8 @@ public class IndicesStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Indicates whether statistics are aggregated at the cluster, index, or shard
-	 * level.
+	 * Indicates whether statistics are aggregated at the cluster, indices, or
+	 * shards level.
 	 * <p>
 	 * API name: {@code level}
 	 */
@@ -475,8 +475,8 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Indicates whether statistics are aggregated at the cluster, index, or shard
-		 * level.
+		 * Indicates whether statistics are aggregated at the cluster, indices, or
+		 * shards level.
 		 * <p>
 		 * API name: {@code level}
 		 */
