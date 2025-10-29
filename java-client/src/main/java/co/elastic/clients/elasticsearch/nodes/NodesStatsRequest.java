@@ -193,7 +193,7 @@ public class NodesStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Indicates whether statistics are aggregated at the cluster, index, or shard
+	 * Indicates whether statistics are aggregated at the node, indices, or shards
 	 * level.
 	 * <p>
 	 * API name: {@code level}
@@ -423,7 +423,7 @@ public class NodesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Indicates whether statistics are aggregated at the cluster, index, or shard
+		 * Indicates whether statistics are aggregated at the node, indices, or shards
 		 * level.
 		 * <p>
 		 * API name: {@code level}

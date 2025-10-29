@@ -84,28 +84,26 @@ public class EsqlAdapterTest extends Assertions {
 
     @Test
     public void testProfilingInfo() throws IOException {
-        String badJson = """
-            {
-               "took": 10,
-               "columns": [
-                 {"name": "avg_salary", "type": "double"},
-                 {"name": "lang", "type": "keyword"}
-               ],
-               "values": [
-                 [43760.0, "Spanish"],
-                 [48644.0, "French"],
-                 [48832.0, "German"]
-               ],
-               "profile": {
-                 "query": {
-                   "start_millis": 1760459492830,
-                   "stop_millis": 1760459492853,
-                   "took_millis": 23,
-                   "took_nanos": 23290250
-                 }
-               }
-            }
-            """;
+        String badJson = "            {\n" +
+                         "               \"took\": 10,\n" +
+                         "               \"columns\": [\n" +
+                         "                 {\"name\": \"avg_salary\", \"type\": \"double\"},\n" +
+                         "                 {\"name\": \"lang\", \"type\": \"keyword\"}\n" +
+                         "               ],\n" +
+                         "               \"values\": [\n" +
+                         "                 [43760.0, \"Spanish\"],\n" +
+                         "                 [48644.0, \"French\"],\n" +
+                         "                 [48832.0, \"German\"]\n" +
+                         "               ],\n" +
+                         "               \"profile\": {\n" +
+                         "                 \"query\": {\n" +
+                         "                   \"start_millis\": 1760459492830,\n" +
+                         "                   \"stop_millis\": 1760459492853,\n" +
+                         "                   \"took_millis\": 23,\n" +
+                         "                   \"took_nanos\": 23290250\n" +
+                         "                 }\n" +
+                         "               }\n" +
+                         "            }";
 
         ElasticsearchClient esClient = new MockHttpClient()
             .add("/_query", "application/json", badJson)

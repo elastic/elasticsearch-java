@@ -96,8 +96,7 @@ public class DeleteConnectorRequest extends RequestBase {
 	}
 
 	/**
-	 * A flag indicating if associated sync jobs should be also removed. Defaults to
-	 * false.
+	 * A flag indicating if associated sync jobs should be also removed.
 	 * <p>
 	 * API name: {@code delete_sync_jobs}
 	 */
@@ -131,8 +130,7 @@ public class DeleteConnectorRequest extends RequestBase {
 		}
 
 		/**
-		 * A flag indicating if associated sync jobs should be also removed. Defaults to
-		 * false.
+		 * A flag indicating if associated sync jobs should be also removed.
 		 * <p>
 		 * API name: {@code delete_sync_jobs}
 		 */
