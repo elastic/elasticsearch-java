@@ -175,7 +175,7 @@ signing {
 }
 
 dependencies {
-    val elasticsearchVersion = "9.0.0"
+    val elasticsearchVersion = "9.2.0"
     val jacksonVersion = "2.18.3"
     val jackson3Version = "3.0.0"
     val openTelemetryVersion = "1.32.0"
