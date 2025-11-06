@@ -78,6 +78,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -127,6 +130,8 @@ public class Rest5Client implements Closeable {
     private final WarningsHandler warningsHandler;
     private final boolean compressionEnabled;
     private final boolean metaHeaderEnabled;
+    private final ScheduledExecutorService healthCheckExecutor;
+    private volatile boolean closed = false;
 
     Rest5Client(
         CloseableHttpAsyncClient client,
@@ -148,6 +153,19 @@ public class Rest5Client implements Closeable {
         this.compressionEnabled = compressionEnabled;
         this.metaHeaderEnabled = metaHeaderEnabled;
         setNodes(nodes);
+        
+        // 初始化连接池健康检查执行器
+        this.healthCheckExecutor = new ScheduledThreadPoolExecutor(1, r -> {
+            Thread thread = new Thread(r, "elasticsearch-rest-client-health-check");
+            thread.setDaemon(true);
+            return thread;
+        });
+        
+        // 启动定期健康检查（每30秒执行一次）
+        this.healthCheckExecutor.scheduleAtFixedRate(
+            this::performHealthCheck,
+            30, 30, TimeUnit.SECONDS
+        );
     }
 
     /**
@@ -585,8 +603,65 @@ public class Rest5Client implements Closeable {
     }
 
     @Override
+    /**
+     * 执行连接池健康检查
+     */
+    private void performHealthCheck() {
+        if (closed) {
+            return;
+        }
+        
+        try {
+            // 检查客户端状态
+            if (client instanceof org.apache.hc.client5.http.impl.async.CloseableHttpAsyncClientImpl) {
+                org.apache.hc.client5.http.impl.async.CloseableHttpAsyncClientImpl clientImpl = 
+                    (org.apache.hc.client5.http.impl.async.CloseableHttpAsyncClientImpl) client;
+                
+                // 获取连接管理器
+                org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManager connectionManager = 
+                    (org.apache.hc.client5.http.impl.nio.PoolingAsyncClientConnectionManager) clientImpl.getConnectionManager();
+                
+                // 检查连接池状态
+                int totalConnections = connectionManager.getTotalStats().getAvailable() + 
+                                      connectionManager.getTotalStats().getLeased() + 
+                                      connectionManager.getTotalStats().getPending() + 
+                                      connectionManager.getTotalStats().getMax();
+                
+                // 如果连接数超过阈值，输出警告日志
+                if (totalConnections > connectionManager.getMaxTotal()) {
+                    logger.warn("Connection pool usage exceeded maximum limit. Total connections: " + totalConnections + ", Max: " + connectionManager.getMaxTotal());
+                }
+                
+                // 定期清理过期连接
+                connectionManager.closeExpiredConnections();
+                connectionManager.closeIdleConnections(Timeout.of(5, TimeUnit.MINUTES));
+            }
+        } catch (Exception e) {
+            logger.debug("Failed to perform connection pool health check", e);
+        }
+    }
+
+    @Override
     public void close() throws IOException {
-        client.close();
+        closed = true;
+        
+        // 关闭健康检查执行器
+        if (healthCheckExecutor != null) {
+            healthCheckExecutor.shutdown();
+            try {
+                if (!healthCheckExecutor.awaitTermination(5, TimeUnit.SECONDS)) {
+                    healthCheckExecutor.shutdownNow();
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                healthCheckExecutor.shutdownNow();
+            }
+        }
+        
+        // 关闭HTTP客户端
+        if (client != null) {
+            client.close();
+        }
     }
 
     /**

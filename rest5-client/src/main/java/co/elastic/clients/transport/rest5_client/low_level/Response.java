@@ -27,6 +27,8 @@ import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.message.BasicClassicHttpResponse;
 import org.apache.hc.core5.http.message.RequestLine;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -37,7 +39,7 @@ import java.util.regex.Pattern;
  * Holds an elasticsearch response. It wraps the {@link BasicClassicHttpResponse} returned and associates
  * it with its corresponding {@link RequestLine} and {@link HttpHost}.
  */
-public class Response {
+public class Response implements Closeable {
 
     private final RequestLine requestLine;
     private final HttpHost host;
@@ -199,6 +201,11 @@ public class Response {
 
     ClassicHttpResponse getHttpResponse() {
         return response;
+    }
+
+    @Override
+    public void close() throws IOException {
+        response.close();
     }
 
     @Override
