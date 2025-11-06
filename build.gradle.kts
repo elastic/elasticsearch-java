@@ -67,8 +67,11 @@ allprojects {
 // The ".git" directory may not exist when resolving dependencies in the Docker image build
 if (File(rootProject.rootDir, ".git").exists()) {
     val grgit = org.ajoberstar.grgit.Grgit.open(mapOf("currentDir" to rootProject.rootDir))
-    rootProject.extra["gitHashFull"] = grgit.head().id
-    rootProject.extra["gitCommitTime"] = grgit.head().dateTime.withZoneSameLocal(java.time.ZoneOffset.UTC)
+    val head = grgit.head()
+    if (head != null) {
+        rootProject.extra["gitHashFull"] = head.id
+        rootProject.extra["gitCommitTime"] = head.dateTime.withZoneSameLocal(java.time.ZoneOffset.UTC)
+    }
     grgit.close()
 }
 
