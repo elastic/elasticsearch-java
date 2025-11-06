@@ -32,3 +32,6 @@ temp/
 
 # markdoc
 markdoc/
+
+# macOS
+.DS_Store
