@@ -1045,7 +1045,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * Update the draft filtering validation info for a connector.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-filtering-validation-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-connector-update-filtering-validation">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1066,7 +1066,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateFilteringValidationRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-filtering-validation-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-connector-update-filtering-validation">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1156,7 +1156,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 * Update the connector is_native flag.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-native-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-connector-update-native">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1174,7 +1174,7 @@ public class ElasticsearchConnectorClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateNativeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.19/update-connector-native-api.html">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-connector-update-native">Documentation
 	 *      on elastic.co</a>
 	 */
 

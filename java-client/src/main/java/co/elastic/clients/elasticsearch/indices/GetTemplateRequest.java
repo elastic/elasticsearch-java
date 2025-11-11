@@ -113,7 +113,11 @@ public class GetTemplateRequest extends RequestBase {
 	 * only.
 	 * <p>
 	 * API name: {@code local}
+	 * 
+	 * @deprecated 9.0.0 This parameter is a no-op and templates are always
+	 *             retrieved locally.
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean local() {
 		return this.local;
@@ -178,7 +182,11 @@ public class GetTemplateRequest extends RequestBase {
 		 * only.
 		 * <p>
 		 * API name: {@code local}
+		 * 
+		 * @deprecated 9.0.0 This parameter is a no-op and templates are always
+		 *             retrieved locally.
 		 */
+		@Deprecated
 		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;

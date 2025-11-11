@@ -74,8 +74,7 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 	@Nullable
 	private final Time dataRetention;
 
-	@Nullable
-	private final DataStreamLifecycleDownsampling downsampling;
+	private final List<DownsamplingRound> downsampling;
 
 	@Nullable
 	private final Boolean enabled;
@@ -95,7 +94,7 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 	private PutDataLifecycleRequest(Builder builder) {
 
 		this.dataRetention = builder.dataRetention;
-		this.downsampling = builder.downsampling;
+		this.downsampling = ApiTypeHelper.unmodifiable(builder.downsampling);
 		this.enabled = builder.enabled;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.masterTimeout = builder.masterTimeout;
@@ -127,8 +126,7 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 	 * <p>
 	 * API name: {@code downsampling}
 	 */
-	@Nullable
-	public final DataStreamLifecycleDownsampling downsampling() {
+	public final List<DownsamplingRound> downsampling() {
 		return this.downsampling;
 	}
 
@@ -204,9 +202,14 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 			this.dataRetention.serialize(generator, mapper);
 
 		}
-		if (this.downsampling != null) {
+		if (ApiTypeHelper.isDefined(this.downsampling)) {
 			generator.writeKey("downsampling");
-			this.downsampling.serialize(generator, mapper);
+			generator.writeStartArray();
+			for (DownsamplingRound item0 : this.downsampling) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.enabled != null) {
@@ -230,7 +233,7 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 		private Time dataRetention;
 
 		@Nullable
-		private DataStreamLifecycleDownsampling downsampling;
+		private List<DownsamplingRound> downsampling;
 
 		@Nullable
 		private Boolean enabled;
@@ -276,9 +279,11 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 		 * rollover.
 		 * <p>
 		 * API name: {@code downsampling}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>downsampling</code>.
 		 */
-		public final Builder downsampling(@Nullable DataStreamLifecycleDownsampling value) {
-			this.downsampling = value;
+		public final Builder downsampling(List<DownsamplingRound> list) {
+			this.downsampling = _listAddAll(this.downsampling, list);
 			return this;
 		}
 
@@ -287,10 +292,24 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 		 * rollover.
 		 * <p>
 		 * API name: {@code downsampling}
+		 * <p>
+		 * Adds one or more values to <code>downsampling</code>.
 		 */
-		public final Builder downsampling(
-				Function<DataStreamLifecycleDownsampling.Builder, ObjectBuilder<DataStreamLifecycleDownsampling>> fn) {
-			return this.downsampling(fn.apply(new DataStreamLifecycleDownsampling.Builder()).build());
+		public final Builder downsampling(DownsamplingRound value, DownsamplingRound... values) {
+			this.downsampling = _listAdd(this.downsampling, value, values);
+			return this;
+		}
+
+		/**
+		 * The downsampling configuration to execute for the managed backing index after
+		 * rollover.
+		 * <p>
+		 * API name: {@code downsampling}
+		 * <p>
+		 * Adds a value to <code>downsampling</code> using a builder lambda.
+		 */
+		public final Builder downsampling(Function<DownsamplingRound.Builder, ObjectBuilder<DownsamplingRound>> fn) {
+			return downsampling(fn.apply(new DownsamplingRound.Builder()).build());
 		}
 
 		/**
@@ -432,7 +451,8 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 			ObjectDeserializer<PutDataLifecycleRequest.Builder> op) {
 
 		op.add(Builder::dataRetention, Time._DESERIALIZER, "data_retention");
-		op.add(Builder::downsampling, DataStreamLifecycleDownsampling._DESERIALIZER, "downsampling");
+		op.add(Builder::downsampling, JsonpDeserializer.arrayDeserializer(DownsamplingRound._DESERIALIZER),
+				"downsampling");
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
 	}
