@@ -153,7 +153,10 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * The chunking configuration object.
+	 * The chunking configuration object. Applies only to the
+	 * <code>text_embedding</code> task type. Not applicable to the
+	 * <code>rerank</code>, <code>completion</code>, or <code>chat_completion</code>
+	 * task types.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -278,7 +281,10 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 		private Time timeout;
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>rerank</code>, <code>completion</code>, or <code>chat_completion</code>
+		 * task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -288,7 +294,10 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>rerank</code>, <code>completion</code>, or <code>chat_completion</code>
+		 * task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */

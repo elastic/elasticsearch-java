@@ -88,7 +88,10 @@ public class InferenceEndpoint implements JsonpSerializable {
 	}
 
 	/**
-	 * Chunking configuration object
+	 * The chunking configuration object. Applies only to the
+	 * <code>sparse_embedding</code> and <code>text_embedding</code> task types. Not
+	 * applicable to the <code>rerank</code>, <code>completion</code>, or
+	 * <code>chat_completion</code> task types.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -201,7 +204,10 @@ public class InferenceEndpoint implements JsonpSerializable {
 		private JsonData taskSettings;
 
 		/**
-		 * Chunking configuration object
+		 * The chunking configuration object. Applies only to the
+		 * <code>sparse_embedding</code> and <code>text_embedding</code> task types. Not
+		 * applicable to the <code>rerank</code>, <code>completion</code>, or
+		 * <code>chat_completion</code> task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -211,7 +217,10 @@ public class InferenceEndpoint implements JsonpSerializable {
 		}
 
 		/**
-		 * Chunking configuration object
+		 * The chunking configuration object. Applies only to the
+		 * <code>sparse_embedding</code> and <code>text_embedding</code> task types. Not
+		 * applicable to the <code>rerank</code>, <code>completion</code>, or
+		 * <code>chat_completion</code> task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */

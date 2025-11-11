@@ -133,7 +133,9 @@ public class PutElasticsearchRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * The chunking configuration object.
+	 * The chunking configuration object. Applies only to the
+	 * <code>sparse_embedding</code> and <code>text_embedding</code> task types. Not
+	 * applicable to the <code>rerank</code> task type.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -259,7 +261,9 @@ public class PutElasticsearchRequest extends RequestBase implements JsonpSeriali
 		private Time timeout;
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>sparse_embedding</code> and <code>text_embedding</code> task types. Not
+		 * applicable to the <code>rerank</code> task type.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -269,7 +273,9 @@ public class PutElasticsearchRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>sparse_embedding</code> and <code>text_embedding</code> task types. Not
+		 * applicable to the <code>rerank</code> task type.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */

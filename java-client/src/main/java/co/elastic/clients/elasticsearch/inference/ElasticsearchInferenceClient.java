@@ -163,7 +163,9 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: inference.delete
 
 	/**
-	 * Delete an inference endpoint
+	 * Delete an inference endpoint This API requires the manage_inference cluster
+	 * privilege (the built-in <code>inference_admin</code> role grants this
+	 * privilege).
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-delete">Documentation
@@ -178,7 +180,9 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Delete an inference endpoint
+	 * Delete an inference endpoint This API requires the manage_inference cluster
+	 * privilege (the built-in <code>inference_admin</code> role grants this
+	 * privilege).
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -197,7 +201,10 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: inference.get
 
 	/**
-	 * Get an inference endpoint
+	 * Get an inference endpoint This API requires the
+	 * <code>monitor_inference</code> cluster privilege (the built-in
+	 * <code>inference_admin</code> and <code>inference_user</code> roles grant this
+	 * privilege).
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-get">Documentation
@@ -212,7 +219,10 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Get an inference endpoint
+	 * Get an inference endpoint This API requires the
+	 * <code>monitor_inference</code> cluster privilege (the built-in
+	 * <code>inference_admin</code> and <code>inference_user</code> roles grant this
+	 * privilege).
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -228,7 +238,10 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Get an inference endpoint
+	 * Get an inference endpoint This API requires the
+	 * <code>monitor_inference</code> cluster privilege (the built-in
+	 * <code>inference_admin</code> and <code>inference_user</code> roles grant this
+	 * privilege).
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-get">Documentation

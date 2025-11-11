@@ -185,7 +185,11 @@ public class GetIndicesSettingsRequest extends RequestBase {
 	 * only. If <code>false</code>, information is retrieved from the master node.
 	 * <p>
 	 * API name: {@code local}
+	 * 
+	 * @deprecated 9.1.0 This parameter is a no-op and settings are always retrieved
+	 *             locally.
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean local() {
 		return this.local;
@@ -355,7 +359,11 @@ public class GetIndicesSettingsRequest extends RequestBase {
 		 * only. If <code>false</code>, information is retrieved from the master node.
 		 * <p>
 		 * API name: {@code local}
+		 * 
+		 * @deprecated 9.1.0 This parameter is a no-op and settings are always retrieved
+		 *             locally.
 		 */
+		@Deprecated
 		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;

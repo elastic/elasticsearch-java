@@ -202,7 +202,11 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	 * If true, concrete, expanded or aliased indices are ignored when frozen.
 	 * <p>
 	 * API name: {@code ignore_throttled}
+	 * 
+	 * @deprecated 7.16.0 This parameter is deprecated because frozen indices have
+	 *             been deprecated.
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean ignoreThrottled() {
 		return this.ignoreThrottled;
@@ -440,7 +444,11 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		 * If true, concrete, expanded or aliased indices are ignored when frozen.
 		 * <p>
 		 * API name: {@code ignore_throttled}
+		 * 
+		 * @deprecated 7.16.0 This parameter is deprecated because frozen indices have
+		 *             been deprecated.
 		 */
+		@Deprecated
 		public final Builder ignoreThrottled(@Nullable Boolean value) {
 			this.ignoreThrottled = value;
 			return this;

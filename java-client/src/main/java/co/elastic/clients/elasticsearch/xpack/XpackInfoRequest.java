@@ -98,7 +98,10 @@ public class XpackInfoRequest extends RequestBase {
 	 * If this param is used it must be set to true
 	 * <p>
 	 * API name: {@code accept_enterprise}
+	 * 
+	 * @deprecated 8.0.0 Supported for backwards compatibility with 7.x
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean acceptEnterprise() {
 		return this.acceptEnterprise;
@@ -147,7 +150,10 @@ public class XpackInfoRequest extends RequestBase {
 		 * If this param is used it must be set to true
 		 * <p>
 		 * API name: {@code accept_enterprise}
+		 * 
+		 * @deprecated 8.0.0 Supported for backwards compatibility with 7.x
 		 */
+		@Deprecated
 		public final Builder acceptEnterprise(@Nullable Boolean value) {
 			this.acceptEnterprise = value;
 			return this;

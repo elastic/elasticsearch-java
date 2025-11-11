@@ -203,7 +203,11 @@ public class StateRequest extends RequestBase {
 	 * (default: false)
 	 * <p>
 	 * API name: {@code local}
+	 * 
+	 * @deprecated 9.0.0 This parameter has no effect, is now deprecated, and will
+	 *             be removed in a future version.
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean local() {
 		return this.local;
@@ -213,10 +217,7 @@ public class StateRequest extends RequestBase {
 	 * Timeout for waiting for new cluster state in case it is blocked
 	 * <p>
 	 * API name: {@code master_timeout}
-	 * 
-	 * @deprecated 9.2.0
 	 */
-	@Deprecated
 	@Nullable
 	public final Time masterTimeout() {
 		return this.masterTimeout;
@@ -379,7 +380,11 @@ public class StateRequest extends RequestBase {
 		 * (default: false)
 		 * <p>
 		 * API name: {@code local}
+		 * 
+		 * @deprecated 9.0.0 This parameter has no effect, is now deprecated, and will
+		 *             be removed in a future version.
 		 */
+		@Deprecated
 		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
@@ -389,10 +394,7 @@ public class StateRequest extends RequestBase {
 		 * Timeout for waiting for new cluster state in case it is blocked
 		 * <p>
 		 * API name: {@code master_timeout}
-		 * 
-		 * @deprecated 9.2.0
 		 */
-		@Deprecated
 		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
@@ -402,10 +404,7 @@ public class StateRequest extends RequestBase {
 		 * Timeout for waiting for new cluster state in case it is blocked
 		 * <p>
 		 * API name: {@code master_timeout}
-		 * 
-		 * @deprecated 9.2.0
 		 */
-		@Deprecated
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}

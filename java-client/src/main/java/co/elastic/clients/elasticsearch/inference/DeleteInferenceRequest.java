@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: inference.delete.Request
 
 /**
- * Delete an inference endpoint
+ * Delete an inference endpoint This API requires the manage_inference cluster
+ * privilege (the built-in <code>inference_admin</code> role grants this
+ * privilege).
  * 
  * @see <a href="../doc-files/api-spec.html#inference.delete.Request">API
  *      specification</a>

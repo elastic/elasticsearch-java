@@ -74,6 +74,12 @@ public class ElasticsearchServiceSettings implements JsonpSerializable {
 
 	private final int numThreads;
 
+	@Nullable
+	private final String longDocumentStrategy;
+
+	@Nullable
+	private final Integer maxChunksPerDoc;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ElasticsearchServiceSettings(Builder builder) {
@@ -83,6 +89,8 @@ public class ElasticsearchServiceSettings implements JsonpSerializable {
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.numAllocations = builder.numAllocations;
 		this.numThreads = ApiTypeHelper.requireNonNull(builder.numThreads, this, "numThreads", 0);
+		this.longDocumentStrategy = builder.longDocumentStrategy;
+		this.maxChunksPerDoc = builder.maxChunksPerDoc;
 
 	}
 
@@ -157,6 +165,43 @@ public class ElasticsearchServiceSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * Available only for the <code>rerank</code> task type using the Elastic
+	 * reranker model. Controls the strategy used for processing long documents
+	 * during inference.
+	 * <p>
+	 * Possible values:
+	 * <ul>
+	 * <li><code>truncate</code> (default): Processes only the beginning of each
+	 * document.</li>
+	 * <li><code>chunk</code>: Splits long documents into smaller parts (chunks)
+	 * before inference.</li>
+	 * </ul>
+	 * <p>
+	 * When <code>long_document_strategy</code> is set to <code>chunk</code>,
+	 * Elasticsearch splits each document into smaller parts but still returns a
+	 * single score per document. That score reflects the highest relevance score
+	 * among all chunks.
+	 * <p>
+	 * API name: {@code long_document_strategy}
+	 */
+	@Nullable
+	public final String longDocumentStrategy() {
+		return this.longDocumentStrategy;
+	}
+
+	/**
+	 * Only for the <code>rerank</code> task type. Limits the number of chunks per
+	 * document that are sent for inference when chunking is enabled. If not set,
+	 * all chunks generated for the document are processed.
+	 * <p>
+	 * API name: {@code max_chunks_per_doc}
+	 */
+	@Nullable
+	public final Integer maxChunksPerDoc() {
+		return this.maxChunksPerDoc;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -188,6 +233,17 @@ public class ElasticsearchServiceSettings implements JsonpSerializable {
 		generator.writeKey("num_threads");
 		generator.write(this.numThreads);
 
+		if (this.longDocumentStrategy != null) {
+			generator.writeKey("long_document_strategy");
+			generator.write(this.longDocumentStrategy);
+
+		}
+		if (this.maxChunksPerDoc != null) {
+			generator.writeKey("max_chunks_per_doc");
+			generator.write(this.maxChunksPerDoc);
+
+		}
+
 	}
 
 	@Override
@@ -216,6 +272,12 @@ public class ElasticsearchServiceSettings implements JsonpSerializable {
 		private Integer numAllocations;
 
 		private Integer numThreads;
+
+		@Nullable
+		private String longDocumentStrategy;
+
+		@Nullable
+		private Integer maxChunksPerDoc;
 
 		/**
 		 * Adaptive allocations configuration details. If <code>enabled</code> is true,
@@ -302,6 +364,43 @@ public class ElasticsearchServiceSettings implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * Available only for the <code>rerank</code> task type using the Elastic
+		 * reranker model. Controls the strategy used for processing long documents
+		 * during inference.
+		 * <p>
+		 * Possible values:
+		 * <ul>
+		 * <li><code>truncate</code> (default): Processes only the beginning of each
+		 * document.</li>
+		 * <li><code>chunk</code>: Splits long documents into smaller parts (chunks)
+		 * before inference.</li>
+		 * </ul>
+		 * <p>
+		 * When <code>long_document_strategy</code> is set to <code>chunk</code>,
+		 * Elasticsearch splits each document into smaller parts but still returns a
+		 * single score per document. That score reflects the highest relevance score
+		 * among all chunks.
+		 * <p>
+		 * API name: {@code long_document_strategy}
+		 */
+		public final Builder longDocumentStrategy(@Nullable String value) {
+			this.longDocumentStrategy = value;
+			return this;
+		}
+
+		/**
+		 * Only for the <code>rerank</code> task type. Limits the number of chunks per
+		 * document that are sent for inference when chunking is enabled. If not set,
+		 * all chunks generated for the document are processed.
+		 * <p>
+		 * API name: {@code max_chunks_per_doc}
+		 */
+		public final Builder maxChunksPerDoc(@Nullable Integer value) {
+			this.maxChunksPerDoc = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -336,6 +435,8 @@ public class ElasticsearchServiceSettings implements JsonpSerializable {
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
 		op.add(Builder::numAllocations, JsonpDeserializer.integerDeserializer(), "num_allocations");
 		op.add(Builder::numThreads, JsonpDeserializer.integerDeserializer(), "num_threads");
+		op.add(Builder::longDocumentStrategy, JsonpDeserializer.stringDeserializer(), "long_document_strategy");
+		op.add(Builder::maxChunksPerDoc, JsonpDeserializer.integerDeserializer(), "max_chunks_per_doc");
 
 	}
 

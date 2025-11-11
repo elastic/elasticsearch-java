@@ -41,24 +41,20 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#inference._types.TaskTypeGoogleVertexAI">API
+ *      "../doc-files/api-spec.html#inference._types.GoogleModelGardenProvider">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum TaskTypeGoogleVertexAI implements JsonEnum {
-	ChatCompletion("chat_completion"),
+public enum GoogleModelGardenProvider implements JsonEnum {
+	Google("google"),
 
-	Completion("completion"),
-
-	TextEmbedding("text_embedding"),
-
-	Rerank("rerank"),
+	Anthropic("anthropic"),
 
 	;
 
 	private final String jsonValue;
 
-	TaskTypeGoogleVertexAI(String jsonValue) {
+	GoogleModelGardenProvider(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -66,6 +62,6 @@ public enum TaskTypeGoogleVertexAI implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<TaskTypeGoogleVertexAI> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			TaskTypeGoogleVertexAI.values());
+	public static final JsonEnum.Deserializer<GoogleModelGardenProvider> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			GoogleModelGardenProvider.values());
 }

@@ -71,6 +71,9 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 	private final int numCandidates;
 
 	@Nullable
+	private final Float visitPercentage;
+
+	@Nullable
 	private final Float similarity;
 
 	@Nullable
@@ -86,6 +89,7 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 		this.queryVectorBuilder = builder.queryVectorBuilder;
 		this.k = ApiTypeHelper.requireNonNull(builder.k, this, "k", 0);
 		this.numCandidates = ApiTypeHelper.requireNonNull(builder.numCandidates, this, "numCandidates", 0);
+		this.visitPercentage = builder.visitPercentage;
 		this.similarity = builder.similarity;
 		this.rescoreVector = builder.rescoreVector;
 
@@ -152,6 +156,17 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 	}
 
 	/**
+	 * The percentage of vectors to explore per shard while doing knn search with
+	 * bbq_disk
+	 * <p>
+	 * API name: {@code visit_percentage}
+	 */
+	@Nullable
+	public final Float visitPercentage() {
+		return this.visitPercentage;
+	}
+
+	/**
 	 * The minimum similarity required for a document to be considered a match.
 	 * <p>
 	 * API name: {@code similarity}
@@ -198,6 +213,11 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 		generator.writeKey("num_candidates");
 		generator.write(this.numCandidates);
 
+		if (this.visitPercentage != null) {
+			generator.writeKey("visit_percentage");
+			generator.write(this.visitPercentage);
+
+		}
 		if (this.similarity != null) {
 			generator.writeKey("similarity");
 			generator.write(this.similarity);
@@ -229,6 +249,9 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 		private Integer k;
 
 		private Integer numCandidates;
+
+		@Nullable
+		private Float visitPercentage;
 
 		@Nullable
 		private Float similarity;
@@ -325,6 +348,17 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 		}
 
 		/**
+		 * The percentage of vectors to explore per shard while doing knn search with
+		 * bbq_disk
+		 * <p>
+		 * API name: {@code visit_percentage}
+		 */
+		public final Builder visitPercentage(@Nullable Float value) {
+			this.visitPercentage = value;
+			return this;
+		}
+
+		/**
 		 * The minimum similarity required for a document to be considered a match.
 		 * <p>
 		 * API name: {@code similarity}
@@ -387,6 +421,7 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 		op.add(Builder::queryVectorBuilder, QueryVectorBuilder._DESERIALIZER, "query_vector_builder");
 		op.add(Builder::k, JsonpDeserializer.integerDeserializer(), "k");
 		op.add(Builder::numCandidates, JsonpDeserializer.integerDeserializer(), "num_candidates");
+		op.add(Builder::visitPercentage, JsonpDeserializer.floatDeserializer(), "visit_percentage");
 		op.add(Builder::similarity, JsonpDeserializer.floatDeserializer(), "similarity");
 		op.add(Builder::rescoreVector, RescoreVector._DESERIALIZER, "rescore_vector");
 
