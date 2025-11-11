@@ -126,7 +126,11 @@ public class GetComponentTemplateRequest extends RequestBase {
 	 * only. If <code>false</code>, information is retrieved from the master node.
 	 * <p>
 	 * API name: {@code local}
+	 * 
+	 * @deprecated 9.0.0 This parameter has no effect, is now deprecated, and will
+	 *             be removed in a future version.
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean local() {
 		return this.local;
@@ -216,7 +220,11 @@ public class GetComponentTemplateRequest extends RequestBase {
 		 * only. If <code>false</code>, information is retrieved from the master node.
 		 * <p>
 		 * API name: {@code local}
+		 * 
+		 * @deprecated 9.0.0 This parameter has no effect, is now deprecated, and will
+		 *             be removed in a future version.
 		 */
+		@Deprecated
 		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
