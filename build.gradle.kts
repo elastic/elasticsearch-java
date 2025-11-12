@@ -90,9 +90,12 @@ tasks.register<Task>(name = "publishForMavenCentral") {
     group = "Publishing"
     description = "Publishes artifacts to Maven Central"
     dependsOn(
-        ":java-client:publishAllPublicationsToBuildRepository",
-        ":java-client:generateLicenseReport",
-        ":java-client:publishToSonatype",
+//        ":java-client:publishAllPublicationsToBuildRepository",
+//        ":java-client:generateLicenseReport",
+//        ":java-client:publishToSonatype",
+        ":rest5-client:publishAllPublicationsToBuildRepository",
+        ":rest5-client:generateLicenseReport",
+        ":rest5-client:publishToSonatype",
         "closeAndReleaseStagingRepositories",
     )
     doLast {
