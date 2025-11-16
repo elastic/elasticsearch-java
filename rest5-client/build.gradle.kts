@@ -154,7 +154,6 @@ dependencies {
     // Apache 2.0
     // https://github.com/FasterXML/jackson
     implementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
-    implementation("com.fasterxml.jackson.core", "jackson-databind", jacksonVersion)
 
 //    // Apache-2.0
 //    testImplementation("commons-io:commons-io:2.17.0")
