@@ -1,0 +1,160 @@
+name: 'Generate Client'
+
+description: |-
+  Runs the client generator in 'elastic-client-generator-java' and pushes changes to an upstream branch in the 'elasticsearch-java' client repository.
+
+  The 'branch' used to run this action specifies the branch the 'elasticsearch-specification' 
+  branch and the target branch for the resulting Pull Request in the 'elasticsearch-java' repository.
+
+  If the 'target_branch' input is set, all changes will be pushed to the specified branch in the 'elasticsearch-java'
+  repository and no Pull Request is created. 
+  Changes already present in that branch are pulled before running the client generator.
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_branch:
+        description: >-
+          Target branch in the 'elasticsearch-java' repository. Leave empty to create a new branch and PR.
+        required: false
+        default: ''
+        type: string
+      dry_run:
+        description: >-
+          Perform a dry run. Don't push changes to the client repository.
+        required: false
+        default: false
+        type: boolean
+
+env:
+  # Build configuration.
+  BUILD_CONFIG: Release
+  CACHE_PATTERNS: '["**/*.[cf]sproj*", "**/*.Build.props"]'
+  # GIT user configuration.
+  GIT_USER: 'Laura Trotta'
+  GIT_MAIL: laura.trotta@elastic.co
+  # Branches.
+  BASE_BRANCH: ${{ github.ref_name }}
+  CLIENT_BRANCH: ${{ inputs.target_branch != '' && inputs.target_branch || github.ref_name }}
+
+jobs:
+  generate:
+    name: Generate client '${{ github.ref_name }}' -> '${{ inputs.target_branch != '' && inputs.target_branch || github.ref_name }}'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 'elastic-client-generator-java' @ '${{ env.BASE_BRANCH }}'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          token: ${{ secrets.PAT }}
+          ref: ${{ env.BASE_BRANCH }}
+          path: elastic-client-generator-java
+
+      - name: Checkout 'elasticsearch-specification' @ '${{ env.BASE_BRANCH }}'
+        uses: actions/checkout@v4
+        with:
+          repository: elastic/elasticsearch-specification
+          token: ${{ secrets.PAT }}
+          ref: ${{ env.BASE_BRANCH }}
+          path: elasticsearch-specification
+
+      - name: Checkout 'elasticsearch-java' @ '${{ env.CLIENT_BRANCH }}'
+        uses: actions/checkout@v4
+        with:
+          repository: elastic/elasticsearch-java
+          token: ${{ secrets.PAT }}
+          ref: ${{ env.CLIENT_BRANCH }}
+          path: elasticsearch-java
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: elasticsearch-specification/.nvmrc
+          cache: npm
+          cache-dependency-path: 'elasticsearch-specification/**/package-lock.json'
+
+      - name: Setup JVM 17 for 'elasticsearch-java'
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Generate specification output
+        working-directory: elasticsearch-specification
+        run: |
+          make setup
+          make generate
+
+      - name: Link generator to client
+        working-directory: elastic-client-generator-java
+        run: |
+          make link-java-client
+
+      - name: Gradle build 'elastic-client-generator-java'
+        working-directory: elastic-client-generator-java
+        run: ./gradlew build
+
+      - name: Generate client
+        working-directory: elasticsearch-java
+        run: make rm-es generate-client
+
+      - name: Push changes to client repository
+        id: push
+        if: ${{ !inputs.dry_run }}
+        working-directory: elasticsearch-java
+        env:
+          COMMIT_MESSAGE: '[codegen] update to latest spec'
+        run: |
+          set -e
+
+          git status --porcelain
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git config user.name "$GIT_USER"
+          git config user.email "$GIT_MAIL"
+
+          target_branch="${{ inputs.target_branch }}"
+
+          if [ -z "$target_branch" ]; then
+            target_branch="regenerate-${{ env.BASE_BRANCH }}"
+
+            git checkout -B "$target_branch"
+            git add -A
+            git commit -m "$COMMIT_MESSAGE"
+            git push --force origin "$target_branch"
+
+            # Expose branch_name when we created a regenerate branch (so PR step runs).
+            echo "branch_name=$target_branch" >> $GITHUB_OUTPUT
+
+            exit 0
+          fi
+
+          git add -A
+
+          last_commit_msg=$(git log -1 --pretty=%B || true)
+
+          if [ "$last_commit_msg" = "$COMMIT_MESSAGE" ]; then
+            # Amend the previous commit.
+            git commit --amend -m "$COMMIT_MESSAGE"
+          else
+            git commit -m "$COMMIT_MESSAGE"
+          fi
+
+          git push --force-with-lease origin "$target_branch"
+
+      - name: Create pull request
+        if: ${{ !inputs.dry_run && steps.push.outputs.branch_name != '' }}
+        working-directory: elasticsearch-java
+        env:
+          GH_TOKEN: ${{ secrets.PAT }}
+        run: |
+          gh pr create \
+            --head "${{ steps.push.outputs.branch_name }}" \
+            --base "${{ env.BASE_BRANCH }}" \
+            --title "${{ (env.BASE_BRANCH != 'main' && format('[{0}] Regenerate client', env.BASE_BRANCH)) || 'Regenerate client' }}" \
+            --body "As titled." \
+            --label "skip-backport" \
+            --assignee "${{ github.actor }}" || true
