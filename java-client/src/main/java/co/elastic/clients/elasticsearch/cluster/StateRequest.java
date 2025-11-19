@@ -61,8 +61,9 @@ import javax.annotation.Nullable;
 // typedef: cluster.state.Request
 
 /**
- * Get the cluster state. Get comprehensive information about the state of the
- * cluster.
+ * Get the cluster state.
+ * <p>
+ * Get comprehensive information about the state of the cluster.
  * <p>
  * The cluster state is an internal data structure which keeps track of a
  * variety of information needed by every node, including the identity and

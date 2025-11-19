@@ -59,7 +59,9 @@ import javax.annotation.Nullable;
 // typedef: transform.get_transform.Request
 
 /**
- * Get transforms. Get configuration information for transforms.
+ * Get transforms.
+ * <p>
+ * Get configuration information for transforms.
  * 
  * @see <a href="../doc-files/api-spec.html#transform.get_transform.Request">API
  *      specification</a>

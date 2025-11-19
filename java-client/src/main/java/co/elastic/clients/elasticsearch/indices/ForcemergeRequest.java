@@ -60,9 +60,11 @@ import javax.annotation.Nullable;
 // typedef: indices.forcemerge.Request
 
 /**
- * Force a merge. Perform the force merge operation on the shards of one or more
- * indices. For data streams, the API forces a merge on the shards of the
- * stream's backing indices.
+ * Force a merge.
+ * <p>
+ * Perform the force merge operation on the shards of one or more indices. For
+ * data streams, the API forces a merge on the shards of the stream's backing
+ * indices.
  * <p>
  * Merging reduces the number of segments in each shard by merging some of them
  * together and also frees up the space used by deleted documents. Merging

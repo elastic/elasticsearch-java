@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: indices.get_index_template.Request
 
 /**
- * Get index templates. Get information about one or more index templates.
+ * Get index templates.
+ * <p>
+ * Get information about one or more index templates.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.get_index_template.Request">API

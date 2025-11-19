@@ -61,8 +61,9 @@ import javax.annotation.Nullable;
 // typedef: snapshot.restore.Request
 
 /**
- * Restore a snapshot. Restore a snapshot of a cluster or data streams and
- * indices.
+ * Restore a snapshot.
+ * <p>
+ * Restore a snapshot of a cluster or data streams and indices.
  * <p>
  * You can restore a snapshot only to a running cluster with an elected master
  * node. The snapshot repository must be registered and available to the

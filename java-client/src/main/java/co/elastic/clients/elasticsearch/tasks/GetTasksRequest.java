@@ -57,8 +57,9 @@ import javax.annotation.Nullable;
 // typedef: tasks.get.Request
 
 /**
- * Get task information. Get information about a task currently running in the
- * cluster.
+ * Get task information.
+ * <p>
+ * Get information about a task currently running in the cluster.
  * <p>
  * WARNING: The task management API is new and should still be considered a beta
  * feature. The API may change in ways that are not backwards compatible.

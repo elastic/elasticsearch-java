@@ -58,8 +58,10 @@ import javax.annotation.Nullable;
 // typedef: indices.modify_data_stream.Request
 
 /**
- * Update data streams. Performs one or more data stream modification actions in
- * a single atomic operation.
+ * Update data streams.
+ * <p>
+ * Performs one or more data stream modification actions in a single atomic
+ * operation.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.modify_data_stream.Request">API

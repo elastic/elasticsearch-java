@@ -56,9 +56,11 @@ import javax.annotation.Nullable;
 // typedef: ml.get_data_frame_analytics.Request
 
 /**
- * Get data frame analytics job configuration info. You can get information for
- * multiple data frame analytics jobs in a single API request by using a
- * comma-separated list of data frame analytics jobs or a wildcard expression.
+ * Get data frame analytics job configuration info.
+ * <p>
+ * You can get information for multiple data frame analytics jobs in a single
+ * API request by using a comma-separated list of data frame analytics jobs or a
+ * wildcard expression.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.get_data_frame_analytics.Request">API

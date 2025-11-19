@@ -59,13 +59,14 @@ import javax.annotation.Nullable;
 // typedef: search_application.render_query.Request
 
 /**
- * Render a search application query. Generate an Elasticsearch query using the
- * specified query parameters and the search template associated with the search
- * application or a default template if none is specified. If a parameter used
- * in the search template is not specified in <code>params</code>, the
- * parameter's default value will be used. The API returns the specific
- * Elasticsearch query that would be generated and run by calling the search
- * application search API.
+ * Render a search application query.
+ * <p>
+ * Generate an Elasticsearch query using the specified query parameters and the
+ * search template associated with the search application or a default template
+ * if none is specified. If a parameter used in the search template is not
+ * specified in <code>params</code>, the parameter's default value will be used.
+ * The API returns the specific Elasticsearch query that would be generated and
+ * run by calling the search application search API.
  * <p>
  * You must have <code>read</code> privileges on the backing alias of the search
  * application.

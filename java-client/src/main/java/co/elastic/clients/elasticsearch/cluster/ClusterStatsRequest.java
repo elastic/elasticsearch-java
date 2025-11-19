@@ -59,9 +59,11 @@ import javax.annotation.Nullable;
 // typedef: cluster.stats.Request
 
 /**
- * Get cluster statistics. Get basic index metrics (shard numbers, store size,
- * memory usage) and information about the current nodes that form the cluster
- * (number, roles, os, jvm versions, memory usage, cpu and installed plugins).
+ * Get cluster statistics.
+ * <p>
+ * Get basic index metrics (shard numbers, store size, memory usage) and
+ * information about the current nodes that form the cluster (number, roles, os,
+ * jvm versions, memory usage, cpu and installed plugins).
  * 
  * @see <a href="../doc-files/api-spec.html#cluster.stats.Request">API
  *      specification</a>

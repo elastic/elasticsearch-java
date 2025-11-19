@@ -62,8 +62,9 @@ import javax.annotation.Nullable;
 // typedef: ingest.put_pipeline.Request
 
 /**
- * Create or update a pipeline. Changes made using this API take effect
- * immediately.
+ * Create or update a pipeline.
+ * <p>
+ * Changes made using this API take effect immediately.
  * 
  * @see <a href="../doc-files/api-spec.html#ingest.put_pipeline.Request">API
  *      specification</a>

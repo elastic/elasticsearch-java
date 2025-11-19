@@ -59,11 +59,12 @@ import javax.annotation.Nullable;
 // typedef: indices.field_usage_stats.Request
 
 /**
- * Get field usage stats. Get field usage information for each shard and field
- * of an index. Field usage statistics are automatically captured when queries
- * are running on a cluster. A shard-level search request that accesses a given
- * field, even if multiple times during that request, is counted as a single
- * use.
+ * Get field usage stats.
+ * <p>
+ * Get field usage information for each shard and field of an index. Field usage
+ * statistics are automatically captured when queries are running on a cluster.
+ * A shard-level search request that accesses a given field, even if multiple
+ * times during that request, is counted as a single use.
  * <p>
  * The response body reports the per-shard usage count of the data structures
  * that back the fields in the index. A given request will increment each count

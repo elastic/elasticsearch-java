@@ -159,8 +159,9 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: rollup.get_jobs
 
 	/**
-	 * Get rollup job information. Get the configuration, stats, and status of
-	 * rollup jobs.
+	 * Get rollup job information.
+	 * <p>
+	 * Get the configuration, stats, and status of rollup jobs.
 	 * <p>
 	 * NOTE: This API returns only active (both <code>STARTED</code> and
 	 * <code>STOPPED</code>) jobs. If a job was created, ran for a while, then was
@@ -180,8 +181,9 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Get rollup job information. Get the configuration, stats, and status of
-	 * rollup jobs.
+	 * Get rollup job information.
+	 * <p>
+	 * Get the configuration, stats, and status of rollup jobs.
 	 * <p>
 	 * NOTE: This API returns only active (both <code>STARTED</code> and
 	 * <code>STOPPED</code>) jobs. If a job was created, ran for a while, then was
@@ -202,8 +204,9 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Get rollup job information. Get the configuration, stats, and status of
-	 * rollup jobs.
+	 * Get rollup job information.
+	 * <p>
+	 * Get the configuration, stats, and status of rollup jobs.
 	 * <p>
 	 * NOTE: This API returns only active (both <code>STARTED</code> and
 	 * <code>STOPPED</code>) jobs. If a job was created, ran for a while, then was
@@ -223,8 +226,10 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: rollup.get_rollup_caps
 
 	/**
-	 * Get the rollup job capabilities. Get the capabilities of any rollup jobs that
-	 * have been configured for a specific index or index pattern.
+	 * Get the rollup job capabilities.
+	 * <p>
+	 * Get the capabilities of any rollup jobs that have been configured for a
+	 * specific index or index pattern.
 	 * <p>
 	 * This API is useful because a rollup job is often configured to rollup only a
 	 * subset of fields from the source index. Furthermore, only certain
@@ -252,8 +257,10 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Get the rollup job capabilities. Get the capabilities of any rollup jobs that
-	 * have been configured for a specific index or index pattern.
+	 * Get the rollup job capabilities.
+	 * <p>
+	 * Get the capabilities of any rollup jobs that have been configured for a
+	 * specific index or index pattern.
 	 * <p>
 	 * This API is useful because a rollup job is often configured to rollup only a
 	 * subset of fields from the source index. Furthermore, only certain
@@ -282,8 +289,10 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Get the rollup job capabilities. Get the capabilities of any rollup jobs that
-	 * have been configured for a specific index or index pattern.
+	 * Get the rollup job capabilities.
+	 * <p>
+	 * Get the capabilities of any rollup jobs that have been configured for a
+	 * specific index or index pattern.
 	 * <p>
 	 * This API is useful because a rollup job is often configured to rollup only a
 	 * subset of fields from the source index. Furthermore, only certain
@@ -310,10 +319,12 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: rollup.get_rollup_index_caps
 
 	/**
-	 * Get the rollup index capabilities. Get the rollup capabilities of all jobs
-	 * inside of a rollup index. A single rollup index may store the data for
-	 * multiple rollup jobs and may have a variety of capabilities depending on
-	 * those jobs. This API enables you to determine:
+	 * Get the rollup index capabilities.
+	 * <p>
+	 * Get the rollup capabilities of all jobs inside of a rollup index. A single
+	 * rollup index may store the data for multiple rollup jobs and may have a
+	 * variety of capabilities depending on those jobs. This API enables you to
+	 * determine:
 	 * <ul>
 	 * <li>What jobs are stored in an index (or indices specified via a
 	 * pattern)?</li>
@@ -335,10 +346,12 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Get the rollup index capabilities. Get the rollup capabilities of all jobs
-	 * inside of a rollup index. A single rollup index may store the data for
-	 * multiple rollup jobs and may have a variety of capabilities depending on
-	 * those jobs. This API enables you to determine:
+	 * Get the rollup index capabilities.
+	 * <p>
+	 * Get the rollup capabilities of all jobs inside of a rollup index. A single
+	 * rollup index may store the data for multiple rollup jobs and may have a
+	 * variety of capabilities depending on those jobs. This API enables you to
+	 * determine:
 	 * <ul>
 	 * <li>What jobs are stored in an index (or indices specified via a
 	 * pattern)?</li>
@@ -428,11 +441,13 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: rollup.rollup_search
 
 	/**
-	 * Search rolled-up data. The rollup search endpoint is needed because,
-	 * internally, rolled-up documents utilize a different document structure than
-	 * the original data. It rewrites standard Query DSL into a format that matches
-	 * the rollup documents then takes the response and rewrites it back to what a
-	 * client would expect given the original query.
+	 * Search rolled-up data.
+	 * <p>
+	 * The rollup search endpoint is needed because, internally, rolled-up documents
+	 * utilize a different document structure than the original data. It rewrites
+	 * standard Query DSL into a format that matches the rollup documents then takes
+	 * the response and rewrites it back to what a client would expect given the
+	 * original query.
 	 * <p>
 	 * The request body supports a subset of features from the regular search API.
 	 * The following functionality is not available:
@@ -463,11 +478,13 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Search rolled-up data. The rollup search endpoint is needed because,
-	 * internally, rolled-up documents utilize a different document structure than
-	 * the original data. It rewrites standard Query DSL into a format that matches
-	 * the rollup documents then takes the response and rewrites it back to what a
-	 * client would expect given the original query.
+	 * Search rolled-up data.
+	 * <p>
+	 * The rollup search endpoint is needed because, internally, rolled-up documents
+	 * utilize a different document structure than the original data. It rewrites
+	 * standard Query DSL into a format that matches the rollup documents then takes
+	 * the response and rewrites it back to what a client would expect given the
+	 * original query.
 	 * <p>
 	 * The request body supports a subset of features from the regular search API.
 	 * The following functionality is not available:
@@ -519,11 +536,13 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Search rolled-up data. The rollup search endpoint is needed because,
-	 * internally, rolled-up documents utilize a different document structure than
-	 * the original data. It rewrites standard Query DSL into a format that matches
-	 * the rollup documents then takes the response and rewrites it back to what a
-	 * client would expect given the original query.
+	 * Search rolled-up data.
+	 * <p>
+	 * The rollup search endpoint is needed because, internally, rolled-up documents
+	 * utilize a different document structure than the original data. It rewrites
+	 * standard Query DSL into a format that matches the rollup documents then takes
+	 * the response and rewrites it back to what a client would expect given the
+	 * original query.
 	 * <p>
 	 * The request body supports a subset of features from the regular search API.
 	 * The following functionality is not available:
@@ -554,11 +573,13 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Search rolled-up data. The rollup search endpoint is needed because,
-	 * internally, rolled-up documents utilize a different document structure than
-	 * the original data. It rewrites standard Query DSL into a format that matches
-	 * the rollup documents then takes the response and rewrites it back to what a
-	 * client would expect given the original query.
+	 * Search rolled-up data.
+	 * <p>
+	 * The rollup search endpoint is needed because, internally, rolled-up documents
+	 * utilize a different document structure than the original data. It rewrites
+	 * standard Query DSL into a format that matches the rollup documents then takes
+	 * the response and rewrites it back to what a client would expect given the
+	 * original query.
 	 * <p>
 	 * The request body supports a subset of features from the regular search API.
 	 * The following functionality is not available:
@@ -589,9 +610,10 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: rollup.start_job
 
 	/**
-	 * Start rollup jobs. If you try to start a job that does not exist, an
-	 * exception occurs. If you try to start a job that is already started, nothing
-	 * happens.
+	 * Start rollup jobs.
+	 * <p>
+	 * If you try to start a job that does not exist, an exception occurs. If you
+	 * try to start a job that is already started, nothing happens.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-rollup-start-job">Documentation
@@ -606,9 +628,10 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Start rollup jobs. If you try to start a job that does not exist, an
-	 * exception occurs. If you try to start a job that is already started, nothing
-	 * happens.
+	 * Start rollup jobs.
+	 * <p>
+	 * If you try to start a job that does not exist, an exception occurs. If you
+	 * try to start a job that is already started, nothing happens.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -626,8 +649,10 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: rollup.stop_job
 
 	/**
-	 * Stop rollup jobs. If you try to stop a job that does not exist, an exception
-	 * occurs. If you try to stop a job that is already stopped, nothing happens.
+	 * Stop rollup jobs.
+	 * <p>
+	 * If you try to stop a job that does not exist, an exception occurs. If you try
+	 * to stop a job that is already stopped, nothing happens.
 	 * <p>
 	 * Since only a stopped job can be deleted, it can be useful to block the API
 	 * until the indexer has fully stopped. This is accomplished with the
@@ -656,8 +681,10 @@ public class ElasticsearchRollupClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Stop rollup jobs. If you try to stop a job that does not exist, an exception
-	 * occurs. If you try to stop a job that is already stopped, nothing happens.
+	 * Stop rollup jobs.
+	 * <p>
+	 * If you try to stop a job that does not exist, an exception occurs. If you try
+	 * to stop a job that is already stopped, nothing happens.
 	 * <p>
 	 * Since only a stopped job can be deleted, it can be useful to block the API
 	 * until the indexer has fully stopped. This is accomplished with the

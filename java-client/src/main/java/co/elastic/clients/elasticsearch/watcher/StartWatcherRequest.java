@@ -55,8 +55,9 @@ import javax.annotation.Nullable;
 // typedef: watcher.start.Request
 
 /**
- * Start the watch service. Start the Watcher service if it is not already
- * running.
+ * Start the watch service.
+ * <p>
+ * Start the Watcher service if it is not already running.
  * 
  * @see <a href="../doc-files/api-spec.html#watcher.start.Request">API
  *      specification</a>

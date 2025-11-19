@@ -55,8 +55,10 @@ import javax.annotation.Nullable;
 // typedef: slm.get_stats.Request
 
 /**
- * Get snapshot lifecycle management statistics. Get global and policy-level
- * statistics about actions taken by snapshot lifecycle management.
+ * Get snapshot lifecycle management statistics.
+ * <p>
+ * Get global and policy-level statistics about actions taken by snapshot
+ * lifecycle management.
  * 
  * @see <a href="../doc-files/api-spec.html#slm.get_stats.Request">API
  *      specification</a>

@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: inference.text_embedding.Request
 
 /**
- * Perform text embedding inference on the service
+ * Perform text embedding inference on the service.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#inference.text_embedding.Request">API

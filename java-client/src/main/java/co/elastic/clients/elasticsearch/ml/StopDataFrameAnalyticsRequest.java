@@ -57,8 +57,10 @@ import javax.annotation.Nullable;
 // typedef: ml.stop_data_frame_analytics.Request
 
 /**
- * Stop data frame analytics jobs. A data frame analytics job can be started and
- * stopped multiple times throughout its lifecycle.
+ * Stop data frame analytics jobs.
+ * <p>
+ * A data frame analytics job can be started and stopped multiple times
+ * throughout its lifecycle.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.stop_data_frame_analytics.Request">API

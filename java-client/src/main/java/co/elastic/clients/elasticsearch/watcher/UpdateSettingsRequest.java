@@ -59,9 +59,11 @@ import javax.annotation.Nullable;
 // typedef: watcher.update_settings.Request
 
 /**
- * Update Watcher index settings. Update settings for the Watcher internal index
- * (<code>.watches</code>). Only a subset of settings can be modified. This
- * includes <code>index.auto_expand_replicas</code>,
+ * Update Watcher index settings.
+ * <p>
+ * Update settings for the Watcher internal index (<code>.watches</code>). Only
+ * a subset of settings can be modified. This includes
+ * <code>index.auto_expand_replicas</code>,
  * <code>index.number_of_replicas</code>,
  * <code>index.routing.allocation.exclude.*</code>,
  * <code>index.routing.allocation.include.*</code> and

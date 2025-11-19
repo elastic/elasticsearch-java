@@ -50,8 +50,10 @@ import java.util.Objects;
 // typedef: indices.get_data_lifecycle_stats.Request
 
 /**
- * Get data stream lifecycle stats. Get statistics about the data streams that
- * are managed by a data stream lifecycle.
+ * Get data stream lifecycle stats.
+ * <p>
+ * Get statistics about the data streams that are managed by a data stream
+ * lifecycle.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.get_data_lifecycle_stats.Request">API

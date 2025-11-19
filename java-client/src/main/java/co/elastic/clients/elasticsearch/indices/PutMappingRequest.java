@@ -71,8 +71,10 @@ import javax.annotation.Nullable;
 // typedef: indices.put_mapping.Request
 
 /**
- * Update field mappings. Add new fields to an existing data stream or index.
- * You can use the update mapping API to:
+ * Update field mappings.
+ * <p>
+ * Add new fields to an existing data stream or index. You can use the update
+ * mapping API to:
  * <ul>
  * <li>Add a new field to an existing index</li>
  * <li>Update mappings for multiple indices in a single request</li>

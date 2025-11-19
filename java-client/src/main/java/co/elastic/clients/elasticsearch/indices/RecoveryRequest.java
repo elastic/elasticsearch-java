@@ -59,9 +59,11 @@ import javax.annotation.Nullable;
 // typedef: indices.recovery.Request
 
 /**
- * Get index recovery information. Get information about ongoing and completed
- * shard recoveries for one or more indices. For data streams, the API returns
- * information for the stream's backing indices.
+ * Get index recovery information.
+ * <p>
+ * Get information about ongoing and completed shard recoveries for one or more
+ * indices. For data streams, the API returns information for the stream's
+ * backing indices.
  * <p>
  * All recoveries, whether ongoing or complete, are kept in the cluster state
  * and may be reported on at any time.

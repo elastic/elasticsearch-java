@@ -67,7 +67,9 @@ import javax.annotation.Nullable;
 // typedef: sql.query.Request
 
 /**
- * Get SQL search results. Run an SQL request.
+ * Get SQL search results.
+ * <p>
+ * Run an SQL request.
  * 
  * @see <a href="../doc-files/api-spec.html#sql.query.Request">API
  *      specification</a>

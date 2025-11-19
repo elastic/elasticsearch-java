@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: search_application.list.Request
 
 /**
- * Get search applications. Get information about search applications.
+ * Get search applications.
+ * <p>
+ * Get information about search applications.
  * 
  * @see <a href="../doc-files/api-spec.html#search_application.list.Request">API
  *      specification</a>

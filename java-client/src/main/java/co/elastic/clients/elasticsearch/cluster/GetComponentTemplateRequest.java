@@ -59,7 +59,9 @@ import javax.annotation.Nullable;
 // typedef: cluster.get_component_template.Request
 
 /**
- * Get component templates. Get information about component templates.
+ * Get component templates.
+ * <p>
+ * Get information about component templates.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#cluster.get_component_template.Request">API

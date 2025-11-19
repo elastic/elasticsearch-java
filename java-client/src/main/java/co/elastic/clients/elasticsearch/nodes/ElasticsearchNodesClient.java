@@ -68,8 +68,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: nodes.clear_repositories_metering_archive
 
 	/**
-	 * Clear the archived repositories metering. Clear the archived repositories
-	 * metering information in the cluster.
+	 * Clear the archived repositories metering.
+	 * <p>
+	 * Clear the archived repositories metering information in the cluster.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-nodes-clear-repositories-metering-archive">Documentation
@@ -85,8 +86,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Clear the archived repositories metering. Clear the archived repositories
-	 * metering information in the cluster.
+	 * Clear the archived repositories metering.
+	 * <p>
+	 * Clear the archived repositories metering information in the cluster.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -106,12 +108,13 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: nodes.get_repositories_metering_info
 
 	/**
-	 * Get cluster repositories metering. Get repositories metering information for
-	 * a cluster. This API exposes monotonically non-decreasing counters and it is
-	 * expected that clients would durably store the information needed to compute
-	 * aggregations over a period of time. Additionally, the information exposed by
-	 * this API is volatile, meaning that it will not be present after node
-	 * restarts.
+	 * Get cluster repositories metering.
+	 * <p>
+	 * Get repositories metering information for a cluster. This API exposes
+	 * monotonically non-decreasing counters and it is expected that clients would
+	 * durably store the information needed to compute aggregations over a period of
+	 * time. Additionally, the information exposed by this API is volatile, meaning
+	 * that it will not be present after node restarts.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-nodes-get-repositories-metering-info">Documentation
@@ -127,12 +130,13 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Get cluster repositories metering. Get repositories metering information for
-	 * a cluster. This API exposes monotonically non-decreasing counters and it is
-	 * expected that clients would durably store the information needed to compute
-	 * aggregations over a period of time. Additionally, the information exposed by
-	 * this API is volatile, meaning that it will not be present after node
-	 * restarts.
+	 * Get cluster repositories metering.
+	 * <p>
+	 * Get repositories metering information for a cluster. This API exposes
+	 * monotonically non-decreasing counters and it is expected that clients would
+	 * durably store the information needed to compute aggregations over a period of
+	 * time. Additionally, the information exposed by this API is volatile, meaning
+	 * that it will not be present after node restarts.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -151,9 +155,10 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: nodes.hot_threads
 
 	/**
-	 * Get the hot threads for nodes. Get a breakdown of the hot threads on each
-	 * selected node in the cluster. The output is plain text with a breakdown of
-	 * the top hot threads for each node.
+	 * Get the hot threads for nodes.
+	 * <p>
+	 * Get a breakdown of the hot threads on each selected node in the cluster. The
+	 * output is plain text with a breakdown of the top hot threads for each node.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-nodes-hot-threads">Documentation
@@ -168,9 +173,10 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Get the hot threads for nodes. Get a breakdown of the hot threads on each
-	 * selected node in the cluster. The output is plain text with a breakdown of
-	 * the top hot threads for each node.
+	 * Get the hot threads for nodes.
+	 * <p>
+	 * Get a breakdown of the hot threads on each selected node in the cluster. The
+	 * output is plain text with a breakdown of the top hot threads for each node.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -186,9 +192,10 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Get the hot threads for nodes. Get a breakdown of the hot threads on each
-	 * selected node in the cluster. The output is plain text with a breakdown of
-	 * the top hot threads for each node.
+	 * Get the hot threads for nodes.
+	 * <p>
+	 * Get a breakdown of the hot threads on each selected node in the cluster. The
+	 * output is plain text with a breakdown of the top hot threads for each node.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-nodes-hot-threads">Documentation
@@ -351,8 +358,10 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: nodes.stats
 
 	/**
-	 * Get node statistics. Get statistics for nodes in a cluster. By default, all
-	 * stats are returned. You can limit the returned information by using metrics.
+	 * Get node statistics.
+	 * <p>
+	 * Get statistics for nodes in a cluster. By default, all stats are returned.
+	 * You can limit the returned information by using metrics.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-nodes-stats">Documentation
@@ -367,8 +376,10 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Get node statistics. Get statistics for nodes in a cluster. By default, all
-	 * stats are returned. You can limit the returned information by using metrics.
+	 * Get node statistics.
+	 * <p>
+	 * Get statistics for nodes in a cluster. By default, all stats are returned.
+	 * You can limit the returned information by using metrics.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -384,8 +395,10 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Get node statistics. Get statistics for nodes in a cluster. By default, all
-	 * stats are returned. You can limit the returned information by using metrics.
+	 * Get node statistics.
+	 * <p>
+	 * Get statistics for nodes in a cluster. By default, all stats are returned.
+	 * You can limit the returned information by using metrics.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-nodes-stats">Documentation

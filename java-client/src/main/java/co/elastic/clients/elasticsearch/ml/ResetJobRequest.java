@@ -56,10 +56,11 @@ import javax.annotation.Nullable;
 // typedef: ml.reset_job.Request
 
 /**
- * Reset an anomaly detection job. All model state and results are deleted. The
- * job is ready to start over as if it had just been created. It is not
- * currently possible to reset multiple jobs using wildcards or a comma
- * separated list.
+ * Reset an anomaly detection job.
+ * <p>
+ * All model state and results are deleted. The job is ready to start over as if
+ * it had just been created. It is not currently possible to reset multiple jobs
+ * using wildcards or a comma separated list.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.reset_job.Request">API
  *      specification</a>

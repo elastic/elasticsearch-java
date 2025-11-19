@@ -142,7 +142,9 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: ingest.delete_pipeline
 
 	/**
-	 * Delete pipelines. Delete one or more ingest pipelines.
+	 * Delete pipelines.
+	 * <p>
+	 * Delete one or more ingest pipelines.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-delete-pipeline">Documentation
@@ -158,7 +160,9 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Delete pipelines. Delete one or more ingest pipelines.
+	 * Delete pipelines.
+	 * <p>
+	 * Delete one or more ingest pipelines.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -177,8 +181,10 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: ingest.geo_ip_stats
 
 	/**
-	 * Get GeoIP statistics. Get download statistics for GeoIP2 databases that are
-	 * used with the GeoIP processor.
+	 * Get GeoIP statistics.
+	 * <p>
+	 * Get download statistics for GeoIP2 databases that are used with the GeoIP
+	 * processor.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/reference/enrich-processor/geoip-processor">Documentation
@@ -350,11 +356,12 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: ingest.processor_grok
 
 	/**
-	 * Run a grok processor. Extract structured fields out of a single text field
-	 * within a document. You must choose which field to extract matched fields
-	 * from, as well as the grok pattern you expect will match. A grok pattern is
-	 * like a regular expression that supports aliased expressions that can be
-	 * reused.
+	 * Run a grok processor.
+	 * <p>
+	 * Extract structured fields out of a single text field within a document. You
+	 * must choose which field to extract matched fields from, as well as the grok
+	 * pattern you expect will match. A grok pattern is like a regular expression
+	 * that supports aliased expressions that can be reused.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/reference/enrich-processor/grok-processor">Documentation
@@ -442,8 +449,9 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	// ----- Endpoint: ingest.put_pipeline
 
 	/**
-	 * Create or update a pipeline. Changes made using this API take effect
-	 * immediately.
+	 * Create or update a pipeline.
+	 * <p>
+	 * Changes made using this API take effect immediately.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/manage-data/ingest/transform-enrich/ingest-pipelines">Documentation
@@ -458,8 +466,9 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	}
 
 	/**
-	 * Create or update a pipeline. Changes made using this API take effect
-	 * immediately.
+	 * Create or update a pipeline.
+	 * <p>
+	 * Changes made using this API take effect immediately.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

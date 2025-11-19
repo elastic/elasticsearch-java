@@ -60,14 +60,16 @@ import javax.annotation.Nullable;
 // typedef: ml.flush_job.Request
 
 /**
- * Force buffered data to be processed. The flush jobs API is only applicable
- * when sending data for analysis using the post data API. Depending on the
- * content of the buffer, then it might additionally calculate new results. Both
- * flush and close operations are similar, however the flush is more efficient
- * if you are expecting to send more data for analysis. When flushing, the job
- * remains open and is available to continue analyzing data. A close operation
- * additionally prunes and persists the model state to disk and the job must be
- * opened again before analyzing further data.
+ * Force buffered data to be processed.
+ * <p>
+ * The flush jobs API is only applicable when sending data for analysis using
+ * the post data API. Depending on the content of the buffer, then it might
+ * additionally calculate new results. Both flush and close operations are
+ * similar, however the flush is more efficient if you are expecting to send
+ * more data for analysis. When flushing, the job remains open and is available
+ * to continue analyzing data. A close operation additionally prunes and
+ * persists the model state to disk and the job must be opened again before
+ * analyzing further data.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.flush_job.Request">API
  *      specification</a>

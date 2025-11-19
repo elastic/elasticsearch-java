@@ -60,9 +60,10 @@ import javax.annotation.Nullable;
 // typedef: _global.health_report.Request
 
 /**
- * Get the cluster health. Get a report with the health status of an
- * Elasticsearch cluster. The report contains a list of indicators that compose
- * Elasticsearch functionality.
+ * Get the cluster health.
+ * <p>
+ * Get a report with the health status of an Elasticsearch cluster. The report
+ * contains a list of indicators that compose Elasticsearch functionality.
  * <p>
  * Each indicator has a health status of: green, unknown, yellow or red. The
  * indicator will provide an explanation and metadata describing the reason for

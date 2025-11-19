@@ -61,8 +61,9 @@ import javax.annotation.Nullable;
 // typedef: indices.open.Request
 
 /**
- * Open a closed index. For data streams, the API opens any closed backing
- * indices.
+ * Open a closed index.
+ * <p>
+ * For data streams, the API opens any closed backing indices.
  * <p>
  * A closed index is blocked for read/write operations and does not allow all
  * operations that opened indices allow. It is not possible to index documents

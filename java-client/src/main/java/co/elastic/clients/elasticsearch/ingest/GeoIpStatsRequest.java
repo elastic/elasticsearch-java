@@ -50,8 +50,10 @@ import java.util.Objects;
 // typedef: ingest.geo_ip_stats.Request
 
 /**
- * Get GeoIP statistics. Get download statistics for GeoIP2 databases that are
- * used with the GeoIP processor.
+ * Get GeoIP statistics.
+ * <p>
+ * Get download statistics for GeoIP2 databases that are used with the GeoIP
+ * processor.
  * 
  * @see <a href="../doc-files/api-spec.html#ingest.geo_ip_stats.Request">API
  *      specification</a>

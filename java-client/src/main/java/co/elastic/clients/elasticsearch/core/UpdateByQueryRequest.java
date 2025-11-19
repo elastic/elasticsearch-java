@@ -73,10 +73,11 @@ import javax.annotation.Nullable;
 // typedef: _global.update_by_query.Request
 
 /**
- * Update documents. Updates documents that match the specified query. If no
- * query is specified, performs an update on every document in the data stream
- * or index without modifying the source, which is useful for picking up mapping
- * changes.
+ * Update documents.
+ * <p>
+ * Updates documents that match the specified query. If no query is specified,
+ * performs an update on every document in the data stream or index without
+ * modifying the source, which is useful for picking up mapping changes.
  * <p>
  * If the Elasticsearch security features are enabled, you must have the
  * following index privileges for the target data stream, index, or alias:

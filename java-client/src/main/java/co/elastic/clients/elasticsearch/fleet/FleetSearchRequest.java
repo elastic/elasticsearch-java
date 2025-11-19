@@ -87,9 +87,11 @@ import javax.annotation.Nullable;
 // typedef: fleet.search.Request
 
 /**
- * Run a Fleet search. The purpose of the Fleet search API is to provide an API
- * where the search will be run only after the provided checkpoint has been
- * processed and is visible for searches inside of Elasticsearch.
+ * Run a Fleet search.
+ * <p>
+ * The purpose of the Fleet search API is to provide an API where the search
+ * will be run only after the provided checkpoint has been processed and is
+ * visible for searches inside of Elasticsearch.
  * 
  * @see <a href="../doc-files/api-spec.html#fleet.search.Request">API
  *      specification</a>

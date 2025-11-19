@@ -58,9 +58,10 @@ import javax.annotation.Nullable;
 // typedef: connector.update_features.Request
 
 /**
- * Update the connector features. Update the connector features in the connector
- * document. This API can be used to control the following aspects of a
- * connector:
+ * Update the connector features.
+ * <p>
+ * Update the connector features in the connector document. This API can be used
+ * to control the following aspects of a connector:
  * <ul>
  * <li>document-level security</li>
  * <li>incremental syncs</li>

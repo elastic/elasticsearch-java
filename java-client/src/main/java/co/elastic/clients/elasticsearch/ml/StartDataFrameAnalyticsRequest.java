@@ -56,10 +56,12 @@ import javax.annotation.Nullable;
 // typedef: ml.start_data_frame_analytics.Request
 
 /**
- * Start a data frame analytics job. A data frame analytics job can be started
- * and stopped multiple times throughout its lifecycle. If the destination index
- * does not exist, it is created automatically the first time you start the data
- * frame analytics job. The <code>index.number_of_shards</code> and
+ * Start a data frame analytics job.
+ * <p>
+ * A data frame analytics job can be started and stopped multiple times
+ * throughout its lifecycle. If the destination index does not exist, it is
+ * created automatically the first time you start the data frame analytics job.
+ * The <code>index.number_of_shards</code> and
  * <code>index.number_of_replicas</code> settings for the destination index are
  * copied from the source index. If there are multiple source indices, the
  * destination index copies the highest setting values. The mappings for the

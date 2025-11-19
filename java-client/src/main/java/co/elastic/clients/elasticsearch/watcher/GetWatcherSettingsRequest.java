@@ -55,8 +55,10 @@ import javax.annotation.Nullable;
 // typedef: watcher.get_settings.Request
 
 /**
- * Get Watcher index settings. Get settings for the Watcher internal index
- * (<code>.watches</code>). Only a subset of settings are shown, for example
+ * Get Watcher index settings.
+ * <p>
+ * Get settings for the Watcher internal index (<code>.watches</code>). Only a
+ * subset of settings are shown, for example
  * <code>index.auto_expand_replicas</code> and
  * <code>index.number_of_replicas</code>.
  * 

@@ -59,10 +59,12 @@ import javax.annotation.Nullable;
 // typedef: search_application.search.Request
 
 /**
- * Run a search application search. Generate and run an Elasticsearch query that
- * uses the specified query parameteter and the search template associated with
- * the search application or default template. Unspecified template parameters
- * are assigned their default values if applicable.
+ * Run a search application search.
+ * <p>
+ * Generate and run an Elasticsearch query that uses the specified query
+ * parameteter and the search template associated with the search application or
+ * default template. Unspecified template parameters are assigned their default
+ * values if applicable.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#search_application.search.Request">API

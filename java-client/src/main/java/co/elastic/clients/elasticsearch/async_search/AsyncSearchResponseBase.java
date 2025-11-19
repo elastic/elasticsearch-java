@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.async_search;
 
+import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,6 +36,7 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -85,6 +87,9 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 	@Nullable
 	private final Long completionTimeInMillis;
 
+	@Nullable
+	private final ErrorCause error;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected AsyncSearchResponseBase(AbstractBuilder<?> builder) {
@@ -99,6 +104,7 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis", 0);
 		this.completionTime = builder.completionTime;
 		this.completionTimeInMillis = builder.completionTimeInMillis;
+		this.error = builder.error;
 
 	}
 
@@ -190,6 +196,14 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code error}
+	 */
+	@Nullable
+	public final ErrorCause error() {
+		return this.error;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -234,6 +248,11 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 			generator.write(this.completionTimeInMillis);
 
 		}
+		if (this.error != null) {
+			generator.writeKey("error");
+			this.error.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -267,6 +286,9 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 
 		@Nullable
 		private Long completionTimeInMillis;
+
+		@Nullable
+		private ErrorCause error;
 
 		/**
 		 * API name: {@code id}
@@ -359,6 +381,21 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 			return self();
 		}
 
+		/**
+		 * API name: {@code error}
+		 */
+		public final BuilderT error(@Nullable ErrorCause value) {
+			this.error = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code error}
+		 */
+		public final BuilderT error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.error(fn.apply(new ErrorCause.Builder()).build());
+		}
+
 		protected abstract BuilderT self();
 
 	}
@@ -378,6 +415,7 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		op.add(AbstractBuilder::completionTime, DateTime._DESERIALIZER, "completion_time");
 		op.add(AbstractBuilder::completionTimeInMillis, JsonpDeserializer.longDeserializer(),
 				"completion_time_in_millis");
+		op.add(AbstractBuilder::error, ErrorCause._DESERIALIZER, "error");
 
 	}
 

@@ -55,9 +55,10 @@ import javax.annotation.Nullable;
 // typedef: features.reset_features.Request
 
 /**
- * Reset the features. Clear all of the state information stored in system
- * indices by Elasticsearch features, including the security and machine
- * learning indices.
+ * Reset the features.
+ * <p>
+ * Clear all of the state information stored in system indices by Elasticsearch
+ * features, including the security and machine learning indices.
  * <p>
  * WARNING: Intended for development and testing use only. Do not reset features
  * on a production cluster.

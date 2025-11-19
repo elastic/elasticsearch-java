@@ -63,7 +63,9 @@ import javax.annotation.Nullable;
 // typedef: indices.put_alias.Request
 
 /**
- * Create or update an alias. Adds a data stream or index to an alias.
+ * Create or update an alias.
+ * <p>
+ * Adds a data stream or index to an alias.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.put_alias.Request">API
  *      specification</a>

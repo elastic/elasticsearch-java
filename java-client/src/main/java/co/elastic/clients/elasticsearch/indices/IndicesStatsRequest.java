@@ -60,8 +60,10 @@ import javax.annotation.Nullable;
 // typedef: indices.stats.Request
 
 /**
- * Get index statistics. For data streams, the API retrieves statistics for the
- * stream's backing indices.
+ * Get index statistics.
+ * <p>
+ * For data streams, the API retrieves statistics for the stream's backing
+ * indices.
  * <p>
  * By default, the returned statistics are index-level with
  * <code>primaries</code> and <code>total</code> aggregations.

@@ -50,13 +50,14 @@ import java.util.Objects;
 // typedef: ml.info.Request
 
 /**
- * Get machine learning information. Get defaults and limits used by machine
- * learning. This endpoint is designed to be used by a user interface that needs
- * to fully understand machine learning configurations where some options are
- * not specified, meaning that the defaults should be used. This endpoint may be
- * used to find out what those defaults are. It also provides information about
- * the maximum size of machine learning jobs that could run in the current
- * cluster configuration.
+ * Get machine learning information.
+ * <p>
+ * Get defaults and limits used by machine learning. This endpoint is designed
+ * to be used by a user interface that needs to fully understand machine
+ * learning configurations where some options are not specified, meaning that
+ * the defaults should be used. This endpoint may be used to find out what those
+ * defaults are. It also provides information about the maximum size of machine
+ * learning jobs that could run in the current cluster configuration.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.info.Request">API
  *      specification</a>
