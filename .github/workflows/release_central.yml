@@ -44,7 +44,8 @@ jobs:
     needs:
       - validate-version
     steps:
-      - id: buildkite-run
+      - name: Start buildkite run
+        id: buildkite-run
         uses: elastic/oblt-actions/buildkite/run@v1
         with:
           pipeline: "elasticsearch-java-release"
@@ -54,3 +55,20 @@ jobs:
           env-vars: |
             DRY_RUN=${{ inputs.dry_run }}
             VERSION=${{ inputs.version }}
+
+      - name: Fetch ephemeral GitHub token
+        id: fetch-ephemeral-token
+        uses: elastic/ci-gh-actions/fetch-github-token@v1.0.0
+        with:
+          vault-instance: "ci-prod"
+
+      - name: Tag branch ${{ inputs.branch }} with release ${{ inputs.version }}
+        uses: actions/checkout@v4
+        with:
+          repository: elastic/elasticsearch-java
+          token: ${{ steps.fetch-ephemeral-token.outputs.token }}
+          ref: ${{ inputs.branch }}
+          path: elasticsearch-java
+          run: |
+            git tag v${{ inputs.version }}
+            git push origin v${{ inputs.version }}
