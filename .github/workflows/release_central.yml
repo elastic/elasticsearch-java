@@ -56,13 +56,16 @@ jobs:
             DRY_RUN=${{ inputs.dry_run }}
             VERSION=${{ inputs.version }}
 
+  tag-bump-and-gh-release:
+    runs-on: ubuntu-latest
+    steps:
       - name: Fetch ephemeral GitHub token
         id: fetch-ephemeral-token
         uses: elastic/ci-gh-actions/fetch-github-token@v1.0.0
         with:
           vault-instance: "ci-prod"
 
-      - name: Tag branch ${{ inputs.branch }} with release ${{ inputs.version }}
+      - name: Tag branch ${{ inputs.branch }} with release ${{ inputs.version }}, bump version with new release ${{ inputs.version }}
         uses: actions/checkout@v4
         with:
           repository: elastic/elasticsearch-java
@@ -72,3 +75,24 @@ jobs:
           run: |
             git tag v${{ inputs.version }}
             git push origin v${{ inputs.version }}
+            echo ${{ inputs.version }} > config/version.txt
+            sed -i '/static final String VERSION/s/".*"/"${{ inputs.version }}"/' java-client/src/main-flavored/java/co/elastic/clients/transport/VersionInfo.java
+
+      # TODO get {old-tag}
+      - name: Creates new github release with version ${{ inputs.version }}
+        uses: softprops/action-gh-release@v2
+        with:
+          repository: elastic/elasticsearch-java
+          token: ${{ steps.fetch-ephemeral-token.outputs.token }}
+          ref: ${{ inputs.branch }}
+          path: elasticsearch-java
+          tag_name: v${{ inputs.version }}
+          name: v${{ inputs.version }}
+          draft: true
+          prerelease: false
+          body: |
+            ## What's Changed
+            
+            **Full Changelog**: https://github.com/elastic/elasticsearch-java/compare/v{old-tag}...v{{ inputs.version }}
+
+
