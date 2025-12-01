@@ -18,6 +18,7 @@ on:
 env:
   BRANCH: ${{ inputs.branch }}
   VERSION: ${{ inputs.version }}
+  PREV_VERSION: ${{ inputs.prev_version }}
   DRY_RUN: ${{ inputs.dry_run }}
 
 jobs:
@@ -79,7 +80,6 @@ jobs:
             echo ${{ inputs.version }} > config/version.txt
             sed -i '/static final String VERSION/s/".*"/"${{ inputs.version }}"/' java-client/src/main-flavored/java/co/elastic/clients/transport/VersionInfo.java
 
-      # TODO get {old-tag}
       - name: Creates new github release with version ${{ inputs.version }}
         uses: softprops/action-gh-release@v2
         with:
@@ -94,6 +94,6 @@ jobs:
           body: |
             ## What's Changed
             
-            **Full Changelog**: https://github.com/elastic/elasticsearch-java/compare/v{old-tag}...v{{ inputs.version }}
+            **Full Changelog**: https://github.com/elastic/elasticsearch-java/compare/v{{inputs.prev_version}}...v{{ inputs.version }}
 
 
