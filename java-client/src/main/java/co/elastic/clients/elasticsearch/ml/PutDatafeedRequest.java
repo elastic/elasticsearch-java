@@ -70,11 +70,13 @@ import javax.annotation.Nullable;
 // typedef: ml.put_datafeed.Request
 
 /**
- * Create a datafeed. Datafeeds retrieve data from Elasticsearch for analysis by
- * an anomaly detection job. You can associate only one datafeed with each
- * anomaly detection job. The datafeed contains a query that runs at a defined
- * interval (<code>frequency</code>). If you are concerned about delayed data,
- * you can add a delay
+ * Create a datafeed.
+ * <p>
+ * Datafeeds retrieve data from Elasticsearch for analysis by an anomaly
+ * detection job. You can associate only one datafeed with each anomaly
+ * detection job. The datafeed contains a query that runs at a defined interval
+ * (<code>frequency</code>). If you are concerned about delayed data, you can
+ * add a delay
  * (<code>query_delay') at each interval. By default, the datafeed uses the following query: </code>{&quot;match_all&quot;:
  * {&quot;boost&quot;: 1}}`.
  * <p>

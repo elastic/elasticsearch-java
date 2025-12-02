@@ -58,8 +58,9 @@ import javax.annotation.Nullable;
 // typedef: snapshot.clone.Request
 
 /**
- * Clone a snapshot. Clone part of all of a snapshot into another snapshot in
- * the same repository.
+ * Clone a snapshot.
+ * <p>
+ * Clone part of all of a snapshot into another snapshot in the same repository.
  * 
  * @see <a href="../doc-files/api-spec.html#snapshot.clone.Request">API
  *      specification</a>

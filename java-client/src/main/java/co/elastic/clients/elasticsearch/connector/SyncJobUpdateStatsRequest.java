@@ -62,11 +62,13 @@ import javax.annotation.Nullable;
 // typedef: connector.sync_job_update_stats.Request
 
 /**
- * Set the connector sync job stats. Stats include:
- * <code>deleted_document_count</code>, <code>indexed_document_count</code>,
- * <code>indexed_document_volume</code>, and <code>total_document_count</code>.
- * You can also update <code>last_seen</code>. This API is mainly used by the
- * connector service for updating sync job information.
+ * Set the connector sync job stats.
+ * <p>
+ * Stats include: <code>deleted_document_count</code>,
+ * <code>indexed_document_count</code>, <code>indexed_document_volume</code>,
+ * and <code>total_document_count</code>. You can also update
+ * <code>last_seen</code>. This API is mainly used by the connector service for
+ * updating sync job information.
  * <p>
  * To sync data using self-managed connectors, you need to deploy the Elastic
  * connector service on your own infrastructure. This service runs automatically

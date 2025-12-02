@@ -70,8 +70,9 @@ public class ElasticsearchMonitoringAsyncClient
 	// ----- Endpoint: monitoring.bulk
 
 	/**
-	 * Send monitoring data. This API is used by the monitoring features to send
-	 * monitoring data.
+	 * Send monitoring data.
+	 * <p>
+	 * This API is used by the monitoring features to send monitoring data.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch">Documentation on
@@ -86,8 +87,9 @@ public class ElasticsearchMonitoringAsyncClient
 	}
 
 	/**
-	 * Send monitoring data. This API is used by the monitoring features to send
-	 * monitoring data.
+	 * Send monitoring data.
+	 * <p>
+	 * This API is used by the monitoring features to send monitoring data.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

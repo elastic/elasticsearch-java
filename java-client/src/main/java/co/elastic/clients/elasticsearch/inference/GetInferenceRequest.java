@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
 // typedef: inference.get.Request
 
 /**
- * Get an inference endpoint
+ * Get an inference endpoint.
  * 
  * @see <a href="../doc-files/api-spec.html#inference.get.Request">API
  *      specification</a>

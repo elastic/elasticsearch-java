@@ -391,9 +391,10 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.sync_job_check_in
 
 	/**
-	 * Check in a connector sync job. Check in a connector sync job and set the
-	 * <code>last_seen</code> field to the current time before updating it in the
-	 * internal index.
+	 * Check in a connector sync job.
+	 * <p>
+	 * Check in a connector sync job and set the <code>last_seen</code> field to the
+	 * current time before updating it in the internal index.
 	 * <p>
 	 * To sync data using self-managed connectors, you need to deploy the Elastic
 	 * connector service on your own infrastructure. This service runs automatically
@@ -412,9 +413,10 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Check in a connector sync job. Check in a connector sync job and set the
-	 * <code>last_seen</code> field to the current time before updating it in the
-	 * internal index.
+	 * Check in a connector sync job.
+	 * <p>
+	 * Check in a connector sync job and set the <code>last_seen</code> field to the
+	 * current time before updating it in the internal index.
 	 * <p>
 	 * To sync data using self-managed connectors, you need to deploy the Elastic
 	 * connector service on your own infrastructure. This service runs automatically
@@ -436,10 +438,12 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.sync_job_claim
 
 	/**
-	 * Claim a connector sync job. This action updates the job status to
-	 * <code>in_progress</code> and sets the <code>last_seen</code> and
-	 * <code>started_at</code> timestamps to the current time. Additionally, it can
-	 * set the <code>sync_cursor</code> property for the sync job.
+	 * Claim a connector sync job.
+	 * <p>
+	 * This action updates the job status to <code>in_progress</code> and sets the
+	 * <code>last_seen</code> and <code>started_at</code> timestamps to the current
+	 * time. Additionally, it can set the <code>sync_cursor</code> property for the
+	 * sync job.
 	 * <p>
 	 * This API is not intended for direct connector management by users. It
 	 * supports the implementation of services that utilize the connector protocol
@@ -462,10 +466,12 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Claim a connector sync job. This action updates the job status to
-	 * <code>in_progress</code> and sets the <code>last_seen</code> and
-	 * <code>started_at</code> timestamps to the current time. Additionally, it can
-	 * set the <code>sync_cursor</code> property for the sync job.
+	 * Claim a connector sync job.
+	 * <p>
+	 * This action updates the job status to <code>in_progress</code> and sets the
+	 * <code>last_seen</code> and <code>started_at</code> timestamps to the current
+	 * time. Additionally, it can set the <code>sync_cursor</code> property for the
+	 * sync job.
 	 * <p>
 	 * This API is not intended for direct connector management by users. It
 	 * supports the implementation of services that utilize the connector protocol
@@ -530,8 +536,10 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.sync_job_error
 
 	/**
-	 * Set a connector sync job error. Set the <code>error</code> field for a
-	 * connector sync job and set its <code>status</code> to <code>error</code>.
+	 * Set a connector sync job error.
+	 * <p>
+	 * Set the <code>error</code> field for a connector sync job and set its
+	 * <code>status</code> to <code>error</code>.
 	 * <p>
 	 * To sync data using self-managed connectors, you need to deploy the Elastic
 	 * connector service on your own infrastructure. This service runs automatically
@@ -550,8 +558,10 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Set a connector sync job error. Set the <code>error</code> field for a
-	 * connector sync job and set its <code>status</code> to <code>error</code>.
+	 * Set a connector sync job error.
+	 * <p>
+	 * Set the <code>error</code> field for a connector sync job and set its
+	 * <code>status</code> to <code>error</code>.
 	 * <p>
 	 * To sync data using self-managed connectors, you need to deploy the Elastic
 	 * connector service on your own infrastructure. This service runs automatically
@@ -700,11 +710,13 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.sync_job_update_stats
 
 	/**
-	 * Set the connector sync job stats. Stats include:
-	 * <code>deleted_document_count</code>, <code>indexed_document_count</code>,
-	 * <code>indexed_document_volume</code>, and <code>total_document_count</code>.
-	 * You can also update <code>last_seen</code>. This API is mainly used by the
-	 * connector service for updating sync job information.
+	 * Set the connector sync job stats.
+	 * <p>
+	 * Stats include: <code>deleted_document_count</code>,
+	 * <code>indexed_document_count</code>, <code>indexed_document_volume</code>,
+	 * and <code>total_document_count</code>. You can also update
+	 * <code>last_seen</code>. This API is mainly used by the connector service for
+	 * updating sync job information.
 	 * <p>
 	 * To sync data using self-managed connectors, you need to deploy the Elastic
 	 * connector service on your own infrastructure. This service runs automatically
@@ -723,11 +735,13 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Set the connector sync job stats. Stats include:
-	 * <code>deleted_document_count</code>, <code>indexed_document_count</code>,
-	 * <code>indexed_document_volume</code>, and <code>total_document_count</code>.
-	 * You can also update <code>last_seen</code>. This API is mainly used by the
-	 * connector service for updating sync job information.
+	 * Set the connector sync job stats.
+	 * <p>
+	 * Stats include: <code>deleted_document_count</code>,
+	 * <code>indexed_document_count</code>, <code>indexed_document_volume</code>,
+	 * and <code>total_document_count</code>. You can also update
+	 * <code>last_seen</code>. This API is mainly used by the connector service for
+	 * updating sync job information.
 	 * <p>
 	 * To sync data using self-managed connectors, you need to deploy the Elastic
 	 * connector service on your own infrastructure. This service runs automatically
@@ -910,9 +924,10 @@ public class ElasticsearchConnectorAsyncClient
 	// ----- Endpoint: connector.update_features
 
 	/**
-	 * Update the connector features. Update the connector features in the connector
-	 * document. This API can be used to control the following aspects of a
-	 * connector:
+	 * Update the connector features.
+	 * <p>
+	 * Update the connector features in the connector document. This API can be used
+	 * to control the following aspects of a connector:
 	 * <ul>
 	 * <li>document-level security</li>
 	 * <li>incremental syncs</li>
@@ -940,9 +955,10 @@ public class ElasticsearchConnectorAsyncClient
 	}
 
 	/**
-	 * Update the connector features. Update the connector features in the connector
-	 * document. This API can be used to control the following aspects of a
-	 * connector:
+	 * Update the connector features.
+	 * <p>
+	 * Update the connector features in the connector document. This API can be used
+	 * to control the following aspects of a connector:
 	 * <ul>
 	 * <li>document-level security</li>
 	 * <li>incremental syncs</li>

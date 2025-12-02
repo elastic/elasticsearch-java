@@ -59,8 +59,9 @@ import javax.annotation.Nullable;
 // typedef: text_structure.find_field_structure.Request
 
 /**
- * Find the structure of a text field. Find the structure of a text field in an
- * Elasticsearch index.
+ * Find the structure of a text field.
+ * <p>
+ * Find the structure of a text field in an Elasticsearch index.
  * <p>
  * This API provides a starting point for extracting further information from
  * log messages already ingested into Elasticsearch. For example, if you have

@@ -59,9 +59,11 @@ import javax.annotation.Nullable;
 // typedef: ml.get_trained_models_stats.Request
 
 /**
- * Get trained models usage info. You can get usage information for multiple
- * trained models in a single API request by using a comma-separated list of
- * model IDs or a wildcard expression.
+ * Get trained models usage info.
+ * <p>
+ * You can get usage information for multiple trained models in a single API
+ * request by using a comma-separated list of model IDs or a wildcard
+ * expression.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.get_trained_models_stats.Request">API

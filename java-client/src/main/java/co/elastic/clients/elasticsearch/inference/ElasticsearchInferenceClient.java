@@ -69,7 +69,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: inference.chat_completion_unified
 
 	/**
-	 * Perform chat completion inference
+	 * Perform chat completion inference.
 	 * <p>
 	 * The chat completion inference API enables real-time responses for chat
 	 * completion tasks by delivering answers incrementally, reducing response times
@@ -98,7 +98,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Perform chat completion inference
+	 * Perform chat completion inference.
 	 * <p>
 	 * The chat completion inference API enables real-time responses for chat
 	 * completion tasks by delivering answers incrementally, reducing response times
@@ -130,7 +130,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: inference.completion
 
 	/**
-	 * Perform completion inference on the service
+	 * Perform completion inference on the service.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
@@ -145,7 +145,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Perform completion inference on the service
+	 * Perform completion inference on the service.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -163,7 +163,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: inference.delete
 
 	/**
-	 * Delete an inference endpoint
+	 * Delete an inference endpoint.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-delete">Documentation
@@ -178,7 +178,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Delete an inference endpoint
+	 * Delete an inference endpoint.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -197,7 +197,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: inference.get
 
 	/**
-	 * Get an inference endpoint
+	 * Get an inference endpoint.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-get">Documentation
@@ -212,7 +212,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Get an inference endpoint
+	 * Get an inference endpoint.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -228,7 +228,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Get an inference endpoint
+	 * Get an inference endpoint.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-get">Documentation
@@ -1595,7 +1595,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: inference.rerank
 
 	/**
-	 * Perform reranking inference on the service
+	 * Perform reranking inference on the service.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
@@ -1610,7 +1610,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Perform reranking inference on the service
+	 * Perform reranking inference on the service.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1628,7 +1628,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: inference.sparse_embedding
 
 	/**
-	 * Perform sparse embedding inference on the service
+	 * Perform sparse embedding inference on the service.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
@@ -1644,7 +1644,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Perform sparse embedding inference on the service
+	 * Perform sparse embedding inference on the service.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1663,9 +1663,11 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: inference.stream_completion
 
 	/**
-	 * Perform streaming inference. Get real-time responses for completion tasks by
-	 * delivering answers incrementally, reducing response times during computation.
-	 * This API works only with the completion task type.
+	 * Perform streaming inference.
+	 * <p>
+	 * Get real-time responses for completion tasks by delivering answers
+	 * incrementally, reducing response times during computation. This API works
+	 * only with the completion task type.
 	 * <p>
 	 * IMPORTANT: The inference APIs enable you to use certain services, such as
 	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
@@ -1693,9 +1695,11 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Perform streaming inference. Get real-time responses for completion tasks by
-	 * delivering answers incrementally, reducing response times during computation.
-	 * This API works only with the completion task type.
+	 * Perform streaming inference.
+	 * <p>
+	 * Get real-time responses for completion tasks by delivering answers
+	 * incrementally, reducing response times during computation. This API works
+	 * only with the completion task type.
 	 * <p>
 	 * IMPORTANT: The inference APIs enable you to use certain services, such as
 	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
@@ -1727,7 +1731,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: inference.text_embedding
 
 	/**
-	 * Perform text embedding inference on the service
+	 * Perform text embedding inference on the service.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
@@ -1743,7 +1747,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Perform text embedding inference on the service
+	 * Perform text embedding inference on the service.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
