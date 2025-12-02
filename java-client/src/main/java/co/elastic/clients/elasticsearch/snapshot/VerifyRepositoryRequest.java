@@ -56,8 +56,9 @@ import javax.annotation.Nullable;
 // typedef: snapshot.verify_repository.Request
 
 /**
- * Verify a snapshot repository. Check for common misconfigurations in a
- * snapshot repository.
+ * Verify a snapshot repository.
+ * <p>
+ * Check for common misconfigurations in a snapshot repository.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#snapshot.verify_repository.Request">API

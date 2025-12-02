@@ -61,9 +61,10 @@ import javax.annotation.Nullable;
 // typedef: text_structure.find_message_structure.Request
 
 /**
- * Find the structure of text messages. Find the structure of a list of text
- * messages. The messages must contain data that is suitable to be ingested into
- * Elasticsearch.
+ * Find the structure of text messages.
+ * <p>
+ * Find the structure of a list of text messages. The messages must contain data
+ * that is suitable to be ingested into Elasticsearch.
  * <p>
  * This API provides a starting point for ingesting data into Elasticsearch in a
  * format that is suitable for subsequent use with other Elastic Stack

@@ -59,8 +59,10 @@ import javax.annotation.Nullable;
 // typedef: indices.delete_data_lifecycle.Request
 
 /**
- * Delete data stream lifecycles. Removes the data stream lifecycle from a data
- * stream, rendering it not managed by the data stream lifecycle.
+ * Delete data stream lifecycles.
+ * <p>
+ * Removes the data stream lifecycle from a data stream, rendering it not
+ * managed by the data stream lifecycle.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.delete_data_lifecycle.Request">API

@@ -59,9 +59,11 @@ import javax.annotation.Nullable;
 // typedef: indices.refresh.Request
 
 /**
- * Refresh an index. A refresh makes recent operations performed on one or more
- * indices available for search. For data streams, the API runs the refresh
- * operation on the stream’s backing indices.
+ * Refresh an index.
+ * <p>
+ * A refresh makes recent operations performed on one or more indices available
+ * for search. For data streams, the API runs the refresh operation on the
+ * stream’s backing indices.
  * <p>
  * By default, Elasticsearch periodically refreshes indices every second, but
  * only on indices that have received one search request or more in the last 30

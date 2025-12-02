@@ -66,7 +66,9 @@ import javax.annotation.Nullable;
 // typedef: _global.count.Request
 
 /**
- * Count search results. Get the number of documents matching a query.
+ * Count search results.
+ * <p>
+ * Get the number of documents matching a query.
  * <p>
  * The query can be provided either by using a simple query string as a
  * parameter, or by defining Query DSL within the request body. The query is

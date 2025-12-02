@@ -63,8 +63,10 @@ import javax.annotation.Nullable;
 // typedef: indices.rollover.Request
 
 /**
- * Roll over to a new index. TIP: It is recommended to use the index lifecycle
- * rollover action to automate rollovers.
+ * Roll over to a new index.
+ * <p>
+ * TIP: It is recommended to use the index lifecycle rollover action to automate
+ * rollovers.
  * <p>
  * The rollover API creates a new index for a data stream or index alias. The
  * API behavior depends on the rollover target.

@@ -58,8 +58,10 @@ import javax.annotation.Nullable;
 // typedef: ccr.forget_follower.Request
 
 /**
- * Forget a follower. Remove the cross-cluster replication follower retention
- * leases from the leader.
+ * Forget a follower.
+ * <p>
+ * Remove the cross-cluster replication follower retention leases from the
+ * leader.
  * <p>
  * A following index takes out retention leases on its leader index. These
  * leases are used to increase the likelihood that the shards of the leader

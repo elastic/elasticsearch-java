@@ -55,8 +55,10 @@ import javax.annotation.Nullable;
 // typedef: rollup.get_rollup_caps.Request
 
 /**
- * Get the rollup job capabilities. Get the capabilities of any rollup jobs that
- * have been configured for a specific index or index pattern.
+ * Get the rollup job capabilities.
+ * <p>
+ * Get the capabilities of any rollup jobs that have been configured for a
+ * specific index or index pattern.
  * <p>
  * This API is useful because a rollup job is often configured to rollup only a
  * subset of fields from the source index. Furthermore, only certain

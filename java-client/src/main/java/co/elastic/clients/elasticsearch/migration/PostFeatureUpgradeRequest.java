@@ -50,9 +50,11 @@ import java.util.Objects;
 // typedef: migration.post_feature_upgrade.Request
 
 /**
- * Start the feature migration. Version upgrades sometimes require changes to
- * how features store configuration information and data in system indices. This
- * API starts the automatic migration process.
+ * Start the feature migration.
+ * <p>
+ * Version upgrades sometimes require changes to how features store
+ * configuration information and data in system indices. This API starts the
+ * automatic migration process.
  * <p>
  * Some functionality might be temporarily unavailable during the migration
  * process.

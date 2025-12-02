@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: inference.sparse_embedding.Request
 
 /**
- * Perform sparse embedding inference on the service
+ * Perform sparse embedding inference on the service.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#inference.sparse_embedding.Request">API
