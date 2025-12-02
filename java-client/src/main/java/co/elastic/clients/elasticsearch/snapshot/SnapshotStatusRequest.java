@@ -59,8 +59,10 @@ import javax.annotation.Nullable;
 // typedef: snapshot.status.Request
 
 /**
- * Get the snapshot status. Get a detailed description of the current state for
- * each shard participating in the snapshot.
+ * Get the snapshot status.
+ * <p>
+ * Get a detailed description of the current state for each shard participating
+ * in the snapshot.
  * <p>
  * Note that this API should be used only to obtain detailed shard-level
  * information for ongoing snapshots. If this detail is not needed or you want

@@ -61,11 +61,13 @@ import javax.annotation.Nullable;
 // typedef: indices.close.Request
 
 /**
- * Close an index. A closed index is blocked for read or write operations and
- * does not allow all operations that opened indices allow. It is not possible
- * to index documents or to search for documents in a closed index. Closed
- * indices do not have to maintain internal data structures for indexing or
- * searching documents, which results in a smaller overhead on the cluster.
+ * Close an index.
+ * <p>
+ * A closed index is blocked for read or write operations and does not allow all
+ * operations that opened indices allow. It is not possible to index documents
+ * or to search for documents in a closed index. Closed indices do not have to
+ * maintain internal data structures for indexing or searching documents, which
+ * results in a smaller overhead on the cluster.
  * <p>
  * When opening or closing an index, the master node is responsible for
  * restarting the index shards to reflect the new state of the index. The shards

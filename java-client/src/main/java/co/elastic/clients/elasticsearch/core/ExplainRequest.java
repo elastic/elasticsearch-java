@@ -64,9 +64,10 @@ import javax.annotation.Nullable;
 // typedef: _global.explain.Request
 
 /**
- * Explain a document match result. Get information about why a specific
- * document matches, or doesn't match, a query. It computes a score explanation
- * for a query and a specific document.
+ * Explain a document match result.
+ * <p>
+ * Get information about why a specific document matches, or doesn't match, a
+ * query. It computes a score explanation for a query and a specific document.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.explain.Request">API
  *      specification</a>

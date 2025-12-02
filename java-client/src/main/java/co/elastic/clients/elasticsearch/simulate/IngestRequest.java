@@ -64,9 +64,10 @@ import javax.annotation.Nullable;
 // typedef: simulate.ingest.Request
 
 /**
- * Simulate data ingestion. Run ingest pipelines against a set of provided
- * documents, optionally with substitute pipeline definitions, to simulate
- * ingesting data into an index.
+ * Simulate data ingestion.
+ * <p>
+ * Run ingest pipelines against a set of provided documents, optionally with
+ * substitute pipeline definitions, to simulate ingesting data into an index.
  * <p>
  * This API is meant to be used for troubleshooting or pipeline development, as
  * it does not actually index any data into Elasticsearch.

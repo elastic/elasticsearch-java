@@ -398,8 +398,9 @@ public class ElasticsearchLicenseAsyncClient
 	// ----- Endpoint: license.post_start_trial
 
 	/**
-	 * Start a trial. Start a 30-day trial, which gives access to all subscription
-	 * features.
+	 * Start a trial.
+	 * <p>
+	 * Start a 30-day trial, which gives access to all subscription features.
 	 * <p>
 	 * NOTE: You are allowed to start a trial only if your cluster has not already
 	 * activated a trial for the current major product version. For example, if you
@@ -422,8 +423,9 @@ public class ElasticsearchLicenseAsyncClient
 	}
 
 	/**
-	 * Start a trial. Start a 30-day trial, which gives access to all subscription
-	 * features.
+	 * Start a trial.
+	 * <p>
+	 * Start a 30-day trial, which gives access to all subscription features.
 	 * <p>
 	 * NOTE: You are allowed to start a trial only if your cluster has not already
 	 * activated a trial for the current major product version. For example, if you
@@ -447,8 +449,9 @@ public class ElasticsearchLicenseAsyncClient
 	}
 
 	/**
-	 * Start a trial. Start a 30-day trial, which gives access to all subscription
-	 * features.
+	 * Start a trial.
+	 * <p>
+	 * Start a 30-day trial, which gives access to all subscription features.
 	 * <p>
 	 * NOTE: You are allowed to start a trial only if your cluster has not already
 	 * activated a trial for the current major product version. For example, if you

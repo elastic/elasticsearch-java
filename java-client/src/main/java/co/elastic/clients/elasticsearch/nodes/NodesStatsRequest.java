@@ -60,8 +60,10 @@ import javax.annotation.Nullable;
 // typedef: nodes.stats.Request
 
 /**
- * Get node statistics. Get statistics for nodes in a cluster. By default, all
- * stats are returned. You can limit the returned information by using metrics.
+ * Get node statistics.
+ * <p>
+ * Get statistics for nodes in a cluster. By default, all stats are returned.
+ * You can limit the returned information by using metrics.
  * 
  * @see <a href="../doc-files/api-spec.html#nodes.stats.Request">API
  *      specification</a>

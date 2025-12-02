@@ -59,9 +59,10 @@ import javax.annotation.Nullable;
 // typedef: indices.reload_search_analyzers.Request
 
 /**
- * Reload search analyzers. Reload an index's search analyzers and their
- * resources. For data streams, the API reloads search analyzers and resources
- * for the stream's backing indices.
+ * Reload search analyzers.
+ * <p>
+ * Reload an index's search analyzers and their resources. For data streams, the
+ * API reloads search analyzers and resources for the stream's backing indices.
  * <p>
  * IMPORTANT: After reloading the search analyzers you should clear the request
  * cache to make sure it doesn't contain responses derived from the previous

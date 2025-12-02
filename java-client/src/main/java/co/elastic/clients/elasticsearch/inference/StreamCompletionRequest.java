@@ -62,9 +62,11 @@ import javax.annotation.Nullable;
 // typedef: inference.stream_completion.Request
 
 /**
- * Perform streaming inference. Get real-time responses for completion tasks by
- * delivering answers incrementally, reducing response times during computation.
- * This API works only with the completion task type.
+ * Perform streaming inference.
+ * <p>
+ * Get real-time responses for completion tasks by delivering answers
+ * incrementally, reducing response times during computation. This API works
+ * only with the completion task type.
  * <p>
  * IMPORTANT: The inference APIs enable you to use certain services, such as
  * built-in machine learning models (ELSER, E5), models uploaded through Eland,
@@ -133,7 +135,9 @@ public class StreamCompletionRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Optional task settings
+	 * Task settings for the individual inference request. These settings are
+	 * specific to the &lt;task_type&gt; you specified and override the task
+	 * settings specified when initializing the service.
 	 * <p>
 	 * API name: {@code task_settings}
 	 */
@@ -243,7 +247,9 @@ public class StreamCompletionRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Optional task settings
+		 * Task settings for the individual inference request. These settings are
+		 * specific to the &lt;task_type&gt; you specified and override the task
+		 * settings specified when initializing the service.
 		 * <p>
 		 * API name: {@code task_settings}
 		 */

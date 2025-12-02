@@ -58,9 +58,11 @@ import javax.annotation.Nullable;
 // typedef: logstash.delete_pipeline.Request
 
 /**
- * Delete a Logstash pipeline. Delete a pipeline that is used for Logstash
- * Central Management. If the request succeeds, you receive an empty response
- * with an appropriate status code.
+ * Delete a Logstash pipeline.
+ * <p>
+ * Delete a pipeline that is used for Logstash Central Management. If the
+ * request succeeds, you receive an empty response with an appropriate status
+ * code.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#logstash.delete_pipeline.Request">API

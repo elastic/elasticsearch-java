@@ -62,8 +62,9 @@ import javax.annotation.Nullable;
 // typedef: snapshot.create.Request
 
 /**
- * Create a snapshot. Take a snapshot of a cluster or of data streams and
- * indices.
+ * Create a snapshot.
+ * <p>
+ * Take a snapshot of a cluster or of data streams and indices.
  * 
  * @see <a href="../doc-files/api-spec.html#snapshot.create.Request">API
  *      specification</a>

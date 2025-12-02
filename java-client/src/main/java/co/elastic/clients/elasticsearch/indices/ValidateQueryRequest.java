@@ -64,7 +64,9 @@ import javax.annotation.Nullable;
 // typedef: indices.validate_query.Request
 
 /**
- * Validate a query. Validates a query without running it.
+ * Validate a query.
+ * <p>
+ * Validates a query without running it.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.validate_query.Request">API
  *      specification</a>

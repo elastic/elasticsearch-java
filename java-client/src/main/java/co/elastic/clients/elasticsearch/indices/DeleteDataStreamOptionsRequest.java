@@ -59,8 +59,9 @@ import javax.annotation.Nullable;
 // typedef: indices.delete_data_stream_options.Request
 
 /**
- * Delete data stream options. Removes the data stream options from a data
- * stream.
+ * Delete data stream options.
+ * <p>
+ * Removes the data stream options from a data stream.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.delete_data_stream_options.Request">API

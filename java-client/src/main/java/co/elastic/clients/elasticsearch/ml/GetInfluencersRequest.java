@@ -61,9 +61,10 @@ import javax.annotation.Nullable;
 // typedef: ml.get_influencers.Request
 
 /**
- * Get anomaly detection job results for influencers. Influencers are the
- * entities that have contributed to, or are to blame for, the anomalies.
- * Influencer results are available only if an
+ * Get anomaly detection job results for influencers.
+ * <p>
+ * Influencers are the entities that have contributed to, or are to blame for,
+ * the anomalies. Influencer results are available only if an
  * <code>influencer_field_name</code> is specified in the job configuration.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.get_influencers.Request">API

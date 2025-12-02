@@ -69,9 +69,10 @@ import javax.annotation.Nullable;
 // typedef: eql.search.Request
 
 /**
- * Get EQL search results. Returns search results for an Event Query Language
- * (EQL) query. EQL assumes each document in a data stream or index corresponds
- * to an event.
+ * Get EQL search results.
+ * <p>
+ * Returns search results for an Event Query Language (EQL) query. EQL assumes
+ * each document in a data stream or index corresponds to an event.
  * 
  * @see <a href="../doc-files/api-spec.html#eql.search.Request">API
  *      specification</a>
@@ -293,7 +294,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The name of the index to scope the operation
+	 * Required - Comma-separated list of index names to scope the operation
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -392,7 +393,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Field containing event timestamp. Default &quot;@timestamp&quot;
+	 * Field containing event timestamp.
 	 * <p>
 	 * API name: {@code timestamp_field}
 	 */
@@ -803,7 +804,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The name of the index to scope the operation
+		 * Required - Comma-separated list of index names to scope the operation
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -815,7 +816,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The name of the index to scope the operation
+		 * Required - Comma-separated list of index names to scope the operation
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -948,7 +949,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Field containing event timestamp. Default &quot;@timestamp&quot;
+		 * Field containing event timestamp.
 		 * <p>
 		 * API name: {@code timestamp_field}
 		 */
