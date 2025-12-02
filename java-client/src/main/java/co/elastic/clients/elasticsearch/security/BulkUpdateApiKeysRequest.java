@@ -60,7 +60,9 @@ import javax.annotation.Nullable;
 // typedef: security.bulk_update_api_keys.Request
 
 /**
- * Bulk update API keys. Update the attributes for multiple API keys.
+ * Bulk update API keys.
+ * <p>
+ * Update the attributes for multiple API keys.
  * <p>
  * IMPORTANT: It is not possible to use an API key as the authentication
  * credential for this API. To update API keys, the owner user's credentials are

@@ -138,7 +138,7 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 
 	/**
 	 * Required - Settings used to install the inference model. These settings are
-	 * specific to the <code>openai</code> service.
+	 * specific to the <code>azureaistudio</code> service.
 	 * <p>
 	 * API name: {@code service_settings}
 	 */
@@ -279,7 +279,7 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 
 		/**
 		 * Required - Settings used to install the inference model. These settings are
-		 * specific to the <code>openai</code> service.
+		 * specific to the <code>azureaistudio</code> service.
 		 * <p>
 		 * API name: {@code service_settings}
 		 */
@@ -290,7 +290,7 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 
 		/**
 		 * Required - Settings used to install the inference model. These settings are
-		 * specific to the <code>openai</code> service.
+		 * specific to the <code>azureaistudio</code> service.
 		 * <p>
 		 * API name: {@code service_settings}
 		 */

@@ -59,9 +59,10 @@ import javax.annotation.Nullable;
 // typedef: watcher.execute_watch.Request
 
 /**
- * Run a watch. This API can be used to force execution of the watch outside of
- * its triggering logic or to simulate the watch execution for debugging
- * purposes.
+ * Run a watch.
+ * <p>
+ * This API can be used to force execution of the watch outside of its
+ * triggering logic or to simulate the watch execution for debugging purposes.
  * <p>
  * For testing and debugging purposes, you also have fine-grained control on how
  * the watch runs. You can run the watch without running all of its actions or

@@ -62,8 +62,10 @@ import javax.annotation.Nullable;
 // typedef: watcher.query_watches.Request
 
 /**
- * Query watches. Get all registered watches in a paginated manner and
- * optionally filter watches by a query.
+ * Query watches.
+ * <p>
+ * Get all registered watches in a paginated manner and optionally filter
+ * watches by a query.
  * <p>
  * Note that only the <code>_id</code> and <code>metadata.*</code> fields are
  * queryable or sortable.

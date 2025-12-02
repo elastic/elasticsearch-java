@@ -56,8 +56,9 @@ import javax.annotation.Nullable;
 // typedef: search_application.delete_behavioral_analytics.Request
 
 /**
- * Delete a behavioral analytics collection. The associated data stream is also
- * deleted.
+ * Delete a behavioral analytics collection.
+ * <p>
+ * The associated data stream is also deleted.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#search_application.delete_behavioral_analytics.Request">API

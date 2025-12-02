@@ -59,8 +59,9 @@ import javax.annotation.Nullable;
 // typedef: snapshot.repository_verify_integrity.Request
 
 /**
- * Verify the repository integrity. Verify the integrity of the contents of a
- * snapshot repository.
+ * Verify the repository integrity.
+ * <p>
+ * Verify the integrity of the contents of a snapshot repository.
  * <p>
  * This API enables you to perform a comprehensive check of the contents of a
  * repository, looking for any anomalies in its data or metadata which might

@@ -56,9 +56,10 @@ import javax.annotation.Nullable;
 // typedef: connector.sync_job_check_in.Request
 
 /**
- * Check in a connector sync job. Check in a connector sync job and set the
- * <code>last_seen</code> field to the current time before updating it in the
- * internal index.
+ * Check in a connector sync job.
+ * <p>
+ * Check in a connector sync job and set the <code>last_seen</code> field to the
+ * current time before updating it in the internal index.
  * <p>
  * To sync data using self-managed connectors, you need to deploy the Elastic
  * connector service on your own infrastructure. This service runs automatically

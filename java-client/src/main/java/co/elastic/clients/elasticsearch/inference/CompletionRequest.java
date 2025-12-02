@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: inference.completion.Request
 
 /**
- * Perform completion inference on the service
+ * Perform completion inference on the service.
  * 
  * @see <a href="../doc-files/api-spec.html#inference.completion.Request">API
  *      specification</a>
@@ -111,7 +111,9 @@ public class CompletionRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Optional task settings
+	 * Task settings for the individual inference request. These settings are
+	 * specific to the &lt;task_type&gt; you specified and override the task
+	 * settings specified when initializing the service.
 	 * <p>
 	 * API name: {@code task_settings}
 	 */
@@ -213,7 +215,9 @@ public class CompletionRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Optional task settings
+		 * Task settings for the individual inference request. These settings are
+		 * specific to the &lt;task_type&gt; you specified and override the task
+		 * settings specified when initializing the service.
 		 * <p>
 		 * API name: {@code task_settings}
 		 */

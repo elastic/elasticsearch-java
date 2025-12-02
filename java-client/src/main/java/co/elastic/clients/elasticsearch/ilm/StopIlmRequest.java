@@ -55,10 +55,11 @@ import javax.annotation.Nullable;
 // typedef: ilm.stop.Request
 
 /**
- * Stop the ILM plugin. Halt all lifecycle management operations and stop the
- * index lifecycle management plugin. This is useful when you are performing
- * maintenance on the cluster and need to prevent ILM from performing any
- * actions on your indices.
+ * Stop the ILM plugin.
+ * <p>
+ * Halt all lifecycle management operations and stop the index lifecycle
+ * management plugin. This is useful when you are performing maintenance on the
+ * cluster and need to prevent ILM from performing any actions on your indices.
  * <p>
  * The API returns as soon as the stop request has been acknowledged, but the
  * plugin might continue to run until in-progress operations complete and the

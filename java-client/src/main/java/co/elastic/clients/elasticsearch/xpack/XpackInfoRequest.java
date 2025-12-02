@@ -59,7 +59,9 @@ import javax.annotation.Nullable;
 // typedef: xpack.info.Request
 
 /**
- * Get information. The information provided by the API includes:
+ * Get information.
+ * <p>
+ * The information provided by the API includes:
  * <ul>
  * <li>Build information including the build number and timestamp.</li>
  * <li>License information about the currently installed license.</li>

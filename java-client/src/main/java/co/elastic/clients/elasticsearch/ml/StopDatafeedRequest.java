@@ -60,9 +60,10 @@ import javax.annotation.Nullable;
 // typedef: ml.stop_datafeed.Request
 
 /**
- * Stop datafeeds. A datafeed that is stopped ceases to retrieve data from
- * Elasticsearch. A datafeed can be started and stopped multiple times
- * throughout its lifecycle.
+ * Stop datafeeds.
+ * <p>
+ * A datafeed that is stopped ceases to retrieve data from Elasticsearch. A
+ * datafeed can be started and stopped multiple times throughout its lifecycle.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.stop_datafeed.Request">API
  *      specification</a>

@@ -61,8 +61,9 @@ import javax.annotation.Nullable;
 // typedef: indices.put_data_stream_options.Request
 
 /**
- * Update data stream options. Update the data stream options of the specified
- * data streams.
+ * Update data stream options.
+ * <p>
+ * Update the data stream options of the specified data streams.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.put_data_stream_options.Request">API

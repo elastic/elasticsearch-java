@@ -59,10 +59,12 @@ import javax.annotation.Nullable;
 // typedef: indices.explain_data_lifecycle.Request
 
 /**
- * Get the status for a data stream lifecycle. Get information about an index or
- * data stream's current data stream lifecycle status, such as time since index
- * creation, time since rollover, the lifecycle configuration managing the
- * index, or any errors encountered during lifecycle execution.
+ * Get the status for a data stream lifecycle.
+ * <p>
+ * Get information about an index or data stream's current data stream lifecycle
+ * status, such as time since index creation, time since rollover, the lifecycle
+ * configuration managing the index, or any errors encountered during lifecycle
+ * execution.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.explain_data_lifecycle.Request">API
@@ -104,7 +106,7 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the index to explain
+	 * Required - Comma-separated list of index names to explain
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -151,7 +153,7 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The name of the index to explain
+		 * Required - Comma-separated list of index names to explain
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -163,7 +165,7 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The name of the index to explain
+		 * Required - Comma-separated list of index names to explain
 		 * <p>
 		 * API name: {@code index}
 		 * <p>

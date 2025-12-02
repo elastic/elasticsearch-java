@@ -55,7 +55,9 @@ import javax.annotation.Nullable;
 // typedef: query_rules.list_rulesets.Request
 
 /**
- * Get all query rulesets. Get summarized information about the query rulesets.
+ * Get all query rulesets.
+ * <p>
+ * Get summarized information about the query rulesets.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#query_rules.list_rulesets.Request">API

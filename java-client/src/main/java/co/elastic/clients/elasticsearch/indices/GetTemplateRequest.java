@@ -59,8 +59,9 @@ import javax.annotation.Nullable;
 // typedef: indices.get_template.Request
 
 /**
- * Get legacy index templates. Get information about one or more index
- * templates.
+ * Get legacy index templates.
+ * <p>
+ * Get information about one or more index templates.
  * <p>
  * IMPORTANT: This documentation is about legacy index templates, which are
  * deprecated and will be replaced by the composable templates introduced in

@@ -68,10 +68,11 @@ import javax.annotation.Nullable;
 // typedef: _global.bulk.Request
 
 /**
- * Bulk index or delete documents. Perform multiple <code>index</code>,
- * <code>create</code>, <code>delete</code>, and <code>update</code> actions in
- * a single request. This reduces overhead and can greatly increase indexing
- * speed.
+ * Bulk index or delete documents.
+ * <p>
+ * Perform multiple <code>index</code>, <code>create</code>,
+ * <code>delete</code>, and <code>update</code> actions in a single request.
+ * This reduces overhead and can greatly increase indexing speed.
  * <p>
  * If the Elasticsearch security features are enabled, you must have the
  * following index privileges for the target data stream, index, or index alias:
@@ -168,6 +169,8 @@ import javax.annotation.Nullable;
  * <code>Search::Elasticsearch::Client::5_0::Scroll</code></li>
  * <li>Python: Check out <code>elasticsearch.helpers.*</code></li>
  * <li>JavaScript: Check out <code>client.helpers.*</code></li>
+ * <li>Java: Check out
+ * <code>co.elastic.clients.elasticsearch._helpers.bulk.BulkIngester</code></li>
  * <li>.NET: Check out <code>BulkAllObservable</code></li>
  * <li>PHP: Check out bulk indexing.</li>
  * <li>Ruby: Check out <code>Elasticsearch::Helpers::BulkHelper</code></li>

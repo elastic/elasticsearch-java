@@ -121,7 +121,7 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 
 	/**
 	 * Required - Settings used to install the inference model. These settings are
-	 * specific to the <code>watsonxai</code> service.
+	 * specific to the <code>anthropic</code> service.
 	 * <p>
 	 * API name: {@code service_settings}
 	 */
@@ -231,7 +231,7 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 
 		/**
 		 * Required - Settings used to install the inference model. These settings are
-		 * specific to the <code>watsonxai</code> service.
+		 * specific to the <code>anthropic</code> service.
 		 * <p>
 		 * API name: {@code service_settings}
 		 */
@@ -242,7 +242,7 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 
 		/**
 		 * Required - Settings used to install the inference model. These settings are
-		 * specific to the <code>watsonxai</code> service.
+		 * specific to the <code>anthropic</code> service.
 		 * <p>
 		 * API name: {@code service_settings}
 		 */

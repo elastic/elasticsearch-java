@@ -66,7 +66,9 @@ public class ElasticsearchProjectClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: project.tags
 
 	/**
-	 * Return tags defined for the project
+	 * Get tags.
+	 * <p>
+	 * Get the tags that are defined for the project.
 	 * 
 	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
 	 */

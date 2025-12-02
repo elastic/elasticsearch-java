@@ -63,10 +63,12 @@ import javax.annotation.Nullable;
 // typedef: cluster.reroute.Request
 
 /**
- * Reroute the cluster. Manually change the allocation of individual shards in
- * the cluster. For example, a shard can be moved from one node to another
- * explicitly, an allocation can be canceled, and an unassigned shard can be
- * explicitly allocated to a specific node.
+ * Reroute the cluster.
+ * <p>
+ * Manually change the allocation of individual shards in the cluster. For
+ * example, a shard can be moved from one node to another explicitly, an
+ * allocation can be canceled, and an unassigned shard can be explicitly
+ * allocated to a specific node.
  * <p>
  * It is important to note that after processing any reroute commands
  * Elasticsearch will perform rebalancing as normal (respecting the values of

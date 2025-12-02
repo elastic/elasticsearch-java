@@ -71,7 +71,7 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.chat_completion_unified
 
 	/**
-	 * Perform chat completion inference
+	 * Perform chat completion inference.
 	 * <p>
 	 * The chat completion inference API enables real-time responses for chat
 	 * completion tasks by delivering answers incrementally, reducing response times
@@ -99,7 +99,7 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform chat completion inference
+	 * Perform chat completion inference.
 	 * <p>
 	 * The chat completion inference API enables real-time responses for chat
 	 * completion tasks by delivering answers incrementally, reducing response times
@@ -130,7 +130,7 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.completion
 
 	/**
-	 * Perform completion inference on the service
+	 * Perform completion inference on the service.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
@@ -145,7 +145,7 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform completion inference on the service
+	 * Perform completion inference on the service.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -163,9 +163,10 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.delete
 
 	/**
-	 * Delete an inference endpoint This API requires the manage_inference cluster
-	 * privilege (the built-in <code>inference_admin</code> role grants this
-	 * privilege).
+	 * Delete an inference endpoint.
+	 * <p>
+	 * This API requires the manage_inference cluster privilege (the built-in
+	 * <code>inference_admin</code> role grants this privilege).
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-delete">Documentation
@@ -180,9 +181,10 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Delete an inference endpoint This API requires the manage_inference cluster
-	 * privilege (the built-in <code>inference_admin</code> role grants this
-	 * privilege).
+	 * Delete an inference endpoint.
+	 * <p>
+	 * This API requires the manage_inference cluster privilege (the built-in
+	 * <code>inference_admin</code> role grants this privilege).
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -200,10 +202,11 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.get
 
 	/**
-	 * Get an inference endpoint This API requires the
-	 * <code>monitor_inference</code> cluster privilege (the built-in
-	 * <code>inference_admin</code> and <code>inference_user</code> roles grant this
-	 * privilege).
+	 * Get an inference endpoint.
+	 * <p>
+	 * This API requires the <code>monitor_inference</code> cluster privilege (the
+	 * built-in <code>inference_admin</code> and <code>inference_user</code> roles
+	 * grant this privilege).
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-get">Documentation
@@ -218,10 +221,11 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Get an inference endpoint This API requires the
-	 * <code>monitor_inference</code> cluster privilege (the built-in
-	 * <code>inference_admin</code> and <code>inference_user</code> roles grant this
-	 * privilege).
+	 * Get an inference endpoint.
+	 * <p>
+	 * This API requires the <code>monitor_inference</code> cluster privilege (the
+	 * built-in <code>inference_admin</code> and <code>inference_user</code> roles
+	 * grant this privilege).
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -237,10 +241,11 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Get an inference endpoint This API requires the
-	 * <code>monitor_inference</code> cluster privilege (the built-in
-	 * <code>inference_admin</code> and <code>inference_user</code> roles grant this
-	 * privilege).
+	 * Get an inference endpoint.
+	 * <p>
+	 * This API requires the <code>monitor_inference</code> cluster privilege (the
+	 * built-in <code>inference_admin</code> and <code>inference_user</code> roles
+	 * grant this privilege).
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-get">Documentation
@@ -1710,7 +1715,7 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.rerank
 
 	/**
-	 * Perform reranking inference on the service
+	 * Perform reranking inference on the service.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
@@ -1725,7 +1730,7 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform reranking inference on the service
+	 * Perform reranking inference on the service.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1743,7 +1748,7 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.sparse_embedding
 
 	/**
-	 * Perform sparse embedding inference on the service
+	 * Perform sparse embedding inference on the service.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
@@ -1758,7 +1763,7 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform sparse embedding inference on the service
+	 * Perform sparse embedding inference on the service.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1776,9 +1781,11 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.stream_completion
 
 	/**
-	 * Perform streaming inference. Get real-time responses for completion tasks by
-	 * delivering answers incrementally, reducing response times during computation.
-	 * This API works only with the completion task type.
+	 * Perform streaming inference.
+	 * <p>
+	 * Get real-time responses for completion tasks by delivering answers
+	 * incrementally, reducing response times during computation. This API works
+	 * only with the completion task type.
 	 * <p>
 	 * IMPORTANT: The inference APIs enable you to use certain services, such as
 	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
@@ -1806,9 +1813,11 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform streaming inference. Get real-time responses for completion tasks by
-	 * delivering answers incrementally, reducing response times during computation.
-	 * This API works only with the completion task type.
+	 * Perform streaming inference.
+	 * <p>
+	 * Get real-time responses for completion tasks by delivering answers
+	 * incrementally, reducing response times during computation. This API works
+	 * only with the completion task type.
 	 * <p>
 	 * IMPORTANT: The inference APIs enable you to use certain services, such as
 	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
@@ -1839,7 +1848,7 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.text_embedding
 
 	/**
-	 * Perform text embedding inference on the service
+	 * Perform text embedding inference on the service.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
@@ -1854,7 +1863,7 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform text embedding inference on the service
+	 * Perform text embedding inference on the service.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

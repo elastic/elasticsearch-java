@@ -58,8 +58,10 @@ import javax.annotation.Nullable;
 // typedef: connector.sync_job_error.Request
 
 /**
- * Set a connector sync job error. Set the <code>error</code> field for a
- * connector sync job and set its <code>status</code> to <code>error</code>.
+ * Set a connector sync job error.
+ * <p>
+ * Set the <code>error</code> field for a connector sync job and set its
+ * <code>status</code> to <code>error</code>.
  * <p>
  * To sync data using self-managed connectors, you need to deploy the Elastic
  * connector service on your own infrastructure. This service runs automatically

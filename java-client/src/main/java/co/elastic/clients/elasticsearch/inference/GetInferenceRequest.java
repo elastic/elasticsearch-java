@@ -55,10 +55,11 @@ import javax.annotation.Nullable;
 // typedef: inference.get.Request
 
 /**
- * Get an inference endpoint This API requires the
- * <code>monitor_inference</code> cluster privilege (the built-in
- * <code>inference_admin</code> and <code>inference_user</code> roles grant this
- * privilege).
+ * Get an inference endpoint.
+ * <p>
+ * This API requires the <code>monitor_inference</code> cluster privilege (the
+ * built-in <code>inference_admin</code> and <code>inference_user</code> roles
+ * grant this privilege).
  * 
  * @see <a href="../doc-files/api-spec.html#inference.get.Request">API
  *      specification</a>

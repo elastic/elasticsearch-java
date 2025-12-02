@@ -145,7 +145,9 @@ public class ElasticsearchSynonymsAsyncClient
 	// ----- Endpoint: synonyms.delete_synonym_rule
 
 	/**
-	 * Delete a synonym rule. Delete a synonym rule from a synonym set.
+	 * Delete a synonym rule.
+	 * <p>
+	 * Delete a synonym rule from a synonym set.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-delete-synonym-rule">Documentation
@@ -160,7 +162,9 @@ public class ElasticsearchSynonymsAsyncClient
 	}
 
 	/**
-	 * Delete a synonym rule. Delete a synonym rule from a synonym set.
+	 * Delete a synonym rule.
+	 * <p>
+	 * Delete a synonym rule from a synonym set.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -211,7 +215,9 @@ public class ElasticsearchSynonymsAsyncClient
 	// ----- Endpoint: synonyms.get_synonym_rule
 
 	/**
-	 * Get a synonym rule. Get a synonym rule from a synonym set.
+	 * Get a synonym rule.
+	 * <p>
+	 * Get a synonym rule from a synonym set.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-get-synonym-rule">Documentation
@@ -226,7 +232,9 @@ public class ElasticsearchSynonymsAsyncClient
 	}
 
 	/**
-	 * Get a synonym rule. Get a synonym rule from a synonym set.
+	 * Get a synonym rule.
+	 * <p>
+	 * Get a synonym rule from a synonym set.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -244,7 +252,9 @@ public class ElasticsearchSynonymsAsyncClient
 	// ----- Endpoint: synonyms.get_synonyms_sets
 
 	/**
-	 * Get all synonym sets. Get a summary of all defined synonym sets.
+	 * Get all synonym sets.
+	 * <p>
+	 * Get a summary of all defined synonym sets.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-get-synonym">Documentation
@@ -259,7 +269,9 @@ public class ElasticsearchSynonymsAsyncClient
 	}
 
 	/**
-	 * Get all synonym sets. Get a summary of all defined synonym sets.
+	 * Get all synonym sets.
+	 * <p>
+	 * Get a summary of all defined synonym sets.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -275,7 +287,9 @@ public class ElasticsearchSynonymsAsyncClient
 	}
 
 	/**
-	 * Get all synonym sets. Get a summary of all defined synonym sets.
+	 * Get all synonym sets.
+	 * <p>
+	 * Get a summary of all defined synonym sets.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-get-synonym">Documentation
@@ -290,9 +304,10 @@ public class ElasticsearchSynonymsAsyncClient
 	// ----- Endpoint: synonyms.put_synonym
 
 	/**
-	 * Create or update a synonym set. Synonyms sets are limited to a maximum of
-	 * 10,000 synonym rules per set. If you need to manage more synonym rules, you
-	 * can create multiple synonym sets.
+	 * Create or update a synonym set.
+	 * <p>
+	 * Synonyms sets are limited to a maximum of 10,000 synonym rules per set. If
+	 * you need to manage more synonym rules, you can create multiple synonym sets.
 	 * <p>
 	 * When an existing synonyms set is updated, the search analyzers that use the
 	 * synonyms set are reloaded automatically for all indices. This is equivalent
@@ -315,9 +330,10 @@ public class ElasticsearchSynonymsAsyncClient
 	}
 
 	/**
-	 * Create or update a synonym set. Synonyms sets are limited to a maximum of
-	 * 10,000 synonym rules per set. If you need to manage more synonym rules, you
-	 * can create multiple synonym sets.
+	 * Create or update a synonym set.
+	 * <p>
+	 * Synonyms sets are limited to a maximum of 10,000 synonym rules per set. If
+	 * you need to manage more synonym rules, you can create multiple synonym sets.
 	 * <p>
 	 * When an existing synonyms set is updated, the search analyzers that use the
 	 * synonyms set are reloaded automatically for all indices. This is equivalent
@@ -343,8 +359,9 @@ public class ElasticsearchSynonymsAsyncClient
 	// ----- Endpoint: synonyms.put_synonym_rule
 
 	/**
-	 * Create or update a synonym rule. Create or update a synonym rule in a synonym
-	 * set.
+	 * Create or update a synonym rule.
+	 * <p>
+	 * Create or update a synonym rule in a synonym set.
 	 * <p>
 	 * If any of the synonym rules included is invalid, the API returns an error.
 	 * <p>
@@ -364,8 +381,9 @@ public class ElasticsearchSynonymsAsyncClient
 	}
 
 	/**
-	 * Create or update a synonym rule. Create or update a synonym rule in a synonym
-	 * set.
+	 * Create or update a synonym rule.
+	 * <p>
+	 * Create or update a synonym rule in a synonym set.
 	 * <p>
 	 * If any of the synonym rules included is invalid, the API returns an error.
 	 * <p>

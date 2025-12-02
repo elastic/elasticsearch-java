@@ -57,7 +57,9 @@ import javax.annotation.Nullable;
 // typedef: enrich.execute_policy.Request
 
 /**
- * Run an enrich policy. Create the enrich index for an existing enrich policy.
+ * Run an enrich policy.
+ * <p>
+ * Create the enrich index for an existing enrich policy.
  * 
  * @see <a href="../doc-files/api-spec.html#enrich.execute_policy.Request">API
  *      specification</a>

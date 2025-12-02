@@ -60,8 +60,10 @@ import javax.annotation.Nullable;
 // typedef: indices.create.Request
 
 /**
- * Create an index. You can use the create index API to add a new index to an
- * Elasticsearch cluster. When creating an index, you can specify the following:
+ * Create an index.
+ * <p>
+ * You can use the create index API to add a new index to an Elasticsearch
+ * cluster. When creating an index, you can specify the following:
  * <ul>
  * <li>Settings for the index.</li>
  * <li>Mappings for fields in the index.</li>
