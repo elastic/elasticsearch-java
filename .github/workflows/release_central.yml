@@ -9,6 +9,9 @@ on:
       version:
         description: "The version to release. Must start with the one in config/version.txt"
         required: true
+      prev_version:
+          description: "The previous version, used in the release git diff."
+          required: true
       dry_run:
         description: Used to test other workflow steps, does not publish to Maven Central.
         type: boolean
