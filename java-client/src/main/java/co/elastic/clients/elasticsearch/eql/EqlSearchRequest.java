@@ -374,7 +374,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Field containing event timestamp. Default &quot;@timestamp&quot;
+	 * Field containing event timestamp.
 	 * <p>
 	 * API name: {@code timestamp_field}
 	 */
@@ -913,7 +913,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Field containing event timestamp. Default &quot;@timestamp&quot;
+		 * Field containing event timestamp.
 		 * <p>
 		 * API name: {@code timestamp_field}
 		 */
