@@ -67,8 +67,6 @@ import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 import co.elastic.clients.elasticsearch.core.InfoRequest;
 import co.elastic.clients.elasticsearch.core.InfoResponse;
-import co.elastic.clients.elasticsearch.core.KnnSearchRequest;
-import co.elastic.clients.elasticsearch.core.KnnSearchResponse;
 import co.elastic.clients.elasticsearch.core.MgetRequest;
 import co.elastic.clients.elasticsearch.core.MgetResponse;
 import co.elastic.clients.elasticsearch.core.MsearchRequest;
@@ -3333,111 +3331,6 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 */
 	public CompletableFuture<InfoResponse> info() {
 		return this.transport.performRequestAsync(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
-	}
-
-	// ----- Endpoint: knn_search
-
-	/**
-	 * Run a knn search.
-	 * <p>
-	 * NOTE: The kNN search API has been replaced by the <code>knn</code> option in
-	 * the search API.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-knn-search">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public <TDocument> CompletableFuture<KnnSearchResponse<TDocument>> knnSearch(KnnSearchRequest request,
-			Class<TDocument> tDocumentClass) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<KnnSearchRequest, KnnSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<KnnSearchRequest, KnnSearchResponse<TDocument>, ErrorResponse>) KnnSearchRequest._ENDPOINT;
-		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.knn_search.Response.TDocument",
-				getDeserializer(tDocumentClass));
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Run a knn search.
-	 * <p>
-	 * NOTE: The kNN search API has been replaced by the <code>knn</code> option in
-	 * the search API.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link KnnSearchRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-knn-search">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final <TDocument> CompletableFuture<KnnSearchResponse<TDocument>> knnSearch(
-			Function<KnnSearchRequest.Builder, ObjectBuilder<KnnSearchRequest>> fn, Class<TDocument> tDocumentClass) {
-		return knnSearch(fn.apply(new KnnSearchRequest.Builder()).build(), tDocumentClass);
-	}
-
-	/**
-	 * Overload of {@link #knnSearch(KnnSearchRequest, Class)}, where Class is
-	 * defined as Void, meaning the documents will not be deserialized.
-	 */
-
-	public CompletableFuture<KnnSearchResponse<Void>> knnSearch(KnnSearchRequest request) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<KnnSearchRequest, KnnSearchResponse<Void>, ErrorResponse> endpoint = (JsonEndpoint<KnnSearchRequest, KnnSearchResponse<Void>, ErrorResponse>) KnnSearchRequest._ENDPOINT;
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Overload of {@link #knnSearch(Function, Class)}, where Class is defined as
-	 * Void, meaning the documents will not be deserialized.
-	 */
-
-	public final CompletableFuture<KnnSearchResponse<Void>> knnSearch(
-			Function<KnnSearchRequest.Builder, ObjectBuilder<KnnSearchRequest>> fn) {
-		return knnSearch(fn.apply(new KnnSearchRequest.Builder()).build(), Void.class);
-	}
-
-	/**
-	 * Run a knn search.
-	 * <p>
-	 * NOTE: The kNN search API has been replaced by the <code>knn</code> option in
-	 * the search API.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-knn-search">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public <TDocument> CompletableFuture<KnnSearchResponse<TDocument>> knnSearch(KnnSearchRequest request,
-			Type tDocumentType) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<KnnSearchRequest, KnnSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<KnnSearchRequest, KnnSearchResponse<TDocument>, ErrorResponse>) KnnSearchRequest._ENDPOINT;
-		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:_global.knn_search.Response.TDocument",
-				getDeserializer(tDocumentType));
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Run a knn search.
-	 * <p>
-	 * NOTE: The kNN search API has been replaced by the <code>knn</code> option in
-	 * the search API.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link KnnSearchRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-knn-search">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final <TDocument> CompletableFuture<KnnSearchResponse<TDocument>> knnSearch(
-			Function<KnnSearchRequest.Builder, ObjectBuilder<KnnSearchRequest>> fn, Type tDocumentType) {
-		return knnSearch(fn.apply(new KnnSearchRequest.Builder()).build(), tDocumentType);
 	}
 
 	// ----- Endpoint: mget
