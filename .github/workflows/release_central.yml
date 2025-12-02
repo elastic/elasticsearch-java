@@ -82,12 +82,13 @@ jobs:
           token: ${{ steps.fetch-ephemeral-token.outputs.token }}
           ref: ${{ inputs.branch }}
           path: elasticsearch-java
-          # TODO git push after making sure the version bump works
           run: |
             git tag v${{ inputs.version }}
             git push origin v${{ inputs.version }}
             echo ${{ inputs.version }} > config/version.txt
             sed -i '/static final String VERSION/s/".*"/"${{ inputs.version }}"/' java-client/src/main-flavored/java/co/elastic/clients/transport/VersionInfo.java
+            git commit -m "bump version" -a
+            git push origin ${{ inputs.branch }}
 
       - name: Creates new github release with version ${{ inputs.version }}
         uses: softprops/action-gh-release@v2
@@ -103,6 +104,6 @@ jobs:
           body: |
             ## What's Changed
             
-            **Full Changelog**: https://github.com/elastic/elasticsearch-java/compare/v{{inputs.prev_version}}...v{{ inputs.version }}
+            **Full Changelog**: https://github.com/elastic/elasticsearch-java/compare/v${{inputs.prev_version}}...v${{ inputs.version }}
 
 
