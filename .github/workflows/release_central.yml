@@ -18,6 +18,12 @@ on:
         required: true
         default: false
 
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
+
 env:
   BRANCH: ${{ inputs.branch }}
   VERSION: ${{ inputs.version }}
