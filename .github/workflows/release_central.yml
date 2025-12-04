@@ -76,13 +76,14 @@ jobs:
           vault-instance: "ci-prod"
 
       - name: Tag branch ${{ inputs.branch }} with release ${{ inputs.version }}, bump version with new release ${{ inputs.version }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7 // TODO commit hash
         with:
           repository: elastic/elasticsearch-java
           token: ${{ steps.fetch-ephemeral-token.outputs.token }}
           ref: ${{ inputs.branch }}
           path: elasticsearch-java
-          run: |
+
+      - run: |
             git tag v${{ inputs.version }}
             git push origin v${{ inputs.version }}
             echo ${{ inputs.version }} > config/version.txt
@@ -95,12 +96,11 @@ jobs:
         with:
           repository: elastic/elasticsearch-java
           token: ${{ steps.fetch-ephemeral-token.outputs.token }}
-          ref: ${{ inputs.branch }}
-          path: elasticsearch-java
           tag_name: v${{ inputs.version }}
           name: v${{ inputs.version }}
           draft: true
           prerelease: false
+          target_commitish: ${{ inputs.branch }}
           body: |
             ## What's Changed
             
