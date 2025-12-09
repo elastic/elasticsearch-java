@@ -24,6 +24,7 @@ import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.bulk.BulkOperation;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -47,7 +48,8 @@ public class MainCommonBenchmark {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    @Test
+    public void test() throws IOException {
 
         File file = new File(""); // TODO test file
 
