@@ -33,6 +33,7 @@ import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 
@@ -63,7 +64,8 @@ public class MainCommonBenchmark64 {
     @Test
     public void test() throws IOException {
 
-        File file = new File("/home/laura/Documents/Benchmarks/open_ai_corpus-initial-indexing-1k.json"); // TODO test file
+        File file = new File("/home/laura/Documents/Benchmarks/open_ai_corpus-initial-indexing-1k.json");
+        // TODO test file
 
         List<ElasticsearchDoc> docs = readMultipleObjects(file);
 
@@ -71,72 +73,77 @@ public class MainCommonBenchmark64 {
         String serverUrl = "http://localhost:9200";
         String APIkey = "eUUzS09ab0JaV2ZBNnk4RS1kMU86YlhuZnh4TWZvc091ZzJISkN2NzF2Zw=="; // TODO Apikey
 
-        try (ElasticsearchClient elasticsearchClient =
-                 ElasticsearchClient.of(e -> e.host(serverUrl).apiKey(APIkey))) {
+        int[] chunks = {100, 250, 500, 1000};
+        for (int chunk : chunks) {
+            long[] times = new long[10];
+            for (int i = 0; i < 5; i++) {
 
-            if(elasticsearchClient.indices().exists(e -> e.index("vec-test-64")).value()){
-                elasticsearchClient.indices().delete(d -> d.index("vec-test-64"));
-                elasticsearchClient.indices().create(c -> c.index("vec-test-64").withJson(new StringReader("{\n" +
-                                                                                                        "    \"mappings\": {\n" +
-                                                                                                        "      \"properties\": {\n" +
-                                                                                                        "        \"text\": {\n" +
-                                                                                                        "          \"type\": \"text\",\n" +
-                                                                                                        "          \"fields\": {\n" +
-                                                                                                        "            \"keyword\": {\n" +
-                                                                                                        "              \"type\": \"keyword\",\n" +
-                                                                                                        "              \"ignore_above\": 256\n" +
-                                                                                                        "            }\n" +
-                                                                                                        "          }\n" +
-                                                                                                        "        },\n" +
-                                                                                                        "        \"emb\": {\n" +
-                                                                                                        "          \"type\": \"dense_vector\",\n" +
-                                                                                                        "          \"dims\": 1536,\n" +
-                                                                                                        "          \"index\": true,\n" +
-                                                                                                        "          \"similarity\": \"cosine\",\n" +
-                                                                                                        "          \"index_options\": {\n" +
-                                                                                                        "            \"type\": \"flat\"\n" +
-                                                                                                        "          }\n" +
-                                                                                                        "        }\n" +
-                                                                                                        "      }\n" +
-                                                                                                        "    }\n" +
-                                                                                                        "}")));
-            }
+                try (ElasticsearchClient elasticsearchClient =
+                         ElasticsearchClient.of(e -> e.host(serverUrl).apiKey(APIkey))) {
 
-            Instant start = Instant.now();
-            System.out.println("Starting bulk operations... \n");
 
-            List<BulkOperation> bulkOperations = new ArrayList<>();
+                    if (elasticsearchClient.indices().exists(e -> e.index("vec-test-64")).value()) {
+                        elasticsearchClient.indices().delete(d -> d.index("vec-test-64"));
+                        elasticsearchClient.indices().create(c -> c.index("vec-test-64").withJson(new StringReader("{\n" +
+                                                                                                                   "    \"mappings\": {\n" +
+                                                                                                                   "      \"properties\": {\n" +
+                                                                                                                   "        \"text\": {\n" +
+                                                                                                                   "          \"type\": \"text\",\n" +
+                                                                                                                   "          \"fields\": {\n" +
+                                                                                                                   "            \"keyword\": {\n" +
+                                                                                                                   "              \"type\": \"keyword\",\n" +
+                                                                                                                   "              \"ignore_above\": 256\n" +
+                                                                                                                   "            }\n" +
+                                                                                                                   "          }\n" +
+                                                                                                                   "        },\n" +
+                                                                                                                   "        \"emb\": {\n" +
+                                                                                                                   "          \"type\": \"dense_vector\",\n" +
+                                                                                                                   "          \"dims\": 1536,\n" +
+                                                                                                                   "          \"index\": true,\n" +
+                                                                                                                   "          \"similarity\": \"cosine\",\n" +
+                                                                                                                   "          \"index_options\": {\n" +
+                                                                                                                   "            \"type\": \"flat\"\n" +
+                                                                                                                   "          }\n" +
+                                                                                                                   "        }\n" +
+                                                                                                                   "      }\n" +
+                                                                                                                   "    }\n" +
+                                                                                                                   "}")));
+                    }
 
-            for (ElasticsearchDoc doc : docs) {
+                    Instant start = Instant.now();
 
-                Elasticsearch64Doc doc64 = new Elasticsearch64Doc(doc.docid(), doc.title(), doc.text(),
-                    convertToBase64Bytes(doc.emb()));
+                    List<BulkOperation> bulkOperations = new ArrayList<>();
 
-                BulkOperation op = BulkOperation.of(o -> o
-                    .index(idx -> idx
-                        .index("vec-test-64")
-                        .document(doc64)
-                    )
-                );
-                bulkOperations.add(op);
-                if (bulkOperations.size() >= 500) { // TODO choose chunk size
-                    List<BulkOperation> finalBulkOperations = bulkOperations;
-                    BulkRequest request = BulkRequest.of(b -> b.operations(finalBulkOperations));
-                    elasticsearchClient.bulk(request);
-                    bulkOperations = new ArrayList<>();
+                    for (ElasticsearchDoc doc : docs) {
+
+                        Elasticsearch64Doc doc64 = new Elasticsearch64Doc(doc.docid(), doc.title(),
+                            doc.text(),
+                            convertToBase64Bytes(doc.emb()));
+
+                        BulkOperation op = BulkOperation.of(o -> o
+                            .index(idx -> idx
+                                .index("vec-test-64")
+                                .document(doc64)
+                            )
+                        );
+                        bulkOperations.add(op);
+                        if (bulkOperations.size() >= chunk) {
+                            List<BulkOperation> finalBulkOperations = bulkOperations;
+                            BulkRequest request = BulkRequest.of(b -> b.operations(finalBulkOperations));
+                            elasticsearchClient.bulk(request);
+                            bulkOperations = new ArrayList<>();
+                        }
+                    }
+
+                    Instant end = Instant.now();
+                    times[i] = Duration.between(start, end).toMillis();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
-
-            Instant end = Instant.now();
-
-            System.out.println("Finished in: " + Duration.between(start, end).toMillis() + "\n");
-            double docsPerSec = 1000*1000 / Duration.between(start, end).toMillis();
-            System.out.println("Docs per sec: " + docsPerSec + "\n");
-
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("Chunk size: " + chunk + "\n");
+            long total = Arrays.stream(times).sum() / 10;
+            System.out.println("Ingest float: " + 1000 * 1000 / total + "\n");
         }
-
     }
 }
