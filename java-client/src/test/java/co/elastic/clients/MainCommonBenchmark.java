@@ -65,7 +65,7 @@ public class MainCommonBenchmark {
         int[] chunks = {100, 250, 500, 1000};
         for (int chunk : chunks) {
             long[] times = new long[10];
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 10; i++) {
 
                 try (ElasticsearchClient elasticsearchClient =
                          ElasticsearchClient.of(e -> e.host(serverUrl).apiKey(APIkey))) {
@@ -125,8 +125,9 @@ public class MainCommonBenchmark {
                     throw new RuntimeException(e);
                 }
             }
+            // only counting the last 5, the first 5 are for warmup
             System.out.println("Chunk size: " + chunk + "\n");
-            long total = Arrays.stream(times).sum() / 10;
+            long total = (times[5] + times[6] + times[7] + times[8] + times[9]) / 5;
             System.out.println("Ingest float: " + 1000 * 1000 / total + "\n");
         }
 
