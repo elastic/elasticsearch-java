@@ -64,14 +64,14 @@ public class MainCommonBenchmark64 {
     @Test
     public void test() throws IOException {
 
-        File file = new File("/home/laura/Documents/Benchmarks/open_ai_corpus-initial-indexing-1k.json");
         // TODO test file
+        File file = new File("");
 
         List<ElasticsearchDoc> docs = readMultipleObjects(file);
 
         // 9.3 local
         String serverUrl = "http://localhost:9200";
-        String APIkey = "eUUzS09ab0JaV2ZBNnk4RS1kMU86YlhuZnh4TWZvc091ZzJISkN2NzF2Zw=="; // TODO Apikey
+        String APIkey = ""; // TODO Apikey
 
         int[] chunks = {100, 250, 500, 1000};
         for (int chunk : chunks) {
