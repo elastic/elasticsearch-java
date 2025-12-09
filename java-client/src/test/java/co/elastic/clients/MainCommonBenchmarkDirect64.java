@@ -34,14 +34,14 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainCommonBenchmark {
+public class MainCommonBenchmarkDirect64 {
 
-    public static List<ElasticsearchDocOld> readMultipleObjects(File file) throws IOException {
+    public static List<Elasticsearch64Doc> readMultipleObjects(File file) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
-        try (MappingIterator<ElasticsearchDocOld> it =
-                 mapper.readerFor(ElasticsearchDocOld.class).readValues(file)) {
-            List<ElasticsearchDocOld> list = new ArrayList<>();
+        try (MappingIterator<Elasticsearch64Doc> it =
+                 mapper.readerFor(Elasticsearch64Doc.class).readValues(file)) {
+            List<Elasticsearch64Doc> list = new ArrayList<>();
             while (it.hasNext()) {
                 list.add(it.next());
             }
@@ -52,11 +52,9 @@ public class MainCommonBenchmark {
     @Test
     public void test() throws IOException {
 
-        int chunks = 1000;
+        File file = new File("/home/laura/Documents/Benchmarks/open_ai_corpus-initial-indexing_base64-1k.json"); // TODO test file
 
-        File file = new File("/home/laura/Documents/Benchmarks/open_ai_corpus-initial-indexing-1k.json"); // TODO test file
-
-        List<ElasticsearchDocOld> docs = readMultipleObjects(file);
+        List<Elasticsearch64Doc> docs = readMultipleObjects(file);
 
         // 9.3 local
         String serverUrl = "http://localhost:9200";
@@ -65,9 +63,9 @@ public class MainCommonBenchmark {
         try (ElasticsearchClient elasticsearchClient =
                  ElasticsearchClient.of(e -> e.host(serverUrl).apiKey(APIkey))) {
 
-            if(elasticsearchClient.indices().exists(e -> e.index("vec-test")).value()){
-                elasticsearchClient.indices().delete(d -> d.index("vec-test"));
-                elasticsearchClient.indices().create(c -> c.index("vec-test").withJson(new StringReader("{\n" +
+            if(elasticsearchClient.indices().exists(e -> e.index("vec-test-direct")).value()){
+                elasticsearchClient.indices().delete(d -> d.index("vec-test-direct"));
+                elasticsearchClient.indices().create(c -> c.index("vec-test-direct").withJson(new StringReader("{\n" +
                                                                                       "    \"mappings\": {\n" +
                                                                                       "      \"properties\": {\n" +
                                                                                       "        \"text\": {\n" +
@@ -98,16 +96,16 @@ public class MainCommonBenchmark {
 
             List<BulkOperation> bulkOperations = new ArrayList<>();
 
-            for (ElasticsearchDocOld doc : docs) {
+            for (Elasticsearch64Doc doc : docs) {
 
                 BulkOperation op = BulkOperation.of(o -> o
                     .index(idx -> idx
-                        .index("vec-test")
+                        .index("vec-test-direct")
                         .document(doc)
                     )
                 );
                 bulkOperations.add(op);
-                if (bulkOperations.size() >= chunks) {  // TODO choose chunk size
+                if (bulkOperations.size() >= 500) {  // TODO choose chunk size
                     List<BulkOperation> finalBulkOperations = bulkOperations;
                     BulkRequest request = BulkRequest.of(b -> b.operations(finalBulkOperations));
                     elasticsearchClient.bulk(request);
@@ -117,7 +115,6 @@ public class MainCommonBenchmark {
 
             Instant end = Instant.now();
 
-            System.out.println("Chunks: " + chunks + "\n");
             System.out.println("Finished in: " + Duration.between(start, end).toMillis() + "\n");
             double docsPerSec = 1000*1000 / Duration.between(start, end).toMillis();
             System.out.println("Docs per sec: " + docsPerSec + "\n");

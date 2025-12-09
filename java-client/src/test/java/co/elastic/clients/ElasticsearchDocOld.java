@@ -19,5 +19,7 @@
 
 package co.elastic.clients;
 
-public record ElasticsearchDoc(String docid, String title, String text, float[] emb) {
+import java.util.List;
+
+public record ElasticsearchDocOld(String docid, String title, String text, List<Float> emb) {
 }

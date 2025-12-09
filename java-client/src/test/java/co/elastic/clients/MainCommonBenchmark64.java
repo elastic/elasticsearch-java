@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
 import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.time.Instant;
@@ -51,7 +52,7 @@ public class MainCommonBenchmark64 {
     }
 
 
-    public static String convertToBase64Bytes(Float[] vec) {
+    public static String convertToBase64Bytes(float[] vec) {
         ByteBuffer buff = ByteBuffer.allocate(Float.BYTES * vec.length);
         for (int i = 0; i < vec.length; i++) {
             buff.putFloat(vec[i]);
@@ -62,7 +63,7 @@ public class MainCommonBenchmark64 {
     @Test
     public void test() throws IOException {
 
-        File file = new File(""); // TODO test file
+        File file = new File("/home/laura/Documents/Benchmarks/open_ai_corpus-initial-indexing-1k.json"); // TODO test file
 
         List<ElasticsearchDoc> docs = readMultipleObjects(file);
 
@@ -73,8 +74,32 @@ public class MainCommonBenchmark64 {
         try (ElasticsearchClient elasticsearchClient =
                  ElasticsearchClient.of(e -> e.host(serverUrl).apiKey(APIkey))) {
 
-            if(elasticsearchClient.indices().exists(e -> e.index("vec-test")).value()){
-                elasticsearchClient.indices().delete(d -> d.index("vec-test"));
+            if(elasticsearchClient.indices().exists(e -> e.index("vec-test-64")).value()){
+                elasticsearchClient.indices().delete(d -> d.index("vec-test-64"));
+                elasticsearchClient.indices().create(c -> c.index("vec-test-64").withJson(new StringReader("{\n" +
+                                                                                                        "    \"mappings\": {\n" +
+                                                                                                        "      \"properties\": {\n" +
+                                                                                                        "        \"text\": {\n" +
+                                                                                                        "          \"type\": \"text\",\n" +
+                                                                                                        "          \"fields\": {\n" +
+                                                                                                        "            \"keyword\": {\n" +
+                                                                                                        "              \"type\": \"keyword\",\n" +
+                                                                                                        "              \"ignore_above\": 256\n" +
+                                                                                                        "            }\n" +
+                                                                                                        "          }\n" +
+                                                                                                        "        },\n" +
+                                                                                                        "        \"emb\": {\n" +
+                                                                                                        "          \"type\": \"dense_vector\",\n" +
+                                                                                                        "          \"dims\": 1536,\n" +
+                                                                                                        "          \"index\": true,\n" +
+                                                                                                        "          \"similarity\": \"cosine\",\n" +
+                                                                                                        "          \"index_options\": {\n" +
+                                                                                                        "            \"type\": \"flat\"\n" +
+                                                                                                        "          }\n" +
+                                                                                                        "        }\n" +
+                                                                                                        "      }\n" +
+                                                                                                        "    }\n" +
+                                                                                                        "}")));
             }
 
             Instant start = Instant.now();
@@ -85,16 +110,16 @@ public class MainCommonBenchmark64 {
             for (ElasticsearchDoc doc : docs) {
 
                 Elasticsearch64Doc doc64 = new Elasticsearch64Doc(doc.docid(), doc.title(), doc.text(),
-                    convertToBase64Bytes(doc.emb().toArray(new Float[0])));
+                    convertToBase64Bytes(doc.emb()));
 
                 BulkOperation op = BulkOperation.of(o -> o
                     .index(idx -> idx
-                        .index("vec-test")
+                        .index("vec-test-64")
                         .document(doc64)
                     )
                 );
                 bulkOperations.add(op);
-                if (bulkOperations.size() >= 100) { // TODO choose chunk size
+                if (bulkOperations.size() >= 500) { // TODO choose chunk size
                     List<BulkOperation> finalBulkOperations = bulkOperations;
                     BulkRequest request = BulkRequest.of(b -> b.operations(finalBulkOperations));
                     elasticsearchClient.bulk(request);
@@ -105,6 +130,8 @@ public class MainCommonBenchmark64 {
             Instant end = Instant.now();
 
             System.out.println("Finished in: " + Duration.between(start, end).toMillis() + "\n");
+            double docsPerSec = 1000*1000 / Duration.between(start, end).toMillis();
+            System.out.println("Docs per sec: " + docsPerSec + "\n");
 
 
         } catch (IOException e) {
