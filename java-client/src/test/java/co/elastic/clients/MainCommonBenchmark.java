@@ -57,10 +57,14 @@ public class MainCommonBenchmark {
 
         // 9.3 local
         String serverUrl = "http://localhost:9200";
-        String APIkey = ""; // TODO Apikey
+        String APIkey = "eUUzS09ab0JaV2ZBNnk4RS1kMU86YlhuZnh4TWZvc091ZzJISkN2NzF2Zw=="; // TODO Apikey
 
         try (ElasticsearchClient elasticsearchClient =
                  ElasticsearchClient.of(e -> e.host(serverUrl).apiKey(APIkey))) {
+
+            if(elasticsearchClient.indices().exists(e -> e.index("vec-test")).value()){
+                elasticsearchClient.indices().delete(d -> d.index("vec-test"));
+            }
 
             Instant start = Instant.now();
             System.out.println("Starting bulk operations... \n");
