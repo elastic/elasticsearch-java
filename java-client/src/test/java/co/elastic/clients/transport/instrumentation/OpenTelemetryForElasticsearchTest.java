@@ -108,6 +108,7 @@ public class OpenTelemetryForElasticsearchTest {
     public static final String SERVER_PORT = "server.port";
     // has been renamed in 1.21 from http.method - see https://github.com/open-telemetry/semantic-conventions/blob/main/schemas/1.21.0
     public static final String HTTP_REQUEST_METHOD = "http.request.method";
+    public static final String HTTP_RESPONSE_STATUS_CODE = "http.response.status_code";
     private static HttpServer httpServer;
     private static MockSpanExporter spanExporter;
     private static OpenTelemetry openTelemetry;
@@ -196,6 +197,7 @@ public class OpenTelemetryForElasticsearchTest {
         String url = "http://" + httpServer.getAddress().getHostString() + ":" + httpServer.getAddress().getPort() +
             "/" + INDEX + "/_doc/" + DOC_ID + "?refresh=true";
         Assertions.assertEquals(url, span.getAttributes().get(AttributeKey.stringKey(URL_FULL)));
+        Assertions.assertEquals(200, span.getAttributes().get(AttributeKey.longKey(HTTP_RESPONSE_STATUS_CODE)));
         Assertions.assertEquals(httpServer.getAddress().getHostString(), span.getAttributes().get(AttributeKey.stringKey(SERVER_ADDRESS)));
         Assertions.assertEquals(httpServer.getAddress().getPort(), span.getAttributes().get(AttributeKey.longKey(SERVER_PORT)));
 
