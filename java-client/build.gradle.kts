@@ -177,7 +177,7 @@ signing {
 dependencies {
     val elasticsearchVersion = "9.1.0"
     val jacksonVersion = "2.18.3"
-    val openTelemetryVersion = "1.32.0"
+    val openTelemetryVersion = "1.37.0"
 
     // Apache 2.0
     // https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html
