@@ -204,7 +204,6 @@ public class ForcemergeRequest extends RequestBase {
 
 	/**
 	 * Specify whether the index should be flushed after performing the operation
-	 * (default: true)
 	 * <p>
 	 * API name: {@code flush}
 	 */
@@ -235,7 +234,7 @@ public class ForcemergeRequest extends RequestBase {
 	}
 
 	/**
-	 * The number of segments the index should be merged into (default: dynamic)
+	 * The number of segments the index should be merged into (defayult: dynamic)
 	 * <p>
 	 * API name: {@code max_num_segments}
 	 */
@@ -255,7 +254,7 @@ public class ForcemergeRequest extends RequestBase {
 	}
 
 	/**
-	 * Should the request wait until the force merge is completed.
+	 * Should the request wait until the force merge is completed
 	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
@@ -337,7 +336,6 @@ public class ForcemergeRequest extends RequestBase {
 
 		/**
 		 * Specify whether the index should be flushed after performing the operation
-		 * (default: true)
 		 * <p>
 		 * API name: {@code flush}
 		 */
@@ -384,7 +382,7 @@ public class ForcemergeRequest extends RequestBase {
 		}
 
 		/**
-		 * The number of segments the index should be merged into (default: dynamic)
+		 * The number of segments the index should be merged into (defayult: dynamic)
 		 * <p>
 		 * API name: {@code max_num_segments}
 		 */
@@ -404,7 +402,7 @@ public class ForcemergeRequest extends RequestBase {
 		}
 
 		/**
-		 * Should the request wait until the force merge is completed.
+		 * Should the request wait until the force merge is completed
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */

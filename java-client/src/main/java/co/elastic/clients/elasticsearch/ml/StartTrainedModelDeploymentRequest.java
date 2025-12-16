@@ -181,7 +181,7 @@ public class StartTrainedModelDeploymentRequest extends RequestBase implements J
 	}
 
 	/**
-	 * The deployment priority.
+	 * The deployment priority
 	 * <p>
 	 * API name: {@code priority}
 	 */
@@ -369,7 +369,7 @@ public class StartTrainedModelDeploymentRequest extends RequestBase implements J
 		}
 
 		/**
-		 * The deployment priority.
+		 * The deployment priority
 		 * <p>
 		 * API name: {@code priority}
 		 */

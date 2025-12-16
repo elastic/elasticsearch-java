@@ -98,8 +98,8 @@ public class NodesUsageRequest extends RequestBase {
 
 	/**
 	 * A comma-separated list of node IDs or names to limit the returned
-	 * information; use <code>_local</code> to return information from the node
-	 * you're connecting to, leave empty to get information from all nodes
+	 * information. Use <code>_local</code> to return information from the node
+	 * you're connecting to, leave empty to get information from all nodes.
 	 * <p>
 	 * API name: {@code node_id}
 	 */
@@ -164,8 +164,8 @@ public class NodesUsageRequest extends RequestBase {
 
 		/**
 		 * A comma-separated list of node IDs or names to limit the returned
-		 * information; use <code>_local</code> to return information from the node
-		 * you're connecting to, leave empty to get information from all nodes
+		 * information. Use <code>_local</code> to return information from the node
+		 * you're connecting to, leave empty to get information from all nodes.
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>
@@ -178,8 +178,8 @@ public class NodesUsageRequest extends RequestBase {
 
 		/**
 		 * A comma-separated list of node IDs or names to limit the returned
-		 * information; use <code>_local</code> to return information from the node
-		 * you're connecting to, leave empty to get information from all nodes
+		 * information. Use <code>_local</code> to return information from the node
+		 * you're connecting to, leave empty to get information from all nodes.
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>

@@ -905,6 +905,45 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 		return deleteDataStream(fn.apply(new DeleteDataStreamRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: indices.delete_data_stream_options
+
+	/**
+	 * Delete data stream options.
+	 * <p>
+	 * Removes the data stream options from a data stream.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-delete-data-stream-options">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DeleteDataStreamOptionsResponse deleteDataStreamOptions(DeleteDataStreamOptionsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteDataStreamOptionsRequest, DeleteDataStreamOptionsResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteDataStreamOptionsRequest, DeleteDataStreamOptionsResponse, ErrorResponse>) DeleteDataStreamOptionsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Delete data stream options.
+	 * <p>
+	 * Removes the data stream options from a data stream.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteDataStreamOptionsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-delete-data-stream-options">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DeleteDataStreamOptionsResponse deleteDataStreamOptions(
+			Function<DeleteDataStreamOptionsRequest.Builder, ObjectBuilder<DeleteDataStreamOptionsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteDataStreamOptions(fn.apply(new DeleteDataStreamOptionsRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.delete_index_template
 
 	/**
@@ -1901,6 +1940,45 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 				this.transportOptions);
 	}
 
+	// ----- Endpoint: indices.get_data_stream_options
+
+	/**
+	 * Get data stream options.
+	 * <p>
+	 * Get the data stream options configuration of one or more data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-get-data-stream-options">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetDataStreamOptionsResponse getDataStreamOptions(GetDataStreamOptionsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetDataStreamOptionsRequest, GetDataStreamOptionsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDataStreamOptionsRequest, GetDataStreamOptionsResponse, ErrorResponse>) GetDataStreamOptionsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get data stream options.
+	 * <p>
+	 * Get the data stream options configuration of one or more data streams.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetDataStreamOptionsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-get-data-stream-options">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetDataStreamOptionsResponse getDataStreamOptions(
+			Function<GetDataStreamOptionsRequest.Builder, ObjectBuilder<GetDataStreamOptionsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getDataStreamOptions(fn.apply(new GetDataStreamOptionsRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.get_data_stream_settings
 
 	/**
@@ -2612,6 +2690,45 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 			Function<PutDataLifecycleRequest.Builder, ObjectBuilder<PutDataLifecycleRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return putDataLifecycle(fn.apply(new PutDataLifecycleRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.put_data_stream_options
+
+	/**
+	 * Update data stream options.
+	 * <p>
+	 * Update the data stream options of the specified data streams.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-update-data-stream-options">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutDataStreamOptionsResponse putDataStreamOptions(PutDataStreamOptionsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutDataStreamOptionsRequest, PutDataStreamOptionsResponse, ErrorResponse> endpoint = (JsonEndpoint<PutDataStreamOptionsRequest, PutDataStreamOptionsResponse, ErrorResponse>) PutDataStreamOptionsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Update data stream options.
+	 * <p>
+	 * Update the data stream options of the specified data streams.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutDataStreamOptionsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v8/operation/operation-indices-update-data-stream-options">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutDataStreamOptionsResponse putDataStreamOptions(
+			Function<PutDataStreamOptionsRequest.Builder, ObjectBuilder<PutDataStreamOptionsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putDataStreamOptions(fn.apply(new PutDataStreamOptionsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.put_data_stream_settings

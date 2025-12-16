@@ -132,8 +132,8 @@ public class AzureAiStudioServiceSettings implements JsonpSerializable {
 	 * Required - The model provider for your deployment. Note that some providers
 	 * may support only certain task types. Supported providers include:
 	 * <ul>
-	 * <li><code>cohere</code> - available for <code>text_embedding</code> and
-	 * <code>completion</code> task types</li>
+	 * <li><code>cohere</code> - available for <code>text_embedding</code>,
+	 * <code>rerank</code> and <code>completion</code> task types</li>
 	 * <li><code>databricks</code> - available for <code>completion</code> task type
 	 * only</li>
 	 * <li><code>meta</code> - available for <code>completion</code> task type
@@ -268,8 +268,8 @@ public class AzureAiStudioServiceSettings implements JsonpSerializable {
 		 * Required - The model provider for your deployment. Note that some providers
 		 * may support only certain task types. Supported providers include:
 		 * <ul>
-		 * <li><code>cohere</code> - available for <code>text_embedding</code> and
-		 * <code>completion</code> task types</li>
+		 * <li><code>cohere</code> - available for <code>text_embedding</code>,
+		 * <code>rerank</code> and <code>completion</code> task types</li>
 		 * <li><code>databricks</code> - available for <code>completion</code> task type
 		 * only</li>
 		 * <li><code>meta</code> - available for <code>completion</code> task type

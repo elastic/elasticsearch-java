@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -33,9 +34,11 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -53,48 +56,50 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: indices.promote_data_stream.Request
+// typedef: indices.get_data_stream_options.Request
 
 /**
- * Promote a data stream. Promote a data stream from a replicated data stream
- * managed by cross-cluster replication (CCR) to a regular data stream.
+ * Get data stream options.
  * <p>
- * With CCR auto following, a data stream from a remote cluster can be
- * replicated to the local cluster. These data streams can't be rolled over in
- * the local cluster. These replicated data streams roll over only if the
- * upstream data stream rolls over. In the event that the remote cluster is no
- * longer available, the data stream in the local cluster can be promoted to a
- * regular data stream, which allows these data streams to be rolled over in the
- * local cluster.
- * <p>
- * NOTE: When promoting a data stream, ensure the local cluster has a data
- * stream enabled index template that matches the data stream. If this is
- * missing, the data stream will not be able to roll over until a matching index
- * template is created. This will affect the lifecycle management of the data
- * stream and interfere with the data stream size and retention.
+ * Get the data stream options configuration of one or more data streams.
  * 
  * @see <a href=
- *      "../doc-files/api-spec.html#indices.promote_data_stream.Request">API
+ *      "../doc-files/api-spec.html#indices.get_data_stream_options.Request">API
  *      specification</a>
  */
 
-public class PromoteDataStreamRequest extends RequestBase {
+public class GetDataStreamOptionsRequest extends RequestBase {
+	private final List<ExpandWildcard> expandWildcards;
+
 	@Nullable
 	private final Time masterTimeout;
 
-	private final String name;
+	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private PromoteDataStreamRequest(Builder builder) {
+	private GetDataStreamOptionsRequest(Builder builder) {
 
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 
 	}
 
-	public static PromoteDataStreamRequest of(Function<Builder, ObjectBuilder<PromoteDataStreamRequest>> fn) {
+	public static GetDataStreamOptionsRequest of(Function<Builder, ObjectBuilder<GetDataStreamOptionsRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Type of data stream that wildcard patterns can match. Supports
+	 * comma-separated values, such as <code>open,hidden</code>. Valid values are:
+	 * <code>all</code>, <code>open</code>, <code>closed</code>,
+	 * <code>hidden</code>, <code>none</code>.
+	 * <p>
+	 * API name: {@code expand_wildcards}
+	 */
+	public final List<ExpandWildcard> expandWildcards() {
+		return this.expandWildcards;
 	}
 
 	/**
@@ -109,27 +114,62 @@ public class PromoteDataStreamRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the data stream to promote
+	 * Required - Comma-separated list of data streams to limit the request.
+	 * Supports wildcards (<code>*</code>). To target all data streams, omit this
+	 * parameter or use <code>*</code> or <code>_all</code>.
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public final String name() {
+	public final List<String> name() {
 		return this.name;
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link PromoteDataStreamRequest}.
+	 * Builder for {@link GetDataStreamOptionsRequest}.
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<PromoteDataStreamRequest> {
+				ObjectBuilder<GetDataStreamOptionsRequest> {
+		@Nullable
+		private List<ExpandWildcard> expandWildcards;
+
 		@Nullable
 		private Time masterTimeout;
 
-		private String name;
+		private List<String> name;
+
+		/**
+		 * Type of data stream that wildcard patterns can match. Supports
+		 * comma-separated values, such as <code>open,hidden</code>. Valid values are:
+		 * <code>all</code>, <code>open</code>, <code>closed</code>,
+		 * <code>hidden</code>, <code>none</code>.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
+			return this;
+		}
+
+		/**
+		 * Type of data stream that wildcard patterns can match. Supports
+		 * comma-separated values, such as <code>open,hidden</code>. Valid values are:
+		 * <code>all</code>, <code>open</code>, <code>closed</code>,
+		 * <code>hidden</code>, <code>none</code>.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+			return this;
+		}
 
 		/**
 		 * Period to wait for a connection to the master node. If no response is
@@ -153,12 +193,30 @@ public class PromoteDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The name of the data stream to promote
+		 * Required - Comma-separated list of data streams to limit the request.
+		 * Supports wildcards (<code>*</code>). To target all data streams, omit this
+		 * parameter or use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code name}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 */
-		public final Builder name(String value) {
-			this.name = value;
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
+			return this;
+		}
+
+		/**
+		 * Required - Comma-separated list of data streams to limit the request.
+		 * Supports wildcards (<code>*</code>). To target all data streams, omit this
+		 * parameter or use <code>*</code> or <code>_all</code>.
+		 * <p>
+		 * API name: {@code name}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
+		 */
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
 			return this;
 		}
 
@@ -168,29 +226,29 @@ public class PromoteDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * Builds a {@link PromoteDataStreamRequest}.
+		 * Builds a {@link GetDataStreamOptionsRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public PromoteDataStreamRequest build() {
+		public GetDataStreamOptionsRequest build() {
 			_checkSingleUse();
 
-			return new PromoteDataStreamRequest(this);
+			return new GetDataStreamOptionsRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code indices.promote_data_stream}".
+	 * Endpoint "{@code indices.get_data_stream_options}".
 	 */
-	public static final Endpoint<PromoteDataStreamRequest, PromoteDataStreamResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/indices.promote_data_stream",
+	public static final Endpoint<GetDataStreamOptionsRequest, GetDataStreamOptionsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.get_data_stream_options",
 
 			// Request method
 			request -> {
-				return "POST";
+				return "GET";
 
 			},
 
@@ -205,9 +263,9 @@ public class PromoteDataStreamRequest extends RequestBase {
 				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_data_stream");
-					buf.append("/_promote");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name, buf);
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					buf.append("/_options");
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -224,7 +282,7 @@ public class PromoteDataStreamRequest extends RequestBase {
 				propsSet |= _name;
 
 				if (propsSet == (_name)) {
-					params.put("name", request.name);
+					params.put("name", request.name.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -235,7 +293,11 @@ public class PromoteDataStreamRequest extends RequestBase {
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, PromoteDataStreamResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, GetDataStreamOptionsResponse._DESERIALIZER);
 }

@@ -27,12 +27,10 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -52,37 +50,34 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: indices._types.DataStreamLifecycle
+// typedef: indices._types.FailureStoreLifecycle
 
 /**
- * Data stream lifecycle denotes that a data stream is managed by the data
- * stream lifecycle and contains the configuration.
+ * The failure store lifecycle configures the data stream lifecycle
+ * configuration for failure indices.
  * 
  * @see <a href=
- *      "../doc-files/api-spec.html#indices._types.DataStreamLifecycle">API
+ *      "../doc-files/api-spec.html#indices._types.FailureStoreLifecycle">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class DataStreamLifecycle implements JsonpSerializable {
+public class FailureStoreLifecycle implements JsonpSerializable {
 	@Nullable
 	private final Time dataRetention;
-
-	private final List<DownsamplingRound> downsampling;
 
 	@Nullable
 	private final Boolean enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected DataStreamLifecycle(AbstractBuilder<?> builder) {
+	private FailureStoreLifecycle(Builder builder) {
 
 		this.dataRetention = builder.dataRetention;
-		this.downsampling = ApiTypeHelper.unmodifiable(builder.downsampling);
 		this.enabled = builder.enabled;
 
 	}
 
-	public static DataStreamLifecycle dataStreamLifecycleOf(Function<Builder, ObjectBuilder<DataStreamLifecycle>> fn) {
+	public static FailureStoreLifecycle of(Function<Builder, ObjectBuilder<FailureStoreLifecycle>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -97,16 +92,6 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	@Nullable
 	public final Time dataRetention() {
 		return this.dataRetention;
-	}
-
-	/**
-	 * The list of downsampling rounds to execute as part of this downsampling
-	 * configuration
-	 * <p>
-	 * API name: {@code downsampling}
-	 */
-	public final List<DownsamplingRound> downsampling() {
-		return this.downsampling;
 	}
 
 	/**
@@ -138,16 +123,6 @@ public class DataStreamLifecycle implements JsonpSerializable {
 			this.dataRetention.serialize(generator, mapper);
 
 		}
-		if (ApiTypeHelper.isDefined(this.downsampling)) {
-			generator.writeKey("downsampling");
-			generator.writeStartArray();
-			for (DownsamplingRound item0 : this.downsampling) {
-				item0.serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
 		if (this.enabled != null) {
 			generator.writeKey("enabled");
 			generator.write(this.enabled);
@@ -164,38 +139,14 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DataStreamLifecycle}.
+	 * Builder for {@link FailureStoreLifecycle}.
 	 */
 
-	public static class Builder extends DataStreamLifecycle.AbstractBuilder<Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<DataStreamLifecycle> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
-
-		/**
-		 * Builds a {@link DataStreamLifecycle}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public DataStreamLifecycle build() {
-			_checkSingleUse();
-
-			return new DataStreamLifecycle(this);
-		}
-	}
-
-	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				WithJsonObjectBuilderBase<BuilderT> {
+				ObjectBuilder<FailureStoreLifecycle> {
 		@Nullable
 		private Time dataRetention;
-
-		@Nullable
-		private List<DownsamplingRound> downsampling;
 
 		@Nullable
 		private Boolean enabled;
@@ -208,9 +159,9 @@ public class DataStreamLifecycle implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data_retention}
 		 */
-		public final BuilderT dataRetention(@Nullable Time value) {
+		public final Builder dataRetention(@Nullable Time value) {
 			this.dataRetention = value;
-			return self();
+			return this;
 		}
 
 		/**
@@ -221,46 +172,8 @@ public class DataStreamLifecycle implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code data_retention}
 		 */
-		public final BuilderT dataRetention(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+		public final Builder dataRetention(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.dataRetention(fn.apply(new Time.Builder()).build());
-		}
-
-		/**
-		 * The list of downsampling rounds to execute as part of this downsampling
-		 * configuration
-		 * <p>
-		 * API name: {@code downsampling}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>downsampling</code>.
-		 */
-		public final BuilderT downsampling(List<DownsamplingRound> list) {
-			this.downsampling = _listAddAll(this.downsampling, list);
-			return self();
-		}
-
-		/**
-		 * The list of downsampling rounds to execute as part of this downsampling
-		 * configuration
-		 * <p>
-		 * API name: {@code downsampling}
-		 * <p>
-		 * Adds one or more values to <code>downsampling</code>.
-		 */
-		public final BuilderT downsampling(DownsamplingRound value, DownsamplingRound... values) {
-			this.downsampling = _listAdd(this.downsampling, value, values);
-			return self();
-		}
-
-		/**
-		 * The list of downsampling rounds to execute as part of this downsampling
-		 * configuration
-		 * <p>
-		 * API name: {@code downsampling}
-		 * <p>
-		 * Adds a value to <code>downsampling</code> using a builder lambda.
-		 */
-		public final BuilderT downsampling(Function<DownsamplingRound.Builder, ObjectBuilder<DownsamplingRound>> fn) {
-			return downsampling(fn.apply(new DownsamplingRound.Builder()).build());
 		}
 
 		/**
@@ -271,30 +184,41 @@ public class DataStreamLifecycle implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code enabled}
 		 */
-		public final BuilderT enabled(@Nullable Boolean value) {
+		public final Builder enabled(@Nullable Boolean value) {
 			this.enabled = value;
-			return self();
+			return this;
 		}
 
-		protected abstract BuilderT self();
+		@Override
+		protected Builder self() {
+			return this;
+		}
 
+		/**
+		 * Builds a {@link FailureStoreLifecycle}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public FailureStoreLifecycle build() {
+			_checkSingleUse();
+
+			return new FailureStoreLifecycle(this);
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link DataStreamLifecycle}
+	 * Json deserializer for {@link FailureStoreLifecycle}
 	 */
-	public static final JsonpDeserializer<DataStreamLifecycle> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataStreamLifecycle::setupDataStreamLifecycleDeserializer);
+	public static final JsonpDeserializer<FailureStoreLifecycle> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FailureStoreLifecycle::setupFailureStoreLifecycleDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDataStreamLifecycleDeserializer(
-			ObjectDeserializer<BuilderT> op) {
+	protected static void setupFailureStoreLifecycleDeserializer(ObjectDeserializer<FailureStoreLifecycle.Builder> op) {
 
-		op.add(AbstractBuilder::dataRetention, Time._DESERIALIZER, "data_retention");
-		op.add(AbstractBuilder::downsampling, JsonpDeserializer.arrayDeserializer(DownsamplingRound._DESERIALIZER),
-				"downsampling");
-		op.add(AbstractBuilder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(Builder::dataRetention, Time._DESERIALIZER, "data_retention");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
 	}
 

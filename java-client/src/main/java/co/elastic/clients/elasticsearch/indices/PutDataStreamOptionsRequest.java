@@ -25,6 +25,8 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -56,19 +58,23 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: indices.delete_data_lifecycle.Request
+// typedef: indices.put_data_stream_options.Request
 
 /**
- * Delete data stream lifecycles. Removes the data stream lifecycle from a data
- * stream, rendering it not managed by the data stream lifecycle.
+ * Update data stream options.
+ * <p>
+ * Update the data stream options of the specified data streams.
  * 
  * @see <a href=
- *      "../doc-files/api-spec.html#indices.delete_data_lifecycle.Request">API
+ *      "../doc-files/api-spec.html#indices.put_data_stream_options.Request">API
  *      specification</a>
  */
-
-public class DeleteDataLifecycleRequest extends RequestBase {
+@JsonpDeserializable
+public class PutDataStreamOptionsRequest extends RequestBase implements JsonpSerializable {
 	private final List<ExpandWildcard> expandWildcards;
+
+	@Nullable
+	private final DataStreamFailureStore failureStore;
 
 	@Nullable
 	private final Time masterTimeout;
@@ -80,22 +86,25 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	private DeleteDataLifecycleRequest(Builder builder) {
+	private PutDataStreamOptionsRequest(Builder builder) {
 
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.failureStore = builder.failureStore;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 		this.timeout = builder.timeout;
 
 	}
 
-	public static DeleteDataLifecycleRequest of(Function<Builder, ObjectBuilder<DeleteDataLifecycleRequest>> fn) {
+	public static PutDataStreamOptionsRequest of(Function<Builder, ObjectBuilder<PutDataStreamOptionsRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Whether wildcard expressions should get expanded to open or closed indices
-	 * (default: open)
+	 * Type of data stream that wildcard patterns can match. Supports
+	 * comma-separated values, such as <code>open,hidden</code>. Valid values are:
+	 * <code>all</code>, <code>hidden</code>, <code>open</code>,
+	 * <code>closed</code>, <code>none</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -104,7 +113,19 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * The period to wait for a connection to the master node.
+	 * If defined, it will update the failure store configuration of every data
+	 * stream resolved by the name expression.
+	 * <p>
+	 * API name: {@code failure_store}
+	 */
+	@Nullable
+	public final DataStreamFailureStore failureStore() {
+		return this.failureStore;
+	}
+
+	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -114,8 +135,9 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A comma-separated list of data streams of which the data stream
-	 * lifecycle will be deleted. Use <code>*</code> to get all data streams
+	 * Required - Comma-separated list of data streams used to limit the request.
+	 * Supports wildcards (<code>*</code>). To target all data streams use
+	 * <code>*</code> or <code>_all</code>.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -124,7 +146,8 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * The period to wait for a response.
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -133,17 +156,39 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		return this.timeout;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.failureStore != null) {
+			generator.writeKey("failure_store");
+			this.failureStore.serialize(generator, mapper);
+
+		}
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DeleteDataLifecycleRequest}.
+	 * Builder for {@link PutDataStreamOptionsRequest}.
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<DeleteDataLifecycleRequest> {
+				ObjectBuilder<PutDataStreamOptionsRequest> {
 		@Nullable
 		private List<ExpandWildcard> expandWildcards;
+
+		@Nullable
+		private DataStreamFailureStore failureStore;
 
 		@Nullable
 		private Time masterTimeout;
@@ -154,8 +199,10 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
+		 * Type of data stream that wildcard patterns can match. Supports
+		 * comma-separated values, such as <code>open,hidden</code>. Valid values are:
+		 * <code>all</code>, <code>hidden</code>, <code>open</code>,
+		 * <code>closed</code>, <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -167,8 +214,10 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
+		 * Type of data stream that wildcard patterns can match. Supports
+		 * comma-separated values, such as <code>open,hidden</code>. Valid values are:
+		 * <code>all</code>, <code>hidden</code>, <code>open</code>,
+		 * <code>closed</code>, <code>none</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -180,7 +229,30 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * The period to wait for a connection to the master node.
+		 * If defined, it will update the failure store configuration of every data
+		 * stream resolved by the name expression.
+		 * <p>
+		 * API name: {@code failure_store}
+		 */
+		public final Builder failureStore(@Nullable DataStreamFailureStore value) {
+			this.failureStore = value;
+			return this;
+		}
+
+		/**
+		 * If defined, it will update the failure store configuration of every data
+		 * stream resolved by the name expression.
+		 * <p>
+		 * API name: {@code failure_store}
+		 */
+		public final Builder failureStore(
+				Function<DataStreamFailureStore.Builder, ObjectBuilder<DataStreamFailureStore>> fn) {
+			return this.failureStore(fn.apply(new DataStreamFailureStore.Builder()).build());
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -190,7 +262,8 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * The period to wait for a connection to the master node.
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -199,8 +272,9 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of data streams of which the data stream
-		 * lifecycle will be deleted. Use <code>*</code> to get all data streams
+		 * Required - Comma-separated list of data streams used to limit the request.
+		 * Supports wildcards (<code>*</code>). To target all data streams use
+		 * <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -212,8 +286,9 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A comma-separated list of data streams of which the data stream
-		 * lifecycle will be deleted. Use <code>*</code> to get all data streams
+		 * Required - Comma-separated list of data streams used to limit the request.
+		 * Supports wildcards (<code>*</code>). To target all data streams use
+		 * <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -225,7 +300,8 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * The period to wait for a response.
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -235,7 +311,8 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * The period to wait for a response.
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -249,29 +326,44 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Builds a {@link DeleteDataLifecycleRequest}.
+		 * Builds a {@link PutDataStreamOptionsRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DeleteDataLifecycleRequest build() {
+		public PutDataStreamOptionsRequest build() {
 			_checkSingleUse();
 
-			return new DeleteDataLifecycleRequest(this);
+			return new PutDataStreamOptionsRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code indices.delete_data_lifecycle}".
+	 * Json deserializer for {@link PutDataStreamOptionsRequest}
 	 */
-	public static final Endpoint<DeleteDataLifecycleRequest, DeleteDataLifecycleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/indices.delete_data_lifecycle",
+	public static final JsonpDeserializer<PutDataStreamOptionsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutDataStreamOptionsRequest::setupPutDataStreamOptionsRequestDeserializer);
+
+	protected static void setupPutDataStreamOptionsRequestDeserializer(
+			ObjectDeserializer<PutDataStreamOptionsRequest.Builder> op) {
+
+		op.add(Builder::failureStore, DataStreamFailureStore._DESERIALIZER, "failure_store");
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code indices.put_data_stream_options}".
+	 */
+	public static final Endpoint<PutDataStreamOptionsRequest, PutDataStreamOptionsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.put_data_stream_options",
 
 			// Request method
 			request -> {
-				return "DELETE";
+				return "PUT";
 
 			},
 
@@ -288,7 +380,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 					buf.append("/_data_stream");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/_lifecycle");
+					buf.append("/_options");
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -325,5 +417,5 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteDataLifecycleResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, PutDataStreamOptionsResponse._DESERIALIZER);
 }

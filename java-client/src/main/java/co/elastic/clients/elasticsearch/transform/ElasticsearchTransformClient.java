@@ -102,6 +102,20 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 		return deleteTransform(fn.apply(new DeleteTransformRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: transform.get_node_stats
+
+	/**
+	 * Get node stats.
+	 * <p>
+	 * Get per-node information about transform usage.
+	 * 
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+	public GetNodeStatsResponse getNodeStats() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(GetNodeStatsRequest._INSTANCE, GetNodeStatsRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
 	// ----- Endpoint: transform.get_transform
 
 	/**

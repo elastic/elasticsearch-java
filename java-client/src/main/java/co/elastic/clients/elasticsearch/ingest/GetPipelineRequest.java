@@ -113,7 +113,7 @@ public class GetPipelineRequest extends RequestBase {
 	}
 
 	/**
-	 * Return pipelines without their definitions (default: false)
+	 * Return pipelines without their definitions
 	 * <p>
 	 * API name: {@code summary}
 	 */
@@ -174,7 +174,7 @@ public class GetPipelineRequest extends RequestBase {
 		}
 
 		/**
-		 * Return pipelines without their definitions (default: false)
+		 * Return pipelines without their definitions
 		 * <p>
 		 * API name: {@code summary}
 		 */

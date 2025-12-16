@@ -66,15 +66,15 @@ import javax.annotation.Nullable;
  * The chat completion inference API enables real-time responses for chat
  * completion tasks by delivering answers incrementally, reducing response times
  * during computation. It only works with the <code>chat_completion</code> task
- * type for <code>openai</code> and <code>elastic</code> inference services.
+ * type.
  * <p>
  * NOTE: The <code>chat_completion</code> task type is only available within the
  * _stream API and only supports streaming. The Chat completion inference API
  * and the Stream inference API differ in their response structure and
  * capabilities. The Chat completion inference API provides more comprehensive
- * customization options through more fields and function calling support. If
- * you use the <code>openai</code>, <code>hugging_face</code> or the
- * <code>elastic</code> service, use the Chat completion inference API.
+ * customization options through more fields and function calling support. To
+ * determine whether a given inference service supports this task type, please
+ * see the page for that service.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#inference.chat_completion_unified.Request">API

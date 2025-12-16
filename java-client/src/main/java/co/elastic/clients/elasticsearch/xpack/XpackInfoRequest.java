@@ -95,7 +95,7 @@ public class XpackInfoRequest extends RequestBase {
 	}
 
 	/**
-	 * If this param is used it must be set to true
+	 * If used, this otherwise ignored parameter must be set to true
 	 * <p>
 	 * API name: {@code accept_enterprise}
 	 * 
@@ -147,7 +147,7 @@ public class XpackInfoRequest extends RequestBase {
 		private Boolean human;
 
 		/**
-		 * If this param is used it must be set to true
+		 * If used, this otherwise ignored parameter must be set to true
 		 * <p>
 		 * API name: {@code accept_enterprise}
 		 * 

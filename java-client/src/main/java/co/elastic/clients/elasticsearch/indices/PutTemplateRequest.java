@@ -159,7 +159,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * User defined reason for creating/updating the index template
+	 * User defined reason for creating or updating the index template
 	 * <p>
 	 * API name: {@code cause}
 	 */
@@ -383,7 +383,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * User defined reason for creating/updating the index template
+		 * User defined reason for creating or updating the index template
 		 * <p>
 		 * API name: {@code cause}
 		 */

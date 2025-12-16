@@ -17,9 +17,10 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.slm;
+package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -55,42 +56,56 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: slm.get_lifecycle.Request
+// typedef: indices.delete_data_stream_options.Request
 
 /**
- * Get policy information. Get snapshot lifecycle policy definitions and
- * information about the latest snapshot attempts.
+ * Delete data stream options.
+ * <p>
+ * Removes the data stream options from a data stream.
  * 
- * @see <a href="../doc-files/api-spec.html#slm.get_lifecycle.Request">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#indices.delete_data_stream_options.Request">API
  *      specification</a>
  */
 
-public class GetLifecycleRequest extends RequestBase {
+public class DeleteDataStreamOptionsRequest extends RequestBase {
+	private final List<ExpandWildcard> expandWildcards;
+
 	@Nullable
 	private final Time masterTimeout;
 
-	private final List<String> policyId;
+	private final List<String> name;
 
 	@Nullable
 	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private GetLifecycleRequest(Builder builder) {
+	private DeleteDataStreamOptionsRequest(Builder builder) {
 
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.masterTimeout = builder.masterTimeout;
-		this.policyId = ApiTypeHelper.unmodifiable(builder.policyId);
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 		this.timeout = builder.timeout;
 
 	}
 
-	public static GetLifecycleRequest of(Function<Builder, ObjectBuilder<GetLifecycleRequest>> fn) {
+	public static DeleteDataStreamOptionsRequest of(
+			Function<Builder, ObjectBuilder<DeleteDataStreamOptionsRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * The period to wait for a connection to the master node. If no response is
-	 * received before the timeout expires, the request fails and returns an error.
+	 * Whether wildcard expressions should get expanded to open or closed indices
+	 * <p>
+	 * API name: {@code expand_wildcards}
+	 */
+	public final List<ExpandWildcard> expandWildcards() {
+		return this.expandWildcards;
+	}
+
+	/**
+	 * The period to wait for a connection to the master node.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -100,17 +115,17 @@ public class GetLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of snapshot lifecycle policy identifiers.
+	 * Required - A comma-separated list of data streams of which the data stream
+	 * options will be deleted. Use <code>*</code> to get all data streams
 	 * <p>
-	 * API name: {@code policy_id}
+	 * API name: {@code name}
 	 */
-	public final List<String> policyId() {
-		return this.policyId;
+	public final List<String> name() {
+		return this.name;
 	}
 
 	/**
-	 * The period to wait for a response. If no response is received before the
-	 * timeout expires, the request fails and returns an error.
+	 * The period to wait for a response.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -122,24 +137,49 @@ public class GetLifecycleRequest extends RequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetLifecycleRequest}.
+	 * Builder for {@link DeleteDataStreamOptionsRequest}.
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<GetLifecycleRequest> {
+				ObjectBuilder<DeleteDataStreamOptionsRequest> {
+		@Nullable
+		private List<ExpandWildcard> expandWildcards;
+
 		@Nullable
 		private Time masterTimeout;
 
-		@Nullable
-		private List<String> policyId;
+		private List<String> name;
 
 		@Nullable
 		private Time timeout;
 
 		/**
-		 * The period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
+		 * Whether wildcard expressions should get expanded to open or closed indices
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
+			return this;
+		}
+
+		/**
+		 * Whether wildcard expressions should get expanded to open or closed indices
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+			return this;
+		}
+
+		/**
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -149,8 +189,7 @@ public class GetLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * The period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -159,32 +198,33 @@ public class GetLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of snapshot lifecycle policy identifiers.
+		 * Required - A comma-separated list of data streams of which the data stream
+		 * options will be deleted. Use <code>*</code> to get all data streams
 		 * <p>
-		 * API name: {@code policy_id}
+		 * API name: {@code name}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>policyId</code>.
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 */
-		public final Builder policyId(List<String> list) {
-			this.policyId = _listAddAll(this.policyId, list);
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
 			return this;
 		}
 
 		/**
-		 * A comma-separated list of snapshot lifecycle policy identifiers.
+		 * Required - A comma-separated list of data streams of which the data stream
+		 * options will be deleted. Use <code>*</code> to get all data streams
 		 * <p>
-		 * API name: {@code policy_id}
+		 * API name: {@code name}
 		 * <p>
-		 * Adds one or more values to <code>policyId</code>.
+		 * Adds one or more values to <code>name</code>.
 		 */
-		public final Builder policyId(String value, String... values) {
-			this.policyId = _listAdd(this.policyId, value, values);
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
 			return this;
 		}
 
 		/**
-		 * The period to wait for a response. If no response is received before the
-		 * timeout expires, the request fails and returns an error.
+		 * The period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -194,8 +234,7 @@ public class GetLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * The period to wait for a response. If no response is received before the
-		 * timeout expires, the request fails and returns an error.
+		 * The period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -209,54 +248,46 @@ public class GetLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Builds a {@link GetLifecycleRequest}.
+		 * Builds a {@link DeleteDataStreamOptionsRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GetLifecycleRequest build() {
+		public DeleteDataStreamOptionsRequest build() {
 			_checkSingleUse();
 
-			return new GetLifecycleRequest(this);
+			return new DeleteDataStreamOptionsRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code slm.get_lifecycle}".
+	 * Endpoint "{@code indices.delete_data_stream_options}".
 	 */
-	public static final Endpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/slm.get_lifecycle",
+	public static final Endpoint<DeleteDataStreamOptionsRequest, DeleteDataStreamOptionsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.delete_data_stream_options",
 
 			// Request method
 			request -> {
-				return "GET";
+				return "DELETE";
 
 			},
 
 			// Request path
 			request -> {
-				final int _policyId = 1 << 0;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
-				if (ApiTypeHelper.isDefined(request.policyId()))
-					propsSet |= _policyId;
+				propsSet |= _name;
 
-				if (propsSet == (_policyId)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
-					buf.append("/_slm");
-					buf.append("/policy");
+					buf.append("/_data_stream");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.policyId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
-					return buf.toString();
-				}
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_slm");
-					buf.append("/policy");
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					buf.append("/_options");
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -266,17 +297,14 @@ public class GetLifecycleRequest extends RequestBase {
 			// Path parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				final int _policyId = 1 << 0;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
-				if (ApiTypeHelper.isDefined(request.policyId()))
-					propsSet |= _policyId;
+				propsSet |= _name;
 
-				if (propsSet == (_policyId)) {
-					params.put("policyId", request.policyId.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
-				if (propsSet == 0) {
+				if (propsSet == (_name)) {
+					params.put("name", request.name.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -287,10 +315,14 @@ public class GetLifecycleRequest extends RequestBase {
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, GetLifecycleResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteDataStreamOptionsResponse._DESERIALIZER);
 }

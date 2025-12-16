@@ -112,7 +112,7 @@ public class GetComponentTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Return all default configurations for the component template (default: false)
+	 * Return all default configurations for the component template
 	 * <p>
 	 * API name: {@code include_defaults}
 	 */
@@ -206,7 +206,7 @@ public class GetComponentTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Return all default configurations for the component template (default: false)
+		 * Return all default configurations for the component template
 		 * <p>
 		 * API name: {@code include_defaults}
 		 */
