@@ -24,12 +24,13 @@ import co.elastic.clients.transport.rest5_client.low_level.Response;
 import co.elastic.clients.transport.rest5_client.low_level.ResponseException;
 import co.elastic.clients.transport.rest5_client.low_level.Rest5Client;
 import co.elastic.clients.transport.rest5_client.low_level.RestClientTestCase;
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonGenerator;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
+import jakarta.json.Json;
+import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonGeneratorFactory;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.core5.http.HttpHost;
 import org.elasticsearch.mocksocket.MockHttpServer;
@@ -183,18 +184,18 @@ public class ElasticsearchNodesSnifferTests extends RestClientTestCase {
     private static SniffResponse buildSniffResponse(ElasticsearchNodesSniffer.Scheme scheme) throws IOException {
         int numNodes = randomIntBetween(1, 5);
         List<Node> nodes = new ArrayList<>(numNodes);
-        JsonFactory jsonFactory = new JsonFactory();
+        JsonGeneratorFactory jsonFactory = Json.createGeneratorFactory(Map.of());
         StringWriter writer = new StringWriter();
         JsonGenerator generator = jsonFactory.createGenerator(writer);
         generator.writeStartObject();
         if (getRandom().nextBoolean()) {
-            generator.writeStringField("cluster_name", "elasticsearch");
+            generator.write("cluster_name", "elasticsearch");
         }
         if (getRandom().nextBoolean()) {
-            generator.writeObjectFieldStart("bogus_object");
-            generator.writeEndObject();
+            generator.writeStartObject("bogus_object");
+            generator.writeEnd();
         }
-        generator.writeObjectFieldStart("nodes");
+        generator.writeStartObject("nodes");
         for (int i = 0; i < numNodes; i++) {
             String nodeId = randomAsciiLettersOfLengthBetween(5, 10);
             String host = "host" + i;
@@ -256,91 +257,96 @@ public class ElasticsearchNodesSnifferTests extends RestClientTestCase {
                 attributes
             );
 
-            generator.writeObjectFieldStart(nodeId);
+            generator.writeStartObject(nodeId);
             if (getRandom().nextBoolean()) {
-                generator.writeObjectFieldStart("bogus_object");
-                generator.writeEndObject();
+                generator.writeStartObject("bogus_object");
+                generator.writeEnd();
             }
             if (getRandom().nextBoolean()) {
-                generator.writeArrayFieldStart("bogus_array");
+                generator.writeStartArray("bogus_array");
                 generator.writeStartObject();
-                generator.writeEndObject();
-                generator.writeEndArray();
+                generator.writeEnd();
+                generator.writeEnd();
             }
             boolean isHttpEnabled = rarely() == false;
             if (isHttpEnabled) {
                 nodes.add(node);
-                generator.writeObjectFieldStart("http");
-                generator.writeArrayFieldStart("bound_address");
+                generator.writeStartObject("http");
+                generator.writeStartArray("bound_address");
                 for (HttpHost bound : boundHosts) {
-                    generator.writeString(bound.toHostString());
+                    generator.write(bound.toHostString());
                 }
-                generator.writeEndArray();
+                generator.writeEnd();
                 if (getRandom().nextBoolean()) {
-                    generator.writeObjectFieldStart("bogus_object");
-                    generator.writeEndObject();
+                    generator.writeStartObject("bogus_object");
+                    generator.writeEnd();
                 }
-                generator.writeStringField("publish_address", publishHost.toHostString());
+                generator.write("publish_address", publishHost.toHostString());
                 if (getRandom().nextBoolean()) {
-                    generator.writeNumberField("max_content_length_in_bytes", 104857600);
+                    generator.write("max_content_length_in_bytes", 104857600);
                 }
-                generator.writeEndObject();
+                generator.writeEnd();
             }
 
             List<String> roles = Arrays.asList(
                 "master", "data", "ingest", "data_content", "data_hot", "data_warm", "data_cold", "data_frozen");
             Collections.shuffle(roles, getRandom());
-            generator.writeArrayFieldStart("roles");
+            generator.writeStartArray("roles");
             for (String role : roles) {
                 if ("master".equals(role) && node.getRoles().isMasterEligible()) {
-                    generator.writeString("master");
+                    generator.write("master");
                 }
                 if ("data".equals(role) && node.getRoles().hasDataRole()) {
-                    generator.writeString("data");
+                    generator.write("data");
                 }
                 if ("data_content".equals(role) && node.getRoles().hasDataContentRole()) {
-                    generator.writeString("data_content");
+                    generator.write("data_content");
                 }
                 if ("data_hot".equals(role) && node.getRoles().hasDataHotRole()) {
-                    generator.writeString("data_hot");
+                    generator.write("data_hot");
                 }
                 if ("data_warm".equals(role) && node.getRoles().hasDataWarmRole()) {
-                    generator.writeString("data_warm");
+                    generator.write("data_warm");
                 }
                 if ("data_cold".equals(role) && node.getRoles().hasDataColdRole()) {
-                    generator.writeString("data_cold");
+                    generator.write("data_cold");
                 }
                 if ("data_frozen".equals(role) && node.getRoles().hasDataFrozenRole()) {
-                    generator.writeString("data_frozen");
+                    generator.write("data_frozen");
                 }
                 if ("ingest".equals(role) && node.getRoles().isIngest()) {
-                    generator.writeString("ingest");
+                    generator.write("ingest");
                 }
             }
-            generator.writeEndArray();
+            generator.writeEnd();
 
-            generator.writeFieldName("version");
-            generator.writeString(node.getVersion());
-            generator.writeFieldName("name");
-            generator.writeString(node.getName());
+            generator.writeEnd();
+            generator.writeEnd();
+            generator.close();
+            writer.toString();
+
+            generator.write("version");
+            generator.write(node.getVersion());
+            generator.write("name");
+            generator.write(node.getName());
 
             if (numAttributes > 0) {
-                generator.writeObjectFieldStart("attributes");
+                generator.writeStartObject("attributes");
                 for (Map.Entry<String, List<String>> entry : attributes.entrySet()) {
                     if (entry.getValue().size() == 1) {
-                        generator.writeStringField(entry.getKey(), entry.getValue().get(0));
+                        generator.write(entry.getKey(), entry.getValue().get(0));
                     } else {
                         for (int v = 0; v < entry.getValue().size(); v++) {
-                            generator.writeStringField(entry.getKey() + "." + v, entry.getValue().get(v));
+                            generator.write(entry.getKey() + "." + v, entry.getValue().get(v));
                         }
                     }
                 }
-                generator.writeEndObject();
+                generator.writeEnd();
             }
-            generator.writeEndObject();
+            generator.writeEnd();
         }
-        generator.writeEndObject();
-        generator.writeEndObject();
+        generator.writeEnd();
+        generator.writeEnd();
         generator.close();
         return SniffResponse.buildResponse(writer.toString(), nodes);
     }

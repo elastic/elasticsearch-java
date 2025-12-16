@@ -19,10 +19,10 @@
 
 package co.elastic.clients.transport.rest5_client.low_level.sniffer;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonToken;
 
+import jakarta.json.Json;
+import jakarta.json.stream.JsonParser;
+import jakarta.json.stream.JsonParserFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hc.core5.http.HttpEntity;
@@ -63,7 +63,7 @@ public final class ElasticsearchNodesSniffer implements NodesSniffer {
     private final Rest5Client restClient;
     private final Request request;
     private final Scheme scheme;
-    private final JsonFactory jsonFactory = new JsonFactory();
+    private final JsonParserFactory jsonFactory = Json.createParserFactory(Map.of());
 
     /**
      * Creates a new instance of the Elasticsearch sniffer. It will use the provided {@link Rest5Client} to fetch the hosts,
@@ -107,27 +107,27 @@ public final class ElasticsearchNodesSniffer implements NodesSniffer {
         return readHosts(response.getEntity(), scheme, jsonFactory);
     }
 
-    static List<Node> readHosts(HttpEntity entity, Scheme scheme, JsonFactory jsonFactory) throws IOException {
+    static List<Node> readHosts(HttpEntity entity, Scheme scheme, JsonParserFactory jsonFactory) throws IOException {
         try (InputStream inputStream = entity.getContent()) {
             JsonParser parser = jsonFactory.createParser(inputStream);
-            if (parser.nextToken() != JsonToken.START_OBJECT) {
+            if (parser.next() != JsonParser.Event.START_OBJECT) {
                 throw new IOException("expected data to start with an object");
             }
             List<Node> nodes = new ArrayList<>();
-            while (parser.nextToken() != JsonToken.END_OBJECT) {
-                if (parser.getCurrentToken() == JsonToken.START_OBJECT) {
-                    if ("nodes".equals(parser.getCurrentName())) {
-                        while (parser.nextToken() != JsonToken.END_OBJECT) {
-                            JsonToken token = parser.nextToken();
-                            assert token == JsonToken.START_OBJECT;
-                            String nodeId = parser.getCurrentName();
+            while (parser.next() != JsonParser.Event.END_OBJECT) {
+                if (parser.currentEvent() == JsonParser.Event.START_OBJECT) {
+                    if ("nodes".equals(parser.currentEvent().name())) {
+                        while (parser.next() != JsonParser.Event.END_OBJECT) {
+                            JsonParser.Event token = parser.next();
+                            assert token == JsonParser.Event.START_OBJECT;
+                            String nodeId = parser.currentEvent().name();
                             Node node = readNode(nodeId, parser, scheme);
                             if (node != null) {
                                 nodes.add(node);
                             }
                         }
                     } else {
-                        parser.skipChildren();
+                        parser.skipObject();
                     }
                 }
             }
@@ -157,14 +157,14 @@ public final class ElasticsearchNodesSniffer implements NodesSniffer {
         final Set<String> roles = new TreeSet<>();
 
         String fieldName = null;
-        while (parser.nextToken() != JsonToken.END_OBJECT) {
-            if (parser.getCurrentToken() == JsonToken.FIELD_NAME) {
-                fieldName = parser.getCurrentName();
-            } else if (parser.getCurrentToken() == JsonToken.START_OBJECT) {
+        while (parser.next() != JsonParser.Event.END_OBJECT) {
+            if (parser.currentEvent() == JsonParser.Event.KEY_NAME) {
+                fieldName = parser.currentEvent().name();
+            } else if (parser.currentEvent() == JsonParser.Event.START_OBJECT) {
                 if ("http".equals(fieldName)) {
-                    while (parser.nextToken() != JsonToken.END_OBJECT) {
-                        if (parser.getCurrentToken() == JsonToken.VALUE_STRING && "publish_address".equals(parser.getCurrentName())) {
-                            String address = parser.getValueAsString();
+                    while (parser.next() != JsonParser.Event.END_OBJECT) {
+                        if (parser.currentEvent() == JsonParser.Event.VALUE_STRING && "publish_address".equals(parser.currentEvent().name())) {
+                            String address = parser.getValue().toString();
                             String host;
                             URI publishAddressAsURI;
 
@@ -178,45 +178,45 @@ public final class ElasticsearchNodesSniffer implements NodesSniffer {
                                 host = publishAddressAsURI.getHost();
                             }
                             publishedHost = new HttpHost(publishAddressAsURI.getScheme(), host, publishAddressAsURI.getPort());
-                        } else if (parser.currentToken() == JsonToken.START_ARRAY && "bound_address".equals(parser.getCurrentName())) {
-                            while (parser.nextToken() != JsonToken.END_ARRAY) {
-                                URI boundAddressAsURI = URI.create(scheme + "://" + parser.getValueAsString());
+                        } else if (parser.currentEvent() == JsonParser.Event.START_ARRAY && "bound_address".equals(parser.currentEvent().name())) {
+                            while (parser.next() != JsonParser.Event.END_ARRAY) {
+                                URI boundAddressAsURI = URI.create(scheme + "://" + parser.getValue().toString());
                                 boundHosts.add(
                                     new HttpHost(boundAddressAsURI.getScheme(), boundAddressAsURI.getHost(), boundAddressAsURI.getPort())
                                 );
                             }
-                        } else if (parser.getCurrentToken() == JsonToken.START_OBJECT) {
-                            parser.skipChildren();
+                        } else if (parser.currentEvent() == JsonParser.Event.START_OBJECT) {
+                            parser.skipObject();
                         }
                     }
                 } else if ("attributes".equals(fieldName)) {
-                    while (parser.nextToken() != JsonToken.END_OBJECT) {
-                        if (parser.getCurrentToken() == JsonToken.VALUE_STRING) {
-                            String oldValue = protoAttributes.put(parser.getCurrentName(), parser.getValueAsString());
+                    while (parser.next() != JsonParser.Event.END_OBJECT) {
+                        if (parser.currentEvent() == JsonParser.Event.VALUE_STRING) {
+                            String oldValue = protoAttributes.put(parser.currentEvent().name(), parser.getValue().toString());
                             if (oldValue != null) {
-                                throw new IOException("repeated attribute key [" + parser.getCurrentName() + "]");
+                                throw new IOException("repeated attribute key [" + parser.currentEvent().name() + "]");
                             }
                         } else {
-                            parser.skipChildren();
+                            parser.skipObject();
                         }
                     }
                 } else {
-                    parser.skipChildren();
+                    parser.skipObject();
                 }
-            } else if (parser.currentToken() == JsonToken.START_ARRAY) {
+            } else if (parser.currentEvent() == JsonParser.Event.START_ARRAY) {
                 if ("roles".equals(fieldName)) {
                     sawRoles = true;
-                    while (parser.nextToken() != JsonToken.END_ARRAY) {
-                        roles.add(parser.getText());
+                    while (parser.next() != JsonParser.Event.END_ARRAY) {
+                        roles.add(parser.getString());
                     }
                 } else {
-                    parser.skipChildren();
+                    parser.skipObject();
                 }
-            } else if (parser.currentToken().isScalarValue()) {
+            } else if (parser.currentEvent().name().equals(JsonParser.Event.VALUE_NUMBER.name())) {
                 if ("version".equals(fieldName)) {
-                    version = parser.getText();
+                    version = parser.getString();
                 } else if ("name".equals(fieldName)) {
-                    name = parser.getText();
+                    name = parser.getString();
                 }
             }
         }

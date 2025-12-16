@@ -153,7 +153,8 @@ dependencies {
 
     // Apache 2.0
     // https://github.com/FasterXML/jackson
-    implementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
+    // implementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
+    implementation("org.eclipse.parsson:jakarta.json:1.1.7")
 
 //    // Apache-2.0
 //    testImplementation("commons-io:commons-io:2.17.0")
