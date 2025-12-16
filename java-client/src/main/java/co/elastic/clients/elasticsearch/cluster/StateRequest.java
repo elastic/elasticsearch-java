@@ -159,7 +159,7 @@ public class StateRequest extends RequestBase {
 
 	/**
 	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * closed or both
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -168,7 +168,7 @@ public class StateRequest extends RequestBase {
 	}
 
 	/**
-	 * Return settings in flat format (default: false)
+	 * Return settings in flat format
 	 * <p>
 	 * API name: {@code flat_settings}
 	 */
@@ -200,7 +200,6 @@ public class StateRequest extends RequestBase {
 
 	/**
 	 * Return local information, do not retrieve the state from master node
-	 * (default: false)
 	 * <p>
 	 * API name: {@code local}
 	 * 
@@ -224,7 +223,7 @@ public class StateRequest extends RequestBase {
 	}
 
 	/**
-	 * Limit the information returned to the specified metrics
+	 * Limit the information returned to the specified metrics.
 	 * <p>
 	 * API name: {@code metric}
 	 */
@@ -304,7 +303,7 @@ public class StateRequest extends RequestBase {
 
 		/**
 		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * closed or both
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -317,7 +316,7 @@ public class StateRequest extends RequestBase {
 
 		/**
 		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * closed or both
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -329,7 +328,7 @@ public class StateRequest extends RequestBase {
 		}
 
 		/**
-		 * Return settings in flat format (default: false)
+		 * Return settings in flat format
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
@@ -377,7 +376,6 @@ public class StateRequest extends RequestBase {
 
 		/**
 		 * Return local information, do not retrieve the state from master node
-		 * (default: false)
 		 * <p>
 		 * API name: {@code local}
 		 * 
@@ -410,7 +408,7 @@ public class StateRequest extends RequestBase {
 		}
 
 		/**
-		 * Limit the information returned to the specified metrics
+		 * Limit the information returned to the specified metrics.
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
@@ -422,7 +420,7 @@ public class StateRequest extends RequestBase {
 		}
 
 		/**
-		 * Limit the information returned to the specified metrics
+		 * Limit the information returned to the specified metrics.
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>

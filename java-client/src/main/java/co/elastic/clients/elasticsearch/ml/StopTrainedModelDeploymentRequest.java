@@ -23,6 +23,8 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -32,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -62,13 +65,16 @@ import javax.annotation.Nullable;
  *      "../doc-files/api-spec.html#ml.stop_trained_model_deployment.Request">API
  *      specification</a>
  */
-
-public class StopTrainedModelDeploymentRequest extends RequestBase {
+@JsonpDeserializable
+public class StopTrainedModelDeploymentRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoMatch;
 
 	@Nullable
 	private final Boolean force;
+
+	@Nullable
+	private final String id;
 
 	private final String modelId;
 
@@ -78,6 +84,7 @@ public class StopTrainedModelDeploymentRequest extends RequestBase {
 
 		this.allowNoMatch = builder.allowNoMatch;
 		this.force = builder.force;
+		this.id = builder.id;
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 
 	}
@@ -115,12 +122,51 @@ public class StopTrainedModelDeploymentRequest extends RequestBase {
 	}
 
 	/**
+	 * If provided, must be the same identifier as in the path.
+	 * <p>
+	 * API name: {@code id}
+	 */
+	@Nullable
+	public final String id() {
+		return this.id;
+	}
+
+	/**
 	 * Required - The unique identifier of the trained model.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
 	public final String modelId() {
 		return this.modelId;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.allowNoMatch != null) {
+			generator.writeKey("allow_no_match");
+			generator.write(this.allowNoMatch);
+
+		}
+		if (this.force != null) {
+			generator.writeKey("force");
+			generator.write(this.force);
+
+		}
+		if (this.id != null) {
+			generator.writeKey("id");
+			generator.write(this.id);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -137,6 +183,9 @@ public class StopTrainedModelDeploymentRequest extends RequestBase {
 
 		@Nullable
 		private Boolean force;
+
+		@Nullable
+		private String id;
 
 		private String modelId;
 
@@ -168,6 +217,16 @@ public class StopTrainedModelDeploymentRequest extends RequestBase {
 		}
 
 		/**
+		 * If provided, must be the same identifier as in the path.
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public final Builder id(@Nullable String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
 		 * Required - The unique identifier of the trained model.
 		 * <p>
 		 * API name: {@code model_id}
@@ -193,6 +252,23 @@ public class StopTrainedModelDeploymentRequest extends RequestBase {
 
 			return new StopTrainedModelDeploymentRequest(this);
 		}
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for {@link StopTrainedModelDeploymentRequest}
+	 */
+	public static final JsonpDeserializer<StopTrainedModelDeploymentRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, StopTrainedModelDeploymentRequest::setupStopTrainedModelDeploymentRequestDeserializer);
+
+	protected static void setupStopTrainedModelDeploymentRequestDeserializer(
+			ObjectDeserializer<StopTrainedModelDeploymentRequest.Builder> op) {
+
+		op.add(Builder::allowNoMatch, JsonpDeserializer.booleanDeserializer(), "allow_no_match");
+		op.add(Builder::force, JsonpDeserializer.booleanDeserializer(), "force");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -248,14 +324,7 @@ public class StopTrainedModelDeploymentRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.force != null) {
-					params.put("force", String.valueOf(request.force));
-				}
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
-				}
-				return params;
+				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, StopTrainedModelDeploymentResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, StopTrainedModelDeploymentResponse._DESERIALIZER);
 }

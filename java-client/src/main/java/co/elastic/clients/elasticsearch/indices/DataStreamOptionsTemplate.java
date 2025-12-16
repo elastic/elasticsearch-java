@@ -26,11 +26,9 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,39 +48,39 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: indices._types.DataStreamLifecycleDownsampling
+// typedef: indices._types.DataStreamOptionsTemplate
 
 /**
- *
+ * Data stream options template contains the same information as
+ * DataStreamOptions but allows them to be set explicitly to null.
+ * 
  * @see <a href=
- *      "../doc-files/api-spec.html#indices._types.DataStreamLifecycleDownsampling">API
+ *      "../doc-files/api-spec.html#indices._types.DataStreamOptionsTemplate">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class DataStreamLifecycleDownsampling implements JsonpSerializable {
-	private final List<DownsamplingRound> rounds;
+public class DataStreamOptionsTemplate implements JsonpSerializable {
+	@Nullable
+	private final DataStreamFailureStoreTemplate failureStore;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private DataStreamLifecycleDownsampling(Builder builder) {
+	private DataStreamOptionsTemplate(Builder builder) {
 
-		this.rounds = ApiTypeHelper.unmodifiableRequired(builder.rounds, this, "rounds");
+		this.failureStore = builder.failureStore;
 
 	}
 
-	public static DataStreamLifecycleDownsampling of(
-			Function<Builder, ObjectBuilder<DataStreamLifecycleDownsampling>> fn) {
+	public static DataStreamOptionsTemplate of(Function<Builder, ObjectBuilder<DataStreamOptionsTemplate>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The list of downsampling rounds to execute as part of this
-	 * downsampling configuration
-	 * <p>
-	 * API name: {@code rounds}
+	 * API name: {@code failure_store}
 	 */
-	public final List<DownsamplingRound> rounds() {
-		return this.rounds;
+	@Nullable
+	public final DataStreamFailureStoreTemplate failureStore() {
+		return this.failureStore;
 	}
 
 	/**
@@ -96,14 +94,9 @@ public class DataStreamLifecycleDownsampling implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.rounds)) {
-			generator.writeKey("rounds");
-			generator.writeStartArray();
-			for (DownsamplingRound item0 : this.rounds) {
-				item0.serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
+		if (this.failureStore != null) {
+			generator.writeKey("failure_store");
+			this.failureStore.serialize(generator, mapper);
 
 		}
 
@@ -117,50 +110,29 @@ public class DataStreamLifecycleDownsampling implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DataStreamLifecycleDownsampling}.
+	 * Builder for {@link DataStreamOptionsTemplate}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<DataStreamLifecycleDownsampling> {
-		private List<DownsamplingRound> rounds;
+				ObjectBuilder<DataStreamOptionsTemplate> {
+		@Nullable
+		private DataStreamFailureStoreTemplate failureStore;
 
 		/**
-		 * Required - The list of downsampling rounds to execute as part of this
-		 * downsampling configuration
-		 * <p>
-		 * API name: {@code rounds}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>rounds</code>.
+		 * API name: {@code failure_store}
 		 */
-		public final Builder rounds(List<DownsamplingRound> list) {
-			this.rounds = _listAddAll(this.rounds, list);
+		public final Builder failureStore(@Nullable DataStreamFailureStoreTemplate value) {
+			this.failureStore = value;
 			return this;
 		}
 
 		/**
-		 * Required - The list of downsampling rounds to execute as part of this
-		 * downsampling configuration
-		 * <p>
-		 * API name: {@code rounds}
-		 * <p>
-		 * Adds one or more values to <code>rounds</code>.
+		 * API name: {@code failure_store}
 		 */
-		public final Builder rounds(DownsamplingRound value, DownsamplingRound... values) {
-			this.rounds = _listAdd(this.rounds, value, values);
-			return this;
-		}
-
-		/**
-		 * Required - The list of downsampling rounds to execute as part of this
-		 * downsampling configuration
-		 * <p>
-		 * API name: {@code rounds}
-		 * <p>
-		 * Adds a value to <code>rounds</code> using a builder lambda.
-		 */
-		public final Builder rounds(Function<DownsamplingRound.Builder, ObjectBuilder<DownsamplingRound>> fn) {
-			return rounds(fn.apply(new DownsamplingRound.Builder()).build());
+		public final Builder failureStore(
+				Function<DataStreamFailureStoreTemplate.Builder, ObjectBuilder<DataStreamFailureStoreTemplate>> fn) {
+			return this.failureStore(fn.apply(new DataStreamFailureStoreTemplate.Builder()).build());
 		}
 
 		@Override
@@ -169,30 +141,30 @@ public class DataStreamLifecycleDownsampling implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link DataStreamLifecycleDownsampling}.
+		 * Builds a {@link DataStreamOptionsTemplate}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DataStreamLifecycleDownsampling build() {
+		public DataStreamOptionsTemplate build() {
 			_checkSingleUse();
 
-			return new DataStreamLifecycleDownsampling(this);
+			return new DataStreamOptionsTemplate(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link DataStreamLifecycleDownsampling}
+	 * Json deserializer for {@link DataStreamOptionsTemplate}
 	 */
-	public static final JsonpDeserializer<DataStreamLifecycleDownsampling> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataStreamLifecycleDownsampling::setupDataStreamLifecycleDownsamplingDeserializer);
+	public static final JsonpDeserializer<DataStreamOptionsTemplate> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataStreamOptionsTemplate::setupDataStreamOptionsTemplateDeserializer);
 
-	protected static void setupDataStreamLifecycleDownsamplingDeserializer(
-			ObjectDeserializer<DataStreamLifecycleDownsampling.Builder> op) {
+	protected static void setupDataStreamOptionsTemplateDeserializer(
+			ObjectDeserializer<DataStreamOptionsTemplate.Builder> op) {
 
-		op.add(Builder::rounds, JsonpDeserializer.arrayDeserializer(DownsamplingRound._DESERIALIZER), "rounds");
+		op.add(Builder::failureStore, DataStreamFailureStoreTemplate._DESERIALIZER, "failure_store");
 
 	}
 

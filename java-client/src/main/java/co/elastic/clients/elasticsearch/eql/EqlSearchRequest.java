@@ -289,7 +289,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The name of the index to scope the operation
+	 * Required - Comma-separated list of index names to scope the operation
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -782,7 +782,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The name of the index to scope the operation
+		 * Required - Comma-separated list of index names to scope the operation
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -794,7 +794,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The name of the index to scope the operation
+		 * Required - Comma-separated list of index names to scope the operation
 		 * <p>
 		 * API name: {@code index}
 		 * <p>

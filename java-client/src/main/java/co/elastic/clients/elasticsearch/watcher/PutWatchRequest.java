@@ -186,7 +186,7 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * only update the watch if the last operation that has changed the watch has
+	 * Only update the watch if the last operation that has changed the watch has
 	 * the specified primary term
 	 * <p>
 	 * API name: {@code if_primary_term}
@@ -197,7 +197,7 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * only update the watch if the last operation that has changed the watch has
+	 * Only update the watch if the last operation that has changed the watch has
 	 * the specified sequence number
 	 * <p>
 	 * API name: {@code if_seq_no}
@@ -480,7 +480,7 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * only update the watch if the last operation that has changed the watch has
+		 * Only update the watch if the last operation that has changed the watch has
 		 * the specified primary term
 		 * <p>
 		 * API name: {@code if_primary_term}
@@ -491,7 +491,7 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * only update the watch if the last operation that has changed the watch has
+		 * Only update the watch if the last operation that has changed the watch has
 		 * the specified sequence number
 		 * <p>
 		 * API name: {@code if_seq_no}
