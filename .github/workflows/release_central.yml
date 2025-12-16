@@ -69,6 +69,11 @@ jobs:
   tag-bump-and-gh-release:
     runs-on: ubuntu-latest
     steps:
+      - name: Install git
+        run: |
+          apt-get update
+          apt-get install -y git 
+          
       - name: Fetch ephemeral GitHub token
         id: fetch-ephemeral-token
         uses: elastic/ci-gh-actions/fetch-github-token@v1.0.0
