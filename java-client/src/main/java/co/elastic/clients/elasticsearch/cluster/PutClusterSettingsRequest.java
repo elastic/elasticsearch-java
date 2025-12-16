@@ -126,7 +126,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * Return settings in flat format (default: false)
+	 * Return settings in flat format
 	 * <p>
 	 * API name: {@code flat_settings}
 	 */
@@ -136,7 +136,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * Explicit operation timeout for connection to master node
+	 * The period to wait for a connection to the master node.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -155,7 +155,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * The period to wait for a response.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -234,7 +234,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		private Map<String, JsonData> transient_;
 
 		/**
-		 * Return settings in flat format (default: false)
+		 * Return settings in flat format
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
@@ -244,7 +244,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -254,7 +254,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -287,7 +287,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * The period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -297,7 +297,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * The period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

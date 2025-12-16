@@ -111,7 +111,7 @@ public class PromoteDataStreamRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the data stream
+	 * Required - The name of the data stream to promote
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -155,7 +155,7 @@ public class PromoteDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The name of the data stream
+		 * Required - The name of the data stream to promote
 		 * <p>
 		 * API name: {@code name}
 		 */

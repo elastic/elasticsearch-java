@@ -146,8 +146,8 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * Required - the name of the leader index for which specified follower
-	 * retention leases should be removed
+	 * Required - Name of the leader index for which specified follower retention
+	 * leases should be removed
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -259,8 +259,8 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Required - the name of the leader index for which specified follower
-		 * retention leases should be removed
+		 * Required - Name of the leader index for which specified follower retention
+		 * leases should be removed
 		 * <p>
 		 * API name: {@code index}
 		 */

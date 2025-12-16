@@ -290,7 +290,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
 	/**
 	 * Required - A comma-separated list of index names the mapping should be added
-	 * to (supports wildcards); use <code>_all</code> or omit to add the mapping on
+	 * to (supports wildcards). Use <code>_all</code> or omit to add the mapping on
 	 * all indices.
 	 * <p>
 	 * API name: {@code index}
@@ -742,7 +742,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
 		/**
 		 * Required - A comma-separated list of index names the mapping should be added
-		 * to (supports wildcards); use <code>_all</code> or omit to add the mapping on
+		 * to (supports wildcards). Use <code>_all</code> or omit to add the mapping on
 		 * all indices.
 		 * <p>
 		 * API name: {@code index}
@@ -756,7 +756,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
 		/**
 		 * Required - A comma-separated list of index names the mapping should be added
-		 * to (supports wildcards); use <code>_all</code> or omit to add the mapping on
+		 * to (supports wildcards). Use <code>_all</code> or omit to add the mapping on
 		 * all indices.
 		 * <p>
 		 * API name: {@code index}

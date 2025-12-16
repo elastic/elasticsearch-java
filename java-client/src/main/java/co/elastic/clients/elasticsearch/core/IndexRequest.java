@@ -250,15 +250,21 @@ import javax.annotation.Nullable;
  *     &quot;id&quot;: &quot;elkbee&quot;
  *   }
  * }
- *
- * In this example, the operation will succeed since the supplied version of 2 is higher than the current document version of 1.
- * If the document was already updated and its version was set to 2 or higher, the indexing command will fail and result in a conflict (409 HTTP status code).
- *
- * A nice side effect is that there is no need to maintain strict ordering of async indexing operations run as a result of changes to a source database, as long as version numbers from the source database are used.
- * Even the simple case of updating the Elasticsearch index using data from a database is simplified if external versioning is used, as only the latest version will be used if the index operations arrive out of order.
  * </code>
  * </pre>
- *
+ * <p>
+ * In this example, the operation will succeed since the supplied version of 2
+ * is higher than the current document version of 1. If the document was already
+ * updated and its version was set to 2 or higher, the indexing command will
+ * fail and result in a conflict (409 HTTP status code).
+ * <p>
+ * A nice side effect is that there is no need to maintain strict ordering of
+ * async indexing operations run as a result of changes to a source database, as
+ * long as version numbers from the source database are used. Even the simple
+ * case of updating the Elasticsearch index using data from a database is
+ * simplified if external versioning is used, as only the latest version will be
+ * used if the index operations arrive out of order.
+ * 
  * @see <a href="../doc-files/api-spec.html#_global.index.Request">API
  *      specification</a>
  */

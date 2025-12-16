@@ -24,6 +24,8 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -32,6 +34,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -74,8 +77,8 @@ import javax.annotation.Nullable;
  *      "../doc-files/api-spec.html#ml.start_data_frame_analytics.Request">API
  *      specification</a>
  */
-
-public class StartDataFrameAnalyticsRequest extends RequestBase {
+@JsonpDeserializable
+public class StartDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
 	@Nullable
@@ -115,6 +118,25 @@ public class StartDataFrameAnalyticsRequest extends RequestBase {
 	@Nullable
 	public final Time timeout() {
 		return this.timeout;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.timeout != null) {
+			generator.writeKey("timeout");
+			this.timeout.serialize(generator, mapper);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -185,6 +207,21 @@ public class StartDataFrameAnalyticsRequest extends RequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
+	 * Json deserializer for {@link StartDataFrameAnalyticsRequest}
+	 */
+	public static final JsonpDeserializer<StartDataFrameAnalyticsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, StartDataFrameAnalyticsRequest::setupStartDataFrameAnalyticsRequestDeserializer);
+
+	protected static void setupStartDataFrameAnalyticsRequestDeserializer(
+			ObjectDeserializer<StartDataFrameAnalyticsRequest.Builder> op) {
+
+		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
 	 * Endpoint "{@code ml.start_data_frame_analytics}".
 	 */
 	public static final Endpoint<StartDataFrameAnalyticsRequest, StartDataFrameAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
@@ -235,11 +272,7 @@ public class StartDataFrameAnalyticsRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
-				}
-				return params;
+				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, StartDataFrameAnalyticsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, StartDataFrameAnalyticsResponse._DESERIALIZER);
 }

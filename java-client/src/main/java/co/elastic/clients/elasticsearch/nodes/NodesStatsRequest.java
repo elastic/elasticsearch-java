@@ -206,7 +206,7 @@ public class NodesStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Limit the information returned to the specified metrics
+	 * Limits the information returned to the specific metrics.
 	 * <p>
 	 * API name: {@code metric}
 	 */
@@ -436,7 +436,7 @@ public class NodesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Limit the information returned to the specified metrics
+		 * Limits the information returned to the specific metrics.
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
@@ -448,7 +448,7 @@ public class NodesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Limit the information returned to the specified metrics
+		 * Limits the information returned to the specific metrics.
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
