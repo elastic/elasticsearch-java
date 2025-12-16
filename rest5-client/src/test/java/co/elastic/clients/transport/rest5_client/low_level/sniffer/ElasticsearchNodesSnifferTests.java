@@ -130,10 +130,10 @@ public class ElasticsearchNodesSnifferTests extends RestClientTestCase {
                 Response response = e.getResponse();
                 if (sniffResponse.isFailure) {
                     final String errorPrefix = "method [GET], host ["
-                        + httpHost
-                        + "], URI [/_nodes/http?timeout="
-                        + sniffRequestTimeout
-                        + "ms], status line ";
+                                               + httpHost
+                                               + "], URI [/_nodes/http?timeout="
+                                               + sniffRequestTimeout
+                                               + "ms], status line ";
                     assertThat(e.getMessage(), startsWith(errorPrefix));
                     assertThat(e.getMessage(), containsString(Integer.toString(sniffResponse.nodesInfoResponseCode)));
                     assertThat(response.getHost(), equalTo(httpHost));
@@ -320,15 +320,8 @@ public class ElasticsearchNodesSnifferTests extends RestClientTestCase {
             }
             generator.writeEnd();
 
-            generator.writeEnd();
-            generator.writeEnd();
-            generator.close();
-            writer.toString();
-
-            generator.write("version");
-            generator.write(node.getVersion());
-            generator.write("name");
-            generator.write(node.getName());
+            generator.write("version",node.getVersion());
+            generator.write("name", node.getName());
 
             if (numAttributes > 0) {
                 generator.writeStartObject("attributes");

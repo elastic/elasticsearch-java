@@ -116,7 +116,9 @@ public final class ElasticsearchNodesSniffer implements NodesSniffer {
             List<Node> nodes = new ArrayList<>();
             while (parser.next() != JsonParser.Event.END_OBJECT) {
                 if (parser.currentEvent() == JsonParser.Event.START_OBJECT) {
-                    if ("nodes".equals(parser.currentEvent().name())) {
+                    // TODO must be read differently, there's no easy way to get the name of an object, need
+                    // to find key name first by doing .next() probably
+                    if (parser.currentEvent() == JsonParser.Event.KEY_NAME && "nodes".equals(parser.getString())) {
                         while (parser.next() != JsonParser.Event.END_OBJECT) {
                             JsonParser.Event token = parser.next();
                             assert token == JsonParser.Event.START_OBJECT;
