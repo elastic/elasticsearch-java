@@ -122,7 +122,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * The period to wait for a connection to the master node.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -132,7 +132,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * The period to wait for a response.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -187,7 +187,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -197,7 +197,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -206,7 +206,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * The period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -216,7 +216,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * The period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

@@ -154,7 +154,7 @@ public class HotThreadsRequest extends RequestBase {
 	}
 
 	/**
-	 * The sort order for 'cpu' type (default: total)
+	 * The sort order for 'cpu' type
 	 * <p>
 	 * API name: {@code sort}
 	 */
@@ -292,7 +292,7 @@ public class HotThreadsRequest extends RequestBase {
 		}
 
 		/**
-		 * The sort order for 'cpu' type (default: total)
+		 * The sort order for 'cpu' type
 		 * <p>
 		 * API name: {@code sort}
 		 */

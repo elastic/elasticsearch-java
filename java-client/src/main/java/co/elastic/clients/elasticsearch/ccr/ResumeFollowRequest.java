@@ -131,7 +131,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Required - The name of the follow index to resume following.
+	 * Required - Name of the follow index to resume following
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -338,7 +338,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 		private Time readPollTimeout;
 
 		/**
-		 * Required - The name of the follow index to resume following.
+		 * Required - Name of the follow index to resume following
 		 * <p>
 		 * API name: {@code index}
 		 */

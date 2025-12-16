@@ -109,7 +109,7 @@ public class ClearCacheRequest extends RequestBase {
 
 	/**
 	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * closed or both
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -173,7 +173,7 @@ public class ClearCacheRequest extends RequestBase {
 
 		/**
 		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * closed or both
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -186,7 +186,7 @@ public class ClearCacheRequest extends RequestBase {
 
 		/**
 		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * closed or both
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>

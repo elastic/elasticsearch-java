@@ -106,7 +106,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * The period to wait for a connection to the master node.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -117,7 +117,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 
 	/**
 	 * Required - A comma-separated list of data streams of which the data stream
-	 * lifecycle will be deleted; use <code>*</code> to get all data streams
+	 * lifecycle will be deleted. Use <code>*</code> to get all data streams
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -126,7 +126,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit timestamp for the document
+	 * The period to wait for a response.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -182,7 +182,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -192,7 +192,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -202,7 +202,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 
 		/**
 		 * Required - A comma-separated list of data streams of which the data stream
-		 * lifecycle will be deleted; use <code>*</code> to get all data streams
+		 * lifecycle will be deleted. Use <code>*</code> to get all data streams
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -215,7 +215,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 
 		/**
 		 * Required - A comma-separated list of data streams of which the data stream
-		 * lifecycle will be deleted; use <code>*</code> to get all data streams
+		 * lifecycle will be deleted. Use <code>*</code> to get all data streams
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -227,7 +227,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit timestamp for the document
+		 * The period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -237,7 +237,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit timestamp for the document
+		 * The period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

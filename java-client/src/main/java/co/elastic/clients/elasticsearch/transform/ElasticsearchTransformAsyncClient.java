@@ -102,6 +102,22 @@ public class ElasticsearchTransformAsyncClient
 		return deleteTransform(fn.apply(new DeleteTransformRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: transform.get_node_stats
+
+	/**
+	 * Get node stats.
+	 * <p>
+	 * Get per-node information about transform usage.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-get-node-stats">Documentation
+	 *      on elastic.co</a>
+	 */
+	public CompletableFuture<GetNodeStatsResponse> getNodeStats() {
+		return this.transport.performRequestAsync(GetNodeStatsRequest._INSTANCE, GetNodeStatsRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
 	// ----- Endpoint: transform.get_transform
 
 	/**

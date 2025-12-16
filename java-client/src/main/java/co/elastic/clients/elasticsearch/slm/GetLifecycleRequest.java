@@ -102,7 +102,7 @@ public class GetLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Comma-separated list of snapshot lifecycle policies to retrieve
+	 * A comma-separated list of snapshot lifecycle policy identifiers.
 	 * <p>
 	 * API name: {@code policy_id}
 	 */
@@ -161,7 +161,7 @@ public class GetLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Comma-separated list of snapshot lifecycle policies to retrieve
+		 * A comma-separated list of snapshot lifecycle policy identifiers.
 		 * <p>
 		 * API name: {@code policy_id}
 		 * <p>
@@ -173,7 +173,7 @@ public class GetLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Comma-separated list of snapshot lifecycle policies to retrieve
+		 * A comma-separated list of snapshot lifecycle policy identifiers.
 		 * <p>
 		 * API name: {@code policy_id}
 		 * <p>

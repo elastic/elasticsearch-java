@@ -362,8 +362,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specify whether wildcard and prefix queries should be analyzed (default:
-	 * false)
+	 * Specify whether wildcard and prefix queries should be analyzed
 	 * <p>
 	 * API name: {@code analyze_wildcard}
 	 */
@@ -446,7 +445,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * closed or both
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -630,8 +629,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specify the node or shard the operation should be performed on (default:
-	 * random)
+	 * Specify the node or shard the operation should be performed on
 	 * <p>
 	 * API name: {@code preference}
 	 */
@@ -1378,8 +1376,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify whether wildcard and prefix queries should be analyzed (default:
-		 * false)
+		 * Specify whether wildcard and prefix queries should be analyzed
 		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
@@ -1497,7 +1494,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * closed or both
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -1510,7 +1507,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * closed or both
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -1840,8 +1837,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify the node or shard the operation should be performed on (default:
-		 * random)
+		 * Specify the node or shard the operation should be performed on
 		 * <p>
 		 * API name: {@code preference}
 		 */

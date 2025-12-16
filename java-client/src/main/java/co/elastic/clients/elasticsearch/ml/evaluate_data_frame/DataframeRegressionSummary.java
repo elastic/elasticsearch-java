@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class DataframeRegressionSummary implements JsonpSerializable {
+public class DataframeRegressionSummary implements ResponseBodyVariant, JsonpSerializable {
 	@Nullable
 	private final DataframeEvaluationValue huber;
 
@@ -83,6 +83,14 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 
 	public static DataframeRegressionSummary of(Function<Builder, ObjectBuilder<DataframeRegressionSummary>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * ResponseBody variant kind.
+	 */
+	@Override
+	public ResponseBody.Kind _responseBodyKind() {
+		return ResponseBody.Kind.Regression;
 	}
 
 	/**

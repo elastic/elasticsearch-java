@@ -206,8 +206,6 @@ public class NodesStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Limit the information returned to the specified metrics
-	 * <p>
 	 * API name: {@code metric}
 	 */
 	public final List<String> metric() {
@@ -436,8 +434,6 @@ public class NodesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Limit the information returned to the specified metrics
-		 * <p>
 		 * API name: {@code metric}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metric</code>.
@@ -448,8 +444,6 @@ public class NodesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Limit the information returned to the specified metrics
-		 * <p>
 		 * API name: {@code metric}
 		 * <p>
 		 * Adds one or more values to <code>metric</code>.

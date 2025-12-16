@@ -203,7 +203,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * User defined reason for creating/updating the index template
+	 * User defined reason for creating or updating the index template
 	 * <p>
 	 * API name: {@code cause}
 	 */
@@ -516,7 +516,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * User defined reason for creating/updating the index template
+		 * User defined reason for creating or updating the index template
 		 * <p>
 		 * API name: {@code cause}
 		 */
