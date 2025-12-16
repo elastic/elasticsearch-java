@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class DataframeOutlierDetectionSummary implements JsonpSerializable {
+public class DataframeOutlierDetectionSummary implements ResponseBodyVariant, JsonpSerializable {
 	@Nullable
 	private final DataframeEvaluationSummaryAucRoc aucRoc;
 
@@ -85,6 +85,14 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 	public static DataframeOutlierDetectionSummary of(
 			Function<Builder, ObjectBuilder<DataframeOutlierDetectionSummary>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * ResponseBody variant kind.
+	 */
+	@Override
+	public ResponseBody.Kind _responseBodyKind() {
+		return ResponseBody.Kind.OutlierDetection;
 	}
 
 	/**

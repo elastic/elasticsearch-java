@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class DataframeClassificationSummary implements JsonpSerializable {
+public class DataframeClassificationSummary implements ResponseBodyVariant, JsonpSerializable {
 	@Nullable
 	private final DataframeEvaluationSummaryAucRoc aucRoc;
 
@@ -88,6 +88,14 @@ public class DataframeClassificationSummary implements JsonpSerializable {
 	public static DataframeClassificationSummary of(
 			Function<Builder, ObjectBuilder<DataframeClassificationSummary>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * ResponseBody variant kind.
+	 */
+	@Override
+	public ResponseBody.Kind _responseBodyKind() {
+		return ResponseBody.Kind.Classification;
 	}
 
 	/**

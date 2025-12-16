@@ -95,7 +95,7 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * indicates if the API should return the default values the system uses for the
+	 * Indicates if the API should return the default values the system uses for the
 	 * index's lifecycle
 	 * <p>
 	 * API name: {@code include_defaults}
@@ -115,7 +115,7 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * The period to wait for a connection to the master node.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -142,7 +142,7 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 		private Time masterTimeout;
 
 		/**
-		 * indicates if the API should return the default values the system uses for the
+		 * Indicates if the API should return the default values the system uses for the
 		 * index's lifecycle
 		 * <p>
 		 * API name: {@code include_defaults}
@@ -177,7 +177,7 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -187,7 +187,7 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
