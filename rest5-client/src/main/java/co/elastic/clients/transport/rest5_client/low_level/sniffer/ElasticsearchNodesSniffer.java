@@ -33,9 +33,11 @@ import co.elastic.clients.transport.rest5_client.low_level.Request;
 import co.elastic.clients.transport.rest5_client.low_level.Response;
 import co.elastic.clients.transport.rest5_client.low_level.Rest5Client;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -126,6 +128,9 @@ public final class ElasticsearchNodesSniffer implements NodesSniffer {
                             }
                         }
                     }
+                    else if (parser.currentEvent() == JsonParser.Event.START_OBJECT) {
+                        parser.skipObject();
+                    }
             }
             return nodes;
         }
@@ -208,7 +213,7 @@ public final class ElasticsearchNodesSniffer implements NodesSniffer {
                         roles.add(parser.getString());
                     }
                 } else {
-                    parser.skipObject();
+                    parser.skipArray();
                 }
             } else if (parser.currentEvent().name().equals(JsonParser.Event.VALUE_STRING.name())) {
                 if ("version".equals(fieldName)) {
