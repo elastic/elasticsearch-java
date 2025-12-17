@@ -206,6 +206,9 @@ public final class ElasticsearchNodesSniffer implements NodesSniffer {
                         }
                     }
                 }
+                else if (fieldName != null) { // it's an unknown object that needs to be skipped
+                    parser.skipObject();
+                }
             } else if (parser.currentEvent() == JsonParser.Event.START_ARRAY) {
                 if ("roles".equals(fieldName)) {
                     sawRoles = true;
