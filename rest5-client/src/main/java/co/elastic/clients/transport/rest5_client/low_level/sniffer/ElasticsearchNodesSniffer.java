@@ -115,23 +115,17 @@ public final class ElasticsearchNodesSniffer implements NodesSniffer {
             }
             List<Node> nodes = new ArrayList<>();
             while (parser.next() != JsonParser.Event.END_OBJECT) {
-                if (parser.currentEvent() == JsonParser.Event.START_OBJECT) {
-                    // TODO must be read differently, there's no easy way to get the name of an object, need
-                    // to find key name first by doing .next() probably
                     if (parser.currentEvent() == JsonParser.Event.KEY_NAME && "nodes".equals(parser.getString())) {
+                        parser.next(); // from KEY_NAME to START_OBJECT nodes
+                        assert parser.currentEvent() == JsonParser.Event.START_OBJECT;
                         while (parser.next() != JsonParser.Event.END_OBJECT) {
-                            JsonParser.Event token = parser.next();
-                            assert token == JsonParser.Event.START_OBJECT;
-                            String nodeId = parser.currentEvent().name();
+                            String nodeId = parser.getString();
                             Node node = readNode(nodeId, parser, scheme);
                             if (node != null) {
                                 nodes.add(node);
                             }
                         }
-                    } else {
-                        parser.skipObject();
                     }
-                }
             }
             return nodes;
         }
@@ -161,12 +155,13 @@ public final class ElasticsearchNodesSniffer implements NodesSniffer {
         String fieldName = null;
         while (parser.next() != JsonParser.Event.END_OBJECT) {
             if (parser.currentEvent() == JsonParser.Event.KEY_NAME) {
-                fieldName = parser.currentEvent().name();
+                fieldName = parser.getString();
             } else if (parser.currentEvent() == JsonParser.Event.START_OBJECT) {
                 if ("http".equals(fieldName)) {
                     while (parser.next() != JsonParser.Event.END_OBJECT) {
-                        if (parser.currentEvent() == JsonParser.Event.VALUE_STRING && "publish_address".equals(parser.currentEvent().name())) {
-                            String address = parser.getValue().toString();
+                        if (parser.currentEvent() == JsonParser.Event.KEY_NAME && "publish_address".equals(parser.getString())) {
+                            parser.next(); // from KEY_NAME to VALUE_STRING
+                            String address = parser.getString();
                             String host;
                             URI publishAddressAsURI;
 
@@ -180,9 +175,11 @@ public final class ElasticsearchNodesSniffer implements NodesSniffer {
                                 host = publishAddressAsURI.getHost();
                             }
                             publishedHost = new HttpHost(publishAddressAsURI.getScheme(), host, publishAddressAsURI.getPort());
-                        } else if (parser.currentEvent() == JsonParser.Event.START_ARRAY && "bound_address".equals(parser.currentEvent().name())) {
+                        } else if (parser.currentEvent() == JsonParser.Event.KEY_NAME && "bound_address".equals(parser.getString())) {
+                            parser.next(); // from KEY_NAME to START_ARRAY
+                            assert parser.currentEvent() == JsonParser.Event.START_ARRAY;
                             while (parser.next() != JsonParser.Event.END_ARRAY) {
-                                URI boundAddressAsURI = URI.create(scheme + "://" + parser.getValue().toString());
+                                URI boundAddressAsURI = URI.create(scheme + "://" + parser.getString());
                                 boundHosts.add(
                                     new HttpHost(boundAddressAsURI.getScheme(), boundAddressAsURI.getHost(), boundAddressAsURI.getPort())
                                 );
@@ -193,17 +190,16 @@ public final class ElasticsearchNodesSniffer implements NodesSniffer {
                     }
                 } else if ("attributes".equals(fieldName)) {
                     while (parser.next() != JsonParser.Event.END_OBJECT) {
-                        if (parser.currentEvent() == JsonParser.Event.VALUE_STRING) {
-                            String oldValue = protoAttributes.put(parser.currentEvent().name(), parser.getValue().toString());
+                        if (parser.currentEvent() == JsonParser.Event.KEY_NAME) {
+                            String key = parser.getString();
+                            parser.next(); // from KEY_NAME to VALUE_STRING
+                            String value = parser.getString();
+                            String oldValue = protoAttributes.put(key, value);
                             if (oldValue != null) {
                                 throw new IOException("repeated attribute key [" + parser.currentEvent().name() + "]");
                             }
-                        } else {
-                            parser.skipObject();
                         }
                     }
-                } else {
-                    parser.skipObject();
                 }
             } else if (parser.currentEvent() == JsonParser.Event.START_ARRAY) {
                 if ("roles".equals(fieldName)) {
@@ -214,7 +210,7 @@ public final class ElasticsearchNodesSniffer implements NodesSniffer {
                 } else {
                     parser.skipObject();
                 }
-            } else if (parser.currentEvent().name().equals(JsonParser.Event.VALUE_NUMBER.name())) {
+            } else if (parser.currentEvent().name().equals(JsonParser.Event.VALUE_STRING.name())) {
                 if ("version".equals(fieldName)) {
                     version = parser.getString();
                 } else if ("name".equals(fieldName)) {
