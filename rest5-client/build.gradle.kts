@@ -138,8 +138,6 @@ signing {
 }
 
 dependencies {
-    val jacksonVersion = "2.18.3"
-
     // Apache 2.0
     // https://hc.apache.org/httpcomponents-client-ga/
     api("org.apache.httpcomponents.client5","httpclient5","5.4.4")
@@ -151,9 +149,9 @@ dependencies {
     testImplementation("org.apache.commons:commons-lang3:3.14.0")
     testImplementation("junit:junit:4.13.2")
 
-    // Apache 2.0
-    // https://github.com/FasterXML/jackson
-    implementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
+    // EPL-2.0
+    // https://github.com/eclipse-ee4j/parsson
+    implementation("org.eclipse.parsson:jakarta.json:1.1.7")
 
 //    // Apache-2.0
 //    testImplementation("commons-io:commons-io:2.17.0")

@@ -21,7 +21,7 @@ package co.elastic.clients.transport.rest5_client.low_level.sniffer;
 
 import co.elastic.clients.transport.rest5_client.low_level.Node;
 import co.elastic.clients.transport.rest5_client.low_level.RestClientTestCase;
-import com.fasterxml.jackson.core.JsonFactory;
+import jakarta.json.Json;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.HttpHost;
@@ -56,7 +56,8 @@ public class ElasticsearchNodesSnifferParseTests extends RestClientTestCase {
         }
         try {
             HttpEntity entity = new InputStreamEntity(in, ContentType.APPLICATION_JSON);
-            List<Node> nodes = ElasticsearchNodesSniffer.readHosts(entity, ElasticsearchNodesSniffer.Scheme.HTTP, new JsonFactory());
+            List<Node> nodes = ElasticsearchNodesSniffer.readHosts(entity,
+                ElasticsearchNodesSniffer.Scheme.HTTP, Json.createParserFactory(Map.of()));
             /*
              * Use these assertions because the error messages are nicer
              * than hasItems and we know the results are in order because
@@ -136,7 +137,8 @@ public class ElasticsearchNodesSnifferParseTests extends RestClientTestCase {
         InputStream in = this.getClass().getResourceAsStream("es6_nodes_publication_address_format.json");
 
         HttpEntity entity = new InputStreamEntity(in, ContentType.APPLICATION_JSON);
-        List<Node> nodes = ElasticsearchNodesSniffer.readHosts(entity, ElasticsearchNodesSniffer.Scheme.HTTP, new JsonFactory());
+        List<Node> nodes = ElasticsearchNodesSniffer.readHosts(entity,
+            ElasticsearchNodesSniffer.Scheme.HTTP, Json.createParserFactory(Map.of()));
 
         assertEquals("127.0.0.1", nodes.get(0).getHost().getHostName());
         assertEquals(9200, nodes.get(0).getHost().getPort());
@@ -148,7 +150,8 @@ public class ElasticsearchNodesSnifferParseTests extends RestClientTestCase {
         InputStream in = this.getClass().getResourceAsStream("es7_nodes_publication_address_format.json");
 
         HttpEntity entity = new InputStreamEntity(in, ContentType.APPLICATION_JSON);
-        List<Node> nodes = ElasticsearchNodesSniffer.readHosts(entity, ElasticsearchNodesSniffer.Scheme.HTTP, new JsonFactory());
+        List<Node> nodes = ElasticsearchNodesSniffer.readHosts(entity,
+            ElasticsearchNodesSniffer.Scheme.HTTP, Json.createParserFactory(Map.of()));
 
         assertEquals("elastic.test", nodes.get(0).getHost().getHostName());
         assertEquals(9200, nodes.get(0).getHost().getPort());
