@@ -91,6 +91,8 @@ public final class Rest5ClientBuilder {
     private boolean strictDeprecationMode = false;
     private boolean compressionEnabled = false;
     private boolean metaHeaderEnabled = true;
+    private boolean enableSingleNodeRetry = false;
+    private int maxSingleNodeRetryAttempts = 1;
 
     static {
         // Never fail on unknown version, even if an environment messed up their classpath enough that we
@@ -302,6 +304,29 @@ public final class Rest5ClientBuilder {
     }
 
     /**
+     * Whether the REST client should retry requests when only a single node is available.
+     * By default, this is disabled.
+     */
+    public Rest5ClientBuilder setEnableSingleNodeRetry(boolean enableSingleNodeRetry) {
+        this.enableSingleNodeRetry = enableSingleNodeRetry;
+        return this;
+    }
+
+    /**
+     * Sets the maximum number of retry attempts when single node retry is enabled.
+     * By default, this is 3.
+     *
+     * @throws IllegalArgumentException if {@code maxAttempts} is less than 0.
+     */
+    public Rest5ClientBuilder setMaxSingleNodeRetryAttempts(int maxAttempts) {
+        if (maxAttempts < 0) {
+            throw new IllegalArgumentException("maxSingleNodeRetryAttempts must be >= 0");
+        }
+        this.maxSingleNodeRetryAttempts = maxAttempts;
+        return this;
+    }
+
+    /**
      * Whether the REST client should compress requests using gzip content encoding and add the
      * "Accept-Encoding: gzip"
      * header to receive compressed responses.
@@ -394,7 +419,9 @@ public final class Rest5ClientBuilder {
             nodeSelector,
             strictDeprecationMode,
             compressionEnabled,
-            metaHeaderEnabled
+            metaHeaderEnabled,
+            enableSingleNodeRetry,
+            maxSingleNodeRetryAttempts
         );
         httpClient.start();
         return restClient;

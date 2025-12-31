@@ -80,6 +80,7 @@ import static co.elastic.clients.transport.rest5_client.low_level.RestClientTest
 import static co.elastic.clients.transport.rest5_client.low_level.RestClientTestUtil.getHttpMethods;
 import static co.elastic.clients.transport.rest5_client.low_level.RestClientTestUtil.getOkStatusCodes;
 import static co.elastic.clients.transport.rest5_client.low_level.RestClientTestUtil.randomStatusCode;
+import static co.elastic.clients.transport.rest5_client.low_level.RestClientTestUtil.randomErrorRetryStatusCode;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -130,7 +131,9 @@ public class RestClientSingleHostTests extends RestClientTestCase {
             NodeSelector.ANY,
             strictDeprecationMode,
             false,
-            false
+            false,
+            false,
+            1
         );
     }
 
@@ -672,8 +675,8 @@ public class RestClientSingleHostTests extends RestClientTestCase {
      * normally the case for synchronous calls but {@link Rest5Client} performs
      * synchronous calls by performing asynchronous calls and blocking the
      * current thread until the call returns so it has to take special care
-     * to make sure that the caller shows up in the exception. We use this
-     * assertion to make sure that we don't break that "special care".
+     * to make sure that the caller shows up in the exception. We use
+     * this assertion to make sure that we don't break that "special care".
      */
     private static void assertExceptionStackContainsCallingMethod(Throwable t) {
         // 0 is getStackTrace
@@ -689,4 +692,41 @@ public class RestClientSingleHostTests extends RestClientTestCase {
         t.printStackTrace(new PrintWriter(stack));
         fail("didn't find the calling method (looks like " + myMethod + ") in:\n" + stack);
     }
+
+    /**
+     * Tests that single node retry works correctly when enabled with custom max attempts.
+     */
+    @Test
+    public void testSingleNodeRetryWithCustomMaxAttempts() throws Exception {
+        // Create a client with single node retry enabled and max attempts = 3
+        Rest5Client restClient = new Rest5Client(
+            httpClient,
+            defaultHeaders,
+            singletonList(node),
+            null,
+            failureListener,
+            NodeSelector.ANY,
+            strictDeprecationMode,
+            false,
+            false,
+            // single node retry is enabled
+            true,
+            // max attempts is 3
+            3
+        );
+
+        // Test that requests are retried up to max attempts on retryable errors
+        for (String method : getHttpMethods()) {
+            int retryStatusCode = randomErrorRetryStatusCode();
+            try {
+                performRequestSyncOrAsync(restClient, new Request(method, "/" + retryStatusCode));
+                fail("request should have failed after max retry attempts");
+            } catch (ResponseException e) {
+                assertEquals(retryStatusCode, e.getResponse().getStatusCode());
+                // Verify that the failure listener was called multiple times (retries)
+                failureListener.assertCalled(singletonList(node));
+            }
+        }
+    }
+
 }

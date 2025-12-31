@@ -63,7 +63,7 @@ public class RestClientTests extends RestClientTestCase {
         List<Node> nodes = singletonList(new Node(new HttpHost("localhost", 9200)));
         CloseableHttpAsyncClient closeableHttpAsyncClient = mock(CloseableHttpAsyncClient.class);
         Rest5Client restClient = new Rest5Client(closeableHttpAsyncClient, new Header[0], nodes, null, null,
-            null, false, false, false);
+            null, false, false, false, false, 1);
         restClient.close();
         verify(closeableHttpAsyncClient, times(1)).close();
         restClient.close();
@@ -304,9 +304,9 @@ public class RestClientTests extends RestClientTestCase {
              * to being revived that the NodeSelector is ok with.
              */
             assertEquals(singletonList(n1), Rest5Client.selectNodes(nodes, blacklist, new AtomicInteger(),
-                NodeSelector.ANY));
+                NodeSelector.ANY, false));
             assertEquals(singletonList(n2), Rest5Client.selectNodes(nodes, blacklist, new AtomicInteger(),
-                not1));
+                not1, false));
 
             /*
              * Try a NodeSelector that excludes all nodes. This should
@@ -351,12 +351,12 @@ public class RestClientTests extends RestClientTestCase {
     ) throws IOException {
         int iterations = 1000;
         AtomicInteger lastNodeIndex = new AtomicInteger(0);
-        assertEquals(expectedNodes, Rest5Client.selectNodes(nodes, blacklist, lastNodeIndex, nodeSelector));
+        assertEquals(expectedNodes, Rest5Client.selectNodes(nodes, blacklist, lastNodeIndex, nodeSelector, false));
         // Calling it again rotates the set of results
         for (int i = 1; i < iterations; i++) {
             Collections.rotate(expectedNodes, 1);
             assertEquals("iteration " + i, expectedNodes, Rest5Client.selectNodes(nodes, blacklist,
-                lastNodeIndex, nodeSelector));
+                lastNodeIndex, nodeSelector, false));
         }
     }
 
@@ -371,7 +371,7 @@ public class RestClientTests extends RestClientTestCase {
         NodeSelector nodeSelector
     ) {
         try {
-            Rest5Client.selectNodes(nodes, blacklist, new AtomicInteger(0), nodeSelector);
+            Rest5Client.selectNodes(nodes, blacklist, new AtomicInteger(0), nodeSelector, false);
             throw new AssertionError("expected selectHosts to fail");
         } catch (IOException e) {
             return e.getMessage();
@@ -381,7 +381,7 @@ public class RestClientTests extends RestClientTestCase {
     private static Rest5Client createRestClient() {
         List<Node> nodes = Collections.singletonList(new Node(new HttpHost("localhost", 9200)));
         return new Rest5Client(mock(CloseableHttpAsyncClient.class), new Header[]{}, nodes, null, null, null
-            , false, false, false);
+            , false, false, false, false, 1);
     }
 
     @Test
@@ -418,7 +418,7 @@ public class RestClientTests extends RestClientTestCase {
         List<Node> nodes = Collections.singletonList(new Node(new HttpHost("localhost", 9200)));
         CloseableHttpAsyncClient client = mock(CloseableHttpAsyncClient.class);
         Rest5Client restClient = new Rest5Client(client, new Header[]{}, nodes, null, null, null, false,
-            false, false);
+            false, false, false, 1);
 
         when(client.getStatus()).thenReturn(IOReactorStatus.ACTIVE);
         assertTrue(restClient.isRunning());
@@ -440,7 +440,8 @@ public class RestClientTests extends RestClientTestCase {
                 nodes,
                 Collections.<HttpHost, DeadHostState>emptyMap(),
                 lastNodeIndex,
-                NodeSelector.ANY
+                NodeSelector.ANY,
+                false
             );
             List<Node> expectedNodes = nodes;
             int index = 0;
