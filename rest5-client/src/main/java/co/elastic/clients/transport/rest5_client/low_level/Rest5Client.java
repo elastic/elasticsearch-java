@@ -127,6 +127,9 @@ public class Rest5Client implements Closeable {
     private final WarningsHandler warningsHandler;
     private final boolean compressionEnabled;
     private final boolean metaHeaderEnabled;
+    private final boolean enableSingleNodeRetry;
+    private final int maxSingleNodeRetryAttempts;
+    private final AtomicInteger singleNodeRetryAttempts = new AtomicInteger(0);
 
     Rest5Client(
         CloseableHttpAsyncClient client,
@@ -137,7 +140,9 @@ public class Rest5Client implements Closeable {
         NodeSelector nodeSelector,
         boolean strictDeprecationMode,
         boolean compressionEnabled,
-        boolean metaHeaderEnabled
+        boolean metaHeaderEnabled,
+        boolean enableSingleNodeRetry,
+        int maxSingleNodeRetryAttempts
     ) {
         this.client = client;
         this.defaultHeaders = Collections.unmodifiableList(Arrays.asList(defaultHeaders));
@@ -147,6 +152,8 @@ public class Rest5Client implements Closeable {
         this.warningsHandler = strictDeprecationMode ? WarningsHandler.STRICT : WarningsHandler.PERMISSIVE;
         this.compressionEnabled = compressionEnabled;
         this.metaHeaderEnabled = metaHeaderEnabled;
+        this.enableSingleNodeRetry = enableSingleNodeRetry;
+        this.maxSingleNodeRetryAttempts = maxSingleNodeRetryAttempts;
         setNodes(nodes);
     }
 
@@ -289,6 +296,7 @@ public class Rest5Client implements Closeable {
      *                                 error
      */
     public Response performRequest(Request request) throws IOException {
+        singleNodeRetryAttempts.set(0);
         InternalRequest internalRequest = new InternalRequest(request);
         return performRequest(nextNodes(), internalRequest, null);
     }
@@ -307,8 +315,17 @@ public class Rest5Client implements Closeable {
             onFailure(context.node);
             Exception cause = extractAndWrapCause(e);
             addSuppressedException(previousException, cause);
-            if (isRetryableException(e) && nodes.hasNext()) {
-                return performRequest(nodes, request, cause);
+            if (isRetryableException(e)) {
+                if (nodes.hasNext()) {
+                    return performRequest(nodes, request, cause);
+                    // For single node scenario, we need to get a new iterator to check if the node can be retried
+                } else if (enableSingleNodeRetry) {
+                    int attempts = singleNodeRetryAttempts.incrementAndGet();
+                    if (attempts <= maxSingleNodeRetryAttempts) {
+                        // Try to get a new iterator with potentially retried nodes if single node retry is enabled
+                        return performRequest(nextNodes(), request, cause);
+                    }
+                }
             }
             if (cause instanceof IOException) {
                 throw (IOException) cause;
@@ -389,6 +406,7 @@ public class Rest5Client implements Closeable {
      */
     public Cancellable performRequestAsync(Request request, ResponseListener responseListener) {
         try {
+            singleNodeRetryAttempts.set(0);
             FailureTrackingResponseListener failureTrackingResponseListener =
                 new FailureTrackingResponseListener(responseListener);
             InternalRequest internalRequest = new InternalRequest(request);
@@ -417,10 +435,18 @@ public class Rest5Client implements Closeable {
                                 context.node, httpResponse);
                             if (responseOrResponseException.responseException == null) {
                                 listener.onSuccess(responseOrResponseException.response);
-                            } else {
+                            }
+                            else {
+                                listener.trackFailure(responseOrResponseException.responseException);
                                 if (nodes.hasNext()) {
-                                    listener.trackFailure(responseOrResponseException.responseException);
                                     performRequestAsync(nodes, request, listener);
+                                } else if (enableSingleNodeRetry && singleNodeRetryAttempts.incrementAndGet() <= maxSingleNodeRetryAttempts) {
+                                    // Try to get a new iterator with potentially retried nodes if single node retry is enabled
+                                    try {
+                                        performRequestAsync(nextNodes(), request, listener);
+                                    } catch (IOException ioException) {
+                                        listener.onDefinitiveFailure(ioException);
+                                    }
                                 } else {
                                     listener.onDefinitiveFailure(responseOrResponseException.responseException);
                                 }
@@ -436,9 +462,20 @@ public class Rest5Client implements Closeable {
                             RequestLogger.logFailedRequest(logger, request.httpRequest, context.node,
                                 failure);
                             onFailure(context.node);
-                            if (isRetryableException(failure) && nodes.hasNext()) {
+                            if (isRetryableException(failure)) {
                                 listener.trackFailure(failure);
-                                performRequestAsync(nodes, request, listener);
+                                if (nodes.hasNext()) {
+                                    performRequestAsync(nodes, request, listener);
+                                } else if (enableSingleNodeRetry && singleNodeRetryAttempts.incrementAndGet() <= maxSingleNodeRetryAttempts) {
+                                    // Try to get a new iterator with potentially retried nodes if single node retry is enabled
+                                    try {
+                                        performRequestAsync(nextNodes(), request, listener);
+                                    } catch (IOException ioException) {
+                                        listener.onDefinitiveFailure(ioException);
+                                    }
+                                } else {
+                                    listener.onDefinitiveFailure(failure);
+                                }
                             } else {
                                 listener.onDefinitiveFailure(failure);
                             }
@@ -471,7 +508,7 @@ public class Rest5Client implements Closeable {
      */
     private Iterator<Node> nextNodes() throws IOException {
         List<Node> nodes = this.nodes;
-        return selectNodes(nodes, blacklist, lastNodeIndex, nodeSelector).iterator();
+        return selectNodes(nodes, blacklist, lastNodeIndex, nodeSelector, enableSingleNodeRetry).iterator();
     }
 
     /**
@@ -483,7 +520,8 @@ public class Rest5Client implements Closeable {
         List<Node> nodes,
         Map<HttpHost, DeadHostState> blacklist,
         AtomicInteger lastNodeIndex,
-        NodeSelector nodeSelector
+        NodeSelector nodeSelector,
+        boolean enableSingleNodeRetry
     ) throws IOException {
         /*
          * Sort the nodes into living and dead lists.
@@ -492,7 +530,6 @@ public class Rest5Client implements Closeable {
         List<DeadNode> deadNodes = null;
         if (!blacklist.isEmpty()) {
             deadNodes = new ArrayList<>(blacklist.size());
-            new ArrayList<>(blacklist.size());
             for (Node node : nodes) {
                 DeadHostState deadness = blacklist.get(node.getHost());
                 if (deadness == null || deadness.shallBeRetried()) {
@@ -507,6 +544,7 @@ public class Rest5Client implements Closeable {
             livingNodes.addAll(nodes);
         }
 
+        // If we have living nodes, use them
         if (!livingNodes.isEmpty()) {
             /*
              * Normal state: there is at least one living node. If the
@@ -547,6 +585,22 @@ public class Rest5Client implements Closeable {
                 return singletonList(Collections.min(selectedDeadNodes).node);
             }
         }
+        
+        // Special case: only one node and it's dead, but we need to try it anyway if enabled
+        if (enableSingleNodeRetry && nodes.size() == 1) {
+            Node singleNode = nodes.get(0);
+            try {
+                List<Node> singleNodeList = new ArrayList<>(1);
+                singleNodeList.add(singleNode);
+                nodeSelector.select(singleNodeList);
+                if (!singleNodeList.isEmpty()) {
+                    return singletonList(singleNode);
+                }
+            } catch (Exception e) {
+                // Ignore, will throw the standard exception below
+            }
+        }
+        
         throw new IOException("NodeSelector [" + nodeSelector + "] rejected all nodes, living: " + livingNodes + " and dead: " + deadNodes);
     }
 

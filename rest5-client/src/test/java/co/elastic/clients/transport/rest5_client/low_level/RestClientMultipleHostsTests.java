@@ -67,7 +67,7 @@ public class RestClientMultipleHostsTests extends RestClientTestCase {
         }
         nodes = Collections.unmodifiableList(nodes);
         failureListener = new HostsTrackingFailureListener();
-        return new Rest5Client(httpClient, new Header[0], nodes, null, failureListener, nodeSelector, false, false, false);
+        return new Rest5Client(httpClient, new Header[0], nodes, null, failureListener, nodeSelector, false, false, false, false, 1);
     }
 
     /**
