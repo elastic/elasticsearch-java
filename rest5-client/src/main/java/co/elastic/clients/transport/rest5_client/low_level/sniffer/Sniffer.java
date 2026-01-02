@@ -129,7 +129,7 @@ public class Sniffer implements Closeable {
             /*
              * Skipped or already started tasks do nothing. In most cases tasks will be cancelled and not run, but we want to protect for
              * cases where future#cancel returns true yet the task runs. We want to make sure that such tasks do nothing otherwise they will
-             * schedule another round at the end and so on, leaving us with multiple parallel sniffing "tracks" whish is undesirable.
+             * schedule another round at the end and so on, leaving us with multiple parallel sniffing "tracks" which is undesirable.
              */
             if (taskState.compareAndSet(TaskState.WAITING, TaskState.STARTED) == false) {
                 return;

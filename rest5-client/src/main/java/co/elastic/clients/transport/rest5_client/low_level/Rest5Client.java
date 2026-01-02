@@ -452,7 +452,7 @@ public class Rest5Client implements Closeable {
                         listener.onDefinitiveFailure(Cancellable.newCancellationException());
                     }
                 });
-            // needed to be able to cancel asnyc requests
+            // needed to be able to cancel async requests
             if (futureRef instanceof org.apache.hc.core5.concurrent.Cancellable) {
                 request.httpRequest.setDependency((org.apache.hc.core5.concurrent.Cancellable) futureRef);
             }
