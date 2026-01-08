@@ -43,7 +43,7 @@ public class Base64VectorTest {
     public static void setup() {
         var server = ElasticsearchTestServer.global();
         elasticsearchClient = ElasticsearchTestClient.createClient(server.url(), new JacksonJsonpMapper(),
-            server.sslContext(), null);
+            server.sslContext());
     }
 
     @Test
