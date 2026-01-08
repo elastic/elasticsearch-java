@@ -22,7 +22,7 @@ package co.elastic.clients.transport.rest5_client;
 import co.elastic.clients.util.NoCopyByteArrayOutputStream;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.io.entity.AbstractHttpEntity;
-import org.apache.hc.core5.http.nio.AsyncDataProducer;
+import org.apache.hc.core5.http.nio.AsyncEntityProducer;
 import org.apache.hc.core5.http.nio.DataStreamChannel;
 
 import java.io.IOException;
@@ -32,20 +32,24 @@ import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
 import java.nio.channels.WritableByteChannel;
 import java.util.Iterator;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * An HTTP entity based on a sequence of byte buffers.
  */
-class MultiBufferEntity extends AbstractHttpEntity implements AsyncDataProducer {
+class MultiBufferEntity extends AbstractHttpEntity implements AsyncEntityProducer {
 
     private final Iterable<ByteBuffer> buffers;
 
     private Iterator<ByteBuffer> iterator;
     private volatile ByteBuffer currentBuffer;
 
+    private final AtomicReference<Exception> exceptionRef;
+
     MultiBufferEntity(Iterable<ByteBuffer> buffers, ContentType contentType) {
         super(contentType,null,true);
         this.buffers = buffers;
+        this.exceptionRef = new AtomicReference<>();
         init();
     }
 
@@ -67,6 +71,13 @@ class MultiBufferEntity extends AbstractHttpEntity implements AsyncDataProducer 
     @Override
     public boolean isRepeatable() {
         return true;
+    }
+
+    @Override
+    public void failed(Exception cause) {
+        if (exceptionRef.compareAndSet(null, cause)) {
+            releaseResources();
+        }
     }
 
     @Override
