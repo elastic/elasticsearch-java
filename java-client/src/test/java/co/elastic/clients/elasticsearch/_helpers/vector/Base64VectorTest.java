@@ -106,7 +106,7 @@ public class Base64VectorTest {
         elasticsearchClient.indices().refresh();
 
         // Asserting exactly 1 vector has been ingested
-        assertEquals(1L, elasticsearchClient.indices().stats().all().total().docs().count());
+        assertEquals(1L, elasticsearchClient.indices().stats(s -> s.index(INDEX)).all().total().docs().count());
 
         // Asserting vector can be deserialized
         SearchResponse<CustomVectorDoc> resp = elasticsearchClient.search(s -> s.index(INDEX),
