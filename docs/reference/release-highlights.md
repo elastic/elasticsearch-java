@@ -9,6 +9,10 @@ These are the important new features and changes in minor releases. Every releas
 
 For a list of detailed changes, including bug fixes, see the [GitHub project release notes](https://github.com/elastic/elasticsearch-java/releases).
 
+## 9.2.0 [release-highlights-920]
+
+[Release notes](/release-notes/9-2-0.md)
+
 ## 9.1.0 [release-highlights-910]
 
 [Release notes](/release-notes/9-1-0.md)
