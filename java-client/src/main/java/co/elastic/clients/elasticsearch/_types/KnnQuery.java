@@ -73,6 +73,9 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 	private final Integer numCandidates;
 
 	@Nullable
+	private final Float visitPercentage;
+
+	@Nullable
 	private final Integer k;
 
 	private final List<Query> filter;
@@ -92,6 +95,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 		this.queryVector = ApiTypeHelper.unmodifiable(builder.queryVector);
 		this.queryVectorBuilder = builder.queryVectorBuilder;
 		this.numCandidates = builder.numCandidates;
+		this.visitPercentage = builder.visitPercentage;
 		this.k = builder.k;
 		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 		this.similarity = builder.similarity;
@@ -148,6 +152,17 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	public final Integer numCandidates() {
 		return this.numCandidates;
+	}
+
+	/**
+	 * The percentage of vectors to explore per shard while doing knn search with
+	 * bbq_disk
+	 * <p>
+	 * API name: {@code visit_percentage}
+	 */
+	@Nullable
+	public final Float visitPercentage() {
+		return this.visitPercentage;
 	}
 
 	/**
@@ -215,6 +230,11 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 			generator.write(this.numCandidates);
 
 		}
+		if (this.visitPercentage != null) {
+			generator.writeKey("visit_percentage");
+			generator.write(this.visitPercentage);
+
+		}
 		if (this.k != null) {
 			generator.writeKey("k");
 			generator.write(this.k);
@@ -260,6 +280,9 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 
 		@Nullable
 		private Integer numCandidates;
+
+		@Nullable
+		private Float visitPercentage;
 
 		@Nullable
 		private Integer k;
@@ -347,6 +370,17 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 		 */
 		public final Builder numCandidates(@Nullable Integer value) {
 			this.numCandidates = value;
+			return this;
+		}
+
+		/**
+		 * The percentage of vectors to explore per shard while doing knn search with
+		 * bbq_disk
+		 * <p>
+		 * API name: {@code visit_percentage}
+		 */
+		public final Builder visitPercentage(@Nullable Float value) {
+			this.visitPercentage = value;
 			return this;
 		}
 
@@ -472,6 +506,7 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 				"query_vector");
 		op.add(Builder::queryVectorBuilder, QueryVectorBuilder._DESERIALIZER, "query_vector_builder");
 		op.add(Builder::numCandidates, JsonpDeserializer.integerDeserializer(), "num_candidates");
+		op.add(Builder::visitPercentage, JsonpDeserializer.floatDeserializer(), "visit_percentage");
 		op.add(Builder::k, JsonpDeserializer.integerDeserializer(), "k");
 		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "filter");
 		op.add(Builder::similarity, JsonpDeserializer.floatDeserializer(), "similarity");

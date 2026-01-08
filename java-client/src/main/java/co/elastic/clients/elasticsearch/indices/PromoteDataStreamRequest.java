@@ -56,8 +56,10 @@ import javax.annotation.Nullable;
 // typedef: indices.promote_data_stream.Request
 
 /**
- * Promote a data stream. Promote a data stream from a replicated data stream
- * managed by cross-cluster replication (CCR) to a regular data stream.
+ * Promote a data stream.
+ * <p>
+ * Promote a data stream from a replicated data stream managed by cross-cluster
+ * replication (CCR) to a regular data stream.
  * <p>
  * With CCR auto following, a data stream from a remote cluster can be
  * replicated to the local cluster. These data streams can't be rolled over in
@@ -109,7 +111,7 @@ public class PromoteDataStreamRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the data stream
+	 * Required - The name of the data stream to promote
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -153,7 +155,7 @@ public class PromoteDataStreamRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The name of the data stream
+		 * Required - The name of the data stream to promote
 		 * <p>
 		 * API name: {@code name}
 		 */

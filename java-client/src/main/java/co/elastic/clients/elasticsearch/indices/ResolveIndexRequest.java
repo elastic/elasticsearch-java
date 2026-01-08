@@ -24,6 +24,8 @@ import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -59,15 +61,16 @@ import javax.annotation.Nullable;
 // typedef: indices.resolve_index.Request
 
 /**
- * Resolve indices. Resolve the names and/or index patterns for indices,
- * aliases, and data streams. Multiple patterns and remote clusters are
- * supported.
+ * Resolve indices.
+ * <p>
+ * Resolve the names and/or index patterns for indices, aliases, and data
+ * streams. Multiple patterns and remote clusters are supported.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.resolve_index.Request">API
  *      specification</a>
  */
-
-public class ResolveIndexRequest extends RequestBase {
+@JsonpDeserializable
+public class ResolveIndexRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoIndices;
 
@@ -171,6 +174,25 @@ public class ResolveIndexRequest extends RequestBase {
 	@Nullable
 	public final String projectRouting() {
 		return this.projectRouting;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -345,6 +367,20 @@ public class ResolveIndexRequest extends RequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
+	 * Json deserializer for {@link ResolveIndexRequest}
+	 */
+	public static final JsonpDeserializer<ResolveIndexRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ResolveIndexRequest::setupResolveIndexRequestDeserializer);
+
+	protected static void setupResolveIndexRequestDeserializer(ObjectDeserializer<ResolveIndexRequest.Builder> op) {
+
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
 	 * Endpoint "{@code indices.resolve_index}".
 	 */
 	public static final Endpoint<ResolveIndexRequest, ResolveIndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
@@ -352,7 +388,7 @@ public class ResolveIndexRequest extends RequestBase {
 
 			// Request method
 			request -> {
-				return "GET";
+				return "POST";
 
 			},
 
@@ -407,10 +443,7 @@ public class ResolveIndexRequest extends RequestBase {
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
-				if (request.projectRouting != null) {
-					params.put("project_routing", request.projectRouting);
-				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ResolveIndexResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ResolveIndexResponse._DESERIALIZER);
 }

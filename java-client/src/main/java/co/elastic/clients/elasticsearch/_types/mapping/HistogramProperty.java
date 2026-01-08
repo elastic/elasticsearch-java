@@ -59,12 +59,16 @@ public class HistogramProperty extends PropertyBase implements PropertyVariant {
 	@Nullable
 	private final Boolean ignoreMalformed;
 
+	@Nullable
+	private final TimeSeriesMetricType timeSeriesMetric;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private HistogramProperty(Builder builder) {
 		super(builder);
 
 		this.ignoreMalformed = builder.ignoreMalformed;
+		this.timeSeriesMetric = builder.timeSeriesMetric;
 
 	}
 
@@ -88,6 +92,14 @@ public class HistogramProperty extends PropertyBase implements PropertyVariant {
 		return this.ignoreMalformed;
 	}
 
+	/**
+	 * API name: {@code time_series_metric}
+	 */
+	@Nullable
+	public final TimeSeriesMetricType timeSeriesMetric() {
+		return this.timeSeriesMetric;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.write("type", "histogram");
@@ -96,6 +108,10 @@ public class HistogramProperty extends PropertyBase implements PropertyVariant {
 			generator.writeKey("ignore_malformed");
 			generator.write(this.ignoreMalformed);
 
+		}
+		if (this.timeSeriesMetric != null) {
+			generator.writeKey("time_series_metric");
+			this.timeSeriesMetric.serialize(generator, mapper);
 		}
 
 	}
@@ -112,11 +128,22 @@ public class HistogramProperty extends PropertyBase implements PropertyVariant {
 		@Nullable
 		private Boolean ignoreMalformed;
 
+		@Nullable
+		private TimeSeriesMetricType timeSeriesMetric;
+
 		/**
 		 * API name: {@code ignore_malformed}
 		 */
 		public final Builder ignoreMalformed(@Nullable Boolean value) {
 			this.ignoreMalformed = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code time_series_metric}
+		 */
+		public final Builder timeSeriesMetric(@Nullable TimeSeriesMetricType value) {
+			this.timeSeriesMetric = value;
 			return this;
 		}
 
@@ -149,6 +176,7 @@ public class HistogramProperty extends PropertyBase implements PropertyVariant {
 	protected static void setupHistogramPropertyDeserializer(ObjectDeserializer<HistogramProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
+		op.add(Builder::timeSeriesMetric, TimeSeriesMetricType._DESERIALIZER, "time_series_metric");
 
 		op.ignore("type");
 	}

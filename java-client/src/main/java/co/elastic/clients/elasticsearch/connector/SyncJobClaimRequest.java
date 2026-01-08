@@ -59,10 +59,12 @@ import javax.annotation.Nullable;
 // typedef: connector.sync_job_claim.Request
 
 /**
- * Claim a connector sync job. This action updates the job status to
- * <code>in_progress</code> and sets the <code>last_seen</code> and
- * <code>started_at</code> timestamps to the current time. Additionally, it can
- * set the <code>sync_cursor</code> property for the sync job.
+ * Claim a connector sync job.
+ * <p>
+ * This action updates the job status to <code>in_progress</code> and sets the
+ * <code>last_seen</code> and <code>started_at</code> timestamps to the current
+ * time. Additionally, it can set the <code>sync_cursor</code> property for the
+ * sync job.
  * <p>
  * This API is not intended for direct connector management by users. It
  * supports the implementation of services that utilize the connector protocol

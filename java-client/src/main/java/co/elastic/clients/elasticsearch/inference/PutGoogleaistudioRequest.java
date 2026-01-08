@@ -102,7 +102,9 @@ public class PutGoogleaistudioRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * The chunking configuration object.
+	 * The chunking configuration object. Applies only to the
+	 * <code>text_embedding</code> task type. Not applicable to the
+	 * <code>completion</code> task type.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -207,7 +209,9 @@ public class PutGoogleaistudioRequest extends RequestBase implements JsonpSerial
 		private Time timeout;
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>completion</code> task type.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -217,7 +221,9 @@ public class PutGoogleaistudioRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>completion</code> task type.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */

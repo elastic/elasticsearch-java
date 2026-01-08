@@ -79,8 +79,7 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final String preference;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	@Nullable
 	private final Long version;
@@ -97,7 +96,7 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		this.index = builder.index;
 		this.name = builder.name;
 		this.preference = builder.preference;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.version = builder.version;
 
 	}
@@ -189,8 +188,7 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -245,9 +243,14 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 			generator.write(this.preference);
 
 		}
-		if (this.routing != null) {
+		if (ApiTypeHelper.isDefined(this.routing)) {
 			generator.writeKey("routing");
-			generator.write(this.routing);
+			generator.writeStartArray();
+			for (String item0 : this.routing) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.version != null) {
@@ -286,7 +289,7 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		private String preference;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private Long version;
@@ -381,9 +384,23 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		 * Routing used to fetch document to percolate.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * Routing used to fetch document to percolate.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -432,7 +449,8 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::preference, JsonpDeserializer.stringDeserializer(), "preference");
-		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(Builder::routing, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"routing");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
 	}

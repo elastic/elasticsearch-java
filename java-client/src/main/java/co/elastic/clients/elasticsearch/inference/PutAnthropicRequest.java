@@ -70,9 +70,6 @@ import javax.annotation.Nullable;
 public class PutAnthropicRequest extends RequestBase implements JsonpSerializable {
 	private final String anthropicInferenceId;
 
-	@Nullable
-	private final InferenceChunkingSettings chunkingSettings;
-
 	private final AnthropicServiceType service;
 
 	private final AnthropicServiceSettings serviceSettings;
@@ -91,7 +88,6 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 
 		this.anthropicInferenceId = ApiTypeHelper.requireNonNull(builder.anthropicInferenceId, this,
 				"anthropicInferenceId");
-		this.chunkingSettings = builder.chunkingSettings;
 		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
 		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
 		this.taskSettings = builder.taskSettings;
@@ -114,16 +110,6 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * The chunking configuration object.
-	 * <p>
-	 * API name: {@code chunking_settings}
-	 */
-	@Nullable
-	public final InferenceChunkingSettings chunkingSettings() {
-		return this.chunkingSettings;
-	}
-
-	/**
 	 * Required - The type of service supported for the specified task type. In this
 	 * case, <code>anthropic</code>.
 	 * <p>
@@ -135,7 +121,7 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 
 	/**
 	 * Required - Settings used to install the inference model. These settings are
-	 * specific to the <code>watsonxai</code> service.
+	 * specific to the <code>anthropic</code> service.
 	 * <p>
 	 * API name: {@code service_settings}
 	 */
@@ -186,11 +172,6 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.chunkingSettings != null) {
-			generator.writeKey("chunking_settings");
-			this.chunkingSettings.serialize(generator, mapper);
-
-		}
 		generator.writeKey("service");
 		this.service.serialize(generator, mapper);
 		generator.writeKey("service_settings");
@@ -215,9 +196,6 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 				ObjectBuilder<PutAnthropicRequest> {
 		private String anthropicInferenceId;
 
-		@Nullable
-		private InferenceChunkingSettings chunkingSettings;
-
 		private AnthropicServiceType service;
 
 		private AnthropicServiceSettings serviceSettings;
@@ -241,26 +219,6 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * The chunking configuration object.
-		 * <p>
-		 * API name: {@code chunking_settings}
-		 */
-		public final Builder chunkingSettings(@Nullable InferenceChunkingSettings value) {
-			this.chunkingSettings = value;
-			return this;
-		}
-
-		/**
-		 * The chunking configuration object.
-		 * <p>
-		 * API name: {@code chunking_settings}
-		 */
-		public final Builder chunkingSettings(
-				Function<InferenceChunkingSettings.Builder, ObjectBuilder<InferenceChunkingSettings>> fn) {
-			return this.chunkingSettings(fn.apply(new InferenceChunkingSettings.Builder()).build());
-		}
-
-		/**
 		 * Required - The type of service supported for the specified task type. In this
 		 * case, <code>anthropic</code>.
 		 * <p>
@@ -273,7 +231,7 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 
 		/**
 		 * Required - Settings used to install the inference model. These settings are
-		 * specific to the <code>watsonxai</code> service.
+		 * specific to the <code>anthropic</code> service.
 		 * <p>
 		 * API name: {@code service_settings}
 		 */
@@ -284,7 +242,7 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 
 		/**
 		 * Required - Settings used to install the inference model. These settings are
-		 * specific to the <code>watsonxai</code> service.
+		 * specific to the <code>anthropic</code> service.
 		 * <p>
 		 * API name: {@code service_settings}
 		 */
@@ -375,7 +333,6 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 
 	protected static void setupPutAnthropicRequestDeserializer(ObjectDeserializer<PutAnthropicRequest.Builder> op) {
 
-		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
 		op.add(Builder::service, AnthropicServiceType._DESERIALIZER, "service");
 		op.add(Builder::serviceSettings, AnthropicServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, AnthropicTaskSettings._DESERIALIZER, "task_settings");

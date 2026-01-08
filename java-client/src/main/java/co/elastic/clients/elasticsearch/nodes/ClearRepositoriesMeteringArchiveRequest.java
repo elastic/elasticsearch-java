@@ -59,8 +59,9 @@ import javax.annotation.Nullable;
 // typedef: nodes.clear_repositories_metering_archive.Request
 
 /**
- * Clear the archived repositories metering. Clear the archived repositories
- * metering information in the cluster.
+ * Clear the archived repositories metering.
+ * <p>
+ * Clear the archived repositories metering information in the cluster.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#nodes.clear_repositories_metering_archive.Request">API

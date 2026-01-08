@@ -71,8 +71,9 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	// ----- Endpoint: searchable_snapshots.cache_stats
 
 	/**
-	 * Get cache statistics. Get statistics about the shared cache for partially
-	 * mounted indices.
+	 * Get cache statistics.
+	 * <p>
+	 * Get statistics about the shared cache for partially mounted indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-searchable-snapshots-cache-stats">Documentation
@@ -87,8 +88,9 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	}
 
 	/**
-	 * Get cache statistics. Get statistics about the shared cache for partially
-	 * mounted indices.
+	 * Get cache statistics.
+	 * <p>
+	 * Get statistics about the shared cache for partially mounted indices.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -104,8 +106,9 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	}
 
 	/**
-	 * Get cache statistics. Get statistics about the shared cache for partially
-	 * mounted indices.
+	 * Get cache statistics.
+	 * <p>
+	 * Get statistics about the shared cache for partially mounted indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-searchable-snapshots-cache-stats">Documentation
@@ -120,8 +123,10 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	// ----- Endpoint: searchable_snapshots.clear_cache
 
 	/**
-	 * Clear the cache. Clear indices and data streams from the shared cache for
-	 * partially mounted indices.
+	 * Clear the cache.
+	 * <p>
+	 * Clear indices and data streams from the shared cache for partially mounted
+	 * indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-searchable-snapshots-clear-cache">Documentation
@@ -136,8 +141,10 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	}
 
 	/**
-	 * Clear the cache. Clear indices and data streams from the shared cache for
-	 * partially mounted indices.
+	 * Clear the cache.
+	 * <p>
+	 * Clear indices and data streams from the shared cache for partially mounted
+	 * indices.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -153,8 +160,10 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	}
 
 	/**
-	 * Clear the cache. Clear indices and data streams from the shared cache for
-	 * partially mounted indices.
+	 * Clear the cache.
+	 * <p>
+	 * Clear indices and data streams from the shared cache for partially mounted
+	 * indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-searchable-snapshots-clear-cache">Documentation
@@ -169,9 +178,11 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	// ----- Endpoint: searchable_snapshots.mount
 
 	/**
-	 * Mount a snapshot. Mount a snapshot as a searchable snapshot index. Do not use
-	 * this API for snapshots managed by index lifecycle management (ILM). Manually
-	 * mounting ILM-managed snapshots can interfere with ILM processes.
+	 * Mount a snapshot.
+	 * <p>
+	 * Mount a snapshot as a searchable snapshot index. Do not use this API for
+	 * snapshots managed by index lifecycle management (ILM). Manually mounting
+	 * ILM-managed snapshots can interfere with ILM processes.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-searchable-snapshots-mount">Documentation
@@ -186,9 +197,11 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 	}
 
 	/**
-	 * Mount a snapshot. Mount a snapshot as a searchable snapshot index. Do not use
-	 * this API for snapshots managed by index lifecycle management (ILM). Manually
-	 * mounting ILM-managed snapshots can interfere with ILM processes.
+	 * Mount a snapshot.
+	 * <p>
+	 * Mount a snapshot as a searchable snapshot index. Do not use this API for
+	 * snapshots managed by index lifecycle management (ILM). Manually mounting
+	 * ILM-managed snapshots can interfere with ILM processes.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

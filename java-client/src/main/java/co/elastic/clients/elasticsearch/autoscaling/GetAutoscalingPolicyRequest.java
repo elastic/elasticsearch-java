@@ -98,7 +98,7 @@ public class GetAutoscalingPolicyRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - the name of the autoscaling policy
+	 * Required - Name of the autoscaling policy
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -142,7 +142,7 @@ public class GetAutoscalingPolicyRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - the name of the autoscaling policy
+		 * Required - Name of the autoscaling policy
 		 * <p>
 		 * API name: {@code name}
 		 */

@@ -60,8 +60,10 @@ import javax.annotation.Nullable;
 // typedef: indices.get_settings.Request
 
 /**
- * Get index settings. Get setting information for one or more indices. For data
- * streams, it returns setting information for the stream's backing indices.
+ * Get index settings.
+ * <p>
+ * Get setting information for one or more indices. For data streams, it returns
+ * setting information for the stream's backing indices.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.get_settings.Request">API
  *      specification</a>
@@ -185,7 +187,11 @@ public class GetIndicesSettingsRequest extends RequestBase {
 	 * only. If <code>false</code>, information is retrieved from the master node.
 	 * <p>
 	 * API name: {@code local}
+	 * 
+	 * @deprecated 9.1.0 This parameter is a no-op and settings are always retrieved
+	 *             locally.
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean local() {
 		return this.local;
@@ -355,7 +361,11 @@ public class GetIndicesSettingsRequest extends RequestBase {
 		 * only. If <code>false</code>, information is retrieved from the master node.
 		 * <p>
 		 * API name: {@code local}
+		 * 
+		 * @deprecated 9.1.0 This parameter is a no-op and settings are always retrieved
+		 *             locally.
 		 */
+		@Deprecated
 		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;

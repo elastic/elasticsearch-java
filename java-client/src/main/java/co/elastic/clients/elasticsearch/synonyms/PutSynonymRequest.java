@@ -59,9 +59,10 @@ import javax.annotation.Nullable;
 // typedef: synonyms.put_synonym.Request
 
 /**
- * Create or update a synonym set. Synonyms sets are limited to a maximum of
- * 10,000 synonym rules per set. If you need to manage more synonym rules, you
- * can create multiple synonym sets.
+ * Create or update a synonym set.
+ * <p>
+ * Synonyms sets are limited to a maximum of 10,000 synonym rules per set. If
+ * you need to manage more synonym rules, you can create multiple synonym sets.
  * <p>
  * When an existing synonyms set is updated, the search analyzers that use the
  * synonyms set are reloaded automatically for all indices. This is equivalent

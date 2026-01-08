@@ -58,8 +58,10 @@ import javax.annotation.Nullable;
 // typedef: watcher.stats.Request
 
 /**
- * Get Watcher statistics. This API always returns basic metrics. You retrieve
- * more metrics by using the metric parameter.
+ * Get Watcher statistics.
+ * <p>
+ * This API always returns basic metrics. You retrieve more metrics by using the
+ * metric parameter.
  * 
  * @see <a href="../doc-files/api-spec.html#watcher.stats.Request">API
  *      specification</a>

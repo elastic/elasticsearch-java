@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: ingest.delete_pipeline.Request
 
 /**
- * Delete pipelines. Delete one or more ingest pipelines.
+ * Delete pipelines.
+ * <p>
+ * Delete one or more ingest pipelines.
  * 
  * @see <a href="../doc-files/api-spec.html#ingest.delete_pipeline.Request">API
  *      specification</a>

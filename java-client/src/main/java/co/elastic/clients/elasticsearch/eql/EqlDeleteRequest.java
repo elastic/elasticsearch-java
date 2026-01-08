@@ -56,8 +56,10 @@ import javax.annotation.Nullable;
 // typedef: eql.delete.Request
 
 /**
- * Delete an async EQL search. Delete an async EQL search or a stored
- * synchronous EQL search. The API also deletes results for the search.
+ * Delete an async EQL search.
+ * <p>
+ * Delete an async EQL search or a stored synchronous EQL search. The API also
+ * deletes results for the search.
  * 
  * @see <a href="../doc-files/api-spec.html#eql.delete.Request">API
  *      specification</a>

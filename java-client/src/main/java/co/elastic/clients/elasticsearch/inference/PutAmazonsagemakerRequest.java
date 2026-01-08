@@ -115,7 +115,10 @@ public class PutAmazonsagemakerRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * The chunking configuration object.
+	 * The chunking configuration object. Applies only to the
+	 * <code>sparse_embedding</code> or <code>text_embedding</code> task types. Not
+	 * applicable to the <code>rerank</code>, <code>completion</code>, or
+	 * <code>chat_completion</code> task types.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -242,7 +245,10 @@ public class PutAmazonsagemakerRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>sparse_embedding</code> or <code>text_embedding</code> task types. Not
+		 * applicable to the <code>rerank</code>, <code>completion</code>, or
+		 * <code>chat_completion</code> task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -252,7 +258,10 @@ public class PutAmazonsagemakerRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>sparse_embedding</code> or <code>text_embedding</code> task types. Not
+		 * applicable to the <code>rerank</code>, <code>completion</code>, or
+		 * <code>chat_completion</code> task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */

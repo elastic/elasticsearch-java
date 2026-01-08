@@ -60,9 +60,10 @@ import javax.annotation.Nullable;
 // typedef: ml.stop_datafeed.Request
 
 /**
- * Stop datafeeds. A datafeed that is stopped ceases to retrieve data from
- * Elasticsearch. A datafeed can be started and stopped multiple times
- * throughout its lifecycle.
+ * Stop datafeeds.
+ * <p>
+ * A datafeed that is stopped ceases to retrieve data from Elasticsearch. A
+ * datafeed can be started and stopped multiple times throughout its lifecycle.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.stop_datafeed.Request">API
  *      specification</a>
@@ -71,6 +72,9 @@ import javax.annotation.Nullable;
 public class StopDatafeedRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoMatch;
+
+	@Nullable
+	private final Boolean closeJob;
 
 	private final String datafeedId;
 
@@ -85,6 +89,7 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 	private StopDatafeedRequest(Builder builder) {
 
 		this.allowNoMatch = builder.allowNoMatch;
+		this.closeJob = builder.closeJob;
 		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.force = builder.force;
 		this.timeout = builder.timeout;
@@ -103,6 +108,16 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	public final Boolean allowNoMatch() {
 		return this.allowNoMatch;
+	}
+
+	/**
+	 * Refer to the description for the <code>close_job</code> query parameter.
+	 * <p>
+	 * API name: {@code close_job}
+	 */
+	@Nullable
+	public final Boolean closeJob() {
+		return this.closeJob;
 	}
 
 	/**
@@ -153,6 +168,11 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 			generator.write(this.allowNoMatch);
 
 		}
+		if (this.closeJob != null) {
+			generator.writeKey("close_job");
+			generator.write(this.closeJob);
+
+		}
 		if (this.force != null) {
 			generator.writeKey("force");
 			generator.write(this.force);
@@ -178,6 +198,9 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private Boolean allowNoMatch;
 
+		@Nullable
+		private Boolean closeJob;
+
 		private String datafeedId;
 
 		@Nullable
@@ -193,6 +216,16 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 		 */
 		public final Builder allowNoMatch(@Nullable Boolean value) {
 			this.allowNoMatch = value;
+			return this;
+		}
+
+		/**
+		 * Refer to the description for the <code>close_job</code> query parameter.
+		 * <p>
+		 * API name: {@code close_job}
+		 */
+		public final Builder closeJob(@Nullable Boolean value) {
+			this.closeJob = value;
 			return this;
 		}
 
@@ -267,6 +300,7 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 	protected static void setupStopDatafeedRequestDeserializer(ObjectDeserializer<StopDatafeedRequest.Builder> op) {
 
 		op.add(Builder::allowNoMatch, JsonpDeserializer.booleanDeserializer(), "allow_no_match");
+		op.add(Builder::closeJob, JsonpDeserializer.booleanDeserializer(), "close_job");
 		op.add(Builder::force, JsonpDeserializer.booleanDeserializer(), "force");
 		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
 

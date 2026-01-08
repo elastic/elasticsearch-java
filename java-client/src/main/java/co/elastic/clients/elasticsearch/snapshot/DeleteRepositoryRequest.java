@@ -58,10 +58,11 @@ import javax.annotation.Nullable;
 // typedef: snapshot.delete_repository.Request
 
 /**
- * Delete snapshot repositories. When a repository is unregistered,
- * Elasticsearch removes only the reference to the location where the repository
- * is storing the snapshots. The snapshots themselves are left untouched and in
- * place.
+ * Delete snapshot repositories.
+ * <p>
+ * When a repository is unregistered, Elasticsearch removes only the reference
+ * to the location where the repository is storing the snapshots. The snapshots
+ * themselves are left untouched and in place.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#snapshot.delete_repository.Request">API

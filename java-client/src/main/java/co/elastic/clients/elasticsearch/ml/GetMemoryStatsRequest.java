@@ -55,9 +55,11 @@ import javax.annotation.Nullable;
 // typedef: ml.get_memory_stats.Request
 
 /**
- * Get machine learning memory usage info. Get information about how machine
- * learning jobs and trained models are using memory, on each node, both within
- * the JVM heap, and natively, outside of the JVM.
+ * Get machine learning memory usage info.
+ * <p>
+ * Get information about how machine learning jobs and trained models are using
+ * memory, on each node, both within the JVM heap, and natively, outside of the
+ * JVM.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.get_memory_stats.Request">API
  *      specification</a>

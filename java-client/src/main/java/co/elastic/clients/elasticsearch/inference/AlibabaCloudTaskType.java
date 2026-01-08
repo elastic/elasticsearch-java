@@ -50,7 +50,7 @@ public enum AlibabaCloudTaskType implements JsonEnum {
 
 	Rerank("rerank"),
 
-	SpaceEmbedding("space_embedding"),
+	SparseEmbedding("sparse_embedding"),
 
 	TextEmbedding("text_embedding"),
 

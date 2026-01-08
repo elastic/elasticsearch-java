@@ -87,6 +87,8 @@ public class Retriever implements TaggedUnion<Retriever.Kind, Object>, JsonpSeri
 
 		Pinned("pinned"),
 
+		Diversify("diversify"),
+
 		;
 
 		private final String jsonValue;
@@ -269,6 +271,23 @@ public class Retriever implements TaggedUnion<Retriever.Kind, Object>, JsonpSeri
 		return TaggedUnionUtils.get(this, Kind.Pinned);
 	}
 
+	/**
+	 * Is this variant instance of kind {@code diversify}?
+	 */
+	public boolean isDiversify() {
+		return _kind == Kind.Diversify;
+	}
+
+	/**
+	 * Get the {@code diversify} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code diversify} kind.
+	 */
+	public DiversifyRetriever diversify() {
+		return TaggedUnionUtils.get(this, Kind.Diversify);
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -380,6 +399,17 @@ public class Retriever implements TaggedUnion<Retriever.Kind, Object>, JsonpSeri
 			return this.pinned(fn.apply(new PinnedRetriever.Builder()).build());
 		}
 
+		public ObjectBuilder<Retriever> diversify(DiversifyRetriever v) {
+			this._kind = Kind.Diversify;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Retriever> diversify(
+				Function<DiversifyRetriever.Builder, ObjectBuilder<DiversifyRetriever>> fn) {
+			return this.diversify(fn.apply(new DiversifyRetriever.Builder()).build());
+		}
+
 		public Retriever build() {
 			_checkSingleUse();
 			return new Retriever(this);
@@ -397,6 +427,7 @@ public class Retriever implements TaggedUnion<Retriever.Kind, Object>, JsonpSeri
 		op.add(Builder::rescorer, RescorerRetriever._DESERIALIZER, "rescorer");
 		op.add(Builder::linear, LinearRetriever._DESERIALIZER, "linear");
 		op.add(Builder::pinned, PinnedRetriever._DESERIALIZER, "pinned");
+		op.add(Builder::diversify, DiversifyRetriever._DESERIALIZER, "diversify");
 
 	}
 

@@ -158,7 +158,9 @@ public class PutCustomRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The chunking configuration object.
+	 * The chunking configuration object. Applies only to the
+	 * <code>sparse_embedding</code> or <code>text_embedding</code> task types. Not
+	 * applicable to the <code>rerank</code> or <code>completion</code> task types.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -269,7 +271,9 @@ public class PutCustomRequest extends RequestBase implements JsonpSerializable {
 		private CustomTaskType taskType;
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>sparse_embedding</code> or <code>text_embedding</code> task types. Not
+		 * applicable to the <code>rerank</code> or <code>completion</code> task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -279,7 +283,9 @@ public class PutCustomRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>sparse_embedding</code> or <code>text_embedding</code> task types. Not
+		 * applicable to the <code>rerank</code> or <code>completion</code> task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */

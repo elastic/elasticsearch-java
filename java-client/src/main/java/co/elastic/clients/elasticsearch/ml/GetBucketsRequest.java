@@ -61,8 +61,9 @@ import javax.annotation.Nullable;
 // typedef: ml.get_buckets.Request
 
 /**
- * Get anomaly detection job results for buckets. The API presents a
- * chronological view of the records, grouped by bucket.
+ * Get anomaly detection job results for buckets.
+ * <p>
+ * The API presents a chronological view of the records, grouped by bucket.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.get_buckets.Request">API
  *      specification</a>

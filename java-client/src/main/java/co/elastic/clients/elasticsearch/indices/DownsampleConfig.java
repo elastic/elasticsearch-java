@@ -61,11 +61,15 @@ import javax.annotation.Nullable;
 public class DownsampleConfig implements JsonpSerializable {
 	private final Time fixedInterval;
 
+	@Nullable
+	private final SamplingMethod samplingMethod;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DownsampleConfig(Builder builder) {
 
 		this.fixedInterval = ApiTypeHelper.requireNonNull(builder.fixedInterval, this, "fixedInterval");
+		this.samplingMethod = builder.samplingMethod;
 
 	}
 
@@ -83,6 +87,18 @@ public class DownsampleConfig implements JsonpSerializable {
 	}
 
 	/**
+	 * The sampling method used to reduce the documents; it can be either
+	 * <code>aggregate</code> or <code>last_value</code>. Defaults to
+	 * <code>aggregate</code>.
+	 * <p>
+	 * API name: {@code sampling_method}
+	 */
+	@Nullable
+	public final SamplingMethod samplingMethod() {
+		return this.samplingMethod;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -95,6 +111,11 @@ public class DownsampleConfig implements JsonpSerializable {
 
 		generator.writeKey("fixed_interval");
 		this.fixedInterval.serialize(generator, mapper);
+
+		if (this.samplingMethod != null) {
+			generator.writeKey("sampling_method");
+			this.samplingMethod.serialize(generator, mapper);
+		}
 
 	}
 
@@ -111,6 +132,9 @@ public class DownsampleConfig implements JsonpSerializable {
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DownsampleConfig> {
 		private Time fixedInterval;
+
+		@Nullable
+		private SamplingMethod samplingMethod;
 
 		/**
 		 * Required - The interval at which to aggregate the original time series index.
@@ -129,6 +153,18 @@ public class DownsampleConfig implements JsonpSerializable {
 		 */
 		public final Builder fixedInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.fixedInterval(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * The sampling method used to reduce the documents; it can be either
+		 * <code>aggregate</code> or <code>last_value</code>. Defaults to
+		 * <code>aggregate</code>.
+		 * <p>
+		 * API name: {@code sampling_method}
+		 */
+		public final Builder samplingMethod(@Nullable SamplingMethod value) {
+			this.samplingMethod = value;
+			return this;
 		}
 
 		@Override
@@ -160,6 +196,7 @@ public class DownsampleConfig implements JsonpSerializable {
 	protected static void setupDownsampleConfigDeserializer(ObjectDeserializer<DownsampleConfig.Builder> op) {
 
 		op.add(Builder::fixedInterval, Time._DESERIALIZER, "fixed_interval");
+		op.add(Builder::samplingMethod, SamplingMethod._DESERIALIZER, "sampling_method");
 
 	}
 

@@ -56,9 +56,10 @@ import javax.annotation.Nullable;
 // typedef: cluster.pending_tasks.Request
 
 /**
- * Get the pending cluster tasks. Get information about cluster-level changes
- * (such as create index, update mapping, allocate or fail shard) that have not
- * yet taken effect.
+ * Get the pending cluster tasks.
+ * <p>
+ * Get information about cluster-level changes (such as create index, update
+ * mapping, allocate or fail shard) that have not yet taken effect.
  * <p>
  * NOTE: This API returns a list of any pending updates to the cluster state.
  * These are distinct from the tasks reported by the task management API which

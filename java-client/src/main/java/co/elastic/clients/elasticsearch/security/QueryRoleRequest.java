@@ -159,8 +159,10 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The sort definition. You can sort on <code>username</code>,
-	 * <code>roles</code>, or <code>enabled</code>. In addition, sort can also be
+	 * The sort definition. You can sort on <code>name</code>,
+	 * <code>description</code>, <code>metadata</code>,
+	 * <code>applications.application</code>, <code>applications.privileges</code>,
+	 * and <code>applications.resources</code>. In addition, sort can also be
 	 * applied to the <code>_doc</code> field to sort by index order.
 	 * <p>
 	 * API name: {@code sort}
@@ -420,8 +422,10 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The sort definition. You can sort on <code>username</code>,
-		 * <code>roles</code>, or <code>enabled</code>. In addition, sort can also be
+		 * The sort definition. You can sort on <code>name</code>,
+		 * <code>description</code>, <code>metadata</code>,
+		 * <code>applications.application</code>, <code>applications.privileges</code>,
+		 * and <code>applications.resources</code>. In addition, sort can also be
 		 * applied to the <code>_doc</code> field to sort by index order.
 		 * <p>
 		 * API name: {@code sort}
@@ -434,8 +438,10 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The sort definition. You can sort on <code>username</code>,
-		 * <code>roles</code>, or <code>enabled</code>. In addition, sort can also be
+		 * The sort definition. You can sort on <code>name</code>,
+		 * <code>description</code>, <code>metadata</code>,
+		 * <code>applications.application</code>, <code>applications.privileges</code>,
+		 * and <code>applications.resources</code>. In addition, sort can also be
 		 * applied to the <code>_doc</code> field to sort by index order.
 		 * <p>
 		 * API name: {@code sort}
@@ -448,8 +454,10 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The sort definition. You can sort on <code>username</code>,
-		 * <code>roles</code>, or <code>enabled</code>. In addition, sort can also be
+		 * The sort definition. You can sort on <code>name</code>,
+		 * <code>description</code>, <code>metadata</code>,
+		 * <code>applications.application</code>, <code>applications.privileges</code>,
+		 * and <code>applications.resources</code>. In addition, sort can also be
 		 * applied to the <code>_doc</code> field to sort by index order.
 		 * <p>
 		 * API name: {@code sort}

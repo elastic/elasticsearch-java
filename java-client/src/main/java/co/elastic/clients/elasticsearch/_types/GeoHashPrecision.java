@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
+import java.lang.Integer;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
@@ -92,7 +92,7 @@ public class GeoHashPrecision implements TaggedUnion<GeoHashPrecision.Kind, Obje
 	public String _toJsonString() {
 		switch (_kind) {
 			case GeohashLength :
-				return this.geohashLength().toString();
+				return String.valueOf(this.geohashLength());
 			case Distance :
 				return this.distance();
 
@@ -125,7 +125,7 @@ public class GeoHashPrecision implements TaggedUnion<GeoHashPrecision.Kind, Obje
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code geohash_length} kind.
 	 */
-	public Number geohashLength() {
+	public Integer geohashLength() {
 		return TaggedUnionUtils.get(this, Kind.GeohashLength);
 	}
 
@@ -153,7 +153,7 @@ public class GeoHashPrecision implements TaggedUnion<GeoHashPrecision.Kind, Obje
 		} else {
 			switch (_kind) {
 				case GeohashLength :
-					generator.write(((Number) this._value).doubleValue());
+					generator.write(((Integer) this._value));
 
 					break;
 				case Distance :
@@ -174,7 +174,7 @@ public class GeoHashPrecision implements TaggedUnion<GeoHashPrecision.Kind, Obje
 		private Kind _kind;
 		private Object _value;
 
-		public ObjectBuilder<GeoHashPrecision> geohashLength(Number v) {
+		public ObjectBuilder<GeoHashPrecision> geohashLength(Integer v) {
 			this._kind = Kind.GeohashLength;
 			this._value = v;
 			return this;
@@ -195,7 +195,7 @@ public class GeoHashPrecision implements TaggedUnion<GeoHashPrecision.Kind, Obje
 
 	private static JsonpDeserializer<GeoHashPrecision> buildGeoHashPrecisionDeserializer() {
 		return new UnionDeserializer.Builder<GeoHashPrecision, Kind, Object>(GeoHashPrecision::new, false)
-				.addMember(Kind.GeohashLength, JsonpDeserializer.numberDeserializer())
+				.addMember(Kind.GeohashLength, JsonpDeserializer.integerDeserializer())
 				.addMember(Kind.Distance, JsonpDeserializer.stringDeserializer()).build();
 	}
 

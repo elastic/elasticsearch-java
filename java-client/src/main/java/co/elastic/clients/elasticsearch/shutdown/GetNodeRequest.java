@@ -106,7 +106,7 @@ public class GetNodeRequest extends RequestBase {
 	}
 
 	/**
-	 * Which node for which to retrieve the shutdown status
+	 * Comma-separated list of nodes for which to retrieve the shutdown status
 	 * <p>
 	 * API name: {@code node_id}
 	 */
@@ -149,7 +149,7 @@ public class GetNodeRequest extends RequestBase {
 		}
 
 		/**
-		 * Which node for which to retrieve the shutdown status
+		 * Comma-separated list of nodes for which to retrieve the shutdown status
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>
@@ -161,7 +161,7 @@ public class GetNodeRequest extends RequestBase {
 		}
 
 		/**
-		 * Which node for which to retrieve the shutdown status
+		 * Comma-separated list of nodes for which to retrieve the shutdown status
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>

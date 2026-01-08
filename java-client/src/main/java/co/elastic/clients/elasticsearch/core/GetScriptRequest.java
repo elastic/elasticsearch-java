@@ -56,8 +56,9 @@ import javax.annotation.Nullable;
 // typedef: _global.get_script.Request
 
 /**
- * Get a script or search template. Retrieves a stored script or search
- * template.
+ * Get a script or search template.
+ * <p>
+ * Retrieves a stored script or search template.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.get_script.Request">API
  *      specification</a>

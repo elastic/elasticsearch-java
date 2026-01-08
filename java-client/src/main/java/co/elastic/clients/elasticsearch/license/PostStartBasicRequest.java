@@ -101,7 +101,7 @@ public class PostStartBasicRequest extends RequestBase {
 	}
 
 	/**
-	 * whether the user has acknowledged acknowledge messages (default: false)
+	 * Whether the user has acknowledged acknowledge messages
 	 * <p>
 	 * API name: {@code acknowledge}
 	 */
@@ -150,7 +150,7 @@ public class PostStartBasicRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * whether the user has acknowledged acknowledge messages (default: false)
+		 * Whether the user has acknowledged acknowledge messages
 		 * <p>
 		 * API name: {@code acknowledge}
 		 */

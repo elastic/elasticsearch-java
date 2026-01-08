@@ -60,8 +60,10 @@ import javax.annotation.Nullable;
 // typedef: inference.completion.Request
 
 /**
- * Perform completion inference on the service Get responses for completion
- * tasks. This API works only with the completion task type.
+ * Perform completion inference on the service.
+ * <p>
+ * Get responses for completion tasks. This API works only with the completion
+ * task type.
  * <p>
  * IMPORTANT: The inference APIs enable you to use certain services, such as
  * built-in machine learning models (ELSER, E5), models uploaded through Eland,
@@ -125,7 +127,9 @@ public class CompletionRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Optional task settings
+	 * Task settings for the individual inference request. These settings are
+	 * specific to the &lt;task_type&gt; you specified and override the task
+	 * settings specified when initializing the service.
 	 * <p>
 	 * API name: {@code task_settings}
 	 */
@@ -227,7 +231,9 @@ public class CompletionRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Optional task settings
+		 * Task settings for the individual inference request. These settings are
+		 * specific to the &lt;task_type&gt; you specified and override the task
+		 * settings specified when initializing the service.
 		 * <p>
 		 * API name: {@code task_settings}
 		 */

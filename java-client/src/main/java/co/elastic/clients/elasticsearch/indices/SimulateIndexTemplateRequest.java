@@ -60,8 +60,10 @@ import javax.annotation.Nullable;
 // typedef: indices.simulate_index_template.Request
 
 /**
- * Simulate an index. Get the index configuration that would be applied to the
- * specified index from an existing index template.
+ * Simulate an index.
+ * <p>
+ * Get the index configuration that would be applied to the specified index from
+ * an existing index template.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.simulate_index_template.Request">API

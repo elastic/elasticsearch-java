@@ -58,9 +58,10 @@ import javax.annotation.Nullable;
 // typedef: cluster.delete_component_template.Request
 
 /**
- * Delete component templates. Component templates are building blocks for
- * constructing index templates that specify index mappings, settings, and
- * aliases.
+ * Delete component templates.
+ * <p>
+ * Component templates are building blocks for constructing index templates that
+ * specify index mappings, settings, and aliases.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#cluster.delete_component_template.Request">API

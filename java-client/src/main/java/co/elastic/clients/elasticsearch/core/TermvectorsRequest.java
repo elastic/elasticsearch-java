@@ -160,8 +160,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	@Nullable
 	private final Boolean realtime;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	@Nullable
 	private final Boolean termStatistics;
@@ -191,7 +190,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		this.positions = builder.positions;
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.termStatistics = builder.termStatistics;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
@@ -342,8 +341,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -447,9 +445,14 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 			generator.write(this.positions);
 
 		}
-		if (this.routing != null) {
+		if (ApiTypeHelper.isDefined(this.routing)) {
 			generator.writeKey("routing");
-			generator.write(this.routing);
+			generator.writeStartArray();
+			for (String item0 : this.routing) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.termStatistics != null) {
@@ -514,7 +517,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		private Boolean realtime;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private Boolean termStatistics;
@@ -712,9 +715,23 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		 * A custom value that is used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder<TDocument> routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder<TDocument> routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * A custom value that is used to route operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder<TDocument> routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -815,7 +832,8 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		op.add(Builder::perFieldAnalyzer,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "per_field_analyzer");
 		op.add(Builder::positions, JsonpDeserializer.booleanDeserializer(), "positions");
-		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(Builder::routing, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"routing");
 		op.add(Builder::termStatistics, JsonpDeserializer.booleanDeserializer(), "term_statistics");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 		op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");

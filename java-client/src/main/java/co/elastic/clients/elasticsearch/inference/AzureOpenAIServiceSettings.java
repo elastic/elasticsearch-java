@@ -149,7 +149,8 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 	 * Azure. The <code>azureopenai</code> service sets a default number of requests
 	 * allowed per minute depending on the task type. For
 	 * <code>text_embedding</code>, it is set to <code>1440</code>. For
-	 * <code>completion</code>, it is set to <code>120</code>.
+	 * <code>completion</code> and <code>chat_completion</code>, it is set to
+	 * <code>120</code>.
 	 * <p>
 	 * API name: {@code rate_limit}
 	 */
@@ -293,7 +294,8 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		 * Azure. The <code>azureopenai</code> service sets a default number of requests
 		 * allowed per minute depending on the task type. For
 		 * <code>text_embedding</code>, it is set to <code>1440</code>. For
-		 * <code>completion</code>, it is set to <code>120</code>.
+		 * <code>completion</code> and <code>chat_completion</code>, it is set to
+		 * <code>120</code>.
 		 * <p>
 		 * API name: {@code rate_limit}
 		 */
@@ -307,7 +309,8 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		 * Azure. The <code>azureopenai</code> service sets a default number of requests
 		 * allowed per minute depending on the task type. For
 		 * <code>text_embedding</code>, it is set to <code>1440</code>. For
-		 * <code>completion</code>, it is set to <code>120</code>.
+		 * <code>completion</code> and <code>chat_completion</code>, it is set to
+		 * <code>120</code>.
 		 * <p>
 		 * API name: {@code rate_limit}
 		 */

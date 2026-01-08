@@ -58,7 +58,9 @@ import javax.annotation.Nullable;
 // typedef: enrich.get_policy.Request
 
 /**
- * Get an enrich policy. Returns information about an enrich policy.
+ * Get an enrich policy.
+ * <p>
+ * Returns information about an enrich policy.
  * 
  * @see <a href="../doc-files/api-spec.html#enrich.get_policy.Request">API
  *      specification</a>

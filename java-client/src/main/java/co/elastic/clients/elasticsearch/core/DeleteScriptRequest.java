@@ -56,8 +56,9 @@ import javax.annotation.Nullable;
 // typedef: _global.delete_script.Request
 
 /**
- * Delete a script or search template. Deletes a stored script or search
- * template.
+ * Delete a script or search template.
+ * <p>
+ * Deletes a stored script or search template.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.delete_script.Request">API
  *      specification</a>

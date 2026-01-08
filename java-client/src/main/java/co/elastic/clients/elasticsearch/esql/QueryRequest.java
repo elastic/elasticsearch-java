@@ -65,8 +65,9 @@ import javax.annotation.Nullable;
 // typedef: esql.query.Request
 
 /**
- * Run an ES|QL query. Get search results for an ES|QL (Elasticsearch query
- * language) query.
+ * Run an ES|QL query.
+ * <p>
+ * Get search results for an ES|QL (Elasticsearch query language) query.
  * 
  * @see <a href="../doc-files/api-spec.html#esql.query.Request">API
  *      specification</a>
@@ -95,6 +96,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	private final Boolean includeCcsMetadata;
 
 	@Nullable
+	private final Boolean includeExecutionMetadata;
+
+	@Nullable
 	private final String locale;
 
 	private final List<FieldValue> params;
@@ -117,6 +121,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		this.filter = builder.filter;
 		this.format = builder.format;
 		this.includeCcsMetadata = builder.includeCcsMetadata;
+		this.includeExecutionMetadata = builder.includeExecutionMetadata;
 		this.locale = builder.locale;
 		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.profile = builder.profile;
@@ -222,6 +227,20 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * When set to <code>true</code>, the response will include an extra
+	 * <code>_clusters</code> object with information about the clusters that
+	 * participated in the search along with info such as shards count. This is
+	 * similar to <code>include_ccs_metadata</code>, but it also returns metadata
+	 * when the query is not CCS/CPS
+	 * <p>
+	 * API name: {@code include_execution_metadata}
+	 */
+	@Nullable
+	public final Boolean includeExecutionMetadata() {
+		return this.includeExecutionMetadata;
+	}
+
+	/**
 	 * API name: {@code locale}
 	 */
 	@Nullable
@@ -299,6 +318,11 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.includeCcsMetadata);
 
 		}
+		if (this.includeExecutionMetadata != null) {
+			generator.writeKey("include_execution_metadata");
+			generator.write(this.includeExecutionMetadata);
+
+		}
 		if (this.locale != null) {
 			generator.writeKey("locale");
 			generator.write(this.locale);
@@ -371,6 +395,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Boolean includeCcsMetadata;
+
+		@Nullable
+		private Boolean includeExecutionMetadata;
 
 		@Nullable
 		private String locale;
@@ -496,6 +523,20 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder includeCcsMetadata(@Nullable Boolean value) {
 			this.includeCcsMetadata = value;
+			return this;
+		}
+
+		/**
+		 * When set to <code>true</code>, the response will include an extra
+		 * <code>_clusters</code> object with information about the clusters that
+		 * participated in the search along with info such as shards count. This is
+		 * similar to <code>include_ccs_metadata</code>, but it also returns metadata
+		 * when the query is not CCS/CPS
+		 * <p>
+		 * API name: {@code include_execution_metadata}
+		 */
+		public final Builder includeExecutionMetadata(@Nullable Boolean value) {
+			this.includeExecutionMetadata = value;
 			return this;
 		}
 
@@ -696,7 +737,8 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 		op.add(Builder::columnar, JsonpDeserializer.booleanDeserializer(), "columnar");
 		op.add(Builder::filter, Query._DESERIALIZER, "filter");
-		op.add(Builder::includeCcsMetadata, JsonpDeserializer.booleanDeserializer(), "include_ccs_metadata",
+		op.add(Builder::includeCcsMetadata, JsonpDeserializer.booleanDeserializer(), "include_ccs_metadata");
+		op.add(Builder::includeExecutionMetadata, JsonpDeserializer.booleanDeserializer(),
 				"include_execution_metadata");
 		op.add(Builder::locale, JsonpDeserializer.stringDeserializer(), "locale");
 		op.add(Builder::params, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "params");
