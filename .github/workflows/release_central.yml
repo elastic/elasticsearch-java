@@ -85,7 +85,7 @@ jobs:
           path: elasticsearch-java
 
       - run: |
-            ls -la
+            cd elasticsearch-java
             git tag v${{ inputs.version }}
             git push origin v${{ inputs.version }}
             echo ${{ inputs.version }} > config/version.txt
