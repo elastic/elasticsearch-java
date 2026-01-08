@@ -59,11 +59,13 @@ import javax.annotation.Nullable;
 // typedef: ccr.resume_follow.Request
 
 /**
- * Resume a follower. Resume a cross-cluster replication follower index that was
- * paused. The follower index could have been paused with the pause follower
- * API. Alternatively it could be paused due to replication that cannot be
- * retried due to failures during following tasks. When this API returns, the
- * follower index will resume fetching operations from the leader index.
+ * Resume a follower.
+ * <p>
+ * Resume a cross-cluster replication follower index that was paused. The
+ * follower index could have been paused with the pause follower API.
+ * Alternatively it could be paused due to replication that cannot be retried
+ * due to failures during following tasks. When this API returns, the follower
+ * index will resume fetching operations from the leader index.
  * 
  * @see <a href="../doc-files/api-spec.html#ccr.resume_follow.Request">API
  *      specification</a>
@@ -129,7 +131,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Required - The name of the follow index to resume following.
+	 * Required - Name of the follow index to resume following
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -336,7 +338,7 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 		private Time readPollTimeout;
 
 		/**
-		 * Required - The name of the follow index to resume following.
+		 * Required - Name of the follow index to resume following
 		 * <p>
 		 * API name: {@code index}
 		 */

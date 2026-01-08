@@ -58,8 +58,9 @@ import javax.annotation.Nullable;
 // typedef: ml.preview_data_frame_analytics.Request
 
 /**
- * Preview features used by data frame analytics. Preview the extracted features
- * used by a data frame analytics config.
+ * Preview features used by data frame analytics.
+ * <p>
+ * Preview the extracted features used by a data frame analytics config.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.preview_data_frame_analytics.Request">API

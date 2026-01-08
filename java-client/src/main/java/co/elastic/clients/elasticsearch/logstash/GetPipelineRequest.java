@@ -58,8 +58,9 @@ import javax.annotation.Nullable;
 // typedef: logstash.get_pipeline.Request
 
 /**
- * Get Logstash pipelines. Get pipelines that are used for Logstash Central
- * Management.
+ * Get Logstash pipelines.
+ * <p>
+ * Get pipelines that are used for Logstash Central Management.
  * 
  * @see <a href="../doc-files/api-spec.html#logstash.get_pipeline.Request">API
  *      specification</a>

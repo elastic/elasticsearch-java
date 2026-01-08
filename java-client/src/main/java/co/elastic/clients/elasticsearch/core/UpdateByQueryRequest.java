@@ -73,10 +73,11 @@ import javax.annotation.Nullable;
 // typedef: _global.update_by_query.Request
 
 /**
- * Update documents. Updates documents that match the specified query. If no
- * query is specified, performs an update on every document in the data stream
- * or index without modifying the source, which is useful for picking up mapping
- * changes.
+ * Update documents.
+ * <p>
+ * Updates documents that match the specified query. If no query is specified,
+ * performs an update on every document in the data stream or index without
+ * modifying the source, which is useful for picking up mapping changes.
  * <p>
  * If the Elasticsearch security features are enabled, you must have the
  * following index privileges for the target data stream, index, or alias:
@@ -281,8 +282,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final Float requestsPerSecond;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	@Nullable
 	private final Script script;
@@ -350,7 +350,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		this.refresh = builder.refresh;
 		this.requestCache = builder.requestCache;
 		this.requestsPerSecond = builder.requestsPerSecond;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.script = builder.script;
 		this.scroll = builder.scroll;
 		this.scrollSize = builder.scrollSize;
@@ -596,8 +596,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -876,7 +875,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		private Float requestsPerSecond;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private Script script;
@@ -1199,9 +1198,23 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * A custom value used to route operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -1585,8 +1598,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.requestsPerSecond != null) {
 					params.put("requests_per_second", String.valueOf(request.requestsPerSecond));

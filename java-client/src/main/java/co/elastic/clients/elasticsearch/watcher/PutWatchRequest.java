@@ -63,10 +63,12 @@ import javax.annotation.Nullable;
 // typedef: watcher.put_watch.Request
 
 /**
- * Create or update a watch. When a watch is registered, a new document that
- * represents the watch is added to the <code>.watches</code> index and its
- * trigger is immediately registered with the relevant trigger engine. Typically
- * for the <code>schedule</code> trigger, the scheduler is the trigger engine.
+ * Create or update a watch.
+ * <p>
+ * When a watch is registered, a new document that represents the watch is added
+ * to the <code>.watches</code> index and its trigger is immediately registered
+ * with the relevant trigger engine. Typically for the <code>schedule</code>
+ * trigger, the scheduler is the trigger engine.
  * <p>
  * IMPORTANT: You must use Kibana or this API to create a watch. Do not add a
  * watch directly to the <code>.watches</code> index by using the Elasticsearch
@@ -186,7 +188,7 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * only update the watch if the last operation that has changed the watch has
+	 * Only update the watch if the last operation that has changed the watch has
 	 * the specified primary term
 	 * <p>
 	 * API name: {@code if_primary_term}
@@ -197,7 +199,7 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * only update the watch if the last operation that has changed the watch has
+	 * Only update the watch if the last operation that has changed the watch has
 	 * the specified sequence number
 	 * <p>
 	 * API name: {@code if_seq_no}
@@ -480,7 +482,7 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * only update the watch if the last operation that has changed the watch has
+		 * Only update the watch if the last operation that has changed the watch has
 		 * the specified primary term
 		 * <p>
 		 * API name: {@code if_primary_term}
@@ -491,7 +493,7 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * only update the watch if the last operation that has changed the watch has
+		 * Only update the watch if the last operation that has changed the watch has
 		 * the specified sequence number
 		 * <p>
 		 * API name: {@code if_seq_no}

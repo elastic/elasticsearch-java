@@ -110,6 +110,22 @@ public class CustomResponseParams implements JsonpSerializable {
 	 *   }
 	 * }
 	 *
+	 * # Elasticsearch supports the following embedding types:
+	 * * float
+	 * * byte
+	 * * bit (or binary)
+	 *
+	 * To specify the embedding type for the response, the `embedding_type`
+	 * field should be added in the `json_parser` object. Here's an example:
+	 * &quot;response&quot;:{
+	 *   &quot;json_parser&quot;:{
+	 *     &quot;text_embeddings&quot;:&quot;$.data[*].embedding[*]&quot;,
+	 *     &quot;embedding_type&quot;:&quot;bit&quot;
+	 *   }
+	 * }
+	 *
+	 * If `embedding_type` is not specified, it defaults to `float`.
+	 *
 	 * # sparse_embedding
 	 * # For a response like this:
 	 *
@@ -286,6 +302,22 @@ public class CustomResponseParams implements JsonpSerializable {
 		 *     &quot;text_embeddings&quot;:&quot;$.data[*].embedding[*]&quot;
 		 *   }
 		 * }
+		 *
+		 * # Elasticsearch supports the following embedding types:
+		 * * float
+		 * * byte
+		 * * bit (or binary)
+		 *
+		 * To specify the embedding type for the response, the `embedding_type`
+		 * field should be added in the `json_parser` object. Here's an example:
+		 * &quot;response&quot;:{
+		 *   &quot;json_parser&quot;:{
+		 *     &quot;text_embeddings&quot;:&quot;$.data[*].embedding[*]&quot;,
+		 *     &quot;embedding_type&quot;:&quot;bit&quot;
+		 *   }
+		 * }
+		 *
+		 * If `embedding_type` is not specified, it defaults to `float`.
 		 *
 		 * # sparse_embedding
 		 * # For a response like this:

@@ -58,9 +58,10 @@ import javax.annotation.Nullable;
 // typedef: nodes.hot_threads.Request
 
 /**
- * Get the hot threads for nodes. Get a breakdown of the hot threads on each
- * selected node in the cluster. The output is plain text with a breakdown of
- * the top hot threads for each node.
+ * Get the hot threads for nodes.
+ * <p>
+ * Get a breakdown of the hot threads on each selected node in the cluster. The
+ * output is plain text with a breakdown of the top hot threads for each node.
  * 
  * @see <a href="../doc-files/api-spec.html#nodes.hot_threads.Request">API
  *      specification</a>
@@ -150,7 +151,7 @@ public class HotThreadsRequest extends RequestBase {
 	}
 
 	/**
-	 * The sort order for 'cpu' type (default: total)
+	 * The sort order for 'cpu' type
 	 * <p>
 	 * API name: {@code sort}
 	 */
@@ -288,7 +289,7 @@ public class HotThreadsRequest extends RequestBase {
 		}
 
 		/**
-		 * The sort order for 'cpu' type (default: total)
+		 * The sort order for 'cpu' type
 		 * <p>
 		 * API name: {@code sort}
 		 */

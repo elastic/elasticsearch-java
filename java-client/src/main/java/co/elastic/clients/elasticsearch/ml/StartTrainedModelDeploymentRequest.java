@@ -59,8 +59,9 @@ import javax.annotation.Nullable;
 // typedef: ml.start_trained_model_deployment.Request
 
 /**
- * Start a trained model deployment. It allocates the model to every machine
- * learning node.
+ * Start a trained model deployment.
+ * <p>
+ * It allocates the model to every machine learning node.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.start_trained_model_deployment.Request">API
@@ -181,7 +182,7 @@ public class StartTrainedModelDeploymentRequest extends RequestBase implements J
 	}
 
 	/**
-	 * The deployment priority.
+	 * The deployment priority
 	 * <p>
 	 * API name: {@code priority}
 	 */
@@ -369,7 +370,7 @@ public class StartTrainedModelDeploymentRequest extends RequestBase implements J
 		}
 
 		/**
-		 * The deployment priority.
+		 * The deployment priority
 		 * <p>
 		 * API name: {@code priority}
 		 */

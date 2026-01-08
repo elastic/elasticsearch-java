@@ -130,7 +130,9 @@ public class PutAzureopenaiRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * The chunking configuration object.
+	 * The chunking configuration object. Applies only to the
+	 * <code>text_embedding</code> task type. Not applicable to the
+	 * <code>completion</code> and <code>chat_completion</code> task types.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -258,7 +260,9 @@ public class PutAzureopenaiRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>completion</code> and <code>chat_completion</code> task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -268,7 +272,9 @@ public class PutAzureopenaiRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>completion</code> and <code>chat_completion</code> task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */

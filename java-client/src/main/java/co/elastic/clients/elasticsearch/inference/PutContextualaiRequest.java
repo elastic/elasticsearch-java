@@ -72,9 +72,6 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class PutContextualaiRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final InferenceChunkingSettings chunkingSettings;
-
 	private final String contextualaiInferenceId;
 
 	private final ContextualAIServiceType service;
@@ -93,7 +90,6 @@ public class PutContextualaiRequest extends RequestBase implements JsonpSerializ
 
 	private PutContextualaiRequest(Builder builder) {
 
-		this.chunkingSettings = builder.chunkingSettings;
 		this.contextualaiInferenceId = ApiTypeHelper.requireNonNull(builder.contextualaiInferenceId, this,
 				"contextualaiInferenceId");
 		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
@@ -106,16 +102,6 @@ public class PutContextualaiRequest extends RequestBase implements JsonpSerializ
 
 	public static PutContextualaiRequest of(Function<Builder, ObjectBuilder<PutContextualaiRequest>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * The chunking configuration object.
-	 * <p>
-	 * API name: {@code chunking_settings}
-	 */
-	@Nullable
-	public final InferenceChunkingSettings chunkingSettings() {
-		return this.chunkingSettings;
 	}
 
 	/**
@@ -189,11 +175,6 @@ public class PutContextualaiRequest extends RequestBase implements JsonpSerializ
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.chunkingSettings != null) {
-			generator.writeKey("chunking_settings");
-			this.chunkingSettings.serialize(generator, mapper);
-
-		}
 		generator.writeKey("service");
 		this.service.serialize(generator, mapper);
 		generator.writeKey("service_settings");
@@ -216,9 +197,6 @@ public class PutContextualaiRequest extends RequestBase implements JsonpSerializ
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutContextualaiRequest> {
-		@Nullable
-		private InferenceChunkingSettings chunkingSettings;
-
 		private String contextualaiInferenceId;
 
 		private ContextualAIServiceType service;
@@ -232,26 +210,6 @@ public class PutContextualaiRequest extends RequestBase implements JsonpSerializ
 
 		@Nullable
 		private Time timeout;
-
-		/**
-		 * The chunking configuration object.
-		 * <p>
-		 * API name: {@code chunking_settings}
-		 */
-		public final Builder chunkingSettings(@Nullable InferenceChunkingSettings value) {
-			this.chunkingSettings = value;
-			return this;
-		}
-
-		/**
-		 * The chunking configuration object.
-		 * <p>
-		 * API name: {@code chunking_settings}
-		 */
-		public final Builder chunkingSettings(
-				Function<InferenceChunkingSettings.Builder, ObjectBuilder<InferenceChunkingSettings>> fn) {
-			return this.chunkingSettings(fn.apply(new InferenceChunkingSettings.Builder()).build());
-		}
 
 		/**
 		 * Required - The unique identifier of the inference endpoint.
@@ -378,7 +336,6 @@ public class PutContextualaiRequest extends RequestBase implements JsonpSerializ
 	protected static void setupPutContextualaiRequestDeserializer(
 			ObjectDeserializer<PutContextualaiRequest.Builder> op) {
 
-		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
 		op.add(Builder::service, ContextualAIServiceType._DESERIALIZER, "service");
 		op.add(Builder::serviceSettings, ContextualAIServiceSettings._DESERIALIZER, "service_settings");
 		op.add(Builder::taskSettings, ContextualAITaskSettings._DESERIALIZER, "task_settings");

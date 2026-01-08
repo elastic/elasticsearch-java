@@ -70,9 +70,11 @@ public class ElasticsearchMigrationAsyncClient
 	// ----- Endpoint: migration.deprecations
 
 	/**
-	 * Get deprecation information. Get information about different cluster, node,
-	 * and index level settings that use deprecated features that will be removed or
-	 * changed in the next major version.
+	 * Get deprecation information.
+	 * <p>
+	 * Get information about different cluster, node, and index level settings that
+	 * use deprecated features that will be removed or changed in the next major
+	 * version.
 	 * <p>
 	 * TIP: This APIs is designed for indirect use by the Upgrade Assistant. You are
 	 * strongly recommended to use the Upgrade Assistant.
@@ -90,9 +92,11 @@ public class ElasticsearchMigrationAsyncClient
 	}
 
 	/**
-	 * Get deprecation information. Get information about different cluster, node,
-	 * and index level settings that use deprecated features that will be removed or
-	 * changed in the next major version.
+	 * Get deprecation information.
+	 * <p>
+	 * Get information about different cluster, node, and index level settings that
+	 * use deprecated features that will be removed or changed in the next major
+	 * version.
 	 * <p>
 	 * TIP: This APIs is designed for indirect use by the Upgrade Assistant. You are
 	 * strongly recommended to use the Upgrade Assistant.
@@ -111,9 +115,11 @@ public class ElasticsearchMigrationAsyncClient
 	}
 
 	/**
-	 * Get deprecation information. Get information about different cluster, node,
-	 * and index level settings that use deprecated features that will be removed or
-	 * changed in the next major version.
+	 * Get deprecation information.
+	 * <p>
+	 * Get information about different cluster, node, and index level settings that
+	 * use deprecated features that will be removed or changed in the next major
+	 * version.
 	 * <p>
 	 * TIP: This APIs is designed for indirect use by the Upgrade Assistant. You are
 	 * strongly recommended to use the Upgrade Assistant.
@@ -131,10 +137,11 @@ public class ElasticsearchMigrationAsyncClient
 	// ----- Endpoint: migration.get_feature_upgrade_status
 
 	/**
-	 * Get feature migration information. Version upgrades sometimes require changes
-	 * to how features store configuration information and data in system indices.
-	 * Check which features need to be migrated and the status of any migrations
-	 * that are in progress.
+	 * Get feature migration information.
+	 * <p>
+	 * Version upgrades sometimes require changes to how features store
+	 * configuration information and data in system indices. Check which features
+	 * need to be migrated and the status of any migrations that are in progress.
 	 * <p>
 	 * TIP: This API is designed for indirect use by the Upgrade Assistant. You are
 	 * strongly recommended to use the Upgrade Assistant.
@@ -151,9 +158,11 @@ public class ElasticsearchMigrationAsyncClient
 	// ----- Endpoint: migration.post_feature_upgrade
 
 	/**
-	 * Start the feature migration. Version upgrades sometimes require changes to
-	 * how features store configuration information and data in system indices. This
-	 * API starts the automatic migration process.
+	 * Start the feature migration.
+	 * <p>
+	 * Version upgrades sometimes require changes to how features store
+	 * configuration information and data in system indices. This API starts the
+	 * automatic migration process.
 	 * <p>
 	 * Some functionality might be temporarily unavailable during the migration
 	 * process.

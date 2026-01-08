@@ -105,8 +105,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	private final String projectRouting;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	@Nullable
 	private final Time scroll;
@@ -133,7 +132,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		this.preference = builder.preference;
 		this.profile = builder.profile;
 		this.projectRouting = builder.projectRouting;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.scroll = builder.scroll;
 		this.searchType = builder.searchType;
 		this.source = builder.source;
@@ -290,8 +289,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -419,7 +417,7 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		private String projectRouting;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private Time scroll;
@@ -625,9 +623,23 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * A custom value used to route operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -802,8 +814,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 				if (request.ccsMinimizeRoundtrips != null) {
 					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

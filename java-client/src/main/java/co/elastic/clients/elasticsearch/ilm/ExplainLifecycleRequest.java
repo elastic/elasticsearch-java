@@ -57,9 +57,11 @@ import javax.annotation.Nullable;
 // typedef: ilm.explain_lifecycle.Request
 
 /**
- * Explain the lifecycle state. Get the current lifecycle status for one or more
- * indices. For data streams, the API retrieves the current lifecycle status for
- * the stream's backing indices.
+ * Explain the lifecycle state.
+ * <p>
+ * Get the current lifecycle status for one or more indices. For data streams,
+ * the API retrieves the current lifecycle status for the stream's backing
+ * indices.
  * <p>
  * The response indicates when the index entered each lifecycle state, provides
  * the definition of the running phase, and information about any failures.

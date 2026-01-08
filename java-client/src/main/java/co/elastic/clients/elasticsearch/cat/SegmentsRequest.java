@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.Bytes;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.TimeUnit;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -75,9 +76,23 @@ import javax.annotation.Nullable;
 
 public class SegmentsRequest extends CatRequestBase {
 	@Nullable
+	private final Boolean allowClosed;
+
+	@Nullable
+	private final Boolean allowNoIndices;
+
+	@Nullable
 	private final Bytes bytes;
 
+	private final List<ExpandWildcard> expandWildcards;
+
 	private final List<String> h;
+
+	@Nullable
+	private final Boolean ignoreThrottled;
+
+	@Nullable
+	private final Boolean ignoreUnavailable;
 
 	private final List<String> index;
 
@@ -96,8 +111,13 @@ public class SegmentsRequest extends CatRequestBase {
 
 	private SegmentsRequest(Builder builder) {
 
+		this.allowClosed = builder.allowClosed;
+		this.allowNoIndices = builder.allowNoIndices;
 		this.bytes = builder.bytes;
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.h = ApiTypeHelper.unmodifiable(builder.h);
+		this.ignoreThrottled = builder.ignoreThrottled;
+		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
@@ -108,6 +128,32 @@ public class SegmentsRequest extends CatRequestBase {
 
 	public static SegmentsRequest of(Function<Builder, ObjectBuilder<SegmentsRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * If true, allow closed indices to be returned in the response otherwise if
+	 * false, keep the legacy behaviour of throwing an exception if index pattern
+	 * matches closed indices
+	 * <p>
+	 * API name: {@code allow_closed}
+	 */
+	@Nullable
+	public final Boolean allowClosed() {
+		return this.allowClosed;
+	}
+
+	/**
+	 * If false, the request returns an error if any wildcard expression, index
+	 * alias, or _all value targets only missing or closed indices. This behavior
+	 * applies even if the request targets other open indices. For example, a
+	 * request targeting foo*,bar* returns an error if an index starts with foo but
+	 * no index starts with bar.
+	 * <p>
+	 * API name: {@code allow_no_indices}
+	 */
+	@Nullable
+	public final Boolean allowNoIndices() {
+		return this.allowNoIndices;
 	}
 
 	/**
@@ -129,6 +175,17 @@ public class SegmentsRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Type of index that wildcard expressions can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as open,hidden.
+	 * <p>
+	 * API name: {@code expand_wildcards}
+	 */
+	public final List<ExpandWildcard> expandWildcards() {
+		return this.expandWildcards;
+	}
+
+	/**
 	 * A comma-separated list of columns names to display. It supports simple
 	 * wildcards.
 	 * <p>
@@ -136,6 +193,26 @@ public class SegmentsRequest extends CatRequestBase {
 	 */
 	public final List<String> h() {
 		return this.h;
+	}
+
+	/**
+	 * If true, concrete, expanded or aliased indices are ignored when frozen.
+	 * <p>
+	 * API name: {@code ignore_throttled}
+	 */
+	@Nullable
+	public final Boolean ignoreThrottled() {
+		return this.ignoreThrottled;
+	}
+
+	/**
+	 * If true, missing or closed indices are not included in the response.
+	 * <p>
+	 * API name: {@code ignore_unavailable}
+	 */
+	@Nullable
+	public final Boolean ignoreUnavailable() {
+		return this.ignoreUnavailable;
 	}
 
 	/**
@@ -210,10 +287,25 @@ public class SegmentsRequest extends CatRequestBase {
 			implements
 				ObjectBuilder<SegmentsRequest> {
 		@Nullable
+		private Boolean allowClosed;
+
+		@Nullable
+		private Boolean allowNoIndices;
+
+		@Nullable
 		private Bytes bytes;
 
 		@Nullable
+		private List<ExpandWildcard> expandWildcards;
+
+		@Nullable
 		private List<String> h;
+
+		@Nullable
+		private Boolean ignoreThrottled;
+
+		@Nullable
+		private Boolean ignoreUnavailable;
 
 		@Nullable
 		private List<String> index;
@@ -231,6 +323,32 @@ public class SegmentsRequest extends CatRequestBase {
 		private TimeUnit time;
 
 		/**
+		 * If true, allow closed indices to be returned in the response otherwise if
+		 * false, keep the legacy behaviour of throwing an exception if index pattern
+		 * matches closed indices
+		 * <p>
+		 * API name: {@code allow_closed}
+		 */
+		public final Builder allowClosed(@Nullable Boolean value) {
+			this.allowClosed = value;
+			return this;
+		}
+
+		/**
+		 * If false, the request returns an error if any wildcard expression, index
+		 * alias, or _all value targets only missing or closed indices. This behavior
+		 * applies even if the request targets other open indices. For example, a
+		 * request targeting foo*,bar* returns an error if an index starts with foo but
+		 * no index starts with bar.
+		 * <p>
+		 * API name: {@code allow_no_indices}
+		 */
+		public final Builder allowNoIndices(@Nullable Boolean value) {
+			this.allowNoIndices = value;
+			return this;
+		}
+
+		/**
 		 * Sets the units for columns that contain a byte-size value. Note that
 		 * byte-size value units work in terms of powers of 1024. For instance
 		 * <code>1kb</code> means 1024 bytes, not 1000 bytes. If omitted, byte-size
@@ -245,6 +363,34 @@ public class SegmentsRequest extends CatRequestBase {
 		 */
 		public final Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
+			return this;
+		}
+
+		/**
+		 * Type of index that wildcard expressions can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as open,hidden.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
+			return this;
+		}
+
+		/**
+		 * Type of index that wildcard expressions can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as open,hidden.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -285,6 +431,26 @@ public class SegmentsRequest extends CatRequestBase {
 		public final Builder h(CatSegmentsColumn value, CatSegmentsColumn... values) {
 			this.h = _listAdd(this.h, value.jsonValue(),
 					Arrays.stream(values).map(CatSegmentsColumn::jsonValue).toArray(String[]::new));
+			return this;
+		}
+
+		/**
+		 * If true, concrete, expanded or aliased indices are ignored when frozen.
+		 * <p>
+		 * API name: {@code ignore_throttled}
+		 */
+		public final Builder ignoreThrottled(@Nullable Boolean value) {
+			this.ignoreThrottled = value;
+			return this;
+		}
+
+		/**
+		 * If true, missing or closed indices are not included in the response.
+		 * <p>
+		 * API name: {@code ignore_unavailable}
+		 */
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
+			this.ignoreUnavailable = value;
 			return this;
 		}
 
@@ -480,11 +646,27 @@ public class SegmentsRequest extends CatRequestBase {
 				if (ApiTypeHelper.isDefined(request.s)) {
 					params.put("s", request.s.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
+				if (request.ignoreUnavailable != null) {
+					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.allowClosed != null) {
+					params.put("allow_closed", String.valueOf(request.allowClosed));
+				}
 				if (request.bytes != null) {
 					params.put("bytes", request.bytes.jsonValue());
 				}
 				if (ApiTypeHelper.isDefined(request.h)) {
 					params.put("h", request.h.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.ignoreThrottled != null) {
+					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
 				}
 				if (request.time != null) {
 					params.put("time", request.time.jsonValue());

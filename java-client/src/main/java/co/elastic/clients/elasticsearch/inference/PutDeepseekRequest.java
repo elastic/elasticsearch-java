@@ -68,9 +68,6 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class PutDeepseekRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final InferenceChunkingSettings chunkingSettings;
-
 	private final String deepseekInferenceId;
 
 	private final DeepSeekServiceType service;
@@ -86,7 +83,6 @@ public class PutDeepseekRequest extends RequestBase implements JsonpSerializable
 
 	private PutDeepseekRequest(Builder builder) {
 
-		this.chunkingSettings = builder.chunkingSettings;
 		this.deepseekInferenceId = ApiTypeHelper.requireNonNull(builder.deepseekInferenceId, this,
 				"deepseekInferenceId");
 		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
@@ -98,16 +94,6 @@ public class PutDeepseekRequest extends RequestBase implements JsonpSerializable
 
 	public static PutDeepseekRequest of(Function<Builder, ObjectBuilder<PutDeepseekRequest>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * The chunking configuration object.
-	 * <p>
-	 * API name: {@code chunking_settings}
-	 */
-	@Nullable
-	public final InferenceChunkingSettings chunkingSettings() {
-		return this.chunkingSettings;
 	}
 
 	/**
@@ -170,11 +156,6 @@ public class PutDeepseekRequest extends RequestBase implements JsonpSerializable
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.chunkingSettings != null) {
-			generator.writeKey("chunking_settings");
-			this.chunkingSettings.serialize(generator, mapper);
-
-		}
 		generator.writeKey("service");
 		this.service.serialize(generator, mapper);
 		generator.writeKey("service_settings");
@@ -191,9 +172,6 @@ public class PutDeepseekRequest extends RequestBase implements JsonpSerializable
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutDeepseekRequest> {
-		@Nullable
-		private InferenceChunkingSettings chunkingSettings;
-
 		private String deepseekInferenceId;
 
 		private DeepSeekServiceType service;
@@ -204,26 +182,6 @@ public class PutDeepseekRequest extends RequestBase implements JsonpSerializable
 
 		@Nullable
 		private Time timeout;
-
-		/**
-		 * The chunking configuration object.
-		 * <p>
-		 * API name: {@code chunking_settings}
-		 */
-		public final Builder chunkingSettings(@Nullable InferenceChunkingSettings value) {
-			this.chunkingSettings = value;
-			return this;
-		}
-
-		/**
-		 * The chunking configuration object.
-		 * <p>
-		 * API name: {@code chunking_settings}
-		 */
-		public final Builder chunkingSettings(
-				Function<InferenceChunkingSettings.Builder, ObjectBuilder<InferenceChunkingSettings>> fn) {
-			return this.chunkingSettings(fn.apply(new InferenceChunkingSettings.Builder()).build());
-		}
 
 		/**
 		 * Required - The unique identifier of the inference endpoint.
@@ -327,7 +285,6 @@ public class PutDeepseekRequest extends RequestBase implements JsonpSerializable
 
 	protected static void setupPutDeepseekRequestDeserializer(ObjectDeserializer<PutDeepseekRequest.Builder> op) {
 
-		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
 		op.add(Builder::service, DeepSeekServiceType._DESERIALIZER, "service");
 		op.add(Builder::serviceSettings, DeepSeekServiceSettings._DESERIALIZER, "service_settings");
 

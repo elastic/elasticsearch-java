@@ -68,8 +68,7 @@ public class MultiGetOperation implements JsonpSerializable {
 	@Nullable
 	private final String index;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	@Nullable
 	private final SourceConfig source;
@@ -88,7 +87,7 @@ public class MultiGetOperation implements JsonpSerializable {
 
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = builder.index;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.source = builder.source;
 		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.version = builder.version;
@@ -125,8 +124,7 @@ public class MultiGetOperation implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -184,9 +182,14 @@ public class MultiGetOperation implements JsonpSerializable {
 			generator.write(this.index);
 
 		}
-		if (this.routing != null) {
+		if (ApiTypeHelper.isDefined(this.routing)) {
 			generator.writeKey("routing");
-			generator.write(this.routing);
+			generator.writeStartArray();
+			for (String item0 : this.routing) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.source != null) {
@@ -234,7 +237,7 @@ public class MultiGetOperation implements JsonpSerializable {
 		private String index;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private SourceConfig source;
@@ -273,9 +276,24 @@ public class MultiGetOperation implements JsonpSerializable {
 		 * used during indexing.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * The key for the primary shard the document resides on. Required if routing is
+		 * used during indexing.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -368,7 +386,8 @@ public class MultiGetOperation implements JsonpSerializable {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(Builder::routing, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"routing");
 		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
 		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stored_fields");

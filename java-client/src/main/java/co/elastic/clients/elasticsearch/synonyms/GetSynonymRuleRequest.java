@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: synonyms.get_synonym_rule.Request
 
 /**
- * Get a synonym rule. Get a synonym rule from a synonym set.
+ * Get a synonym rule.
+ * <p>
+ * Get a synonym rule from a synonym set.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#synonyms.get_synonym_rule.Request">API

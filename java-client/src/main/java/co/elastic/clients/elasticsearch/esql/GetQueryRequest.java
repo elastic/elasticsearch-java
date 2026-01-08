@@ -56,8 +56,9 @@ import javax.annotation.Nullable;
 // typedef: esql.get_query.Request
 
 /**
- * Get a specific running ES|QL query information. Returns an object extended
- * information about a running ES|QL query.
+ * Get a specific running ES|QL query information.
+ * <p>
+ * Returns an object extended information about a running ES|QL query.
  * 
  * @see <a href="../doc-files/api-spec.html#esql.get_query.Request">API
  *      specification</a>

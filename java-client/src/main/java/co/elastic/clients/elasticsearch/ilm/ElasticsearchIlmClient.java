@@ -68,9 +68,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: ilm.delete_lifecycle
 
 	/**
-	 * Delete a lifecycle policy. You cannot delete policies that are currently in
-	 * use. If the policy is being used to manage any indices, the request fails and
-	 * returns an error.
+	 * Delete a lifecycle policy.
+	 * <p>
+	 * You cannot delete policies that are currently in use. If the policy is being
+	 * used to manage any indices, the request fails and returns an error.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-delete-lifecycle">Documentation
@@ -86,9 +87,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Delete a lifecycle policy. You cannot delete policies that are currently in
-	 * use. If the policy is being used to manage any indices, the request fails and
-	 * returns an error.
+	 * Delete a lifecycle policy.
+	 * <p>
+	 * You cannot delete policies that are currently in use. If the policy is being
+	 * used to manage any indices, the request fails and returns an error.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -107,9 +109,11 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: ilm.explain_lifecycle
 
 	/**
-	 * Explain the lifecycle state. Get the current lifecycle status for one or more
-	 * indices. For data streams, the API retrieves the current lifecycle status for
-	 * the stream's backing indices.
+	 * Explain the lifecycle state.
+	 * <p>
+	 * Get the current lifecycle status for one or more indices. For data streams,
+	 * the API retrieves the current lifecycle status for the stream's backing
+	 * indices.
 	 * <p>
 	 * The response indicates when the index entered each lifecycle state, provides
 	 * the definition of the running phase, and information about any failures.
@@ -128,9 +132,11 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Explain the lifecycle state. Get the current lifecycle status for one or more
-	 * indices. For data streams, the API retrieves the current lifecycle status for
-	 * the stream's backing indices.
+	 * Explain the lifecycle state.
+	 * <p>
+	 * Get the current lifecycle status for one or more indices. For data streams,
+	 * the API retrieves the current lifecycle status for the stream's backing
+	 * indices.
 	 * <p>
 	 * The response indicates when the index entered each lifecycle state, provides
 	 * the definition of the running phase, and information about any failures.
@@ -215,11 +221,13 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: ilm.migrate_to_data_tiers
 
 	/**
-	 * Migrate to data tiers routing. Switch the indices, ILM policies, and legacy,
-	 * composable, and component templates from using custom node attributes and
-	 * attribute-based allocation filters to using data tiers. Optionally, delete
-	 * one legacy index template. Using node roles enables ILM to automatically move
-	 * the indices between data tiers.
+	 * Migrate to data tiers routing.
+	 * <p>
+	 * Switch the indices, ILM policies, and legacy, composable, and component
+	 * templates from using custom node attributes and attribute-based allocation
+	 * filters to using data tiers. Optionally, delete one legacy index template.
+	 * Using node roles enables ILM to automatically move the indices between data
+	 * tiers.
 	 * <p>
 	 * Migrating away from custom node attributes routing can be manually performed.
 	 * This API provides an automated way of performing three out of the four manual
@@ -249,11 +257,13 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Migrate to data tiers routing. Switch the indices, ILM policies, and legacy,
-	 * composable, and component templates from using custom node attributes and
-	 * attribute-based allocation filters to using data tiers. Optionally, delete
-	 * one legacy index template. Using node roles enables ILM to automatically move
-	 * the indices between data tiers.
+	 * Migrate to data tiers routing.
+	 * <p>
+	 * Switch the indices, ILM policies, and legacy, composable, and component
+	 * templates from using custom node attributes and attribute-based allocation
+	 * filters to using data tiers. Optionally, delete one legacy index template.
+	 * Using node roles enables ILM to automatically move the indices between data
+	 * tiers.
 	 * <p>
 	 * Migrating away from custom node attributes routing can be manually performed.
 	 * This API provides an automated way of performing three out of the four manual
@@ -284,11 +294,13 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Migrate to data tiers routing. Switch the indices, ILM policies, and legacy,
-	 * composable, and component templates from using custom node attributes and
-	 * attribute-based allocation filters to using data tiers. Optionally, delete
-	 * one legacy index template. Using node roles enables ILM to automatically move
-	 * the indices between data tiers.
+	 * Migrate to data tiers routing.
+	 * <p>
+	 * Switch the indices, ILM policies, and legacy, composable, and component
+	 * templates from using custom node attributes and attribute-based allocation
+	 * filters to using data tiers. Optionally, delete one legacy index template.
+	 * Using node roles enables ILM to automatically move the indices between data
+	 * tiers.
 	 * <p>
 	 * Migrating away from custom node attributes routing can be manually performed.
 	 * This API provides an automated way of performing three out of the four manual
@@ -317,8 +329,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: ilm.move_to_step
 
 	/**
-	 * Move to a lifecycle step. Manually move an index into a specific step in the
-	 * lifecycle policy and run that step.
+	 * Move to a lifecycle step.
+	 * <p>
+	 * Manually move an index into a specific step in the lifecycle policy and run
+	 * that step.
 	 * <p>
 	 * WARNING: This operation can result in the loss of data. Manually moving an
 	 * index into a specific step runs that step even if it has already been
@@ -351,8 +365,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Move to a lifecycle step. Manually move an index into a specific step in the
-	 * lifecycle policy and run that step.
+	 * Move to a lifecycle step.
+	 * <p>
+	 * Manually move an index into a specific step in the lifecycle policy and run
+	 * that step.
 	 * <p>
 	 * WARNING: This operation can result in the loss of data. Manually moving an
 	 * index into a specific step runs that step even if it has already been
@@ -388,8 +404,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: ilm.put_lifecycle
 
 	/**
-	 * Create or update a lifecycle policy. If the specified policy exists, it is
-	 * replaced and the policy version is incremented.
+	 * Create or update a lifecycle policy.
+	 * <p>
+	 * If the specified policy exists, it is replaced and the policy version is
+	 * incremented.
 	 * <p>
 	 * NOTE: Only the latest version of the policy is stored, you cannot revert to
 	 * previous versions.
@@ -407,8 +425,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Create or update a lifecycle policy. If the specified policy exists, it is
-	 * replaced and the policy version is incremented.
+	 * Create or update a lifecycle policy.
+	 * <p>
+	 * If the specified policy exists, it is replaced and the policy version is
+	 * incremented.
 	 * <p>
 	 * NOTE: Only the latest version of the policy is stored, you cannot revert to
 	 * previous versions.
@@ -430,8 +450,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: ilm.remove_policy
 
 	/**
-	 * Remove policies from an index. Remove the assigned lifecycle policies from an
-	 * index or a data stream's backing indices. It also stops managing the indices.
+	 * Remove policies from an index.
+	 * <p>
+	 * Remove the assigned lifecycle policies from an index or a data stream's
+	 * backing indices. It also stops managing the indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-remove-policy">Documentation
@@ -446,8 +468,10 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Remove policies from an index. Remove the assigned lifecycle policies from an
-	 * index or a data stream's backing indices. It also stops managing the indices.
+	 * Remove policies from an index.
+	 * <p>
+	 * Remove the assigned lifecycle policies from an index or a data stream's
+	 * backing indices. It also stops managing the indices.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -466,10 +490,12 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: ilm.retry
 
 	/**
-	 * Retry a policy. Retry running the lifecycle policy for an index that is in
-	 * the ERROR step. The API sets the policy back to the step where the error
-	 * occurred and runs the step. Use the explain lifecycle state API to determine
-	 * whether an index is in the ERROR step.
+	 * Retry a policy.
+	 * <p>
+	 * Retry running the lifecycle policy for an index that is in the ERROR step.
+	 * The API sets the policy back to the step where the error occurred and runs
+	 * the step. Use the explain lifecycle state API to determine whether an index
+	 * is in the ERROR step.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-retry">Documentation
@@ -484,10 +510,12 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Retry a policy. Retry running the lifecycle policy for an index that is in
-	 * the ERROR step. The API sets the policy back to the step where the error
-	 * occurred and runs the step. Use the explain lifecycle state API to determine
-	 * whether an index is in the ERROR step.
+	 * Retry a policy.
+	 * <p>
+	 * Retry running the lifecycle policy for an index that is in the ERROR step.
+	 * The API sets the policy back to the step where the error occurred and runs
+	 * the step. Use the explain lifecycle state API to determine whether an index
+	 * is in the ERROR step.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -505,10 +533,11 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: ilm.start
 
 	/**
-	 * Start the ILM plugin. Start the index lifecycle management plugin if it is
-	 * currently stopped. ILM is started automatically when the cluster is formed.
-	 * Restarting ILM is necessary only when it has been stopped using the stop ILM
-	 * API.
+	 * Start the ILM plugin.
+	 * <p>
+	 * Start the index lifecycle management plugin if it is currently stopped. ILM
+	 * is started automatically when the cluster is formed. Restarting ILM is
+	 * necessary only when it has been stopped using the stop ILM API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-start">Documentation
@@ -523,10 +552,11 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Start the ILM plugin. Start the index lifecycle management plugin if it is
-	 * currently stopped. ILM is started automatically when the cluster is formed.
-	 * Restarting ILM is necessary only when it has been stopped using the stop ILM
-	 * API.
+	 * Start the ILM plugin.
+	 * <p>
+	 * Start the index lifecycle management plugin if it is currently stopped. ILM
+	 * is started automatically when the cluster is formed. Restarting ILM is
+	 * necessary only when it has been stopped using the stop ILM API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -542,10 +572,11 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Start the ILM plugin. Start the index lifecycle management plugin if it is
-	 * currently stopped. ILM is started automatically when the cluster is formed.
-	 * Restarting ILM is necessary only when it has been stopped using the stop ILM
-	 * API.
+	 * Start the ILM plugin.
+	 * <p>
+	 * Start the index lifecycle management plugin if it is currently stopped. ILM
+	 * is started automatically when the cluster is formed. Restarting ILM is
+	 * necessary only when it has been stopped using the stop ILM API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-start">Documentation
@@ -560,10 +591,11 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: ilm.stop
 
 	/**
-	 * Stop the ILM plugin. Halt all lifecycle management operations and stop the
-	 * index lifecycle management plugin. This is useful when you are performing
-	 * maintenance on the cluster and need to prevent ILM from performing any
-	 * actions on your indices.
+	 * Stop the ILM plugin.
+	 * <p>
+	 * Halt all lifecycle management operations and stop the index lifecycle
+	 * management plugin. This is useful when you are performing maintenance on the
+	 * cluster and need to prevent ILM from performing any actions on your indices.
 	 * <p>
 	 * The API returns as soon as the stop request has been acknowledged, but the
 	 * plugin might continue to run until in-progress operations complete and the
@@ -583,10 +615,11 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Stop the ILM plugin. Halt all lifecycle management operations and stop the
-	 * index lifecycle management plugin. This is useful when you are performing
-	 * maintenance on the cluster and need to prevent ILM from performing any
-	 * actions on your indices.
+	 * Stop the ILM plugin.
+	 * <p>
+	 * Halt all lifecycle management operations and stop the index lifecycle
+	 * management plugin. This is useful when you are performing maintenance on the
+	 * cluster and need to prevent ILM from performing any actions on your indices.
 	 * <p>
 	 * The API returns as soon as the stop request has been acknowledged, but the
 	 * plugin might continue to run until in-progress operations complete and the
@@ -607,10 +640,11 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Stop the ILM plugin. Halt all lifecycle management operations and stop the
-	 * index lifecycle management plugin. This is useful when you are performing
-	 * maintenance on the cluster and need to prevent ILM from performing any
-	 * actions on your indices.
+	 * Stop the ILM plugin.
+	 * <p>
+	 * Halt all lifecycle management operations and stop the index lifecycle
+	 * management plugin. This is useful when you are performing maintenance on the
+	 * cluster and need to prevent ILM from performing any actions on your indices.
 	 * <p>
 	 * The API returns as soon as the stop request has been acknowledged, but the
 	 * plugin might continue to run until in-progress operations complete and the

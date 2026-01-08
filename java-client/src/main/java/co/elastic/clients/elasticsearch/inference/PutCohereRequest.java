@@ -104,7 +104,9 @@ public class PutCohereRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The chunking configuration object.
+	 * The chunking configuration object. Applies only to the
+	 * <code>text_embedding</code> task type. Not applicable to the
+	 * <code>rerank</code> or <code>completion</code> task type.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -229,7 +231,9 @@ public class PutCohereRequest extends RequestBase implements JsonpSerializable {
 		private Time timeout;
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>rerank</code> or <code>completion</code> task type.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -239,7 +243,9 @@ public class PutCohereRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>rerank</code> or <code>completion</code> task type.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */

@@ -87,6 +87,16 @@ public class DenseVectorOffHeapStats implements JsonpSerializable {
 	@Nullable
 	private final String totalVexSize;
 
+	private final long totalCenifSizeBytes;
+
+	@Nullable
+	private final String totalCenifSize;
+
+	private final long totalClivfSizeBytes;
+
+	@Nullable
+	private final String totalClivfSize;
+
 	private final Map<String, Map<String, Long>> fielddata;
 
 	// ---------------------------------------------------------------------------------------------
@@ -103,6 +113,12 @@ public class DenseVectorOffHeapStats implements JsonpSerializable {
 		this.totalVeqSize = builder.totalVeqSize;
 		this.totalVexSizeBytes = ApiTypeHelper.requireNonNull(builder.totalVexSizeBytes, this, "totalVexSizeBytes", 0);
 		this.totalVexSize = builder.totalVexSize;
+		this.totalCenifSizeBytes = ApiTypeHelper.requireNonNull(builder.totalCenifSizeBytes, this,
+				"totalCenifSizeBytes", 0);
+		this.totalCenifSize = builder.totalCenifSize;
+		this.totalClivfSizeBytes = ApiTypeHelper.requireNonNull(builder.totalClivfSizeBytes, this,
+				"totalClivfSizeBytes", 0);
+		this.totalClivfSize = builder.totalClivfSize;
 		this.fielddata = ApiTypeHelper.unmodifiable(builder.fielddata);
 
 	}
@@ -187,6 +203,36 @@ public class DenseVectorOffHeapStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code total_cenif_size_bytes}
+	 */
+	public final long totalCenifSizeBytes() {
+		return this.totalCenifSizeBytes;
+	}
+
+	/**
+	 * API name: {@code total_cenif_size}
+	 */
+	@Nullable
+	public final String totalCenifSize() {
+		return this.totalCenifSize;
+	}
+
+	/**
+	 * Required - API name: {@code total_clivf_size_bytes}
+	 */
+	public final long totalClivfSizeBytes() {
+		return this.totalClivfSizeBytes;
+	}
+
+	/**
+	 * API name: {@code total_clivf_size}
+	 */
+	@Nullable
+	public final String totalClivfSize() {
+		return this.totalClivfSize;
+	}
+
+	/**
 	 * API name: {@code fielddata}
 	 */
 	public final Map<String, Map<String, Long>> fielddata() {
@@ -242,6 +288,22 @@ public class DenseVectorOffHeapStats implements JsonpSerializable {
 		if (this.totalVexSize != null) {
 			generator.writeKey("total_vex_size");
 			generator.write(this.totalVexSize);
+
+		}
+		generator.writeKey("total_cenif_size_bytes");
+		generator.write(this.totalCenifSizeBytes);
+
+		if (this.totalCenifSize != null) {
+			generator.writeKey("total_cenif_size");
+			generator.write(this.totalCenifSize);
+
+		}
+		generator.writeKey("total_clivf_size_bytes");
+		generator.write(this.totalClivfSizeBytes);
+
+		if (this.totalClivfSize != null) {
+			generator.writeKey("total_clivf_size");
+			generator.write(this.totalClivfSize);
 
 		}
 		if (ApiTypeHelper.isDefined(this.fielddata)) {
@@ -304,6 +366,16 @@ public class DenseVectorOffHeapStats implements JsonpSerializable {
 
 		@Nullable
 		private String totalVexSize;
+
+		private Long totalCenifSizeBytes;
+
+		@Nullable
+		private String totalCenifSize;
+
+		private Long totalClivfSizeBytes;
+
+		@Nullable
+		private String totalClivfSize;
 
 		@Nullable
 		private Map<String, Map<String, Long>> fielddata;
@@ -389,6 +461,38 @@ public class DenseVectorOffHeapStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - API name: {@code total_cenif_size_bytes}
+		 */
+		public final Builder totalCenifSizeBytes(long value) {
+			this.totalCenifSizeBytes = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total_cenif_size}
+		 */
+		public final Builder totalCenifSize(@Nullable String value) {
+			this.totalCenifSize = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code total_clivf_size_bytes}
+		 */
+		public final Builder totalClivfSizeBytes(long value) {
+			this.totalClivfSizeBytes = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total_clivf_size}
+		 */
+		public final Builder totalClivfSize(@Nullable String value) {
+			this.totalClivfSize = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code fielddata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>fielddata</code>.
@@ -447,6 +551,10 @@ public class DenseVectorOffHeapStats implements JsonpSerializable {
 		op.add(Builder::totalVeqSize, JsonpDeserializer.stringDeserializer(), "total_veq_size");
 		op.add(Builder::totalVexSizeBytes, JsonpDeserializer.longDeserializer(), "total_vex_size_bytes");
 		op.add(Builder::totalVexSize, JsonpDeserializer.stringDeserializer(), "total_vex_size");
+		op.add(Builder::totalCenifSizeBytes, JsonpDeserializer.longDeserializer(), "total_cenif_size_bytes");
+		op.add(Builder::totalCenifSize, JsonpDeserializer.stringDeserializer(), "total_cenif_size");
+		op.add(Builder::totalClivfSizeBytes, JsonpDeserializer.longDeserializer(), "total_clivf_size_bytes");
+		op.add(Builder::totalClivfSize, JsonpDeserializer.stringDeserializer(), "total_clivf_size");
 		op.add(Builder::fielddata, JsonpDeserializer.stringMapDeserializer(
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.longDeserializer())), "fielddata");
 

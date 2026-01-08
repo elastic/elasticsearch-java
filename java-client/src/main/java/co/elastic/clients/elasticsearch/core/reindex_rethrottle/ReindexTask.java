@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.core.reindex_rethrottle;
 
+import co.elastic.clients.elasticsearch._types.ReindexStatus;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -68,6 +69,8 @@ public class ReindexTask implements JsonpSerializable {
 
 	private final boolean cancellable;
 
+	private final boolean cancelled;
+
 	private final String description;
 
 	private final long id;
@@ -90,6 +93,7 @@ public class ReindexTask implements JsonpSerializable {
 
 		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
 		this.cancellable = ApiTypeHelper.requireNonNull(builder.cancellable, this, "cancellable", false);
+		this.cancelled = ApiTypeHelper.requireNonNull(builder.cancelled, this, "cancelled", false);
 		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id", 0);
 		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
@@ -118,6 +122,13 @@ public class ReindexTask implements JsonpSerializable {
 	 */
 	public final boolean cancellable() {
 		return this.cancellable;
+	}
+
+	/**
+	 * Required - API name: {@code cancelled}
+	 */
+	public final boolean cancelled() {
+		return this.cancelled;
 	}
 
 	/**
@@ -193,6 +204,9 @@ public class ReindexTask implements JsonpSerializable {
 		generator.writeKey("cancellable");
 		generator.write(this.cancellable);
 
+		generator.writeKey("cancelled");
+		generator.write(this.cancelled);
+
 		generator.writeKey("description");
 		generator.write(this.description);
 
@@ -251,6 +265,8 @@ public class ReindexTask implements JsonpSerializable {
 
 		private Boolean cancellable;
 
+		private Boolean cancelled;
+
 		private String description;
 
 		private Long id;
@@ -280,6 +296,14 @@ public class ReindexTask implements JsonpSerializable {
 		 */
 		public final Builder cancellable(boolean value) {
 			this.cancellable = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code cancelled}
+		 */
+		public final Builder cancelled(boolean value) {
+			this.cancelled = value;
 			return this;
 		}
 
@@ -396,6 +420,7 @@ public class ReindexTask implements JsonpSerializable {
 
 		op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action");
 		op.add(Builder::cancellable, JsonpDeserializer.booleanDeserializer(), "cancellable");
+		op.add(Builder::cancelled, JsonpDeserializer.booleanDeserializer(), "cancelled");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::id, JsonpDeserializer.longDeserializer(), "id");
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");

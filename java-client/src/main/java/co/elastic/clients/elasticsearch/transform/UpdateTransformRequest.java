@@ -60,7 +60,9 @@ import javax.annotation.Nullable;
 // typedef: transform.update_transform.Request
 
 /**
- * Update a transform. Updates certain properties of a transform.
+ * Update a transform.
+ * <p>
+ * Updates certain properties of a transform.
  * <p>
  * All updated properties except <code>description</code> do not take effect
  * until after the transform starts the next checkpoint, thus there is data
