@@ -161,6 +161,7 @@ public class ElasticsearchTestServer implements AutoCloseable {
         }
 
         String esImage = "docker.elastic.co/elasticsearch/elasticsearch:" + version;
+        System.out.println("Starting elasticsearch server version " + version);
 
         DockerImageName image;
         if (plugins.length == 0) {
