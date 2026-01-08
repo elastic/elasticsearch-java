@@ -26,7 +26,6 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -60,6 +59,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializable {
+	@Nullable
 	private final KuromojiTokenizationMode mode;
 
 	@Nullable
@@ -69,7 +69,7 @@ public class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 	private KuromojiAnalyzer(Builder builder) {
 
-		this.mode = ApiTypeHelper.requireNonNull(builder.mode, this, "mode");
+		this.mode = builder.mode;
 		this.userDictionary = builder.userDictionary;
 
 	}
@@ -87,8 +87,9 @@ public class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code mode}
+	 * API name: {@code mode}
 	 */
+	@Nullable
 	public final KuromojiTokenizationMode mode() {
 		return this.mode;
 	}
@@ -114,8 +115,10 @@ public class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 		generator.write("type", "kuromoji");
 
-		generator.writeKey("mode");
-		this.mode.serialize(generator, mapper);
+		if (this.mode != null) {
+			generator.writeKey("mode");
+			this.mode.serialize(generator, mapper);
+		}
 		if (this.userDictionary != null) {
 			generator.writeKey("user_dictionary");
 			generator.write(this.userDictionary);
@@ -136,15 +139,16 @@ public class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<KuromojiAnalyzer> {
+		@Nullable
 		private KuromojiTokenizationMode mode;
 
 		@Nullable
 		private String userDictionary;
 
 		/**
-		 * Required - API name: {@code mode}
+		 * API name: {@code mode}
 		 */
-		public final Builder mode(KuromojiTokenizationMode value) {
+		public final Builder mode(@Nullable KuromojiTokenizationMode value) {
 			this.mode = value;
 			return this;
 		}

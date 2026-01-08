@@ -77,6 +77,9 @@ public class Settings implements JsonpSerializable {
 	private final Integer maxPageSearchSize;
 
 	@Nullable
+	private final Boolean usePointInTime;
+
+	@Nullable
 	private final Boolean unattended;
 
 	// ---------------------------------------------------------------------------------------------
@@ -88,6 +91,7 @@ public class Settings implements JsonpSerializable {
 		this.deduceMappings = builder.deduceMappings;
 		this.docsPerSecond = builder.docsPerSecond;
 		this.maxPageSearchSize = builder.maxPageSearchSize;
+		this.usePointInTime = builder.usePointInTime;
 		this.unattended = builder.unattended;
 
 	}
@@ -160,6 +164,22 @@ public class Settings implements JsonpSerializable {
 	}
 
 	/**
+	 * Specifies whether the transform checkpoint will use the Point In Time API
+	 * while searching over the source index. In general, Point In Time is an
+	 * optimization that will reduce pressure on the source index by reducing the
+	 * amount of refreshes and merges, but it can be expensive if a large number of
+	 * Point In Times are opened and closed for a given index. The benefits and
+	 * impact depend on the data being searched, the ingest rate into the source
+	 * index, and the amount of other consumers searching the same source index.
+	 * <p>
+	 * API name: {@code use_point_in_time}
+	 */
+	@Nullable
+	public final Boolean usePointInTime() {
+		return this.usePointInTime;
+	}
+
+	/**
 	 * If <code>true</code>, the transform runs in unattended mode. In unattended
 	 * mode, the transform retries indefinitely in case of an error which means the
 	 * transform never fails. Setting the number of retries other than infinite
@@ -208,6 +228,11 @@ public class Settings implements JsonpSerializable {
 			generator.write(this.maxPageSearchSize);
 
 		}
+		if (this.usePointInTime != null) {
+			generator.writeKey("use_point_in_time");
+			generator.write(this.usePointInTime);
+
+		}
 		if (this.unattended != null) {
 			generator.writeKey("unattended");
 			generator.write(this.unattended);
@@ -242,6 +267,9 @@ public class Settings implements JsonpSerializable {
 
 		@Nullable
 		private Integer maxPageSearchSize;
+
+		@Nullable
+		private Boolean usePointInTime;
 
 		@Nullable
 		private Boolean unattended;
@@ -310,6 +338,22 @@ public class Settings implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies whether the transform checkpoint will use the Point In Time API
+		 * while searching over the source index. In general, Point In Time is an
+		 * optimization that will reduce pressure on the source index by reducing the
+		 * amount of refreshes and merges, but it can be expensive if a large number of
+		 * Point In Times are opened and closed for a given index. The benefits and
+		 * impact depend on the data being searched, the ingest rate into the source
+		 * index, and the amount of other consumers searching the same source index.
+		 * <p>
+		 * API name: {@code use_point_in_time}
+		 */
+		public final Builder usePointInTime(@Nullable Boolean value) {
+			this.usePointInTime = value;
+			return this;
+		}
+
+		/**
 		 * If <code>true</code>, the transform runs in unattended mode. In unattended
 		 * mode, the transform retries indefinitely in case of an error which means the
 		 * transform never fails. Setting the number of retries other than infinite
@@ -355,6 +399,7 @@ public class Settings implements JsonpSerializable {
 		op.add(Builder::deduceMappings, JsonpDeserializer.booleanDeserializer(), "deduce_mappings");
 		op.add(Builder::docsPerSecond, JsonpDeserializer.floatDeserializer(), "docs_per_second");
 		op.add(Builder::maxPageSearchSize, JsonpDeserializer.integerDeserializer(), "max_page_search_size");
+		op.add(Builder::usePointInTime, JsonpDeserializer.booleanDeserializer(), "use_point_in_time");
 		op.add(Builder::unattended, JsonpDeserializer.booleanDeserializer(), "unattended");
 
 	}
