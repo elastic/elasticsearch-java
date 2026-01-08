@@ -48,6 +48,7 @@ public class ElasticsearchTestClient {
 
     // Same value for all tests in a test run
     private static final ClientImpl flavor;
+
     static {
         var flavors = ClientImpl.values();
         flavor = flavors[new SecureRandom().nextInt(flavors.length)];
@@ -57,7 +58,9 @@ public class ElasticsearchTestClient {
         return mapper != null ? mapper : new JsonbJsonpMapper();
     }
 
-    public static ElasticsearchClient createClient(String url, @Nullable JsonpMapper mapper, @Nullable SSLContext sslContext, @Nullable String password) {
+    public static ElasticsearchClient createClient(String url, @Nullable JsonpMapper mapper,
+                                                   @Nullable SSLContext sslContext,
+                                                   @Nullable String password) {
         System.out.println("Using a " + flavor + " client");
 
         String pwd = password == null ? "changeme" : password;
@@ -73,7 +76,8 @@ public class ElasticsearchTestClient {
 
     public static ElasticsearchClient createClient(HttpServer server, @Nullable JsonpMapper mapper) {
         var address = server.getAddress();
-        return createClient("http://" + address.getHostString() + ":" + address.getPort(), mapper, null, null);
+        return createClient("http://" + address.getHostString() + ":" + address.getPort(), mapper, null,
+            null);
     }
 
     public static Function<ElasticsearchTransportConfig, ElasticsearchTransport> transportFactory() {
