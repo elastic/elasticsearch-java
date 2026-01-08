@@ -34,6 +34,8 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
@@ -74,10 +76,16 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 	private final String query;
 
 	@Nullable
+	private final Boolean returnDocuments;
+
+	@Nullable
 	private final JsonData taskSettings;
 
 	@Nullable
 	private final Time timeout;
+
+	@Nullable
+	private final Integer topN;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -86,8 +94,10 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
 		this.input = ApiTypeHelper.unmodifiableRequired(builder.input, this, "input");
 		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.returnDocuments = builder.returnDocuments;
 		this.taskSettings = builder.taskSettings;
 		this.timeout = builder.timeout;
+		this.topN = builder.topN;
 
 	}
 
@@ -105,13 +115,7 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The text on which you want to perform the inference task. It can
-	 * be a single string or an array. <blockquote>
-	 * <p>
-	 * info Inference endpoints for the <code>completion</code> task type currently
-	 * only support a single string as input.
-	 * </p>
-	 * </blockquote>
+	 * Required - The documents to rank.
 	 * <p>
 	 * API name: {@code input}
 	 */
@@ -126,6 +130,16 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final String query() {
 		return this.query;
+	}
+
+	/**
+	 * Include the document text in the response.
+	 * <p>
+	 * API name: {@code return_documents}
+	 */
+	@Nullable
+	public final Boolean returnDocuments() {
+		return this.returnDocuments;
 	}
 
 	/**
@@ -148,6 +162,16 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Time timeout() {
 		return this.timeout;
+	}
+
+	/**
+	 * Limit the response to the top N documents.
+	 * <p>
+	 * API name: {@code top_n}
+	 */
+	@Nullable
+	public final Integer topN() {
+		return this.topN;
 	}
 
 	/**
@@ -174,9 +198,19 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 		generator.writeKey("query");
 		generator.write(this.query);
 
+		if (this.returnDocuments != null) {
+			generator.writeKey("return_documents");
+			generator.write(this.returnDocuments);
+
+		}
 		if (this.taskSettings != null) {
 			generator.writeKey("task_settings");
 			this.taskSettings.serialize(generator, mapper);
+
+		}
+		if (this.topN != null) {
+			generator.writeKey("top_n");
+			generator.write(this.topN);
 
 		}
 
@@ -196,10 +230,16 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 		private String query;
 
 		@Nullable
+		private Boolean returnDocuments;
+
+		@Nullable
 		private JsonData taskSettings;
 
 		@Nullable
 		private Time timeout;
+
+		@Nullable
+		private Integer topN;
 
 		/**
 		 * Required - The unique identifier for the inference endpoint.
@@ -212,13 +252,7 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The text on which you want to perform the inference task. It can
-		 * be a single string or an array. <blockquote>
-		 * <p>
-		 * info Inference endpoints for the <code>completion</code> task type currently
-		 * only support a single string as input.
-		 * </p>
-		 * </blockquote>
+		 * Required - The documents to rank.
 		 * <p>
 		 * API name: {@code input}
 		 * <p>
@@ -230,13 +264,7 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The text on which you want to perform the inference task. It can
-		 * be a single string or an array. <blockquote>
-		 * <p>
-		 * info Inference endpoints for the <code>completion</code> task type currently
-		 * only support a single string as input.
-		 * </p>
-		 * </blockquote>
+		 * Required - The documents to rank.
 		 * <p>
 		 * API name: {@code input}
 		 * <p>
@@ -254,6 +282,16 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder query(String value) {
 			this.query = value;
+			return this;
+		}
+
+		/**
+		 * Include the document text in the response.
+		 * <p>
+		 * API name: {@code return_documents}
+		 */
+		public final Builder returnDocuments(@Nullable Boolean value) {
+			this.returnDocuments = value;
 			return this;
 		}
 
@@ -288,6 +326,16 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
+		/**
+		 * Limit the response to the top N documents.
+		 * <p>
+		 * API name: {@code top_n}
+		 */
+		public final Builder topN(@Nullable Integer value) {
+			this.topN = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -318,7 +366,9 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 
 		op.add(Builder::input, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "input");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
+		op.add(Builder::returnDocuments, JsonpDeserializer.booleanDeserializer(), "return_documents");
 		op.add(Builder::taskSettings, JsonData._DESERIALIZER, "task_settings");
+		op.add(Builder::topN, JsonpDeserializer.integerDeserializer(), "top_n");
 
 	}
 

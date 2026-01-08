@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
 // typedef: inference.chat_completion_unified.Request
 
 /**
- * Perform chat completion inference.
+ * Perform chat completion inference on the service.
  * <p>
  * The chat completion inference API enables real-time responses for chat
  * completion tasks by delivering answers incrementally, reducing response times

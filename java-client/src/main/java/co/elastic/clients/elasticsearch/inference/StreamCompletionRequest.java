@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
 // typedef: inference.stream_completion.Request
 
 /**
- * Perform streaming inference.
+ * Perform streaming inference on the service.
  * <p>
  * Get real-time responses for completion tasks by delivering answers
  * incrementally, reducing response times during computation. This API works
