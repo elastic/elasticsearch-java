@@ -28,8 +28,8 @@ import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -46,7 +46,7 @@ import java.util.List;
 This test compares the speed of serializing and sending vectors to the server
 between the standard array of floats and the new base64 format introduced in 9.3
 */
-@Ignore
+@Disabled
 public class MainCommonBenchmark64 {
 
     static ElasticsearchClient elasticsearchClient;
@@ -54,7 +54,8 @@ public class MainCommonBenchmark64 {
     @BeforeAll
     public static void setup() {
         var server = ElasticsearchTestServer.global();
-        elasticsearchClient = ElasticsearchTestClient.createClient(server.url(), new JacksonJsonpMapper(), server.sslContext(), null);
+        elasticsearchClient = ElasticsearchTestClient.createClient(server.url(), new JacksonJsonpMapper(),
+            server.sslContext(), null);
     }
 
     public static List<ElasticsearchDoc> readMultipleObjects(InputStream file) throws IOException {
