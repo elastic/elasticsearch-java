@@ -57,13 +57,15 @@ public class ElasticsearchTestClient {
         return mapper != null ? mapper : new JsonbJsonpMapper();
     }
 
-    public static ElasticsearchClient createClient(String url, @Nullable JsonpMapper mapper, @Nullable SSLContext sslContext) {
+    public static ElasticsearchClient createClient(String url, @Nullable JsonpMapper mapper, @Nullable SSLContext sslContext, @Nullable String password) {
         System.out.println("Using a " + flavor + " client");
+
+        String pwd = password == null ? "changeme" : password;
 
         return ElasticsearchClient.of(b -> b
             .host(url)
             .jsonMapper(mapper(mapper))
-            .usernameAndPassword("elastic", "changeme")
+            .usernameAndPassword("elastic", pwd)
             .sslContext(sslContext)
             .transportFactory(flavor.transportFactory())
         );
@@ -71,7 +73,7 @@ public class ElasticsearchTestClient {
 
     public static ElasticsearchClient createClient(HttpServer server, @Nullable JsonpMapper mapper) {
         var address = server.getAddress();
-        return createClient("http://" + address.getHostString() + ":" + address.getPort(), mapper, null);
+        return createClient("http://" + address.getHostString() + ":" + address.getPort(), mapper, null, null);
     }
 
     public static Function<ElasticsearchTransportConfig, ElasticsearchTransport> transportFactory() {

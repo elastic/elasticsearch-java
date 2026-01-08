@@ -30,8 +30,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.testcontainers.elasticsearch.ElasticsearchContainer;
 import org.testcontainers.images.builder.ImageFromDockerfile;
 import org.testcontainers.shaded.org.apache.commons.io.IOUtils;
+import org.testcontainers.shaded.org.bouncycastle.cert.ocsp.Req;
 import org.testcontainers.utility.DockerImageName;
 
+import javax.annotation.Nullable;
 import javax.net.ssl.SSLContext;
 import java.io.IOException;
 import java.io.InputStream;
@@ -59,15 +61,20 @@ public class ElasticsearchTestServer implements AutoCloseable {
                                                  ".co/elasticsearch/latest/master.json";
 
     public static synchronized ElasticsearchTestServer global() {
+        return global(null);
+    }
+
+    public static synchronized ElasticsearchTestServer global(@Nullable String password) {
         if (global == null) {
 
-            // Try localhost:9200
+            // Try localhost:9200 with set password
             try {
+                String pwd = password == null ? "changeme" : password;
                 String localUrl = "http://localhost:9200";
                 HttpURLConnection connection = (HttpURLConnection) new URL(localUrl).openConnection();
                 connection.setRequestProperty("Authorization", "Basic " +
                                                                Base64.getEncoder().encodeToString(("elastic" +
-                                                               ":changeme").getBytes(StandardCharsets.UTF_8)));
+                                                               ":" + pwd).getBytes(StandardCharsets.UTF_8)));
 
                 try (InputStream input = connection.getInputStream()) {
                     String content = IOUtils.toString(input, StandardCharsets.UTF_8);
@@ -103,7 +110,7 @@ public class ElasticsearchTestServer implements AutoCloseable {
     protected void setup(String url, SSLContext sslContext) {
         this.url = url;
         this.sslContext = sslContext;
-        this.client = ElasticsearchTestClient.createClient(url, null, sslContext);
+        this.client = ElasticsearchTestClient.createClient(url, null, sslContext, null);
     }
 
     private Version selectLatestVersion(Version version) {

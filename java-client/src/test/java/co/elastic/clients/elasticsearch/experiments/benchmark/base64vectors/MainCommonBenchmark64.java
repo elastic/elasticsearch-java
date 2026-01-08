@@ -20,9 +20,11 @@
 package co.elastic.clients.elasticsearch.experiments.benchmark.base64vectors;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.ElasticsearchTestClient;
 import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
 import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.bulk.BulkOperation;
+import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -51,7 +53,8 @@ public class MainCommonBenchmark64 {
 
     @BeforeAll
     public static void setup() {
-        elasticsearchClient = ElasticsearchTestServer.global().client();
+        var server = ElasticsearchTestServer.global();
+        elasticsearchClient = ElasticsearchTestClient.createClient(server.url(), new JacksonJsonpMapper(), server.sslContext(), null);
     }
 
     public static List<ElasticsearchDoc> readMultipleObjects(InputStream file) throws IOException {
