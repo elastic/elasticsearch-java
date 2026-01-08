@@ -63,8 +63,9 @@ import javax.annotation.Nullable;
 // typedef: ml.update_job.Request
 
 /**
- * Update an anomaly detection job. Updates certain properties of an anomaly
- * detection job.
+ * Update an anomaly detection job.
+ * <p>
+ * Updates certain properties of an anomaly detection job.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.update_job.Request">API
  *      specification</a>

@@ -118,7 +118,8 @@ public class RequestChatCompletion implements JsonpSerializable {
 	}
 
 	/**
-	 * The ID of the model to use.
+	 * The ID of the model to use. By default, the model ID is set to the value
+	 * included when creating the inference endpoint.
 	 * <p>
 	 * API name: {@code model}
 	 */
@@ -387,7 +388,8 @@ public class RequestChatCompletion implements JsonpSerializable {
 		}
 
 		/**
-		 * The ID of the model to use.
+		 * The ID of the model to use. By default, the model ID is set to the value
+		 * included when creating the inference endpoint.
 		 * <p>
 		 * API name: {@code model}
 		 */

@@ -108,7 +108,7 @@ public class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSer
 	}
 
 	/**
-	 * Required - the name of the autoscaling policy
+	 * Required - Name of the autoscaling policy
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -183,7 +183,7 @@ public class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * Required - the name of the autoscaling policy
+		 * Required - Name of the autoscaling policy
 		 * <p>
 		 * API name: {@code name}
 		 */

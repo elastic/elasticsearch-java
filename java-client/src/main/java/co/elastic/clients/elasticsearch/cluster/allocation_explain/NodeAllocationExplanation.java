@@ -81,13 +81,14 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 
 	private final String transportAddress;
 
-	private final int weightRanking;
+	@Nullable
+	private final Integer weightRanking;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private NodeAllocationExplanation(Builder builder) {
 
-		this.deciders = ApiTypeHelper.unmodifiableRequired(builder.deciders, this, "deciders");
+		this.deciders = ApiTypeHelper.unmodifiable(builder.deciders);
 		this.nodeAttributes = ApiTypeHelper.unmodifiableRequired(builder.nodeAttributes, this, "nodeAttributes");
 		this.nodeDecision = ApiTypeHelper.requireNonNull(builder.nodeDecision, this, "nodeDecision");
 		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
@@ -95,7 +96,7 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
 		this.store = builder.store;
 		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
-		this.weightRanking = ApiTypeHelper.requireNonNull(builder.weightRanking, this, "weightRanking", 0);
+		this.weightRanking = builder.weightRanking;
 
 	}
 
@@ -104,7 +105,7 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code deciders}
+	 * API name: {@code deciders}
 	 */
 	public final List<AllocationDecision> deciders() {
 		return this.deciders;
@@ -161,9 +162,10 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code weight_ranking}
+	 * API name: {@code weight_ranking}
 	 */
-	public final int weightRanking() {
+	@Nullable
+	public final Integer weightRanking() {
 		return this.weightRanking;
 	}
 
@@ -224,8 +226,11 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		generator.writeKey("transport_address");
 		generator.write(this.transportAddress);
 
-		generator.writeKey("weight_ranking");
-		generator.write(this.weightRanking);
+		if (this.weightRanking != null) {
+			generator.writeKey("weight_ranking");
+			generator.write(this.weightRanking);
+
+		}
 
 	}
 
@@ -243,6 +248,7 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<NodeAllocationExplanation> {
+		@Nullable
 		private List<AllocationDecision> deciders;
 
 		private Map<String, String> nodeAttributes;
@@ -260,10 +266,11 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 
 		private String transportAddress;
 
+		@Nullable
 		private Integer weightRanking;
 
 		/**
-		 * Required - API name: {@code deciders}
+		 * API name: {@code deciders}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>deciders</code>.
 		 */
@@ -273,7 +280,7 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code deciders}
+		 * API name: {@code deciders}
 		 * <p>
 		 * Adds one or more values to <code>deciders</code>.
 		 */
@@ -283,7 +290,7 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code deciders}
+		 * API name: {@code deciders}
 		 * <p>
 		 * Adds a value to <code>deciders</code> using a builder lambda.
 		 */
@@ -379,9 +386,9 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code weight_ranking}
+		 * API name: {@code weight_ranking}
 		 */
-		public final Builder weightRanking(int value) {
+		public final Builder weightRanking(@Nullable Integer value) {
 			this.weightRanking = value;
 			return this;
 		}

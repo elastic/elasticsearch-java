@@ -60,8 +60,10 @@ import javax.annotation.Nullable;
 // typedef: indices.clone.Request
 
 /**
- * Clone an index. Clone an existing index into a new index. Each original
- * primary shard is cloned into a new primary shard in the new index.
+ * Clone an index.
+ * <p>
+ * Clone an existing index into a new index. Each original primary shard is
+ * cloned into a new primary shard in the new index.
  * <p>
  * IMPORTANT: Elasticsearch does not apply index templates to the resulting
  * index. The API also does not copy index metadata from the original index.

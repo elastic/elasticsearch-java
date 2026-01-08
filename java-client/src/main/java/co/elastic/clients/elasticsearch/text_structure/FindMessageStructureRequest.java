@@ -41,6 +41,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -61,9 +62,10 @@ import javax.annotation.Nullable;
 // typedef: text_structure.find_message_structure.Request
 
 /**
- * Find the structure of text messages. Find the structure of a list of text
- * messages. The messages must contain data that is suitable to be ingested into
- * Elasticsearch.
+ * Find the structure of text messages.
+ * <p>
+ * Find the structure of a list of text messages. The messages must contain data
+ * that is suitable to be ingested into Elasticsearch.
  * <p>
  * This API provides a starting point for ingesting data into Elasticsearch in a
  * format that is suitable for subsequent use with other Elastic Stack
@@ -96,8 +98,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class FindMessageStructureRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final String columnNames;
+	private final List<String> columnNames;
 
 	@Nullable
 	private final String delimiter;
@@ -135,7 +136,7 @@ public class FindMessageStructureRequest extends RequestBase implements JsonpSer
 
 	private FindMessageStructureRequest(Builder builder) {
 
-		this.columnNames = builder.columnNames;
+		this.columnNames = ApiTypeHelper.unmodifiable(builder.columnNames);
 		this.delimiter = builder.delimiter;
 		this.ecsCompatibility = builder.ecsCompatibility;
 		this.explain = builder.explain;
@@ -163,8 +164,7 @@ public class FindMessageStructureRequest extends RequestBase implements JsonpSer
 	 * <p>
 	 * API name: {@code column_names}
 	 */
-	@Nullable
-	public final String columnNames() {
+	public final List<String> columnNames() {
 		return this.columnNames;
 	}
 
@@ -408,7 +408,7 @@ public class FindMessageStructureRequest extends RequestBase implements JsonpSer
 			implements
 				ObjectBuilder<FindMessageStructureRequest> {
 		@Nullable
-		private String columnNames;
+		private List<String> columnNames;
 
 		@Nullable
 		private String delimiter;
@@ -450,9 +450,27 @@ public class FindMessageStructureRequest extends RequestBase implements JsonpSer
 		 * &quot;column2&quot;, &quot;column3&quot;, for example.
 		 * <p>
 		 * API name: {@code column_names}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>columnNames</code>.
 		 */
-		public final Builder columnNames(@Nullable String value) {
-			this.columnNames = value;
+		public final Builder columnNames(List<String> list) {
+			this.columnNames = _listAddAll(this.columnNames, list);
+			return this;
+		}
+
+		/**
+		 * If the format is <code>delimited</code>, you can specify the column names in
+		 * a comma-separated list. If this parameter is not specified, the structure
+		 * finder uses the column names from the header row of the text. If the text
+		 * does not have a header role, columns are named &quot;column1&quot;,
+		 * &quot;column2&quot;, &quot;column3&quot;, for example.
+		 * <p>
+		 * API name: {@code column_names}
+		 * <p>
+		 * Adds one or more values to <code>columnNames</code>.
+		 */
+		public final Builder columnNames(String value, String... values) {
+			this.columnNames = _listAdd(this.columnNames, value, values);
 			return this;
 		}
 
@@ -770,8 +788,9 @@ public class FindMessageStructureRequest extends RequestBase implements JsonpSer
 				if (request.format != null) {
 					params.put("format", request.format.jsonValue());
 				}
-				if (request.columnNames != null) {
-					params.put("column_names", request.columnNames);
+				if (ApiTypeHelper.isDefined(request.columnNames)) {
+					params.put("column_names",
+							request.columnNames.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.timestampField != null) {
 					params.put("timestamp_field", request.timestampField);

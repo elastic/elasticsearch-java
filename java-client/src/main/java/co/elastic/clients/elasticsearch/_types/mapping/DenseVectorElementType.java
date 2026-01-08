@@ -65,6 +65,11 @@ public enum DenseVectorElementType implements JsonEnum {
 	 */
 	Float("float"),
 
+	/**
+	 * Indexes a 2-byte floating-point value per dimension.
+	 */
+	Bfloat16("bfloat16"),
+
 	;
 
 	private final String jsonValue;

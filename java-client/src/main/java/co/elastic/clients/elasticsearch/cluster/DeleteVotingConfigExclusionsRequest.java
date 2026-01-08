@@ -58,8 +58,9 @@ import javax.annotation.Nullable;
 // typedef: cluster.delete_voting_config_exclusions.Request
 
 /**
- * Clear cluster voting config exclusions. Remove master-eligible nodes from the
- * voting configuration exclusion list.
+ * Clear cluster voting config exclusions.
+ * <p>
+ * Remove master-eligible nodes from the voting configuration exclusion list.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#cluster.delete_voting_config_exclusions.Request">API

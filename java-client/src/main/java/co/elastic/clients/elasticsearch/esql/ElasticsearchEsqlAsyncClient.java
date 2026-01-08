@@ -67,11 +67,49 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 		return new ElasticsearchEsqlAsyncClient(this.transport, transportOptions);
 	}
 
+	// ----- Endpoint: esql.delete_view
+
+	/**
+	 * Delete an ES|QL view.
+	 * <p>
+	 * Deletes a stored ES|QL view.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<DeleteViewResponse> deleteView(DeleteViewRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteViewRequest, DeleteViewResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteViewRequest, DeleteViewResponse, ErrorResponse>) DeleteViewRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Delete an ES|QL view.
+	 * <p>
+	 * Deletes a stored ES|QL view.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteViewRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<DeleteViewResponse> deleteView(
+			Function<DeleteViewRequest.Builder, ObjectBuilder<DeleteViewRequest>> fn) {
+		return deleteView(fn.apply(new DeleteViewRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: esql.get_query
 
 	/**
-	 * Get a specific running ES|QL query information. Returns an object extended
-	 * information about a running ES|QL query.
+	 * Get a specific running ES|QL query information.
+	 * <p>
+	 * Returns an object extended information about a running ES|QL query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-get-query">Documentation
@@ -86,8 +124,9 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Get a specific running ES|QL query information. Returns an object extended
-	 * information about a running ES|QL query.
+	 * Get a specific running ES|QL query information.
+	 * <p>
+	 * Returns an object extended information about a running ES|QL query.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -102,11 +141,65 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 		return getQuery(fn.apply(new GetQueryRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: esql.get_view
+
+	/**
+	 * Get an ES|QL view.
+	 * <p>
+	 * Returns a stored ES|QL view.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetViewResponse> getView(GetViewRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetViewRequest, GetViewResponse, ErrorResponse> endpoint = (JsonEndpoint<GetViewRequest, GetViewResponse, ErrorResponse>) GetViewRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get an ES|QL view.
+	 * <p>
+	 * Returns a stored ES|QL view.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetViewRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<GetViewResponse> getView(
+			Function<GetViewRequest.Builder, ObjectBuilder<GetViewRequest>> fn) {
+		return getView(fn.apply(new GetViewRequest.Builder()).build());
+	}
+
+	/**
+	 * Get an ES|QL view.
+	 * <p>
+	 * Returns a stored ES|QL view.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetViewResponse> getView() {
+		return this.transport.performRequestAsync(new GetViewRequest.Builder().build(), GetViewRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
 	// ----- Endpoint: esql.list_queries
 
 	/**
-	 * Get running ES|QL queries information. Returns an object containing IDs and
-	 * other information about the running ES|QL queries.
+	 * Get running ES|QL queries information.
+	 * <p>
+	 * Returns an object containing IDs and other information about the running
+	 * ES|QL queries.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-list-queries">Documentation
@@ -117,11 +210,45 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 				this.transportOptions);
 	}
 
+	// ----- Endpoint: esql.put_view
+
+	/**
+	 * Create or update an ES|QL view.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutViewResponse> putView(PutViewRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutViewRequest, PutViewResponse, ErrorResponse> endpoint = (JsonEndpoint<PutViewRequest, PutViewResponse, ErrorResponse>) PutViewRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create or update an ES|QL view.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutViewRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PutViewResponse> putView(
+			Function<PutViewRequest.Builder, ObjectBuilder<PutViewRequest>> fn) {
+		return putView(fn.apply(new PutViewRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: esql.query
 
 	/**
-	 * Run an ES|QL query. Get search results for an ES|QL (Elasticsearch query
-	 * language) query.
+	 * Run an ES|QL query.
+	 * <p>
+	 * Get search results for an ES|QL (Elasticsearch query language) query.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/explore-analyze/query-filter/languages/esql-rest">Documentation
@@ -136,8 +263,9 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Run an ES|QL query. Get search results for an ES|QL (Elasticsearch query
-	 * language) query.
+	 * Run an ES|QL query.
+	 * <p>
+	 * Get search results for an ES|QL (Elasticsearch query language) query.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

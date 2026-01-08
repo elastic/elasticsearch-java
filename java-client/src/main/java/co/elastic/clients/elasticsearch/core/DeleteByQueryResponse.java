@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.BulkIndexByScrollFailure;
+import co.elastic.clients.elasticsearch._types.ReindexStatus;
 import co.elastic.clients.elasticsearch._types.Retries;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -88,6 +89,8 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 	@Nullable
 	private final Integer sliceId;
 
+	private final List<ReindexStatus> slices;
+
 	@Nullable
 	private final String task;
 
@@ -126,6 +129,7 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 		this.requestsPerSecond = builder.requestsPerSecond;
 		this.retries = builder.retries;
 		this.sliceId = builder.sliceId;
+		this.slices = ApiTypeHelper.unmodifiable(builder.slices);
 		this.task = builder.task;
 		this.throttled = builder.throttled;
 		this.throttledMillis = builder.throttledMillis;
@@ -216,6 +220,15 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 	@Nullable
 	public final Integer sliceId() {
 		return this.sliceId;
+	}
+
+	/**
+	 * Status of each slice if the delete by query was sliced
+	 * <p>
+	 * API name: {@code slices}
+	 */
+	public final List<ReindexStatus> slices() {
+		return this.slices;
 	}
 
 	/**
@@ -358,6 +371,16 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 			generator.write(this.sliceId);
 
 		}
+		if (ApiTypeHelper.isDefined(this.slices)) {
+			generator.writeKey("slices");
+			generator.writeStartArray();
+			for (ReindexStatus item0 : this.slices) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.task != null) {
 			generator.writeKey("task");
 			generator.write(this.task);
@@ -440,6 +463,9 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 
 		@Nullable
 		private Integer sliceId;
+
+		@Nullable
+		private List<ReindexStatus> slices;
 
 		@Nullable
 		private String task;
@@ -593,6 +619,41 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Status of each slice if the delete by query was sliced
+		 * <p>
+		 * API name: {@code slices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>slices</code>.
+		 */
+		public final Builder slices(List<ReindexStatus> list) {
+			this.slices = _listAddAll(this.slices, list);
+			return this;
+		}
+
+		/**
+		 * Status of each slice if the delete by query was sliced
+		 * <p>
+		 * API name: {@code slices}
+		 * <p>
+		 * Adds one or more values to <code>slices</code>.
+		 */
+		public final Builder slices(ReindexStatus value, ReindexStatus... values) {
+			this.slices = _listAdd(this.slices, value, values);
+			return this;
+		}
+
+		/**
+		 * Status of each slice if the delete by query was sliced
+		 * <p>
+		 * API name: {@code slices}
+		 * <p>
+		 * Adds a value to <code>slices</code> using a builder lambda.
+		 */
+		public final Builder slices(Function<ReindexStatus.Builder, ObjectBuilder<ReindexStatus>> fn) {
+			return slices(fn.apply(new ReindexStatus.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code task}
 		 */
 		public final Builder task(@Nullable String value) {
@@ -731,6 +792,7 @@ public class DeleteByQueryResponse implements JsonpSerializable {
 		op.add(Builder::requestsPerSecond, JsonpDeserializer.floatDeserializer(), "requests_per_second");
 		op.add(Builder::retries, Retries._DESERIALIZER, "retries");
 		op.add(Builder::sliceId, JsonpDeserializer.integerDeserializer(), "slice_id");
+		op.add(Builder::slices, JsonpDeserializer.arrayDeserializer(ReindexStatus._DESERIALIZER), "slices");
 		op.add(Builder::task, JsonpDeserializer.stringDeserializer(), "task");
 		op.add(Builder::throttled, Time._DESERIALIZER, "throttled");
 		op.add(Builder::throttledMillis, JsonpDeserializer.longDeserializer(), "throttled_millis");

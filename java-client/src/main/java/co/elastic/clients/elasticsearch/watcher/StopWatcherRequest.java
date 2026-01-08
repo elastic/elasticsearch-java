@@ -55,7 +55,9 @@ import javax.annotation.Nullable;
 // typedef: watcher.stop.Request
 
 /**
- * Stop the watch service. Stop the Watcher service if it is running.
+ * Stop the watch service.
+ * <p>
+ * Stop the Watcher service if it is running.
  * 
  * @see <a href="../doc-files/api-spec.html#watcher.stop.Request">API
  *      specification</a>

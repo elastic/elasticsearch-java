@@ -33,6 +33,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -66,7 +67,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class GetCategoriesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String categoryId;
+	private final Long categoryId;
 
 	@Nullable
 	private final Integer from;
@@ -109,7 +110,7 @@ public class GetCategoriesRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code category_id}
 	 */
 	@Nullable
-	public final String categoryId() {
+	public final Long categoryId() {
 		return this.categoryId;
 	}
 
@@ -192,7 +193,7 @@ public class GetCategoriesRequest extends RequestBase implements JsonpSerializab
 			implements
 				ObjectBuilder<GetCategoriesRequest> {
 		@Nullable
-		private String categoryId;
+		private Long categoryId;
 
 		@Nullable
 		private Integer from;
@@ -217,7 +218,7 @@ public class GetCategoriesRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code category_id}
 		 */
-		public final Builder categoryId(@Nullable String value) {
+		public final Builder categoryId(@Nullable Long value) {
 			this.categoryId = value;
 			return this;
 		}
@@ -349,7 +350,7 @@ public class GetCategoriesRequest extends RequestBase implements JsonpSerializab
 					buf.append("/results");
 					buf.append("/categories");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.categoryId, buf);
+					SimpleEndpoint.pathEncode(String.valueOf(request.categoryId), buf);
 					return buf.toString();
 				}
 				if (propsSet == (_jobId)) {
@@ -380,7 +381,7 @@ public class GetCategoriesRequest extends RequestBase implements JsonpSerializab
 
 				if (propsSet == (_jobId | _categoryId)) {
 					params.put("jobId", request.jobId);
-					params.put("categoryId", request.categoryId);
+					params.put("categoryId", String.valueOf(request.categoryId));
 				}
 				if (propsSet == (_jobId)) {
 					params.put("jobId", request.jobId);

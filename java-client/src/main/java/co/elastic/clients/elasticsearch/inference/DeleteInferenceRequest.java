@@ -56,7 +56,10 @@ import javax.annotation.Nullable;
 // typedef: inference.delete.Request
 
 /**
- * Delete an inference endpoint
+ * Delete an inference endpoint.
+ * <p>
+ * This API requires the manage_inference cluster privilege (the built-in
+ * <code>inference_admin</code> role grants this privilege).
  * 
  * @see <a href="../doc-files/api-spec.html#inference.delete.Request">API
  *      specification</a>
@@ -90,8 +93,9 @@ public class DeleteInferenceRequest extends RequestBase {
 	}
 
 	/**
-	 * When true, the endpoint is not deleted and a list of ingest processors which
-	 * reference this endpoint is returned.
+	 * When true, checks the semantic_text fields and inference processors that
+	 * reference the endpoint and returns them in a list, but does not delete the
+	 * endpoint.
 	 * <p>
 	 * API name: {@code dry_run}
 	 */
@@ -151,8 +155,9 @@ public class DeleteInferenceRequest extends RequestBase {
 		private TaskType taskType;
 
 		/**
-		 * When true, the endpoint is not deleted and a list of ingest processors which
-		 * reference this endpoint is returned.
+		 * When true, checks the semantic_text fields and inference processors that
+		 * reference the endpoint and returns them in a list, but does not delete the
+		 * endpoint.
 		 * <p>
 		 * API name: {@code dry_run}
 		 */

@@ -698,7 +698,11 @@ public class IndicesRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * available docs
+	 * The number of documents in the index, including hidden nested documents. For
+	 * indices with <code>semantic_text</code> fields or other nested field types,
+	 * this count includes the internal nested documents. To get the logical
+	 * document count (excluding nested documents), use the <code>_count</code> API
+	 * or <code>_cat/count</code> API instead.
 	 * <p>
 	 * API name: {@code docs.count}
 	 */
@@ -3282,7 +3286,11 @@ public class IndicesRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * available docs
+		 * The number of documents in the index, including hidden nested documents. For
+		 * indices with <code>semantic_text</code> fields or other nested field types,
+		 * this count includes the internal nested documents. To get the logical
+		 * document count (excluding nested documents), use the <code>_count</code> API
+		 * or <code>_cat/count</code> API instead.
 		 * <p>
 		 * API name: {@code docs.count}
 		 */

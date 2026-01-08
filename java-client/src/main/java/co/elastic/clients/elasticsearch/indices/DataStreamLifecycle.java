@@ -27,10 +27,12 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -65,8 +67,10 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	@Nullable
 	private final Time dataRetention;
 
+	private final List<DownsamplingRound> downsampling;
+
 	@Nullable
-	private final DataStreamLifecycleDownsampling downsampling;
+	private final SamplingMethod downsamplingMethod;
 
 	@Nullable
 	private final Boolean enabled;
@@ -76,7 +80,8 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	protected DataStreamLifecycle(AbstractBuilder<?> builder) {
 
 		this.dataRetention = builder.dataRetention;
-		this.downsampling = builder.downsampling;
+		this.downsampling = ApiTypeHelper.unmodifiable(builder.downsampling);
+		this.downsamplingMethod = builder.downsamplingMethod;
 		this.enabled = builder.enabled;
 
 	}
@@ -99,14 +104,25 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	}
 
 	/**
-	 * The downsampling configuration to execute for the managed backing index after
-	 * rollover.
+	 * The list of downsampling rounds to execute as part of this downsampling
+	 * configuration
 	 * <p>
 	 * API name: {@code downsampling}
 	 */
-	@Nullable
-	public final DataStreamLifecycleDownsampling downsampling() {
+	public final List<DownsamplingRound> downsampling() {
 		return this.downsampling;
+	}
+
+	/**
+	 * The method used to downsample the data. There are two options
+	 * <code>aggregate</code> and <code>last_value</code>. It requires
+	 * <code>downsampling</code> to be defined. Defaults to <code>aggregate</code>.
+	 * <p>
+	 * API name: {@code downsampling_method}
+	 */
+	@Nullable
+	public final SamplingMethod downsamplingMethod() {
+		return this.downsamplingMethod;
 	}
 
 	/**
@@ -138,10 +154,19 @@ public class DataStreamLifecycle implements JsonpSerializable {
 			this.dataRetention.serialize(generator, mapper);
 
 		}
-		if (this.downsampling != null) {
+		if (ApiTypeHelper.isDefined(this.downsampling)) {
 			generator.writeKey("downsampling");
-			this.downsampling.serialize(generator, mapper);
+			generator.writeStartArray();
+			for (DownsamplingRound item0 : this.downsampling) {
+				item0.serialize(generator, mapper);
 
+			}
+			generator.writeEnd();
+
+		}
+		if (this.downsamplingMethod != null) {
+			generator.writeKey("downsampling_method");
+			this.downsamplingMethod.serialize(generator, mapper);
 		}
 		if (this.enabled != null) {
 			generator.writeKey("enabled");
@@ -190,7 +215,10 @@ public class DataStreamLifecycle implements JsonpSerializable {
 		private Time dataRetention;
 
 		@Nullable
-		private DataStreamLifecycleDownsampling downsampling;
+		private List<DownsamplingRound> downsampling;
+
+		@Nullable
+		private SamplingMethod downsamplingMethod;
 
 		@Nullable
 		private Boolean enabled;
@@ -221,25 +249,53 @@ public class DataStreamLifecycle implements JsonpSerializable {
 		}
 
 		/**
-		 * The downsampling configuration to execute for the managed backing index after
-		 * rollover.
+		 * The list of downsampling rounds to execute as part of this downsampling
+		 * configuration
 		 * <p>
 		 * API name: {@code downsampling}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>downsampling</code>.
 		 */
-		public final BuilderT downsampling(@Nullable DataStreamLifecycleDownsampling value) {
-			this.downsampling = value;
+		public final BuilderT downsampling(List<DownsamplingRound> list) {
+			this.downsampling = _listAddAll(this.downsampling, list);
 			return self();
 		}
 
 		/**
-		 * The downsampling configuration to execute for the managed backing index after
-		 * rollover.
+		 * The list of downsampling rounds to execute as part of this downsampling
+		 * configuration
 		 * <p>
 		 * API name: {@code downsampling}
+		 * <p>
+		 * Adds one or more values to <code>downsampling</code>.
 		 */
-		public final BuilderT downsampling(
-				Function<DataStreamLifecycleDownsampling.Builder, ObjectBuilder<DataStreamLifecycleDownsampling>> fn) {
-			return this.downsampling(fn.apply(new DataStreamLifecycleDownsampling.Builder()).build());
+		public final BuilderT downsampling(DownsamplingRound value, DownsamplingRound... values) {
+			this.downsampling = _listAdd(this.downsampling, value, values);
+			return self();
+		}
+
+		/**
+		 * The list of downsampling rounds to execute as part of this downsampling
+		 * configuration
+		 * <p>
+		 * API name: {@code downsampling}
+		 * <p>
+		 * Adds a value to <code>downsampling</code> using a builder lambda.
+		 */
+		public final BuilderT downsampling(Function<DownsamplingRound.Builder, ObjectBuilder<DownsamplingRound>> fn) {
+			return downsampling(fn.apply(new DownsamplingRound.Builder()).build());
+		}
+
+		/**
+		 * The method used to downsample the data. There are two options
+		 * <code>aggregate</code> and <code>last_value</code>. It requires
+		 * <code>downsampling</code> to be defined. Defaults to <code>aggregate</code>.
+		 * <p>
+		 * API name: {@code downsampling_method}
+		 */
+		public final BuilderT downsamplingMethod(@Nullable SamplingMethod value) {
+			this.downsamplingMethod = value;
+			return self();
 		}
 
 		/**
@@ -271,7 +327,9 @@ public class DataStreamLifecycle implements JsonpSerializable {
 			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::dataRetention, Time._DESERIALIZER, "data_retention");
-		op.add(AbstractBuilder::downsampling, DataStreamLifecycleDownsampling._DESERIALIZER, "downsampling");
+		op.add(AbstractBuilder::downsampling, JsonpDeserializer.arrayDeserializer(DownsamplingRound._DESERIALIZER),
+				"downsampling");
+		op.add(AbstractBuilder::downsamplingMethod, SamplingMethod._DESERIALIZER, "downsampling_method");
 		op.add(AbstractBuilder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
 	}

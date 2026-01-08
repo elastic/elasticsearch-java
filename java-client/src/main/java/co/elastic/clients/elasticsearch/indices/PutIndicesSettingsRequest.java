@@ -63,8 +63,10 @@ import javax.annotation.Nullable;
 // typedef: indices.put_settings.Request
 
 /**
- * Update index settings. Changes dynamic index settings in real time. For data
- * streams, index setting changes are applied to all backing indices by default.
+ * Update index settings.
+ * <p>
+ * Changes dynamic index settings in real time. For data streams, index setting
+ * changes are applied to all backing indices by default.
  * <p>
  * To revert a setting to the default value, use a null value. The list of
  * per-index settings that can be updated dynamically on live indices can be

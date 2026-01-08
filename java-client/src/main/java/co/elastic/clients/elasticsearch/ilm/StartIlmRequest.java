@@ -55,10 +55,11 @@ import javax.annotation.Nullable;
 // typedef: ilm.start.Request
 
 /**
- * Start the ILM plugin. Start the index lifecycle management plugin if it is
- * currently stopped. ILM is started automatically when the cluster is formed.
- * Restarting ILM is necessary only when it has been stopped using the stop ILM
- * API.
+ * Start the ILM plugin.
+ * <p>
+ * Start the index lifecycle management plugin if it is currently stopped. ILM
+ * is started automatically when the cluster is formed. Restarting ILM is
+ * necessary only when it has been stopped using the stop ILM API.
  * 
  * @see <a href="../doc-files/api-spec.html#ilm.start.Request">API
  *      specification</a>

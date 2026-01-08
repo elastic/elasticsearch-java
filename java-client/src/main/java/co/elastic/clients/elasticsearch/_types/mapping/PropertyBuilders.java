@@ -298,6 +298,25 @@ public class PropertyBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link ExponentialHistogramProperty
+	 * exponential_histogram} {@code Property} variant.
+	 */
+	public static ExponentialHistogramProperty.Builder exponentialHistogram() {
+		return new ExponentialHistogramProperty.Builder();
+	}
+
+	/**
+	 * Creates a Property of the {@link ExponentialHistogramProperty
+	 * exponential_histogram} {@code Property} variant.
+	 */
+	public static Property exponentialHistogram(
+			Function<ExponentialHistogramProperty.Builder, ObjectBuilder<ExponentialHistogramProperty>> fn) {
+		Property.Builder builder = new Property.Builder();
+		builder.exponentialHistogram(fn.apply(new ExponentialHistogramProperty.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link FieldAliasProperty alias} {@code Property}
 	 * variant.
 	 */

@@ -111,8 +111,9 @@ public class ElasticsearchSearchApplicationAsyncClient
 	// ----- Endpoint: search_application.delete_behavioral_analytics
 
 	/**
-	 * Delete a behavioral analytics collection. The associated data stream is also
-	 * deleted.
+	 * Delete a behavioral analytics collection.
+	 * <p>
+	 * The associated data stream is also deleted.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-delete-behavioral-analytics">Documentation
@@ -128,8 +129,9 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Delete a behavioral analytics collection. The associated data stream is also
-	 * deleted.
+	 * Delete a behavioral analytics collection.
+	 * <p>
+	 * The associated data stream is also deleted.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -227,7 +229,9 @@ public class ElasticsearchSearchApplicationAsyncClient
 	// ----- Endpoint: search_application.list
 
 	/**
-	 * Get search applications. Get information about search applications.
+	 * Get search applications.
+	 * <p>
+	 * Get information about search applications.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-get-behavioral-analytics">Documentation
@@ -242,7 +246,9 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Get search applications. Get information about search applications.
+	 * Get search applications.
+	 * <p>
+	 * Get information about search applications.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -257,7 +263,9 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Get search applications. Get information about search applications.
+	 * Get search applications.
+	 * <p>
+	 * Get information about search applications.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-get-behavioral-analytics">Documentation
@@ -372,13 +380,14 @@ public class ElasticsearchSearchApplicationAsyncClient
 	// ----- Endpoint: search_application.render_query
 
 	/**
-	 * Render a search application query. Generate an Elasticsearch query using the
-	 * specified query parameters and the search template associated with the search
-	 * application or a default template if none is specified. If a parameter used
-	 * in the search template is not specified in <code>params</code>, the
-	 * parameter's default value will be used. The API returns the specific
-	 * Elasticsearch query that would be generated and run by calling the search
-	 * application search API.
+	 * Render a search application query.
+	 * <p>
+	 * Generate an Elasticsearch query using the specified query parameters and the
+	 * search template associated with the search application or a default template
+	 * if none is specified. If a parameter used in the search template is not
+	 * specified in <code>params</code>, the parameter's default value will be used.
+	 * The API returns the specific Elasticsearch query that would be generated and
+	 * run by calling the search application search API.
 	 * <p>
 	 * You must have <code>read</code> privileges on the backing alias of the search
 	 * application.
@@ -396,13 +405,14 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Render a search application query. Generate an Elasticsearch query using the
-	 * specified query parameters and the search template associated with the search
-	 * application or a default template if none is specified. If a parameter used
-	 * in the search template is not specified in <code>params</code>, the
-	 * parameter's default value will be used. The API returns the specific
-	 * Elasticsearch query that would be generated and run by calling the search
-	 * application search API.
+	 * Render a search application query.
+	 * <p>
+	 * Generate an Elasticsearch query using the specified query parameters and the
+	 * search template associated with the search application or a default template
+	 * if none is specified. If a parameter used in the search template is not
+	 * specified in <code>params</code>, the parameter's default value will be used.
+	 * The API returns the specific Elasticsearch query that would be generated and
+	 * run by calling the search application search API.
 	 * <p>
 	 * You must have <code>read</code> privileges on the backing alias of the search
 	 * application.
@@ -423,10 +433,12 @@ public class ElasticsearchSearchApplicationAsyncClient
 	// ----- Endpoint: search_application.search
 
 	/**
-	 * Run a search application search. Generate and run an Elasticsearch query that
-	 * uses the specified query parameteter and the search template associated with
-	 * the search application or default template. Unspecified template parameters
-	 * are assigned their default values if applicable.
+	 * Run a search application search.
+	 * <p>
+	 * Generate and run an Elasticsearch query that uses the specified query
+	 * parameteter and the search template associated with the search application or
+	 * default template. Unspecified template parameters are assigned their default
+	 * values if applicable.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-search">Documentation
@@ -445,10 +457,12 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Run a search application search. Generate and run an Elasticsearch query that
-	 * uses the specified query parameteter and the search template associated with
-	 * the search application or default template. Unspecified template parameters
-	 * are assigned their default values if applicable.
+	 * Run a search application search.
+	 * <p>
+	 * Generate and run an Elasticsearch query that uses the specified query
+	 * parameteter and the search template associated with the search application or
+	 * default template. Unspecified template parameters are assigned their default
+	 * values if applicable.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -486,10 +500,12 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Run a search application search. Generate and run an Elasticsearch query that
-	 * uses the specified query parameteter and the search template associated with
-	 * the search application or default template. Unspecified template parameters
-	 * are assigned their default values if applicable.
+	 * Run a search application search.
+	 * <p>
+	 * Generate and run an Elasticsearch query that uses the specified query
+	 * parameteter and the search template associated with the search application or
+	 * default template. Unspecified template parameters are assigned their default
+	 * values if applicable.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search-application-search">Documentation
@@ -508,10 +524,12 @@ public class ElasticsearchSearchApplicationAsyncClient
 	}
 
 	/**
-	 * Run a search application search. Generate and run an Elasticsearch query that
-	 * uses the specified query parameteter and the search template associated with
-	 * the search application or default template. Unspecified template parameters
-	 * are assigned their default values if applicable.
+	 * Run a search application search.
+	 * <p>
+	 * Generate and run an Elasticsearch query that uses the specified query
+	 * parameteter and the search template associated with the search application or
+	 * default template. Unspecified template parameters are assigned their default
+	 * values if applicable.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

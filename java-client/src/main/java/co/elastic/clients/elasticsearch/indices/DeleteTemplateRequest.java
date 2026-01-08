@@ -56,9 +56,11 @@ import javax.annotation.Nullable;
 // typedef: indices.delete_template.Request
 
 /**
- * Delete a legacy index template. IMPORTANT: This documentation is about legacy
- * index templates, which are deprecated and will be replaced by the composable
- * templates introduced in Elasticsearch 7.8.
+ * Delete a legacy index template.
+ * <p>
+ * IMPORTANT: This documentation is about legacy index templates, which are
+ * deprecated and will be replaced by the composable templates introduced in
+ * Elasticsearch 7.8.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.delete_template.Request">API
  *      specification</a>

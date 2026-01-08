@@ -60,8 +60,9 @@ import javax.annotation.Nullable;
 // typedef: query_rules.put_rule.Request
 
 /**
- * Create or update a query rule. Create or update a query rule within a query
- * ruleset.
+ * Create or update a query rule.
+ * <p>
+ * Create or update a query rule within a query ruleset.
  * <p>
  * IMPORTANT: Due to limitations within pinned queries, you can only pin
  * documents using ids or docs, but cannot use both in single rule. It is

@@ -31,6 +31,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -65,8 +66,7 @@ public class TermsLookup implements JsonpSerializable {
 
 	private final String path;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,7 +75,7 @@ public class TermsLookup implements JsonpSerializable {
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 
 	}
 
@@ -107,8 +107,7 @@ public class TermsLookup implements JsonpSerializable {
 	/**
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -132,9 +131,14 @@ public class TermsLookup implements JsonpSerializable {
 		generator.writeKey("path");
 		generator.write(this.path);
 
-		if (this.routing != null) {
+		if (ApiTypeHelper.isDefined(this.routing)) {
 			generator.writeKey("routing");
-			generator.write(this.routing);
+			generator.writeStartArray();
+			for (String item0 : this.routing) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
 
@@ -159,7 +163,7 @@ public class TermsLookup implements JsonpSerializable {
 		private String path;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		/**
 		 * Required - API name: {@code index}
@@ -187,9 +191,21 @@ public class TermsLookup implements JsonpSerializable {
 
 		/**
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -224,7 +240,8 @@ public class TermsLookup implements JsonpSerializable {
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
-		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(Builder::routing, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"routing");
 
 	}
 

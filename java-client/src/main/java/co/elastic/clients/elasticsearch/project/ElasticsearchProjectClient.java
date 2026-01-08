@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.project;
 
 import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.JsonEndpoint;
@@ -28,6 +29,7 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -66,14 +68,53 @@ public class ElasticsearchProjectClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: project.tags
 
 	/**
-	 * Get tags. Get the tags that are defined for the project.
+	 * Get tags.
+	 * <p>
+	 * Get the tags that are defined for the project.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch-serverless/operation/operation-project-tags">Documentation
 	 *      on elastic.co</a>
 	 */
+
+	public TagsResponse tags(TagsRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<TagsRequest, TagsResponse, ErrorResponse> endpoint = (JsonEndpoint<TagsRequest, TagsResponse, ErrorResponse>) TagsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get tags.
+	 * <p>
+	 * Get the tags that are defined for the project.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link TagsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch-serverless/operation/operation-project-tags">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final TagsResponse tags(Function<TagsRequest.Builder, ObjectBuilder<TagsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return tags(fn.apply(new TagsRequest.Builder()).build());
+	}
+
+	/**
+	 * Get tags.
+	 * <p>
+	 * Get the tags that are defined for the project.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch-serverless/operation/operation-project-tags">Documentation
+	 *      on elastic.co</a>
+	 */
+
 	public TagsResponse tags() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(TagsRequest._INSTANCE, TagsRequest._ENDPOINT, this.transportOptions);
+		return this.transport.performRequest(new TagsRequest.Builder().build(), TagsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 }

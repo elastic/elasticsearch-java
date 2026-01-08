@@ -64,9 +64,10 @@ import javax.annotation.Nullable;
 // typedef: _global.explain.Request
 
 /**
- * Explain a document match result. Get information about why a specific
- * document matches, or doesn't match, a query. It computes a score explanation
- * for a query and a specific document.
+ * Explain a document match result.
+ * <p>
+ * Get information about why a specific document matches, or doesn't match, a
+ * query. It computes a score explanation for a query and a specific document.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.explain.Request">API
  *      specification</a>
@@ -108,8 +109,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Query query;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	private final List<String> storedFields;
 
@@ -130,7 +130,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		this.preference = builder.preference;
 		this.q = builder.q;
 		this.query = builder.query;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 
 	}
@@ -289,8 +289,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -367,7 +366,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		private Query query;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private List<String> storedFields;
@@ -589,9 +588,23 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * A custom value used to route operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -708,8 +721,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.q != null) {
 					params.put("q", request.q);

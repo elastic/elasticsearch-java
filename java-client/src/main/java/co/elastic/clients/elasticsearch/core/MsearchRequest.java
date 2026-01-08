@@ -125,8 +125,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	@Nullable
 	private final String projectRouting;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	@Nullable
 	private final SearchType searchType;
@@ -148,7 +147,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.preFilterShardSize = builder.preFilterShardSize;
 		this.projectRouting = builder.projectRouting;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.searchType = builder.searchType;
 		this.searches = ApiTypeHelper.unmodifiableRequired(builder.searches, this, "searches");
 
@@ -202,7 +201,11 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	 * If true, concrete, expanded or aliased indices are ignored when frozen.
 	 * <p>
 	 * API name: {@code ignore_throttled}
+	 * 
+	 * @deprecated 7.16.0 This parameter is deprecated because frozen indices have
+	 *             been deprecated.
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean ignoreThrottled() {
 		return this.ignoreThrottled;
@@ -299,8 +302,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -376,7 +378,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		private String projectRouting;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private SearchType searchType;
@@ -440,7 +442,11 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		 * If true, concrete, expanded or aliased indices are ignored when frozen.
 		 * <p>
 		 * API name: {@code ignore_throttled}
+		 * 
+		 * @deprecated 7.16.0 This parameter is deprecated because frozen indices have
+		 *             been deprecated.
 		 */
+		@Deprecated
 		public final Builder ignoreThrottled(@Nullable Boolean value) {
 			this.ignoreThrottled = value;
 			return this;
@@ -551,9 +557,23 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		 * Custom routing value used to route search operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * Custom routing value used to route search operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -697,8 +717,8 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 				if (request.ccsMinimizeRoundtrips != null) {
 					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: inference.text_embedding.Request
 
 /**
- * Perform text embedding inference on the service
+ * Perform text embedding inference on the service.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#inference.text_embedding.Request">API
@@ -142,7 +142,9 @@ public class TextEmbeddingRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Optional task settings
+	 * Task settings for the individual inference request. These settings are
+	 * specific to the &lt;task_type&gt; you specified and override the task
+	 * settings specified when initializing the service.
 	 * <p>
 	 * API name: {@code task_settings}
 	 */
@@ -278,7 +280,9 @@ public class TextEmbeddingRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Optional task settings
+		 * Task settings for the individual inference request. These settings are
+		 * specific to the &lt;task_type&gt; you specified and override the task
+		 * settings specified when initializing the service.
 		 * <p>
 		 * API name: {@code task_settings}
 		 */

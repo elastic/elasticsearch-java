@@ -70,11 +70,13 @@ public class ElasticsearchFeaturesAsyncClient
 	// ----- Endpoint: features.get_features
 
 	/**
-	 * Get the features. Get a list of features that can be included in snapshots
-	 * using the <code>feature_states</code> field when creating a snapshot. You can
-	 * use this API to determine which feature states to include when taking a
-	 * snapshot. By default, all feature states are included in a snapshot if that
-	 * snapshot includes the global state, or none if it does not.
+	 * Get the features.
+	 * <p>
+	 * Get a list of features that can be included in snapshots using the
+	 * <code>feature_states</code> field when creating a snapshot. You can use this
+	 * API to determine which feature states to include when taking a snapshot. By
+	 * default, all feature states are included in a snapshot if that snapshot
+	 * includes the global state, or none if it does not.
 	 * <p>
 	 * A feature state includes one or more system indices necessary for a given
 	 * feature to function. In order to ensure data integrity, all system indices
@@ -98,11 +100,13 @@ public class ElasticsearchFeaturesAsyncClient
 	}
 
 	/**
-	 * Get the features. Get a list of features that can be included in snapshots
-	 * using the <code>feature_states</code> field when creating a snapshot. You can
-	 * use this API to determine which feature states to include when taking a
-	 * snapshot. By default, all feature states are included in a snapshot if that
-	 * snapshot includes the global state, or none if it does not.
+	 * Get the features.
+	 * <p>
+	 * Get a list of features that can be included in snapshots using the
+	 * <code>feature_states</code> field when creating a snapshot. You can use this
+	 * API to determine which feature states to include when taking a snapshot. By
+	 * default, all feature states are included in a snapshot if that snapshot
+	 * includes the global state, or none if it does not.
 	 * <p>
 	 * A feature state includes one or more system indices necessary for a given
 	 * feature to function. In order to ensure data integrity, all system indices
@@ -127,11 +131,13 @@ public class ElasticsearchFeaturesAsyncClient
 	}
 
 	/**
-	 * Get the features. Get a list of features that can be included in snapshots
-	 * using the <code>feature_states</code> field when creating a snapshot. You can
-	 * use this API to determine which feature states to include when taking a
-	 * snapshot. By default, all feature states are included in a snapshot if that
-	 * snapshot includes the global state, or none if it does not.
+	 * Get the features.
+	 * <p>
+	 * Get a list of features that can be included in snapshots using the
+	 * <code>feature_states</code> field when creating a snapshot. You can use this
+	 * API to determine which feature states to include when taking a snapshot. By
+	 * default, all feature states are included in a snapshot if that snapshot
+	 * includes the global state, or none if it does not.
 	 * <p>
 	 * A feature state includes one or more system indices necessary for a given
 	 * feature to function. In order to ensure data integrity, all system indices
@@ -155,9 +161,10 @@ public class ElasticsearchFeaturesAsyncClient
 	// ----- Endpoint: features.reset_features
 
 	/**
-	 * Reset the features. Clear all of the state information stored in system
-	 * indices by Elasticsearch features, including the security and machine
-	 * learning indices.
+	 * Reset the features.
+	 * <p>
+	 * Clear all of the state information stored in system indices by Elasticsearch
+	 * features, including the security and machine learning indices.
 	 * <p>
 	 * WARNING: Intended for development and testing use only. Do not reset features
 	 * on a production cluster.
@@ -192,9 +199,10 @@ public class ElasticsearchFeaturesAsyncClient
 	}
 
 	/**
-	 * Reset the features. Clear all of the state information stored in system
-	 * indices by Elasticsearch features, including the security and machine
-	 * learning indices.
+	 * Reset the features.
+	 * <p>
+	 * Clear all of the state information stored in system indices by Elasticsearch
+	 * features, including the security and machine learning indices.
 	 * <p>
 	 * WARNING: Intended for development and testing use only. Do not reset features
 	 * on a production cluster.
@@ -230,9 +238,10 @@ public class ElasticsearchFeaturesAsyncClient
 	}
 
 	/**
-	 * Reset the features. Clear all of the state information stored in system
-	 * indices by Elasticsearch features, including the security and machine
-	 * learning indices.
+	 * Reset the features.
+	 * <p>
+	 * Clear all of the state information stored in system indices by Elasticsearch
+	 * features, including the security and machine learning indices.
 	 * <p>
 	 * WARNING: Intended for development and testing use only. Do not reset features
 	 * on a production cluster.

@@ -173,7 +173,8 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	/**
 	 * <code>true</code> if vector rescoring should be done on-disk
 	 * <p>
-	 * Only applicable to <code>bbq_hnsw</code>
+	 * Only applicable to <code>bbq_disk</code>, <code>bbq_hnsw</code>,
+	 * <code>int4_hnsw</code>, <code>int8_hnsw</code>
 	 * <p>
 	 * API name: {@code on_disk_rescore}
 	 */
@@ -345,7 +346,8 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		/**
 		 * <code>true</code> if vector rescoring should be done on-disk
 		 * <p>
-		 * Only applicable to <code>bbq_hnsw</code>
+		 * Only applicable to <code>bbq_disk</code>, <code>bbq_hnsw</code>,
+		 * <code>int4_hnsw</code>, <code>int8_hnsw</code>
 		 * <p>
 		 * API name: {@code on_disk_rescore}
 		 */

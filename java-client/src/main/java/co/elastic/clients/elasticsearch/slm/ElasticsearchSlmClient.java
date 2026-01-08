@@ -68,9 +68,11 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: slm.delete_lifecycle
 
 	/**
-	 * Delete a policy. Delete a snapshot lifecycle policy definition. This
-	 * operation prevents any future snapshots from being taken but does not cancel
-	 * in-progress snapshots or remove previously-taken snapshots.
+	 * Delete a policy.
+	 * <p>
+	 * Delete a snapshot lifecycle policy definition. This operation prevents any
+	 * future snapshots from being taken but does not cancel in-progress snapshots
+	 * or remove previously-taken snapshots.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-delete-lifecycle">Documentation
@@ -86,9 +88,11 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Delete a policy. Delete a snapshot lifecycle policy definition. This
-	 * operation prevents any future snapshots from being taken but does not cancel
-	 * in-progress snapshots or remove previously-taken snapshots.
+	 * Delete a policy.
+	 * <p>
+	 * Delete a snapshot lifecycle policy definition. This operation prevents any
+	 * future snapshots from being taken but does not cancel in-progress snapshots
+	 * or remove previously-taken snapshots.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -107,10 +111,12 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: slm.execute_lifecycle
 
 	/**
-	 * Run a policy. Immediately create a snapshot according to the snapshot
-	 * lifecycle policy without waiting for the scheduled time. The snapshot policy
-	 * is normally applied according to its schedule, but you might want to manually
-	 * run a policy before performing an upgrade or other maintenance.
+	 * Run a policy.
+	 * <p>
+	 * Immediately create a snapshot according to the snapshot lifecycle policy
+	 * without waiting for the scheduled time. The snapshot policy is normally
+	 * applied according to its schedule, but you might want to manually run a
+	 * policy before performing an upgrade or other maintenance.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-execute-lifecycle">Documentation
@@ -126,10 +132,12 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Run a policy. Immediately create a snapshot according to the snapshot
-	 * lifecycle policy without waiting for the scheduled time. The snapshot policy
-	 * is normally applied according to its schedule, but you might want to manually
-	 * run a policy before performing an upgrade or other maintenance.
+	 * Run a policy.
+	 * <p>
+	 * Immediately create a snapshot according to the snapshot lifecycle policy
+	 * without waiting for the scheduled time. The snapshot policy is normally
+	 * applied according to its schedule, but you might want to manually run a
+	 * policy before performing an upgrade or other maintenance.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -148,10 +156,11 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: slm.execute_retention
 
 	/**
-	 * Run a retention policy. Manually apply the retention policy to force
-	 * immediate removal of snapshots that are expired according to the snapshot
-	 * lifecycle policy retention rules. The retention policy is normally applied
-	 * according to its schedule.
+	 * Run a retention policy.
+	 * <p>
+	 * Manually apply the retention policy to force immediate removal of snapshots
+	 * that are expired according to the snapshot lifecycle policy retention rules.
+	 * The retention policy is normally applied according to its schedule.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-execute-retention">Documentation
@@ -167,10 +176,11 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Run a retention policy. Manually apply the retention policy to force
-	 * immediate removal of snapshots that are expired according to the snapshot
-	 * lifecycle policy retention rules. The retention policy is normally applied
-	 * according to its schedule.
+	 * Run a retention policy.
+	 * <p>
+	 * Manually apply the retention policy to force immediate removal of snapshots
+	 * that are expired according to the snapshot lifecycle policy retention rules.
+	 * The retention policy is normally applied according to its schedule.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -187,10 +197,11 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Run a retention policy. Manually apply the retention policy to force
-	 * immediate removal of snapshots that are expired according to the snapshot
-	 * lifecycle policy retention rules. The retention policy is normally applied
-	 * according to its schedule.
+	 * Run a retention policy.
+	 * <p>
+	 * Manually apply the retention policy to force immediate removal of snapshots
+	 * that are expired according to the snapshot lifecycle policy retention rules.
+	 * The retention policy is normally applied according to its schedule.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-execute-retention">Documentation
@@ -205,8 +216,10 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: slm.get_lifecycle
 
 	/**
-	 * Get policy information. Get snapshot lifecycle policy definitions and
-	 * information about the latest snapshot attempts.
+	 * Get policy information.
+	 * <p>
+	 * Get snapshot lifecycle policy definitions and information about the latest
+	 * snapshot attempts.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-get-lifecycle">Documentation
@@ -221,8 +234,10 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Get policy information. Get snapshot lifecycle policy definitions and
-	 * information about the latest snapshot attempts.
+	 * Get policy information.
+	 * <p>
+	 * Get snapshot lifecycle policy definitions and information about the latest
+	 * snapshot attempts.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -239,8 +254,10 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Get policy information. Get snapshot lifecycle policy definitions and
-	 * information about the latest snapshot attempts.
+	 * Get policy information.
+	 * <p>
+	 * Get snapshot lifecycle policy definitions and information about the latest
+	 * snapshot attempts.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-get-lifecycle">Documentation
@@ -255,8 +272,10 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: slm.get_stats
 
 	/**
-	 * Get snapshot lifecycle management statistics. Get global and policy-level
-	 * statistics about actions taken by snapshot lifecycle management.
+	 * Get snapshot lifecycle management statistics.
+	 * <p>
+	 * Get global and policy-level statistics about actions taken by snapshot
+	 * lifecycle management.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-get-stats">Documentation
@@ -271,8 +290,10 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Get snapshot lifecycle management statistics. Get global and policy-level
-	 * statistics about actions taken by snapshot lifecycle management.
+	 * Get snapshot lifecycle management statistics.
+	 * <p>
+	 * Get global and policy-level statistics about actions taken by snapshot
+	 * lifecycle management.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -288,8 +309,10 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Get snapshot lifecycle management statistics. Get global and policy-level
-	 * statistics about actions taken by snapshot lifecycle management.
+	 * Get snapshot lifecycle management statistics.
+	 * <p>
+	 * Get global and policy-level statistics about actions taken by snapshot
+	 * lifecycle management.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-get-stats">Documentation
@@ -351,9 +374,11 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: slm.put_lifecycle
 
 	/**
-	 * Create or update a policy. Create or update a snapshot lifecycle policy. If
-	 * the policy already exists, this request increments the policy version. Only
-	 * the latest version of a policy is stored.
+	 * Create or update a policy.
+	 * <p>
+	 * Create or update a snapshot lifecycle policy. If the policy already exists,
+	 * this request increments the policy version. Only the latest version of a
+	 * policy is stored.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-put-lifecycle">Documentation
@@ -368,9 +393,11 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Create or update a policy. Create or update a snapshot lifecycle policy. If
-	 * the policy already exists, this request increments the policy version. Only
-	 * the latest version of a policy is stored.
+	 * Create or update a policy.
+	 * <p>
+	 * Create or update a snapshot lifecycle policy. If the policy already exists,
+	 * this request increments the policy version. Only the latest version of a
+	 * policy is stored.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -389,9 +416,11 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: slm.start
 
 	/**
-	 * Start snapshot lifecycle management. Snapshot lifecycle management (SLM)
-	 * starts automatically when a cluster is formed. Manually starting SLM is
-	 * necessary only if it has been stopped using the stop SLM API.
+	 * Start snapshot lifecycle management.
+	 * <p>
+	 * Snapshot lifecycle management (SLM) starts automatically when a cluster is
+	 * formed. Manually starting SLM is necessary only if it has been stopped using
+	 * the stop SLM API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-start">Documentation
@@ -406,9 +435,11 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Start snapshot lifecycle management. Snapshot lifecycle management (SLM)
-	 * starts automatically when a cluster is formed. Manually starting SLM is
-	 * necessary only if it has been stopped using the stop SLM API.
+	 * Start snapshot lifecycle management.
+	 * <p>
+	 * Snapshot lifecycle management (SLM) starts automatically when a cluster is
+	 * formed. Manually starting SLM is necessary only if it has been stopped using
+	 * the stop SLM API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -424,9 +455,11 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Start snapshot lifecycle management. Snapshot lifecycle management (SLM)
-	 * starts automatically when a cluster is formed. Manually starting SLM is
-	 * necessary only if it has been stopped using the stop SLM API.
+	 * Start snapshot lifecycle management.
+	 * <p>
+	 * Snapshot lifecycle management (SLM) starts automatically when a cluster is
+	 * formed. Manually starting SLM is necessary only if it has been stopped using
+	 * the stop SLM API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-start">Documentation
@@ -441,12 +474,14 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	// ----- Endpoint: slm.stop
 
 	/**
-	 * Stop snapshot lifecycle management. Stop all snapshot lifecycle management
-	 * (SLM) operations and the SLM plugin. This API is useful when you are
-	 * performing maintenance on a cluster and need to prevent SLM from performing
-	 * any actions on your data streams or indices. Stopping SLM does not stop any
-	 * snapshots that are in progress. You can manually trigger snapshots with the
-	 * run snapshot lifecycle policy API even if SLM is stopped.
+	 * Stop snapshot lifecycle management.
+	 * <p>
+	 * Stop all snapshot lifecycle management (SLM) operations and the SLM plugin.
+	 * This API is useful when you are performing maintenance on a cluster and need
+	 * to prevent SLM from performing any actions on your data streams or indices.
+	 * Stopping SLM does not stop any snapshots that are in progress. You can
+	 * manually trigger snapshots with the run snapshot lifecycle policy API even if
+	 * SLM is stopped.
 	 * <p>
 	 * The API returns a response as soon as the request is acknowledged, but the
 	 * plugin might continue to run until in-progress operations complete and it can
@@ -466,12 +501,14 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Stop snapshot lifecycle management. Stop all snapshot lifecycle management
-	 * (SLM) operations and the SLM plugin. This API is useful when you are
-	 * performing maintenance on a cluster and need to prevent SLM from performing
-	 * any actions on your data streams or indices. Stopping SLM does not stop any
-	 * snapshots that are in progress. You can manually trigger snapshots with the
-	 * run snapshot lifecycle policy API even if SLM is stopped.
+	 * Stop snapshot lifecycle management.
+	 * <p>
+	 * Stop all snapshot lifecycle management (SLM) operations and the SLM plugin.
+	 * This API is useful when you are performing maintenance on a cluster and need
+	 * to prevent SLM from performing any actions on your data streams or indices.
+	 * Stopping SLM does not stop any snapshots that are in progress. You can
+	 * manually trigger snapshots with the run snapshot lifecycle policy API even if
+	 * SLM is stopped.
 	 * <p>
 	 * The API returns a response as soon as the request is acknowledged, but the
 	 * plugin might continue to run until in-progress operations complete and it can
@@ -492,12 +529,14 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	}
 
 	/**
-	 * Stop snapshot lifecycle management. Stop all snapshot lifecycle management
-	 * (SLM) operations and the SLM plugin. This API is useful when you are
-	 * performing maintenance on a cluster and need to prevent SLM from performing
-	 * any actions on your data streams or indices. Stopping SLM does not stop any
-	 * snapshots that are in progress. You can manually trigger snapshots with the
-	 * run snapshot lifecycle policy API even if SLM is stopped.
+	 * Stop snapshot lifecycle management.
+	 * <p>
+	 * Stop all snapshot lifecycle management (SLM) operations and the SLM plugin.
+	 * This API is useful when you are performing maintenance on a cluster and need
+	 * to prevent SLM from performing any actions on your data streams or indices.
+	 * Stopping SLM does not stop any snapshots that are in progress. You can
+	 * manually trigger snapshots with the run snapshot lifecycle policy API even if
+	 * SLM is stopped.
 	 * <p>
 	 * The API returns a response as soon as the request is acknowledged, but the
 	 * plugin might continue to run until in-progress operations complete and it can

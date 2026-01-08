@@ -854,14 +854,16 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.flush_job
 
 	/**
-	 * Force buffered data to be processed. The flush jobs API is only applicable
-	 * when sending data for analysis using the post data API. Depending on the
-	 * content of the buffer, then it might additionally calculate new results. Both
-	 * flush and close operations are similar, however the flush is more efficient
-	 * if you are expecting to send more data for analysis. When flushing, the job
-	 * remains open and is available to continue analyzing data. A close operation
-	 * additionally prunes and persists the model state to disk and the job must be
-	 * opened again before analyzing further data.
+	 * Force buffered data to be processed.
+	 * <p>
+	 * The flush jobs API is only applicable when sending data for analysis using
+	 * the post data API. Depending on the content of the buffer, then it might
+	 * additionally calculate new results. Both flush and close operations are
+	 * similar, however the flush is more efficient if you are expecting to send
+	 * more data for analysis. When flushing, the job remains open and is available
+	 * to continue analyzing data. A close operation additionally prunes and
+	 * persists the model state to disk and the job must be opened again before
+	 * analyzing further data.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-flush-job">Documentation
@@ -876,14 +878,16 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Force buffered data to be processed. The flush jobs API is only applicable
-	 * when sending data for analysis using the post data API. Depending on the
-	 * content of the buffer, then it might additionally calculate new results. Both
-	 * flush and close operations are similar, however the flush is more efficient
-	 * if you are expecting to send more data for analysis. When flushing, the job
-	 * remains open and is available to continue analyzing data. A close operation
-	 * additionally prunes and persists the model state to disk and the job must be
-	 * opened again before analyzing further data.
+	 * Force buffered data to be processed.
+	 * <p>
+	 * The flush jobs API is only applicable when sending data for analysis using
+	 * the post data API. Depending on the content of the buffer, then it might
+	 * additionally calculate new results. Both flush and close operations are
+	 * similar, however the flush is more efficient if you are expecting to send
+	 * more data for analysis. When flushing, the job remains open and is available
+	 * to continue analyzing data. A close operation additionally prunes and
+	 * persists the model state to disk and the job must be opened again before
+	 * analyzing further data.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -944,8 +948,9 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.get_buckets
 
 	/**
-	 * Get anomaly detection job results for buckets. The API presents a
-	 * chronological view of the records, grouped by bucket.
+	 * Get anomaly detection job results for buckets.
+	 * <p>
+	 * The API presents a chronological view of the records, grouped by bucket.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-buckets">Documentation
@@ -960,8 +965,9 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get anomaly detection job results for buckets. The API presents a
-	 * chronological view of the records, grouped by bucket.
+	 * Get anomaly detection job results for buckets.
+	 * <p>
+	 * The API presents a chronological view of the records, grouped by bucket.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1091,9 +1097,11 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.get_data_frame_analytics
 
 	/**
-	 * Get data frame analytics job configuration info. You can get information for
-	 * multiple data frame analytics jobs in a single API request by using a
-	 * comma-separated list of data frame analytics jobs or a wildcard expression.
+	 * Get data frame analytics job configuration info.
+	 * <p>
+	 * You can get information for multiple data frame analytics jobs in a single
+	 * API request by using a comma-separated list of data frame analytics jobs or a
+	 * wildcard expression.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-data-frame-analytics">Documentation
@@ -1109,9 +1117,11 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get data frame analytics job configuration info. You can get information for
-	 * multiple data frame analytics jobs in a single API request by using a
-	 * comma-separated list of data frame analytics jobs or a wildcard expression.
+	 * Get data frame analytics job configuration info.
+	 * <p>
+	 * You can get information for multiple data frame analytics jobs in a single
+	 * API request by using a comma-separated list of data frame analytics jobs or a
+	 * wildcard expression.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1127,9 +1137,11 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get data frame analytics job configuration info. You can get information for
-	 * multiple data frame analytics jobs in a single API request by using a
-	 * comma-separated list of data frame analytics jobs or a wildcard expression.
+	 * Get data frame analytics job configuration info.
+	 * <p>
+	 * You can get information for multiple data frame analytics jobs in a single
+	 * API request by using a comma-separated list of data frame analytics jobs or a
+	 * wildcard expression.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-data-frame-analytics">Documentation
@@ -1191,11 +1203,12 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.get_datafeed_stats
 
 	/**
-	 * Get datafeed stats. You can get statistics for multiple datafeeds in a single
-	 * API request by using a comma-separated list of datafeeds or a wildcard
-	 * expression. You can get statistics for all datafeeds by using
-	 * <code>_all</code>, by specifying <code>*</code> as the
-	 * <code>&lt;feed_id&gt;</code>, or by omitting the
+	 * Get datafeed stats.
+	 * <p>
+	 * You can get statistics for multiple datafeeds in a single API request by
+	 * using a comma-separated list of datafeeds or a wildcard expression. You can
+	 * get statistics for all datafeeds by using <code>_all</code>, by specifying
+	 * <code>*</code> as the <code>&lt;feed_id&gt;</code>, or by omitting the
 	 * <code>&lt;feed_id&gt;</code>. If the datafeed is stopped, the only
 	 * information you receive is the <code>datafeed_id</code> and the
 	 * <code>state</code>. This API returns a maximum of 10,000 datafeeds.
@@ -1213,11 +1226,12 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get datafeed stats. You can get statistics for multiple datafeeds in a single
-	 * API request by using a comma-separated list of datafeeds or a wildcard
-	 * expression. You can get statistics for all datafeeds by using
-	 * <code>_all</code>, by specifying <code>*</code> as the
-	 * <code>&lt;feed_id&gt;</code>, or by omitting the
+	 * Get datafeed stats.
+	 * <p>
+	 * You can get statistics for multiple datafeeds in a single API request by
+	 * using a comma-separated list of datafeeds or a wildcard expression. You can
+	 * get statistics for all datafeeds by using <code>_all</code>, by specifying
+	 * <code>*</code> as the <code>&lt;feed_id&gt;</code>, or by omitting the
 	 * <code>&lt;feed_id&gt;</code>. If the datafeed is stopped, the only
 	 * information you receive is the <code>datafeed_id</code> and the
 	 * <code>state</code>. This API returns a maximum of 10,000 datafeeds.
@@ -1236,11 +1250,12 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get datafeed stats. You can get statistics for multiple datafeeds in a single
-	 * API request by using a comma-separated list of datafeeds or a wildcard
-	 * expression. You can get statistics for all datafeeds by using
-	 * <code>_all</code>, by specifying <code>*</code> as the
-	 * <code>&lt;feed_id&gt;</code>, or by omitting the
+	 * Get datafeed stats.
+	 * <p>
+	 * You can get statistics for multiple datafeeds in a single API request by
+	 * using a comma-separated list of datafeeds or a wildcard expression. You can
+	 * get statistics for all datafeeds by using <code>_all</code>, by specifying
+	 * <code>*</code> as the <code>&lt;feed_id&gt;</code>, or by omitting the
 	 * <code>&lt;feed_id&gt;</code>. If the datafeed is stopped, the only
 	 * information you receive is the <code>datafeed_id</code> and the
 	 * <code>state</code>. This API returns a maximum of 10,000 datafeeds.
@@ -1258,11 +1273,12 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.get_datafeeds
 
 	/**
-	 * Get datafeeds configuration info. You can get information for multiple
-	 * datafeeds in a single API request by using a comma-separated list of
-	 * datafeeds or a wildcard expression. You can get information for all datafeeds
-	 * by using <code>_all</code>, by specifying <code>*</code> as the
-	 * <code>&lt;feed_id&gt;</code>, or by omitting the
+	 * Get datafeeds configuration info.
+	 * <p>
+	 * You can get information for multiple datafeeds in a single API request by
+	 * using a comma-separated list of datafeeds or a wildcard expression. You can
+	 * get information for all datafeeds by using <code>_all</code>, by specifying
+	 * <code>*</code> as the <code>&lt;feed_id&gt;</code>, or by omitting the
 	 * <code>&lt;feed_id&gt;</code>. This API returns a maximum of 10,000 datafeeds.
 	 * 
 	 * @see <a href=
@@ -1278,11 +1294,12 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get datafeeds configuration info. You can get information for multiple
-	 * datafeeds in a single API request by using a comma-separated list of
-	 * datafeeds or a wildcard expression. You can get information for all datafeeds
-	 * by using <code>_all</code>, by specifying <code>*</code> as the
-	 * <code>&lt;feed_id&gt;</code>, or by omitting the
+	 * Get datafeeds configuration info.
+	 * <p>
+	 * You can get information for multiple datafeeds in a single API request by
+	 * using a comma-separated list of datafeeds or a wildcard expression. You can
+	 * get information for all datafeeds by using <code>_all</code>, by specifying
+	 * <code>*</code> as the <code>&lt;feed_id&gt;</code>, or by omitting the
 	 * <code>&lt;feed_id&gt;</code>. This API returns a maximum of 10,000 datafeeds.
 	 * 
 	 * @param fn
@@ -1299,11 +1316,12 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get datafeeds configuration info. You can get information for multiple
-	 * datafeeds in a single API request by using a comma-separated list of
-	 * datafeeds or a wildcard expression. You can get information for all datafeeds
-	 * by using <code>_all</code>, by specifying <code>*</code> as the
-	 * <code>&lt;feed_id&gt;</code>, or by omitting the
+	 * Get datafeeds configuration info.
+	 * <p>
+	 * You can get information for multiple datafeeds in a single API request by
+	 * using a comma-separated list of datafeeds or a wildcard expression. You can
+	 * get information for all datafeeds by using <code>_all</code>, by specifying
+	 * <code>*</code> as the <code>&lt;feed_id&gt;</code>, or by omitting the
 	 * <code>&lt;feed_id&gt;</code>. This API returns a maximum of 10,000 datafeeds.
 	 * 
 	 * @see <a href=
@@ -1319,7 +1337,9 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.get_filters
 
 	/**
-	 * Get filters. You can get a single filter or all filters.
+	 * Get filters.
+	 * <p>
+	 * You can get a single filter or all filters.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-filters">Documentation
@@ -1334,7 +1354,9 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get filters. You can get a single filter or all filters.
+	 * Get filters.
+	 * <p>
+	 * You can get a single filter or all filters.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1350,7 +1372,9 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get filters. You can get a single filter or all filters.
+	 * Get filters.
+	 * <p>
+	 * You can get a single filter or all filters.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-filters">Documentation
@@ -1365,9 +1389,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.get_influencers
 
 	/**
-	 * Get anomaly detection job results for influencers. Influencers are the
-	 * entities that have contributed to, or are to blame for, the anomalies.
-	 * Influencer results are available only if an
+	 * Get anomaly detection job results for influencers.
+	 * <p>
+	 * Influencers are the entities that have contributed to, or are to blame for,
+	 * the anomalies. Influencer results are available only if an
 	 * <code>influencer_field_name</code> is specified in the job configuration.
 	 * 
 	 * @see <a href=
@@ -1383,9 +1408,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get anomaly detection job results for influencers. Influencers are the
-	 * entities that have contributed to, or are to blame for, the anomalies.
-	 * Influencer results are available only if an
+	 * Get anomaly detection job results for influencers.
+	 * <p>
+	 * Influencers are the entities that have contributed to, or are to blame for,
+	 * the anomalies. Influencer results are available only if an
 	 * <code>influencer_field_name</code> is specified in the job configuration.
 	 * 
 	 * @param fn
@@ -1450,12 +1476,13 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.get_jobs
 
 	/**
-	 * Get anomaly detection jobs configuration info. You can get information for
-	 * multiple anomaly detection jobs in a single API request by using a group
-	 * name, a comma-separated list of jobs, or a wildcard expression. You can get
-	 * information for all anomaly detection jobs by using <code>_all</code>, by
-	 * specifying <code>*</code> as the <code>&lt;job_id&gt;</code>, or by omitting
-	 * the <code>&lt;job_id&gt;</code>.
+	 * Get anomaly detection jobs configuration info.
+	 * <p>
+	 * You can get information for multiple anomaly detection jobs in a single API
+	 * request by using a group name, a comma-separated list of jobs, or a wildcard
+	 * expression. You can get information for all anomaly detection jobs by using
+	 * <code>_all</code>, by specifying <code>*</code> as the
+	 * <code>&lt;job_id&gt;</code>, or by omitting the <code>&lt;job_id&gt;</code>.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-jobs">Documentation
@@ -1470,12 +1497,13 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get anomaly detection jobs configuration info. You can get information for
-	 * multiple anomaly detection jobs in a single API request by using a group
-	 * name, a comma-separated list of jobs, or a wildcard expression. You can get
-	 * information for all anomaly detection jobs by using <code>_all</code>, by
-	 * specifying <code>*</code> as the <code>&lt;job_id&gt;</code>, or by omitting
-	 * the <code>&lt;job_id&gt;</code>.
+	 * Get anomaly detection jobs configuration info.
+	 * <p>
+	 * You can get information for multiple anomaly detection jobs in a single API
+	 * request by using a group name, a comma-separated list of jobs, or a wildcard
+	 * expression. You can get information for all anomaly detection jobs by using
+	 * <code>_all</code>, by specifying <code>*</code> as the
+	 * <code>&lt;job_id&gt;</code>, or by omitting the <code>&lt;job_id&gt;</code>.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1491,12 +1519,13 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get anomaly detection jobs configuration info. You can get information for
-	 * multiple anomaly detection jobs in a single API request by using a group
-	 * name, a comma-separated list of jobs, or a wildcard expression. You can get
-	 * information for all anomaly detection jobs by using <code>_all</code>, by
-	 * specifying <code>*</code> as the <code>&lt;job_id&gt;</code>, or by omitting
-	 * the <code>&lt;job_id&gt;</code>.
+	 * Get anomaly detection jobs configuration info.
+	 * <p>
+	 * You can get information for multiple anomaly detection jobs in a single API
+	 * request by using a group name, a comma-separated list of jobs, or a wildcard
+	 * expression. You can get information for all anomaly detection jobs by using
+	 * <code>_all</code>, by specifying <code>*</code> as the
+	 * <code>&lt;job_id&gt;</code>, or by omitting the <code>&lt;job_id&gt;</code>.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-jobs">Documentation
@@ -1511,9 +1540,11 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.get_memory_stats
 
 	/**
-	 * Get machine learning memory usage info. Get information about how machine
-	 * learning jobs and trained models are using memory, on each node, both within
-	 * the JVM heap, and natively, outside of the JVM.
+	 * Get machine learning memory usage info.
+	 * <p>
+	 * Get information about how machine learning jobs and trained models are using
+	 * memory, on each node, both within the JVM heap, and natively, outside of the
+	 * JVM.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-memory-stats">Documentation
@@ -1528,9 +1559,11 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get machine learning memory usage info. Get information about how machine
-	 * learning jobs and trained models are using memory, on each node, both within
-	 * the JVM heap, and natively, outside of the JVM.
+	 * Get machine learning memory usage info.
+	 * <p>
+	 * Get information about how machine learning jobs and trained models are using
+	 * memory, on each node, both within the JVM heap, and natively, outside of the
+	 * JVM.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1546,9 +1579,11 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get machine learning memory usage info. Get information about how machine
-	 * learning jobs and trained models are using memory, on each node, both within
-	 * the JVM heap, and natively, outside of the JVM.
+	 * Get machine learning memory usage info.
+	 * <p>
+	 * Get information about how machine learning jobs and trained models are using
+	 * memory, on each node, both within the JVM heap, and natively, outside of the
+	 * JVM.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-memory-stats">Documentation
@@ -1699,15 +1734,17 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.get_records
 
 	/**
-	 * Get anomaly records for an anomaly detection job. Records contain the
-	 * detailed analytical results. They describe the anomalous activity that has
-	 * been identified in the input data based on the detector configuration. There
-	 * can be many anomaly records depending on the characteristics and size of the
-	 * input data. In practice, there are often too many to be able to manually
-	 * process them. The machine learning features therefore perform a sophisticated
-	 * aggregation of the anomaly records into buckets. The number of record results
-	 * depends on the number of anomalies found in each bucket, which relates to the
-	 * number of time series being modeled and the number of detectors.
+	 * Get anomaly records for an anomaly detection job.
+	 * <p>
+	 * Records contain the detailed analytical results. They describe the anomalous
+	 * activity that has been identified in the input data based on the detector
+	 * configuration. There can be many anomaly records depending on the
+	 * characteristics and size of the input data. In practice, there are often too
+	 * many to be able to manually process them. The machine learning features
+	 * therefore perform a sophisticated aggregation of the anomaly records into
+	 * buckets. The number of record results depends on the number of anomalies
+	 * found in each bucket, which relates to the number of time series being
+	 * modeled and the number of detectors.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-records">Documentation
@@ -1722,15 +1759,17 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get anomaly records for an anomaly detection job. Records contain the
-	 * detailed analytical results. They describe the anomalous activity that has
-	 * been identified in the input data based on the detector configuration. There
-	 * can be many anomaly records depending on the characteristics and size of the
-	 * input data. In practice, there are often too many to be able to manually
-	 * process them. The machine learning features therefore perform a sophisticated
-	 * aggregation of the anomaly records into buckets. The number of record results
-	 * depends on the number of anomalies found in each bucket, which relates to the
-	 * number of time series being modeled and the number of detectors.
+	 * Get anomaly records for an anomaly detection job.
+	 * <p>
+	 * Records contain the detailed analytical results. They describe the anomalous
+	 * activity that has been identified in the input data based on the detector
+	 * configuration. There can be many anomaly records depending on the
+	 * characteristics and size of the input data. In practice, there are often too
+	 * many to be able to manually process them. The machine learning features
+	 * therefore perform a sophisticated aggregation of the anomaly records into
+	 * buckets. The number of record results depends on the number of anomalies
+	 * found in each bucket, which relates to the number of time series being
+	 * modeled and the number of detectors.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1794,9 +1833,11 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.get_trained_models_stats
 
 	/**
-	 * Get trained models usage info. You can get usage information for multiple
-	 * trained models in a single API request by using a comma-separated list of
-	 * model IDs or a wildcard expression.
+	 * Get trained models usage info.
+	 * <p>
+	 * You can get usage information for multiple trained models in a single API
+	 * request by using a comma-separated list of model IDs or a wildcard
+	 * expression.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-trained-models-stats">Documentation
@@ -1812,9 +1853,11 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get trained models usage info. You can get usage information for multiple
-	 * trained models in a single API request by using a comma-separated list of
-	 * model IDs or a wildcard expression.
+	 * Get trained models usage info.
+	 * <p>
+	 * You can get usage information for multiple trained models in a single API
+	 * request by using a comma-separated list of model IDs or a wildcard
+	 * expression.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1830,9 +1873,11 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Get trained models usage info. You can get usage information for multiple
-	 * trained models in a single API request by using a comma-separated list of
-	 * model IDs or a wildcard expression.
+	 * Get trained models usage info.
+	 * <p>
+	 * You can get usage information for multiple trained models in a single API
+	 * request by using a comma-separated list of model IDs or a wildcard
+	 * expression.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-get-trained-models-stats">Documentation
@@ -1880,13 +1925,14 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.info
 
 	/**
-	 * Get machine learning information. Get defaults and limits used by machine
-	 * learning. This endpoint is designed to be used by a user interface that needs
-	 * to fully understand machine learning configurations where some options are
-	 * not specified, meaning that the defaults should be used. This endpoint may be
-	 * used to find out what those defaults are. It also provides information about
-	 * the maximum size of machine learning jobs that could run in the current
-	 * cluster configuration.
+	 * Get machine learning information.
+	 * <p>
+	 * Get defaults and limits used by machine learning. This endpoint is designed
+	 * to be used by a user interface that needs to fully understand machine
+	 * learning configurations where some options are not specified, meaning that
+	 * the defaults should be used. This endpoint may be used to find out what those
+	 * defaults are. It also provides information about the maximum size of machine
+	 * learning jobs that could run in the current cluster configuration.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-info">Documentation
@@ -2021,8 +2067,9 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.preview_data_frame_analytics
 
 	/**
-	 * Preview features used by data frame analytics. Preview the extracted features
-	 * used by a data frame analytics config.
+	 * Preview features used by data frame analytics.
+	 * <p>
+	 * Preview the extracted features used by a data frame analytics config.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-preview-data-frame-analytics">Documentation
@@ -2038,8 +2085,9 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Preview features used by data frame analytics. Preview the extracted features
-	 * used by a data frame analytics config.
+	 * Preview features used by data frame analytics.
+	 * <p>
+	 * Preview the extracted features used by a data frame analytics config.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2055,8 +2103,9 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Preview features used by data frame analytics. Preview the extracted features
-	 * used by a data frame analytics config.
+	 * Preview features used by data frame analytics.
+	 * <p>
+	 * Preview the extracted features used by a data frame analytics config.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-preview-data-frame-analytics">Documentation
@@ -2071,16 +2120,18 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.preview_datafeed
 
 	/**
-	 * Preview a datafeed. This API returns the first &quot;page&quot; of search
-	 * results from a datafeed. You can preview an existing datafeed or provide
-	 * configuration details for a datafeed and anomaly detection job in the API.
-	 * The preview shows the structure of the data that will be passed to the
-	 * anomaly detection engine. IMPORTANT: When Elasticsearch security features are
-	 * enabled, the preview uses the credentials of the user that called the API.
-	 * However, when the datafeed starts it uses the roles of the last user that
-	 * created or updated the datafeed. To get a preview that accurately reflects
-	 * the behavior of the datafeed, use the appropriate credentials. You can also
-	 * use secondary authorization headers to supply the credentials.
+	 * Preview a datafeed.
+	 * <p>
+	 * This API returns the first &quot;page&quot; of search results from a
+	 * datafeed. You can preview an existing datafeed or provide configuration
+	 * details for a datafeed and anomaly detection job in the API. The preview
+	 * shows the structure of the data that will be passed to the anomaly detection
+	 * engine. IMPORTANT: When Elasticsearch security features are enabled, the
+	 * preview uses the credentials of the user that called the API. However, when
+	 * the datafeed starts it uses the roles of the last user that created or
+	 * updated the datafeed. To get a preview that accurately reflects the behavior
+	 * of the datafeed, use the appropriate credentials. You can also use secondary
+	 * authorization headers to supply the credentials.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-preview-datafeed">Documentation
@@ -2099,16 +2150,18 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Preview a datafeed. This API returns the first &quot;page&quot; of search
-	 * results from a datafeed. You can preview an existing datafeed or provide
-	 * configuration details for a datafeed and anomaly detection job in the API.
-	 * The preview shows the structure of the data that will be passed to the
-	 * anomaly detection engine. IMPORTANT: When Elasticsearch security features are
-	 * enabled, the preview uses the credentials of the user that called the API.
-	 * However, when the datafeed starts it uses the roles of the last user that
-	 * created or updated the datafeed. To get a preview that accurately reflects
-	 * the behavior of the datafeed, use the appropriate credentials. You can also
-	 * use secondary authorization headers to supply the credentials.
+	 * Preview a datafeed.
+	 * <p>
+	 * This API returns the first &quot;page&quot; of search results from a
+	 * datafeed. You can preview an existing datafeed or provide configuration
+	 * details for a datafeed and anomaly detection job in the API. The preview
+	 * shows the structure of the data that will be passed to the anomaly detection
+	 * engine. IMPORTANT: When Elasticsearch security features are enabled, the
+	 * preview uses the credentials of the user that called the API. However, when
+	 * the datafeed starts it uses the roles of the last user that created or
+	 * updated the datafeed. To get a preview that accurately reflects the behavior
+	 * of the datafeed, use the appropriate credentials. You can also use secondary
+	 * authorization headers to supply the credentials.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2146,16 +2199,18 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Preview a datafeed. This API returns the first &quot;page&quot; of search
-	 * results from a datafeed. You can preview an existing datafeed or provide
-	 * configuration details for a datafeed and anomaly detection job in the API.
-	 * The preview shows the structure of the data that will be passed to the
-	 * anomaly detection engine. IMPORTANT: When Elasticsearch security features are
-	 * enabled, the preview uses the credentials of the user that called the API.
-	 * However, when the datafeed starts it uses the roles of the last user that
-	 * created or updated the datafeed. To get a preview that accurately reflects
-	 * the behavior of the datafeed, use the appropriate credentials. You can also
-	 * use secondary authorization headers to supply the credentials.
+	 * Preview a datafeed.
+	 * <p>
+	 * This API returns the first &quot;page&quot; of search results from a
+	 * datafeed. You can preview an existing datafeed or provide configuration
+	 * details for a datafeed and anomaly detection job in the API. The preview
+	 * shows the structure of the data that will be passed to the anomaly detection
+	 * engine. IMPORTANT: When Elasticsearch security features are enabled, the
+	 * preview uses the credentials of the user that called the API. However, when
+	 * the datafeed starts it uses the roles of the last user that created or
+	 * updated the datafeed. To get a preview that accurately reflects the behavior
+	 * of the datafeed, use the appropriate credentials. You can also use secondary
+	 * authorization headers to supply the credentials.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-preview-datafeed">Documentation
@@ -2174,16 +2229,18 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Preview a datafeed. This API returns the first &quot;page&quot; of search
-	 * results from a datafeed. You can preview an existing datafeed or provide
-	 * configuration details for a datafeed and anomaly detection job in the API.
-	 * The preview shows the structure of the data that will be passed to the
-	 * anomaly detection engine. IMPORTANT: When Elasticsearch security features are
-	 * enabled, the preview uses the credentials of the user that called the API.
-	 * However, when the datafeed starts it uses the roles of the last user that
-	 * created or updated the datafeed. To get a preview that accurately reflects
-	 * the behavior of the datafeed, use the appropriate credentials. You can also
-	 * use secondary authorization headers to supply the credentials.
+	 * Preview a datafeed.
+	 * <p>
+	 * This API returns the first &quot;page&quot; of search results from a
+	 * datafeed. You can preview an existing datafeed or provide configuration
+	 * details for a datafeed and anomaly detection job in the API. The preview
+	 * shows the structure of the data that will be passed to the anomaly detection
+	 * engine. IMPORTANT: When Elasticsearch security features are enabled, the
+	 * preview uses the credentials of the user that called the API. However, when
+	 * the datafeed starts it uses the roles of the last user that created or
+	 * updated the datafeed. To get a preview that accurately reflects the behavior
+	 * of the datafeed, use the appropriate credentials. You can also use secondary
+	 * authorization headers to supply the credentials.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2267,10 +2324,12 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.put_data_frame_analytics
 
 	/**
-	 * Create a data frame analytics job. This API creates a data frame analytics
-	 * job that performs an analysis on the source indices and stores the outcome in
-	 * a destination index. By default, the query used in the source configuration
-	 * is <code>{&quot;match_all&quot;: {}}</code>.
+	 * Create a data frame analytics job.
+	 * <p>
+	 * This API creates a data frame analytics job that performs an analysis on the
+	 * source indices and stores the outcome in a destination index. By default, the
+	 * query used in the source configuration is
+	 * <code>{&quot;match_all&quot;: {}}</code>.
 	 * <p>
 	 * If the destination index does not exist, it is created automatically when you
 	 * start the job.
@@ -2293,10 +2352,12 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Create a data frame analytics job. This API creates a data frame analytics
-	 * job that performs an analysis on the source indices and stores the outcome in
-	 * a destination index. By default, the query used in the source configuration
-	 * is <code>{&quot;match_all&quot;: {}}</code>.
+	 * Create a data frame analytics job.
+	 * <p>
+	 * This API creates a data frame analytics job that performs an analysis on the
+	 * source indices and stores the outcome in a destination index. By default, the
+	 * query used in the source configuration is
+	 * <code>{&quot;match_all&quot;: {}}</code>.
 	 * <p>
 	 * If the destination index does not exist, it is created automatically when you
 	 * start the job.
@@ -2321,11 +2382,13 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.put_datafeed
 
 	/**
-	 * Create a datafeed. Datafeeds retrieve data from Elasticsearch for analysis by
-	 * an anomaly detection job. You can associate only one datafeed with each
-	 * anomaly detection job. The datafeed contains a query that runs at a defined
-	 * interval (<code>frequency</code>). If you are concerned about delayed data,
-	 * you can add a delay
+	 * Create a datafeed.
+	 * <p>
+	 * Datafeeds retrieve data from Elasticsearch for analysis by an anomaly
+	 * detection job. You can associate only one datafeed with each anomaly
+	 * detection job. The datafeed contains a query that runs at a defined interval
+	 * (<code>frequency</code>). If you are concerned about delayed data, you can
+	 * add a delay
 	 * (<code>query_delay') at each interval. By default, the datafeed uses the following query: </code>{&quot;match_all&quot;:
 	 * {&quot;boost&quot;: 1}}`.
 	 * <p>
@@ -2350,11 +2413,13 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Create a datafeed. Datafeeds retrieve data from Elasticsearch for analysis by
-	 * an anomaly detection job. You can associate only one datafeed with each
-	 * anomaly detection job. The datafeed contains a query that runs at a defined
-	 * interval (<code>frequency</code>). If you are concerned about delayed data,
-	 * you can add a delay
+	 * Create a datafeed.
+	 * <p>
+	 * Datafeeds retrieve data from Elasticsearch for analysis by an anomaly
+	 * detection job. You can associate only one datafeed with each anomaly
+	 * detection job. The datafeed contains a query that runs at a defined interval
+	 * (<code>frequency</code>). If you are concerned about delayed data, you can
+	 * add a delay
 	 * (<code>query_delay') at each interval. By default, the datafeed uses the following query: </code>{&quot;match_all&quot;:
 	 * {&quot;boost&quot;: 1}}`.
 	 * <p>
@@ -2382,8 +2447,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.put_filter
 
 	/**
-	 * Create a filter. A filter contains a list of strings. It can be used by one
-	 * or more anomaly detection jobs. Specifically, filters are referenced in the
+	 * Create a filter.
+	 * <p>
+	 * A filter contains a list of strings. It can be used by one or more anomaly
+	 * detection jobs. Specifically, filters are referenced in the
 	 * <code>custom_rules</code> property of detector configuration objects.
 	 * 
 	 * @see <a href=
@@ -2399,8 +2466,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Create a filter. A filter contains a list of strings. It can be used by one
-	 * or more anomaly detection jobs. Specifically, filters are referenced in the
+	 * Create a filter.
+	 * <p>
+	 * A filter contains a list of strings. It can be used by one or more anomaly
+	 * detection jobs. Specifically, filters are referenced in the
 	 * <code>custom_rules</code> property of detector configuration objects.
 	 * 
 	 * @param fn
@@ -2462,8 +2531,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.put_trained_model
 
 	/**
-	 * Create a trained model. Enable you to supply a trained model that is not
-	 * created by data frame analytics.
+	 * Create a trained model.
+	 * <p>
+	 * Enable you to supply a trained model that is not created by data frame
+	 * analytics.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-trained-model">Documentation
@@ -2478,8 +2549,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Create a trained model. Enable you to supply a trained model that is not
-	 * created by data frame analytics.
+	 * Create a trained model.
+	 * <p>
+	 * Enable you to supply a trained model that is not created by data frame
+	 * analytics.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2497,19 +2570,21 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.put_trained_model_alias
 
 	/**
-	 * Create or update a trained model alias. A trained model alias is a logical
-	 * name used to reference a single trained model. You can use aliases instead of
-	 * trained model identifiers to make it easier to reference your models. For
-	 * example, you can use aliases in inference aggregations and processors. An
-	 * alias must be unique and refer to only a single trained model. However, you
-	 * can have multiple aliases for each trained model. If you use this API to
-	 * update an alias such that it references a different trained model ID and the
-	 * model uses a different type of data frame analytics, an error occurs. For
-	 * example, this situation occurs if you have a trained model for regression
-	 * analysis and a trained model for classification analysis; you cannot reassign
-	 * an alias from one type of trained model to another. If you use this API to
-	 * update an alias and there are very few input fields in common between the old
-	 * and new trained models for the model alias, the API returns a warning.
+	 * Create or update a trained model alias.
+	 * <p>
+	 * A trained model alias is a logical name used to reference a single trained
+	 * model. You can use aliases instead of trained model identifiers to make it
+	 * easier to reference your models. For example, you can use aliases in
+	 * inference aggregations and processors. An alias must be unique and refer to
+	 * only a single trained model. However, you can have multiple aliases for each
+	 * trained model. If you use this API to update an alias such that it references
+	 * a different trained model ID and the model uses a different type of data
+	 * frame analytics, an error occurs. For example, this situation occurs if you
+	 * have a trained model for regression analysis and a trained model for
+	 * classification analysis; you cannot reassign an alias from one type of
+	 * trained model to another. If you use this API to update an alias and there
+	 * are very few input fields in common between the old and new trained models
+	 * for the model alias, the API returns a warning.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-trained-model-alias">Documentation
@@ -2524,19 +2599,21 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Create or update a trained model alias. A trained model alias is a logical
-	 * name used to reference a single trained model. You can use aliases instead of
-	 * trained model identifiers to make it easier to reference your models. For
-	 * example, you can use aliases in inference aggregations and processors. An
-	 * alias must be unique and refer to only a single trained model. However, you
-	 * can have multiple aliases for each trained model. If you use this API to
-	 * update an alias such that it references a different trained model ID and the
-	 * model uses a different type of data frame analytics, an error occurs. For
-	 * example, this situation occurs if you have a trained model for regression
-	 * analysis and a trained model for classification analysis; you cannot reassign
-	 * an alias from one type of trained model to another. If you use this API to
-	 * update an alias and there are very few input fields in common between the old
-	 * and new trained models for the model alias, the API returns a warning.
+	 * Create or update a trained model alias.
+	 * <p>
+	 * A trained model alias is a logical name used to reference a single trained
+	 * model. You can use aliases instead of trained model identifiers to make it
+	 * easier to reference your models. For example, you can use aliases in
+	 * inference aggregations and processors. An alias must be unique and refer to
+	 * only a single trained model. However, you can have multiple aliases for each
+	 * trained model. If you use this API to update an alias such that it references
+	 * a different trained model ID and the model uses a different type of data
+	 * frame analytics, an error occurs. For example, this situation occurs if you
+	 * have a trained model for regression analysis and a trained model for
+	 * classification analysis; you cannot reassign an alias from one type of
+	 * trained model to another. If you use this API to update an alias and there
+	 * are very few input fields in common between the old and new trained models
+	 * for the model alias, the API returns a warning.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2588,10 +2665,11 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.put_trained_model_vocabulary
 
 	/**
-	 * Create a trained model vocabulary. This API is supported only for natural
-	 * language processing (NLP) models. The vocabulary is stored in the index as
-	 * described in <code>inference_config.*.vocabulary</code> of the trained model
-	 * definition.
+	 * Create a trained model vocabulary.
+	 * <p>
+	 * This API is supported only for natural language processing (NLP) models. The
+	 * vocabulary is stored in the index as described in
+	 * <code>inference_config.*.vocabulary</code> of the trained model definition.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-put-trained-model-vocabulary">Documentation
@@ -2607,10 +2685,11 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Create a trained model vocabulary. This API is supported only for natural
-	 * language processing (NLP) models. The vocabulary is stored in the index as
-	 * described in <code>inference_config.*.vocabulary</code> of the trained model
-	 * definition.
+	 * Create a trained model vocabulary.
+	 * <p>
+	 * This API is supported only for natural language processing (NLP) models. The
+	 * vocabulary is stored in the index as described in
+	 * <code>inference_config.*.vocabulary</code> of the trained model definition.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2628,10 +2707,11 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.reset_job
 
 	/**
-	 * Reset an anomaly detection job. All model state and results are deleted. The
-	 * job is ready to start over as if it had just been created. It is not
-	 * currently possible to reset multiple jobs using wildcards or a comma
-	 * separated list.
+	 * Reset an anomaly detection job.
+	 * <p>
+	 * All model state and results are deleted. The job is ready to start over as if
+	 * it had just been created. It is not currently possible to reset multiple jobs
+	 * using wildcards or a comma separated list.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-reset-job">Documentation
@@ -2646,10 +2726,11 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Reset an anomaly detection job. All model state and results are deleted. The
-	 * job is ready to start over as if it had just been created. It is not
-	 * currently possible to reset multiple jobs using wildcards or a comma
-	 * separated list.
+	 * Reset an anomaly detection job.
+	 * <p>
+	 * All model state and results are deleted. The job is ready to start over as if
+	 * it had just been created. It is not currently possible to reset multiple jobs
+	 * using wildcards or a comma separated list.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2667,14 +2748,15 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.revert_model_snapshot
 
 	/**
-	 * Revert to a snapshot. The machine learning features react quickly to
-	 * anomalous input, learning new behaviors in data. Highly anomalous input
-	 * increases the variance in the models whilst the system learns whether this is
-	 * a new step-change in behavior or a one-off event. In the case where this
-	 * anomalous input is known to be a one-off, then it might be appropriate to
-	 * reset the model state to a time before this event. For example, you might
-	 * consider reverting to a saved snapshot after Black Friday or a critical
-	 * system failure.
+	 * Revert to a snapshot.
+	 * <p>
+	 * The machine learning features react quickly to anomalous input, learning new
+	 * behaviors in data. Highly anomalous input increases the variance in the
+	 * models whilst the system learns whether this is a new step-change in behavior
+	 * or a one-off event. In the case where this anomalous input is known to be a
+	 * one-off, then it might be appropriate to reset the model state to a time
+	 * before this event. For example, you might consider reverting to a saved
+	 * snapshot after Black Friday or a critical system failure.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-revert-model-snapshot">Documentation
@@ -2689,14 +2771,15 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Revert to a snapshot. The machine learning features react quickly to
-	 * anomalous input, learning new behaviors in data. Highly anomalous input
-	 * increases the variance in the models whilst the system learns whether this is
-	 * a new step-change in behavior or a one-off event. In the case where this
-	 * anomalous input is known to be a one-off, then it might be appropriate to
-	 * reset the model state to a time before this event. For example, you might
-	 * consider reverting to a saved snapshot after Black Friday or a critical
-	 * system failure.
+	 * Revert to a snapshot.
+	 * <p>
+	 * The machine learning features react quickly to anomalous input, learning new
+	 * behaviors in data. Highly anomalous input increases the variance in the
+	 * models whilst the system learns whether this is a new step-change in behavior
+	 * or a one-off event. In the case where this anomalous input is known to be a
+	 * one-off, then it might be appropriate to reset the model state to a time
+	 * before this event. For example, you might consider reverting to a saved
+	 * snapshot after Black Friday or a critical system failure.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2714,17 +2797,19 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.set_upgrade_mode
 
 	/**
-	 * Set upgrade_mode for ML indices. Sets a cluster wide upgrade_mode setting
-	 * that prepares machine learning indices for an upgrade. When upgrading your
-	 * cluster, in some circumstances you must restart your nodes and reindex your
-	 * machine learning indices. In those circumstances, there must be no machine
-	 * learning jobs running. You can close the machine learning jobs, do the
-	 * upgrade, then open all the jobs again. Alternatively, you can use this API to
-	 * temporarily halt tasks associated with the jobs and datafeeds and prevent new
-	 * jobs from opening. You can also use this API during upgrades that do not
-	 * require you to reindex your machine learning indices, though stopping jobs is
-	 * not a requirement in that case. You can see the current value for the
-	 * upgrade_mode setting by using the get machine learning info API.
+	 * Set upgrade_mode for ML indices.
+	 * <p>
+	 * Sets a cluster wide upgrade_mode setting that prepares machine learning
+	 * indices for an upgrade. When upgrading your cluster, in some circumstances
+	 * you must restart your nodes and reindex your machine learning indices. In
+	 * those circumstances, there must be no machine learning jobs running. You can
+	 * close the machine learning jobs, do the upgrade, then open all the jobs
+	 * again. Alternatively, you can use this API to temporarily halt tasks
+	 * associated with the jobs and datafeeds and prevent new jobs from opening. You
+	 * can also use this API during upgrades that do not require you to reindex your
+	 * machine learning indices, though stopping jobs is not a requirement in that
+	 * case. You can see the current value for the upgrade_mode setting by using the
+	 * get machine learning info API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-set-upgrade-mode">Documentation
@@ -2739,17 +2824,19 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Set upgrade_mode for ML indices. Sets a cluster wide upgrade_mode setting
-	 * that prepares machine learning indices for an upgrade. When upgrading your
-	 * cluster, in some circumstances you must restart your nodes and reindex your
-	 * machine learning indices. In those circumstances, there must be no machine
-	 * learning jobs running. You can close the machine learning jobs, do the
-	 * upgrade, then open all the jobs again. Alternatively, you can use this API to
-	 * temporarily halt tasks associated with the jobs and datafeeds and prevent new
-	 * jobs from opening. You can also use this API during upgrades that do not
-	 * require you to reindex your machine learning indices, though stopping jobs is
-	 * not a requirement in that case. You can see the current value for the
-	 * upgrade_mode setting by using the get machine learning info API.
+	 * Set upgrade_mode for ML indices.
+	 * <p>
+	 * Sets a cluster wide upgrade_mode setting that prepares machine learning
+	 * indices for an upgrade. When upgrading your cluster, in some circumstances
+	 * you must restart your nodes and reindex your machine learning indices. In
+	 * those circumstances, there must be no machine learning jobs running. You can
+	 * close the machine learning jobs, do the upgrade, then open all the jobs
+	 * again. Alternatively, you can use this API to temporarily halt tasks
+	 * associated with the jobs and datafeeds and prevent new jobs from opening. You
+	 * can also use this API during upgrades that do not require you to reindex your
+	 * machine learning indices, though stopping jobs is not a requirement in that
+	 * case. You can see the current value for the upgrade_mode setting by using the
+	 * get machine learning info API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2765,17 +2852,19 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Set upgrade_mode for ML indices. Sets a cluster wide upgrade_mode setting
-	 * that prepares machine learning indices for an upgrade. When upgrading your
-	 * cluster, in some circumstances you must restart your nodes and reindex your
-	 * machine learning indices. In those circumstances, there must be no machine
-	 * learning jobs running. You can close the machine learning jobs, do the
-	 * upgrade, then open all the jobs again. Alternatively, you can use this API to
-	 * temporarily halt tasks associated with the jobs and datafeeds and prevent new
-	 * jobs from opening. You can also use this API during upgrades that do not
-	 * require you to reindex your machine learning indices, though stopping jobs is
-	 * not a requirement in that case. You can see the current value for the
-	 * upgrade_mode setting by using the get machine learning info API.
+	 * Set upgrade_mode for ML indices.
+	 * <p>
+	 * Sets a cluster wide upgrade_mode setting that prepares machine learning
+	 * indices for an upgrade. When upgrading your cluster, in some circumstances
+	 * you must restart your nodes and reindex your machine learning indices. In
+	 * those circumstances, there must be no machine learning jobs running. You can
+	 * close the machine learning jobs, do the upgrade, then open all the jobs
+	 * again. Alternatively, you can use this API to temporarily halt tasks
+	 * associated with the jobs and datafeeds and prevent new jobs from opening. You
+	 * can also use this API during upgrades that do not require you to reindex your
+	 * machine learning indices, though stopping jobs is not a requirement in that
+	 * case. You can see the current value for the upgrade_mode setting by using the
+	 * get machine learning info API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-set-upgrade-mode">Documentation
@@ -2790,10 +2879,12 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.start_data_frame_analytics
 
 	/**
-	 * Start a data frame analytics job. A data frame analytics job can be started
-	 * and stopped multiple times throughout its lifecycle. If the destination index
-	 * does not exist, it is created automatically the first time you start the data
-	 * frame analytics job. The <code>index.number_of_shards</code> and
+	 * Start a data frame analytics job.
+	 * <p>
+	 * A data frame analytics job can be started and stopped multiple times
+	 * throughout its lifecycle. If the destination index does not exist, it is
+	 * created automatically the first time you start the data frame analytics job.
+	 * The <code>index.number_of_shards</code> and
 	 * <code>index.number_of_replicas</code> settings for the destination index are
 	 * copied from the source index. If there are multiple source indices, the
 	 * destination index copies the highest setting values. The mappings for the
@@ -2816,10 +2907,12 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Start a data frame analytics job. A data frame analytics job can be started
-	 * and stopped multiple times throughout its lifecycle. If the destination index
-	 * does not exist, it is created automatically the first time you start the data
-	 * frame analytics job. The <code>index.number_of_shards</code> and
+	 * Start a data frame analytics job.
+	 * <p>
+	 * A data frame analytics job can be started and stopped multiple times
+	 * throughout its lifecycle. If the destination index does not exist, it is
+	 * created automatically the first time you start the data frame analytics job.
+	 * The <code>index.number_of_shards</code> and
 	 * <code>index.number_of_replicas</code> settings for the destination index are
 	 * copied from the source index. If there are multiple source indices, the
 	 * destination index copies the highest setting values. The mappings for the
@@ -2909,8 +3002,9 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.start_trained_model_deployment
 
 	/**
-	 * Start a trained model deployment. It allocates the model to every machine
-	 * learning node.
+	 * Start a trained model deployment.
+	 * <p>
+	 * It allocates the model to every machine learning node.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-start-trained-model-deployment">Documentation
@@ -2926,8 +3020,9 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Start a trained model deployment. It allocates the model to every machine
-	 * learning node.
+	 * Start a trained model deployment.
+	 * <p>
+	 * It allocates the model to every machine learning node.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2945,8 +3040,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.stop_data_frame_analytics
 
 	/**
-	 * Stop data frame analytics jobs. A data frame analytics job can be started and
-	 * stopped multiple times throughout its lifecycle.
+	 * Stop data frame analytics jobs.
+	 * <p>
+	 * A data frame analytics job can be started and stopped multiple times
+	 * throughout its lifecycle.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-stop-data-frame-analytics">Documentation
@@ -2962,8 +3059,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Stop data frame analytics jobs. A data frame analytics job can be started and
-	 * stopped multiple times throughout its lifecycle.
+	 * Stop data frame analytics jobs.
+	 * <p>
+	 * A data frame analytics job can be started and stopped multiple times
+	 * throughout its lifecycle.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -2981,9 +3080,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.stop_datafeed
 
 	/**
-	 * Stop datafeeds. A datafeed that is stopped ceases to retrieve data from
-	 * Elasticsearch. A datafeed can be started and stopped multiple times
-	 * throughout its lifecycle.
+	 * Stop datafeeds.
+	 * <p>
+	 * A datafeed that is stopped ceases to retrieve data from Elasticsearch. A
+	 * datafeed can be started and stopped multiple times throughout its lifecycle.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-stop-datafeed">Documentation
@@ -2998,9 +3098,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Stop datafeeds. A datafeed that is stopped ceases to retrieve data from
-	 * Elasticsearch. A datafeed can be started and stopped multiple times
-	 * throughout its lifecycle.
+	 * Stop datafeeds.
+	 * <p>
+	 * A datafeed that is stopped ceases to retrieve data from Elasticsearch. A
+	 * datafeed can be started and stopped multiple times throughout its lifecycle.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -3086,11 +3187,13 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.update_datafeed
 
 	/**
-	 * Update a datafeed. You must stop and start the datafeed for the changes to be
-	 * applied. When Elasticsearch security features are enabled, your datafeed
-	 * remembers which roles the user who updated it had at the time of the update
-	 * and runs the query using those same roles. If you provide secondary
-	 * authorization headers, those credentials are used instead.
+	 * Update a datafeed.
+	 * <p>
+	 * You must stop and start the datafeed for the changes to be applied. When
+	 * Elasticsearch security features are enabled, your datafeed remembers which
+	 * roles the user who updated it had at the time of the update and runs the
+	 * query using those same roles. If you provide secondary authorization headers,
+	 * those credentials are used instead.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-datafeed">Documentation
@@ -3105,11 +3208,13 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Update a datafeed. You must stop and start the datafeed for the changes to be
-	 * applied. When Elasticsearch security features are enabled, your datafeed
-	 * remembers which roles the user who updated it had at the time of the update
-	 * and runs the query using those same roles. If you provide secondary
-	 * authorization headers, those credentials are used instead.
+	 * Update a datafeed.
+	 * <p>
+	 * You must stop and start the datafeed for the changes to be applied. When
+	 * Elasticsearch security features are enabled, your datafeed remembers which
+	 * roles the user who updated it had at the time of the update and runs the
+	 * query using those same roles. If you provide secondary authorization headers,
+	 * those credentials are used instead.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -3127,8 +3232,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.update_filter
 
 	/**
-	 * Update a filter. Updates the description of a filter, adds items, or removes
-	 * items from the list.
+	 * Update a filter.
+	 * <p>
+	 * Updates the description of a filter, adds items, or removes items from the
+	 * list.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-filter">Documentation
@@ -3143,8 +3250,10 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Update a filter. Updates the description of a filter, adds items, or removes
-	 * items from the list.
+	 * Update a filter.
+	 * <p>
+	 * Updates the description of a filter, adds items, or removes items from the
+	 * list.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -3162,8 +3271,9 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.update_job
 
 	/**
-	 * Update an anomaly detection job. Updates certain properties of an anomaly
-	 * detection job.
+	 * Update an anomaly detection job.
+	 * <p>
+	 * Updates certain properties of an anomaly detection job.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-job">Documentation
@@ -3178,8 +3288,9 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Update an anomaly detection job. Updates certain properties of an anomaly
-	 * detection job.
+	 * Update an anomaly detection job.
+	 * <p>
+	 * Updates certain properties of an anomaly detection job.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -3197,7 +3308,9 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.update_model_snapshot
 
 	/**
-	 * Update a snapshot. Updates certain properties of a snapshot.
+	 * Update a snapshot.
+	 * <p>
+	 * Updates certain properties of a snapshot.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-update-model-snapshot">Documentation
@@ -3212,7 +3325,9 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Update a snapshot. Updates certain properties of a snapshot.
+	 * Update a snapshot.
+	 * <p>
+	 * Updates certain properties of a snapshot.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -3264,14 +3379,16 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	// ----- Endpoint: ml.upgrade_job_snapshot
 
 	/**
-	 * Upgrade a snapshot. Upgrade an anomaly detection model snapshot to the latest
-	 * major version. Over time, older snapshot formats are deprecated and removed.
-	 * Anomaly detection jobs support only snapshots that are from the current or
-	 * previous major version. This API provides a means to upgrade a snapshot to
-	 * the current major version. This aids in preparing the cluster for an upgrade
-	 * to the next major version. Only one snapshot per anomaly detection job can be
-	 * upgraded at a time and the upgraded snapshot cannot be the current snapshot
-	 * of the anomaly detection job.
+	 * Upgrade a snapshot.
+	 * <p>
+	 * Upgrade an anomaly detection model snapshot to the latest major version. Over
+	 * time, older snapshot formats are deprecated and removed. Anomaly detection
+	 * jobs support only snapshots that are from the current or previous major
+	 * version. This API provides a means to upgrade a snapshot to the current major
+	 * version. This aids in preparing the cluster for an upgrade to the next major
+	 * version. Only one snapshot per anomaly detection job can be upgraded at a
+	 * time and the upgraded snapshot cannot be the current snapshot of the anomaly
+	 * detection job.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ml-upgrade-job-snapshot">Documentation
@@ -3286,14 +3403,16 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	}
 
 	/**
-	 * Upgrade a snapshot. Upgrade an anomaly detection model snapshot to the latest
-	 * major version. Over time, older snapshot formats are deprecated and removed.
-	 * Anomaly detection jobs support only snapshots that are from the current or
-	 * previous major version. This API provides a means to upgrade a snapshot to
-	 * the current major version. This aids in preparing the cluster for an upgrade
-	 * to the next major version. Only one snapshot per anomaly detection job can be
-	 * upgraded at a time and the upgraded snapshot cannot be the current snapshot
-	 * of the anomaly detection job.
+	 * Upgrade a snapshot.
+	 * <p>
+	 * Upgrade an anomaly detection model snapshot to the latest major version. Over
+	 * time, older snapshot formats are deprecated and removed. Anomaly detection
+	 * jobs support only snapshots that are from the current or previous major
+	 * version. This API provides a means to upgrade a snapshot to the current major
+	 * version. This aids in preparing the cluster for an upgrade to the next major
+	 * version. Only one snapshot per anomaly detection job can be upgraded at a
+	 * time and the upgraded snapshot cannot be the current snapshot of the anomaly
+	 * detection job.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

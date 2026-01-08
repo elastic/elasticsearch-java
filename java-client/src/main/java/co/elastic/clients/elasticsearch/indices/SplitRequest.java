@@ -60,7 +60,9 @@ import javax.annotation.Nullable;
 // typedef: indices.split.Request
 
 /**
- * Split an index. Split an index into a new index with more primary shards.
+ * Split an index.
+ * <p>
+ * Split an index into a new index with more primary shards.
  * <ul>
  * <li>
  * <p>

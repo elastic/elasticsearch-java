@@ -115,7 +115,9 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * The chunking configuration object.
+	 * The chunking configuration object. Applies only to the
+	 * <code>text_embedding</code> task type. Not applicable to the
+	 * <code>rerank</code> or <code>completion</code> task types.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -136,7 +138,7 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 
 	/**
 	 * Required - Settings used to install the inference model. These settings are
-	 * specific to the <code>openai</code> service.
+	 * specific to the <code>azureaistudio</code> service.
 	 * <p>
 	 * API name: {@code service_settings}
 	 */
@@ -241,7 +243,9 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>rerank</code> or <code>completion</code> task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -251,7 +255,9 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>rerank</code> or <code>completion</code> task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -273,7 +279,7 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 
 		/**
 		 * Required - Settings used to install the inference model. These settings are
-		 * specific to the <code>openai</code> service.
+		 * specific to the <code>azureaistudio</code> service.
 		 * <p>
 		 * API name: {@code service_settings}
 		 */
@@ -284,7 +290,7 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 
 		/**
 		 * Required - Settings used to install the inference model. These settings are
-		 * specific to the <code>openai</code> service.
+		 * specific to the <code>azureaistudio</code> service.
 		 * <p>
 		 * API name: {@code service_settings}
 		 */

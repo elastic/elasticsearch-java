@@ -68,10 +68,11 @@ import javax.annotation.Nullable;
 // typedef: _global.bulk.Request
 
 /**
- * Bulk index or delete documents. Perform multiple <code>index</code>,
- * <code>create</code>, <code>delete</code>, and <code>update</code> actions in
- * a single request. This reduces overhead and can greatly increase indexing
- * speed.
+ * Bulk index or delete documents.
+ * <p>
+ * Perform multiple <code>index</code>, <code>create</code>,
+ * <code>delete</code>, and <code>update</code> actions in a single request.
+ * This reduces overhead and can greatly increase indexing speed.
  * <p>
  * If the Elasticsearch security features are enabled, you must have the
  * following index privileges for the target data stream, index, or index alias:
@@ -168,6 +169,8 @@ import javax.annotation.Nullable;
  * <code>Search::Elasticsearch::Client::5_0::Scroll</code></li>
  * <li>Python: Check out <code>elasticsearch.helpers.*</code></li>
  * <li>JavaScript: Check out <code>client.helpers.*</code></li>
+ * <li>Java: Check out
+ * <code>co.elastic.clients.elasticsearch._helpers.bulk.BulkIngester</code></li>
  * <li>.NET: Check out <code>BulkAllObservable</code></li>
  * <li>PHP: Check out bulk indexing.</li>
  * <li>Ruby: Check out <code>Elasticsearch::Helpers::BulkHelper</code></li>
@@ -267,8 +270,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	@Nullable
 	private final Boolean requireDataStream;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	@Nullable
 	private final Time timeout;
@@ -292,7 +294,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		this.refresh = builder.refresh;
 		this.requireAlias = builder.requireAlias;
 		this.requireDataStream = builder.requireDataStream;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
 		this.operations = ApiTypeHelper.unmodifiableRequired(builder.operations, this, "operations");
@@ -430,8 +432,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -520,7 +521,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		private Boolean requireDataStream;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private Time timeout;
@@ -699,9 +700,23 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * A custom value that is used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * A custom value that is used to route operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -880,8 +895,8 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 				if (request.pipeline != null) {
 					params.put("pipeline", request.pipeline);
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.includeSourceOnError != null) {
 					params.put("include_source_on_error", String.valueOf(request.includeSourceOnError));

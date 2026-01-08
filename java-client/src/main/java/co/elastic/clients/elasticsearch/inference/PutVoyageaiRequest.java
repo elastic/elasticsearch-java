@@ -108,7 +108,9 @@ public class PutVoyageaiRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * The chunking configuration object.
+	 * The chunking configuration object. Applies only to the
+	 * <code>text_embedding</code> task type. Not applicable to the
+	 * <code>rerank</code> task type.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -233,7 +235,9 @@ public class PutVoyageaiRequest extends RequestBase implements JsonpSerializable
 		private String voyageaiInferenceId;
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>rerank</code> task type.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -243,7 +247,9 @@ public class PutVoyageaiRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>rerank</code> task type.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */

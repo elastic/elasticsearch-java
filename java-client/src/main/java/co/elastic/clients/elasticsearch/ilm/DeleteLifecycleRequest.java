@@ -56,9 +56,10 @@ import javax.annotation.Nullable;
 // typedef: ilm.delete_lifecycle.Request
 
 /**
- * Delete a lifecycle policy. You cannot delete policies that are currently in
- * use. If the policy is being used to manage any indices, the request fails and
- * returns an error.
+ * Delete a lifecycle policy.
+ * <p>
+ * You cannot delete policies that are currently in use. If the policy is being
+ * used to manage any indices, the request fails and returns an error.
  * 
  * @see <a href="../doc-files/api-spec.html#ilm.delete_lifecycle.Request">API
  *      specification</a>

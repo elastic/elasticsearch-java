@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch.transform.get_node_stats;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -30,7 +30,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,39 +49,35 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: indices._types.DataStreamLifecycleDownsampling
+// typedef: transform.get_node_stats.TransformNodeStats
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#indices._types.DataStreamLifecycleDownsampling">API
+ *      "../../doc-files/api-spec.html#transform.get_node_stats.TransformNodeStats">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class DataStreamLifecycleDownsampling implements JsonpSerializable {
-	private final List<DownsamplingRound> rounds;
+public class TransformNodeStats implements JsonpSerializable {
+	private final TransformSchedulerStats scheduler;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private DataStreamLifecycleDownsampling(Builder builder) {
+	private TransformNodeStats(Builder builder) {
 
-		this.rounds = ApiTypeHelper.unmodifiableRequired(builder.rounds, this, "rounds");
+		this.scheduler = ApiTypeHelper.requireNonNull(builder.scheduler, this, "scheduler");
 
 	}
 
-	public static DataStreamLifecycleDownsampling of(
-			Function<Builder, ObjectBuilder<DataStreamLifecycleDownsampling>> fn) {
+	public static TransformNodeStats of(Function<Builder, ObjectBuilder<TransformNodeStats>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The list of downsampling rounds to execute as part of this
-	 * downsampling configuration
-	 * <p>
-	 * API name: {@code rounds}
+	 * Required - API name: {@code scheduler}
 	 */
-	public final List<DownsamplingRound> rounds() {
-		return this.rounds;
+	public final TransformSchedulerStats scheduler() {
+		return this.scheduler;
 	}
 
 	/**
@@ -96,16 +91,8 @@ public class DataStreamLifecycleDownsampling implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.rounds)) {
-			generator.writeKey("rounds");
-			generator.writeStartArray();
-			for (DownsamplingRound item0 : this.rounds) {
-				item0.serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
+		generator.writeKey("scheduler");
+		this.scheduler.serialize(generator, mapper);
 
 	}
 
@@ -117,50 +104,28 @@ public class DataStreamLifecycleDownsampling implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DataStreamLifecycleDownsampling}.
+	 * Builder for {@link TransformNodeStats}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<DataStreamLifecycleDownsampling> {
-		private List<DownsamplingRound> rounds;
+				ObjectBuilder<TransformNodeStats> {
+		private TransformSchedulerStats scheduler;
 
 		/**
-		 * Required - The list of downsampling rounds to execute as part of this
-		 * downsampling configuration
-		 * <p>
-		 * API name: {@code rounds}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>rounds</code>.
+		 * Required - API name: {@code scheduler}
 		 */
-		public final Builder rounds(List<DownsamplingRound> list) {
-			this.rounds = _listAddAll(this.rounds, list);
+		public final Builder scheduler(TransformSchedulerStats value) {
+			this.scheduler = value;
 			return this;
 		}
 
 		/**
-		 * Required - The list of downsampling rounds to execute as part of this
-		 * downsampling configuration
-		 * <p>
-		 * API name: {@code rounds}
-		 * <p>
-		 * Adds one or more values to <code>rounds</code>.
+		 * Required - API name: {@code scheduler}
 		 */
-		public final Builder rounds(DownsamplingRound value, DownsamplingRound... values) {
-			this.rounds = _listAdd(this.rounds, value, values);
-			return this;
-		}
-
-		/**
-		 * Required - The list of downsampling rounds to execute as part of this
-		 * downsampling configuration
-		 * <p>
-		 * API name: {@code rounds}
-		 * <p>
-		 * Adds a value to <code>rounds</code> using a builder lambda.
-		 */
-		public final Builder rounds(Function<DownsamplingRound.Builder, ObjectBuilder<DownsamplingRound>> fn) {
-			return rounds(fn.apply(new DownsamplingRound.Builder()).build());
+		public final Builder scheduler(
+				Function<TransformSchedulerStats.Builder, ObjectBuilder<TransformSchedulerStats>> fn) {
+			return this.scheduler(fn.apply(new TransformSchedulerStats.Builder()).build());
 		}
 
 		@Override
@@ -169,30 +134,29 @@ public class DataStreamLifecycleDownsampling implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link DataStreamLifecycleDownsampling}.
+		 * Builds a {@link TransformNodeStats}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DataStreamLifecycleDownsampling build() {
+		public TransformNodeStats build() {
 			_checkSingleUse();
 
-			return new DataStreamLifecycleDownsampling(this);
+			return new TransformNodeStats(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link DataStreamLifecycleDownsampling}
+	 * Json deserializer for {@link TransformNodeStats}
 	 */
-	public static final JsonpDeserializer<DataStreamLifecycleDownsampling> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataStreamLifecycleDownsampling::setupDataStreamLifecycleDownsamplingDeserializer);
+	public static final JsonpDeserializer<TransformNodeStats> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TransformNodeStats::setupTransformNodeStatsDeserializer);
 
-	protected static void setupDataStreamLifecycleDownsamplingDeserializer(
-			ObjectDeserializer<DataStreamLifecycleDownsampling.Builder> op) {
+	protected static void setupTransformNodeStatsDeserializer(ObjectDeserializer<TransformNodeStats.Builder> op) {
 
-		op.add(Builder::rounds, JsonpDeserializer.arrayDeserializer(DownsamplingRound._DESERIALIZER), "rounds");
+		op.add(Builder::scheduler, TransformSchedulerStats._DESERIALIZER, "scheduler");
 
 	}
 

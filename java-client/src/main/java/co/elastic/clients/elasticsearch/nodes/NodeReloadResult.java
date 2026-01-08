@@ -28,10 +28,12 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -65,12 +67,27 @@ public class NodeReloadResult implements JsonpSerializable {
 	@Nullable
 	private final ErrorCause reloadException;
 
+	private final List<String> secureSettingNames;
+
+	@Nullable
+	private final String keystorePath;
+
+	@Nullable
+	private final String keystoreDigest;
+
+	@Nullable
+	private final DateTime keystoreLastModifiedTime;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private NodeReloadResult(Builder builder) {
 
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.reloadException = builder.reloadException;
+		this.secureSettingNames = ApiTypeHelper.unmodifiable(builder.secureSettingNames);
+		this.keystorePath = builder.keystorePath;
+		this.keystoreDigest = builder.keystoreDigest;
+		this.keystoreLastModifiedTime = builder.keystoreLastModifiedTime;
 
 	}
 
@@ -94,6 +111,45 @@ public class NodeReloadResult implements JsonpSerializable {
 	}
 
 	/**
+	 * The names of the secure settings that were reloaded.
+	 * <p>
+	 * API name: {@code secure_setting_names}
+	 */
+	public final List<String> secureSettingNames() {
+		return this.secureSettingNames;
+	}
+
+	/**
+	 * The path to the keystore file.
+	 * <p>
+	 * API name: {@code keystore_path}
+	 */
+	@Nullable
+	public final String keystorePath() {
+		return this.keystorePath;
+	}
+
+	/**
+	 * A SHA-256 hash of the keystore file contents.
+	 * <p>
+	 * API name: {@code keystore_digest}
+	 */
+	@Nullable
+	public final String keystoreDigest() {
+		return this.keystoreDigest;
+	}
+
+	/**
+	 * The last modification time of the keystore file.
+	 * <p>
+	 * API name: {@code keystore_last_modified_time}
+	 */
+	@Nullable
+	public final DateTime keystoreLastModifiedTime() {
+		return this.keystoreLastModifiedTime;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -111,6 +167,30 @@ public class NodeReloadResult implements JsonpSerializable {
 			generator.writeKey("reload_exception");
 			this.reloadException.serialize(generator, mapper);
 
+		}
+		if (ApiTypeHelper.isDefined(this.secureSettingNames)) {
+			generator.writeKey("secure_setting_names");
+			generator.writeStartArray();
+			for (String item0 : this.secureSettingNames) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.keystorePath != null) {
+			generator.writeKey("keystore_path");
+			generator.write(this.keystorePath);
+
+		}
+		if (this.keystoreDigest != null) {
+			generator.writeKey("keystore_digest");
+			generator.write(this.keystoreDigest);
+
+		}
+		if (this.keystoreLastModifiedTime != null) {
+			generator.writeKey("keystore_last_modified_time");
+			this.keystoreLastModifiedTime.serialize(generator, mapper);
 		}
 
 	}
@@ -131,6 +211,18 @@ public class NodeReloadResult implements JsonpSerializable {
 
 		@Nullable
 		private ErrorCause reloadException;
+
+		@Nullable
+		private List<String> secureSettingNames;
+
+		@Nullable
+		private String keystorePath;
+
+		@Nullable
+		private String keystoreDigest;
+
+		@Nullable
+		private DateTime keystoreLastModifiedTime;
 
 		/**
 		 * Required - API name: {@code name}
@@ -153,6 +245,60 @@ public class NodeReloadResult implements JsonpSerializable {
 		 */
 		public final Builder reloadException(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.reloadException(fn.apply(new ErrorCause.Builder()).build());
+		}
+
+		/**
+		 * The names of the secure settings that were reloaded.
+		 * <p>
+		 * API name: {@code secure_setting_names}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>secureSettingNames</code>.
+		 */
+		public final Builder secureSettingNames(List<String> list) {
+			this.secureSettingNames = _listAddAll(this.secureSettingNames, list);
+			return this;
+		}
+
+		/**
+		 * The names of the secure settings that were reloaded.
+		 * <p>
+		 * API name: {@code secure_setting_names}
+		 * <p>
+		 * Adds one or more values to <code>secureSettingNames</code>.
+		 */
+		public final Builder secureSettingNames(String value, String... values) {
+			this.secureSettingNames = _listAdd(this.secureSettingNames, value, values);
+			return this;
+		}
+
+		/**
+		 * The path to the keystore file.
+		 * <p>
+		 * API name: {@code keystore_path}
+		 */
+		public final Builder keystorePath(@Nullable String value) {
+			this.keystorePath = value;
+			return this;
+		}
+
+		/**
+		 * A SHA-256 hash of the keystore file contents.
+		 * <p>
+		 * API name: {@code keystore_digest}
+		 */
+		public final Builder keystoreDigest(@Nullable String value) {
+			this.keystoreDigest = value;
+			return this;
+		}
+
+		/**
+		 * The last modification time of the keystore file.
+		 * <p>
+		 * API name: {@code keystore_last_modified_time}
+		 */
+		public final Builder keystoreLastModifiedTime(@Nullable DateTime value) {
+			this.keystoreLastModifiedTime = value;
+			return this;
 		}
 
 		@Override
@@ -185,6 +331,11 @@ public class NodeReloadResult implements JsonpSerializable {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::reloadException, ErrorCause._DESERIALIZER, "reload_exception");
+		op.add(Builder::secureSettingNames, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"secure_setting_names");
+		op.add(Builder::keystorePath, JsonpDeserializer.stringDeserializer(), "keystore_path");
+		op.add(Builder::keystoreDigest, JsonpDeserializer.stringDeserializer(), "keystore_digest");
+		op.add(Builder::keystoreLastModifiedTime, DateTime._DESERIALIZER, "keystore_last_modified_time");
 
 	}
 

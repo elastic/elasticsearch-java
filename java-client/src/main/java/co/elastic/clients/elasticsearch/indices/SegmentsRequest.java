@@ -59,9 +59,10 @@ import javax.annotation.Nullable;
 // typedef: indices.segments.Request
 
 /**
- * Get index segments. Get low-level information about the Lucene segments in
- * index shards. For data streams, the API returns information about the
- * stream's backing indices.
+ * Get index segments.
+ * <p>
+ * Get low-level information about the Lucene segments in index shards. For data
+ * streams, the API returns information about the stream's backing indices.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.segments.Request">API
  *      specification</a>

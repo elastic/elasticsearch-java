@@ -63,8 +63,10 @@ import javax.annotation.Nullable;
 // typedef: indices.put_index_template.Request
 
 /**
- * Create or update an index template. Index templates define settings,
- * mappings, and aliases that can be applied automatically to new indices.
+ * Create or update an index template.
+ * <p>
+ * Index templates define settings, mappings, and aliases that can be applied
+ * automatically to new indices.
  * <p>
  * Elasticsearch applies templates to new indices based on an wildcard pattern
  * that matches the index name. Index templates are applied during data stream
@@ -201,7 +203,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * User defined reason for creating/updating the index template
+	 * User defined reason for creating or updating the index template
 	 * <p>
 	 * API name: {@code cause}
 	 */
@@ -514,7 +516,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * User defined reason for creating/updating the index template
+		 * User defined reason for creating or updating the index template
 		 * <p>
 		 * API name: {@code cause}
 		 */

@@ -74,7 +74,7 @@ public class IndexTemplateSummary implements JsonpSerializable {
 	private final DataStreamLifecycleWithRollover lifecycle;
 
 	@Nullable
-	private final DataStreamOptionsTemplate dataStreamOptions;
+	private final DataStreamOptions dataStreamOptions;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -137,7 +137,7 @@ public class IndexTemplateSummary implements JsonpSerializable {
 	 * API name: {@code data_stream_options}
 	 */
 	@Nullable
-	public final DataStreamOptionsTemplate dataStreamOptions() {
+	public final DataStreamOptions dataStreamOptions() {
 		return this.dataStreamOptions;
 	}
 
@@ -213,7 +213,7 @@ public class IndexTemplateSummary implements JsonpSerializable {
 		private DataStreamLifecycleWithRollover lifecycle;
 
 		@Nullable
-		private DataStreamOptionsTemplate dataStreamOptions;
+		private DataStreamOptions dataStreamOptions;
 
 		/**
 		 * Aliases to add. If the index template includes a <code>data_stream</code>
@@ -318,7 +318,7 @@ public class IndexTemplateSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code data_stream_options}
 		 */
-		public final Builder dataStreamOptions(@Nullable DataStreamOptionsTemplate value) {
+		public final Builder dataStreamOptions(@Nullable DataStreamOptions value) {
 			this.dataStreamOptions = value;
 			return this;
 		}
@@ -327,8 +327,8 @@ public class IndexTemplateSummary implements JsonpSerializable {
 		 * API name: {@code data_stream_options}
 		 */
 		public final Builder dataStreamOptions(
-				Function<DataStreamOptionsTemplate.Builder, ObjectBuilder<DataStreamOptionsTemplate>> fn) {
-			return this.dataStreamOptions(fn.apply(new DataStreamOptionsTemplate.Builder()).build());
+				Function<DataStreamOptions.Builder, ObjectBuilder<DataStreamOptions>> fn) {
+			return this.dataStreamOptions(fn.apply(new DataStreamOptions.Builder()).build());
 		}
 
 		@Override
@@ -363,7 +363,7 @@ public class IndexTemplateSummary implements JsonpSerializable {
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 		op.add(Builder::lifecycle, DataStreamLifecycleWithRollover._DESERIALIZER, "lifecycle");
-		op.add(Builder::dataStreamOptions, DataStreamOptionsTemplate._DESERIALIZER, "data_stream_options");
+		op.add(Builder::dataStreamOptions, DataStreamOptions._DESERIALIZER, "data_stream_options");
 
 	}
 

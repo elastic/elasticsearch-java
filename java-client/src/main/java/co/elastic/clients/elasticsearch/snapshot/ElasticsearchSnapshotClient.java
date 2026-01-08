@@ -68,9 +68,10 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: snapshot.cleanup_repository
 
 	/**
-	 * Clean up the snapshot repository. Trigger the review of the contents of a
-	 * snapshot repository and delete any stale data not referenced by existing
-	 * snapshots.
+	 * Clean up the snapshot repository.
+	 * <p>
+	 * Trigger the review of the contents of a snapshot repository and delete any
+	 * stale data not referenced by existing snapshots.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-cleanup-repository">Documentation
@@ -86,9 +87,10 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Clean up the snapshot repository. Trigger the review of the contents of a
-	 * snapshot repository and delete any stale data not referenced by existing
-	 * snapshots.
+	 * Clean up the snapshot repository.
+	 * <p>
+	 * Trigger the review of the contents of a snapshot repository and delete any
+	 * stale data not referenced by existing snapshots.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -107,8 +109,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: snapshot.clone
 
 	/**
-	 * Clone a snapshot. Clone part of all of a snapshot into another snapshot in
-	 * the same repository.
+	 * Clone a snapshot.
+	 * <p>
+	 * Clone part of all of a snapshot into another snapshot in the same repository.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-clone">Documentation
@@ -123,8 +126,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Clone a snapshot. Clone part of all of a snapshot into another snapshot in
-	 * the same repository.
+	 * Clone a snapshot.
+	 * <p>
+	 * Clone part of all of a snapshot into another snapshot in the same repository.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -143,8 +147,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: snapshot.create
 
 	/**
-	 * Create a snapshot. Take a snapshot of a cluster or of data streams and
-	 * indices.
+	 * Create a snapshot.
+	 * <p>
+	 * Take a snapshot of a cluster or of data streams and indices.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-create">Documentation
@@ -159,8 +164,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Create a snapshot. Take a snapshot of a cluster or of data streams and
-	 * indices.
+	 * Create a snapshot.
+	 * <p>
+	 * Take a snapshot of a cluster or of data streams and indices.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -179,10 +185,12 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: snapshot.create_repository
 
 	/**
-	 * Create or update a snapshot repository. IMPORTANT: If you are migrating
-	 * searchable snapshots, the repository name must be identical in the source and
-	 * destination clusters. To register a snapshot repository, the cluster's global
-	 * metadata must be writeable. Ensure there are no cluster blocks (for example,
+	 * Create or update a snapshot repository.
+	 * <p>
+	 * IMPORTANT: If you are migrating searchable snapshots, the repository name
+	 * must be identical in the source and destination clusters. To register a
+	 * snapshot repository, the cluster's global metadata must be writeable. Ensure
+	 * there are no cluster blocks (for example,
 	 * <code>cluster.blocks.read_only</code> and
 	 * <code>clsuter.blocks.read_only_allow_delete</code> settings) that prevent
 	 * write access.
@@ -205,10 +213,12 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Create or update a snapshot repository. IMPORTANT: If you are migrating
-	 * searchable snapshots, the repository name must be identical in the source and
-	 * destination clusters. To register a snapshot repository, the cluster's global
-	 * metadata must be writeable. Ensure there are no cluster blocks (for example,
+	 * Create or update a snapshot repository.
+	 * <p>
+	 * IMPORTANT: If you are migrating searchable snapshots, the repository name
+	 * must be identical in the source and destination clusters. To register a
+	 * snapshot repository, the cluster's global metadata must be writeable. Ensure
+	 * there are no cluster blocks (for example,
 	 * <code>cluster.blocks.read_only</code> and
 	 * <code>clsuter.blocks.read_only_allow_delete</code> settings) that prevent
 	 * write access.
@@ -268,10 +278,11 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: snapshot.delete_repository
 
 	/**
-	 * Delete snapshot repositories. When a repository is unregistered,
-	 * Elasticsearch removes only the reference to the location where the repository
-	 * is storing the snapshots. The snapshots themselves are left untouched and in
-	 * place.
+	 * Delete snapshot repositories.
+	 * <p>
+	 * When a repository is unregistered, Elasticsearch removes only the reference
+	 * to the location where the repository is storing the snapshots. The snapshots
+	 * themselves are left untouched and in place.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-delete-repository">Documentation
@@ -287,10 +298,11 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Delete snapshot repositories. When a repository is unregistered,
-	 * Elasticsearch removes only the reference to the location where the repository
-	 * is storing the snapshots. The snapshots themselves are left untouched and in
-	 * place.
+	 * Delete snapshot repositories.
+	 * <p>
+	 * When a repository is unregistered, Elasticsearch removes only the reference
+	 * to the location where the repository is storing the snapshots. The snapshots
+	 * themselves are left untouched and in place.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -793,8 +805,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: snapshot.repository_verify_integrity
 
 	/**
-	 * Verify the repository integrity. Verify the integrity of the contents of a
-	 * snapshot repository.
+	 * Verify the repository integrity.
+	 * <p>
+	 * Verify the integrity of the contents of a snapshot repository.
 	 * <p>
 	 * This API enables you to perform a comprehensive check of the contents of a
 	 * repository, looking for any anomalies in its data or metadata which might
@@ -872,8 +885,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Verify the repository integrity. Verify the integrity of the contents of a
-	 * snapshot repository.
+	 * Verify the repository integrity.
+	 * <p>
+	 * Verify the integrity of the contents of a snapshot repository.
 	 * <p>
 	 * This API enables you to perform a comprehensive check of the contents of a
 	 * repository, looking for any anomalies in its data or metadata which might
@@ -954,8 +968,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: snapshot.restore
 
 	/**
-	 * Restore a snapshot. Restore a snapshot of a cluster or data streams and
-	 * indices.
+	 * Restore a snapshot.
+	 * <p>
+	 * Restore a snapshot of a cluster or data streams and indices.
 	 * <p>
 	 * You can restore a snapshot only to a running cluster with an elected master
 	 * node. The snapshot repository must be registered and available to the
@@ -994,8 +1009,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Restore a snapshot. Restore a snapshot of a cluster or data streams and
-	 * indices.
+	 * Restore a snapshot.
+	 * <p>
+	 * Restore a snapshot of a cluster or data streams and indices.
 	 * <p>
 	 * You can restore a snapshot only to a running cluster with an elected master
 	 * node. The snapshot repository must be registered and available to the
@@ -1037,8 +1053,10 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: snapshot.status
 
 	/**
-	 * Get the snapshot status. Get a detailed description of the current state for
-	 * each shard participating in the snapshot.
+	 * Get the snapshot status.
+	 * <p>
+	 * Get a detailed description of the current state for each shard participating
+	 * in the snapshot.
 	 * <p>
 	 * Note that this API should be used only to obtain detailed shard-level
 	 * information for ongoing snapshots. If this detail is not needed or you want
@@ -1084,8 +1102,10 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get the snapshot status. Get a detailed description of the current state for
-	 * each shard participating in the snapshot.
+	 * Get the snapshot status.
+	 * <p>
+	 * Get a detailed description of the current state for each shard participating
+	 * in the snapshot.
 	 * <p>
 	 * Note that this API should be used only to obtain detailed shard-level
 	 * information for ongoing snapshots. If this detail is not needed or you want
@@ -1133,8 +1153,10 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get the snapshot status. Get a detailed description of the current state for
-	 * each shard participating in the snapshot.
+	 * Get the snapshot status.
+	 * <p>
+	 * Get a detailed description of the current state for each shard participating
+	 * in the snapshot.
 	 * <p>
 	 * Note that this API should be used only to obtain detailed shard-level
 	 * information for ongoing snapshots. If this detail is not needed or you want
@@ -1180,8 +1202,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: snapshot.verify_repository
 
 	/**
-	 * Verify a snapshot repository. Check for common misconfigurations in a
-	 * snapshot repository.
+	 * Verify a snapshot repository.
+	 * <p>
+	 * Check for common misconfigurations in a snapshot repository.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-verify-repository">Documentation
@@ -1197,8 +1220,9 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Verify a snapshot repository. Check for common misconfigurations in a
-	 * snapshot repository.
+	 * Verify a snapshot repository.
+	 * <p>
+	 * Check for common misconfigurations in a snapshot repository.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

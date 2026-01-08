@@ -102,10 +102,28 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 		return deleteTransform(fn.apply(new DeleteTransformRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: transform.get_node_stats
+
+	/**
+	 * Get node stats.
+	 * <p>
+	 * Get per-node information about transform usage.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-get-node-stats">Documentation
+	 *      on elastic.co</a>
+	 */
+	public GetNodeStatsResponse getNodeStats() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(GetNodeStatsRequest._INSTANCE, GetNodeStatsRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
 	// ----- Endpoint: transform.get_transform
 
 	/**
-	 * Get transforms. Get configuration information for transforms.
+	 * Get transforms.
+	 * <p>
+	 * Get configuration information for transforms.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-get-transform">Documentation
@@ -120,7 +138,9 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Get transforms. Get configuration information for transforms.
+	 * Get transforms.
+	 * <p>
+	 * Get configuration information for transforms.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -137,7 +157,9 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Get transforms. Get configuration information for transforms.
+	 * Get transforms.
+	 * <p>
+	 * Get configuration information for transforms.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-get-transform">Documentation
@@ -191,8 +213,10 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.preview_transform
 
 	/**
-	 * Preview a transform. Generates a preview of the results that you will get
-	 * when you create a transform with the same configuration.
+	 * Preview a transform.
+	 * <p>
+	 * Generates a preview of the results that you will get when you create a
+	 * transform with the same configuration.
 	 * <p>
 	 * It returns a maximum of 100 results. The calculations are based on all the
 	 * current data in the source index. It also generates a list of mappings and
@@ -216,8 +240,10 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Preview a transform. Generates a preview of the results that you will get
-	 * when you create a transform with the same configuration.
+	 * Preview a transform.
+	 * <p>
+	 * Generates a preview of the results that you will get when you create a
+	 * transform with the same configuration.
 	 * <p>
 	 * It returns a maximum of 100 results. The calculations are based on all the
 	 * current data in the source index. It also generates a list of mappings and
@@ -262,8 +288,10 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Preview a transform. Generates a preview of the results that you will get
-	 * when you create a transform with the same configuration.
+	 * Preview a transform.
+	 * <p>
+	 * Generates a preview of the results that you will get when you create a
+	 * transform with the same configuration.
 	 * <p>
 	 * It returns a maximum of 100 results. The calculations are based on all the
 	 * current data in the source index. It also generates a list of mappings and
@@ -287,8 +315,10 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Preview a transform. Generates a preview of the results that you will get
-	 * when you create a transform with the same configuration.
+	 * Preview a transform.
+	 * <p>
+	 * Generates a preview of the results that you will get when you create a
+	 * transform with the same configuration.
 	 * <p>
 	 * It returns a maximum of 100 results. The calculations are based on all the
 	 * current data in the source index. It also generates a list of mappings and
@@ -312,7 +342,9 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.put_transform
 
 	/**
-	 * Create a transform. Creates a transform.
+	 * Create a transform.
+	 * <p>
+	 * Creates a transform.
 	 * <p>
 	 * A transform copies data from source indices, transforms it, and persists it
 	 * into an entity-centric destination index. You can also think of the
@@ -356,7 +388,9 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Create a transform. Creates a transform.
+	 * Create a transform.
+	 * <p>
+	 * Creates a transform.
 	 * <p>
 	 * A transform copies data from source indices, transforms it, and persists it
 	 * into an entity-centric destination index. You can also think of the
@@ -494,17 +528,19 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.set_upgrade_mode
 
 	/**
-	 * Set upgrade_mode for transform indices. Sets a cluster wide upgrade_mode
-	 * setting that prepares transform indices for an upgrade. When upgrading your
-	 * cluster, in some circumstances you must restart your nodes and reindex your
-	 * transform indices. In those circumstances, there must be no transforms
-	 * running. You can close the transforms, do the upgrade, then open all the
-	 * transforms again. Alternatively, you can use this API to temporarily halt
-	 * tasks associated with the transforms and prevent new transforms from opening.
-	 * You can also use this API during upgrades that do not require you to reindex
-	 * your transform indices, though stopping transforms is not a requirement in
-	 * that case. You can see the current value for the upgrade_mode setting by
-	 * using the get transform info API.
+	 * Set upgrade_mode for transform indices.
+	 * <p>
+	 * Sets a cluster wide upgrade_mode setting that prepares transform indices for
+	 * an upgrade. When upgrading your cluster, in some circumstances you must
+	 * restart your nodes and reindex your transform indices. In those
+	 * circumstances, there must be no transforms running. You can close the
+	 * transforms, do the upgrade, then open all the transforms again.
+	 * Alternatively, you can use this API to temporarily halt tasks associated with
+	 * the transforms and prevent new transforms from opening. You can also use this
+	 * API during upgrades that do not require you to reindex your transform
+	 * indices, though stopping transforms is not a requirement in that case. You
+	 * can see the current value for the upgrade_mode setting by using the get
+	 * transform info API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-set-upgrade-mode">Documentation
@@ -520,17 +556,19 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Set upgrade_mode for transform indices. Sets a cluster wide upgrade_mode
-	 * setting that prepares transform indices for an upgrade. When upgrading your
-	 * cluster, in some circumstances you must restart your nodes and reindex your
-	 * transform indices. In those circumstances, there must be no transforms
-	 * running. You can close the transforms, do the upgrade, then open all the
-	 * transforms again. Alternatively, you can use this API to temporarily halt
-	 * tasks associated with the transforms and prevent new transforms from opening.
-	 * You can also use this API during upgrades that do not require you to reindex
-	 * your transform indices, though stopping transforms is not a requirement in
-	 * that case. You can see the current value for the upgrade_mode setting by
-	 * using the get transform info API.
+	 * Set upgrade_mode for transform indices.
+	 * <p>
+	 * Sets a cluster wide upgrade_mode setting that prepares transform indices for
+	 * an upgrade. When upgrading your cluster, in some circumstances you must
+	 * restart your nodes and reindex your transform indices. In those
+	 * circumstances, there must be no transforms running. You can close the
+	 * transforms, do the upgrade, then open all the transforms again.
+	 * Alternatively, you can use this API to temporarily halt tasks associated with
+	 * the transforms and prevent new transforms from opening. You can also use this
+	 * API during upgrades that do not require you to reindex your transform
+	 * indices, though stopping transforms is not a requirement in that case. You
+	 * can see the current value for the upgrade_mode setting by using the get
+	 * transform info API.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -547,17 +585,19 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Set upgrade_mode for transform indices. Sets a cluster wide upgrade_mode
-	 * setting that prepares transform indices for an upgrade. When upgrading your
-	 * cluster, in some circumstances you must restart your nodes and reindex your
-	 * transform indices. In those circumstances, there must be no transforms
-	 * running. You can close the transforms, do the upgrade, then open all the
-	 * transforms again. Alternatively, you can use this API to temporarily halt
-	 * tasks associated with the transforms and prevent new transforms from opening.
-	 * You can also use this API during upgrades that do not require you to reindex
-	 * your transform indices, though stopping transforms is not a requirement in
-	 * that case. You can see the current value for the upgrade_mode setting by
-	 * using the get transform info API.
+	 * Set upgrade_mode for transform indices.
+	 * <p>
+	 * Sets a cluster wide upgrade_mode setting that prepares transform indices for
+	 * an upgrade. When upgrading your cluster, in some circumstances you must
+	 * restart your nodes and reindex your transform indices. In those
+	 * circumstances, there must be no transforms running. You can close the
+	 * transforms, do the upgrade, then open all the transforms again.
+	 * Alternatively, you can use this API to temporarily halt tasks associated with
+	 * the transforms and prevent new transforms from opening. You can also use this
+	 * API during upgrades that do not require you to reindex your transform
+	 * indices, though stopping transforms is not a requirement in that case. You
+	 * can see the current value for the upgrade_mode setting by using the get
+	 * transform info API.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-set-upgrade-mode">Documentation
@@ -651,7 +691,9 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.stop_transform
 
 	/**
-	 * Stop transforms. Stops one or more transforms.
+	 * Stop transforms.
+	 * <p>
+	 * Stops one or more transforms.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-stop-transform">Documentation
@@ -667,7 +709,9 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Stop transforms. Stops one or more transforms.
+	 * Stop transforms.
+	 * <p>
+	 * Stops one or more transforms.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -686,7 +730,9 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: transform.update_transform
 
 	/**
-	 * Update a transform. Updates certain properties of a transform.
+	 * Update a transform.
+	 * <p>
+	 * Updates certain properties of a transform.
 	 * <p>
 	 * All updated properties except <code>description</code> do not take effect
 	 * until after the transform starts the next checkpoint, thus there is data
@@ -711,7 +757,9 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Update a transform. Updates certain properties of a transform.
+	 * Update a transform.
+	 * <p>
+	 * Updates certain properties of a transform.
 	 * <p>
 	 * All updated properties except <code>description</code> do not take effect
 	 * until after the transform starts the next checkpoint, thus there is data

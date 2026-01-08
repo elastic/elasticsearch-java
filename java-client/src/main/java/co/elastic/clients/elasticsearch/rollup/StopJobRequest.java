@@ -57,8 +57,10 @@ import javax.annotation.Nullable;
 // typedef: rollup.stop_job.Request
 
 /**
- * Stop rollup jobs. If you try to stop a job that does not exist, an exception
- * occurs. If you try to stop a job that is already stopped, nothing happens.
+ * Stop rollup jobs.
+ * <p>
+ * If you try to stop a job that does not exist, an exception occurs. If you try
+ * to stop a job that is already stopped, nothing happens.
  * <p>
  * Since only a stopped job can be deleted, it can be useful to block the API
  * until the indexer has fully stopped. This is accomplished with the

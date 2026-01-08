@@ -60,9 +60,11 @@ import javax.annotation.Nullable;
 // typedef: indices.shard_stores.Request
 
 /**
- * Get index shard stores. Get store information about replica shards in one or
- * more indices. For data streams, the API retrieves store information for the
- * stream's backing indices.
+ * Get index shard stores.
+ * <p>
+ * Get store information about replica shards in one or more indices. For data
+ * streams, the API retrieves store information for the stream's backing
+ * indices.
  * <p>
  * The index shard stores API returns the following information:
  * <ul>

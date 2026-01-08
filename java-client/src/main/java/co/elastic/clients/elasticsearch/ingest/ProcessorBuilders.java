@@ -99,6 +99,23 @@ public class ProcessorBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link CefProcessor cef} {@code Processor} variant.
+	 */
+	public static CefProcessor.Builder cef() {
+		return new CefProcessor.Builder();
+	}
+
+	/**
+	 * Creates a Processor of the {@link CefProcessor cef} {@code Processor}
+	 * variant.
+	 */
+	public static Processor cef(Function<CefProcessor.Builder, ObjectBuilder<CefProcessor>> fn) {
+		Processor.Builder builder = new Processor.Builder();
+		builder.cef(fn.apply(new CefProcessor.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link CircleProcessor circle} {@code Processor}
 	 * variant.
 	 */
