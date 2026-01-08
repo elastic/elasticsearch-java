@@ -45,6 +45,7 @@ import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.HttpRequest;
 import org.apache.hc.core5.http.ProtocolException;
 import org.apache.hc.core5.http.message.RequestLine;
+import org.apache.hc.core5.http.nio.AsyncEntityProducer;
 import org.apache.hc.core5.http.nio.AsyncRequestProducer;
 import org.apache.hc.core5.http.nio.AsyncResponseConsumer;
 import org.apache.hc.core5.http.nio.support.AsyncRequestBuilder;
@@ -409,7 +410,7 @@ public class Rest5Client implements Closeable {
             final RequestContext context;
             context = request.createContextForNextAttempt(nodes.next());
             Future<ClassicHttpResponse> futureRef = client.execute(context.requestProducer, context.asyncResponseConsumer, context.context,
-                new FutureCallback<ClassicHttpResponse>() {
+                new FutureCallback<>() {
                     @Override
                     public void completed(ClassicHttpResponse httpResponse) {
                         try {
@@ -877,7 +878,13 @@ public class Rest5Client implements Closeable {
                 .setHeaders(request.httpRequest.getHeaders());
 
             if (request.httpRequest.getEntity() != null) {
-                builder.setEntity(new BasicAsyncEntityProducer(request.httpRequest.getEntity()));
+                HttpEntity entity = request.httpRequest.getEntity();
+                if (entity instanceof AsyncEntityProducer) {
+                    builder.setEntity((AsyncEntityProducer) request.httpRequest.getEntity());
+                }
+                else {
+                    builder.setEntity(new BasicAsyncEntityProducer(entity));
+                }
             }
 
             this.requestProducer = builder.build();
