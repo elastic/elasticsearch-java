@@ -53,6 +53,7 @@ public class ElasticsearchTestServer implements AutoCloseable {
     private String url;
     private SSLContext sslContext;
     private ElasticsearchClient client;
+    private static String version;
 
     private static ElasticsearchTestServer global;
     private static final String artifactsSnapshotUrl = "https://artifacts-snapshot.elastic" +
@@ -87,13 +88,13 @@ public class ElasticsearchTestServer implements AutoCloseable {
                 }
             } catch (Exception e) {
                 // Create container
-                System.out.println("Starting global ES test server.");
+                System.out.println("Starting global ES test server version " + version);
                 global = new ElasticsearchTestServer();
                 global.start();
             }
 
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-                System.out.println("Stopping global ES test server.");
+                System.out.println("Stopping global ES test server version " + version);
                 global.close();
             }));
         }
@@ -161,7 +162,7 @@ public class ElasticsearchTestServer implements AutoCloseable {
         }
 
         String esImage = "docker.elastic.co/elasticsearch/elasticsearch:" + version;
-        System.out.println("Starting elasticsearch server version " + version);
+        this.version = version.toString();
 
         DockerImageName image;
         if (plugins.length == 0) {
