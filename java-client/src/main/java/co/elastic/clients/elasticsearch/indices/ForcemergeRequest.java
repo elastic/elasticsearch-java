@@ -236,7 +236,7 @@ public class ForcemergeRequest extends RequestBase {
 	}
 
 	/**
-	 * The number of segments the index should be merged into (defayult: dynamic)
+	 * The number of segments the index should be merged into (default: dynamic)
 	 * <p>
 	 * API name: {@code max_num_segments}
 	 */
@@ -384,7 +384,7 @@ public class ForcemergeRequest extends RequestBase {
 		}
 
 		/**
-		 * The number of segments the index should be merged into (defayult: dynamic)
+		 * The number of segments the index should be merged into (default: dynamic)
 		 * <p>
 		 * API name: {@code max_num_segments}
 		 */
