@@ -94,6 +94,7 @@ public class ElasticsearchTestServer implements AutoCloseable {
 
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 System.out.println("Stopping global ES test server.");
+                System.out.println(global.container.getLogs());
                 global.close();
             }));
         }
