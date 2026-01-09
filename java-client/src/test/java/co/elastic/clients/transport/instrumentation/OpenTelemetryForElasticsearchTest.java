@@ -38,10 +38,6 @@ import io.opentelemetry.sdk.trace.SdkTracerProvider;
 import io.opentelemetry.sdk.trace.data.SpanData;
 import io.opentelemetry.sdk.trace.export.SimpleSpanProcessor;
 import io.opentelemetry.sdk.trace.export.SpanExporter;
-import io.opentelemetry.semconv.DbAttributes;
-import io.opentelemetry.semconv.HttpAttributes;
-import io.opentelemetry.semconv.ServerAttributes;
-import io.opentelemetry.semconv.UrlAttributes;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -104,6 +100,14 @@ public class OpenTelemetryForElasticsearchTest {
             "    ]\n" +
             "  }\n" +
             "}";
+    public static final String DB_SYSTEM = "db.system.name";
+    public static final String DB_OPERATION = "db.operation.name";
+    public static final String DB_QUERY = "db.query.text";
+    public static final String URL_FULL = "url.full";
+    public static final String SERVER_ADDRESS = "server.address";
+    public static final String SERVER_PORT = "server.port";
+    // has been renamed in 1.21 from http.method - see https://github.com/open-telemetry/semantic-conventions/blob/main/schemas/1.21.0
+    public static final String HTTP_REQUEST_METHOD = "http.request.method";
     private static HttpServer httpServer;
     private static MockSpanExporter spanExporter;
     private static OpenTelemetry openTelemetry;
@@ -185,16 +189,15 @@ public class OpenTelemetryForElasticsearchTest {
         Assertions.assertEquals(spanExporter.getSpans().size(), 1);
         SpanData span = spanExporter.getSpans().get(0);
         Assertions.assertEquals("get", span.getName());
-        Assertions.assertEquals("get", span.getAttributes().get(DbAttributes.DB_OPERATION_NAME));
-        Assertions.assertEquals("GET", span.getAttributes().get(HttpAttributes.HTTP_REQUEST_METHOD));
-        Assertions.assertEquals("elasticsearch", span.getAttributes().get(DbAttributes.DB_SYSTEM_NAME));
+        Assertions.assertEquals("get", span.getAttributes().get(AttributeKey.stringKey(DB_OPERATION)));
+        Assertions.assertEquals("GET", span.getAttributes().get(AttributeKey.stringKey(HTTP_REQUEST_METHOD)));
+        Assertions.assertEquals("elasticsearch", span.getAttributes().get(AttributeKey.stringKey(DB_SYSTEM)));
 
         String url = "http://" + httpServer.getAddress().getHostString() + ":" + httpServer.getAddress().getPort() +
             "/" + INDEX + "/_doc/" + DOC_ID + "?refresh=true";
-        Assertions.assertEquals(url, span.getAttributes().get(UrlAttributes.URL_FULL));
-        Assertions.assertEquals(200, span.getAttributes().get(HttpAttributes.HTTP_RESPONSE_STATUS_CODE));
-        Assertions.assertEquals(httpServer.getAddress().getHostString(), span.getAttributes().get(ServerAttributes.SERVER_ADDRESS));
-        Assertions.assertEquals(httpServer.getAddress().getPort(), span.getAttributes().get(ServerAttributes.SERVER_PORT));
+        Assertions.assertEquals(url, span.getAttributes().get(AttributeKey.stringKey(URL_FULL)));
+        Assertions.assertEquals(httpServer.getAddress().getHostString(), span.getAttributes().get(AttributeKey.stringKey(SERVER_ADDRESS)));
+        Assertions.assertEquals(httpServer.getAddress().getPort(), span.getAttributes().get(AttributeKey.longKey(SERVER_PORT)));
 
         // Path parts
         Assertions.assertEquals(DOC_ID, span.getAttributes().get(AttributeKey.stringKey("db.elasticsearch.path_parts.id")));
@@ -213,7 +216,7 @@ public class OpenTelemetryForElasticsearchTest {
         Assertions.assertEquals(spanExporter.getSpans().size(), 1);
         SpanData span = spanExporter.getSpans().get(0);
         Assertions.assertEquals("search", span.getName());
-        Assertions.assertEquals(queryAsString, span.getAttributes().get(DbAttributes.DB_QUERY_TEXT));
+        Assertions.assertEquals(queryAsString, span.getAttributes().get(AttributeKey.stringKey(DB_QUERY)));
     }
 
     @Test
@@ -227,7 +230,7 @@ public class OpenTelemetryForElasticsearchTest {
         Assertions.assertEquals("search", span.getName());
 
         // We're not capturing bodies by default
-        Assertions.assertNull(span.getAttributes().get(DbAttributes.DB_QUERY_TEXT));
+        Assertions.assertNull(span.getAttributes().get(AttributeKey.stringKey(DB_QUERY)));
     }
 
     private static class MockSpanExporter implements SpanExporter {

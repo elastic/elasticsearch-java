@@ -31,7 +31,9 @@ import io.opentelemetry.api.trace.SpanKind;
 import io.opentelemetry.api.trace.StatusCode;
 import io.opentelemetry.api.trace.Tracer;
 import io.opentelemetry.context.Scope;
-import io.opentelemetry.semconv.AttributeKeyTemplate;
+import io.opentelemetry.semconv.HttpAttributes;
+import io.opentelemetry.semconv.ServerAttributes;
+import io.opentelemetry.semconv.UrlAttributes;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -49,15 +51,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-
-import static io.opentelemetry.semconv.DbAttributes.DB_OPERATION_NAME;
-import static io.opentelemetry.semconv.DbAttributes.DB_QUERY_TEXT;
-import static io.opentelemetry.semconv.DbAttributes.DB_SYSTEM_NAME;
-import static io.opentelemetry.semconv.HttpAttributes.HTTP_REQUEST_METHOD;
-import static io.opentelemetry.semconv.HttpAttributes.HTTP_RESPONSE_STATUS_CODE;
-import static io.opentelemetry.semconv.ServerAttributes.SERVER_ADDRESS;
-import static io.opentelemetry.semconv.ServerAttributes.SERVER_PORT;
-import static io.opentelemetry.semconv.UrlAttributes.URL_FULL;
 
 /**
  * An OpenTelemetry instrumentation for the Elasticsearch client.
@@ -79,11 +72,19 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
         "search"
     ));
 
+    private static final AttributeKey<String> ATTR_DB_SYSTEM = AttributeKey.stringKey("db.system.name");
+    private static final AttributeKey<String> ATTR_DB_OPERATION = AttributeKey.stringKey("db.operation.name");
+    private static final AttributeKey<String> ATTR_DB_QUERY = AttributeKey.stringKey("db.query.text");
+
+    private static final AttributeKey<String> ATTR_HTTP_REQUEST_METHOD = HttpAttributes.HTTP_REQUEST_METHOD;
+    private static final AttributeKey<String> ATTR_URL_FULL = UrlAttributes.URL_FULL;
+    private static final AttributeKey<String> ATTR_SERVER_ADDRESS = ServerAttributes.SERVER_ADDRESS;
+    private static final AttributeKey<Long> ATTR_SERVER_PORT = ServerAttributes.SERVER_PORT;
 
     // Caching attributes keys to avoid unnecessary memory allocation
     private static final Map<String, AttributeKey<String>> attributesKeyCache = new ConcurrentHashMap<>();
 
-    AttributeKeyTemplate<String> PATH_PART_PREFIX = AttributeKeyTemplate.stringKeyTemplate("db.elasticsearch.path_parts");
+    private static final String PATH_PART_PREFIX = "db.elasticsearch.path_parts.";
 
     // these reflect the config options in the OTel Java agent
     private static final boolean INSTRUMENTATION_ENABLED = Boolean.parseBoolean(
@@ -185,16 +186,17 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
                 this.endpointId = endpointId;
 
                 span = tracer.spanBuilder(endpointId).setSpanKind(SpanKind.CLIENT)
-                    .setAttribute(DB_SYSTEM_NAME, "elasticsearch")
-                    .setAttribute(DB_OPERATION_NAME, endpointId)
+                    .setAttribute(ATTR_DB_SYSTEM, "elasticsearch")
+                    .setAttribute(ATTR_DB_OPERATION, endpointId)
                     .startSpan();
 
                 if (span.isRecording()) {
 
-                    span.setAttribute(HTTP_REQUEST_METHOD, endpoint.method(request));
+                    span.setAttribute(ATTR_HTTP_REQUEST_METHOD, endpoint.method(request));
 
                     for (Map.Entry<String, String> pathParamEntry : endpoint.pathParameters(request).entrySet()) {
-                        AttributeKey<String> attributeKey = PATH_PART_PREFIX.getAttributeKey(pathParamEntry.getKey());
+                        AttributeKey<String> attributeKey = attributesKeyCache.computeIfAbsent(pathParamEntry.getKey(),
+                            (key) -> AttributeKey.stringKey(PATH_PART_PREFIX + key));
                         span.setAttribute(attributeKey, pathParamEntry.getValue());
                     }
                 }
@@ -213,7 +215,7 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
 
                 this.pathAndQuery = pathAndQuery(httpRequest, options);
 
-                span.setAttribute(HTTP_REQUEST_METHOD, httpRequest.method());
+                span.setAttribute(ATTR_HTTP_REQUEST_METHOD, httpRequest.method());
                 Iterable<ByteBuffer> body = httpRequest.body();
                 if (body != null && shouldCaptureBody(span, endpointId)) {
                     StringBuilder sb = new StringBuilder();
@@ -222,7 +224,7 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
                         sb.append(StandardCharsets.UTF_8.decode(buf));
                         buf.reset();
                     }
-                    span.setAttribute(DB_QUERY_TEXT, sb.toString());
+                    span.setAttribute(ATTR_DB_QUERY, sb.toString());
                 }
             } catch (Exception e) {
                 logger.debug("Failed reading HTTP body content for an OpenTelemetry span.", e);
@@ -237,10 +239,9 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
                     URI uri = httpResponse.node().uri();
                     String fullUrl = uri.resolve(pathAndQuery).toString();
 
-                    span.setAttribute(URL_FULL, fullUrl);
-                    span.setAttribute(SERVER_PORT, uri.getPort());
-                    span.setAttribute(SERVER_ADDRESS, uri.getHost());
-                    span.setAttribute(HTTP_RESPONSE_STATUS_CODE, httpResponse.statusCode());
+                    span.setAttribute(ATTR_URL_FULL, fullUrl);
+                    span.setAttribute(ATTR_SERVER_PORT, uri.getPort());
+                    span.setAttribute(ATTR_SERVER_ADDRESS, uri.getHost());
                 }
             } catch (RuntimeException e) {
                 logger.debug("Failed capturing response information for the OpenTelemetry span.", e);
