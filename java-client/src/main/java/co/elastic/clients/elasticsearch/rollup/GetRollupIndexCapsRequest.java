@@ -58,10 +58,12 @@ import javax.annotation.Nullable;
 // typedef: rollup.get_rollup_index_caps.Request
 
 /**
- * Get the rollup index capabilities. Get the rollup capabilities of all jobs
- * inside of a rollup index. A single rollup index may store the data for
- * multiple rollup jobs and may have a variety of capabilities depending on
- * those jobs. This API enables you to determine:
+ * Get the rollup index capabilities.
+ * <p>
+ * Get the rollup capabilities of all jobs inside of a rollup index. A single
+ * rollup index may store the data for multiple rollup jobs and may have a
+ * variety of capabilities depending on those jobs. This API enables you to
+ * determine:
  * <ul>
  * <li>What jobs are stored in an index (or indices specified via a
  * pattern)?</li>

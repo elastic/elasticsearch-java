@@ -24,6 +24,8 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -33,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -57,15 +60,17 @@ import javax.annotation.Nullable;
 // typedef: ml.stop_data_frame_analytics.Request
 
 /**
- * Stop data frame analytics jobs. A data frame analytics job can be started and
- * stopped multiple times throughout its lifecycle.
+ * Stop data frame analytics jobs.
+ * <p>
+ * A data frame analytics job can be started and stopped multiple times
+ * throughout its lifecycle.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.stop_data_frame_analytics.Request">API
  *      specification</a>
  */
-
-public class StopDataFrameAnalyticsRequest extends RequestBase {
+@JsonpDeserializable
+public class StopDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoMatch;
 
@@ -143,6 +148,35 @@ public class StopDataFrameAnalyticsRequest extends RequestBase {
 	@Nullable
 	public final Time timeout() {
 		return this.timeout;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.allowNoMatch != null) {
+			generator.writeKey("allow_no_match");
+			generator.write(this.allowNoMatch);
+
+		}
+		if (this.force != null) {
+			generator.writeKey("force");
+			generator.write(this.force);
+
+		}
+		if (this.timeout != null) {
+			generator.writeKey("timeout");
+			this.timeout.serialize(generator, mapper);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -250,6 +284,23 @@ public class StopDataFrameAnalyticsRequest extends RequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
+	 * Json deserializer for {@link StopDataFrameAnalyticsRequest}
+	 */
+	public static final JsonpDeserializer<StopDataFrameAnalyticsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, StopDataFrameAnalyticsRequest::setupStopDataFrameAnalyticsRequestDeserializer);
+
+	protected static void setupStopDataFrameAnalyticsRequestDeserializer(
+			ObjectDeserializer<StopDataFrameAnalyticsRequest.Builder> op) {
+
+		op.add(Builder::allowNoMatch, JsonpDeserializer.booleanDeserializer(), "allow_no_match");
+		op.add(Builder::force, JsonpDeserializer.booleanDeserializer(), "force");
+		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
 	 * Endpoint "{@code ml.stop_data_frame_analytics}".
 	 */
 	public static final Endpoint<StopDataFrameAnalyticsRequest, StopDataFrameAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
@@ -300,17 +351,7 @@ public class StopDataFrameAnalyticsRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.force != null) {
-					params.put("force", String.valueOf(request.force));
-				}
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
-				}
-				return params;
+				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, StopDataFrameAnalyticsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, StopDataFrameAnalyticsResponse._DESERIALIZER);
 }

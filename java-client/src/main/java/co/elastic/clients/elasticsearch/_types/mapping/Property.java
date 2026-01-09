@@ -100,6 +100,8 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 
 		DynamicType("{dynamic_type}"),
 
+		ExponentialHistogram("exponential_histogram"),
+
 		Alias("alias"),
 
 		Flattened("flattened"),
@@ -475,6 +477,24 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 	 */
 	public DynamicProperty dynamicType() {
 		return TaggedUnionUtils.get(this, Kind.DynamicType);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code exponential_histogram}?
+	 */
+	public boolean isExponentialHistogram() {
+		return _kind == Kind.ExponentialHistogram;
+	}
+
+	/**
+	 * Get the {@code exponential_histogram} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the
+	 *             {@code exponential_histogram} kind.
+	 */
+	public ExponentialHistogramProperty exponentialHistogram() {
+		return TaggedUnionUtils.get(this, Kind.ExponentialHistogram);
 	}
 
 	/**
@@ -1327,6 +1347,17 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 			return this.dynamicType(fn.apply(new DynamicProperty.Builder()).build());
 		}
 
+		public ObjectBuilder<Property> exponentialHistogram(ExponentialHistogramProperty v) {
+			this._kind = Kind.ExponentialHistogram;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Property> exponentialHistogram(
+				Function<ExponentialHistogramProperty.Builder, ObjectBuilder<ExponentialHistogramProperty>> fn) {
+			return this.exponentialHistogram(fn.apply(new ExponentialHistogramProperty.Builder()).build());
+		}
+
 		public ObjectBuilder<Property> alias(FieldAliasProperty v) {
 			this._kind = Kind.Alias;
 			this._value = v;
@@ -1774,6 +1805,7 @@ public class Property implements OpenTaggedUnion<Property.Kind, Object>, JsonpSe
 		op.add(Builder::double_, DoubleNumberProperty._DESERIALIZER, "double");
 		op.add(Builder::doubleRange, DoubleRangeProperty._DESERIALIZER, "double_range");
 		op.add(Builder::dynamicType, DynamicProperty._DESERIALIZER, "{dynamic_type}");
+		op.add(Builder::exponentialHistogram, ExponentialHistogramProperty._DESERIALIZER, "exponential_histogram");
 		op.add(Builder::alias, FieldAliasProperty._DESERIALIZER, "alias");
 		op.add(Builder::flattened, FlattenedProperty._DESERIALIZER, "flattened");
 		op.add(Builder::float_, FloatNumberProperty._DESERIALIZER, "float");

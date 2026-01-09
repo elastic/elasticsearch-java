@@ -165,8 +165,9 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: tasks.get
 
 	/**
-	 * Get task information. Get information about a task currently running in the
-	 * cluster.
+	 * Get task information.
+	 * <p>
+	 * Get information about a task currently running in the cluster.
 	 * <p>
 	 * WARNING: The task management API is new and should still be considered a beta
 	 * feature. The API may change in ways that are not backwards compatible.
@@ -187,8 +188,9 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Get task information. Get information about a task currently running in the
-	 * cluster.
+	 * Get task information.
+	 * <p>
+	 * Get information about a task currently running in the cluster.
 	 * <p>
 	 * WARNING: The task management API is new and should still be considered a beta
 	 * feature. The API may change in ways that are not backwards compatible.
@@ -212,8 +214,10 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	// ----- Endpoint: tasks.list
 
 	/**
-	 * Get all tasks. Get information about the tasks currently running on one or
-	 * more nodes in the cluster.
+	 * Get all tasks.
+	 * <p>
+	 * Get information about the tasks currently running on one or more nodes in the
+	 * cluster.
 	 * <p>
 	 * WARNING: The task management API is new and should still be considered a beta
 	 * feature. The API may change in ways that are not backwards compatible.
@@ -292,8 +296,10 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Get all tasks. Get information about the tasks currently running on one or
-	 * more nodes in the cluster.
+	 * Get all tasks.
+	 * <p>
+	 * Get information about the tasks currently running on one or more nodes in the
+	 * cluster.
 	 * <p>
 	 * WARNING: The task management API is new and should still be considered a beta
 	 * feature. The API may change in ways that are not backwards compatible.
@@ -373,8 +379,10 @@ public class ElasticsearchTasksClient extends ApiClient<ElasticsearchTransport, 
 	}
 
 	/**
-	 * Get all tasks. Get information about the tasks currently running on one or
-	 * more nodes in the cluster.
+	 * Get all tasks.
+	 * <p>
+	 * Get information about the tasks currently running on one or more nodes in the
+	 * cluster.
 	 * <p>
 	 * WARNING: The task management API is new and should still be considered a beta
 	 * feature. The API may change in ways that are not backwards compatible.

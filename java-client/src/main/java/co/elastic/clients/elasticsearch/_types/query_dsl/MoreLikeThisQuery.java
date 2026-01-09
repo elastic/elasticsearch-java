@@ -100,8 +100,7 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final Integer minWordLength;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	private final List<String> stopWords;
 
@@ -131,7 +130,7 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.minTermFreq = builder.minTermFreq;
 		this.minWordLength = builder.minWordLength;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.stopWords = ApiTypeHelper.unmodifiable(builder.stopWords);
 		this.unlike = ApiTypeHelper.unmodifiable(builder.unlike);
 		this.version = builder.version;
@@ -296,8 +295,7 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	/**
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -414,9 +412,14 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 			generator.write(this.minWordLength);
 
 		}
-		if (this.routing != null) {
+		if (ApiTypeHelper.isDefined(this.routing)) {
 			generator.writeKey("routing");
-			generator.write(this.routing);
+			generator.writeStartArray();
+			for (String item0 : this.routing) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (ApiTypeHelper.isDefined(this.stopWords)) {
@@ -497,7 +500,7 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		private Integer minWordLength;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private List<String> stopWords;
@@ -700,9 +703,21 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -825,7 +840,8 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::minimumShouldMatch, JsonpDeserializer.stringDeserializer(), "minimum_should_match");
 		op.add(Builder::minTermFreq, JsonpDeserializer.integerDeserializer(), "min_term_freq");
 		op.add(Builder::minWordLength, JsonpDeserializer.integerDeserializer(), "min_word_length");
-		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(Builder::routing, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"routing");
 		op.add(Builder::stopWords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stop_words");
 		op.add(Builder::unlike, JsonpDeserializer.arrayDeserializer(Like._DESERIALIZER), "unlike");

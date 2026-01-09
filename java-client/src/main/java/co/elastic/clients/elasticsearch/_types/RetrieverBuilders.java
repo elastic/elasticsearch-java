@@ -187,4 +187,22 @@ public class RetrieverBuilders {
 		return builder.build();
 	}
 
+	/**
+	 * Creates a builder for the {@link DiversifyRetriever diversify}
+	 * {@code Retriever} variant.
+	 */
+	public static DiversifyRetriever.Builder diversify() {
+		return new DiversifyRetriever.Builder();
+	}
+
+	/**
+	 * Creates a Retriever of the {@link DiversifyRetriever diversify}
+	 * {@code Retriever} variant.
+	 */
+	public static Retriever diversify(Function<DiversifyRetriever.Builder, ObjectBuilder<DiversifyRetriever>> fn) {
+		Retriever.Builder builder = new Retriever.Builder();
+		builder.diversify(fn.apply(new DiversifyRetriever.Builder()).build());
+		return builder.build();
+	}
+
 }

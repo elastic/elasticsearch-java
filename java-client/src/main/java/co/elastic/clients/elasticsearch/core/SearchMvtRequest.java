@@ -46,6 +46,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -538,7 +539,14 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Field containing geospatial data to return
+	 * Required - A field that contains the geospatial data to return. It must be a
+	 * <code>geo_point</code> or <code>geo_shape</code> field. The field must have
+	 * doc values enabled. It cannot be a nested field.
+	 * <p>
+	 * NOTE: Vector tiles do not natively support geometry collections. For
+	 * <code>geometrycollection</code> values in a <code>geo_shape</code> field, the
+	 * API returns a hits layer feature for each element of the collection. This
+	 * behavior may change in a future release.
 	 * <p>
 	 * API name: {@code field}
 	 */
@@ -594,8 +602,10 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Comma-separated list of data streams, indices, or aliases to
-	 * search
+	 * Required - A list of indices, data streams, or aliases to search. It supports
+	 * wildcards (<code>*</code>). To search all data streams and indices, omit this
+	 * parameter or use <code>*</code> or <code>_all</code>. To search a remote
+	 * cluster, use the <code>&lt;cluster&gt;:&lt;target&gt;</code> syntax.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -699,7 +709,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - X coordinate for the vector tile to search
+	 * Required - The X coordinate for the vector tile to search.
 	 * <p>
 	 * API name: {@code x}
 	 */
@@ -708,7 +718,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Y coordinate for the vector tile to search
+	 * Required - The Y coordinate for the vector tile to search.
 	 * <p>
 	 * API name: {@code y}
 	 */
@@ -717,7 +727,8 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Zoom level for the vector tile to search
+	 * Required - The zoom level of the vector tile to search. It accepts
+	 * <code>0</code> to <code>29</code>.
 	 * <p>
 	 * API name: {@code zoom}
 	 */
@@ -784,6 +795,11 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		if (this.gridType != null) {
 			generator.writeKey("grid_type");
 			this.gridType.serialize(generator, mapper);
+		}
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
 		}
 		if (this.query != null) {
 			generator.writeKey("query");
@@ -1056,7 +1072,14 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Field containing geospatial data to return
+		 * Required - A field that contains the geospatial data to return. It must be a
+		 * <code>geo_point</code> or <code>geo_shape</code> field. The field must have
+		 * doc values enabled. It cannot be a nested field.
+		 * <p>
+		 * NOTE: Vector tiles do not natively support geometry collections. For
+		 * <code>geometrycollection</code> values in a <code>geo_shape</code> field, the
+		 * API returns a hits layer feature for each element of the collection. This
+		 * behavior may change in a future release.
 		 * <p>
 		 * API name: {@code field}
 		 */
@@ -1130,8 +1153,10 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Comma-separated list of data streams, indices, or aliases to
-		 * search
+		 * Required - A list of indices, data streams, or aliases to search. It supports
+		 * wildcards (<code>*</code>). To search all data streams and indices, omit this
+		 * parameter or use <code>*</code> or <code>_all</code>. To search a remote
+		 * cluster, use the <code>&lt;cluster&gt;:&lt;target&gt;</code> syntax.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -1143,8 +1168,10 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Comma-separated list of data streams, indices, or aliases to
-		 * search
+		 * Required - A list of indices, data streams, or aliases to search. It supports
+		 * wildcards (<code>*</code>). To search all data streams and indices, omit this
+		 * parameter or use <code>*</code> or <code>_all</code>. To search a remote
+		 * cluster, use the <code>&lt;cluster&gt;:&lt;target&gt;</code> syntax.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -1341,7 +1368,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - X coordinate for the vector tile to search
+		 * Required - The X coordinate for the vector tile to search.
 		 * <p>
 		 * API name: {@code x}
 		 */
@@ -1351,7 +1378,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Y coordinate for the vector tile to search
+		 * Required - The Y coordinate for the vector tile to search.
 		 * <p>
 		 * API name: {@code y}
 		 */
@@ -1361,7 +1388,8 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Zoom level for the vector tile to search
+		 * Required - The zoom level of the vector tile to search. It accepts
+		 * <code>0</code> to <code>29</code>.
 		 * <p>
 		 * API name: {@code zoom}
 		 */
@@ -1406,6 +1434,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::gridAgg, GridAggregationType._DESERIALIZER, "grid_agg");
 		op.add(Builder::gridPrecision, JsonpDeserializer.integerDeserializer(), "grid_precision");
 		op.add(Builder::gridType, GridType._DESERIALIZER, "grid_type");
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
@@ -1494,11 +1523,7 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.projectRouting != null) {
-					params.put("project_routing", request.projectRouting);
-				}
-				return params;
+				return Collections.emptyMap();
 
 			}, SimpleEndpoint.emptyMap(), true, null);
 }

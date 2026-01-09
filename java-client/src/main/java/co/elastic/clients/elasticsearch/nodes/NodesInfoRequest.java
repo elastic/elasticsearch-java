@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.nodes;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch.nodes.info.NodesInfoMetric;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -72,7 +73,7 @@ public class NodesInfoRequest extends RequestBase {
 	@Nullable
 	private final Boolean flatSettings;
 
-	private final List<String> metric;
+	private final List<NodesInfoMetric> metric;
 
 	private final List<String> nodeId;
 
@@ -110,7 +111,7 @@ public class NodesInfoRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code metric}
 	 */
-	public final List<String> metric() {
+	public final List<NodesInfoMetric> metric() {
 		return this.metric;
 	}
 
@@ -147,7 +148,7 @@ public class NodesInfoRequest extends RequestBase {
 		private Boolean flatSettings;
 
 		@Nullable
-		private List<String> metric;
+		private List<NodesInfoMetric> metric;
 
 		@Nullable
 		private List<String> nodeId;
@@ -173,7 +174,7 @@ public class NodesInfoRequest extends RequestBase {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metric</code>.
 		 */
-		public final Builder metric(List<String> list) {
+		public final Builder metric(List<NodesInfoMetric> list) {
 			this.metric = _listAddAll(this.metric, list);
 			return this;
 		}
@@ -186,7 +187,7 @@ public class NodesInfoRequest extends RequestBase {
 		 * <p>
 		 * Adds one or more values to <code>metric</code>.
 		 */
-		public final Builder metric(String value, String... values) {
+		public final Builder metric(NodesInfoMetric value, NodesInfoMetric... values) {
 			this.metric = _listAdd(this.metric, value, values);
 			return this;
 		}
@@ -297,8 +298,8 @@ public class NodesInfoRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == (_nodeId | _metric)) {
@@ -308,8 +309,8 @@ public class NodesInfoRequest extends RequestBase {
 					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
 							buf);
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -335,11 +336,13 @@ public class NodesInfoRequest extends RequestBase {
 					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_metric)) {
-					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("metric",
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_nodeId | _metric)) {
 					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
-					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("metric",
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				return params;
 			},

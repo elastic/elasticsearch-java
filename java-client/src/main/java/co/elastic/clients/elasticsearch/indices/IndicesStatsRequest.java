@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.elasticsearch._types.CommonStatsFlag;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.Level;
@@ -60,8 +61,10 @@ import javax.annotation.Nullable;
 // typedef: indices.stats.Request
 
 /**
- * Get index statistics. For data streams, the API retrieves statistics for the
- * stream's backing indices.
+ * Get index statistics.
+ * <p>
+ * For data streams, the API retrieves statistics for the stream's backing
+ * indices.
  * <p>
  * By default, the returned statistics are index-level with
  * <code>primaries</code> and <code>total</code> aggregations.
@@ -105,7 +108,7 @@ public class IndicesStatsRequest extends RequestBase {
 	@Nullable
 	private final Level level;
 
-	private final List<String> metric;
+	private final List<CommonStatsFlag> metric;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -234,11 +237,11 @@ public class IndicesStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Limit the information returned the specific metrics.
+	 * Limit the information returned the specific metrics
 	 * <p>
 	 * API name: {@code metric}
 	 */
-	public final List<String> metric() {
+	public final List<CommonStatsFlag> metric() {
 		return this.metric;
 	}
 
@@ -282,7 +285,7 @@ public class IndicesStatsRequest extends RequestBase {
 		private Level level;
 
 		@Nullable
-		private List<String> metric;
+		private List<CommonStatsFlag> metric;
 
 		/**
 		 * Comma-separated list or wildcard expressions of fields to include in
@@ -486,25 +489,25 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Limit the information returned the specific metrics.
+		 * Limit the information returned the specific metrics
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metric</code>.
 		 */
-		public final Builder metric(List<String> list) {
+		public final Builder metric(List<CommonStatsFlag> list) {
 			this.metric = _listAddAll(this.metric, list);
 			return this;
 		}
 
 		/**
-		 * Limit the information returned the specific metrics.
+		 * Limit the information returned the specific metrics
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
 		 * Adds one or more values to <code>metric</code>.
 		 */
-		public final Builder metric(String value, String... values) {
+		public final Builder metric(CommonStatsFlag value, CommonStatsFlag... values) {
 			this.metric = _listAdd(this.metric, value, values);
 			return this;
 		}
@@ -562,8 +565,8 @@ public class IndicesStatsRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_stats");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == (_index)) {
@@ -579,8 +582,8 @@ public class IndicesStatsRequest extends RequestBase {
 					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_stats");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -603,14 +606,16 @@ public class IndicesStatsRequest extends RequestBase {
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_metric)) {
-					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("metric",
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_index)) {
 					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_index | _metric)) {
 					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("metric",
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				return params;
 			},

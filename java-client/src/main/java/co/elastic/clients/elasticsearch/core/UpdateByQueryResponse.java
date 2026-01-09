@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.BulkIndexByScrollFailure;
+import co.elastic.clients.elasticsearch._types.ReindexStatus;
 import co.elastic.clients.elasticsearch._types.Retries;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -84,6 +85,8 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	@Nullable
 	private final Retries retries;
 
+	private final List<ReindexStatus> slices;
+
 	@Nullable
 	private final String task;
 
@@ -124,6 +127,7 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		this.deleted = builder.deleted;
 		this.requestsPerSecond = builder.requestsPerSecond;
 		this.retries = builder.retries;
+		this.slices = ApiTypeHelper.unmodifiable(builder.slices);
 		this.task = builder.task;
 		this.timedOut = builder.timedOut;
 		this.took = builder.took;
@@ -206,6 +210,15 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	@Nullable
 	public final Retries retries() {
 		return this.retries;
+	}
+
+	/**
+	 * Status of each slice if the update by query was sliced
+	 * <p>
+	 * API name: {@code slices}
+	 */
+	public final List<ReindexStatus> slices() {
+		return this.slices;
 	}
 
 	/**
@@ -352,6 +365,16 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 			this.retries.serialize(generator, mapper);
 
 		}
+		if (ApiTypeHelper.isDefined(this.slices)) {
+			generator.writeKey("slices");
+			generator.writeStartArray();
+			for (ReindexStatus item0 : this.slices) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.task != null) {
 			generator.writeKey("task");
 			generator.write(this.task);
@@ -436,6 +459,9 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 
 		@Nullable
 		private Retries retries;
+
+		@Nullable
+		private List<ReindexStatus> slices;
 
 		@Nullable
 		private String task;
@@ -580,6 +606,41 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		 */
 		public final Builder retries(Function<Retries.Builder, ObjectBuilder<Retries>> fn) {
 			return this.retries(fn.apply(new Retries.Builder()).build());
+		}
+
+		/**
+		 * Status of each slice if the update by query was sliced
+		 * <p>
+		 * API name: {@code slices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>slices</code>.
+		 */
+		public final Builder slices(List<ReindexStatus> list) {
+			this.slices = _listAddAll(this.slices, list);
+			return this;
+		}
+
+		/**
+		 * Status of each slice if the update by query was sliced
+		 * <p>
+		 * API name: {@code slices}
+		 * <p>
+		 * Adds one or more values to <code>slices</code>.
+		 */
+		public final Builder slices(ReindexStatus value, ReindexStatus... values) {
+			this.slices = _listAdd(this.slices, value, values);
+			return this;
+		}
+
+		/**
+		 * Status of each slice if the update by query was sliced
+		 * <p>
+		 * API name: {@code slices}
+		 * <p>
+		 * Adds a value to <code>slices</code> using a builder lambda.
+		 */
+		public final Builder slices(Function<ReindexStatus.Builder, ObjectBuilder<ReindexStatus>> fn) {
+			return slices(fn.apply(new ReindexStatus.Builder()).build());
 		}
 
 		/**
@@ -729,6 +790,7 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		op.add(Builder::deleted, JsonpDeserializer.longDeserializer(), "deleted");
 		op.add(Builder::requestsPerSecond, JsonpDeserializer.floatDeserializer(), "requests_per_second");
 		op.add(Builder::retries, Retries._DESERIALIZER, "retries");
+		op.add(Builder::slices, JsonpDeserializer.arrayDeserializer(ReindexStatus._DESERIALIZER), "slices");
 		op.add(Builder::task, JsonpDeserializer.stringDeserializer(), "task");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
 		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");

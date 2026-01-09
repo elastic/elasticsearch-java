@@ -40,9 +40,11 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -85,7 +87,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 
 	private final String field;
 
-	private final String index;
+	private final List<String> index;
 
 	@Nullable
 	private final Query indexFilter;
@@ -108,7 +110,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 
 		this.caseInsensitive = builder.caseInsensitive;
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.indexFilter = builder.indexFilter;
 		this.searchAfter = builder.searchAfter;
 		this.size = builder.size;
@@ -150,7 +152,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public final String index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -276,7 +278,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 
 		private String field;
 
-		private String index;
+		private List<String> index;
 
 		@Nullable
 		private Query indexFilter;
@@ -322,9 +324,26 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		 * <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(String value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of data streams, indices, and index aliases
+		 * to search. Wildcard (<code>*</code>) expressions are supported. To search all
+		 * data streams or indices, omit this parameter or use <code>*</code> or
+		 * <code>_all</code>.
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
+		 */
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -484,7 +503,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index, buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_terms_enum");
 					return buf.toString();
 				}
@@ -502,7 +521,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 				propsSet |= _index;
 
 				if (propsSet == (_index)) {
-					params.put("index", request.index);
+					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 			},

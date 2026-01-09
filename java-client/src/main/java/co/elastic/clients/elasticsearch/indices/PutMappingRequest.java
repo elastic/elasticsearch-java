@@ -71,8 +71,10 @@ import javax.annotation.Nullable;
 // typedef: indices.put_mapping.Request
 
 /**
- * Update field mappings. Add new fields to an existing data stream or index.
- * You can use the update mapping API to:
+ * Update field mappings.
+ * <p>
+ * Add new fields to an existing data stream or index. You can use the update
+ * mapping API to:
  * <ul>
  * <li>Add a new field to an existing index</li>
  * <li>Update mappings for multiple indices in a single request</li>
@@ -288,7 +290,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
 	/**
 	 * Required - A comma-separated list of index names the mapping should be added
-	 * to (supports wildcards); use <code>_all</code> or omit to add the mapping on
+	 * to (supports wildcards). Use <code>_all</code> or omit to add the mapping on
 	 * all indices.
 	 * <p>
 	 * API name: {@code index}
@@ -740,7 +742,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
 		/**
 		 * Required - A comma-separated list of index names the mapping should be added
-		 * to (supports wildcards); use <code>_all</code> or omit to add the mapping on
+		 * to (supports wildcards). Use <code>_all</code> or omit to add the mapping on
 		 * all indices.
 		 * <p>
 		 * API name: {@code index}
@@ -754,7 +756,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
 		/**
 		 * Required - A comma-separated list of index names the mapping should be added
-		 * to (supports wildcards); use <code>_all</code> or omit to add the mapping on
+		 * to (supports wildcards). Use <code>_all</code> or omit to add the mapping on
 		 * all indices.
 		 * <p>
 		 * API name: {@code index}

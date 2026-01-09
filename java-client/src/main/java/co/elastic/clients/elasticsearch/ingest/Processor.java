@@ -80,6 +80,8 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 
 		Bytes("bytes"),
 
+		Cef("cef"),
+
 		Circle("circle"),
 
 		CommunityId("community_id"),
@@ -263,6 +265,23 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 	 */
 	public BytesProcessor bytes() {
 		return TaggedUnionUtils.get(this, Kind.Bytes);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code cef}?
+	 */
+	public boolean isCef() {
+		return _kind == Kind.Cef;
+	}
+
+	/**
+	 * Get the {@code cef} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code cef} kind.
+	 */
+	public CefProcessor cef() {
+		return TaggedUnionUtils.get(this, Kind.Cef);
 	}
 
 	/**
@@ -1072,6 +1091,16 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 			return this.bytes(fn.apply(new BytesProcessor.Builder()).build());
 		}
 
+		public ObjectBuilder<Processor> cef(CefProcessor v) {
+			this._kind = Kind.Cef;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Processor> cef(Function<CefProcessor.Builder, ObjectBuilder<CefProcessor>> fn) {
+			return this.cef(fn.apply(new CefProcessor.Builder()).build());
+		}
+
 		public ObjectBuilder<Processor> circle(CircleProcessor v) {
 			this._kind = Kind.Circle;
 			this._value = v;
@@ -1542,6 +1571,7 @@ public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, Jsonp
 		op.add(Builder::append, AppendProcessor._DESERIALIZER, "append");
 		op.add(Builder::attachment, AttachmentProcessor._DESERIALIZER, "attachment");
 		op.add(Builder::bytes, BytesProcessor._DESERIALIZER, "bytes");
+		op.add(Builder::cef, CefProcessor._DESERIALIZER, "cef");
 		op.add(Builder::circle, CircleProcessor._DESERIALIZER, "circle");
 		op.add(Builder::communityId, CommunityIDProcessor._DESERIALIZER, "community_id");
 		op.add(Builder::convert, ConvertProcessor._DESERIALIZER, "convert");

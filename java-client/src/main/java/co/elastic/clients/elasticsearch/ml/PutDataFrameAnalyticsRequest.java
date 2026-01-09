@@ -62,10 +62,12 @@ import javax.annotation.Nullable;
 // typedef: ml.put_data_frame_analytics.Request
 
 /**
- * Create a data frame analytics job. This API creates a data frame analytics
- * job that performs an analysis on the source indices and stores the outcome in
- * a destination index. By default, the query used in the source configuration
- * is <code>{&quot;match_all&quot;: {}}</code>.
+ * Create a data frame analytics job.
+ * <p>
+ * This API creates a data frame analytics job that performs an analysis on the
+ * source indices and stores the outcome in a destination index. By default, the
+ * query used in the source configuration is
+ * <code>{&quot;match_all&quot;: {}}</code>.
  * <p>
  * If the destination index does not exist, it is created automatically when you
  * start the job.

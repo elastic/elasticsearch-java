@@ -59,8 +59,10 @@ import javax.annotation.Nullable;
 // typedef: searchable_snapshots.clear_cache.Request
 
 /**
- * Clear the cache. Clear indices and data streams from the shared cache for
- * partially mounted indices.
+ * Clear the cache.
+ * <p>
+ * Clear indices and data streams from the shared cache for partially mounted
+ * indices.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#searchable_snapshots.clear_cache.Request">API
@@ -107,7 +109,7 @@ public class ClearCacheRequest extends RequestBase {
 
 	/**
 	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * closed or both
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -171,7 +173,7 @@ public class ClearCacheRequest extends RequestBase {
 
 		/**
 		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * closed or both
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -184,7 +186,7 @@ public class ClearCacheRequest extends RequestBase {
 
 		/**
 		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * closed or both
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>

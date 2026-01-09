@@ -58,12 +58,13 @@ import javax.annotation.Nullable;
 // typedef: ml.get_jobs.Request
 
 /**
- * Get anomaly detection jobs configuration info. You can get information for
- * multiple anomaly detection jobs in a single API request by using a group
- * name, a comma-separated list of jobs, or a wildcard expression. You can get
- * information for all anomaly detection jobs by using <code>_all</code>, by
- * specifying <code>*</code> as the <code>&lt;job_id&gt;</code>, or by omitting
- * the <code>&lt;job_id&gt;</code>.
+ * Get anomaly detection jobs configuration info.
+ * <p>
+ * You can get information for multiple anomaly detection jobs in a single API
+ * request by using a group name, a comma-separated list of jobs, or a wildcard
+ * expression. You can get information for all anomaly detection jobs by using
+ * <code>_all</code>, by specifying <code>*</code> as the
+ * <code>&lt;job_id&gt;</code>, or by omitting the <code>&lt;job_id&gt;</code>.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.get_jobs.Request">API
  *      specification</a>

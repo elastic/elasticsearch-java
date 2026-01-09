@@ -57,8 +57,9 @@ import javax.annotation.Nullable;
 // typedef: license.post_start_trial.Request
 
 /**
- * Start a trial. Start a 30-day trial, which gives access to all subscription
- * features.
+ * Start a trial.
+ * <p>
+ * Start a 30-day trial, which gives access to all subscription features.
  * <p>
  * NOTE: You are allowed to start a trial only if your cluster has not already
  * activated a trial for the current major product version. For example, if you
@@ -98,7 +99,7 @@ public class PostStartTrialRequest extends RequestBase {
 	}
 
 	/**
-	 * whether the user has acknowledged acknowledge messages (default: false)
+	 * Whether the user has acknowledged acknowledge messages
 	 * <p>
 	 * API name: {@code acknowledge}
 	 */
@@ -118,7 +119,7 @@ public class PostStartTrialRequest extends RequestBase {
 	}
 
 	/**
-	 * The type of trial license to generate (default: &quot;trial&quot;)
+	 * The type of trial license to generate
 	 * <p>
 	 * API name: {@code type}
 	 */
@@ -146,7 +147,7 @@ public class PostStartTrialRequest extends RequestBase {
 		private String type;
 
 		/**
-		 * whether the user has acknowledged acknowledge messages (default: false)
+		 * Whether the user has acknowledged acknowledge messages
 		 * <p>
 		 * API name: {@code acknowledge}
 		 */
@@ -175,7 +176,7 @@ public class PostStartTrialRequest extends RequestBase {
 		}
 
 		/**
-		 * The type of trial license to generate (default: &quot;trial&quot;)
+		 * The type of trial license to generate
 		 * <p>
 		 * API name: {@code type}
 		 */

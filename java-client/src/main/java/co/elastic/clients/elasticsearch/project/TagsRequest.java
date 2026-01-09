@@ -29,8 +29,13 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -50,20 +55,79 @@ import java.util.Objects;
 // typedef: project.tags.Request
 
 /**
- * Get tags. Get the tags that are defined for the project.
+ * Get tags.
+ * <p>
+ * Get the tags that are defined for the project.
  * 
  * @see <a href="../doc-files/api-spec.html#project.tags.Request">API
  *      specification</a>
  */
 
 public class TagsRequest extends RequestBase {
-	public TagsRequest() {
+	@Nullable
+	private final String projectRouting;
+
+	// ---------------------------------------------------------------------------------------------
+
+	private TagsRequest(Builder builder) {
+
+		this.projectRouting = builder.projectRouting;
+
+	}
+
+	public static TagsRequest of(Function<Builder, ObjectBuilder<TagsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Singleton instance for {@link TagsRequest}.
+	 * A Lucene query using project metadata tags used to filter which projects are
+	 * returned in the response, such as _alias:_origin or _alias:<em>pr</em>.
+	 * <p>
+	 * API name: {@code project_routing}
 	 */
-	public static final TagsRequest _INSTANCE = new TagsRequest();
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link TagsRequest}.
+	 */
+
+	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<TagsRequest> {
+		@Nullable
+		private String projectRouting;
+
+		/**
+		 * A Lucene query using project metadata tags used to filter which projects are
+		 * returned in the response, such as _alias:_origin or _alias:<em>pr</em>.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link TagsRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public TagsRequest build() {
+			_checkSingleUse();
+
+			return new TagsRequest(this);
+		}
+	}
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,7 +139,7 @@ public class TagsRequest extends RequestBase {
 
 			// Request method
 			request -> {
-				return "GET";
+				return "POST";
 
 			},
 
@@ -92,7 +156,11 @@ public class TagsRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.projectRouting != null) {
+					params.put("project_routing", request.projectRouting);
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, TagsResponse._DESERIALIZER);
 }
