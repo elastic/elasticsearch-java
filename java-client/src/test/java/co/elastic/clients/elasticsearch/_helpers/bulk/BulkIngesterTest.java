@@ -418,7 +418,7 @@ class BulkIngesterTest extends Assertions {
             .listener(listener)
             .globalSettings(s -> s
                 .index("foo")
-                .routing("bar")
+                .routing("bar","aaa")
             )
         );
 
@@ -431,7 +431,8 @@ class BulkIngesterTest extends Assertions {
         assertEquals(1, ingester.requestCount());
 
         assertEquals("foo", storedRequest.get().index());
-        assertEquals("bar", storedRequest.get().routing());
+        assertEquals("bar", storedRequest.get().routing().get(0));
+        assertEquals("aaa", storedRequest.get().routing().get(1));
     }
 
     @Test
