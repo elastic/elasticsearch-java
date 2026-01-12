@@ -28,6 +28,8 @@ import co.elastic.clients.transport.endpoints.BinaryDataResponse;
 import co.elastic.clients.transport.endpoints.BinaryEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanEndpoint;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
+import co.elastic.clients.transport.endpoints.TextResponse;
+import co.elastic.clients.transport.endpoints.TextEndpoint;
 import co.elastic.clients.transport.http.HeaderMap;
 import co.elastic.clients.transport.http.RepeatableBodyResponse;
 import co.elastic.clients.transport.http.TransportHttpClient;
@@ -439,13 +441,36 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
             }
             return response;
 
-        } else if (endpoint instanceof BooleanEndpoint) {
-            BooleanEndpoint<?> bep = (BooleanEndpoint<?>) endpoint;
+        } else if (endpoint instanceof BooleanEndpoint<?> bep) {
 
             @SuppressWarnings("unchecked")
             ResponseT response = (ResponseT) new BooleanResponse(bep.getResult(statusCode));
             return response;
 
+
+        } else if (endpoint instanceof TextEndpoint) {
+            // Expecting a body
+            if (entity == null) {
+                throw new TransportException(
+                    clientResp,
+                    "Expecting a response body, but none was sent",
+                    endpoint.id()
+                );
+            }
+            checkTextContentType(entity.contentType(), clientResp, endpoint);
+            try ( InputStream content = entity.asInputStream()) {
+                String textResponse = new String(content.readAllBytes(), StandardCharsets.UTF_8);
+                @SuppressWarnings("unchecked")
+                ResponseT response = (ResponseT) new TextResponse(textResponse);
+                return response;
+            } catch (Exception e) {
+                throw new TransportException(
+                    clientResp,
+                    "Failed to decode text response",
+                    endpoint.id(),
+                    e
+                );
+            }
 
         } else if (endpoint instanceof BinaryEndpoint) {
             @SuppressWarnings("unchecked")
@@ -503,6 +528,21 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
 
         throw new TransportException(clientResp,
             "Expecting JSON data but response content-type is: " + contentType, endpoint.id());
+    }
+
+    private void checkTextContentType(
+        String contentType, TransportHttpClient.Response clientResp, Endpoint<?, ?, ?> endpoint
+    ) throws IOException {
+        if (contentType == null) {
+            throw new TransportException(clientResp, "Response has no content-type", endpoint.id());
+        }
+
+        if (contentType.startsWith("text/plain")) {
+            return;
+        }
+
+        throw new TransportException(clientResp,
+            "Expecting text data but response content-type is: " + contentType, endpoint.id());
     }
 
     private static void addStandardHeaders(HeaderMap headers) {
