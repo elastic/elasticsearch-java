@@ -339,13 +339,7 @@ public class Rest5Client implements Closeable {
 
         HttpEntity entity = httpResponse.getEntity();
         if (entity != null) {
-            Header encoding = null;
-            try {
-                encoding = httpResponse.getHeader(CONTENT_ENCODING);
-            } catch (ProtocolException e) {
-                throw new IOException("Couldn't retrieve content encoding: " + e);
-            }
-            if (encoding != null && "gzip".equals(encoding.getValue())) {
+            if ("gzip".equals(entity.getContentEncoding())) {
                 // Decompress and cleanup response headers
                 httpResponse.setEntity(new GzipDecompressingEntity(entity));
                 httpResponse.removeHeaders(CONTENT_ENCODING);
