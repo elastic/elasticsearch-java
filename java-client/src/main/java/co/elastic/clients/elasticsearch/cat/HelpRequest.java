@@ -20,16 +20,12 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
-import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.stream.JsonGenerator;
+import co.elastic.clients.transport.endpoints.TextResponse;
+import co.elastic.clients.transport.endpoints.TextEndpoint;
+
 import java.util.Collections;
-import java.util.Objects;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -71,7 +67,7 @@ public class HelpRequest {
 	/**
 	 * Endpoint "{@code cat.help}".
 	 */
-	public static final Endpoint<HelpRequest, HelpResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<HelpRequest, TextResponse, ErrorResponse> _ENDPOINT = new TextEndpoint<>(
 			"es/cat.help",
 
 			// Request method
@@ -95,5 +91,5 @@ public class HelpRequest {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, HelpResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, null);
 }
