@@ -26,6 +26,8 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.StringResponse;
+import co.elastic.clients.transport.endpoints.TextEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
@@ -71,7 +73,7 @@ public class HelpRequest {
 	/**
 	 * Endpoint "{@code cat.help}".
 	 */
-	public static final Endpoint<HelpRequest, HelpResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<HelpRequest, StringResponse, ErrorResponse> _ENDPOINT = new TextEndpoint<>(
 			"es/cat.help",
 
 			// Request method
@@ -95,5 +97,5 @@ public class HelpRequest {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, HelpResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, null);
 }

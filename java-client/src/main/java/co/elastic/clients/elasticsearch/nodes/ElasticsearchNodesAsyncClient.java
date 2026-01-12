@@ -26,6 +26,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.endpoints.StringResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
@@ -163,9 +164,9 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<HotThreadsResponse> hotThreads(HotThreadsRequest request) {
+	public CompletableFuture<StringResponse> hotThreads(HotThreadsRequest request) {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse> endpoint = (JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse>) HotThreadsRequest._ENDPOINT;
+		Endpoint<HotThreadsRequest, StringResponse, ErrorResponse> endpoint = (Endpoint<HotThreadsRequest, StringResponse, ErrorResponse>) HotThreadsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -184,7 +185,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<HotThreadsResponse> hotThreads(
+	public final CompletableFuture<StringResponse> hotThreads(
 			Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn) {
 		return hotThreads(fn.apply(new HotThreadsRequest.Builder()).build());
 	}
@@ -200,7 +201,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<HotThreadsResponse> hotThreads() {
+	public CompletableFuture<StringResponse> hotThreads() {
 		return this.transport.performRequestAsync(new HotThreadsRequest.Builder().build(), HotThreadsRequest._ENDPOINT,
 				this.transportOptions);
 	}

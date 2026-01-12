@@ -29,6 +29,8 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.transport.endpoints.StringResponse;
+import co.elastic.clients.transport.endpoints.TextEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
@@ -365,7 +367,7 @@ public class HotThreadsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code nodes.hot_threads}".
 	 */
-	public static final Endpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<HotThreadsRequest, StringResponse, ErrorResponse> _ENDPOINT = new TextEndpoint<>(
 			"es/nodes.hot_threads",
 
 			// Request method
@@ -446,5 +448,5 @@ public class HotThreadsRequest extends RequestBase {
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, HotThreadsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, null);
 }
