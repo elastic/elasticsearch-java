@@ -20,12 +20,12 @@
 package co.elastic.clients.transport.endpoints;
 
 /**
- * An API response that has a simple string body.
+ * An API response that has a simple text body.
  */
-public class StringResponse {
+public class TextResponse {
     private final String value;
 
-    public StringResponse(String value) {
+    public TextResponse(String value) {
         this.value = value;
     }
 

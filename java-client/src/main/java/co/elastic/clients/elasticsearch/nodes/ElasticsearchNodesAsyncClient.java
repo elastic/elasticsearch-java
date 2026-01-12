@@ -24,9 +24,8 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.JsonEndpoint;
-import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
-import co.elastic.clients.transport.endpoints.StringResponse;
+import co.elastic.clients.transport.endpoints.TextResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
@@ -164,9 +163,9 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StringResponse> hotThreads(HotThreadsRequest request) {
+	public CompletableFuture<TextResponse> hotThreads(HotThreadsRequest request) {
 		@SuppressWarnings("unchecked")
-		Endpoint<HotThreadsRequest, StringResponse, ErrorResponse> endpoint = (Endpoint<HotThreadsRequest, StringResponse, ErrorResponse>) HotThreadsRequest._ENDPOINT;
+		Endpoint<HotThreadsRequest, TextResponse, ErrorResponse> endpoint = (Endpoint<HotThreadsRequest, TextResponse, ErrorResponse>) HotThreadsRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -185,7 +184,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<StringResponse> hotThreads(
+	public final CompletableFuture<TextResponse> hotThreads(
 			Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn) {
 		return hotThreads(fn.apply(new HotThreadsRequest.Builder()).build());
 	}
@@ -201,7 +200,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StringResponse> hotThreads() {
+	public CompletableFuture<TextResponse> hotThreads() {
 		return this.transport.performRequestAsync(new HotThreadsRequest.Builder().build(), HotThreadsRequest._ENDPOINT,
 				this.transportOptions);
 	}

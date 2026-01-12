@@ -22,7 +22,7 @@ package co.elastic.clients.transport.endpoints;
 import java.util.Map;
 import java.util.function.Function;
 
-public class TextEndpoint<RequestT> extends EndpointBase<RequestT, StringResponse> {
+public class TextEndpoint<RequestT> extends EndpointBase<RequestT, TextResponse> {
 
     public TextEndpoint(
         String id,

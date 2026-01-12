@@ -25,9 +25,8 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.JsonEndpoint;
-import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
-import co.elastic.clients.transport.endpoints.StringResponse;
+import co.elastic.clients.transport.endpoints.TextResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -166,9 +165,9 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	 *      on elastic.co</a>
 	 */
 
-	public StringResponse hotThreads(HotThreadsRequest request) throws IOException, ElasticsearchException {
+	public TextResponse hotThreads(HotThreadsRequest request) throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		Endpoint<HotThreadsRequest, StringResponse, ErrorResponse> endpoint = (Endpoint<HotThreadsRequest, StringResponse, ErrorResponse>) HotThreadsRequest._ENDPOINT;
+		Endpoint<HotThreadsRequest, TextResponse, ErrorResponse> endpoint = (Endpoint<HotThreadsRequest, TextResponse, ErrorResponse>) HotThreadsRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -187,7 +186,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	 *      on elastic.co</a>
 	 */
 
-	public final StringResponse hotThreads(Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn)
+	public final TextResponse hotThreads(Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return hotThreads(fn.apply(new HotThreadsRequest.Builder()).build());
 	}
@@ -203,7 +202,7 @@ public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, 
 	 *      on elastic.co</a>
 	 */
 
-	public StringResponse hotThreads() throws IOException, ElasticsearchException {
+	public TextResponse hotThreads() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new HotThreadsRequest.Builder().build(), HotThreadsRequest._ENDPOINT,
 				this.transportOptions);
 	}
