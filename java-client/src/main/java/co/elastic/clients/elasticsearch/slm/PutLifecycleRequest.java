@@ -58,9 +58,11 @@ import javax.annotation.Nullable;
 // typedef: slm.put_lifecycle.Request
 
 /**
- * Create or update a policy. Create or update a snapshot lifecycle policy. If
- * the policy already exists, this request increments the policy version. Only
- * the latest version of a policy is stored.
+ * Create or update a policy.
+ * <p>
+ * Create or update a snapshot lifecycle policy. If the policy already exists,
+ * this request increments the policy version. Only the latest version of a
+ * policy is stored.
  * 
  * @see <a href="../doc-files/api-spec.html#slm.put_lifecycle.Request">API
  *      specification</a>

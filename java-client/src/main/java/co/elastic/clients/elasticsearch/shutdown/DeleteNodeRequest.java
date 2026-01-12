@@ -56,10 +56,12 @@ import javax.annotation.Nullable;
 // typedef: shutdown.delete_node.Request
 
 /**
- * Cancel node shutdown preparations. Remove a node from the shutdown list so it
- * can resume normal operations. You must explicitly clear the shutdown request
- * when a node rejoins the cluster or when a node has permanently left the
- * cluster. Shutdown requests are never removed automatically by Elasticsearch.
+ * Cancel node shutdown preparations.
+ * <p>
+ * Remove a node from the shutdown list so it can resume normal operations. You
+ * must explicitly clear the shutdown request when a node rejoins the cluster or
+ * when a node has permanently left the cluster. Shutdown requests are never
+ * removed automatically by Elasticsearch.
  * <p>
  * NOTE: This feature is designed for indirect use by Elastic Cloud, Elastic
  * Cloud Enterprise, and Elastic Cloud on Kubernetes. Direct use is not

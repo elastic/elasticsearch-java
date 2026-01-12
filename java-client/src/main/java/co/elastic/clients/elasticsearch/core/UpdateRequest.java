@@ -45,10 +45,12 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -140,8 +142,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	@Nullable
 	private final Integer retryOnConflict;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	@Nullable
 	private final Script script;
@@ -181,7 +182,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		this.refresh = builder.refresh;
 		this.requireAlias = builder.requireAlias;
 		this.retryOnConflict = builder.retryOnConflict;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.script = builder.script;
 		this.scriptedUpsert = builder.scriptedUpsert;
 		this.timeout = builder.timeout;
@@ -339,8 +340,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -499,7 +499,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		private Integer retryOnConflict;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private Script script;
@@ -676,9 +676,23 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder<TDocument, TPartialDocument> routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder<TDocument, TPartialDocument> routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * A custom value used to route operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder<TDocument, TPartialDocument> routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -915,8 +929,8 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.requireAlias != null) {
 					params.put("require_alias", String.valueOf(request.requireAlias));

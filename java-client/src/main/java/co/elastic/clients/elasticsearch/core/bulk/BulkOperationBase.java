@@ -27,11 +27,13 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
@@ -65,8 +67,7 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 	@Nullable
 	private final String index;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	@Nullable
 	private final Long ifPrimaryTerm;
@@ -86,7 +87,7 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 
 		this.id = builder.id;
 		this.index = builder.index;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
 		this.version = builder.version;
@@ -119,8 +120,7 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -177,9 +177,14 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 			generator.write(this.index);
 
 		}
-		if (this.routing != null) {
+		if (ApiTypeHelper.isDefined(this.routing)) {
 			generator.writeKey("routing");
-			generator.write(this.routing);
+			generator.writeStartArray();
+			for (String item0 : this.routing) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.ifPrimaryTerm != null) {
@@ -219,7 +224,7 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 		private String index;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private Long ifPrimaryTerm;
@@ -257,9 +262,23 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final BuilderT routing(@Nullable String value) {
-			this.routing = value;
+		public final BuilderT routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return self();
+		}
+
+		/**
+		 * A custom value used to route operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final BuilderT routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return self();
 		}
 
@@ -305,7 +324,8 @@ public abstract class BulkOperationBase implements JsonpSerializable {
 
 		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(AbstractBuilder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(AbstractBuilder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(AbstractBuilder::routing, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"routing");
 		op.add(AbstractBuilder::ifPrimaryTerm, JsonpDeserializer.longDeserializer(), "if_primary_term");
 		op.add(AbstractBuilder::ifSeqNo, JsonpDeserializer.longDeserializer(), "if_seq_no");
 		op.add(AbstractBuilder::version, JsonpDeserializer.longDeserializer(), "version");

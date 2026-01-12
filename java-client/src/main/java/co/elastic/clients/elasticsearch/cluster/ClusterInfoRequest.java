@@ -58,7 +58,9 @@ import javax.annotation.Nullable;
 // typedef: cluster.info.Request
 
 /**
- * Get cluster info. Returns basic information about the cluster.
+ * Get cluster info.
+ * <p>
+ * Returns basic information about the cluster.
  * 
  * @see <a href="../doc-files/api-spec.html#cluster.info.Request">API
  *      specification</a>

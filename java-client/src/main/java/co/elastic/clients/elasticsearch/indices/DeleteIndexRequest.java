@@ -60,9 +60,11 @@ import javax.annotation.Nullable;
 // typedef: indices.delete.Request
 
 /**
- * Delete indices. Deleting an index deletes its documents, shards, and
- * metadata. It does not delete related Kibana components, such as data views,
- * visualizations, or dashboards.
+ * Delete indices.
+ * <p>
+ * Deleting an index deletes its documents, shards, and metadata. It does not
+ * delete related Kibana components, such as data views, visualizations, or
+ * dashboards.
  * <p>
  * You cannot delete the current write index of a data stream. To delete the
  * index, you must roll over the data stream so a new write index is created.

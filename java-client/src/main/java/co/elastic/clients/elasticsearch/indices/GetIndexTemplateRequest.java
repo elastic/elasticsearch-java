@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: indices.get_index_template.Request
 
 /**
- * Get index templates. Get information about one or more index templates.
+ * Get index templates.
+ * <p>
+ * Get information about one or more index templates.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.get_index_template.Request">API
@@ -120,7 +122,11 @@ public class GetIndexTemplateRequest extends RequestBase {
 	 * to false, which means information is retrieved from the master node.
 	 * <p>
 	 * API name: {@code local}
+	 * 
+	 * @deprecated 9.0.0 This parameter has no effect, is now deprecated, and will
+	 *             be removed in a future version.
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean local() {
 		return this.local;
@@ -138,8 +144,7 @@ public class GetIndexTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Comma-separated list of index template names used to limit the request.
-	 * Wildcard (*) expressions are supported.
+	 * Name of index template to retrieve. Wildcard (*) expressions are supported.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -197,7 +202,11 @@ public class GetIndexTemplateRequest extends RequestBase {
 		 * to false, which means information is retrieved from the master node.
 		 * <p>
 		 * API name: {@code local}
+		 * 
+		 * @deprecated 9.0.0 This parameter has no effect, is now deprecated, and will
+		 *             be removed in a future version.
 		 */
+		@Deprecated
 		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
@@ -225,8 +234,7 @@ public class GetIndexTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Comma-separated list of index template names used to limit the request.
-		 * Wildcard (*) expressions are supported.
+		 * Name of index template to retrieve. Wildcard (*) expressions are supported.
 		 * <p>
 		 * API name: {@code name}
 		 */

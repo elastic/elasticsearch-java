@@ -56,9 +56,10 @@ import javax.annotation.Nullable;
 // typedef: watcher.delete_watch.Request
 
 /**
- * Delete a watch. When the watch is removed, the document representing the
- * watch in the <code>.watches</code> index is gone and it will never be run
- * again.
+ * Delete a watch.
+ * <p>
+ * When the watch is removed, the document representing the watch in the
+ * <code>.watches</code> index is gone and it will never be run again.
  * <p>
  * Deleting a watch does not delete any watch execution records related to this
  * watch from the watch history.

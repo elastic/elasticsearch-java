@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: inference.sparse_embedding.Request
 
 /**
- * Perform sparse embedding inference on the service
+ * Perform sparse embedding inference on the service.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#inference.sparse_embedding.Request">API
@@ -112,7 +112,9 @@ public class SparseEmbeddingRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * Optional task settings
+	 * Task settings for the individual inference request. These settings are
+	 * specific to the &lt;task_type&gt; you specified and override the task
+	 * settings specified when initializing the service.
 	 * <p>
 	 * API name: {@code task_settings}
 	 */
@@ -214,7 +216,9 @@ public class SparseEmbeddingRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Optional task settings
+		 * Task settings for the individual inference request. These settings are
+		 * specific to the &lt;task_type&gt; you specified and override the task
+		 * settings specified when initializing the service.
 		 * <p>
 		 * API name: {@code task_settings}
 		 */

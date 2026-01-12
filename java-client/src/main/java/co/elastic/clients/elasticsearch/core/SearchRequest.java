@@ -237,8 +237,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Retriever retriever;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	private final Map<String, RuntimeField> runtimeMappings;
 
@@ -329,7 +328,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		this.requestCache = builder.requestCache;
 		this.rescore = ApiTypeHelper.unmodifiable(builder.rescore);
 		this.retriever = builder.retriever;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
 		this.scroll = builder.scroll;
@@ -868,8 +867,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -1192,6 +1190,11 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.profile);
 
 		}
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
 		if (this.query != null) {
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
@@ -1461,7 +1464,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		private Retriever retriever;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private Map<String, RuntimeField> runtimeMappings;
@@ -2393,9 +2396,23 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		 * A custom value that is used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * A custom value that is used to route operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -2894,6 +2911,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::pit, PointInTimeReference._DESERIALIZER, "pit");
 		op.add(Builder::postFilter, Query._DESERIALIZER, "post_filter");
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::rank, Rank._DESERIALIZER, "rank");
 		op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore._DESERIALIZER), "rescore");
@@ -2985,9 +3003,6 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 				if (request.preFilterShardSize != null) {
 					params.put("pre_filter_shard_size", String.valueOf(request.preFilterShardSize));
 				}
-				if (request.projectRouting != null) {
-					params.put("project_routing", request.projectRouting);
-				}
 				if (request.forceSyntheticSource != null) {
 					params.put("force_synthetic_source", String.valueOf(request.forceSyntheticSource));
 				}
@@ -2997,8 +3012,8 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 				if (request.lenient != null) {
 					params.put("lenient", String.valueOf(request.lenient));
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

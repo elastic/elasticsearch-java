@@ -87,9 +87,11 @@ import javax.annotation.Nullable;
 // typedef: fleet.search.Request
 
 /**
- * Run a Fleet search. The purpose of the Fleet search API is to provide an API
- * where the search will be run only after the provided checkpoint has been
- * processed and is visible for searches inside of Elasticsearch.
+ * Run a Fleet search.
+ * <p>
+ * The purpose of the Fleet search API is to provide an API where the search
+ * will be run only after the provided checkpoint has been processed and is
+ * visible for searches inside of Elasticsearch.
  * 
  * @see <a href="../doc-files/api-spec.html#fleet.search.Request">API
  *      specification</a>
@@ -190,8 +192,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 
 	private final List<Rescore> rescore;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	private final Map<String, RuntimeField> runtimeMappings;
 
@@ -278,7 +279,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		this.query = builder.query;
 		this.requestCache = builder.requestCache;
 		this.rescore = ApiTypeHelper.unmodifiable(builder.rescore);
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
 		this.scroll = builder.scroll;
@@ -607,8 +608,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -1148,7 +1148,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		private List<Rescore> rescore;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private Map<String, RuntimeField> runtimeMappings;
@@ -1742,9 +1742,21 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 
 		/**
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -2296,8 +2308,8 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 				if (request.lenient != null) {
 					params.put("lenient", String.valueOf(request.lenient));
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

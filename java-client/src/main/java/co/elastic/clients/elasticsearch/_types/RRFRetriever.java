@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class RRFRetriever extends RetrieverBase implements RetrieverVariant {
-	private final List<Retriever> retrievers;
+	private final List<RRFRetrieverEntry> retrievers;
 
 	@Nullable
 	private final Integer rankConstant;
@@ -98,11 +98,12 @@ public class RRFRetriever extends RetrieverBase implements RetrieverVariant {
 
 	/**
 	 * Required - A list of child retrievers to specify which sets of returned top
-	 * documents will have the RRF formula applied to them.
+	 * documents will have the RRF formula applied to them. Each retriever can
+	 * optionally include a weight parameter.
 	 * <p>
 	 * API name: {@code retrievers}
 	 */
-	public final List<Retriever> retrievers() {
+	public final List<RRFRetrieverEntry> retrievers() {
 		return this.retrievers;
 	}
 
@@ -148,7 +149,7 @@ public class RRFRetriever extends RetrieverBase implements RetrieverVariant {
 		if (ApiTypeHelper.isDefined(this.retrievers)) {
 			generator.writeKey("retrievers");
 			generator.writeStartArray();
-			for (Retriever item0 : this.retrievers) {
+			for (RRFRetrieverEntry item0 : this.retrievers) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -190,7 +191,7 @@ public class RRFRetriever extends RetrieverBase implements RetrieverVariant {
 	 */
 
 	public static class Builder extends RetrieverBase.AbstractBuilder<Builder> implements ObjectBuilder<RRFRetriever> {
-		private List<Retriever> retrievers;
+		private List<RRFRetrieverEntry> retrievers;
 
 		@Nullable
 		private Integer rankConstant;
@@ -206,56 +207,43 @@ public class RRFRetriever extends RetrieverBase implements RetrieverVariant {
 
 		/**
 		 * Required - A list of child retrievers to specify which sets of returned top
-		 * documents will have the RRF formula applied to them.
+		 * documents will have the RRF formula applied to them. Each retriever can
+		 * optionally include a weight parameter.
 		 * <p>
 		 * API name: {@code retrievers}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>retrievers</code>.
 		 */
-		public final Builder retrievers(List<Retriever> list) {
+		public final Builder retrievers(List<RRFRetrieverEntry> list) {
 			this.retrievers = _listAddAll(this.retrievers, list);
 			return this;
 		}
 
 		/**
 		 * Required - A list of child retrievers to specify which sets of returned top
-		 * documents will have the RRF formula applied to them.
+		 * documents will have the RRF formula applied to them. Each retriever can
+		 * optionally include a weight parameter.
 		 * <p>
 		 * API name: {@code retrievers}
 		 * <p>
 		 * Adds one or more values to <code>retrievers</code>.
 		 */
-		public final Builder retrievers(Retriever value, Retriever... values) {
+		public final Builder retrievers(RRFRetrieverEntry value, RRFRetrieverEntry... values) {
 			this.retrievers = _listAdd(this.retrievers, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - A list of child retrievers to specify which sets of returned top
-		 * documents will have the RRF formula applied to them.
-		 * <p>
-		 * API name: {@code retrievers}
-		 * <p>
-		 * Adds one or more values to <code>retrievers</code>.
-		 */
-		public final Builder retrievers(RetrieverVariant value, RetrieverVariant... values) {
-			this.retrievers = _listAdd(this.retrievers, value._toRetriever());
-			for (RetrieverVariant v : values) {
-				_listAdd(this.retrievers, v._toRetriever());
-			}
-			return this;
-		}
-
-		/**
-		 * Required - A list of child retrievers to specify which sets of returned top
-		 * documents will have the RRF formula applied to them.
+		 * documents will have the RRF formula applied to them. Each retriever can
+		 * optionally include a weight parameter.
 		 * <p>
 		 * API name: {@code retrievers}
 		 * <p>
 		 * Adds a value to <code>retrievers</code> using a builder lambda.
 		 */
-		public final Builder retrievers(Function<Retriever.Builder, ObjectBuilder<Retriever>> fn) {
-			return retrievers(fn.apply(new Retriever.Builder()).build());
+		public final Builder retrievers(Function<RRFRetrieverEntry.Builder, ObjectBuilder<RRFRetrieverEntry>> fn) {
+			return retrievers(fn.apply(new RRFRetrieverEntry.Builder()).build());
 		}
 
 		/**
@@ -335,7 +323,7 @@ public class RRFRetriever extends RetrieverBase implements RetrieverVariant {
 
 	protected static void setupRRFRetrieverDeserializer(ObjectDeserializer<RRFRetriever.Builder> op) {
 		RetrieverBase.setupRetrieverBaseDeserializer(op);
-		op.add(Builder::retrievers, JsonpDeserializer.arrayDeserializer(Retriever._DESERIALIZER), "retrievers");
+		op.add(Builder::retrievers, JsonpDeserializer.arrayDeserializer(RRFRetrieverEntry._DESERIALIZER), "retrievers");
 		op.add(Builder::rankConstant, JsonpDeserializer.integerDeserializer(), "rank_constant");
 		op.add(Builder::rankWindowSize, JsonpDeserializer.integerDeserializer(), "rank_window_size");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");

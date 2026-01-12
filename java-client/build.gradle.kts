@@ -78,6 +78,7 @@ tasks.getByName<ProcessResources>("processResources") {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    testLogging { exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL }
 }
 
 tasks.withType<Jar> {

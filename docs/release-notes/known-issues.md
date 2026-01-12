@@ -7,6 +7,10 @@ navigation_title: "Known issues"
 
 For detailed issues, refer to the [Java client repo](https://github.com/elastic/elasticsearch-java/issues).
 
+## 9.x [known-issues-9-x]
+
+All 9.x versions of the client previous to, respectively, 9.2.4, 9.1.10 and 9.0.9 are affected by a bug with the new Rest5Client where memory usage is substantially higher than necessary.
+This problem was [fixed](https://github.com/elastic/elasticsearch-java/pull/1122) in 9.2.4, 9.1.10 and 9.0.9.
 
 ## 9.0.0 [known-issues-9-0-0]
 

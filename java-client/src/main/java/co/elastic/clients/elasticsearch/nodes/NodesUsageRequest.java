@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.nodes;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch.nodes.usage.NodesUsageMetric;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -65,7 +66,7 @@ import javax.annotation.Nullable;
  */
 
 public class NodesUsageRequest extends RequestBase {
-	private final List<String> metric;
+	private final List<NodesUsageMetric> metric;
 
 	private final List<String> nodeId;
 
@@ -88,18 +89,19 @@ public class NodesUsageRequest extends RequestBase {
 
 	/**
 	 * Limits the information returned to the specific metrics. A comma-separated
-	 * list of the following options: <code>_all</code>, <code>rest_actions</code>.
+	 * list of the following options: <code>_all</code>, <code>rest_actions</code>,
+	 * <code>aggregations</code>.
 	 * <p>
 	 * API name: {@code metric}
 	 */
-	public final List<String> metric() {
+	public final List<NodesUsageMetric> metric() {
 		return this.metric;
 	}
 
 	/**
 	 * A comma-separated list of node IDs or names to limit the returned
-	 * information; use <code>_local</code> to return information from the node
-	 * you're connecting to, leave empty to get information from all nodes
+	 * information. Use <code>_local</code> to return information from the node
+	 * you're connecting to, leave empty to get information from all nodes.
 	 * <p>
 	 * API name: {@code node_id}
 	 */
@@ -128,7 +130,7 @@ public class NodesUsageRequest extends RequestBase {
 			implements
 				ObjectBuilder<NodesUsageRequest> {
 		@Nullable
-		private List<String> metric;
+		private List<NodesUsageMetric> metric;
 
 		@Nullable
 		private List<String> nodeId;
@@ -138,34 +140,36 @@ public class NodesUsageRequest extends RequestBase {
 
 		/**
 		 * Limits the information returned to the specific metrics. A comma-separated
-		 * list of the following options: <code>_all</code>, <code>rest_actions</code>.
+		 * list of the following options: <code>_all</code>, <code>rest_actions</code>,
+		 * <code>aggregations</code>.
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metric</code>.
 		 */
-		public final Builder metric(List<String> list) {
+		public final Builder metric(List<NodesUsageMetric> list) {
 			this.metric = _listAddAll(this.metric, list);
 			return this;
 		}
 
 		/**
 		 * Limits the information returned to the specific metrics. A comma-separated
-		 * list of the following options: <code>_all</code>, <code>rest_actions</code>.
+		 * list of the following options: <code>_all</code>, <code>rest_actions</code>,
+		 * <code>aggregations</code>.
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
 		 * Adds one or more values to <code>metric</code>.
 		 */
-		public final Builder metric(String value, String... values) {
+		public final Builder metric(NodesUsageMetric value, NodesUsageMetric... values) {
 			this.metric = _listAdd(this.metric, value, values);
 			return this;
 		}
 
 		/**
 		 * A comma-separated list of node IDs or names to limit the returned
-		 * information; use <code>_local</code> to return information from the node
-		 * you're connecting to, leave empty to get information from all nodes
+		 * information. Use <code>_local</code> to return information from the node
+		 * you're connecting to, leave empty to get information from all nodes.
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>
@@ -178,8 +182,8 @@ public class NodesUsageRequest extends RequestBase {
 
 		/**
 		 * A comma-separated list of node IDs or names to limit the returned
-		 * information; use <code>_local</code> to return information from the node
-		 * you're connecting to, leave empty to get information from all nodes
+		 * information. Use <code>_local</code> to return information from the node
+		 * you're connecting to, leave empty to get information from all nodes.
 		 * <p>
 		 * API name: {@code node_id}
 		 * <p>
@@ -275,8 +279,8 @@ public class NodesUsageRequest extends RequestBase {
 					buf.append("/_nodes");
 					buf.append("/usage");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == (_nodeId | _metric)) {
@@ -287,8 +291,8 @@ public class NodesUsageRequest extends RequestBase {
 							buf);
 					buf.append("/usage");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -314,11 +318,13 @@ public class NodesUsageRequest extends RequestBase {
 					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_metric)) {
-					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("metric",
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_nodeId | _metric)) {
 					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
-					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("metric",
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				return params;
 			},

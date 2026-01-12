@@ -69,8 +69,10 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: eql.delete
 
 	/**
-	 * Delete an async EQL search. Delete an async EQL search or a stored
-	 * synchronous EQL search. The API also deletes results for the search.
+	 * Delete an async EQL search.
+	 * <p>
+	 * Delete an async EQL search or a stored synchronous EQL search. The API also
+	 * deletes results for the search.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-delete">Documentation
@@ -85,8 +87,10 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Delete an async EQL search. Delete an async EQL search or a stored
-	 * synchronous EQL search. The API also deletes results for the search.
+	 * Delete an async EQL search.
+	 * <p>
+	 * Delete an async EQL search or a stored synchronous EQL search. The API also
+	 * deletes results for the search.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -104,8 +108,10 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: eql.get
 
 	/**
-	 * Get async EQL search results. Get the current status and available results
-	 * for an async EQL search or a stored synchronous EQL search.
+	 * Get async EQL search results.
+	 * <p>
+	 * Get the current status and available results for an async EQL search or a
+	 * stored synchronous EQL search.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-get">Documentation
@@ -122,8 +128,10 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get async EQL search results. Get the current status and available results
-	 * for an async EQL search or a stored synchronous EQL search.
+	 * Get async EQL search results.
+	 * <p>
+	 * Get the current status and available results for an async EQL search or a
+	 * stored synchronous EQL search.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -160,8 +168,10 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get async EQL search results. Get the current status and available results
-	 * for an async EQL search or a stored synchronous EQL search.
+	 * Get async EQL search results.
+	 * <p>
+	 * Get the current status and available results for an async EQL search or a
+	 * stored synchronous EQL search.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-get">Documentation
@@ -178,8 +188,10 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get async EQL search results. Get the current status and available results
-	 * for an async EQL search or a stored synchronous EQL search.
+	 * Get async EQL search results.
+	 * <p>
+	 * Get the current status and available results for an async EQL search or a
+	 * stored synchronous EQL search.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -197,8 +209,10 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: eql.get_status
 
 	/**
-	 * Get the async EQL status. Get the current status for an async EQL search or a
-	 * stored synchronous EQL search without returning results.
+	 * Get the async EQL status.
+	 * <p>
+	 * Get the current status for an async EQL search or a stored synchronous EQL
+	 * search without returning results.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-get-status">Documentation
@@ -213,8 +227,10 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get the async EQL status. Get the current status for an async EQL search or a
-	 * stored synchronous EQL search without returning results.
+	 * Get the async EQL status.
+	 * <p>
+	 * Get the current status for an async EQL search or a stored synchronous EQL
+	 * search without returning results.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -232,9 +248,10 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	// ----- Endpoint: eql.search
 
 	/**
-	 * Get EQL search results. Returns search results for an Event Query Language
-	 * (EQL) query. EQL assumes each document in a data stream or index corresponds
-	 * to an event.
+	 * Get EQL search results.
+	 * <p>
+	 * Returns search results for an Event Query Language (EQL) query. EQL assumes
+	 * each document in a data stream or index corresponds to an event.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-search">Documentation
@@ -252,9 +269,10 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get EQL search results. Returns search results for an Event Query Language
-	 * (EQL) query. EQL assumes each document in a data stream or index corresponds
-	 * to an event.
+	 * Get EQL search results.
+	 * <p>
+	 * Returns search results for an Event Query Language (EQL) query. EQL assumes
+	 * each document in a data stream or index corresponds to an event.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -291,9 +309,10 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get EQL search results. Returns search results for an Event Query Language
-	 * (EQL) query. EQL assumes each document in a data stream or index corresponds
-	 * to an event.
+	 * Get EQL search results.
+	 * <p>
+	 * Returns search results for an Event Query Language (EQL) query. EQL assumes
+	 * each document in a data stream or index corresponds to an event.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-search">Documentation
@@ -310,9 +329,10 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	}
 
 	/**
-	 * Get EQL search results. Returns search results for an Event Query Language
-	 * (EQL) query. EQL assumes each document in a data stream or index corresponds
-	 * to an event.
+	 * Get EQL search results.
+	 * <p>
+	 * Returns search results for an Event Query Language (EQL) query. EQL assumes
+	 * each document in a data stream or index corresponds to an event.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

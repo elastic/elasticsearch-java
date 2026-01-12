@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.util.BinaryData;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * A bulk operation whose size has been calculated and content turned to a binary blob (to compute its size).
@@ -207,6 +208,23 @@ class IngesterOperation {
     private static int size(String name, @Nullable JsonEnum value) {
         if (value != null) {
             return name.length() + value.jsonValue().length() + 6;
+        } else {
+            return 0;
+        }
+    }
+
+    private static int size(String name, @Nullable List<String> value) {
+        if (value != null) {
+            if (value.isEmpty()) {
+                return name.length() + 6; // 6 added chars for empty array "name":[],
+            }
+            int listSize = 0;
+            for (String item : value) {
+                listSize += item.length();
+                listSize += 2; // +2 quotes each item
+            }
+            listSize += value.size()-1 ; // +1 comma between each item
+            return name.length() + listSize + 6; // "name":["item1","item2","item3"],
         } else {
             return 0;
         }

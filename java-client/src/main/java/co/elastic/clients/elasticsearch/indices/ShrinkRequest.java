@@ -60,7 +60,9 @@ import javax.annotation.Nullable;
 // typedef: indices.shrink.Request
 
 /**
- * Shrink an index. Shrink an index into a new index with fewer primary shards.
+ * Shrink an index.
+ * <p>
+ * Shrink an index into a new index with fewer primary shards.
  * <p>
  * Before you can shrink an index:
  * <ul>

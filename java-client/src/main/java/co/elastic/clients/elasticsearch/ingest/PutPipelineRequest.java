@@ -35,6 +35,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
@@ -62,8 +63,9 @@ import javax.annotation.Nullable;
 // typedef: ingest.put_pipeline.Request
 
 /**
- * Create or update a pipeline. Changes made using this API take effect
- * immediately.
+ * Create or update a pipeline.
+ * <p>
+ * Changes made using this API take effect immediately.
  * 
  * @see <a href="../doc-files/api-spec.html#ingest.put_pipeline.Request">API
  *      specification</a>
@@ -84,7 +86,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	private final String id;
 
 	@Nullable
-	private final Long ifVersion;
+	private final Integer ifVersion;
 
 	@Nullable
 	private final Time masterTimeout;
@@ -179,7 +181,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code if_version}
 	 */
 	@Nullable
-	public final Long ifVersion() {
+	public final Integer ifVersion() {
 		return this.ifVersion;
 	}
 
@@ -329,7 +331,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		private String id;
 
 		@Nullable
-		private Long ifVersion;
+		private Integer ifVersion;
 
 		@Nullable
 		private Time masterTimeout;
@@ -420,7 +422,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code if_version}
 		 */
-		public final Builder ifVersion(@Nullable Long value) {
+		public final Builder ifVersion(@Nullable Integer value) {
 			this.ifVersion = value;
 			return this;
 		}

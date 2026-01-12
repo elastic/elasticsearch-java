@@ -71,8 +71,9 @@ public class ElasticsearchTextStructureClient
 	// ----- Endpoint: text_structure.find_field_structure
 
 	/**
-	 * Find the structure of a text field. Find the structure of a text field in an
-	 * Elasticsearch index.
+	 * Find the structure of a text field.
+	 * <p>
+	 * Find the structure of a text field in an Elasticsearch index.
 	 * <p>
 	 * This API provides a starting point for extracting further information from
 	 * log messages already ingested into Elasticsearch. For example, if you have
@@ -113,8 +114,9 @@ public class ElasticsearchTextStructureClient
 	}
 
 	/**
-	 * Find the structure of a text field. Find the structure of a text field in an
-	 * Elasticsearch index.
+	 * Find the structure of a text field.
+	 * <p>
+	 * Find the structure of a text field in an Elasticsearch index.
 	 * <p>
 	 * This API provides a starting point for extracting further information from
 	 * log messages already ingested into Elasticsearch. For example, if you have
@@ -158,9 +160,10 @@ public class ElasticsearchTextStructureClient
 	// ----- Endpoint: text_structure.find_message_structure
 
 	/**
-	 * Find the structure of text messages. Find the structure of a list of text
-	 * messages. The messages must contain data that is suitable to be ingested into
-	 * Elasticsearch.
+	 * Find the structure of text messages.
+	 * <p>
+	 * Find the structure of a list of text messages. The messages must contain data
+	 * that is suitable to be ingested into Elasticsearch.
 	 * <p>
 	 * This API provides a starting point for ingesting data into Elasticsearch in a
 	 * format that is suitable for subsequent use with other Elastic Stack
@@ -201,9 +204,10 @@ public class ElasticsearchTextStructureClient
 	}
 
 	/**
-	 * Find the structure of text messages. Find the structure of a list of text
-	 * messages. The messages must contain data that is suitable to be ingested into
-	 * Elasticsearch.
+	 * Find the structure of text messages.
+	 * <p>
+	 * Find the structure of a list of text messages. The messages must contain data
+	 * that is suitable to be ingested into Elasticsearch.
 	 * <p>
 	 * This API provides a starting point for ingesting data into Elasticsearch in a
 	 * format that is suitable for subsequent use with other Elastic Stack
@@ -247,9 +251,11 @@ public class ElasticsearchTextStructureClient
 	// ----- Endpoint: text_structure.test_grok_pattern
 
 	/**
-	 * Test a Grok pattern. Test a Grok pattern on one or more lines of text. The
-	 * API indicates whether the lines match the pattern together with the offsets
-	 * and lengths of the matched substrings.
+	 * Test a Grok pattern.
+	 * <p>
+	 * Test a Grok pattern on one or more lines of text. The API indicates whether
+	 * the lines match the pattern together with the offsets and lengths of the
+	 * matched substrings.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-text-structure-test-grok-pattern">Documentation
@@ -265,9 +271,11 @@ public class ElasticsearchTextStructureClient
 	}
 
 	/**
-	 * Test a Grok pattern. Test a Grok pattern on one or more lines of text. The
-	 * API indicates whether the lines match the pattern together with the offsets
-	 * and lengths of the matched substrings.
+	 * Test a Grok pattern.
+	 * <p>
+	 * Test a Grok pattern on one or more lines of text. The API indicates whether
+	 * the lines match the pattern together with the offsets and lengths of the
+	 * matched substrings.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

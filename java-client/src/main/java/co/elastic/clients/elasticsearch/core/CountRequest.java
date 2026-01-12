@@ -66,7 +66,9 @@ import javax.annotation.Nullable;
 // typedef: _global.count.Request
 
 /**
- * Count search results. Get the number of documents matching a query.
+ * Count search results.
+ * <p>
+ * Get the number of documents matching a query.
  * <p>
  * The query can be provided either by using a simple query string as a
  * parameter, or by defining Query DSL within the request body. The query is
@@ -128,8 +130,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Query query;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	@Nullable
 	private final Long terminateAfter;
@@ -153,7 +154,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		this.projectRouting = builder.projectRouting;
 		this.q = builder.q;
 		this.query = builder.query;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.terminateAfter = builder.terminateAfter;
 
 	}
@@ -307,11 +308,10 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies a subset of projects to target for the search using project
-	 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
-	 * _alias tag and a single value (possibly wildcarded). Examples:
-	 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
-	 * only.
+	 * Specifies a subset of projects to target using project metadata tags in a
+	 * subset of Lucene query syntax. Allowed Lucene queries: the _alias tag and a
+	 * single value (possibly wildcarded). Examples: _alias:my-project
+	 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
 	 * <p>
 	 * API name: {@code project_routing}
 	 */
@@ -347,8 +347,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -380,6 +379,11 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
 		if (this.query != null) {
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
@@ -441,7 +445,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		private Query query;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private Long terminateAfter;
@@ -626,11 +630,10 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies a subset of projects to target for the search using project
-		 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
-		 * _alias tag and a single value (possibly wildcarded). Examples:
-		 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
-		 * only.
+		 * Specifies a subset of projects to target using project metadata tags in a
+		 * subset of Lucene query syntax. Allowed Lucene queries: the _alias tag and a
+		 * single value (possibly wildcarded). Examples: _alias:my-project
+		 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
 		 * <p>
 		 * API name: {@code project_routing}
 		 */
@@ -686,9 +689,23 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * A custom value used to route operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -737,6 +754,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 
 	protected static void setupCountRequestDeserializer(ObjectDeserializer<CountRequest.Builder> op) {
 
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 
 	}
@@ -817,17 +835,14 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 				if (request.terminateAfter != null) {
 					params.put("terminate_after", String.valueOf(request.terminateAfter));
 				}
-				if (request.projectRouting != null) {
-					params.put("project_routing", request.projectRouting);
-				}
 				if (request.lenient != null) {
 					params.put("lenient", String.valueOf(request.lenient));
 				}
 				if (request.minScore != null) {
 					params.put("min_score", String.valueOf(request.minScore));
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.q != null) {
 					params.put("q", request.q);

@@ -55,7 +55,7 @@ public class EsqlAdapterEndToEndTest extends Assertions {
     @BeforeAll
     public static void setup() throws Exception {
         var server = ElasticsearchTestServer.global();
-        esClient = ElasticsearchTestClient.createClient(server.url(), new JacksonJsonpMapper(), server.sslContext());
+        esClient = ElasticsearchTestClient.createClient(server.url(), new JacksonJsonpMapper(), server.sslContext(), null);
 
         // Make sure index is empty
         esClient.indices().delete(d -> d.index("employees").ignoreUnavailable(true));

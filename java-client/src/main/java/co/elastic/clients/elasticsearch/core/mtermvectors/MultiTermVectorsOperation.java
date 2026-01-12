@@ -92,8 +92,7 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	@Nullable
 	private final Boolean positions;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	@Nullable
 	private final Boolean termStatistics;
@@ -117,7 +116,7 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		this.offsets = builder.offsets;
 		this.payloads = builder.payloads;
 		this.positions = builder.positions;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.termStatistics = builder.termStatistics;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
@@ -227,8 +226,7 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -323,9 +321,14 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 			generator.write(this.positions);
 
 		}
-		if (this.routing != null) {
+		if (ApiTypeHelper.isDefined(this.routing)) {
 			generator.writeKey("routing");
-			generator.write(this.routing);
+			generator.writeStartArray();
+			for (String item0 : this.routing) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.termStatistics != null) {
@@ -387,7 +390,7 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		private Boolean positions;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private Boolean termStatistics;
@@ -523,9 +526,23 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		 * Custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * Custom value used to route operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -597,7 +614,8 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		op.add(Builder::offsets, JsonpDeserializer.booleanDeserializer(), "offsets");
 		op.add(Builder::payloads, JsonpDeserializer.booleanDeserializer(), "payloads");
 		op.add(Builder::positions, JsonpDeserializer.booleanDeserializer(), "positions");
-		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(Builder::routing, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"routing");
 		op.add(Builder::termStatistics, JsonpDeserializer.booleanDeserializer(), "term_statistics");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 		op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");

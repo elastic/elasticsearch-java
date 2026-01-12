@@ -29,6 +29,8 @@ env:
   VERSION: ${{ inputs.version }}
   PREV_VERSION: ${{ inputs.prev_version }}
   DRY_RUN: ${{ inputs.dry_run }}
+  GIT_USER: 'Laura Trotta'
+  GIT_MAIL: laura.trotta@elastic.co
 
 jobs:
   validate-version:
@@ -69,11 +71,7 @@ jobs:
   tag-bump-and-gh-release:
     runs-on: ubuntu-latest
     steps:
-      - name: Install git
-        run: |
-          apt-get update
-          apt-get install -y git 
-          
+
       - name: Fetch ephemeral GitHub token
         id: fetch-ephemeral-token
         uses: elastic/ci-gh-actions/fetch-github-token@v1.0.0
@@ -89,6 +87,9 @@ jobs:
           path: elasticsearch-java
 
       - run: |
+            cd elasticsearch-java
+            git config user.name "$GIT_USER"
+            git config user.email "$GIT_MAIL"
             git tag v${{ inputs.version }}
             git push origin v${{ inputs.version }}
             echo ${{ inputs.version }} > config/version.txt

@@ -59,8 +59,10 @@ import javax.annotation.Nullable;
 // typedef: ilm.move_to_step.Request
 
 /**
- * Move to a lifecycle step. Manually move an index into a specific step in the
- * lifecycle policy and run that step.
+ * Move to a lifecycle step.
+ * <p>
+ * Manually move an index into a specific step in the lifecycle policy and run
+ * that step.
  * <p>
  * WARNING: This operation can result in the loss of data. Manually moving an
  * index into a specific step runs that step even if it has already been

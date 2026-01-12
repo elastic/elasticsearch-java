@@ -362,8 +362,8 @@ public class RequestTest extends Assertions {
         assertEquals(0, clearResponse.numFreed());
 
         final ClosePointInTimeResponse closeResponse = client.closePointInTime(b -> b.id(
-            "46ToAwMDaWR5BXV1aWQyKwZub2RlXzMAAAAAAAAAACoBYwADaWR4BXV1aWQxAgZub2RlXzEAAAAAAAAAAAEBY" +
-                "QADaWR5BXV1aWQyKgZub2RlXzIAAAAAAAAAAAwBYgACBXV1aWQyAAAFdXVpZDEAAQltYXRjaF9hbGw_gAAAAA=="));
+            "0Mm0BAEPbXktaW5kZXgtMDAwMDAxFjA0Wm54MFJPU1lXUFpGWVVQR3NnUVEAARZoVHdWNjhTZVRVQzRuLWtuQ29IZj" +
+            "R3AAEAAAAAAAAg0RZOOXU1OFZxWVN4cXp2OFM3OXZ6WFJnAAEWMDRabngwUk9TWVdQWkZZVVBHc2dRUQAA"));
         assertEquals(0, closeResponse.numFreed());
     }
 
