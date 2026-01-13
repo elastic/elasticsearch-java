@@ -267,7 +267,8 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Name of the index template to create.
+	 * Array of wildcard (<code>*</code>) expressions used to match the names of
+	 * data streams and indices during creation.
 	 * <p>
 	 * API name: {@code index_patterns}
 	 */
@@ -626,7 +627,8 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Name of the index template to create.
+		 * Array of wildcard (<code>*</code>) expressions used to match the names of
+		 * data streams and indices during creation.
 		 * <p>
 		 * API name: {@code index_patterns}
 		 * <p>
@@ -638,7 +640,8 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Name of the index template to create.
+		 * Array of wildcard (<code>*</code>) expressions used to match the names of
+		 * data streams and indices during creation.
 		 * <p>
 		 * API name: {@code index_patterns}
 		 * <p>

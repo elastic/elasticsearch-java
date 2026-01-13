@@ -148,8 +148,8 @@ public class GetComponentTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Comma-separated list of component template names used to limit the request.
-	 * Wildcard (<code>*</code>) expressions are supported.
+	 * Name of component template to retrieve. Wildcard (<code>*</code>) expressions
+	 * are supported.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -252,8 +252,8 @@ public class GetComponentTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Comma-separated list of component template names used to limit the request.
-		 * Wildcard (<code>*</code>) expressions are supported.
+		 * Name of component template to retrieve. Wildcard (<code>*</code>) expressions
+		 * are supported.
 		 * <p>
 		 * API name: {@code name}
 		 */
