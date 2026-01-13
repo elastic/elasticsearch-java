@@ -364,7 +364,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * <li>OpenAI (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>VoyageAI (<code>rerank</code>, <code>text_embedding</code>)</li>
-	 * <li>Watsonx inference integration (<code>text_embedding</code>)</li>
+	 * <li>Watsonx (<code>rerank</code>, <code>text_embedding</code>)</li>
 	 * </ul>
 	 *
 	 * @see <a href=
@@ -426,7 +426,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * <li>OpenAI (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>VoyageAI (<code>rerank</code>, <code>text_embedding</code>)</li>
-	 * <li>Watsonx inference integration (<code>text_embedding</code>)</li>
+	 * <li>Watsonx (<code>rerank</code>, <code>text_embedding</code>)</li>
 	 * </ul>
 	 *
 	 * @param fn

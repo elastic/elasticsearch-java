@@ -112,7 +112,8 @@ public class IndexTemplate implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Name of the index template.
+	 * Required - Array of wildcard (<code>*</code>) expressions used to match the
+	 * names of data streams and indices during creation.
 	 * <p>
 	 * API name: {@code index_patterns}
 	 */
@@ -344,7 +345,8 @@ public class IndexTemplate implements JsonpSerializable {
 		private List<String> ignoreMissingComponentTemplates;
 
 		/**
-		 * Required - Name of the index template.
+		 * Required - Array of wildcard (<code>*</code>) expressions used to match the
+		 * names of data streams and indices during creation.
 		 * <p>
 		 * API name: {@code index_patterns}
 		 * <p>
@@ -356,7 +358,8 @@ public class IndexTemplate implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Name of the index template.
+		 * Required - Array of wildcard (<code>*</code>) expressions used to match the
+		 * names of data streams and indices during creation.
 		 * <p>
 		 * API name: {@code index_patterns}
 		 * <p>

@@ -64,6 +64,9 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 	private final List<JsonData> value;
 
 	@Nullable
+	private final String mediaType;
+
+	@Nullable
 	private final Boolean allowDuplicates;
 
 	// ---------------------------------------------------------------------------------------------
@@ -72,7 +75,8 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		super(builder);
 
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
-		this.value = ApiTypeHelper.unmodifiableRequired(builder.value, this, "value");
+		this.value = ApiTypeHelper.unmodifiable(builder.value);
+		this.mediaType = builder.mediaType;
 		this.allowDuplicates = builder.allowDuplicates;
 
 	}
@@ -99,12 +103,24 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
-	 * Required - The value to be appended. Supports template snippets.
+	 * The value to be appended. Supports template snippets.
 	 * <p>
 	 * API name: {@code value}
 	 */
 	public final List<JsonData> value() {
 		return this.value;
+	}
+
+	/**
+	 * The media type for encoding <code>value</code>. Applies only when value is a
+	 * template snippet. Must be one of <code>application/json</code>,
+	 * <code>text/plain</code>, or <code>application/x-www-form-urlencoded</code>.
+	 * <p>
+	 * API name: {@code media_type}
+	 */
+	@Nullable
+	public final String mediaType() {
+		return this.mediaType;
 	}
 
 	/**
@@ -134,6 +150,11 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 			generator.writeEnd();
 
 		}
+		if (this.mediaType != null) {
+			generator.writeKey("media_type");
+			generator.write(this.mediaType);
+
+		}
 		if (this.allowDuplicates != null) {
 			generator.writeKey("allow_duplicates");
 			generator.write(this.allowDuplicates);
@@ -153,7 +174,11 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 				ObjectBuilder<AppendProcessor> {
 		private String field;
 
+		@Nullable
 		private List<JsonData> value;
+
+		@Nullable
+		private String mediaType;
 
 		@Nullable
 		private Boolean allowDuplicates;
@@ -169,7 +194,7 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - The value to be appended. Supports template snippets.
+		 * The value to be appended. Supports template snippets.
 		 * <p>
 		 * API name: {@code value}
 		 * <p>
@@ -181,7 +206,7 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
-		 * Required - The value to be appended. Supports template snippets.
+		 * The value to be appended. Supports template snippets.
 		 * <p>
 		 * API name: {@code value}
 		 * <p>
@@ -189,6 +214,18 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		 */
 		public final Builder value(JsonData value, JsonData... values) {
 			this.value = _listAdd(this.value, value, values);
+			return this;
+		}
+
+		/**
+		 * The media type for encoding <code>value</code>. Applies only when value is a
+		 * template snippet. Must be one of <code>application/json</code>,
+		 * <code>text/plain</code>, or <code>application/x-www-form-urlencoded</code>.
+		 * <p>
+		 * API name: {@code media_type}
+		 */
+		public final Builder mediaType(@Nullable String value) {
+			this.mediaType = value;
 			return this;
 		}
 
@@ -233,6 +270,7 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER), "value");
+		op.add(Builder::mediaType, JsonpDeserializer.stringDeserializer(), "media_type");
 		op.add(Builder::allowDuplicates, JsonpDeserializer.booleanDeserializer(), "allow_duplicates");
 
 	}
