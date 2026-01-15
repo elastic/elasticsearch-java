@@ -22,8 +22,10 @@ package co.elastic.clients.elasticsearch.model;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.FieldSort;
 import co.elastic.clients.elasticsearch._types.FieldValue;
+import co.elastic.clients.elasticsearch._types.ScriptSource;
 import co.elastic.clients.elasticsearch._types.aggregations.TopMetrics;
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchAllQuery;
+import co.elastic.clients.elasticsearch.core.MsearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.testkit.ModelTestCase;
@@ -81,13 +83,68 @@ public class OverloadsTest extends ModelTestCase {
     }
 
     @Test
-    @Disabled("just need to compile")
+    @Disabled("just needs to compile")
     public void voidClassTDocumentOverload() throws IOException {
         // no need for a complete instance of the client,
-        // nor testing anything, just checking this compiles
+        // nor testing anything, just checking that this compiles
         ElasticsearchClient client = ElasticsearchClient.of(e -> e.host("http://localhost:9200"));
 
         SearchResponse<Void> resp = client.search(s -> s,Void.class);
         SearchResponse<Void> respDefault = client.search(s -> s);
+    }
+
+    @Test
+    public void searchRequestBodyOverloads() throws IOException {
+
+        // Normal search request
+        SearchRequest searchRequest = SearchRequest.of(b -> b
+            .size(10)
+            .from(10)
+            .query(q -> q
+                .matchAll(m -> m)
+            )
+        );
+
+        // Msearch compatibility
+        MsearchRequest msearchRequestStandard = MsearchRequest.of(ms -> ms
+            .searches(s -> s
+                .header(h -> h.index("index"))
+                .body(b -> b
+                    .size(10)
+                    .from(10)
+                    .query(q -> q
+                        .matchAll(m -> m)
+                    )
+                )
+            )
+        );
+
+        MsearchRequest msearchRequestOverload = MsearchRequest.of(ms -> ms
+            .searches(s -> s
+                .header(h -> h.index("index"))
+                .body(searchRequest)
+            )
+        );
+
+        // Assert both variants result in the same serialization
+        assertEquals(msearchRequestStandard.toString(), msearchRequestOverload.toString());
+
+        // Script source compatibility
+        ScriptSource scriptSourceStandard = ScriptSource.of(s -> s
+            .scriptTemplate(t -> t
+                .size(10)
+                .from(10)
+                .query(q -> q
+                    .matchAll(m -> m)
+                )
+            )
+        );
+
+        ScriptSource scriptSourceOverload = ScriptSource.of(s -> s
+            .scriptTemplate(searchRequest)
+        );
+
+        // Assert both variants result in the same serialization
+        assertEquals(scriptSourceStandard.toString(), scriptSourceOverload.toString());
     }
 }
