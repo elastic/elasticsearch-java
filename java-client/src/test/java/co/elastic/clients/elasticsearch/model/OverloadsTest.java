@@ -23,9 +23,12 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.FieldSort;
 import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.ScriptSource;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.TimeUnit;
 import co.elastic.clients.elasticsearch._types.aggregations.TopMetrics;
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchAllQuery;
 import co.elastic.clients.elasticsearch.core.MsearchRequest;
+import co.elastic.clients.elasticsearch.core.OpenPointInTimeRequest;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.testkit.ModelTestCase;
@@ -94,7 +97,7 @@ public class OverloadsTest extends ModelTestCase {
     }
 
     @Test
-    public void searchRequestBodyOverloads() throws IOException {
+    public void searchRequestBodyOverloads() {
 
         // Normal search request
         SearchRequest searchRequest = SearchRequest.of(b -> b
@@ -146,5 +149,18 @@ public class OverloadsTest extends ModelTestCase {
 
         // Assert both variants result in the same serialization
         assertEquals(scriptSourceStandard.toString(), scriptSourceOverload.toString());
+    }
+
+    @Test
+    public void timeOverload() {
+        OpenPointInTimeRequest opr = OpenPointInTimeRequest.of(o -> o.index("test").keepAlive(k -> k.time("5s")));
+        OpenPointInTimeRequest opr1 = OpenPointInTimeRequest.of(o -> o.index("test").keepAlive(k -> k.time(5, TimeUnit.Seconds)));
+        OpenPointInTimeRequest opr2 = OpenPointInTimeRequest.of(o -> o.index("test").keepAlive(Time.of(t -> t.time("5s"))));
+        OpenPointInTimeRequest opr3 = OpenPointInTimeRequest.of(o -> o.index("test").keepAlive(Time.of(t -> t.time(5, TimeUnit.Seconds))));
+
+        // Assert all variants result in the same serialization
+        assertEquals(opr.toString(), opr1.toString());
+        assertEquals(opr.toString(), opr2.toString());
+        assertEquals(opr.toString(), opr3.toString());
     }
 }
