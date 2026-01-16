@@ -20,8 +20,8 @@
 package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.BoolQuery;
-import co.elastic.clients.elasticsearch._types.query_dsl.ParentIdQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -50,12 +50,16 @@ public class CodeAdditionsTests extends Assertions {
 
     @Test
     public void testRebuild() {
-        ParentIdQuery parentIdQuery = ParentIdQuery.of(p -> p.id("s").ignoreUnmapped(true));
+        SearchRequest searchRequest = SearchRequest.of(s -> s
+            .size(20)
+            .index("test")
+            .query(q -> q.match(m -> m.field("field").query("value")))
+        );
 
-        ParentIdQuery.Builder builder = parentIdQuery.rebuild();
+        SearchRequest.Builder builder = searchRequest.rebuild();
 
-        ParentIdQuery parentIdQueryRebuilt = builder.build();
+        SearchRequest searchRequestRebuilt = builder.build();
 
-        assertEquals(parentIdQuery.toString(), parentIdQueryRebuilt.toString());
+        assertEquals(searchRequest.toString(), searchRequestRebuilt.toString());
     }
 }
