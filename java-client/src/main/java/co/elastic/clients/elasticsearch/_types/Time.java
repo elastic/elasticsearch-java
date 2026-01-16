@@ -194,6 +194,11 @@ public class Time implements TaggedUnion<Time.Kind, Object>, JsonpSerializable {
 			return new Time(this);
 		}
 
+		public ObjectBuilder<Time> time(Integer t, TimeUnit u) {
+			this._kind = Kind.Time;
+			this._value = String.valueOf(t).concat(u.jsonValue());
+			return this;
+		}
 	}
 
 	private static JsonpDeserializer<Time> buildTimeDeserializer() {
