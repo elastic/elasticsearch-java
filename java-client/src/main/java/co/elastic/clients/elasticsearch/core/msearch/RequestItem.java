@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.core.msearch;
 
+import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.search.SearchRequestBody;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -161,6 +162,23 @@ public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 		 */
 		public final Builder body(Function<SearchRequestBody.Builder, ObjectBuilder<SearchRequestBody>> fn) {
 			return this.body(fn.apply(new SearchRequestBody.Builder()).build());
+		}
+
+		public final Builder body(SearchRequest value) {
+			SearchRequestBody body = SearchRequestBody.of(srb -> srb.aggregations(value.aggregations())
+					.collapse(value.collapse()).explain(value.explain()).ext(value.ext()).from(value.from())
+					.highlight(value.highlight()).trackTotalHits(value.trackTotalHits())
+					.indicesBoost(value.indicesBoost()).docvalueFields(value.docvalueFields()).knn(value.knn())
+					.rank(value.rank()).minScore(value.minScore()).postFilter(value.postFilter())
+					.profile(value.profile()).query(value.query()).rescore(value.rescore()).retriever(value.retriever())
+					.scriptFields(value.scriptFields()).searchAfter(value.searchAfter()).size(value.size())
+					.slice(value.slice()).sort(value.sort()).source(value.source()).fields(value.fields())
+					.suggest(value.suggest()).terminateAfter(value.terminateAfter()).timeout(value.timeout())
+					.trackScores(value.trackScores()).version(value.version())
+					.seqNoPrimaryTerm(value.seqNoPrimaryTerm()).storedFields(value.storedFields()).pit(value.pit())
+					.runtimeMappings(value.runtimeMappings()).stats(value.stats()));
+			this.body = body;
+			return this;
 		}
 
 		/**
