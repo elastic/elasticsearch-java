@@ -92,7 +92,7 @@ public class OverloadsTest extends ModelTestCase {
         // nor testing anything, just checking that this compiles
         ElasticsearchClient client = ElasticsearchClient.of(e -> e.host("http://localhost:9200"));
 
-        SearchResponse<Void> resp = client.search(s -> s,Void.class);
+        SearchResponse<Void> resp = client.search(s -> s, Void.class);
         SearchResponse<Void> respDefault = client.search(s -> s);
     }
 
@@ -153,10 +153,15 @@ public class OverloadsTest extends ModelTestCase {
 
     @Test
     public void timeOverload() {
-        OpenPointInTimeRequest opr = OpenPointInTimeRequest.of(o -> o.index("test").keepAlive(k -> k.time("5s")));
-        OpenPointInTimeRequest opr1 = OpenPointInTimeRequest.of(o -> o.index("test").keepAlive(k -> k.time(5, TimeUnit.Seconds)));
-        OpenPointInTimeRequest opr2 = OpenPointInTimeRequest.of(o -> o.index("test").keepAlive(Time.of(t -> t.time("5s"))));
-        OpenPointInTimeRequest opr3 = OpenPointInTimeRequest.of(o -> o.index("test").keepAlive(Time.of(t -> t.time(5, TimeUnit.Seconds))));
+        OpenPointInTimeRequest opr = OpenPointInTimeRequest.of(o -> o.index("test").keepAlive(k -> k.time(
+            "5s")));
+        OpenPointInTimeRequest opr1 =
+            OpenPointInTimeRequest.of(o -> o.index("test").keepAlive(k -> k.time(5, TimeUnit.Seconds)));
+        OpenPointInTimeRequest opr2 =
+            OpenPointInTimeRequest.of(o -> o.index("test").keepAlive(Time.of(t -> t.time("5s"))));
+        OpenPointInTimeRequest opr3 =
+            OpenPointInTimeRequest.of(o -> o.index("test").keepAlive(Time.of(t -> t.time(5,
+                TimeUnit.Seconds))));
 
         // Assert all variants result in the same serialization
         assertEquals(opr.toString(), opr1.toString());
