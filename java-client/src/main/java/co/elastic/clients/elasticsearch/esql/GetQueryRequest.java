@@ -97,6 +97,12 @@ public class GetQueryRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<GetQueryRequest> {
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(GetQueryRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Required - The query ID
 		 * <p>
@@ -125,6 +131,12 @@ public class GetQueryRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

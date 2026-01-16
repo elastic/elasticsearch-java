@@ -113,6 +113,12 @@ public class ClearCursorRequest extends RequestBase implements JsonpSerializable
 				ObjectBuilder<ClearCursorRequest> {
 		private String cursor;
 
+		public Builder() {
+		}
+		private Builder(ClearCursorRequest instance) {
+			this.cursor = instance.cursor;
+
+		}
 		/**
 		 * Required - Cursor to clear.
 		 * <p>
@@ -141,6 +147,12 @@ public class ClearCursorRequest extends RequestBase implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

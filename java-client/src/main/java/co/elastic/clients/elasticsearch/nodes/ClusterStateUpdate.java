@@ -462,6 +462,26 @@ public class ClusterStateUpdate implements JsonpSerializable {
 		@Nullable
 		private Long notificationTimeMillis;
 
+		public Builder() {
+		}
+		private Builder(ClusterStateUpdate instance) {
+			this.count = instance.count;
+			this.computationTime = instance.computationTime;
+			this.computationTimeMillis = instance.computationTimeMillis;
+			this.publicationTime = instance.publicationTime;
+			this.publicationTimeMillis = instance.publicationTimeMillis;
+			this.contextConstructionTime = instance.contextConstructionTime;
+			this.contextConstructionTimeMillis = instance.contextConstructionTimeMillis;
+			this.commitTime = instance.commitTime;
+			this.commitTimeMillis = instance.commitTimeMillis;
+			this.completionTime = instance.completionTime;
+			this.completionTimeMillis = instance.completionTimeMillis;
+			this.masterApplyTime = instance.masterApplyTime;
+			this.masterApplyTimeMillis = instance.masterApplyTimeMillis;
+			this.notificationTime = instance.notificationTime;
+			this.notificationTimeMillis = instance.notificationTimeMillis;
+
+		}
 		/**
 		 * Required - The number of cluster state update attempts that did not change
 		 * the cluster state since the node started.
@@ -749,6 +769,12 @@ public class ClusterStateUpdate implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

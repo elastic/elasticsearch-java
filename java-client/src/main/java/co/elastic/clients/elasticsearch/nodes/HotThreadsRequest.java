@@ -23,19 +23,24 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ThreadType;
 import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
-import co.elastic.clients.transport.endpoints.TextResponse;
 import co.elastic.clients.transport.endpoints.TextEndpoint;
+import co.elastic.clients.transport.endpoints.TextResponse;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-
+import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
@@ -224,6 +229,19 @@ public class HotThreadsRequest extends RequestBase {
 		@Nullable
 		private ThreadType type;
 
+		public Builder() {
+		}
+		private Builder(HotThreadsRequest instance) {
+			this.ignoreIdleThreads = instance.ignoreIdleThreads;
+			this.interval = instance.interval;
+			this.nodeId = instance.nodeId;
+			this.snapshots = instance.snapshots;
+			this.sort = instance.sort;
+			this.threads = instance.threads;
+			this.timeout = instance.timeout;
+			this.type = instance.type;
+
+		}
 		/**
 		 * If true, known idle threads (e.g. waiting in a socket select, or to get a
 		 * task from an empty queue) are filtered out.
@@ -357,6 +375,12 @@ public class HotThreadsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

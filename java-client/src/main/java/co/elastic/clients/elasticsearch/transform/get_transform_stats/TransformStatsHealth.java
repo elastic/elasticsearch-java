@@ -140,6 +140,13 @@ public class TransformStatsHealth implements JsonpSerializable {
 		@Nullable
 		private List<TransformHealthIssue> issues;
 
+		public Builder() {
+		}
+		private Builder(TransformStatsHealth instance) {
+			this.status = instance.status;
+			this.issues = instance.issues;
+
+		}
 		/**
 		 * Required - API name: {@code status}
 		 */
@@ -204,6 +211,12 @@ public class TransformStatsHealth implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

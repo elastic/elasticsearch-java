@@ -112,6 +112,12 @@ public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterD
 		@Nullable
 		private SnowballLanguage language;
 
+		public Builder() {
+		}
+		private Builder(SnowballTokenFilter instance) {
+			this.language = instance.language;
+
+		}
 		/**
 		 * Controls the language used by the stemmer.
 		 * <p>
@@ -140,6 +146,12 @@ public class SnowballTokenFilter extends TokenFilterBase implements TokenFilterD
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

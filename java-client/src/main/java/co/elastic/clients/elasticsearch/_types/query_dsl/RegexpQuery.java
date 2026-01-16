@@ -222,6 +222,16 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
 
 		private String value;
 
+		public Builder() {
+		}
+		private Builder(RegexpQuery instance) {
+			this.caseInsensitive = instance.caseInsensitive;
+			this.flags = instance.flags;
+			this.maxDeterminizedStates = instance.maxDeterminizedStates;
+			this.rewrite = instance.rewrite;
+			this.value = instance.value;
+
+		}
 		/**
 		 * Allows case insensitive matching of the regular expression value with the
 		 * indexed field values when set to <code>true</code>. When <code>false</code>,
@@ -293,6 +303,12 @@ public class RegexpQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

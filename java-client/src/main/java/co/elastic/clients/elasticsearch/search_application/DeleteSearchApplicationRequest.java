@@ -102,6 +102,12 @@ public class DeleteSearchApplicationRequest extends RequestBase {
 				ObjectBuilder<DeleteSearchApplicationRequest> {
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(DeleteSearchApplicationRequest instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - The name of the search application to delete.
 		 * <p>
@@ -130,6 +136,12 @@ public class DeleteSearchApplicationRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

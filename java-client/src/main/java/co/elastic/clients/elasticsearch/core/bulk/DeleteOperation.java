@@ -80,6 +80,11 @@ public class DeleteOperation extends BulkOperationBase implements BulkOperationV
 	public static class Builder extends BulkOperationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteOperation> {
+		public Builder() {
+		}
+		private Builder(DeleteOperation instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -98,6 +103,12 @@ public class DeleteOperation extends BulkOperationBase implements BulkOperationV
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

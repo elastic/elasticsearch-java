@@ -165,6 +165,15 @@ public class TermsLookup implements JsonpSerializable {
 		@Nullable
 		private List<String> routing;
 
+		public Builder() {
+		}
+		private Builder(TermsLookup instance) {
+			this.index = instance.index;
+			this.id = instance.id;
+			this.path = instance.path;
+			this.routing = instance.routing;
+
+		}
 		/**
 		 * Required - API name: {@code index}
 		 */
@@ -227,6 +236,12 @@ public class TermsLookup implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

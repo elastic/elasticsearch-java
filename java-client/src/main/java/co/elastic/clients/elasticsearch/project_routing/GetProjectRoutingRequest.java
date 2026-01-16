@@ -99,6 +99,12 @@ public class GetProjectRoutingRequest extends RequestBase {
 				ObjectBuilder<GetProjectRoutingRequest> {
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(GetProjectRoutingRequest instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - The name of project routing expression
 		 * <p>
@@ -127,6 +133,12 @@ public class GetProjectRoutingRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

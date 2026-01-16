@@ -109,6 +109,12 @@ public class Datafeeds implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Datafeeds> {
 		private Integer scrollSize;
 
+		public Builder() {
+		}
+		private Builder(Datafeeds instance) {
+			this.scrollSize = instance.scrollSize;
+
+		}
 		/**
 		 * Required - API name: {@code scroll_size}
 		 */
@@ -135,6 +141,12 @@ public class Datafeeds implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

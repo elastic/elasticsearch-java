@@ -99,6 +99,12 @@ public class GetViewRequest extends RequestBase {
 		@Nullable
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(GetViewRequest instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * The comma-separated view names to retrieve.
 		 * <p>
@@ -127,6 +133,12 @@ public class GetViewRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

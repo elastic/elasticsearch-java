@@ -140,6 +140,12 @@ public class ExistsQuery extends QueryBase
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ExistsQuery> {
 		private String field;
 
+		public Builder() {
+		}
+		private Builder(ExistsQuery instance) {
+			this.field = instance.field;
+
+		}
 		/**
 		 * Required - Name of the field you wish to search.
 		 * <p>
@@ -168,6 +174,12 @@ public class ExistsQuery extends QueryBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

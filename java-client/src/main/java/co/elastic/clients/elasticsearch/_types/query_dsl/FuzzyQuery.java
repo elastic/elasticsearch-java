@@ -243,6 +243,17 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 
 		private FieldValue value;
 
+		public Builder() {
+		}
+		private Builder(FuzzyQuery instance) {
+			this.maxExpansions = instance.maxExpansions;
+			this.prefixLength = instance.prefixLength;
+			this.rewrite = instance.rewrite;
+			this.transpositions = instance.transpositions;
+			this.fuzziness = instance.fuzziness;
+			this.value = instance.value;
+
+		}
 		/**
 		 * Maximum number of variations created.
 		 * <p>
@@ -371,6 +382,12 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

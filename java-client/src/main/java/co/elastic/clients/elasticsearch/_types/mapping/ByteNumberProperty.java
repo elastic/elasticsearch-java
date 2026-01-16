@@ -112,6 +112,12 @@ public class ByteNumberProperty extends NumberPropertyBase implements PropertyVa
 		@Nullable
 		private Number nullValue;
 
+		public Builder() {
+		}
+		private Builder(ByteNumberProperty instance) {
+			this.nullValue = instance.nullValue;
+
+		}
 		/**
 		 * API name: {@code null_value}
 		 */
@@ -138,6 +144,12 @@ public class ByteNumberProperty extends NumberPropertyBase implements PropertyVa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

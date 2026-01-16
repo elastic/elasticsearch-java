@@ -220,6 +220,17 @@ public class WatsonxServiceSettings implements JsonpSerializable {
 
 		private String url;
 
+		public Builder() {
+		}
+		private Builder(WatsonxServiceSettings instance) {
+			this.apiKey = instance.apiKey;
+			this.apiVersion = instance.apiVersion;
+			this.modelId = instance.modelId;
+			this.projectId = instance.projectId;
+			this.rateLimit = instance.rateLimit;
+			this.url = instance.url;
+
+		}
 		/**
 		 * Required - A valid API key of your Watsonx account. You can find your Watsonx
 		 * API keys or you can create a new one on the API keys page.
@@ -324,6 +335,12 @@ public class WatsonxServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

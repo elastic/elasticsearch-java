@@ -448,6 +448,25 @@ public class FindFieldStructureRequest extends RequestBase {
 		@Nullable
 		private String timestampFormat;
 
+		public Builder() {
+		}
+		private Builder(FindFieldStructureRequest instance) {
+			this.columnNames = instance.columnNames;
+			this.delimiter = instance.delimiter;
+			this.documentsToSample = instance.documentsToSample;
+			this.ecsCompatibility = instance.ecsCompatibility;
+			this.explain = instance.explain;
+			this.field = instance.field;
+			this.format = instance.format;
+			this.grokPattern = instance.grokPattern;
+			this.index = instance.index;
+			this.quote = instance.quote;
+			this.shouldTrimFields = instance.shouldTrimFields;
+			this.timeout = instance.timeout;
+			this.timestampField = instance.timestampField;
+			this.timestampFormat = instance.timestampFormat;
+
+		}
 		/**
 		 * If <code>format</code> is set to <code>delimited</code>, you can specify the
 		 * column names in a comma-separated list. If this parameter is not specified,
@@ -736,6 +755,12 @@ public class FindFieldStructureRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -529,6 +529,30 @@ public class IndexStats implements JsonpSerializable {
 		@Nullable
 		private ShardsTotalStats shardStats;
 
+		public Builder() {
+		}
+		private Builder(IndexStats instance) {
+			this.completion = instance.completion;
+			this.docs = instance.docs;
+			this.fielddata = instance.fielddata;
+			this.flush = instance.flush;
+			this.get = instance.get;
+			this.indexing = instance.indexing;
+			this.indices = instance.indices;
+			this.merges = instance.merges;
+			this.queryCache = instance.queryCache;
+			this.recovery = instance.recovery;
+			this.refresh = instance.refresh;
+			this.requestCache = instance.requestCache;
+			this.search = instance.search;
+			this.segments = instance.segments;
+			this.store = instance.store;
+			this.translog = instance.translog;
+			this.warmer = instance.warmer;
+			this.bulk = instance.bulk;
+			this.shardStats = instance.shardStats;
+
+		}
 		/**
 		 * Contains statistics about completions across all shards assigned to the node.
 		 * <p>
@@ -908,6 +932,12 @@ public class IndexStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

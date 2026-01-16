@@ -188,6 +188,17 @@ public class GetCalendarEventsRequest extends RequestBase {
 		@Nullable
 		private DateTime start;
 
+		public Builder() {
+		}
+		private Builder(GetCalendarEventsRequest instance) {
+			this.calendarId = instance.calendarId;
+			this.end = instance.end;
+			this.from = instance.from;
+			this.jobId = instance.jobId;
+			this.size = instance.size;
+			this.start = instance.start;
+
+		}
 		/**
 		 * Required - A string that uniquely identifies a calendar. You can get
 		 * information for multiple calendars by using a comma-separated list of ids or
@@ -271,6 +282,12 @@ public class GetCalendarEventsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

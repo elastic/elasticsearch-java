@@ -119,6 +119,13 @@ public class SearchableSnapshotsStatsRequest extends RequestBase {
 		@Nullable
 		private StatsLevel level;
 
+		public Builder() {
+		}
+		private Builder(SearchableSnapshotsStatsRequest instance) {
+			this.index = instance.index;
+			this.level = instance.level;
+
+		}
 		/**
 		 * A comma-separated list of data streams and indices to retrieve statistics
 		 * for.
@@ -173,6 +180,12 @@ public class SearchableSnapshotsStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

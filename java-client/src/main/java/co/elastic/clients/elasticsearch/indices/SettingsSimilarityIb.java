@@ -153,6 +153,14 @@ public class SettingsSimilarityIb implements SettingsSimilarityVariant, JsonpSer
 
 		private Normalization normalization;
 
+		public Builder() {
+		}
+		private Builder(SettingsSimilarityIb instance) {
+			this.distribution = instance.distribution;
+			this.lambda = instance.lambda;
+			this.normalization = instance.normalization;
+
+		}
 		/**
 		 * Required - API name: {@code distribution}
 		 */
@@ -195,6 +203,12 @@ public class SettingsSimilarityIb implements SettingsSimilarityVariant, JsonpSer
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

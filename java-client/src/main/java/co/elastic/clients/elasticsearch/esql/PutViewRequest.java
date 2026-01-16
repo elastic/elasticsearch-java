@@ -127,6 +127,13 @@ public class PutViewRequest extends RequestBase implements JsonpSerializable {
 
 		private String query;
 
+		public Builder() {
+		}
+		private Builder(PutViewRequest instance) {
+			this.name = instance.name;
+			this.query = instance.query;
+
+		}
 		/**
 		 * Required - The view name to create or update.
 		 * <p>
@@ -165,6 +172,12 @@ public class PutViewRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

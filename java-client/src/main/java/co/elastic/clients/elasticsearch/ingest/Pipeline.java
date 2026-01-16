@@ -359,6 +359,22 @@ public class Pipeline implements JsonpSerializable {
 		@Nullable
 		private FieldAccessPattern fieldAccessPattern;
 
+		public Builder() {
+		}
+		private Builder(Pipeline instance) {
+			this.description = instance.description;
+			this.onFailure = instance.onFailure;
+			this.processors = instance.processors;
+			this.version = instance.version;
+			this.deprecated = instance.deprecated;
+			this.meta = instance.meta;
+			this.createdDate = instance.createdDate;
+			this.createdDateMillis = instance.createdDateMillis;
+			this.modifiedDate = instance.modifiedDate;
+			this.modifiedDateMillis = instance.modifiedDateMillis;
+			this.fieldAccessPattern = instance.fieldAccessPattern;
+
+		}
 		/**
 		 * Description of the ingest pipeline.
 		 * <p>
@@ -593,6 +609,12 @@ public class Pipeline implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

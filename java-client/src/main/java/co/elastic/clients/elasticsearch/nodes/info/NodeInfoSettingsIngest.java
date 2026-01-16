@@ -777,6 +777,45 @@ public class NodeInfoSettingsIngest implements JsonpSerializable {
 		@Nullable
 		private NodeInfoIngestInfo inference;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoSettingsIngest instance) {
+			this.attachment = instance.attachment;
+			this.append = instance.append;
+			this.csv = instance.csv;
+			this.convert = instance.convert;
+			this.date = instance.date;
+			this.dateIndexName = instance.dateIndexName;
+			this.dotExpander = instance.dotExpander;
+			this.enrich = instance.enrich;
+			this.fail = instance.fail;
+			this.foreach = instance.foreach;
+			this.json = instance.json;
+			this.userAgent = instance.userAgent;
+			this.kv = instance.kv;
+			this.geoip = instance.geoip;
+			this.grok = instance.grok;
+			this.gsub = instance.gsub;
+			this.join = instance.join;
+			this.lowercase = instance.lowercase;
+			this.remove = instance.remove;
+			this.rename = instance.rename;
+			this.script = instance.script;
+			this.set = instance.set;
+			this.sort = instance.sort;
+			this.split = instance.split;
+			this.trim = instance.trim;
+			this.uppercase = instance.uppercase;
+			this.urldecode = instance.urldecode;
+			this.bytes = instance.bytes;
+			this.dissect = instance.dissect;
+			this.setSecurityUser = instance.setSecurityUser;
+			this.pipeline = instance.pipeline;
+			this.drop = instance.drop;
+			this.circle = instance.circle;
+			this.inference = instance.inference;
+
+		}
 		/**
 		 * API name: {@code attachment}
 		 */
@@ -1306,6 +1345,12 @@ public class NodeInfoSettingsIngest implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

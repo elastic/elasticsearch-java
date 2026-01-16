@@ -124,6 +124,12 @@ public class SettingsSimilarityDfi implements SettingsSimilarityVariant, JsonpSe
 				ObjectBuilder<SettingsSimilarityDfi> {
 		private DFIIndependenceMeasure independenceMeasure;
 
+		public Builder() {
+		}
+		private Builder(SettingsSimilarityDfi instance) {
+			this.independenceMeasure = instance.independenceMeasure;
+
+		}
 		/**
 		 * Required - API name: {@code independence_measure}
 		 */
@@ -150,6 +156,12 @@ public class SettingsSimilarityDfi implements SettingsSimilarityVariant, JsonpSe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

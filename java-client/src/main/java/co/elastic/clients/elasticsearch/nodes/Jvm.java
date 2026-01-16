@@ -279,6 +279,19 @@ public class Jvm implements JsonpSerializable {
 		@Nullable
 		private Long uptimeInMillis;
 
+		public Builder() {
+		}
+		private Builder(Jvm instance) {
+			this.bufferPools = instance.bufferPools;
+			this.classes = instance.classes;
+			this.gc = instance.gc;
+			this.mem = instance.mem;
+			this.threads = instance.threads;
+			this.timestamp = instance.timestamp;
+			this.uptime = instance.uptime;
+			this.uptimeInMillis = instance.uptimeInMillis;
+
+		}
 		/**
 		 * Contains statistics about JVM buffer pools for the node.
 		 * <p>
@@ -440,6 +453,12 @@ public class Jvm implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

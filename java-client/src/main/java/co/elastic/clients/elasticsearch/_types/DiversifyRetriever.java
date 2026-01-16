@@ -260,6 +260,19 @@ public class DiversifyRetriever extends RetrieverBase implements RetrieverVarian
 		@Nullable
 		private Float lambda;
 
+		public Builder() {
+		}
+		private Builder(DiversifyRetriever instance) {
+			this.type = instance.type;
+			this.field = instance.field;
+			this.retriever = instance.retriever;
+			this.size = instance.size;
+			this.rankWindowSize = instance.rankWindowSize;
+			this.queryVector = instance.queryVector;
+			this.queryVectorBuilder = instance.queryVectorBuilder;
+			this.lambda = instance.lambda;
+
+		}
 		/**
 		 * Required - The diversification strategy to apply.
 		 * <p>
@@ -414,6 +427,12 @@ public class DiversifyRetriever extends RetrieverBase implements RetrieverVarian
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

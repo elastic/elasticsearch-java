@@ -255,6 +255,17 @@ public class DataframeAnalysisOutlierDetection implements DataframeAnalysisVaria
 		@Nullable
 		private Boolean standardizationEnabled;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalysisOutlierDetection instance) {
+			this.computeFeatureInfluence = instance.computeFeatureInfluence;
+			this.featureInfluenceThreshold = instance.featureInfluenceThreshold;
+			this.method = instance.method;
+			this.nNeighbors = instance.nNeighbors;
+			this.outlierFraction = instance.outlierFraction;
+			this.standardizationEnabled = instance.standardizationEnabled;
+
+		}
 		/**
 		 * Specifies whether the feature influence calculation is enabled.
 		 * <p>
@@ -346,6 +357,12 @@ public class DataframeAnalysisOutlierDetection implements DataframeAnalysisVaria
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

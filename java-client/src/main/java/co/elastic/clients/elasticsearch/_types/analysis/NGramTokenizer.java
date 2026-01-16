@@ -177,6 +177,15 @@ public class NGramTokenizer extends TokenizerBase implements TokenizerDefinition
 		@Nullable
 		private List<TokenChar> tokenChars;
 
+		public Builder() {
+		}
+		private Builder(NGramTokenizer instance) {
+			this.customTokenChars = instance.customTokenChars;
+			this.maxGram = instance.maxGram;
+			this.minGram = instance.minGram;
+			this.tokenChars = instance.tokenChars;
+
+		}
 		/**
 		 * API name: {@code custom_token_chars}
 		 */
@@ -239,6 +248,12 @@ public class NGramTokenizer extends TokenizerBase implements TokenizerDefinition
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

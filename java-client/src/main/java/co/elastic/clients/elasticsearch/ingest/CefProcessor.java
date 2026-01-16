@@ -200,6 +200,16 @@ public class CefProcessor extends ProcessorBase implements ProcessorVariant {
 		@Nullable
 		private String timezone;
 
+		public Builder() {
+		}
+		private Builder(CefProcessor instance) {
+			this.field = instance.field;
+			this.ignoreMissing = instance.ignoreMissing;
+			this.targetField = instance.targetField;
+			this.ignoreEmptyValues = instance.ignoreEmptyValues;
+			this.timezone = instance.timezone;
+
+		}
 		/**
 		 * Required - The field containing the CEF message.
 		 * <p>
@@ -273,6 +283,12 @@ public class CefProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -198,6 +198,15 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(StartDatafeedRequest instance) {
+			this.datafeedId = instance.datafeedId;
+			this.end = instance.end;
+			this.start = instance.start;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - A numerical character string that uniquely identifies the
 		 * datafeed. This identifier can contain lowercase alphanumeric characters (a-z
@@ -268,6 +277,12 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

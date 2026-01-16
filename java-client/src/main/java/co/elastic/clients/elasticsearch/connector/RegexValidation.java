@@ -121,6 +121,12 @@ public class RegexValidation implements ValidationVariant, JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RegexValidation> {
 		private String constraint;
 
+		public Builder() {
+		}
+		private Builder(RegexValidation instance) {
+			this.constraint = instance.constraint;
+
+		}
 		/**
 		 * Required - API name: {@code constraint}
 		 */
@@ -147,6 +153,12 @@ public class RegexValidation implements ValidationVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -89,6 +89,11 @@ public class KeywordRepeatTokenFilter extends TokenFilterBase implements TokenFi
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KeywordRepeatTokenFilter> {
+		public Builder() {
+		}
+		private Builder(KeywordRepeatTokenFilter instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class KeywordRepeatTokenFilter extends TokenFilterBase implements TokenFi
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

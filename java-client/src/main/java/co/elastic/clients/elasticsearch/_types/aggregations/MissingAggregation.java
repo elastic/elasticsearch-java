@@ -162,6 +162,13 @@ public class MissingAggregation extends BucketAggregationBase
 		@Nullable
 		private FieldValue missing;
 
+		public Builder() {
+		}
+		private Builder(MissingAggregation instance) {
+			this.field = instance.field;
+			this.missing = instance.missing;
+
+		}
 		/**
 		 * The name of the field.
 		 * <p>
@@ -237,6 +244,12 @@ public class MissingAggregation extends BucketAggregationBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

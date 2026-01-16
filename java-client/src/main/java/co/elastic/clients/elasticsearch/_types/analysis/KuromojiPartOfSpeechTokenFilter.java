@@ -117,6 +117,12 @@ public class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase implements 
 				ObjectBuilder<KuromojiPartOfSpeechTokenFilter> {
 		private List<String> stoptags;
 
+		public Builder() {
+		}
+		private Builder(KuromojiPartOfSpeechTokenFilter instance) {
+			this.stoptags = instance.stoptags;
+
+		}
 		/**
 		 * Required - API name: {@code stoptags}
 		 * <p>
@@ -155,6 +161,12 @@ public class KuromojiPartOfSpeechTokenFilter extends TokenFilterBase implements 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

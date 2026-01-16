@@ -139,6 +139,13 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDef
 		@Nullable
 		private Integer min;
 
+		public Builder() {
+		}
+		private Builder(LengthTokenFilter instance) {
+			this.max = instance.max;
+			this.min = instance.min;
+
+		}
 		/**
 		 * Maximum character length of a token. Longer tokens are excluded from the
 		 * output. Defaults to <code>Integer.MAX_VALUE</code>, which is
@@ -180,6 +187,12 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDef
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

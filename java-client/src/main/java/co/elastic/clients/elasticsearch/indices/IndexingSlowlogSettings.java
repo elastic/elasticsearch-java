@@ -180,6 +180,15 @@ public class IndexingSlowlogSettings implements JsonpSerializable {
 		@Nullable
 		private IndexingSlowlogTresholds threshold;
 
+		public Builder() {
+		}
+		private Builder(IndexingSlowlogSettings instance) {
+			this.level = instance.level;
+			this.source = instance.source;
+			this.reformat = instance.reformat;
+			this.threshold = instance.threshold;
+
+		}
 		/**
 		 * API name: {@code level}
 		 */
@@ -238,6 +247,12 @@ public class IndexingSlowlogSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

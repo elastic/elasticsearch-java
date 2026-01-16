@@ -266,6 +266,18 @@ public class AzureAiStudioTaskSettings implements JsonpSerializable {
 		@Nullable
 		private Integer topN;
 
+		public Builder() {
+		}
+		private Builder(AzureAiStudioTaskSettings instance) {
+			this.doSample = instance.doSample;
+			this.maxNewTokens = instance.maxNewTokens;
+			this.temperature = instance.temperature;
+			this.topP = instance.topP;
+			this.user = instance.user;
+			this.returnDocuments = instance.returnDocuments;
+			this.topN = instance.topN;
+
+		}
 		/**
 		 * For a <code>completion</code> task, instruct the inference process to perform
 		 * sampling. It has no effect unless <code>temperature</code> or
@@ -365,6 +377,12 @@ public class AzureAiStudioTaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

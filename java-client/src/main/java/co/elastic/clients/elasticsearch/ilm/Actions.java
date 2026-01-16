@@ -384,6 +384,24 @@ public class Actions implements JsonpSerializable {
 		@Nullable
 		private WaitForSnapshotAction waitForSnapshot;
 
+		public Builder() {
+		}
+		private Builder(Actions instance) {
+			this.allocate = instance.allocate;
+			this.delete = instance.delete;
+			this.downsample = instance.downsample;
+			this.freeze = instance.freeze;
+			this.forcemerge = instance.forcemerge;
+			this.migrate = instance.migrate;
+			this.readonly = instance.readonly;
+			this.rollover = instance.rollover;
+			this.setPriority = instance.setPriority;
+			this.searchableSnapshot = instance.searchableSnapshot;
+			this.shrink = instance.shrink;
+			this.unfollow = instance.unfollow;
+			this.waitForSnapshot = instance.waitForSnapshot;
+
+		}
 		/**
 		 * Phases allowed: warm, cold.
 		 * <p>
@@ -657,6 +675,12 @@ public class Actions implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

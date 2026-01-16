@@ -124,6 +124,13 @@ public class MlJobForecasts implements JsonpSerializable {
 
 		private Long forecastedJobs;
 
+		public Builder() {
+		}
+		private Builder(MlJobForecasts instance) {
+			this.total = instance.total;
+			this.forecastedJobs = instance.forecastedJobs;
+
+		}
 		/**
 		 * Required - API name: {@code total}
 		 */
@@ -158,6 +165,12 @@ public class MlJobForecasts implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

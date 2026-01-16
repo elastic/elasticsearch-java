@@ -130,6 +130,13 @@ public class ESQLView implements JsonpSerializable {
 
 		private String query;
 
+		public Builder() {
+		}
+		private Builder(ESQLView instance) {
+			this.name = instance.name;
+			this.query = instance.query;
+
+		}
 		/**
 		 * Required - The name of the ES|QL view
 		 * <p>
@@ -168,6 +175,12 @@ public class ESQLView implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -282,6 +282,20 @@ public class MappingLimitSettings implements JsonpSerializable {
 		@Nullable
 		private Boolean ignoreMalformed;
 
+		public Builder() {
+		}
+		private Builder(MappingLimitSettings instance) {
+			this.coerce = instance.coerce;
+			this.totalFields = instance.totalFields;
+			this.depth = instance.depth;
+			this.nestedFields = instance.nestedFields;
+			this.nestedObjects = instance.nestedObjects;
+			this.fieldNameLength = instance.fieldNameLength;
+			this.dimensionFields = instance.dimensionFields;
+			this.source = instance.source;
+			this.ignoreMalformed = instance.ignoreMalformed;
+
+		}
 		/**
 		 * API name: {@code coerce}
 		 */
@@ -428,6 +442,12 @@ public class MappingLimitSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

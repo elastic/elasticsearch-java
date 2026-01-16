@@ -121,6 +121,13 @@ public class DeleteRoleRequest extends RequestBase {
 		@Nullable
 		private Refresh refresh;
 
+		public Builder() {
+		}
+		private Builder(DeleteRoleRequest instance) {
+			this.name = instance.name;
+			this.refresh = instance.refresh;
+
+		}
 		/**
 		 * Required - The name of the role.
 		 * <p>
@@ -162,6 +169,12 @@ public class DeleteRoleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

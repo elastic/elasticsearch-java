@@ -194,6 +194,16 @@ public class NodeAttributes implements JsonpSerializable {
 
 		private String transportAddress;
 
+		public Builder() {
+		}
+		private Builder(NodeAttributes instance) {
+			this.attributes = instance.attributes;
+			this.ephemeralId = instance.ephemeralId;
+			this.id = instance.id;
+			this.name = instance.name;
+			this.transportAddress = instance.transportAddress;
+
+		}
 		/**
 		 * Required - Lists node attributes.
 		 * <p>
@@ -276,6 +286,12 @@ public class NodeAttributes implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

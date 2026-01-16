@@ -123,6 +123,12 @@ public class MappingLimitSettingsNestedObjects implements JsonpSerializable {
 		@Nullable
 		private Long limit;
 
+		public Builder() {
+		}
+		private Builder(MappingLimitSettingsNestedObjects instance) {
+			this.limit = instance.limit;
+
+		}
 		/**
 		 * The maximum number of nested JSON objects that a single document can contain
 		 * across all nested types. This limit helps to prevent out of memory errors
@@ -153,6 +159,12 @@ public class MappingLimitSettingsNestedObjects implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

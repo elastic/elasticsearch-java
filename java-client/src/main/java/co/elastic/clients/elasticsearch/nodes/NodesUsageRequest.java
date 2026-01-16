@@ -138,6 +138,14 @@ public class NodesUsageRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(NodesUsageRequest instance) {
+			this.metric = instance.metric;
+			this.nodeId = instance.nodeId;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Limits the information returned to the specific metrics. A comma-separated
 		 * list of the following options: <code>_all</code>, <code>rest_actions</code>,
@@ -233,6 +241,12 @@ public class NodesUsageRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

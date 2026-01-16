@@ -89,6 +89,11 @@ public class LetterTokenizer extends TokenizerBase implements TokenizerDefinitio
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LetterTokenizer> {
+		public Builder() {
+		}
+		private Builder(LetterTokenizer instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class LetterTokenizer extends TokenizerBase implements TokenizerDefinitio
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

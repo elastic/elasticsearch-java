@@ -122,6 +122,12 @@ public class DenseVectorIndexOptionsRescoreVector implements JsonpSerializable {
 				ObjectBuilder<DenseVectorIndexOptionsRescoreVector> {
 		private Float oversample;
 
+		public Builder() {
+		}
+		private Builder(DenseVectorIndexOptionsRescoreVector instance) {
+			this.oversample = instance.oversample;
+
+		}
 		/**
 		 * Required - The oversampling factor to use when searching for the nearest
 		 * neighbor. This is only applicable to the quantized formats:
@@ -157,6 +163,12 @@ public class DenseVectorIndexOptionsRescoreVector implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

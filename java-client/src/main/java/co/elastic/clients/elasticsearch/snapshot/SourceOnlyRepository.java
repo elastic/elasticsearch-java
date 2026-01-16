@@ -108,6 +108,12 @@ public class SourceOnlyRepository extends RepositoryBase implements RepositoryVa
 				ObjectBuilder<SourceOnlyRepository> {
 		private SourceOnlyRepositorySettings settings;
 
+		public Builder() {
+		}
+		private Builder(SourceOnlyRepository instance) {
+			this.settings = instance.settings;
+
+		}
 		/**
 		 * Required - The repository settings.
 		 * <p>
@@ -146,6 +152,12 @@ public class SourceOnlyRepository extends RepositoryBase implements RepositoryVa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

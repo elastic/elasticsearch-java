@@ -165,6 +165,14 @@ public class ContextualAIServiceSettings implements JsonpSerializable {
 		@Nullable
 		private RateLimitSetting rateLimit;
 
+		public Builder() {
+		}
+		private Builder(ContextualAIServiceSettings instance) {
+			this.apiKey = instance.apiKey;
+			this.modelId = instance.modelId;
+			this.rateLimit = instance.rateLimit;
+
+		}
 		/**
 		 * Required - A valid API key for your Contexutual AI account.
 		 * <p>
@@ -235,6 +243,12 @@ public class ContextualAIServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

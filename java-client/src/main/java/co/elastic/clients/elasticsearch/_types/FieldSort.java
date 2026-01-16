@@ -258,6 +258,18 @@ public class FieldSort implements JsonpSerializable {
 		@Nullable
 		private String format;
 
+		public Builder() {
+		}
+		private Builder(FieldSort instance) {
+			this.missing = instance.missing;
+			this.mode = instance.mode;
+			this.nested = instance.nested;
+			this.order = instance.order;
+			this.unmappedType = instance.unmappedType;
+			this.numericType = instance.numericType;
+			this.format = instance.format;
+
+		}
 		/**
 		 * API name: {@code missing}
 		 */
@@ -378,6 +390,12 @@ public class FieldSort implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

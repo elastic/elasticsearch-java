@@ -450,6 +450,28 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Long terminateAfter;
 
+		public Builder() {
+		}
+		private Builder(CountRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.analyzeWildcard = instance.analyzeWildcard;
+			this.analyzer = instance.analyzer;
+			this.defaultOperator = instance.defaultOperator;
+			this.df = instance.df;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreThrottled = instance.ignoreThrottled;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.lenient = instance.lenient;
+			this.minScore = instance.minScore;
+			this.preference = instance.preference;
+			this.projectRouting = instance.projectRouting;
+			this.q = instance.q;
+			this.query = instance.query;
+			this.routing = instance.routing;
+			this.terminateAfter = instance.terminateAfter;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -744,6 +766,12 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

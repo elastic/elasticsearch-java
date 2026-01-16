@@ -160,6 +160,14 @@ public class Filter implements JsonpSerializable {
 
 		private List<String> items;
 
+		public Builder() {
+		}
+		private Builder(Filter instance) {
+			this.description = instance.description;
+			this.filterId = instance.filterId;
+			this.items = instance.items;
+
+		}
 		/**
 		 * A description of the filter.
 		 * <p>
@@ -222,6 +230,12 @@ public class Filter implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

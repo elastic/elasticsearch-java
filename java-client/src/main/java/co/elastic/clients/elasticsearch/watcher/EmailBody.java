@@ -135,6 +135,13 @@ public class EmailBody implements JsonpSerializable {
 		@Nullable
 		private String text;
 
+		public Builder() {
+		}
+		private Builder(EmailBody instance) {
+			this.html = instance.html;
+			this.text = instance.text;
+
+		}
 		/**
 		 * API name: {@code html}
 		 */
@@ -169,6 +176,12 @@ public class EmailBody implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -144,6 +144,13 @@ public class HuggingFaceTaskSettings implements JsonpSerializable {
 		@Nullable
 		private Integer topN;
 
+		public Builder() {
+		}
+		private Builder(HuggingFaceTaskSettings instance) {
+			this.returnDocuments = instance.returnDocuments;
+			this.topN = instance.topN;
+
+		}
 		/**
 		 * For a <code>rerank</code> task, return doc text within the results.
 		 * <p>
@@ -183,6 +190,12 @@ public class HuggingFaceTaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

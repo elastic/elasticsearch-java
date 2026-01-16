@@ -452,6 +452,24 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(ReindexRequest instance) {
+			this.conflicts = instance.conflicts;
+			this.dest = instance.dest;
+			this.maxDocs = instance.maxDocs;
+			this.refresh = instance.refresh;
+			this.requestsPerSecond = instance.requestsPerSecond;
+			this.requireAlias = instance.requireAlias;
+			this.script = instance.script;
+			this.scroll = instance.scroll;
+			this.slices = instance.slices;
+			this.source = instance.source;
+			this.timeout = instance.timeout;
+			this.waitForActiveShards = instance.waitForActiveShards;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * Indicates whether to continue reindexing even when there are conflicts.
 		 * <p>
@@ -716,6 +734,12 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

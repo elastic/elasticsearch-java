@@ -116,6 +116,12 @@ public class EwmaModelSettings implements JsonpSerializable {
 		@Nullable
 		private Float alpha;
 
+		public Builder() {
+		}
+		private Builder(EwmaModelSettings instance) {
+			this.alpha = instance.alpha;
+
+		}
 		/**
 		 * API name: {@code alpha}
 		 */
@@ -142,6 +148,12 @@ public class EwmaModelSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

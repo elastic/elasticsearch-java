@@ -151,6 +151,13 @@ public class RemoteClusterPrivileges implements JsonpSerializable {
 
 		private List<RemoteClusterPrivilege> privileges;
 
+		public Builder() {
+		}
+		private Builder(RemoteClusterPrivileges instance) {
+			this.clusters = instance.clusters;
+			this.privileges = instance.privileges;
+
+		}
 		/**
 		 * Required - A list of cluster aliases to which the permissions in this entry
 		 * apply.
@@ -221,6 +228,12 @@ public class RemoteClusterPrivileges implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

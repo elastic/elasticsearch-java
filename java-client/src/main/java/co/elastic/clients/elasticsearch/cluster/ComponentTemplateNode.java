@@ -273,6 +273,19 @@ public class ComponentTemplateNode implements JsonpSerializable {
 		@Nullable
 		private Long modifiedDateMillis;
 
+		public Builder() {
+		}
+		private Builder(ComponentTemplateNode instance) {
+			this.template = instance.template;
+			this.version = instance.version;
+			this.meta = instance.meta;
+			this.deprecated = instance.deprecated;
+			this.createdDate = instance.createdDate;
+			this.createdDateMillis = instance.createdDateMillis;
+			this.modifiedDate = instance.modifiedDate;
+			this.modifiedDateMillis = instance.modifiedDateMillis;
+
+		}
 		/**
 		 * Required - API name: {@code template}
 		 */
@@ -387,6 +400,12 @@ public class ComponentTemplateNode implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

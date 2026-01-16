@@ -290,6 +290,18 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private WaitForActiveShards waitForActiveShards;
 
+		public Builder() {
+		}
+		private Builder(ShrinkRequest instance) {
+			this.aliases = instance.aliases;
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.settings = instance.settings;
+			this.target = instance.target;
+			this.timeout = instance.timeout;
+			this.waitForActiveShards = instance.waitForActiveShards;
+
+		}
 		/**
 		 * The key is the alias name. Index alias names support date math.
 		 * <p>
@@ -453,6 +465,12 @@ public class ShrinkRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

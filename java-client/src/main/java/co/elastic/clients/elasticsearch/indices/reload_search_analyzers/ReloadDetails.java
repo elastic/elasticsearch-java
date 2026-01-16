@@ -158,6 +158,14 @@ public class ReloadDetails implements JsonpSerializable {
 
 		private List<String> reloadedNodeIds;
 
+		public Builder() {
+		}
+		private Builder(ReloadDetails instance) {
+			this.index = instance.index;
+			this.reloadedAnalyzers = instance.reloadedAnalyzers;
+			this.reloadedNodeIds = instance.reloadedNodeIds;
+
+		}
 		/**
 		 * Required - API name: {@code index}
 		 */
@@ -224,6 +232,12 @@ public class ReloadDetails implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

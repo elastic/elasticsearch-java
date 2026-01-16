@@ -89,6 +89,11 @@ public class CzechStemTokenFilter extends TokenFilterBase implements TokenFilter
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CzechStemTokenFilter> {
+		public Builder() {
+		}
+		private Builder(CzechStemTokenFilter instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class CzechStemTokenFilter extends TokenFilterBase implements TokenFilter
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

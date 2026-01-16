@@ -218,6 +218,17 @@ public class StandardDeviationBounds implements JsonpSerializable {
 		@Nullable
 		private Double lowerSampling;
 
+		public Builder() {
+		}
+		private Builder(StandardDeviationBounds instance) {
+			this.upper = instance.upper;
+			this.lower = instance.lower;
+			this.upperPopulation = instance.upperPopulation;
+			this.lowerPopulation = instance.lowerPopulation;
+			this.upperSampling = instance.upperSampling;
+			this.lowerSampling = instance.lowerSampling;
+
+		}
 		/**
 		 * API name: {@code upper}
 		 */
@@ -284,6 +295,12 @@ public class StandardDeviationBounds implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

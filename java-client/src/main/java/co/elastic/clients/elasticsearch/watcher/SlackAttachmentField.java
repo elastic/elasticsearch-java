@@ -144,6 +144,14 @@ public class SlackAttachmentField implements JsonpSerializable {
 
 		private String value;
 
+		public Builder() {
+		}
+		private Builder(SlackAttachmentField instance) {
+			this.short_ = instance.short_;
+			this.title = instance.title;
+			this.value = instance.value;
+
+		}
 		/**
 		 * Required - API name: {@code short}
 		 */
@@ -186,6 +194,12 @@ public class SlackAttachmentField implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -159,6 +159,13 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 		@Nullable
 		private IntervalsFilter filter;
 
+		public Builder() {
+		}
+		private Builder(IntervalsAnyOf instance) {
+			this.intervals = instance.intervals;
+			this.filter = instance.filter;
+
+		}
 		/**
 		 * Required - An array of rules to match.
 		 * <p>
@@ -256,6 +263,12 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

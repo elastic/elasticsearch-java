@@ -473,6 +473,24 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
+		public Builder() {
+		}
+		private Builder(CreateRequest<TDocument> instance) {
+			this.id = instance.id;
+			this.includeSourceOnError = instance.includeSourceOnError;
+			this.index = instance.index;
+			this.pipeline = instance.pipeline;
+			this.refresh = instance.refresh;
+			this.requireAlias = instance.requireAlias;
+			this.requireDataStream = instance.requireDataStream;
+			this.routing = instance.routing;
+			this.timeout = instance.timeout;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+			this.waitForActiveShards = instance.waitForActiveShards;
+			this.document = instance.document;
+
+		}
 		/**
 		 * Required - A unique identifier for the document. To automatically generate a
 		 * document ID, use the <code>POST /&lt;target&gt;/_doc/</code> request format.
@@ -715,6 +733,12 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	/**
 	 * Json deserializer for {@link CreateRequest} based on named deserializers
 	 * provided by the calling {@code JsonMapper}.

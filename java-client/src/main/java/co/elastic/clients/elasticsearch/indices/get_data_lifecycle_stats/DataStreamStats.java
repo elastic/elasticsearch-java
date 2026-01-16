@@ -151,6 +151,14 @@ public class DataStreamStats implements JsonpSerializable {
 
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(DataStreamStats instance) {
+			this.backingIndicesInError = instance.backingIndicesInError;
+			this.backingIndicesInTotal = instance.backingIndicesInTotal;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - The count of the backing indices for the data stream.
 		 * <p>
@@ -200,6 +208,12 @@ public class DataStreamStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

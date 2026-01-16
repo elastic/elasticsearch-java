@@ -151,6 +151,13 @@ public class SamlLogoutRequest extends RequestBase implements JsonpSerializable 
 
 		private String token;
 
+		public Builder() {
+		}
+		private Builder(SamlLogoutRequest instance) {
+			this.refreshToken = instance.refreshToken;
+			this.token = instance.token;
+
+		}
 		/**
 		 * The refresh token that was returned as a response to calling the SAML
 		 * authenticate API. Alternatively, the most recent refresh token that was
@@ -193,6 +200,12 @@ public class SamlLogoutRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

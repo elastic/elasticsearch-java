@@ -140,6 +140,13 @@ public class Latest implements JsonpSerializable {
 
 		private List<String> uniqueKey;
 
+		public Builder() {
+		}
+		private Builder(Latest instance) {
+			this.sort = instance.sort;
+			this.uniqueKey = instance.uniqueKey;
+
+		}
 		/**
 		 * Required - Specifies the date field that is used to identify the latest
 		 * documents.
@@ -195,6 +202,12 @@ public class Latest implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

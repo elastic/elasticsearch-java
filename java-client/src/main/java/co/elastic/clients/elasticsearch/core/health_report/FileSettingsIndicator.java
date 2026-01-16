@@ -103,6 +103,12 @@ public class FileSettingsIndicator extends BaseIndicator {
 		@Nullable
 		private FileSettingsIndicatorDetails details;
 
+		public Builder() {
+		}
+		private Builder(FileSettingsIndicator instance) {
+			this.details = instance.details;
+
+		}
 		/**
 		 * API name: {@code details}
 		 */
@@ -137,6 +143,12 @@ public class FileSettingsIndicator extends BaseIndicator {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

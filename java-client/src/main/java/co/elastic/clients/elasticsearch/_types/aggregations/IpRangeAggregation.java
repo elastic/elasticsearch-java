@@ -154,6 +154,13 @@ public class IpRangeAggregation extends BucketAggregationBase implements Aggrega
 		@Nullable
 		private List<IpRangeAggregationRange> ranges;
 
+		public Builder() {
+		}
+		private Builder(IpRangeAggregation instance) {
+			this.field = instance.field;
+			this.ranges = instance.ranges;
+
+		}
 		/**
 		 * The date field whose values are used to build ranges.
 		 * <p>
@@ -218,6 +225,12 @@ public class IpRangeAggregation extends BucketAggregationBase implements Aggrega
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

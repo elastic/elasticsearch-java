@@ -227,6 +227,17 @@ public class RecoveryRequest extends RequestBase {
 		@Nullable
 		private List<String> index;
 
+		public Builder() {
+		}
+		private Builder(RecoveryRequest instance) {
+			this.activeOnly = instance.activeOnly;
+			this.allowNoIndices = instance.allowNoIndices;
+			this.detailed = instance.detailed;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+
+		}
 		/**
 		 * If <code>true</code>, the response only includes ongoing shard recoveries.
 		 * <p>
@@ -348,6 +359,12 @@ public class RecoveryRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -156,6 +156,15 @@ public class NodesInfoRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(NodesInfoRequest instance) {
+			this.flatSettings = instance.flatSettings;
+			this.metric = instance.metric;
+			this.nodeId = instance.nodeId;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * If true, returns settings in flat format.
 		 * <p>
@@ -255,6 +264,12 @@ public class NodesInfoRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

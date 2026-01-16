@@ -114,6 +114,12 @@ public class NodeInfoSettingsClusterElection implements JsonpSerializable {
 				ObjectBuilder<NodeInfoSettingsClusterElection> {
 		private String strategy;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoSettingsClusterElection instance) {
+			this.strategy = instance.strategy;
+
+		}
 		/**
 		 * Required - API name: {@code strategy}
 		 */
@@ -140,6 +146,12 @@ public class NodeInfoSettingsClusterElection implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

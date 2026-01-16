@@ -152,6 +152,14 @@ public class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
 
 		private Long min;
 
+		public Builder() {
+		}
+		private Builder(ClusterProcessOpenFileDescriptors instance) {
+			this.avg = instance.avg;
+			this.max = instance.max;
+			this.min = instance.min;
+
+		}
 		/**
 		 * Required - Average number of concurrently open file descriptors. Returns
 		 * <code>-1</code> if not supported.
@@ -203,6 +211,12 @@ public class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -175,6 +175,15 @@ public class NodeInfoSettingsHttp implements JsonpSerializable {
 		@Nullable
 		private String port;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoSettingsHttp instance) {
+			this.type = instance.type;
+			this.typeDefault = instance.typeDefault;
+			this.compression = instance.compression;
+			this.port = instance.port;
+
+		}
 		/**
 		 * Required - API name: {@code type}
 		 */
@@ -233,6 +242,12 @@ public class NodeInfoSettingsHttp implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

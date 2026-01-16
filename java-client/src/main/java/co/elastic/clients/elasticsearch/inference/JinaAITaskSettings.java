@@ -67,6 +67,9 @@ public class JinaAITaskSettings implements JsonpSerializable {
 	private final JinaAITextEmbeddingTask task;
 
 	@Nullable
+	private final Boolean lateChunking;
+
+	@Nullable
 	private final Integer topN;
 
 	// ---------------------------------------------------------------------------------------------
@@ -75,6 +78,7 @@ public class JinaAITaskSettings implements JsonpSerializable {
 
 		this.returnDocuments = builder.returnDocuments;
 		this.task = builder.task;
+		this.lateChunking = builder.lateChunking;
 		this.topN = builder.topN;
 
 	}
@@ -115,6 +119,27 @@ public class JinaAITaskSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * For a <code>text_embedding</code> task, controls when text is split into
+	 * chunks. When set to <code>true</code>, a request from Elasticsearch contains
+	 * only chunks related to a single document. Instead of batching chunks across
+	 * documents, Elasticsearch sends them in separate requests. This ensures that
+	 * chunk embeddings retain context from the entire document, improving semantic
+	 * quality.
+	 * <p>
+	 * If a document exceeds the model's context limits, late chunking is
+	 * automatically disabled for that document only and standard chunking is used
+	 * instead.
+	 * <p>
+	 * If not specified, defaults to <code>false</code>.
+	 * <p>
+	 * API name: {@code late_chunking}
+	 */
+	@Nullable
+	public final Boolean lateChunking() {
+		return this.lateChunking;
+	}
+
+	/**
 	 * For a <code>rerank</code> task, the number of most relevant documents to
 	 * return. It defaults to the number of the documents. If this inference
 	 * endpoint is used in a <code>text_similarity_reranker</code> retriever query
@@ -148,6 +173,11 @@ public class JinaAITaskSettings implements JsonpSerializable {
 			generator.writeKey("task");
 			this.task.serialize(generator, mapper);
 		}
+		if (this.lateChunking != null) {
+			generator.writeKey("late_chunking");
+			generator.write(this.lateChunking);
+
+		}
 		if (this.topN != null) {
 			generator.writeKey("top_n");
 			generator.write(this.topN);
@@ -177,8 +207,20 @@ public class JinaAITaskSettings implements JsonpSerializable {
 		private JinaAITextEmbeddingTask task;
 
 		@Nullable
+		private Boolean lateChunking;
+
+		@Nullable
 		private Integer topN;
 
+		public Builder() {
+		}
+		private Builder(JinaAITaskSettings instance) {
+			this.returnDocuments = instance.returnDocuments;
+			this.task = instance.task;
+			this.lateChunking = instance.lateChunking;
+			this.topN = instance.topN;
+
+		}
 		/**
 		 * For a <code>rerank</code> task, return the doc text within the results.
 		 * <p>
@@ -207,6 +249,27 @@ public class JinaAITaskSettings implements JsonpSerializable {
 		 */
 		public final Builder task(@Nullable JinaAITextEmbeddingTask value) {
 			this.task = value;
+			return this;
+		}
+
+		/**
+		 * For a <code>text_embedding</code> task, controls when text is split into
+		 * chunks. When set to <code>true</code>, a request from Elasticsearch contains
+		 * only chunks related to a single document. Instead of batching chunks across
+		 * documents, Elasticsearch sends them in separate requests. This ensures that
+		 * chunk embeddings retain context from the entire document, improving semantic
+		 * quality.
+		 * <p>
+		 * If a document exceeds the model's context limits, late chunking is
+		 * automatically disabled for that document only and standard chunking is used
+		 * instead.
+		 * <p>
+		 * If not specified, defaults to <code>false</code>.
+		 * <p>
+		 * API name: {@code late_chunking}
+		 */
+		public final Builder lateChunking(@Nullable Boolean value) {
+			this.lateChunking = value;
 			return this;
 		}
 
@@ -242,6 +305,12 @@ public class JinaAITaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -254,6 +323,7 @@ public class JinaAITaskSettings implements JsonpSerializable {
 
 		op.add(Builder::returnDocuments, JsonpDeserializer.booleanDeserializer(), "return_documents");
 		op.add(Builder::task, JinaAITextEmbeddingTask._DESERIALIZER, "task");
+		op.add(Builder::lateChunking, JsonpDeserializer.booleanDeserializer(), "late_chunking");
 		op.add(Builder::topN, JsonpDeserializer.integerDeserializer(), "top_n");
 
 	}

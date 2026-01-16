@@ -227,6 +227,16 @@ public class CohereServiceSettings implements JsonpSerializable {
 		@Nullable
 		private CohereSimilarityType similarity;
 
+		public Builder() {
+		}
+		private Builder(CohereServiceSettings instance) {
+			this.apiKey = instance.apiKey;
+			this.embeddingType = instance.embeddingType;
+			this.modelId = instance.modelId;
+			this.rateLimit = instance.rateLimit;
+			this.similarity = instance.similarity;
+
+		}
 		/**
 		 * Required - A valid API key for your Cohere account. You can find or create
 		 * your Cohere API keys on the Cohere API key settings page.
@@ -336,6 +346,12 @@ public class CohereServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

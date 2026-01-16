@@ -161,6 +161,15 @@ public class CommandMoveAction implements JsonpSerializable {
 
 		private String toNode;
 
+		public Builder() {
+		}
+		private Builder(CommandMoveAction instance) {
+			this.index = instance.index;
+			this.shard = instance.shard;
+			this.fromNode = instance.fromNode;
+			this.toNode = instance.toNode;
+
+		}
 		/**
 		 * Required - API name: {@code index}
 		 */
@@ -215,6 +224,12 @@ public class CommandMoveAction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

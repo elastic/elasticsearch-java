@@ -139,6 +139,14 @@ public class SecurityRoles implements JsonpSerializable {
 
 		private SecurityRolesFile file;
 
+		public Builder() {
+		}
+		private Builder(SecurityRoles instance) {
+			this.native_ = instance.native_;
+			this.dls = instance.dls;
+			this.file = instance.file;
+
+		}
 		/**
 		 * Required - API name: {@code native}
 		 */
@@ -202,6 +210,12 @@ public class SecurityRoles implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

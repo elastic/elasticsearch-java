@@ -186,6 +186,15 @@ public class PendingTasksRecord implements JsonpSerializable {
 		@Nullable
 		private String source;
 
+		public Builder() {
+		}
+		private Builder(PendingTasksRecord instance) {
+			this.insertorder = instance.insertorder;
+			this.timeinqueue = instance.timeinqueue;
+			this.priority = instance.priority;
+			this.source = instance.source;
+
+		}
 		/**
 		 * The task insertion order.
 		 * <p>
@@ -244,6 +253,12 @@ public class PendingTasksRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

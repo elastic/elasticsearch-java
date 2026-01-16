@@ -259,6 +259,18 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		@Nullable
 		private DataStreamOptions dataStreamOptions;
 
+		public Builder() {
+		}
+		private Builder(ComponentTemplateSummary instance) {
+			this.meta = instance.meta;
+			this.version = instance.version;
+			this.settings = instance.settings;
+			this.mappings = instance.mappings;
+			this.aliases = instance.aliases;
+			this.lifecycle = instance.lifecycle;
+			this.dataStreamOptions = instance.dataStreamOptions;
+
+		}
 		/**
 		 * API name: {@code _meta}
 		 * <p>
@@ -410,6 +422,12 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

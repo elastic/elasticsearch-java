@@ -160,6 +160,14 @@ public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefi
 		@Nullable
 		private Boolean preserveOriginal;
 
+		public Builder() {
+		}
+		private Builder(NGramTokenFilter instance) {
+			this.maxGram = instance.maxGram;
+			this.minGram = instance.minGram;
+			this.preserveOriginal = instance.preserveOriginal;
+
+		}
 		/**
 		 * Maximum length of characters in a gram. Defaults to <code>2</code>.
 		 * <p>
@@ -209,6 +217,12 @@ public class NGramTokenFilter extends TokenFilterBase implements TokenFilterDefi
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

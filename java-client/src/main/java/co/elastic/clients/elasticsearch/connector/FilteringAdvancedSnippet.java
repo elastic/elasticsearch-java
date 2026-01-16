@@ -152,6 +152,14 @@ public class FilteringAdvancedSnippet implements JsonpSerializable {
 
 		private JsonData value;
 
+		public Builder() {
+		}
+		private Builder(FilteringAdvancedSnippet instance) {
+			this.createdAt = instance.createdAt;
+			this.updatedAt = instance.updatedAt;
+			this.value = instance.value;
+
+		}
 		/**
 		 * API name: {@code created_at}
 		 */
@@ -194,6 +202,12 @@ public class FilteringAdvancedSnippet implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

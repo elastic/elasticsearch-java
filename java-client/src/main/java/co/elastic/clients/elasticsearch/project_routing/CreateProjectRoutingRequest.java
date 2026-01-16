@@ -122,6 +122,13 @@ public class CreateProjectRoutingRequest extends RequestBase implements JsonpSer
 
 		private ProjectRoutingExpression expressions;
 
+		public Builder() {
+		}
+		private Builder(CreateProjectRoutingRequest instance) {
+			this.name = instance.name;
+			this.expressions = instance.expressions;
+
+		}
 		/**
 		 * Required - The name of project routing expression
 		 * <p>
@@ -175,6 +182,12 @@ public class CreateProjectRoutingRequest extends RequestBase implements JsonpSer
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<CreateProjectRoutingRequest> _DESERIALIZER = createCreateProjectRoutingRequestDeserializer();
 	protected static JsonpDeserializer<CreateProjectRoutingRequest> createCreateProjectRoutingRequestDeserializer() {
 

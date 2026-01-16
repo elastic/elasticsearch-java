@@ -161,6 +161,15 @@ public class PutIpLocationDatabaseRequest extends RequestBase implements JsonpSe
 
 		private DatabaseConfiguration configuration;
 
+		public Builder() {
+		}
+		private Builder(PutIpLocationDatabaseRequest instance) {
+			this.id = instance.id;
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+			this.configuration = instance.configuration;
+
+		}
 		/**
 		 * Required - The database configuration identifier.
 		 * <p>
@@ -264,6 +273,12 @@ public class PutIpLocationDatabaseRequest extends RequestBase implements JsonpSe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<PutIpLocationDatabaseRequest> _DESERIALIZER = createPutIpLocationDatabaseRequestDeserializer();
 	protected static JsonpDeserializer<PutIpLocationDatabaseRequest> createPutIpLocationDatabaseRequestDeserializer() {
 

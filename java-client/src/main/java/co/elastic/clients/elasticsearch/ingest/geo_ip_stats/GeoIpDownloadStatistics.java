@@ -201,6 +201,17 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 
 		private Integer expiredDatabases;
 
+		public Builder() {
+		}
+		private Builder(GeoIpDownloadStatistics instance) {
+			this.successfulDownloads = instance.successfulDownloads;
+			this.failedDownloads = instance.failedDownloads;
+			this.totalDownloadTime = instance.totalDownloadTime;
+			this.databasesCount = instance.databasesCount;
+			this.skippedUpdates = instance.skippedUpdates;
+			this.expiredDatabases = instance.expiredDatabases;
+
+		}
 		/**
 		 * Required - Total number of successful database downloads.
 		 * <p>
@@ -279,6 +290,12 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

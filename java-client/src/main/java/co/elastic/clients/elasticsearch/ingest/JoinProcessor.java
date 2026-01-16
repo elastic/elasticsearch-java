@@ -146,6 +146,14 @@ public class JoinProcessor extends ProcessorBase implements ProcessorVariant {
 		@Nullable
 		private String targetField;
 
+		public Builder() {
+		}
+		private Builder(JoinProcessor instance) {
+			this.field = instance.field;
+			this.separator = instance.separator;
+			this.targetField = instance.targetField;
+
+		}
 		/**
 		 * Required - Field containing array values to join.
 		 * <p>
@@ -195,6 +203,12 @@ public class JoinProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

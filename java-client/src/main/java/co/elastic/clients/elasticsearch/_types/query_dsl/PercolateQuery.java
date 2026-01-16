@@ -294,6 +294,20 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private Long version;
 
+		public Builder() {
+		}
+		private Builder(PercolateQuery instance) {
+			this.document = instance.document;
+			this.documents = instance.documents;
+			this.field = instance.field;
+			this.id = instance.id;
+			this.index = instance.index;
+			this.name = instance.name;
+			this.preference = instance.preference;
+			this.routing = instance.routing;
+			this.version = instance.version;
+
+		}
 		/**
 		 * The source of the document being percolated.
 		 * <p>
@@ -432,6 +446,12 @@ public class PercolateQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

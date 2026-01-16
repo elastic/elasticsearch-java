@@ -95,6 +95,11 @@ public class DateRangeAggregate extends RangeAggregate implements AggregateVaria
 	public static class Builder extends RangeAggregate.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DateRangeAggregate> {
+		public Builder() {
+		}
+		private Builder(DateRangeAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -113,6 +118,12 @@ public class DateRangeAggregate extends RangeAggregate implements AggregateVaria
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

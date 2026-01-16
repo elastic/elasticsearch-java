@@ -147,6 +147,14 @@ public class CCSUsageTimeValue implements JsonpSerializable {
 
 		private Long p90;
 
+		public Builder() {
+		}
+		private Builder(CCSUsageTimeValue instance) {
+			this.max = instance.max;
+			this.avg = instance.avg;
+			this.p90 = instance.p90;
+
+		}
 		/**
 		 * Required - The maximum time taken to execute a request, in milliseconds.
 		 * <p>
@@ -196,6 +204,12 @@ public class CCSUsageTimeValue implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

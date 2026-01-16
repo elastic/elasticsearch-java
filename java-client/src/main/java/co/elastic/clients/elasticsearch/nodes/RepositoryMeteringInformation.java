@@ -276,6 +276,20 @@ public class RepositoryMeteringInformation implements JsonpSerializable {
 
 		private RequestCounts requestCounts;
 
+		public Builder() {
+		}
+		private Builder(RepositoryMeteringInformation instance) {
+			this.repositoryName = instance.repositoryName;
+			this.repositoryType = instance.repositoryType;
+			this.repositoryLocation = instance.repositoryLocation;
+			this.repositoryEphemeralId = instance.repositoryEphemeralId;
+			this.repositoryStartedAt = instance.repositoryStartedAt;
+			this.repositoryStoppedAt = instance.repositoryStoppedAt;
+			this.archived = instance.archived;
+			this.clusterVersion = instance.clusterVersion;
+			this.requestCounts = instance.requestCounts;
+
+		}
 		/**
 		 * Required - Repository name.
 		 * <p>
@@ -415,6 +429,12 @@ public class RepositoryMeteringInformation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

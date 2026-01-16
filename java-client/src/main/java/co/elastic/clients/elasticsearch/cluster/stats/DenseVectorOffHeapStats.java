@@ -380,6 +380,26 @@ public class DenseVectorOffHeapStats implements JsonpSerializable {
 		@Nullable
 		private Map<String, Map<String, Long>> fielddata;
 
+		public Builder() {
+		}
+		private Builder(DenseVectorOffHeapStats instance) {
+			this.totalSizeBytes = instance.totalSizeBytes;
+			this.totalSize = instance.totalSize;
+			this.totalVebSizeBytes = instance.totalVebSizeBytes;
+			this.totalVebSize = instance.totalVebSize;
+			this.totalVecSizeBytes = instance.totalVecSizeBytes;
+			this.totalVecSize = instance.totalVecSize;
+			this.totalVeqSizeBytes = instance.totalVeqSizeBytes;
+			this.totalVeqSize = instance.totalVeqSize;
+			this.totalVexSizeBytes = instance.totalVexSizeBytes;
+			this.totalVexSize = instance.totalVexSize;
+			this.totalCenifSizeBytes = instance.totalCenifSizeBytes;
+			this.totalCenifSize = instance.totalCenifSize;
+			this.totalClivfSizeBytes = instance.totalClivfSizeBytes;
+			this.totalClivfSize = instance.totalClivfSize;
+			this.fielddata = instance.fielddata;
+
+		}
 		/**
 		 * Required - API name: {@code total_size_bytes}
 		 */
@@ -530,6 +550,12 @@ public class DenseVectorOffHeapStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

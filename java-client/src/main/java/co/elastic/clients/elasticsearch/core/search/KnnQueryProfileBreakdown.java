@@ -401,6 +401,31 @@ public class KnnQueryProfileBreakdown implements JsonpSerializable {
 
 		private Long shallowAdvanceCount;
 
+		public Builder() {
+		}
+		private Builder(KnnQueryProfileBreakdown instance) {
+			this.advance = instance.advance;
+			this.advanceCount = instance.advanceCount;
+			this.buildScorer = instance.buildScorer;
+			this.buildScorerCount = instance.buildScorerCount;
+			this.computeMaxScore = instance.computeMaxScore;
+			this.computeMaxScoreCount = instance.computeMaxScoreCount;
+			this.countWeight = instance.countWeight;
+			this.countWeightCount = instance.countWeightCount;
+			this.createWeight = instance.createWeight;
+			this.createWeightCount = instance.createWeightCount;
+			this.match = instance.match;
+			this.matchCount = instance.matchCount;
+			this.nextDoc = instance.nextDoc;
+			this.nextDocCount = instance.nextDocCount;
+			this.score = instance.score;
+			this.scoreCount = instance.scoreCount;
+			this.setMinCompetitiveScore = instance.setMinCompetitiveScore;
+			this.setMinCompetitiveScoreCount = instance.setMinCompetitiveScoreCount;
+			this.shallowAdvance = instance.shallowAdvance;
+			this.shallowAdvanceCount = instance.shallowAdvanceCount;
+
+		}
 		/**
 		 * Required - API name: {@code advance}
 		 */
@@ -579,6 +604,12 @@ public class KnnQueryProfileBreakdown implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

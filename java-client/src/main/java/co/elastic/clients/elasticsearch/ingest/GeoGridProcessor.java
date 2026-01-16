@@ -283,6 +283,20 @@ public class GeoGridProcessor extends ProcessorBase implements ProcessorVariant 
 		@Nullable
 		private GeoGridTargetFormat targetFormat;
 
+		public Builder() {
+		}
+		private Builder(GeoGridProcessor instance) {
+			this.field = instance.field;
+			this.tileType = instance.tileType;
+			this.targetField = instance.targetField;
+			this.parentField = instance.parentField;
+			this.childrenField = instance.childrenField;
+			this.nonChildrenField = instance.nonChildrenField;
+			this.precisionField = instance.precisionField;
+			this.ignoreMissing = instance.ignoreMissing;
+			this.targetFormat = instance.targetFormat;
+
+		}
 		/**
 		 * Required - The field to interpret as a geo-tile.= The field format is
 		 * determined by the <code>tile_type</code>.
@@ -396,6 +410,12 @@ public class GeoGridProcessor extends ProcessorBase implements ProcessorVariant 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

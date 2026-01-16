@@ -172,6 +172,14 @@ public class TextExpansionInferenceOptions implements InferenceConfigCreateVaria
 		@Nullable
 		private Vocabulary vocabulary;
 
+		public Builder() {
+		}
+		private Builder(TextExpansionInferenceOptions instance) {
+			this.tokenization = instance.tokenization;
+			this.resultsField = instance.resultsField;
+			this.vocabulary = instance.vocabulary;
+
+		}
 		/**
 		 * The tokenization options
 		 * <p>
@@ -245,6 +253,12 @@ public class TextExpansionInferenceOptions implements InferenceConfigCreateVaria
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

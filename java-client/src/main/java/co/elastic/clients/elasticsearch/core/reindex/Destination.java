@@ -216,6 +216,16 @@ public class Destination implements JsonpSerializable {
 		@Nullable
 		private VersionType versionType;
 
+		public Builder() {
+		}
+		private Builder(Destination instance) {
+			this.index = instance.index;
+			this.opType = instance.opType;
+			this.pipeline = instance.pipeline;
+			this.routing = instance.routing;
+			this.versionType = instance.versionType;
+
+		}
 		/**
 		 * Required - The name of the data stream, index, or index alias you are copying
 		 * to.
@@ -315,6 +325,12 @@ public class Destination implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

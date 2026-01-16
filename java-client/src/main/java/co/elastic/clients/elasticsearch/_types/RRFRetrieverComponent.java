@@ -140,6 +140,13 @@ public class RRFRetrieverComponent implements JsonpSerializable {
 		@Nullable
 		private Float weight;
 
+		public Builder() {
+		}
+		private Builder(RRFRetrieverComponent instance) {
+			this.retriever = instance.retriever;
+			this.weight = instance.weight;
+
+		}
 		/**
 		 * Required - The nested retriever configuration.
 		 * <p>
@@ -199,6 +206,12 @@ public class RRFRetrieverComponent implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

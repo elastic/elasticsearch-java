@@ -202,6 +202,15 @@ public class ZeroShotClassificationInferenceUpdateOptions implements InferenceCo
 
 		private List<String> labels;
 
+		public Builder() {
+		}
+		private Builder(ZeroShotClassificationInferenceUpdateOptions instance) {
+			this.tokenization = instance.tokenization;
+			this.resultsField = instance.resultsField;
+			this.multiLabel = instance.multiLabel;
+			this.labels = instance.labels;
+
+		}
 		/**
 		 * The tokenization options to update when inferring
 		 * <p>
@@ -286,6 +295,12 @@ public class ZeroShotClassificationInferenceUpdateOptions implements InferenceCo
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

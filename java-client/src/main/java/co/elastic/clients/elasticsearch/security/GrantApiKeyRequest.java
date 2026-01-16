@@ -275,6 +275,18 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		@Nullable
 		private String username;
 
+		public Builder() {
+		}
+		private Builder(GrantApiKeyRequest instance) {
+			this.accessToken = instance.accessToken;
+			this.apiKey = instance.apiKey;
+			this.grantType = instance.grantType;
+			this.password = instance.password;
+			this.refresh = instance.refresh;
+			this.runAs = instance.runAs;
+			this.username = instance.username;
+
+		}
 		/**
 		 * The user's access token. If you specify the <code>access_token</code> grant
 		 * type, this parameter is required. It is not valid with other grant types.
@@ -379,6 +391,12 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

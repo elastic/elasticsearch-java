@@ -220,6 +220,16 @@ public class VariableWidthHistogramAggregation implements AggregationVariant, Js
 		@Nullable
 		private Script script;
 
+		public Builder() {
+		}
+		private Builder(VariableWidthHistogramAggregation instance) {
+			this.field = instance.field;
+			this.buckets = instance.buckets;
+			this.shardSize = instance.shardSize;
+			this.initialBuffer = instance.initialBuffer;
+			this.script = instance.script;
+
+		}
 		/**
 		 * The name of the field.
 		 * <p>
@@ -296,6 +306,12 @@ public class VariableWidthHistogramAggregation implements AggregationVariant, Js
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

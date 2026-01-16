@@ -235,6 +235,17 @@ public class OpenShiftAiServiceSettings implements JsonpSerializable {
 		@Nullable
 		private RateLimitSetting rateLimit;
 
+		public Builder() {
+		}
+		private Builder(OpenShiftAiServiceSettings instance) {
+			this.apiKey = instance.apiKey;
+			this.url = instance.url;
+			this.modelId = instance.modelId;
+			this.maxInputTokens = instance.maxInputTokens;
+			this.similarity = instance.similarity;
+			this.rateLimit = instance.rateLimit;
+
+		}
 		/**
 		 * Required - A valid API key for your OpenShift AI endpoint. Can be found in
 		 * <code>Token authentication</code> section of model related information.
@@ -338,6 +349,12 @@ public class OpenShiftAiServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

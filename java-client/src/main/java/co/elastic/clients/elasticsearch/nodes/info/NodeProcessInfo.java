@@ -148,6 +148,14 @@ public class NodeProcessInfo implements JsonpSerializable {
 
 		private Long refreshIntervalInMillis;
 
+		public Builder() {
+		}
+		private Builder(NodeProcessInfo instance) {
+			this.id = instance.id;
+			this.mlockall = instance.mlockall;
+			this.refreshIntervalInMillis = instance.refreshIntervalInMillis;
+
+		}
 		/**
 		 * Required - Process identifier (PID)
 		 * <p>
@@ -197,6 +205,12 @@ public class NodeProcessInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

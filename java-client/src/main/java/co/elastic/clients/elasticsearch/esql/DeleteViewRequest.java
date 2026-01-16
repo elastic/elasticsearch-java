@@ -99,6 +99,12 @@ public class DeleteViewRequest extends RequestBase {
 				ObjectBuilder<DeleteViewRequest> {
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(DeleteViewRequest instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - The view name to remove.
 		 * <p>
@@ -127,6 +133,12 @@ public class DeleteViewRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

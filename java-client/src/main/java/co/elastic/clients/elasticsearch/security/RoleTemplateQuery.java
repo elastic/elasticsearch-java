@@ -123,6 +123,12 @@ public class RoleTemplateQuery implements JsonpSerializable {
 		@Nullable
 		private RoleTemplateScript template;
 
+		public Builder() {
+		}
+		private Builder(RoleTemplateQuery instance) {
+			this.template = instance.template;
+
+		}
 		/**
 		 * When you create a role, you can specify a query that defines the document
 		 * level security permissions. You can optionally use Mustache templates in the
@@ -172,6 +178,12 @@ public class RoleTemplateQuery implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

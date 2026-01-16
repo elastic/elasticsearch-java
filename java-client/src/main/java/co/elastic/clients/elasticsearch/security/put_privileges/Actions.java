@@ -186,6 +186,15 @@ public class Actions implements JsonpSerializable {
 		@Nullable
 		private Map<String, JsonData> metadata;
 
+		public Builder() {
+		}
+		private Builder(Actions instance) {
+			this.actions = instance.actions;
+			this.application = instance.application;
+			this.name = instance.name;
+			this.metadata = instance.metadata;
+
+		}
 		/**
 		 * Required - API name: {@code actions}
 		 * <p>
@@ -260,6 +269,12 @@ public class Actions implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

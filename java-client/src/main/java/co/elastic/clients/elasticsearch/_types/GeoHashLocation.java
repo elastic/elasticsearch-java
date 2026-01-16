@@ -110,6 +110,12 @@ public class GeoHashLocation implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GeoHashLocation> {
 		private String geohash;
 
+		public Builder() {
+		}
+		private Builder(GeoHashLocation instance) {
+			this.geohash = instance.geohash;
+
+		}
 		/**
 		 * Required - API name: {@code geohash}
 		 */
@@ -136,6 +142,12 @@ public class GeoHashLocation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

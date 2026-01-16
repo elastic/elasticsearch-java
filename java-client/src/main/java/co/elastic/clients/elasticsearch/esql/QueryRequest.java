@@ -413,6 +413,24 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Map<String, Map<String, TableValues>> tables;
 
+		public Builder() {
+		}
+		private Builder(QueryRequest instance) {
+			this.allowPartialResults = instance.allowPartialResults;
+			this.columnar = instance.columnar;
+			this.delimiter = instance.delimiter;
+			this.dropNullColumns = instance.dropNullColumns;
+			this.filter = instance.filter;
+			this.format = instance.format;
+			this.includeCcsMetadata = instance.includeCcsMetadata;
+			this.includeExecutionMetadata = instance.includeExecutionMetadata;
+			this.locale = instance.locale;
+			this.params = instance.params;
+			this.profile = instance.profile;
+			this.query = instance.query;
+			this.tables = instance.tables;
+
+		}
 		/**
 		 * If <code>true</code>, partial results will be returned if there are shard
 		 * failures, but the query can continue to execute on other clusters and shards.
@@ -725,6 +743,12 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

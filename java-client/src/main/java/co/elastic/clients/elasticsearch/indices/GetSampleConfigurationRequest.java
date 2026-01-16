@@ -118,6 +118,13 @@ public class GetSampleConfigurationRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		public Builder() {
+		}
+		private Builder(GetSampleConfigurationRequest instance) {
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+
+		}
 		/**
 		 * Required - The name of the index.
 		 * <p>
@@ -167,6 +174,12 @@ public class GetSampleConfigurationRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

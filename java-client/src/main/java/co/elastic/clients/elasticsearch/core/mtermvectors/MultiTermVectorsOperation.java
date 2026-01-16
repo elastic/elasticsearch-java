@@ -401,6 +401,24 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		@Nullable
 		private VersionType versionType;
 
+		public Builder() {
+		}
+		private Builder(MultiTermVectorsOperation instance) {
+			this.id = instance.id;
+			this.index = instance.index;
+			this.doc = instance.doc;
+			this.fields = instance.fields;
+			this.fieldStatistics = instance.fieldStatistics;
+			this.filter = instance.filter;
+			this.offsets = instance.offsets;
+			this.payloads = instance.payloads;
+			this.positions = instance.positions;
+			this.routing = instance.routing;
+			this.termStatistics = instance.termStatistics;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+
+		}
 		/**
 		 * The ID of the document.
 		 * <p>
@@ -594,6 +612,12 @@ public class MultiTermVectorsOperation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -151,6 +151,14 @@ public class Ingest implements JsonpSerializable {
 		@Nullable
 		private String pipeline;
 
+		public Builder() {
+		}
+		private Builder(Ingest instance) {
+			this.redact = instance.redact;
+			this.timestamp = instance.timestamp;
+			this.pipeline = instance.pipeline;
+
+		}
 		/**
 		 * API name: {@code _redact}
 		 */
@@ -200,6 +208,12 @@ public class Ingest implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

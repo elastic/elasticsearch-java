@@ -135,6 +135,13 @@ public class TimingStats implements JsonpSerializable {
 		@Nullable
 		private Long iterationTime;
 
+		public Builder() {
+		}
+		private Builder(TimingStats instance) {
+			this.elapsedTime = instance.elapsedTime;
+			this.iterationTime = instance.iterationTime;
+
+		}
 		/**
 		 * Required - Runtime of the analysis in milliseconds.
 		 * <p>
@@ -173,6 +180,12 @@ public class TimingStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -269,6 +269,20 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		@Nullable
 		private Integer weightRanking;
 
+		public Builder() {
+		}
+		private Builder(NodeAllocationExplanation instance) {
+			this.deciders = instance.deciders;
+			this.nodeAttributes = instance.nodeAttributes;
+			this.nodeDecision = instance.nodeDecision;
+			this.nodeId = instance.nodeId;
+			this.nodeName = instance.nodeName;
+			this.roles = instance.roles;
+			this.store = instance.store;
+			this.transportAddress = instance.transportAddress;
+			this.weightRanking = instance.weightRanking;
+
+		}
 		/**
 		 * API name: {@code deciders}
 		 * <p>
@@ -411,6 +425,12 @@ public class NodeAllocationExplanation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

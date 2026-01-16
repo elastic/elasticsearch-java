@@ -184,6 +184,15 @@ public class FieldCollapse implements JsonpSerializable {
 		@Nullable
 		private FieldCollapse collapse;
 
+		public Builder() {
+		}
+		private Builder(FieldCollapse instance) {
+			this.field = instance.field;
+			this.innerHits = instance.innerHits;
+			this.maxConcurrentGroupSearches = instance.maxConcurrentGroupSearches;
+			this.collapse = instance.collapse;
+
+		}
 		/**
 		 * Required - The field to collapse the result set on
 		 * <p>
@@ -273,6 +282,12 @@ public class FieldCollapse implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

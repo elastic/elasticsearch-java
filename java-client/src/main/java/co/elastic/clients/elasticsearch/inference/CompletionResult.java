@@ -112,6 +112,12 @@ public class CompletionResult implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CompletionResult> {
 		private String result;
 
+		public Builder() {
+		}
+		private Builder(CompletionResult instance) {
+			this.result = instance.result;
+
+		}
 		/**
 		 * Required - API name: {@code result}
 		 */
@@ -138,6 +144,12 @@ public class CompletionResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -152,6 +152,14 @@ public class PointProperty extends DocValuesPropertyBase implements PropertyVari
 		@Nullable
 		private String nullValue;
 
+		public Builder() {
+		}
+		private Builder(PointProperty instance) {
+			this.ignoreMalformed = instance.ignoreMalformed;
+			this.ignoreZValue = instance.ignoreZValue;
+			this.nullValue = instance.nullValue;
+
+		}
 		/**
 		 * API name: {@code ignore_malformed}
 		 */
@@ -194,6 +202,12 @@ public class PointProperty extends DocValuesPropertyBase implements PropertyVari
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

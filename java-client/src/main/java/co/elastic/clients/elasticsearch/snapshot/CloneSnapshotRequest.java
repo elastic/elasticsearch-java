@@ -180,6 +180,16 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 
 		private String targetSnapshot;
 
+		public Builder() {
+		}
+		private Builder(CloneSnapshotRequest instance) {
+			this.indices = instance.indices;
+			this.masterTimeout = instance.masterTimeout;
+			this.repository = instance.repository;
+			this.snapshot = instance.snapshot;
+			this.targetSnapshot = instance.targetSnapshot;
+
+		}
 		/**
 		 * Required - A comma-separated list of indices to include in the snapshot.
 		 * Multi-target syntax is supported.
@@ -263,6 +273,12 @@ public class CloneSnapshotRequest extends RequestBase implements JsonpSerializab
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

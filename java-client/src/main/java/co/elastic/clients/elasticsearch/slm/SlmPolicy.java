@@ -180,6 +180,16 @@ public class SlmPolicy implements JsonpSerializable {
 
 		private String schedule;
 
+		public Builder() {
+		}
+		private Builder(SlmPolicy instance) {
+			this.config = instance.config;
+			this.name = instance.name;
+			this.repository = instance.repository;
+			this.retention = instance.retention;
+			this.schedule = instance.schedule;
+
+		}
 		/**
 		 * API name: {@code config}
 		 */
@@ -252,6 +262,12 @@ public class SlmPolicy implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

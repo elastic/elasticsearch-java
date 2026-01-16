@@ -172,6 +172,16 @@ public class SyncJobListRequest extends RequestBase {
 		@Nullable
 		private SyncStatus status;
 
+		public Builder() {
+		}
+		private Builder(SyncJobListRequest instance) {
+			this.connectorId = instance.connectorId;
+			this.from = instance.from;
+			this.jobType = instance.jobType;
+			this.size = instance.size;
+			this.status = instance.status;
+
+		}
 		/**
 		 * A connector id to fetch connector sync jobs for
 		 * <p>
@@ -254,6 +264,12 @@ public class SyncJobListRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -196,6 +196,16 @@ public class Term implements JsonpSerializable {
 		@Nullable
 		private Integer ttf;
 
+		public Builder() {
+		}
+		private Builder(Term instance) {
+			this.docFreq = instance.docFreq;
+			this.score = instance.score;
+			this.termFreq = instance.termFreq;
+			this.tokens = instance.tokens;
+			this.ttf = instance.ttf;
+
+		}
 		/**
 		 * API name: {@code doc_freq}
 		 */
@@ -275,6 +285,12 @@ public class Term implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

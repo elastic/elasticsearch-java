@@ -171,6 +171,14 @@ public class ContextualAITaskSettings implements JsonpSerializable {
 		@Nullable
 		private Integer topK;
 
+		public Builder() {
+		}
+		private Builder(ContextualAITaskSettings instance) {
+			this.instruction = instance.instruction;
+			this.returnDocuments = instance.returnDocuments;
+			this.topK = instance.topK;
+
+		}
 		/**
 		 * Instructions for the reranking model. Refer to <a href=
 		 * "https://docs.contextual.ai/api-reference/rerank/rerank#body-instruction">https://docs.contextual.ai/api-reference/rerank/rerank#body-instruction</a>
@@ -224,6 +232,12 @@ public class ContextualAITaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -135,6 +135,13 @@ public class FieldMapping implements JsonpSerializable {
 
 		private Map<String, Property> mapping;
 
+		public Builder() {
+		}
+		private Builder(FieldMapping instance) {
+			this.fullName = instance.fullName;
+			this.mapping = instance.mapping;
+
+		}
 		/**
 		 * Required - API name: {@code full_name}
 		 */
@@ -190,6 +197,12 @@ public class FieldMapping implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

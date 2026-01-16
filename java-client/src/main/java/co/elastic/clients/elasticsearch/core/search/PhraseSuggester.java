@@ -397,6 +397,24 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		@Nullable
 		private Integer tokenLimit;
 
+		public Builder() {
+		}
+		private Builder(PhraseSuggester instance) {
+			this.collate = instance.collate;
+			this.confidence = instance.confidence;
+			this.directGenerator = instance.directGenerator;
+			this.forceUnigrams = instance.forceUnigrams;
+			this.gramSize = instance.gramSize;
+			this.highlight = instance.highlight;
+			this.maxErrors = instance.maxErrors;
+			this.realWordErrorLikelihood = instance.realWordErrorLikelihood;
+			this.separator = instance.separator;
+			this.shardSize = instance.shardSize;
+			this.smoothing = instance.smoothing;
+			this.text = instance.text;
+			this.tokenLimit = instance.tokenLimit;
+
+		}
 		/**
 		 * Checks each suggestion against the specified query to prune suggestions for
 		 * which no matching docs exist in the index.
@@ -628,6 +646,12 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

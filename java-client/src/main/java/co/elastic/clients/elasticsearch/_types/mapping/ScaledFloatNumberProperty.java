@@ -132,6 +132,13 @@ public class ScaledFloatNumberProperty extends NumberPropertyBase implements Pro
 		@Nullable
 		private Double scalingFactor;
 
+		public Builder() {
+		}
+		private Builder(ScaledFloatNumberProperty instance) {
+			this.nullValue = instance.nullValue;
+			this.scalingFactor = instance.scalingFactor;
+
+		}
 		/**
 		 * API name: {@code null_value}
 		 */
@@ -166,6 +173,12 @@ public class ScaledFloatNumberProperty extends NumberPropertyBase implements Pro
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

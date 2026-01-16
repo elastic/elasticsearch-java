@@ -161,6 +161,14 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 
 		private TimingStats timingStats;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalyticsStatsOutlierDetection instance) {
+			this.parameters = instance.parameters;
+			this.timestamp = instance.timestamp;
+			this.timingStats = instance.timingStats;
+
+		}
 		/**
 		 * Required - The list of job parameters specified by the user or determined by
 		 * algorithmic heuristics.
@@ -233,6 +241,12 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

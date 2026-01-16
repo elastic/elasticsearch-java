@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.BoolQuery;
+import co.elastic.clients.elasticsearch._types.query_dsl.ParentIdQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -45,5 +46,16 @@ public class CodeAdditionsTests extends Assertions {
             BoolQuery query = builder.build();
             assertTrue(query.hasClauses());
         }
+    }
+
+    @Test
+    public void testRebuild() {
+        ParentIdQuery parentIdQuery = ParentIdQuery.of(p -> p.id("s").ignoreUnmapped(true));
+
+        ParentIdQuery.Builder builder = parentIdQuery.rebuild();
+
+        ParentIdQuery parentIdQueryRebuilt = builder.build();
+
+        assertEquals(parentIdQuery.toString(), parentIdQueryRebuilt.toString());
     }
 }

@@ -484,6 +484,27 @@ public class SignificantTermsAggregation extends BucketAggregationBase
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(SignificantTermsAggregation instance) {
+			this.backgroundFilter = instance.backgroundFilter;
+			this.chiSquare = instance.chiSquare;
+			this.exclude = instance.exclude;
+			this.executionHint = instance.executionHint;
+			this.field = instance.field;
+			this.gnd = instance.gnd;
+			this.include = instance.include;
+			this.jlh = instance.jlh;
+			this.minDocCount = instance.minDocCount;
+			this.mutualInformation = instance.mutualInformation;
+			this.percentage = instance.percentage;
+			this.scriptHeuristic = instance.scriptHeuristic;
+			this.pValue = instance.pValue;
+			this.shardMinDocCount = instance.shardMinDocCount;
+			this.shardSize = instance.shardSize;
+			this.size = instance.size;
+
+		}
 		/**
 		 * A background filter that can be used to focus in on significant terms within
 		 * a narrower context, instead of the entire index.
@@ -799,6 +820,12 @@ public class SignificantTermsAggregation extends BucketAggregationBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

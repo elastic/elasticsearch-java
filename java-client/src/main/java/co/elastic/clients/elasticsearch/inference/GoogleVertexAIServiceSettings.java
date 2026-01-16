@@ -399,6 +399,21 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 		@Nullable
 		private Integer maxBatchSize;
 
+		public Builder() {
+		}
+		private Builder(GoogleVertexAIServiceSettings instance) {
+			this.provider = instance.provider;
+			this.url = instance.url;
+			this.streamingUrl = instance.streamingUrl;
+			this.location = instance.location;
+			this.modelId = instance.modelId;
+			this.projectId = instance.projectId;
+			this.rateLimit = instance.rateLimit;
+			this.serviceAccountJson = instance.serviceAccountJson;
+			this.dimensions = instance.dimensions;
+			this.maxBatchSize = instance.maxBatchSize;
+
+		}
 		/**
 		 * The name of the Google Model Garden Provider for <code>completion</code> and
 		 * <code>chat_completion</code> tasks. In order for a Google Model Garden
@@ -613,6 +628,12 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

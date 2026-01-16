@@ -181,6 +181,15 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 		@Nullable
 		private JsonpSerializer<TData> tDataSerializer;
 
+		public Builder() {
+		}
+		private Builder(PostDataRequest<TData> instance) {
+			this.jobId = instance.jobId;
+			this.resetEnd = instance.resetEnd;
+			this.resetStart = instance.resetStart;
+			this.data = instance.data;
+
+		}
 		/**
 		 * Required - Identifier for the anomaly detection job. The job must have a
 		 * state of open to receive and process the data.
@@ -269,6 +278,12 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	/**
 	 * Json deserializer for {@link PostDataRequest} based on named deserializers
 	 * provided by the calling {@code JsonMapper}.

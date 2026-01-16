@@ -293,6 +293,21 @@ public class ModelSnapshot implements JsonpSerializable {
 
 		private Long timestamp;
 
+		public Builder() {
+		}
+		private Builder(ModelSnapshot instance) {
+			this.description = instance.description;
+			this.jobId = instance.jobId;
+			this.latestRecordTimeStamp = instance.latestRecordTimeStamp;
+			this.latestResultTimeStamp = instance.latestResultTimeStamp;
+			this.minVersion = instance.minVersion;
+			this.modelSizeStats = instance.modelSizeStats;
+			this.retain = instance.retain;
+			this.snapshotDocCount = instance.snapshotDocCount;
+			this.snapshotId = instance.snapshotId;
+			this.timestamp = instance.timestamp;
+
+		}
 		/**
 		 * An optional description of the job.
 		 * <p>
@@ -425,6 +440,12 @@ public class ModelSnapshot implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

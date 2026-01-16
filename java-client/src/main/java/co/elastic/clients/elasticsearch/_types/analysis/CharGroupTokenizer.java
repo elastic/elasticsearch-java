@@ -137,6 +137,13 @@ public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefini
 		@Nullable
 		private Integer maxTokenLength;
 
+		public Builder() {
+		}
+		private Builder(CharGroupTokenizer instance) {
+			this.tokenizeOnChars = instance.tokenizeOnChars;
+			this.maxTokenLength = instance.maxTokenLength;
+
+		}
 		/**
 		 * Required - API name: {@code tokenize_on_chars}
 		 * <p>
@@ -183,6 +190,12 @@ public class CharGroupTokenizer extends TokenizerBase implements TokenizerDefini
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

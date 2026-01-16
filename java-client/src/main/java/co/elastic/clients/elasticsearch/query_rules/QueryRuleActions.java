@@ -158,6 +158,13 @@ public class QueryRuleActions implements JsonpSerializable {
 		@Nullable
 		private List<PinnedDoc> docs;
 
+		public Builder() {
+		}
+		private Builder(QueryRuleActions instance) {
+			this.ids = instance.ids;
+			this.docs = instance.docs;
+
+		}
 		/**
 		 * The unique document IDs of the documents to apply the rule to. Only one of
 		 * <code>ids</code> or <code>docs</code> may be specified and at least one must
@@ -260,6 +267,12 @@ public class QueryRuleActions implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

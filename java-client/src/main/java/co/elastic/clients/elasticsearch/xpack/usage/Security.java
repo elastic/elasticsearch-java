@@ -282,6 +282,23 @@ public class Security extends Base {
 
 		private Base operatorPrivileges;
 
+		public Builder() {
+		}
+		private Builder(Security instance) {
+			this.apiKeyService = instance.apiKeyService;
+			this.anonymous = instance.anonymous;
+			this.audit = instance.audit;
+			this.fips140 = instance.fips140;
+			this.ipfilter = instance.ipfilter;
+			this.realms = instance.realms;
+			this.roleMapping = instance.roleMapping;
+			this.roles = instance.roles;
+			this.ssl = instance.ssl;
+			this.systemKey = instance.systemKey;
+			this.tokenService = instance.tokenService;
+			this.operatorPrivileges = instance.operatorPrivileges;
+
+		}
 		/**
 		 * Required - API name: {@code api_key_service}
 		 */
@@ -508,6 +525,12 @@ public class Security extends Base {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -136,6 +136,13 @@ public class GetLicenseRequest extends RequestBase {
 		@Nullable
 		private Boolean local;
 
+		public Builder() {
+		}
+		private Builder(GetLicenseRequest instance) {
+			this.acceptEnterprise = instance.acceptEnterprise;
+			this.local = instance.local;
+
+		}
 		/**
 		 * If <code>true</code>, this parameter returns enterprise for Enterprise
 		 * license types. If <code>false</code>, this parameter returns platinum for
@@ -184,6 +191,12 @@ public class GetLicenseRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

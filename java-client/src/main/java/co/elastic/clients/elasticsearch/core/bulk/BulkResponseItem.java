@@ -385,6 +385,23 @@ public class BulkResponseItem implements JsonpSerializable {
 		@Nullable
 		private InlineGet<Map<String, JsonData>> get;
 
+		public Builder() {
+		}
+		private Builder(BulkResponseItem instance) {
+			this.id = instance.id;
+			this.index = instance.index;
+			this.status = instance.status;
+			this.failureStore = instance.failureStore;
+			this.error = instance.error;
+			this.primaryTerm = instance.primaryTerm;
+			this.result = instance.result;
+			this.seqNo = instance.seqNo;
+			this.shards = instance.shards;
+			this.version = instance.version;
+			this.forcedRefresh = instance.forcedRefresh;
+			this.get = instance.get;
+
+		}
 		/**
 		 * The document ID associated with the operation.
 		 * <p>
@@ -553,6 +570,12 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -307,6 +307,20 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
+		public Builder() {
+		}
+		private Builder(CompletionSuggestOption<TDocument> instance) {
+			this.collateMatch = instance.collateMatch;
+			this.contexts = instance.contexts;
+			this.fields = instance.fields;
+			this.id = instance.id;
+			this.index = instance.index;
+			this.routing = instance.routing;
+			this.score = instance.score;
+			this.source = instance.source;
+			this.text = instance.text;
+
+		}
 		/**
 		 * API name: {@code collate_match}
 		 */
@@ -442,6 +456,12 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

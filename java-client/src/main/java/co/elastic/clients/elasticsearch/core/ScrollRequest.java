@@ -156,6 +156,13 @@ public class ScrollRequest extends RequestBase implements JsonpSerializable {
 
 		private String scrollId;
 
+		public Builder() {
+		}
+		private Builder(ScrollRequest instance) {
+			this.scroll = instance.scroll;
+			this.scrollId = instance.scrollId;
+
+		}
 		/**
 		 * The period to retain the search context for scrolling.
 		 * <p>
@@ -203,6 +210,12 @@ public class ScrollRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

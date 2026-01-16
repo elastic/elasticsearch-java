@@ -144,6 +144,13 @@ public class SettingsSimilarityScripted implements SettingsSimilarityVariant, Js
 		@Nullable
 		private Script weightScript;
 
+		public Builder() {
+		}
+		private Builder(SettingsSimilarityScripted instance) {
+			this.script = instance.script;
+			this.weightScript = instance.weightScript;
+
+		}
 		/**
 		 * Required - API name: {@code script}
 		 */
@@ -192,6 +199,12 @@ public class SettingsSimilarityScripted implements SettingsSimilarityVariant, Js
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
