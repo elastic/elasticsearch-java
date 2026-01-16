@@ -130,6 +130,13 @@ public class TrainedModelInferenceClassImportance implements JsonpSerializable {
 
 		private Double importance;
 
+		public Builder() {
+		}
+		private Builder(TrainedModelInferenceClassImportance instance) {
+			this.className = instance.className;
+			this.importance = instance.importance;
+
+		}
 		/**
 		 * Required - API name: {@code class_name}
 		 */
@@ -164,6 +171,12 @@ public class TrainedModelInferenceClassImportance implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

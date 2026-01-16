@@ -147,6 +147,14 @@ public class CommandAllocateReplicaAction implements JsonpSerializable {
 
 		private String node;
 
+		public Builder() {
+		}
+		private Builder(CommandAllocateReplicaAction instance) {
+			this.index = instance.index;
+			this.shard = instance.shard;
+			this.node = instance.node;
+
+		}
 		/**
 		 * Required - API name: {@code index}
 		 */
@@ -189,6 +197,12 @@ public class CommandAllocateReplicaAction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

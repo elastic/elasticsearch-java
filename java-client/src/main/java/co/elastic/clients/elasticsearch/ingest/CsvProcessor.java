@@ -246,6 +246,18 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 		@Nullable
 		private Boolean trim;
 
+		public Builder() {
+		}
+		private Builder(CsvProcessor instance) {
+			this.emptyValue = instance.emptyValue;
+			this.field = instance.field;
+			this.ignoreMissing = instance.ignoreMissing;
+			this.quote = instance.quote;
+			this.separator = instance.separator;
+			this.targetFields = instance.targetFields;
+			this.trim = instance.trim;
+
+		}
 		/**
 		 * Value used to fill empty fields. Empty fields are skipped if this is not
 		 * provided. An empty field is one with no value (2 consecutive separators) or
@@ -351,6 +363,12 @@ public class CsvProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

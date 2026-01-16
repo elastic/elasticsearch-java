@@ -243,6 +243,16 @@ public class UpdateCrossClusterApiKeyRequest extends RequestBase implements Json
 		@Nullable
 		private Map<String, JsonData> metadata;
 
+		public Builder() {
+		}
+		private Builder(UpdateCrossClusterApiKeyRequest instance) {
+			this.access = instance.access;
+			this.certificateIdentity = instance.certificateIdentity;
+			this.expiration = instance.expiration;
+			this.id = instance.id;
+			this.metadata = instance.metadata;
+
+		}
 		/**
 		 * Required - The access to be granted to this API key. The access is composed
 		 * of permissions for cross cluster search and cross cluster replication. At
@@ -363,6 +373,12 @@ public class UpdateCrossClusterApiKeyRequest extends RequestBase implements Json
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

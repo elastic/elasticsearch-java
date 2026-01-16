@@ -209,6 +209,17 @@ public class GetCategoriesRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(GetCategoriesRequest instance) {
+			this.categoryId = instance.categoryId;
+			this.from = instance.from;
+			this.jobId = instance.jobId;
+			this.page = instance.page;
+			this.partitionFieldValue = instance.partitionFieldValue;
+			this.size = instance.size;
+
+		}
 		/**
 		 * Identifier for the category, which is unique in the job. If you specify
 		 * neither the category ID nor the partition_field_value, the API returns
@@ -302,6 +313,12 @@ public class GetCategoriesRequest extends RequestBase implements JsonpSerializab
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

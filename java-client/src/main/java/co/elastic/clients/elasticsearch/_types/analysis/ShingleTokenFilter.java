@@ -235,6 +235,17 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 		@Nullable
 		private String tokenSeparator;
 
+		public Builder() {
+		}
+		private Builder(ShingleTokenFilter instance) {
+			this.fillerToken = instance.fillerToken;
+			this.maxShingleSize = instance.maxShingleSize;
+			this.minShingleSize = instance.minShingleSize;
+			this.outputUnigrams = instance.outputUnigrams;
+			this.outputUnigramsIfNoShingles = instance.outputUnigramsIfNoShingles;
+			this.tokenSeparator = instance.tokenSeparator;
+
+		}
 		/**
 		 * String used in shingles as a replacement for empty positions that do not
 		 * contain a token. This filler token is only used in shingles, not original
@@ -322,6 +333,12 @@ public class ShingleTokenFilter extends TokenFilterBase implements TokenFilterDe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

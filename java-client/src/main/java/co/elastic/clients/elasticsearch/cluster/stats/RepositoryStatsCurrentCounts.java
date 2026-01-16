@@ -203,6 +203,18 @@ public class RepositoryStatsCurrentCounts implements JsonpSerializable {
 
 		private RepositoryStatsShards shards;
 
+		public Builder() {
+		}
+		private Builder(RepositoryStatsCurrentCounts instance) {
+			this.snapshots = instance.snapshots;
+			this.clones = instance.clones;
+			this.finalizations = instance.finalizations;
+			this.deletions = instance.deletions;
+			this.snapshotDeletions = instance.snapshotDeletions;
+			this.activeDeletions = instance.activeDeletions;
+			this.shards = instance.shards;
+
+		}
 		/**
 		 * Required - API name: {@code snapshots}
 		 */
@@ -284,6 +296,12 @@ public class RepositoryStatsCurrentCounts implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

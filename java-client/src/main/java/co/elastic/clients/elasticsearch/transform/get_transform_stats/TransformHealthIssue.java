@@ -216,6 +216,17 @@ public class TransformHealthIssue implements JsonpSerializable {
 		@Nullable
 		private DateTime firstOccurenceString;
 
+		public Builder() {
+		}
+		private Builder(TransformHealthIssue instance) {
+			this.type = instance.type;
+			this.issue = instance.issue;
+			this.details = instance.details;
+			this.count = instance.count;
+			this.firstOccurrence = instance.firstOccurrence;
+			this.firstOccurenceString = instance.firstOccurenceString;
+
+		}
 		/**
 		 * Required - The type of the issue
 		 * <p>
@@ -292,6 +303,12 @@ public class TransformHealthIssue implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

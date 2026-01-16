@@ -131,6 +131,13 @@ public class DataStreamSettingsError implements JsonpSerializable {
 
 		private String error;
 
+		public Builder() {
+		}
+		private Builder(DataStreamSettingsError instance) {
+			this.index = instance.index;
+			this.error = instance.error;
+
+		}
 		/**
 		 * Required - API name: {@code index}
 		 */
@@ -168,6 +175,12 @@ public class DataStreamSettingsError implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

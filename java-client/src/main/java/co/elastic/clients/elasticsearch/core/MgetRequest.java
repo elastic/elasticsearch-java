@@ -353,6 +353,23 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private List<String> storedFields;
 
+		public Builder() {
+		}
+		private Builder(MgetRequest instance) {
+			this.source = instance.source;
+			this.sourceExcludes = instance.sourceExcludes;
+			this.sourceIncludes = instance.sourceIncludes;
+			this.docs = instance.docs;
+			this.forceSyntheticSource = instance.forceSyntheticSource;
+			this.ids = instance.ids;
+			this.index = instance.index;
+			this.preference = instance.preference;
+			this.realtime = instance.realtime;
+			this.refresh = instance.refresh;
+			this.routing = instance.routing;
+			this.storedFields = instance.storedFields;
+
+		}
 		/**
 		 * True or false to return the <code>_source</code> field or not, or a list of
 		 * fields to return.
@@ -623,6 +640,12 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

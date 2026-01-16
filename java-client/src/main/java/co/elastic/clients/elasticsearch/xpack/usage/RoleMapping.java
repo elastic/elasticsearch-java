@@ -124,6 +124,13 @@ public class RoleMapping implements JsonpSerializable {
 
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(RoleMapping instance) {
+			this.enabled = instance.enabled;
+			this.size = instance.size;
+
+		}
 		/**
 		 * Required - API name: {@code enabled}
 		 */
@@ -158,6 +165,12 @@ public class RoleMapping implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

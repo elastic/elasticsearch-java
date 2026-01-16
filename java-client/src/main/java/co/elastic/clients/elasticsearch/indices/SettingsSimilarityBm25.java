@@ -169,6 +169,14 @@ public class SettingsSimilarityBm25 implements SettingsSimilarityVariant, JsonpS
 		@Nullable
 		private Double k1;
 
+		public Builder() {
+		}
+		private Builder(SettingsSimilarityBm25 instance) {
+			this.b = instance.b;
+			this.discountOverlaps = instance.discountOverlaps;
+			this.k1 = instance.k1;
+
+		}
 		/**
 		 * API name: {@code b}
 		 */
@@ -211,6 +219,12 @@ public class SettingsSimilarityBm25 implements SettingsSimilarityVariant, JsonpS
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

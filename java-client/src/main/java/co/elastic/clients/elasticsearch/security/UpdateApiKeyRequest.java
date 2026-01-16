@@ -229,6 +229,15 @@ public class UpdateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private Map<String, RoleDescriptor> roleDescriptors;
 
+		public Builder() {
+		}
+		private Builder(UpdateApiKeyRequest instance) {
+			this.expiration = instance.expiration;
+			this.id = instance.id;
+			this.metadata = instance.metadata;
+			this.roleDescriptors = instance.roleDescriptors;
+
+		}
 		/**
 		 * The expiration time for the API key. By default, API keys never expire. This
 		 * property can be omitted to leave the expiration unchanged.
@@ -371,6 +380,12 @@ public class UpdateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

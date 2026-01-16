@@ -137,6 +137,13 @@ public class DataframeClassificationSummaryRecall implements JsonpSerializable {
 
 		private Double avgRecall;
 
+		public Builder() {
+		}
+		private Builder(DataframeClassificationSummaryRecall instance) {
+			this.classes = instance.classes;
+			this.avgRecall = instance.avgRecall;
+
+		}
 		/**
 		 * Required - API name: {@code classes}
 		 * <p>
@@ -193,6 +200,12 @@ public class DataframeClassificationSummaryRecall implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

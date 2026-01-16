@@ -112,6 +112,12 @@ public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDe
 		@Nullable
 		private String language;
 
+		public Builder() {
+		}
+		private Builder(StemmerTokenFilter instance) {
+			this.language = instance.language;
+
+		}
 		/**
 		 * API name: {@code language}
 		 */
@@ -138,6 +144,12 @@ public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

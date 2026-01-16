@@ -277,6 +277,19 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		@Nullable
 		private String resourceName;
 
+		public Builder() {
+		}
+		private Builder(AttachmentProcessor instance) {
+			this.field = instance.field;
+			this.ignoreMissing = instance.ignoreMissing;
+			this.indexedChars = instance.indexedChars;
+			this.indexedCharsField = instance.indexedCharsField;
+			this.properties = instance.properties;
+			this.targetField = instance.targetField;
+			this.removeBinary = instance.removeBinary;
+			this.resourceName = instance.resourceName;
+
+		}
 		/**
 		 * Required - The field to get the base64 encoded field from.
 		 * <p>
@@ -400,6 +413,12 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

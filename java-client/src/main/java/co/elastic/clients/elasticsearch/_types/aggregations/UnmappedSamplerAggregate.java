@@ -81,6 +81,11 @@ public class UnmappedSamplerAggregate extends SingleBucketAggregateBase implemen
 	public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UnmappedSamplerAggregate> {
+		public Builder() {
+		}
+		private Builder(UnmappedSamplerAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class UnmappedSamplerAggregate extends SingleBucketAggregateBase implemen
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

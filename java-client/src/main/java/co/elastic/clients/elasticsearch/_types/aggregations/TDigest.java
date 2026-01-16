@@ -144,6 +144,13 @@ public class TDigest implements JsonpSerializable {
 		@Nullable
 		private TDigestExecutionHint executionHint;
 
+		public Builder() {
+		}
+		private Builder(TDigest instance) {
+			this.compression = instance.compression;
+			this.executionHint = instance.executionHint;
+
+		}
 		/**
 		 * Limits the maximum number of nodes used by the underlying TDigest algorithm
 		 * to <code>20 * compression</code>, enabling control of memory usage and
@@ -188,6 +195,12 @@ public class TDigest implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

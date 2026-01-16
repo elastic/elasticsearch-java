@@ -162,6 +162,12 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private Boolean ignoreUnmapped;
 
+		public Builder() {
+		}
+		private Builder(ShapeQuery instance) {
+			this.ignoreUnmapped = instance.ignoreUnmapped;
+
+		}
 		/**
 		 * When set to <code>true</code> the query ignores an unmapped field and will
 		 * not match any documents.
@@ -191,6 +197,12 @@ public class ShapeQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

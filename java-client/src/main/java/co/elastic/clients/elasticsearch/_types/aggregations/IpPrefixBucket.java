@@ -151,6 +151,15 @@ public class IpPrefixBucket extends MultiBucketBase {
 		@Nullable
 		private String netmask;
 
+		public Builder() {
+		}
+		private Builder(IpPrefixBucket instance) {
+			this.isIpv6 = instance.isIpv6;
+			this.key = instance.key;
+			this.prefixLength = instance.prefixLength;
+			this.netmask = instance.netmask;
+
+		}
 		/**
 		 * Required - API name: {@code is_ipv6}
 		 */
@@ -201,6 +210,12 @@ public class IpPrefixBucket extends MultiBucketBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -150,6 +150,14 @@ public class MasterIsStableIndicatorClusterFormationNode implements JsonpSeriali
 
 		private String clusterFormationMessage;
 
+		public Builder() {
+		}
+		private Builder(MasterIsStableIndicatorClusterFormationNode instance) {
+			this.name = instance.name;
+			this.nodeId = instance.nodeId;
+			this.clusterFormationMessage = instance.clusterFormationMessage;
+
+		}
 		/**
 		 * API name: {@code name}
 		 */
@@ -192,6 +200,12 @@ public class MasterIsStableIndicatorClusterFormationNode implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

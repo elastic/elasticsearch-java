@@ -244,6 +244,17 @@ public class Alias implements JsonpSerializable {
 		@Nullable
 		private List<String> searchRouting;
 
+		public Builder() {
+		}
+		private Builder(Alias instance) {
+			this.filter = instance.filter;
+			this.indexRouting = instance.indexRouting;
+			this.isHidden = instance.isHidden;
+			this.isWriteIndex = instance.isWriteIndex;
+			this.routing = instance.routing;
+			this.searchRouting = instance.searchRouting;
+
+		}
 		/**
 		 * Query used to limit documents the alias can access.
 		 * <p>
@@ -388,6 +399,12 @@ public class Alias implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -162,6 +162,14 @@ public class Storage implements JsonpSerializable {
 		@Nullable
 		private Time statsRefreshInterval;
 
+		public Builder() {
+		}
+		private Builder(Storage instance) {
+			this.type = instance.type;
+			this.allowMmap = instance.allowMmap;
+			this.statsRefreshInterval = instance.statsRefreshInterval;
+
+		}
 		/**
 		 * Required - API name: {@code type}
 		 */
@@ -230,6 +238,12 @@ public class Storage implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

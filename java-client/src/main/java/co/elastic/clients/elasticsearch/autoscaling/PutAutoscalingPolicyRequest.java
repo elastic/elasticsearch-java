@@ -161,6 +161,15 @@ public class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSer
 
 		private AutoscalingPolicy policy;
 
+		public Builder() {
+		}
+		private Builder(PutAutoscalingPolicyRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.timeout = instance.timeout;
+			this.policy = instance.policy;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -254,6 +263,12 @@ public class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSer
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<PutAutoscalingPolicyRequest> _DESERIALIZER = createPutAutoscalingPolicyRequestDeserializer();
 	protected static JsonpDeserializer<PutAutoscalingPolicyRequest> createPutAutoscalingPolicyRequestDeserializer() {
 

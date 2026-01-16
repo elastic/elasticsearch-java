@@ -198,6 +198,15 @@ public class GoogleVertexAITaskSettings implements JsonpSerializable {
 		@Nullable
 		private Integer maxTokens;
 
+		public Builder() {
+		}
+		private Builder(GoogleVertexAITaskSettings instance) {
+			this.autoTruncate = instance.autoTruncate;
+			this.topN = instance.topN;
+			this.thinkingConfig = instance.thinkingConfig;
+			this.maxTokens = instance.maxTokens;
+
+		}
 		/**
 		 * For a <code>text_embedding</code> task, truncate inputs longer than the
 		 * maximum token length automatically.
@@ -278,6 +287,12 @@ public class GoogleVertexAITaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -348,6 +348,21 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		@Nullable
 		private Long version;
 
+		public Builder() {
+		}
+		private Builder(PutTemplateRequest instance) {
+			this.aliases = instance.aliases;
+			this.cause = instance.cause;
+			this.create = instance.create;
+			this.indexPatterns = instance.indexPatterns;
+			this.mappings = instance.mappings;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.order = instance.order;
+			this.settings = instance.settings;
+			this.version = instance.version;
+
+		}
 		/**
 		 * Aliases for the index.
 		 * <p>
@@ -542,6 +557,12 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

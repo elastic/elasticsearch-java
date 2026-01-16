@@ -138,6 +138,13 @@ public class DataStreamVisibility implements JsonpSerializable {
 		@Nullable
 		private Boolean allowCustomRouting;
 
+		public Builder() {
+		}
+		private Builder(DataStreamVisibility instance) {
+			this.hidden = instance.hidden;
+			this.allowCustomRouting = instance.allowCustomRouting;
+
+		}
 		/**
 		 * API name: {@code hidden}
 		 */
@@ -172,6 +179,12 @@ public class DataStreamVisibility implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

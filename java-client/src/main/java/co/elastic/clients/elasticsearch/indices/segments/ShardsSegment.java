@@ -168,6 +168,15 @@ public class ShardsSegment implements JsonpSerializable {
 
 		private Map<String, Segment> segments;
 
+		public Builder() {
+		}
+		private Builder(ShardsSegment instance) {
+			this.numCommittedSegments = instance.numCommittedSegments;
+			this.routing = instance.routing;
+			this.numSearchSegments = instance.numSearchSegments;
+			this.segments = instance.segments;
+
+		}
 		/**
 		 * Required - API name: {@code num_committed_segments}
 		 */
@@ -246,6 +255,12 @@ public class ShardsSegment implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

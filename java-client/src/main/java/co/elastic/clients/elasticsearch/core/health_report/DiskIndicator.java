@@ -101,6 +101,12 @@ public class DiskIndicator extends BaseIndicator {
 		@Nullable
 		private DiskIndicatorDetails details;
 
+		public Builder() {
+		}
+		private Builder(DiskIndicator instance) {
+			this.details = instance.details;
+
+		}
 		/**
 		 * API name: {@code details}
 		 */
@@ -134,6 +140,12 @@ public class DiskIndicator extends BaseIndicator {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

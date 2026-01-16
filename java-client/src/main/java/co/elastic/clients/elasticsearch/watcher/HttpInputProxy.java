@@ -126,6 +126,13 @@ public class HttpInputProxy implements JsonpSerializable {
 
 		private Number port;
 
+		public Builder() {
+		}
+		private Builder(HttpInputProxy instance) {
+			this.host = instance.host;
+			this.port = instance.port;
+
+		}
 		/**
 		 * Required - API name: {@code host}
 		 */
@@ -160,6 +167,12 @@ public class HttpInputProxy implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

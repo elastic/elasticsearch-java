@@ -207,6 +207,16 @@ public class ResolveClusterInfo implements JsonpSerializable {
 		@Nullable
 		private ElasticsearchVersionMinInfo version;
 
+		public Builder() {
+		}
+		private Builder(ResolveClusterInfo instance) {
+			this.connected = instance.connected;
+			this.skipUnavailable = instance.skipUnavailable;
+			this.matchingIndices = instance.matchingIndices;
+			this.error = instance.error;
+			this.version = instance.version;
+
+		}
 		/**
 		 * Required - Whether the remote cluster is connected to the local (querying)
 		 * cluster.
@@ -289,6 +299,12 @@ public class ResolveClusterInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -123,6 +123,12 @@ public class IndexingPressureMemory implements JsonpSerializable {
 		@Nullable
 		private Integer limit;
 
+		public Builder() {
+		}
+		private Builder(IndexingPressureMemory instance) {
+			this.limit = instance.limit;
+
+		}
 		/**
 		 * Number of outstanding bytes that may be consumed by indexing requests. When
 		 * this limit is reached or exceeded, the node will reject new coordinating and
@@ -154,6 +160,12 @@ public class IndexingPressureMemory implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

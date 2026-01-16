@@ -204,6 +204,14 @@ public class CompositeAggregation extends BucketAggregationBase
 		@Nullable
 		private List<NamedValue<CompositeAggregationSource>> sources;
 
+		public Builder() {
+		}
+		private Builder(CompositeAggregation instance) {
+			this.after = instance.after;
+			this.size = instance.size;
+			this.sources = instance.sources;
+
+		}
 		/**
 		 * When paginating, use the <code>after_key</code> value returned in the
 		 * previous response to retrieve the next page.
@@ -350,6 +358,12 @@ public class CompositeAggregation extends BucketAggregationBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

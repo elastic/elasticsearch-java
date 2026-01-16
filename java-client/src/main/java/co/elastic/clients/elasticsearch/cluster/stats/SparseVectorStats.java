@@ -110,6 +110,12 @@ public class SparseVectorStats implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SparseVectorStats> {
 		private Long valueCount;
 
+		public Builder() {
+		}
+		private Builder(SparseVectorStats instance) {
+			this.valueCount = instance.valueCount;
+
+		}
 		/**
 		 * Required - API name: {@code value_count}
 		 */
@@ -136,6 +142,12 @@ public class SparseVectorStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

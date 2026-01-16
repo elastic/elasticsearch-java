@@ -78,6 +78,11 @@ public class Spike extends AbstractChangePoint implements ChangeTypeVariant {
 	 */
 
 	public static class Builder extends AbstractChangePoint.AbstractBuilder<Builder> implements ObjectBuilder<Spike> {
+		public Builder() {
+		}
+		private Builder(Spike instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -96,6 +101,12 @@ public class Spike extends AbstractChangePoint implements ChangeTypeVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

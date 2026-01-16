@@ -166,6 +166,15 @@ public class CreateServiceTokenRequest extends RequestBase {
 
 		private String service;
 
+		public Builder() {
+		}
+		private Builder(CreateServiceTokenRequest instance) {
+			this.name = instance.name;
+			this.namespace = instance.namespace;
+			this.refresh = instance.refresh;
+			this.service = instance.service;
+
+		}
 		/**
 		 * The name for the service account token. If omitted, a random name will be
 		 * generated.
@@ -238,6 +247,12 @@ public class CreateServiceTokenRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

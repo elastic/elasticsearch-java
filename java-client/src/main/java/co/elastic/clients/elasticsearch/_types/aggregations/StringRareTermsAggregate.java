@@ -84,6 +84,11 @@ public class StringRareTermsAggregate extends MultiBucketAggregateBase<StringRar
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<StringRareTermsBucket, Builder>
 			implements
 				ObjectBuilder<StringRareTermsAggregate> {
+		public Builder() {
+		}
+		private Builder(StringRareTermsAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -103,6 +108,12 @@ public class StringRareTermsAggregate extends MultiBucketAggregateBase<StringRar
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -138,6 +138,13 @@ public class HoltLinearModelSettings implements JsonpSerializable {
 		@Nullable
 		private Float beta;
 
+		public Builder() {
+		}
+		private Builder(HoltLinearModelSettings instance) {
+			this.alpha = instance.alpha;
+			this.beta = instance.beta;
+
+		}
 		/**
 		 * API name: {@code alpha}
 		 */
@@ -172,6 +179,12 @@ public class HoltLinearModelSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

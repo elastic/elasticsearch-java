@@ -118,6 +118,12 @@ public class IndexRoutingAllocationDisk implements JsonpSerializable {
 		@Nullable
 		private Boolean thresholdEnabled;
 
+		public Builder() {
+		}
+		private Builder(IndexRoutingAllocationDisk instance) {
+			this.thresholdEnabled = instance.thresholdEnabled;
+
+		}
 		/**
 		 * API name: {@code threshold_enabled}
 		 */
@@ -144,6 +150,12 @@ public class IndexRoutingAllocationDisk implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

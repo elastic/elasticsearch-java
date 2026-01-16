@@ -110,6 +110,12 @@ public class NodeInfoClient implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeInfoClient> {
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoClient instance) {
+			this.type = instance.type;
+
+		}
 		/**
 		 * Required - API name: {@code type}
 		 */
@@ -136,6 +142,12 @@ public class NodeInfoClient implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -72,6 +72,11 @@ public class PagerDutyAction extends PagerDutyEvent {
 	public static class Builder extends PagerDutyEvent.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PagerDutyAction> {
+		public Builder() {
+		}
+		private Builder(PagerDutyAction instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -90,6 +95,12 @@ public class PagerDutyAction extends PagerDutyEvent {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

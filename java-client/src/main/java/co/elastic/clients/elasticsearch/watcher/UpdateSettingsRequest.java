@@ -187,6 +187,15 @@ public class UpdateSettingsRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(UpdateSettingsRequest instance) {
+			this.indexAutoExpandReplicas = instance.indexAutoExpandReplicas;
+			this.indexNumberOfReplicas = instance.indexNumberOfReplicas;
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * API name: {@code index.auto_expand_replicas}
 		 */
@@ -263,6 +272,12 @@ public class UpdateSettingsRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

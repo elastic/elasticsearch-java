@@ -143,6 +143,13 @@ public class SoftDeletes implements JsonpSerializable {
 		@Nullable
 		private RetentionLease retentionLease;
 
+		public Builder() {
+		}
+		private Builder(SoftDeletes instance) {
+			this.enabled = instance.enabled;
+			this.retentionLease = instance.retentionLease;
+
+		}
 		/**
 		 * Indicates whether soft deletes are enabled on the index.
 		 * <p>
@@ -198,6 +205,12 @@ public class SoftDeletes implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

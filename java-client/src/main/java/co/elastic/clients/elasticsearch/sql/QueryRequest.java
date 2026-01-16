@@ -557,6 +557,30 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time waitForCompletionTimeout;
 
+		public Builder() {
+		}
+		private Builder(QueryRequest instance) {
+			this.allowPartialSearchResults = instance.allowPartialSearchResults;
+			this.catalog = instance.catalog;
+			this.columnar = instance.columnar;
+			this.cursor = instance.cursor;
+			this.fetchSize = instance.fetchSize;
+			this.fieldMultiValueLeniency = instance.fieldMultiValueLeniency;
+			this.filter = instance.filter;
+			this.format = instance.format;
+			this.indexUsingFrozen = instance.indexUsingFrozen;
+			this.keepAlive = instance.keepAlive;
+			this.keepOnCompletion = instance.keepOnCompletion;
+			this.pageTimeout = instance.pageTimeout;
+			this.params = instance.params;
+			this.projectRouting = instance.projectRouting;
+			this.query = instance.query;
+			this.requestTimeout = instance.requestTimeout;
+			this.runtimeMappings = instance.runtimeMappings;
+			this.timeZone = instance.timeZone;
+			this.waitForCompletionTimeout = instance.waitForCompletionTimeout;
+
+		}
 		/**
 		 * If <code>true</code>, the response has partial results when there are shard
 		 * request timeouts or shard failures. If <code>false</code>, the API returns an
@@ -899,6 +923,12 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

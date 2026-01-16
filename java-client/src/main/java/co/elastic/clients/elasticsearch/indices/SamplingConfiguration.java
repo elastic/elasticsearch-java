@@ -280,6 +280,20 @@ public class SamplingConfiguration implements JsonpSerializable {
 
 		private Long creationTimeInMillis;
 
+		public Builder() {
+		}
+		private Builder(SamplingConfiguration instance) {
+			this.rate = instance.rate;
+			this.maxSamples = instance.maxSamples;
+			this.maxSize = instance.maxSize;
+			this.maxSizeInBytes = instance.maxSizeInBytes;
+			this.timeToLive = instance.timeToLive;
+			this.timeToLiveInMillis = instance.timeToLiveInMillis;
+			this.if_ = instance.if_;
+			this.creationTime = instance.creationTime;
+			this.creationTimeInMillis = instance.creationTimeInMillis;
+
+		}
 		/**
 		 * Required - The fraction of documents to sample between 0 and 1.
 		 * <p>
@@ -399,6 +413,12 @@ public class SamplingConfiguration implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -140,6 +140,13 @@ public class DataframeAnalyticsDestination implements JsonpSerializable {
 		@Nullable
 		private String resultsField;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalyticsDestination instance) {
+			this.index = instance.index;
+			this.resultsField = instance.resultsField;
+
+		}
 		/**
 		 * Required - Defines the destination index to store the results of the data
 		 * frame analytics job.
@@ -180,6 +187,12 @@ public class DataframeAnalyticsDestination implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -366,6 +366,25 @@ public class ClusterIndices implements JsonpSerializable {
 
 		private SparseVectorStats sparseVector;
 
+		public Builder() {
+		}
+		private Builder(ClusterIndices instance) {
+			this.analysis = instance.analysis;
+			this.completion = instance.completion;
+			this.count = instance.count;
+			this.docs = instance.docs;
+			this.fielddata = instance.fielddata;
+			this.queryCache = instance.queryCache;
+			this.search = instance.search;
+			this.segments = instance.segments;
+			this.shards = instance.shards;
+			this.store = instance.store;
+			this.mappings = instance.mappings;
+			this.versions = instance.versions;
+			this.denseVector = instance.denseVector;
+			this.sparseVector = instance.sparseVector;
+
+		}
 		/**
 		 * Contains statistics about analyzers and analyzer components used in selected
 		 * nodes.
@@ -674,6 +693,12 @@ public class ClusterIndices implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -175,6 +175,15 @@ public class XpackUsageQuery implements JsonpSerializable {
 		@Nullable
 		private Integer total;
 
+		public Builder() {
+		}
+		private Builder(XpackUsageQuery instance) {
+			this.count = instance.count;
+			this.failed = instance.failed;
+			this.paging = instance.paging;
+			this.total = instance.total;
+
+		}
 		/**
 		 * API name: {@code count}
 		 */
@@ -225,6 +234,12 @@ public class XpackUsageQuery implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

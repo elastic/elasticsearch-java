@@ -140,6 +140,13 @@ public class ChunkRescorer implements JsonpSerializable {
 		@Nullable
 		private ChunkRescorerChunkingSettings chunkingSettings;
 
+		public Builder() {
+		}
+		private Builder(ChunkRescorer instance) {
+			this.size = instance.size;
+			this.chunkingSettings = instance.chunkingSettings;
+
+		}
 		/**
 		 * The number of chunks per document to evaluate for reranking.
 		 * <p>
@@ -188,6 +195,12 @@ public class ChunkRescorer implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

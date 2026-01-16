@@ -106,6 +106,12 @@ public class FailProcessor extends ProcessorBase implements ProcessorVariant {
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<FailProcessor> {
 		private String message;
 
+		public Builder() {
+		}
+		private Builder(FailProcessor instance) {
+			this.message = instance.message;
+
+		}
 		/**
 		 * Required - The error message thrown by the processor. Supports template
 		 * snippets.
@@ -135,6 +141,12 @@ public class FailProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

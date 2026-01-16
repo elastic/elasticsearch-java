@@ -125,6 +125,13 @@ public class GetServiceAccountsRequest extends RequestBase {
 		@Nullable
 		private String service;
 
+		public Builder() {
+		}
+		private Builder(GetServiceAccountsRequest instance) {
+			this.namespace = instance.namespace;
+			this.service = instance.service;
+
+		}
 		/**
 		 * The name of the namespace. Omit this parameter to retrieve information about
 		 * all service accounts. If you omit this parameter, you must also omit the
@@ -166,6 +173,12 @@ public class GetServiceAccountsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

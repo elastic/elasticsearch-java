@@ -157,6 +157,15 @@ public class ExistsIndexTemplateRequest extends RequestBase {
 
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(ExistsIndexTemplateRequest instance) {
+			this.flatSettings = instance.flatSettings;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+
+		}
 		/**
 		 * If true, returns settings in flat format.
 		 * <p>
@@ -228,6 +237,12 @@ public class ExistsIndexTemplateRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

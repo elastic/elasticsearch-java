@@ -533,6 +533,33 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 		@Nullable
 		private String locale;
 
+		public Builder() {
+		}
+		private Builder(DynamicProperty instance) {
+			this.enabled = instance.enabled;
+			this.nullValue = instance.nullValue;
+			this.boost = instance.boost;
+			this.coerce = instance.coerce;
+			this.script = instance.script;
+			this.onScriptError = instance.onScriptError;
+			this.ignoreMalformed = instance.ignoreMalformed;
+			this.timeSeriesMetric = instance.timeSeriesMetric;
+			this.analyzer = instance.analyzer;
+			this.eagerGlobalOrdinals = instance.eagerGlobalOrdinals;
+			this.index = instance.index;
+			this.indexOptions = instance.indexOptions;
+			this.indexPhrases = instance.indexPhrases;
+			this.indexPrefixes = instance.indexPrefixes;
+			this.norms = instance.norms;
+			this.positionIncrementGap = instance.positionIncrementGap;
+			this.searchAnalyzer = instance.searchAnalyzer;
+			this.searchQuoteAnalyzer = instance.searchQuoteAnalyzer;
+			this.termVector = instance.termVector;
+			this.format = instance.format;
+			this.precisionStep = instance.precisionStep;
+			this.locale = instance.locale;
+
+		}
 		/**
 		 * API name: {@code enabled}
 		 */
@@ -780,6 +807,12 @@ public class DynamicProperty extends DocValuesPropertyBase implements PropertyVa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

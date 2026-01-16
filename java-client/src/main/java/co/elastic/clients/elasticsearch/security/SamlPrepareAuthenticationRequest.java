@@ -190,6 +190,14 @@ public class SamlPrepareAuthenticationRequest extends RequestBase implements Jso
 		@Nullable
 		private String relayState;
 
+		public Builder() {
+		}
+		private Builder(SamlPrepareAuthenticationRequest instance) {
+			this.acs = instance.acs;
+			this.realm = instance.realm;
+			this.relayState = instance.relayState;
+
+		}
 		/**
 		 * The Assertion Consumer Service URL that matches the one of the SAML realms in
 		 * Elasticsearch. The realm is used to generate the authentication request. You
@@ -244,6 +252,12 @@ public class SamlPrepareAuthenticationRequest extends RequestBase implements Jso
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

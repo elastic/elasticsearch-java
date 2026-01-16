@@ -251,6 +251,18 @@ public class MultiGetOperation implements JsonpSerializable {
 		@Nullable
 		private VersionType versionType;
 
+		public Builder() {
+		}
+		private Builder(MultiGetOperation instance) {
+			this.id = instance.id;
+			this.index = instance.index;
+			this.routing = instance.routing;
+			this.source = instance.source;
+			this.storedFields = instance.storedFields;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+
+		}
 		/**
 		 * Required - The unique document ID.
 		 * <p>
@@ -374,6 +386,12 @@ public class MultiGetOperation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

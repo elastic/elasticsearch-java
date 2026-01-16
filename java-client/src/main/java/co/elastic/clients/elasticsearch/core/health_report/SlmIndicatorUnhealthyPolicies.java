@@ -140,6 +140,13 @@ public class SlmIndicatorUnhealthyPolicies implements JsonpSerializable {
 		@Nullable
 		private Map<String, Long> invocationsSinceLastSuccess;
 
+		public Builder() {
+		}
+		private Builder(SlmIndicatorUnhealthyPolicies instance) {
+			this.count = instance.count;
+			this.invocationsSinceLastSuccess = instance.invocationsSinceLastSuccess;
+
+		}
 		/**
 		 * Required - API name: {@code count}
 		 */
@@ -187,6 +194,12 @@ public class SlmIndicatorUnhealthyPolicies implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

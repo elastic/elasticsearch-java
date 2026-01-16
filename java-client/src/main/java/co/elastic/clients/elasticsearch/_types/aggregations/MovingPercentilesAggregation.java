@@ -158,6 +158,14 @@ public class MovingPercentilesAggregation extends PipelineAggregationBase implem
 		@Nullable
 		private Boolean keyed;
 
+		public Builder() {
+		}
+		private Builder(MovingPercentilesAggregation instance) {
+			this.window = instance.window;
+			this.shift = instance.shift;
+			this.keyed = instance.keyed;
+
+		}
 		/**
 		 * The size of window to &quot;slide&quot; across the histogram.
 		 * <p>
@@ -206,6 +214,12 @@ public class MovingPercentilesAggregation extends PipelineAggregationBase implem
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

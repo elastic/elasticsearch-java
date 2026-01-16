@@ -99,6 +99,12 @@ public class DeleteProjectRoutingRequest extends RequestBase {
 				ObjectBuilder<DeleteProjectRoutingRequest> {
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(DeleteProjectRoutingRequest instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - The name of project routing expression
 		 * <p>
@@ -127,6 +133,12 @@ public class DeleteProjectRoutingRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

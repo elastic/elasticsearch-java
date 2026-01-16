@@ -191,6 +191,17 @@ public class RefreshStats implements JsonpSerializable {
 
 		private Long totalTimeInMillis;
 
+		public Builder() {
+		}
+		private Builder(RefreshStats instance) {
+			this.externalTotal = instance.externalTotal;
+			this.externalTotalTimeInMillis = instance.externalTotalTimeInMillis;
+			this.listeners = instance.listeners;
+			this.total = instance.total;
+			this.totalTime = instance.totalTime;
+			this.totalTimeInMillis = instance.totalTimeInMillis;
+
+		}
 		/**
 		 * Required - API name: {@code external_total}
 		 */
@@ -264,6 +275,12 @@ public class RefreshStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

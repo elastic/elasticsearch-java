@@ -83,6 +83,11 @@ public class WeightedAvgAggregate extends SingleMetricAggregateBase implements A
 	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<WeightedAvgAggregate> {
+		public Builder() {
+		}
+		private Builder(WeightedAvgAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -101,6 +106,12 @@ public class WeightedAvgAggregate extends SingleMetricAggregateBase implements A
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -127,6 +127,13 @@ public class TotalUserProfiles implements JsonpSerializable {
 
 		private String relation;
 
+		public Builder() {
+		}
+		private Builder(TotalUserProfiles instance) {
+			this.value = instance.value;
+			this.relation = instance.relation;
+
+		}
 		/**
 		 * Required - API name: {@code value}
 		 */
@@ -161,6 +168,12 @@ public class TotalUserProfiles implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

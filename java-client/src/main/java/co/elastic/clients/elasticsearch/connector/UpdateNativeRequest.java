@@ -128,6 +128,13 @@ public class UpdateNativeRequest extends RequestBase implements JsonpSerializabl
 
 		private Boolean isNative;
 
+		public Builder() {
+		}
+		private Builder(UpdateNativeRequest instance) {
+			this.connectorId = instance.connectorId;
+			this.isNative = instance.isNative;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector to be updated
 		 * <p>
@@ -164,6 +171,12 @@ public class UpdateNativeRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

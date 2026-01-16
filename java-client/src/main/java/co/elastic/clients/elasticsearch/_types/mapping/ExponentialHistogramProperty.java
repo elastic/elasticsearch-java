@@ -110,6 +110,12 @@ public class ExponentialHistogramProperty extends PropertyBase implements Proper
 		@Nullable
 		private TimeSeriesMetricType timeSeriesMetric;
 
+		public Builder() {
+		}
+		private Builder(ExponentialHistogramProperty instance) {
+			this.timeSeriesMetric = instance.timeSeriesMetric;
+
+		}
 		/**
 		 * API name: {@code time_series_metric}
 		 */
@@ -136,6 +142,12 @@ public class ExponentialHistogramProperty extends PropertyBase implements Proper
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

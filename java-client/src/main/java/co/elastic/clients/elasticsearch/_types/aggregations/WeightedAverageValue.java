@@ -164,6 +164,14 @@ public class WeightedAverageValue implements JsonpSerializable {
 		@Nullable
 		private Script script;
 
+		public Builder() {
+		}
+		private Builder(WeightedAverageValue instance) {
+			this.field = instance.field;
+			this.missing = instance.missing;
+			this.script = instance.script;
+
+		}
 		/**
 		 * The field from which to extract the values or weights.
 		 * <p>
@@ -217,6 +225,12 @@ public class WeightedAverageValue implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

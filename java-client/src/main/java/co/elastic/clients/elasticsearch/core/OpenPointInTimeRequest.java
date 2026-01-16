@@ -348,6 +348,21 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		@Nullable
 		private List<String> routing;
 
+		public Builder() {
+		}
+		private Builder(OpenPointInTimeRequest instance) {
+			this.allowPartialSearchResults = instance.allowPartialSearchResults;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.indexFilter = instance.indexFilter;
+			this.keepAlive = instance.keepAlive;
+			this.maxConcurrentShardRequests = instance.maxConcurrentShardRequests;
+			this.preference = instance.preference;
+			this.projectRouting = instance.projectRouting;
+			this.routing = instance.routing;
+
+		}
 		/**
 		 * Indicates whether the point in time tolerates unavailable shards or shard
 		 * failures when initially creating the PIT. If <code>false</code>, creating a
@@ -558,6 +573,12 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

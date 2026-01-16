@@ -131,6 +131,13 @@ public class ToolCallFunction implements JsonpSerializable {
 
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(ToolCallFunction instance) {
+			this.arguments = instance.arguments;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - The arguments to call the function with in JSON format.
 		 * <p>
@@ -169,6 +176,12 @@ public class ToolCallFunction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

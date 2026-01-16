@@ -123,6 +123,12 @@ public class TextEmbeddingResult implements JsonpSerializable {
 				ObjectBuilder<TextEmbeddingResult> {
 		private List<Float> embedding;
 
+		public Builder() {
+		}
+		private Builder(TextEmbeddingResult instance) {
+			this.embedding = instance.embedding;
+
+		}
 		/**
 		 * Required - API name: {@code embedding}
 		 * <p>
@@ -161,6 +167,12 @@ public class TextEmbeddingResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

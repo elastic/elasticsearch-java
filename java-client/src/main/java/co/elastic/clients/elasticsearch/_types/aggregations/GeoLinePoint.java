@@ -113,6 +113,12 @@ public class GeoLinePoint implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GeoLinePoint> {
 		private String field;
 
+		public Builder() {
+		}
+		private Builder(GeoLinePoint instance) {
+			this.field = instance.field;
+
+		}
 		/**
 		 * Required - The name of the geo_point field.
 		 * <p>
@@ -141,6 +147,12 @@ public class GeoLinePoint implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -190,6 +190,16 @@ public class PutGeoipDatabaseRequest extends RequestBase implements JsonpSeriali
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutGeoipDatabaseRequest instance) {
+			this.id = instance.id;
+			this.masterTimeout = instance.masterTimeout;
+			this.maxmind = instance.maxmind;
+			this.name = instance.name;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - ID of the database configuration to create or update.
 		 * <p>
@@ -298,6 +308,12 @@ public class PutGeoipDatabaseRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

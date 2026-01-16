@@ -203,6 +203,15 @@ public class TextClassificationInferenceUpdateOptions implements InferenceConfig
 		@Nullable
 		private List<String> classificationLabels;
 
+		public Builder() {
+		}
+		private Builder(TextClassificationInferenceUpdateOptions instance) {
+			this.numTopClasses = instance.numTopClasses;
+			this.tokenization = instance.tokenization;
+			this.resultsField = instance.resultsField;
+			this.classificationLabels = instance.classificationLabels;
+
+		}
 		/**
 		 * Specifies the number of top class predictions to return. Defaults to 0.
 		 * <p>
@@ -288,6 +297,12 @@ public class TextClassificationInferenceUpdateOptions implements InferenceConfig
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

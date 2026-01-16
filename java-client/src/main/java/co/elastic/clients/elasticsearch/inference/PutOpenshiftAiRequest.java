@@ -238,6 +238,18 @@ public class PutOpenshiftAiRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutOpenshiftAiRequest instance) {
+			this.chunkingSettings = instance.chunkingSettings;
+			this.openshiftaiInferenceId = instance.openshiftaiInferenceId;
+			this.service = instance.service;
+			this.serviceSettings = instance.serviceSettings;
+			this.taskSettings = instance.taskSettings;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * The chunking configuration object. Applies only to the
 		 * <code>text_embedding</code> task type. Not applicable to the
@@ -386,6 +398,12 @@ public class PutOpenshiftAiRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

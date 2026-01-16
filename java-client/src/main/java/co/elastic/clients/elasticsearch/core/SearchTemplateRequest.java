@@ -433,6 +433,27 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private ScriptSource source;
 
+		public Builder() {
+		}
+		private Builder(SearchTemplateRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.ccsMinimizeRoundtrips = instance.ccsMinimizeRoundtrips;
+			this.expandWildcards = instance.expandWildcards;
+			this.explain = instance.explain;
+			this.id = instance.id;
+			this.ignoreThrottled = instance.ignoreThrottled;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.params = instance.params;
+			this.preference = instance.preference;
+			this.profile = instance.profile;
+			this.projectRouting = instance.projectRouting;
+			this.routing = instance.routing;
+			this.scroll = instance.scroll;
+			this.searchType = instance.searchType;
+			this.source = instance.source;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -720,6 +741,12 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

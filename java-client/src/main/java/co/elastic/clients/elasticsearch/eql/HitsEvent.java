@@ -218,6 +218,16 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 		@Nullable
 		private JsonpSerializer<TEvent> tEventSerializer;
 
+		public Builder() {
+		}
+		private Builder(HitsEvent<TEvent> instance) {
+			this.index = instance.index;
+			this.id = instance.id;
+			this.source = instance.source;
+			this.missing = instance.missing;
+			this.fields = instance.fields;
+
+		}
 		/**
 		 * Required - Name of the index containing the event.
 		 * <p>
@@ -307,6 +317,12 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

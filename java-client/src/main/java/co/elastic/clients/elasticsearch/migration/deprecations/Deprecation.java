@@ -213,6 +213,17 @@ public class Deprecation implements JsonpSerializable {
 		@Nullable
 		private Map<String, JsonData> meta;
 
+		public Builder() {
+		}
+		private Builder(Deprecation instance) {
+			this.details = instance.details;
+			this.level = instance.level;
+			this.message = instance.message;
+			this.url = instance.url;
+			this.resolveDuringRollingUpgrade = instance.resolveDuringRollingUpgrade;
+			this.meta = instance.meta;
+
+		}
 		/**
 		 * Optional details about the deprecation warning.
 		 * <p>
@@ -300,6 +311,12 @@ public class Deprecation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -210,6 +210,17 @@ public class NodeThreadPoolInfo implements JsonpSerializable {
 
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(NodeThreadPoolInfo instance) {
+			this.core = instance.core;
+			this.keepAlive = instance.keepAlive;
+			this.max = instance.max;
+			this.queueSize = instance.queueSize;
+			this.size = instance.size;
+			this.type = instance.type;
+
+		}
 		/**
 		 * API name: {@code core}
 		 */
@@ -283,6 +294,12 @@ public class NodeThreadPoolInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

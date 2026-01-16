@@ -119,6 +119,12 @@ public class IndexCapabilities implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndexCapabilities> {
 		private List<RollupJobSummary> rollupJobs;
 
+		public Builder() {
+		}
+		private Builder(IndexCapabilities instance) {
+			this.rollupJobs = instance.rollupJobs;
+
+		}
 		/**
 		 * Required - API name: {@code rollup_jobs}
 		 * <p>
@@ -166,6 +172,12 @@ public class IndexCapabilities implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

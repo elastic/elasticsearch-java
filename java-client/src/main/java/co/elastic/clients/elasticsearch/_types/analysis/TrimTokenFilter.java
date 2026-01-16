@@ -89,6 +89,11 @@ public class TrimTokenFilter extends TokenFilterBase implements TokenFilterDefin
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TrimTokenFilter> {
+		public Builder() {
+		}
+		private Builder(TrimTokenFilter instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class TrimTokenFilter extends TokenFilterBase implements TokenFilterDefin
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

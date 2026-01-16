@@ -204,6 +204,15 @@ public class StreamCompletionRequest extends RequestBase implements JsonpSeriali
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(StreamCompletionRequest instance) {
+			this.inferenceId = instance.inferenceId;
+			this.input = instance.input;
+			this.taskSettings = instance.taskSettings;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - The unique identifier for the inference endpoint.
 		 * <p>
@@ -295,6 +304,12 @@ public class StreamCompletionRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

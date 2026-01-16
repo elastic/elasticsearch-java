@@ -391,6 +391,26 @@ public class ReindexStatus implements JsonpSerializable {
 		@Nullable
 		private String cancelled;
 
+		public Builder() {
+		}
+		private Builder(ReindexStatus instance) {
+			this.sliceId = instance.sliceId;
+			this.batches = instance.batches;
+			this.created = instance.created;
+			this.deleted = instance.deleted;
+			this.noops = instance.noops;
+			this.requestsPerSecond = instance.requestsPerSecond;
+			this.retries = instance.retries;
+			this.throttled = instance.throttled;
+			this.throttledMillis = instance.throttledMillis;
+			this.throttledUntil = instance.throttledUntil;
+			this.throttledUntilMillis = instance.throttledUntilMillis;
+			this.total = instance.total;
+			this.updated = instance.updated;
+			this.versionConflicts = instance.versionConflicts;
+			this.cancelled = instance.cancelled;
+
+		}
 		/**
 		 * The slice ID
 		 * <p>
@@ -590,6 +610,12 @@ public class ReindexStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

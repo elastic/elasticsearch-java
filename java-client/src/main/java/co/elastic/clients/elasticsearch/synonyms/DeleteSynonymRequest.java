@@ -118,6 +118,12 @@ public class DeleteSynonymRequest extends RequestBase {
 				ObjectBuilder<DeleteSynonymRequest> {
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(DeleteSynonymRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Required - The synonyms set identifier to delete.
 		 * <p>
@@ -146,6 +152,12 @@ public class DeleteSynonymRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

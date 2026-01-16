@@ -176,6 +176,14 @@ public class GroqServiceSettings implements JsonpSerializable {
 		@Nullable
 		private RateLimitSetting rateLimit;
 
+		public Builder() {
+		}
+		private Builder(GroqServiceSettings instance) {
+			this.modelId = instance.modelId;
+			this.apiKey = instance.apiKey;
+			this.rateLimit = instance.rateLimit;
+
+		}
 		/**
 		 * Required - The name of the model to use for the inference task. Refer to the
 		 * Groq model documentation for the list of supported models and versions.
@@ -252,6 +260,12 @@ public class GroqServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

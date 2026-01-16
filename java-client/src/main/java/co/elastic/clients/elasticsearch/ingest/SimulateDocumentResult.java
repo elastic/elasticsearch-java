@@ -163,6 +163,14 @@ public class SimulateDocumentResult implements JsonpSerializable {
 		@Nullable
 		private List<PipelineProcessorResult> processorResults;
 
+		public Builder() {
+		}
+		private Builder(SimulateDocumentResult instance) {
+			this.doc = instance.doc;
+			this.error = instance.error;
+			this.processorResults = instance.processorResults;
+
+		}
 		/**
 		 * API name: {@code doc}
 		 */
@@ -241,6 +249,12 @@ public class SimulateDocumentResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

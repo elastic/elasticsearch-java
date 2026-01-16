@@ -129,6 +129,13 @@ public class MigrateReindex implements JsonpSerializable {
 
 		private SourceIndex source;
 
+		public Builder() {
+		}
+		private Builder(MigrateReindex instance) {
+			this.mode = instance.mode;
+			this.source = instance.source;
+
+		}
 		/**
 		 * Required - Reindex mode. Currently only 'upgrade' is supported.
 		 * <p>
@@ -178,6 +185,12 @@ public class MigrateReindex implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

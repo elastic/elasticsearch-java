@@ -64,6 +64,8 @@ import javax.annotation.Nullable;
 /**
  * Update data stream settings.
  * <p>
+ * NOTE: Available in 8.19. Not available in earlier versions.
+ * <p>
  * This API can be used to override settings on specific data streams. These
  * overrides will take precedence over what is specified in the template that
  * the data stream matches. To prevent your data stream from getting into an
@@ -187,6 +189,16 @@ public class PutDataStreamSettingsRequest extends RequestBase implements JsonpSe
 
 		private IndexSettings settings;
 
+		public Builder() {
+		}
+		private Builder(PutDataStreamSettingsRequest instance) {
+			this.dryRun = instance.dryRun;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.timeout = instance.timeout;
+			this.settings = instance.settings;
+
+		}
 		/**
 		 * If <code>true</code>, the request does not actually change the settings on
 		 * any data streams or indices. Instead, it simulates changing the settings and
@@ -307,6 +319,12 @@ public class PutDataStreamSettingsRequest extends RequestBase implements JsonpSe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<PutDataStreamSettingsRequest> _DESERIALIZER = createPutDataStreamSettingsRequestDeserializer();
 	protected static JsonpDeserializer<PutDataStreamSettingsRequest> createPutDataStreamSettingsRequestDeserializer() {
 

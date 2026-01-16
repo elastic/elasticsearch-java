@@ -139,6 +139,13 @@ public class FieldMetric implements JsonpSerializable {
 
 		private List<Metric> metrics;
 
+		public Builder() {
+		}
+		private Builder(FieldMetric instance) {
+			this.field = instance.field;
+			this.metrics = instance.metrics;
+
+		}
 		/**
 		 * Required - The field to collect metrics for. This must be a numeric of some
 		 * kind.
@@ -194,6 +201,12 @@ public class FieldMetric implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

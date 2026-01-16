@@ -107,6 +107,12 @@ public class DeleteAsyncRequest extends RequestBase {
 				ObjectBuilder<DeleteAsyncRequest> {
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(DeleteAsyncRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Required - The identifier for the search.
 		 * <p>
@@ -135,6 +141,12 @@ public class DeleteAsyncRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

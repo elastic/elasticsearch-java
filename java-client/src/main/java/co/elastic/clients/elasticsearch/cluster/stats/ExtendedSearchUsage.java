@@ -61,11 +61,15 @@ public class ExtendedSearchUsage implements JsonpSerializable {
 	@Nullable
 	private final ExtendedRetrieversSearchUsage retrievers;
 
+	@Nullable
+	private final ExtendedSectionSearchUsage section;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ExtendedSearchUsage(Builder builder) {
 
 		this.retrievers = builder.retrievers;
+		this.section = builder.section;
 
 	}
 
@@ -82,6 +86,14 @@ public class ExtendedSearchUsage implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code section}
+	 */
+	@Nullable
+	public final ExtendedSectionSearchUsage section() {
+		return this.section;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -95,6 +107,11 @@ public class ExtendedSearchUsage implements JsonpSerializable {
 		if (this.retrievers != null) {
 			generator.writeKey("retrievers");
 			this.retrievers.serialize(generator, mapper);
+
+		}
+		if (this.section != null) {
+			generator.writeKey("section");
+			this.section.serialize(generator, mapper);
 
 		}
 
@@ -117,6 +134,16 @@ public class ExtendedSearchUsage implements JsonpSerializable {
 		@Nullable
 		private ExtendedRetrieversSearchUsage retrievers;
 
+		@Nullable
+		private ExtendedSectionSearchUsage section;
+
+		public Builder() {
+		}
+		private Builder(ExtendedSearchUsage instance) {
+			this.retrievers = instance.retrievers;
+			this.section = instance.section;
+
+		}
 		/**
 		 * API name: {@code retrievers}
 		 */
@@ -131,6 +158,22 @@ public class ExtendedSearchUsage implements JsonpSerializable {
 		public final Builder retrievers(
 				Function<ExtendedRetrieversSearchUsage.Builder, ObjectBuilder<ExtendedRetrieversSearchUsage>> fn) {
 			return this.retrievers(fn.apply(new ExtendedRetrieversSearchUsage.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code section}
+		 */
+		public final Builder section(@Nullable ExtendedSectionSearchUsage value) {
+			this.section = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code section}
+		 */
+		public final Builder section(
+				Function<ExtendedSectionSearchUsage.Builder, ObjectBuilder<ExtendedSectionSearchUsage>> fn) {
+			return this.section(fn.apply(new ExtendedSectionSearchUsage.Builder()).build());
 		}
 
 		@Override
@@ -151,6 +194,12 @@ public class ExtendedSearchUsage implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -162,6 +211,7 @@ public class ExtendedSearchUsage implements JsonpSerializable {
 	protected static void setupExtendedSearchUsageDeserializer(ObjectDeserializer<ExtendedSearchUsage.Builder> op) {
 
 		op.add(Builder::retrievers, ExtendedRetrieversSearchUsage._DESERIALIZER, "retrievers");
+		op.add(Builder::section, ExtendedSectionSearchUsage._DESERIALIZER, "section");
 
 	}
 

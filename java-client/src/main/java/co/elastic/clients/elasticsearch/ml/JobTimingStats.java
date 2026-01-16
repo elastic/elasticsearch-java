@@ -242,6 +242,19 @@ public class JobTimingStats implements JsonpSerializable {
 		@Nullable
 		private Double minimumBucketProcessingTimeMs;
 
+		public Builder() {
+		}
+		private Builder(JobTimingStats instance) {
+			this.averageBucketProcessingTimeMs = instance.averageBucketProcessingTimeMs;
+			this.bucketCount = instance.bucketCount;
+			this.exponentialAverageBucketProcessingTimeMs = instance.exponentialAverageBucketProcessingTimeMs;
+			this.exponentialAverageBucketProcessingTimePerHourMs = instance.exponentialAverageBucketProcessingTimePerHourMs;
+			this.jobId = instance.jobId;
+			this.totalBucketProcessingTimeMs = instance.totalBucketProcessingTimeMs;
+			this.maximumBucketProcessingTimeMs = instance.maximumBucketProcessingTimeMs;
+			this.minimumBucketProcessingTimeMs = instance.minimumBucketProcessingTimeMs;
+
+		}
 		/**
 		 * API name: {@code average_bucket_processing_time_ms}
 		 */
@@ -325,6 +338,12 @@ public class JobTimingStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

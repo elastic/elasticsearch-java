@@ -115,6 +115,12 @@ public class SettingsAnalyze implements JsonpSerializable {
 		@Nullable
 		private Integer maxTokenCount;
 
+		public Builder() {
+		}
+		private Builder(SettingsAnalyze instance) {
+			this.maxTokenCount = instance.maxTokenCount;
+
+		}
 		/**
 		 * API name: {@code max_token_count}
 		 */
@@ -141,6 +147,12 @@ public class SettingsAnalyze implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -111,6 +111,12 @@ public class NormalizeAggregation extends PipelineAggregationBase implements Agg
 		@Nullable
 		private NormalizeMethod method;
 
+		public Builder() {
+		}
+		private Builder(NormalizeAggregation instance) {
+			this.method = instance.method;
+
+		}
 		/**
 		 * The specific method to apply.
 		 * <p>
@@ -139,6 +145,12 @@ public class NormalizeAggregation extends PipelineAggregationBase implements Agg
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

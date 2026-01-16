@@ -263,6 +263,19 @@ public class PutSampleConfigurationRequest extends RequestBase implements JsonpS
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutSampleConfigurationRequest instance) {
+			this.if_ = instance.if_;
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.maxSamples = instance.maxSamples;
+			this.maxSize = instance.maxSize;
+			this.rate = instance.rate;
+			this.timeToLive = instance.timeToLive;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * An optional condition script that sampled documents must satisfy.
 		 * <p>
@@ -397,6 +410,12 @@ public class PutSampleConfigurationRequest extends RequestBase implements JsonpS
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

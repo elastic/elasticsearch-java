@@ -213,6 +213,16 @@ public class SearchTemplateRequestBody implements JsonpSerializable {
 		@Nullable
 		private String source;
 
+		public Builder() {
+		}
+		private Builder(SearchTemplateRequestBody instance) {
+			this.explain = instance.explain;
+			this.id = instance.id;
+			this.params = instance.params;
+			this.profile = instance.profile;
+			this.source = instance.source;
+
+		}
 		/**
 		 * API name: {@code explain}
 		 */
@@ -290,6 +300,12 @@ public class SearchTemplateRequestBody implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

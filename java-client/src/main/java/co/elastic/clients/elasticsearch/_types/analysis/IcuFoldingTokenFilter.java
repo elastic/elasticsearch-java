@@ -107,6 +107,12 @@ public class IcuFoldingTokenFilter extends TokenFilterBase implements TokenFilte
 				ObjectBuilder<IcuFoldingTokenFilter> {
 		private String unicodeSetFilter;
 
+		public Builder() {
+		}
+		private Builder(IcuFoldingTokenFilter instance) {
+			this.unicodeSetFilter = instance.unicodeSetFilter;
+
+		}
 		/**
 		 * Required - API name: {@code unicode_set_filter}
 		 */
@@ -133,6 +139,12 @@ public class IcuFoldingTokenFilter extends TokenFilterBase implements TokenFilte
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

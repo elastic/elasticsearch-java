@@ -151,6 +151,14 @@ public class ClusterShardMetrics implements JsonpSerializable {
 
 		private Double min;
 
+		public Builder() {
+		}
+		private Builder(ClusterShardMetrics instance) {
+			this.avg = instance.avg;
+			this.max = instance.max;
+			this.min = instance.min;
+
+		}
 		/**
 		 * Required - Mean number of shards in an index, counting only shards assigned
 		 * to selected nodes.
@@ -202,6 +210,12 @@ public class ClusterShardMetrics implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

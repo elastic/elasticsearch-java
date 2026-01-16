@@ -190,6 +190,15 @@ public class WeightedAverageAggregation extends AggregationBase implements Aggre
 		@Nullable
 		private WeightedAverageValue weight;
 
+		public Builder() {
+		}
+		private Builder(WeightedAverageAggregation instance) {
+			this.format = instance.format;
+			this.value = instance.value;
+			this.valueType = instance.valueType;
+			this.weight = instance.weight;
+
+		}
 		/**
 		 * A numeric response formatter.
 		 * <p>
@@ -264,6 +273,12 @@ public class WeightedAverageAggregation extends AggregationBase implements Aggre
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

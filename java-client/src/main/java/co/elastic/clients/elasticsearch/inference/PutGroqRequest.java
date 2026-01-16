@@ -180,6 +180,16 @@ public class PutGroqRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutGroqRequest instance) {
+			this.groqInferenceId = instance.groqInferenceId;
+			this.service = instance.service;
+			this.serviceSettings = instance.serviceSettings;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - The unique identifier of the inference endpoint.
 		 * <p>
@@ -272,6 +282,12 @@ public class PutGroqRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

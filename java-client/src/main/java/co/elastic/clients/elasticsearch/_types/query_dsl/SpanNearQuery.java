@@ -168,6 +168,14 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 		@Nullable
 		private Integer slop;
 
+		public Builder() {
+		}
+		private Builder(SpanNearQuery instance) {
+			this.clauses = instance.clauses;
+			this.inOrder = instance.inOrder;
+			this.slop = instance.slop;
+
+		}
 		/**
 		 * Required - Array of one or more other span type queries.
 		 * <p>
@@ -256,6 +264,12 @@ public class SpanNearQuery extends QueryBase implements SpanQueryVariant, QueryV
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

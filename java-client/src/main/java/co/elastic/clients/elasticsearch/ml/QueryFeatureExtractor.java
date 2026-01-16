@@ -150,6 +150,14 @@ public class QueryFeatureExtractor implements JsonpSerializable {
 
 		private Query query;
 
+		public Builder() {
+		}
+		private Builder(QueryFeatureExtractor instance) {
+			this.defaultScore = instance.defaultScore;
+			this.featureName = instance.featureName;
+			this.query = instance.query;
+
+		}
 		/**
 		 * API name: {@code default_score}
 		 */
@@ -207,6 +215,12 @@ public class QueryFeatureExtractor implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -291,6 +291,21 @@ public class StateRequest extends RequestBase {
 		@Nullable
 		private Time waitForTimeout;
 
+		public Builder() {
+		}
+		private Builder(StateRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.flatSettings = instance.flatSettings;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.metric = instance.metric;
+			this.waitForMetadataVersion = instance.waitForMetadataVersion;
+			this.waitForTimeout = instance.waitForTimeout;
+
+		}
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
 		 * indices. (This includes <code>_all</code> string or when no indices have been
@@ -481,6 +496,12 @@ public class StateRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

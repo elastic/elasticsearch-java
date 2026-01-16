@@ -122,6 +122,12 @@ public class CreateManyRequest extends RequestBase implements JsonpSerializable 
 				ObjectBuilder<CreateManyRequest> {
 		private Map<String, ProjectRoutingExpression> expressions = new HashMap<>();
 
+		public Builder() {
+		}
+		private Builder(CreateManyRequest instance) {
+			this.expressions = instance.expressions;
+
+		}
 		/**
 		 * Required - Request body.
 		 * <p>
@@ -179,6 +185,12 @@ public class CreateManyRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<CreateManyRequest> _DESERIALIZER = createCreateManyRequestDeserializer();
 	protected static JsonpDeserializer<CreateManyRequest> createCreateManyRequestDeserializer() {
 

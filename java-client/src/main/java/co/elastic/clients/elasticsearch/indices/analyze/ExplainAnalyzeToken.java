@@ -283,6 +283,20 @@ public class ExplainAnalyzeToken implements JsonpSerializable {
 
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(ExplainAnalyzeToken instance) {
+			this.bytes = instance.bytes;
+			this.endOffset = instance.endOffset;
+			this.keyword = instance.keyword;
+			this.position = instance.position;
+			this.positionlength = instance.positionlength;
+			this.startOffset = instance.startOffset;
+			this.termfrequency = instance.termfrequency;
+			this.token = instance.token;
+			this.type = instance.type;
+
+		}
 		/**
 		 * Required - API name: {@code bytes}
 		 */
@@ -373,6 +387,12 @@ public class ExplainAnalyzeToken implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

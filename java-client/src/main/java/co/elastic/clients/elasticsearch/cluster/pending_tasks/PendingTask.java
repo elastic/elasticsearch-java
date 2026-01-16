@@ -214,6 +214,17 @@ public class PendingTask implements JsonpSerializable {
 
 		private Long timeInQueueMillis;
 
+		public Builder() {
+		}
+		private Builder(PendingTask instance) {
+			this.executing = instance.executing;
+			this.insertOrder = instance.insertOrder;
+			this.priority = instance.priority;
+			this.source = instance.source;
+			this.timeInQueue = instance.timeInQueue;
+			this.timeInQueueMillis = instance.timeInQueueMillis;
+
+		}
 		/**
 		 * Required - Indicates whether the pending tasks are currently executing or
 		 * not.
@@ -308,6 +319,12 @@ public class PendingTask implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

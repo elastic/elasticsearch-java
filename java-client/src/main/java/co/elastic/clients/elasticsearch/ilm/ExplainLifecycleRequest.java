@@ -161,6 +161,15 @@ public class ExplainLifecycleRequest extends RequestBase {
 		@Nullable
 		private Boolean onlyManaged;
 
+		public Builder() {
+		}
+		private Builder(ExplainLifecycleRequest instance) {
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.onlyErrors = instance.onlyErrors;
+			this.onlyManaged = instance.onlyManaged;
+
+		}
 		/**
 		 * Required - Comma-separated list of data streams, indices, and aliases to
 		 * target. Supports wildcards (<code>*</code>). To target all data streams and
@@ -234,6 +243,12 @@ public class ExplainLifecycleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

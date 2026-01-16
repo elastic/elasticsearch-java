@@ -298,6 +298,21 @@ public class JobStats implements JsonpSerializable {
 		@Nullable
 		private Boolean deleting;
 
+		public Builder() {
+		}
+		private Builder(JobStats instance) {
+			this.assignmentExplanation = instance.assignmentExplanation;
+			this.dataCounts = instance.dataCounts;
+			this.forecastsStats = instance.forecastsStats;
+			this.jobId = instance.jobId;
+			this.modelSizeStats = instance.modelSizeStats;
+			this.node = instance.node;
+			this.openTime = instance.openTime;
+			this.state = instance.state;
+			this.timingStats = instance.timingStats;
+			this.deleting = instance.deleting;
+
+		}
 		/**
 		 * For open anomaly detection jobs only, contains messages relating to the
 		 * selection of a node to run the job.
@@ -482,6 +497,12 @@ public class JobStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

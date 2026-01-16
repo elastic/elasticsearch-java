@@ -193,6 +193,15 @@ public class SnapshotStatusRequest extends RequestBase {
 		@Nullable
 		private List<String> snapshot;
 
+		public Builder() {
+		}
+		private Builder(SnapshotStatusRequest instance) {
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.masterTimeout = instance.masterTimeout;
+			this.repository = instance.repository;
+			this.snapshot = instance.snapshot;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error for any snapshots that
 		 * are unavailable. If <code>true</code>, the request ignores snapshots that are
@@ -284,6 +293,12 @@ public class SnapshotStatusRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -152,6 +152,14 @@ public class DataStreamMappings implements JsonpSerializable {
 
 		private TypeMapping effectiveMappings;
 
+		public Builder() {
+		}
+		private Builder(DataStreamMappings instance) {
+			this.name = instance.name;
+			this.mappings = instance.mappings;
+			this.effectiveMappings = instance.effectiveMappings;
+
+		}
 		/**
 		 * Required - The name of the data stream.
 		 * <p>
@@ -222,6 +230,12 @@ public class DataStreamMappings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

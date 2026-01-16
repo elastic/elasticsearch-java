@@ -141,6 +141,13 @@ public class DataframeAnalysisClassification extends DataframeAnalysisBase imple
 		@Nullable
 		private Integer numTopClasses;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalysisClassification instance) {
+			this.classAssignmentObjective = instance.classAssignmentObjective;
+			this.numTopClasses = instance.numTopClasses;
+
+		}
 		/**
 		 * API name: {@code class_assignment_objective}
 		 */
@@ -183,6 +190,12 @@ public class DataframeAnalysisClassification extends DataframeAnalysisBase imple
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

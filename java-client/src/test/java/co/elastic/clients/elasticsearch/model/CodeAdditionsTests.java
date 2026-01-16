@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.BoolQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -45,5 +46,20 @@ public class CodeAdditionsTests extends Assertions {
             BoolQuery query = builder.build();
             assertTrue(query.hasClauses());
         }
+    }
+
+    @Test
+    public void testRebuild() {
+        SearchRequest searchRequest = SearchRequest.of(s -> s
+            .size(20)
+            .index("test")
+            .query(q -> q.match(m -> m.field("field").query("value")))
+        );
+
+        SearchRequest.Builder builder = searchRequest.rebuild();
+
+        SearchRequest searchRequestRebuilt = builder.build();
+
+        assertEquals(searchRequest.toString(), searchRequestRebuilt.toString());
     }
 }

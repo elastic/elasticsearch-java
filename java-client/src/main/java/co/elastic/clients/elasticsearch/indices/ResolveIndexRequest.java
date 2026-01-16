@@ -221,6 +221,17 @@ public class ResolveIndexRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private String projectRouting;
 
+		public Builder() {
+		}
+		private Builder(ResolveIndexRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.mode = instance.mode;
+			this.name = instance.name;
+			this.projectRouting = instance.projectRouting;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -364,6 +375,12 @@ public class ResolveIndexRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

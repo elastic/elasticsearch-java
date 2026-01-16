@@ -128,6 +128,12 @@ public class SettingsSimilarityLmd implements SettingsSimilarityVariant, JsonpSe
 		@Nullable
 		private Double mu;
 
+		public Builder() {
+		}
+		private Builder(SettingsSimilarityLmd instance) {
+			this.mu = instance.mu;
+
+		}
 		/**
 		 * API name: {@code mu}
 		 */
@@ -154,6 +160,12 @@ public class SettingsSimilarityLmd implements SettingsSimilarityVariant, JsonpSe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

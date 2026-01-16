@@ -151,6 +151,14 @@ public class ClusterIndicesShardsIndex implements JsonpSerializable {
 
 		private ClusterShardMetrics shards;
 
+		public Builder() {
+		}
+		private Builder(ClusterIndicesShardsIndex instance) {
+			this.primaries = instance.primaries;
+			this.replication = instance.replication;
+			this.shards = instance.shards;
+
+		}
 		/**
 		 * Required - Contains statistics about the number of primary shards assigned to
 		 * selected nodes.
@@ -232,6 +240,12 @@ public class ClusterIndicesShardsIndex implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

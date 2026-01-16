@@ -225,6 +225,16 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 		@Nullable
 		private Map<String, Tokenizer> tokenizer;
 
+		public Builder() {
+		}
+		private Builder(IndexSettingsAnalysis instance) {
+			this.analyzer = instance.analyzer;
+			this.charFilter = instance.charFilter;
+			this.filter = instance.filter;
+			this.normalizer = instance.normalizer;
+			this.tokenizer = instance.tokenizer;
+
+		}
 		/**
 		 * API name: {@code analyzer}
 		 * <p>
@@ -388,6 +398,12 @@ public class IndexSettingsAnalysis implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

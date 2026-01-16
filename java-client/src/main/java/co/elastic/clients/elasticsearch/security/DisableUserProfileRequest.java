@@ -130,6 +130,13 @@ public class DisableUserProfileRequest extends RequestBase {
 
 		private String uid;
 
+		public Builder() {
+		}
+		private Builder(DisableUserProfileRequest instance) {
+			this.refresh = instance.refresh;
+			this.uid = instance.uid;
+
+		}
 		/**
 		 * If 'true', Elasticsearch refreshes the affected shards to make this operation
 		 * visible to search. If 'wait_for', it waits for a refresh to make this
@@ -170,6 +177,12 @@ public class DisableUserProfileRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

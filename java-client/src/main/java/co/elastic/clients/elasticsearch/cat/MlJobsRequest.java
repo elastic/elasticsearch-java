@@ -220,6 +220,17 @@ public class MlJobsRequest extends CatRequestBase {
 		@Nullable
 		private TimeUnit time;
 
+		public Builder() {
+		}
+		private Builder(MlJobsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.bytes = instance.bytes;
+			this.h = instance.h;
+			this.jobId = instance.jobId;
+			this.s = instance.s;
+			this.time = instance.time;
+
+		}
 		/**
 		 * Specifies what to do when the request:
 		 * <ul>
@@ -353,6 +364,12 @@ public class MlJobsRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

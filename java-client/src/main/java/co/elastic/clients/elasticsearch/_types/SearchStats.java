@@ -425,6 +425,30 @@ public class SearchStats implements JsonpSerializable {
 		@Nullable
 		private Map<String, SearchStats> groups;
 
+		public Builder() {
+		}
+		private Builder(SearchStats instance) {
+			this.fetchCurrent = instance.fetchCurrent;
+			this.fetchTime = instance.fetchTime;
+			this.fetchTimeInMillis = instance.fetchTimeInMillis;
+			this.fetchTotal = instance.fetchTotal;
+			this.openContexts = instance.openContexts;
+			this.queryCurrent = instance.queryCurrent;
+			this.queryTime = instance.queryTime;
+			this.queryTimeInMillis = instance.queryTimeInMillis;
+			this.queryTotal = instance.queryTotal;
+			this.scrollCurrent = instance.scrollCurrent;
+			this.scrollTime = instance.scrollTime;
+			this.scrollTimeInMillis = instance.scrollTimeInMillis;
+			this.scrollTotal = instance.scrollTotal;
+			this.suggestCurrent = instance.suggestCurrent;
+			this.suggestTime = instance.suggestTime;
+			this.suggestTimeInMillis = instance.suggestTimeInMillis;
+			this.suggestTotal = instance.suggestTotal;
+			this.recentSearchLoad = instance.recentSearchLoad;
+			this.groups = instance.groups;
+
+		}
 		/**
 		 * Required - API name: {@code fetch_current}
 		 */
@@ -644,6 +668,12 @@ public class SearchStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -250,6 +250,19 @@ public class CertificateInformation implements JsonpSerializable {
 
 		private String subjectDn;
 
+		public Builder() {
+		}
+		private Builder(CertificateInformation instance) {
+			this.alias = instance.alias;
+			this.expiry = instance.expiry;
+			this.format = instance.format;
+			this.hasPrivateKey = instance.hasPrivateKey;
+			this.issuer = instance.issuer;
+			this.path = instance.path;
+			this.serialNumber = instance.serialNumber;
+			this.subjectDn = instance.subjectDn;
+
+		}
 		/**
 		 * If the path refers to a container file (a jks keystore, or a PKCS#12 file),
 		 * it is the alias of the certificate. Otherwise, it is null.
@@ -353,6 +366,12 @@ public class CertificateInformation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

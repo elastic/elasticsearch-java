@@ -145,6 +145,14 @@ public class PutTrainedModelAliasRequest extends RequestBase {
 		@Nullable
 		private Boolean reassign;
 
+		public Builder() {
+		}
+		private Builder(PutTrainedModelAliasRequest instance) {
+			this.modelAlias = instance.modelAlias;
+			this.modelId = instance.modelId;
+			this.reassign = instance.reassign;
+
+		}
 		/**
 		 * Required - The alias to create or update. This value cannot end in numbers.
 		 * <p>
@@ -195,6 +203,12 @@ public class PutTrainedModelAliasRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

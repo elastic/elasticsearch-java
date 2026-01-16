@@ -352,6 +352,24 @@ public class DataframeAnalyticsSummary implements JsonpSerializable {
 		@Nullable
 		private Map<String, JsonData> meta;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalyticsSummary instance) {
+			this.allowLazyStart = instance.allowLazyStart;
+			this.analysis = instance.analysis;
+			this.analyzedFields = instance.analyzedFields;
+			this.authorization = instance.authorization;
+			this.createTime = instance.createTime;
+			this.description = instance.description;
+			this.dest = instance.dest;
+			this.id = instance.id;
+			this.maxNumThreads = instance.maxNumThreads;
+			this.modelMemoryLimit = instance.modelMemoryLimit;
+			this.source = instance.source;
+			this.version = instance.version;
+			this.meta = instance.meta;
+
+		}
 		/**
 		 * API name: {@code allow_lazy_start}
 		 */
@@ -541,6 +559,12 @@ public class DataframeAnalyticsSummary implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

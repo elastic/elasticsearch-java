@@ -100,6 +100,12 @@ public class TagsRequest extends RequestBase {
 		@Nullable
 		private String projectRouting;
 
+		public Builder() {
+		}
+		private Builder(TagsRequest instance) {
+			this.projectRouting = instance.projectRouting;
+
+		}
 		/**
 		 * A Lucene query using project metadata tags used to filter which projects are
 		 * returned in the response, such as _alias:_origin or _alias:<em>pr</em>.
@@ -129,6 +135,12 @@ public class TagsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

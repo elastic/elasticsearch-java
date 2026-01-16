@@ -134,6 +134,13 @@ public class RankEvalQuery implements JsonpSerializable {
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(RankEvalQuery instance) {
+			this.query = instance.query;
+			this.size = instance.size;
+
+		}
 		/**
 		 * Required - API name: {@code query}
 		 */
@@ -183,6 +190,12 @@ public class RankEvalQuery implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

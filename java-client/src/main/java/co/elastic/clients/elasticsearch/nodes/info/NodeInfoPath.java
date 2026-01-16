@@ -183,6 +183,15 @@ public class NodeInfoPath implements JsonpSerializable {
 		@Nullable
 		private List<String> data;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoPath instance) {
+			this.logs = instance.logs;
+			this.home = instance.home;
+			this.repo = instance.repo;
+			this.data = instance.data;
+
+		}
 		/**
 		 * API name: {@code logs}
 		 */
@@ -257,6 +266,12 @@ public class NodeInfoPath implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

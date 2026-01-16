@@ -81,6 +81,11 @@ public class CartesianCentroidAggregation extends MetricAggregationBase implemen
 	public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CartesianCentroidAggregation> {
+		public Builder() {
+		}
+		private Builder(CartesianCentroidAggregation instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class CartesianCentroidAggregation extends MetricAggregationBase implemen
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -268,6 +268,17 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 		@Nullable
 		private String username;
 
+		public Builder() {
+		}
+		private Builder(InvalidateApiKeyRequest instance) {
+			this.id = instance.id;
+			this.ids = instance.ids;
+			this.name = instance.name;
+			this.owner = instance.owner;
+			this.realmName = instance.realmName;
+			this.username = instance.username;
+
+		}
 		/**
 		 * API name: {@code id}
 		 */
@@ -372,6 +383,12 @@ public class InvalidateApiKeyRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

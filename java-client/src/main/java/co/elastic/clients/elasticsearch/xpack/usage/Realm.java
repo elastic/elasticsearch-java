@@ -268,6 +268,19 @@ public class Realm extends Base {
 		@Nullable
 		private List<Boolean> isAuthenticationDelegated;
 
+		public Builder() {
+		}
+		private Builder(Realm instance) {
+			this.name = instance.name;
+			this.order = instance.order;
+			this.size = instance.size;
+			this.cache = instance.cache;
+			this.hasAuthorizationRealms = instance.hasAuthorizationRealms;
+			this.hasDefaultUsernamePattern = instance.hasDefaultUsernamePattern;
+			this.hasTruststore = instance.hasTruststore;
+			this.isAuthenticationDelegated = instance.isAuthenticationDelegated;
+
+		}
 		/**
 		 * API name: {@code name}
 		 * <p>
@@ -458,6 +471,12 @@ public class Realm extends Base {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
