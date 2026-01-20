@@ -244,6 +244,19 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		@Nullable
 		private Long textEmbedding;
 
+		public Builder() {
+		}
+		private Builder(MlInferenceTrainedModelsCount instance) {
+			this.total = instance.total;
+			this.prepackaged = instance.prepackaged;
+			this.other = instance.other;
+			this.passThrough = instance.passThrough;
+			this.regression = instance.regression;
+			this.classification = instance.classification;
+			this.ner = instance.ner;
+			this.textEmbedding = instance.textEmbedding;
+
+		}
 		/**
 		 * Required - API name: {@code total}
 		 */
@@ -326,6 +339,12 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

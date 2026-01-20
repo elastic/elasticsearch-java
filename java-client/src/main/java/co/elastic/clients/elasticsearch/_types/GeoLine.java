@@ -147,6 +147,13 @@ public class GeoLine implements JsonpSerializable {
 
 		private List<List<Double>> coordinates;
 
+		public Builder() {
+		}
+		private Builder(GeoLine instance) {
+			this.type = instance.type;
+			this.coordinates = instance.coordinates;
+
+		}
 		/**
 		 * Required - Always <code>&quot;LineString&quot;</code>
 		 * <p>
@@ -199,6 +206,12 @@ public class GeoLine implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

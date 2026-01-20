@@ -177,6 +177,15 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 		@Nullable
 		private Boolean ignoreDeserializationErrors;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoSettingsTransport instance) {
+			this.type = instance.type;
+			this.typeDefault = instance.typeDefault;
+			this.features = instance.features;
+			this.ignoreDeserializationErrors = instance.ignoreDeserializationErrors;
+
+		}
 		/**
 		 * Required - API name: {@code type}
 		 */
@@ -245,6 +254,12 @@ public class NodeInfoSettingsTransport implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

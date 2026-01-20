@@ -81,6 +81,11 @@ public class GeoHexGridAggregate extends MultiBucketAggregateBase<GeoHexGridBuck
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<GeoHexGridBucket, Builder>
 			implements
 				ObjectBuilder<GeoHexGridAggregate> {
+		public Builder() {
+		}
+		private Builder(GeoHexGridAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -100,6 +105,12 @@ public class GeoHexGridAggregate extends MultiBucketAggregateBase<GeoHexGridBuck
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

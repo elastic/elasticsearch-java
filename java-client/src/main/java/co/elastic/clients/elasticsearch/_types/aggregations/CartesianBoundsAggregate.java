@@ -111,6 +111,12 @@ public class CartesianBoundsAggregate extends AggregateBase implements Aggregate
 		@Nullable
 		private TopLeftBottomRightGeoBounds bounds;
 
+		public Builder() {
+		}
+		private Builder(CartesianBoundsAggregate instance) {
+			this.bounds = instance.bounds;
+
+		}
 		/**
 		 * API name: {@code bounds}
 		 */
@@ -145,6 +151,12 @@ public class CartesianBoundsAggregate extends AggregateBase implements Aggregate
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

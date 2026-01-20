@@ -155,6 +155,14 @@ public class AutoscalingDecider implements JsonpSerializable {
 		@Nullable
 		private JsonData reasonDetails;
 
+		public Builder() {
+		}
+		private Builder(AutoscalingDecider instance) {
+			this.requiredCapacity = instance.requiredCapacity;
+			this.reasonSummary = instance.reasonSummary;
+			this.reasonDetails = instance.reasonDetails;
+
+		}
 		/**
 		 * Required - API name: {@code required_capacity}
 		 */
@@ -205,6 +213,12 @@ public class AutoscalingDecider implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

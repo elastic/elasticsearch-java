@@ -190,6 +190,15 @@ public class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 
 		private Map<String, JsonData> targetMap;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalysisFeatureProcessorTargetMeanEncoding instance) {
+			this.defaultValue = instance.defaultValue;
+			this.featureName = instance.featureName;
+			this.field = instance.field;
+			this.targetMap = instance.targetMap;
+
+		}
 		/**
 		 * Required - The default value if field value is not found in the target_map.
 		 * <p>
@@ -262,6 +271,12 @@ public class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

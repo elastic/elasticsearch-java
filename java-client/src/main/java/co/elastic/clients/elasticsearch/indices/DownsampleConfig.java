@@ -136,6 +136,13 @@ public class DownsampleConfig implements JsonpSerializable {
 		@Nullable
 		private SamplingMethod samplingMethod;
 
+		public Builder() {
+		}
+		private Builder(DownsampleConfig instance) {
+			this.fixedInterval = instance.fixedInterval;
+			this.samplingMethod = instance.samplingMethod;
+
+		}
 		/**
 		 * Required - The interval at which to aggregate the original time series index.
 		 * <p>
@@ -185,6 +192,12 @@ public class DownsampleConfig implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

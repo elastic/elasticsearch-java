@@ -183,6 +183,15 @@ public class Processor implements JsonpSerializable {
 		@Nullable
 		private Long timeInMillis;
 
+		public Builder() {
+		}
+		private Builder(Processor instance) {
+			this.count = instance.count;
+			this.current = instance.current;
+			this.failed = instance.failed;
+			this.timeInMillis = instance.timeInMillis;
+
+		}
 		/**
 		 * Number of documents transformed by the processor.
 		 * <p>
@@ -241,6 +250,12 @@ public class Processor implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -121,6 +121,12 @@ public class ClosePointInTimeRequest extends RequestBase implements JsonpSeriali
 				ObjectBuilder<ClosePointInTimeRequest> {
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(ClosePointInTimeRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Required - The ID of the point-in-time.
 		 * <p>
@@ -149,6 +155,12 @@ public class ClosePointInTimeRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

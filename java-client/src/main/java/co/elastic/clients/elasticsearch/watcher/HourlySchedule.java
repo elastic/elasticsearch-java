@@ -127,6 +127,12 @@ public class HourlySchedule implements ScheduleVariant, JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<HourlySchedule> {
 		private List<Integer> minute;
 
+		public Builder() {
+		}
+		private Builder(HourlySchedule instance) {
+			this.minute = instance.minute;
+
+		}
 		/**
 		 * Required - API name: {@code minute}
 		 * <p>
@@ -165,6 +171,12 @@ public class HourlySchedule implements ScheduleVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -218,6 +218,16 @@ public class LlamaServiceSettings implements JsonpSerializable {
 		@Nullable
 		private RateLimitSetting rateLimit;
 
+		public Builder() {
+		}
+		private Builder(LlamaServiceSettings instance) {
+			this.url = instance.url;
+			this.modelId = instance.modelId;
+			this.maxInputTokens = instance.maxInputTokens;
+			this.similarity = instance.similarity;
+			this.rateLimit = instance.rateLimit;
+
+		}
 		/**
 		 * Required - The URL endpoint of the Llama stack endpoint. URL must contain:
 		 * <ul>
@@ -316,6 +326,12 @@ public class LlamaServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

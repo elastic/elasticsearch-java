@@ -127,6 +127,13 @@ public class UserProfileHitMetadata implements JsonpSerializable {
 
 		private Long seqNo;
 
+		public Builder() {
+		}
+		private Builder(UserProfileHitMetadata instance) {
+			this.primaryTerm = instance.primaryTerm;
+			this.seqNo = instance.seqNo;
+
+		}
 		/**
 		 * Required - API name: {@code _primary_term}
 		 */
@@ -161,6 +168,12 @@ public class UserProfileHitMetadata implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

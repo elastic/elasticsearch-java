@@ -340,6 +340,22 @@ public class Client implements JsonpSerializable {
 		@Nullable
 		private String xOpaqueId;
 
+		public Builder() {
+		}
+		private Builder(Client instance) {
+			this.id = instance.id;
+			this.agent = instance.agent;
+			this.localAddress = instance.localAddress;
+			this.remoteAddress = instance.remoteAddress;
+			this.lastUri = instance.lastUri;
+			this.openedTimeMillis = instance.openedTimeMillis;
+			this.closedTimeMillis = instance.closedTimeMillis;
+			this.lastRequestTimeMillis = instance.lastRequestTimeMillis;
+			this.requestCount = instance.requestCount;
+			this.requestSizeBytes = instance.requestSizeBytes;
+			this.xOpaqueId = instance.xOpaqueId;
+
+		}
 		/**
 		 * Unique ID for the HTTP client.
 		 * <p>
@@ -470,6 +486,12 @@ public class Client implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

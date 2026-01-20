@@ -154,6 +154,15 @@ public class DeleteInferenceRequest extends RequestBase {
 		@Nullable
 		private TaskType taskType;
 
+		public Builder() {
+		}
+		private Builder(DeleteInferenceRequest instance) {
+			this.dryRun = instance.dryRun;
+			this.force = instance.force;
+			this.inferenceId = instance.inferenceId;
+			this.taskType = instance.taskType;
+
+		}
 		/**
 		 * When true, checks the semantic_text fields and inference processors that
 		 * reference the endpoint and returns them in a list, but does not delete the
@@ -215,6 +224,12 @@ public class DeleteInferenceRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

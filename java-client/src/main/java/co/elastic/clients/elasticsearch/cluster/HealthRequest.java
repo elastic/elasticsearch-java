@@ -318,6 +318,23 @@ public class HealthRequest extends RequestBase {
 		@Nullable
 		private HealthStatus waitForStatus;
 
+		public Builder() {
+		}
+		private Builder(HealthRequest instance) {
+			this.expandWildcards = instance.expandWildcards;
+			this.index = instance.index;
+			this.level = instance.level;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+			this.waitForActiveShards = instance.waitForActiveShards;
+			this.waitForEvents = instance.waitForEvents;
+			this.waitForNoInitializingShards = instance.waitForNoInitializingShards;
+			this.waitForNoRelocatingShards = instance.waitForNoRelocatingShards;
+			this.waitForNodes = instance.waitForNodes;
+			this.waitForStatus = instance.waitForStatus;
+
+		}
 		/**
 		 * Expand wildcard expression to concrete indices that are open, closed or both.
 		 * <p>
@@ -533,6 +550,12 @@ public class HealthRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

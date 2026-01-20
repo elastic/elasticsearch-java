@@ -152,6 +152,14 @@ public class DataStreamSettings implements JsonpSerializable {
 
 		private IndexSettings effectiveSettings;
 
+		public Builder() {
+		}
+		private Builder(DataStreamSettings instance) {
+			this.name = instance.name;
+			this.settings = instance.settings;
+			this.effectiveSettings = instance.effectiveSettings;
+
+		}
 		/**
 		 * Required - The name of the data stream.
 		 * <p>
@@ -222,6 +230,12 @@ public class DataStreamSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

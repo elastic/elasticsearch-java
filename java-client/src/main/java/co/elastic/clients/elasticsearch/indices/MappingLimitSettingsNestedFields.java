@@ -124,6 +124,12 @@ public class MappingLimitSettingsNestedFields implements JsonpSerializable {
 		@Nullable
 		private Long limit;
 
+		public Builder() {
+		}
+		private Builder(MappingLimitSettingsNestedFields instance) {
+			this.limit = instance.limit;
+
+		}
 		/**
 		 * The maximum number of distinct nested mappings in an index. The nested type
 		 * should only be used in special cases, when arrays of objects need to be
@@ -155,6 +161,12 @@ public class MappingLimitSettingsNestedFields implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

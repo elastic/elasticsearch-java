@@ -96,6 +96,11 @@ public class DoubleTermsAggregate extends TermsAggregateBase<DoubleTermsBucket>
 	public static class Builder extends TermsAggregateBase.AbstractBuilder<DoubleTermsBucket, Builder>
 			implements
 				ObjectBuilder<DoubleTermsAggregate> {
+		public Builder() {
+		}
+		private Builder(DoubleTermsAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -115,6 +120,12 @@ public class DoubleTermsAggregate extends TermsAggregateBase<DoubleTermsBucket>
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

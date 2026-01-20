@@ -169,6 +169,14 @@ public class DeepSeekServiceSettings implements JsonpSerializable {
 		@Nullable
 		private String url;
 
+		public Builder() {
+		}
+		private Builder(DeepSeekServiceSettings instance) {
+			this.apiKey = instance.apiKey;
+			this.modelId = instance.modelId;
+			this.url = instance.url;
+
+		}
 		/**
 		 * Required - A valid API key for your DeepSeek account. You can find or create
 		 * your DeepSeek API keys on the DeepSeek API key page.
@@ -231,6 +239,12 @@ public class DeepSeekServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

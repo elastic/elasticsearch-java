@@ -119,6 +119,12 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 		@Nullable
 		private List<String> stoptags;
 
+		public Builder() {
+		}
+		private Builder(NoriPartOfSpeechTokenFilter instance) {
+			this.stoptags = instance.stoptags;
+
+		}
 		/**
 		 * An array of part-of-speech tags that should be removed.
 		 * <p>
@@ -161,6 +167,12 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -234,6 +234,17 @@ public class NetworkDirectionProcessor extends ProcessorBase implements Processo
 		@Nullable
 		private Boolean ignoreMissing;
 
+		public Builder() {
+		}
+		private Builder(NetworkDirectionProcessor instance) {
+			this.sourceIp = instance.sourceIp;
+			this.destinationIp = instance.destinationIp;
+			this.targetField = instance.targetField;
+			this.internalNetworks = instance.internalNetworks;
+			this.internalNetworksField = instance.internalNetworksField;
+			this.ignoreMissing = instance.ignoreMissing;
+
+		}
 		/**
 		 * Field containing the source IP address.
 		 * <p>
@@ -334,6 +345,12 @@ public class NetworkDirectionProcessor extends ProcessorBase implements Processo
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

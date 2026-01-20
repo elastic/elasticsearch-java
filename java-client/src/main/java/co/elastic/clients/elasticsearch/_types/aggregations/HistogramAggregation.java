@@ -380,6 +380,22 @@ public class HistogramAggregation extends BucketAggregationBase
 		@Nullable
 		private Boolean keyed;
 
+		public Builder() {
+		}
+		private Builder(HistogramAggregation instance) {
+			this.extendedBounds = instance.extendedBounds;
+			this.hardBounds = instance.hardBounds;
+			this.field = instance.field;
+			this.interval = instance.interval;
+			this.minDocCount = instance.minDocCount;
+			this.missing = instance.missing;
+			this.offset = instance.offset;
+			this.order = instance.order;
+			this.script = instance.script;
+			this.format = instance.format;
+			this.keyed = instance.keyed;
+
+		}
 		/**
 		 * Enables extending the bounds of the histogram beyond the data itself.
 		 * <p>
@@ -558,6 +574,12 @@ public class HistogramAggregation extends BucketAggregationBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

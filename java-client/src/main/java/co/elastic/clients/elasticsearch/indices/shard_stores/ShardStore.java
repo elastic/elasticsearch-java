@@ -201,6 +201,14 @@ public class ShardStore implements JsonpSerializable {
 		@Nullable
 		private ShardStoreException storeException;
 
+		public Builder() {
+		}
+		private Builder(ShardStore instance) {
+			this.allocation = instance.allocation;
+			this.allocationId = instance.allocationId;
+			this.storeException = instance.storeException;
+
+		}
 		/**
 		 * Required - API name: {@code allocation}
 		 */
@@ -251,6 +259,12 @@ public class ShardStore implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

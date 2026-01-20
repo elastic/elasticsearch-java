@@ -115,6 +115,12 @@ public class SearchApplicationTemplate implements JsonpSerializable {
 				ObjectBuilder<SearchApplicationTemplate> {
 		private Script script;
 
+		public Builder() {
+		}
+		private Builder(SearchApplicationTemplate instance) {
+			this.script = instance.script;
+
+		}
 		/**
 		 * Required - The associated mustache template.
 		 * <p>
@@ -152,6 +158,12 @@ public class SearchApplicationTemplate implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

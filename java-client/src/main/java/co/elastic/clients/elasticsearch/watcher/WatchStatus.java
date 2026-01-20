@@ -210,6 +210,17 @@ public class WatchStatus implements JsonpSerializable {
 		@Nullable
 		private String executionState;
 
+		public Builder() {
+		}
+		private Builder(WatchStatus instance) {
+			this.actions = instance.actions;
+			this.lastChecked = instance.lastChecked;
+			this.lastMetCondition = instance.lastMetCondition;
+			this.state = instance.state;
+			this.version = instance.version;
+			this.executionState = instance.executionState;
+
+		}
 		/**
 		 * Required - API name: {@code actions}
 		 * <p>
@@ -304,6 +315,12 @@ public class WatchStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

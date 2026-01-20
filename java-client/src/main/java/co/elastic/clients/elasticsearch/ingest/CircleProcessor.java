@@ -193,6 +193,16 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 		@Nullable
 		private String targetField;
 
+		public Builder() {
+		}
+		private Builder(CircleProcessor instance) {
+			this.errorDistance = instance.errorDistance;
+			this.field = instance.field;
+			this.ignoreMissing = instance.ignoreMissing;
+			this.shapeType = instance.shapeType;
+			this.targetField = instance.targetField;
+
+		}
 		/**
 		 * Required - The difference between the resulting inscribed distance from
 		 * center to side and the circle’s radius (measured in meters for
@@ -267,6 +277,12 @@ public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

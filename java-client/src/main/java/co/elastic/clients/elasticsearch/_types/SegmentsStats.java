@@ -582,6 +582,34 @@ public class SegmentsStats implements JsonpSerializable {
 
 		private Long versionMapMemoryInBytes;
 
+		public Builder() {
+		}
+		private Builder(SegmentsStats instance) {
+			this.count = instance.count;
+			this.docValuesMemory = instance.docValuesMemory;
+			this.docValuesMemoryInBytes = instance.docValuesMemoryInBytes;
+			this.fileSizes = instance.fileSizes;
+			this.fixedBitSet = instance.fixedBitSet;
+			this.fixedBitSetMemoryInBytes = instance.fixedBitSetMemoryInBytes;
+			this.indexWriterMemory = instance.indexWriterMemory;
+			this.indexWriterMemoryInBytes = instance.indexWriterMemoryInBytes;
+			this.maxUnsafeAutoIdTimestamp = instance.maxUnsafeAutoIdTimestamp;
+			this.memory = instance.memory;
+			this.memoryInBytes = instance.memoryInBytes;
+			this.normsMemory = instance.normsMemory;
+			this.normsMemoryInBytes = instance.normsMemoryInBytes;
+			this.pointsMemory = instance.pointsMemory;
+			this.pointsMemoryInBytes = instance.pointsMemoryInBytes;
+			this.storedFieldsMemoryInBytes = instance.storedFieldsMemoryInBytes;
+			this.storedFieldsMemory = instance.storedFieldsMemory;
+			this.termsMemoryInBytes = instance.termsMemoryInBytes;
+			this.termsMemory = instance.termsMemory;
+			this.termVectorsMemory = instance.termVectorsMemory;
+			this.termVectorsMemoryInBytes = instance.termVectorsMemoryInBytes;
+			this.versionMapMemory = instance.versionMapMemory;
+			this.versionMapMemoryInBytes = instance.versionMapMemoryInBytes;
+
+		}
 		/**
 		 * Required - Total number of segments across all shards assigned to selected
 		 * nodes.
@@ -882,6 +910,12 @@ public class SegmentsStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

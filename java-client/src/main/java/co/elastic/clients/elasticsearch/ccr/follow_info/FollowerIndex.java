@@ -188,6 +188,16 @@ public class FollowerIndex implements JsonpSerializable {
 
 		private FollowerIndexStatus status;
 
+		public Builder() {
+		}
+		private Builder(FollowerIndex instance) {
+			this.followerIndex = instance.followerIndex;
+			this.leaderIndex = instance.leaderIndex;
+			this.parameters = instance.parameters;
+			this.remoteCluster = instance.remoteCluster;
+			this.status = instance.status;
+
+		}
 		/**
 		 * Required - The name of the follower index.
 		 * <p>
@@ -269,6 +279,12 @@ public class FollowerIndex implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

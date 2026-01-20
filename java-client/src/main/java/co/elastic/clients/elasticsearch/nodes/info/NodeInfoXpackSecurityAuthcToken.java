@@ -114,6 +114,12 @@ public class NodeInfoXpackSecurityAuthcToken implements JsonpSerializable {
 				ObjectBuilder<NodeInfoXpackSecurityAuthcToken> {
 		private String enabled;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoXpackSecurityAuthcToken instance) {
+			this.enabled = instance.enabled;
+
+		}
 		/**
 		 * Required - API name: {@code enabled}
 		 */
@@ -140,6 +146,12 @@ public class NodeInfoXpackSecurityAuthcToken implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

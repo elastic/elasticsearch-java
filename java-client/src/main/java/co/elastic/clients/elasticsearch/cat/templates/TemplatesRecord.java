@@ -206,6 +206,16 @@ public class TemplatesRecord implements JsonpSerializable {
 		@Nullable
 		private String composedOf;
 
+		public Builder() {
+		}
+		private Builder(TemplatesRecord instance) {
+			this.name = instance.name;
+			this.indexPatterns = instance.indexPatterns;
+			this.order = instance.order;
+			this.version = instance.version;
+			this.composedOf = instance.composedOf;
+
+		}
 		/**
 		 * The template name.
 		 * <p>
@@ -274,6 +284,12 @@ public class TemplatesRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

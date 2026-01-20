@@ -146,6 +146,13 @@ public class IoStats implements JsonpSerializable {
 		@Nullable
 		private IoStatDevice total;
 
+		public Builder() {
+		}
+		private Builder(IoStats instance) {
+			this.devices = instance.devices;
+			this.total = instance.total;
+
+		}
 		/**
 		 * Array of disk metrics for each device that is backing an Elasticsearch data
 		 * path. These disk metrics are probed periodically and averages between the
@@ -226,6 +233,12 @@ public class IoStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

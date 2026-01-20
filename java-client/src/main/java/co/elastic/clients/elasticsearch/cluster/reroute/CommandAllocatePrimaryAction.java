@@ -165,6 +165,15 @@ public class CommandAllocatePrimaryAction implements JsonpSerializable {
 
 		private Boolean acceptDataLoss;
 
+		public Builder() {
+		}
+		private Builder(CommandAllocatePrimaryAction instance) {
+			this.index = instance.index;
+			this.shard = instance.shard;
+			this.node = instance.node;
+			this.acceptDataLoss = instance.acceptDataLoss;
+
+		}
 		/**
 		 * Required - API name: {@code index}
 		 */
@@ -220,6 +229,12 @@ public class CommandAllocatePrimaryAction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

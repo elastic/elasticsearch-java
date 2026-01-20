@@ -131,6 +131,13 @@ public class FieldMemoryUsage implements JsonpSerializable {
 
 		private Long memorySizeInBytes;
 
+		public Builder() {
+		}
+		private Builder(FieldMemoryUsage instance) {
+			this.memorySize = instance.memorySize;
+			this.memorySizeInBytes = instance.memorySizeInBytes;
+
+		}
 		/**
 		 * API name: {@code memory_size}
 		 */
@@ -165,6 +172,12 @@ public class FieldMemoryUsage implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

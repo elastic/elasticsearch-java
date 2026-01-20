@@ -405,6 +405,27 @@ public class GetSnapshotRequest extends RequestBase {
 		@Nullable
 		private Boolean verbose;
 
+		public Builder() {
+		}
+		private Builder(GetSnapshotRequest instance) {
+			this.after = instance.after;
+			this.fromSortValue = instance.fromSortValue;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.includeRepository = instance.includeRepository;
+			this.indexDetails = instance.indexDetails;
+			this.indexNames = instance.indexNames;
+			this.masterTimeout = instance.masterTimeout;
+			this.offset = instance.offset;
+			this.order = instance.order;
+			this.repository = instance.repository;
+			this.size = instance.size;
+			this.slmPolicyFilter = instance.slmPolicyFilter;
+			this.snapshot = instance.snapshot;
+			this.sort = instance.sort;
+			this.state = instance.state;
+			this.verbose = instance.verbose;
+
+		}
 		/**
 		 * An offset identifier to start pagination from as returned by the next field
 		 * in the response body.
@@ -675,6 +696,12 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -141,6 +141,13 @@ public class RawDocument implements JsonpSerializable {
 
 		private Map<String, Property> source;
 
+		public Builder() {
+		}
+		private Builder(RawDocument instance) {
+			this.index = instance.index;
+			this.source = instance.source;
+
+		}
 		/**
 		 * Required - Name of the index for this raw document.
 		 * <p>
@@ -204,6 +211,12 @@ public class RawDocument implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

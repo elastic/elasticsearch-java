@@ -338,6 +338,25 @@ public class BoxPlotAggregate extends AggregateBase implements AggregateVariant 
 		@Nullable
 		private String upperAsString;
 
+		public Builder() {
+		}
+		private Builder(BoxPlotAggregate instance) {
+			this.min = instance.min;
+			this.max = instance.max;
+			this.q1 = instance.q1;
+			this.q2 = instance.q2;
+			this.q3 = instance.q3;
+			this.lower = instance.lower;
+			this.upper = instance.upper;
+			this.minAsString = instance.minAsString;
+			this.maxAsString = instance.maxAsString;
+			this.q1AsString = instance.q1AsString;
+			this.q2AsString = instance.q2AsString;
+			this.q3AsString = instance.q3AsString;
+			this.lowerAsString = instance.lowerAsString;
+			this.upperAsString = instance.upperAsString;
+
+		}
 		/**
 		 * Required - API name: {@code min}
 		 */
@@ -468,6 +487,12 @@ public class BoxPlotAggregate extends AggregateBase implements AggregateVariant 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

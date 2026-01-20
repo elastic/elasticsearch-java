@@ -201,6 +201,15 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 		@Nullable
 		private ScriptSource source;
 
+		public Builder() {
+		}
+		private Builder(RenderSearchTemplateRequest instance) {
+			this.file = instance.file;
+			this.id = instance.id;
+			this.params = instance.params;
+			this.source = instance.source;
+
+		}
 		/**
 		 * API name: {@code file}
 		 */
@@ -292,6 +301,12 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

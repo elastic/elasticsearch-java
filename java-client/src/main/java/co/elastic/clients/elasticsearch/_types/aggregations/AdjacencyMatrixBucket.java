@@ -98,6 +98,12 @@ public class AdjacencyMatrixBucket extends MultiBucketBase {
 				ObjectBuilder<AdjacencyMatrixBucket> {
 		private String key;
 
+		public Builder() {
+		}
+		private Builder(AdjacencyMatrixBucket instance) {
+			this.key = instance.key;
+
+		}
 		/**
 		 * Required - API name: {@code key}
 		 */
@@ -124,6 +130,12 @@ public class AdjacencyMatrixBucket extends MultiBucketBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

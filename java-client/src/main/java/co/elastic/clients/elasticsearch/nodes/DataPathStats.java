@@ -436,6 +436,27 @@ public class DataPathStats implements JsonpSerializable {
 		@Nullable
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(DataPathStats instance) {
+			this.available = instance.available;
+			this.availableInBytes = instance.availableInBytes;
+			this.diskQueue = instance.diskQueue;
+			this.diskReads = instance.diskReads;
+			this.diskReadSize = instance.diskReadSize;
+			this.diskReadSizeInBytes = instance.diskReadSizeInBytes;
+			this.diskWrites = instance.diskWrites;
+			this.diskWriteSize = instance.diskWriteSize;
+			this.diskWriteSizeInBytes = instance.diskWriteSizeInBytes;
+			this.free = instance.free;
+			this.freeInBytes = instance.freeInBytes;
+			this.mount = instance.mount;
+			this.path = instance.path;
+			this.total = instance.total;
+			this.totalInBytes = instance.totalInBytes;
+			this.type = instance.type;
+
+		}
 		/**
 		 * Total amount of disk space available to this Java virtual machine on this
 		 * file store.
@@ -602,6 +623,12 @@ public class DataPathStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

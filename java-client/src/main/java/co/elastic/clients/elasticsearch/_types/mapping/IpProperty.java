@@ -236,6 +236,18 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
 		@Nullable
 		private Boolean timeSeriesDimension;
 
+		public Builder() {
+		}
+		private Builder(IpProperty instance) {
+			this.boost = instance.boost;
+			this.index = instance.index;
+			this.ignoreMalformed = instance.ignoreMalformed;
+			this.nullValue = instance.nullValue;
+			this.onScriptError = instance.onScriptError;
+			this.script = instance.script;
+			this.timeSeriesDimension = instance.timeSeriesDimension;
+
+		}
 		/**
 		 * API name: {@code boost}
 		 */
@@ -320,6 +332,12 @@ public class IpProperty extends DocValuesPropertyBase implements PropertyVariant
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -223,6 +223,16 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(GeoHashGridAggregation instance) {
+			this.bounds = instance.bounds;
+			this.field = instance.field;
+			this.precision = instance.precision;
+			this.shardSize = instance.shardSize;
+			this.size = instance.size;
+
+		}
 		/**
 		 * The bounding box to filter the points in each bucket.
 		 * <p>
@@ -315,6 +325,12 @@ public class GeoHashGridAggregation extends BucketAggregationBase implements Agg
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

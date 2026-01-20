@@ -149,6 +149,14 @@ public class SimulatedActions implements JsonpSerializable {
 
 		private Boolean useAll;
 
+		public Builder() {
+		}
+		private Builder(SimulatedActions instance) {
+			this.actions = instance.actions;
+			this.all = instance.all;
+			this.useAll = instance.useAll;
+
+		}
 		/**
 		 * Required - API name: {@code actions}
 		 * <p>
@@ -210,6 +218,12 @@ public class SimulatedActions implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

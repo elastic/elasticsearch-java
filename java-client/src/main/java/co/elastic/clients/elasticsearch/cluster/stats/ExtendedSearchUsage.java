@@ -117,6 +117,12 @@ public class ExtendedSearchUsage implements JsonpSerializable {
 		@Nullable
 		private ExtendedRetrieversSearchUsage retrievers;
 
+		public Builder() {
+		}
+		private Builder(ExtendedSearchUsage instance) {
+			this.retrievers = instance.retrievers;
+
+		}
 		/**
 		 * API name: {@code retrievers}
 		 */
@@ -151,6 +157,12 @@ public class ExtendedSearchUsage implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

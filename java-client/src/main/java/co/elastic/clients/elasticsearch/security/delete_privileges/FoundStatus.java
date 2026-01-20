@@ -110,6 +110,12 @@ public class FoundStatus implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FoundStatus> {
 		private Boolean found;
 
+		public Builder() {
+		}
+		private Builder(FoundStatus instance) {
+			this.found = instance.found;
+
+		}
 		/**
 		 * Required - API name: {@code found}
 		 */
@@ -136,6 +142,12 @@ public class FoundStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

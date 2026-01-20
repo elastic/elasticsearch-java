@@ -174,6 +174,15 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 		@Nullable
 		private NodeInfoXpackSecurityAuthc authc;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoXpackSecurity instance) {
+			this.http = instance.http;
+			this.enabled = instance.enabled;
+			this.transport = instance.transport;
+			this.authc = instance.authc;
+
+		}
 		/**
 		 * API name: {@code http}
 		 */
@@ -248,6 +257,12 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

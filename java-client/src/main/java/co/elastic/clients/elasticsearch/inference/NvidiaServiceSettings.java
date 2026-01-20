@@ -248,6 +248,17 @@ public class NvidiaServiceSettings implements JsonpSerializable {
 		@Nullable
 		private RateLimitSetting rateLimit;
 
+		public Builder() {
+		}
+		private Builder(NvidiaServiceSettings instance) {
+			this.apiKey = instance.apiKey;
+			this.url = instance.url;
+			this.modelId = instance.modelId;
+			this.maxInputTokens = instance.maxInputTokens;
+			this.similarity = instance.similarity;
+			this.rateLimit = instance.rateLimit;
+
+		}
 		/**
 		 * Required - A valid API key for your Nvidia endpoint. Can be found in
 		 * <code>API Keys</code> section of Nvidia account settings.
@@ -364,6 +375,12 @@ public class NvidiaServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

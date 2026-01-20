@@ -262,6 +262,19 @@ public class DataframeAnalytics implements JsonpSerializable {
 
 		private DataframeState state;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalytics instance) {
+			this.analysisStats = instance.analysisStats;
+			this.assignmentExplanation = instance.assignmentExplanation;
+			this.dataCounts = instance.dataCounts;
+			this.id = instance.id;
+			this.memoryUsage = instance.memoryUsage;
+			this.node = instance.node;
+			this.progress = instance.progress;
+			this.state = instance.state;
+
+		}
 		/**
 		 * An object containing information about the analysis job.
 		 * <p>
@@ -444,6 +457,12 @@ public class DataframeAnalytics implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

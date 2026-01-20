@@ -122,6 +122,12 @@ public class TypeFieldMappings implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TypeFieldMappings> {
 		private Map<String, FieldMapping> mappings;
 
+		public Builder() {
+		}
+		private Builder(TypeFieldMappings instance) {
+			this.mappings = instance.mappings;
+
+		}
 		/**
 		 * Required - API name: {@code mappings}
 		 * <p>
@@ -169,6 +175,12 @@ public class TypeFieldMappings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

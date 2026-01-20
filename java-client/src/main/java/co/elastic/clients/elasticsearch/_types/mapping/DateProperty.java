@@ -295,6 +295,21 @@ public class DateProperty extends DocValuesPropertyBase implements PropertyVaria
 		@Nullable
 		private String locale;
 
+		public Builder() {
+		}
+		private Builder(DateProperty instance) {
+			this.boost = instance.boost;
+			this.fielddata = instance.fielddata;
+			this.format = instance.format;
+			this.ignoreMalformed = instance.ignoreMalformed;
+			this.index = instance.index;
+			this.script = instance.script;
+			this.onScriptError = instance.onScriptError;
+			this.nullValue = instance.nullValue;
+			this.precisionStep = instance.precisionStep;
+			this.locale = instance.locale;
+
+		}
 		/**
 		 * API name: {@code boost}
 		 */
@@ -407,6 +422,12 @@ public class DateProperty extends DocValuesPropertyBase implements PropertyVaria
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

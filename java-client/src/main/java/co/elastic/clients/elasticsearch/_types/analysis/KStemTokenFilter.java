@@ -89,6 +89,11 @@ public class KStemTokenFilter extends TokenFilterBase implements TokenFilterDefi
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KStemTokenFilter> {
+		public Builder() {
+		}
+		private Builder(KStemTokenFilter instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class KStemTokenFilter extends TokenFilterBase implements TokenFilterDefi
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -111,6 +111,12 @@ public class Redact implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Redact> {
 		private Boolean isRedacted;
 
+		public Builder() {
+		}
+		private Builder(Redact instance) {
+			this.isRedacted = instance.isRedacted;
+
+		}
 		/**
 		 * Required - indicates if document has been redacted
 		 * <p>
@@ -139,6 +145,12 @@ public class Redact implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

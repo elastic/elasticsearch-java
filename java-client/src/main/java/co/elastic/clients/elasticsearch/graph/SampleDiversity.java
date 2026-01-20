@@ -126,6 +126,13 @@ public class SampleDiversity implements JsonpSerializable {
 
 		private Integer maxDocsPerValue;
 
+		public Builder() {
+		}
+		private Builder(SampleDiversity instance) {
+			this.field = instance.field;
+			this.maxDocsPerValue = instance.maxDocsPerValue;
+
+		}
 		/**
 		 * Required - API name: {@code field}
 		 */
@@ -160,6 +167,12 @@ public class SampleDiversity implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

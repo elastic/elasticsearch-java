@@ -81,6 +81,11 @@ public class DistributionChange extends AbstractChangePoint implements ChangeTyp
 	public static class Builder extends AbstractChangePoint.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DistributionChange> {
+		public Builder() {
+		}
+		private Builder(DistributionChange instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class DistributionChange extends AbstractChangePoint implements ChangeTyp
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

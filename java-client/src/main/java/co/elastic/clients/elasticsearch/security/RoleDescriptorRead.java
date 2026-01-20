@@ -375,6 +375,22 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		@Nullable
 		private Map<String, JsonData> transientMetadata;
 
+		public Builder() {
+		}
+		private Builder(RoleDescriptorRead instance) {
+			this.cluster = instance.cluster;
+			this.indices = instance.indices;
+			this.remoteIndices = instance.remoteIndices;
+			this.remoteCluster = instance.remoteCluster;
+			this.global = instance.global;
+			this.applications = instance.applications;
+			this.metadata = instance.metadata;
+			this.runAs = instance.runAs;
+			this.description = instance.description;
+			this.restriction = instance.restriction;
+			this.transientMetadata = instance.transientMetadata;
+
+		}
 		/**
 		 * Required - A list of cluster privileges. These privileges define the cluster
 		 * level actions that API keys are able to execute.
@@ -719,6 +735,12 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

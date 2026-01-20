@@ -145,6 +145,13 @@ public class OpenShiftAiTaskSettings implements JsonpSerializable {
 		@Nullable
 		private Integer topN;
 
+		public Builder() {
+		}
+		private Builder(OpenShiftAiTaskSettings instance) {
+			this.returnDocuments = instance.returnDocuments;
+			this.topN = instance.topN;
+
+		}
 		/**
 		 * For a <code>rerank</code> task, whether to return the source documents in the
 		 * response.
@@ -185,6 +192,12 @@ public class OpenShiftAiTaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -136,6 +136,13 @@ public class IndicatorNode implements JsonpSerializable {
 		@Nullable
 		private String nodeId;
 
+		public Builder() {
+		}
+		private Builder(IndicatorNode instance) {
+			this.name = instance.name;
+			this.nodeId = instance.nodeId;
+
+		}
 		/**
 		 * API name: {@code name}
 		 */
@@ -170,6 +177,12 @@ public class IndicatorNode implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

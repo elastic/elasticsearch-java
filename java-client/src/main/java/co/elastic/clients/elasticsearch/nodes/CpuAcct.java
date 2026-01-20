@@ -142,6 +142,13 @@ public class CpuAcct implements JsonpSerializable {
 		@Nullable
 		private Long usageNanos;
 
+		public Builder() {
+		}
+		private Builder(CpuAcct instance) {
+			this.controlGroup = instance.controlGroup;
+			this.usageNanos = instance.usageNanos;
+
+		}
 		/**
 		 * The <code>cpuacct</code> control group to which the Elasticsearch process
 		 * belongs.
@@ -182,6 +189,12 @@ public class CpuAcct implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -129,6 +129,13 @@ public class FileSettingsIndicatorDetails implements JsonpSerializable {
 
 		private String mostRecentFailure;
 
+		public Builder() {
+		}
+		private Builder(FileSettingsIndicatorDetails instance) {
+			this.failureStreak = instance.failureStreak;
+			this.mostRecentFailure = instance.mostRecentFailure;
+
+		}
 		/**
 		 * Required - API name: {@code failure_streak}
 		 */
@@ -163,6 +170,12 @@ public class FileSettingsIndicatorDetails implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

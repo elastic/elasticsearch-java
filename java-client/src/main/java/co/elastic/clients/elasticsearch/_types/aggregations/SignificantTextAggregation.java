@@ -502,6 +502,28 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		@Nullable
 		private List<String> sourceFields;
 
+		public Builder() {
+		}
+		private Builder(SignificantTextAggregation instance) {
+			this.backgroundFilter = instance.backgroundFilter;
+			this.chiSquare = instance.chiSquare;
+			this.exclude = instance.exclude;
+			this.executionHint = instance.executionHint;
+			this.field = instance.field;
+			this.filterDuplicateText = instance.filterDuplicateText;
+			this.gnd = instance.gnd;
+			this.include = instance.include;
+			this.jlh = instance.jlh;
+			this.minDocCount = instance.minDocCount;
+			this.mutualInformation = instance.mutualInformation;
+			this.percentage = instance.percentage;
+			this.scriptHeuristic = instance.scriptHeuristic;
+			this.shardMinDocCount = instance.shardMinDocCount;
+			this.shardSize = instance.shardSize;
+			this.size = instance.size;
+			this.sourceFields = instance.sourceFields;
+
+		}
 		/**
 		 * A background filter that can be used to focus in on significant terms within
 		 * a narrower context, instead of the entire index.
@@ -818,6 +840,12 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

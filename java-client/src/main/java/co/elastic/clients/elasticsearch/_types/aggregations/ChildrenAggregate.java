@@ -81,6 +81,11 @@ public class ChildrenAggregate extends SingleBucketAggregateBase implements Aggr
 	public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ChildrenAggregate> {
+		public Builder() {
+		}
+		private Builder(ChildrenAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class ChildrenAggregate extends SingleBucketAggregateBase implements Aggr
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

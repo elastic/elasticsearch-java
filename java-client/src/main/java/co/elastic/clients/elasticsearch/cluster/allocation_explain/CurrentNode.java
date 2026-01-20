@@ -204,6 +204,17 @@ public class CurrentNode implements JsonpSerializable {
 
 		private Integer weightRanking;
 
+		public Builder() {
+		}
+		private Builder(CurrentNode instance) {
+			this.id = instance.id;
+			this.name = instance.name;
+			this.roles = instance.roles;
+			this.attributes = instance.attributes;
+			this.transportAddress = instance.transportAddress;
+			this.weightRanking = instance.weightRanking;
+
+		}
 		/**
 		 * Required - API name: {@code id}
 		 */
@@ -294,6 +305,12 @@ public class CurrentNode implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -112,6 +112,12 @@ public class ShardMigrationStatus implements JsonpSerializable {
 				ObjectBuilder<ShardMigrationStatus> {
 		private ShutdownStatus status;
 
+		public Builder() {
+		}
+		private Builder(ShardMigrationStatus instance) {
+			this.status = instance.status;
+
+		}
 		/**
 		 * Required - API name: {@code status}
 		 */
@@ -138,6 +144,12 @@ public class ShardMigrationStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -213,6 +213,17 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 		@Nullable
 		private ChunkRescorer chunkRescorer;
 
+		public Builder() {
+		}
+		private Builder(TextSimilarityReranker instance) {
+			this.retriever = instance.retriever;
+			this.rankWindowSize = instance.rankWindowSize;
+			this.inferenceId = instance.inferenceId;
+			this.inferenceText = instance.inferenceText;
+			this.field = instance.field;
+			this.chunkRescorer = instance.chunkRescorer;
+
+		}
 		/**
 		 * Required - The nested retriever which will produce the first-level results,
 		 * that will later be used for reranking.
@@ -325,6 +336,12 @@ public class TextSimilarityReranker extends RetrieverBase implements RetrieverVa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

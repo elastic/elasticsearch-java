@@ -130,6 +130,13 @@ public class SlackAction implements JsonpSerializable {
 
 		private SlackMessage message;
 
+		public Builder() {
+		}
+		private Builder(SlackAction instance) {
+			this.account = instance.account;
+			this.message = instance.message;
+
+		}
 		/**
 		 * API name: {@code account}
 		 */
@@ -171,6 +178,12 @@ public class SlackAction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

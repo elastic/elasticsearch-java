@@ -164,6 +164,14 @@ public class PublishedClusterStates implements JsonpSerializable {
 		@Nullable
 		private Long compatibleDiffs;
 
+		public Builder() {
+		}
+		private Builder(PublishedClusterStates instance) {
+			this.fullStates = instance.fullStates;
+			this.incompatibleDiffs = instance.incompatibleDiffs;
+			this.compatibleDiffs = instance.compatibleDiffs;
+
+		}
 		/**
 		 * Number of published cluster states.
 		 * <p>
@@ -212,6 +220,12 @@ public class PublishedClusterStates implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -160,6 +160,15 @@ public class WarmerStats implements JsonpSerializable {
 
 		private Long totalTimeInMillis;
 
+		public Builder() {
+		}
+		private Builder(WarmerStats instance) {
+			this.current = instance.current;
+			this.total = instance.total;
+			this.totalTime = instance.totalTime;
+			this.totalTimeInMillis = instance.totalTimeInMillis;
+
+		}
 		/**
 		 * Required - API name: {@code current}
 		 */
@@ -217,6 +226,12 @@ public class WarmerStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

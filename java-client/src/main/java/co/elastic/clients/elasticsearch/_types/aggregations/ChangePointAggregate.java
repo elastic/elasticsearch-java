@@ -126,6 +126,13 @@ public class ChangePointAggregate extends AggregateBase implements AggregateVari
 		@Nullable
 		private ChangePointBucket bucket;
 
+		public Builder() {
+		}
+		private Builder(ChangePointAggregate instance) {
+			this.type = instance.type;
+			this.bucket = instance.bucket;
+
+		}
 		/**
 		 * Required - API name: {@code type}
 		 */
@@ -182,6 +189,12 @@ public class ChangePointAggregate extends AggregateBase implements AggregateVari
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

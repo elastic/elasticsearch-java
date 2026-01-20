@@ -126,6 +126,12 @@ public class DeleteJobRequest extends RequestBase {
 				ObjectBuilder<DeleteJobRequest> {
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(DeleteJobRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Required - Identifier for the job.
 		 * <p>
@@ -154,6 +160,12 @@ public class DeleteJobRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

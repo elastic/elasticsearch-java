@@ -198,6 +198,16 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 
 		private Long storeSizeBytes;
 
+		public Builder() {
+		}
+		private Builder(DataStreamsStatsItem instance) {
+			this.backingIndices = instance.backingIndices;
+			this.dataStream = instance.dataStream;
+			this.maximumTimestamp = instance.maximumTimestamp;
+			this.storeSize = instance.storeSize;
+			this.storeSizeBytes = instance.storeSizeBytes;
+
+		}
 		/**
 		 * Required - Current number of backing indices for the data stream.
 		 * <p>
@@ -274,6 +284,12 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -332,6 +332,22 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 
 		private String valueSplit;
 
+		public Builder() {
+		}
+		private Builder(KeyValueProcessor instance) {
+			this.excludeKeys = instance.excludeKeys;
+			this.field = instance.field;
+			this.fieldSplit = instance.fieldSplit;
+			this.ignoreMissing = instance.ignoreMissing;
+			this.includeKeys = instance.includeKeys;
+			this.prefix = instance.prefix;
+			this.stripBrackets = instance.stripBrackets;
+			this.targetField = instance.targetField;
+			this.trimKey = instance.trimKey;
+			this.trimValue = instance.trimValue;
+			this.valueSplit = instance.valueSplit;
+
+		}
 		/**
 		 * List of keys to exclude from document.
 		 * <p>
@@ -496,6 +512,12 @@ public class KeyValueProcessor extends ProcessorBase implements ProcessorVariant
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

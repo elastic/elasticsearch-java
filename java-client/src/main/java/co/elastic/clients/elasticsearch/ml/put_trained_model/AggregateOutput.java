@@ -175,6 +175,15 @@ public class AggregateOutput implements JsonpSerializable {
 		@Nullable
 		private Weights exponent;
 
+		public Builder() {
+		}
+		private Builder(AggregateOutput instance) {
+			this.logisticRegression = instance.logisticRegression;
+			this.weightedSum = instance.weightedSum;
+			this.weightedMode = instance.weightedMode;
+			this.exponent = instance.exponent;
+
+		}
 		/**
 		 * API name: {@code logistic_regression}
 		 */
@@ -253,6 +262,12 @@ public class AggregateOutput implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

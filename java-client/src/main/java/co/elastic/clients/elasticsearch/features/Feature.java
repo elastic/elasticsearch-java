@@ -125,6 +125,13 @@ public class Feature implements JsonpSerializable {
 
 		private String description;
 
+		public Builder() {
+		}
+		private Builder(Feature instance) {
+			this.name = instance.name;
+			this.description = instance.description;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -159,6 +166,12 @@ public class Feature implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

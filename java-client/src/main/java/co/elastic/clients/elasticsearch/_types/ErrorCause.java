@@ -276,6 +276,17 @@ public class ErrorCause implements JsonpSerializable {
 		@Nullable
 		private List<ErrorCause> suppressed;
 
+		public Builder() {
+		}
+		private Builder(ErrorCause instance) {
+			this.type = instance.type;
+			this.reason = instance.reason;
+			this.stackTrace = instance.stackTrace;
+			this.causedBy = instance.causedBy;
+			this.rootCause = instance.rootCause;
+			this.suppressed = instance.suppressed;
+
+		}
 		/**
 		 * The type of error
 		 * <p>
@@ -398,6 +409,12 @@ public class ErrorCause implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

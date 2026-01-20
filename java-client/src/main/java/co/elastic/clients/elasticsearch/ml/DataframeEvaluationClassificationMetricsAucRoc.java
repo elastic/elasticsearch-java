@@ -148,6 +148,13 @@ public class DataframeEvaluationClassificationMetricsAucRoc implements JsonpSeri
 		@Nullable
 		private Boolean includeCurve;
 
+		public Builder() {
+		}
+		private Builder(DataframeEvaluationClassificationMetricsAucRoc instance) {
+			this.className = instance.className;
+			this.includeCurve = instance.includeCurve;
+
+		}
 		/**
 		 * Name of the only class that is treated as positive during AUC ROC
 		 * calculation. Other classes are treated as negative (&quot;one-vs-all&quot;
@@ -190,6 +197,12 @@ public class DataframeEvaluationClassificationMetricsAucRoc implements JsonpSeri
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

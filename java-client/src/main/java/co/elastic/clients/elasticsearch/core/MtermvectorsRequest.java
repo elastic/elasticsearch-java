@@ -372,6 +372,25 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private VersionType versionType;
 
+		public Builder() {
+		}
+		private Builder(MtermvectorsRequest instance) {
+			this.docs = instance.docs;
+			this.fieldStatistics = instance.fieldStatistics;
+			this.fields = instance.fields;
+			this.ids = instance.ids;
+			this.index = instance.index;
+			this.offsets = instance.offsets;
+			this.payloads = instance.payloads;
+			this.positions = instance.positions;
+			this.preference = instance.preference;
+			this.realtime = instance.realtime;
+			this.routing = instance.routing;
+			this.termStatistics = instance.termStatistics;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+
+		}
 		/**
 		 * An array of existing or artificial documents.
 		 * <p>
@@ -608,6 +627,12 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -132,6 +132,13 @@ public class DenseVectorStats implements JsonpSerializable {
 		@Nullable
 		private DenseVectorOffHeapStats offHeap;
 
+		public Builder() {
+		}
+		private Builder(DenseVectorStats instance) {
+			this.valueCount = instance.valueCount;
+			this.offHeap = instance.offHeap;
+
+		}
 		/**
 		 * Required - API name: {@code value_count}
 		 */
@@ -174,6 +181,12 @@ public class DenseVectorStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

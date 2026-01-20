@@ -158,6 +158,13 @@ public class NvidiaTaskSettings implements JsonpSerializable {
 		@Nullable
 		private CohereTruncateType truncate;
 
+		public Builder() {
+		}
+		private Builder(NvidiaTaskSettings instance) {
+			this.inputType = instance.inputType;
+			this.truncate = instance.truncate;
+
+		}
 		/**
 		 * For a <code>text_embedding</code> task, type of input sent to the Nvidia
 		 * endpoint. Valid values are:
@@ -215,6 +222,12 @@ public class NvidiaTaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

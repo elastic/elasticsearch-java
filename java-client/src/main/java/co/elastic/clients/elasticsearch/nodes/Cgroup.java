@@ -160,6 +160,14 @@ public class Cgroup implements JsonpSerializable {
 		@Nullable
 		private CgroupMemory memory;
 
+		public Builder() {
+		}
+		private Builder(Cgroup instance) {
+			this.cpuacct = instance.cpuacct;
+			this.cpu = instance.cpu;
+			this.memory = instance.memory;
+
+		}
 		/**
 		 * Contains statistics about <code>cpuacct</code> control group for the node.
 		 * <p>
@@ -235,6 +243,12 @@ public class Cgroup implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

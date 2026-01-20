@@ -127,6 +127,12 @@ public class ParentAggregation extends BucketAggregationBase implements Aggregat
 		@Nullable
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(ParentAggregation instance) {
+			this.type = instance.type;
+
+		}
 		/**
 		 * The child type that should be selected.
 		 * <p>
@@ -155,6 +161,12 @@ public class ParentAggregation extends BucketAggregationBase implements Aggregat
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

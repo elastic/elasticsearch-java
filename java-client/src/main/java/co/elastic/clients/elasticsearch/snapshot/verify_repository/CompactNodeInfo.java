@@ -115,6 +115,12 @@ public class CompactNodeInfo implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CompactNodeInfo> {
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(CompactNodeInfo instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - A human-readable name for the node. You can set this name using
 		 * the <code>node.name</code> property in <code>elasticsearch.yml</code>. The
@@ -145,6 +151,12 @@ public class CompactNodeInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -106,6 +106,12 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 				ObjectBuilder<ClearCachedPrivilegesRequest> {
 		private List<String> application;
 
+		public Builder() {
+		}
+		private Builder(ClearCachedPrivilegesRequest instance) {
+			this.application = instance.application;
+
+		}
 		/**
 		 * Required - A comma-separated list of applications. To clear all applications,
 		 * use an asterism (<code>*</code>). It does not support other wildcard
@@ -152,6 +158,12 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

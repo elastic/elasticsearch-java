@@ -235,6 +235,18 @@ public class PutJinaaiRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutJinaaiRequest instance) {
+			this.chunkingSettings = instance.chunkingSettings;
+			this.jinaaiInferenceId = instance.jinaaiInferenceId;
+			this.service = instance.service;
+			this.serviceSettings = instance.serviceSettings;
+			this.taskSettings = instance.taskSettings;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * The chunking configuration object. Applies only to the
 		 * <code>text_embedding</code> task type. Not applicable to the
@@ -372,6 +384,12 @@ public class PutJinaaiRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

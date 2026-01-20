@@ -98,6 +98,12 @@ public class GetSampleRequest extends RequestBase {
 				ObjectBuilder<GetSampleRequest> {
 		private String index;
 
+		public Builder() {
+		}
+		private Builder(GetSampleRequest instance) {
+			this.index = instance.index;
+
+		}
 		/**
 		 * Required - Single index or data stream name. Wildcards are not supported.
 		 * <p>
@@ -126,6 +132,12 @@ public class GetSampleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

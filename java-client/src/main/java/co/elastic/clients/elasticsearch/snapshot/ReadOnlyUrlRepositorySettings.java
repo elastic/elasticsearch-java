@@ -188,6 +188,15 @@ public class ReadOnlyUrlRepositorySettings extends RepositorySettingsBase {
 
 		private String url;
 
+		public Builder() {
+		}
+		private Builder(ReadOnlyUrlRepositorySettings instance) {
+			this.httpMaxRetries = instance.httpMaxRetries;
+			this.httpSocketTimeout = instance.httpSocketTimeout;
+			this.maxNumberOfSnapshots = instance.maxNumberOfSnapshots;
+			this.url = instance.url;
+
+		}
 		/**
 		 * The maximum number of retries for HTTP and HTTPS URLs.
 		 * <p>
@@ -275,6 +284,12 @@ public class ReadOnlyUrlRepositorySettings extends RepositorySettingsBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

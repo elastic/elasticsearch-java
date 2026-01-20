@@ -244,6 +244,19 @@ public class GetApiKeyRequest extends RequestBase {
 		@Nullable
 		private Boolean withProfileUid;
 
+		public Builder() {
+		}
+		private Builder(GetApiKeyRequest instance) {
+			this.activeOnly = instance.activeOnly;
+			this.id = instance.id;
+			this.name = instance.name;
+			this.owner = instance.owner;
+			this.realmName = instance.realmName;
+			this.username = instance.username;
+			this.withLimitedBy = instance.withLimitedBy;
+			this.withProfileUid = instance.withProfileUid;
+
+		}
 		/**
 		 * A boolean flag that can be used to query API keys that are currently active.
 		 * An API key is considered active if it is neither invalidated, nor expired at
@@ -360,6 +373,12 @@ public class GetApiKeyRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

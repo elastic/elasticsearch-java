@@ -451,6 +451,27 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 		@Nullable
 		private String nodeAddress;
 
+		public Builder() {
+		}
+		private Builder(DataFrameAnalyticsRecord instance) {
+			this.id = instance.id;
+			this.type = instance.type;
+			this.createTime = instance.createTime;
+			this.version = instance.version;
+			this.sourceIndex = instance.sourceIndex;
+			this.destIndex = instance.destIndex;
+			this.description = instance.description;
+			this.modelMemoryLimit = instance.modelMemoryLimit;
+			this.state = instance.state;
+			this.failureReason = instance.failureReason;
+			this.progress = instance.progress;
+			this.assignmentExplanation = instance.assignmentExplanation;
+			this.nodeId = instance.nodeId;
+			this.nodeName = instance.nodeName;
+			this.nodeEphemeralId = instance.nodeEphemeralId;
+			this.nodeAddress = instance.nodeAddress;
+
+		}
 		/**
 		 * The identifier for the job.
 		 * <p>
@@ -630,6 +651,12 @@ public class DataFrameAnalyticsRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

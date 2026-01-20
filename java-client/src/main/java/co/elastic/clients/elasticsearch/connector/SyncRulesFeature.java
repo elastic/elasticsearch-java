@@ -139,6 +139,13 @@ public class SyncRulesFeature implements JsonpSerializable {
 		@Nullable
 		private FeatureEnabled basic;
 
+		public Builder() {
+		}
+		private Builder(SyncRulesFeature instance) {
+			this.advanced = instance.advanced;
+			this.basic = instance.basic;
+
+		}
 		/**
 		 * Indicates whether advanced sync rules are enabled.
 		 * <p>
@@ -195,6 +202,12 @@ public class SyncRulesFeature implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

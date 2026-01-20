@@ -297,6 +297,21 @@ public class Statistics implements JsonpSerializable {
 		@Nullable
 		private Long totalSnapshotsTaken;
 
+		public Builder() {
+		}
+		private Builder(Statistics instance) {
+			this.retentionDeletionTime = instance.retentionDeletionTime;
+			this.retentionDeletionTimeMillis = instance.retentionDeletionTimeMillis;
+			this.retentionFailed = instance.retentionFailed;
+			this.retentionRuns = instance.retentionRuns;
+			this.retentionTimedOut = instance.retentionTimedOut;
+			this.policy = instance.policy;
+			this.totalSnapshotsDeleted = instance.totalSnapshotsDeleted;
+			this.totalSnapshotDeletionFailures = instance.totalSnapshotDeletionFailures;
+			this.totalSnapshotsFailed = instance.totalSnapshotsFailed;
+			this.totalSnapshotsTaken = instance.totalSnapshotsTaken;
+
+		}
 		/**
 		 * API name: {@code retention_deletion_time}
 		 */
@@ -402,6 +417,12 @@ public class Statistics implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

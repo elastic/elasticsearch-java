@@ -190,6 +190,14 @@ public class EstimateModelMemoryRequest extends RequestBase implements JsonpSeri
 		@Nullable
 		private Map<String, Long> overallCardinality;
 
+		public Builder() {
+		}
+		private Builder(EstimateModelMemoryRequest instance) {
+			this.analysisConfig = instance.analysisConfig;
+			this.maxBucketCardinality = instance.maxBucketCardinality;
+			this.overallCardinality = instance.overallCardinality;
+
+		}
 		/**
 		 * For a list of the properties that you can specify in the
 		 * <code>analysis_config</code> component of the body of this API.
@@ -299,6 +307,12 @@ public class EstimateModelMemoryRequest extends RequestBase implements JsonpSeri
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

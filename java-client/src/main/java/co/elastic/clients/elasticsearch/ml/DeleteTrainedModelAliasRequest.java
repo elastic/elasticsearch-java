@@ -117,6 +117,13 @@ public class DeleteTrainedModelAliasRequest extends RequestBase {
 
 		private String modelId;
 
+		public Builder() {
+		}
+		private Builder(DeleteTrainedModelAliasRequest instance) {
+			this.modelAlias = instance.modelAlias;
+			this.modelId = instance.modelId;
+
+		}
 		/**
 		 * Required - The model alias to delete.
 		 * <p>
@@ -155,6 +162,12 @@ public class DeleteTrainedModelAliasRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

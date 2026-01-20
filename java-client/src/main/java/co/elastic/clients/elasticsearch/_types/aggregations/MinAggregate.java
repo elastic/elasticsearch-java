@@ -81,6 +81,11 @@ public class MinAggregate extends SingleMetricAggregateBase implements Aggregate
 	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MinAggregate> {
+		public Builder() {
+		}
+		private Builder(MinAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class MinAggregate extends SingleMetricAggregateBase implements Aggregate
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

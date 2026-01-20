@@ -81,6 +81,11 @@ public class DerivativeAggregation extends PipelineAggregationBase implements Ag
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DerivativeAggregation> {
+		public Builder() {
+		}
+		private Builder(DerivativeAggregation instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class DerivativeAggregation extends PipelineAggregationBase implements Ag
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

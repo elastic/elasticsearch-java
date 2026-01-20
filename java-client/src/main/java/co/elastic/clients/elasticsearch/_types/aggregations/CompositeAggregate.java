@@ -131,6 +131,12 @@ public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket
 		@Nullable
 		private Map<String, FieldValue> afterKey;
 
+		public Builder() {
+		}
+		private Builder(CompositeAggregate instance) {
+			this.afterKey = instance.afterKey;
+
+		}
 		/**
 		 * API name: {@code after_key}
 		 * <p>
@@ -219,6 +225,12 @@ public class CompositeAggregate extends MultiBucketAggregateBase<CompositeBucket
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

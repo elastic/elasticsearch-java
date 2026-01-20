@@ -251,6 +251,20 @@ public class BulkStats implements JsonpSerializable {
 
 		private Long avgSizeInBytes;
 
+		public Builder() {
+		}
+		private Builder(BulkStats instance) {
+			this.totalOperations = instance.totalOperations;
+			this.totalTime = instance.totalTime;
+			this.totalTimeInMillis = instance.totalTimeInMillis;
+			this.totalSize = instance.totalSize;
+			this.totalSizeInBytes = instance.totalSizeInBytes;
+			this.avgTime = instance.avgTime;
+			this.avgTimeInMillis = instance.avgTimeInMillis;
+			this.avgSize = instance.avgSize;
+			this.avgSizeInBytes = instance.avgSizeInBytes;
+
+		}
 		/**
 		 * Required - API name: {@code total_operations}
 		 */
@@ -355,6 +369,12 @@ public class BulkStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

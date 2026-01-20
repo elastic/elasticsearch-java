@@ -170,6 +170,15 @@ public class AuthenticateApiKey implements JsonpSerializable {
 		@Nullable
 		private Boolean internal;
 
+		public Builder() {
+		}
+		private Builder(AuthenticateApiKey instance) {
+			this.id = instance.id;
+			this.name = instance.name;
+			this.managedBy = instance.managedBy;
+			this.internal = instance.internal;
+
+		}
 		/**
 		 * Required - API name: {@code id}
 		 */
@@ -220,6 +229,12 @@ public class AuthenticateApiKey implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

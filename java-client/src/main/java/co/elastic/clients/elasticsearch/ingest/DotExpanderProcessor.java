@@ -161,6 +161,14 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 		@Nullable
 		private String path;
 
+		public Builder() {
+		}
+		private Builder(DotExpanderProcessor instance) {
+			this.field = instance.field;
+			this.override = instance.override;
+			this.path = instance.path;
+
+		}
 		/**
 		 * Required - The field to expand into an object field. If set to
 		 * <code>*</code>, all top-level fields will be expanded.
@@ -216,6 +224,12 @@ public class DotExpanderProcessor extends ProcessorBase implements ProcessorVari
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

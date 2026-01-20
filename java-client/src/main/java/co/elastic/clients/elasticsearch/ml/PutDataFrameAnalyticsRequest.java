@@ -413,6 +413,23 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		@Nullable
 		private String version;
 
+		public Builder() {
+		}
+		private Builder(PutDataFrameAnalyticsRequest instance) {
+			this.meta = instance.meta;
+			this.allowLazyStart = instance.allowLazyStart;
+			this.analysis = instance.analysis;
+			this.analyzedFields = instance.analyzedFields;
+			this.description = instance.description;
+			this.dest = instance.dest;
+			this.headers = instance.headers;
+			this.id = instance.id;
+			this.maxNumThreads = instance.maxNumThreads;
+			this.modelMemoryLimit = instance.modelMemoryLimit;
+			this.source = instance.source;
+			this.version = instance.version;
+
+		}
 		/**
 		 * API name: {@code _meta}
 		 * <p>
@@ -698,6 +715,12 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

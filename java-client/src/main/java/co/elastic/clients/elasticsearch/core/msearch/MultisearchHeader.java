@@ -350,6 +350,23 @@ public class MultisearchHeader implements JsonpSerializable {
 		@Nullable
 		private Boolean ignoreThrottled;
 
+		public Builder() {
+		}
+		private Builder(MultisearchHeader instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.preference = instance.preference;
+			this.projectRouting = instance.projectRouting;
+			this.requestCache = instance.requestCache;
+			this.routing = instance.routing;
+			this.searchType = instance.searchType;
+			this.ccsMinimizeRoundtrips = instance.ccsMinimizeRoundtrips;
+			this.allowPartialSearchResults = instance.allowPartialSearchResults;
+			this.ignoreThrottled = instance.ignoreThrottled;
+
+		}
 		/**
 		 * API name: {@code allow_no_indices}
 		 */
@@ -500,6 +517,12 @@ public class MultisearchHeader implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

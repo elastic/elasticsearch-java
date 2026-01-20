@@ -180,6 +180,14 @@ public class IndexPrivilegesCheck implements JsonpSerializable {
 		@Nullable
 		private Boolean allowRestrictedIndices;
 
+		public Builder() {
+		}
+		private Builder(IndexPrivilegesCheck instance) {
+			this.names = instance.names;
+			this.privileges = instance.privileges;
+			this.allowRestrictedIndices = instance.allowRestrictedIndices;
+
+		}
 		/**
 		 * Required - A list of indices.
 		 * <p>
@@ -278,6 +286,12 @@ public class IndexPrivilegesCheck implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

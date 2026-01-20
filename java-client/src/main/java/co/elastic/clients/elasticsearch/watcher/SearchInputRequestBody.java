@@ -114,6 +114,12 @@ public class SearchInputRequestBody implements JsonpSerializable {
 				ObjectBuilder<SearchInputRequestBody> {
 		private Query query;
 
+		public Builder() {
+		}
+		private Builder(SearchInputRequestBody instance) {
+			this.query = instance.query;
+
+		}
 		/**
 		 * Required - API name: {@code query}
 		 */
@@ -155,6 +161,12 @@ public class SearchInputRequestBody implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

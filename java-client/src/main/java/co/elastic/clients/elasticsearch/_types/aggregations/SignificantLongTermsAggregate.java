@@ -85,6 +85,11 @@ public class SignificantLongTermsAggregate extends SignificantTermsAggregateBase
 				SignificantTermsAggregateBase.AbstractBuilder<SignificantLongTermsBucket, Builder>
 			implements
 				ObjectBuilder<SignificantLongTermsAggregate> {
+		public Builder() {
+		}
+		private Builder(SignificantLongTermsAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -104,6 +109,12 @@ public class SignificantLongTermsAggregate extends SignificantTermsAggregateBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

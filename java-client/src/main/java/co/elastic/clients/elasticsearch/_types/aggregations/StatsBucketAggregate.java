@@ -81,6 +81,11 @@ public class StatsBucketAggregate extends StatsAggregate implements AggregateVar
 	public static class Builder extends StatsAggregate.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StatsBucketAggregate> {
+		public Builder() {
+		}
+		private Builder(StatsBucketAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class StatsBucketAggregate extends StatsAggregate implements AggregateVar
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

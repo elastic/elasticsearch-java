@@ -103,6 +103,12 @@ public class EqlDeleteRequest extends RequestBase {
 				ObjectBuilder<EqlDeleteRequest> {
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(EqlDeleteRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Required - Identifier for the search to delete. A search ID is provided in
 		 * the EQL search API's response for an async search. A search ID is also
@@ -134,6 +140,12 @@ public class EqlDeleteRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

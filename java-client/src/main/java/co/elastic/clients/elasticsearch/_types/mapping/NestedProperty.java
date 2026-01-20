@@ -152,6 +152,14 @@ public class NestedProperty extends CorePropertyBase implements PropertyVariant 
 		@Nullable
 		private Boolean includeInRoot;
 
+		public Builder() {
+		}
+		private Builder(NestedProperty instance) {
+			this.enabled = instance.enabled;
+			this.includeInParent = instance.includeInParent;
+			this.includeInRoot = instance.includeInRoot;
+
+		}
 		/**
 		 * API name: {@code enabled}
 		 */
@@ -194,6 +202,12 @@ public class NestedProperty extends CorePropertyBase implements PropertyVariant 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

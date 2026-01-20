@@ -266,6 +266,18 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(RerouteRequest instance) {
+			this.commands = instance.commands;
+			this.dryRun = instance.dryRun;
+			this.explain = instance.explain;
+			this.masterTimeout = instance.masterTimeout;
+			this.metric = instance.metric;
+			this.retryFailed = instance.retryFailed;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Defines the commands to perform.
 		 * <p>
@@ -428,6 +440,12 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

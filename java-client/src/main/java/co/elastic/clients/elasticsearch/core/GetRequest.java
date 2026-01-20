@@ -409,6 +409,25 @@ public class GetRequest extends RequestBase {
 		@Nullable
 		private VersionType versionType;
 
+		public Builder() {
+		}
+		private Builder(GetRequest instance) {
+			this.source = instance.source;
+			this.sourceExcludeVectors = instance.sourceExcludeVectors;
+			this.sourceExcludes = instance.sourceExcludes;
+			this.sourceIncludes = instance.sourceIncludes;
+			this.forceSyntheticSource = instance.forceSyntheticSource;
+			this.id = instance.id;
+			this.index = instance.index;
+			this.preference = instance.preference;
+			this.realtime = instance.realtime;
+			this.refresh = instance.refresh;
+			this.routing = instance.routing;
+			this.storedFields = instance.storedFields;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+
+		}
 		/**
 		 * Indicates whether to return the <code>_source</code> field (<code>true</code>
 		 * or <code>false</code>) or lists the fields to return.
@@ -673,6 +692,12 @@ public class GetRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

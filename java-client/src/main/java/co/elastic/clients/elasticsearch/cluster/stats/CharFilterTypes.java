@@ -324,6 +324,20 @@ public class CharFilterTypes implements JsonpSerializable {
 
 		private Map<String, SynonymsStats> synonyms;
 
+		public Builder() {
+		}
+		private Builder(CharFilterTypes instance) {
+			this.analyzerTypes = instance.analyzerTypes;
+			this.builtInAnalyzers = instance.builtInAnalyzers;
+			this.builtInCharFilters = instance.builtInCharFilters;
+			this.builtInFilters = instance.builtInFilters;
+			this.builtInTokenizers = instance.builtInTokenizers;
+			this.charFilterTypes = instance.charFilterTypes;
+			this.filterTypes = instance.filterTypes;
+			this.tokenizerTypes = instance.tokenizerTypes;
+			this.synonyms = instance.synonyms;
+
+		}
 		/**
 		 * Required - Contains statistics about analyzer types used in selected nodes.
 		 * <p>
@@ -675,6 +689,12 @@ public class CharFilterTypes implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -126,6 +126,13 @@ public class UnratedDocument implements JsonpSerializable {
 
 		private String index;
 
+		public Builder() {
+		}
+		private Builder(UnratedDocument instance) {
+			this.id = instance.id;
+			this.index = instance.index;
+
+		}
 		/**
 		 * Required - API name: {@code _id}
 		 */
@@ -160,6 +167,12 @@ public class UnratedDocument implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

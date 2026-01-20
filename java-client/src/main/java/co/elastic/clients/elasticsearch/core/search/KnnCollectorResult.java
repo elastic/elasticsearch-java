@@ -190,6 +190,16 @@ public class KnnCollectorResult implements JsonpSerializable {
 		@Nullable
 		private List<KnnCollectorResult> children;
 
+		public Builder() {
+		}
+		private Builder(KnnCollectorResult instance) {
+			this.name = instance.name;
+			this.reason = instance.reason;
+			this.time = instance.time;
+			this.timeInNanos = instance.timeInNanos;
+			this.children = instance.children;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -276,6 +286,12 @@ public class KnnCollectorResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

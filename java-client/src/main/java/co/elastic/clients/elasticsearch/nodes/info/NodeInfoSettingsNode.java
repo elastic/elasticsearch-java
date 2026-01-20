@@ -159,6 +159,14 @@ public class NodeInfoSettingsNode implements JsonpSerializable {
 		@Nullable
 		private String maxLocalStorageNodes;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoSettingsNode instance) {
+			this.name = instance.name;
+			this.attr = instance.attr;
+			this.maxLocalStorageNodes = instance.maxLocalStorageNodes;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -213,6 +221,12 @@ public class NodeInfoSettingsNode implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

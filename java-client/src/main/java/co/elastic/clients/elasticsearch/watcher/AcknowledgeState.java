@@ -124,6 +124,13 @@ public class AcknowledgeState implements JsonpSerializable {
 
 		private DateTime timestamp;
 
+		public Builder() {
+		}
+		private Builder(AcknowledgeState instance) {
+			this.state = instance.state;
+			this.timestamp = instance.timestamp;
+
+		}
 		/**
 		 * Required - API name: {@code state}
 		 */
@@ -158,6 +165,12 @@ public class AcknowledgeState implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

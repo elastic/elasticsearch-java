@@ -83,6 +83,11 @@ public class GeoDistanceAggregate extends RangeAggregate implements AggregateVar
 	public static class Builder extends RangeAggregate.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoDistanceAggregate> {
+		public Builder() {
+		}
+		private Builder(GeoDistanceAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -101,6 +106,12 @@ public class GeoDistanceAggregate extends RangeAggregate implements AggregateVar
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

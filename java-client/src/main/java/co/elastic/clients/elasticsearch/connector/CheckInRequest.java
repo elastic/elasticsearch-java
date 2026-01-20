@@ -98,6 +98,12 @@ public class CheckInRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<CheckInRequest> {
 		private String connectorId;
 
+		public Builder() {
+		}
+		private Builder(CheckInRequest instance) {
+			this.connectorId = instance.connectorId;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector to be checked in
 		 * <p>
@@ -126,6 +132,12 @@ public class CheckInRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

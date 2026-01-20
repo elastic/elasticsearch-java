@@ -120,6 +120,13 @@ public class Eql extends Base {
 
 		private Map<String, XpackUsageQuery> queries;
 
+		public Builder() {
+		}
+		private Builder(Eql instance) {
+			this.features = instance.features;
+			this.queries = instance.queries;
+
+		}
 		/**
 		 * Required - API name: {@code features}
 		 */
@@ -182,6 +189,12 @@ public class Eql extends Base {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

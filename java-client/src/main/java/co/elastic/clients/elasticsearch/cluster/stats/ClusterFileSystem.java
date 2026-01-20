@@ -456,6 +456,28 @@ public class ClusterFileSystem implements JsonpSerializable {
 		@Nullable
 		private Long frozenFloodStageFreeSpaceInBytes;
 
+		public Builder() {
+		}
+		private Builder(ClusterFileSystem instance) {
+			this.path = instance.path;
+			this.mount = instance.mount;
+			this.type = instance.type;
+			this.availableInBytes = instance.availableInBytes;
+			this.available = instance.available;
+			this.freeInBytes = instance.freeInBytes;
+			this.free = instance.free;
+			this.totalInBytes = instance.totalInBytes;
+			this.total = instance.total;
+			this.lowWatermarkFreeSpace = instance.lowWatermarkFreeSpace;
+			this.lowWatermarkFreeSpaceInBytes = instance.lowWatermarkFreeSpaceInBytes;
+			this.highWatermarkFreeSpace = instance.highWatermarkFreeSpace;
+			this.highWatermarkFreeSpaceInBytes = instance.highWatermarkFreeSpaceInBytes;
+			this.floodStageFreeSpace = instance.floodStageFreeSpace;
+			this.floodStageFreeSpaceInBytes = instance.floodStageFreeSpaceInBytes;
+			this.frozenFloodStageFreeSpace = instance.frozenFloodStageFreeSpace;
+			this.frozenFloodStageFreeSpaceInBytes = instance.frozenFloodStageFreeSpaceInBytes;
+
+		}
 		/**
 		 * API name: {@code path}
 		 */
@@ -629,6 +651,12 @@ public class ClusterFileSystem implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -121,6 +121,13 @@ public class DataStreamsStatsRequest extends RequestBase {
 		@Nullable
 		private List<String> name;
 
+		public Builder() {
+		}
+		private Builder(DataStreamsStatsRequest instance) {
+			this.expandWildcards = instance.expandWildcards;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Type of data stream that wildcard patterns can match. Supports
 		 * comma-separated values, such as <code>open,hidden</code>.
@@ -193,6 +200,12 @@ public class DataStreamsStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

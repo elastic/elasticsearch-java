@@ -81,6 +81,11 @@ public class CompositeTermsAggregation extends CompositeAggregationBase implemen
 	public static class Builder extends CompositeAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CompositeTermsAggregation> {
+		public Builder() {
+		}
+		private Builder(CompositeTermsAggregation instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class CompositeTermsAggregation extends CompositeAggregationBase implemen
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

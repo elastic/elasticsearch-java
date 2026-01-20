@@ -316,6 +316,20 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 
 		private String username;
 
+		public Builder() {
+		}
+		private Builder(PutUserRequest instance) {
+			this.email = instance.email;
+			this.enabled = instance.enabled;
+			this.fullName = instance.fullName;
+			this.metadata = instance.metadata;
+			this.password = instance.password;
+			this.passwordHash = instance.passwordHash;
+			this.refresh = instance.refresh;
+			this.roles = instance.roles;
+			this.username = instance.username;
+
+		}
 		/**
 		 * The email of the user.
 		 * <p>
@@ -474,6 +488,12 @@ public class PutUserRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

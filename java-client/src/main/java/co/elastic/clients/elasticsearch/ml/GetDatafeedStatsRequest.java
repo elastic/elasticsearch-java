@@ -139,6 +139,13 @@ public class GetDatafeedStatsRequest extends RequestBase {
 		@Nullable
 		private List<String> datafeedId;
 
+		public Builder() {
+		}
+		private Builder(GetDatafeedStatsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.datafeedId = instance.datafeedId;
+
+		}
 		/**
 		 * Specifies what to do when the request:
 		 * <ol>
@@ -207,6 +214,12 @@ public class GetDatafeedStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

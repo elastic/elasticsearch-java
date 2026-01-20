@@ -209,6 +209,16 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(StopDatafeedRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.closeJob = instance.closeJob;
+			this.datafeedId = instance.datafeedId;
+			this.force = instance.force;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Refer to the description for the <code>allow_no_match</code> query parameter.
 		 * <p>
@@ -289,6 +299,12 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

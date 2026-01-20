@@ -143,6 +143,13 @@ public class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpSeriali
 
 		private Time maxAge;
 
+		public Builder() {
+		}
+		private Builder(TimeRetentionPolicy instance) {
+			this.field = instance.field;
+			this.maxAge = instance.maxAge;
+
+		}
 		/**
 		 * Required - The date field that is used to calculate the age of the document.
 		 * <p>
@@ -194,6 +201,12 @@ public class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

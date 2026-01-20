@@ -215,6 +215,16 @@ public class ClusterInfo implements JsonpSerializable {
 
 		private List<ReservedSize> reservedSizes;
 
+		public Builder() {
+		}
+		private Builder(ClusterInfo instance) {
+			this.nodes = instance.nodes;
+			this.shardSizes = instance.shardSizes;
+			this.shardDataSetSizes = instance.shardDataSetSizes;
+			this.shardPaths = instance.shardPaths;
+			this.reservedSizes = instance.reservedSizes;
+
+		}
 		/**
 		 * Required - API name: {@code nodes}
 		 * <p>
@@ -351,6 +361,12 @@ public class ClusterInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

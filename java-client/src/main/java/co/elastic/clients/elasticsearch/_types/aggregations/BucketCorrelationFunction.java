@@ -116,6 +116,12 @@ public class BucketCorrelationFunction implements JsonpSerializable {
 				ObjectBuilder<BucketCorrelationFunction> {
 		private BucketCorrelationFunctionCountCorrelation countCorrelation;
 
+		public Builder() {
+		}
+		private Builder(BucketCorrelationFunction instance) {
+			this.countCorrelation = instance.countCorrelation;
+
+		}
 		/**
 		 * Required - The configuration to calculate a count correlation. This function
 		 * is designed for determining the correlation of a term value and a given
@@ -158,6 +164,12 @@ public class BucketCorrelationFunction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

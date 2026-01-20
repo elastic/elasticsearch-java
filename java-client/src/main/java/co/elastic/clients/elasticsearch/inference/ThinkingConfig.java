@@ -117,6 +117,12 @@ public class ThinkingConfig implements JsonpSerializable {
 		@Nullable
 		private Integer thinkingBudget;
 
+		public Builder() {
+		}
+		private Builder(ThinkingConfig instance) {
+			this.thinkingBudget = instance.thinkingBudget;
+
+		}
 		/**
 		 * Indicates the desired thinking budget in tokens.
 		 * <p>
@@ -145,6 +151,12 @@ public class ThinkingConfig implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

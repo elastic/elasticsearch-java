@@ -187,6 +187,15 @@ public class ClusterIndicesShards implements JsonpSerializable {
 		@Nullable
 		private Double total;
 
+		public Builder() {
+		}
+		private Builder(ClusterIndicesShards instance) {
+			this.index = instance.index;
+			this.primaries = instance.primaries;
+			this.replication = instance.replication;
+			this.total = instance.total;
+
+		}
 		/**
 		 * Contains statistics about shards assigned to selected nodes.
 		 * <p>
@@ -255,6 +264,12 @@ public class ClusterIndicesShards implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -123,6 +123,12 @@ public class MappingLimitSettingsDepth implements JsonpSerializable {
 		@Nullable
 		private Long limit;
 
+		public Builder() {
+		}
+		private Builder(MappingLimitSettingsDepth instance) {
+			this.limit = instance.limit;
+
+		}
 		/**
 		 * The maximum depth for a field, which is measured as the number of inner
 		 * objects. For instance, if all fields are defined at the root object level,
@@ -154,6 +160,12 @@ public class MappingLimitSettingsDepth implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

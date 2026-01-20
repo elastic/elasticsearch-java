@@ -141,6 +141,14 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		public Builder() {
+		}
+		private Builder(ExplainDataLifecycleRequest instance) {
+			this.includeDefaults = instance.includeDefaults;
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+
+		}
 		/**
 		 * Indicates if the API should return the default values the system uses for the
 		 * index's lifecycle
@@ -213,6 +221,12 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

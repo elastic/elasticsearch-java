@@ -336,6 +336,19 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private Boolean withProfileUid;
 
+		public Builder() {
+		}
+		private Builder(QueryApiKeysRequest instance) {
+			this.aggregations = instance.aggregations;
+			this.from = instance.from;
+			this.query = instance.query;
+			this.searchAfter = instance.searchAfter;
+			this.size = instance.size;
+			this.sort = instance.sort;
+			this.withLimitedBy = instance.withLimitedBy;
+			this.withProfileUid = instance.withProfileUid;
+
+		}
 		/**
 		 * Any aggregations to run over the corpus of returned API keys. Aggregations
 		 * and queries work together. Aggregations are computed only on the API keys
@@ -698,6 +711,12 @@ public class QueryApiKeysRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

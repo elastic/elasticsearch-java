@@ -225,6 +225,17 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 		@Nullable
 		private Boolean restTotalHitsAsInt;
 
+		public Builder() {
+		}
+		private Builder(SearchInputRequestDefinition instance) {
+			this.body = instance.body;
+			this.indices = instance.indices;
+			this.indicesOptions = instance.indicesOptions;
+			this.searchType = instance.searchType;
+			this.template = instance.template;
+			this.restTotalHitsAsInt = instance.restTotalHitsAsInt;
+
+		}
 		/**
 		 * API name: {@code body}
 		 */
@@ -325,6 +336,12 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

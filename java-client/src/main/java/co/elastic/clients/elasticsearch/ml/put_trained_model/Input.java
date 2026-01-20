@@ -119,6 +119,12 @@ public class Input implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Input> {
 		private List<String> fieldNames;
 
+		public Builder() {
+		}
+		private Builder(Input instance) {
+			this.fieldNames = instance.fieldNames;
+
+		}
 		/**
 		 * Required - API name: {@code field_names}
 		 * <p>
@@ -157,6 +163,12 @@ public class Input implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

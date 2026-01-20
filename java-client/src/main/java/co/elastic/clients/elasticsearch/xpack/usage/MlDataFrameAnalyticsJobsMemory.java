@@ -114,6 +114,12 @@ public class MlDataFrameAnalyticsJobsMemory implements JsonpSerializable {
 				ObjectBuilder<MlDataFrameAnalyticsJobsMemory> {
 		private JobStatistics peakUsageBytes;
 
+		public Builder() {
+		}
+		private Builder(MlDataFrameAnalyticsJobsMemory instance) {
+			this.peakUsageBytes = instance.peakUsageBytes;
+
+		}
 		/**
 		 * Required - API name: {@code peak_usage_bytes}
 		 */
@@ -147,6 +153,12 @@ public class MlDataFrameAnalyticsJobsMemory implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

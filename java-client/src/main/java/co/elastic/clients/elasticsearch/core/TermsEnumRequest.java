@@ -295,6 +295,19 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(TermsEnumRequest instance) {
+			this.caseInsensitive = instance.caseInsensitive;
+			this.field = instance.field;
+			this.index = instance.index;
+			this.indexFilter = instance.indexFilter;
+			this.searchAfter = instance.searchAfter;
+			this.size = instance.size;
+			this.string = instance.string;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * When <code>true</code>, the provided search string is matched against index
 		 * terms without case sensitivity.
@@ -458,6 +471,12 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

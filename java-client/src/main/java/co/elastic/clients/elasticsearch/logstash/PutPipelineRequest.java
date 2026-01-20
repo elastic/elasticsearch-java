@@ -127,6 +127,13 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 
 		private Pipeline pipeline;
 
+		public Builder() {
+		}
+		private Builder(PutPipelineRequest instance) {
+			this.id = instance.id;
+			this.pipeline = instance.pipeline;
+
+		}
 		/**
 		 * Required - An identifier for the pipeline. Pipeline IDs must begin with a
 		 * letter or underscore and contain only letters, underscores, dashes, hyphens
@@ -180,6 +187,12 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<PutPipelineRequest> _DESERIALIZER = createPutPipelineRequestDeserializer();
 	protected static JsonpDeserializer<PutPipelineRequest> createPutPipelineRequestDeserializer() {
 

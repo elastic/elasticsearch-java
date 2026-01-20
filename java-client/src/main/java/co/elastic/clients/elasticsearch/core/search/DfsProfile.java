@@ -140,6 +140,13 @@ public class DfsProfile implements JsonpSerializable {
 		@Nullable
 		private List<DfsKnnProfile> knn;
 
+		public Builder() {
+		}
+		private Builder(DfsProfile instance) {
+			this.statistics = instance.statistics;
+			this.knn = instance.knn;
+
+		}
 		/**
 		 * API name: {@code statistics}
 		 */
@@ -203,6 +210,12 @@ public class DfsProfile implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

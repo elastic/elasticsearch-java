@@ -208,6 +208,15 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 
 		private InferenceEndpoint inferenceConfig;
 
+		public Builder() {
+		}
+		private Builder(PutRequest instance) {
+			this.inferenceId = instance.inferenceId;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+			this.inferenceConfig = instance.inferenceConfig;
+
+		}
 		/**
 		 * Required - The inference Id
 		 * <p>
@@ -291,6 +300,12 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<PutRequest> _DESERIALIZER = createPutRequestDeserializer();
 	protected static JsonpDeserializer<PutRequest> createPutRequestDeserializer() {
 
