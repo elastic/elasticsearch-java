@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: watcher.deactivate_watch.Request
 
 /**
- * Deactivate a watch. A watch can be either active or inactive.
+ * Deactivate a watch.
+ * <p>
+ * A watch can be either active or inactive.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#watcher.deactivate_watch.Request">API
@@ -98,6 +100,12 @@ public class DeactivateWatchRequest extends RequestBase {
 				ObjectBuilder<DeactivateWatchRequest> {
 		private String watchId;
 
+		public Builder() {
+		}
+		private Builder(DeactivateWatchRequest instance) {
+			this.watchId = instance.watchId;
+
+		}
 		/**
 		 * Required - The watch identifier.
 		 * <p>
@@ -126,6 +134,12 @@ public class DeactivateWatchRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

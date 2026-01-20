@@ -163,6 +163,15 @@ public class Impact implements JsonpSerializable {
 
 		private Integer severity;
 
+		public Builder() {
+		}
+		private Builder(Impact instance) {
+			this.description = instance.description;
+			this.id = instance.id;
+			this.impactAreas = instance.impactAreas;
+			this.severity = instance.severity;
+
+		}
 		/**
 		 * Required - API name: {@code description}
 		 */
@@ -225,6 +234,12 @@ public class Impact implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

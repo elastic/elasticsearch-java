@@ -67,7 +67,9 @@ import javax.annotation.Nullable;
 // typedef: sql.query.Request
 
 /**
- * Get SQL search results. Run an SQL request.
+ * Get SQL search results.
+ * <p>
+ * Run an SQL request.
  * 
  * @see <a href="../doc-files/api-spec.html#sql.query.Request">API
  *      specification</a>
@@ -309,11 +311,10 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies a subset of projects to target for the search using project
-	 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
-	 * _alias tag and a single value (possibly wildcarded). Examples:
-	 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
-	 * only.
+	 * Specifies a subset of projects to target using project metadata tags in a
+	 * subset of Lucene query syntax. Allowed Lucene queries: the _alias tag and a
+	 * single value (possibly wildcarded). Examples: _alias:my-project
+	 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
 	 * <p>
 	 * API name: {@code project_routing}
 	 */
@@ -453,6 +454,11 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
 		if (this.query != null) {
 			generator.writeKey("query");
 			generator.write(this.query);
@@ -551,6 +557,30 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time waitForCompletionTimeout;
 
+		public Builder() {
+		}
+		private Builder(QueryRequest instance) {
+			this.allowPartialSearchResults = instance.allowPartialSearchResults;
+			this.catalog = instance.catalog;
+			this.columnar = instance.columnar;
+			this.cursor = instance.cursor;
+			this.fetchSize = instance.fetchSize;
+			this.fieldMultiValueLeniency = instance.fieldMultiValueLeniency;
+			this.filter = instance.filter;
+			this.format = instance.format;
+			this.indexUsingFrozen = instance.indexUsingFrozen;
+			this.keepAlive = instance.keepAlive;
+			this.keepOnCompletion = instance.keepOnCompletion;
+			this.pageTimeout = instance.pageTimeout;
+			this.params = instance.params;
+			this.projectRouting = instance.projectRouting;
+			this.query = instance.query;
+			this.requestTimeout = instance.requestTimeout;
+			this.runtimeMappings = instance.runtimeMappings;
+			this.timeZone = instance.timeZone;
+			this.waitForCompletionTimeout = instance.waitForCompletionTimeout;
+
+		}
 		/**
 		 * If <code>true</code>, the response has partial results when there are shard
 		 * request timeouts or shard failures. If <code>false</code>, the API returns an
@@ -756,11 +786,10 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies a subset of projects to target for the search using project
-		 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
-		 * _alias tag and a single value (possibly wildcarded). Examples:
-		 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
-		 * only.
+		 * Specifies a subset of projects to target using project metadata tags in a
+		 * subset of Lucene query syntax. Allowed Lucene queries: the _alias tag and a
+		 * single value (possibly wildcarded). Examples: _alias:my-project
+		 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
 		 * <p>
 		 * API name: {@code project_routing}
 		 */
@@ -894,6 +923,12 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -917,6 +952,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::keepOnCompletion, JsonpDeserializer.booleanDeserializer(), "keep_on_completion");
 		op.add(Builder::pageTimeout, Time._DESERIALIZER, "page_timeout");
 		op.add(Builder::params, JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER), "params");
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::requestTimeout, Time._DESERIALIZER, "request_timeout");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
@@ -956,9 +992,6 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 				Map<String, String> params = new HashMap<>();
 				if (request.format != null) {
 					params.put("format", request.format.jsonValue());
-				}
-				if (request.projectRouting != null) {
-					params.put("project_routing", request.projectRouting);
 				}
 				return params;
 

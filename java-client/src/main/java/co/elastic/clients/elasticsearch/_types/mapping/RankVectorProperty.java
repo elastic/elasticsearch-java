@@ -132,6 +132,13 @@ public class RankVectorProperty extends PropertyBase implements PropertyVariant 
 		@Nullable
 		private Integer dims;
 
+		public Builder() {
+		}
+		private Builder(RankVectorProperty instance) {
+			this.elementType = instance.elementType;
+			this.dims = instance.dims;
+
+		}
 		/**
 		 * API name: {@code element_type}
 		 */
@@ -166,6 +173,12 @@ public class RankVectorProperty extends PropertyBase implements PropertyVariant 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

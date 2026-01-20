@@ -95,8 +95,7 @@ public class SearchShardsRequest extends RequestBase {
 	@Nullable
 	private final String preference;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -109,7 +108,7 @@ public class SearchShardsRequest extends RequestBase {
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
 		this.preference = builder.preference;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 
 	}
 
@@ -206,8 +205,7 @@ public class SearchShardsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -242,8 +240,21 @@ public class SearchShardsRequest extends RequestBase {
 		private String preference;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
+		public Builder() {
+		}
+		private Builder(SearchShardsRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.preference = instance.preference;
+			this.routing = instance.routing;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -379,9 +390,23 @@ public class SearchShardsRequest extends RequestBase {
 		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * A custom value used to route operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -403,6 +428,12 @@ public class SearchShardsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -466,8 +497,8 @@ public class SearchShardsRequest extends RequestBase {
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",

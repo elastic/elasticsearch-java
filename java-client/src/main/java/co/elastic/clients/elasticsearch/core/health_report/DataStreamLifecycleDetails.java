@@ -155,6 +155,14 @@ public class DataStreamLifecycleDetails implements JsonpSerializable {
 		@Nullable
 		private List<StagnatingBackingIndices> stagnatingBackingIndices;
 
+		public Builder() {
+		}
+		private Builder(DataStreamLifecycleDetails instance) {
+			this.stagnatingBackingIndicesCount = instance.stagnatingBackingIndicesCount;
+			this.totalBackingIndicesInError = instance.totalBackingIndicesInError;
+			this.stagnatingBackingIndices = instance.stagnatingBackingIndices;
+
+		}
 		/**
 		 * Required - API name: {@code stagnating_backing_indices_count}
 		 */
@@ -221,6 +229,12 @@ public class DataStreamLifecycleDetails implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

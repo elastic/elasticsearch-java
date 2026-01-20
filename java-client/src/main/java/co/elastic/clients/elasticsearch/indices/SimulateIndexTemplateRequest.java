@@ -60,8 +60,10 @@ import javax.annotation.Nullable;
 // typedef: indices.simulate_index_template.Request
 
 /**
- * Simulate an index. Get the index configuration that would be applied to the
- * specified index from an existing index template.
+ * Simulate an index.
+ * <p>
+ * Get the index configuration that would be applied to the specified index from
+ * an existing index template.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.simulate_index_template.Request">API
@@ -194,6 +196,17 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 
 		private IndexTemplate indexTemplate;
 
+		public Builder() {
+		}
+		private Builder(SimulateIndexTemplateRequest instance) {
+			this.cause = instance.cause;
+			this.create = instance.create;
+			this.includeDefaults = instance.includeDefaults;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.indexTemplate = instance.indexTemplate;
+
+		}
 		/**
 		 * User defined reason for dry-run creating the new template for simulation
 		 * purposes
@@ -298,6 +311,12 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<SimulateIndexTemplateRequest> _DESERIALIZER = createSimulateIndexTemplateRequestDeserializer();
 	protected static JsonpDeserializer<SimulateIndexTemplateRequest> createSimulateIndexTemplateRequestDeserializer() {
 

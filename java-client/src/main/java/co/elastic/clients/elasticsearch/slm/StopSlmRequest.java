@@ -55,12 +55,14 @@ import javax.annotation.Nullable;
 // typedef: slm.stop.Request
 
 /**
- * Stop snapshot lifecycle management. Stop all snapshot lifecycle management
- * (SLM) operations and the SLM plugin. This API is useful when you are
- * performing maintenance on a cluster and need to prevent SLM from performing
- * any actions on your data streams or indices. Stopping SLM does not stop any
- * snapshots that are in progress. You can manually trigger snapshots with the
- * run snapshot lifecycle policy API even if SLM is stopped.
+ * Stop snapshot lifecycle management.
+ * <p>
+ * Stop all snapshot lifecycle management (SLM) operations and the SLM plugin.
+ * This API is useful when you are performing maintenance on a cluster and need
+ * to prevent SLM from performing any actions on your data streams or indices.
+ * Stopping SLM does not stop any snapshots that are in progress. You can
+ * manually trigger snapshots with the run snapshot lifecycle policy API even if
+ * SLM is stopped.
  * <p>
  * The API returns a response as soon as the request is acknowledged, but the
  * plugin might continue to run until in-progress operations complete and it can
@@ -128,6 +130,13 @@ public class StopSlmRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(StopSlmRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -192,6 +201,12 @@ public class StopSlmRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

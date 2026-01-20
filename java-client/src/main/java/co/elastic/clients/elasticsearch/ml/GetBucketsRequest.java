@@ -61,8 +61,9 @@ import javax.annotation.Nullable;
 // typedef: ml.get_buckets.Request
 
 /**
- * Get anomaly detection job results for buckets. The API presents a
- * chronological view of the records, grouped by bucket.
+ * Get anomaly detection job results for buckets.
+ * <p>
+ * The API presents a chronological view of the records, grouped by bucket.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.get_buckets.Request">API
  *      specification</a>
@@ -342,6 +343,23 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 		@Nullable
 		private DateTime timestamp;
 
+		public Builder() {
+		}
+		private Builder(GetBucketsRequest instance) {
+			this.anomalyScore = instance.anomalyScore;
+			this.desc = instance.desc;
+			this.end = instance.end;
+			this.excludeInterim = instance.excludeInterim;
+			this.expand = instance.expand;
+			this.from = instance.from;
+			this.jobId = instance.jobId;
+			this.page = instance.page;
+			this.size = instance.size;
+			this.sort = instance.sort;
+			this.start = instance.start;
+			this.timestamp = instance.timestamp;
+
+		}
 		/**
 		 * Refer to the description for the <code>anomaly_score</code> query parameter.
 		 * <p>
@@ -487,6 +505,12 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

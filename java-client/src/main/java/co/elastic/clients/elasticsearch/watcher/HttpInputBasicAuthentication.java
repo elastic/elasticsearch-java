@@ -128,6 +128,13 @@ public class HttpInputBasicAuthentication implements JsonpSerializable {
 
 		private String username;
 
+		public Builder() {
+		}
+		private Builder(HttpInputBasicAuthentication instance) {
+			this.password = instance.password;
+			this.username = instance.username;
+
+		}
 		/**
 		 * Required - API name: {@code password}
 		 */
@@ -162,6 +169,12 @@ public class HttpInputBasicAuthentication implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

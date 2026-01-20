@@ -1472,6 +1472,71 @@ public class JobsRecord implements JsonpSerializable {
 		@Nullable
 		private String bucketsTimeExpAvgHour;
 
+		public Builder() {
+		}
+		private Builder(JobsRecord instance) {
+			this.id = instance.id;
+			this.state = instance.state;
+			this.openedTime = instance.openedTime;
+			this.assignmentExplanation = instance.assignmentExplanation;
+			this.dataProcessedRecords = instance.dataProcessedRecords;
+			this.dataProcessedFields = instance.dataProcessedFields;
+			this.dataInputBytes = instance.dataInputBytes;
+			this.dataInputRecords = instance.dataInputRecords;
+			this.dataInputFields = instance.dataInputFields;
+			this.dataInvalidDates = instance.dataInvalidDates;
+			this.dataMissingFields = instance.dataMissingFields;
+			this.dataOutOfOrderTimestamps = instance.dataOutOfOrderTimestamps;
+			this.dataEmptyBuckets = instance.dataEmptyBuckets;
+			this.dataSparseBuckets = instance.dataSparseBuckets;
+			this.dataBuckets = instance.dataBuckets;
+			this.dataEarliestRecord = instance.dataEarliestRecord;
+			this.dataLatestRecord = instance.dataLatestRecord;
+			this.dataLast = instance.dataLast;
+			this.dataLastEmptyBucket = instance.dataLastEmptyBucket;
+			this.dataLastSparseBucket = instance.dataLastSparseBucket;
+			this.modelBytes = instance.modelBytes;
+			this.modelMemoryStatus = instance.modelMemoryStatus;
+			this.modelBytesExceeded = instance.modelBytesExceeded;
+			this.modelMemoryLimit = instance.modelMemoryLimit;
+			this.modelByFields = instance.modelByFields;
+			this.modelOverFields = instance.modelOverFields;
+			this.modelPartitionFields = instance.modelPartitionFields;
+			this.modelBucketAllocationFailures = instance.modelBucketAllocationFailures;
+			this.modelCategorizationStatus = instance.modelCategorizationStatus;
+			this.modelCategorizedDocCount = instance.modelCategorizedDocCount;
+			this.modelTotalCategoryCount = instance.modelTotalCategoryCount;
+			this.modelFrequentCategoryCount = instance.modelFrequentCategoryCount;
+			this.modelRareCategoryCount = instance.modelRareCategoryCount;
+			this.modelDeadCategoryCount = instance.modelDeadCategoryCount;
+			this.modelFailedCategoryCount = instance.modelFailedCategoryCount;
+			this.modelLogTime = instance.modelLogTime;
+			this.modelTimestamp = instance.modelTimestamp;
+			this.forecastsTotal = instance.forecastsTotal;
+			this.forecastsMemoryMin = instance.forecastsMemoryMin;
+			this.forecastsMemoryMax = instance.forecastsMemoryMax;
+			this.forecastsMemoryAvg = instance.forecastsMemoryAvg;
+			this.forecastsMemoryTotal = instance.forecastsMemoryTotal;
+			this.forecastsRecordsMin = instance.forecastsRecordsMin;
+			this.forecastsRecordsMax = instance.forecastsRecordsMax;
+			this.forecastsRecordsAvg = instance.forecastsRecordsAvg;
+			this.forecastsRecordsTotal = instance.forecastsRecordsTotal;
+			this.forecastsTimeMin = instance.forecastsTimeMin;
+			this.forecastsTimeMax = instance.forecastsTimeMax;
+			this.forecastsTimeAvg = instance.forecastsTimeAvg;
+			this.forecastsTimeTotal = instance.forecastsTimeTotal;
+			this.nodeId = instance.nodeId;
+			this.nodeName = instance.nodeName;
+			this.nodeEphemeralId = instance.nodeEphemeralId;
+			this.nodeAddress = instance.nodeAddress;
+			this.bucketsCount = instance.bucketsCount;
+			this.bucketsTimeTotal = instance.bucketsTimeTotal;
+			this.bucketsTimeMin = instance.bucketsTimeMin;
+			this.bucketsTimeMax = instance.bucketsTimeMax;
+			this.bucketsTimeExpAvg = instance.bucketsTimeExpAvg;
+			this.bucketsTimeExpAvgHour = instance.bucketsTimeExpAvgHour;
+
+		}
 		/**
 		 * The anomaly detection job identifier.
 		 * <p>
@@ -2147,6 +2212,12 @@ public class JobsRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

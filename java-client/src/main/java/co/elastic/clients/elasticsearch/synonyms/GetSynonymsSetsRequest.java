@@ -55,7 +55,9 @@ import javax.annotation.Nullable;
 // typedef: synonyms.get_synonyms_sets.Request
 
 /**
- * Get all synonym sets. Get a summary of all defined synonym sets.
+ * Get all synonym sets.
+ * <p>
+ * Get a summary of all defined synonym sets.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#synonyms.get_synonyms_sets.Request">API
@@ -117,6 +119,13 @@ public class GetSynonymsSetsRequest extends RequestBase {
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(GetSynonymsSetsRequest instance) {
+			this.from = instance.from;
+			this.size = instance.size;
+
+		}
 		/**
 		 * The starting offset for synonyms sets to retrieve.
 		 * <p>
@@ -155,6 +164,12 @@ public class GetSynonymsSetsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

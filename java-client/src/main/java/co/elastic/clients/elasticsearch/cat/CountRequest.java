@@ -24,6 +24,8 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.TimeUnit;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -72,8 +74,8 @@ import javax.annotation.Nullable;
  * @see <a href="../doc-files/api-spec.html#cat.count.Request">API
  *      specification</a>
  */
-
-public class CountRequest extends CatRequestBase {
+@JsonpDeserializable
+public class CountRequest extends CatRequestBase implements JsonpSerializable {
 	@Nullable
 	private final Bytes bytes;
 
@@ -147,11 +149,10 @@ public class CountRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Specifies a subset of projects to target for the search using project
-	 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
-	 * _alias tag and a single value (possibly wildcarded). Examples:
-	 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
-	 * only.
+	 * Specifies a subset of projects to target using project metadata tags in a
+	 * subset of Lucene query syntax. Allowed Lucene queries: the _alias tag and a
+	 * single value (possibly wildcarded). Examples: _alias:my-project
+	 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
 	 * <p>
 	 * API name: {@code project_routing}
 	 */
@@ -187,6 +188,25 @@ public class CountRequest extends CatRequestBase {
 		return this.time;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -212,6 +232,17 @@ public class CountRequest extends CatRequestBase {
 		@Nullable
 		private TimeUnit time;
 
+		public Builder() {
+		}
+		private Builder(CountRequest instance) {
+			this.bytes = instance.bytes;
+			this.h = instance.h;
+			this.index = instance.index;
+			this.projectRouting = instance.projectRouting;
+			this.s = instance.s;
+			this.time = instance.time;
+
+		}
 		/**
 		 * Sets the units for columns that contain a byte-size value. Note that
 		 * byte-size value units work in terms of powers of 1024. For instance
@@ -301,11 +332,10 @@ public class CountRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Specifies a subset of projects to target for the search using project
-		 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
-		 * _alias tag and a single value (possibly wildcarded). Examples:
-		 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
-		 * only.
+		 * Specifies a subset of projects to target using project metadata tags in a
+		 * subset of Lucene query syntax. Allowed Lucene queries: the _alias tag and a
+		 * single value (possibly wildcarded). Examples: _alias:my-project
+		 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
 		 * <p>
 		 * API name: {@code project_routing}
 		 */
@@ -376,6 +406,26 @@ public class CountRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for {@link CountRequest}
+	 */
+	public static final JsonpDeserializer<CountRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CountRequest::setupCountRequestDeserializer);
+
+	protected static void setupCountRequestDeserializer(ObjectDeserializer<CountRequest.Builder> op) {
+
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -386,7 +436,7 @@ public class CountRequest extends CatRequestBase {
 
 			// Request method
 			request -> {
-				return "GET";
+				return "POST";
 
 			},
 
@@ -448,13 +498,10 @@ public class CountRequest extends CatRequestBase {
 				if (ApiTypeHelper.isDefined(request.h)) {
 					params.put("h", request.h.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request.projectRouting != null) {
-					params.put("project_routing", request.projectRouting);
-				}
 				if (request.time != null) {
 					params.put("time", request.time.jsonValue());
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, CountResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CountResponse._DESERIALIZER);
 }

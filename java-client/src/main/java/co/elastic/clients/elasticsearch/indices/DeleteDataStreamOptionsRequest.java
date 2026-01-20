@@ -59,8 +59,9 @@ import javax.annotation.Nullable;
 // typedef: indices.delete_data_stream_options.Request
 
 /**
- * Delete data stream options. Removes the data stream options from a data
- * stream.
+ * Delete data stream options.
+ * <p>
+ * Removes the data stream options from a data stream.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.delete_data_stream_options.Request">API
@@ -96,7 +97,6 @@ public class DeleteDataStreamOptionsRequest extends RequestBase {
 
 	/**
 	 * Whether wildcard expressions should get expanded to open or closed indices
-	 * (default: open)
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -105,7 +105,7 @@ public class DeleteDataStreamOptionsRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * The period to wait for a connection to the master node.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -116,7 +116,7 @@ public class DeleteDataStreamOptionsRequest extends RequestBase {
 
 	/**
 	 * Required - A comma-separated list of data streams of which the data stream
-	 * options will be deleted; use <code>*</code> to get all data streams
+	 * options will be deleted. Use <code>*</code> to get all data streams
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -125,7 +125,7 @@ public class DeleteDataStreamOptionsRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit timestamp for the document
+	 * The period to wait for a response.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -154,9 +154,17 @@ public class DeleteDataStreamOptionsRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeleteDataStreamOptionsRequest instance) {
+			this.expandWildcards = instance.expandWildcards;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -169,7 +177,6 @@ public class DeleteDataStreamOptionsRequest extends RequestBase {
 
 		/**
 		 * Whether wildcard expressions should get expanded to open or closed indices
-		 * (default: open)
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -181,7 +188,7 @@ public class DeleteDataStreamOptionsRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -191,7 +198,7 @@ public class DeleteDataStreamOptionsRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -201,7 +208,7 @@ public class DeleteDataStreamOptionsRequest extends RequestBase {
 
 		/**
 		 * Required - A comma-separated list of data streams of which the data stream
-		 * options will be deleted; use <code>*</code> to get all data streams
+		 * options will be deleted. Use <code>*</code> to get all data streams
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -214,7 +221,7 @@ public class DeleteDataStreamOptionsRequest extends RequestBase {
 
 		/**
 		 * Required - A comma-separated list of data streams of which the data stream
-		 * options will be deleted; use <code>*</code> to get all data streams
+		 * options will be deleted. Use <code>*</code> to get all data streams
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -226,7 +233,7 @@ public class DeleteDataStreamOptionsRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit timestamp for the document
+		 * The period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -236,7 +243,7 @@ public class DeleteDataStreamOptionsRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit timestamp for the document
+		 * The period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -262,6 +269,12 @@ public class DeleteDataStreamOptionsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

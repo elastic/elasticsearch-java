@@ -60,9 +60,11 @@ import javax.annotation.Nullable;
 // typedef: indices.shard_stores.Request
 
 /**
- * Get index shard stores. Get store information about replica shards in one or
- * more indices. For data streams, the API retrieves store information for the
- * stream's backing indices.
+ * Get index shard stores.
+ * <p>
+ * Get store information about replica shards in one or more indices. For data
+ * streams, the API retrieves store information for the stream's backing
+ * indices.
  * <p>
  * The index shard stores API returns the following information:
  * <ul>
@@ -184,6 +186,16 @@ public class ShardStoresRequest extends RequestBase {
 		@Nullable
 		private List<ShardStoreStatus> status;
 
+		public Builder() {
+		}
+		private Builder(ShardStoresRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.status = instance.status;
+
+		}
 		/**
 		 * If false, the request returns an error if any wildcard expression, index
 		 * alias, or _all value targets only missing or closed indices. This behavior
@@ -300,6 +312,12 @@ public class ShardStoresRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

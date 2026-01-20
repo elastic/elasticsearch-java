@@ -59,8 +59,10 @@ import javax.annotation.Nullable;
 // typedef: snapshot.status.Request
 
 /**
- * Get the snapshot status. Get a detailed description of the current state for
- * each shard participating in the snapshot.
+ * Get the snapshot status.
+ * <p>
+ * Get a detailed description of the current state for each shard participating
+ * in the snapshot.
  * <p>
  * Note that this API should be used only to obtain detailed shard-level
  * information for ongoing snapshots. If this detail is not needed or you want
@@ -191,6 +193,15 @@ public class SnapshotStatusRequest extends RequestBase {
 		@Nullable
 		private List<String> snapshot;
 
+		public Builder() {
+		}
+		private Builder(SnapshotStatusRequest instance) {
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.masterTimeout = instance.masterTimeout;
+			this.repository = instance.repository;
+			this.snapshot = instance.snapshot;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error for any snapshots that
 		 * are unavailable. If <code>true</code>, the request ignores snapshots that are
@@ -282,6 +293,12 @@ public class SnapshotStatusRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

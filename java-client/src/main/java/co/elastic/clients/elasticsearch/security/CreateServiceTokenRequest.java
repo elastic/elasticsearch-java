@@ -126,8 +126,8 @@ public class CreateServiceTokenRequest extends RequestBase {
 	}
 
 	/**
-	 * If <code>true</code> then refresh the affected shards to make this operation
-	 * visible to search, if <code>wait_for</code> (the default) then wait for a
+	 * If <code>true</code> (the default) then refresh the affected shards to make
+	 * this operation visible to search, if <code>wait_for</code> then wait for a
 	 * refresh to make this operation visible to search, if <code>false</code> then
 	 * do nothing with refreshes.
 	 * <p>
@@ -166,6 +166,15 @@ public class CreateServiceTokenRequest extends RequestBase {
 
 		private String service;
 
+		public Builder() {
+		}
+		private Builder(CreateServiceTokenRequest instance) {
+			this.name = instance.name;
+			this.namespace = instance.namespace;
+			this.refresh = instance.refresh;
+			this.service = instance.service;
+
+		}
 		/**
 		 * The name for the service account token. If omitted, a random name will be
 		 * generated.
@@ -198,8 +207,8 @@ public class CreateServiceTokenRequest extends RequestBase {
 		}
 
 		/**
-		 * If <code>true</code> then refresh the affected shards to make this operation
-		 * visible to search, if <code>wait_for</code> (the default) then wait for a
+		 * If <code>true</code> (the default) then refresh the affected shards to make
+		 * this operation visible to search, if <code>wait_for</code> then wait for a
 		 * refresh to make this operation visible to search, if <code>false</code> then
 		 * do nothing with refreshes.
 		 * <p>
@@ -238,6 +247,12 @@ public class CreateServiceTokenRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

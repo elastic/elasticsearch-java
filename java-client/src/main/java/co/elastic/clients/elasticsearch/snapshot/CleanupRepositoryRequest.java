@@ -56,9 +56,10 @@ import javax.annotation.Nullable;
 // typedef: snapshot.cleanup_repository.Request
 
 /**
- * Clean up the snapshot repository. Trigger the review of the contents of a
- * snapshot repository and delete any stale data not referenced by existing
- * snapshots.
+ * Clean up the snapshot repository.
+ * <p>
+ * Trigger the review of the contents of a snapshot repository and delete any
+ * stale data not referenced by existing snapshots.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#snapshot.cleanup_repository.Request">API
@@ -141,6 +142,14 @@ public class CleanupRepositoryRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(CleanupRepositoryRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * The period to wait for a connection to the master node. If the master node is
 		 * not available before the timeout expires, the request fails and returns an
@@ -221,6 +230,12 @@ public class CleanupRepositoryRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

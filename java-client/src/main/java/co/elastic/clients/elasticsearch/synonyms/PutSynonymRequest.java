@@ -59,9 +59,10 @@ import javax.annotation.Nullable;
 // typedef: synonyms.put_synonym.Request
 
 /**
- * Create or update a synonym set. Synonyms sets are limited to a maximum of
- * 10,000 synonym rules per set. If you need to manage more synonym rules, you
- * can create multiple synonym sets.
+ * Create or update a synonym set.
+ * <p>
+ * Synonyms sets are limited to a maximum of 10,000 synonym rules per set. If
+ * you need to manage more synonym rules, you can create multiple synonym sets.
  * <p>
  * When an existing synonyms set is updated, the search analyzers that use the
  * synonyms set are reloaded automatically for all indices. This is equivalent
@@ -168,6 +169,14 @@ public class PutSynonymRequest extends RequestBase implements JsonpSerializable 
 
 		private List<SynonymRule> synonymsSet;
 
+		public Builder() {
+		}
+		private Builder(PutSynonymRequest instance) {
+			this.id = instance.id;
+			this.refresh = instance.refresh;
+			this.synonymsSet = instance.synonymsSet;
+
+		}
 		/**
 		 * Required - The ID of the synonyms set to be created or updated.
 		 * <p>
@@ -244,6 +253,12 @@ public class PutSynonymRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

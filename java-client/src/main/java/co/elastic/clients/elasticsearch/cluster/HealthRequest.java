@@ -143,8 +143,7 @@ public class HealthRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * Expand wildcard expression to concrete indices that are open, closed or both.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -153,10 +152,10 @@ public class HealthRequest extends RequestBase {
 	}
 
 	/**
-	 * Comma-separated list of data streams, indices, and index aliases used to
-	 * limit the request. Wildcard expressions (<code>*</code>) are supported. To
-	 * target all data streams and indices in a cluster, omit this parameter or use
-	 * _all or <code>*</code>.
+	 * A comma-separated list of data streams, indices, and index aliases that limit
+	 * the request. Wildcard expressions (<code>*</code>) are supported. To target
+	 * all data streams and indices in a cluster, omit this parameter or use _all or
+	 * <code>*</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -165,8 +164,7 @@ public class HealthRequest extends RequestBase {
 	}
 
 	/**
-	 * Can be one of cluster, indices or shards. Controls the details level of the
-	 * health information returned.
+	 * Return health information at a specific level of detail.
 	 * <p>
 	 * API name: {@code level}
 	 */
@@ -176,8 +174,8 @@ public class HealthRequest extends RequestBase {
 	}
 
 	/**
-	 * If true, the request retrieves information from the local node only. Defaults
-	 * to false, which means information is retrieved from the master node.
+	 * If true, retrieve information from the local node only. If false, retrieve
+	 * information from the master node.
 	 * <p>
 	 * API name: {@code local}
 	 */
@@ -187,7 +185,7 @@ public class HealthRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a connection to the master node. If no response is
+	 * The period to wait for a connection to the master node. If no response is
 	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code master_timeout}
@@ -198,8 +196,8 @@ public class HealthRequest extends RequestBase {
 	}
 
 	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
+	 * The period to wait for a response. If no response is received before the
+	 * timeout expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -209,8 +207,8 @@ public class HealthRequest extends RequestBase {
 	}
 
 	/**
-	 * A number controlling to how many active shards to wait for, all to wait for
-	 * all shards in the cluster to be active, or 0 to not wait.
+	 * Wait for the specified number of active shards. Use <code>all</code> to wait
+	 * for all shards in the cluster to be active. Use <code>0</code> to not wait.
 	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
@@ -220,8 +218,7 @@ public class HealthRequest extends RequestBase {
 	}
 
 	/**
-	 * Can be one of immediate, urgent, high, normal, low, languid. Wait until all
-	 * currently queued events with the given priority are processed.
+	 * Wait until all currently queued events with the given priority are processed.
 	 * <p>
 	 * API name: {@code wait_for_events}
 	 */
@@ -231,9 +228,8 @@ public class HealthRequest extends RequestBase {
 	}
 
 	/**
-	 * A boolean value which controls whether to wait (until the timeout provided)
-	 * for the cluster to have no shard initializations. Defaults to false, which
-	 * means it will not wait for initializing shards.
+	 * Wait (until the timeout expires) for the cluster to have no shard
+	 * initializations. If false, the request does not wait for initializing shards.
 	 * <p>
 	 * API name: {@code wait_for_no_initializing_shards}
 	 */
@@ -243,9 +239,8 @@ public class HealthRequest extends RequestBase {
 	}
 
 	/**
-	 * A boolean value which controls whether to wait (until the timeout provided)
-	 * for the cluster to have no shard relocations. Defaults to false, which means
-	 * it will not wait for relocating shards.
+	 * Wait (until the timeout expires) for the cluster to have no shard
+	 * relocations. If false, the request not wait for relocating shards.
 	 * <p>
 	 * API name: {@code wait_for_no_relocating_shards}
 	 */
@@ -255,9 +250,10 @@ public class HealthRequest extends RequestBase {
 	}
 
 	/**
-	 * The request waits until the specified number N of nodes is available. It also
-	 * accepts &gt;=N, &lt;=N, &gt;N and &lt;N. Alternatively, it is possible to use
-	 * ge(N), le(N), gt(N) and lt(N) notation.
+	 * Wait until the specified number (N) of nodes is available. It also accepts
+	 * <code>&gt;=N</code>, <code>&lt;=N</code>, <code>&gt;N</code> and
+	 * <code>&lt;N</code>. Alternatively, use the notations <code>ge(N)</code>,
+	 * <code>le(N)</code>, <code>gt(N)</code>, and <code>lt(N)</code>.
 	 * <p>
 	 * API name: {@code wait_for_nodes}
 	 */
@@ -267,9 +263,10 @@ public class HealthRequest extends RequestBase {
 	}
 
 	/**
-	 * One of green, yellow or red. Will wait (until the timeout provided) until the
-	 * status of the cluster changes to the one provided or better, i.e. green &gt;
-	 * yellow &gt; red. By default, will not wait for any status.
+	 * Wait (until the timeout expires) for the cluster to reach a specific health
+	 * status (or a better status). A green status is better than yellow and yellow
+	 * is better than red. By default, the request does not wait for a particular
+	 * status.
 	 * <p>
 	 * API name: {@code wait_for_status}
 	 */
@@ -321,9 +318,25 @@ public class HealthRequest extends RequestBase {
 		@Nullable
 		private HealthStatus waitForStatus;
 
+		public Builder() {
+		}
+		private Builder(HealthRequest instance) {
+			this.expandWildcards = instance.expandWildcards;
+			this.index = instance.index;
+			this.level = instance.level;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+			this.waitForActiveShards = instance.waitForActiveShards;
+			this.waitForEvents = instance.waitForEvents;
+			this.waitForNoInitializingShards = instance.waitForNoInitializingShards;
+			this.waitForNoRelocatingShards = instance.waitForNoRelocatingShards;
+			this.waitForNodes = instance.waitForNodes;
+			this.waitForStatus = instance.waitForStatus;
+
+		}
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Expand wildcard expression to concrete indices that are open, closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -335,8 +348,7 @@ public class HealthRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Expand wildcard expression to concrete indices that are open, closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -348,10 +360,10 @@ public class HealthRequest extends RequestBase {
 		}
 
 		/**
-		 * Comma-separated list of data streams, indices, and index aliases used to
-		 * limit the request. Wildcard expressions (<code>*</code>) are supported. To
-		 * target all data streams and indices in a cluster, omit this parameter or use
-		 * _all or <code>*</code>.
+		 * A comma-separated list of data streams, indices, and index aliases that limit
+		 * the request. Wildcard expressions (<code>*</code>) are supported. To target
+		 * all data streams and indices in a cluster, omit this parameter or use _all or
+		 * <code>*</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -363,10 +375,10 @@ public class HealthRequest extends RequestBase {
 		}
 
 		/**
-		 * Comma-separated list of data streams, indices, and index aliases used to
-		 * limit the request. Wildcard expressions (<code>*</code>) are supported. To
-		 * target all data streams and indices in a cluster, omit this parameter or use
-		 * _all or <code>*</code>.
+		 * A comma-separated list of data streams, indices, and index aliases that limit
+		 * the request. Wildcard expressions (<code>*</code>) are supported. To target
+		 * all data streams and indices in a cluster, omit this parameter or use _all or
+		 * <code>*</code>.
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -378,8 +390,7 @@ public class HealthRequest extends RequestBase {
 		}
 
 		/**
-		 * Can be one of cluster, indices or shards. Controls the details level of the
-		 * health information returned.
+		 * Return health information at a specific level of detail.
 		 * <p>
 		 * API name: {@code level}
 		 */
@@ -389,8 +400,8 @@ public class HealthRequest extends RequestBase {
 		}
 
 		/**
-		 * If true, the request retrieves information from the local node only. Defaults
-		 * to false, which means information is retrieved from the master node.
+		 * If true, retrieve information from the local node only. If false, retrieve
+		 * information from the master node.
 		 * <p>
 		 * API name: {@code local}
 		 */
@@ -400,7 +411,7 @@ public class HealthRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
@@ -411,7 +422,7 @@ public class HealthRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
+		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code master_timeout}
@@ -421,8 +432,8 @@ public class HealthRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -432,8 +443,8 @@ public class HealthRequest extends RequestBase {
 		}
 
 		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
+		 * The period to wait for a response. If no response is received before the
+		 * timeout expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -442,8 +453,8 @@ public class HealthRequest extends RequestBase {
 		}
 
 		/**
-		 * A number controlling to how many active shards to wait for, all to wait for
-		 * all shards in the cluster to be active, or 0 to not wait.
+		 * Wait for the specified number of active shards. Use <code>all</code> to wait
+		 * for all shards in the cluster to be active. Use <code>0</code> to not wait.
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -453,8 +464,8 @@ public class HealthRequest extends RequestBase {
 		}
 
 		/**
-		 * A number controlling to how many active shards to wait for, all to wait for
-		 * all shards in the cluster to be active, or 0 to not wait.
+		 * Wait for the specified number of active shards. Use <code>all</code> to wait
+		 * for all shards in the cluster to be active. Use <code>0</code> to not wait.
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -464,8 +475,7 @@ public class HealthRequest extends RequestBase {
 		}
 
 		/**
-		 * Can be one of immediate, urgent, high, normal, low, languid. Wait until all
-		 * currently queued events with the given priority are processed.
+		 * Wait until all currently queued events with the given priority are processed.
 		 * <p>
 		 * API name: {@code wait_for_events}
 		 */
@@ -475,9 +485,8 @@ public class HealthRequest extends RequestBase {
 		}
 
 		/**
-		 * A boolean value which controls whether to wait (until the timeout provided)
-		 * for the cluster to have no shard initializations. Defaults to false, which
-		 * means it will not wait for initializing shards.
+		 * Wait (until the timeout expires) for the cluster to have no shard
+		 * initializations. If false, the request does not wait for initializing shards.
 		 * <p>
 		 * API name: {@code wait_for_no_initializing_shards}
 		 */
@@ -487,9 +496,8 @@ public class HealthRequest extends RequestBase {
 		}
 
 		/**
-		 * A boolean value which controls whether to wait (until the timeout provided)
-		 * for the cluster to have no shard relocations. Defaults to false, which means
-		 * it will not wait for relocating shards.
+		 * Wait (until the timeout expires) for the cluster to have no shard
+		 * relocations. If false, the request not wait for relocating shards.
 		 * <p>
 		 * API name: {@code wait_for_no_relocating_shards}
 		 */
@@ -499,9 +507,10 @@ public class HealthRequest extends RequestBase {
 		}
 
 		/**
-		 * The request waits until the specified number N of nodes is available. It also
-		 * accepts &gt;=N, &lt;=N, &gt;N and &lt;N. Alternatively, it is possible to use
-		 * ge(N), le(N), gt(N) and lt(N) notation.
+		 * Wait until the specified number (N) of nodes is available. It also accepts
+		 * <code>&gt;=N</code>, <code>&lt;=N</code>, <code>&gt;N</code> and
+		 * <code>&lt;N</code>. Alternatively, use the notations <code>ge(N)</code>,
+		 * <code>le(N)</code>, <code>gt(N)</code>, and <code>lt(N)</code>.
 		 * <p>
 		 * API name: {@code wait_for_nodes}
 		 */
@@ -511,9 +520,10 @@ public class HealthRequest extends RequestBase {
 		}
 
 		/**
-		 * One of green, yellow or red. Will wait (until the timeout provided) until the
-		 * status of the cluster changes to the one provided or better, i.e. green &gt;
-		 * yellow &gt; red. By default, will not wait for any status.
+		 * Wait (until the timeout expires) for the cluster to reach a specific health
+		 * status (or a better status). A green status is better than yellow and yellow
+		 * is better than red. By default, the request does not wait for a particular
+		 * status.
 		 * <p>
 		 * API name: {@code wait_for_status}
 		 */
@@ -540,6 +550,12 @@ public class HealthRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -104,7 +104,9 @@ public class PutCohereRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The chunking configuration object.
+	 * The chunking configuration object. Applies only to the
+	 * <code>text_embedding</code> task type. Not applicable to the
+	 * <code>rerank</code> or <code>completion</code> task type.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -228,8 +230,22 @@ public class PutCohereRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutCohereRequest instance) {
+			this.chunkingSettings = instance.chunkingSettings;
+			this.cohereInferenceId = instance.cohereInferenceId;
+			this.service = instance.service;
+			this.serviceSettings = instance.serviceSettings;
+			this.taskSettings = instance.taskSettings;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+
+		}
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>rerank</code> or <code>completion</code> task type.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -239,7 +255,9 @@ public class PutCohereRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>rerank</code> or <code>completion</code> task type.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -361,6 +379,12 @@ public class PutCohereRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

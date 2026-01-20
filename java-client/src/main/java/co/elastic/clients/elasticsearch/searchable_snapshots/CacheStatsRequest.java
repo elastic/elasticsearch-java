@@ -58,8 +58,9 @@ import javax.annotation.Nullable;
 // typedef: searchable_snapshots.cache_stats.Request
 
 /**
- * Get cache statistics. Get statistics about the shared cache for partially
- * mounted indices.
+ * Get cache statistics.
+ * <p>
+ * Get statistics about the shared cache for partially mounted indices.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#searchable_snapshots.cache_stats.Request">API
@@ -117,6 +118,13 @@ public class CacheStatsRequest extends RequestBase {
 		@Nullable
 		private List<String> nodeId;
 
+		public Builder() {
+		}
+		private Builder(CacheStatsRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.nodeId = instance.nodeId;
+
+		}
 		/**
 		 * API name: {@code master_timeout}
 		 */
@@ -174,6 +182,12 @@ public class CacheStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

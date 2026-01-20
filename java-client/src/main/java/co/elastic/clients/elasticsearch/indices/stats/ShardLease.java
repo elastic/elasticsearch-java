@@ -156,6 +156,15 @@ public class ShardLease implements JsonpSerializable {
 
 		private String source;
 
+		public Builder() {
+		}
+		private Builder(ShardLease instance) {
+			this.id = instance.id;
+			this.retainingSeqNo = instance.retainingSeqNo;
+			this.timestamp = instance.timestamp;
+			this.source = instance.source;
+
+		}
 		/**
 		 * Required - API name: {@code id}
 		 */
@@ -206,6 +215,12 @@ public class ShardLease implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

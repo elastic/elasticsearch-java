@@ -165,6 +165,15 @@ public class ConfusionMatrixThreshold implements JsonpSerializable {
 
 		private Integer falseNegative;
 
+		public Builder() {
+		}
+		private Builder(ConfusionMatrixThreshold instance) {
+			this.truePositive = instance.truePositive;
+			this.falsePositive = instance.falsePositive;
+			this.trueNegative = instance.trueNegative;
+			this.falseNegative = instance.falseNegative;
+
+		}
 		/**
 		 * Required - True Positive
 		 * <p>
@@ -223,6 +232,12 @@ public class ConfusionMatrixThreshold implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

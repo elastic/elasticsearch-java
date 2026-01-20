@@ -55,8 +55,9 @@ import javax.annotation.Nullable;
 // typedef: watcher.start.Request
 
 /**
- * Start the watch service. Start the Watcher service if it is not already
- * running.
+ * Start the watch service.
+ * <p>
+ * Start the Watcher service if it is not already running.
  * 
  * @see <a href="../doc-files/api-spec.html#watcher.start.Request">API
  *      specification</a>
@@ -100,6 +101,12 @@ public class StartWatcherRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		public Builder() {
+		}
+		private Builder(StartWatcherRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node.
 		 * <p>
@@ -137,6 +144,12 @@ public class StartWatcherRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

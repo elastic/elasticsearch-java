@@ -135,6 +135,13 @@ public class FilterRef implements JsonpSerializable {
 		@Nullable
 		private FilterType filterType;
 
+		public Builder() {
+		}
+		private Builder(FilterRef instance) {
+			this.filterId = instance.filterId;
+			this.filterType = instance.filterType;
+
+		}
 		/**
 		 * Required - The identifier for the filter.
 		 * <p>
@@ -174,6 +181,12 @@ public class FilterRef implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

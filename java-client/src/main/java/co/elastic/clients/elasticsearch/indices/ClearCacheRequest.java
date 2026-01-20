@@ -59,8 +59,10 @@ import javax.annotation.Nullable;
 // typedef: indices.clear_cache.Request
 
 /**
- * Clear the cache. Clear the cache of one or more indices. For data streams,
- * the API clears the caches of the stream's backing indices.
+ * Clear the cache.
+ * <p>
+ * Clear the cache of one or more indices. For data streams, the API clears the
+ * caches of the stream's backing indices.
  * <p>
  * By default, the clear cache API clears all caches. To clear only specific
  * caches, use the <code>fielddata</code>, <code>query</code>, or
@@ -233,6 +235,19 @@ public class ClearCacheRequest extends RequestBase {
 		@Nullable
 		private Boolean request;
 
+		public Builder() {
+		}
+		private Builder(ClearCacheRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.fielddata = instance.fielddata;
+			this.fields = instance.fields;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.query = instance.query;
+			this.request = instance.request;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -390,6 +405,12 @@ public class ClearCacheRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -60,7 +60,7 @@ import javax.annotation.Nullable;
 // typedef: inference.sparse_embedding.Request
 
 /**
- * Perform sparse embedding inference on the service
+ * Perform sparse embedding inference on the service.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#inference.sparse_embedding.Request">API
@@ -112,7 +112,9 @@ public class SparseEmbeddingRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * Optional task settings
+	 * Task settings for the individual inference request. These settings are
+	 * specific to the &lt;task_type&gt; you specified and override the task
+	 * settings specified when initializing the service.
 	 * <p>
 	 * API name: {@code task_settings}
 	 */
@@ -179,6 +181,15 @@ public class SparseEmbeddingRequest extends RequestBase implements JsonpSerializ
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(SparseEmbeddingRequest instance) {
+			this.inferenceId = instance.inferenceId;
+			this.input = instance.input;
+			this.taskSettings = instance.taskSettings;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - The inference Id
 		 * <p>
@@ -214,7 +225,9 @@ public class SparseEmbeddingRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Optional task settings
+		 * Task settings for the individual inference request. These settings are
+		 * specific to the &lt;task_type&gt; you specified and override the task
+		 * settings specified when initializing the service.
 		 * <p>
 		 * API name: {@code task_settings}
 		 */
@@ -260,6 +273,12 @@ public class SparseEmbeddingRequest extends RequestBase implements JsonpSerializ
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

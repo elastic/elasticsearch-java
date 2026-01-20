@@ -109,6 +109,12 @@ public class RoutingField implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RoutingField> {
 		private Boolean required;
 
+		public Builder() {
+		}
+		private Builder(RoutingField instance) {
+			this.required = instance.required;
+
+		}
 		/**
 		 * Required - API name: {@code required}
 		 */
@@ -135,6 +141,12 @@ public class RoutingField implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

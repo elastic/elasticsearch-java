@@ -235,6 +235,13 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 		@Nullable
 		private JsonpSerializer<TPartialDocument> tPartialDocumentSerializer;
 
+		public Builder() {
+		}
+		private Builder(UpdateOperation<TDocument, TPartialDocument> instance) {
+			this.requireAlias = instance.requireAlias;
+			this.retryOnConflict = instance.retryOnConflict;
+
+		}
 		/**
 		 * If <code>true</code>, the request's actions must target an index alias.
 		 * <p>
@@ -294,4 +301,10 @@ public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationB
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 }

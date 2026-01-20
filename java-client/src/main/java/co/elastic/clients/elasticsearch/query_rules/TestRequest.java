@@ -59,8 +59,10 @@ import javax.annotation.Nullable;
 // typedef: query_rules.test.Request
 
 /**
- * Test a query ruleset. Evaluate match criteria against a query ruleset to
- * identify the rules that would match that criteria.
+ * Test a query ruleset.
+ * <p>
+ * Evaluate match criteria against a query ruleset to identify the rules that
+ * would match that criteria.
  * 
  * @see <a href="../doc-files/api-spec.html#query_rules.test.Request">API
  *      specification</a>
@@ -141,6 +143,13 @@ public class TestRequest extends RequestBase implements JsonpSerializable {
 
 		private String rulesetId;
 
+		public Builder() {
+		}
+		private Builder(TestRequest instance) {
+			this.matchCriteria = instance.matchCriteria;
+			this.rulesetId = instance.rulesetId;
+
+		}
 		/**
 		 * Required - The match criteria to apply to rules in the given query ruleset.
 		 * Match criteria should match the keys defined in the
@@ -198,6 +207,12 @@ public class TestRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

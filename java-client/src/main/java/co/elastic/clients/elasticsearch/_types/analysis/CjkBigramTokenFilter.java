@@ -142,6 +142,13 @@ public class CjkBigramTokenFilter extends TokenFilterBase implements TokenFilter
 		@Nullable
 		private Boolean outputUnigrams;
 
+		public Builder() {
+		}
+		private Builder(CjkBigramTokenFilter instance) {
+			this.ignoredScripts = instance.ignoredScripts;
+			this.outputUnigrams = instance.outputUnigrams;
+
+		}
 		/**
 		 * Array of character scripts for which to disable bigrams.
 		 * <p>
@@ -196,6 +203,12 @@ public class CjkBigramTokenFilter extends TokenFilterBase implements TokenFilter
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

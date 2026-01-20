@@ -113,7 +113,7 @@ public class GetPipelineRequest extends RequestBase {
 	}
 
 	/**
-	 * Return pipelines without their definitions (default: false)
+	 * Return pipelines without their definitions
 	 * <p>
 	 * API name: {@code summary}
 	 */
@@ -140,6 +140,14 @@ public class GetPipelineRequest extends RequestBase {
 		@Nullable
 		private Boolean summary;
 
+		public Builder() {
+		}
+		private Builder(GetPipelineRequest instance) {
+			this.id = instance.id;
+			this.masterTimeout = instance.masterTimeout;
+			this.summary = instance.summary;
+
+		}
 		/**
 		 * Comma-separated list of pipeline IDs to retrieve. Wildcard (<code>*</code>)
 		 * expressions are supported. To get all ingest pipelines, omit this parameter
@@ -174,7 +182,7 @@ public class GetPipelineRequest extends RequestBase {
 		}
 
 		/**
-		 * Return pipelines without their definitions (default: false)
+		 * Return pipelines without their definitions
 		 * <p>
 		 * API name: {@code summary}
 		 */
@@ -201,6 +209,12 @@ public class GetPipelineRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

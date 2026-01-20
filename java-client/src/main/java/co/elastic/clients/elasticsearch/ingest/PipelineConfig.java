@@ -167,6 +167,14 @@ public class PipelineConfig implements JsonpSerializable {
 
 		private List<Processor> processors;
 
+		public Builder() {
+		}
+		private Builder(PipelineConfig instance) {
+			this.description = instance.description;
+			this.version = instance.version;
+			this.processors = instance.processors;
+
+		}
 		/**
 		 * Description of the ingest pipeline.
 		 * <p>
@@ -259,6 +267,12 @@ public class PipelineConfig implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

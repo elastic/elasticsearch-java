@@ -60,8 +60,10 @@ import javax.annotation.Nullable;
 // typedef: indices.clone.Request
 
 /**
- * Clone an index. Clone an existing index into a new index. Each original
- * primary shard is cloned into a new primary shard in the new index.
+ * Clone an index.
+ * <p>
+ * Clone an existing index into a new index. Each original primary shard is
+ * cloned into a new primary shard in the new index.
  * <p>
  * IMPORTANT: Elasticsearch does not apply index templates to the resulting
  * index. The API also does not copy index metadata from the original index.
@@ -302,6 +304,18 @@ public class CloneIndexRequest extends RequestBase implements JsonpSerializable 
 		@Nullable
 		private WaitForActiveShards waitForActiveShards;
 
+		public Builder() {
+		}
+		private Builder(CloneIndexRequest instance) {
+			this.aliases = instance.aliases;
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.settings = instance.settings;
+			this.target = instance.target;
+			this.timeout = instance.timeout;
+			this.waitForActiveShards = instance.waitForActiveShards;
+
+		}
 		/**
 		 * Aliases for the resulting index.
 		 * <p>
@@ -465,6 +479,12 @@ public class CloneIndexRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

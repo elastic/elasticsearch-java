@@ -60,8 +60,9 @@ import javax.annotation.Nullable;
 // typedef: query_rules.put_rule.Request
 
 /**
- * Create or update a query rule. Create or update a query rule within a query
- * ruleset.
+ * Create or update a query rule.
+ * <p>
+ * Create or update a query rule within a query ruleset.
  * <p>
  * IMPORTANT: Due to limitations within pinned queries, you can only pin
  * documents using ids or docs, but cannot use both in single rule. It is
@@ -217,6 +218,17 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 
 		private QueryRuleType type;
 
+		public Builder() {
+		}
+		private Builder(PutRuleRequest instance) {
+			this.actions = instance.actions;
+			this.criteria = instance.criteria;
+			this.priority = instance.priority;
+			this.ruleId = instance.ruleId;
+			this.rulesetId = instance.rulesetId;
+			this.type = instance.type;
+
+		}
 		/**
 		 * Required - The actions to take when the rule is matched. The format of this
 		 * action depends on the rule type.
@@ -337,6 +349,12 @@ public class PutRuleRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

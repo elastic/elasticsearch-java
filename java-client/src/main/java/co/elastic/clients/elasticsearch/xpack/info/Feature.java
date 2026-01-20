@@ -167,6 +167,15 @@ public class Feature implements JsonpSerializable {
 		@Nullable
 		private NativeCodeInformation nativeCodeInfo;
 
+		public Builder() {
+		}
+		private Builder(Feature instance) {
+			this.available = instance.available;
+			this.description = instance.description;
+			this.enabled = instance.enabled;
+			this.nativeCodeInfo = instance.nativeCodeInfo;
+
+		}
 		/**
 		 * Required - API name: {@code available}
 		 */
@@ -225,6 +234,12 @@ public class Feature implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

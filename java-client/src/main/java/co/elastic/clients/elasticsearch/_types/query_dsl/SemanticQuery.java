@@ -123,6 +123,13 @@ public class SemanticQuery extends QueryBase implements QueryVariant {
 
 		private String query;
 
+		public Builder() {
+		}
+		private Builder(SemanticQuery instance) {
+			this.field = instance.field;
+			this.query = instance.query;
+
+		}
 		/**
 		 * Required - The field to query, which must be a semantic_text field type
 		 * <p>
@@ -161,6 +168,12 @@ public class SemanticQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

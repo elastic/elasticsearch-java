@@ -208,6 +208,15 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 		@Nullable
 		private DataframeAnalysisAnalyzedFields source;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalyticsSource instance) {
+			this.index = instance.index;
+			this.query = instance.query;
+			this.runtimeMappings = instance.runtimeMappings;
+			this.source = instance.source;
+
+		}
 		/**
 		 * Required - Index or indices on which to perform the analysis. It can be a
 		 * single index or index pattern as well as an array of indices or patterns.
@@ -360,6 +369,12 @@ public class DataframeAnalyticsSource implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

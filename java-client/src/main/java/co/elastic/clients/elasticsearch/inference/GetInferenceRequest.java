@@ -55,7 +55,11 @@ import javax.annotation.Nullable;
 // typedef: inference.get.Request
 
 /**
- * Get an inference endpoint
+ * Get an inference endpoint.
+ * <p>
+ * This API requires the <code>monitor_inference</code> cluster privilege (the
+ * built-in <code>inference_admin</code> and <code>inference_user</code> roles
+ * grant this privilege).
  * 
  * @see <a href="../doc-files/api-spec.html#inference.get.Request">API
  *      specification</a>
@@ -116,6 +120,13 @@ public class GetInferenceRequest extends RequestBase {
 		@Nullable
 		private TaskType taskType;
 
+		public Builder() {
+		}
+		private Builder(GetInferenceRequest instance) {
+			this.inferenceId = instance.inferenceId;
+			this.taskType = instance.taskType;
+
+		}
 		/**
 		 * The inference Id
 		 * <p>
@@ -154,6 +165,12 @@ public class GetInferenceRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

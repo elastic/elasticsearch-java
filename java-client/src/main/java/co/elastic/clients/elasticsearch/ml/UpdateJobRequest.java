@@ -63,8 +63,9 @@ import javax.annotation.Nullable;
 // typedef: ml.update_job.Request
 
 /**
- * Update an anomaly detection job. Updates certain properties of an anomaly
- * detection job.
+ * Update an anomaly detection job.
+ * <p>
+ * Updates certain properties of an anomaly detection job.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.update_job.Request">API
  *      specification</a>
@@ -485,6 +486,27 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Long resultsRetentionDays;
 
+		public Builder() {
+		}
+		private Builder(UpdateJobRequest instance) {
+			this.allowLazyOpen = instance.allowLazyOpen;
+			this.analysisLimits = instance.analysisLimits;
+			this.backgroundPersistInterval = instance.backgroundPersistInterval;
+			this.categorizationFilters = instance.categorizationFilters;
+			this.customSettings = instance.customSettings;
+			this.dailyModelSnapshotRetentionAfterDays = instance.dailyModelSnapshotRetentionAfterDays;
+			this.description = instance.description;
+			this.detectors = instance.detectors;
+			this.groups = instance.groups;
+			this.jobId = instance.jobId;
+			this.modelPlotConfig = instance.modelPlotConfig;
+			this.modelPruneWindow = instance.modelPruneWindow;
+			this.modelSnapshotRetentionDays = instance.modelSnapshotRetentionDays;
+			this.perPartitionCategorization = instance.perPartitionCategorization;
+			this.renormalizationWindowDays = instance.renormalizationWindowDays;
+			this.resultsRetentionDays = instance.resultsRetentionDays;
+
+		}
 		/**
 		 * Advanced configuration option. Specifies whether this job can open when there
 		 * is insufficient machine learning node capacity for it to be immediately
@@ -800,6 +822,12 @@ public class UpdateJobRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

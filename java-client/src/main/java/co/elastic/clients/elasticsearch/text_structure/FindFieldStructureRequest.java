@@ -36,9 +36,11 @@ import java.lang.Number;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -59,8 +61,9 @@ import javax.annotation.Nullable;
 // typedef: text_structure.find_field_structure.Request
 
 /**
- * Find the structure of a text field. Find the structure of a text field in an
- * Elasticsearch index.
+ * Find the structure of a text field.
+ * <p>
+ * Find the structure of a text field in an Elasticsearch index.
  * <p>
  * This API provides a starting point for extracting further information from
  * log messages already ingested into Elasticsearch. For example, if you have
@@ -93,8 +96,7 @@ import javax.annotation.Nullable;
  */
 
 public class FindFieldStructureRequest extends RequestBase {
-	@Nullable
-	private final String columnNames;
+	private final List<String> columnNames;
 
 	@Nullable
 	private final String delimiter;
@@ -137,7 +139,7 @@ public class FindFieldStructureRequest extends RequestBase {
 
 	private FindFieldStructureRequest(Builder builder) {
 
-		this.columnNames = builder.columnNames;
+		this.columnNames = ApiTypeHelper.unmodifiable(builder.columnNames);
 		this.delimiter = builder.delimiter;
 		this.documentsToSample = builder.documentsToSample;
 		this.ecsCompatibility = builder.ecsCompatibility;
@@ -167,8 +169,7 @@ public class FindFieldStructureRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code column_names}
 	 */
-	@Nullable
-	public final String columnNames() {
+	public final List<String> columnNames() {
 		return this.columnNames;
 	}
 
@@ -408,7 +409,7 @@ public class FindFieldStructureRequest extends RequestBase {
 			implements
 				ObjectBuilder<FindFieldStructureRequest> {
 		@Nullable
-		private String columnNames;
+		private List<String> columnNames;
 
 		@Nullable
 		private String delimiter;
@@ -447,6 +448,25 @@ public class FindFieldStructureRequest extends RequestBase {
 		@Nullable
 		private String timestampFormat;
 
+		public Builder() {
+		}
+		private Builder(FindFieldStructureRequest instance) {
+			this.columnNames = instance.columnNames;
+			this.delimiter = instance.delimiter;
+			this.documentsToSample = instance.documentsToSample;
+			this.ecsCompatibility = instance.ecsCompatibility;
+			this.explain = instance.explain;
+			this.field = instance.field;
+			this.format = instance.format;
+			this.grokPattern = instance.grokPattern;
+			this.index = instance.index;
+			this.quote = instance.quote;
+			this.shouldTrimFields = instance.shouldTrimFields;
+			this.timeout = instance.timeout;
+			this.timestampField = instance.timestampField;
+			this.timestampFormat = instance.timestampFormat;
+
+		}
 		/**
 		 * If <code>format</code> is set to <code>delimited</code>, you can specify the
 		 * column names in a comma-separated list. If this parameter is not specified,
@@ -455,9 +475,27 @@ public class FindFieldStructureRequest extends RequestBase {
 		 * &quot;column1&quot;, &quot;column2&quot;, &quot;column3&quot;, for example.
 		 * <p>
 		 * API name: {@code column_names}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>columnNames</code>.
 		 */
-		public final Builder columnNames(@Nullable String value) {
-			this.columnNames = value;
+		public final Builder columnNames(List<String> list) {
+			this.columnNames = _listAddAll(this.columnNames, list);
+			return this;
+		}
+
+		/**
+		 * If <code>format</code> is set to <code>delimited</code>, you can specify the
+		 * column names in a comma-separated list. If this parameter is not specified,
+		 * the structure finder uses the column names from the header row of the text.
+		 * If the text does not have a header row, columns are named
+		 * &quot;column1&quot;, &quot;column2&quot;, &quot;column3&quot;, for example.
+		 * <p>
+		 * API name: {@code column_names}
+		 * <p>
+		 * Adds one or more values to <code>columnNames</code>.
+		 */
+		public final Builder columnNames(String value, String... values) {
+			this.columnNames = _listAdd(this.columnNames, value, values);
 			return this;
 		}
 
@@ -717,6 +755,12 @@ public class FindFieldStructureRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -774,8 +818,9 @@ public class FindFieldStructureRequest extends RequestBase {
 				if (request.delimiter != null) {
 					params.put("delimiter", request.delimiter);
 				}
-				if (request.columnNames != null) {
-					params.put("column_names", request.columnNames);
+				if (ApiTypeHelper.isDefined(request.columnNames)) {
+					params.put("column_names",
+							request.columnNames.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.documentsToSample != null) {
 					params.put("documents_to_sample", request.documentsToSample.toString());

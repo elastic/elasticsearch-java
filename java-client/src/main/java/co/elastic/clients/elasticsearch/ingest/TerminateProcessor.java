@@ -81,6 +81,11 @@ public class TerminateProcessor extends ProcessorBase implements ProcessorVarian
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TerminateProcessor> {
+		public Builder() {
+		}
+		private Builder(TerminateProcessor instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class TerminateProcessor extends ProcessorBase implements ProcessorVarian
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

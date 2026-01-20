@@ -108,7 +108,9 @@ public class PutVoyageaiRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * The chunking configuration object.
+	 * The chunking configuration object. Applies only to the
+	 * <code>text_embedding</code> task type. Not applicable to the
+	 * <code>rerank</code> task type.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -232,8 +234,22 @@ public class PutVoyageaiRequest extends RequestBase implements JsonpSerializable
 
 		private String voyageaiInferenceId;
 
+		public Builder() {
+		}
+		private Builder(PutVoyageaiRequest instance) {
+			this.chunkingSettings = instance.chunkingSettings;
+			this.service = instance.service;
+			this.serviceSettings = instance.serviceSettings;
+			this.taskSettings = instance.taskSettings;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+			this.voyageaiInferenceId = instance.voyageaiInferenceId;
+
+		}
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>rerank</code> task type.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -243,7 +259,9 @@ public class PutVoyageaiRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>rerank</code> task type.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -366,6 +384,12 @@ public class PutVoyageaiRequest extends RequestBase implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -201,6 +201,17 @@ public class Pipeline implements JsonpSerializable {
 
 		private String username;
 
+		public Builder() {
+		}
+		private Builder(Pipeline instance) {
+			this.description = instance.description;
+			this.lastModified = instance.lastModified;
+			this.pipeline = instance.pipeline;
+			this.pipelineMetadata = instance.pipelineMetadata;
+			this.pipelineSettings = instance.pipelineSettings;
+			this.username = instance.username;
+
+		}
 		/**
 		 * Required - A description of the pipeline. This description is not used by
 		 * Elasticsearch or Logstash.
@@ -303,6 +314,12 @@ public class Pipeline implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

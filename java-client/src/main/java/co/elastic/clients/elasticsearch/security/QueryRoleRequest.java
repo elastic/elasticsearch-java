@@ -159,8 +159,10 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The sort definition. You can sort on <code>username</code>,
-	 * <code>roles</code>, or <code>enabled</code>. In addition, sort can also be
+	 * The sort definition. You can sort on <code>name</code>,
+	 * <code>description</code>, <code>metadata</code>,
+	 * <code>applications.application</code>, <code>applications.privileges</code>,
+	 * and <code>applications.resources</code>. In addition, sort can also be
 	 * applied to the <code>_doc</code> field to sort by index order.
 	 * <p>
 	 * API name: {@code sort}
@@ -242,6 +244,16 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private List<SortOptions> sort;
 
+		public Builder() {
+		}
+		private Builder(QueryRoleRequest instance) {
+			this.from = instance.from;
+			this.query = instance.query;
+			this.searchAfter = instance.searchAfter;
+			this.size = instance.size;
+			this.sort = instance.sort;
+
+		}
 		/**
 		 * The starting document offset. It must not be negative. By default, you cannot
 		 * page through more than 10,000 hits using the <code>from</code> and
@@ -420,8 +432,10 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The sort definition. You can sort on <code>username</code>,
-		 * <code>roles</code>, or <code>enabled</code>. In addition, sort can also be
+		 * The sort definition. You can sort on <code>name</code>,
+		 * <code>description</code>, <code>metadata</code>,
+		 * <code>applications.application</code>, <code>applications.privileges</code>,
+		 * and <code>applications.resources</code>. In addition, sort can also be
 		 * applied to the <code>_doc</code> field to sort by index order.
 		 * <p>
 		 * API name: {@code sort}
@@ -434,8 +448,10 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The sort definition. You can sort on <code>username</code>,
-		 * <code>roles</code>, or <code>enabled</code>. In addition, sort can also be
+		 * The sort definition. You can sort on <code>name</code>,
+		 * <code>description</code>, <code>metadata</code>,
+		 * <code>applications.application</code>, <code>applications.privileges</code>,
+		 * and <code>applications.resources</code>. In addition, sort can also be
 		 * applied to the <code>_doc</code> field to sort by index order.
 		 * <p>
 		 * API name: {@code sort}
@@ -448,8 +464,10 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The sort definition. You can sort on <code>username</code>,
-		 * <code>roles</code>, or <code>enabled</code>. In addition, sort can also be
+		 * The sort definition. You can sort on <code>name</code>,
+		 * <code>description</code>, <code>metadata</code>,
+		 * <code>applications.application</code>, <code>applications.privileges</code>,
+		 * and <code>applications.resources</code>. In addition, sort can also be
 		 * applied to the <code>_doc</code> field to sort by index order.
 		 * <p>
 		 * API name: {@code sort}
@@ -478,6 +496,12 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

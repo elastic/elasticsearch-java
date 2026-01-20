@@ -56,10 +56,12 @@ import javax.annotation.Nullable;
 // typedef: shutdown.delete_node.Request
 
 /**
- * Cancel node shutdown preparations. Remove a node from the shutdown list so it
- * can resume normal operations. You must explicitly clear the shutdown request
- * when a node rejoins the cluster or when a node has permanently left the
- * cluster. Shutdown requests are never removed automatically by Elasticsearch.
+ * Cancel node shutdown preparations.
+ * <p>
+ * Remove a node from the shutdown list so it can resume normal operations. You
+ * must explicitly clear the shutdown request when a node rejoins the cluster or
+ * when a node has permanently left the cluster. Shutdown requests are never
+ * removed automatically by Elasticsearch.
  * <p>
  * NOTE: This feature is designed for indirect use by Elastic Cloud, Elastic
  * Cloud Enterprise, and Elastic Cloud on Kubernetes. Direct use is not
@@ -143,6 +145,14 @@ public class DeleteNodeRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeleteNodeRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.nodeId = instance.nodeId;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -213,6 +223,12 @@ public class DeleteNodeRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

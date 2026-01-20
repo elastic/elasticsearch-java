@@ -126,7 +126,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * Return settings in flat format (default: false)
+	 * Return settings in flat format
 	 * <p>
 	 * API name: {@code flat_settings}
 	 */
@@ -136,7 +136,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * Explicit operation timeout for connection to master node
+	 * The period to wait for a connection to the master node.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -155,7 +155,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * The period to wait for a response.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -233,8 +233,18 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		@Nullable
 		private Map<String, JsonData> transient_;
 
+		public Builder() {
+		}
+		private Builder(PutClusterSettingsRequest instance) {
+			this.flatSettings = instance.flatSettings;
+			this.masterTimeout = instance.masterTimeout;
+			this.persistent = instance.persistent;
+			this.timeout = instance.timeout;
+			this.transient_ = instance.transient_;
+
+		}
 		/**
-		 * Return settings in flat format (default: false)
+		 * Return settings in flat format
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
@@ -244,7 +254,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -254,7 +264,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -287,7 +297,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * The period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -297,7 +307,7 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * The period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -347,6 +357,12 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

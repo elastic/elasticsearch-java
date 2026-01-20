@@ -24,6 +24,8 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -32,6 +34,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -56,10 +59,12 @@ import javax.annotation.Nullable;
 // typedef: ml.start_data_frame_analytics.Request
 
 /**
- * Start a data frame analytics job. A data frame analytics job can be started
- * and stopped multiple times throughout its lifecycle. If the destination index
- * does not exist, it is created automatically the first time you start the data
- * frame analytics job. The <code>index.number_of_shards</code> and
+ * Start a data frame analytics job.
+ * <p>
+ * A data frame analytics job can be started and stopped multiple times
+ * throughout its lifecycle. If the destination index does not exist, it is
+ * created automatically the first time you start the data frame analytics job.
+ * The <code>index.number_of_shards</code> and
  * <code>index.number_of_replicas</code> settings for the destination index are
  * copied from the source index. If there are multiple source indices, the
  * destination index copies the highest setting values. The mappings for the
@@ -72,8 +77,8 @@ import javax.annotation.Nullable;
  *      "../doc-files/api-spec.html#ml.start_data_frame_analytics.Request">API
  *      specification</a>
  */
-
-public class StartDataFrameAnalyticsRequest extends RequestBase {
+@JsonpDeserializable
+public class StartDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
 	@Nullable
@@ -115,6 +120,25 @@ public class StartDataFrameAnalyticsRequest extends RequestBase {
 		return this.timeout;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.timeout != null) {
+			generator.writeKey("timeout");
+			this.timeout.serialize(generator, mapper);
+
+		}
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -129,6 +153,13 @@ public class StartDataFrameAnalyticsRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(StartDataFrameAnalyticsRequest instance) {
+			this.id = instance.id;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - Identifier for the data frame analytics job. This identifier can
 		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
@@ -178,6 +209,27 @@ public class StartDataFrameAnalyticsRequest extends RequestBase {
 
 			return new StartDataFrameAnalyticsRequest(this);
 		}
+	}
+
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for {@link StartDataFrameAnalyticsRequest}
+	 */
+	public static final JsonpDeserializer<StartDataFrameAnalyticsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, StartDataFrameAnalyticsRequest::setupStartDataFrameAnalyticsRequestDeserializer);
+
+	protected static void setupStartDataFrameAnalyticsRequestDeserializer(
+			ObjectDeserializer<StartDataFrameAnalyticsRequest.Builder> op) {
+
+		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -233,11 +285,7 @@ public class StartDataFrameAnalyticsRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
-				}
-				return params;
+				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, StartDataFrameAnalyticsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, StartDataFrameAnalyticsResponse._DESERIALIZER);
 }

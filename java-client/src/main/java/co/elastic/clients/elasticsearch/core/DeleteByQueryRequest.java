@@ -261,8 +261,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final Float requestsPerSecond;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	@Nullable
 	private final Time scroll;
@@ -323,7 +322,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		this.refresh = builder.refresh;
 		this.requestCache = builder.requestCache;
 		this.requestsPerSecond = builder.requestsPerSecond;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.scroll = builder.scroll;
 		this.scrollSize = builder.scrollSize;
 		this.searchTimeout = builder.searchTimeout;
@@ -554,8 +553,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -808,7 +806,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		private Float requestsPerSecond;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private Time scroll;
@@ -849,6 +847,43 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(DeleteByQueryRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.analyzeWildcard = instance.analyzeWildcard;
+			this.analyzer = instance.analyzer;
+			this.conflicts = instance.conflicts;
+			this.defaultOperator = instance.defaultOperator;
+			this.df = instance.df;
+			this.expandWildcards = instance.expandWildcards;
+			this.from = instance.from;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.lenient = instance.lenient;
+			this.maxDocs = instance.maxDocs;
+			this.preference = instance.preference;
+			this.q = instance.q;
+			this.query = instance.query;
+			this.refresh = instance.refresh;
+			this.requestCache = instance.requestCache;
+			this.requestsPerSecond = instance.requestsPerSecond;
+			this.routing = instance.routing;
+			this.scroll = instance.scroll;
+			this.scrollSize = instance.scrollSize;
+			this.searchTimeout = instance.searchTimeout;
+			this.searchType = instance.searchType;
+			this.slice = instance.slice;
+			this.slices = instance.slices;
+			this.sort = instance.sort;
+			this.stats = instance.stats;
+			this.terminateAfter = instance.terminateAfter;
+			this.timeout = instance.timeout;
+			this.version = instance.version;
+			this.waitForActiveShards = instance.waitForActiveShards;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -1112,9 +1147,23 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * A custom value used to route operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -1385,6 +1434,12 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -1471,8 +1526,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.requestsPerSecond != null) {
 					params.put("requests_per_second", String.valueOf(request.requestsPerSecond));

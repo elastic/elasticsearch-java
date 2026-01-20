@@ -113,6 +113,12 @@ public class DataframeEvaluationOutlierDetectionMetrics extends DataframeEvaluat
 		@Nullable
 		private Map<String, JsonData> confusionMatrix;
 
+		public Builder() {
+		}
+		private Builder(DataframeEvaluationOutlierDetectionMetrics instance) {
+			this.confusionMatrix = instance.confusionMatrix;
+
+		}
 		/**
 		 * Accuracy of predictions (per-class and overall).
 		 * <p>
@@ -155,6 +161,12 @@ public class DataframeEvaluationOutlierDetectionMetrics extends DataframeEvaluat
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -56,8 +56,10 @@ import javax.annotation.Nullable;
 // typedef: sql.get_async.Request
 
 /**
- * Get async SQL search results. Get the current status and available results
- * for an async SQL search or stored synchronous SQL search.
+ * Get async SQL search results.
+ * <p>
+ * Get the current status and available results for an async SQL search or
+ * stored synchronous SQL search.
  * <p>
  * If the Elasticsearch security features are enabled, only the user who first
  * submitted the SQL search can retrieve the search using this API.
@@ -172,6 +174,16 @@ public class GetAsyncRequest extends RequestBase {
 		@Nullable
 		private Time waitForCompletionTimeout;
 
+		public Builder() {
+		}
+		private Builder(GetAsyncRequest instance) {
+			this.delimiter = instance.delimiter;
+			this.format = instance.format;
+			this.id = instance.id;
+			this.keepAlive = instance.keepAlive;
+			this.waitForCompletionTimeout = instance.waitForCompletionTimeout;
+
+		}
 		/**
 		 * The separator for CSV results. The API supports this parameter only for CSV
 		 * responses.
@@ -265,6 +277,12 @@ public class GetAsyncRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

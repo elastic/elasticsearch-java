@@ -56,9 +56,10 @@ import javax.annotation.Nullable;
 // typedef: rollup.start_job.Request
 
 /**
- * Start rollup jobs. If you try to start a job that does not exist, an
- * exception occurs. If you try to start a job that is already started, nothing
- * happens.
+ * Start rollup jobs.
+ * <p>
+ * If you try to start a job that does not exist, an exception occurs. If you
+ * try to start a job that is already started, nothing happens.
  * 
  * @see <a href="../doc-files/api-spec.html#rollup.start_job.Request">API
  *      specification</a>
@@ -98,6 +99,12 @@ public class StartJobRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<StartJobRequest> {
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(StartJobRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Required - Identifier for the rollup job.
 		 * <p>
@@ -126,6 +133,12 @@ public class StartJobRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

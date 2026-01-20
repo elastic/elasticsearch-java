@@ -59,11 +59,13 @@ import javax.annotation.Nullable;
 // typedef: ilm.migrate_to_data_tiers.Request
 
 /**
- * Migrate to data tiers routing. Switch the indices, ILM policies, and legacy,
- * composable, and component templates from using custom node attributes and
- * attribute-based allocation filters to using data tiers. Optionally, delete
- * one legacy index template. Using node roles enables ILM to automatically move
- * the indices between data tiers.
+ * Migrate to data tiers routing.
+ * <p>
+ * Switch the indices, ILM policies, and legacy, composable, and component
+ * templates from using custom node attributes and attribute-based allocation
+ * filters to using data tiers. Optionally, delete one legacy index template.
+ * Using node roles enables ILM to automatically move the indices between data
+ * tiers.
  * <p>
  * Migrating away from custom node attributes routing can be manually performed.
  * This API provides an automated way of performing three out of the four manual
@@ -198,6 +200,15 @@ public class MigrateToDataTiersRequest extends RequestBase implements JsonpSeria
 		@Nullable
 		private String nodeAttribute;
 
+		public Builder() {
+		}
+		private Builder(MigrateToDataTiersRequest instance) {
+			this.dryRun = instance.dryRun;
+			this.legacyTemplateToDelete = instance.legacyTemplateToDelete;
+			this.masterTimeout = instance.masterTimeout;
+			this.nodeAttribute = instance.nodeAttribute;
+
+		}
 		/**
 		 * If true, simulates the migration from node attributes based allocation
 		 * filters to data tiers, but does not perform the migration. This provides a
@@ -269,6 +280,12 @@ public class MigrateToDataTiersRequest extends RequestBase implements JsonpSeria
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

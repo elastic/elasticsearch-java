@@ -78,8 +78,7 @@ public class LikeDocument implements JsonpSerializable {
 
 	private final Map<String, String> perFieldAnalyzer;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	@Nullable
 	private final Long version;
@@ -96,7 +95,7 @@ public class LikeDocument implements JsonpSerializable {
 		this.id = builder.id;
 		this.index = builder.index;
 		this.perFieldAnalyzer = ApiTypeHelper.unmodifiable(builder.perFieldAnalyzer);
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
@@ -155,8 +154,7 @@ public class LikeDocument implements JsonpSerializable {
 	/**
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -223,9 +221,14 @@ public class LikeDocument implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.routing != null) {
+		if (ApiTypeHelper.isDefined(this.routing)) {
 			generator.writeKey("routing");
-			generator.write(this.routing);
+			generator.writeStartArray();
+			for (String item0 : this.routing) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.version != null) {
@@ -268,7 +271,7 @@ public class LikeDocument implements JsonpSerializable {
 		private Map<String, String> perFieldAnalyzer;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private Long version;
@@ -276,6 +279,19 @@ public class LikeDocument implements JsonpSerializable {
 		@Nullable
 		private VersionType versionType;
 
+		public Builder() {
+		}
+		private Builder(LikeDocument instance) {
+			this.doc = instance.doc;
+			this.fields = instance.fields;
+			this.id = instance.id;
+			this.index = instance.index;
+			this.perFieldAnalyzer = instance.perFieldAnalyzer;
+			this.routing = instance.routing;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+
+		}
 		/**
 		 * A document not present in the index.
 		 * <p>
@@ -352,9 +368,21 @@ public class LikeDocument implements JsonpSerializable {
 
 		/**
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -392,6 +420,12 @@ public class LikeDocument implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -408,7 +442,8 @@ public class LikeDocument implements JsonpSerializable {
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::perFieldAnalyzer,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "per_field_analyzer");
-		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(Builder::routing, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"routing");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 		op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");
 

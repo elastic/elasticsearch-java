@@ -98,6 +98,12 @@ public class GeoHexGridBucket extends MultiBucketBase {
 				ObjectBuilder<GeoHexGridBucket> {
 		private String key;
 
+		public Builder() {
+		}
+		private Builder(GeoHexGridBucket instance) {
+			this.key = instance.key;
+
+		}
 		/**
 		 * Required - API name: {@code key}
 		 */
@@ -124,6 +130,12 @@ public class GeoHexGridBucket extends MultiBucketBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

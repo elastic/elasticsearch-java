@@ -59,9 +59,11 @@ import javax.annotation.Nullable;
 // typedef: ml.get_trained_models_stats.Request
 
 /**
- * Get trained models usage info. You can get usage information for multiple
- * trained models in a single API request by using a comma-separated list of
- * model IDs or a wildcard expression.
+ * Get trained models usage info.
+ * <p>
+ * You can get usage information for multiple trained models in a single API
+ * request by using a comma-separated list of model IDs or a wildcard
+ * expression.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.get_trained_models_stats.Request">API
@@ -164,6 +166,15 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(GetTrainedModelsStatsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.from = instance.from;
+			this.modelId = instance.modelId;
+			this.size = instance.size;
+
+		}
 		/**
 		 * Specifies what to do when the request:
 		 * <ul>
@@ -246,6 +257,12 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

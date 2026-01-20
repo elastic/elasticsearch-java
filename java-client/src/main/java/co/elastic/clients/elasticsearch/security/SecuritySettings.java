@@ -116,6 +116,12 @@ public class SecuritySettings implements JsonpSerializable {
 		@Nullable
 		private IndexSettings index;
 
+		public Builder() {
+		}
+		private Builder(SecuritySettings instance) {
+			this.index = instance.index;
+
+		}
 		/**
 		 * API name: {@code index}
 		 */
@@ -149,6 +155,12 @@ public class SecuritySettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -58,10 +58,12 @@ import javax.annotation.Nullable;
 // typedef: rollup.get_rollup_index_caps.Request
 
 /**
- * Get the rollup index capabilities. Get the rollup capabilities of all jobs
- * inside of a rollup index. A single rollup index may store the data for
- * multiple rollup jobs and may have a variety of capabilities depending on
- * those jobs. This API enables you to determine:
+ * Get the rollup index capabilities.
+ * <p>
+ * Get the rollup capabilities of all jobs inside of a rollup index. A single
+ * rollup index may store the data for multiple rollup jobs and may have a
+ * variety of capabilities depending on those jobs. This API enables you to
+ * determine:
  * <ul>
  * <li>What jobs are stored in an index (or indices specified via a
  * pattern)?</li>
@@ -111,6 +113,12 @@ public class GetRollupIndexCapsRequest extends RequestBase {
 				ObjectBuilder<GetRollupIndexCapsRequest> {
 		private List<String> index;
 
+		public Builder() {
+		}
+		private Builder(GetRollupIndexCapsRequest instance) {
+			this.index = instance.index;
+
+		}
 		/**
 		 * Required - Data stream or index to check for rollup capabilities. Wildcard
 		 * (<code>*</code>) expressions are supported.
@@ -155,6 +163,12 @@ public class GetRollupIndexCapsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

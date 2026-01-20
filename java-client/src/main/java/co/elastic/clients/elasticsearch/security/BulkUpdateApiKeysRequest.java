@@ -60,7 +60,9 @@ import javax.annotation.Nullable;
 // typedef: security.bulk_update_api_keys.Request
 
 /**
- * Bulk update API keys. Update the attributes for multiple API keys.
+ * Bulk update API keys.
+ * <p>
+ * Update the attributes for multiple API keys.
  * <p>
  * IMPORTANT: It is not possible to use an API key as the authentication
  * credential for this API. To update API keys, the owner user's credentials are
@@ -239,6 +241,15 @@ public class BulkUpdateApiKeysRequest extends RequestBase implements JsonpSerial
 		@Nullable
 		private Map<String, RoleDescriptor> roleDescriptors;
 
+		public Builder() {
+		}
+		private Builder(BulkUpdateApiKeysRequest instance) {
+			this.expiration = instance.expiration;
+			this.ids = instance.ids;
+			this.metadata = instance.metadata;
+			this.roleDescriptors = instance.roleDescriptors;
+
+		}
 		/**
 		 * Expiration time for the API keys. By default, API keys never expire. This
 		 * property can be omitted to leave the value unchanged.
@@ -397,6 +408,12 @@ public class BulkUpdateApiKeysRequest extends RequestBase implements JsonpSerial
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

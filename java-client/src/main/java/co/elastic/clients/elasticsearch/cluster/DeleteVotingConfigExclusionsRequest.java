@@ -58,8 +58,9 @@ import javax.annotation.Nullable;
 // typedef: cluster.delete_voting_config_exclusions.Request
 
 /**
- * Clear cluster voting config exclusions. Remove master-eligible nodes from the
- * voting configuration exclusion list.
+ * Clear cluster voting config exclusions.
+ * <p>
+ * Remove master-eligible nodes from the voting configuration exclusion list.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#cluster.delete_voting_config_exclusions.Request">API
@@ -127,6 +128,13 @@ public class DeleteVotingConfigExclusionsRequest extends RequestBase {
 		@Nullable
 		private Boolean waitForRemoval;
 
+		public Builder() {
+		}
+		private Builder(DeleteVotingConfigExclusionsRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.waitForRemoval = instance.waitForRemoval;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node.
 		 * <p>
@@ -179,6 +187,12 @@ public class DeleteVotingConfigExclusionsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

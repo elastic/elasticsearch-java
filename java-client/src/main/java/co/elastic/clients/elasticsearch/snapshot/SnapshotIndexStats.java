@@ -152,6 +152,14 @@ public class SnapshotIndexStats implements JsonpSerializable {
 
 		private SnapshotStats stats;
 
+		public Builder() {
+		}
+		private Builder(SnapshotIndexStats instance) {
+			this.shards = instance.shards;
+			this.shardsStats = instance.shardsStats;
+			this.stats = instance.stats;
+
+		}
 		/**
 		 * Required - API name: {@code shards}
 		 * <p>
@@ -230,6 +238,12 @@ public class SnapshotIndexStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

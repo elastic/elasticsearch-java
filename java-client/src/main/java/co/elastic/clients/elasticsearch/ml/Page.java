@@ -139,6 +139,13 @@ public class Page implements JsonpSerializable {
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(Page instance) {
+			this.from = instance.from;
+			this.size = instance.size;
+
+		}
 		/**
 		 * Skips the specified number of items.
 		 * <p>
@@ -177,6 +184,12 @@ public class Page implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

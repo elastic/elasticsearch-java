@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: synonyms.delete_synonym_rule.Request
 
 /**
- * Delete a synonym rule. Delete a synonym rule from a synonym set.
+ * Delete a synonym rule.
+ * <p>
+ * Delete a synonym rule from a synonym set.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#synonyms.delete_synonym_rule.Request">API
@@ -132,6 +134,14 @@ public class DeleteSynonymRuleRequest extends RequestBase {
 
 		private String setId;
 
+		public Builder() {
+		}
+		private Builder(DeleteSynonymRuleRequest instance) {
+			this.refresh = instance.refresh;
+			this.ruleId = instance.ruleId;
+			this.setId = instance.setId;
+
+		}
 		/**
 		 * If <code>true</code>, the request will refresh the analyzers with the deleted
 		 * synonym rule and wait for the new synonyms to be available before returning.
@@ -183,6 +193,12 @@ public class DeleteSynonymRuleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

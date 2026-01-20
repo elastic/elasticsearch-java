@@ -59,9 +59,11 @@ import javax.annotation.Nullable;
 // typedef: text_structure.test_grok_pattern.Request
 
 /**
- * Test a Grok pattern. Test a Grok pattern on one or more lines of text. The
- * API indicates whether the lines match the pattern together with the offsets
- * and lengths of the matched substrings.
+ * Test a Grok pattern.
+ * <p>
+ * Test a Grok pattern on one or more lines of text. The API indicates whether
+ * the lines match the pattern together with the offsets and lengths of the
+ * matched substrings.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#text_structure.test_grok_pattern.Request">API
@@ -164,6 +166,14 @@ public class TestGrokPatternRequest extends RequestBase implements JsonpSerializ
 
 		private List<String> text;
 
+		public Builder() {
+		}
+		private Builder(TestGrokPatternRequest instance) {
+			this.ecsCompatibility = instance.ecsCompatibility;
+			this.grokPattern = instance.grokPattern;
+			this.text = instance.text;
+
+		}
 		/**
 		 * The mode of compatibility with ECS compliant Grok patterns. Use this
 		 * parameter to specify whether to use ECS Grok patterns instead of legacy ones
@@ -229,6 +239,12 @@ public class TestGrokPatternRequest extends RequestBase implements JsonpSerializ
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

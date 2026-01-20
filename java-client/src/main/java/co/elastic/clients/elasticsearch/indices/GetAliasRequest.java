@@ -60,8 +60,9 @@ import javax.annotation.Nullable;
 // typedef: indices.get_alias.Request
 
 /**
- * Get aliases. Retrieves information for one or more data stream or index
- * aliases.
+ * Get aliases.
+ * <p>
+ * Retrieves information for one or more data stream or index aliases.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.get_alias.Request">API
  *      specification</a>
@@ -194,6 +195,17 @@ public class GetAliasRequest extends RequestBase {
 		@Nullable
 		private List<String> name;
 
+		public Builder() {
+		}
+		private Builder(GetAliasRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -343,6 +355,12 @@ public class GetAliasRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

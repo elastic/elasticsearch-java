@@ -60,8 +60,10 @@ import javax.annotation.Nullable;
 // typedef: indices.create.Request
 
 /**
- * Create an index. You can use the create index API to add a new index to an
- * Elasticsearch cluster. When creating an index, you can specify the following:
+ * Create an index.
+ * <p>
+ * You can use the create index API to add a new index to an Elasticsearch
+ * cluster. When creating an index, you can specify the following:
  * <ul>
  * <li>Settings for the index.</li>
  * <li>Mappings for fields in the index.</li>
@@ -292,6 +294,18 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		@Nullable
 		private WaitForActiveShards waitForActiveShards;
 
+		public Builder() {
+		}
+		private Builder(CreateIndexRequest instance) {
+			this.aliases = instance.aliases;
+			this.index = instance.index;
+			this.mappings = instance.mappings;
+			this.masterTimeout = instance.masterTimeout;
+			this.settings = instance.settings;
+			this.timeout = instance.timeout;
+			this.waitForActiveShards = instance.waitForActiveShards;
+
+		}
 		/**
 		 * Aliases for the index.
 		 * <p>
@@ -485,6 +499,12 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

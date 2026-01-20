@@ -57,8 +57,9 @@ import javax.annotation.Nullable;
 // typedef: tasks.get.Request
 
 /**
- * Get task information. Get information about a task currently running in the
- * cluster.
+ * Get task information.
+ * <p>
+ * Get information about a task currently running in the cluster.
  * <p>
  * WARNING: The task management API is new and should still be considered a beta
  * feature. The API may change in ways that are not backwards compatible.
@@ -138,6 +139,14 @@ public class GetTasksRequest extends RequestBase {
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(GetTasksRequest instance) {
+			this.taskId = instance.taskId;
+			this.timeout = instance.timeout;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * Required - The task identifier.
 		 * <p>
@@ -197,6 +206,12 @@ public class GetTasksRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

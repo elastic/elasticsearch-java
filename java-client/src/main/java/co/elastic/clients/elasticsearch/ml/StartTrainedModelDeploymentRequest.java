@@ -59,8 +59,9 @@ import javax.annotation.Nullable;
 // typedef: ml.start_trained_model_deployment.Request
 
 /**
- * Start a trained model deployment. It allocates the model to every machine
- * learning node.
+ * Start a trained model deployment.
+ * <p>
+ * It allocates the model to every machine learning node.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.start_trained_model_deployment.Request">API
@@ -181,7 +182,7 @@ public class StartTrainedModelDeploymentRequest extends RequestBase implements J
 	}
 
 	/**
-	 * The deployment priority.
+	 * The deployment priority
 	 * <p>
 	 * API name: {@code priority}
 	 */
@@ -294,6 +295,21 @@ public class StartTrainedModelDeploymentRequest extends RequestBase implements J
 		@Nullable
 		private DeploymentAllocationState waitFor;
 
+		public Builder() {
+		}
+		private Builder(StartTrainedModelDeploymentRequest instance) {
+			this.adaptiveAllocations = instance.adaptiveAllocations;
+			this.cacheSize = instance.cacheSize;
+			this.deploymentId = instance.deploymentId;
+			this.modelId = instance.modelId;
+			this.numberOfAllocations = instance.numberOfAllocations;
+			this.priority = instance.priority;
+			this.queueCapacity = instance.queueCapacity;
+			this.threadsPerAllocation = instance.threadsPerAllocation;
+			this.timeout = instance.timeout;
+			this.waitFor = instance.waitFor;
+
+		}
 		/**
 		 * Adaptive allocations configuration. When enabled, the number of allocations
 		 * is set based on the current load. If adaptive_allocations is enabled, do not
@@ -369,7 +385,7 @@ public class StartTrainedModelDeploymentRequest extends RequestBase implements J
 		}
 
 		/**
-		 * The deployment priority.
+		 * The deployment priority
 		 * <p>
 		 * API name: {@code priority}
 		 */
@@ -452,6 +468,12 @@ public class StartTrainedModelDeploymentRequest extends RequestBase implements J
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

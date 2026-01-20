@@ -62,8 +62,9 @@ import javax.annotation.Nullable;
 // typedef: snapshot.create.Request
 
 /**
- * Create a snapshot. Take a snapshot of a cluster or of data streams and
- * indices.
+ * Create a snapshot.
+ * <p>
+ * Take a snapshot of a cluster or of data streams and indices.
  * 
  * @see <a href="../doc-files/api-spec.html#snapshot.create.Request">API
  *      specification</a>
@@ -370,6 +371,22 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(CreateSnapshotRequest instance) {
+			this.expandWildcards = instance.expandWildcards;
+			this.featureStates = instance.featureStates;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.includeGlobalState = instance.includeGlobalState;
+			this.indices = instance.indices;
+			this.masterTimeout = instance.masterTimeout;
+			this.metadata = instance.metadata;
+			this.partial = instance.partial;
+			this.repository = instance.repository;
+			this.snapshot = instance.snapshot;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * Determines how wildcard patterns in the <code>indices</code> parameter match
 		 * data streams and indices. It supports comma-separated values such as
@@ -624,6 +641,12 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

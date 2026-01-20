@@ -82,6 +82,11 @@ public class TDigestPercentileRanksAggregate extends PercentilesAggregateBase im
 	public static class Builder extends PercentilesAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TDigestPercentileRanksAggregate> {
+		public Builder() {
+		}
+		private Builder(TDigestPercentileRanksAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -100,6 +105,12 @@ public class TDigestPercentileRanksAggregate extends PercentilesAggregateBase im
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

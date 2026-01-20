@@ -94,6 +94,11 @@ public class MultiTermsAggregate extends TermsAggregateBase<MultiTermsBucket>
 	public static class Builder extends TermsAggregateBase.AbstractBuilder<MultiTermsBucket, Builder>
 			implements
 				ObjectBuilder<MultiTermsAggregate> {
+		public Builder() {
+		}
+		private Builder(MultiTermsAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -113,6 +118,12 @@ public class MultiTermsAggregate extends TermsAggregateBase<MultiTermsBucket>
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

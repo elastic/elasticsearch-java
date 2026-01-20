@@ -110,6 +110,22 @@ public class CustomResponseParams implements JsonpSerializable {
 	 *   }
 	 * }
 	 *
+	 * # Elasticsearch supports the following embedding types:
+	 * * float
+	 * * byte
+	 * * bit (or binary)
+	 *
+	 * To specify the embedding type for the response, the `embedding_type`
+	 * field should be added in the `json_parser` object. Here's an example:
+	 * &quot;response&quot;:{
+	 *   &quot;json_parser&quot;:{
+	 *     &quot;text_embeddings&quot;:&quot;$.data[*].embedding[*]&quot;,
+	 *     &quot;embedding_type&quot;:&quot;bit&quot;
+	 *   }
+	 * }
+	 *
+	 * If `embedding_type` is not specified, it defaults to `float`.
+	 *
 	 * # sparse_embedding
 	 * # For a response like this:
 	 *
@@ -251,6 +267,12 @@ public class CustomResponseParams implements JsonpSerializable {
 				ObjectBuilder<CustomResponseParams> {
 		private JsonData jsonParser;
 
+		public Builder() {
+		}
+		private Builder(CustomResponseParams instance) {
+			this.jsonParser = instance.jsonParser;
+
+		}
 		/**
 		 * Required - Specifies the JSON parser that is used to parse the response from
 		 * the custom service. Different task types require different json_parser
@@ -286,6 +308,22 @@ public class CustomResponseParams implements JsonpSerializable {
 		 *     &quot;text_embeddings&quot;:&quot;$.data[*].embedding[*]&quot;
 		 *   }
 		 * }
+		 *
+		 * # Elasticsearch supports the following embedding types:
+		 * * float
+		 * * byte
+		 * * bit (or binary)
+		 *
+		 * To specify the embedding type for the response, the `embedding_type`
+		 * field should be added in the `json_parser` object. Here's an example:
+		 * &quot;response&quot;:{
+		 *   &quot;json_parser&quot;:{
+		 *     &quot;text_embeddings&quot;:&quot;$.data[*].embedding[*]&quot;,
+		 *     &quot;embedding_type&quot;:&quot;bit&quot;
+		 *   }
+		 * }
+		 *
+		 * If `embedding_type` is not specified, it defaults to `float`.
 		 *
 		 * # sparse_embedding
 		 * # For a response like this:
@@ -415,6 +453,12 @@ public class CustomResponseParams implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

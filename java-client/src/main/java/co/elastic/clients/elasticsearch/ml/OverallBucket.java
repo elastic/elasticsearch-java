@@ -234,6 +234,18 @@ public class OverallBucket implements JsonpSerializable {
 		@Nullable
 		private DateTime timestampString;
 
+		public Builder() {
+		}
+		private Builder(OverallBucket instance) {
+			this.bucketSpan = instance.bucketSpan;
+			this.isInterim = instance.isInterim;
+			this.jobs = instance.jobs;
+			this.overallScore = instance.overallScore;
+			this.resultType = instance.resultType;
+			this.timestamp = instance.timestamp;
+			this.timestampString = instance.timestampString;
+
+		}
 		/**
 		 * Required - The length of the bucket in seconds. Matches the job with the
 		 * longest bucket_span value.
@@ -350,6 +362,12 @@ public class OverallBucket implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

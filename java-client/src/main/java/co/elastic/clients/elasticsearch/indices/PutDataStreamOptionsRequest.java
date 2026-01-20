@@ -61,8 +61,9 @@ import javax.annotation.Nullable;
 // typedef: indices.put_data_stream_options.Request
 
 /**
- * Update data stream options. Update the data stream options of the specified
- * data streams.
+ * Update data stream options.
+ * <p>
+ * Update the data stream options of the specified data streams.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.put_data_stream_options.Request">API
@@ -195,6 +196,16 @@ public class PutDataStreamOptionsRequest extends RequestBase implements JsonpSer
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutDataStreamOptionsRequest instance) {
+			this.expandWildcards = instance.expandWildcards;
+			this.failureStore = instance.failureStore;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Type of data stream that wildcard patterns can match. Supports
 		 * comma-separated values, such as <code>open,hidden</code>.
@@ -331,6 +342,12 @@ public class PutDataStreamOptionsRequest extends RequestBase implements JsonpSer
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

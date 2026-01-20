@@ -56,9 +56,10 @@ import javax.annotation.Nullable;
 // typedef: watcher.delete_watch.Request
 
 /**
- * Delete a watch. When the watch is removed, the document representing the
- * watch in the <code>.watches</code> index is gone and it will never be run
- * again.
+ * Delete a watch.
+ * <p>
+ * When the watch is removed, the document representing the watch in the
+ * <code>.watches</code> index is gone and it will never be run again.
  * <p>
  * Deleting a watch does not delete any watch execution records related to this
  * watch from the watch history.
@@ -108,6 +109,12 @@ public class DeleteWatchRequest extends RequestBase {
 				ObjectBuilder<DeleteWatchRequest> {
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(DeleteWatchRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Required - The watch identifier.
 		 * <p>
@@ -136,6 +143,12 @@ public class DeleteWatchRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -106,7 +106,10 @@ public class PutGooglevertexaiRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * The chunking configuration object.
+	 * The chunking configuration object. Applies only to the
+	 * <code>text_embedding</code> task type. Not applicable to the
+	 * <code>rerank</code>, <code>completion</code>, or <code>chat_completion</code>
+	 * task types.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -230,8 +233,23 @@ public class PutGooglevertexaiRequest extends RequestBase implements JsonpSerial
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutGooglevertexaiRequest instance) {
+			this.chunkingSettings = instance.chunkingSettings;
+			this.googlevertexaiInferenceId = instance.googlevertexaiInferenceId;
+			this.service = instance.service;
+			this.serviceSettings = instance.serviceSettings;
+			this.taskSettings = instance.taskSettings;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+
+		}
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>rerank</code>, <code>completion</code>, or <code>chat_completion</code>
+		 * task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -241,7 +259,10 @@ public class PutGooglevertexaiRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>rerank</code>, <code>completion</code>, or <code>chat_completion</code>
+		 * task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -364,6 +385,12 @@ public class PutGooglevertexaiRequest extends RequestBase implements JsonpSerial
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -71,8 +71,10 @@ import javax.annotation.Nullable;
 // typedef: indices.put_mapping.Request
 
 /**
- * Update field mappings. Add new fields to an existing data stream or index.
- * You can use the update mapping API to:
+ * Update field mappings.
+ * <p>
+ * Add new fields to an existing data stream or index. You can use the update
+ * mapping API to:
  * <ul>
  * <li>Add a new field to an existing index</li>
  * <li>Update mappings for multiple indices in a single request</li>
@@ -288,7 +290,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
 	/**
 	 * Required - A comma-separated list of index names the mapping should be added
-	 * to (supports wildcards); use <code>_all</code> or omit to add the mapping on
+	 * to (supports wildcards). Use <code>_all</code> or omit to add the mapping on
 	 * all indices.
 	 * <p>
 	 * API name: {@code index}
@@ -525,6 +527,29 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		@Nullable
 		private Boolean writeIndexOnly;
 
+		public Builder() {
+		}
+		private Builder(PutMappingRequest instance) {
+			this.fieldNames = instance.fieldNames;
+			this.meta = instance.meta;
+			this.routing = instance.routing;
+			this.source = instance.source;
+			this.allowNoIndices = instance.allowNoIndices;
+			this.dateDetection = instance.dateDetection;
+			this.dynamic = instance.dynamic;
+			this.dynamicDateFormats = instance.dynamicDateFormats;
+			this.dynamicTemplates = instance.dynamicTemplates;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.numericDetection = instance.numericDetection;
+			this.properties = instance.properties;
+			this.runtime = instance.runtime;
+			this.timeout = instance.timeout;
+			this.writeIndexOnly = instance.writeIndexOnly;
+
+		}
 		/**
 		 * Control whether field names are enabled for the index.
 		 * <p>
@@ -740,7 +765,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
 		/**
 		 * Required - A comma-separated list of index names the mapping should be added
-		 * to (supports wildcards); use <code>_all</code> or omit to add the mapping on
+		 * to (supports wildcards). Use <code>_all</code> or omit to add the mapping on
 		 * all indices.
 		 * <p>
 		 * API name: {@code index}
@@ -754,7 +779,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
 		/**
 		 * Required - A comma-separated list of index names the mapping should be added
-		 * to (supports wildcards); use <code>_all</code> or omit to add the mapping on
+		 * to (supports wildcards). Use <code>_all</code> or omit to add the mapping on
 		 * all indices.
 		 * <p>
 		 * API name: {@code index}
@@ -932,6 +957,12 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

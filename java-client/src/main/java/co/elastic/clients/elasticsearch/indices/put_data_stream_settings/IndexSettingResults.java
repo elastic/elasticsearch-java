@@ -177,6 +177,14 @@ public class IndexSettingResults implements JsonpSerializable {
 		@Nullable
 		private List<DataStreamSettingsError> errors;
 
+		public Builder() {
+		}
+		private Builder(IndexSettingResults instance) {
+			this.appliedToDataStreamOnly = instance.appliedToDataStreamOnly;
+			this.appliedToDataStreamAndBackingIndices = instance.appliedToDataStreamAndBackingIndices;
+			this.errors = instance.errors;
+
+		}
 		/**
 		 * Required - The list of settings that were applied to the data stream but not
 		 * to backing indices. These will be applied to the write index the next time
@@ -284,6 +292,12 @@ public class IndexSettingResults implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

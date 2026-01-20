@@ -56,9 +56,11 @@ import javax.annotation.Nullable;
 // typedef: query_rules.delete_rule.Request
 
 /**
- * Delete a query rule. Delete a query rule within a query ruleset. This is a
- * destructive action that is only recoverable by re-adding the same rule with
- * the create or update query rule API.
+ * Delete a query rule.
+ * <p>
+ * Delete a query rule within a query ruleset. This is a destructive action that
+ * is only recoverable by re-adding the same rule with the create or update
+ * query rule API.
  * 
  * @see <a href="../doc-files/api-spec.html#query_rules.delete_rule.Request">API
  *      specification</a>
@@ -115,6 +117,13 @@ public class DeleteRuleRequest extends RequestBase {
 
 		private String rulesetId;
 
+		public Builder() {
+		}
+		private Builder(DeleteRuleRequest instance) {
+			this.ruleId = instance.ruleId;
+			this.rulesetId = instance.rulesetId;
+
+		}
 		/**
 		 * Required - The unique identifier of the query rule within the specified
 		 * ruleset to delete
@@ -155,6 +164,12 @@ public class DeleteRuleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

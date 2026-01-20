@@ -58,10 +58,12 @@ import javax.annotation.Nullable;
 // typedef: indices.delete_index_template.Request
 
 /**
- * Delete an index template. The provided &lt;index-template&gt; may contain
- * multiple template names separated by a comma. If multiple template names are
- * specified then there is no wildcard support and the provided names should
- * match completely with existing templates.
+ * Delete an index template.
+ * <p>
+ * The provided &lt;index-template&gt; may contain multiple template names
+ * separated by a comma. If multiple template names are specified then there is
+ * no wildcard support and the provided names should match completely with
+ * existing templates.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.delete_index_template.Request">API
@@ -140,6 +142,14 @@ public class DeleteIndexTemplateRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeleteIndexTemplateRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -226,6 +236,12 @@ public class DeleteIndexTemplateRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

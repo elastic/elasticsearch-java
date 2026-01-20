@@ -110,6 +110,12 @@ public class ShardsTotalStats implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ShardsTotalStats> {
 		private Long totalCount;
 
+		public Builder() {
+		}
+		private Builder(ShardsTotalStats instance) {
+			this.totalCount = instance.totalCount;
+
+		}
 		/**
 		 * Required - API name: {@code total_count}
 		 */
@@ -136,6 +142,12 @@ public class ShardsTotalStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

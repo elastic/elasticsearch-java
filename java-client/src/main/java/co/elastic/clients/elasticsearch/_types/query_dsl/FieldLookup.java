@@ -31,6 +31,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -67,8 +68,7 @@ public class FieldLookup implements JsonpSerializable {
 	@Nullable
 	private final String path;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ public class FieldLookup implements JsonpSerializable {
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = builder.index;
 		this.path = builder.path;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 
 	}
 
@@ -119,8 +119,7 @@ public class FieldLookup implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -148,9 +147,14 @@ public class FieldLookup implements JsonpSerializable {
 			generator.write(this.path);
 
 		}
-		if (this.routing != null) {
+		if (ApiTypeHelper.isDefined(this.routing)) {
 			generator.writeKey("routing");
-			generator.write(this.routing);
+			generator.writeStartArray();
+			for (String item0 : this.routing) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
 
@@ -177,8 +181,17 @@ public class FieldLookup implements JsonpSerializable {
 		private String path;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
+		public Builder() {
+		}
+		private Builder(FieldLookup instance) {
+			this.id = instance.id;
+			this.index = instance.index;
+			this.path = instance.path;
+			this.routing = instance.routing;
+
+		}
 		/**
 		 * Required - <code>id</code> of the document.
 		 * <p>
@@ -213,9 +226,23 @@ public class FieldLookup implements JsonpSerializable {
 		 * Custom routing value.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * Custom routing value.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -237,6 +264,12 @@ public class FieldLookup implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -250,7 +283,8 @@ public class FieldLookup implements JsonpSerializable {
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
-		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(Builder::routing, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"routing");
 
 	}
 

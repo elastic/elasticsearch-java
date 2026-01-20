@@ -128,6 +128,13 @@ public class GeoCentroidAggregate extends AggregateBase implements AggregateVari
 		@Nullable
 		private GeoLocation location;
 
+		public Builder() {
+		}
+		private Builder(GeoCentroidAggregate instance) {
+			this.count = instance.count;
+			this.location = instance.location;
+
+		}
 		/**
 		 * Required - API name: {@code count}
 		 */
@@ -169,6 +176,12 @@ public class GeoCentroidAggregate extends AggregateBase implements AggregateVari
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

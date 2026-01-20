@@ -153,6 +153,14 @@ public class Retention implements JsonpSerializable {
 
 		private Integer minCount;
 
+		public Builder() {
+		}
+		private Builder(Retention instance) {
+			this.expireAfter = instance.expireAfter;
+			this.maxCount = instance.maxCount;
+			this.minCount = instance.minCount;
+
+		}
 		/**
 		 * Required - Time period after which a snapshot is considered expired and
 		 * eligible for deletion. SLM deletes expired snapshots based on the
@@ -218,6 +226,12 @@ public class Retention implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

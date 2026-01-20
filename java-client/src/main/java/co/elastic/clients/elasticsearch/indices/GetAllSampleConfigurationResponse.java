@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.elasticsearch.indices.get_all_sample_configuration.IndexSamplingConfiguration;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -50,39 +51,36 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: indices._types.DataStreamLifecycleDownsampling
+// typedef: indices.get_all_sample_configuration.Response
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#indices._types.DataStreamLifecycleDownsampling">API
+ *      "../doc-files/api-spec.html#indices.get_all_sample_configuration.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class DataStreamLifecycleDownsampling implements JsonpSerializable {
-	private final List<DownsamplingRound> rounds;
+public class GetAllSampleConfigurationResponse implements JsonpSerializable {
+	private final List<IndexSamplingConfiguration> configurations;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private DataStreamLifecycleDownsampling(Builder builder) {
+	private GetAllSampleConfigurationResponse(Builder builder) {
 
-		this.rounds = ApiTypeHelper.unmodifiableRequired(builder.rounds, this, "rounds");
+		this.configurations = ApiTypeHelper.unmodifiableRequired(builder.configurations, this, "configurations");
 
 	}
 
-	public static DataStreamLifecycleDownsampling of(
-			Function<Builder, ObjectBuilder<DataStreamLifecycleDownsampling>> fn) {
+	public static GetAllSampleConfigurationResponse of(
+			Function<Builder, ObjectBuilder<GetAllSampleConfigurationResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The list of downsampling rounds to execute as part of this
-	 * downsampling configuration
-	 * <p>
-	 * API name: {@code rounds}
+	 * Required - API name: {@code configurations}
 	 */
-	public final List<DownsamplingRound> rounds() {
-		return this.rounds;
+	public final List<IndexSamplingConfiguration> configurations() {
+		return this.configurations;
 	}
 
 	/**
@@ -96,10 +94,10 @@ public class DataStreamLifecycleDownsampling implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.rounds)) {
-			generator.writeKey("rounds");
+		if (ApiTypeHelper.isDefined(this.configurations)) {
+			generator.writeKey("configurations");
 			generator.writeStartArray();
-			for (DownsamplingRound item0 : this.rounds) {
+			for (IndexSamplingConfiguration item0 : this.configurations) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -117,50 +115,42 @@ public class DataStreamLifecycleDownsampling implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DataStreamLifecycleDownsampling}.
+	 * Builder for {@link GetAllSampleConfigurationResponse}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<DataStreamLifecycleDownsampling> {
-		private List<DownsamplingRound> rounds;
+				ObjectBuilder<GetAllSampleConfigurationResponse> {
+		private List<IndexSamplingConfiguration> configurations;
 
 		/**
-		 * Required - The list of downsampling rounds to execute as part of this
-		 * downsampling configuration
+		 * Required - API name: {@code configurations}
 		 * <p>
-		 * API name: {@code rounds}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>rounds</code>.
+		 * Adds all elements of <code>list</code> to <code>configurations</code>.
 		 */
-		public final Builder rounds(List<DownsamplingRound> list) {
-			this.rounds = _listAddAll(this.rounds, list);
+		public final Builder configurations(List<IndexSamplingConfiguration> list) {
+			this.configurations = _listAddAll(this.configurations, list);
 			return this;
 		}
 
 		/**
-		 * Required - The list of downsampling rounds to execute as part of this
-		 * downsampling configuration
+		 * Required - API name: {@code configurations}
 		 * <p>
-		 * API name: {@code rounds}
-		 * <p>
-		 * Adds one or more values to <code>rounds</code>.
+		 * Adds one or more values to <code>configurations</code>.
 		 */
-		public final Builder rounds(DownsamplingRound value, DownsamplingRound... values) {
-			this.rounds = _listAdd(this.rounds, value, values);
+		public final Builder configurations(IndexSamplingConfiguration value, IndexSamplingConfiguration... values) {
+			this.configurations = _listAdd(this.configurations, value, values);
 			return this;
 		}
 
 		/**
-		 * Required - The list of downsampling rounds to execute as part of this
-		 * downsampling configuration
+		 * Required - API name: {@code configurations}
 		 * <p>
-		 * API name: {@code rounds}
-		 * <p>
-		 * Adds a value to <code>rounds</code> using a builder lambda.
+		 * Adds a value to <code>configurations</code> using a builder lambda.
 		 */
-		public final Builder rounds(Function<DownsamplingRound.Builder, ObjectBuilder<DownsamplingRound>> fn) {
-			return rounds(fn.apply(new DownsamplingRound.Builder()).build());
+		public final Builder configurations(
+				Function<IndexSamplingConfiguration.Builder, ObjectBuilder<IndexSamplingConfiguration>> fn) {
+			return configurations(fn.apply(new IndexSamplingConfiguration.Builder()).build());
 		}
 
 		@Override
@@ -169,30 +159,31 @@ public class DataStreamLifecycleDownsampling implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link DataStreamLifecycleDownsampling}.
+		 * Builds a {@link GetAllSampleConfigurationResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DataStreamLifecycleDownsampling build() {
+		public GetAllSampleConfigurationResponse build() {
 			_checkSingleUse();
 
-			return new DataStreamLifecycleDownsampling(this);
+			return new GetAllSampleConfigurationResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link DataStreamLifecycleDownsampling}
+	 * Json deserializer for {@link GetAllSampleConfigurationResponse}
 	 */
-	public static final JsonpDeserializer<DataStreamLifecycleDownsampling> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataStreamLifecycleDownsampling::setupDataStreamLifecycleDownsamplingDeserializer);
+	public static final JsonpDeserializer<GetAllSampleConfigurationResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetAllSampleConfigurationResponse::setupGetAllSampleConfigurationResponseDeserializer);
 
-	protected static void setupDataStreamLifecycleDownsamplingDeserializer(
-			ObjectDeserializer<DataStreamLifecycleDownsampling.Builder> op) {
+	protected static void setupGetAllSampleConfigurationResponseDeserializer(
+			ObjectDeserializer<GetAllSampleConfigurationResponse.Builder> op) {
 
-		op.add(Builder::rounds, JsonpDeserializer.arrayDeserializer(DownsamplingRound._DESERIALIZER), "rounds");
+		op.add(Builder::configurations, JsonpDeserializer.arrayDeserializer(IndexSamplingConfiguration._DESERIALIZER),
+				"configurations");
 
 	}
 

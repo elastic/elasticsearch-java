@@ -152,6 +152,14 @@ public class ShardRetentionLeases implements JsonpSerializable {
 
 		private List<ShardLease> leases;
 
+		public Builder() {
+		}
+		private Builder(ShardRetentionLeases instance) {
+			this.primaryTerm = instance.primaryTerm;
+			this.version = instance.version;
+			this.leases = instance.leases;
+
+		}
 		/**
 		 * Required - API name: {@code primary_term}
 		 */
@@ -215,6 +223,12 @@ public class ShardRetentionLeases implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

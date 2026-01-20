@@ -61,8 +61,9 @@ import javax.annotation.Nullable;
 // typedef: indices.open.Request
 
 /**
- * Open a closed index. For data streams, the API opens any closed backing
- * indices.
+ * Open a closed index.
+ * <p>
+ * For data streams, the API opens any closed backing indices.
  * <p>
  * A closed index is blocked for read/write operations and does not allow all
  * operations that opened indices allow. It is not possible to index documents
@@ -249,6 +250,18 @@ public class OpenRequest extends RequestBase {
 		@Nullable
 		private WaitForActiveShards waitForActiveShards;
 
+		public Builder() {
+		}
+		private Builder(OpenRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+			this.waitForActiveShards = instance.waitForActiveShards;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -423,6 +436,12 @@ public class OpenRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

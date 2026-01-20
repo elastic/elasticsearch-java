@@ -85,8 +85,8 @@ public class RateLimitSetting implements JsonpSerializable {
 	 * <li><code>azureaistudio</code> service: <code>240</code></li>
 	 * <li><code>azureopenai</code> service and task type
 	 * <code>text_embedding</code>: <code>1440</code></li>
-	 * <li><code>azureopenai</code> service and task type <code>completion</code>:
-	 * <code>120</code></li>
+	 * <li><code>azureopenai</code> service and task types <code>completion</code>
+	 * or <code>chat_completion</code>: <code>120</code></li>
 	 * <li><code>cohere</code> service: <code>10000</code></li>
 	 * <li><code>contextualai</code> service: <code>1000</code></li>
 	 * <li><code>elastic</code> service and task type <code>chat_completion</code>:
@@ -101,6 +101,7 @@ public class RateLimitSetting implements JsonpSerializable {
 	 * <code>3000</code></li>
 	 * <li><code>openai</code> service and task type <code>completion</code>:
 	 * <code>500</code></li>
+	 * <li><code>openshift_ai</code> service: <code>3000</code></li>
 	 * <li><code>voyageai</code> service: <code>2000</code></li>
 	 * <li><code>watsonxai</code> service: <code>120</code></li>
 	 * </ul>
@@ -146,6 +147,12 @@ public class RateLimitSetting implements JsonpSerializable {
 		@Nullable
 		private Integer requestsPerMinute;
 
+		public Builder() {
+		}
+		private Builder(RateLimitSetting instance) {
+			this.requestsPerMinute = instance.requestsPerMinute;
+
+		}
 		/**
 		 * The number of requests allowed per minute. By default, the number of requests
 		 * allowed per minute is set by each service as follows:
@@ -155,8 +162,8 @@ public class RateLimitSetting implements JsonpSerializable {
 		 * <li><code>azureaistudio</code> service: <code>240</code></li>
 		 * <li><code>azureopenai</code> service and task type
 		 * <code>text_embedding</code>: <code>1440</code></li>
-		 * <li><code>azureopenai</code> service and task type <code>completion</code>:
-		 * <code>120</code></li>
+		 * <li><code>azureopenai</code> service and task types <code>completion</code>
+		 * or <code>chat_completion</code>: <code>120</code></li>
 		 * <li><code>cohere</code> service: <code>10000</code></li>
 		 * <li><code>contextualai</code> service: <code>1000</code></li>
 		 * <li><code>elastic</code> service and task type <code>chat_completion</code>:
@@ -171,6 +178,7 @@ public class RateLimitSetting implements JsonpSerializable {
 		 * <code>3000</code></li>
 		 * <li><code>openai</code> service and task type <code>completion</code>:
 		 * <code>500</code></li>
+		 * <li><code>openshift_ai</code> service: <code>3000</code></li>
 		 * <li><code>voyageai</code> service: <code>2000</code></li>
 		 * <li><code>watsonxai</code> service: <code>120</code></li>
 		 * </ul>
@@ -200,6 +208,12 @@ public class RateLimitSetting implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

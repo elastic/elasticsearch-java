@@ -63,8 +63,10 @@ import javax.annotation.Nullable;
 // typedef: indices.put_index_template.Request
 
 /**
- * Create or update an index template. Index templates define settings,
- * mappings, and aliases that can be applied automatically to new indices.
+ * Create or update an index template.
+ * <p>
+ * Index templates define settings, mappings, and aliases that can be applied
+ * automatically to new indices.
  * <p>
  * Elasticsearch applies templates to new indices based on an wildcard pattern
  * that matches the index name. Index templates are applied during data stream
@@ -201,7 +203,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * User defined reason for creating/updating the index template
+	 * User defined reason for creating or updating the index template
 	 * <p>
 	 * API name: {@code cause}
 	 */
@@ -267,7 +269,8 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * Name of the index template to create.
+	 * Array of wildcard (<code>*</code>) expressions used to match the names of
+	 * data streams and indices during creation.
 	 * <p>
 	 * API name: {@code index_patterns}
 	 */
@@ -468,6 +471,25 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		@Nullable
 		private Long version;
 
+		public Builder() {
+		}
+		private Builder(PutIndexTemplateRequest instance) {
+			this.meta = instance.meta;
+			this.allowAutoCreate = instance.allowAutoCreate;
+			this.cause = instance.cause;
+			this.composedOf = instance.composedOf;
+			this.create = instance.create;
+			this.dataStream = instance.dataStream;
+			this.deprecated = instance.deprecated;
+			this.ignoreMissingComponentTemplates = instance.ignoreMissingComponentTemplates;
+			this.indexPatterns = instance.indexPatterns;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.priority = instance.priority;
+			this.template = instance.template;
+			this.version = instance.version;
+
+		}
 		/**
 		 * Optional user metadata about the index template. It may have any contents. It
 		 * is not automatically generated or used by Elasticsearch. This user-defined
@@ -514,7 +536,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * User defined reason for creating/updating the index template
+		 * User defined reason for creating or updating the index template
 		 * <p>
 		 * API name: {@code cause}
 		 */
@@ -626,7 +648,8 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Name of the index template to create.
+		 * Array of wildcard (<code>*</code>) expressions used to match the names of
+		 * data streams and indices during creation.
 		 * <p>
 		 * API name: {@code index_patterns}
 		 * <p>
@@ -638,7 +661,8 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * Name of the index template to create.
+		 * Array of wildcard (<code>*</code>) expressions used to match the names of
+		 * data streams and indices during creation.
 		 * <p>
 		 * API name: {@code index_patterns}
 		 * <p>
@@ -746,6 +770,12 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

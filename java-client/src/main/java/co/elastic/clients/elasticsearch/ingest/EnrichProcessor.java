@@ -243,6 +243,18 @@ public class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
 
 		private String targetField;
 
+		public Builder() {
+		}
+		private Builder(EnrichProcessor instance) {
+			this.field = instance.field;
+			this.ignoreMissing = instance.ignoreMissing;
+			this.maxMatches = instance.maxMatches;
+			this.override = instance.override;
+			this.policyName = instance.policyName;
+			this.shapeRelation = instance.shapeRelation;
+			this.targetField = instance.targetField;
+
+		}
 		/**
 		 * Required - The field in the input document that matches the policies
 		 * match_field used to retrieve the enrichment data. Supports template snippets.
@@ -343,6 +355,12 @@ public class EnrichProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

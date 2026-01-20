@@ -24,6 +24,8 @@ import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -59,15 +61,16 @@ import javax.annotation.Nullable;
 // typedef: indices.resolve_index.Request
 
 /**
- * Resolve indices. Resolve the names and/or index patterns for indices,
- * aliases, and data streams. Multiple patterns and remote clusters are
- * supported.
+ * Resolve indices.
+ * <p>
+ * Resolve the names and/or index patterns for indices, aliases, and data
+ * streams. Multiple patterns and remote clusters are supported.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.resolve_index.Request">API
  *      specification</a>
  */
-
-public class ResolveIndexRequest extends RequestBase {
+@JsonpDeserializable
+public class ResolveIndexRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoIndices;
 
@@ -173,6 +176,25 @@ public class ResolveIndexRequest extends RequestBase {
 		return this.projectRouting;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -199,6 +221,17 @@ public class ResolveIndexRequest extends RequestBase {
 		@Nullable
 		private String projectRouting;
 
+		public Builder() {
+		}
+		private Builder(ResolveIndexRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.mode = instance.mode;
+			this.name = instance.name;
+			this.projectRouting = instance.projectRouting;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -342,6 +375,26 @@ public class ResolveIndexRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for {@link ResolveIndexRequest}
+	 */
+	public static final JsonpDeserializer<ResolveIndexRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ResolveIndexRequest::setupResolveIndexRequestDeserializer);
+
+	protected static void setupResolveIndexRequestDeserializer(ObjectDeserializer<ResolveIndexRequest.Builder> op) {
+
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -352,7 +405,7 @@ public class ResolveIndexRequest extends RequestBase {
 
 			// Request method
 			request -> {
-				return "GET";
+				return "POST";
 
 			},
 
@@ -407,10 +460,7 @@ public class ResolveIndexRequest extends RequestBase {
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
-				if (request.projectRouting != null) {
-					params.put("project_routing", request.projectRouting);
-				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, ResolveIndexResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, ResolveIndexResponse._DESERIALIZER);
 }

@@ -520,6 +520,28 @@ public class TermsAggregation extends BucketAggregationBase
 		@Nullable
 		private String format;
 
+		public Builder() {
+		}
+		private Builder(TermsAggregation instance) {
+			this.collectMode = instance.collectMode;
+			this.exclude = instance.exclude;
+			this.executionHint = instance.executionHint;
+			this.field = instance.field;
+			this.include = instance.include;
+			this.minDocCount = instance.minDocCount;
+			this.missing = instance.missing;
+			this.missingOrder = instance.missingOrder;
+			this.missingBucket = instance.missingBucket;
+			this.valueType = instance.valueType;
+			this.order = instance.order;
+			this.script = instance.script;
+			this.shardMinDocCount = instance.shardMinDocCount;
+			this.shardSize = instance.shardSize;
+			this.showTermDocCountError = instance.showTermDocCountError;
+			this.size = instance.size;
+			this.format = instance.format;
+
+		}
 		/**
 		 * Determines how child aggregations should be calculated: breadth-first or
 		 * depth-first.
@@ -807,6 +829,12 @@ public class TermsAggregation extends BucketAggregationBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -59,13 +59,14 @@ import javax.annotation.Nullable;
 // typedef: search_application.render_query.Request
 
 /**
- * Render a search application query. Generate an Elasticsearch query using the
- * specified query parameters and the search template associated with the search
- * application or a default template if none is specified. If a parameter used
- * in the search template is not specified in <code>params</code>, the
- * parameter's default value will be used. The API returns the specific
- * Elasticsearch query that would be generated and run by calling the search
- * application search API.
+ * Render a search application query.
+ * <p>
+ * Generate an Elasticsearch query using the specified query parameters and the
+ * search template associated with the search application or a default template
+ * if none is specified. If a parameter used in the search template is not
+ * specified in <code>params</code>, the parameter's default value will be used.
+ * The API returns the specific Elasticsearch query that would be generated and
+ * run by calling the search application search API.
  * <p>
  * You must have <code>read</code> privileges on the backing alias of the search
  * application.
@@ -148,6 +149,13 @@ public class RenderQueryRequest extends RequestBase implements JsonpSerializable
 		@Nullable
 		private Map<String, JsonData> params;
 
+		public Builder() {
+		}
+		private Builder(RenderQueryRequest instance) {
+			this.name = instance.name;
+			this.params = instance.params;
+
+		}
 		/**
 		 * Required - The name of the search application to render teh query for.
 		 * <p>
@@ -196,6 +204,12 @@ public class RenderQueryRequest extends RequestBase implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

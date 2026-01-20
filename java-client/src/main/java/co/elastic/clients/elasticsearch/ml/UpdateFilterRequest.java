@@ -59,8 +59,10 @@ import javax.annotation.Nullable;
 // typedef: ml.update_filter.Request
 
 /**
- * Update a filter. Updates the description of a filter, adds items, or removes
- * items from the list.
+ * Update a filter.
+ * <p>
+ * Updates the description of a filter, adds items, or removes items from the
+ * list.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.update_filter.Request">API
  *      specification</a>
@@ -187,6 +189,15 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private List<String> removeItems;
 
+		public Builder() {
+		}
+		private Builder(UpdateFilterRequest instance) {
+			this.addItems = instance.addItems;
+			this.description = instance.description;
+			this.filterId = instance.filterId;
+			this.removeItems = instance.removeItems;
+
+		}
 		/**
 		 * The items to add to the filter.
 		 * <p>
@@ -273,6 +284,12 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

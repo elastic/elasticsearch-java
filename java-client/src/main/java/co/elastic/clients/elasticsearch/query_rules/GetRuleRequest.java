@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: query_rules.get_rule.Request
 
 /**
- * Get a query rule. Get details about a query rule within a query ruleset.
+ * Get a query rule.
+ * <p>
+ * Get details about a query rule within a query ruleset.
  * 
  * @see <a href="../doc-files/api-spec.html#query_rules.get_rule.Request">API
  *      specification</a>
@@ -111,6 +113,13 @@ public class GetRuleRequest extends RequestBase {
 
 		private String rulesetId;
 
+		public Builder() {
+		}
+		private Builder(GetRuleRequest instance) {
+			this.ruleId = instance.ruleId;
+			this.rulesetId = instance.rulesetId;
+
+		}
 		/**
 		 * Required - The unique identifier of the query rule within the specified
 		 * ruleset to retrieve
@@ -151,6 +160,12 @@ public class GetRuleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

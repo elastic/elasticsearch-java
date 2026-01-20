@@ -135,8 +135,7 @@ public class PutElasticsearchRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * The chunking configuration object. Applies only to the
 	 * <code>sparse_embedding</code> and <code>text_embedding</code> task types. Not
-	 * applicable to the <code>rerank</code>, <code>completion</code>, or
-	 * <code>chat_completion</code> task types.
+	 * applicable to the <code>rerank</code> task type.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -261,11 +260,22 @@ public class PutElasticsearchRequest extends RequestBase implements JsonpSeriali
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutElasticsearchRequest instance) {
+			this.chunkingSettings = instance.chunkingSettings;
+			this.elasticsearchInferenceId = instance.elasticsearchInferenceId;
+			this.service = instance.service;
+			this.serviceSettings = instance.serviceSettings;
+			this.taskSettings = instance.taskSettings;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * The chunking configuration object. Applies only to the
 		 * <code>sparse_embedding</code> and <code>text_embedding</code> task types. Not
-		 * applicable to the <code>rerank</code>, <code>completion</code>, or
-		 * <code>chat_completion</code> task types.
+		 * applicable to the <code>rerank</code> task type.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -277,8 +287,7 @@ public class PutElasticsearchRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * The chunking configuration object. Applies only to the
 		 * <code>sparse_embedding</code> and <code>text_embedding</code> task types. Not
-		 * applicable to the <code>rerank</code>, <code>completion</code>, or
-		 * <code>chat_completion</code> task types.
+		 * applicable to the <code>rerank</code> task type.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -402,6 +411,12 @@ public class PutElasticsearchRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

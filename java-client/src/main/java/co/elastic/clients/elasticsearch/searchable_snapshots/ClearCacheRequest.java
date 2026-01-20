@@ -59,8 +59,10 @@ import javax.annotation.Nullable;
 // typedef: searchable_snapshots.clear_cache.Request
 
 /**
- * Clear the cache. Clear indices and data streams from the shared cache for
- * partially mounted indices.
+ * Clear the cache.
+ * <p>
+ * Clear indices and data streams from the shared cache for partially mounted
+ * indices.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#searchable_snapshots.clear_cache.Request">API
@@ -107,7 +109,7 @@ public class ClearCacheRequest extends RequestBase {
 
 	/**
 	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * closed or both
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -157,6 +159,15 @@ public class ClearCacheRequest extends RequestBase {
 		@Nullable
 		private List<String> index;
 
+		public Builder() {
+		}
+		private Builder(ClearCacheRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+
+		}
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
 		 * indices. (This includes <code>_all</code> string or when no indices have been
@@ -171,7 +182,7 @@ public class ClearCacheRequest extends RequestBase {
 
 		/**
 		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * closed or both
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -184,7 +195,7 @@ public class ClearCacheRequest extends RequestBase {
 
 		/**
 		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * closed or both
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -250,6 +261,12 @@ public class ClearCacheRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

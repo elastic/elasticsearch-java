@@ -17,10 +17,8 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.core.reindex_rethrottle;
+package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.elasticsearch._types.Retries;
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,7 +31,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
+import java.lang.Integer;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -53,19 +53,22 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _global.reindex_rethrottle.ReindexStatus
+// typedef: _types.ReindexStatus
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#_global.reindex_rethrottle.ReindexStatus">API
+ * @see <a href="../doc-files/api-spec.html#_types.ReindexStatus">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class ReindexStatus implements JsonpSerializable {
+	@Nullable
+	private final Integer sliceId;
+
 	private final long batches;
 
-	private final long created;
+	@Nullable
+	private final Long created;
 
 	private final long deleted;
 
@@ -87,16 +90,21 @@ public class ReindexStatus implements JsonpSerializable {
 
 	private final long total;
 
-	private final long updated;
+	@Nullable
+	private final Long updated;
 
 	private final long versionConflicts;
+
+	@Nullable
+	private final String cancelled;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ReindexStatus(Builder builder) {
 
+		this.sliceId = builder.sliceId;
 		this.batches = ApiTypeHelper.requireNonNull(builder.batches, this, "batches", 0);
-		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created", 0);
+		this.created = builder.created;
 		this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted", 0);
 		this.noops = ApiTypeHelper.requireNonNull(builder.noops, this, "noops", 0);
 		this.requestsPerSecond = ApiTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond", 0);
@@ -107,13 +115,24 @@ public class ReindexStatus implements JsonpSerializable {
 		this.throttledUntilMillis = ApiTypeHelper.requireNonNull(builder.throttledUntilMillis, this,
 				"throttledUntilMillis", 0);
 		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
-		this.updated = ApiTypeHelper.requireNonNull(builder.updated, this, "updated", 0);
+		this.updated = builder.updated;
 		this.versionConflicts = ApiTypeHelper.requireNonNull(builder.versionConflicts, this, "versionConflicts", 0);
+		this.cancelled = builder.cancelled;
 
 	}
 
 	public static ReindexStatus of(Function<Builder, ObjectBuilder<ReindexStatus>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * The slice ID
+	 * <p>
+	 * API name: {@code slice_id}
+	 */
+	@Nullable
+	public final Integer sliceId() {
+		return this.sliceId;
 	}
 
 	/**
@@ -126,11 +145,12 @@ public class ReindexStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The number of documents that were successfully created.
+	 * The number of documents that were successfully created.
 	 * <p>
 	 * API name: {@code created}
 	 */
-	public final long created() {
+	@Nullable
+	public final Long created() {
 		return this.created;
 	}
 
@@ -223,13 +243,13 @@ public class ReindexStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The number of documents that were successfully updated, for
-	 * example, a document with same ID already existed prior to reindex updating
-	 * it.
+	 * The number of documents that were successfully updated, for example, a
+	 * document with same ID already existed prior to reindex updating it.
 	 * <p>
 	 * API name: {@code updated}
 	 */
-	public final long updated() {
+	@Nullable
+	public final Long updated() {
 		return this.updated;
 	}
 
@@ -243,6 +263,16 @@ public class ReindexStatus implements JsonpSerializable {
 	}
 
 	/**
+	 * The reason for cancellation if the slice was canceled
+	 * <p>
+	 * API name: {@code cancelled}
+	 */
+	@Nullable
+	public final String cancelled() {
+		return this.cancelled;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -253,12 +283,19 @@ public class ReindexStatus implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.sliceId != null) {
+			generator.writeKey("slice_id");
+			generator.write(this.sliceId);
+
+		}
 		generator.writeKey("batches");
 		generator.write(this.batches);
 
-		generator.writeKey("created");
-		generator.write(this.created);
+		if (this.created != null) {
+			generator.writeKey("created");
+			generator.write(this.created);
 
+		}
 		generator.writeKey("deleted");
 		generator.write(this.deleted);
 
@@ -290,11 +327,19 @@ public class ReindexStatus implements JsonpSerializable {
 		generator.writeKey("total");
 		generator.write(this.total);
 
-		generator.writeKey("updated");
-		generator.write(this.updated);
+		if (this.updated != null) {
+			generator.writeKey("updated");
+			generator.write(this.updated);
 
+		}
 		generator.writeKey("version_conflicts");
 		generator.write(this.versionConflicts);
+
+		if (this.cancelled != null) {
+			generator.writeKey("cancelled");
+			generator.write(this.cancelled);
+
+		}
 
 	}
 
@@ -310,8 +355,12 @@ public class ReindexStatus implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ReindexStatus> {
+		@Nullable
+		private Integer sliceId;
+
 		private Long batches;
 
+		@Nullable
 		private Long created;
 
 		private Long deleted;
@@ -334,9 +383,43 @@ public class ReindexStatus implements JsonpSerializable {
 
 		private Long total;
 
+		@Nullable
 		private Long updated;
 
 		private Long versionConflicts;
+
+		@Nullable
+		private String cancelled;
+
+		public Builder() {
+		}
+		private Builder(ReindexStatus instance) {
+			this.sliceId = instance.sliceId;
+			this.batches = instance.batches;
+			this.created = instance.created;
+			this.deleted = instance.deleted;
+			this.noops = instance.noops;
+			this.requestsPerSecond = instance.requestsPerSecond;
+			this.retries = instance.retries;
+			this.throttled = instance.throttled;
+			this.throttledMillis = instance.throttledMillis;
+			this.throttledUntil = instance.throttledUntil;
+			this.throttledUntilMillis = instance.throttledUntilMillis;
+			this.total = instance.total;
+			this.updated = instance.updated;
+			this.versionConflicts = instance.versionConflicts;
+			this.cancelled = instance.cancelled;
+
+		}
+		/**
+		 * The slice ID
+		 * <p>
+		 * API name: {@code slice_id}
+		 */
+		public final Builder sliceId(@Nullable Integer value) {
+			this.sliceId = value;
+			return this;
+		}
 
 		/**
 		 * Required - The number of scroll responses pulled back by the reindex.
@@ -349,11 +432,11 @@ public class ReindexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The number of documents that were successfully created.
+		 * The number of documents that were successfully created.
 		 * <p>
 		 * API name: {@code created}
 		 */
-		public final Builder created(long value) {
+		public final Builder created(@Nullable Long value) {
 			this.created = value;
 			return this;
 		}
@@ -479,13 +562,12 @@ public class ReindexStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The number of documents that were successfully updated, for
-		 * example, a document with same ID already existed prior to reindex updating
-		 * it.
+		 * The number of documents that were successfully updated, for example, a
+		 * document with same ID already existed prior to reindex updating it.
 		 * <p>
 		 * API name: {@code updated}
 		 */
-		public final Builder updated(long value) {
+		public final Builder updated(@Nullable Long value) {
 			this.updated = value;
 			return this;
 		}
@@ -497,6 +579,16 @@ public class ReindexStatus implements JsonpSerializable {
 		 */
 		public final Builder versionConflicts(long value) {
 			this.versionConflicts = value;
+			return this;
+		}
+
+		/**
+		 * The reason for cancellation if the slice was canceled
+		 * <p>
+		 * API name: {@code cancelled}
+		 */
+		public final Builder cancelled(@Nullable String value) {
+			this.cancelled = value;
 			return this;
 		}
 
@@ -518,6 +610,12 @@ public class ReindexStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -528,6 +626,7 @@ public class ReindexStatus implements JsonpSerializable {
 
 	protected static void setupReindexStatusDeserializer(ObjectDeserializer<ReindexStatus.Builder> op) {
 
+		op.add(Builder::sliceId, JsonpDeserializer.integerDeserializer(), "slice_id");
 		op.add(Builder::batches, JsonpDeserializer.longDeserializer(), "batches");
 		op.add(Builder::created, JsonpDeserializer.longDeserializer(), "created");
 		op.add(Builder::deleted, JsonpDeserializer.longDeserializer(), "deleted");
@@ -541,6 +640,7 @@ public class ReindexStatus implements JsonpSerializable {
 		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 		op.add(Builder::updated, JsonpDeserializer.longDeserializer(), "updated");
 		op.add(Builder::versionConflicts, JsonpDeserializer.longDeserializer(), "version_conflicts");
+		op.add(Builder::cancelled, JsonpDeserializer.stringDeserializer(), "cancelled");
 
 	}
 

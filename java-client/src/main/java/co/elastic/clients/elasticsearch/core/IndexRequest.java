@@ -46,9 +46,11 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -250,15 +252,21 @@ import javax.annotation.Nullable;
  *     &quot;id&quot;: &quot;elkbee&quot;
  *   }
  * }
- *
- * In this example, the operation will succeed since the supplied version of 2 is higher than the current document version of 1.
- * If the document was already updated and its version was set to 2 or higher, the indexing command will fail and result in a conflict (409 HTTP status code).
- *
- * A nice side effect is that there is no need to maintain strict ordering of async indexing operations run as a result of changes to a source database, as long as version numbers from the source database are used.
- * Even the simple case of updating the Elasticsearch index using data from a database is simplified if external versioning is used, as only the latest version will be used if the index operations arrive out of order.
  * </code>
  * </pre>
- *
+ * <p>
+ * In this example, the operation will succeed since the supplied version of 2
+ * is higher than the current document version of 1. If the document was already
+ * updated and its version was set to 2 or higher, the indexing command will
+ * fail and result in a conflict (409 HTTP status code).
+ * <p>
+ * A nice side effect is that there is no need to maintain strict ordering of
+ * async indexing operations run as a result of changes to a source database, as
+ * long as version numbers from the source database are used. Even the simple
+ * case of updating the Elasticsearch index using data from a database is
+ * simplified if external versioning is used, as only the latest version will be
+ * used if the index operations arrive out of order.
+ * 
  * @see <a href="../doc-files/api-spec.html#_global.index.Request">API
  *      specification</a>
  */
@@ -293,8 +301,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	@Nullable
 	private final Boolean requireDataStream;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	@Nullable
 	private final Time timeout;
@@ -327,7 +334,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		this.refresh = builder.refresh;
 		this.requireAlias = builder.requireAlias;
 		this.requireDataStream = builder.requireDataStream;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.timeout = builder.timeout;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
@@ -468,8 +475,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -581,7 +587,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		private Boolean requireDataStream;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private Time timeout;
@@ -600,6 +606,27 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
+		public Builder() {
+		}
+		private Builder(IndexRequest<TDocument> instance) {
+			this.id = instance.id;
+			this.ifPrimaryTerm = instance.ifPrimaryTerm;
+			this.ifSeqNo = instance.ifSeqNo;
+			this.includeSourceOnError = instance.includeSourceOnError;
+			this.index = instance.index;
+			this.opType = instance.opType;
+			this.pipeline = instance.pipeline;
+			this.refresh = instance.refresh;
+			this.requireAlias = instance.requireAlias;
+			this.requireDataStream = instance.requireDataStream;
+			this.routing = instance.routing;
+			this.timeout = instance.timeout;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+			this.waitForActiveShards = instance.waitForActiveShards;
+			this.document = instance.document;
+
+		}
 		/**
 		 * A unique identifier for the document. To automatically generate a document
 		 * ID, use the <code>POST /&lt;target&gt;/_doc/</code> request format and omit
@@ -726,9 +753,23 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		 * A custom value that is used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder<TDocument> routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder<TDocument> routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * A custom value that is used to route operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder<TDocument> routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -863,6 +904,12 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	}
 
 	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
+	/**
 	 * Json deserializer for {@link IndexRequest} based on named deserializers
 	 * provided by the calling {@code JsonMapper}.
 	 */
@@ -983,8 +1030,8 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 				if (request.pipeline != null) {
 					params.put("pipeline", request.pipeline);
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.requireAlias != null) {
 					params.put("require_alias", String.valueOf(request.requireAlias));

@@ -62,10 +62,12 @@ import javax.annotation.Nullable;
 // typedef: ccr.follow.Request
 
 /**
- * Create a follower. Create a cross-cluster replication follower index that
- * follows a specific leader index. When the API returns, the follower index
- * exists and cross-cluster replication starts replicating operations from the
- * leader index to the follower index.
+ * Create a follower.
+ * <p>
+ * Create a cross-cluster replication follower index that follows a specific
+ * leader index. When the API returns, the follower index exists and
+ * cross-cluster replication starts replicating operations from the leader index
+ * to the follower index.
  * 
  * @see <a href="../doc-files/api-spec.html#ccr.follow.Request">API
  *      specification</a>
@@ -467,6 +469,28 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private WaitForActiveShards waitForActiveShards;
 
+		public Builder() {
+		}
+		private Builder(FollowRequest instance) {
+			this.dataStreamName = instance.dataStreamName;
+			this.index = instance.index;
+			this.leaderIndex = instance.leaderIndex;
+			this.masterTimeout = instance.masterTimeout;
+			this.maxOutstandingReadRequests = instance.maxOutstandingReadRequests;
+			this.maxOutstandingWriteRequests = instance.maxOutstandingWriteRequests;
+			this.maxReadRequestOperationCount = instance.maxReadRequestOperationCount;
+			this.maxReadRequestSize = instance.maxReadRequestSize;
+			this.maxRetryDelay = instance.maxRetryDelay;
+			this.maxWriteBufferCount = instance.maxWriteBufferCount;
+			this.maxWriteBufferSize = instance.maxWriteBufferSize;
+			this.maxWriteRequestOperationCount = instance.maxWriteRequestOperationCount;
+			this.maxWriteRequestSize = instance.maxWriteRequestSize;
+			this.readPollTimeout = instance.readPollTimeout;
+			this.remoteCluster = instance.remoteCluster;
+			this.settings = instance.settings;
+			this.waitForActiveShards = instance.waitForActiveShards;
+
+		}
 		/**
 		 * If the leader index is part of a data stream, the name to which the local
 		 * data stream for the followed index should be renamed.
@@ -727,6 +751,12 @@ public class FollowRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

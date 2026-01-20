@@ -63,8 +63,10 @@ import javax.annotation.Nullable;
 // typedef: ml.put_trained_model.Request
 
 /**
- * Create a trained model. Enable you to supply a trained model that is not
- * created by data frame analytics.
+ * Create a trained model.
+ * <p>
+ * Enable you to supply a trained model that is not created by data frame
+ * analytics.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.put_trained_model.Request">API
  *      specification</a>
@@ -415,6 +417,25 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(PutTrainedModelRequest instance) {
+			this.compressedDefinition = instance.compressedDefinition;
+			this.deferDefinitionDecompression = instance.deferDefinitionDecompression;
+			this.definition = instance.definition;
+			this.description = instance.description;
+			this.inferenceConfig = instance.inferenceConfig;
+			this.input = instance.input;
+			this.metadata = instance.metadata;
+			this.modelId = instance.modelId;
+			this.modelSizeBytes = instance.modelSizeBytes;
+			this.modelType = instance.modelType;
+			this.platformArchitecture = instance.platformArchitecture;
+			this.prefixStrings = instance.prefixStrings;
+			this.tags = instance.tags;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * The compressed (GZipped and Base64 encoded) inference definition of the
 		 * model. If compressed_definition is specified, then definition cannot be
@@ -660,6 +681,12 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

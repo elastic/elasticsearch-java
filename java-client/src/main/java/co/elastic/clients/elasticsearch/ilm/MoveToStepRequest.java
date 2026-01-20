@@ -59,8 +59,10 @@ import javax.annotation.Nullable;
 // typedef: ilm.move_to_step.Request
 
 /**
- * Move to a lifecycle step. Manually move an index into a specific step in the
- * lifecycle policy and run that step.
+ * Move to a lifecycle step.
+ * <p>
+ * Manually move an index into a specific step in the lifecycle policy and run
+ * that step.
  * <p>
  * WARNING: This operation can result in the loss of data. Manually moving an
  * index into a specific step runs that step even if it has already been
@@ -166,6 +168,14 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 
 		private StepKey nextStep;
 
+		public Builder() {
+		}
+		private Builder(MoveToStepRequest instance) {
+			this.currentStep = instance.currentStep;
+			this.index = instance.index;
+			this.nextStep = instance.nextStep;
+
+		}
 		/**
 		 * Required - The step that the index is expected to be in.
 		 * <p>
@@ -232,6 +242,12 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

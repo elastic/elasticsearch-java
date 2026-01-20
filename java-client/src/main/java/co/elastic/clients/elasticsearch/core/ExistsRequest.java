@@ -112,8 +112,7 @@ public class ExistsRequest extends RequestBase {
 	@Nullable
 	private final Boolean refresh;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	private final List<String> storedFields;
 
@@ -135,7 +134,7 @@ public class ExistsRequest extends RequestBase {
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
 		this.refresh = builder.refresh;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.version = builder.version;
 		this.versionType = builder.versionType;
@@ -247,8 +246,7 @@ public class ExistsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -315,7 +313,7 @@ public class ExistsRequest extends RequestBase {
 		private Boolean refresh;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private List<String> storedFields;
@@ -326,6 +324,23 @@ public class ExistsRequest extends RequestBase {
 		@Nullable
 		private VersionType versionType;
 
+		public Builder() {
+		}
+		private Builder(ExistsRequest instance) {
+			this.source = instance.source;
+			this.sourceExcludes = instance.sourceExcludes;
+			this.sourceIncludes = instance.sourceIncludes;
+			this.id = instance.id;
+			this.index = instance.index;
+			this.preference = instance.preference;
+			this.realtime = instance.realtime;
+			this.refresh = instance.refresh;
+			this.routing = instance.routing;
+			this.storedFields = instance.storedFields;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+
+		}
 		/**
 		 * Indicates whether to return the <code>_source</code> field (<code>true</code>
 		 * or <code>false</code>) or lists the fields to return.
@@ -475,9 +490,23 @@ public class ExistsRequest extends RequestBase {
 		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * A custom value used to route operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -550,6 +579,12 @@ public class ExistsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -608,8 +643,8 @@ public class ExistsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.realtime != null) {
 					params.put("realtime", String.valueOf(request.realtime));

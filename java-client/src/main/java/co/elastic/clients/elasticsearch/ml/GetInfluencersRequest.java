@@ -61,9 +61,10 @@ import javax.annotation.Nullable;
 // typedef: ml.get_influencers.Request
 
 /**
- * Get anomaly detection job results for influencers. Influencers are the
- * entities that have contributed to, or are to blame for, the anomalies.
- * Influencer results are available only if an
+ * Get anomaly detection job results for influencers.
+ * <p>
+ * Influencers are the entities that have contributed to, or are to blame for,
+ * the anomalies. Influencer results are available only if an
  * <code>influencer_field_name</code> is specified in the job configuration.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.get_influencers.Request">API
@@ -282,6 +283,21 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private DateTime start;
 
+		public Builder() {
+		}
+		private Builder(GetInfluencersRequest instance) {
+			this.desc = instance.desc;
+			this.end = instance.end;
+			this.excludeInterim = instance.excludeInterim;
+			this.from = instance.from;
+			this.influencerScore = instance.influencerScore;
+			this.jobId = instance.jobId;
+			this.page = instance.page;
+			this.size = instance.size;
+			this.sort = instance.sort;
+			this.start = instance.start;
+
+		}
 		/**
 		 * If true, the results are sorted in descending order.
 		 * <p>
@@ -415,6 +431,12 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -63,8 +63,10 @@ import javax.annotation.Nullable;
 // typedef: indices.analyze.Request
 
 /**
- * Get tokens from text analysis. The analyze API performs analysis on a text
- * string and returns the resulting tokens.
+ * Get tokens from text analysis.
+ * <p>
+ * The analyze API performs analysis on a text string and returns the resulting
+ * tokens.
  * <p>
  * Generating excessive amount of tokens may cause a node to run out of memory.
  * The <code>index.analyze.max_token_count</code> setting enables you to limit
@@ -346,6 +348,21 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Tokenizer tokenizer;
 
+		public Builder() {
+		}
+		private Builder(AnalyzeRequest instance) {
+			this.analyzer = instance.analyzer;
+			this.attributes = instance.attributes;
+			this.charFilter = instance.charFilter;
+			this.explain = instance.explain;
+			this.field = instance.field;
+			this.filter = instance.filter;
+			this.index = instance.index;
+			this.normalizer = instance.normalizer;
+			this.text = instance.text;
+			this.tokenizer = instance.tokenizer;
+
+		}
 		/**
 		 * The name of the analyzer that should be applied to the provided
 		 * <code>text</code>. This could be a built-in analyzer, or an analyzer that’s
@@ -565,6 +582,12 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

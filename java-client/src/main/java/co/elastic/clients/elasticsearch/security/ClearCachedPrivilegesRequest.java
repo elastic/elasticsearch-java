@@ -33,9 +33,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -68,13 +70,13 @@ import javax.annotation.Nullable;
  */
 
 public class ClearCachedPrivilegesRequest extends RequestBase {
-	private final String application;
+	private final List<String> application;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ClearCachedPrivilegesRequest(Builder builder) {
 
-		this.application = ApiTypeHelper.requireNonNull(builder.application, this, "application");
+		this.application = ApiTypeHelper.unmodifiableRequired(builder.application, this, "application");
 
 	}
 
@@ -89,7 +91,7 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code application}
 	 */
-	public final String application() {
+	public final List<String> application() {
 		return this.application;
 	}
 
@@ -102,7 +104,27 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ClearCachedPrivilegesRequest> {
-		private String application;
+		private List<String> application;
+
+		public Builder() {
+		}
+		private Builder(ClearCachedPrivilegesRequest instance) {
+			this.application = instance.application;
+
+		}
+		/**
+		 * Required - A comma-separated list of applications. To clear all applications,
+		 * use an asterism (<code>*</code>). It does not support other wildcard
+		 * patterns.
+		 * <p>
+		 * API name: {@code application}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>application</code>.
+		 */
+		public final Builder application(List<String> list) {
+			this.application = _listAddAll(this.application, list);
+			return this;
+		}
 
 		/**
 		 * Required - A comma-separated list of applications. To clear all applications,
@@ -110,9 +132,11 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 		 * patterns.
 		 * <p>
 		 * API name: {@code application}
+		 * <p>
+		 * Adds one or more values to <code>application</code>.
 		 */
-		public final Builder application(String value) {
-			this.application = value;
+		public final Builder application(String value, String... values) {
+			this.application = _listAdd(this.application, value, values);
 			return this;
 		}
 
@@ -134,6 +158,12 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -161,7 +191,8 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/privilege");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.application, buf);
+					SimpleEndpoint.pathEncode(request.application.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/_clear_cache");
 					return buf.toString();
 				}
@@ -179,7 +210,8 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 				propsSet |= _application;
 
 				if (propsSet == (_application)) {
-					params.put("application", request.application);
+					params.put("application",
+							request.application.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 			},

@@ -60,7 +60,9 @@ import javax.annotation.Nullable;
 // typedef: transform.update_transform.Request
 
 /**
- * Update a transform. Updates certain properties of a transform.
+ * Update a transform.
+ * <p>
+ * Updates certain properties of a transform.
  * <p>
  * All updated properties except <code>description</code> do not take effect
  * until after the transform starts the next checkpoint, thus there is data
@@ -345,6 +347,22 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 
 		private String transformId;
 
+		public Builder() {
+		}
+		private Builder(UpdateTransformRequest instance) {
+			this.meta = instance.meta;
+			this.deferValidation = instance.deferValidation;
+			this.description = instance.description;
+			this.dest = instance.dest;
+			this.frequency = instance.frequency;
+			this.retentionPolicy = instance.retentionPolicy;
+			this.settings = instance.settings;
+			this.source = instance.source;
+			this.sync = instance.sync;
+			this.timeout = instance.timeout;
+			this.transformId = instance.transformId;
+
+		}
 		/**
 		 * Defines optional transform metadata.
 		 * <p>
@@ -582,6 +600,12 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

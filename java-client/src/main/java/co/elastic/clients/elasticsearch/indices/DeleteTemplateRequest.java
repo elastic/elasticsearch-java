@@ -56,9 +56,11 @@ import javax.annotation.Nullable;
 // typedef: indices.delete_template.Request
 
 /**
- * Delete a legacy index template. IMPORTANT: This documentation is about legacy
- * index templates, which are deprecated and will be replaced by the composable
- * templates introduced in Elasticsearch 7.8.
+ * Delete a legacy index template.
+ * <p>
+ * IMPORTANT: This documentation is about legacy index templates, which are
+ * deprecated and will be replaced by the composable templates introduced in
+ * Elasticsearch 7.8.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.delete_template.Request">API
  *      specification</a>
@@ -137,6 +139,14 @@ public class DeleteTemplateRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeleteTemplateRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -208,6 +218,12 @@ public class DeleteTemplateRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

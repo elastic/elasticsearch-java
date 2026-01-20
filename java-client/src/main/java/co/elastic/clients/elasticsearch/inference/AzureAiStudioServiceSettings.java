@@ -132,8 +132,8 @@ public class AzureAiStudioServiceSettings implements JsonpSerializable {
 	 * Required - The model provider for your deployment. Note that some providers
 	 * may support only certain task types. Supported providers include:
 	 * <ul>
-	 * <li><code>cohere</code> - available for <code>text_embedding</code> and
-	 * <code>completion</code> task types</li>
+	 * <li><code>cohere</code> - available for <code>text_embedding</code>,
+	 * <code>rerank</code> and <code>completion</code> task types</li>
 	 * <li><code>databricks</code> - available for <code>completion</code> task type
 	 * only</li>
 	 * <li><code>meta</code> - available for <code>completion</code> task type
@@ -220,6 +220,16 @@ public class AzureAiStudioServiceSettings implements JsonpSerializable {
 		@Nullable
 		private RateLimitSetting rateLimit;
 
+		public Builder() {
+		}
+		private Builder(AzureAiStudioServiceSettings instance) {
+			this.apiKey = instance.apiKey;
+			this.endpointType = instance.endpointType;
+			this.target = instance.target;
+			this.provider = instance.provider;
+			this.rateLimit = instance.rateLimit;
+
+		}
 		/**
 		 * Required - A valid API key of your Azure AI Studio model deployment. This key
 		 * can be found on the overview page for your deployment in the management
@@ -268,8 +278,8 @@ public class AzureAiStudioServiceSettings implements JsonpSerializable {
 		 * Required - The model provider for your deployment. Note that some providers
 		 * may support only certain task types. Supported providers include:
 		 * <ul>
-		 * <li><code>cohere</code> - available for <code>text_embedding</code> and
-		 * <code>completion</code> task types</li>
+		 * <li><code>cohere</code> - available for <code>text_embedding</code>,
+		 * <code>rerank</code> and <code>completion</code> task types</li>
 		 * <li><code>databricks</code> - available for <code>completion</code> task type
 		 * only</li>
 		 * <li><code>meta</code> - available for <code>completion</code> task type
@@ -330,6 +340,12 @@ public class AzureAiStudioServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

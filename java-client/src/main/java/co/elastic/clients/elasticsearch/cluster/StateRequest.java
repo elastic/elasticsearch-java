@@ -23,6 +23,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch.cluster.state.ClusterStateMetric;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -61,8 +62,9 @@ import javax.annotation.Nullable;
 // typedef: cluster.state.Request
 
 /**
- * Get the cluster state. Get comprehensive information about the state of the
- * cluster.
+ * Get the cluster state.
+ * <p>
+ * Get comprehensive information about the state of the cluster.
  * <p>
  * The cluster state is an internal data structure which keeps track of a
  * variety of information needed by every node, including the identity and
@@ -116,7 +118,7 @@ public class StateRequest extends RequestBase {
 	@Nullable
 	private final Time masterTimeout;
 
-	private final List<String> metric;
+	private final List<ClusterStateMetric> metric;
 
 	@Nullable
 	private final Long waitForMetadataVersion;
@@ -159,7 +161,7 @@ public class StateRequest extends RequestBase {
 
 	/**
 	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * closed or both
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -168,7 +170,7 @@ public class StateRequest extends RequestBase {
 	}
 
 	/**
-	 * Return settings in flat format (default: false)
+	 * Return settings in flat format
 	 * <p>
 	 * API name: {@code flat_settings}
 	 */
@@ -200,10 +202,13 @@ public class StateRequest extends RequestBase {
 
 	/**
 	 * Return local information, do not retrieve the state from master node
-	 * (default: false)
 	 * <p>
 	 * API name: {@code local}
+	 * 
+	 * @deprecated 9.0.0 This parameter has no effect, is now deprecated, and will
+	 *             be removed in a future version.
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean local() {
 		return this.local;
@@ -213,21 +218,18 @@ public class StateRequest extends RequestBase {
 	 * Timeout for waiting for new cluster state in case it is blocked
 	 * <p>
 	 * API name: {@code master_timeout}
-	 * 
-	 * @deprecated 9.2.0
 	 */
-	@Deprecated
 	@Nullable
 	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
 	/**
-	 * Limit the information returned to the specified metrics
+	 * Limit the information returned to the specified metrics.
 	 * <p>
 	 * API name: {@code metric}
 	 */
-	public final List<String> metric() {
+	public final List<ClusterStateMetric> metric() {
 		return this.metric;
 	}
 
@@ -281,7 +283,7 @@ public class StateRequest extends RequestBase {
 		private Time masterTimeout;
 
 		@Nullable
-		private List<String> metric;
+		private List<ClusterStateMetric> metric;
 
 		@Nullable
 		private Long waitForMetadataVersion;
@@ -289,6 +291,21 @@ public class StateRequest extends RequestBase {
 		@Nullable
 		private Time waitForTimeout;
 
+		public Builder() {
+		}
+		private Builder(StateRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.flatSettings = instance.flatSettings;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.metric = instance.metric;
+			this.waitForMetadataVersion = instance.waitForMetadataVersion;
+			this.waitForTimeout = instance.waitForTimeout;
+
+		}
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
 		 * indices. (This includes <code>_all</code> string or when no indices have been
@@ -303,7 +320,7 @@ public class StateRequest extends RequestBase {
 
 		/**
 		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * closed or both
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -316,7 +333,7 @@ public class StateRequest extends RequestBase {
 
 		/**
 		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * closed or both
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -328,7 +345,7 @@ public class StateRequest extends RequestBase {
 		}
 
 		/**
-		 * Return settings in flat format (default: false)
+		 * Return settings in flat format
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
@@ -376,10 +393,13 @@ public class StateRequest extends RequestBase {
 
 		/**
 		 * Return local information, do not retrieve the state from master node
-		 * (default: false)
 		 * <p>
 		 * API name: {@code local}
+		 * 
+		 * @deprecated 9.0.0 This parameter has no effect, is now deprecated, and will
+		 *             be removed in a future version.
 		 */
+		@Deprecated
 		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
@@ -389,10 +409,7 @@ public class StateRequest extends RequestBase {
 		 * Timeout for waiting for new cluster state in case it is blocked
 		 * <p>
 		 * API name: {@code master_timeout}
-		 * 
-		 * @deprecated 9.2.0
 		 */
-		@Deprecated
 		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
@@ -402,34 +419,31 @@ public class StateRequest extends RequestBase {
 		 * Timeout for waiting for new cluster state in case it is blocked
 		 * <p>
 		 * API name: {@code master_timeout}
-		 * 
-		 * @deprecated 9.2.0
 		 */
-		@Deprecated
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
-		 * Limit the information returned to the specified metrics
+		 * Limit the information returned to the specified metrics.
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metric</code>.
 		 */
-		public final Builder metric(List<String> list) {
+		public final Builder metric(List<ClusterStateMetric> list) {
 			this.metric = _listAddAll(this.metric, list);
 			return this;
 		}
 
 		/**
-		 * Limit the information returned to the specified metrics
+		 * Limit the information returned to the specified metrics.
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
 		 * Adds one or more values to <code>metric</code>.
 		 */
-		public final Builder metric(String value, String... values) {
+		public final Builder metric(ClusterStateMetric value, ClusterStateMetric... values) {
 			this.metric = _listAdd(this.metric, value, values);
 			return this;
 		}
@@ -482,6 +496,12 @@ public class StateRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -519,8 +539,8 @@ public class StateRequest extends RequestBase {
 					buf.append("/_cluster");
 					buf.append("/state");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == (_metric | _index)) {
@@ -528,8 +548,8 @@ public class StateRequest extends RequestBase {
 					buf.append("/_cluster");
 					buf.append("/state");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
@@ -554,10 +574,12 @@ public class StateRequest extends RequestBase {
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_metric)) {
-					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("metric",
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_metric | _index)) {
-					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("metric",
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;

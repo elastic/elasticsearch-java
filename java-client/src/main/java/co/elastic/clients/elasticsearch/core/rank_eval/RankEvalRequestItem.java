@@ -213,6 +213,16 @@ public class RankEvalRequestItem implements JsonpSerializable {
 		@Nullable
 		private Map<String, JsonData> params;
 
+		public Builder() {
+		}
+		private Builder(RankEvalRequestItem instance) {
+			this.id = instance.id;
+			this.request = instance.request;
+			this.ratings = instance.ratings;
+			this.templateId = instance.templateId;
+			this.params = instance.params;
+
+		}
 		/**
 		 * Required - The search request’s ID, used to group result details later.
 		 * <p>
@@ -329,6 +339,12 @@ public class RankEvalRequestItem implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

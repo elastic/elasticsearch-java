@@ -71,20 +71,20 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.chat_completion_unified
 
 	/**
-	 * Perform chat completion inference on the service
+	 * Perform chat completion inference on the service.
 	 * <p>
 	 * The chat completion inference API enables real-time responses for chat
 	 * completion tasks by delivering answers incrementally, reducing response times
 	 * during computation. It only works with the <code>chat_completion</code> task
-	 * type for <code>openai</code> and <code>elastic</code> inference services.
+	 * type.
 	 * <p>
 	 * NOTE: The <code>chat_completion</code> task type is only available within the
 	 * _stream API and only supports streaming. The Chat completion inference API
 	 * and the Stream inference API differ in their response structure and
 	 * capabilities. The Chat completion inference API provides more comprehensive
-	 * customization options through more fields and function calling support. If
-	 * you use the <code>openai</code>, <code>hugging_face</code> or the
-	 * <code>elastic</code> service, use the Chat completion inference API.
+	 * customization options through more fields and function calling support. To
+	 * determine whether a given inference service supports this task type, please
+	 * see the page for that service.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-unified-inference">Documentation
@@ -99,20 +99,20 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform chat completion inference on the service
+	 * Perform chat completion inference on the service.
 	 * <p>
 	 * The chat completion inference API enables real-time responses for chat
 	 * completion tasks by delivering answers incrementally, reducing response times
 	 * during computation. It only works with the <code>chat_completion</code> task
-	 * type for <code>openai</code> and <code>elastic</code> inference services.
+	 * type.
 	 * <p>
 	 * NOTE: The <code>chat_completion</code> task type is only available within the
 	 * _stream API and only supports streaming. The Chat completion inference API
 	 * and the Stream inference API differ in their response structure and
 	 * capabilities. The Chat completion inference API provides more comprehensive
-	 * customization options through more fields and function calling support. If
-	 * you use the <code>openai</code>, <code>hugging_face</code> or the
-	 * <code>elastic</code> service, use the Chat completion inference API.
+	 * customization options through more fields and function calling support. To
+	 * determine whether a given inference service supports this task type, please
+	 * see the page for that service.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -130,8 +130,10 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.completion
 
 	/**
-	 * Perform completion inference on the service Get responses for completion
-	 * tasks. This API works only with the completion task type.
+	 * Perform completion inference on the service.
+	 * <p>
+	 * Get responses for completion tasks. This API works only with the completion
+	 * task type.
 	 * <p>
 	 * IMPORTANT: The inference APIs enable you to use certain services, such as
 	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
@@ -159,8 +161,10 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform completion inference on the service Get responses for completion
-	 * tasks. This API works only with the completion task type.
+	 * Perform completion inference on the service.
+	 * <p>
+	 * Get responses for completion tasks. This API works only with the completion
+	 * task type.
 	 * <p>
 	 * IMPORTANT: The inference APIs enable you to use certain services, such as
 	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
@@ -191,7 +195,10 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.delete
 
 	/**
-	 * Delete an inference endpoint
+	 * Delete an inference endpoint.
+	 * <p>
+	 * This API requires the manage_inference cluster privilege (the built-in
+	 * <code>inference_admin</code> role grants this privilege).
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-delete">Documentation
@@ -206,7 +213,10 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Delete an inference endpoint
+	 * Delete an inference endpoint.
+	 * <p>
+	 * This API requires the manage_inference cluster privilege (the built-in
+	 * <code>inference_admin</code> role grants this privilege).
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -224,7 +234,11 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.get
 
 	/**
-	 * Get an inference endpoint
+	 * Get an inference endpoint.
+	 * <p>
+	 * This API requires the <code>monitor_inference</code> cluster privilege (the
+	 * built-in <code>inference_admin</code> and <code>inference_user</code> roles
+	 * grant this privilege).
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-get">Documentation
@@ -239,7 +253,11 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Get an inference endpoint
+	 * Get an inference endpoint.
+	 * <p>
+	 * This API requires the <code>monitor_inference</code> cluster privilege (the
+	 * built-in <code>inference_admin</code> and <code>inference_user</code> roles
+	 * grant this privilege).
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -255,7 +273,11 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Get an inference endpoint
+	 * Get an inference endpoint.
+	 * <p>
+	 * This API requires the <code>monitor_inference</code> cluster privilege (the
+	 * built-in <code>inference_admin</code> and <code>inference_user</code> roles
+	 * grant this privilege).
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-get">Documentation
@@ -368,9 +390,10 @@ public class ElasticsearchInferenceAsyncClient
 	 * <code>rerank</code>, <code>sparse_embedding</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>Anthropic (<code>completion</code>)</li>
-	 * <li>Azure AI Studio (<code>completion</code>, 'rerank',
+	 * <li>Azure AI Studio (<code>completion</code>, <code>rerank</code>,
 	 * <code>text_embedding</code>)</li>
-	 * <li>Azure OpenAI (<code>completion</code>, <code>text_embedding</code>)</li>
+	 * <li>Azure OpenAI (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>)</li>
 	 * <li>Cohere (<code>completion</code>, <code>rerank</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>DeepSeek (<code>chat_completion</code>, <code>completion</code>)</li>
@@ -382,6 +405,7 @@ public class ElasticsearchInferenceAsyncClient
 	 * <code>text_embedding</code>)</li>
 	 * <li>Google Vertex AI (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>Groq (<code>chat_completion</code>)</li>
 	 * <li>Hugging Face (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>rerank</code>, <code>text_embedding</code>)</li>
 	 * <li>JinaAI (<code>rerank</code>, <code>text_embedding</code>)</li>
@@ -389,8 +413,12 @@ public class ElasticsearchInferenceAsyncClient
 	 * <code>text_embedding</code>)</li>
 	 * <li>Mistral (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>text_embedding</code>)</li>
+	 * <li>Nvidia (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>, <code>rerank</code>)</li>
 	 * <li>OpenAI (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>text_embedding</code>)</li>
+	 * <li>OpenShift AI (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>rerank</code>, <code>text_embedding</code>)</li>
 	 * <li>VoyageAI (<code>rerank</code>, <code>text_embedding</code>)</li>
 	 * <li>Watsonx inference integration (<code>text_embedding</code>)</li>
 	 * </ul>
@@ -431,9 +459,10 @@ public class ElasticsearchInferenceAsyncClient
 	 * <code>rerank</code>, <code>sparse_embedding</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>Anthropic (<code>completion</code>)</li>
-	 * <li>Azure AI Studio (<code>completion</code>, 'rerank',
+	 * <li>Azure AI Studio (<code>completion</code>, <code>rerank</code>,
 	 * <code>text_embedding</code>)</li>
-	 * <li>Azure OpenAI (<code>completion</code>, <code>text_embedding</code>)</li>
+	 * <li>Azure OpenAI (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>)</li>
 	 * <li>Cohere (<code>completion</code>, <code>rerank</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>DeepSeek (<code>chat_completion</code>, <code>completion</code>)</li>
@@ -445,6 +474,7 @@ public class ElasticsearchInferenceAsyncClient
 	 * <code>text_embedding</code>)</li>
 	 * <li>Google Vertex AI (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>Groq (<code>chat_completion</code>)</li>
 	 * <li>Hugging Face (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>rerank</code>, <code>text_embedding</code>)</li>
 	 * <li>JinaAI (<code>rerank</code>, <code>text_embedding</code>)</li>
@@ -452,8 +482,12 @@ public class ElasticsearchInferenceAsyncClient
 	 * <code>text_embedding</code>)</li>
 	 * <li>Mistral (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>text_embedding</code>)</li>
+	 * <li>Nvidia (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>, <code>rerank</code>)</li>
 	 * <li>OpenAI (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>text_embedding</code>)</li>
+	 * <li>OpenShift AI (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>rerank</code>, <code>text_embedding</code>)</li>
 	 * <li>VoyageAI (<code>rerank</code>, <code>text_embedding</code>)</li>
 	 * <li>Watsonx inference integration (<code>text_embedding</code>)</li>
 	 * </ul>
@@ -1333,6 +1367,45 @@ public class ElasticsearchInferenceAsyncClient
 		return putGooglevertexai(fn.apply(new PutGooglevertexaiRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: inference.put_groq
+
+	/**
+	 * Create a Groq inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>groq</code> service.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-groq">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutGroqResponse> putGroq(PutGroqRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutGroqRequest, PutGroqResponse, ErrorResponse> endpoint = (JsonEndpoint<PutGroqRequest, PutGroqResponse, ErrorResponse>) PutGroqRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create a Groq inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>groq</code> service.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutGroqRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-groq">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PutGroqResponse> putGroq(
+			Function<PutGroqRequest.Builder, ObjectBuilder<PutGroqRequest>> fn) {
+		return putGroq(fn.apply(new PutGroqRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: inference.put_hugging_face
 
 	/**
@@ -1593,6 +1666,45 @@ public class ElasticsearchInferenceAsyncClient
 		return putMistral(fn.apply(new PutMistralRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: inference.put_nvidia
+
+	/**
+	 * Create an Nvidia inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>nvidia</code> service.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-nvidia">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutNvidiaResponse> putNvidia(PutNvidiaRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutNvidiaRequest, PutNvidiaResponse, ErrorResponse> endpoint = (JsonEndpoint<PutNvidiaRequest, PutNvidiaResponse, ErrorResponse>) PutNvidiaRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create an Nvidia inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>nvidia</code> service.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutNvidiaRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-nvidia">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PutNvidiaResponse> putNvidia(
+			Function<PutNvidiaRequest.Builder, ObjectBuilder<PutNvidiaRequest>> fn) {
+		return putNvidia(fn.apply(new PutNvidiaRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: inference.put_openai
 
 	/**
@@ -1630,6 +1742,45 @@ public class ElasticsearchInferenceAsyncClient
 	public final CompletableFuture<PutOpenaiResponse> putOpenai(
 			Function<PutOpenaiRequest.Builder, ObjectBuilder<PutOpenaiRequest>> fn) {
 		return putOpenai(fn.apply(new PutOpenaiRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_openshift_ai
+
+	/**
+	 * Create an OpenShift AI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>openshift_ai</code> service.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-openshift-ai">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutOpenshiftAiResponse> putOpenshiftAi(PutOpenshiftAiRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutOpenshiftAiRequest, PutOpenshiftAiResponse, ErrorResponse> endpoint = (JsonEndpoint<PutOpenshiftAiRequest, PutOpenshiftAiResponse, ErrorResponse>) PutOpenshiftAiRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create an OpenShift AI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>openshift_ai</code> service.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutOpenshiftAiRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-openshift-ai">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PutOpenshiftAiResponse> putOpenshiftAi(
+			Function<PutOpenshiftAiRequest.Builder, ObjectBuilder<PutOpenshiftAiRequest>> fn) {
+		return putOpenshiftAi(fn.apply(new PutOpenshiftAiRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: inference.put_voyageai
@@ -1725,7 +1876,7 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.rerank
 
 	/**
-	 * Perform reranking inference on the service
+	 * Perform reranking inference on the service.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
@@ -1740,7 +1891,7 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform reranking inference on the service
+	 * Perform reranking inference on the service.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1758,7 +1909,7 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.sparse_embedding
 
 	/**
-	 * Perform sparse embedding inference on the service
+	 * Perform sparse embedding inference on the service.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
@@ -1773,7 +1924,7 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform sparse embedding inference on the service
+	 * Perform sparse embedding inference on the service.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1791,9 +1942,11 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.stream_completion
 
 	/**
-	 * Perform streaming completion inference on the service Get real-time responses
-	 * for completion tasks by delivering answers incrementally, reducing response
-	 * times during computation. This API works only with the completion task type.
+	 * Perform streaming completion inference on the service.
+	 * <p>
+	 * Get real-time responses for completion tasks by delivering answers
+	 * incrementally, reducing response times during computation. This API works
+	 * only with the completion task type.
 	 * <p>
 	 * IMPORTANT: The inference APIs enable you to use certain services, such as
 	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
@@ -1821,9 +1974,11 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform streaming completion inference on the service Get real-time responses
-	 * for completion tasks by delivering answers incrementally, reducing response
-	 * times during computation. This API works only with the completion task type.
+	 * Perform streaming completion inference on the service.
+	 * <p>
+	 * Get real-time responses for completion tasks by delivering answers
+	 * incrementally, reducing response times during computation. This API works
+	 * only with the completion task type.
 	 * <p>
 	 * IMPORTANT: The inference APIs enable you to use certain services, such as
 	 * built-in machine learning models (ELSER, E5), models uploaded through Eland,
@@ -1854,7 +2009,7 @@ public class ElasticsearchInferenceAsyncClient
 	// ----- Endpoint: inference.text_embedding
 
 	/**
-	 * Perform text embedding inference on the service
+	 * Perform text embedding inference on the service.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
@@ -1869,7 +2024,7 @@ public class ElasticsearchInferenceAsyncClient
 	}
 
 	/**
-	 * Perform text embedding inference on the service
+	 * Perform text embedding inference on the service.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

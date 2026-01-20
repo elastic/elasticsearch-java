@@ -110,6 +110,12 @@ public class SimpleMovingAverageAggregation extends MovingAverageAggregationBase
 				ObjectBuilder<SimpleMovingAverageAggregation> {
 		private EmptyObject settings;
 
+		public Builder() {
+		}
+		private Builder(SimpleMovingAverageAggregation instance) {
+			this.settings = instance.settings;
+
+		}
 		/**
 		 * Required - API name: {@code settings}
 		 */
@@ -143,6 +149,12 @@ public class SimpleMovingAverageAggregation extends MovingAverageAggregationBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

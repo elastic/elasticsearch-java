@@ -84,6 +84,11 @@ public class VariableWidthHistogramAggregate extends MultiBucketAggregateBase<Va
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<VariableWidthHistogramBucket, Builder>
 			implements
 				ObjectBuilder<VariableWidthHistogramAggregate> {
+		public Builder() {
+		}
+		private Builder(VariableWidthHistogramAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -103,6 +108,12 @@ public class VariableWidthHistogramAggregate extends MultiBucketAggregateBase<Va
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

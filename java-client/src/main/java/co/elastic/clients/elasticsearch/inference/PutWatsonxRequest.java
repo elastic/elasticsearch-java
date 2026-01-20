@@ -71,6 +71,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class PutWatsonxRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final InferenceChunkingSettings chunkingSettings;
+
 	private final WatsonxServiceType service;
 
 	private final WatsonxServiceSettings serviceSettings;
@@ -86,6 +89,7 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 
 	private PutWatsonxRequest(Builder builder) {
 
+		this.chunkingSettings = builder.chunkingSettings;
 		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
 		this.serviceSettings = ApiTypeHelper.requireNonNull(builder.serviceSettings, this, "serviceSettings");
 		this.taskType = ApiTypeHelper.requireNonNull(builder.taskType, this, "taskType");
@@ -96,6 +100,18 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 
 	public static PutWatsonxRequest of(Function<Builder, ObjectBuilder<PutWatsonxRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * The chunking configuration object. Applies only to the
+	 * <code>text_embedding</code> task type. Not applicable to the
+	 * <code>completion</code> or <code>chat_completion</code> task types.
+	 * <p>
+	 * API name: {@code chunking_settings}
+	 */
+	@Nullable
+	public final InferenceChunkingSettings chunkingSettings() {
+		return this.chunkingSettings;
 	}
 
 	/**
@@ -158,6 +174,11 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.chunkingSettings != null) {
+			generator.writeKey("chunking_settings");
+			this.chunkingSettings.serialize(generator, mapper);
+
+		}
 		generator.writeKey("service");
 		this.service.serialize(generator, mapper);
 		generator.writeKey("service_settings");
@@ -174,6 +195,9 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutWatsonxRequest> {
+		@Nullable
+		private InferenceChunkingSettings chunkingSettings;
+
 		private WatsonxServiceType service;
 
 		private WatsonxServiceSettings serviceSettings;
@@ -184,6 +208,41 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 		private Time timeout;
 
 		private String watsonxInferenceId;
+
+		public Builder() {
+		}
+		private Builder(PutWatsonxRequest instance) {
+			this.chunkingSettings = instance.chunkingSettings;
+			this.service = instance.service;
+			this.serviceSettings = instance.serviceSettings;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+			this.watsonxInferenceId = instance.watsonxInferenceId;
+
+		}
+		/**
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>completion</code> or <code>chat_completion</code> task types.
+		 * <p>
+		 * API name: {@code chunking_settings}
+		 */
+		public final Builder chunkingSettings(@Nullable InferenceChunkingSettings value) {
+			this.chunkingSettings = value;
+			return this;
+		}
+
+		/**
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>completion</code> or <code>chat_completion</code> task types.
+		 * <p>
+		 * API name: {@code chunking_settings}
+		 */
+		public final Builder chunkingSettings(
+				Function<InferenceChunkingSettings.Builder, ObjectBuilder<InferenceChunkingSettings>> fn) {
+			return this.chunkingSettings(fn.apply(new InferenceChunkingSettings.Builder()).build());
+		}
 
 		/**
 		 * Required - The type of service supported for the specified task type. In this
@@ -277,6 +336,12 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -287,6 +352,7 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 
 	protected static void setupPutWatsonxRequestDeserializer(ObjectDeserializer<PutWatsonxRequest.Builder> op) {
 
+		op.add(Builder::chunkingSettings, InferenceChunkingSettings._DESERIALIZER, "chunking_settings");
 		op.add(Builder::service, WatsonxServiceType._DESERIALIZER, "service");
 		op.add(Builder::serviceSettings, WatsonxServiceSettings._DESERIALIZER, "service_settings");
 

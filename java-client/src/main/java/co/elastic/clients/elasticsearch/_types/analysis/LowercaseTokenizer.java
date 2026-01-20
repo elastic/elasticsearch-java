@@ -89,6 +89,11 @@ public class LowercaseTokenizer extends TokenizerBase implements TokenizerDefini
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LowercaseTokenizer> {
+		public Builder() {
+		}
+		private Builder(LowercaseTokenizer instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class LowercaseTokenizer extends TokenizerBase implements TokenizerDefini
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

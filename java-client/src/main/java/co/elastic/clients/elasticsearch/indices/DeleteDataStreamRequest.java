@@ -59,8 +59,9 @@ import javax.annotation.Nullable;
 // typedef: indices.delete_data_stream.Request
 
 /**
- * Delete data streams. Deletes one or more data streams and their backing
- * indices.
+ * Delete data streams.
+ * <p>
+ * Deletes one or more data streams and their backing indices.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.delete_data_stream.Request">API
@@ -137,6 +138,14 @@ public class DeleteDataStreamRequest extends RequestBase {
 
 		private List<String> name;
 
+		public Builder() {
+		}
+		private Builder(DeleteDataStreamRequest instance) {
+			this.expandWildcards = instance.expandWildcards;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Type of data stream that wildcard patterns can match. Supports
 		 * comma-separated values,such as <code>open,hidden</code>.
@@ -228,6 +237,12 @@ public class DeleteDataStreamRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

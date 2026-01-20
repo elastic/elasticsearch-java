@@ -58,7 +58,9 @@ import javax.annotation.Nullable;
 // typedef: ml.get_filters.Request
 
 /**
- * Get filters. You can get a single filter or all filters.
+ * Get filters.
+ * <p>
+ * You can get a single filter or all filters.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.get_filters.Request">API
  *      specification</a>
@@ -134,6 +136,14 @@ public class GetFiltersRequest extends RequestBase {
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(GetFiltersRequest instance) {
+			this.filterId = instance.filterId;
+			this.from = instance.from;
+			this.size = instance.size;
+
+		}
 		/**
 		 * A string that uniquely identifies a filter.
 		 * <p>
@@ -196,6 +206,12 @@ public class GetFiltersRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

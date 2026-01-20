@@ -56,9 +56,10 @@ import javax.annotation.Nullable;
 // typedef: cluster.pending_tasks.Request
 
 /**
- * Get the pending cluster tasks. Get information about cluster-level changes
- * (such as create index, update mapping, allocate or fail shard) that have not
- * yet taken effect.
+ * Get the pending cluster tasks.
+ * <p>
+ * Get information about cluster-level changes (such as create index, update
+ * mapping, allocate or fail shard) that have not yet taken effect.
  * <p>
  * NOTE: This API returns a list of any pending updates to the cluster state.
  * These are distinct from the tasks reported by the task management API which
@@ -128,6 +129,13 @@ public class PendingTasksRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		public Builder() {
+		}
+		private Builder(PendingTasksRequest instance) {
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+
+		}
 		/**
 		 * If <code>true</code>, the request retrieves information from the local node
 		 * only. If <code>false</code>, information is retrieved from the master node.
@@ -178,6 +186,12 @@ public class PendingTasksRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

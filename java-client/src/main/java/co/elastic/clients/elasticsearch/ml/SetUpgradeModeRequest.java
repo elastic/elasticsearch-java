@@ -56,17 +56,19 @@ import javax.annotation.Nullable;
 // typedef: ml.set_upgrade_mode.Request
 
 /**
- * Set upgrade_mode for ML indices. Sets a cluster wide upgrade_mode setting
- * that prepares machine learning indices for an upgrade. When upgrading your
- * cluster, in some circumstances you must restart your nodes and reindex your
- * machine learning indices. In those circumstances, there must be no machine
- * learning jobs running. You can close the machine learning jobs, do the
- * upgrade, then open all the jobs again. Alternatively, you can use this API to
- * temporarily halt tasks associated with the jobs and datafeeds and prevent new
- * jobs from opening. You can also use this API during upgrades that do not
- * require you to reindex your machine learning indices, though stopping jobs is
- * not a requirement in that case. You can see the current value for the
- * upgrade_mode setting by using the get machine learning info API.
+ * Set upgrade_mode for ML indices.
+ * <p>
+ * Sets a cluster wide upgrade_mode setting that prepares machine learning
+ * indices for an upgrade. When upgrading your cluster, in some circumstances
+ * you must restart your nodes and reindex your machine learning indices. In
+ * those circumstances, there must be no machine learning jobs running. You can
+ * close the machine learning jobs, do the upgrade, then open all the jobs
+ * again. Alternatively, you can use this API to temporarily halt tasks
+ * associated with the jobs and datafeeds and prevent new jobs from opening. You
+ * can also use this API during upgrades that do not require you to reindex your
+ * machine learning indices, though stopping jobs is not a requirement in that
+ * case. You can see the current value for the upgrade_mode setting by using the
+ * get machine learning info API.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.set_upgrade_mode.Request">API
  *      specification</a>
@@ -129,6 +131,13 @@ public class SetUpgradeModeRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(SetUpgradeModeRequest instance) {
+			this.enabled = instance.enabled;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * When <code>true</code>, it enables <code>upgrade_mode</code> which
 		 * temporarily halts all job and datafeed tasks and prohibits new job and
@@ -178,6 +187,12 @@ public class SetUpgradeModeRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

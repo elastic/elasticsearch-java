@@ -62,8 +62,10 @@ import javax.annotation.Nullable;
 // typedef: watcher.query_watches.Request
 
 /**
- * Query watches. Get all registered watches in a paginated manner and
- * optionally filter watches by a query.
+ * Query watches.
+ * <p>
+ * Get all registered watches in a paginated manner and optionally filter
+ * watches by a query.
  * <p>
  * Note that only the <code>_id</code> and <code>metadata.*</code> fields are
  * queryable or sortable.
@@ -224,6 +226,16 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private List<SortOptions> sort;
 
+		public Builder() {
+		}
+		private Builder(QueryWatchesRequest instance) {
+			this.from = instance.from;
+			this.query = instance.query;
+			this.searchAfter = instance.searchAfter;
+			this.size = instance.size;
+			this.sort = instance.sort;
+
+		}
 		/**
 		 * The offset from the first result to fetch. It must be non-negative.
 		 * <p>
@@ -428,6 +440,12 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

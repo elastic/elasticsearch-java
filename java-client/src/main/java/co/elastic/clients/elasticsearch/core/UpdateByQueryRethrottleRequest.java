@@ -69,8 +69,7 @@ import javax.annotation.Nullable;
  */
 
 public class UpdateByQueryRethrottleRequest extends RequestBase {
-	@Nullable
-	private final Float requestsPerSecond;
+	private final float requestsPerSecond;
 
 	private final String taskId;
 
@@ -78,7 +77,7 @@ public class UpdateByQueryRethrottleRequest extends RequestBase {
 
 	private UpdateByQueryRethrottleRequest(Builder builder) {
 
-		this.requestsPerSecond = builder.requestsPerSecond;
+		this.requestsPerSecond = ApiTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond", 0);
 		this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
 
 	}
@@ -89,13 +88,12 @@ public class UpdateByQueryRethrottleRequest extends RequestBase {
 	}
 
 	/**
-	 * The throttle for this request in sub-requests per second. To turn off
-	 * throttling, set it to <code>-1</code>.
+	 * Required - The throttle for this request in sub-requests per second. To turn
+	 * off throttling, set it to <code>-1</code>.
 	 * <p>
 	 * API name: {@code requests_per_second}
 	 */
-	@Nullable
-	public final Float requestsPerSecond() {
+	public final float requestsPerSecond() {
 		return this.requestsPerSecond;
 	}
 
@@ -117,18 +115,24 @@ public class UpdateByQueryRethrottleRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UpdateByQueryRethrottleRequest> {
-		@Nullable
 		private Float requestsPerSecond;
 
 		private String taskId;
 
+		public Builder() {
+		}
+		private Builder(UpdateByQueryRethrottleRequest instance) {
+			this.requestsPerSecond = instance.requestsPerSecond;
+			this.taskId = instance.taskId;
+
+		}
 		/**
-		 * The throttle for this request in sub-requests per second. To turn off
-		 * throttling, set it to <code>-1</code>.
+		 * Required - The throttle for this request in sub-requests per second. To turn
+		 * off throttling, set it to <code>-1</code>.
 		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
-		public final Builder requestsPerSecond(@Nullable Float value) {
+		public final Builder requestsPerSecond(float value) {
 			this.requestsPerSecond = value;
 			return this;
 		}
@@ -161,6 +165,12 @@ public class UpdateByQueryRethrottleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -213,9 +223,7 @@ public class UpdateByQueryRethrottleRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.requestsPerSecond != null) {
-					params.put("requests_per_second", String.valueOf(request.requestsPerSecond));
-				}
+				params.put("requests_per_second", String.valueOf(request.requestsPerSecond));
 				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, UpdateByQueryRethrottleResponse._DESERIALIZER);

@@ -159,6 +159,16 @@ public class DataTiers extends Base {
 
 		private DataTierPhaseStatistics dataHot;
 
+		public Builder() {
+		}
+		private Builder(DataTiers instance) {
+			this.dataWarm = instance.dataWarm;
+			this.dataFrozen = instance.dataFrozen;
+			this.dataCold = instance.dataCold;
+			this.dataContent = instance.dataContent;
+			this.dataHot = instance.dataHot;
+
+		}
 		/**
 		 * Required - API name: {@code data_warm}
 		 */
@@ -257,6 +267,12 @@ public class DataTiers extends Base {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

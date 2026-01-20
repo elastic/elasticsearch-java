@@ -56,8 +56,10 @@ import javax.annotation.Nullable;
 // typedef: sql.delete_async.Request
 
 /**
- * Delete an async SQL search. Delete an async SQL search or a stored
- * synchronous SQL search. If the search is still running, the API cancels it.
+ * Delete an async SQL search.
+ * <p>
+ * Delete an async SQL search or a stored synchronous SQL search. If the search
+ * is still running, the API cancels it.
  * <p>
  * If the Elasticsearch security features are enabled, only the following users
  * can use this API to delete a search:
@@ -105,6 +107,12 @@ public class DeleteAsyncRequest extends RequestBase {
 				ObjectBuilder<DeleteAsyncRequest> {
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(DeleteAsyncRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Required - The identifier for the search.
 		 * <p>
@@ -133,6 +141,12 @@ public class DeleteAsyncRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

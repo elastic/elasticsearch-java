@@ -109,8 +109,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	private final Boolean realtime;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	@Nullable
 	private final Boolean termStatistics;
@@ -135,7 +134,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		this.positions = builder.positions;
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.termStatistics = builder.termStatistics;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
@@ -254,8 +253,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -363,7 +361,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		private Boolean realtime;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private Boolean termStatistics;
@@ -374,6 +372,25 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private VersionType versionType;
 
+		public Builder() {
+		}
+		private Builder(MtermvectorsRequest instance) {
+			this.docs = instance.docs;
+			this.fieldStatistics = instance.fieldStatistics;
+			this.fields = instance.fields;
+			this.ids = instance.ids;
+			this.index = instance.index;
+			this.offsets = instance.offsets;
+			this.payloads = instance.payloads;
+			this.positions = instance.positions;
+			this.preference = instance.preference;
+			this.realtime = instance.realtime;
+			this.routing = instance.routing;
+			this.termStatistics = instance.termStatistics;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+
+		}
 		/**
 		 * An array of existing or artificial documents.
 		 * <p>
@@ -542,9 +559,23 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		 * A custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * A custom value used to route operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -596,6 +627,12 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -671,8 +708,8 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.realtime != null) {
 					params.put("realtime", String.valueOf(request.realtime));

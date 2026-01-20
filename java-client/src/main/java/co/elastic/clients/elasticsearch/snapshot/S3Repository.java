@@ -112,6 +112,12 @@ public class S3Repository extends RepositoryBase implements RepositoryVariant {
 	public static class Builder extends RepositoryBase.AbstractBuilder<Builder> implements ObjectBuilder<S3Repository> {
 		private S3RepositorySettings settings;
 
+		public Builder() {
+		}
+		private Builder(S3Repository instance) {
+			this.settings = instance.settings;
+
+		}
 		/**
 		 * Required - The repository settings.
 		 * <p>
@@ -163,6 +169,12 @@ public class S3Repository extends RepositoryBase implements RepositoryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -58,8 +58,10 @@ import javax.annotation.Nullable;
 // typedef: indices.modify_data_stream.Request
 
 /**
- * Update data streams. Performs one or more data stream modification actions in
- * a single atomic operation.
+ * Update data streams.
+ * <p>
+ * Performs one or more data stream modification actions in a single atomic
+ * operation.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.modify_data_stream.Request">API
@@ -125,6 +127,12 @@ public class ModifyDataStreamRequest extends RequestBase implements JsonpSeriali
 				ObjectBuilder<ModifyDataStreamRequest> {
 		private List<Action> actions;
 
+		public Builder() {
+		}
+		private Builder(ModifyDataStreamRequest instance) {
+			this.actions = instance.actions;
+
+		}
 		/**
 		 * Required - Actions to perform.
 		 * <p>
@@ -193,6 +201,12 @@ public class ModifyDataStreamRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

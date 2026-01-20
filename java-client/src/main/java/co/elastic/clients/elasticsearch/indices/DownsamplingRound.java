@@ -62,14 +62,14 @@ import javax.annotation.Nullable;
 public class DownsamplingRound implements JsonpSerializable {
 	private final Time after;
 
-	private final DownsampleConfig config;
+	private final Time fixedInterval;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private DownsamplingRound(Builder builder) {
 
 		this.after = ApiTypeHelper.requireNonNull(builder.after, this, "after");
-		this.config = ApiTypeHelper.requireNonNull(builder.config, this, "config");
+		this.fixedInterval = ApiTypeHelper.requireNonNull(builder.fixedInterval, this, "fixedInterval");
 
 	}
 
@@ -88,12 +88,12 @@ public class DownsamplingRound implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The downsample configuration to execute.
+	 * Required - The downsample interval.
 	 * <p>
-	 * API name: {@code config}
+	 * API name: {@code fixed_interval}
 	 */
-	public final DownsampleConfig config() {
-		return this.config;
+	public final Time fixedInterval() {
+		return this.fixedInterval;
 	}
 
 	/**
@@ -110,8 +110,8 @@ public class DownsamplingRound implements JsonpSerializable {
 		generator.writeKey("after");
 		this.after.serialize(generator, mapper);
 
-		generator.writeKey("config");
-		this.config.serialize(generator, mapper);
+		generator.writeKey("fixed_interval");
+		this.fixedInterval.serialize(generator, mapper);
 
 	}
 
@@ -129,8 +129,15 @@ public class DownsamplingRound implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DownsamplingRound> {
 		private Time after;
 
-		private DownsampleConfig config;
+		private Time fixedInterval;
 
+		public Builder() {
+		}
+		private Builder(DownsamplingRound instance) {
+			this.after = instance.after;
+			this.fixedInterval = instance.fixedInterval;
+
+		}
 		/**
 		 * Required - The duration since rollover when this downsampling round should
 		 * execute
@@ -153,22 +160,22 @@ public class DownsamplingRound implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The downsample configuration to execute.
+		 * Required - The downsample interval.
 		 * <p>
-		 * API name: {@code config}
+		 * API name: {@code fixed_interval}
 		 */
-		public final Builder config(DownsampleConfig value) {
-			this.config = value;
+		public final Builder fixedInterval(Time value) {
+			this.fixedInterval = value;
 			return this;
 		}
 
 		/**
-		 * Required - The downsample configuration to execute.
+		 * Required - The downsample interval.
 		 * <p>
-		 * API name: {@code config}
+		 * API name: {@code fixed_interval}
 		 */
-		public final Builder config(Function<DownsampleConfig.Builder, ObjectBuilder<DownsampleConfig>> fn) {
-			return this.config(fn.apply(new DownsampleConfig.Builder()).build());
+		public final Builder fixedInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.fixedInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -189,6 +196,12 @@ public class DownsamplingRound implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -200,7 +213,7 @@ public class DownsamplingRound implements JsonpSerializable {
 	protected static void setupDownsamplingRoundDeserializer(ObjectDeserializer<DownsamplingRound.Builder> op) {
 
 		op.add(Builder::after, Time._DESERIALIZER, "after");
-		op.add(Builder::config, DownsampleConfig._DESERIALIZER, "config");
+		op.add(Builder::fixedInterval, Time._DESERIALIZER, "fixed_interval");
 
 	}
 

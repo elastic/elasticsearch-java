@@ -375,6 +375,26 @@ public class NodeInfoSettings implements JsonpSerializable {
 		@Nullable
 		private NodeInfoSettingsIngest ingest;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoSettings instance) {
+			this.cluster = instance.cluster;
+			this.node = instance.node;
+			this.path = instance.path;
+			this.repositories = instance.repositories;
+			this.discovery = instance.discovery;
+			this.action = instance.action;
+			this.client = instance.client;
+			this.http = instance.http;
+			this.bootstrap = instance.bootstrap;
+			this.transport = instance.transport;
+			this.network = instance.network;
+			this.xpack = instance.xpack;
+			this.script = instance.script;
+			this.search = instance.search;
+			this.ingest = instance.ingest;
+
+		}
 		/**
 		 * Required - API name: {@code cluster}
 		 */
@@ -623,6 +643,12 @@ public class NodeInfoSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -70,11 +70,13 @@ import javax.annotation.Nullable;
 // typedef: ml.put_datafeed.Request
 
 /**
- * Create a datafeed. Datafeeds retrieve data from Elasticsearch for analysis by
- * an anomaly detection job. You can associate only one datafeed with each
- * anomaly detection job. The datafeed contains a query that runs at a defined
- * interval (<code>frequency</code>). If you are concerned about delayed data,
- * you can add a delay
+ * Create a datafeed.
+ * <p>
+ * Datafeeds retrieve data from Elasticsearch for analysis by an anomaly
+ * detection job. You can associate only one datafeed with each anomaly
+ * detection job. The datafeed contains a query that runs at a defined interval
+ * (<code>frequency</code>). If you are concerned about delayed data, you can
+ * add a delay
  * (<code>query_delay') at each interval. By default, the datafeed uses the following query: </code>{&quot;match_all&quot;:
  * {&quot;boost&quot;: 1}}`.
  * <p>
@@ -584,6 +586,30 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		@Nullable
 		private Integer scrollSize;
 
+		public Builder() {
+		}
+		private Builder(PutDatafeedRequest instance) {
+			this.aggregations = instance.aggregations;
+			this.allowNoIndices = instance.allowNoIndices;
+			this.chunkingConfig = instance.chunkingConfig;
+			this.datafeedId = instance.datafeedId;
+			this.delayedDataCheckConfig = instance.delayedDataCheckConfig;
+			this.expandWildcards = instance.expandWildcards;
+			this.frequency = instance.frequency;
+			this.headers = instance.headers;
+			this.ignoreThrottled = instance.ignoreThrottled;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.indices = instance.indices;
+			this.indicesOptions = instance.indicesOptions;
+			this.jobId = instance.jobId;
+			this.maxEmptySearches = instance.maxEmptySearches;
+			this.query = instance.query;
+			this.queryDelay = instance.queryDelay;
+			this.runtimeMappings = instance.runtimeMappings;
+			this.scriptFields = instance.scriptFields;
+			this.scrollSize = instance.scrollSize;
+
+		}
 		/**
 		 * If set, the datafeed performs aggregation searches. Support for aggregations
 		 * is limited and should be used only with low cardinality data.
@@ -1068,6 +1094,12 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

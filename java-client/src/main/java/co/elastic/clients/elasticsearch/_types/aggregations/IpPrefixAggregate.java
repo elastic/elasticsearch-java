@@ -81,6 +81,11 @@ public class IpPrefixAggregate extends MultiBucketAggregateBase<IpPrefixBucket> 
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<IpPrefixBucket, Builder>
 			implements
 				ObjectBuilder<IpPrefixAggregate> {
+		public Builder() {
+		}
+		private Builder(IpPrefixAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -100,6 +105,12 @@ public class IpPrefixAggregate extends MultiBucketAggregateBase<IpPrefixBucket> 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

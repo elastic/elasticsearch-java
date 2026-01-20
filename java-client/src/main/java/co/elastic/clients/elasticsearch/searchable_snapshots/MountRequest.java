@@ -61,9 +61,11 @@ import javax.annotation.Nullable;
 // typedef: searchable_snapshots.mount.Request
 
 /**
- * Mount a snapshot. Mount a snapshot as a searchable snapshot index. Do not use
- * this API for snapshots managed by index lifecycle management (ILM). Manually
- * mounting ILM-managed snapshots can interfere with ILM processes.
+ * Mount a snapshot.
+ * <p>
+ * Mount a snapshot as a searchable snapshot index. Do not use this API for
+ * snapshots managed by index lifecycle management (ILM). Manually mounting
+ * ILM-managed snapshots can interfere with ILM processes.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#searchable_snapshots.mount.Request">API
@@ -278,6 +280,20 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(MountRequest instance) {
+			this.ignoreIndexSettings = instance.ignoreIndexSettings;
+			this.index = instance.index;
+			this.indexSettings = instance.indexSettings;
+			this.masterTimeout = instance.masterTimeout;
+			this.renamedIndex = instance.renamedIndex;
+			this.repository = instance.repository;
+			this.snapshot = instance.snapshot;
+			this.storage = instance.storage;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * The names of settings that should be removed from the index when it is
 		 * mounted.
@@ -432,6 +448,12 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

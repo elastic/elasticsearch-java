@@ -58,11 +58,12 @@ import javax.annotation.Nullable;
 // typedef: ml.get_datafeeds.Request
 
 /**
- * Get datafeeds configuration info. You can get information for multiple
- * datafeeds in a single API request by using a comma-separated list of
- * datafeeds or a wildcard expression. You can get information for all datafeeds
- * by using <code>_all</code>, by specifying <code>*</code> as the
- * <code>&lt;feed_id&gt;</code>, or by omitting the
+ * Get datafeeds configuration info.
+ * <p>
+ * You can get information for multiple datafeeds in a single API request by
+ * using a comma-separated list of datafeeds or a wildcard expression. You can
+ * get information for all datafeeds by using <code>_all</code>, by specifying
+ * <code>*</code> as the <code>&lt;feed_id&gt;</code>, or by omitting the
  * <code>&lt;feed_id&gt;</code>. This API returns a maximum of 10,000 datafeeds.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.get_datafeeds.Request">API
@@ -155,6 +156,14 @@ public class GetDatafeedsRequest extends RequestBase {
 		@Nullable
 		private Boolean excludeGenerated;
 
+		public Builder() {
+		}
+		private Builder(GetDatafeedsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.datafeedId = instance.datafeedId;
+			this.excludeGenerated = instance.excludeGenerated;
+
+		}
 		/**
 		 * Specifies what to do when the request:
 		 * <ol>
@@ -235,6 +244,12 @@ public class GetDatafeedsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

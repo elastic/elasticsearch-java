@@ -56,12 +56,14 @@ import javax.annotation.Nullable;
 // typedef: _global.close_point_in_time.Request
 
 /**
- * Close a point in time. A point in time must be opened explicitly before being
- * used in search requests. The <code>keep_alive</code> parameter tells
- * Elasticsearch how long it should persist. A point in time is automatically
- * closed when the <code>keep_alive</code> period has elapsed. However, keeping
- * points in time has a cost; close them as soon as they are no longer required
- * for search requests.
+ * Close a point in time.
+ * <p>
+ * A point in time must be opened explicitly before being used in search
+ * requests. The <code>keep_alive</code> parameter tells Elasticsearch how long
+ * it should persist. A point in time is automatically closed when the
+ * <code>keep_alive</code> period has elapsed. However, keeping points in time
+ * has a cost; close them as soon as they are no longer required for search
+ * requests.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#_global.close_point_in_time.Request">API
@@ -119,6 +121,12 @@ public class ClosePointInTimeRequest extends RequestBase implements JsonpSeriali
 				ObjectBuilder<ClosePointInTimeRequest> {
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(ClosePointInTimeRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Required - The ID of the point-in-time.
 		 * <p>
@@ -147,6 +155,12 @@ public class ClosePointInTimeRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.elasticsearch.core.rank_eval.RankEvalMetric;
 import co.elastic.clients.elasticsearch.core.rank_eval.RankEvalRequestItem;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -89,7 +90,7 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 	private final List<RankEvalRequestItem> requests;
 
 	@Nullable
-	private final String searchType;
+	private final SearchType searchType;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -183,7 +184,7 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code search_type}
 	 */
 	@Nullable
-	public final String searchType() {
+	public final SearchType searchType() {
 		return this.searchType;
 	}
 
@@ -241,8 +242,20 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		private List<RankEvalRequestItem> requests;
 
 		@Nullable
-		private String searchType;
+		private SearchType searchType;
 
+		public Builder() {
+		}
+		private Builder(RankEvalRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.metric = instance.metric;
+			this.requests = instance.requests;
+			this.searchType = instance.searchType;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -387,7 +400,7 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search_type}
 		 */
-		public final Builder searchType(@Nullable String value) {
+		public final Builder searchType(@Nullable SearchType value) {
 			this.searchType = value;
 			return this;
 		}
@@ -410,6 +423,12 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -496,7 +515,7 @@ public class RankEvalRequest extends RequestBase implements JsonpSerializable {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.searchType != null) {
-					params.put("search_type", request.searchType);
+					params.put("search_type", request.searchType.jsonValue());
 				}
 				return params;
 

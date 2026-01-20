@@ -57,9 +57,11 @@ import javax.annotation.Nullable;
 // typedef: ilm.explain_lifecycle.Request
 
 /**
- * Explain the lifecycle state. Get the current lifecycle status for one or more
- * indices. For data streams, the API retrieves the current lifecycle status for
- * the stream's backing indices.
+ * Explain the lifecycle state.
+ * <p>
+ * Get the current lifecycle status for one or more indices. For data streams,
+ * the API retrieves the current lifecycle status for the stream's backing
+ * indices.
  * <p>
  * The response indicates when the index entered each lifecycle state, provides
  * the definition of the running phase, and information about any failures.
@@ -159,6 +161,15 @@ public class ExplainLifecycleRequest extends RequestBase {
 		@Nullable
 		private Boolean onlyManaged;
 
+		public Builder() {
+		}
+		private Builder(ExplainLifecycleRequest instance) {
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.onlyErrors = instance.onlyErrors;
+			this.onlyManaged = instance.onlyManaged;
+
+		}
 		/**
 		 * Required - Comma-separated list of data streams, indices, and aliases to
 		 * target. Supports wildcards (<code>*</code>). To target all data streams and
@@ -232,6 +243,12 @@ public class ExplainLifecycleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

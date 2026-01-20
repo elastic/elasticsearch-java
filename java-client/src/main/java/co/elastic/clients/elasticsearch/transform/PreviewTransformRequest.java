@@ -57,8 +57,10 @@ import javax.annotation.Nullable;
 // typedef: transform.preview_transform.Request
 
 /**
- * Preview a transform. Generates a preview of the results that you will get
- * when you create a transform with the same configuration.
+ * Preview a transform.
+ * <p>
+ * Generates a preview of the results that you will get when you create a
+ * transform with the same configuration.
  * <p>
  * It returns a maximum of 100 results. The calculations are based on all the
  * current data in the source index. It also generates a list of mappings and
@@ -345,6 +347,22 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 		@Nullable
 		private String transformId;
 
+		public Builder() {
+		}
+		private Builder(PreviewTransformRequest instance) {
+			this.description = instance.description;
+			this.dest = instance.dest;
+			this.frequency = instance.frequency;
+			this.latest = instance.latest;
+			this.pivot = instance.pivot;
+			this.retentionPolicy = instance.retentionPolicy;
+			this.settings = instance.settings;
+			this.source = instance.source;
+			this.sync = instance.sync;
+			this.timeout = instance.timeout;
+			this.transformId = instance.transformId;
+
+		}
 		/**
 		 * Free text description of the transform.
 		 * <p>
@@ -590,6 +608,12 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

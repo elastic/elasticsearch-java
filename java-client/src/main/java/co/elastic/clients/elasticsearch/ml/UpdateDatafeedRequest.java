@@ -70,11 +70,13 @@ import javax.annotation.Nullable;
 // typedef: ml.update_datafeed.Request
 
 /**
- * Update a datafeed. You must stop and start the datafeed for the changes to be
- * applied. When Elasticsearch security features are enabled, your datafeed
- * remembers which roles the user who updated it had at the time of the update
- * and runs the query using those same roles. If you provide secondary
- * authorization headers, those credentials are used instead.
+ * Update a datafeed.
+ * <p>
+ * You must stop and start the datafeed for the changes to be applied. When
+ * Elasticsearch security features are enabled, your datafeed remembers which
+ * roles the user who updated it had at the time of the update and runs the
+ * query using those same roles. If you provide secondary authorization headers,
+ * those credentials are used instead.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.update_datafeed.Request">API
  *      specification</a>
@@ -546,6 +548,29 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private Integer scrollSize;
 
+		public Builder() {
+		}
+		private Builder(UpdateDatafeedRequest instance) {
+			this.aggregations = instance.aggregations;
+			this.allowNoIndices = instance.allowNoIndices;
+			this.chunkingConfig = instance.chunkingConfig;
+			this.datafeedId = instance.datafeedId;
+			this.delayedDataCheckConfig = instance.delayedDataCheckConfig;
+			this.expandWildcards = instance.expandWildcards;
+			this.frequency = instance.frequency;
+			this.ignoreThrottled = instance.ignoreThrottled;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.indices = instance.indices;
+			this.indicesOptions = instance.indicesOptions;
+			this.jobId = instance.jobId;
+			this.maxEmptySearches = instance.maxEmptySearches;
+			this.query = instance.query;
+			this.queryDelay = instance.queryDelay;
+			this.runtimeMappings = instance.runtimeMappings;
+			this.scriptFields = instance.scriptFields;
+			this.scrollSize = instance.scrollSize;
+
+		}
 		/**
 		 * If set, the datafeed performs aggregation searches. Support for aggregations
 		 * is limited and should be used only with low cardinality data.
@@ -1022,6 +1047,12 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

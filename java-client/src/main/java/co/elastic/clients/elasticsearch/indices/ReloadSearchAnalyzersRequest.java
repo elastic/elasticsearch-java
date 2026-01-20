@@ -59,9 +59,10 @@ import javax.annotation.Nullable;
 // typedef: indices.reload_search_analyzers.Request
 
 /**
- * Reload search analyzers. Reload an index's search analyzers and their
- * resources. For data streams, the API reloads search analyzers and resources
- * for the stream's backing indices.
+ * Reload search analyzers.
+ * <p>
+ * Reload an index's search analyzers and their resources. For data streams, the
+ * API reloads search analyzers and resources for the stream's backing indices.
  * <p>
  * IMPORTANT: After reloading the search analyzers you should clear the request
  * cache to make sure it doesn't contain responses derived from the previous
@@ -192,6 +193,16 @@ public class ReloadSearchAnalyzersRequest extends RequestBase {
 		@Nullable
 		private String resource;
 
+		public Builder() {
+		}
+		private Builder(ReloadSearchAnalyzersRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.resource = instance.resource;
+
+		}
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
 		 * indices. (This includes <code>_all</code> string or when no indices have been
@@ -293,6 +304,12 @@ public class ReloadSearchAnalyzersRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

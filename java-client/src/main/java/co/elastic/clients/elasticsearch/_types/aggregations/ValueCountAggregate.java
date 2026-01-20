@@ -92,6 +92,11 @@ public class ValueCountAggregate extends SingleMetricAggregateBase implements Ag
 	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ValueCountAggregate> {
+		public Builder() {
+		}
+		private Builder(ValueCountAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -110,6 +115,12 @@ public class ValueCountAggregate extends SingleMetricAggregateBase implements Ag
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

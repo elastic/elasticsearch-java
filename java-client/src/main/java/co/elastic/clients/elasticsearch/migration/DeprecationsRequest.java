@@ -55,9 +55,11 @@ import javax.annotation.Nullable;
 // typedef: migration.deprecations.Request
 
 /**
- * Get deprecation information. Get information about different cluster, node,
- * and index level settings that use deprecated features that will be removed or
- * changed in the next major version.
+ * Get deprecation information.
+ * <p>
+ * Get information about different cluster, node, and index level settings that
+ * use deprecated features that will be removed or changed in the next major
+ * version.
  * <p>
  * TIP: This APIs is designed for indirect use by the Upgrade Assistant. You are
  * strongly recommended to use the Upgrade Assistant.
@@ -105,6 +107,12 @@ public class DeprecationsRequest extends RequestBase {
 		@Nullable
 		private String index;
 
+		public Builder() {
+		}
+		private Builder(DeprecationsRequest instance) {
+			this.index = instance.index;
+
+		}
 		/**
 		 * Comma-separate list of data streams or indices to check. Wildcard (*)
 		 * expressions are supported.
@@ -134,6 +142,12 @@ public class DeprecationsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

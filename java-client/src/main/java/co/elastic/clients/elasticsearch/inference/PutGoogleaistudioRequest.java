@@ -102,7 +102,9 @@ public class PutGoogleaistudioRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * The chunking configuration object.
+	 * The chunking configuration object. Applies only to the
+	 * <code>text_embedding</code> task type. Not applicable to the
+	 * <code>completion</code> task type.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -206,8 +208,21 @@ public class PutGoogleaistudioRequest extends RequestBase implements JsonpSerial
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutGoogleaistudioRequest instance) {
+			this.chunkingSettings = instance.chunkingSettings;
+			this.googleaistudioInferenceId = instance.googleaistudioInferenceId;
+			this.service = instance.service;
+			this.serviceSettings = instance.serviceSettings;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+
+		}
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>completion</code> task type.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -217,7 +232,9 @@ public class PutGoogleaistudioRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>completion</code> task type.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -318,6 +335,12 @@ public class PutGoogleaistudioRequest extends RequestBase implements JsonpSerial
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -57,16 +57,18 @@ import javax.annotation.Nullable;
 // typedef: ml.preview_datafeed.Request
 
 /**
- * Preview a datafeed. This API returns the first &quot;page&quot; of search
- * results from a datafeed. You can preview an existing datafeed or provide
- * configuration details for a datafeed and anomaly detection job in the API.
- * The preview shows the structure of the data that will be passed to the
- * anomaly detection engine. IMPORTANT: When Elasticsearch security features are
- * enabled, the preview uses the credentials of the user that called the API.
- * However, when the datafeed starts it uses the roles of the last user that
- * created or updated the datafeed. To get a preview that accurately reflects
- * the behavior of the datafeed, use the appropriate credentials. You can also
- * use secondary authorization headers to supply the credentials.
+ * Preview a datafeed.
+ * <p>
+ * This API returns the first &quot;page&quot; of search results from a
+ * datafeed. You can preview an existing datafeed or provide configuration
+ * details for a datafeed and anomaly detection job in the API. The preview
+ * shows the structure of the data that will be passed to the anomaly detection
+ * engine. IMPORTANT: When Elasticsearch security features are enabled, the
+ * preview uses the credentials of the user that called the API. However, when
+ * the datafeed starts it uses the roles of the last user that created or
+ * updated the datafeed. To get a preview that accurately reflects the behavior
+ * of the datafeed, use the appropriate credentials. You can also use secondary
+ * authorization headers to supply the credentials.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.preview_datafeed.Request">API
  *      specification</a>
@@ -212,6 +214,16 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 		@Nullable
 		private DateTime start;
 
+		public Builder() {
+		}
+		private Builder(PreviewDatafeedRequest instance) {
+			this.datafeedConfig = instance.datafeedConfig;
+			this.datafeedId = instance.datafeedId;
+			this.end = instance.end;
+			this.jobConfig = instance.jobConfig;
+			this.start = instance.start;
+
+		}
 		/**
 		 * The datafeed definition to preview.
 		 * <p>
@@ -314,6 +326,12 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

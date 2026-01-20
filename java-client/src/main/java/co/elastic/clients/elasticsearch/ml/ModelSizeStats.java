@@ -464,6 +464,33 @@ public class ModelSizeStats implements JsonpSerializable {
 		@Nullable
 		private Long timestamp;
 
+		public Builder() {
+		}
+		private Builder(ModelSizeStats instance) {
+			this.bucketAllocationFailuresCount = instance.bucketAllocationFailuresCount;
+			this.jobId = instance.jobId;
+			this.logTime = instance.logTime;
+			this.memoryStatus = instance.memoryStatus;
+			this.modelBytes = instance.modelBytes;
+			this.modelBytesExceeded = instance.modelBytesExceeded;
+			this.modelBytesMemoryLimit = instance.modelBytesMemoryLimit;
+			this.outputMemoryAllocatorBytes = instance.outputMemoryAllocatorBytes;
+			this.peakModelBytes = instance.peakModelBytes;
+			this.assignmentMemoryBasis = instance.assignmentMemoryBasis;
+			this.resultType = instance.resultType;
+			this.totalByFieldCount = instance.totalByFieldCount;
+			this.totalOverFieldCount = instance.totalOverFieldCount;
+			this.totalPartitionFieldCount = instance.totalPartitionFieldCount;
+			this.categorizationStatus = instance.categorizationStatus;
+			this.categorizedDocCount = instance.categorizedDocCount;
+			this.deadCategoryCount = instance.deadCategoryCount;
+			this.failedCategoryCount = instance.failedCategoryCount;
+			this.frequentCategoryCount = instance.frequentCategoryCount;
+			this.rareCategoryCount = instance.rareCategoryCount;
+			this.totalCategoryCount = instance.totalCategoryCount;
+			this.timestamp = instance.timestamp;
+
+		}
 		/**
 		 * Required - API name: {@code bucket_allocation_failures_count}
 		 */
@@ -658,6 +685,12 @@ public class ModelSizeStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

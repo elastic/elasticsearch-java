@@ -60,7 +60,9 @@ import javax.annotation.Nullable;
 // typedef: indices.split.Request
 
 /**
- * Split an index. Split an index into a new index with more primary shards.
+ * Split an index.
+ * <p>
+ * Split an index into a new index with more primary shards.
  * <ul>
  * <li>
  * <p>
@@ -296,6 +298,18 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private WaitForActiveShards waitForActiveShards;
 
+		public Builder() {
+		}
+		private Builder(SplitRequest instance) {
+			this.aliases = instance.aliases;
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.settings = instance.settings;
+			this.target = instance.target;
+			this.timeout = instance.timeout;
+			this.waitForActiveShards = instance.waitForActiveShards;
+
+		}
 		/**
 		 * Aliases for the resulting index.
 		 * <p>
@@ -459,6 +473,12 @@ public class SplitRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

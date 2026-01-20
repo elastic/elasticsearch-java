@@ -131,6 +131,12 @@ public class ChainInput implements InputVariant, JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ChainInput> {
 		private List<NamedValue<Input>> inputs;
 
+		public Builder() {
+		}
+		private Builder(ChainInput instance) {
+			this.inputs = instance.inputs;
+
+		}
 		/**
 		 * Required - API name: {@code inputs}
 		 * <p>
@@ -170,6 +176,12 @@ public class ChainInput implements InputVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

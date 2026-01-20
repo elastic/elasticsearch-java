@@ -60,8 +60,10 @@ import javax.annotation.Nullable;
 // typedef: tasks.list.Request
 
 /**
- * Get all tasks. Get information about the tasks currently running on one or
- * more nodes in the cluster.
+ * Get all tasks.
+ * <p>
+ * Get information about the tasks currently running on one or more nodes in the
+ * cluster.
  * <p>
  * WARNING: The task management API is new and should still be considered a beta
  * feature. The API may change in ways that are not backwards compatible.
@@ -276,6 +278,18 @@ public class ListRequest extends RequestBase {
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(ListRequest instance) {
+			this.actions = instance.actions;
+			this.detailed = instance.detailed;
+			this.groupBy = instance.groupBy;
+			this.nodes = instance.nodes;
+			this.parentTaskId = instance.parentTaskId;
+			this.timeout = instance.timeout;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * A comma-separated list or wildcard expression of actions used to limit the
 		 * request. For example, you can use <code>cluser:*</code> to retrieve all
@@ -418,6 +432,12 @@ public class ListRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

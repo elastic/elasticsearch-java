@@ -129,6 +129,13 @@ public class GetJobStatsRequest extends RequestBase {
 		@Nullable
 		private String jobId;
 
+		public Builder() {
+		}
+		private Builder(GetJobStatsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.jobId = instance.jobId;
+
+		}
 		/**
 		 * Specifies what to do when the request:
 		 * <ol>
@@ -180,6 +187,12 @@ public class GetJobStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

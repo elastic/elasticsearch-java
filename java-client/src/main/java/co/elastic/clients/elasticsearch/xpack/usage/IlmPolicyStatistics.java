@@ -128,6 +128,13 @@ public class IlmPolicyStatistics implements JsonpSerializable {
 
 		private Phases phases;
 
+		public Builder() {
+		}
+		private Builder(IlmPolicyStatistics instance) {
+			this.indicesManaged = instance.indicesManaged;
+			this.phases = instance.phases;
+
+		}
 		/**
 		 * Required - API name: {@code indices_managed}
 		 */
@@ -169,6 +176,12 @@ public class IlmPolicyStatistics implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

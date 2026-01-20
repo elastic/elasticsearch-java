@@ -101,7 +101,7 @@ public class PostStartBasicRequest extends RequestBase {
 	}
 
 	/**
-	 * whether the user has acknowledged acknowledge messages (default: false)
+	 * Whether the user has acknowledged acknowledge messages
 	 * <p>
 	 * API name: {@code acknowledge}
 	 */
@@ -149,8 +149,16 @@ public class PostStartBasicRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PostStartBasicRequest instance) {
+			this.acknowledge = instance.acknowledge;
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+
+		}
 		/**
-		 * whether the user has acknowledged acknowledge messages (default: false)
+		 * Whether the user has acknowledged acknowledge messages
 		 * <p>
 		 * API name: {@code acknowledge}
 		 */
@@ -217,6 +225,12 @@ public class PostStartBasicRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -85,8 +85,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<String> fields;
 
-	@Nullable
-	private final String filters;
+	private final List<String> filters;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
@@ -116,7 +115,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
-		this.filters = builder.filters;
+		this.filters = ApiTypeHelper.unmodifiable(builder.filters);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeEmptyFields = builder.includeEmptyFields;
 		this.includeUnmapped = builder.includeUnmapped;
@@ -173,8 +172,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code filters}
 	 */
-	@Nullable
-	public final String filters() {
+	public final List<String> filters() {
 		return this.filters;
 	}
 
@@ -301,6 +299,11 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 			this.indexFilter.serialize(generator, mapper);
 
 		}
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
 		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
@@ -334,7 +337,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		private List<String> fields;
 
 		@Nullable
-		private String filters;
+		private List<String> filters;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -360,6 +363,23 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private List<String> types;
 
+		public Builder() {
+		}
+		private Builder(FieldCapsRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.fields = instance.fields;
+			this.filters = instance.filters;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.includeEmptyFields = instance.includeEmptyFields;
+			this.includeUnmapped = instance.includeUnmapped;
+			this.index = instance.index;
+			this.indexFilter = instance.indexFilter;
+			this.projectRouting = instance.projectRouting;
+			this.runtimeMappings = instance.runtimeMappings;
+			this.types = instance.types;
+
+		}
 		/**
 		 * If false, the request returns an error if any wildcard expression, index
 		 * alias, or <code>_all</code> value targets only missing or closed indices.
@@ -434,9 +454,23 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 * A comma-separated list of filters to apply to the response.
 		 * <p>
 		 * API name: {@code filters}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filters</code>.
 		 */
-		public final Builder filters(@Nullable String value) {
-			this.filters = value;
+		public final Builder filters(List<String> list) {
+			this.filters = _listAddAll(this.filters, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of filters to apply to the response.
+		 * <p>
+		 * API name: {@code filters}
+		 * <p>
+		 * Adds one or more values to <code>filters</code>.
+		 */
+		public final Builder filters(String value, String... values) {
+			this.filters = _listAdd(this.filters, value, values);
 			return this;
 		}
 
@@ -657,6 +691,12 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -669,6 +709,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 		op.add(Builder::indexFilter, Query._DESERIALIZER, "index_filter");
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
 
@@ -750,11 +791,8 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 				if (request.includeEmptyFields != null) {
 					params.put("include_empty_fields", String.valueOf(request.includeEmptyFields));
 				}
-				if (request.filters != null) {
-					params.put("filters", request.filters);
-				}
-				if (request.projectRouting != null) {
-					params.put("project_routing", request.projectRouting);
+				if (ApiTypeHelper.isDefined(request.filters)) {
+					params.put("filters", request.filters.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.includeUnmapped != null) {
 					params.put("include_unmapped", String.valueOf(request.includeUnmapped));

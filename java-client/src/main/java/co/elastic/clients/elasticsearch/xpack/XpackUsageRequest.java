@@ -55,9 +55,10 @@ import javax.annotation.Nullable;
 // typedef: xpack.usage.Request
 
 /**
- * Get usage information. Get information about the features that are currently
- * enabled and available under the current license. The API also provides some
- * usage statistics.
+ * Get usage information.
+ * <p>
+ * Get information about the features that are currently enabled and available
+ * under the current license. The API also provides some usage statistics.
  * 
  * @see <a href="../doc-files/api-spec.html#xpack.usage.Request">API
  *      specification</a>
@@ -103,6 +104,12 @@ public class XpackUsageRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		public Builder() {
+		}
+		private Builder(XpackUsageRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+
+		}
 		/**
 		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -144,6 +151,12 @@ public class XpackUsageRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

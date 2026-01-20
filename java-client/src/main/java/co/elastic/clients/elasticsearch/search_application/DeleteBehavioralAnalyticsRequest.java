@@ -56,8 +56,9 @@ import javax.annotation.Nullable;
 // typedef: search_application.delete_behavioral_analytics.Request
 
 /**
- * Delete a behavioral analytics collection. The associated data stream is also
- * deleted.
+ * Delete a behavioral analytics collection.
+ * <p>
+ * The associated data stream is also deleted.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#search_application.delete_behavioral_analytics.Request">API
@@ -101,6 +102,12 @@ public class DeleteBehavioralAnalyticsRequest extends RequestBase {
 				ObjectBuilder<DeleteBehavioralAnalyticsRequest> {
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(DeleteBehavioralAnalyticsRequest instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - The name of the analytics collection to be deleted
 		 * <p>
@@ -129,6 +136,12 @@ public class DeleteBehavioralAnalyticsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

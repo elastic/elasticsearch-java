@@ -59,9 +59,11 @@ import javax.annotation.Nullable;
 // typedef: query_rules.put_ruleset.Request
 
 /**
- * Create or update a query ruleset. There is a limit of 100 rules per ruleset.
- * This limit can be increased by using the
- * <code>xpack.applications.rules.max_rules_per_ruleset</code> cluster setting.
+ * Create or update a query ruleset.
+ * <p>
+ * There is a limit of 100 rules per ruleset. This limit can be increased by
+ * using the <code>xpack.applications.rules.max_rules_per_ruleset</code> cluster
+ * setting.
  * <p>
  * IMPORTANT: Due to limitations within pinned queries, you can only select
  * documents using <code>ids</code> or <code>docs</code>, but cannot use both in
@@ -146,6 +148,13 @@ public class PutRulesetRequest extends RequestBase implements JsonpSerializable 
 
 		private String rulesetId;
 
+		public Builder() {
+		}
+		private Builder(PutRulesetRequest instance) {
+			this.rules = instance.rules;
+			this.rulesetId = instance.rulesetId;
+
+		}
 		/**
 		 * Required - API name: {@code rules}
 		 * <p>
@@ -204,6 +213,12 @@ public class PutRulesetRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

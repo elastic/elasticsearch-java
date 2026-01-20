@@ -58,11 +58,12 @@ import javax.annotation.Nullable;
 // typedef: ml.get_datafeed_stats.Request
 
 /**
- * Get datafeed stats. You can get statistics for multiple datafeeds in a single
- * API request by using a comma-separated list of datafeeds or a wildcard
- * expression. You can get statistics for all datafeeds by using
- * <code>_all</code>, by specifying <code>*</code> as the
- * <code>&lt;feed_id&gt;</code>, or by omitting the
+ * Get datafeed stats.
+ * <p>
+ * You can get statistics for multiple datafeeds in a single API request by
+ * using a comma-separated list of datafeeds or a wildcard expression. You can
+ * get statistics for all datafeeds by using <code>_all</code>, by specifying
+ * <code>*</code> as the <code>&lt;feed_id&gt;</code>, or by omitting the
  * <code>&lt;feed_id&gt;</code>. If the datafeed is stopped, the only
  * information you receive is the <code>datafeed_id</code> and the
  * <code>state</code>. This API returns a maximum of 10,000 datafeeds.
@@ -138,6 +139,13 @@ public class GetDatafeedStatsRequest extends RequestBase {
 		@Nullable
 		private List<String> datafeedId;
 
+		public Builder() {
+		}
+		private Builder(GetDatafeedStatsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.datafeedId = instance.datafeedId;
+
+		}
 		/**
 		 * Specifies what to do when the request:
 		 * <ol>
@@ -206,6 +214,12 @@ public class GetDatafeedStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

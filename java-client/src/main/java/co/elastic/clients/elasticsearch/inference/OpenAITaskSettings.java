@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.inference;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -62,11 +63,15 @@ public class OpenAITaskSettings implements JsonpSerializable {
 	@Nullable
 	private final String user;
 
+	@Nullable
+	private final JsonData headers;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private OpenAITaskSettings(Builder builder) {
 
 		this.user = builder.user;
+		this.headers = builder.headers;
 
 	}
 
@@ -87,6 +92,24 @@ public class OpenAITaskSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * Specifies custom HTTP header parameters. For example:
+	 * 
+	 * <pre>
+	 * <code>&quot;headers&quot;:{
+	 *   &quot;Custom-Header&quot;: &quot;Some-Value&quot;,
+	 *   &quot;Another-Custom-Header&quot;: &quot;Another-Value&quot;
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * API name: {@code headers}
+	 */
+	@Nullable
+	public final JsonData headers() {
+		return this.headers;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -100,6 +123,11 @@ public class OpenAITaskSettings implements JsonpSerializable {
 		if (this.user != null) {
 			generator.writeKey("user");
 			generator.write(this.user);
+
+		}
+		if (this.headers != null) {
+			generator.writeKey("headers");
+			this.headers.serialize(generator, mapper);
 
 		}
 
@@ -122,6 +150,16 @@ public class OpenAITaskSettings implements JsonpSerializable {
 		@Nullable
 		private String user;
 
+		@Nullable
+		private JsonData headers;
+
+		public Builder() {
+		}
+		private Builder(OpenAITaskSettings instance) {
+			this.user = instance.user;
+			this.headers = instance.headers;
+
+		}
 		/**
 		 * For a <code>completion</code> or <code>text_embedding</code> task, specify
 		 * the user issuing the request. This information can be used for abuse
@@ -131,6 +169,24 @@ public class OpenAITaskSettings implements JsonpSerializable {
 		 */
 		public final Builder user(@Nullable String value) {
 			this.user = value;
+			return this;
+		}
+
+		/**
+		 * Specifies custom HTTP header parameters. For example:
+		 * 
+		 * <pre>
+		 * <code>&quot;headers&quot;:{
+		 *   &quot;Custom-Header&quot;: &quot;Some-Value&quot;,
+		 *   &quot;Another-Custom-Header&quot;: &quot;Another-Value&quot;
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * API name: {@code headers}
+		 */
+		public final Builder headers(@Nullable JsonData value) {
+			this.headers = value;
 			return this;
 		}
 
@@ -152,6 +208,12 @@ public class OpenAITaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -163,6 +225,7 @@ public class OpenAITaskSettings implements JsonpSerializable {
 	protected static void setupOpenAITaskSettingsDeserializer(ObjectDeserializer<OpenAITaskSettings.Builder> op) {
 
 		op.add(Builder::user, JsonpDeserializer.stringDeserializer(), "user");
+		op.add(Builder::headers, JsonData._DESERIALIZER, "headers");
 
 	}
 

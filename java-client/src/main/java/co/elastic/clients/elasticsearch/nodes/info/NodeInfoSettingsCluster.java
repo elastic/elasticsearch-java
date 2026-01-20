@@ -194,6 +194,16 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 		@Nullable
 		private DeprecationIndexing deprecationIndexing;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoSettingsCluster instance) {
+			this.name = instance.name;
+			this.routing = instance.routing;
+			this.election = instance.election;
+			this.initialMasterNodes = instance.initialMasterNodes;
+			this.deprecationIndexing = instance.deprecationIndexing;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -287,6 +297,12 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -61,8 +61,10 @@ import javax.annotation.Nullable;
 // typedef: indices.get.Request
 
 /**
- * Get index information. Get information about one or more indices. For data
- * streams, the API returns information about the stream’s backing indices.
+ * Get index information.
+ * <p>
+ * Get information about one or more indices. For data streams, the API returns
+ * information about the stream’s backing indices.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.get.Request">API
  *      specification</a>
@@ -242,6 +244,20 @@ public class GetIndexRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		public Builder() {
+		}
+		private Builder(GetIndexRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.features = instance.features;
+			this.flatSettings = instance.flatSettings;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.includeDefaults = instance.includeDefaults;
+			this.index = instance.index;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+
+		}
 		/**
 		 * If false, the request returns an error if any wildcard expression, index
 		 * alias, or _all value targets only missing or closed indices. This behavior
@@ -414,6 +430,12 @@ public class GetIndexRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

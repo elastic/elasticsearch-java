@@ -98,7 +98,7 @@ public class GetAutoscalingPolicyRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - the name of the autoscaling policy
+	 * Required - Name of the autoscaling policy
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -120,6 +120,13 @@ public class GetAutoscalingPolicyRequest extends RequestBase {
 
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(GetAutoscalingPolicyRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -142,7 +149,7 @@ public class GetAutoscalingPolicyRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - the name of the autoscaling policy
+		 * Required - Name of the autoscaling policy
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -169,6 +176,12 @@ public class GetAutoscalingPolicyRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

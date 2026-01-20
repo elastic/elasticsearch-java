@@ -167,6 +167,14 @@ public class HttpEmailAttachment implements EmailAttachmentVariant, JsonpSeriali
 		@Nullable
 		private HttpInputRequestDefinition request;
 
+		public Builder() {
+		}
+		private Builder(HttpEmailAttachment instance) {
+			this.contentType = instance.contentType;
+			this.inline = instance.inline;
+			this.request = instance.request;
+
+		}
 		/**
 		 * API name: {@code content_type}
 		 */
@@ -217,6 +225,12 @@ public class HttpEmailAttachment implements EmailAttachmentVariant, JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

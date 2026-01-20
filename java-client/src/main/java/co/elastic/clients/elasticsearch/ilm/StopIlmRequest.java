@@ -55,10 +55,11 @@ import javax.annotation.Nullable;
 // typedef: ilm.stop.Request
 
 /**
- * Stop the ILM plugin. Halt all lifecycle management operations and stop the
- * index lifecycle management plugin. This is useful when you are performing
- * maintenance on the cluster and need to prevent ILM from performing any
- * actions on your indices.
+ * Stop the ILM plugin.
+ * <p>
+ * Halt all lifecycle management operations and stop the index lifecycle
+ * management plugin. This is useful when you are performing maintenance on the
+ * cluster and need to prevent ILM from performing any actions on your indices.
  * <p>
  * The API returns as soon as the stop request has been acknowledged, but the
  * plugin might continue to run until in-progress operations complete and the
@@ -124,6 +125,13 @@ public class StopIlmRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(StopIlmRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -184,6 +192,12 @@ public class StopIlmRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

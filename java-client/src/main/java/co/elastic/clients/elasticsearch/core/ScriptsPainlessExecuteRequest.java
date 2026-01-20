@@ -178,6 +178,14 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 		@Nullable
 		private Script script;
 
+		public Builder() {
+		}
+		private Builder(ScriptsPainlessExecuteRequest instance) {
+			this.context = instance.context;
+			this.contextSetup = instance.contextSetup;
+			this.script = instance.script;
+
+		}
 		/**
 		 * The context that the script should run in. NOTE: Result ordering in the field
 		 * contexts is not guaranteed.
@@ -250,6 +258,12 @@ public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpS
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

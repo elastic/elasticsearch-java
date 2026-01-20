@@ -56,9 +56,11 @@ import javax.annotation.Nullable;
 // typedef: slm.delete_lifecycle.Request
 
 /**
- * Delete a policy. Delete a snapshot lifecycle policy definition. This
- * operation prevents any future snapshots from being taken but does not cancel
- * in-progress snapshots or remove previously-taken snapshots.
+ * Delete a policy.
+ * <p>
+ * Delete a snapshot lifecycle policy definition. This operation prevents any
+ * future snapshots from being taken but does not cancel in-progress snapshots
+ * or remove previously-taken snapshots.
  * 
  * @see <a href="../doc-files/api-spec.html#slm.delete_lifecycle.Request">API
  *      specification</a>
@@ -135,6 +137,14 @@ public class DeleteLifecycleRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeleteLifecycleRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.policyId = instance.policyId;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -205,6 +215,12 @@ public class DeleteLifecycleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

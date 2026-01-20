@@ -60,9 +60,11 @@ import javax.annotation.Nullable;
 // typedef: indices.delete.Request
 
 /**
- * Delete indices. Deleting an index deletes its documents, shards, and
- * metadata. It does not delete related Kibana components, such as data views,
- * visualizations, or dashboards.
+ * Delete indices.
+ * <p>
+ * Deleting an index deletes its documents, shards, and metadata. It does not
+ * delete related Kibana components, such as data views, visualizations, or
+ * dashboards.
  * <p>
  * You cannot delete the current write index of a data stream. To delete the
  * index, you must roll over the data stream so a new write index is created.
@@ -203,6 +205,17 @@ public class DeleteIndexRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeleteIndexRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -349,6 +362,12 @@ public class DeleteIndexRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

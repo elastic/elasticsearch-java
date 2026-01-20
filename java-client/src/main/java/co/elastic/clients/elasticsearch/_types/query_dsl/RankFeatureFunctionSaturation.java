@@ -119,6 +119,12 @@ public class RankFeatureFunctionSaturation extends RankFeatureFunction implement
 		@Nullable
 		private Float pivot;
 
+		public Builder() {
+		}
+		private Builder(RankFeatureFunctionSaturation instance) {
+			this.pivot = instance.pivot;
+
+		}
 		/**
 		 * Configurable pivot value so that the result will be less than 0.5.
 		 * <p>
@@ -147,6 +153,12 @@ public class RankFeatureFunctionSaturation extends RankFeatureFunction implement
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

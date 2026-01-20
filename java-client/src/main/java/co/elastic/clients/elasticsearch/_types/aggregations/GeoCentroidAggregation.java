@@ -132,6 +132,13 @@ public class GeoCentroidAggregation extends MetricAggregationBase implements Agg
 		@Nullable
 		private GeoLocation location;
 
+		public Builder() {
+		}
+		private Builder(GeoCentroidAggregation instance) {
+			this.count = instance.count;
+			this.location = instance.location;
+
+		}
 		/**
 		 * API name: {@code count}
 		 */
@@ -173,6 +180,12 @@ public class GeoCentroidAggregation extends MetricAggregationBase implements Agg
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

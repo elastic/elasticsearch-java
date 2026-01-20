@@ -61,7 +61,9 @@ import javax.annotation.Nullable;
 // typedef: indices.update_aliases.Request
 
 /**
- * Create or update an alias. Adds a data stream or index to an alias.
+ * Create or update an alias.
+ * <p>
+ * Adds a data stream or index to an alias.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.update_aliases.Request">API
  *      specification</a>
@@ -163,6 +165,14 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(UpdateAliasesRequest instance) {
+			this.actions = instance.actions;
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Actions to perform.
 		 * <p>
@@ -273,6 +283,12 @@ public class UpdateAliasesRequest extends RequestBase implements JsonpSerializab
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

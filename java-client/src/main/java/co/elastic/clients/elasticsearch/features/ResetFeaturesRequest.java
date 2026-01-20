@@ -55,9 +55,10 @@ import javax.annotation.Nullable;
 // typedef: features.reset_features.Request
 
 /**
- * Reset the features. Clear all of the state information stored in system
- * indices by Elasticsearch features, including the security and machine
- * learning indices.
+ * Reset the features.
+ * <p>
+ * Clear all of the state information stored in system indices by Elasticsearch
+ * features, including the security and machine learning indices.
  * <p>
  * WARNING: Intended for development and testing use only. Do not reset features
  * on a production cluster.
@@ -121,6 +122,12 @@ public class ResetFeaturesRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		public Builder() {
+		}
+		private Builder(ResetFeaturesRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node.
 		 * <p>
@@ -158,6 +165,12 @@ public class ResetFeaturesRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

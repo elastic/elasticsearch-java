@@ -128,6 +128,13 @@ public class Highlight extends HighlightBase {
 
 		private List<NamedValue<HighlightField>> fields;
 
+		public Builder() {
+		}
+		private Builder(Highlight instance) {
+			this.encoder = instance.encoder;
+			this.fields = instance.fields;
+
+		}
 		/**
 		 * API name: {@code encoder}
 		 */
@@ -175,6 +182,12 @@ public class Highlight extends HighlightBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

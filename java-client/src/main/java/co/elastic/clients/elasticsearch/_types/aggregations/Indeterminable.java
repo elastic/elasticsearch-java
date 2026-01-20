@@ -119,6 +119,12 @@ public class Indeterminable implements ChangeTypeVariant, JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Indeterminable> {
 		private String reason;
 
+		public Builder() {
+		}
+		private Builder(Indeterminable instance) {
+			this.reason = instance.reason;
+
+		}
 		/**
 		 * Required - API name: {@code reason}
 		 */
@@ -145,6 +151,12 @@ public class Indeterminable implements ChangeTypeVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

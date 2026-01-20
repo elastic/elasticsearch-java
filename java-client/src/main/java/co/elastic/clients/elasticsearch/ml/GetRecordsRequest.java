@@ -61,15 +61,17 @@ import javax.annotation.Nullable;
 // typedef: ml.get_records.Request
 
 /**
- * Get anomaly records for an anomaly detection job. Records contain the
- * detailed analytical results. They describe the anomalous activity that has
- * been identified in the input data based on the detector configuration. There
- * can be many anomaly records depending on the characteristics and size of the
- * input data. In practice, there are often too many to be able to manually
- * process them. The machine learning features therefore perform a sophisticated
- * aggregation of the anomaly records into buckets. The number of record results
- * depends on the number of anomalies found in each bucket, which relates to the
- * number of time series being modeled and the number of detectors.
+ * Get anomaly records for an anomaly detection job.
+ * <p>
+ * Records contain the detailed analytical results. They describe the anomalous
+ * activity that has been identified in the input data based on the detector
+ * configuration. There can be many anomaly records depending on the
+ * characteristics and size of the input data. In practice, there are often too
+ * many to be able to manually process them. The machine learning features
+ * therefore perform a sophisticated aggregation of the anomaly records into
+ * buckets. The number of record results depends on the number of anomalies
+ * found in each bucket, which relates to the number of time series being
+ * modeled and the number of detectors.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.get_records.Request">API
  *      specification</a>
@@ -309,6 +311,21 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		@Nullable
 		private DateTime start;
 
+		public Builder() {
+		}
+		private Builder(GetRecordsRequest instance) {
+			this.desc = instance.desc;
+			this.end = instance.end;
+			this.excludeInterim = instance.excludeInterim;
+			this.from = instance.from;
+			this.jobId = instance.jobId;
+			this.page = instance.page;
+			this.recordScore = instance.recordScore;
+			this.size = instance.size;
+			this.sort = instance.sort;
+			this.start = instance.start;
+
+		}
 		/**
 		 * Refer to the description for the <code>desc</code> query parameter.
 		 * <p>
@@ -433,6 +450,12 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

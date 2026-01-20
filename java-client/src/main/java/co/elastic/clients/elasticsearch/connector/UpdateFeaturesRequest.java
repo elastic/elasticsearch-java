@@ -58,9 +58,10 @@ import javax.annotation.Nullable;
 // typedef: connector.update_features.Request
 
 /**
- * Update the connector features. Update the connector features in the connector
- * document. This API can be used to control the following aspects of a
- * connector:
+ * Update the connector features.
+ * <p>
+ * Update the connector features in the connector document. This API can be used
+ * to control the following aspects of a connector:
  * <ul>
  * <li>document-level security</li>
  * <li>incremental syncs</li>
@@ -143,6 +144,13 @@ public class UpdateFeaturesRequest extends RequestBase implements JsonpSerializa
 
 		private ConnectorFeatures features;
 
+		public Builder() {
+		}
+		private Builder(UpdateFeaturesRequest instance) {
+			this.connectorId = instance.connectorId;
+			this.features = instance.features;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector to be updated.
 		 * <p>
@@ -186,6 +194,12 @@ public class UpdateFeaturesRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -59,7 +59,9 @@ import javax.annotation.Nullable;
 // typedef: ml.update_model_snapshot.Request
 
 /**
- * Update a snapshot. Updates certain properties of a snapshot.
+ * Update a snapshot.
+ * <p>
+ * Updates certain properties of a snapshot.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.update_model_snapshot.Request">API
@@ -175,6 +177,15 @@ public class UpdateModelSnapshotRequest extends RequestBase implements JsonpSeri
 
 		private String snapshotId;
 
+		public Builder() {
+		}
+		private Builder(UpdateModelSnapshotRequest instance) {
+			this.description = instance.description;
+			this.jobId = instance.jobId;
+			this.retain = instance.retain;
+			this.snapshotId = instance.snapshotId;
+
+		}
 		/**
 		 * A description of the model snapshot.
 		 * <p>
@@ -235,6 +246,12 @@ public class UpdateModelSnapshotRequest extends RequestBase implements JsonpSeri
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

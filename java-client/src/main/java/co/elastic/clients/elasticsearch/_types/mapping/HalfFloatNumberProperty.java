@@ -112,6 +112,12 @@ public class HalfFloatNumberProperty extends NumberPropertyBase implements Prope
 		@Nullable
 		private Float nullValue;
 
+		public Builder() {
+		}
+		private Builder(HalfFloatNumberProperty instance) {
+			this.nullValue = instance.nullValue;
+
+		}
 		/**
 		 * API name: {@code null_value}
 		 */
@@ -138,6 +144,12 @@ public class HalfFloatNumberProperty extends NumberPropertyBase implements Prope
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

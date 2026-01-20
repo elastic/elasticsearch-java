@@ -85,8 +85,7 @@ public class MultisearchHeader implements JsonpSerializable {
 	@Nullable
 	private final Boolean requestCache;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	@Nullable
 	private final SearchType searchType;
@@ -111,7 +110,7 @@ public class MultisearchHeader implements JsonpSerializable {
 		this.preference = builder.preference;
 		this.projectRouting = builder.projectRouting;
 		this.requestCache = builder.requestCache;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.searchType = builder.searchType;
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
 		this.allowPartialSearchResults = builder.allowPartialSearchResults;
@@ -180,8 +179,7 @@ public class MultisearchHeader implements JsonpSerializable {
 	/**
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -272,9 +270,14 @@ public class MultisearchHeader implements JsonpSerializable {
 			generator.write(this.requestCache);
 
 		}
-		if (this.routing != null) {
+		if (ApiTypeHelper.isDefined(this.routing)) {
 			generator.writeKey("routing");
-			generator.write(this.routing);
+			generator.writeStartArray();
+			for (String item0 : this.routing) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.searchType != null) {
@@ -333,7 +336,7 @@ public class MultisearchHeader implements JsonpSerializable {
 		private Boolean requestCache;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private SearchType searchType;
@@ -347,6 +350,23 @@ public class MultisearchHeader implements JsonpSerializable {
 		@Nullable
 		private Boolean ignoreThrottled;
 
+		public Builder() {
+		}
+		private Builder(MultisearchHeader instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.preference = instance.preference;
+			this.projectRouting = instance.projectRouting;
+			this.requestCache = instance.requestCache;
+			this.routing = instance.routing;
+			this.searchType = instance.searchType;
+			this.ccsMinimizeRoundtrips = instance.ccsMinimizeRoundtrips;
+			this.allowPartialSearchResults = instance.allowPartialSearchResults;
+			this.ignoreThrottled = instance.ignoreThrottled;
+
+		}
 		/**
 		 * API name: {@code allow_no_indices}
 		 */
@@ -429,9 +449,21 @@ public class MultisearchHeader implements JsonpSerializable {
 
 		/**
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -485,6 +517,12 @@ public class MultisearchHeader implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -503,7 +541,8 @@ public class MultisearchHeader implements JsonpSerializable {
 		op.add(Builder::preference, JsonpDeserializer.stringDeserializer(), "preference");
 		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 		op.add(Builder::requestCache, JsonpDeserializer.booleanDeserializer(), "request_cache");
-		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(Builder::routing, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"routing");
 		op.add(Builder::searchType, SearchType._DESERIALIZER, "search_type");
 		op.add(Builder::ccsMinimizeRoundtrips, JsonpDeserializer.booleanDeserializer(), "ccs_minimize_roundtrips");
 		op.add(Builder::allowPartialSearchResults, JsonpDeserializer.booleanDeserializer(),

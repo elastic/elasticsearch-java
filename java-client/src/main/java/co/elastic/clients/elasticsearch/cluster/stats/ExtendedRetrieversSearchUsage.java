@@ -117,6 +117,12 @@ public class ExtendedRetrieversSearchUsage implements JsonpSerializable {
 		@Nullable
 		private ExtendedTextSimilarityRetrieverUsage textSimilarityReranker;
 
+		public Builder() {
+		}
+		private Builder(ExtendedRetrieversSearchUsage instance) {
+			this.textSimilarityReranker = instance.textSimilarityReranker;
+
+		}
 		/**
 		 * API name: {@code text_similarity_reranker}
 		 */
@@ -151,6 +157,12 @@ public class ExtendedRetrieversSearchUsage implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

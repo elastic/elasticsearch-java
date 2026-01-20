@@ -55,8 +55,10 @@ import javax.annotation.Nullable;
 // typedef: rollup.get_rollup_caps.Request
 
 /**
- * Get the rollup job capabilities. Get the capabilities of any rollup jobs that
- * have been configured for a specific index or index pattern.
+ * Get the rollup job capabilities.
+ * <p>
+ * Get the capabilities of any rollup jobs that have been configured for a
+ * specific index or index pattern.
  * <p>
  * This API is useful because a rollup job is often configured to rollup only a
  * subset of fields from the source index. Furthermore, only certain
@@ -114,6 +116,12 @@ public class GetRollupCapsRequest extends RequestBase {
 		@Nullable
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(GetRollupCapsRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Index, indices or index-pattern to return rollup capabilities for.
 		 * <code>_all</code> may be used to fetch rollup capabilities from all jobs.
@@ -143,6 +151,12 @@ public class GetRollupCapsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -85,6 +85,11 @@ public class UnmappedSignificantTermsAggregate extends SignificantTermsAggregate
 	public static class Builder extends SignificantTermsAggregateBase.AbstractBuilder<Void, Builder>
 			implements
 				ObjectBuilder<UnmappedSignificantTermsAggregate> {
+		public Builder() {
+		}
+		private Builder(UnmappedSignificantTermsAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -104,6 +109,12 @@ public class UnmappedSignificantTermsAggregate extends SignificantTermsAggregate
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

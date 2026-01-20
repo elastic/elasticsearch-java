@@ -55,7 +55,9 @@ import javax.annotation.Nullable;
 // typedef: query_rules.list_rulesets.Request
 
 /**
- * Get all query rulesets. Get summarized information about the query rulesets.
+ * Get all query rulesets.
+ * <p>
+ * Get summarized information about the query rulesets.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#query_rules.list_rulesets.Request">API
@@ -117,6 +119,13 @@ public class ListRulesetsRequest extends RequestBase {
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(ListRulesetsRequest instance) {
+			this.from = instance.from;
+			this.size = instance.size;
+
+		}
 		/**
 		 * The offset from the first result to fetch.
 		 * <p>
@@ -155,6 +164,12 @@ public class ListRulesetsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -69,6 +69,9 @@ public class GoogleVertexAITaskSettings implements JsonpSerializable {
 	@Nullable
 	private final ThinkingConfig thinkingConfig;
 
+	@Nullable
+	private final Integer maxTokens;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GoogleVertexAITaskSettings(Builder builder) {
@@ -76,6 +79,7 @@ public class GoogleVertexAITaskSettings implements JsonpSerializable {
 		this.autoTruncate = builder.autoTruncate;
 		this.topN = builder.topN;
 		this.thinkingConfig = builder.thinkingConfig;
+		this.maxTokens = builder.maxTokens;
 
 	}
 
@@ -118,6 +122,23 @@ public class GoogleVertexAITaskSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * For <code>completion</code> and <code>chat_completion</code> tasks, specifies
+	 * the <code>max_tokens</code> value for requests sent to the Google Model
+	 * Garden <code>anthropic</code> provider. If <code>provider</code> is not set
+	 * to <code>anthropic</code>, this field is ignored. If <code>max_tokens</code>
+	 * is specified - it must be a positive integer. If not specified, the default
+	 * value of 1024 is used. Anthropic models require <code>max_tokens</code> to be
+	 * set for each request. Please refer to the Anthropic documentation for more
+	 * information.
+	 * <p>
+	 * API name: {@code max_tokens}
+	 */
+	@Nullable
+	public final Integer maxTokens() {
+		return this.maxTokens;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -141,6 +162,11 @@ public class GoogleVertexAITaskSettings implements JsonpSerializable {
 		if (this.thinkingConfig != null) {
 			generator.writeKey("thinking_config");
 			this.thinkingConfig.serialize(generator, mapper);
+
+		}
+		if (this.maxTokens != null) {
+			generator.writeKey("max_tokens");
+			generator.write(this.maxTokens);
 
 		}
 
@@ -169,6 +195,18 @@ public class GoogleVertexAITaskSettings implements JsonpSerializable {
 		@Nullable
 		private ThinkingConfig thinkingConfig;
 
+		@Nullable
+		private Integer maxTokens;
+
+		public Builder() {
+		}
+		private Builder(GoogleVertexAITaskSettings instance) {
+			this.autoTruncate = instance.autoTruncate;
+			this.topN = instance.topN;
+			this.thinkingConfig = instance.thinkingConfig;
+			this.maxTokens = instance.maxTokens;
+
+		}
 		/**
 		 * For a <code>text_embedding</code> task, truncate inputs longer than the
 		 * maximum token length automatically.
@@ -214,6 +252,23 @@ public class GoogleVertexAITaskSettings implements JsonpSerializable {
 			return this.thinkingConfig(fn.apply(new ThinkingConfig.Builder()).build());
 		}
 
+		/**
+		 * For <code>completion</code> and <code>chat_completion</code> tasks, specifies
+		 * the <code>max_tokens</code> value for requests sent to the Google Model
+		 * Garden <code>anthropic</code> provider. If <code>provider</code> is not set
+		 * to <code>anthropic</code>, this field is ignored. If <code>max_tokens</code>
+		 * is specified - it must be a positive integer. If not specified, the default
+		 * value of 1024 is used. Anthropic models require <code>max_tokens</code> to be
+		 * set for each request. Please refer to the Anthropic documentation for more
+		 * information.
+		 * <p>
+		 * API name: {@code max_tokens}
+		 */
+		public final Builder maxTokens(@Nullable Integer value) {
+			this.maxTokens = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -232,6 +287,12 @@ public class GoogleVertexAITaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -246,6 +307,7 @@ public class GoogleVertexAITaskSettings implements JsonpSerializable {
 		op.add(Builder::autoTruncate, JsonpDeserializer.booleanDeserializer(), "auto_truncate");
 		op.add(Builder::topN, JsonpDeserializer.integerDeserializer(), "top_n");
 		op.add(Builder::thinkingConfig, ThinkingConfig._DESERIALIZER, "thinking_config");
+		op.add(Builder::maxTokens, JsonpDeserializer.integerDeserializer(), "max_tokens");
 
 	}
 

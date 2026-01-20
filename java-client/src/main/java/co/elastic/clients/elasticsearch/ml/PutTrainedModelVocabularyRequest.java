@@ -60,10 +60,11 @@ import javax.annotation.Nullable;
 // typedef: ml.put_trained_model_vocabulary.Request
 
 /**
- * Create a trained model vocabulary. This API is supported only for natural
- * language processing (NLP) models. The vocabulary is stored in the index as
- * described in <code>inference_config.*.vocabulary</code> of the trained model
- * definition.
+ * Create a trained model vocabulary.
+ * <p>
+ * This API is supported only for natural language processing (NLP) models. The
+ * vocabulary is stored in the index as described in
+ * <code>inference_config.*.vocabulary</code> of the trained model definition.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.put_trained_model_vocabulary.Request">API
@@ -194,6 +195,15 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 
 		private List<String> vocabulary;
 
+		public Builder() {
+		}
+		private Builder(PutTrainedModelVocabularyRequest instance) {
+			this.merges = instance.merges;
+			this.modelId = instance.modelId;
+			this.scores = instance.scores;
+			this.vocabulary = instance.vocabulary;
+
+		}
 		/**
 		 * The optional model merges if required by the tokenizer.
 		 * <p>
@@ -294,6 +304,12 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

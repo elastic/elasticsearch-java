@@ -64,10 +64,16 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 	private final List<JsonData> value;
 
 	@Nullable
+	private final String mediaType;
+
+	@Nullable
 	private final String copyFrom;
 
 	@Nullable
 	private final Boolean allowDuplicates;
+
+	@Nullable
+	private final Boolean ignoreEmptyValues;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,8 +82,10 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.value = ApiTypeHelper.unmodifiable(builder.value);
+		this.mediaType = builder.mediaType;
 		this.copyFrom = builder.copyFrom;
 		this.allowDuplicates = builder.allowDuplicates;
+		this.ignoreEmptyValues = builder.ignoreEmptyValues;
 
 	}
 
@@ -113,6 +121,18 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 	}
 
 	/**
+	 * The media type for encoding <code>value</code>. Applies only when value is a
+	 * template snippet. Must be one of <code>application/json</code>,
+	 * <code>text/plain</code>, or <code>application/x-www-form-urlencoded</code>.
+	 * <p>
+	 * API name: {@code media_type}
+	 */
+	@Nullable
+	public final String mediaType() {
+		return this.mediaType;
+	}
+
+	/**
 	 * The origin field which will be appended to <code>field</code>, cannot set
 	 * <code>value</code> simultaneously.
 	 * <p>
@@ -134,6 +154,18 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		return this.allowDuplicates;
 	}
 
+	/**
+	 * If <code>true</code>, the processor will skip empty values from the source
+	 * (e.g. empty strings, and null values), rather than appending them to the
+	 * field.
+	 * <p>
+	 * API name: {@code ignore_empty_values}
+	 */
+	@Nullable
+	public final Boolean ignoreEmptyValues() {
+		return this.ignoreEmptyValues;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -150,6 +182,11 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 			generator.writeEnd();
 
 		}
+		if (this.mediaType != null) {
+			generator.writeKey("media_type");
+			generator.write(this.mediaType);
+
+		}
 		if (this.copyFrom != null) {
 			generator.writeKey("copy_from");
 			generator.write(this.copyFrom);
@@ -158,6 +195,11 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		if (this.allowDuplicates != null) {
 			generator.writeKey("allow_duplicates");
 			generator.write(this.allowDuplicates);
+
+		}
+		if (this.ignoreEmptyValues != null) {
+			generator.writeKey("ignore_empty_values");
+			generator.write(this.ignoreEmptyValues);
 
 		}
 
@@ -178,11 +220,28 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		private List<JsonData> value;
 
 		@Nullable
+		private String mediaType;
+
+		@Nullable
 		private String copyFrom;
 
 		@Nullable
 		private Boolean allowDuplicates;
 
+		@Nullable
+		private Boolean ignoreEmptyValues;
+
+		public Builder() {
+		}
+		private Builder(AppendProcessor instance) {
+			this.field = instance.field;
+			this.value = instance.value;
+			this.mediaType = instance.mediaType;
+			this.copyFrom = instance.copyFrom;
+			this.allowDuplicates = instance.allowDuplicates;
+			this.ignoreEmptyValues = instance.ignoreEmptyValues;
+
+		}
 		/**
 		 * Required - The field to be appended to. Supports template snippets.
 		 * <p>
@@ -220,6 +279,18 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 
 		/**
+		 * The media type for encoding <code>value</code>. Applies only when value is a
+		 * template snippet. Must be one of <code>application/json</code>,
+		 * <code>text/plain</code>, or <code>application/x-www-form-urlencoded</code>.
+		 * <p>
+		 * API name: {@code media_type}
+		 */
+		public final Builder mediaType(@Nullable String value) {
+			this.mediaType = value;
+			return this;
+		}
+
+		/**
 		 * The origin field which will be appended to <code>field</code>, cannot set
 		 * <code>value</code> simultaneously.
 		 * <p>
@@ -241,6 +312,18 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 			return this;
 		}
 
+		/**
+		 * If <code>true</code>, the processor will skip empty values from the source
+		 * (e.g. empty strings, and null values), rather than appending them to the
+		 * field.
+		 * <p>
+		 * API name: {@code ignore_empty_values}
+		 */
+		public final Builder ignoreEmptyValues(@Nullable Boolean value) {
+			this.ignoreEmptyValues = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -259,6 +342,12 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -271,8 +360,10 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::value, JsonpDeserializer.arrayDeserializer(JsonData._DESERIALIZER), "value");
+		op.add(Builder::mediaType, JsonpDeserializer.stringDeserializer(), "media_type");
 		op.add(Builder::copyFrom, JsonpDeserializer.stringDeserializer(), "copy_from");
 		op.add(Builder::allowDuplicates, JsonpDeserializer.booleanDeserializer(), "allow_duplicates");
+		op.add(Builder::ignoreEmptyValues, JsonpDeserializer.booleanDeserializer(), "ignore_empty_values");
 
 	}
 

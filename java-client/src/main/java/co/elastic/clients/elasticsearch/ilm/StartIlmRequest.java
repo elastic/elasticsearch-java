@@ -55,10 +55,11 @@ import javax.annotation.Nullable;
 // typedef: ilm.start.Request
 
 /**
- * Start the ILM plugin. Start the index lifecycle management plugin if it is
- * currently stopped. ILM is started automatically when the cluster is formed.
- * Restarting ILM is necessary only when it has been stopped using the stop ILM
- * API.
+ * Start the ILM plugin.
+ * <p>
+ * Start the index lifecycle management plugin if it is currently stopped. ILM
+ * is started automatically when the cluster is formed. Restarting ILM is
+ * necessary only when it has been stopped using the stop ILM API.
  * 
  * @see <a href="../doc-files/api-spec.html#ilm.start.Request">API
  *      specification</a>
@@ -119,6 +120,13 @@ public class StartIlmRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(StartIlmRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -179,6 +187,12 @@ public class StartIlmRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

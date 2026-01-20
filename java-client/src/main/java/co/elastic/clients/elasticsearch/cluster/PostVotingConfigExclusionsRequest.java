@@ -61,16 +61,17 @@ import javax.annotation.Nullable;
 // typedef: cluster.post_voting_config_exclusions.Request
 
 /**
- * Update voting configuration exclusions. Update the cluster voting config
- * exclusions by node IDs or node names. By default, if there are more than
- * three master-eligible nodes in the cluster and you remove fewer than half of
- * the master-eligible nodes in the cluster at once, the voting configuration
- * automatically shrinks. If you want to shrink the voting configuration to
- * contain fewer than three nodes or to remove half or more of the
- * master-eligible nodes in the cluster at once, use this API to remove
- * departing nodes from the voting configuration manually. The API adds an entry
- * for each specified node to the cluster’s voting configuration exclusions
- * list. It then waits until the cluster has reconfigured its voting
+ * Update voting configuration exclusions.
+ * <p>
+ * Update the cluster voting config exclusions by node IDs or node names. By
+ * default, if there are more than three master-eligible nodes in the cluster
+ * and you remove fewer than half of the master-eligible nodes in the cluster at
+ * once, the voting configuration automatically shrinks. If you want to shrink
+ * the voting configuration to contain fewer than three nodes or to remove half
+ * or more of the master-eligible nodes in the cluster at once, use this API to
+ * remove departing nodes from the voting configuration manually. The API adds
+ * an entry for each specified node to the cluster’s voting configuration
+ * exclusions list. It then waits until the cluster has reconfigured its voting
  * configuration to exclude the specified nodes.
  * <p>
  * Clusters should have no voting configuration exclusions in normal operation.
@@ -194,6 +195,15 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PostVotingConfigExclusionsRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.nodeIds = instance.nodeIds;
+			this.nodeNames = instance.nodeNames;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node.
 		 * <p>
@@ -308,6 +318,12 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

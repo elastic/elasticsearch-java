@@ -268,6 +268,17 @@ public class ChunkRescorerChunkingSettings implements JsonpSerializable {
 		@Nullable
 		private Integer sentenceOverlap;
 
+		public Builder() {
+		}
+		private Builder(ChunkRescorerChunkingSettings instance) {
+			this.strategy = instance.strategy;
+			this.separatorGroup = instance.separatorGroup;
+			this.separators = instance.separators;
+			this.maxChunkSize = instance.maxChunkSize;
+			this.overlap = instance.overlap;
+			this.sentenceOverlap = instance.sentenceOverlap;
+
+		}
 		/**
 		 * The chunking strategy: <code>sentence</code>, <code>word</code>,
 		 * <code>none</code> or <code>recursive</code>.
@@ -408,6 +419,12 @@ public class ChunkRescorerChunkingSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

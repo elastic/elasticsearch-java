@@ -57,8 +57,10 @@ import javax.annotation.Nullable;
 // typedef: rollup.stop_job.Request
 
 /**
- * Stop rollup jobs. If you try to stop a job that does not exist, an exception
- * occurs. If you try to stop a job that is already stopped, nothing happens.
+ * Stop rollup jobs.
+ * <p>
+ * If you try to stop a job that does not exist, an exception occurs. If you try
+ * to stop a job that is already stopped, nothing happens.
  * <p>
  * Since only a stopped job can be deleted, it can be useful to block the API
  * until the indexer has fully stopped. This is accomplished with the
@@ -153,6 +155,14 @@ public class StopJobRequest extends RequestBase {
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(StopJobRequest instance) {
+			this.id = instance.id;
+			this.timeout = instance.timeout;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * Required - Identifier for the rollup job.
 		 * <p>
@@ -222,6 +232,12 @@ public class StopJobRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

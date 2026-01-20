@@ -58,7 +58,9 @@ import javax.annotation.Nullable;
 // typedef: enrich.get_policy.Request
 
 /**
- * Get an enrich policy. Returns information about an enrich policy.
+ * Get an enrich policy.
+ * <p>
+ * Returns information about an enrich policy.
  * 
  * @see <a href="../doc-files/api-spec.html#enrich.get_policy.Request">API
  *      specification</a>
@@ -118,6 +120,13 @@ public class GetPolicyRequest extends RequestBase {
 		@Nullable
 		private List<String> name;
 
+		public Builder() {
+		}
+		private Builder(GetPolicyRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node.
 		 * <p>
@@ -181,6 +190,12 @@ public class GetPolicyRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

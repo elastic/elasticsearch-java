@@ -46,6 +46,10 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum TaskTypeGoogleVertexAI implements JsonEnum {
+	ChatCompletion("chat_completion"),
+
+	Completion("completion"),
+
 	TextEmbedding("text_embedding"),
 
 	Rerank("rerank"),

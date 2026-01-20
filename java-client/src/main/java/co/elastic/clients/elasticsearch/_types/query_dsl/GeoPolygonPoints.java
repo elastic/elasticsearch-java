@@ -120,6 +120,12 @@ public class GeoPolygonPoints implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GeoPolygonPoints> {
 		private List<GeoLocation> points;
 
+		public Builder() {
+		}
+		private Builder(GeoPolygonPoints instance) {
+			this.points = instance.points;
+
+		}
 		/**
 		 * Required - API name: {@code points}
 		 * <p>
@@ -167,6 +173,12 @@ public class GeoPolygonPoints implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

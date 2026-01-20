@@ -112,6 +112,12 @@ public class NodeInfoIngestInfo implements JsonpSerializable {
 				ObjectBuilder<NodeInfoIngestInfo> {
 		private NodeInfoIngestDownloader downloader;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoIngestInfo instance) {
+			this.downloader = instance.downloader;
+
+		}
 		/**
 		 * Required - API name: {@code downloader}
 		 */
@@ -146,6 +152,12 @@ public class NodeInfoIngestInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

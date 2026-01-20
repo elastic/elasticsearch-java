@@ -45,9 +45,11 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -216,8 +218,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	@Nullable
 	private final Boolean requireDataStream;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	@Nullable
 	private final Time timeout;
@@ -247,7 +248,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		this.refresh = builder.refresh;
 		this.requireAlias = builder.requireAlias;
 		this.requireDataStream = builder.requireDataStream;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.timeout = builder.timeout;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
@@ -349,8 +350,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -454,7 +454,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		private Boolean requireDataStream;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private Time timeout;
@@ -473,6 +473,24 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
+		public Builder() {
+		}
+		private Builder(CreateRequest<TDocument> instance) {
+			this.id = instance.id;
+			this.includeSourceOnError = instance.includeSourceOnError;
+			this.index = instance.index;
+			this.pipeline = instance.pipeline;
+			this.refresh = instance.refresh;
+			this.requireAlias = instance.requireAlias;
+			this.requireDataStream = instance.requireDataStream;
+			this.routing = instance.routing;
+			this.timeout = instance.timeout;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+			this.waitForActiveShards = instance.waitForActiveShards;
+			this.document = instance.document;
+
+		}
 		/**
 		 * Required - A unique identifier for the document. To automatically generate a
 		 * document ID, use the <code>POST /&lt;target&gt;/_doc/</code> request format.
@@ -561,9 +579,23 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 		 * A custom value that is used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder<TDocument> routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder<TDocument> routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * A custom value that is used to route operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder<TDocument> routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -702,6 +734,12 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	}
 
 	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
+	/**
 	 * Json deserializer for {@link CreateRequest} based on named deserializers
 	 * provided by the calling {@code JsonMapper}.
 	 */
@@ -779,8 +817,8 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 				if (request.pipeline != null) {
 					params.put("pipeline", request.pipeline);
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.includeSourceOnError != null) {
 					params.put("include_source_on_error", String.valueOf(request.includeSourceOnError));

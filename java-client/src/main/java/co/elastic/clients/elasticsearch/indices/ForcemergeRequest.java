@@ -60,9 +60,11 @@ import javax.annotation.Nullable;
 // typedef: indices.forcemerge.Request
 
 /**
- * Force a merge. Perform the force merge operation on the shards of one or more
- * indices. For data streams, the API forces a merge on the shards of the
- * stream's backing indices.
+ * Force a merge.
+ * <p>
+ * Perform the force merge operation on the shards of one or more indices. For
+ * data streams, the API forces a merge on the shards of the stream's backing
+ * indices.
  * <p>
  * Merging reduces the number of segments in each shard by merging some of them
  * together and also frees up the space used by deleted documents. Merging
@@ -204,7 +206,6 @@ public class ForcemergeRequest extends RequestBase {
 
 	/**
 	 * Specify whether the index should be flushed after performing the operation
-	 * (default: true)
 	 * <p>
 	 * API name: {@code flush}
 	 */
@@ -255,7 +256,7 @@ public class ForcemergeRequest extends RequestBase {
 	}
 
 	/**
-	 * Should the request wait until the force merge is completed.
+	 * Should the request wait until the force merge is completed
 	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
@@ -297,6 +298,19 @@ public class ForcemergeRequest extends RequestBase {
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(ForcemergeRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.flush = instance.flush;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.maxNumSegments = instance.maxNumSegments;
+			this.onlyExpungeDeletes = instance.onlyExpungeDeletes;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
 		 * indices. (This includes <code>_all</code> string or when no indices have been
@@ -337,7 +351,6 @@ public class ForcemergeRequest extends RequestBase {
 
 		/**
 		 * Specify whether the index should be flushed after performing the operation
-		 * (default: true)
 		 * <p>
 		 * API name: {@code flush}
 		 */
@@ -404,7 +417,7 @@ public class ForcemergeRequest extends RequestBase {
 		}
 
 		/**
-		 * Should the request wait until the force merge is completed.
+		 * Should the request wait until the force merge is completed
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
@@ -431,6 +444,12 @@ public class ForcemergeRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -167,6 +167,14 @@ public class DetectorUpdate implements JsonpSerializable {
 		@Nullable
 		private List<DetectionRule> customRules;
 
+		public Builder() {
+		}
+		private Builder(DetectorUpdate instance) {
+			this.detectorIndex = instance.detectorIndex;
+			this.description = instance.description;
+			this.customRules = instance.customRules;
+
+		}
 		/**
 		 * Required - A unique identifier for the detector. This identifier is based on
 		 * the order of the detectors in the <code>analysis_config</code>, starting at
@@ -251,6 +259,12 @@ public class DetectorUpdate implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

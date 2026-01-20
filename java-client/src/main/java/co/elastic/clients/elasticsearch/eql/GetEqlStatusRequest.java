@@ -56,8 +56,10 @@ import javax.annotation.Nullable;
 // typedef: eql.get_status.Request
 
 /**
- * Get the async EQL status. Get the current status for an async EQL search or a
- * stored synchronous EQL search without returning results.
+ * Get the async EQL status.
+ * <p>
+ * Get the current status for an async EQL search or a stored synchronous EQL
+ * search without returning results.
  * 
  * @see <a href="../doc-files/api-spec.html#eql.get_status.Request">API
  *      specification</a>
@@ -98,6 +100,12 @@ public class GetEqlStatusRequest extends RequestBase {
 				ObjectBuilder<GetEqlStatusRequest> {
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(GetEqlStatusRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Required - Identifier for the search.
 		 * <p>
@@ -126,6 +134,12 @@ public class GetEqlStatusRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

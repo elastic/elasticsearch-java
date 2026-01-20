@@ -59,8 +59,9 @@ import javax.annotation.Nullable;
 // typedef: nodes.clear_repositories_metering_archive.Request
 
 /**
- * Clear the archived repositories metering. Clear the archived repositories
- * metering information in the cluster.
+ * Clear the archived repositories metering.
+ * <p>
+ * Clear the archived repositories metering information in the cluster.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#nodes.clear_repositories_metering_archive.Request">API
@@ -119,6 +120,13 @@ public class ClearRepositoriesMeteringArchiveRequest extends RequestBase {
 
 		private List<String> nodeId;
 
+		public Builder() {
+		}
+		private Builder(ClearRepositoriesMeteringArchiveRequest instance) {
+			this.maxArchiveVersion = instance.maxArchiveVersion;
+			this.nodeId = instance.nodeId;
+
+		}
 		/**
 		 * Required - Specifies the maximum <code>archive_version</code> to be cleared
 		 * from the archive.
@@ -174,6 +182,12 @@ public class ClearRepositoriesMeteringArchiveRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

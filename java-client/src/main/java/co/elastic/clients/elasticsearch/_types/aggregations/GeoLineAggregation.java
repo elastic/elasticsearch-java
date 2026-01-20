@@ -64,6 +64,7 @@ import javax.annotation.Nullable;
 public class GeoLineAggregation implements AggregationVariant, JsonpSerializable {
 	private final GeoLinePoint point;
 
+	@Nullable
 	private final GeoLineSort sort;
 
 	@Nullable
@@ -80,7 +81,7 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 	private GeoLineAggregation(Builder builder) {
 
 		this.point = ApiTypeHelper.requireNonNull(builder.point, this, "point");
-		this.sort = ApiTypeHelper.requireNonNull(builder.sort, this, "sort");
+		this.sort = builder.sort;
 		this.includeSort = builder.includeSort;
 		this.sortOrder = builder.sortOrder;
 		this.size = builder.size;
@@ -109,13 +110,14 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 	}
 
 	/**
-	 * Required - The name of the numeric field to use as the sort key for ordering
-	 * the points. When the <code>geo_line</code> aggregation is nested inside a
+	 * The name of the numeric field to use as the sort key for ordering the points.
+	 * When the <code>geo_line</code> aggregation is nested inside a
 	 * <code>time_series</code> aggregation, this field defaults to
 	 * <code>@timestamp</code>, and any other value will result in error.
 	 * <p>
 	 * API name: {@code sort}
 	 */
+	@Nullable
 	public final GeoLineSort sort() {
 		return this.sort;
 	}
@@ -166,9 +168,11 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 		generator.writeKey("point");
 		this.point.serialize(generator, mapper);
 
-		generator.writeKey("sort");
-		this.sort.serialize(generator, mapper);
+		if (this.sort != null) {
+			generator.writeKey("sort");
+			this.sort.serialize(generator, mapper);
 
+		}
 		if (this.includeSort != null) {
 			generator.writeKey("include_sort");
 			generator.write(this.includeSort);
@@ -202,6 +206,7 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 				ObjectBuilder<GeoLineAggregation> {
 		private GeoLinePoint point;
 
+		@Nullable
 		private GeoLineSort sort;
 
 		@Nullable
@@ -213,6 +218,16 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(GeoLineAggregation instance) {
+			this.point = instance.point;
+			this.sort = instance.sort;
+			this.includeSort = instance.includeSort;
+			this.sortOrder = instance.sortOrder;
+			this.size = instance.size;
+
+		}
 		/**
 		 * Required - The name of the geo_point field.
 		 * <p>
@@ -233,21 +248,21 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 		}
 
 		/**
-		 * Required - The name of the numeric field to use as the sort key for ordering
-		 * the points. When the <code>geo_line</code> aggregation is nested inside a
+		 * The name of the numeric field to use as the sort key for ordering the points.
+		 * When the <code>geo_line</code> aggregation is nested inside a
 		 * <code>time_series</code> aggregation, this field defaults to
 		 * <code>@timestamp</code>, and any other value will result in error.
 		 * <p>
 		 * API name: {@code sort}
 		 */
-		public final Builder sort(GeoLineSort value) {
+		public final Builder sort(@Nullable GeoLineSort value) {
 			this.sort = value;
 			return this;
 		}
 
 		/**
-		 * Required - The name of the numeric field to use as the sort key for ordering
-		 * the points. When the <code>geo_line</code> aggregation is nested inside a
+		 * The name of the numeric field to use as the sort key for ordering the points.
+		 * When the <code>geo_line</code> aggregation is nested inside a
 		 * <code>time_series</code> aggregation, this field defaults to
 		 * <code>@timestamp</code>, and any other value will result in error.
 		 * <p>
@@ -307,6 +322,12 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

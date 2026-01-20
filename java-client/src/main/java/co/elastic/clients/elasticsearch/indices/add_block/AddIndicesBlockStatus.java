@@ -129,6 +129,13 @@ public class AddIndicesBlockStatus implements JsonpSerializable {
 
 		private Boolean blocked;
 
+		public Builder() {
+		}
+		private Builder(AddIndicesBlockStatus instance) {
+			this.name = instance.name;
+			this.blocked = instance.blocked;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -163,6 +170,12 @@ public class AddIndicesBlockStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

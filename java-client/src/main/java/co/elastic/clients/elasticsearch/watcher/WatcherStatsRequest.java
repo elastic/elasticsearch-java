@@ -58,8 +58,10 @@ import javax.annotation.Nullable;
 // typedef: watcher.stats.Request
 
 /**
- * Get Watcher statistics. This API always returns basic metrics. You retrieve
- * more metrics by using the metric parameter.
+ * Get Watcher statistics.
+ * <p>
+ * This API always returns basic metrics. You retrieve more metrics by using the
+ * metric parameter.
  * 
  * @see <a href="../doc-files/api-spec.html#watcher.stats.Request">API
  *      specification</a>
@@ -118,6 +120,13 @@ public class WatcherStatsRequest extends RequestBase {
 		@Nullable
 		private List<WatcherMetric> metric;
 
+		public Builder() {
+		}
+		private Builder(WatcherStatsRequest instance) {
+			this.emitStacktraces = instance.emitStacktraces;
+			this.metric = instance.metric;
+
+		}
 		/**
 		 * Defines whether stack traces are generated for each watch that is running.
 		 * <p>
@@ -170,6 +179,12 @@ public class WatcherStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

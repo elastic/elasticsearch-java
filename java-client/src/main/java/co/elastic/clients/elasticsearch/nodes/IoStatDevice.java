@@ -233,6 +233,17 @@ public class IoStatDevice implements JsonpSerializable {
 		@Nullable
 		private Long writeOperations;
 
+		public Builder() {
+		}
+		private Builder(IoStatDevice instance) {
+			this.deviceName = instance.deviceName;
+			this.operations = instance.operations;
+			this.readKilobytes = instance.readKilobytes;
+			this.readOperations = instance.readOperations;
+			this.writeKilobytes = instance.writeKilobytes;
+			this.writeOperations = instance.writeOperations;
+
+		}
 		/**
 		 * The Linux device name.
 		 * <p>
@@ -316,6 +327,12 @@ public class IoStatDevice implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

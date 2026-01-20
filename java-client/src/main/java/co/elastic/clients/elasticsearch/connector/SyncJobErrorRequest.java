@@ -58,8 +58,10 @@ import javax.annotation.Nullable;
 // typedef: connector.sync_job_error.Request
 
 /**
- * Set a connector sync job error. Set the <code>error</code> field for a
- * connector sync job and set its <code>status</code> to <code>error</code>.
+ * Set a connector sync job error.
+ * <p>
+ * Set the <code>error</code> field for a connector sync job and set its
+ * <code>status</code> to <code>error</code>.
  * <p>
  * To sync data using self-managed connectors, you need to deploy the Elastic
  * connector service on your own infrastructure. This service runs automatically
@@ -135,6 +137,13 @@ public class SyncJobErrorRequest extends RequestBase implements JsonpSerializabl
 
 		private String error;
 
+		public Builder() {
+		}
+		private Builder(SyncJobErrorRequest instance) {
+			this.connectorSyncJobId = instance.connectorSyncJobId;
+			this.error = instance.error;
+
+		}
 		/**
 		 * Required - The unique identifier for the connector sync job.
 		 * <p>
@@ -173,6 +182,12 @@ public class SyncJobErrorRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

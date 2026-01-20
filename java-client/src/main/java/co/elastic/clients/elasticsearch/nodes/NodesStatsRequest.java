@@ -19,10 +19,12 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
+import co.elastic.clients.elasticsearch._types.CommonStatsFlag;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.NodeStatsLevel;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch.nodes.stats.NodeStatsMetric;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -60,8 +62,10 @@ import javax.annotation.Nullable;
 // typedef: nodes.stats.Request
 
 /**
- * Get node statistics. Get statistics for nodes in a cluster. By default, all
- * stats are returned. You can limit the returned information by using metrics.
+ * Get node statistics.
+ * <p>
+ * Get statistics for nodes in a cluster. By default, all stats are returned.
+ * You can limit the returned information by using metrics.
  * 
  * @see <a href="../doc-files/api-spec.html#nodes.stats.Request">API
  *      specification</a>
@@ -83,12 +87,12 @@ public class NodesStatsRequest extends RequestBase {
 	@Nullable
 	private final Boolean includeUnloadedSegments;
 
-	private final List<String> indexMetric;
+	private final List<CommonStatsFlag> indexMetric;
 
 	@Nullable
 	private final NodeStatsLevel level;
 
-	private final List<String> metric;
+	private final List<NodeStatsMetric> metric;
 
 	private final List<String> nodeId;
 
@@ -188,7 +192,7 @@ public class NodesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index_metric}
 	 */
-	public final List<String> indexMetric() {
+	public final List<CommonStatsFlag> indexMetric() {
 		return this.indexMetric;
 	}
 
@@ -204,11 +208,11 @@ public class NodesStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Limit the information returned to the specified metrics
+	 * Limits the information returned to the specific metrics.
 	 * <p>
 	 * API name: {@code metric}
 	 */
-	public final List<String> metric() {
+	public final List<NodeStatsMetric> metric() {
 		return this.metric;
 	}
 
@@ -269,13 +273,13 @@ public class NodesStatsRequest extends RequestBase {
 		private Boolean includeUnloadedSegments;
 
 		@Nullable
-		private List<String> indexMetric;
+		private List<CommonStatsFlag> indexMetric;
 
 		@Nullable
 		private NodeStatsLevel level;
 
 		@Nullable
-		private List<String> metric;
+		private List<NodeStatsMetric> metric;
 
 		@Nullable
 		private List<String> nodeId;
@@ -286,6 +290,23 @@ public class NodesStatsRequest extends RequestBase {
 		@Nullable
 		private List<String> types;
 
+		public Builder() {
+		}
+		private Builder(NodesStatsRequest instance) {
+			this.completionFields = instance.completionFields;
+			this.fielddataFields = instance.fielddataFields;
+			this.fields = instance.fields;
+			this.groups = instance.groups;
+			this.includeSegmentFileSizes = instance.includeSegmentFileSizes;
+			this.includeUnloadedSegments = instance.includeUnloadedSegments;
+			this.indexMetric = instance.indexMetric;
+			this.level = instance.level;
+			this.metric = instance.metric;
+			this.nodeId = instance.nodeId;
+			this.timeout = instance.timeout;
+			this.types = instance.types;
+
+		}
 		/**
 		 * Comma-separated list or wildcard expressions of fields to include in
 		 * fielddata and suggest statistics.
@@ -404,7 +425,7 @@ public class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indexMetric</code>.
 		 */
-		public final Builder indexMetric(List<String> list) {
+		public final Builder indexMetric(List<CommonStatsFlag> list) {
 			this.indexMetric = _listAddAll(this.indexMetric, list);
 			return this;
 		}
@@ -417,7 +438,7 @@ public class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * Adds one or more values to <code>indexMetric</code>.
 		 */
-		public final Builder indexMetric(String value, String... values) {
+		public final Builder indexMetric(CommonStatsFlag value, CommonStatsFlag... values) {
 			this.indexMetric = _listAdd(this.indexMetric, value, values);
 			return this;
 		}
@@ -434,25 +455,25 @@ public class NodesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Limit the information returned to the specified metrics
+		 * Limits the information returned to the specific metrics.
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metric</code>.
 		 */
-		public final Builder metric(List<String> list) {
+		public final Builder metric(List<NodeStatsMetric> list) {
 			this.metric = _listAddAll(this.metric, list);
 			return this;
 		}
 
 		/**
-		 * Limit the information returned to the specified metrics
+		 * Limits the information returned to the specific metrics.
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
 		 * Adds one or more values to <code>metric</code>.
 		 */
-		public final Builder metric(String value, String... values) {
+		public final Builder metric(NodeStatsMetric value, NodeStatsMetric... values) {
 			this.metric = _listAdd(this.metric, value, values);
 			return this;
 		}
@@ -544,6 +565,12 @@ public class NodesStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -593,8 +620,8 @@ public class NodesStatsRequest extends RequestBase {
 					buf.append("/_nodes");
 					buf.append("/stats");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == (_nodeId | _metric)) {
@@ -605,8 +632,8 @@ public class NodesStatsRequest extends RequestBase {
 							buf);
 					buf.append("/stats");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == (_metric | _indexMetric)) {
@@ -614,11 +641,11 @@ public class NodesStatsRequest extends RequestBase {
 					buf.append("/_nodes");
 					buf.append("/stats");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.indexMetric.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(
+							request.indexMetric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == (_nodeId | _metric | _indexMetric)) {
@@ -629,11 +656,11 @@ public class NodesStatsRequest extends RequestBase {
 							buf);
 					buf.append("/stats");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.indexMetric.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(
+							request.indexMetric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -662,22 +689,26 @@ public class NodesStatsRequest extends RequestBase {
 					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_metric)) {
-					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("metric",
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_nodeId | _metric)) {
 					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
-					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("metric",
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_metric | _indexMetric)) {
-					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("metric",
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 					params.put("indexMetric",
-							request.indexMetric.stream().map(v -> v).collect(Collectors.joining(",")));
+							request.indexMetric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_nodeId | _metric | _indexMetric)) {
 					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
-					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("metric",
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 					params.put("indexMetric",
-							request.indexMetric.stream().map(v -> v).collect(Collectors.joining(",")));
+							request.indexMetric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				return params;
 			},

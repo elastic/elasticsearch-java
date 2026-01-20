@@ -155,6 +155,14 @@ public class SyncJobPostRequest extends RequestBase implements JsonpSerializable
 		@Nullable
 		private SyncJobTriggerMethod triggerMethod;
 
+		public Builder() {
+		}
+		private Builder(SyncJobPostRequest instance) {
+			this.id = instance.id;
+			this.jobType = instance.jobType;
+			this.triggerMethod = instance.triggerMethod;
+
+		}
 		/**
 		 * Required - The id of the associated connector
 		 * <p>
@@ -199,6 +207,12 @@ public class SyncJobPostRequest extends RequestBase implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

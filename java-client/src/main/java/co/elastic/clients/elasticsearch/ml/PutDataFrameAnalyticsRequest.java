@@ -62,10 +62,12 @@ import javax.annotation.Nullable;
 // typedef: ml.put_data_frame_analytics.Request
 
 /**
- * Create a data frame analytics job. This API creates a data frame analytics
- * job that performs an analysis on the source indices and stores the outcome in
- * a destination index. By default, the query used in the source configuration
- * is <code>{&quot;match_all&quot;: {}}</code>.
+ * Create a data frame analytics job.
+ * <p>
+ * This API creates a data frame analytics job that performs an analysis on the
+ * source indices and stores the outcome in a destination index. By default, the
+ * query used in the source configuration is
+ * <code>{&quot;match_all&quot;: {}}</code>.
  * <p>
  * If the destination index does not exist, it is created automatically when you
  * start the job.
@@ -411,6 +413,23 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		@Nullable
 		private String version;
 
+		public Builder() {
+		}
+		private Builder(PutDataFrameAnalyticsRequest instance) {
+			this.meta = instance.meta;
+			this.allowLazyStart = instance.allowLazyStart;
+			this.analysis = instance.analysis;
+			this.analyzedFields = instance.analyzedFields;
+			this.description = instance.description;
+			this.dest = instance.dest;
+			this.headers = instance.headers;
+			this.id = instance.id;
+			this.maxNumThreads = instance.maxNumThreads;
+			this.modelMemoryLimit = instance.modelMemoryLimit;
+			this.source = instance.source;
+			this.version = instance.version;
+
+		}
 		/**
 		 * API name: {@code _meta}
 		 * <p>
@@ -696,6 +715,12 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

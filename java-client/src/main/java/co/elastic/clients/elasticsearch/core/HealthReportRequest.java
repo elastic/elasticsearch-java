@@ -60,9 +60,10 @@ import javax.annotation.Nullable;
 // typedef: _global.health_report.Request
 
 /**
- * Get the cluster health. Get a report with the health status of an
- * Elasticsearch cluster. The report contains a list of indicators that compose
- * Elasticsearch functionality.
+ * Get the cluster health.
+ * <p>
+ * Get a report with the health status of an Elasticsearch cluster. The report
+ * contains a list of indicators that compose Elasticsearch functionality.
  * <p>
  * Each indicator has a health status of: green, unknown, yellow or red. The
  * indicator will provide an explanation and metadata describing the reason for
@@ -180,6 +181,15 @@ public class HealthReportRequest extends RequestBase {
 		@Nullable
 		private Boolean verbose;
 
+		public Builder() {
+		}
+		private Builder(HealthReportRequest instance) {
+			this.feature = instance.feature;
+			this.size = instance.size;
+			this.timeout = instance.timeout;
+			this.verbose = instance.verbose;
+
+		}
 		/**
 		 * A feature of the cluster, as returned by the top-level health report API.
 		 * <p>
@@ -261,6 +271,12 @@ public class HealthReportRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

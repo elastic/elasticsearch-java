@@ -59,8 +59,10 @@ import javax.annotation.Nullable;
 // typedef: indices.delete_data_lifecycle.Request
 
 /**
- * Delete data stream lifecycles. Removes the data stream lifecycle from a data
- * stream, rendering it not managed by the data stream lifecycle.
+ * Delete data stream lifecycles.
+ * <p>
+ * Removes the data stream lifecycle from a data stream, rendering it not
+ * managed by the data stream lifecycle.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.delete_data_lifecycle.Request">API
@@ -104,7 +106,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * The period to wait for a connection to the master node.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -115,7 +117,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 
 	/**
 	 * Required - A comma-separated list of data streams of which the data stream
-	 * lifecycle will be deleted; use <code>*</code> to get all data streams
+	 * lifecycle will be deleted. Use <code>*</code> to get all data streams
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -124,7 +126,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit timestamp for the document
+	 * The period to wait for a response.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -153,6 +155,15 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeleteDataLifecycleRequest instance) {
+			this.expandWildcards = instance.expandWildcards;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Whether wildcard expressions should get expanded to open or closed indices
 		 * (default: open)
@@ -180,7 +191,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -190,7 +201,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -200,7 +211,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 
 		/**
 		 * Required - A comma-separated list of data streams of which the data stream
-		 * lifecycle will be deleted; use <code>*</code> to get all data streams
+		 * lifecycle will be deleted. Use <code>*</code> to get all data streams
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -213,7 +224,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 
 		/**
 		 * Required - A comma-separated list of data streams of which the data stream
-		 * lifecycle will be deleted; use <code>*</code> to get all data streams
+		 * lifecycle will be deleted. Use <code>*</code> to get all data streams
 		 * <p>
 		 * API name: {@code name}
 		 * <p>
@@ -225,7 +236,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit timestamp for the document
+		 * The period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -235,7 +246,7 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit timestamp for the document
+		 * The period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -261,6 +272,12 @@ public class DeleteDataLifecycleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

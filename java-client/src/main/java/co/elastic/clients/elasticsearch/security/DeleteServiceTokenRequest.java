@@ -109,8 +109,8 @@ public class DeleteServiceTokenRequest extends RequestBase {
 	}
 
 	/**
-	 * If <code>true</code> then refresh the affected shards to make this operation
-	 * visible to search, if <code>wait_for</code> (the default) then wait for a
+	 * If <code>true</code> (the default) then refresh the affected shards to make
+	 * this operation visible to search, if <code>wait_for</code> then wait for a
 	 * refresh to make this operation visible to search, if <code>false</code> then
 	 * do nothing with refreshes.
 	 * <p>
@@ -148,6 +148,15 @@ public class DeleteServiceTokenRequest extends RequestBase {
 
 		private String service;
 
+		public Builder() {
+		}
+		private Builder(DeleteServiceTokenRequest instance) {
+			this.name = instance.name;
+			this.namespace = instance.namespace;
+			this.refresh = instance.refresh;
+			this.service = instance.service;
+
+		}
 		/**
 		 * Required - The name of the service account token.
 		 * <p>
@@ -169,8 +178,8 @@ public class DeleteServiceTokenRequest extends RequestBase {
 		}
 
 		/**
-		 * If <code>true</code> then refresh the affected shards to make this operation
-		 * visible to search, if <code>wait_for</code> (the default) then wait for a
+		 * If <code>true</code> (the default) then refresh the affected shards to make
+		 * this operation visible to search, if <code>wait_for</code> then wait for a
 		 * refresh to make this operation visible to search, if <code>false</code> then
 		 * do nothing with refreshes.
 		 * <p>
@@ -209,6 +218,12 @@ public class DeleteServiceTokenRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -59,9 +59,11 @@ import javax.annotation.Nullable;
 // typedef: indices.refresh.Request
 
 /**
- * Refresh an index. A refresh makes recent operations performed on one or more
- * indices available for search. For data streams, the API runs the refresh
- * operation on the stream’s backing indices.
+ * Refresh an index.
+ * <p>
+ * A refresh makes recent operations performed on one or more indices available
+ * for search. For data streams, the API runs the refresh operation on the
+ * stream’s backing indices.
  * <p>
  * By default, Elasticsearch periodically refreshes indices every second, but
  * only on indices that have received one search request or more in the last 30
@@ -179,6 +181,15 @@ public class RefreshRequest extends RequestBase {
 		@Nullable
 		private List<String> index;
 
+		public Builder() {
+		}
+		private Builder(RefreshRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -279,6 +290,12 @@ public class RefreshRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

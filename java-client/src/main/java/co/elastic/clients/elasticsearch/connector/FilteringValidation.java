@@ -144,6 +144,13 @@ public class FilteringValidation implements JsonpSerializable {
 
 		private List<String> messages;
 
+		public Builder() {
+		}
+		private Builder(FilteringValidation instance) {
+			this.ids = instance.ids;
+			this.messages = instance.messages;
+
+		}
 		/**
 		 * Required - API name: {@code ids}
 		 * <p>
@@ -202,6 +209,12 @@ public class FilteringValidation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.indices.put_index_template;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.Alias;
 import co.elastic.clients.elasticsearch.indices.DataStreamLifecycle;
+import co.elastic.clients.elasticsearch.indices.DataStreamOptionsTemplate;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -76,6 +77,9 @@ public class IndexTemplateMapping implements JsonpSerializable {
 	@Nullable
 	private final DataStreamLifecycle lifecycle;
 
+	@Nullable
+	private final DataStreamOptionsTemplate dataStreamOptions;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexTemplateMapping(Builder builder) {
@@ -84,6 +88,7 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		this.mappings = builder.mappings;
 		this.settings = builder.settings;
 		this.lifecycle = builder.lifecycle;
+		this.dataStreamOptions = builder.dataStreamOptions;
 
 	}
 
@@ -133,6 +138,14 @@ public class IndexTemplateMapping implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code data_stream_options}
+	 */
+	@Nullable
+	public final DataStreamOptionsTemplate dataStreamOptions() {
+		return this.dataStreamOptions;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -169,6 +182,11 @@ public class IndexTemplateMapping implements JsonpSerializable {
 			this.lifecycle.serialize(generator, mapper);
 
 		}
+		if (this.dataStreamOptions != null) {
+			generator.writeKey("data_stream_options");
+			this.dataStreamOptions.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -198,6 +216,19 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		@Nullable
 		private DataStreamLifecycle lifecycle;
 
+		@Nullable
+		private DataStreamOptionsTemplate dataStreamOptions;
+
+		public Builder() {
+		}
+		private Builder(IndexTemplateMapping instance) {
+			this.aliases = instance.aliases;
+			this.mappings = instance.mappings;
+			this.settings = instance.settings;
+			this.lifecycle = instance.lifecycle;
+			this.dataStreamOptions = instance.dataStreamOptions;
+
+		}
 		/**
 		 * Aliases to add. If the index template includes a <code>data_stream</code>
 		 * object, these are data stream aliases. Otherwise, these are index aliases.
@@ -297,6 +328,22 @@ public class IndexTemplateMapping implements JsonpSerializable {
 			return this.lifecycle(fn.apply(new DataStreamLifecycle.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code data_stream_options}
+		 */
+		public final Builder dataStreamOptions(@Nullable DataStreamOptionsTemplate value) {
+			this.dataStreamOptions = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code data_stream_options}
+		 */
+		public final Builder dataStreamOptions(
+				Function<DataStreamOptionsTemplate.Builder, ObjectBuilder<DataStreamOptionsTemplate>> fn) {
+			return this.dataStreamOptions(fn.apply(new DataStreamOptionsTemplate.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -315,6 +362,12 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -329,6 +382,7 @@ public class IndexTemplateMapping implements JsonpSerializable {
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 		op.add(Builder::lifecycle, DataStreamLifecycle._DESERIALIZER, "lifecycle");
+		op.add(Builder::dataStreamOptions, DataStreamOptionsTemplate._DESERIALIZER, "data_stream_options");
 
 	}
 

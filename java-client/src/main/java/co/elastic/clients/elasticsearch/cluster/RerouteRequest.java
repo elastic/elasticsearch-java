@@ -63,10 +63,12 @@ import javax.annotation.Nullable;
 // typedef: cluster.reroute.Request
 
 /**
- * Reroute the cluster. Manually change the allocation of individual shards in
- * the cluster. For example, a shard can be moved from one node to another
- * explicitly, an allocation can be canceled, and an unassigned shard can be
- * explicitly allocated to a specific node.
+ * Reroute the cluster.
+ * <p>
+ * Manually change the allocation of individual shards in the cluster. For
+ * example, a shard can be moved from one node to another explicitly, an
+ * allocation can be canceled, and an unassigned shard can be explicitly
+ * allocated to a specific node.
  * <p>
  * It is important to note that after processing any reroute commands
  * Elasticsearch will perform rebalancing as normal (respecting the values of
@@ -181,7 +183,11 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 	 * Limits the information returned to the specified metrics.
 	 * <p>
 	 * API name: {@code metric}
+	 * 
+	 * @deprecated 8.6.0 This parameter has no effect; its use will be forbidden in
+	 *             a future version.
 	 */
+	@Deprecated
 	public final List<String> metric() {
 		return this.metric;
 	}
@@ -260,6 +266,18 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(RerouteRequest instance) {
+			this.commands = instance.commands;
+			this.dryRun = instance.dryRun;
+			this.explain = instance.explain;
+			this.masterTimeout = instance.masterTimeout;
+			this.metric = instance.metric;
+			this.retryFailed = instance.retryFailed;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Defines the commands to perform.
 		 * <p>
@@ -346,7 +364,11 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code metric}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metric</code>.
+		 * 
+		 * @deprecated 8.6.0 This parameter has no effect; its use will be forbidden in
+		 *             a future version.
 		 */
+		@Deprecated
 		public final Builder metric(List<String> list) {
 			this.metric = _listAddAll(this.metric, list);
 			return this;
@@ -358,7 +380,11 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code metric}
 		 * <p>
 		 * Adds one or more values to <code>metric</code>.
+		 * 
+		 * @deprecated 8.6.0 This parameter has no effect; its use will be forbidden in
+		 *             a future version.
 		 */
+		@Deprecated
 		public final Builder metric(String value, String... values) {
 			this.metric = _listAdd(this.metric, value, values);
 			return this;
@@ -414,6 +440,12 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

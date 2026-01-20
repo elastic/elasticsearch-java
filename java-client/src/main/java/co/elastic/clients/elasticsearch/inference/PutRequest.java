@@ -82,9 +82,10 @@ import javax.annotation.Nullable;
  * <code>rerank</code>, <code>sparse_embedding</code>,
  * <code>text_embedding</code>)</li>
  * <li>Anthropic (<code>completion</code>)</li>
- * <li>Azure AI Studio (<code>completion</code>, 'rerank',
+ * <li>Azure AI Studio (<code>completion</code>, <code>rerank</code>,
  * <code>text_embedding</code>)</li>
- * <li>Azure OpenAI (<code>completion</code>, <code>text_embedding</code>)</li>
+ * <li>Azure OpenAI (<code>chat_completion</code>, <code>completion</code>,
+ * <code>text_embedding</code>)</li>
  * <li>Cohere (<code>completion</code>, <code>rerank</code>,
  * <code>text_embedding</code>)</li>
  * <li>DeepSeek (<code>chat_completion</code>, <code>completion</code>)</li>
@@ -96,6 +97,7 @@ import javax.annotation.Nullable;
  * <code>text_embedding</code>)</li>
  * <li>Google Vertex AI (<code>chat_completion</code>, <code>completion</code>,
  * <code>rerank</code>, <code>text_embedding</code>)</li>
+ * <li>Groq (<code>chat_completion</code>)</li>
  * <li>Hugging Face (<code>chat_completion</code>, <code>completion</code>,
  * <code>rerank</code>, <code>text_embedding</code>)</li>
  * <li>JinaAI (<code>rerank</code>, <code>text_embedding</code>)</li>
@@ -103,8 +105,12 @@ import javax.annotation.Nullable;
  * <code>text_embedding</code>)</li>
  * <li>Mistral (<code>chat_completion</code>, <code>completion</code>,
  * <code>text_embedding</code>)</li>
+ * <li>Nvidia (<code>chat_completion</code>, <code>completion</code>,
+ * <code>text_embedding</code>, <code>rerank</code>)</li>
  * <li>OpenAI (<code>chat_completion</code>, <code>completion</code>,
  * <code>text_embedding</code>)</li>
+ * <li>OpenShift AI (<code>chat_completion</code>, <code>completion</code>,
+ * <code>rerank</code>, <code>text_embedding</code>)</li>
  * <li>VoyageAI (<code>rerank</code>, <code>text_embedding</code>)</li>
  * <li>Watsonx inference integration (<code>text_embedding</code>)</li>
  * </ul>
@@ -202,6 +208,15 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 
 		private InferenceEndpoint inferenceConfig;
 
+		public Builder() {
+		}
+		private Builder(PutRequest instance) {
+			this.inferenceId = instance.inferenceId;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+			this.inferenceConfig = instance.inferenceConfig;
+
+		}
 		/**
 		 * Required - The inference Id
 		 * <p>
@@ -285,6 +300,12 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<PutRequest> _DESERIALIZER = createPutRequestDeserializer();
 	protected static JsonpDeserializer<PutRequest> createPutRequestDeserializer() {
 

@@ -58,8 +58,10 @@ import javax.annotation.Nullable;
 // typedef: slm.get_lifecycle.Request
 
 /**
- * Get policy information. Get snapshot lifecycle policy definitions and
- * information about the latest snapshot attempts.
+ * Get policy information.
+ * <p>
+ * Get snapshot lifecycle policy definitions and information about the latest
+ * snapshot attempts.
  * 
  * @see <a href="../doc-files/api-spec.html#slm.get_lifecycle.Request">API
  *      specification</a>
@@ -100,7 +102,7 @@ public class GetLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Comma-separated list of snapshot lifecycle policies to retrieve
+	 * A comma-separated list of snapshot lifecycle policy identifiers.
 	 * <p>
 	 * API name: {@code policy_id}
 	 */
@@ -137,6 +139,14 @@ public class GetLifecycleRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(GetLifecycleRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.policyId = instance.policyId;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -159,7 +169,7 @@ public class GetLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Comma-separated list of snapshot lifecycle policies to retrieve
+		 * A comma-separated list of snapshot lifecycle policy identifiers.
 		 * <p>
 		 * API name: {@code policy_id}
 		 * <p>
@@ -171,7 +181,7 @@ public class GetLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Comma-separated list of snapshot lifecycle policies to retrieve
+		 * A comma-separated list of snapshot lifecycle policy identifiers.
 		 * <p>
 		 * API name: {@code policy_id}
 		 * <p>
@@ -221,6 +231,12 @@ public class GetLifecycleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

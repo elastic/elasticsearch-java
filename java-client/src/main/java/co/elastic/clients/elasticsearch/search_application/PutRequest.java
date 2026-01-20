@@ -136,6 +136,14 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 
 		private SearchApplicationParameters searchApplication;
 
+		public Builder() {
+		}
+		private Builder(PutRequest instance) {
+			this.create = instance.create;
+			this.name = instance.name;
+			this.searchApplication = instance.searchApplication;
+
+		}
 		/**
 		 * If <code>true</code>, this request cannot replace or update existing Search
 		 * Applications.
@@ -200,6 +208,12 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<PutRequest> _DESERIALIZER = createPutRequestDeserializer();
 	protected static JsonpDeserializer<PutRequest> createPutRequestDeserializer() {
 

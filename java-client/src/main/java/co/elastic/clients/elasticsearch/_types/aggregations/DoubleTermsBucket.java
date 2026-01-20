@@ -120,6 +120,13 @@ public class DoubleTermsBucket extends TermsBucketBase {
 		@Nullable
 		private String keyAsString;
 
+		public Builder() {
+		}
+		private Builder(DoubleTermsBucket instance) {
+			this.key = instance.key;
+			this.keyAsString = instance.keyAsString;
+
+		}
 		/**
 		 * Required - API name: {@code key}
 		 */
@@ -154,6 +161,12 @@ public class DoubleTermsBucket extends TermsBucketBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

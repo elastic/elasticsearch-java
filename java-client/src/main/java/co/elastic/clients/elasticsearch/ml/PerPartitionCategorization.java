@@ -150,6 +150,13 @@ public class PerPartitionCategorization implements JsonpSerializable {
 		@Nullable
 		private Boolean stopOnWarn;
 
+		public Builder() {
+		}
+		private Builder(PerPartitionCategorization instance) {
+			this.enabled = instance.enabled;
+			this.stopOnWarn = instance.stopOnWarn;
+
+		}
 		/**
 		 * To enable this setting, you must also set the
 		 * <code>partition_field_name</code> property to the same value in every
@@ -196,6 +203,12 @@ public class PerPartitionCategorization implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

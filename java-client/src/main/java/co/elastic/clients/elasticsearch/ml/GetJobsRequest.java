@@ -58,12 +58,13 @@ import javax.annotation.Nullable;
 // typedef: ml.get_jobs.Request
 
 /**
- * Get anomaly detection jobs configuration info. You can get information for
- * multiple anomaly detection jobs in a single API request by using a group
- * name, a comma-separated list of jobs, or a wildcard expression. You can get
- * information for all anomaly detection jobs by using <code>_all</code>, by
- * specifying <code>*</code> as the <code>&lt;job_id&gt;</code>, or by omitting
- * the <code>&lt;job_id&gt;</code>.
+ * Get anomaly detection jobs configuration info.
+ * <p>
+ * You can get information for multiple anomaly detection jobs in a single API
+ * request by using a group name, a comma-separated list of jobs, or a wildcard
+ * expression. You can get information for all anomaly detection jobs by using
+ * <code>_all</code>, by specifying <code>*</code> as the
+ * <code>&lt;job_id&gt;</code>, or by omitting the <code>&lt;job_id&gt;</code>.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.get_jobs.Request">API
  *      specification</a>
@@ -152,6 +153,14 @@ public class GetJobsRequest extends RequestBase {
 		@Nullable
 		private List<String> jobId;
 
+		public Builder() {
+		}
+		private Builder(GetJobsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.excludeGenerated = instance.excludeGenerated;
+			this.jobId = instance.jobId;
+
+		}
 		/**
 		 * Specifies what to do when the request:
 		 * <ol>
@@ -231,6 +240,12 @@ public class GetJobsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

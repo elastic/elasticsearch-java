@@ -126,6 +126,13 @@ public class NodeInfoMemory implements JsonpSerializable {
 
 		private Long totalInBytes;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoMemory instance) {
+			this.total = instance.total;
+			this.totalInBytes = instance.totalInBytes;
+
+		}
 		/**
 		 * Required - API name: {@code total}
 		 */
@@ -160,6 +167,12 @@ public class NodeInfoMemory implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

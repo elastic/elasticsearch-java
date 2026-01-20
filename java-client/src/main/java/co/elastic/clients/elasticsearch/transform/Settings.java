@@ -274,6 +274,18 @@ public class Settings implements JsonpSerializable {
 		@Nullable
 		private Boolean unattended;
 
+		public Builder() {
+		}
+		private Builder(Settings instance) {
+			this.alignCheckpoints = instance.alignCheckpoints;
+			this.datesAsEpochMillis = instance.datesAsEpochMillis;
+			this.deduceMappings = instance.deduceMappings;
+			this.docsPerSecond = instance.docsPerSecond;
+			this.maxPageSearchSize = instance.maxPageSearchSize;
+			this.usePointInTime = instance.usePointInTime;
+			this.unattended = instance.unattended;
+
+		}
 		/**
 		 * Specifies whether the transform checkpoint ranges should be optimized for
 		 * performance. Such optimization can align checkpoint ranges with the date
@@ -384,6 +396,12 @@ public class Settings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

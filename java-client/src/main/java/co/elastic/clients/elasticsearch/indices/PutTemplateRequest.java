@@ -63,10 +63,11 @@ import javax.annotation.Nullable;
 // typedef: indices.put_template.Request
 
 /**
- * Create or update a legacy index template. Index templates define settings,
- * mappings, and aliases that can be applied automatically to new indices.
- * Elasticsearch applies templates to new indices based on an index pattern that
- * matches the index name.
+ * Create or update a legacy index template.
+ * <p>
+ * Index templates define settings, mappings, and aliases that can be applied
+ * automatically to new indices. Elasticsearch applies templates to new indices
+ * based on an index pattern that matches the index name.
  * <p>
  * IMPORTANT: This documentation is about legacy index templates, which are
  * deprecated and will be replaced by the composable templates introduced in
@@ -159,7 +160,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
-	 * User defined reason for creating/updating the index template
+	 * User defined reason for creating or updating the index template
 	 * <p>
 	 * API name: {@code cause}
 	 */
@@ -347,6 +348,21 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		@Nullable
 		private Long version;
 
+		public Builder() {
+		}
+		private Builder(PutTemplateRequest instance) {
+			this.aliases = instance.aliases;
+			this.cause = instance.cause;
+			this.create = instance.create;
+			this.indexPatterns = instance.indexPatterns;
+			this.mappings = instance.mappings;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.order = instance.order;
+			this.settings = instance.settings;
+			this.version = instance.version;
+
+		}
 		/**
 		 * Aliases for the index.
 		 * <p>
@@ -383,7 +399,7 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
-		 * User defined reason for creating/updating the index template
+		 * User defined reason for creating or updating the index template
 		 * <p>
 		 * API name: {@code cause}
 		 */
@@ -541,6 +557,12 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

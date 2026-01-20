@@ -146,6 +146,13 @@ public class RandomScoreFunction implements FunctionScoreVariant, JsonpSerializa
 		@Nullable
 		private String seed;
 
+		public Builder() {
+		}
+		private Builder(RandomScoreFunction instance) {
+			this.field = instance.field;
+			this.seed = instance.seed;
+
+		}
 		/**
 		 * API name: {@code field}
 		 */
@@ -180,6 +187,12 @@ public class RandomScoreFunction implements FunctionScoreVariant, JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -198,6 +198,16 @@ public class IndexSettingBlocks implements JsonpSerializable {
 		@Nullable
 		private Boolean metadata;
 
+		public Builder() {
+		}
+		private Builder(IndexSettingBlocks instance) {
+			this.readOnly = instance.readOnly;
+			this.readOnlyAllowDelete = instance.readOnlyAllowDelete;
+			this.read = instance.read;
+			this.write = instance.write;
+			this.metadata = instance.metadata;
+
+		}
 		/**
 		 * API name: {@code read_only}
 		 */
@@ -256,6 +266,12 @@ public class IndexSettingBlocks implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

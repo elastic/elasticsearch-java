@@ -56,17 +56,19 @@ import javax.annotation.Nullable;
 // typedef: transform.set_upgrade_mode.Request
 
 /**
- * Set upgrade_mode for transform indices. Sets a cluster wide upgrade_mode
- * setting that prepares transform indices for an upgrade. When upgrading your
- * cluster, in some circumstances you must restart your nodes and reindex your
- * transform indices. In those circumstances, there must be no transforms
- * running. You can close the transforms, do the upgrade, then open all the
- * transforms again. Alternatively, you can use this API to temporarily halt
- * tasks associated with the transforms and prevent new transforms from opening.
- * You can also use this API during upgrades that do not require you to reindex
- * your transform indices, though stopping transforms is not a requirement in
- * that case. You can see the current value for the upgrade_mode setting by
- * using the get transform info API.
+ * Set upgrade_mode for transform indices.
+ * <p>
+ * Sets a cluster wide upgrade_mode setting that prepares transform indices for
+ * an upgrade. When upgrading your cluster, in some circumstances you must
+ * restart your nodes and reindex your transform indices. In those
+ * circumstances, there must be no transforms running. You can close the
+ * transforms, do the upgrade, then open all the transforms again.
+ * Alternatively, you can use this API to temporarily halt tasks associated with
+ * the transforms and prevent new transforms from opening. You can also use this
+ * API during upgrades that do not require you to reindex your transform
+ * indices, though stopping transforms is not a requirement in that case. You
+ * can see the current value for the upgrade_mode setting by using the get
+ * transform info API.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#transform.set_upgrade_mode.Request">API
@@ -130,6 +132,13 @@ public class SetUpgradeModeRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(SetUpgradeModeRequest instance) {
+			this.enabled = instance.enabled;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * When <code>true</code>, it enables <code>upgrade_mode</code> which
 		 * temporarily halts all transform tasks and prohibits new transform tasks from
@@ -179,6 +188,12 @@ public class SetUpgradeModeRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

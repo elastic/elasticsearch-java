@@ -299,6 +299,21 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 		@Nullable
 		private List<String> timeSeriesDimensions;
 
+		public Builder() {
+		}
+		private Builder(FlattenedProperty instance) {
+			this.boost = instance.boost;
+			this.depthLimit = instance.depthLimit;
+			this.docValues = instance.docValues;
+			this.eagerGlobalOrdinals = instance.eagerGlobalOrdinals;
+			this.index = instance.index;
+			this.indexOptions = instance.indexOptions;
+			this.nullValue = instance.nullValue;
+			this.similarity = instance.similarity;
+			this.splitQueriesOnWhitespace = instance.splitQueriesOnWhitespace;
+			this.timeSeriesDimensions = instance.timeSeriesDimensions;
+
+		}
 		/**
 		 * API name: {@code boost}
 		 */
@@ -409,6 +424,12 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

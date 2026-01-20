@@ -56,8 +56,9 @@ import javax.annotation.Nullable;
 // typedef: enrich.delete_policy.Request
 
 /**
- * Delete an enrich policy. Deletes an existing enrich policy and its enrich
- * index.
+ * Delete an enrich policy.
+ * <p>
+ * Deletes an existing enrich policy and its enrich index.
  * 
  * @see <a href="../doc-files/api-spec.html#enrich.delete_policy.Request">API
  *      specification</a>
@@ -115,6 +116,13 @@ public class DeletePolicyRequest extends RequestBase {
 
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(DeletePolicyRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node.
 		 * <p>
@@ -162,6 +170,12 @@ public class DeletePolicyRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

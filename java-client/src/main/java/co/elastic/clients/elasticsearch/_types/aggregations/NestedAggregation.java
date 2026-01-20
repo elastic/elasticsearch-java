@@ -127,6 +127,12 @@ public class NestedAggregation extends BucketAggregationBase implements Aggregat
 		@Nullable
 		private String path;
 
+		public Builder() {
+		}
+		private Builder(NestedAggregation instance) {
+			this.path = instance.path;
+
+		}
 		/**
 		 * The path to the field of type <code>nested</code>.
 		 * <p>
@@ -155,6 +161,12 @@ public class NestedAggregation extends BucketAggregationBase implements Aggregat
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

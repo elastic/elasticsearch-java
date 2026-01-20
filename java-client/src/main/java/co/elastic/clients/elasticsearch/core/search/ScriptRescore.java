@@ -119,6 +119,12 @@ public class ScriptRescore implements RescoreVariant, JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ScriptRescore> {
 		private Script script;
 
+		public Builder() {
+		}
+		private Builder(ScriptRescore instance) {
+			this.script = instance.script;
+
+		}
 		/**
 		 * Required - API name: {@code script}
 		 */
@@ -152,6 +158,12 @@ public class ScriptRescore implements RescoreVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

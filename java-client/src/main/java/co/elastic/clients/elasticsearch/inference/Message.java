@@ -228,6 +228,15 @@ public class Message implements JsonpSerializable {
 		@Nullable
 		private List<ToolCall> toolCalls;
 
+		public Builder() {
+		}
+		private Builder(Message instance) {
+			this.content = instance.content;
+			this.role = instance.role;
+			this.toolCallId = instance.toolCallId;
+			this.toolCalls = instance.toolCalls;
+
+		}
 		/**
 		 * The content of the message.
 		 * <p>
@@ -423,6 +432,12 @@ public class Message implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

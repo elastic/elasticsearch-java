@@ -59,10 +59,12 @@ import javax.annotation.Nullable;
 // typedef: indices.explain_data_lifecycle.Request
 
 /**
- * Get the status for a data stream lifecycle. Get information about an index or
- * data stream's current data stream lifecycle status, such as time since index
- * creation, time since rollover, the lifecycle configuration managing the
- * index, or any errors encountered during lifecycle execution.
+ * Get the status for a data stream lifecycle.
+ * <p>
+ * Get information about an index or data stream's current data stream lifecycle
+ * status, such as time since index creation, time since rollover, the lifecycle
+ * configuration managing the index, or any errors encountered during lifecycle
+ * execution.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.explain_data_lifecycle.Request">API
@@ -93,7 +95,7 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * indicates if the API should return the default values the system uses for the
+	 * Indicates if the API should return the default values the system uses for the
 	 * index's lifecycle
 	 * <p>
 	 * API name: {@code include_defaults}
@@ -104,7 +106,7 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the index to explain
+	 * Required - Comma-separated list of index names to explain
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -113,7 +115,7 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * The period to wait for a connection to the master node.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -139,8 +141,16 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		public Builder() {
+		}
+		private Builder(ExplainDataLifecycleRequest instance) {
+			this.includeDefaults = instance.includeDefaults;
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+
+		}
 		/**
-		 * indicates if the API should return the default values the system uses for the
+		 * Indicates if the API should return the default values the system uses for the
 		 * index's lifecycle
 		 * <p>
 		 * API name: {@code include_defaults}
@@ -151,7 +161,7 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The name of the index to explain
+		 * Required - Comma-separated list of index names to explain
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -163,7 +173,7 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The name of the index to explain
+		 * Required - Comma-separated list of index names to explain
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -175,7 +185,7 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -185,7 +195,7 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -211,6 +221,12 @@ public class ExplainDataLifecycleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

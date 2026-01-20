@@ -55,10 +55,11 @@ import javax.annotation.Nullable;
 // typedef: slm.execute_retention.Request
 
 /**
- * Run a retention policy. Manually apply the retention policy to force
- * immediate removal of snapshots that are expired according to the snapshot
- * lifecycle policy retention rules. The retention policy is normally applied
- * according to its schedule.
+ * Run a retention policy.
+ * <p>
+ * Manually apply the retention policy to force immediate removal of snapshots
+ * that are expired according to the snapshot lifecycle policy retention rules.
+ * The retention policy is normally applied according to its schedule.
  * 
  * @see <a href="../doc-files/api-spec.html#slm.execute_retention.Request">API
  *      specification</a>
@@ -121,6 +122,13 @@ public class ExecuteRetentionRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(ExecuteRetentionRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -181,6 +189,12 @@ public class ExecuteRetentionRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

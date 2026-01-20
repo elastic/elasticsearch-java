@@ -365,6 +365,23 @@ public class DatafeedsRecord implements JsonpSerializable {
 		@Nullable
 		private String nodeAddress;
 
+		public Builder() {
+		}
+		private Builder(DatafeedsRecord instance) {
+			this.id = instance.id;
+			this.state = instance.state;
+			this.assignmentExplanation = instance.assignmentExplanation;
+			this.bucketsCount = instance.bucketsCount;
+			this.searchCount = instance.searchCount;
+			this.searchTime = instance.searchTime;
+			this.searchBucketAvg = instance.searchBucketAvg;
+			this.searchExpAvgHour = instance.searchExpAvgHour;
+			this.nodeId = instance.nodeId;
+			this.nodeName = instance.nodeName;
+			this.nodeEphemeralId = instance.nodeEphemeralId;
+			this.nodeAddress = instance.nodeAddress;
+
+		}
 		/**
 		 * The datafeed identifier.
 		 * <p>
@@ -508,6 +525,12 @@ public class DatafeedsRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

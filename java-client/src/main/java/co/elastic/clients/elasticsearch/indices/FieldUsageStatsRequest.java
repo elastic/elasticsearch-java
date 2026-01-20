@@ -59,11 +59,12 @@ import javax.annotation.Nullable;
 // typedef: indices.field_usage_stats.Request
 
 /**
- * Get field usage stats. Get field usage information for each shard and field
- * of an index. Field usage statistics are automatically captured when queries
- * are running on a cluster. A shard-level search request that accesses a given
- * field, even if multiple times during that request, is counted as a single
- * use.
+ * Get field usage stats.
+ * <p>
+ * Get field usage information for each shard and field of an index. Field usage
+ * statistics are automatically captured when queries are running on a cluster.
+ * A shard-level search request that accesses a given field, even if multiple
+ * times during that request, is counted as a single use.
  * <p>
  * The response body reports the per-shard usage count of the data structures
  * that back the fields in the index. A given request will increment each count
@@ -185,6 +186,16 @@ public class FieldUsageStatsRequest extends RequestBase {
 
 		private List<String> index;
 
+		public Builder() {
+		}
+		private Builder(FieldUsageStatsRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.fields = instance.fields;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -311,6 +322,12 @@ public class FieldUsageStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

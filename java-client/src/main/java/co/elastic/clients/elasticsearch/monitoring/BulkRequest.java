@@ -37,6 +37,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -63,8 +64,9 @@ import javax.annotation.Nullable;
 // typedef: monitoring.bulk.Request
 
 /**
- * Send monitoring data. This API is used by the monitoring features to send
- * monitoring data.
+ * Send monitoring data.
+ * <p>
+ * This API is used by the monitoring features to send monitoring data.
  * 
  * @see <a href="../doc-files/api-spec.html#monitoring.bulk.Request">API
  *      specification</a>
@@ -77,9 +79,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 
 	private final String systemId;
 
-	@Nullable
-	private final String type;
-
 	private final List<BulkOperation> operations;
 
 	// ---------------------------------------------------------------------------------------------
@@ -89,7 +88,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		this.interval = ApiTypeHelper.requireNonNull(builder.interval, this, "interval");
 		this.systemApiVersion = ApiTypeHelper.requireNonNull(builder.systemApiVersion, this, "systemApiVersion");
 		this.systemId = ApiTypeHelper.requireNonNull(builder.systemId, this, "systemId");
-		this.type = builder.type;
 		this.operations = ApiTypeHelper.unmodifiableRequired(builder.operations, this, "operations");
 
 	}
@@ -130,19 +128,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	}
 
 	/**
-	 * Default document type for items which don't provide one
-	 * <p>
-	 * API name: {@code type}
-	 * 
-	 * @deprecated 7.0.0
-	 */
-	@Deprecated
-	@Nullable
-	public final String type() {
-		return this.type;
-	}
-
-	/**
 	 * Required - Request body.
 	 */
 	public final List<BulkOperation> operations() {
@@ -175,11 +160,17 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 
 		private String systemId;
 
-		@Nullable
-		private String type;
-
 		private List<BulkOperation> operations;
 
+		public Builder() {
+		}
+		private Builder(BulkRequest instance) {
+			this.interval = instance.interval;
+			this.systemApiVersion = instance.systemApiVersion;
+			this.systemId = instance.systemId;
+			this.operations = instance.operations;
+
+		}
 		/**
 		 * Required - Collection interval (e.g., '10s' or '10000ms') of the payload
 		 * <p>
@@ -216,19 +207,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 */
 		public final Builder systemId(String value) {
 			this.systemId = value;
-			return this;
-		}
-
-		/**
-		 * Default document type for items which don't provide one
-		 * <p>
-		 * API name: {@code type}
-		 * 
-		 * @deprecated 7.0.0
-		 */
-		@Deprecated
-		public final Builder type(@Nullable String value) {
-			this.type = value;
 			return this;
 		}
 
@@ -292,6 +270,12 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -308,47 +292,13 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 
 			// Request path
 			request -> {
-				final int _type = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.type() != null)
-					propsSet |= _type;
-
-				if (propsSet == 0) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_monitoring");
-					buf.append("/bulk");
-					return buf.toString();
-				}
-				if (propsSet == (_type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/_monitoring");
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type, buf);
-					buf.append("/bulk");
-					return buf.toString();
-				}
-				throw SimpleEndpoint.noPathTemplateFound("path");
+				return "/_monitoring/bulk";
 
 			},
 
 			// Path parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				final int _type = 1 << 0;
-
-				int propsSet = 0;
-
-				if (request.type() != null)
-					propsSet |= _type;
-
-				if (propsSet == 0) {
-				}
-				if (propsSet == (_type)) {
-					params.put("type", request.type);
-				}
-				return params;
+				return Collections.emptyMap();
 			},
 
 			// Request parameters

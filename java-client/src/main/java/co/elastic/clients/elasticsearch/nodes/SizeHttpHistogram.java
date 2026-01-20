@@ -151,6 +151,14 @@ public class SizeHttpHistogram implements JsonpSerializable {
 		@Nullable
 		private Long ltBytes;
 
+		public Builder() {
+		}
+		private Builder(SizeHttpHistogram instance) {
+			this.count = instance.count;
+			this.geBytes = instance.geBytes;
+			this.ltBytes = instance.ltBytes;
+
+		}
 		/**
 		 * Required - API name: {@code count}
 		 */
@@ -193,6 +201,12 @@ public class SizeHttpHistogram implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

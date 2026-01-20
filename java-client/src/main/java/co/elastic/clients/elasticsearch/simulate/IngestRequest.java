@@ -64,9 +64,10 @@ import javax.annotation.Nullable;
 // typedef: simulate.ingest.Request
 
 /**
- * Simulate data ingestion. Run ingest pipelines against a set of provided
- * documents, optionally with substitute pipeline definitions, to simulate
- * ingesting data into an index.
+ * Simulate data ingestion.
+ * <p>
+ * Run ingest pipelines against a set of provided documents, optionally with
+ * substitute pipeline definitions, to simulate ingesting data into an index.
  * <p>
  * This API is meant to be used for troubleshooting or pipeline development, as
  * it does not actually index any data into Elasticsearch.
@@ -317,6 +318,19 @@ public class IngestRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Map<String, Pipeline> pipelineSubstitutions;
 
+		public Builder() {
+		}
+		private Builder(IngestRequest instance) {
+			this.componentTemplateSubstitutions = instance.componentTemplateSubstitutions;
+			this.docs = instance.docs;
+			this.index = instance.index;
+			this.indexTemplateSubstitutions = instance.indexTemplateSubstitutions;
+			this.mappingAddition = instance.mappingAddition;
+			this.mergeType = instance.mergeType;
+			this.pipeline = instance.pipeline;
+			this.pipelineSubstitutions = instance.pipelineSubstitutions;
+
+		}
 		/**
 		 * A map of component template names to substitute component template definition
 		 * objects.
@@ -546,6 +560,12 @@ public class IngestRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

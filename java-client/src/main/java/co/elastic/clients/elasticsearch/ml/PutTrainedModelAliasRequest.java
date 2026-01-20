@@ -56,19 +56,21 @@ import javax.annotation.Nullable;
 // typedef: ml.put_trained_model_alias.Request
 
 /**
- * Create or update a trained model alias. A trained model alias is a logical
- * name used to reference a single trained model. You can use aliases instead of
- * trained model identifiers to make it easier to reference your models. For
- * example, you can use aliases in inference aggregations and processors. An
- * alias must be unique and refer to only a single trained model. However, you
- * can have multiple aliases for each trained model. If you use this API to
- * update an alias such that it references a different trained model ID and the
- * model uses a different type of data frame analytics, an error occurs. For
- * example, this situation occurs if you have a trained model for regression
- * analysis and a trained model for classification analysis; you cannot reassign
- * an alias from one type of trained model to another. If you use this API to
- * update an alias and there are very few input fields in common between the old
- * and new trained models for the model alias, the API returns a warning.
+ * Create or update a trained model alias.
+ * <p>
+ * A trained model alias is a logical name used to reference a single trained
+ * model. You can use aliases instead of trained model identifiers to make it
+ * easier to reference your models. For example, you can use aliases in
+ * inference aggregations and processors. An alias must be unique and refer to
+ * only a single trained model. However, you can have multiple aliases for each
+ * trained model. If you use this API to update an alias such that it references
+ * a different trained model ID and the model uses a different type of data
+ * frame analytics, an error occurs. For example, this situation occurs if you
+ * have a trained model for regression analysis and a trained model for
+ * classification analysis; you cannot reassign an alias from one type of
+ * trained model to another. If you use this API to update an alias and there
+ * are very few input fields in common between the old and new trained models
+ * for the model alias, the API returns a warning.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.put_trained_model_alias.Request">API
@@ -143,6 +145,14 @@ public class PutTrainedModelAliasRequest extends RequestBase {
 		@Nullable
 		private Boolean reassign;
 
+		public Builder() {
+		}
+		private Builder(PutTrainedModelAliasRequest instance) {
+			this.modelAlias = instance.modelAlias;
+			this.modelId = instance.modelId;
+			this.reassign = instance.reassign;
+
+		}
 		/**
 		 * Required - The alias to create or update. This value cannot end in numbers.
 		 * <p>
@@ -193,6 +203,12 @@ public class PutTrainedModelAliasRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

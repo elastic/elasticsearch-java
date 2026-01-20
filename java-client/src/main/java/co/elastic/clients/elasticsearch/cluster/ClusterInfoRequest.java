@@ -58,7 +58,9 @@ import javax.annotation.Nullable;
 // typedef: cluster.info.Request
 
 /**
- * Get cluster info. Returns basic information about the cluster.
+ * Get cluster info.
+ * <p>
+ * Returns basic information about the cluster.
  * 
  * @see <a href="../doc-files/api-spec.html#cluster.info.Request">API
  *      specification</a>
@@ -100,6 +102,12 @@ public class ClusterInfoRequest extends RequestBase {
 				ObjectBuilder<ClusterInfoRequest> {
 		private List<ClusterInfoTarget> target;
 
+		public Builder() {
+		}
+		private Builder(ClusterInfoRequest instance) {
+			this.target = instance.target;
+
+		}
 		/**
 		 * Required - Limits the information returned to the specific target. Supports a
 		 * comma-separated list, such as http,ingest.
@@ -144,6 +152,12 @@ public class ClusterInfoRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

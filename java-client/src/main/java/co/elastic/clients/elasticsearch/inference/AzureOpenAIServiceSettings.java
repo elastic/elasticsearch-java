@@ -149,7 +149,8 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 	 * Azure. The <code>azureopenai</code> service sets a default number of requests
 	 * allowed per minute depending on the task type. For
 	 * <code>text_embedding</code>, it is set to <code>1440</code>. For
-	 * <code>completion</code>, it is set to <code>120</code>.
+	 * <code>completion</code> and <code>chat_completion</code>, it is set to
+	 * <code>120</code>.
 	 * <p>
 	 * API name: {@code rate_limit}
 	 */
@@ -234,6 +235,17 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 
 		private String resourceName;
 
+		public Builder() {
+		}
+		private Builder(AzureOpenAIServiceSettings instance) {
+			this.apiKey = instance.apiKey;
+			this.apiVersion = instance.apiVersion;
+			this.deploymentId = instance.deploymentId;
+			this.entraId = instance.entraId;
+			this.rateLimit = instance.rateLimit;
+			this.resourceName = instance.resourceName;
+
+		}
 		/**
 		 * A valid API key for your Azure OpenAI account. You must specify either
 		 * <code>api_key</code> or <code>entra_id</code>. If you do not provide either
@@ -293,7 +305,8 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		 * Azure. The <code>azureopenai</code> service sets a default number of requests
 		 * allowed per minute depending on the task type. For
 		 * <code>text_embedding</code>, it is set to <code>1440</code>. For
-		 * <code>completion</code>, it is set to <code>120</code>.
+		 * <code>completion</code> and <code>chat_completion</code>, it is set to
+		 * <code>120</code>.
 		 * <p>
 		 * API name: {@code rate_limit}
 		 */
@@ -307,7 +320,8 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		 * Azure. The <code>azureopenai</code> service sets a default number of requests
 		 * allowed per minute depending on the task type. For
 		 * <code>text_embedding</code>, it is set to <code>1440</code>. For
-		 * <code>completion</code>, it is set to <code>120</code>.
+		 * <code>completion</code> and <code>chat_completion</code>, it is set to
+		 * <code>120</code>.
 		 * <p>
 		 * API name: {@code rate_limit}
 		 */
@@ -344,6 +358,12 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

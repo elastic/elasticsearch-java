@@ -31,6 +31,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -62,6 +63,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class CustomServiceSettings implements JsonpSerializable {
 	@Nullable
+	private final Integer batchSize;
+
+	@Nullable
 	private final JsonData headers;
 
 	@Nullable
@@ -83,6 +87,7 @@ public class CustomServiceSettings implements JsonpSerializable {
 
 	private CustomServiceSettings(Builder builder) {
 
+		this.batchSize = builder.batchSize;
 		this.headers = builder.headers;
 		this.inputType = builder.inputType;
 		this.queryParameters = builder.queryParameters;
@@ -98,8 +103,22 @@ public class CustomServiceSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies the HTTPS header parameters – such as <code>Authentication</code>
-	 * or <code>Contet-Type</code> – that are required to access the custom service.
+	 * Specifies the batch size used for the semantic_text field. If the field is
+	 * not provided, the default is 10. The batch size is the maximum number of
+	 * inputs in a single request to the upstream service. The chunk within the
+	 * batch are controlled by the selected chunking strategy for the semantic_text
+	 * field.
+	 * <p>
+	 * API name: {@code batch_size}
+	 */
+	@Nullable
+	public final Integer batchSize() {
+		return this.batchSize;
+	}
+
+	/**
+	 * Specifies the HTTP header parameters – such as <code>Authentication</code> or
+	 * <code>Content-Type</code> – that are required to access the custom service.
 	 * For example:
 	 * 
 	 * <pre>
@@ -233,6 +252,11 @@ public class CustomServiceSettings implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.batchSize != null) {
+			generator.writeKey("batch_size");
+			generator.write(this.batchSize);
+
+		}
 		if (this.headers != null) {
 			generator.writeKey("headers");
 			this.headers.serialize(generator, mapper);
@@ -280,6 +304,9 @@ public class CustomServiceSettings implements JsonpSerializable {
 			implements
 				ObjectBuilder<CustomServiceSettings> {
 		@Nullable
+		private Integer batchSize;
+
+		@Nullable
 		private JsonData headers;
 
 		@Nullable
@@ -297,9 +324,36 @@ public class CustomServiceSettings implements JsonpSerializable {
 		@Nullable
 		private String url;
 
+		public Builder() {
+		}
+		private Builder(CustomServiceSettings instance) {
+			this.batchSize = instance.batchSize;
+			this.headers = instance.headers;
+			this.inputType = instance.inputType;
+			this.queryParameters = instance.queryParameters;
+			this.request = instance.request;
+			this.response = instance.response;
+			this.secretParameters = instance.secretParameters;
+			this.url = instance.url;
+
+		}
 		/**
-		 * Specifies the HTTPS header parameters – such as <code>Authentication</code>
-		 * or <code>Contet-Type</code> – that are required to access the custom service.
+		 * Specifies the batch size used for the semantic_text field. If the field is
+		 * not provided, the default is 10. The batch size is the maximum number of
+		 * inputs in a single request to the upstream service. The chunk within the
+		 * batch are controlled by the selected chunking strategy for the semantic_text
+		 * field.
+		 * <p>
+		 * API name: {@code batch_size}
+		 */
+		public final Builder batchSize(@Nullable Integer value) {
+			this.batchSize = value;
+			return this;
+		}
+
+		/**
+		 * Specifies the HTTP header parameters – such as <code>Authentication</code> or
+		 * <code>Content-Type</code> – that are required to access the custom service.
 		 * For example:
 		 * 
 		 * <pre>
@@ -461,6 +515,12 @@ public class CustomServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -471,6 +531,7 @@ public class CustomServiceSettings implements JsonpSerializable {
 
 	protected static void setupCustomServiceSettingsDeserializer(ObjectDeserializer<CustomServiceSettings.Builder> op) {
 
+		op.add(Builder::batchSize, JsonpDeserializer.integerDeserializer(), "batch_size");
 		op.add(Builder::headers, JsonData._DESERIALIZER, "headers");
 		op.add(Builder::inputType, JsonData._DESERIALIZER, "input_type");
 		op.add(Builder::queryParameters, JsonData._DESERIALIZER, "query_parameters");

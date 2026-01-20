@@ -218,6 +218,19 @@ public class NodeShutdownStatus implements JsonpSerializable {
 
 		private PluginsStatus plugins;
 
+		public Builder() {
+		}
+		private Builder(NodeShutdownStatus instance) {
+			this.nodeId = instance.nodeId;
+			this.type = instance.type;
+			this.reason = instance.reason;
+			this.shutdownStartedmillis = instance.shutdownStartedmillis;
+			this.status = instance.status;
+			this.shardMigration = instance.shardMigration;
+			this.persistentTasks = instance.persistentTasks;
+			this.plugins = instance.plugins;
+
+		}
 		/**
 		 * Required - API name: {@code node_id}
 		 */
@@ -323,6 +336,12 @@ public class NodeShutdownStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

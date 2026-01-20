@@ -133,6 +133,13 @@ public class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 		private IcuNormalizationMode mode;
 
+		public Builder() {
+		}
+		private Builder(IcuAnalyzer instance) {
+			this.method = instance.method;
+			this.mode = instance.mode;
+
+		}
 		/**
 		 * Required - API name: {@code method}
 		 */
@@ -167,6 +174,12 @@ public class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

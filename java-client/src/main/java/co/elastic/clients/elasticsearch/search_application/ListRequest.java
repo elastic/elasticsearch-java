@@ -56,7 +56,9 @@ import javax.annotation.Nullable;
 // typedef: search_application.list.Request
 
 /**
- * Get search applications. Get information about search applications.
+ * Get search applications.
+ * <p>
+ * Get information about search applications.
  * 
  * @see <a href="../doc-files/api-spec.html#search_application.list.Request">API
  *      specification</a>
@@ -132,6 +134,14 @@ public class ListRequest extends RequestBase {
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(ListRequest instance) {
+			this.from = instance.from;
+			this.q = instance.q;
+			this.size = instance.size;
+
+		}
 		/**
 		 * Starting offset.
 		 * <p>
@@ -180,6 +190,12 @@ public class ListRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

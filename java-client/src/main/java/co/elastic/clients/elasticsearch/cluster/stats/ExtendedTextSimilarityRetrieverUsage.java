@@ -119,6 +119,12 @@ public class ExtendedTextSimilarityRetrieverUsage implements JsonpSerializable {
 		@Nullable
 		private Long chunkRescorer;
 
+		public Builder() {
+		}
+		private Builder(ExtendedTextSimilarityRetrieverUsage instance) {
+			this.chunkRescorer = instance.chunkRescorer;
+
+		}
 		/**
 		 * API name: {@code chunk_rescorer}
 		 */
@@ -145,6 +151,12 @@ public class ExtendedTextSimilarityRetrieverUsage implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

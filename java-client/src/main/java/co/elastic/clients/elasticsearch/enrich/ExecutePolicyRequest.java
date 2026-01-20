@@ -57,7 +57,9 @@ import javax.annotation.Nullable;
 // typedef: enrich.execute_policy.Request
 
 /**
- * Run an enrich policy. Create the enrich index for an existing enrich policy.
+ * Run an enrich policy.
+ * <p>
+ * Create the enrich index for an existing enrich policy.
  * 
  * @see <a href="../doc-files/api-spec.html#enrich.execute_policy.Request">API
  *      specification</a>
@@ -133,6 +135,14 @@ public class ExecutePolicyRequest extends RequestBase {
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(ExecutePolicyRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node.
 		 * <p>
@@ -191,6 +201,12 @@ public class ExecutePolicyRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

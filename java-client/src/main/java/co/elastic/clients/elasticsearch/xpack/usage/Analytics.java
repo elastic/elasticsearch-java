@@ -94,6 +94,12 @@ public class Analytics extends Base {
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Analytics> {
 		private AnalyticsStatistics stats;
 
+		public Builder() {
+		}
+		private Builder(Analytics instance) {
+			this.stats = instance.stats;
+
+		}
 		/**
 		 * Required - API name: {@code stats}
 		 */
@@ -127,6 +133,12 @@ public class Analytics extends Base {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

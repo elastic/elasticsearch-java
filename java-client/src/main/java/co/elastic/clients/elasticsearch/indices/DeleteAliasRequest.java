@@ -58,7 +58,9 @@ import javax.annotation.Nullable;
 // typedef: indices.delete_alias.Request
 
 /**
- * Delete an alias. Removes a data stream or index from an alias.
+ * Delete an alias.
+ * <p>
+ * Removes a data stream or index from an alias.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.delete_alias.Request">API
  *      specification</a>
@@ -152,6 +154,15 @@ public class DeleteAliasRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeleteAliasRequest instance) {
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - Comma-separated list of data streams or indices used to limit the
 		 * request. Supports wildcards (<code>*</code>).
@@ -266,6 +277,12 @@ public class DeleteAliasRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

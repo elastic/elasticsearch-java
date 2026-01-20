@@ -335,6 +335,23 @@ public class ClusterNodes implements JsonpSerializable {
 
 		private List<String> versions;
 
+		public Builder() {
+		}
+		private Builder(ClusterNodes instance) {
+			this.count = instance.count;
+			this.discoveryTypes = instance.discoveryTypes;
+			this.fs = instance.fs;
+			this.indexingPressure = instance.indexingPressure;
+			this.ingest = instance.ingest;
+			this.jvm = instance.jvm;
+			this.networkTypes = instance.networkTypes;
+			this.os = instance.os;
+			this.packagingTypes = instance.packagingTypes;
+			this.plugins = instance.plugins;
+			this.process = instance.process;
+			this.versions = instance.versions;
+
+		}
 		/**
 		 * Required - Contains counts for nodes selected by the request’s node filters.
 		 * <p>
@@ -630,6 +647,12 @@ public class ClusterNodes implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -103,7 +103,7 @@ public class DeleteAutoscalingPolicyRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - the name of the autoscaling policy
+	 * Required - Name of the autoscaling policy
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -139,6 +139,14 @@ public class DeleteAutoscalingPolicyRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeleteAutoscalingPolicyRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -161,7 +169,7 @@ public class DeleteAutoscalingPolicyRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - the name of the autoscaling policy
+		 * Required - Name of the autoscaling policy
 		 * <p>
 		 * API name: {@code name}
 		 */
@@ -209,6 +217,12 @@ public class DeleteAutoscalingPolicyRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

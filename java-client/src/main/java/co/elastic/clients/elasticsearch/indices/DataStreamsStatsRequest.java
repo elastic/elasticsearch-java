@@ -70,15 +70,14 @@ import javax.annotation.Nullable;
 public class DataStreamsStatsRequest extends RequestBase {
 	private final List<ExpandWildcard> expandWildcards;
 
-	@Nullable
-	private final String name;
+	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private DataStreamsStatsRequest(Builder builder) {
 
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
-		this.name = builder.name;
+		this.name = ApiTypeHelper.unmodifiable(builder.name);
 
 	}
 
@@ -103,8 +102,7 @@ public class DataStreamsStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	@Nullable
-	public final String name() {
+	public final List<String> name() {
 		return this.name;
 	}
 
@@ -121,8 +119,15 @@ public class DataStreamsStatsRequest extends RequestBase {
 		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
-		private String name;
+		private List<String> name;
 
+		public Builder() {
+		}
+		private Builder(DataStreamsStatsRequest instance) {
+			this.expandWildcards = instance.expandWildcards;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Type of data stream that wildcard patterns can match. Supports
 		 * comma-separated values, such as <code>open,hidden</code>.
@@ -155,9 +160,25 @@ public class DataStreamsStatsRequest extends RequestBase {
 		 * cluster, omit this parameter or use <code>*</code>.
 		 * <p>
 		 * API name: {@code name}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 */
-		public final Builder name(@Nullable String value) {
-			this.name = value;
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of data streams used to limit the request. Wildcard
+		 * expressions (<code>*</code>) are supported. To target all data streams in a
+		 * cluster, omit this parameter or use <code>*</code>.
+		 * <p>
+		 * API name: {@code name}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
+		 */
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
 			return this;
 		}
 
@@ -179,6 +200,12 @@ public class DataStreamsStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -199,7 +226,7 @@ public class DataStreamsStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
+				if (ApiTypeHelper.isDefined(request.name()))
 					propsSet |= _name;
 
 				if (propsSet == 0) {
@@ -212,7 +239,7 @@ public class DataStreamsStatsRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_data_stream");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name, buf);
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_stats");
 					return buf.toString();
 				}
@@ -227,13 +254,13 @@ public class DataStreamsStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
+				if (ApiTypeHelper.isDefined(request.name()))
 					propsSet |= _name;
 
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_name)) {
-					params.put("name", request.name);
+					params.put("name", request.name.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 			},

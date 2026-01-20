@@ -152,8 +152,7 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	private final String projectRouting;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -168,7 +167,7 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.preference = builder.preference;
 		this.projectRouting = builder.projectRouting;
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 
 	}
 
@@ -284,8 +283,7 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -303,6 +301,11 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		if (this.indexFilter != null) {
 			generator.writeKey("index_filter");
 			this.indexFilter.serialize(generator, mapper);
+
+		}
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
 
 		}
 
@@ -343,8 +346,23 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		private String projectRouting;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
+		public Builder() {
+		}
+		private Builder(OpenPointInTimeRequest instance) {
+			this.allowPartialSearchResults = instance.allowPartialSearchResults;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.indexFilter = instance.indexFilter;
+			this.keepAlive = instance.keepAlive;
+			this.maxConcurrentShardRequests = instance.maxConcurrentShardRequests;
+			this.preference = instance.preference;
+			this.projectRouting = instance.projectRouting;
+			this.routing = instance.routing;
+
+		}
 		/**
 		 * Indicates whether the point in time tolerates unavailable shards or shard
 		 * failures when initially creating the PIT. If <code>false</code>, creating a
@@ -517,9 +535,23 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		 * A custom value that is used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * A custom value that is used to route operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -541,6 +573,12 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -553,6 +591,7 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 			ObjectDeserializer<OpenPointInTimeRequest.Builder> op) {
 
 		op.add(Builder::indexFilter, Query._DESERIALIZER, "index_filter");
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 
 	}
 
@@ -607,8 +646,8 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.maxConcurrentShardRequests != null) {
 					params.put("max_concurrent_shard_requests", String.valueOf(request.maxConcurrentShardRequests));
@@ -627,9 +666,6 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 					params.put("preference", request.preference);
 				}
 				params.put("keep_alive", request.keepAlive._toJsonString());
-				if (request.projectRouting != null) {
-					params.put("project_routing", request.projectRouting);
-				}
 				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, OpenPointInTimeResponse._DESERIALIZER);

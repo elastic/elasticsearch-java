@@ -61,8 +61,9 @@ import javax.annotation.Nullable;
 // typedef: cluster.exists_component_template.Request
 
 /**
- * Check component templates. Returns information about whether a particular
- * component template exists.
+ * Check component templates.
+ * <p>
+ * Returns information about whether a particular component template exists.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#cluster.exists_component_template.Request">API
@@ -98,7 +99,11 @@ public class ExistsComponentTemplateRequest extends RequestBase {
 	 * to false, which means information is retrieved from the master node.
 	 * <p>
 	 * API name: {@code local}
+	 * 
+	 * @deprecated 9.0.0 This parameter has no effect, is now deprecated, and will
+	 *             be removed in a future version.
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean local() {
 		return this.local;
@@ -142,12 +147,24 @@ public class ExistsComponentTemplateRequest extends RequestBase {
 
 		private List<String> name;
 
+		public Builder() {
+		}
+		private Builder(ExistsComponentTemplateRequest instance) {
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+
+		}
 		/**
 		 * If true, the request retrieves information from the local node only. Defaults
 		 * to false, which means information is retrieved from the master node.
 		 * <p>
 		 * API name: {@code local}
+		 * 
+		 * @deprecated 9.0.0 This parameter has no effect, is now deprecated, and will
+		 *             be removed in a future version.
 		 */
+		@Deprecated
 		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
@@ -218,6 +235,12 @@ public class ExistsComponentTemplateRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

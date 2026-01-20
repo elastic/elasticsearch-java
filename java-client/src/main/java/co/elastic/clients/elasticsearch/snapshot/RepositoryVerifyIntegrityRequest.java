@@ -59,8 +59,9 @@ import javax.annotation.Nullable;
 // typedef: snapshot.repository_verify_integrity.Request
 
 /**
- * Verify the repository integrity. Verify the integrity of the contents of a
- * snapshot repository.
+ * Verify the repository integrity.
+ * <p>
+ * Verify the integrity of the contents of a snapshot repository.
  * <p>
  * This API enables you to perform a comprehensive check of the contents of a
  * repository, looking for any anomalies in its data or metadata which might
@@ -313,6 +314,20 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 		@Nullable
 		private Boolean verifyBlobContents;
 
+		public Builder() {
+		}
+		private Builder(RepositoryVerifyIntegrityRequest instance) {
+			this.blobThreadPoolConcurrency = instance.blobThreadPoolConcurrency;
+			this.indexSnapshotVerificationConcurrency = instance.indexSnapshotVerificationConcurrency;
+			this.indexVerificationConcurrency = instance.indexVerificationConcurrency;
+			this.maxBytesPerSec = instance.maxBytesPerSec;
+			this.maxFailedShardSnapshots = instance.maxFailedShardSnapshots;
+			this.metaThreadPoolConcurrency = instance.metaThreadPoolConcurrency;
+			this.name = instance.name;
+			this.snapshotVerificationConcurrency = instance.snapshotVerificationConcurrency;
+			this.verifyBlobContents = instance.verifyBlobContents;
+
+		}
 		/**
 		 * If <code>verify_blob_contents</code> is <code>true</code>, this parameter
 		 * specifies how many blobs to verify at once.
@@ -447,6 +462,12 @@ public class RepositoryVerifyIntegrityRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

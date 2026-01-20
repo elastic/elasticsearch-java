@@ -58,8 +58,10 @@ import javax.annotation.Nullable;
 // typedef: ccr.forget_follower.Request
 
 /**
- * Forget a follower. Remove the cross-cluster replication follower retention
- * leases from the leader.
+ * Forget a follower.
+ * <p>
+ * Remove the cross-cluster replication follower retention leases from the
+ * leader.
  * <p>
  * A following index takes out retention leases on its leader index. These
  * leases are used to increase the likelihood that the shards of the leader
@@ -144,8 +146,8 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * Required - the name of the leader index for which specified follower
-	 * retention leases should be removed
+	 * Required - Name of the leader index for which specified follower retention
+	 * leases should be removed
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -232,6 +234,17 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(ForgetFollowerRequest instance) {
+			this.followerCluster = instance.followerCluster;
+			this.followerIndex = instance.followerIndex;
+			this.followerIndexUuid = instance.followerIndexUuid;
+			this.index = instance.index;
+			this.leaderRemoteCluster = instance.leaderRemoteCluster;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * API name: {@code follower_cluster}
 		 */
@@ -257,8 +270,8 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * Required - the name of the leader index for which specified follower
-		 * retention leases should be removed
+		 * Required - Name of the leader index for which specified follower retention
+		 * leases should be removed
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -314,6 +327,12 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

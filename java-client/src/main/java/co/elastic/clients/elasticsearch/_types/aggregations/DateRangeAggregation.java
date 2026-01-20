@@ -261,6 +261,17 @@ public class DateRangeAggregation extends BucketAggregationBase
 		@Nullable
 		private Boolean keyed;
 
+		public Builder() {
+		}
+		private Builder(DateRangeAggregation instance) {
+			this.field = instance.field;
+			this.format = instance.format;
+			this.missing = instance.missing;
+			this.ranges = instance.ranges;
+			this.timeZone = instance.timeZone;
+			this.keyed = instance.keyed;
+
+		}
 		/**
 		 * The date field whose values are use to build ranges.
 		 * <p>
@@ -421,6 +432,12 @@ public class DateRangeAggregation extends BucketAggregationBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

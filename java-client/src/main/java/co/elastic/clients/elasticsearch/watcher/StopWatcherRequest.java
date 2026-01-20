@@ -55,7 +55,9 @@ import javax.annotation.Nullable;
 // typedef: watcher.stop.Request
 
 /**
- * Stop the watch service. Stop the Watcher service if it is running.
+ * Stop the watch service.
+ * <p>
+ * Stop the Watcher service if it is running.
  * 
  * @see <a href="../doc-files/api-spec.html#watcher.stop.Request">API
  *      specification</a>
@@ -101,6 +103,12 @@ public class StopWatcherRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		public Builder() {
+		}
+		private Builder(StopWatcherRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+
+		}
 		/**
 		 * The period to wait for the master node. If the master node is not available
 		 * before the timeout expires, the request fails and returns an error. To
@@ -142,6 +150,12 @@ public class StopWatcherRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

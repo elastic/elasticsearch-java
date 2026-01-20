@@ -83,6 +83,11 @@ public class SumAggregate extends SingleMetricAggregateBase implements Aggregate
 	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SumAggregate> {
+		public Builder() {
+		}
+		private Builder(SumAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -101,6 +106,12 @@ public class SumAggregate extends SingleMetricAggregateBase implements Aggregate
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

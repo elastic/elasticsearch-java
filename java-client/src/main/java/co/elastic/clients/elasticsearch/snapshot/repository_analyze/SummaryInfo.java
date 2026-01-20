@@ -131,6 +131,13 @@ public class SummaryInfo implements JsonpSerializable {
 
 		private WriteSummaryInfo write;
 
+		public Builder() {
+		}
+		private Builder(SummaryInfo instance) {
+			this.read = instance.read;
+			this.write = instance.write;
+
+		}
 		/**
 		 * Required - A collection of statistics that summarise the results of the read
 		 * operations in the test.
@@ -191,6 +198,12 @@ public class SummaryInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

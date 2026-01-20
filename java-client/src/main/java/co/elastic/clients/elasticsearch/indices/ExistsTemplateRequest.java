@@ -61,9 +61,11 @@ import javax.annotation.Nullable;
 // typedef: indices.exists_template.Request
 
 /**
- * Check existence of index templates. Get information about whether index
- * templates exist. Index templates define settings, mappings, and aliases that
- * can be applied automatically to new indices.
+ * Check existence of index templates.
+ * <p>
+ * Get information about whether index templates exist. Index templates define
+ * settings, mappings, and aliases that can be applied automatically to new
+ * indices.
  * <p>
  * IMPORTANT: This documentation is about legacy index templates, which are
  * deprecated and will be replaced by the composable templates introduced in
@@ -114,7 +116,11 @@ public class ExistsTemplateRequest extends RequestBase {
 	 * Indicates whether to get information from the local node only.
 	 * <p>
 	 * API name: {@code local}
+	 * 
+	 * @deprecated 9.0.0 This parameter has no effect, is now deprecated, and will
+	 *             be removed in a future version.
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean local() {
 		return this.local;
@@ -162,6 +168,15 @@ public class ExistsTemplateRequest extends RequestBase {
 
 		private List<String> name;
 
+		public Builder() {
+		}
+		private Builder(ExistsTemplateRequest instance) {
+			this.flatSettings = instance.flatSettings;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Indicates whether to use a flat format for the response.
 		 * <p>
@@ -176,7 +191,11 @@ public class ExistsTemplateRequest extends RequestBase {
 		 * Indicates whether to get information from the local node only.
 		 * <p>
 		 * API name: {@code local}
+		 * 
+		 * @deprecated 9.0.0 This parameter has no effect, is now deprecated, and will
+		 *             be removed in a future version.
 		 */
+		@Deprecated
 		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
@@ -249,6 +268,12 @@ public class ExistsTemplateRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

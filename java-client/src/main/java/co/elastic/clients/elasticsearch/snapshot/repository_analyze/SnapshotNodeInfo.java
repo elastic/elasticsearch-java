@@ -126,6 +126,13 @@ public class SnapshotNodeInfo implements JsonpSerializable {
 
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(SnapshotNodeInfo instance) {
+			this.id = instance.id;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - API name: {@code id}
 		 */
@@ -160,6 +167,12 @@ public class SnapshotNodeInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

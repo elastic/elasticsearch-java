@@ -227,6 +227,17 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private CombinedFieldsZeroTerms zeroTermsQuery;
 
+		public Builder() {
+		}
+		private Builder(CombinedFieldsQuery instance) {
+			this.fields = instance.fields;
+			this.query = instance.query;
+			this.autoGenerateSynonymsPhraseQuery = instance.autoGenerateSynonymsPhraseQuery;
+			this.operator = instance.operator;
+			this.minimumShouldMatch = instance.minimumShouldMatch;
+			this.zeroTermsQuery = instance.zeroTermsQuery;
+
+		}
 		/**
 		 * Required - List of fields to search. Field wildcard patterns are allowed.
 		 * Only <code>text</code> fields are supported, and they must all have the same
@@ -327,6 +338,12 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

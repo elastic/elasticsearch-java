@@ -56,15 +56,17 @@ import javax.annotation.Nullable;
 // typedef: indices.migrate_to_data_stream.Request
 
 /**
- * Convert an index alias to a data stream. Converts an index alias to a data
- * stream. You must have a matching index template that is data stream enabled.
- * The alias must meet the following criteria: The alias must have a write
- * index; All indices for the alias must have a <code>@timestamp</code> field
- * mapping of a <code>date</code> or <code>date_nanos</code> field type; The
- * alias must not have any filters; The alias must not use custom routing. If
- * successful, the request removes the alias and creates a data stream with the
- * same name. The indices for the alias become hidden backing indices for the
- * stream. The write index for the alias becomes the write index for the stream.
+ * Convert an index alias to a data stream.
+ * <p>
+ * Converts an index alias to a data stream. You must have a matching index
+ * template that is data stream enabled. The alias must meet the following
+ * criteria: The alias must have a write index; All indices for the alias must
+ * have a <code>@timestamp</code> field mapping of a <code>date</code> or
+ * <code>date_nanos</code> field type; The alias must not have any filters; The
+ * alias must not use custom routing. If successful, the request removes the
+ * alias and creates a data stream with the same name. The indices for the alias
+ * become hidden backing indices for the stream. The write index for the alias
+ * becomes the write index for the stream.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.migrate_to_data_stream.Request">API
@@ -142,6 +144,14 @@ public class MigrateToDataStreamRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(MigrateToDataStreamRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -212,6 +222,12 @@ public class MigrateToDataStreamRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

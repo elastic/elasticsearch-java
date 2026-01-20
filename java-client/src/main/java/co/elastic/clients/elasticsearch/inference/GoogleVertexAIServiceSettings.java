@@ -61,10 +61,22 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class GoogleVertexAIServiceSettings implements JsonpSerializable {
+	@Nullable
+	private final GoogleModelGardenProvider provider;
+
+	@Nullable
+	private final String url;
+
+	@Nullable
+	private final String streamingUrl;
+
+	@Nullable
 	private final String location;
 
+	@Nullable
 	private final String modelId;
 
+	@Nullable
 	private final String projectId;
 
 	@Nullable
@@ -79,9 +91,12 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 
 	private GoogleVertexAIServiceSettings(Builder builder) {
 
-		this.location = ApiTypeHelper.requireNonNull(builder.location, this, "location");
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.projectId = ApiTypeHelper.requireNonNull(builder.projectId, this, "projectId");
+		this.provider = builder.provider;
+		this.url = builder.url;
+		this.streamingUrl = builder.streamingUrl;
+		this.location = builder.location;
+		this.modelId = builder.modelId;
+		this.projectId = builder.projectId;
 		this.rateLimit = builder.rateLimit;
 		this.serviceAccountJson = ApiTypeHelper.requireNonNull(builder.serviceAccountJson, this, "serviceAccountJson");
 		this.dimensions = builder.dimensions;
@@ -93,30 +108,120 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The name of the location to use for the inference task. Refer to
-	 * the Google documentation for the list of supported locations.
+	 * The name of the Google Model Garden Provider for <code>completion</code> and
+	 * <code>chat_completion</code> tasks. In order for a Google Model Garden
+	 * endpoint to be used <code>provider</code> must be defined and be other than
+	 * <code>google</code>. Modes:
+	 * <ul>
+	 * <li>Google Model Garden (third-party models): set <code>provider</code> to a
+	 * supported non-<code>google</code> value and provide <code>url</code> and/or
+	 * <code>streaming_url</code>.</li>
+	 * <li>Google Vertex AI: omit <code>provider</code> or set it to
+	 * <code>google</code>. In this mode, do not set <code>url</code> or
+	 * <code>streaming_url</code> and Elastic will construct the endpoint url from
+	 * <code>location</code>, <code>model_id</code>, and <code>project_id</code>
+	 * parameters.</li>
+	 * </ul>
+	 * <p>
+	 * API name: {@code provider}
+	 */
+	@Nullable
+	public final GoogleModelGardenProvider provider() {
+		return this.provider;
+	}
+
+	/**
+	 * The URL for non-streaming <code>completion</code> requests to a Google Model
+	 * Garden provider endpoint. If both <code>url</code> and
+	 * <code>streaming_url</code> are provided, each is used for its respective
+	 * mode. If <code>streaming_url</code> is not provided, <code>url</code> is also
+	 * used for streaming <code>completion</code> and <code>chat_completion</code>.
+	 * If <code>provider</code> is not provided or set to <code>google</code>
+	 * (Google Vertex AI), do not set <code>url</code> (or
+	 * <code>streaming_url</code>). At least one of <code>url</code> or
+	 * <code>streaming_url</code> must be provided for Google Model Garden endpoint
+	 * usage. Certain providers require separate URLs for streaming and
+	 * non-streaming operations (e.g., Anthropic, Mistral, AI21). Others support
+	 * both operation types through a single URL (e.g., Meta, Hugging Face).
+	 * Information on constructing the URL for various providers can be found in the
+	 * Google Model Garden documentation for the model, or on the endpoint’s
+	 * <code>Sample request</code> page. The request examples also illustrate the
+	 * proper formatting for the <code>url</code>.
+	 * <p>
+	 * API name: {@code url}
+	 */
+	@Nullable
+	public final String url() {
+		return this.url;
+	}
+
+	/**
+	 * The URL for streaming <code>completion</code> and
+	 * <code>chat_completion</code> requests to a Google Model Garden provider
+	 * endpoint. If both <code>streaming_url</code> and <code>url</code> are
+	 * provided, each is used for its respective mode. If <code>url</code> is not
+	 * provided, <code>streaming_url</code> is also used for non-streaming
+	 * <code>completion</code> requests. If <code>provider</code> is not provided or
+	 * set to <code>google</code> (Google Vertex AI), do not set
+	 * <code>streaming_url</code> (or <code>url</code>). At least one of
+	 * <code>streaming_url</code> or <code>url</code> must be provided for Google
+	 * Model Garden endpoint usage. Certain providers require separate URLs for
+	 * streaming and non-streaming operations (e.g., Anthropic, Mistral, AI21).
+	 * Others support both operation types through a single URL (e.g., Meta, Hugging
+	 * Face). Information on constructing the URL for various providers can be found
+	 * in the Google Model Garden documentation for the model, or on the endpoint’s
+	 * <code>Sample request</code> page. The request examples also illustrate the
+	 * proper formatting for the <code>streaming_url</code>.
+	 * <p>
+	 * API name: {@code streaming_url}
+	 */
+	@Nullable
+	public final String streamingUrl() {
+		return this.streamingUrl;
+	}
+
+	/**
+	 * The name of the location to use for the inference task for the Google Vertex
+	 * AI inference task. For Google Vertex AI, when <code>provider</code> is
+	 * omitted or <code>google</code> <code>location</code> is mandatory. For Google
+	 * Model Garden's <code>completion</code> and <code>chat_completion</code>
+	 * tasks, when <code>provider</code> is a supported non-<code>google</code>
+	 * value - <code>location</code> is ignored. Refer to the Google documentation
+	 * for the list of supported locations.
 	 * <p>
 	 * API name: {@code location}
 	 */
+	@Nullable
 	public final String location() {
 		return this.location;
 	}
 
 	/**
-	 * Required - The name of the model to use for the inference task. Refer to the
-	 * Google documentation for the list of supported models.
+	 * The name of the model to use for the inference task. For Google Vertex AI
+	 * <code>model_id</code> is mandatory. For Google Model Garden's
+	 * <code>completion</code> and <code>chat_completion</code> tasks, when
+	 * <code>provider</code> is a supported non-<code>google</code> value -
+	 * <code>model_id</code> will be used for some providers that require it,
+	 * otherwise - ignored. Refer to the Google documentation for the list of
+	 * supported models for Google Vertex AI.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
+	@Nullable
 	public final String modelId() {
 		return this.modelId;
 	}
 
 	/**
-	 * Required - The name of the project to use for the inference task.
+	 * The name of the project to use for the Google Vertex AI inference task. For
+	 * Google Vertex AI <code>project_id</code> is mandatory. For Google Model
+	 * Garden's <code>completion</code> and <code>chat_completion</code> tasks, when
+	 * <code>provider</code> is a supported non-<code>google</code> value -
+	 * <code>project_id</code> is ignored.
 	 * <p>
 	 * API name: {@code project_id}
 	 */
+	@Nullable
 	public final String projectId() {
 		return this.projectId;
 	}
@@ -167,15 +272,35 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("location");
-		generator.write(this.location);
+		if (this.provider != null) {
+			generator.writeKey("provider");
+			this.provider.serialize(generator, mapper);
+		}
+		if (this.url != null) {
+			generator.writeKey("url");
+			generator.write(this.url);
 
-		generator.writeKey("model_id");
-		generator.write(this.modelId);
+		}
+		if (this.streamingUrl != null) {
+			generator.writeKey("streaming_url");
+			generator.write(this.streamingUrl);
 
-		generator.writeKey("project_id");
-		generator.write(this.projectId);
+		}
+		if (this.location != null) {
+			generator.writeKey("location");
+			generator.write(this.location);
 
+		}
+		if (this.modelId != null) {
+			generator.writeKey("model_id");
+			generator.write(this.modelId);
+
+		}
+		if (this.projectId != null) {
+			generator.writeKey("project_id");
+			generator.write(this.projectId);
+
+		}
 		if (this.rateLimit != null) {
 			generator.writeKey("rate_limit");
 			this.rateLimit.serialize(generator, mapper);
@@ -206,10 +331,22 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GoogleVertexAIServiceSettings> {
+		@Nullable
+		private GoogleModelGardenProvider provider;
+
+		@Nullable
+		private String url;
+
+		@Nullable
+		private String streamingUrl;
+
+		@Nullable
 		private String location;
 
+		@Nullable
 		private String modelId;
 
+		@Nullable
 		private String projectId;
 
 		@Nullable
@@ -220,34 +357,135 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 		@Nullable
 		private Integer dimensions;
 
+		public Builder() {
+		}
+		private Builder(GoogleVertexAIServiceSettings instance) {
+			this.provider = instance.provider;
+			this.url = instance.url;
+			this.streamingUrl = instance.streamingUrl;
+			this.location = instance.location;
+			this.modelId = instance.modelId;
+			this.projectId = instance.projectId;
+			this.rateLimit = instance.rateLimit;
+			this.serviceAccountJson = instance.serviceAccountJson;
+			this.dimensions = instance.dimensions;
+
+		}
 		/**
-		 * Required - The name of the location to use for the inference task. Refer to
-		 * the Google documentation for the list of supported locations.
+		 * The name of the Google Model Garden Provider for <code>completion</code> and
+		 * <code>chat_completion</code> tasks. In order for a Google Model Garden
+		 * endpoint to be used <code>provider</code> must be defined and be other than
+		 * <code>google</code>. Modes:
+		 * <ul>
+		 * <li>Google Model Garden (third-party models): set <code>provider</code> to a
+		 * supported non-<code>google</code> value and provide <code>url</code> and/or
+		 * <code>streaming_url</code>.</li>
+		 * <li>Google Vertex AI: omit <code>provider</code> or set it to
+		 * <code>google</code>. In this mode, do not set <code>url</code> or
+		 * <code>streaming_url</code> and Elastic will construct the endpoint url from
+		 * <code>location</code>, <code>model_id</code>, and <code>project_id</code>
+		 * parameters.</li>
+		 * </ul>
+		 * <p>
+		 * API name: {@code provider}
+		 */
+		public final Builder provider(@Nullable GoogleModelGardenProvider value) {
+			this.provider = value;
+			return this;
+		}
+
+		/**
+		 * The URL for non-streaming <code>completion</code> requests to a Google Model
+		 * Garden provider endpoint. If both <code>url</code> and
+		 * <code>streaming_url</code> are provided, each is used for its respective
+		 * mode. If <code>streaming_url</code> is not provided, <code>url</code> is also
+		 * used for streaming <code>completion</code> and <code>chat_completion</code>.
+		 * If <code>provider</code> is not provided or set to <code>google</code>
+		 * (Google Vertex AI), do not set <code>url</code> (or
+		 * <code>streaming_url</code>). At least one of <code>url</code> or
+		 * <code>streaming_url</code> must be provided for Google Model Garden endpoint
+		 * usage. Certain providers require separate URLs for streaming and
+		 * non-streaming operations (e.g., Anthropic, Mistral, AI21). Others support
+		 * both operation types through a single URL (e.g., Meta, Hugging Face).
+		 * Information on constructing the URL for various providers can be found in the
+		 * Google Model Garden documentation for the model, or on the endpoint’s
+		 * <code>Sample request</code> page. The request examples also illustrate the
+		 * proper formatting for the <code>url</code>.
+		 * <p>
+		 * API name: {@code url}
+		 */
+		public final Builder url(@Nullable String value) {
+			this.url = value;
+			return this;
+		}
+
+		/**
+		 * The URL for streaming <code>completion</code> and
+		 * <code>chat_completion</code> requests to a Google Model Garden provider
+		 * endpoint. If both <code>streaming_url</code> and <code>url</code> are
+		 * provided, each is used for its respective mode. If <code>url</code> is not
+		 * provided, <code>streaming_url</code> is also used for non-streaming
+		 * <code>completion</code> requests. If <code>provider</code> is not provided or
+		 * set to <code>google</code> (Google Vertex AI), do not set
+		 * <code>streaming_url</code> (or <code>url</code>). At least one of
+		 * <code>streaming_url</code> or <code>url</code> must be provided for Google
+		 * Model Garden endpoint usage. Certain providers require separate URLs for
+		 * streaming and non-streaming operations (e.g., Anthropic, Mistral, AI21).
+		 * Others support both operation types through a single URL (e.g., Meta, Hugging
+		 * Face). Information on constructing the URL for various providers can be found
+		 * in the Google Model Garden documentation for the model, or on the endpoint’s
+		 * <code>Sample request</code> page. The request examples also illustrate the
+		 * proper formatting for the <code>streaming_url</code>.
+		 * <p>
+		 * API name: {@code streaming_url}
+		 */
+		public final Builder streamingUrl(@Nullable String value) {
+			this.streamingUrl = value;
+			return this;
+		}
+
+		/**
+		 * The name of the location to use for the inference task for the Google Vertex
+		 * AI inference task. For Google Vertex AI, when <code>provider</code> is
+		 * omitted or <code>google</code> <code>location</code> is mandatory. For Google
+		 * Model Garden's <code>completion</code> and <code>chat_completion</code>
+		 * tasks, when <code>provider</code> is a supported non-<code>google</code>
+		 * value - <code>location</code> is ignored. Refer to the Google documentation
+		 * for the list of supported locations.
 		 * <p>
 		 * API name: {@code location}
 		 */
-		public final Builder location(String value) {
+		public final Builder location(@Nullable String value) {
 			this.location = value;
 			return this;
 		}
 
 		/**
-		 * Required - The name of the model to use for the inference task. Refer to the
-		 * Google documentation for the list of supported models.
+		 * The name of the model to use for the inference task. For Google Vertex AI
+		 * <code>model_id</code> is mandatory. For Google Model Garden's
+		 * <code>completion</code> and <code>chat_completion</code> tasks, when
+		 * <code>provider</code> is a supported non-<code>google</code> value -
+		 * <code>model_id</code> will be used for some providers that require it,
+		 * otherwise - ignored. Refer to the Google documentation for the list of
+		 * supported models for Google Vertex AI.
 		 * <p>
 		 * API name: {@code model_id}
 		 */
-		public final Builder modelId(String value) {
+		public final Builder modelId(@Nullable String value) {
 			this.modelId = value;
 			return this;
 		}
 
 		/**
-		 * Required - The name of the project to use for the inference task.
+		 * The name of the project to use for the Google Vertex AI inference task. For
+		 * Google Vertex AI <code>project_id</code> is mandatory. For Google Model
+		 * Garden's <code>completion</code> and <code>chat_completion</code> tasks, when
+		 * <code>provider</code> is a supported non-<code>google</code> value -
+		 * <code>project_id</code> is ignored.
 		 * <p>
 		 * API name: {@code project_id}
 		 */
-		public final Builder projectId(String value) {
+		public final Builder projectId(@Nullable String value) {
 			this.projectId = value;
 			return this;
 		}
@@ -317,6 +555,12 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -328,6 +572,9 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 	protected static void setupGoogleVertexAIServiceSettingsDeserializer(
 			ObjectDeserializer<GoogleVertexAIServiceSettings.Builder> op) {
 
+		op.add(Builder::provider, GoogleModelGardenProvider._DESERIALIZER, "provider");
+		op.add(Builder::url, JsonpDeserializer.stringDeserializer(), "url");
+		op.add(Builder::streamingUrl, JsonpDeserializer.stringDeserializer(), "streaming_url");
 		op.add(Builder::location, JsonpDeserializer.stringDeserializer(), "location");
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
 		op.add(Builder::projectId, JsonpDeserializer.stringDeserializer(), "project_id");

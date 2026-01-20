@@ -76,8 +76,7 @@ import javax.annotation.Nullable;
  */
 
 public class ReindexRethrottleRequest extends RequestBase {
-	@Nullable
-	private final Float requestsPerSecond;
+	private final float requestsPerSecond;
 
 	private final String taskId;
 
@@ -85,7 +84,7 @@ public class ReindexRethrottleRequest extends RequestBase {
 
 	private ReindexRethrottleRequest(Builder builder) {
 
-		this.requestsPerSecond = builder.requestsPerSecond;
+		this.requestsPerSecond = ApiTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond", 0);
 		this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
 
 	}
@@ -95,14 +94,13 @@ public class ReindexRethrottleRequest extends RequestBase {
 	}
 
 	/**
-	 * The throttle for this request in sub-requests per second. It can be either
-	 * <code>-1</code> to turn off throttling or any decimal number like
+	 * Required - The throttle for this request in sub-requests per second. It can
+	 * be either <code>-1</code> to turn off throttling or any decimal number like
 	 * <code>1.7</code> or <code>12</code> to throttle to that level.
 	 * <p>
 	 * API name: {@code requests_per_second}
 	 */
-	@Nullable
-	public final Float requestsPerSecond() {
+	public final float requestsPerSecond() {
 		return this.requestsPerSecond;
 	}
 
@@ -124,19 +122,25 @@ public class ReindexRethrottleRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ReindexRethrottleRequest> {
-		@Nullable
 		private Float requestsPerSecond;
 
 		private String taskId;
 
+		public Builder() {
+		}
+		private Builder(ReindexRethrottleRequest instance) {
+			this.requestsPerSecond = instance.requestsPerSecond;
+			this.taskId = instance.taskId;
+
+		}
 		/**
-		 * The throttle for this request in sub-requests per second. It can be either
-		 * <code>-1</code> to turn off throttling or any decimal number like
+		 * Required - The throttle for this request in sub-requests per second. It can
+		 * be either <code>-1</code> to turn off throttling or any decimal number like
 		 * <code>1.7</code> or <code>12</code> to throttle to that level.
 		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
-		public final Builder requestsPerSecond(@Nullable Float value) {
+		public final Builder requestsPerSecond(float value) {
 			this.requestsPerSecond = value;
 			return this;
 		}
@@ -169,6 +173,12 @@ public class ReindexRethrottleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -221,9 +231,7 @@ public class ReindexRethrottleRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.requestsPerSecond != null) {
-					params.put("requests_per_second", String.valueOf(request.requestsPerSecond));
-				}
+				params.put("requests_per_second", String.valueOf(request.requestsPerSecond));
 				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, ReindexRethrottleResponse._DESERIALIZER);

@@ -183,6 +183,14 @@ public class EqlHits<TEvent> implements JsonpSerializable {
 		@Nullable
 		private JsonpSerializer<TEvent> tEventSerializer;
 
+		public Builder() {
+		}
+		private Builder(EqlHits<TEvent> instance) {
+			this.total = instance.total;
+			this.events = instance.events;
+			this.sequences = instance.sequences;
+
+		}
 		/**
 		 * Metadata about the number of matching events or sequences.
 		 * <p>
@@ -306,6 +314,12 @@ public class EqlHits<TEvent> implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

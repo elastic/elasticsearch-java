@@ -227,6 +227,17 @@ public class CommonTermsQuery extends QueryBase implements QueryVariant {
 
 		private String query;
 
+		public Builder() {
+		}
+		private Builder(CommonTermsQuery instance) {
+			this.analyzer = instance.analyzer;
+			this.cutoffFrequency = instance.cutoffFrequency;
+			this.highFreqOperator = instance.highFreqOperator;
+			this.lowFreqOperator = instance.lowFreqOperator;
+			this.minimumShouldMatch = instance.minimumShouldMatch;
+			this.query = instance.query;
+
+		}
 		/**
 		 * API name: {@code analyzer}
 		 */
@@ -293,6 +304,12 @@ public class CommonTermsQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

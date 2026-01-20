@@ -80,7 +80,7 @@ public class RemoveBlockRequest extends RequestBase {
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
-	private final String index;
+	private final List<String> index;
 
 	@Nullable
 	private final Time masterTimeout;
@@ -96,7 +96,7 @@ public class RemoveBlockRequest extends RequestBase {
 		this.block = ApiTypeHelper.requireNonNull(builder.block, this, "block");
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
@@ -164,7 +164,7 @@ public class RemoveBlockRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public final String index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -215,7 +215,7 @@ public class RemoveBlockRequest extends RequestBase {
 		@Nullable
 		private Boolean ignoreUnavailable;
 
-		private String index;
+		private List<String> index;
 
 		@Nullable
 		private Time masterTimeout;
@@ -223,6 +223,18 @@ public class RemoveBlockRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(RemoveBlockRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.block = instance.block;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -299,9 +311,29 @@ public class RemoveBlockRequest extends RequestBase {
 		 * using the cluster update settings API.
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(String value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list or wildcard expression of index names used
+		 * to limit the request. By default, you must explicitly name the indices you
+		 * are removing blocks from. To allow the removal of blocks from indices with
+		 * <code>_all</code>, <code>*</code>, or other wildcard expressions, change the
+		 * <code>action.destructive_requires_name</code> setting to <code>false</code>.
+		 * You can update this setting in the <code>elasticsearch.yml</code> file or by
+		 * using the cluster update settings API.
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
+		 */
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -375,6 +407,12 @@ public class RemoveBlockRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -402,7 +440,7 @@ public class RemoveBlockRequest extends RequestBase {
 				if (propsSet == (_index | _block)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index, buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_block");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.block.jsonValue(), buf);
@@ -424,7 +462,7 @@ public class RemoveBlockRequest extends RequestBase {
 				propsSet |= _block;
 
 				if (propsSet == (_index | _block)) {
-					params.put("index", request.index);
+					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
 					params.put("block", request.block.jsonValue());
 				}
 				return params;

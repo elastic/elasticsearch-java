@@ -58,9 +58,11 @@ import javax.annotation.Nullable;
 // typedef: logstash.delete_pipeline.Request
 
 /**
- * Delete a Logstash pipeline. Delete a pipeline that is used for Logstash
- * Central Management. If the request succeeds, you receive an empty response
- * with an appropriate status code.
+ * Delete a Logstash pipeline.
+ * <p>
+ * Delete a pipeline that is used for Logstash Central Management. If the
+ * request succeeds, you receive an empty response with an appropriate status
+ * code.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#logstash.delete_pipeline.Request">API
@@ -102,6 +104,12 @@ public class DeletePipelineRequest extends RequestBase {
 				ObjectBuilder<DeletePipelineRequest> {
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(DeletePipelineRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Required - An identifier for the pipeline.
 		 * <p>
@@ -130,6 +138,12 @@ public class DeletePipelineRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

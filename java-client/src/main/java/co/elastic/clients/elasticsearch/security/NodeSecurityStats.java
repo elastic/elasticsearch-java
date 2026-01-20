@@ -112,6 +112,12 @@ public class NodeSecurityStats implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeSecurityStats> {
 		private RolesStats roles;
 
+		public Builder() {
+		}
+		private Builder(NodeSecurityStats instance) {
+			this.roles = instance.roles;
+
+		}
 		/**
 		 * Required - Role statistics.
 		 * <p>
@@ -149,6 +155,12 @@ public class NodeSecurityStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

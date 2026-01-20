@@ -122,6 +122,12 @@ public class NodeInfoAggregation implements JsonpSerializable {
 				ObjectBuilder<NodeInfoAggregation> {
 		private List<String> types;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoAggregation instance) {
+			this.types = instance.types;
+
+		}
 		/**
 		 * Required - API name: {@code types}
 		 * <p>
@@ -160,6 +166,12 @@ public class NodeInfoAggregation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

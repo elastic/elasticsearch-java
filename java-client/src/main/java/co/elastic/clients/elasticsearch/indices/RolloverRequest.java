@@ -63,10 +63,11 @@ import javax.annotation.Nullable;
 // typedef: indices.rollover.Request
 
 /**
- * Roll over to a new index. TIP: We recommend using the index lifecycle
- * rollover action to automate rollovers. However, Serverless does not support
- * Index Lifecycle Management (ILM), so don't use this approach in the
- * Serverless context.
+ * Roll over to a new index.
+ * <p>
+ * TIP: We recommend using the index lifecycle rollover action to automate
+ * rollovers. However, Serverless does not support Index Lifecycle Management
+ * (ILM), so don't use this approach in the Serverless context.
  * <p>
  * The rollover API creates a new index for a data stream or index alias. The
  * API behavior depends on the rollover target.
@@ -381,6 +382,22 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private WaitForActiveShards waitForActiveShards;
 
+		public Builder() {
+		}
+		private Builder(RolloverRequest instance) {
+			this.alias = instance.alias;
+			this.aliases = instance.aliases;
+			this.conditions = instance.conditions;
+			this.dryRun = instance.dryRun;
+			this.lazy = instance.lazy;
+			this.mappings = instance.mappings;
+			this.masterTimeout = instance.masterTimeout;
+			this.newIndex = instance.newIndex;
+			this.settings = instance.settings;
+			this.timeout = instance.timeout;
+			this.waitForActiveShards = instance.waitForActiveShards;
+
+		}
 		/**
 		 * Required - Name of the data stream or index alias to roll over.
 		 * <p>
@@ -620,6 +637,12 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

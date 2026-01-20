@@ -183,6 +183,15 @@ public class ScriptCache implements JsonpSerializable {
 		@Nullable
 		private String context;
 
+		public Builder() {
+		}
+		private Builder(ScriptCache instance) {
+			this.cacheEvictions = instance.cacheEvictions;
+			this.compilationLimitTriggered = instance.compilationLimitTriggered;
+			this.compilations = instance.compilations;
+			this.context = instance.context;
+
+		}
 		/**
 		 * Total number of times the script cache has evicted old data.
 		 * <p>
@@ -240,6 +249,12 @@ public class ScriptCache implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

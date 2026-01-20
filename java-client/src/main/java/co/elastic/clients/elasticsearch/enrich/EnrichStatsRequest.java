@@ -55,8 +55,10 @@ import javax.annotation.Nullable;
 // typedef: enrich.stats.Request
 
 /**
- * Get enrich stats. Returns enrich coordinator statistics and information about
- * enrich policies that are currently executing.
+ * Get enrich stats.
+ * <p>
+ * Returns enrich coordinator statistics and information about enrich policies
+ * that are currently executing.
  * 
  * @see <a href="../doc-files/api-spec.html#enrich.stats.Request">API
  *      specification</a>
@@ -100,6 +102,12 @@ public class EnrichStatsRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		public Builder() {
+		}
+		private Builder(EnrichStatsRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node.
 		 * <p>
@@ -137,6 +145,12 @@ public class EnrichStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

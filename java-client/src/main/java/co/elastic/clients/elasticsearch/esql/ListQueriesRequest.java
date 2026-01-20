@@ -50,8 +50,10 @@ import java.util.Objects;
 // typedef: esql.list_queries.Request
 
 /**
- * Get running ES|QL queries information. Returns an object containing IDs and
- * other information about the running ES|QL queries.
+ * Get running ES|QL queries information.
+ * <p>
+ * Returns an object containing IDs and other information about the running
+ * ES|QL queries.
  * 
  * @see <a href="../doc-files/api-spec.html#esql.list_queries.Request">API
  *      specification</a>

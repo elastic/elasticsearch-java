@@ -60,16 +60,18 @@ import javax.annotation.Nullable;
 // typedef: cluster.allocation_explain.Request
 
 /**
- * Explain the shard allocations. Get explanations for shard allocations in the
- * cluster. This API accepts the current_node, index, primary and shard
- * parameters in the request body or in query parameters, but not in both at the
- * same time. For unassigned shards, it provides an explanation for why the
- * shard is unassigned. For assigned shards, it provides an explanation for why
- * the shard is remaining on its current node and has not moved or rebalanced to
- * another node. This API can be very useful when attempting to diagnose why a
- * shard is unassigned or why a shard continues to remain on its current node
- * when you might expect otherwise. Refer to the linked documentation for
- * examples of how to troubleshoot allocation issues using this API.
+ * Explain the shard allocations.
+ * <p>
+ * Get explanations for shard allocations in the cluster. This API accepts the
+ * current_node, index, primary and shard parameters in the request body or in
+ * query parameters, but not in both at the same time. For unassigned shards, it
+ * provides an explanation for why the shard is unassigned. For assigned shards,
+ * it provides an explanation for why the shard is remaining on its current node
+ * and has not moved or rebalanced to another node. This API can be very useful
+ * when attempting to diagnose why a shard is unassigned or why a shard
+ * continues to remain on its current node when you might expect otherwise.
+ * Refer to the linked documentation for examples of how to troubleshoot
+ * allocation issues using this API.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#cluster.allocation_explain.Request">API
@@ -252,6 +254,18 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 		@Nullable
 		private Integer shard;
 
+		public Builder() {
+		}
+		private Builder(AllocationExplainRequest instance) {
+			this.currentNode = instance.currentNode;
+			this.includeDiskInfo = instance.includeDiskInfo;
+			this.includeYesDecisions = instance.includeYesDecisions;
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.primary = instance.primary;
+			this.shard = instance.shard;
+
+		}
 		/**
 		 * Explain a shard only if it is currently located on the specified node name or
 		 * node ID.
@@ -351,6 +365,12 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

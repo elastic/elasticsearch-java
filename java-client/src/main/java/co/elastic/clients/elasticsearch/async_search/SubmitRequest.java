@@ -210,8 +210,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<Rescore> rescore;
 
-	@Nullable
-	private final String routing;
+	private final List<String> routing;
 
 	private final Map<String, RuntimeField> runtimeMappings;
 
@@ -299,7 +298,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		this.query = builder.query;
 		this.requestCache = builder.requestCache;
 		this.rescore = ApiTypeHelper.unmodifiable(builder.rescore);
-		this.routing = builder.routing;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
 		this.searchAfter = ApiTypeHelper.unmodifiable(builder.searchAfter);
@@ -366,8 +365,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specify whether wildcard and prefix queries should be analyzed (default:
-	 * false)
+	 * Specify whether wildcard and prefix queries should be analyzed
 	 * <p>
 	 * API name: {@code analyze_wildcard}
 	 */
@@ -450,7 +448,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * closed or both
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -634,8 +632,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specify the node or shard the operation should be performed on (default:
-	 * random)
+	 * Specify the node or shard the operation should be performed on
 	 * <p>
 	 * API name: {@code preference}
 	 */
@@ -709,8 +706,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	@Nullable
-	public final String routing() {
+	public final List<String> routing() {
 		return this.routing;
 	}
 
@@ -1012,6 +1008,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.profile);
 
 		}
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
 		if (this.query != null) {
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
@@ -1262,7 +1263,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		private List<Rescore> rescore;
 
 		@Nullable
-		private String routing;
+		private List<String> routing;
 
 		@Nullable
 		private Map<String, RuntimeField> runtimeMappings;
@@ -1315,6 +1316,66 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time waitForCompletionTimeout;
 
+		public Builder() {
+		}
+		private Builder(SubmitRequest instance) {
+			this.source = instance.source;
+			this.aggregations = instance.aggregations;
+			this.allowNoIndices = instance.allowNoIndices;
+			this.allowPartialSearchResults = instance.allowPartialSearchResults;
+			this.analyzeWildcard = instance.analyzeWildcard;
+			this.analyzer = instance.analyzer;
+			this.batchedReduceSize = instance.batchedReduceSize;
+			this.ccsMinimizeRoundtrips = instance.ccsMinimizeRoundtrips;
+			this.collapse = instance.collapse;
+			this.defaultOperator = instance.defaultOperator;
+			this.df = instance.df;
+			this.docvalueFields = instance.docvalueFields;
+			this.expandWildcards = instance.expandWildcards;
+			this.explain = instance.explain;
+			this.ext = instance.ext;
+			this.fields = instance.fields;
+			this.from = instance.from;
+			this.highlight = instance.highlight;
+			this.ignoreThrottled = instance.ignoreThrottled;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.indicesBoost = instance.indicesBoost;
+			this.keepAlive = instance.keepAlive;
+			this.keepOnCompletion = instance.keepOnCompletion;
+			this.knn = instance.knn;
+			this.lenient = instance.lenient;
+			this.maxConcurrentShardRequests = instance.maxConcurrentShardRequests;
+			this.minScore = instance.minScore;
+			this.pit = instance.pit;
+			this.postFilter = instance.postFilter;
+			this.preference = instance.preference;
+			this.profile = instance.profile;
+			this.projectRouting = instance.projectRouting;
+			this.q = instance.q;
+			this.query = instance.query;
+			this.requestCache = instance.requestCache;
+			this.rescore = instance.rescore;
+			this.routing = instance.routing;
+			this.runtimeMappings = instance.runtimeMappings;
+			this.scriptFields = instance.scriptFields;
+			this.searchAfter = instance.searchAfter;
+			this.searchType = instance.searchType;
+			this.seqNoPrimaryTerm = instance.seqNoPrimaryTerm;
+			this.size = instance.size;
+			this.slice = instance.slice;
+			this.sort = instance.sort;
+			this.stats = instance.stats;
+			this.storedFields = instance.storedFields;
+			this.suggest = instance.suggest;
+			this.terminateAfter = instance.terminateAfter;
+			this.timeout = instance.timeout;
+			this.trackScores = instance.trackScores;
+			this.trackTotalHits = instance.trackTotalHits;
+			this.version = instance.version;
+			this.waitForCompletionTimeout = instance.waitForCompletionTimeout;
+
+		}
 		/**
 		 * Indicates which source fields are returned for matching documents. These
 		 * fields are returned in the hits._source property of the search response.
@@ -1399,8 +1460,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify whether wildcard and prefix queries should be analyzed (default:
-		 * false)
+		 * Specify whether wildcard and prefix queries should be analyzed
 		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
@@ -1518,7 +1578,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * closed or both
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -1531,7 +1591,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * closed or both
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -1861,8 +1921,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify the node or shard the operation should be performed on (default:
-		 * random)
+		 * Specify the node or shard the operation should be performed on
 		 * <p>
 		 * API name: {@code preference}
 		 */
@@ -1989,9 +2048,23 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * A comma-separated list of specific routing values
 		 * <p>
 		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of specific routing values
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
 			return this;
 		}
 
@@ -2412,6 +2485,12 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -2440,6 +2519,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::pit, PointInTimeReference._DESERIALIZER, "pit");
 		op.add(Builder::postFilter, Query._DESERIALIZER, "post_filter");
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore._DESERIALIZER), "rescore");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
@@ -2526,14 +2606,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 				if (request.df != null) {
 					params.put("df", request.df);
 				}
-				if (request.projectRouting != null) {
-					params.put("project_routing", request.projectRouting);
-				}
 				if (request.lenient != null) {
 					params.put("lenient", String.valueOf(request.lenient));
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

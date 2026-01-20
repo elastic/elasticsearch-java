@@ -112,6 +112,12 @@ public class ShortNumberProperty extends NumberPropertyBase implements PropertyV
 		@Nullable
 		private Number nullValue;
 
+		public Builder() {
+		}
+		private Builder(ShortNumberProperty instance) {
+			this.nullValue = instance.nullValue;
+
+		}
 		/**
 		 * API name: {@code null_value}
 		 */
@@ -138,6 +144,12 @@ public class ShortNumberProperty extends NumberPropertyBase implements PropertyV
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

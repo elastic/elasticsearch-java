@@ -409,6 +409,23 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Map<String, JsonData> transientMetadata;
 
+		public Builder() {
+		}
+		private Builder(PutRoleRequest instance) {
+			this.applications = instance.applications;
+			this.cluster = instance.cluster;
+			this.description = instance.description;
+			this.global = instance.global;
+			this.indices = instance.indices;
+			this.metadata = instance.metadata;
+			this.name = instance.name;
+			this.refresh = instance.refresh;
+			this.remoteCluster = instance.remoteCluster;
+			this.remoteIndices = instance.remoteIndices;
+			this.runAs = instance.runAs;
+			this.transientMetadata = instance.transientMetadata;
+
+		}
 		/**
 		 * A list of application privilege entries.
 		 * <p>
@@ -777,6 +794,12 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

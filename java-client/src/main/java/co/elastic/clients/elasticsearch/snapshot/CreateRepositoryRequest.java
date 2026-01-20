@@ -60,10 +60,12 @@ import javax.annotation.Nullable;
 // typedef: snapshot.create_repository.Request
 
 /**
- * Create or update a snapshot repository. IMPORTANT: If you are migrating
- * searchable snapshots, the repository name must be identical in the source and
- * destination clusters. To register a snapshot repository, the cluster's global
- * metadata must be writeable. Ensure there are no cluster blocks (for example,
+ * Create or update a snapshot repository.
+ * <p>
+ * IMPORTANT: If you are migrating searchable snapshots, the repository name
+ * must be identical in the source and destination clusters. To register a
+ * snapshot repository, the cluster's global metadata must be writeable. Ensure
+ * there are no cluster blocks (for example,
  * <code>cluster.blocks.read_only</code> and
  * <code>clsuter.blocks.read_only_allow_delete</code> settings) that prevent
  * write access.
@@ -192,6 +194,16 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 
 		private Repository repository;
 
+		public Builder() {
+		}
+		private Builder(CreateRepositoryRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.timeout = instance.timeout;
+			this.verify = instance.verify;
+			this.repository = instance.repository;
+
+		}
 		/**
 		 * The period to wait for the master node. If the master node is not available
 		 * before the timeout expires, the request fails and returns an error. To
@@ -306,6 +318,12 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<CreateRepositoryRequest> _DESERIALIZER = createCreateRepositoryRequestDeserializer();
 	protected static JsonpDeserializer<CreateRepositoryRequest> createCreateRepositoryRequestDeserializer() {
 

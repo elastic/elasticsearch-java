@@ -57,9 +57,11 @@ import javax.annotation.Nullable;
 // typedef: dangling_indices.delete_dangling_index.Request
 
 /**
- * Delete a dangling index. If Elasticsearch encounters index data that is
- * absent from the current cluster state, those indices are considered to be
- * dangling. For example, this can happen if you delete more than
+ * Delete a dangling index.
+ * <p>
+ * If Elasticsearch encounters index data that is absent from the current
+ * cluster state, those indices are considered to be dangling. For example, this
+ * can happen if you delete more than
  * <code>cluster.indices.tombstones.size</code> indices while an Elasticsearch
  * node is offline.
  * 
@@ -69,7 +71,8 @@ import javax.annotation.Nullable;
  */
 
 public class DeleteDanglingIndexRequest extends RequestBase {
-	private final boolean acceptDataLoss;
+	@Nullable
+	private final Boolean acceptDataLoss;
 
 	private final String indexUuid;
 
@@ -83,7 +86,7 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 
 	private DeleteDanglingIndexRequest(Builder builder) {
 
-		this.acceptDataLoss = ApiTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss", false);
+		this.acceptDataLoss = builder.acceptDataLoss;
 		this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
@@ -95,12 +98,13 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - This parameter must be set to true to acknowledge that it will no
-	 * longer be possible to recove data from the dangling index.
+	 * This parameter must be set to true to acknowledge that it will no longer be
+	 * possible to recove data from the dangling index.
 	 * <p>
 	 * API name: {@code accept_data_loss}
 	 */
-	public final boolean acceptDataLoss() {
+	@Nullable
+	public final Boolean acceptDataLoss() {
 		return this.acceptDataLoss;
 	}
 
@@ -115,7 +119,7 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * The period to wait for a connection to the master node.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -125,7 +129,7 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * The period to wait for a response.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -143,6 +147,7 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteDanglingIndexRequest> {
+		@Nullable
 		private Boolean acceptDataLoss;
 
 		private String indexUuid;
@@ -153,13 +158,22 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeleteDanglingIndexRequest instance) {
+			this.acceptDataLoss = instance.acceptDataLoss;
+			this.indexUuid = instance.indexUuid;
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+
+		}
 		/**
-		 * Required - This parameter must be set to true to acknowledge that it will no
-		 * longer be possible to recove data from the dangling index.
+		 * This parameter must be set to true to acknowledge that it will no longer be
+		 * possible to recove data from the dangling index.
 		 * <p>
 		 * API name: {@code accept_data_loss}
 		 */
-		public final Builder acceptDataLoss(boolean value) {
+		public final Builder acceptDataLoss(@Nullable Boolean value) {
 			this.acceptDataLoss = value;
 			return this;
 		}
@@ -176,7 +190,7 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -186,7 +200,7 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -195,7 +209,7 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * The period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -205,7 +219,7 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * The period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -231,6 +245,12 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -285,7 +305,9 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
-				params.put("accept_data_loss", String.valueOf(request.acceptDataLoss));
+				if (request.acceptDataLoss != null) {
+					params.put("accept_data_loss", String.valueOf(request.acceptDataLoss));
+				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());
 				}

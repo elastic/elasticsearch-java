@@ -58,7 +58,9 @@ import javax.annotation.Nullable;
 // typedef: enrich.put_policy.Request
 
 /**
- * Create an enrich policy. Creates an enrich policy.
+ * Create an enrich policy.
+ * <p>
+ * Creates an enrich policy.
  * 
  * @see <a href="../doc-files/api-spec.html#enrich.put_policy.Request">API
  *      specification</a>
@@ -198,6 +200,16 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private EnrichPolicy range;
 
+		public Builder() {
+		}
+		private Builder(PutPolicyRequest instance) {
+			this.geoMatch = instance.geoMatch;
+			this.masterTimeout = instance.masterTimeout;
+			this.match = instance.match;
+			this.name = instance.name;
+			this.range = instance.range;
+
+		}
 		/**
 		 * Matches enrich data to incoming documents based on a <code>geo_shape</code>
 		 * query.
@@ -306,6 +318,12 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -120,6 +120,13 @@ public class GetUserRequest extends RequestBase {
 		@Nullable
 		private Boolean withProfileUid;
 
+		public Builder() {
+		}
+		private Builder(GetUserRequest instance) {
+			this.username = instance.username;
+			this.withProfileUid = instance.withProfileUid;
+
+		}
 		/**
 		 * An identifier for the user. You can specify multiple usernames as a
 		 * comma-separated list. If you omit this parameter, the API retrieves
@@ -177,6 +184,12 @@ public class GetUserRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

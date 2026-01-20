@@ -110,6 +110,12 @@ public class GetRoleMappingRequest extends RequestBase {
 		@Nullable
 		private List<String> name;
 
+		public Builder() {
+		}
+		private Builder(GetRoleMappingRequest instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * The distinct name that identifies the role mapping. The name is used solely
 		 * as an identifier to facilitate interaction via the API; it does not affect
@@ -160,6 +166,12 @@ public class GetRoleMappingRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

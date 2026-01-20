@@ -55,8 +55,10 @@ import javax.annotation.Nullable;
 // typedef: watcher.get_settings.Request
 
 /**
- * Get Watcher index settings. Get settings for the Watcher internal index
- * (<code>.watches</code>). Only a subset of settings are shown, for example
+ * Get Watcher index settings.
+ * <p>
+ * Get settings for the Watcher internal index (<code>.watches</code>). Only a
+ * subset of settings are shown, for example
  * <code>index.auto_expand_replicas</code> and
  * <code>index.number_of_replicas</code>.
  * 
@@ -103,6 +105,12 @@ public class GetWatcherSettingsRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		public Builder() {
+		}
+		private Builder(GetWatcherSettingsRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+
+		}
 		/**
 		 * The period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -142,6 +150,12 @@ public class GetWatcherSettingsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

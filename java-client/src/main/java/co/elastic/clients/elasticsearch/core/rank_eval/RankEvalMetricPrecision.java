@@ -111,6 +111,12 @@ public class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold {
 		@Nullable
 		private Boolean ignoreUnlabeled;
 
+		public Builder() {
+		}
+		private Builder(RankEvalMetricPrecision instance) {
+			this.ignoreUnlabeled = instance.ignoreUnlabeled;
+
+		}
 		/**
 		 * Controls how unlabeled documents in the search results are counted. If set to
 		 * true, unlabeled documents are ignored and neither count as relevant or
@@ -141,6 +147,12 @@ public class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

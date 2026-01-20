@@ -48,6 +48,8 @@ import co.elastic.clients.json.JsonpDeserializer;
 public enum AzureOpenAITaskType implements JsonEnum {
 	Completion("completion"),
 
+	ChatCompletion("chat_completion"),
+
 	TextEmbedding("text_embedding"),
 
 	;

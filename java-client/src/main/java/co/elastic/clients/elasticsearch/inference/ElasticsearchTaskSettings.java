@@ -121,6 +121,12 @@ public class ElasticsearchTaskSettings implements JsonpSerializable {
 		@Nullable
 		private Boolean returnDocuments;
 
+		public Builder() {
+		}
+		private Builder(ElasticsearchTaskSettings instance) {
+			this.returnDocuments = instance.returnDocuments;
+
+		}
 		/**
 		 * For a <code>rerank</code> task, return the document instead of only the
 		 * index.
@@ -150,6 +156,12 @@ public class ElasticsearchTaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

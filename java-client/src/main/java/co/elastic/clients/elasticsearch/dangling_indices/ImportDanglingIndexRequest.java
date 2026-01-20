@@ -71,7 +71,8 @@ import javax.annotation.Nullable;
  */
 
 public class ImportDanglingIndexRequest extends RequestBase {
-	private final boolean acceptDataLoss;
+	@Nullable
+	private final Boolean acceptDataLoss;
 
 	private final String indexUuid;
 
@@ -85,7 +86,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
 
 	private ImportDanglingIndexRequest(Builder builder) {
 
-		this.acceptDataLoss = ApiTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss", false);
+		this.acceptDataLoss = builder.acceptDataLoss;
 		this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
@@ -97,15 +98,16 @@ public class ImportDanglingIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - This parameter must be set to true to import a dangling index.
-	 * Because Elasticsearch cannot know where the dangling index data came from or
+	 * This parameter must be set to true to import a dangling index. Because
+	 * Elasticsearch cannot know where the dangling index data came from or
 	 * determine which shard copies are fresh and which are stale, it cannot
 	 * guarantee that the imported data represents the latest state of the index
 	 * when it was last in the cluster.
 	 * <p>
 	 * API name: {@code accept_data_loss}
 	 */
-	public final boolean acceptDataLoss() {
+	@Nullable
+	public final Boolean acceptDataLoss() {
 		return this.acceptDataLoss;
 	}
 
@@ -120,7 +122,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Specify timeout for connection to master
+	 * The period to wait for a connection to the master node.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -130,7 +132,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * The period to wait for a response.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -148,6 +150,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ImportDanglingIndexRequest> {
+		@Nullable
 		private Boolean acceptDataLoss;
 
 		private String indexUuid;
@@ -158,16 +161,25 @@ public class ImportDanglingIndexRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(ImportDanglingIndexRequest instance) {
+			this.acceptDataLoss = instance.acceptDataLoss;
+			this.indexUuid = instance.indexUuid;
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+
+		}
 		/**
-		 * Required - This parameter must be set to true to import a dangling index.
-		 * Because Elasticsearch cannot know where the dangling index data came from or
+		 * This parameter must be set to true to import a dangling index. Because
+		 * Elasticsearch cannot know where the dangling index data came from or
 		 * determine which shard copies are fresh and which are stale, it cannot
 		 * guarantee that the imported data represents the latest state of the index
 		 * when it was last in the cluster.
 		 * <p>
 		 * API name: {@code accept_data_loss}
 		 */
-		public final Builder acceptDataLoss(boolean value) {
+		public final Builder acceptDataLoss(@Nullable Boolean value) {
 			this.acceptDataLoss = value;
 			return this;
 		}
@@ -184,7 +196,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -194,7 +206,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Specify timeout for connection to master
+		 * The period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -203,7 +215,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * The period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -213,7 +225,7 @@ public class ImportDanglingIndexRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * The period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -239,6 +251,12 @@ public class ImportDanglingIndexRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -293,7 +311,9 @@ public class ImportDanglingIndexRequest extends RequestBase {
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
-				params.put("accept_data_loss", String.valueOf(request.acceptDataLoss));
+				if (request.acceptDataLoss != null) {
+					params.put("accept_data_loss", String.valueOf(request.acceptDataLoss));
+				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());
 				}

@@ -154,6 +154,14 @@ public class TotalFeatureImportanceStatistics implements JsonpSerializable {
 
 		private Integer min;
 
+		public Builder() {
+		}
+		private Builder(TotalFeatureImportanceStatistics instance) {
+			this.meanMagnitude = instance.meanMagnitude;
+			this.max = instance.max;
+			this.min = instance.min;
+
+		}
 		/**
 		 * Required - The average magnitude of this feature across all the training
 		 * data. This value is the average of the absolute values of the importance for
@@ -206,6 +214,12 @@ public class TotalFeatureImportanceStatistics implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

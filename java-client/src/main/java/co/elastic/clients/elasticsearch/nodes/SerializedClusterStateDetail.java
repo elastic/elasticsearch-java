@@ -199,6 +199,16 @@ public class SerializedClusterStateDetail implements JsonpSerializable {
 		@Nullable
 		private Long compressedSizeInBytes;
 
+		public Builder() {
+		}
+		private Builder(SerializedClusterStateDetail instance) {
+			this.count = instance.count;
+			this.uncompressedSize = instance.uncompressedSize;
+			this.uncompressedSizeInBytes = instance.uncompressedSizeInBytes;
+			this.compressedSize = instance.compressedSize;
+			this.compressedSizeInBytes = instance.compressedSizeInBytes;
+
+		}
 		/**
 		 * API name: {@code count}
 		 */
@@ -257,6 +267,12 @@ public class SerializedClusterStateDetail implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

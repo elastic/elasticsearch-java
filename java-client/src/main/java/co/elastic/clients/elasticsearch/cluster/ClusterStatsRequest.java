@@ -59,9 +59,11 @@ import javax.annotation.Nullable;
 // typedef: cluster.stats.Request
 
 /**
- * Get cluster statistics. Get basic index metrics (shard numbers, store size,
- * memory usage) and information about the current nodes that form the cluster
- * (number, roles, os, jvm versions, memory usage, cpu and installed plugins).
+ * Get cluster statistics.
+ * <p>
+ * Get basic index metrics (shard numbers, store size, memory usage) and
+ * information about the current nodes that form the cluster (number, roles, os,
+ * jvm versions, memory usage, cpu and installed plugins).
  * 
  * @see <a href="../doc-files/api-spec.html#cluster.stats.Request">API
  *      specification</a>
@@ -141,6 +143,14 @@ public class ClusterStatsRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(ClusterStatsRequest instance) {
+			this.includeRemotes = instance.includeRemotes;
+			this.nodeId = instance.nodeId;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Include remote cluster data into the response
 		 * <p>
@@ -220,6 +230,12 @@ public class ClusterStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

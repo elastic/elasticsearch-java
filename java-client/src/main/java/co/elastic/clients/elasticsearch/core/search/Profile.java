@@ -119,6 +119,12 @@ public class Profile implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Profile> {
 		private List<ShardProfile> shards;
 
+		public Builder() {
+		}
+		private Builder(Profile instance) {
+			this.shards = instance.shards;
+
+		}
 		/**
 		 * Required - API name: {@code shards}
 		 * <p>
@@ -166,6 +172,12 @@ public class Profile implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

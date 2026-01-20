@@ -34,9 +34,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -69,7 +71,7 @@ public class DeleteSnapshotRequest extends RequestBase {
 
 	private final String repository;
 
-	private final String snapshot;
+	private final List<String> snapshot;
 
 	@Nullable
 	private final Boolean waitForCompletion;
@@ -80,7 +82,7 @@ public class DeleteSnapshotRequest extends RequestBase {
 
 		this.masterTimeout = builder.masterTimeout;
 		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
-		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.snapshot = ApiTypeHelper.unmodifiableRequired(builder.snapshot, this, "snapshot");
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
@@ -116,7 +118,7 @@ public class DeleteSnapshotRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code snapshot}
 	 */
-	public final String snapshot() {
+	public final List<String> snapshot() {
 		return this.snapshot;
 	}
 
@@ -146,11 +148,20 @@ public class DeleteSnapshotRequest extends RequestBase {
 
 		private String repository;
 
-		private String snapshot;
+		private List<String> snapshot;
 
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(DeleteSnapshotRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.repository = instance.repository;
+			this.snapshot = instance.snapshot;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * The period to wait for the master node. If the master node is not available
 		 * before the timeout expires, the request fails and returns an error. To
@@ -189,9 +200,24 @@ public class DeleteSnapshotRequest extends RequestBase {
 		 * accepts wildcards (<code>*</code>).
 		 * <p>
 		 * API name: {@code snapshot}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>snapshot</code>.
 		 */
-		public final Builder snapshot(String value) {
-			this.snapshot = value;
+		public final Builder snapshot(List<String> list) {
+			this.snapshot = _listAddAll(this.snapshot, list);
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of snapshot names to delete. It also
+		 * accepts wildcards (<code>*</code>).
+		 * <p>
+		 * API name: {@code snapshot}
+		 * <p>
+		 * Adds one or more values to <code>snapshot</code>.
+		 */
+		public final Builder snapshot(String value, String... values) {
+			this.snapshot = _listAdd(this.snapshot, value, values);
 			return this;
 		}
 
@@ -225,6 +251,12 @@ public class DeleteSnapshotRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -255,7 +287,8 @@ public class DeleteSnapshotRequest extends RequestBase {
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.repository, buf);
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.snapshot, buf);
+					SimpleEndpoint.pathEncode(request.snapshot.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -275,7 +308,7 @@ public class DeleteSnapshotRequest extends RequestBase {
 
 				if (propsSet == (_repository | _snapshot)) {
 					params.put("repository", request.repository);
-					params.put("snapshot", request.snapshot);
+					params.put("snapshot", request.snapshot.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 			},

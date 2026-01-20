@@ -56,10 +56,11 @@ import javax.annotation.Nullable;
 // typedef: ml.reset_job.Request
 
 /**
- * Reset an anomaly detection job. All model state and results are deleted. The
- * job is ready to start over as if it had just been created. It is not
- * currently possible to reset multiple jobs using wildcards or a comma
- * separated list.
+ * Reset an anomaly detection job.
+ * <p>
+ * All model state and results are deleted. The job is ready to start over as if
+ * it had just been created. It is not currently possible to reset multiple jobs
+ * using wildcards or a comma separated list.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.reset_job.Request">API
  *      specification</a>
@@ -133,6 +134,14 @@ public class ResetJobRequest extends RequestBase {
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(ResetJobRequest instance) {
+			this.deleteUserAnnotations = instance.deleteUserAnnotations;
+			this.jobId = instance.jobId;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * Specifies whether annotations that have been added by the user should be
 		 * deleted along with any auto-generated annotations when the job is reset.
@@ -182,6 +191,12 @@ public class ResetJobRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

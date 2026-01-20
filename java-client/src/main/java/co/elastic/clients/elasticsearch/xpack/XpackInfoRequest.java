@@ -59,7 +59,9 @@ import javax.annotation.Nullable;
 // typedef: xpack.info.Request
 
 /**
- * Get information. The information provided by the API includes:
+ * Get information.
+ * <p>
+ * The information provided by the API includes:
  * <ul>
  * <li>Build information including the build number and timestamp.</li>
  * <li>License information about the currently installed license.</li>
@@ -95,10 +97,13 @@ public class XpackInfoRequest extends RequestBase {
 	}
 
 	/**
-	 * If this param is used it must be set to true
+	 * If used, this otherwise ignored parameter must be set to true
 	 * <p>
 	 * API name: {@code accept_enterprise}
+	 * 
+	 * @deprecated 8.0.0 Supported for backwards compatibility with 7.x
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean acceptEnterprise() {
 		return this.acceptEnterprise;
@@ -143,11 +148,22 @@ public class XpackInfoRequest extends RequestBase {
 		@Nullable
 		private Boolean human;
 
+		public Builder() {
+		}
+		private Builder(XpackInfoRequest instance) {
+			this.acceptEnterprise = instance.acceptEnterprise;
+			this.categories = instance.categories;
+			this.human = instance.human;
+
+		}
 		/**
-		 * If this param is used it must be set to true
+		 * If used, this otherwise ignored parameter must be set to true
 		 * <p>
 		 * API name: {@code accept_enterprise}
+		 * 
+		 * @deprecated 8.0.0 Supported for backwards compatibility with 7.x
 		 */
+		@Deprecated
 		public final Builder acceptEnterprise(@Nullable Boolean value) {
 			this.acceptEnterprise = value;
 			return this;
@@ -208,6 +224,12 @@ public class XpackInfoRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

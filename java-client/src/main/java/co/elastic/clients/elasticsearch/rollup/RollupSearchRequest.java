@@ -65,11 +65,13 @@ import javax.annotation.Nullable;
 // typedef: rollup.rollup_search.Request
 
 /**
- * Search rolled-up data. The rollup search endpoint is needed because,
- * internally, rolled-up documents utilize a different document structure than
- * the original data. It rewrites standard Query DSL into a format that matches
- * the rollup documents then takes the response and rewrites it back to what a
- * client would expect given the original query.
+ * Search rolled-up data.
+ * <p>
+ * The rollup search endpoint is needed because, internally, rolled-up documents
+ * utilize a different document structure than the original data. It rewrites
+ * standard Query DSL into a format that matches the rollup documents then takes
+ * the response and rewrites it back to what a client would expect given the
+ * original query.
  * <p>
  * The request body supports a subset of features from the regular search API.
  * The following functionality is not available:
@@ -221,6 +223,15 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(RollupSearchRequest instance) {
+			this.aggregations = instance.aggregations;
+			this.index = instance.index;
+			this.query = instance.query;
+			this.size = instance.size;
+
+		}
 		/**
 		 * Specifies aggregations.
 		 * <p>
@@ -375,6 +386,12 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -58,9 +58,11 @@ import javax.annotation.Nullable;
 // typedef: slm.put_lifecycle.Request
 
 /**
- * Create or update a policy. Create or update a snapshot lifecycle policy. If
- * the policy already exists, this request increments the policy version. Only
- * the latest version of a policy is stored.
+ * Create or update a policy.
+ * <p>
+ * Create or update a snapshot lifecycle policy. If the policy already exists,
+ * this request increments the policy version. Only the latest version of a
+ * policy is stored.
  * 
  * @see <a href="../doc-files/api-spec.html#slm.put_lifecycle.Request">API
  *      specification</a>
@@ -269,6 +271,19 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutLifecycleRequest instance) {
+			this.config = instance.config;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.policyId = instance.policyId;
+			this.repository = instance.repository;
+			this.retention = instance.retention;
+			this.schedule = instance.schedule;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Configuration for each snapshot created by the policy.
 		 * <p>
@@ -417,6 +432,12 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

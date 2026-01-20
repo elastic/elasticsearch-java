@@ -69,9 +69,10 @@ import javax.annotation.Nullable;
 // typedef: eql.search.Request
 
 /**
- * Get EQL search results. Returns search results for an Event Query Language
- * (EQL) query. EQL assumes each document in a data stream or index corresponds
- * to an event.
+ * Get EQL search results.
+ * <p>
+ * Returns search results for an Event Query Language (EQL) query. EQL assumes
+ * each document in a data stream or index corresponds to an event.
  * 
  * @see <a href="../doc-files/api-spec.html#eql.search.Request">API
  *      specification</a>
@@ -293,7 +294,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The name of the index to scope the operation
+	 * Required - Comma-separated list of index names to scope the operation
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -333,11 +334,10 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies a subset of projects to target for the search using project
-	 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
-	 * _alias tag and a single value (possibly wildcarded). Examples:
-	 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
-	 * only.
+	 * Specifies a subset of projects to target using project metadata tags in a
+	 * subset of Lucene query syntax. Allowed Lucene queries: the _alias tag and a
+	 * single value (possibly wildcarded). Examples: _alias:my-project
+	 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
 	 * <p>
 	 * API name: {@code project_routing}
 	 */
@@ -392,7 +392,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Field containing event timestamp. Default &quot;@timestamp&quot;
+	 * Field containing event timestamp.
 	 * <p>
 	 * API name: {@code timestamp_field}
 	 */
@@ -478,6 +478,11 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		if (this.maxSamplesPerKey != null) {
 			generator.writeKey("max_samples_per_key");
 			generator.write(this.maxSamplesPerKey);
+
+		}
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
 
 		}
 		generator.writeKey("query");
@@ -597,6 +602,34 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time waitForCompletionTimeout;
 
+		public Builder() {
+		}
+		private Builder(EqlSearchRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.allowPartialSearchResults = instance.allowPartialSearchResults;
+			this.allowPartialSequenceResults = instance.allowPartialSequenceResults;
+			this.caseSensitive = instance.caseSensitive;
+			this.ccsMinimizeRoundtrips = instance.ccsMinimizeRoundtrips;
+			this.eventCategoryField = instance.eventCategoryField;
+			this.expandWildcards = instance.expandWildcards;
+			this.fetchSize = instance.fetchSize;
+			this.fields = instance.fields;
+			this.filter = instance.filter;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.keepAlive = instance.keepAlive;
+			this.keepOnCompletion = instance.keepOnCompletion;
+			this.maxSamplesPerKey = instance.maxSamplesPerKey;
+			this.projectRouting = instance.projectRouting;
+			this.query = instance.query;
+			this.resultPosition = instance.resultPosition;
+			this.runtimeMappings = instance.runtimeMappings;
+			this.size = instance.size;
+			this.tiebreakerField = instance.tiebreakerField;
+			this.timestampField = instance.timestampField;
+			this.waitForCompletionTimeout = instance.waitForCompletionTimeout;
+
+		}
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
 		 * indices. (This includes <code>_all</code> string or when no indices have been
@@ -803,7 +836,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The name of the index to scope the operation
+		 * Required - Comma-separated list of index names to scope the operation
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -815,7 +848,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The name of the index to scope the operation
+		 * Required - Comma-separated list of index names to scope the operation
 		 * <p>
 		 * API name: {@code index}
 		 * <p>
@@ -865,11 +898,10 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies a subset of projects to target for the search using project
-		 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
-		 * _alias tag and a single value (possibly wildcarded). Examples:
-		 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
-		 * only.
+		 * Specifies a subset of projects to target using project metadata tags in a
+		 * subset of Lucene query syntax. Allowed Lucene queries: the _alias tag and a
+		 * single value (possibly wildcarded). Examples: _alias:my-project
+		 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
 		 * <p>
 		 * API name: {@code project_routing}
 		 */
@@ -948,7 +980,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Field containing event timestamp. Default &quot;@timestamp&quot;
+		 * Field containing event timestamp.
 		 * <p>
 		 * API name: {@code timestamp_field}
 		 */
@@ -990,6 +1022,12 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -1012,6 +1050,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::keepAlive, Time._DESERIALIZER, "keep_alive");
 		op.add(Builder::keepOnCompletion, JsonpDeserializer.booleanDeserializer(), "keep_on_completion");
 		op.add(Builder::maxSamplesPerKey, JsonpDeserializer.integerDeserializer(), "max_samples_per_key");
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::resultPosition, ResultPosition._DESERIALIZER, "result_position");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
@@ -1083,9 +1122,6 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
-				if (request.projectRouting != null) {
-					params.put("project_routing", request.projectRouting);
 				}
 				if (request.ccsMinimizeRoundtrips != null) {
 					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));

@@ -59,8 +59,10 @@ import javax.annotation.Nullable;
 // typedef: ml.put_filter.Request
 
 /**
- * Create a filter. A filter contains a list of strings. It can be used by one
- * or more anomaly detection jobs. Specifically, filters are referenced in the
+ * Create a filter.
+ * <p>
+ * A filter contains a list of strings. It can be used by one or more anomaly
+ * detection jobs. Specifically, filters are referenced in the
  * <code>custom_rules</code> property of detector configuration objects.
  * 
  * @see <a href="../doc-files/api-spec.html#ml.put_filter.Request">API
@@ -165,6 +167,14 @@ public class PutFilterRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private List<String> items;
 
+		public Builder() {
+		}
+		private Builder(PutFilterRequest instance) {
+			this.description = instance.description;
+			this.filterId = instance.filterId;
+			this.items = instance.items;
+
+		}
 		/**
 		 * A description of the filter.
 		 * <p>
@@ -231,6 +241,12 @@ public class PutFilterRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

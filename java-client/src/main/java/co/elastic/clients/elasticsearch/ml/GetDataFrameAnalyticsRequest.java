@@ -56,9 +56,11 @@ import javax.annotation.Nullable;
 // typedef: ml.get_data_frame_analytics.Request
 
 /**
- * Get data frame analytics job configuration info. You can get information for
- * multiple data frame analytics jobs in a single API request by using a
- * comma-separated list of data frame analytics jobs or a wildcard expression.
+ * Get data frame analytics job configuration info.
+ * <p>
+ * You can get information for multiple data frame analytics jobs in a single
+ * API request by using a comma-separated list of data frame analytics jobs or a
+ * wildcard expression.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#ml.get_data_frame_analytics.Request">API
@@ -187,6 +189,16 @@ public class GetDataFrameAnalyticsRequest extends RequestBase {
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(GetDataFrameAnalyticsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.excludeGenerated = instance.excludeGenerated;
+			this.from = instance.from;
+			this.id = instance.id;
+			this.size = instance.size;
+
+		}
 		/**
 		 * Specifies what to do when the request:
 		 * <ol>
@@ -271,6 +283,12 @@ public class GetDataFrameAnalyticsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

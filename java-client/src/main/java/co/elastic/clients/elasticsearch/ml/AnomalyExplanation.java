@@ -324,6 +324,21 @@ public class AnomalyExplanation implements JsonpSerializable {
 		@Nullable
 		private Double upperConfidenceBound;
 
+		public Builder() {
+		}
+		private Builder(AnomalyExplanation instance) {
+			this.anomalyCharacteristicsImpact = instance.anomalyCharacteristicsImpact;
+			this.anomalyLength = instance.anomalyLength;
+			this.anomalyType = instance.anomalyType;
+			this.highVariancePenalty = instance.highVariancePenalty;
+			this.incompleteBucketPenalty = instance.incompleteBucketPenalty;
+			this.lowerConfidenceBound = instance.lowerConfidenceBound;
+			this.multiBucketImpact = instance.multiBucketImpact;
+			this.singleBucketImpact = instance.singleBucketImpact;
+			this.typicalValue = instance.typicalValue;
+			this.upperConfidenceBound = instance.upperConfidenceBound;
+
+		}
 		/**
 		 * Impact from the duration and magnitude of the detected anomaly relative to
 		 * the historical average.
@@ -446,6 +461,12 @@ public class AnomalyExplanation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -57,7 +57,9 @@ import javax.annotation.Nullable;
 // typedef: transform.stop_transform.Request
 
 /**
- * Stop transforms. Stops one or more transforms.
+ * Stop transforms.
+ * <p>
+ * Stops one or more transforms.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#transform.stop_transform.Request">API
@@ -203,6 +205,17 @@ public class StopTransformRequest extends RequestBase {
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(StopTransformRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.force = instance.force;
+			this.timeout = instance.timeout;
+			this.transformId = instance.transformId;
+			this.waitForCheckpoint = instance.waitForCheckpoint;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * Specifies what to do when the request: contains wildcard expressions and
 		 * there are no transforms that match; contains the <code>_all</code> string or
@@ -312,6 +325,12 @@ public class StopTransformRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

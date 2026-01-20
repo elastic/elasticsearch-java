@@ -56,10 +56,12 @@ import javax.annotation.Nullable;
 // typedef: ilm.retry.Request
 
 /**
- * Retry a policy. Retry running the lifecycle policy for an index that is in
- * the ERROR step. The API sets the policy back to the step where the error
- * occurred and runs the step. Use the explain lifecycle state API to determine
- * whether an index is in the ERROR step.
+ * Retry a policy.
+ * <p>
+ * Retry running the lifecycle policy for an index that is in the ERROR step.
+ * The API sets the policy back to the step where the error occurred and runs
+ * the step. Use the explain lifecycle state API to determine whether an index
+ * is in the ERROR step.
  * 
  * @see <a href="../doc-files/api-spec.html#ilm.retry.Request">API
  *      specification</a>
@@ -99,6 +101,12 @@ public class RetryRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<RetryRequest> {
 		private String index;
 
+		public Builder() {
+		}
+		private Builder(RetryRequest instance) {
+			this.index = instance.index;
+
+		}
 		/**
 		 * Required - The name of the indices (comma-separated) whose failed lifecycle
 		 * step is to be retry
@@ -128,6 +136,12 @@ public class RetryRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -115,7 +115,9 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * The chunking configuration object.
+	 * The chunking configuration object. Applies only to the
+	 * <code>text_embedding</code> task type. Not applicable to the
+	 * <code>rerank</code> or <code>completion</code> task types.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -136,7 +138,7 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 
 	/**
 	 * Required - Settings used to install the inference model. These settings are
-	 * specific to the <code>openai</code> service.
+	 * specific to the <code>azureaistudio</code> service.
 	 * <p>
 	 * API name: {@code service_settings}
 	 */
@@ -230,6 +232,18 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutAzureaistudioRequest instance) {
+			this.azureaistudioInferenceId = instance.azureaistudioInferenceId;
+			this.chunkingSettings = instance.chunkingSettings;
+			this.service = instance.service;
+			this.serviceSettings = instance.serviceSettings;
+			this.taskSettings = instance.taskSettings;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - The unique identifier of the inference endpoint.
 		 * <p>
@@ -241,7 +255,9 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>rerank</code> or <code>completion</code> task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -251,7 +267,9 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * The chunking configuration object.
+		 * The chunking configuration object. Applies only to the
+		 * <code>text_embedding</code> task type. Not applicable to the
+		 * <code>rerank</code> or <code>completion</code> task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -273,7 +291,7 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 
 		/**
 		 * Required - Settings used to install the inference model. These settings are
-		 * specific to the <code>openai</code> service.
+		 * specific to the <code>azureaistudio</code> service.
 		 * <p>
 		 * API name: {@code service_settings}
 		 */
@@ -284,7 +302,7 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 
 		/**
 		 * Required - Settings used to install the inference model. These settings are
-		 * specific to the <code>openai</code> service.
+		 * specific to the <code>azureaistudio</code> service.
 		 * <p>
 		 * API name: {@code service_settings}
 		 */
@@ -364,6 +382,12 @@ public class PutAzureaistudioRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
