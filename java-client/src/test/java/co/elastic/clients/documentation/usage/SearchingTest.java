@@ -141,8 +141,7 @@ public class SearchingTest {
             .index("products")
             .query(q -> q
                 .bool(b -> b // <4>
-                    .must(byName) // <5>
-                    .must(byMaxPrice)
+                    .must(byName, byMaxPrice) // <5>
                 )
             ),
             Product.class
