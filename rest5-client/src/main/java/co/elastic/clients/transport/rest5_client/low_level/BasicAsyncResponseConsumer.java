@@ -19,13 +19,11 @@
 
 package co.elastic.clients.transport.rest5_client.low_level;
 
-
 import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpResponse;
 import org.apache.hc.core5.http.io.entity.ByteArrayEntity;
 import org.apache.hc.core5.http.message.BasicClassicHttpResponse;
-import org.apache.hc.core5.http.nio.entity.AbstractBinAsyncEntityConsumer;
 import org.apache.hc.core5.http.nio.support.AbstractAsyncResponseConsumer;
 import org.apache.hc.core5.http.protocol.HttpContext;
 
@@ -39,7 +37,7 @@ class BasicAsyncResponseConsumer extends AbstractAsyncResponseConsumer<ClassicHt
     /**
      * Creates a new instance of this consumer with the provided buffer limit
      */
-    BasicAsyncResponseConsumer(AbstractBinAsyncEntityConsumer consumer) {
+    BasicAsyncResponseConsumer(BufferedByteConsumer consumer) {
         super(consumer);
     }
 
