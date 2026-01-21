@@ -43,7 +43,6 @@ import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.HttpRequest;
-import org.apache.hc.core5.http.ProtocolException;
 import org.apache.hc.core5.http.message.RequestLine;
 import org.apache.hc.core5.http.nio.AsyncEntityProducer;
 import org.apache.hc.core5.http.nio.AsyncRequestProducer;
@@ -339,13 +338,7 @@ public class Rest5Client implements Closeable {
 
         HttpEntity entity = httpResponse.getEntity();
         if (entity != null) {
-            Header encoding = null;
-            try {
-                encoding = httpResponse.getHeader(CONTENT_ENCODING);
-            } catch (ProtocolException e) {
-                throw new IOException("Couldn't retrieve content encoding: " + e);
-            }
-            if (encoding != null && "gzip".equals(encoding.getValue())) {
+            if ("gzip".equals(entity.getContentEncoding())) {
                 // Decompress and cleanup response headers
                 httpResponse.setEntity(new GzipDecompressingEntity(entity));
                 httpResponse.removeHeaders(CONTENT_ENCODING);
