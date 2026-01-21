@@ -22,6 +22,7 @@ package co.elastic.clients.transport.rest5_client.low_level;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
+import org.apache.hc.client5.http.impl.async.HttpAsyncClientBuilder;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.HttpHost;
@@ -122,10 +123,16 @@ public class RestClientGzipCompressionTests extends RestClientTestCase {
         return bos.toByteArray();
     }
 
+    // From org.apache.httpcomponents.client5.httpclient5.5.6, the client decompresses responses
+    // by default, so to test the java client's decompression logic, a custom http client with decompression
+    // disabled must be used.
     private Rest5Client createClient(boolean enableCompression) {
         InetSocketAddress address = httpServer.getAddress();
         return Rest5Client.builder(new HttpHost("http", address.getHostString(), address.getPort()))
             .setCompressionEnabled(enableCompression)
+            .setHttpClient(HttpAsyncClientBuilder.create()
+                .disableContentCompression()
+                .build())
             .build();
     }
 
@@ -205,6 +212,9 @@ public class RestClientGzipCompressionTests extends RestClientTestCase {
         Rest5Client restClient = Rest5Client.builder(new HttpHost("http", address.getHostString(),
                 address.getPort()))
             .setCompressionEnabled(true)
+            .setHttpClient(HttpAsyncClientBuilder.create()
+                .disableContentCompression()
+                .build())
             .build();
 
         Request request = new Request("POST", "/");
