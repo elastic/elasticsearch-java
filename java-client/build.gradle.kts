@@ -192,10 +192,6 @@ dependencies {
     testImplementation("org.elasticsearch.client", "elasticsearch-rest-client", elasticsearchVersion)
 
     // Apache 2.0
-    // https://hc.apache.org/httpcomponents-client-ga/
-    api("org.apache.httpcomponents.client5","httpclient5","5.4.4")
-
-    // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
     api("com.google.code.findbugs:jsr305:3.0.2")
 
