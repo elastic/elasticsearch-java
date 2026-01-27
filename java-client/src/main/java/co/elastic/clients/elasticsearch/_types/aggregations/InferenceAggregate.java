@@ -229,6 +229,7 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 			this.featureImportance = instance.featureImportance;
 			this.topClasses = instance.topClasses;
 			this.warning = instance.warning;
+			this.data = instance.data;
 
 		}
 		/**

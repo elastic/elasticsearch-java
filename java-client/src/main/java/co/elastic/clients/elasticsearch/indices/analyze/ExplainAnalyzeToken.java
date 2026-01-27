@@ -295,6 +295,7 @@ public class ExplainAnalyzeToken implements JsonpSerializable {
 			this.termfrequency = instance.termfrequency;
 			this.token = instance.token;
 			this.type = instance.type;
+			this.attributes = instance.attributes;
 
 		}
 		/**

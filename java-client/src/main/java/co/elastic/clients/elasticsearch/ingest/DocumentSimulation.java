@@ -291,6 +291,7 @@ public class DocumentSimulation implements JsonpSerializable {
 			this.source = instance.source;
 			this.version = instance.version;
 			this.versionType = instance.versionType;
+			this.metadata = instance.metadata;
 
 		}
 		/**

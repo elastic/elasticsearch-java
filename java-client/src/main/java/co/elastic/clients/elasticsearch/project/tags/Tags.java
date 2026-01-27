@@ -204,6 +204,7 @@ public class Tags implements JsonpSerializable {
 			this.alias = instance.alias;
 			this.type = instance.type;
 			this.organisation = instance.organisation;
+			this.userDefinedTags = instance.userDefinedTags;
 
 		}
 		/**
