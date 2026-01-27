@@ -25,6 +25,7 @@ import co.elastic.clients.elasticsearch._types.mapping.Property;
 import co.elastic.clients.elasticsearch._types.mapping.TextProperty;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
+import co.elastic.clients.elasticsearch.cluster.GetComponentTemplateResponse;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.indices.PutIndicesSettingsRequest;
@@ -184,6 +185,70 @@ public class WithJsonTest extends ModelTestCase {
         RoleTemplateScript withStoredScript = RoleTemplateScript.of(j -> j
             .withJson(new StringReader("{\"id\": \"foo\"}")));
         assertTrue(!withStoredScript.id().isEmpty());
+    }
+
+    @Test
+    public void testBooleanEnum() {
+
+        String templateJsonBooleanSubobject = """
+            {
+              "component_templates": [
+                {
+                  "name": "test-template",
+                  "component_template": {
+                    "template": {
+                      "mappings": {
+                        "properties": {
+                          "document": {
+                            "subobjects": false,
+                            "properties": {
+                              "body.size": {
+                                "type": "integer"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+            """;
+
+        String templateJsonStringSubobject = """
+            {
+              "component_templates": [
+                {
+                  "name": "test-template",
+                  "component_template": {
+                    "template": {
+                      "mappings": {
+                        "properties": {
+                          "document": {
+                            "subobjects": "false",
+                            "properties": {
+                              "body.size": {
+                                "type": "integer"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+            """;
+
+        GetComponentTemplateResponse respBool = GetComponentTemplateResponse.of(t -> t
+            .withJson(new StringReader(templateJsonBooleanSubobject)));
+        GetComponentTemplateResponse respString = GetComponentTemplateResponse.of(t -> t
+            .withJson(new StringReader(templateJsonStringSubobject)));
+
+        // Asserting that both gets deserialized in the same way
+        assertEquals(respBool.toString(), respString.toString());
     }
 }
 
