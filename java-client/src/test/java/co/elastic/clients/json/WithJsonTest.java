@@ -242,8 +242,10 @@ public class WithJsonTest extends ModelTestCase {
             }
             """;
 
-        GetComponentTemplateResponse respBool = GetComponentTemplateResponse.of(t -> t.withJson(new StringReader(templateJsonBooleanSubobject)));
-        GetComponentTemplateResponse respString = GetComponentTemplateResponse.of(t -> t.withJson(new StringReader(templateJsonStringSubobject)));
+        GetComponentTemplateResponse respBool = GetComponentTemplateResponse.of(t -> t
+            .withJson(new StringReader(templateJsonBooleanSubobject)));
+        GetComponentTemplateResponse respString = GetComponentTemplateResponse.of(t -> t
+            .withJson(new StringReader(templateJsonStringSubobject)));
 
         // Asserting that both gets deserialized in the same way
         assertEquals(respBool.toString(), respString.toString());
