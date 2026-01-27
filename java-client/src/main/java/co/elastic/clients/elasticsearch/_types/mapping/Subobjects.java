@@ -22,6 +22,8 @@ package co.elastic.clients.elasticsearch._types.mapping;
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import jakarta.json.stream.JsonGenerator;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -63,6 +65,17 @@ public enum Subobjects implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<Subobjects> _DESERIALIZER = new JsonEnum.Deserializer<>(
+	@Override
+	public void serialize(JsonGenerator generator, JsonpMapper params) {
+		if (this == Subobjects.True) {
+			generator.write(true);
+		} else if (this == Subobjects.False) {
+			generator.write(false);
+		} else {
+			generator.write(jsonValue());
+		}
+	}
+
+	public static final JsonEnum.Deserializer<Subobjects> _DESERIALIZER = new JsonEnum.Deserializer.AllowingBooleans<>(
 			Subobjects.values());
 }
