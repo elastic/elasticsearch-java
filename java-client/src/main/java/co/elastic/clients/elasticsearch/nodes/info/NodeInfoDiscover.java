@@ -212,6 +212,7 @@ public class NodeInfoDiscover implements JsonpSerializable {
 			this.seedHosts = instance.seedHosts;
 			this.type = instance.type;
 			this.seedProviders = instance.seedProviders;
+			this.settings = instance.settings;
 
 		}
 		/**

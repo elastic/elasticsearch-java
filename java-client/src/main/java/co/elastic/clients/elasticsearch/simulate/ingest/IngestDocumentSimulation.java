@@ -343,6 +343,7 @@ public class IngestDocumentSimulation implements JsonpSerializable {
 			this.ignoredFields = instance.ignoredFields;
 			this.error = instance.error;
 			this.effectiveMapping = instance.effectiveMapping;
+			this.metadata = instance.metadata;
 
 		}
 		/**
