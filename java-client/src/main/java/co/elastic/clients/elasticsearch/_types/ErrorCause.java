@@ -285,6 +285,7 @@ public class ErrorCause implements JsonpSerializable {
 			this.causedBy = instance.causedBy;
 			this.rootCause = instance.rootCause;
 			this.suppressed = instance.suppressed;
+			this.metadata = instance.metadata;
 
 		}
 		/**
