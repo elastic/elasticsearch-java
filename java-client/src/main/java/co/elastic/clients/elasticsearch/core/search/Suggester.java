@@ -186,6 +186,7 @@ public class Suggester implements JsonpSerializable {
 		}
 		private Builder(Suggester instance) {
 			this.text = instance.text;
+			this.suggesters = instance.suggesters;
 
 		}
 		/**

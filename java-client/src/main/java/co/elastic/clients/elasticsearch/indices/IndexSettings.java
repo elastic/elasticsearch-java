@@ -1366,6 +1366,7 @@ public class IndexSettings implements JsonpSerializable {
 			this.indexingSlowlog = instance.indexingSlowlog;
 			this.indexingPressure = instance.indexingPressure;
 			this.store = instance.store;
+			this.otherSettings = instance.otherSettings;
 
 		}
 		/**
