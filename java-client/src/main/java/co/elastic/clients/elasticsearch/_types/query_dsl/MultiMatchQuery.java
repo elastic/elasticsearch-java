@@ -473,6 +473,28 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private ZeroTermsQuery zeroTermsQuery;
 
+		public Builder() {
+		}
+		private Builder(MultiMatchQuery instance) {
+			this.analyzer = instance.analyzer;
+			this.autoGenerateSynonymsPhraseQuery = instance.autoGenerateSynonymsPhraseQuery;
+			this.cutoffFrequency = instance.cutoffFrequency;
+			this.fields = instance.fields;
+			this.fuzziness = instance.fuzziness;
+			this.fuzzyRewrite = instance.fuzzyRewrite;
+			this.fuzzyTranspositions = instance.fuzzyTranspositions;
+			this.lenient = instance.lenient;
+			this.maxExpansions = instance.maxExpansions;
+			this.minimumShouldMatch = instance.minimumShouldMatch;
+			this.operator = instance.operator;
+			this.prefixLength = instance.prefixLength;
+			this.query = instance.query;
+			this.slop = instance.slop;
+			this.tieBreaker = instance.tieBreaker;
+			this.type = instance.type;
+			this.zeroTermsQuery = instance.zeroTermsQuery;
+
+		}
 		/**
 		 * Analyzer used to convert the text in the query value into tokens.
 		 * <p>
@@ -687,6 +709,12 @@ public class MultiMatchQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

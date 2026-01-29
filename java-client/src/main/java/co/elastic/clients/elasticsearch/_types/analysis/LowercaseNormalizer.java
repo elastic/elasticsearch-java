@@ -104,6 +104,11 @@ public class LowercaseNormalizer implements NormalizerVariant, JsonpSerializable
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<LowercaseNormalizer> {
+		public Builder() {
+		}
+		private Builder(LowercaseNormalizer instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -122,6 +127,12 @@ public class LowercaseNormalizer implements NormalizerVariant, JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

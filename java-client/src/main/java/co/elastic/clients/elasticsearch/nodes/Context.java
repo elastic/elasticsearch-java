@@ -176,6 +176,15 @@ public class Context implements JsonpSerializable {
 		@Nullable
 		private Long compilationLimitTriggered;
 
+		public Builder() {
+		}
+		private Builder(Context instance) {
+			this.context = instance.context;
+			this.compilations = instance.compilations;
+			this.cacheEvictions = instance.cacheEvictions;
+			this.compilationLimitTriggered = instance.compilationLimitTriggered;
+
+		}
 		/**
 		 * API name: {@code context}
 		 */
@@ -226,6 +235,12 @@ public class Context implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

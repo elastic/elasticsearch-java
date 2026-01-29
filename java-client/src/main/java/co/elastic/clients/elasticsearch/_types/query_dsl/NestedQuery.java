@@ -192,6 +192,16 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private ChildScoreMode scoreMode;
 
+		public Builder() {
+		}
+		private Builder(NestedQuery instance) {
+			this.ignoreUnmapped = instance.ignoreUnmapped;
+			this.innerHits = instance.innerHits;
+			this.path = instance.path;
+			this.query = instance.query;
+			this.scoreMode = instance.scoreMode;
+
+		}
 		/**
 		 * Indicates whether to ignore an unmapped path and not return any documents
 		 * instead of an error.
@@ -290,6 +300,12 @@ public class NestedQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

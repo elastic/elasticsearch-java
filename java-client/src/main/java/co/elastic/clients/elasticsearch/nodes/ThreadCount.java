@@ -227,6 +227,17 @@ public class ThreadCount implements JsonpSerializable {
 		@Nullable
 		private Long threads;
 
+		public Builder() {
+		}
+		private Builder(ThreadCount instance) {
+			this.active = instance.active;
+			this.completed = instance.completed;
+			this.largest = instance.largest;
+			this.queue = instance.queue;
+			this.rejected = instance.rejected;
+			this.threads = instance.threads;
+
+		}
 		/**
 		 * Number of active threads in the thread pool.
 		 * <p>
@@ -305,6 +316,12 @@ public class ThreadCount implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

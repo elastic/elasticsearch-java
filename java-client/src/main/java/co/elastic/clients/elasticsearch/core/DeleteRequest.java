@@ -314,6 +314,21 @@ public class DeleteRequest extends RequestBase {
 		@Nullable
 		private WaitForActiveShards waitForActiveShards;
 
+		public Builder() {
+		}
+		private Builder(DeleteRequest instance) {
+			this.id = instance.id;
+			this.ifPrimaryTerm = instance.ifPrimaryTerm;
+			this.ifSeqNo = instance.ifSeqNo;
+			this.index = instance.index;
+			this.refresh = instance.refresh;
+			this.routing = instance.routing;
+			this.timeout = instance.timeout;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+			this.waitForActiveShards = instance.waitForActiveShards;
+
+		}
 		/**
 		 * Required - A unique identifier for the document.
 		 * <p>
@@ -477,6 +492,12 @@ public class DeleteRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

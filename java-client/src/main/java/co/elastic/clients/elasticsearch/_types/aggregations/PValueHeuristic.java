@@ -141,6 +141,13 @@ public class PValueHeuristic implements JsonpSerializable {
 		@Nullable
 		private Long normalizeAbove;
 
+		public Builder() {
+		}
+		private Builder(PValueHeuristic instance) {
+			this.backgroundIsSuperset = instance.backgroundIsSuperset;
+			this.normalizeAbove = instance.normalizeAbove;
+
+		}
 		/**
 		 * API name: {@code background_is_superset}
 		 */
@@ -179,6 +186,12 @@ public class PValueHeuristic implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

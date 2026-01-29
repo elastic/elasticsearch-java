@@ -112,6 +112,12 @@ public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerDefi
 		@Nullable
 		private Integer maxTokenLength;
 
+		public Builder() {
+		}
+		private Builder(UaxEmailUrlTokenizer instance) {
+			this.maxTokenLength = instance.maxTokenLength;
+
+		}
 		/**
 		 * API name: {@code max_token_length}
 		 */
@@ -138,6 +144,12 @@ public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerDefi
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

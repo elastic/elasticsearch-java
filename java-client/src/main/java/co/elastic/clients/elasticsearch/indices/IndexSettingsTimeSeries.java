@@ -136,6 +136,13 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 		@Nullable
 		private DateTime startTime;
 
+		public Builder() {
+		}
+		private Builder(IndexSettingsTimeSeries instance) {
+			this.endTime = instance.endTime;
+			this.startTime = instance.startTime;
+
+		}
 		/**
 		 * API name: {@code end_time}
 		 */
@@ -170,6 +177,12 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

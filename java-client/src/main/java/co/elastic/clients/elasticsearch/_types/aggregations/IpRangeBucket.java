@@ -143,6 +143,14 @@ public class IpRangeBucket extends MultiBucketBase {
 		@Nullable
 		private String to;
 
+		public Builder() {
+		}
+		private Builder(IpRangeBucket instance) {
+			this.key = instance.key;
+			this.from = instance.from;
+			this.to = instance.to;
+
+		}
 		/**
 		 * API name: {@code key}
 		 */
@@ -185,6 +193,12 @@ public class IpRangeBucket extends MultiBucketBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -92,6 +92,11 @@ public class DictionaryDecompounderTokenFilter extends CompoundWordTokenFilterBa
 	public static class Builder extends CompoundWordTokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DictionaryDecompounderTokenFilter> {
+		public Builder() {
+		}
+		private Builder(DictionaryDecompounderTokenFilter instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -110,6 +115,12 @@ public class DictionaryDecompounderTokenFilter extends CompoundWordTokenFilterBa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -96,6 +96,11 @@ public class LongTermsAggregate extends TermsAggregateBase<LongTermsBucket>
 	public static class Builder extends TermsAggregateBase.AbstractBuilder<LongTermsBucket, Builder>
 			implements
 				ObjectBuilder<LongTermsAggregate> {
+		public Builder() {
+		}
+		private Builder(LongTermsAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -115,6 +120,12 @@ public class LongTermsAggregate extends TermsAggregateBase<LongTermsBucket>
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

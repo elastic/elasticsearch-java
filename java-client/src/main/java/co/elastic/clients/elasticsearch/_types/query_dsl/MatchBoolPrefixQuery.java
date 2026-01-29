@@ -318,6 +318,20 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 
 		private String query;
 
+		public Builder() {
+		}
+		private Builder(MatchBoolPrefixQuery instance) {
+			this.analyzer = instance.analyzer;
+			this.fuzziness = instance.fuzziness;
+			this.fuzzyRewrite = instance.fuzzyRewrite;
+			this.fuzzyTranspositions = instance.fuzzyTranspositions;
+			this.maxExpansions = instance.maxExpansions;
+			this.minimumShouldMatch = instance.minimumShouldMatch;
+			this.operator = instance.operator;
+			this.prefixLength = instance.prefixLength;
+			this.query = instance.query;
+
+		}
 		/**
 		 * Analyzer used to convert the text in the query value into tokens.
 		 * <p>
@@ -435,6 +449,12 @@ public class MatchBoolPrefixQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

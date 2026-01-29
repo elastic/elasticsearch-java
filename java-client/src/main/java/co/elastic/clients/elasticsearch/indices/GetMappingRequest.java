@@ -203,6 +203,17 @@ public class GetMappingRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		public Builder() {
+		}
+		private Builder(GetMappingRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -339,6 +350,12 @@ public class GetMappingRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

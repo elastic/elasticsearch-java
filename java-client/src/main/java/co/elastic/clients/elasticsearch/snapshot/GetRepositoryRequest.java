@@ -143,6 +143,14 @@ public class GetRepositoryRequest extends RequestBase {
 		@Nullable
 		private List<String> name;
 
+		public Builder() {
+		}
+		private Builder(GetRepositoryRequest instance) {
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+
+		}
 		/**
 		 * If <code>true</code>, the request gets information from the local node only.
 		 * If <code>false</code>, the request gets information from the master node.
@@ -229,6 +237,12 @@ public class GetRepositoryRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

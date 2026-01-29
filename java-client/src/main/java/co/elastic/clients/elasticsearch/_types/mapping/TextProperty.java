@@ -393,6 +393,26 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
 		@Nullable
 		private TermVectorOption termVector;
 
+		public Builder() {
+		}
+		private Builder(TextProperty instance) {
+			this.analyzer = instance.analyzer;
+			this.boost = instance.boost;
+			this.eagerGlobalOrdinals = instance.eagerGlobalOrdinals;
+			this.fielddata = instance.fielddata;
+			this.fielddataFrequencyFilter = instance.fielddataFrequencyFilter;
+			this.index = instance.index;
+			this.indexOptions = instance.indexOptions;
+			this.indexPhrases = instance.indexPhrases;
+			this.indexPrefixes = instance.indexPrefixes;
+			this.norms = instance.norms;
+			this.positionIncrementGap = instance.positionIncrementGap;
+			this.searchAnalyzer = instance.searchAnalyzer;
+			this.searchQuoteAnalyzer = instance.searchQuoteAnalyzer;
+			this.similarity = instance.similarity;
+			this.termVector = instance.termVector;
+
+		}
 		/**
 		 * API name: {@code analyzer}
 		 */
@@ -546,6 +566,12 @@ public class TextProperty extends CorePropertyBase implements PropertyVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

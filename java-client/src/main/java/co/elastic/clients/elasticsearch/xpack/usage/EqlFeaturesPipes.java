@@ -125,6 +125,13 @@ public class EqlFeaturesPipes implements JsonpSerializable {
 
 		private Number pipeHead;
 
+		public Builder() {
+		}
+		private Builder(EqlFeaturesPipes instance) {
+			this.pipeTail = instance.pipeTail;
+			this.pipeHead = instance.pipeHead;
+
+		}
 		/**
 		 * Required - API name: {@code pipe_tail}
 		 */
@@ -159,6 +166,12 @@ public class EqlFeaturesPipes implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

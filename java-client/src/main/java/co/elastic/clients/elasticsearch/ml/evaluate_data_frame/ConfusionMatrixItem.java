@@ -169,6 +169,15 @@ public class ConfusionMatrixItem implements JsonpSerializable {
 
 		private Integer otherPredictedClassDocCount;
 
+		public Builder() {
+		}
+		private Builder(ConfusionMatrixItem instance) {
+			this.actualClass = instance.actualClass;
+			this.actualClassDocCount = instance.actualClassDocCount;
+			this.predictedClasses = instance.predictedClasses;
+			this.otherPredictedClassDocCount = instance.otherPredictedClassDocCount;
+
+		}
 		/**
 		 * Required - API name: {@code actual_class}
 		 */
@@ -241,6 +250,12 @@ public class ConfusionMatrixItem implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -180,6 +180,14 @@ public class LearningToRankConfig implements InferenceConfigCreateVariant, Jsonp
 
 		private Integer numTopFeatureImportanceValues;
 
+		public Builder() {
+		}
+		private Builder(LearningToRankConfig instance) {
+			this.defaultParams = instance.defaultParams;
+			this.featureExtractors = instance.featureExtractors;
+			this.numTopFeatureImportanceValues = instance.numTopFeatureImportanceValues;
+
+		}
 		/**
 		 * API name: {@code default_params}
 		 * <p>
@@ -247,6 +255,12 @@ public class LearningToRankConfig implements InferenceConfigCreateVariant, Jsonp
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

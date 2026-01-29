@@ -120,6 +120,13 @@ public class GetInferenceRequest extends RequestBase {
 		@Nullable
 		private TaskType taskType;
 
+		public Builder() {
+		}
+		private Builder(GetInferenceRequest instance) {
+			this.inferenceId = instance.inferenceId;
+			this.taskType = instance.taskType;
+
+		}
 		/**
 		 * The inference Id
 		 * <p>
@@ -158,6 +165,12 @@ public class GetInferenceRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

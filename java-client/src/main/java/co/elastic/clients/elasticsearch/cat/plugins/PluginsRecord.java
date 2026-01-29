@@ -227,6 +227,17 @@ public class PluginsRecord implements JsonpSerializable {
 		@Nullable
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(PluginsRecord instance) {
+			this.id = instance.id;
+			this.name = instance.name;
+			this.component = instance.component;
+			this.version = instance.version;
+			this.description = instance.description;
+			this.type = instance.type;
+
+		}
 		/**
 		 * The unique node identifier.
 		 * <p>
@@ -305,6 +316,12 @@ public class PluginsRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

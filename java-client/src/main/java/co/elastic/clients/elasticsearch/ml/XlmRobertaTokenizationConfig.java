@@ -81,6 +81,11 @@ public class XlmRobertaTokenizationConfig extends CommonTokenizationConfig imple
 	public static class Builder extends CommonTokenizationConfig.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<XlmRobertaTokenizationConfig> {
+		public Builder() {
+		}
+		private Builder(XlmRobertaTokenizationConfig instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class XlmRobertaTokenizationConfig extends CommonTokenizationConfig imple
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

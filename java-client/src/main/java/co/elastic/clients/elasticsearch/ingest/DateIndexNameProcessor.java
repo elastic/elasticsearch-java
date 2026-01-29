@@ -250,6 +250,18 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		@Nullable
 		private String timezone;
 
+		public Builder() {
+		}
+		private Builder(DateIndexNameProcessor instance) {
+			this.dateFormats = instance.dateFormats;
+			this.dateRounding = instance.dateRounding;
+			this.field = instance.field;
+			this.indexNameFormat = instance.indexNameFormat;
+			this.indexNamePrefix = instance.indexNamePrefix;
+			this.locale = instance.locale;
+			this.timezone = instance.timezone;
+
+		}
 		/**
 		 * An array of the expected date formats for parsing dates / timestamps in the
 		 * document being preprocessed. Can be a java time pattern or one of the
@@ -364,6 +376,12 @@ public class DateIndexNameProcessor extends ProcessorBase implements ProcessorVa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -228,6 +228,18 @@ public class DatafeedTimingStats implements JsonpSerializable {
 		@Nullable
 		private Double averageSearchTimePerBucketMs;
 
+		public Builder() {
+		}
+		private Builder(DatafeedTimingStats instance) {
+			this.bucketCount = instance.bucketCount;
+			this.exponentialAverageSearchTimePerHourMs = instance.exponentialAverageSearchTimePerHourMs;
+			this.exponentialAverageCalculationContext = instance.exponentialAverageCalculationContext;
+			this.jobId = instance.jobId;
+			this.searchCount = instance.searchCount;
+			this.totalSearchTimeMs = instance.totalSearchTimeMs;
+			this.averageSearchTimePerBucketMs = instance.averageSearchTimePerBucketMs;
+
+		}
 		/**
 		 * Required - The number of buckets processed.
 		 * <p>
@@ -324,6 +336,12 @@ public class DatafeedTimingStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

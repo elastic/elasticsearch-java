@@ -112,6 +112,12 @@ public class PersistentTaskStatus implements JsonpSerializable {
 				ObjectBuilder<PersistentTaskStatus> {
 		private ShutdownStatus status;
 
+		public Builder() {
+		}
+		private Builder(PersistentTaskStatus instance) {
+			this.status = instance.status;
+
+		}
 		/**
 		 * Required - API name: {@code status}
 		 */
@@ -138,6 +144,12 @@ public class PersistentTaskStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

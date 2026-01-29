@@ -89,6 +89,11 @@ public class UppercaseTokenFilter extends TokenFilterBase implements TokenFilter
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UppercaseTokenFilter> {
+		public Builder() {
+		}
+		private Builder(UppercaseTokenFilter instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class UppercaseTokenFilter extends TokenFilterBase implements TokenFilter
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

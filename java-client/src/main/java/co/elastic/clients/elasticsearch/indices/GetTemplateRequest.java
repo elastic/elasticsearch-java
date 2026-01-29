@@ -168,6 +168,15 @@ public class GetTemplateRequest extends RequestBase {
 		@Nullable
 		private List<String> name;
 
+		public Builder() {
+		}
+		private Builder(GetTemplateRequest instance) {
+			this.flatSettings = instance.flatSettings;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+
+		}
 		/**
 		 * If <code>true</code>, returns settings in flat format.
 		 * <p>
@@ -262,6 +271,12 @@ public class GetTemplateRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

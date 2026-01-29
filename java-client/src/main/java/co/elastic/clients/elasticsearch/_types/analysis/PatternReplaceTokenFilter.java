@@ -180,6 +180,15 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 		@Nullable
 		private String replacement;
 
+		public Builder() {
+		}
+		private Builder(PatternReplaceTokenFilter instance) {
+			this.all = instance.all;
+			this.flags = instance.flags;
+			this.pattern = instance.pattern;
+			this.replacement = instance.replacement;
+
+		}
 		/**
 		 * If <code>true</code>, all substrings matching the pattern parameter’s regular
 		 * expression are replaced. If <code>false</code>, the filter replaces only the
@@ -241,6 +250,12 @@ public class PatternReplaceTokenFilter extends TokenFilterBase implements TokenF
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -188,6 +188,15 @@ public class MinHashTokenFilter extends TokenFilterBase implements TokenFilterDe
 		@Nullable
 		private Boolean withRotation;
 
+		public Builder() {
+		}
+		private Builder(MinHashTokenFilter instance) {
+			this.bucketCount = instance.bucketCount;
+			this.hashCount = instance.hashCount;
+			this.hashSetSize = instance.hashSetSize;
+			this.withRotation = instance.withRotation;
+
+		}
 		/**
 		 * Number of buckets to which hashes are assigned. Defaults to <code>512</code>.
 		 * <p>
@@ -253,6 +262,12 @@ public class MinHashTokenFilter extends TokenFilterBase implements TokenFilterDe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

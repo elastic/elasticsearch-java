@@ -156,6 +156,14 @@ public class BytesProcessor extends ProcessorBase implements ProcessorVariant {
 		@Nullable
 		private String targetField;
 
+		public Builder() {
+		}
+		private Builder(BytesProcessor instance) {
+			this.field = instance.field;
+			this.ignoreMissing = instance.ignoreMissing;
+			this.targetField = instance.targetField;
+
+		}
 		/**
 		 * Required - The field to convert.
 		 * <p>
@@ -207,6 +215,12 @@ public class BytesProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

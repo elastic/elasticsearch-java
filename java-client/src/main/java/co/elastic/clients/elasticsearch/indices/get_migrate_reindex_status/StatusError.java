@@ -126,6 +126,13 @@ public class StatusError implements JsonpSerializable {
 
 		private String message;
 
+		public Builder() {
+		}
+		private Builder(StatusError instance) {
+			this.index = instance.index;
+			this.message = instance.message;
+
+		}
 		/**
 		 * Required - API name: {@code index}
 		 */
@@ -160,6 +167,12 @@ public class StatusError implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

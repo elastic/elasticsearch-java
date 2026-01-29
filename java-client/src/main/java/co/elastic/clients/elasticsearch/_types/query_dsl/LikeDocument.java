@@ -276,6 +276,19 @@ public class LikeDocument implements JsonpSerializable {
 		@Nullable
 		private VersionType versionType;
 
+		public Builder() {
+		}
+		private Builder(LikeDocument instance) {
+			this.doc = instance.doc;
+			this.fields = instance.fields;
+			this.id = instance.id;
+			this.index = instance.index;
+			this.perFieldAnalyzer = instance.perFieldAnalyzer;
+			this.routing = instance.routing;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+
+		}
 		/**
 		 * A document not present in the index.
 		 * <p>
@@ -392,6 +405,12 @@ public class LikeDocument implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

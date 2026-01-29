@@ -369,6 +369,28 @@ public class TransformIndexerStats implements JsonpSerializable {
 
 		private Long triggerCount;
 
+		public Builder() {
+		}
+		private Builder(TransformIndexerStats instance) {
+			this.deleteTimeInMs = instance.deleteTimeInMs;
+			this.documentsIndexed = instance.documentsIndexed;
+			this.documentsDeleted = instance.documentsDeleted;
+			this.documentsProcessed = instance.documentsProcessed;
+			this.exponentialAvgCheckpointDurationMs = instance.exponentialAvgCheckpointDurationMs;
+			this.exponentialAvgDocumentsIndexed = instance.exponentialAvgDocumentsIndexed;
+			this.exponentialAvgDocumentsProcessed = instance.exponentialAvgDocumentsProcessed;
+			this.indexFailures = instance.indexFailures;
+			this.indexTimeInMs = instance.indexTimeInMs;
+			this.indexTotal = instance.indexTotal;
+			this.pagesProcessed = instance.pagesProcessed;
+			this.processingTimeInMs = instance.processingTimeInMs;
+			this.processingTotal = instance.processingTotal;
+			this.searchFailures = instance.searchFailures;
+			this.searchTimeInMs = instance.searchTimeInMs;
+			this.searchTotal = instance.searchTotal;
+			this.triggerCount = instance.triggerCount;
+
+		}
 		/**
 		 * API name: {@code delete_time_in_ms}
 		 */
@@ -523,6 +545,12 @@ public class TransformIndexerStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

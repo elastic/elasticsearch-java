@@ -254,6 +254,18 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private List<VertexDefinition> vertices;
 
+		public Builder() {
+		}
+		private Builder(ExploreRequest instance) {
+			this.connections = instance.connections;
+			this.controls = instance.controls;
+			this.index = instance.index;
+			this.query = instance.query;
+			this.routing = instance.routing;
+			this.timeout = instance.timeout;
+			this.vertices = instance.vertices;
+
+		}
 		/**
 		 * Specifies or more fields from which you want to extract terms that are
 		 * associated with the specified vertices.
@@ -439,6 +451,12 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

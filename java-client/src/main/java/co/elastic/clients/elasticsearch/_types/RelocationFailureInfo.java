@@ -111,6 +111,12 @@ public class RelocationFailureInfo implements JsonpSerializable {
 				ObjectBuilder<RelocationFailureInfo> {
 		private Integer failedAttempts;
 
+		public Builder() {
+		}
+		private Builder(RelocationFailureInfo instance) {
+			this.failedAttempts = instance.failedAttempts;
+
+		}
 		/**
 		 * Required - API name: {@code failed_attempts}
 		 */
@@ -137,6 +143,12 @@ public class RelocationFailureInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -143,6 +143,14 @@ public class DeletePrivilegesRequest extends RequestBase {
 		@Nullable
 		private Refresh refresh;
 
+		public Builder() {
+		}
+		private Builder(DeletePrivilegesRequest instance) {
+			this.application = instance.application;
+			this.name = instance.name;
+			this.refresh = instance.refresh;
+
+		}
 		/**
 		 * Required - The name of the application. Application privileges are always
 		 * associated with exactly one application.
@@ -209,6 +217,12 @@ public class DeletePrivilegesRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

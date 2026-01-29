@@ -360,6 +360,23 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private List<String> types;
 
+		public Builder() {
+		}
+		private Builder(FieldCapsRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.fields = instance.fields;
+			this.filters = instance.filters;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.includeEmptyFields = instance.includeEmptyFields;
+			this.includeUnmapped = instance.includeUnmapped;
+			this.index = instance.index;
+			this.indexFilter = instance.indexFilter;
+			this.projectRouting = instance.projectRouting;
+			this.runtimeMappings = instance.runtimeMappings;
+			this.types = instance.types;
+
+		}
 		/**
 		 * If false, the request returns an error if any wildcard expression, index
 		 * alias, or <code>_all</code> value targets only missing or closed indices.
@@ -657,6 +674,12 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

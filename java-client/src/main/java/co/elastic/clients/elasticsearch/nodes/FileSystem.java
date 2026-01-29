@@ -189,6 +189,15 @@ public class FileSystem implements JsonpSerializable {
 		@Nullable
 		private IoStats ioStats;
 
+		public Builder() {
+		}
+		private Builder(FileSystem instance) {
+			this.data = instance.data;
+			this.timestamp = instance.timestamp;
+			this.total = instance.total;
+			this.ioStats = instance.ioStats;
+
+		}
 		/**
 		 * List of all file stores.
 		 * <p>
@@ -291,6 +300,12 @@ public class FileSystem implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

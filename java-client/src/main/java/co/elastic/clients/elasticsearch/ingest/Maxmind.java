@@ -126,6 +126,12 @@ public class Maxmind implements DatabaseConfigurationFullVariant, DatabaseConfig
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Maxmind> {
 		private String accountId;
 
+		public Builder() {
+		}
+		private Builder(Maxmind instance) {
+			this.accountId = instance.accountId;
+
+		}
 		/**
 		 * Required - API name: {@code account_id}
 		 */
@@ -152,6 +158,12 @@ public class Maxmind implements DatabaseConfigurationFullVariant, DatabaseConfig
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

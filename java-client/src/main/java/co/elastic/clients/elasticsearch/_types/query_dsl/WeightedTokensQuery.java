@@ -174,6 +174,13 @@ public class WeightedTokensQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private TokenPruningConfig pruningConfig;
 
+		public Builder() {
+		}
+		private Builder(WeightedTokensQuery instance) {
+			this.tokens = instance.tokens;
+			this.pruningConfig = instance.pruningConfig;
+
+		}
 		/**
 		 * Required - The tokens representing this query
 		 * <p>
@@ -235,6 +242,12 @@ public class WeightedTokensQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

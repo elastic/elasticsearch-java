@@ -143,6 +143,13 @@ public class TestRequest extends RequestBase implements JsonpSerializable {
 
 		private String rulesetId;
 
+		public Builder() {
+		}
+		private Builder(TestRequest instance) {
+			this.matchCriteria = instance.matchCriteria;
+			this.rulesetId = instance.rulesetId;
+
+		}
 		/**
 		 * Required - The match criteria to apply to rules in the given query ruleset.
 		 * Match criteria should match the keys defined in the
@@ -200,6 +207,12 @@ public class TestRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

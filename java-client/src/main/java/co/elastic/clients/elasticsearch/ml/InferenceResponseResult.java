@@ -331,6 +331,20 @@ public class InferenceResponseResult implements JsonpSerializable {
 		@Nullable
 		private List<TrainedModelInferenceFeatureImportance> featureImportance;
 
+		public Builder() {
+		}
+		private Builder(InferenceResponseResult instance) {
+			this.entities = instance.entities;
+			this.isTruncated = instance.isTruncated;
+			this.predictedValue = instance.predictedValue;
+			this.predictedValueSequence = instance.predictedValueSequence;
+			this.predictionProbability = instance.predictionProbability;
+			this.predictionScore = instance.predictionScore;
+			this.topClasses = instance.topClasses;
+			this.warning = instance.warning;
+			this.featureImportance = instance.featureImportance;
+
+		}
 		/**
 		 * If the model is trained for named entity recognition (NER) tasks, the
 		 * response contains the recognized entities.
@@ -553,6 +567,12 @@ public class InferenceResponseResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

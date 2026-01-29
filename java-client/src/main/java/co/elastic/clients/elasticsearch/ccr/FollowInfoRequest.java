@@ -123,6 +123,13 @@ public class FollowInfoRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		public Builder() {
+		}
+		private Builder(FollowInfoRequest instance) {
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+
+		}
 		/**
 		 * Required - A comma-delimited list of follower index patterns.
 		 * <p>
@@ -190,6 +197,12 @@ public class FollowInfoRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

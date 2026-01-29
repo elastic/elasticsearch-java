@@ -126,6 +126,12 @@ public class MappingLimitSettingsFieldNameLength implements JsonpSerializable {
 		@Nullable
 		private Long limit;
 
+		public Builder() {
+		}
+		private Builder(MappingLimitSettingsFieldNameLength instance) {
+			this.limit = instance.limit;
+
+		}
 		/**
 		 * Setting for the maximum length of a field name. This setting isn’t really
 		 * something that addresses mappings explosion but might still be useful if you
@@ -159,6 +165,12 @@ public class MappingLimitSettingsFieldNameLength implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

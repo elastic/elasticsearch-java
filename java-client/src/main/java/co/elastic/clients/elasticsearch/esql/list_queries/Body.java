@@ -171,6 +171,16 @@ public class Body implements JsonpSerializable {
 
 		private String query;
 
+		public Builder() {
+		}
+		private Builder(Body instance) {
+			this.id = instance.id;
+			this.node = instance.node;
+			this.startTimeMillis = instance.startTimeMillis;
+			this.runningTimeNanos = instance.runningTimeNanos;
+			this.query = instance.query;
+
+		}
 		/**
 		 * Required - API name: {@code id}
 		 */
@@ -229,6 +239,12 @@ public class Body implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -109,6 +109,12 @@ public class MlCounter implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<MlCounter> {
 		private Long count;
 
+		public Builder() {
+		}
+		private Builder(MlCounter instance) {
+			this.count = instance.count;
+
+		}
 		/**
 		 * Required - API name: {@code count}
 		 */
@@ -135,6 +141,12 @@ public class MlCounter implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

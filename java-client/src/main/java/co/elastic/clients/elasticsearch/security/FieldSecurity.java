@@ -143,6 +143,13 @@ public class FieldSecurity implements JsonpSerializable {
 		@Nullable
 		private List<String> grant;
 
+		public Builder() {
+		}
+		private Builder(FieldSecurity instance) {
+			this.except = instance.except;
+			this.grant = instance.grant;
+
+		}
 		/**
 		 * API name: {@code except}
 		 * <p>
@@ -201,6 +208,12 @@ public class FieldSecurity implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

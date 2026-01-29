@@ -145,6 +145,13 @@ public class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		@Nullable
 		private String userDictionary;
 
+		public Builder() {
+		}
+		private Builder(KuromojiAnalyzer instance) {
+			this.mode = instance.mode;
+			this.userDictionary = instance.userDictionary;
+
+		}
 		/**
 		 * API name: {@code mode}
 		 */
@@ -179,6 +186,12 @@ public class KuromojiAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

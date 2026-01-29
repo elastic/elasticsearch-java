@@ -228,6 +228,17 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 		@Nullable
 		private Boolean extractDeviceType;
 
+		public Builder() {
+		}
+		private Builder(UserAgentProcessor instance) {
+			this.field = instance.field;
+			this.ignoreMissing = instance.ignoreMissing;
+			this.regexFile = instance.regexFile;
+			this.targetField = instance.targetField;
+			this.properties = instance.properties;
+			this.extractDeviceType = instance.extractDeviceType;
+
+		}
 		/**
 		 * Required - The field containing the user agent string.
 		 * <p>
@@ -325,6 +336,12 @@ public class UserAgentProcessor extends ProcessorBase implements ProcessorVarian
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

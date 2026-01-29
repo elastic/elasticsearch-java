@@ -160,6 +160,15 @@ public class SegmentsRequest extends RequestBase {
 		@Nullable
 		private List<String> index;
 
+		public Builder() {
+		}
+		private Builder(SegmentsRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -260,6 +269,12 @@ public class SegmentsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

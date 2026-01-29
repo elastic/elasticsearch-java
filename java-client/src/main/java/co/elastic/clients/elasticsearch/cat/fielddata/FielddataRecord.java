@@ -228,6 +228,17 @@ public class FielddataRecord implements JsonpSerializable {
 		@Nullable
 		private String size;
 
+		public Builder() {
+		}
+		private Builder(FielddataRecord instance) {
+			this.id = instance.id;
+			this.host = instance.host;
+			this.ip = instance.ip;
+			this.node = instance.node;
+			this.field = instance.field;
+			this.size = instance.size;
+
+		}
 		/**
 		 * node id
 		 * <p>
@@ -306,6 +317,12 @@ public class FielddataRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -194,6 +194,16 @@ public class MlInferenceTrainedModels implements JsonpSerializable {
 		@Nullable
 		private JobStatistics modelSizeBytes;
 
+		public Builder() {
+		}
+		private Builder(MlInferenceTrainedModels instance) {
+			this.estimatedOperations = instance.estimatedOperations;
+			this.estimatedHeapMemoryUsageBytes = instance.estimatedHeapMemoryUsageBytes;
+			this.count = instance.count;
+			this.all = instance.all;
+			this.modelSizeBytes = instance.modelSizeBytes;
+
+		}
 		/**
 		 * API name: {@code estimated_operations}
 		 */
@@ -289,6 +299,12 @@ public class MlInferenceTrainedModels implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

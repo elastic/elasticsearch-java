@@ -141,6 +141,13 @@ public class NlpTokenizationUpdateOptions implements JsonpSerializable {
 		@Nullable
 		private Integer span;
 
+		public Builder() {
+		}
+		private Builder(NlpTokenizationUpdateOptions instance) {
+			this.truncate = instance.truncate;
+			this.span = instance.span;
+
+		}
 		/**
 		 * Truncate options to apply
 		 * <p>
@@ -179,6 +186,12 @@ public class NlpTokenizationUpdateOptions implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

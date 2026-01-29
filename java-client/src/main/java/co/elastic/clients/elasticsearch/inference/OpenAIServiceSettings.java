@@ -75,6 +75,9 @@ public class OpenAIServiceSettings implements JsonpSerializable {
 	private final RateLimitSetting rateLimit;
 
 	@Nullable
+	private final OpenAISimilarityType similarity;
+
+	@Nullable
 	private final String url;
 
 	// ---------------------------------------------------------------------------------------------
@@ -86,6 +89,7 @@ public class OpenAIServiceSettings implements JsonpSerializable {
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.organizationId = builder.organizationId;
 		this.rateLimit = builder.rateLimit;
+		this.similarity = builder.similarity;
 		this.url = builder.url;
 
 	}
@@ -100,9 +104,7 @@ public class OpenAIServiceSettings implements JsonpSerializable {
 	 * <p>
 	 * IMPORTANT: You need to provide the API key only once, during the inference
 	 * model creation. The get inference endpoint API does not retrieve your API
-	 * key. After creating the inference model, you cannot change the associated API
-	 * key. If you want to use a different API key, delete the inference model and
-	 * recreate it with the same name and the updated API key.
+	 * key.
 	 * <p>
 	 * API name: {@code api_key}
 	 */
@@ -158,6 +160,17 @@ public class OpenAIServiceSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * For a <code>text_embedding</code> task, the similarity measure. One of
+	 * cosine, dot_product, l2_norm. Defaults to <code>dot_product</code>.
+	 * <p>
+	 * API name: {@code similarity}
+	 */
+	@Nullable
+	public final OpenAISimilarityType similarity() {
+		return this.similarity;
+	}
+
+	/**
 	 * The URL endpoint to use for the requests. It can be changed for testing
 	 * purposes.
 	 * <p>
@@ -200,6 +213,10 @@ public class OpenAIServiceSettings implements JsonpSerializable {
 			this.rateLimit.serialize(generator, mapper);
 
 		}
+		if (this.similarity != null) {
+			generator.writeKey("similarity");
+			this.similarity.serialize(generator, mapper);
+		}
 		if (this.url != null) {
 			generator.writeKey("url");
 			generator.write(this.url);
@@ -236,17 +253,30 @@ public class OpenAIServiceSettings implements JsonpSerializable {
 		private RateLimitSetting rateLimit;
 
 		@Nullable
+		private OpenAISimilarityType similarity;
+
+		@Nullable
 		private String url;
 
+		public Builder() {
+		}
+		private Builder(OpenAIServiceSettings instance) {
+			this.apiKey = instance.apiKey;
+			this.dimensions = instance.dimensions;
+			this.modelId = instance.modelId;
+			this.organizationId = instance.organizationId;
+			this.rateLimit = instance.rateLimit;
+			this.similarity = instance.similarity;
+			this.url = instance.url;
+
+		}
 		/**
 		 * Required - A valid API key of your OpenAI account. You can find your OpenAI
 		 * API keys in your OpenAI account under the API keys section.
 		 * <p>
 		 * IMPORTANT: You need to provide the API key only once, during the inference
 		 * model creation. The get inference endpoint API does not retrieve your API
-		 * key. After creating the inference model, you cannot change the associated API
-		 * key. If you want to use a different API key, delete the inference model and
-		 * recreate it with the same name and the updated API key.
+		 * key.
 		 * <p>
 		 * API name: {@code api_key}
 		 */
@@ -317,6 +347,17 @@ public class OpenAIServiceSettings implements JsonpSerializable {
 		}
 
 		/**
+		 * For a <code>text_embedding</code> task, the similarity measure. One of
+		 * cosine, dot_product, l2_norm. Defaults to <code>dot_product</code>.
+		 * <p>
+		 * API name: {@code similarity}
+		 */
+		public final Builder similarity(@Nullable OpenAISimilarityType value) {
+			this.similarity = value;
+			return this;
+		}
+
+		/**
 		 * The URL endpoint to use for the requests. It can be changed for testing
 		 * purposes.
 		 * <p>
@@ -345,6 +386,12 @@ public class OpenAIServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -360,6 +407,7 @@ public class OpenAIServiceSettings implements JsonpSerializable {
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
 		op.add(Builder::organizationId, JsonpDeserializer.stringDeserializer(), "organization_id");
 		op.add(Builder::rateLimit, RateLimitSetting._DESERIALIZER, "rate_limit");
+		op.add(Builder::similarity, OpenAISimilarityType._DESERIALIZER, "similarity");
 		op.add(Builder::url, JsonpDeserializer.stringDeserializer(), "url");
 
 	}

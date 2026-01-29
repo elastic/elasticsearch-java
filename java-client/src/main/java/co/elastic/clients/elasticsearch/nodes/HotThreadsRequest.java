@@ -227,6 +227,19 @@ public class HotThreadsRequest extends RequestBase {
 		@Nullable
 		private ThreadType type;
 
+		public Builder() {
+		}
+		private Builder(HotThreadsRequest instance) {
+			this.ignoreIdleThreads = instance.ignoreIdleThreads;
+			this.interval = instance.interval;
+			this.nodeId = instance.nodeId;
+			this.snapshots = instance.snapshots;
+			this.sort = instance.sort;
+			this.threads = instance.threads;
+			this.timeout = instance.timeout;
+			this.type = instance.type;
+
+		}
 		/**
 		 * If true, known idle threads (e.g. waiting in a socket select, or to get a
 		 * task from an empty queue) are filtered out.
@@ -360,6 +373,12 @@ public class HotThreadsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -407,6 +407,22 @@ public class AnalysisConfig implements JsonpSerializable {
 		@Nullable
 		private String summaryCountFieldName;
 
+		public Builder() {
+		}
+		private Builder(AnalysisConfig instance) {
+			this.bucketSpan = instance.bucketSpan;
+			this.categorizationAnalyzer = instance.categorizationAnalyzer;
+			this.categorizationFieldName = instance.categorizationFieldName;
+			this.categorizationFilters = instance.categorizationFilters;
+			this.detectors = instance.detectors;
+			this.influencers = instance.influencers;
+			this.latency = instance.latency;
+			this.modelPruneWindow = instance.modelPruneWindow;
+			this.multivariateByFields = instance.multivariateByFields;
+			this.perPartitionCategorization = instance.perPartitionCategorization;
+			this.summaryCountFieldName = instance.summaryCountFieldName;
+
+		}
 		/**
 		 * The size of the interval that the analysis is aggregated into, typically
 		 * between <code>5m</code> and <code>1h</code>. This value should be either a
@@ -734,6 +750,12 @@ public class AnalysisConfig implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

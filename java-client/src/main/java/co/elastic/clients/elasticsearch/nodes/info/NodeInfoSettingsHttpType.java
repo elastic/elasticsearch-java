@@ -113,6 +113,12 @@ public class NodeInfoSettingsHttpType implements JsonpSerializable {
 				ObjectBuilder<NodeInfoSettingsHttpType> {
 		private String default_;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoSettingsHttpType instance) {
+			this.default_ = instance.default_;
+
+		}
 		/**
 		 * Required - API name: {@code default}
 		 */
@@ -139,6 +145,12 @@ public class NodeInfoSettingsHttpType implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

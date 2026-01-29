@@ -242,6 +242,15 @@ public class WildcardQuery extends QueryBase
 		@Nullable
 		private String wildcard;
 
+		public Builder() {
+		}
+		private Builder(WildcardQuery instance) {
+			this.caseInsensitive = instance.caseInsensitive;
+			this.rewrite = instance.rewrite;
+			this.value = instance.value;
+			this.wildcard = instance.wildcard;
+
+		}
 		/**
 		 * Allows case insensitive matching of the pattern with the indexed field values
 		 * when set to true. Default is false which means the case sensitivity of
@@ -304,6 +313,12 @@ public class WildcardQuery extends QueryBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

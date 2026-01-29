@@ -117,6 +117,12 @@ public class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, Q
 				ObjectBuilder<SpanMultiTermQuery> {
 		private Query match;
 
+		public Builder() {
+		}
+		private Builder(SpanMultiTermQuery instance) {
+			this.match = instance.match;
+
+		}
 		/**
 		 * Required - Should be a multi term query (one of <code>wildcard</code>,
 		 * <code>fuzzy</code>, <code>prefix</code>, <code>range</code>, or
@@ -170,6 +176,12 @@ public class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, Q
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

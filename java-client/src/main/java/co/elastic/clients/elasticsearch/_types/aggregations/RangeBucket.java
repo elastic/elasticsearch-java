@@ -184,6 +184,16 @@ public class RangeBucket extends MultiBucketBase {
 		@Nullable
 		private String key;
 
+		public Builder() {
+		}
+		private Builder(RangeBucket instance) {
+			this.from = instance.from;
+			this.to = instance.to;
+			this.fromAsString = instance.fromAsString;
+			this.toAsString = instance.toAsString;
+			this.key = instance.key;
+
+		}
 		/**
 		 * API name: {@code from}
 		 */
@@ -244,6 +254,12 @@ public class RangeBucket extends MultiBucketBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

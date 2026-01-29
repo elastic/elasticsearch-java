@@ -276,6 +276,20 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 		@Nullable
 		private DateTime start;
 
+		public Builder() {
+		}
+		private Builder(GetModelSnapshotsRequest instance) {
+			this.desc = instance.desc;
+			this.end = instance.end;
+			this.from = instance.from;
+			this.jobId = instance.jobId;
+			this.page = instance.page;
+			this.size = instance.size;
+			this.snapshotId = instance.snapshotId;
+			this.sort = instance.sort;
+			this.start = instance.start;
+
+		}
 		/**
 		 * Refer to the description for the <code>desc</code> query parameter.
 		 * <p>
@@ -393,6 +407,12 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

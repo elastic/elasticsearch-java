@@ -251,6 +251,17 @@ public class RemoteIndicesPrivileges implements JsonpSerializable {
 		@Nullable
 		private Boolean allowRestrictedIndices;
 
+		public Builder() {
+		}
+		private Builder(RemoteIndicesPrivileges instance) {
+			this.clusters = instance.clusters;
+			this.fieldSecurity = instance.fieldSecurity;
+			this.names = instance.names;
+			this.privileges = instance.privileges;
+			this.query = instance.query;
+			this.allowRestrictedIndices = instance.allowRestrictedIndices;
+
+		}
 		/**
 		 * Required - A list of cluster aliases to which the permissions in this entry
 		 * apply.
@@ -418,6 +429,12 @@ public class RemoteIndicesPrivileges implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

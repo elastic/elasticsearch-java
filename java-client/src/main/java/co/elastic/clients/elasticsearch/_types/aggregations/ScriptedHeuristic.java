@@ -111,6 +111,12 @@ public class ScriptedHeuristic implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ScriptedHeuristic> {
 		private Script script;
 
+		public Builder() {
+		}
+		private Builder(ScriptedHeuristic instance) {
+			this.script = instance.script;
+
+		}
 		/**
 		 * Required - API name: {@code script}
 		 */
@@ -144,6 +150,12 @@ public class ScriptedHeuristic implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

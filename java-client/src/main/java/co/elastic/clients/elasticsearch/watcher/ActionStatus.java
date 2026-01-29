@@ -170,6 +170,15 @@ public class ActionStatus implements JsonpSerializable {
 		@Nullable
 		private ThrottleState lastThrottle;
 
+		public Builder() {
+		}
+		private Builder(ActionStatus instance) {
+			this.ack = instance.ack;
+			this.lastExecution = instance.lastExecution;
+			this.lastSuccessfulExecution = instance.lastSuccessfulExecution;
+			this.lastThrottle = instance.lastThrottle;
+
+		}
 		/**
 		 * Required - API name: {@code ack}
 		 */
@@ -249,6 +258,12 @@ public class ActionStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

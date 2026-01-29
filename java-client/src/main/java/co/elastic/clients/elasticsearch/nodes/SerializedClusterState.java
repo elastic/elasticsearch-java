@@ -139,6 +139,13 @@ public class SerializedClusterState implements JsonpSerializable {
 		@Nullable
 		private SerializedClusterStateDetail diffs;
 
+		public Builder() {
+		}
+		private Builder(SerializedClusterState instance) {
+			this.fullStates = instance.fullStates;
+			this.diffs = instance.diffs;
+
+		}
 		/**
 		 * Number of published cluster states.
 		 * <p>
@@ -193,6 +200,12 @@ public class SerializedClusterState implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

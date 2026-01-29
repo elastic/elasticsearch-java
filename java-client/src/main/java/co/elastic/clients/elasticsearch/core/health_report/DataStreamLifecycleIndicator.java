@@ -103,6 +103,12 @@ public class DataStreamLifecycleIndicator extends BaseIndicator {
 		@Nullable
 		private DataStreamLifecycleDetails details;
 
+		public Builder() {
+		}
+		private Builder(DataStreamLifecycleIndicator instance) {
+			this.details = instance.details;
+
+		}
 		/**
 		 * API name: {@code details}
 		 */
@@ -137,6 +143,12 @@ public class DataStreamLifecycleIndicator extends BaseIndicator {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

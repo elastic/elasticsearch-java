@@ -119,6 +119,12 @@ public class FollowStats implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FollowStats> {
 		private List<FollowIndexStats> indices;
 
+		public Builder() {
+		}
+		private Builder(FollowStats instance) {
+			this.indices = instance.indices;
+
+		}
 		/**
 		 * Required - API name: {@code indices}
 		 * <p>
@@ -166,6 +172,12 @@ public class FollowStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

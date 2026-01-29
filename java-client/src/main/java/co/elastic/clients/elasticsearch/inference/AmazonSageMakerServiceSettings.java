@@ -307,6 +307,21 @@ public class AmazonSageMakerServiceSettings implements JsonpSerializable {
 		@Nullable
 		private Integer dimensions;
 
+		public Builder() {
+		}
+		private Builder(AmazonSageMakerServiceSettings instance) {
+			this.accessKey = instance.accessKey;
+			this.endpointName = instance.endpointName;
+			this.api = instance.api;
+			this.region = instance.region;
+			this.secretKey = instance.secretKey;
+			this.targetModel = instance.targetModel;
+			this.targetContainerHostname = instance.targetContainerHostname;
+			this.inferenceComponentName = instance.inferenceComponentName;
+			this.batchSize = instance.batchSize;
+			this.dimensions = instance.dimensions;
+
+		}
 		/**
 		 * Required - A valid AWS access key that has permissions to use Amazon
 		 * SageMaker and access to models for invoking requests.
@@ -437,6 +452,12 @@ public class AmazonSageMakerServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

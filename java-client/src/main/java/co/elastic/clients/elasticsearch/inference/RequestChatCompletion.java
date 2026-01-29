@@ -337,6 +337,19 @@ public class RequestChatCompletion implements JsonpSerializable {
 		@Nullable
 		private Float topP;
 
+		public Builder() {
+		}
+		private Builder(RequestChatCompletion instance) {
+			this.messages = instance.messages;
+			this.model = instance.model;
+			this.maxCompletionTokens = instance.maxCompletionTokens;
+			this.stop = instance.stop;
+			this.temperature = instance.temperature;
+			this.toolChoice = instance.toolChoice;
+			this.tools = instance.tools;
+			this.topP = instance.topP;
+
+		}
 		/**
 		 * Required - A list of objects representing the conversation. Requests should
 		 * generally only add new messages from the user (role <code>user</code>). The
@@ -639,6 +652,12 @@ public class RequestChatCompletion implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

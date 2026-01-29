@@ -129,7 +129,8 @@ public class IndexTemplate implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Name of the index template.
+	 * Required - Array of wildcard (<code>*</code>) expressions used to match the
+	 * names of data streams and indices during creation.
 	 * <p>
 	 * API name: {@code index_patterns}
 	 */
@@ -434,8 +435,28 @@ public class IndexTemplate implements JsonpSerializable {
 		@Nullable
 		private Long modifiedDateMillis;
 
+		public Builder() {
+		}
+		private Builder(IndexTemplate instance) {
+			this.indexPatterns = instance.indexPatterns;
+			this.composedOf = instance.composedOf;
+			this.template = instance.template;
+			this.version = instance.version;
+			this.priority = instance.priority;
+			this.meta = instance.meta;
+			this.allowAutoCreate = instance.allowAutoCreate;
+			this.dataStream = instance.dataStream;
+			this.deprecated = instance.deprecated;
+			this.ignoreMissingComponentTemplates = instance.ignoreMissingComponentTemplates;
+			this.createdDate = instance.createdDate;
+			this.createdDateMillis = instance.createdDateMillis;
+			this.modifiedDate = instance.modifiedDate;
+			this.modifiedDateMillis = instance.modifiedDateMillis;
+
+		}
 		/**
-		 * Required - Name of the index template.
+		 * Required - Array of wildcard (<code>*</code>) expressions used to match the
+		 * names of data streams and indices during creation.
 		 * <p>
 		 * API name: {@code index_patterns}
 		 * <p>
@@ -447,7 +468,8 @@ public class IndexTemplate implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Name of the index template.
+		 * Required - Array of wildcard (<code>*</code>) expressions used to match the
+		 * names of data streams and indices during creation.
 		 * <p>
 		 * API name: {@code index_patterns}
 		 * <p>
@@ -689,6 +711,12 @@ public class IndexTemplate implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

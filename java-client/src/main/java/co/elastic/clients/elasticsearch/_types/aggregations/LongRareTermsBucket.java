@@ -120,6 +120,13 @@ public class LongRareTermsBucket extends MultiBucketBase {
 		@Nullable
 		private String keyAsString;
 
+		public Builder() {
+		}
+		private Builder(LongRareTermsBucket instance) {
+			this.key = instance.key;
+			this.keyAsString = instance.keyAsString;
+
+		}
 		/**
 		 * Required - API name: {@code key}
 		 */
@@ -154,6 +161,12 @@ public class LongRareTermsBucket extends MultiBucketBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

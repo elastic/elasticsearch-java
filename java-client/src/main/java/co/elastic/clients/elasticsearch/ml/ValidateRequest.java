@@ -275,6 +275,20 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private String resultsIndexName;
 
+		public Builder() {
+		}
+		private Builder(ValidateRequest instance) {
+			this.analysisConfig = instance.analysisConfig;
+			this.analysisLimits = instance.analysisLimits;
+			this.dataDescription = instance.dataDescription;
+			this.description = instance.description;
+			this.jobId = instance.jobId;
+			this.modelPlot = instance.modelPlot;
+			this.modelSnapshotId = instance.modelSnapshotId;
+			this.modelSnapshotRetentionDays = instance.modelSnapshotRetentionDays;
+			this.resultsIndexName = instance.resultsIndexName;
+
+		}
 		/**
 		 * API name: {@code analysis_config}
 		 */
@@ -393,6 +407,12 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -219,6 +219,17 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
 		@Nullable
 		private String searchAnalyzer;
 
+		public Builder() {
+		}
+		private Builder(CompletionProperty instance) {
+			this.analyzer = instance.analyzer;
+			this.contexts = instance.contexts;
+			this.maxInputLength = instance.maxInputLength;
+			this.preservePositionIncrements = instance.preservePositionIncrements;
+			this.preserveSeparators = instance.preserveSeparators;
+			this.searchAnalyzer = instance.searchAnalyzer;
+
+		}
 		/**
 		 * API name: {@code analyzer}
 		 */
@@ -306,6 +317,12 @@ public class CompletionProperty extends DocValuesPropertyBase implements Propert
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

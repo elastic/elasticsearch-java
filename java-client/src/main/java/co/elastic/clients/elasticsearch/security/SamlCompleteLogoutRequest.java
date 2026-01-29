@@ -204,6 +204,15 @@ public class SamlCompleteLogoutRequest extends RequestBase implements JsonpSeria
 
 		private String realm;
 
+		public Builder() {
+		}
+		private Builder(SamlCompleteLogoutRequest instance) {
+			this.content = instance.content;
+			this.ids = instance.ids;
+			this.queryString = instance.queryString;
+			this.realm = instance.realm;
+
+		}
 		/**
 		 * If the SAML IdP sends the logout response with the HTTP-Post binding, this
 		 * field must be set to the value of the SAMLResponse form parameter from the
@@ -282,6 +291,12 @@ public class SamlCompleteLogoutRequest extends RequestBase implements JsonpSeria
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

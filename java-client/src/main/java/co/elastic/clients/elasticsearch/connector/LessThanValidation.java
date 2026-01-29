@@ -122,6 +122,12 @@ public class LessThanValidation implements ValidationVariant, JsonpSerializable 
 				ObjectBuilder<LessThanValidation> {
 		private Double constraint;
 
+		public Builder() {
+		}
+		private Builder(LessThanValidation instance) {
+			this.constraint = instance.constraint;
+
+		}
 		/**
 		 * Required - API name: {@code constraint}
 		 */
@@ -148,6 +154,12 @@ public class LessThanValidation implements ValidationVariant, JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

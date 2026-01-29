@@ -213,6 +213,17 @@ public class DiskUsageRequest extends RequestBase {
 		@Nullable
 		private Boolean runExpensiveTasks;
 
+		public Builder() {
+		}
+		private Builder(DiskUsageRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.flush = instance.flush;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.runExpensiveTasks = instance.runExpensiveTasks;
+
+		}
 		/**
 		 * If false, the request returns an error if any wildcard expression, index
 		 * alias, or <code>_all</code> value targets only missing or closed indices.
@@ -338,6 +349,12 @@ public class DiskUsageRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

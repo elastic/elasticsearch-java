@@ -157,6 +157,14 @@ public class StartTransformRequest extends RequestBase {
 
 		private String transformId;
 
+		public Builder() {
+		}
+		private Builder(StartTransformRequest instance) {
+			this.from = instance.from;
+			this.timeout = instance.timeout;
+			this.transformId = instance.transformId;
+
+		}
 		/**
 		 * Restricts the set of transformed entities to those changed after this time.
 		 * Relative times like now-30d are supported. Only applicable for continuous
@@ -218,6 +226,12 @@ public class StartTransformRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

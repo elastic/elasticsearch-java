@@ -126,6 +126,13 @@ public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFil
 
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(IcuTransformTokenFilter instance) {
+			this.dir = instance.dir;
+			this.id = instance.id;
+
+		}
 		/**
 		 * API name: {@code dir}
 		 */
@@ -160,6 +167,12 @@ public class IcuTransformTokenFilter extends TokenFilterBase implements TokenFil
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

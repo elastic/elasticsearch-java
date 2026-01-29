@@ -156,6 +156,15 @@ public class InProgress implements JsonpSerializable {
 
 		private String uuid;
 
+		public Builder() {
+		}
+		private Builder(InProgress instance) {
+			this.name = instance.name;
+			this.startTimeMillis = instance.startTimeMillis;
+			this.state = instance.state;
+			this.uuid = instance.uuid;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -206,6 +215,12 @@ public class InProgress implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

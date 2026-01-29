@@ -128,6 +128,12 @@ public class CustomRequestParams implements JsonpSerializable {
 				ObjectBuilder<CustomRequestParams> {
 		private String content;
 
+		public Builder() {
+		}
+		private Builder(CustomRequestParams instance) {
+			this.content = instance.content;
+
+		}
 		/**
 		 * Required - The body structure of the request. It requires passing in the
 		 * string-escaped result of the JSON format HTTP request body. For example:
@@ -169,6 +175,12 @@ public class CustomRequestParams implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

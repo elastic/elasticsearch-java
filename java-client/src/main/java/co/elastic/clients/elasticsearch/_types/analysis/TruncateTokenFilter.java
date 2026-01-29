@@ -115,6 +115,12 @@ public class TruncateTokenFilter extends TokenFilterBase implements TokenFilterD
 		@Nullable
 		private Integer length;
 
+		public Builder() {
+		}
+		private Builder(TruncateTokenFilter instance) {
+			this.length = instance.length;
+
+		}
 		/**
 		 * Character limit for each token. Tokens exceeding this limit are truncated.
 		 * Defaults to <code>10</code>.
@@ -144,6 +150,12 @@ public class TruncateTokenFilter extends TokenFilterBase implements TokenFilterD
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -153,6 +153,14 @@ public class SettingsSimilarityDfr implements SettingsSimilarityVariant, JsonpSe
 
 		private Normalization normalization;
 
+		public Builder() {
+		}
+		private Builder(SettingsSimilarityDfr instance) {
+			this.afterEffect = instance.afterEffect;
+			this.basicModel = instance.basicModel;
+			this.normalization = instance.normalization;
+
+		}
 		/**
 		 * Required - API name: {@code after_effect}
 		 */
@@ -195,6 +203,12 @@ public class SettingsSimilarityDfr implements SettingsSimilarityVariant, JsonpSe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -140,6 +140,13 @@ public class PostCalendarEventsRequest extends RequestBase implements JsonpSeria
 
 		private List<CalendarEvent> events;
 
+		public Builder() {
+		}
+		private Builder(PostCalendarEventsRequest instance) {
+			this.calendarId = instance.calendarId;
+			this.events = instance.events;
+
+		}
 		/**
 		 * Required - A string that uniquely identifies a calendar.
 		 * <p>
@@ -209,6 +216,12 @@ public class PostCalendarEventsRequest extends RequestBase implements JsonpSeria
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

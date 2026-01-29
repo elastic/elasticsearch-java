@@ -172,6 +172,15 @@ public class Token implements JsonpSerializable {
 		@Nullable
 		private Integer startOffset;
 
+		public Builder() {
+		}
+		private Builder(Token instance) {
+			this.endOffset = instance.endOffset;
+			this.payload = instance.payload;
+			this.position = instance.position;
+			this.startOffset = instance.startOffset;
+
+		}
 		/**
 		 * API name: {@code end_offset}
 		 */
@@ -222,6 +231,12 @@ public class Token implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

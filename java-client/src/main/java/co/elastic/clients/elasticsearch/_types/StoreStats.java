@@ -226,6 +226,17 @@ public class StoreStats implements JsonpSerializable {
 		@Nullable
 		private Long totalDataSetSizeInBytes;
 
+		public Builder() {
+		}
+		private Builder(StoreStats instance) {
+			this.size = instance.size;
+			this.sizeInBytes = instance.sizeInBytes;
+			this.reserved = instance.reserved;
+			this.reservedInBytes = instance.reservedInBytes;
+			this.totalDataSetSize = instance.totalDataSetSize;
+			this.totalDataSetSizeInBytes = instance.totalDataSetSizeInBytes;
+
+		}
 		/**
 		 * Total size of all shards assigned to selected nodes.
 		 * <p>
@@ -311,6 +322,12 @@ public class StoreStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

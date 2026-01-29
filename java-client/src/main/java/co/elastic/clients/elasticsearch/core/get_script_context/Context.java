@@ -134,6 +134,13 @@ public class Context implements JsonpSerializable {
 
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(Context instance) {
+			this.methods = instance.methods;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - API name: {@code methods}
 		 * <p>
@@ -189,6 +196,12 @@ public class Context implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

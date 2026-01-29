@@ -136,6 +136,13 @@ public class TransformSchedulerStats implements JsonpSerializable {
 		@Nullable
 		private String peekTransform;
 
+		public Builder() {
+		}
+		private Builder(TransformSchedulerStats instance) {
+			this.registeredTransformCount = instance.registeredTransformCount;
+			this.peekTransform = instance.peekTransform;
+
+		}
 		/**
 		 * Required - API name: {@code registered_transform_count}
 		 */
@@ -170,6 +177,12 @@ public class TransformSchedulerStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

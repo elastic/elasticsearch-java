@@ -142,6 +142,13 @@ public class FetchProfileDebug implements JsonpSerializable {
 		@Nullable
 		private Integer fastPath;
 
+		public Builder() {
+		}
+		private Builder(FetchProfileDebug instance) {
+			this.storedFields = instance.storedFields;
+			this.fastPath = instance.fastPath;
+
+		}
 		/**
 		 * API name: {@code stored_fields}
 		 * <p>
@@ -188,6 +195,12 @@ public class FetchProfileDebug implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.AliasDefinition;
 import co.elastic.clients.elasticsearch.indices.DataStreamLifecycleWithRollover;
+import co.elastic.clients.elasticsearch.indices.DataStreamOptions;
 import co.elastic.clients.elasticsearch.indices.DataStreamOptionsTemplate;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.json.JsonData;
@@ -259,6 +260,18 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		@Nullable
 		private DataStreamOptionsTemplate dataStreamOptions;
 
+		public Builder() {
+		}
+		private Builder(ComponentTemplateSummary instance) {
+			this.meta = instance.meta;
+			this.version = instance.version;
+			this.settings = instance.settings;
+			this.mappings = instance.mappings;
+			this.aliases = instance.aliases;
+			this.lifecycle = instance.lifecycle;
+			this.dataStreamOptions = instance.dataStreamOptions;
+
+		}
 		/**
 		 * API name: {@code _meta}
 		 * <p>
@@ -410,6 +423,12 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

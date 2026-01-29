@@ -139,6 +139,13 @@ public class DataframeEvaluationClassificationMetrics extends DataframeEvaluatio
 		@Nullable
 		private Map<String, JsonData> multiclassConfusionMatrix;
 
+		public Builder() {
+		}
+		private Builder(DataframeEvaluationClassificationMetrics instance) {
+			this.accuracy = instance.accuracy;
+			this.multiclassConfusionMatrix = instance.multiclassConfusionMatrix;
+
+		}
 		/**
 		 * Accuracy of predictions (per-class and overall).
 		 * <p>
@@ -206,6 +213,12 @@ public class DataframeEvaluationClassificationMetrics extends DataframeEvaluatio
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

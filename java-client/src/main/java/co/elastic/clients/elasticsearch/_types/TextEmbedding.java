@@ -141,6 +141,13 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 
 		private String modelText;
 
+		public Builder() {
+		}
+		private Builder(TextEmbedding instance) {
+			this.modelId = instance.modelId;
+			this.modelText = instance.modelText;
+
+		}
 		/**
 		 * Model ID is required for all dense_vector fields but may be inferred for
 		 * semantic_text fields
@@ -178,6 +185,12 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

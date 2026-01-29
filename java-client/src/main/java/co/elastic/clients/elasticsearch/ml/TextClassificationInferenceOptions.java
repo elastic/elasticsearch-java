@@ -224,6 +224,16 @@ public class TextClassificationInferenceOptions implements InferenceConfigCreate
 		@Nullable
 		private Vocabulary vocabulary;
 
+		public Builder() {
+		}
+		private Builder(TextClassificationInferenceOptions instance) {
+			this.numTopClasses = instance.numTopClasses;
+			this.tokenization = instance.tokenization;
+			this.resultsField = instance.resultsField;
+			this.classificationLabels = instance.classificationLabels;
+			this.vocabulary = instance.vocabulary;
+
+		}
 		/**
 		 * Specifies the number of top class predictions to return. Defaults to 0.
 		 * <p>
@@ -333,6 +343,12 @@ public class TextClassificationInferenceOptions implements InferenceConfigCreate
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

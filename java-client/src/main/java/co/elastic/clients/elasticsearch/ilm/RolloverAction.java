@@ -297,6 +297,21 @@ public class RolloverAction implements JsonpSerializable {
 		@Nullable
 		private Long minPrimaryShardDocs;
 
+		public Builder() {
+		}
+		private Builder(RolloverAction instance) {
+			this.maxSize = instance.maxSize;
+			this.maxPrimaryShardSize = instance.maxPrimaryShardSize;
+			this.maxAge = instance.maxAge;
+			this.maxDocs = instance.maxDocs;
+			this.maxPrimaryShardDocs = instance.maxPrimaryShardDocs;
+			this.minSize = instance.minSize;
+			this.minPrimaryShardSize = instance.minPrimaryShardSize;
+			this.minAge = instance.minAge;
+			this.minDocs = instance.minDocs;
+			this.minPrimaryShardDocs = instance.minPrimaryShardDocs;
+
+		}
 		/**
 		 * API name: {@code max_size}
 		 */
@@ -409,6 +424,12 @@ public class RolloverAction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

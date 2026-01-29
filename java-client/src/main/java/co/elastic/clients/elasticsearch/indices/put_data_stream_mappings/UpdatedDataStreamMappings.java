@@ -208,6 +208,16 @@ public class UpdatedDataStreamMappings implements JsonpSerializable {
 		@Nullable
 		private TypeMapping effectiveMappings;
 
+		public Builder() {
+		}
+		private Builder(UpdatedDataStreamMappings instance) {
+			this.name = instance.name;
+			this.appliedToDataStream = instance.appliedToDataStream;
+			this.error = instance.error;
+			this.mappings = instance.mappings;
+			this.effectiveMappings = instance.effectiveMappings;
+
+		}
 		/**
 		 * Required - The data stream name.
 		 * <p>
@@ -303,6 +313,12 @@ public class UpdatedDataStreamMappings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

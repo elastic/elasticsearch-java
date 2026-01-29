@@ -131,6 +131,13 @@ public class SynonymsSetItem implements JsonpSerializable {
 
 		private Integer count;
 
+		public Builder() {
+		}
+		private Builder(SynonymsSetItem instance) {
+			this.synonymsSet = instance.synonymsSet;
+			this.count = instance.count;
+
+		}
 		/**
 		 * Required - Synonyms set identifier
 		 * <p>
@@ -169,6 +176,12 @@ public class SynonymsSetItem implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

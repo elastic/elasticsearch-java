@@ -127,6 +127,13 @@ public class UpdateStatusRequest extends RequestBase implements JsonpSerializabl
 
 		private ConnectorStatus status;
 
+		public Builder() {
+		}
+		private Builder(UpdateStatusRequest instance) {
+			this.connectorId = instance.connectorId;
+			this.status = instance.status;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector to be updated
 		 * <p>
@@ -163,6 +170,12 @@ public class UpdateStatusRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

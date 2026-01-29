@@ -112,6 +112,12 @@ public class DownsampleConfig implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DownsampleConfig> {
 		private Time fixedInterval;
 
+		public Builder() {
+		}
+		private Builder(DownsampleConfig instance) {
+			this.fixedInterval = instance.fixedInterval;
+
+		}
 		/**
 		 * Required - The interval at which to aggregate the original time series index.
 		 * <p>
@@ -149,6 +155,12 @@ public class DownsampleConfig implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -111,6 +111,13 @@ public class Ccr extends Base {
 
 		private Integer followerIndicesCount;
 
+		public Builder() {
+		}
+		private Builder(Ccr instance) {
+			this.autoFollowPatternsCount = instance.autoFollowPatternsCount;
+			this.followerIndicesCount = instance.followerIndicesCount;
+
+		}
 		/**
 		 * Required - API name: {@code auto_follow_patterns_count}
 		 */
@@ -145,6 +152,12 @@ public class Ccr extends Base {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

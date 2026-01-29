@@ -83,6 +83,11 @@ public class LongRareTermsAggregate extends MultiBucketAggregateBase<LongRareTer
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<LongRareTermsBucket, Builder>
 			implements
 				ObjectBuilder<LongRareTermsAggregate> {
+		public Builder() {
+		}
+		private Builder(LongRareTermsAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -102,6 +107,12 @@ public class LongRareTermsAggregate extends MultiBucketAggregateBase<LongRareTer
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

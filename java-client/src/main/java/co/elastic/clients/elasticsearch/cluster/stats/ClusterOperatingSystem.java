@@ -232,6 +232,17 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 
 		private List<ClusterOperatingSystemPrettyName> prettyNames;
 
+		public Builder() {
+		}
+		private Builder(ClusterOperatingSystem instance) {
+			this.allocatedProcessors = instance.allocatedProcessors;
+			this.architectures = instance.architectures;
+			this.availableProcessors = instance.availableProcessors;
+			this.mem = instance.mem;
+			this.names = instance.names;
+			this.prettyNames = instance.prettyNames;
+
+		}
 		/**
 		 * Required - Number of processors used to calculate thread pool size across all
 		 * selected nodes. This number can be set with the processors setting of a node
@@ -412,6 +423,12 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

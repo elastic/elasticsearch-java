@@ -112,6 +112,12 @@ public class MatrixStatsAggregation extends MatrixAggregation implements Aggrega
 		@Nullable
 		private SortMode mode;
 
+		public Builder() {
+		}
+		private Builder(MatrixStatsAggregation instance) {
+			this.mode = instance.mode;
+
+		}
 		/**
 		 * Array value the aggregation will use for array or multi-valued fields.
 		 * <p>
@@ -140,6 +146,12 @@ public class MatrixStatsAggregation extends MatrixAggregation implements Aggrega
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

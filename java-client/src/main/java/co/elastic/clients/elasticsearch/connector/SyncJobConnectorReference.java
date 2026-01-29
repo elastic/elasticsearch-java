@@ -244,6 +244,19 @@ public class SyncJobConnectorReference implements JsonpSerializable {
 		@Nullable
 		private JsonData syncCursor;
 
+		public Builder() {
+		}
+		private Builder(SyncJobConnectorReference instance) {
+			this.configuration = instance.configuration;
+			this.filtering = instance.filtering;
+			this.id = instance.id;
+			this.indexName = instance.indexName;
+			this.language = instance.language;
+			this.pipeline = instance.pipeline;
+			this.serviceType = instance.serviceType;
+			this.syncCursor = instance.syncCursor;
+
+		}
 		/**
 		 * Required - API name: {@code configuration}
 		 * <p>
@@ -362,6 +375,12 @@ public class SyncJobConnectorReference implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

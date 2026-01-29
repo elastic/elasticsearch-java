@@ -632,6 +632,38 @@ public class NodeInfo implements JsonpSerializable {
 		@Nullable
 		private RemoveClusterServer remoteClusterServer;
 
+		public Builder() {
+		}
+		private Builder(NodeInfo instance) {
+			this.attributes = instance.attributes;
+			this.buildFlavor = instance.buildFlavor;
+			this.buildHash = instance.buildHash;
+			this.buildType = instance.buildType;
+			this.componentVersions = instance.componentVersions;
+			this.host = instance.host;
+			this.http = instance.http;
+			this.indexVersion = instance.indexVersion;
+			this.ip = instance.ip;
+			this.jvm = instance.jvm;
+			this.name = instance.name;
+			this.os = instance.os;
+			this.plugins = instance.plugins;
+			this.process = instance.process;
+			this.roles = instance.roles;
+			this.settings = instance.settings;
+			this.threadPool = instance.threadPool;
+			this.totalIndexingBuffer = instance.totalIndexingBuffer;
+			this.totalIndexingBufferInBytes = instance.totalIndexingBufferInBytes;
+			this.transport = instance.transport;
+			this.transportAddress = instance.transportAddress;
+			this.transportVersion = instance.transportVersion;
+			this.version = instance.version;
+			this.modules = instance.modules;
+			this.ingest = instance.ingest;
+			this.aggregations = instance.aggregations;
+			this.remoteClusterServer = instance.remoteClusterServer;
+
+		}
 		/**
 		 * Required - API name: {@code attributes}
 		 * <p>
@@ -1063,6 +1095,12 @@ public class NodeInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

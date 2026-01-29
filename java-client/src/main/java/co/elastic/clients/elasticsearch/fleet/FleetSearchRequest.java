@@ -1206,6 +1206,64 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		@Nullable
 		private List<Long> waitForCheckpoints;
 
+		public Builder() {
+		}
+		private Builder(FleetSearchRequest instance) {
+			this.source = instance.source;
+			this.aggregations = instance.aggregations;
+			this.allowNoIndices = instance.allowNoIndices;
+			this.allowPartialSearchResults = instance.allowPartialSearchResults;
+			this.analyzeWildcard = instance.analyzeWildcard;
+			this.analyzer = instance.analyzer;
+			this.batchedReduceSize = instance.batchedReduceSize;
+			this.ccsMinimizeRoundtrips = instance.ccsMinimizeRoundtrips;
+			this.collapse = instance.collapse;
+			this.defaultOperator = instance.defaultOperator;
+			this.df = instance.df;
+			this.docvalueFields = instance.docvalueFields;
+			this.expandWildcards = instance.expandWildcards;
+			this.explain = instance.explain;
+			this.ext = instance.ext;
+			this.fields = instance.fields;
+			this.from = instance.from;
+			this.highlight = instance.highlight;
+			this.ignoreThrottled = instance.ignoreThrottled;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.indicesBoost = instance.indicesBoost;
+			this.lenient = instance.lenient;
+			this.maxConcurrentShardRequests = instance.maxConcurrentShardRequests;
+			this.minScore = instance.minScore;
+			this.pit = instance.pit;
+			this.postFilter = instance.postFilter;
+			this.preFilterShardSize = instance.preFilterShardSize;
+			this.preference = instance.preference;
+			this.profile = instance.profile;
+			this.q = instance.q;
+			this.query = instance.query;
+			this.requestCache = instance.requestCache;
+			this.rescore = instance.rescore;
+			this.routing = instance.routing;
+			this.runtimeMappings = instance.runtimeMappings;
+			this.scriptFields = instance.scriptFields;
+			this.scroll = instance.scroll;
+			this.searchAfter = instance.searchAfter;
+			this.searchType = instance.searchType;
+			this.seqNoPrimaryTerm = instance.seqNoPrimaryTerm;
+			this.size = instance.size;
+			this.slice = instance.slice;
+			this.sort = instance.sort;
+			this.stats = instance.stats;
+			this.storedFields = instance.storedFields;
+			this.suggest = instance.suggest;
+			this.terminateAfter = instance.terminateAfter;
+			this.timeout = instance.timeout;
+			this.trackScores = instance.trackScores;
+			this.trackTotalHits = instance.trackTotalHits;
+			this.version = instance.version;
+			this.waitForCheckpoints = instance.waitForCheckpoints;
+
+		}
 		/**
 		 * Indicates which source fields are returned for matching documents. These
 		 * fields are returned in the hits._source property of the search response.
@@ -2187,6 +2245,12 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

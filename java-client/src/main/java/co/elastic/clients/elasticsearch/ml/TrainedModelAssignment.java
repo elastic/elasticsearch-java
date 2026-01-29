@@ -233,6 +233,18 @@ public class TrainedModelAssignment implements JsonpSerializable {
 
 		private TrainedModelAssignmentTaskParameters taskParameters;
 
+		public Builder() {
+		}
+		private Builder(TrainedModelAssignment instance) {
+			this.adaptiveAllocations = instance.adaptiveAllocations;
+			this.assignmentState = instance.assignmentState;
+			this.maxAssignedAllocations = instance.maxAssignedAllocations;
+			this.reason = instance.reason;
+			this.routingTable = instance.routingTable;
+			this.startTime = instance.startTime;
+			this.taskParameters = instance.taskParameters;
+
+		}
 		/**
 		 * API name: {@code adaptive_allocations}
 		 */
@@ -355,6 +367,12 @@ public class TrainedModelAssignment implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
