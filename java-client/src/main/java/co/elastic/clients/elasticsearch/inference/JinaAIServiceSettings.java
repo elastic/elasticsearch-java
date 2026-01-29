@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -62,7 +63,6 @@ import javax.annotation.Nullable;
 public class JinaAIServiceSettings implements JsonpSerializable {
 	private final String apiKey;
 
-	@Nullable
 	private final String modelId;
 
 	@Nullable
@@ -71,14 +71,22 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 	@Nullable
 	private final JinaAISimilarityType similarity;
 
+	@Nullable
+	private final Integer dimensions;
+
+	@Nullable
+	private final JinaAIElementType elementType;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private JinaAIServiceSettings(Builder builder) {
 
 		this.apiKey = ApiTypeHelper.requireNonNull(builder.apiKey, this, "apiKey");
-		this.modelId = builder.modelId;
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.rateLimit = builder.rateLimit;
 		this.similarity = builder.similarity;
+		this.dimensions = builder.dimensions;
+		this.elementType = builder.elementType;
 
 	}
 
@@ -91,9 +99,7 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 	 * <p>
 	 * IMPORTANT: You need to provide the API key only once, during the inference
 	 * model creation. The get inference endpoint API does not retrieve your API
-	 * key. After creating the inference model, you cannot change the associated API
-	 * key. If you want to use a different API key, delete the inference model and
-	 * recreate it with the same name and the updated API key.
+	 * key.
 	 * <p>
 	 * API name: {@code api_key}
 	 */
@@ -102,13 +108,10 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * The name of the model to use for the inference task. For a
-	 * <code>rerank</code> task, it is required. For a <code>text_embedding</code>
-	 * task, it is optional.
+	 * Required - The name of the model to use for the inference task.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
-	@Nullable
 	public final String modelId() {
 		return this.modelId;
 	}
@@ -139,6 +142,33 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * For a <code>text_embedding</code> task, the number of dimensions the
+	 * resulting output embeddings should have. By default, the model's standard
+	 * output dimension is used. Refer to the Jina documentation for more
+	 * information.
+	 * <p>
+	 * API name: {@code dimensions}
+	 */
+	@Nullable
+	public final Integer dimensions() {
+		return this.dimensions;
+	}
+
+	/**
+	 * For a <code>text_embedding</code> task, the data type returned by the model.
+	 * Use <code>bit</code> for binary embeddings, which are encoded as bytes with
+	 * signed int8 precision. Use <code>binary</code> for binary embeddings, which
+	 * are encoded as bytes with signed int8 precision (this is a synonym of
+	 * <code>bit</code>). Use <code>float</code> for the default float embeddings.
+	 * <p>
+	 * API name: {@code element_type}
+	 */
+	@Nullable
+	public final JinaAIElementType elementType() {
+		return this.elementType;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -152,11 +182,9 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 		generator.writeKey("api_key");
 		generator.write(this.apiKey);
 
-		if (this.modelId != null) {
-			generator.writeKey("model_id");
-			generator.write(this.modelId);
+		generator.writeKey("model_id");
+		generator.write(this.modelId);
 
-		}
 		if (this.rateLimit != null) {
 			generator.writeKey("rate_limit");
 			this.rateLimit.serialize(generator, mapper);
@@ -165,6 +193,15 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 		if (this.similarity != null) {
 			generator.writeKey("similarity");
 			this.similarity.serialize(generator, mapper);
+		}
+		if (this.dimensions != null) {
+			generator.writeKey("dimensions");
+			generator.write(this.dimensions);
+
+		}
+		if (this.elementType != null) {
+			generator.writeKey("element_type");
+			this.elementType.serialize(generator, mapper);
 		}
 
 	}
@@ -185,7 +222,6 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 				ObjectBuilder<JinaAIServiceSettings> {
 		private String apiKey;
 
-		@Nullable
 		private String modelId;
 
 		@Nullable
@@ -194,6 +230,12 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 		@Nullable
 		private JinaAISimilarityType similarity;
 
+		@Nullable
+		private Integer dimensions;
+
+		@Nullable
+		private JinaAIElementType elementType;
+
 		public Builder() {
 		}
 		private Builder(JinaAIServiceSettings instance) {
@@ -201,6 +243,8 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 			this.modelId = instance.modelId;
 			this.rateLimit = instance.rateLimit;
 			this.similarity = instance.similarity;
+			this.dimensions = instance.dimensions;
+			this.elementType = instance.elementType;
 
 		}
 		/**
@@ -208,9 +252,7 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 		 * <p>
 		 * IMPORTANT: You need to provide the API key only once, during the inference
 		 * model creation. The get inference endpoint API does not retrieve your API
-		 * key. After creating the inference model, you cannot change the associated API
-		 * key. If you want to use a different API key, delete the inference model and
-		 * recreate it with the same name and the updated API key.
+		 * key.
 		 * <p>
 		 * API name: {@code api_key}
 		 */
@@ -220,13 +262,11 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * The name of the model to use for the inference task. For a
-		 * <code>rerank</code> task, it is required. For a <code>text_embedding</code>
-		 * task, it is optional.
+		 * Required - The name of the model to use for the inference task.
 		 * <p>
 		 * API name: {@code model_id}
 		 */
-		public final Builder modelId(@Nullable String value) {
+		public final Builder modelId(String value) {
 			this.modelId = value;
 			return this;
 		}
@@ -264,6 +304,33 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 		 */
 		public final Builder similarity(@Nullable JinaAISimilarityType value) {
 			this.similarity = value;
+			return this;
+		}
+
+		/**
+		 * For a <code>text_embedding</code> task, the number of dimensions the
+		 * resulting output embeddings should have. By default, the model's standard
+		 * output dimension is used. Refer to the Jina documentation for more
+		 * information.
+		 * <p>
+		 * API name: {@code dimensions}
+		 */
+		public final Builder dimensions(@Nullable Integer value) {
+			this.dimensions = value;
+			return this;
+		}
+
+		/**
+		 * For a <code>text_embedding</code> task, the data type returned by the model.
+		 * Use <code>bit</code> for binary embeddings, which are encoded as bytes with
+		 * signed int8 precision. Use <code>binary</code> for binary embeddings, which
+		 * are encoded as bytes with signed int8 precision (this is a synonym of
+		 * <code>bit</code>). Use <code>float</code> for the default float embeddings.
+		 * <p>
+		 * API name: {@code element_type}
+		 */
+		public final Builder elementType(@Nullable JinaAIElementType value) {
+			this.elementType = value;
 			return this;
 		}
 
@@ -305,6 +372,8 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
 		op.add(Builder::rateLimit, RateLimitSetting._DESERIALIZER, "rate_limit");
 		op.add(Builder::similarity, JinaAISimilarityType._DESERIALIZER, "similarity");
+		op.add(Builder::dimensions, JsonpDeserializer.integerDeserializer(), "dimensions");
+		op.add(Builder::elementType, JinaAIElementType._DESERIALIZER, "element_type");
 
 	}
 

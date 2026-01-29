@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Float;
 import java.lang.String;
 import java.util.Map;
@@ -62,18 +63,31 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class SparseEmbeddingResult implements JsonpSerializable {
+	private final boolean isTruncated;
+
 	private final Map<String, Float> embedding;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private SparseEmbeddingResult(Builder builder) {
 
+		this.isTruncated = ApiTypeHelper.requireNonNull(builder.isTruncated, this, "isTruncated", false);
 		this.embedding = ApiTypeHelper.unmodifiableRequired(builder.embedding, this, "embedding");
 
 	}
 
 	public static SparseEmbeddingResult of(Function<Builder, ObjectBuilder<SparseEmbeddingResult>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - Indicates if the text input was truncated in the request sent to
+	 * the service
+	 * <p>
+	 * API name: {@code is_truncated}
+	 */
+	public final boolean isTruncated() {
+		return this.isTruncated;
 	}
 
 	/**
@@ -93,6 +107,9 @@ public class SparseEmbeddingResult implements JsonpSerializable {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("is_truncated");
+		generator.write(this.isTruncated);
 
 		if (ApiTypeHelper.isDefined(this.embedding)) {
 			generator.writeKey("embedding");
@@ -122,14 +139,28 @@ public class SparseEmbeddingResult implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<SparseEmbeddingResult> {
+		private Boolean isTruncated;
+
 		private Map<String, Float> embedding;
 
 		public Builder() {
 		}
 		private Builder(SparseEmbeddingResult instance) {
+			this.isTruncated = instance.isTruncated;
 			this.embedding = instance.embedding;
 
 		}
+		/**
+		 * Required - Indicates if the text input was truncated in the request sent to
+		 * the service
+		 * <p>
+		 * API name: {@code is_truncated}
+		 */
+		public final Builder isTruncated(boolean value) {
+			this.isTruncated = value;
+			return this;
+		}
+
 		/**
 		 * Required - API name: {@code embedding}
 		 * <p>
@@ -184,6 +215,7 @@ public class SparseEmbeddingResult implements JsonpSerializable {
 
 	protected static void setupSparseEmbeddingResultDeserializer(ObjectDeserializer<SparseEmbeddingResult.Builder> op) {
 
+		op.add(Builder::isTruncated, JsonpDeserializer.booleanDeserializer(), "is_truncated");
 		op.add(Builder::embedding, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.floatDeserializer()),
 				"embedding");
 
