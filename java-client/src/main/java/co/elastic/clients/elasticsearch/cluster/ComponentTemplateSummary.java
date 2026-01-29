@@ -22,7 +22,6 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.AliasDefinition;
 import co.elastic.clients.elasticsearch.indices.DataStreamLifecycleWithRollover;
-import co.elastic.clients.elasticsearch.indices.DataStreamOptions;
 import co.elastic.clients.elasticsearch.indices.DataStreamOptionsTemplate;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.json.JsonData;
@@ -40,7 +39,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
