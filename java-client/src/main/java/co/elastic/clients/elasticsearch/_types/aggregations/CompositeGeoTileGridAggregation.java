@@ -125,6 +125,13 @@ public class CompositeGeoTileGridAggregation extends CompositeAggregationBase {
 		@Nullable
 		private GeoBounds bounds;
 
+		public Builder() {
+		}
+		private Builder(CompositeGeoTileGridAggregation instance) {
+			this.precision = instance.precision;
+			this.bounds = instance.bounds;
+
+		}
 		/**
 		 * API name: {@code precision}
 		 */
@@ -166,6 +173,12 @@ public class CompositeGeoTileGridAggregation extends CompositeAggregationBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

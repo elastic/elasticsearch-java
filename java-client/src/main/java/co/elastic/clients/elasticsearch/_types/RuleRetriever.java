@@ -174,6 +174,15 @@ public class RuleRetriever extends RetrieverBase implements RetrieverVariant {
 		@Nullable
 		private Integer rankWindowSize;
 
+		public Builder() {
+		}
+		private Builder(RuleRetriever instance) {
+			this.rulesetIds = instance.rulesetIds;
+			this.matchCriteria = instance.matchCriteria;
+			this.retriever = instance.retriever;
+			this.rankWindowSize = instance.rankWindowSize;
+
+		}
 		/**
 		 * Required - The ruleset IDs containing the rules this retriever is evaluating
 		 * against.
@@ -268,6 +277,12 @@ public class RuleRetriever extends RetrieverBase implements RetrieverVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -134,6 +134,13 @@ public class RankEvalHitItem implements JsonpSerializable {
 		@Nullable
 		private Double rating;
 
+		public Builder() {
+		}
+		private Builder(RankEvalHitItem instance) {
+			this.hit = instance.hit;
+			this.rating = instance.rating;
+
+		}
 		/**
 		 * Required - API name: {@code hit}
 		 */
@@ -178,6 +185,12 @@ public class RankEvalHitItem implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

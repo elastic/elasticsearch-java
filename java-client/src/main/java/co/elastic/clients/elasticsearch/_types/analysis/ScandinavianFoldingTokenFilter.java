@@ -90,6 +90,11 @@ public class ScandinavianFoldingTokenFilter extends TokenFilterBase implements T
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ScandinavianFoldingTokenFilter> {
+		public Builder() {
+		}
+		private Builder(ScandinavianFoldingTokenFilter instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -108,6 +113,12 @@ public class ScandinavianFoldingTokenFilter extends TokenFilterBase implements T
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -132,6 +132,13 @@ public class NodeReloadResult implements JsonpSerializable {
 		@Nullable
 		private ErrorCause reloadException;
 
+		public Builder() {
+		}
+		private Builder(NodeReloadResult instance) {
+			this.name = instance.name;
+			this.reloadException = instance.reloadException;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -173,6 +180,12 @@ public class NodeReloadResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -201,6 +201,16 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(RerankRequest instance) {
+			this.inferenceId = instance.inferenceId;
+			this.input = instance.input;
+			this.query = instance.query;
+			this.taskSettings = instance.taskSettings;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - The unique identifier for the inference endpoint.
 		 * <p>
@@ -306,6 +316,12 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

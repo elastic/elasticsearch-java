@@ -213,6 +213,17 @@ public class FlushRequest extends RequestBase {
 		@Nullable
 		private Boolean waitIfOngoing;
 
+		public Builder() {
+		}
+		private Builder(FlushRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.force = instance.force;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.waitIfOngoing = instance.waitIfOngoing;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -336,6 +347,12 @@ public class FlushRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

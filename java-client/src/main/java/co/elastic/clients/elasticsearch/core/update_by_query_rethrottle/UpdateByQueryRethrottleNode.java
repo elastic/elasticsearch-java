@@ -110,6 +110,12 @@ public class UpdateByQueryRethrottleNode extends BaseNode {
 				ObjectBuilder<UpdateByQueryRethrottleNode> {
 		private Map<String, TaskInfo> tasks;
 
+		public Builder() {
+		}
+		private Builder(UpdateByQueryRethrottleNode instance) {
+			this.tasks = instance.tasks;
+
+		}
 		/**
 		 * Required - API name: {@code tasks}
 		 * <p>
@@ -157,6 +163,12 @@ public class UpdateByQueryRethrottleNode extends BaseNode {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

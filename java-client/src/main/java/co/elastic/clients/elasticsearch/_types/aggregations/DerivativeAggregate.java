@@ -132,6 +132,13 @@ public class DerivativeAggregate extends SingleMetricAggregateBase implements Ag
 		@Nullable
 		private String normalizedValueAsString;
 
+		public Builder() {
+		}
+		private Builder(DerivativeAggregate instance) {
+			this.normalizedValue = instance.normalizedValue;
+			this.normalizedValueAsString = instance.normalizedValueAsString;
+
+		}
 		/**
 		 * API name: {@code normalized_value}
 		 */
@@ -166,6 +173,12 @@ public class DerivativeAggregate extends SingleMetricAggregateBase implements Ag
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

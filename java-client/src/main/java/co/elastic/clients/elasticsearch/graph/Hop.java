@@ -163,6 +163,14 @@ public class Hop implements JsonpSerializable {
 
 		private List<VertexDefinition> vertices;
 
+		public Builder() {
+		}
+		private Builder(Hop instance) {
+			this.connections = instance.connections;
+			this.query = instance.query;
+			this.vertices = instance.vertices;
+
+		}
 		/**
 		 * Specifies one or more fields from which you want to extract terms that are
 		 * associated with the specified vertices.
@@ -269,6 +277,12 @@ public class Hop implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

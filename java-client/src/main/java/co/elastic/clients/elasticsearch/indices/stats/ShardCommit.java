@@ -167,6 +167,15 @@ public class ShardCommit implements JsonpSerializable {
 
 		private Map<String, String> userData;
 
+		public Builder() {
+		}
+		private Builder(ShardCommit instance) {
+			this.generation = instance.generation;
+			this.id = instance.id;
+			this.numDocs = instance.numDocs;
+			this.userData = instance.userData;
+
+		}
 		/**
 		 * Required - API name: {@code generation}
 		 */
@@ -229,6 +238,12 @@ public class ShardCommit implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -511,6 +511,29 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private VersionType versionType;
 
+		public Builder() {
+		}
+		private Builder(MoreLikeThisQuery instance) {
+			this.analyzer = instance.analyzer;
+			this.boostTerms = instance.boostTerms;
+			this.failOnUnsupportedField = instance.failOnUnsupportedField;
+			this.fields = instance.fields;
+			this.include = instance.include;
+			this.like = instance.like;
+			this.maxDocFreq = instance.maxDocFreq;
+			this.maxQueryTerms = instance.maxQueryTerms;
+			this.maxWordLength = instance.maxWordLength;
+			this.minDocFreq = instance.minDocFreq;
+			this.minimumShouldMatch = instance.minimumShouldMatch;
+			this.minTermFreq = instance.minTermFreq;
+			this.minWordLength = instance.minWordLength;
+			this.routing = instance.routing;
+			this.stopWords = instance.stopWords;
+			this.unlike = instance.unlike;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+
+		}
 		/**
 		 * The analyzer that is used to analyze the free form text. Defaults to the
 		 * analyzer associated with the first field in fields.
@@ -802,6 +825,12 @@ public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

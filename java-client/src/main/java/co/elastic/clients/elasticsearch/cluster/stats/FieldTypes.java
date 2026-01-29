@@ -318,6 +318,21 @@ public class FieldTypes implements JsonpSerializable {
 		@Nullable
 		private Map<String, Integer> vectorElementTypeCount;
 
+		public Builder() {
+		}
+		private Builder(FieldTypes instance) {
+			this.name = instance.name;
+			this.count = instance.count;
+			this.indexCount = instance.indexCount;
+			this.indexedVectorCount = instance.indexedVectorCount;
+			this.indexedVectorDimMax = instance.indexedVectorDimMax;
+			this.indexedVectorDimMin = instance.indexedVectorDimMin;
+			this.scriptCount = instance.scriptCount;
+			this.vectorIndexTypeCount = instance.vectorIndexTypeCount;
+			this.vectorSimilarityTypeCount = instance.vectorSimilarityTypeCount;
+			this.vectorElementTypeCount = instance.vectorElementTypeCount;
+
+		}
 		/**
 		 * Required - The name for the field type in selected nodes.
 		 * <p>
@@ -482,6 +497,12 @@ public class FieldTypes implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

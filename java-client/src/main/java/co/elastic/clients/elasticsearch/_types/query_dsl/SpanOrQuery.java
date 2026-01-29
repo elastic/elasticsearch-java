@@ -121,6 +121,12 @@ public class SpanOrQuery extends QueryBase implements SpanQueryVariant, QueryVar
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanOrQuery> {
 		private List<SpanQuery> clauses;
 
+		public Builder() {
+		}
+		private Builder(SpanOrQuery instance) {
+			this.clauses = instance.clauses;
+
+		}
 		/**
 		 * Required - Array of one or more other span type queries.
 		 * <p>
@@ -189,6 +195,12 @@ public class SpanOrQuery extends QueryBase implements SpanQueryVariant, QueryVar
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

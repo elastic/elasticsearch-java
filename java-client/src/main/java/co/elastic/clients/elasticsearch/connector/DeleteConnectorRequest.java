@@ -119,6 +119,13 @@ public class DeleteConnectorRequest extends RequestBase {
 		@Nullable
 		private Boolean deleteSyncJobs;
 
+		public Builder() {
+		}
+		private Builder(DeleteConnectorRequest instance) {
+			this.connectorId = instance.connectorId;
+			this.deleteSyncJobs = instance.deleteSyncJobs;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector to be deleted
 		 * <p>
@@ -157,6 +164,12 @@ public class DeleteConnectorRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

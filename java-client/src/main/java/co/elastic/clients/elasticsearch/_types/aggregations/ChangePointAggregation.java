@@ -81,6 +81,11 @@ public class ChangePointAggregation extends PipelineAggregationBase implements A
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ChangePointAggregation> {
+		public Builder() {
+		}
+		private Builder(ChangePointAggregation instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class ChangePointAggregation extends PipelineAggregationBase implements A
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

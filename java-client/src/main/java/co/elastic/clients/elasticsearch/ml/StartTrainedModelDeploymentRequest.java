@@ -294,6 +294,21 @@ public class StartTrainedModelDeploymentRequest extends RequestBase implements J
 		@Nullable
 		private DeploymentAllocationState waitFor;
 
+		public Builder() {
+		}
+		private Builder(StartTrainedModelDeploymentRequest instance) {
+			this.adaptiveAllocations = instance.adaptiveAllocations;
+			this.cacheSize = instance.cacheSize;
+			this.deploymentId = instance.deploymentId;
+			this.modelId = instance.modelId;
+			this.numberOfAllocations = instance.numberOfAllocations;
+			this.priority = instance.priority;
+			this.queueCapacity = instance.queueCapacity;
+			this.threadsPerAllocation = instance.threadsPerAllocation;
+			this.timeout = instance.timeout;
+			this.waitFor = instance.waitFor;
+
+		}
 		/**
 		 * Adaptive allocations configuration. When enabled, the number of allocations
 		 * is set based on the current load. If adaptive_allocations is enabled, do not
@@ -452,6 +467,12 @@ public class StartTrainedModelDeploymentRequest extends RequestBase implements J
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

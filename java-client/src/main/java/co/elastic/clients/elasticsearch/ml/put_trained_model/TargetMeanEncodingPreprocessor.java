@@ -177,6 +177,15 @@ public class TargetMeanEncodingPreprocessor implements PreprocessorVariant, Json
 
 		private Double defaultValue;
 
+		public Builder() {
+		}
+		private Builder(TargetMeanEncodingPreprocessor instance) {
+			this.field = instance.field;
+			this.featureName = instance.featureName;
+			this.targetMap = instance.targetMap;
+			this.defaultValue = instance.defaultValue;
+
+		}
 		/**
 		 * Required - API name: {@code field}
 		 */
@@ -239,6 +248,12 @@ public class TargetMeanEncodingPreprocessor implements PreprocessorVariant, Json
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

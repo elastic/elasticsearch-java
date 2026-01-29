@@ -98,6 +98,12 @@ public class RemovePolicyRequest extends RequestBase {
 				ObjectBuilder<RemovePolicyRequest> {
 		private String index;
 
+		public Builder() {
+		}
+		private Builder(RemovePolicyRequest instance) {
+			this.index = instance.index;
+
+		}
 		/**
 		 * Required - The name of the index to remove policy on
 		 * <p>
@@ -126,6 +132,12 @@ public class RemovePolicyRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

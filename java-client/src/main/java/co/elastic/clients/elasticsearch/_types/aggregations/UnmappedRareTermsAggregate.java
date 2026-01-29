@@ -84,6 +84,11 @@ public class UnmappedRareTermsAggregate extends MultiBucketAggregateBase<Void> i
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<Void, Builder>
 			implements
 				ObjectBuilder<UnmappedRareTermsAggregate> {
+		public Builder() {
+		}
+		private Builder(UnmappedRareTermsAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -103,6 +108,12 @@ public class UnmappedRareTermsAggregate extends MultiBucketAggregateBase<Void> i
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

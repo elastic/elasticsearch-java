@@ -230,6 +230,17 @@ public class RemoteSource implements JsonpSerializable {
 		@Nullable
 		private Time socketTimeout;
 
+		public Builder() {
+		}
+		private Builder(RemoteSource instance) {
+			this.connectTimeout = instance.connectTimeout;
+			this.headers = instance.headers;
+			this.host = instance.host;
+			this.username = instance.username;
+			this.password = instance.password;
+			this.socketTimeout = instance.socketTimeout;
+
+		}
 		/**
 		 * The remote connection timeout.
 		 * <p>
@@ -341,6 +352,12 @@ public class RemoteSource implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

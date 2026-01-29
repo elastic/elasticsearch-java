@@ -122,6 +122,12 @@ public class NodesCredentialsFileToken implements JsonpSerializable {
 				ObjectBuilder<NodesCredentialsFileToken> {
 		private List<String> nodes;
 
+		public Builder() {
+		}
+		private Builder(NodesCredentialsFileToken instance) {
+			this.nodes = instance.nodes;
+
+		}
 		/**
 		 * Required - API name: {@code nodes}
 		 * <p>
@@ -160,6 +166,12 @@ public class NodesCredentialsFileToken implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

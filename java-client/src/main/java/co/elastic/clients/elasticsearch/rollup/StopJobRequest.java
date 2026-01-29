@@ -153,6 +153,14 @@ public class StopJobRequest extends RequestBase {
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(StopJobRequest instance) {
+			this.id = instance.id;
+			this.timeout = instance.timeout;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * Required - Identifier for the rollup job.
 		 * <p>
@@ -222,6 +230,12 @@ public class StopJobRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

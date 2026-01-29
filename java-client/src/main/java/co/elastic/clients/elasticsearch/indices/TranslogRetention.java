@@ -153,6 +153,13 @@ public class TranslogRetention implements JsonpSerializable {
 		@Nullable
 		private Time age;
 
+		public Builder() {
+		}
+		private Builder(TranslogRetention instance) {
+			this.size = instance.size;
+			this.age = instance.age;
+
+		}
 		/**
 		 * This controls the total size of translog files to keep for each shard.
 		 * Keeping more translog files increases the chance of performing an operation
@@ -218,6 +225,12 @@ public class TranslogRetention implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

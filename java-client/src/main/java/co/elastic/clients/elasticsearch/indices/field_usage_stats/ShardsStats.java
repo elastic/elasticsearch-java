@@ -136,6 +136,13 @@ public class ShardsStats implements JsonpSerializable {
 
 		private Map<String, FieldSummary> fields;
 
+		public Builder() {
+		}
+		private Builder(ShardsStats instance) {
+			this.allFields = instance.allFields;
+			this.fields = instance.fields;
+
+		}
 		/**
 		 * Required - API name: {@code all_fields}
 		 */
@@ -198,6 +205,12 @@ public class ShardsStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

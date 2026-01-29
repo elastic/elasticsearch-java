@@ -108,6 +108,12 @@ public class EwmaMovingAverageAggregation extends MovingAverageAggregationBase
 				ObjectBuilder<EwmaMovingAverageAggregation> {
 		private EwmaModelSettings settings;
 
+		public Builder() {
+		}
+		private Builder(EwmaMovingAverageAggregation instance) {
+			this.settings = instance.settings;
+
+		}
 		/**
 		 * Required - API name: {@code settings}
 		 */
@@ -141,6 +147,12 @@ public class EwmaMovingAverageAggregation extends MovingAverageAggregationBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

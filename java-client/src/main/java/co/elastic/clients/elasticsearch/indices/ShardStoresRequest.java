@@ -184,6 +184,16 @@ public class ShardStoresRequest extends RequestBase {
 		@Nullable
 		private List<ShardStoreStatus> status;
 
+		public Builder() {
+		}
+		private Builder(ShardStoresRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.status = instance.status;
+
+		}
 		/**
 		 * If false, the request returns an error if any wildcard expression, index
 		 * alias, or _all value targets only missing or closed indices. This behavior
@@ -300,6 +310,12 @@ public class ShardStoresRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

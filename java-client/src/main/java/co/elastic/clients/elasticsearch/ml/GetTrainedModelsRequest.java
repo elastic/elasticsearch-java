@@ -254,6 +254,20 @@ public class GetTrainedModelsRequest extends RequestBase {
 		@Nullable
 		private List<String> tags;
 
+		public Builder() {
+		}
+		private Builder(GetTrainedModelsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.decompressDefinition = instance.decompressDefinition;
+			this.excludeGenerated = instance.excludeGenerated;
+			this.from = instance.from;
+			this.include = instance.include;
+			this.includeModelDefinition = instance.includeModelDefinition;
+			this.modelId = instance.modelId;
+			this.size = instance.size;
+			this.tags = instance.tags;
+
+		}
 		/**
 		 * Specifies what to do when the request:
 		 * <ul>
@@ -414,6 +428,12 @@ public class GetTrainedModelsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

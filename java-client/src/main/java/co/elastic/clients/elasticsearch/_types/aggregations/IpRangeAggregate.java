@@ -81,6 +81,11 @@ public class IpRangeAggregate extends MultiBucketAggregateBase<IpRangeBucket> im
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<IpRangeBucket, Builder>
 			implements
 				ObjectBuilder<IpRangeAggregate> {
+		public Builder() {
+		}
+		private Builder(IpRangeAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -100,6 +105,12 @@ public class IpRangeAggregate extends MultiBucketAggregateBase<IpRangeBucket> im
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

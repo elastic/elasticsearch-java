@@ -89,6 +89,11 @@ public class DecimalDigitTokenFilter extends TokenFilterBase implements TokenFil
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DecimalDigitTokenFilter> {
+		public Builder() {
+		}
+		private Builder(DecimalDigitTokenFilter instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class DecimalDigitTokenFilter extends TokenFilterBase implements TokenFil
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

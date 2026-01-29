@@ -218,6 +218,16 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(GeoLineAggregation instance) {
+			this.point = instance.point;
+			this.sort = instance.sort;
+			this.includeSort = instance.includeSort;
+			this.sortOrder = instance.sortOrder;
+			this.size = instance.size;
+
+		}
 		/**
 		 * Required - The name of the geo_point field.
 		 * <p>
@@ -312,6 +322,12 @@ public class GeoLineAggregation implements AggregationVariant, JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

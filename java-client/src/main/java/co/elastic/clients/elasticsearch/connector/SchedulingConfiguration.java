@@ -157,6 +157,14 @@ public class SchedulingConfiguration implements JsonpSerializable {
 		@Nullable
 		private ConnectorScheduling incremental;
 
+		public Builder() {
+		}
+		private Builder(SchedulingConfiguration instance) {
+			this.accessControl = instance.accessControl;
+			this.full = instance.full;
+			this.incremental = instance.incremental;
+
+		}
 		/**
 		 * API name: {@code access_control}
 		 */
@@ -221,6 +229,12 @@ public class SchedulingConfiguration implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

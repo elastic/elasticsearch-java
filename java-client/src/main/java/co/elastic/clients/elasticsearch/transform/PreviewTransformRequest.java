@@ -345,6 +345,22 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 		@Nullable
 		private String transformId;
 
+		public Builder() {
+		}
+		private Builder(PreviewTransformRequest instance) {
+			this.description = instance.description;
+			this.dest = instance.dest;
+			this.frequency = instance.frequency;
+			this.latest = instance.latest;
+			this.pivot = instance.pivot;
+			this.retentionPolicy = instance.retentionPolicy;
+			this.settings = instance.settings;
+			this.source = instance.source;
+			this.sync = instance.sync;
+			this.timeout = instance.timeout;
+			this.transformId = instance.transformId;
+
+		}
 		/**
 		 * Free text description of the transform.
 		 * <p>
@@ -590,6 +606,12 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

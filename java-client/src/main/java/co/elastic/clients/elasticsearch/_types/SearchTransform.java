@@ -133,6 +133,13 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(SearchTransform instance) {
+			this.request = instance.request;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - API name: {@code request}
 		 */
@@ -182,6 +189,12 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

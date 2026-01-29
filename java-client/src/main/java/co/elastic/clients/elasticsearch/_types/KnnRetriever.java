@@ -236,6 +236,18 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 		@Nullable
 		private RescoreVector rescoreVector;
 
+		public Builder() {
+		}
+		private Builder(KnnRetriever instance) {
+			this.field = instance.field;
+			this.queryVector = instance.queryVector;
+			this.queryVectorBuilder = instance.queryVectorBuilder;
+			this.k = instance.k;
+			this.numCandidates = instance.numCandidates;
+			this.similarity = instance.similarity;
+			this.rescoreVector = instance.rescoreVector;
+
+		}
 		/**
 		 * Required - The name of the vector field to search against.
 		 * <p>
@@ -371,6 +383,12 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

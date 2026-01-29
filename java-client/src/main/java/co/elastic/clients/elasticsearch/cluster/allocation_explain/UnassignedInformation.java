@@ -230,6 +230,18 @@ public class UnassignedInformation implements JsonpSerializable {
 		@Nullable
 		private String allocationStatus;
 
+		public Builder() {
+		}
+		private Builder(UnassignedInformation instance) {
+			this.at = instance.at;
+			this.lastAllocationStatus = instance.lastAllocationStatus;
+			this.reason = instance.reason;
+			this.details = instance.details;
+			this.failedAllocationAttempts = instance.failedAllocationAttempts;
+			this.delayed = instance.delayed;
+			this.allocationStatus = instance.allocationStatus;
+
+		}
 		/**
 		 * Required - API name: {@code at}
 		 */
@@ -304,6 +316,12 @@ public class UnassignedInformation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

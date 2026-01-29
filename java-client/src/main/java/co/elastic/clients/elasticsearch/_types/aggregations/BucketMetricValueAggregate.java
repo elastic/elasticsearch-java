@@ -115,6 +115,12 @@ public class BucketMetricValueAggregate extends SingleMetricAggregateBase implem
 				ObjectBuilder<BucketMetricValueAggregate> {
 		private List<String> keys;
 
+		public Builder() {
+		}
+		private Builder(BucketMetricValueAggregate instance) {
+			this.keys = instance.keys;
+
+		}
 		/**
 		 * Required - API name: {@code keys}
 		 * <p>
@@ -153,6 +159,12 @@ public class BucketMetricValueAggregate extends SingleMetricAggregateBase implem
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

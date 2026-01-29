@@ -112,6 +112,12 @@ public class MlDataFrameAnalyticsJobsCount implements JsonpSerializable {
 				ObjectBuilder<MlDataFrameAnalyticsJobsCount> {
 		private Long count;
 
+		public Builder() {
+		}
+		private Builder(MlDataFrameAnalyticsJobsCount instance) {
+			this.count = instance.count;
+
+		}
 		/**
 		 * Required - API name: {@code count}
 		 */
@@ -138,6 +144,12 @@ public class MlDataFrameAnalyticsJobsCount implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

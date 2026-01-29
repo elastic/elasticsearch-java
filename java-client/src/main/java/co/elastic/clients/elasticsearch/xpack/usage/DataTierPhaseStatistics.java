@@ -250,6 +250,21 @@ public class DataTierPhaseStatistics implements JsonpSerializable {
 
 		private Long primaryShardSizeMadBytes;
 
+		public Builder() {
+		}
+		private Builder(DataTierPhaseStatistics instance) {
+			this.nodeCount = instance.nodeCount;
+			this.indexCount = instance.indexCount;
+			this.totalShardCount = instance.totalShardCount;
+			this.primaryShardCount = instance.primaryShardCount;
+			this.docCount = instance.docCount;
+			this.totalSizeBytes = instance.totalSizeBytes;
+			this.primarySizeBytes = instance.primarySizeBytes;
+			this.primaryShardSizeAvgBytes = instance.primaryShardSizeAvgBytes;
+			this.primaryShardSizeMedianBytes = instance.primaryShardSizeMedianBytes;
+			this.primaryShardSizeMadBytes = instance.primaryShardSizeMadBytes;
+
+		}
 		/**
 		 * Required - API name: {@code node_count}
 		 */
@@ -348,6 +363,12 @@ public class DataTierPhaseStatistics implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

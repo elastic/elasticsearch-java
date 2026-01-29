@@ -474,6 +474,29 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		@Nullable
 		private Integer timeoutCount;
 
+		public Builder() {
+		}
+		private Builder(TrainedModelDeploymentStats instance) {
+			this.adaptiveAllocations = instance.adaptiveAllocations;
+			this.allocationStatus = instance.allocationStatus;
+			this.cacheSize = instance.cacheSize;
+			this.deploymentId = instance.deploymentId;
+			this.errorCount = instance.errorCount;
+			this.inferenceCount = instance.inferenceCount;
+			this.modelId = instance.modelId;
+			this.nodes = instance.nodes;
+			this.numberOfAllocations = instance.numberOfAllocations;
+			this.peakThroughputPerMinute = instance.peakThroughputPerMinute;
+			this.priority = instance.priority;
+			this.queueCapacity = instance.queueCapacity;
+			this.rejectedExecutionCount = instance.rejectedExecutionCount;
+			this.reason = instance.reason;
+			this.startTime = instance.startTime;
+			this.state = instance.state;
+			this.threadsPerAllocation = instance.threadsPerAllocation;
+			this.timeoutCount = instance.timeoutCount;
+
+		}
 		/**
 		 * API name: {@code adaptive_allocations}
 		 */
@@ -720,6 +743,12 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

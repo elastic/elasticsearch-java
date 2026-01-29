@@ -227,6 +227,16 @@ public class IndicesPrivileges implements JsonpSerializable {
 		@Nullable
 		private Boolean allowRestrictedIndices;
 
+		public Builder() {
+		}
+		private Builder(IndicesPrivileges instance) {
+			this.fieldSecurity = instance.fieldSecurity;
+			this.names = instance.names;
+			this.privileges = instance.privileges;
+			this.query = instance.query;
+			this.allowRestrictedIndices = instance.allowRestrictedIndices;
+
+		}
 		/**
 		 * The document fields that the owners of the role have read access to.
 		 * <p>
@@ -386,6 +396,12 @@ public class IndicesPrivileges implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

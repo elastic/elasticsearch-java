@@ -140,6 +140,14 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeleteComponentTemplateRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -226,6 +234,12 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

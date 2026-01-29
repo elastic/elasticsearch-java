@@ -111,6 +111,12 @@ public class InnerHitsResult implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<InnerHitsResult> {
 		private HitsMetadata<JsonData> hits;
 
+		public Builder() {
+		}
+		private Builder(InnerHitsResult instance) {
+			this.hits = instance.hits;
+
+		}
 		/**
 		 * Required - API name: {@code hits}
 		 */
@@ -144,6 +150,12 @@ public class InnerHitsResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

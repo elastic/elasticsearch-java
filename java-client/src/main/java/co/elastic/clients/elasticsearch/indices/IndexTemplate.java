@@ -344,6 +344,21 @@ public class IndexTemplate implements JsonpSerializable {
 		@Nullable
 		private List<String> ignoreMissingComponentTemplates;
 
+		public Builder() {
+		}
+		private Builder(IndexTemplate instance) {
+			this.indexPatterns = instance.indexPatterns;
+			this.composedOf = instance.composedOf;
+			this.template = instance.template;
+			this.version = instance.version;
+			this.priority = instance.priority;
+			this.meta = instance.meta;
+			this.allowAutoCreate = instance.allowAutoCreate;
+			this.dataStream = instance.dataStream;
+			this.deprecated = instance.deprecated;
+			this.ignoreMissingComponentTemplates = instance.ignoreMissingComponentTemplates;
+
+		}
 		/**
 		 * Required - Array of wildcard (<code>*</code>) expressions used to match the
 		 * names of data streams and indices during creation.
@@ -557,6 +572,12 @@ public class IndexTemplate implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

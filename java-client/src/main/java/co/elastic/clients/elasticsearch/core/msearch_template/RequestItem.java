@@ -134,6 +134,13 @@ public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 
 		private TemplateConfig body;
 
+		public Builder() {
+		}
+		private Builder(RequestItem instance) {
+			this.header = instance.header;
+			this.body = instance.body;
+
+		}
 		/**
 		 * Required - API name: {@code header}
 		 */
@@ -177,4 +184,10 @@ public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 }

@@ -146,6 +146,13 @@ public class SearchApplicationSearchRequest extends RequestBase implements Jsonp
 		@Nullable
 		private Map<String, JsonData> params;
 
+		public Builder() {
+		}
+		private Builder(SearchApplicationSearchRequest instance) {
+			this.name = instance.name;
+			this.params = instance.params;
+
+		}
 		/**
 		 * Required - The name of the search application to be searched.
 		 * <p>
@@ -200,6 +207,12 @@ public class SearchApplicationSearchRequest extends RequestBase implements Jsonp
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

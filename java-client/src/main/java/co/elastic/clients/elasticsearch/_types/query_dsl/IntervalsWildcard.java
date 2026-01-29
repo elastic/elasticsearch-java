@@ -177,6 +177,14 @@ public class IntervalsWildcard implements IntervalsQueryVariant, IntervalsVarian
 		@Nullable
 		private String useField;
 
+		public Builder() {
+		}
+		private Builder(IntervalsWildcard instance) {
+			this.analyzer = instance.analyzer;
+			this.pattern = instance.pattern;
+			this.useField = instance.useField;
+
+		}
 		/**
 		 * Analyzer used to analyze the <code>pattern</code>. Defaults to the top-level
 		 * field's analyzer.
@@ -228,6 +236,12 @@ public class IntervalsWildcard implements IntervalsQueryVariant, IntervalsVarian
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

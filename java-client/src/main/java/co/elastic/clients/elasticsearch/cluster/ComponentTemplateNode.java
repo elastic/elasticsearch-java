@@ -182,6 +182,15 @@ public class ComponentTemplateNode implements JsonpSerializable {
 		@Nullable
 		private Boolean deprecated;
 
+		public Builder() {
+		}
+		private Builder(ComponentTemplateNode instance) {
+			this.template = instance.template;
+			this.version = instance.version;
+			this.meta = instance.meta;
+			this.deprecated = instance.deprecated;
+
+		}
 		/**
 		 * Required - API name: {@code template}
 		 */
@@ -252,6 +261,12 @@ public class ComponentTemplateNode implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

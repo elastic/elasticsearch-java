@@ -163,6 +163,14 @@ public class TimeOfYear implements JsonpSerializable {
 
 		private List<Integer> on;
 
+		public Builder() {
+		}
+		private Builder(TimeOfYear instance) {
+			this.at = instance.at;
+			this.int_ = instance.int_;
+			this.on = instance.on;
+
+		}
 		/**
 		 * Required - API name: {@code at}
 		 * <p>
@@ -241,6 +249,12 @@ public class TimeOfYear implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

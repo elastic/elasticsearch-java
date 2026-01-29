@@ -223,6 +223,16 @@ public class MatchPhrasePrefixQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private ZeroTermsQuery zeroTermsQuery;
 
+		public Builder() {
+		}
+		private Builder(MatchPhrasePrefixQuery instance) {
+			this.analyzer = instance.analyzer;
+			this.maxExpansions = instance.maxExpansions;
+			this.query = instance.query;
+			this.slop = instance.slop;
+			this.zeroTermsQuery = instance.zeroTermsQuery;
+
+		}
 		/**
 		 * Analyzer used to convert text in the query value into tokens.
 		 * <p>
@@ -293,6 +303,12 @@ public class MatchPhrasePrefixQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -154,6 +154,15 @@ public class PostBehavioralAnalyticsEventRequest extends RequestBase implements 
 
 		private JsonData payload;
 
+		public Builder() {
+		}
+		private Builder(PostBehavioralAnalyticsEventRequest instance) {
+			this.collectionName = instance.collectionName;
+			this.debug = instance.debug;
+			this.eventType = instance.eventType;
+			this.payload = instance.payload;
+
+		}
 		/**
 		 * Required - The name of the behavioral analytics collection.
 		 * <p>
@@ -218,6 +227,12 @@ public class PostBehavioralAnalyticsEventRequest extends RequestBase implements 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<PostBehavioralAnalyticsEventRequest> _DESERIALIZER = createPostBehavioralAnalyticsEventRequestDeserializer();
 	protected static JsonpDeserializer<PostBehavioralAnalyticsEventRequest> createPostBehavioralAnalyticsEventRequestDeserializer() {
 

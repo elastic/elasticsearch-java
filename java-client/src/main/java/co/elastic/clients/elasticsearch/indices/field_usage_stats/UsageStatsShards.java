@@ -159,6 +159,15 @@ public class UsageStatsShards implements JsonpSerializable {
 
 		private Long trackingStartedAtMillis;
 
+		public Builder() {
+		}
+		private Builder(UsageStatsShards instance) {
+			this.routing = instance.routing;
+			this.stats = instance.stats;
+			this.trackingId = instance.trackingId;
+			this.trackingStartedAtMillis = instance.trackingStartedAtMillis;
+
+		}
 		/**
 		 * Required - API name: {@code routing}
 		 */
@@ -223,6 +232,12 @@ public class UsageStatsShards implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

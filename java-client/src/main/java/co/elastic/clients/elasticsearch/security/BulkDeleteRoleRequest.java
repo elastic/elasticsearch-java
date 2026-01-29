@@ -150,6 +150,13 @@ public class BulkDeleteRoleRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private Refresh refresh;
 
+		public Builder() {
+		}
+		private Builder(BulkDeleteRoleRequest instance) {
+			this.names = instance.names;
+			this.refresh = instance.refresh;
+
+		}
 		/**
 		 * Required - An array of role names to delete
 		 * <p>
@@ -205,6 +212,12 @@ public class BulkDeleteRoleRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -297,6 +297,20 @@ public class ReadBlobDetails implements JsonpSerializable {
 		@Nullable
 		private Long throttledNanos;
 
+		public Builder() {
+		}
+		private Builder(ReadBlobDetails instance) {
+			this.beforeWriteComplete = instance.beforeWriteComplete;
+			this.elapsed = instance.elapsed;
+			this.elapsedNanos = instance.elapsedNanos;
+			this.firstByteTime = instance.firstByteTime;
+			this.firstByteTimeNanos = instance.firstByteTimeNanos;
+			this.found = instance.found;
+			this.node = instance.node;
+			this.throttled = instance.throttled;
+			this.throttledNanos = instance.throttledNanos;
+
+		}
 		/**
 		 * Indicates whether the read operation may have started before the write
 		 * operation was complete.
@@ -460,6 +474,12 @@ public class ReadBlobDetails implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

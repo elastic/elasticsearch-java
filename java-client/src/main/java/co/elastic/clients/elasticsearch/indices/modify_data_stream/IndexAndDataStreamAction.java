@@ -140,6 +140,13 @@ public class IndexAndDataStreamAction implements ActionVariant, JsonpSerializabl
 
 		private String index;
 
+		public Builder() {
+		}
+		private Builder(IndexAndDataStreamAction instance) {
+			this.dataStream = instance.dataStream;
+			this.index = instance.index;
+
+		}
 		/**
 		 * Required - Data stream targeted by the action.
 		 * <p>
@@ -178,6 +185,12 @@ public class IndexAndDataStreamAction implements ActionVariant, JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

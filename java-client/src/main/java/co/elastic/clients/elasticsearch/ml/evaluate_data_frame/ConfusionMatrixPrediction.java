@@ -129,6 +129,13 @@ public class ConfusionMatrixPrediction implements JsonpSerializable {
 
 		private Integer count;
 
+		public Builder() {
+		}
+		private Builder(ConfusionMatrixPrediction instance) {
+			this.predictedClass = instance.predictedClass;
+			this.count = instance.count;
+
+		}
 		/**
 		 * Required - API name: {@code predicted_class}
 		 */
@@ -163,6 +170,12 @@ public class ConfusionMatrixPrediction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

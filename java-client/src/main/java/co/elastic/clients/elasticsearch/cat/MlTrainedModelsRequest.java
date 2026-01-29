@@ -245,6 +245,19 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 		@Nullable
 		private TimeUnit time;
 
+		public Builder() {
+		}
+		private Builder(MlTrainedModelsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.bytes = instance.bytes;
+			this.from = instance.from;
+			this.h = instance.h;
+			this.modelId = instance.modelId;
+			this.s = instance.s;
+			this.size = instance.size;
+			this.time = instance.time;
+
+		}
 		/**
 		 * Specifies what to do when the request: contains wildcard expressions and
 		 * there are no models that match; contains the <code>_all</code> string or no
@@ -391,6 +404,12 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

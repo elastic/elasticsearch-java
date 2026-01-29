@@ -138,6 +138,13 @@ public class CloseIndexResult implements JsonpSerializable {
 		@Nullable
 		private Map<String, CloseShardResult> shards;
 
+		public Builder() {
+		}
+		private Builder(CloseIndexResult instance) {
+			this.closed = instance.closed;
+			this.shards = instance.shards;
+
+		}
 		/**
 		 * Required - API name: {@code closed}
 		 */
@@ -194,6 +201,12 @@ public class CloseIndexResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -124,6 +124,13 @@ public class Ssl implements JsonpSerializable {
 
 		private FeatureToggle transport;
 
+		public Builder() {
+		}
+		private Builder(Ssl instance) {
+			this.http = instance.http;
+			this.transport = instance.transport;
+
+		}
 		/**
 		 * Required - API name: {@code http}
 		 */
@@ -172,6 +179,12 @@ public class Ssl implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

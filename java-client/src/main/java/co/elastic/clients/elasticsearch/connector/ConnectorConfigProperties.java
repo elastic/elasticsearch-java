@@ -381,6 +381,26 @@ public class ConnectorConfigProperties implements JsonpSerializable {
 
 		private JsonData value;
 
+		public Builder() {
+		}
+		private Builder(ConnectorConfigProperties instance) {
+			this.category = instance.category;
+			this.defaultValue = instance.defaultValue;
+			this.dependsOn = instance.dependsOn;
+			this.display = instance.display;
+			this.label = instance.label;
+			this.options = instance.options;
+			this.order = instance.order;
+			this.placeholder = instance.placeholder;
+			this.required = instance.required;
+			this.sensitive = instance.sensitive;
+			this.tooltip = instance.tooltip;
+			this.type = instance.type;
+			this.uiRestrictions = instance.uiRestrictions;
+			this.validations = instance.validations;
+			this.value = instance.value;
+
+		}
 		/**
 		 * API name: {@code category}
 		 */
@@ -633,6 +653,12 @@ public class ConnectorConfigProperties implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -208,6 +208,17 @@ public class ShardFileSizeInfo implements JsonpSerializable {
 		@Nullable
 		private Long count;
 
+		public Builder() {
+		}
+		private Builder(ShardFileSizeInfo instance) {
+			this.description = instance.description;
+			this.sizeInBytes = instance.sizeInBytes;
+			this.minSizeInBytes = instance.minSizeInBytes;
+			this.maxSizeInBytes = instance.maxSizeInBytes;
+			this.averageSizeInBytes = instance.averageSizeInBytes;
+			this.count = instance.count;
+
+		}
 		/**
 		 * Required - API name: {@code description}
 		 */
@@ -274,6 +285,12 @@ public class ShardFileSizeInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

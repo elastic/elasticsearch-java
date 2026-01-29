@@ -335,6 +335,23 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private Time readPollTimeout;
 
+		public Builder() {
+		}
+		private Builder(ResumeFollowRequest instance) {
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.maxOutstandingReadRequests = instance.maxOutstandingReadRequests;
+			this.maxOutstandingWriteRequests = instance.maxOutstandingWriteRequests;
+			this.maxReadRequestOperationCount = instance.maxReadRequestOperationCount;
+			this.maxReadRequestSize = instance.maxReadRequestSize;
+			this.maxRetryDelay = instance.maxRetryDelay;
+			this.maxWriteBufferCount = instance.maxWriteBufferCount;
+			this.maxWriteBufferSize = instance.maxWriteBufferSize;
+			this.maxWriteRequestOperationCount = instance.maxWriteRequestOperationCount;
+			this.maxWriteRequestSize = instance.maxWriteRequestSize;
+			this.readPollTimeout = instance.readPollTimeout;
+
+		}
 		/**
 		 * Required - Name of the follow index to resume following
 		 * <p>
@@ -476,6 +493,12 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

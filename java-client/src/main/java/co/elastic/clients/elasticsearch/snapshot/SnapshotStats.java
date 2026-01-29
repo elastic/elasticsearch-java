@@ -190,6 +190,16 @@ public class SnapshotStats implements JsonpSerializable {
 
 		private FileCountSnapshotStats total;
 
+		public Builder() {
+		}
+		private Builder(SnapshotStats instance) {
+			this.incremental = instance.incremental;
+			this.startTimeInMillis = instance.startTimeInMillis;
+			this.time = instance.time;
+			this.timeInMillis = instance.timeInMillis;
+			this.total = instance.total;
+
+		}
 		/**
 		 * Required - The number and size of files that still need to be copied as part
 		 * of the incremental snapshot. For completed snapshots, this property indicates
@@ -292,6 +302,12 @@ public class SnapshotStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

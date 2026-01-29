@@ -145,6 +145,13 @@ public class PutSynonymRequest extends RequestBase implements JsonpSerializable 
 
 		private List<SynonymRule> synonymsSet;
 
+		public Builder() {
+		}
+		private Builder(PutSynonymRequest instance) {
+			this.id = instance.id;
+			this.synonymsSet = instance.synonymsSet;
+
+		}
 		/**
 		 * Required - The ID of the synonyms set to be created or updated.
 		 * <p>
@@ -208,6 +215,12 @@ public class PutSynonymRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

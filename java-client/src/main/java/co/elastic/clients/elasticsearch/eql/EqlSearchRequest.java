@@ -576,6 +576,33 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time waitForCompletionTimeout;
 
+		public Builder() {
+		}
+		private Builder(EqlSearchRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.allowPartialSearchResults = instance.allowPartialSearchResults;
+			this.allowPartialSequenceResults = instance.allowPartialSequenceResults;
+			this.caseSensitive = instance.caseSensitive;
+			this.ccsMinimizeRoundtrips = instance.ccsMinimizeRoundtrips;
+			this.eventCategoryField = instance.eventCategoryField;
+			this.expandWildcards = instance.expandWildcards;
+			this.fetchSize = instance.fetchSize;
+			this.fields = instance.fields;
+			this.filter = instance.filter;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.keepAlive = instance.keepAlive;
+			this.keepOnCompletion = instance.keepOnCompletion;
+			this.maxSamplesPerKey = instance.maxSamplesPerKey;
+			this.query = instance.query;
+			this.resultPosition = instance.resultPosition;
+			this.runtimeMappings = instance.runtimeMappings;
+			this.size = instance.size;
+			this.tiebreakerField = instance.tiebreakerField;
+			this.timestampField = instance.timestampField;
+			this.waitForCompletionTimeout = instance.waitForCompletionTimeout;
+
+		}
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
 		 * indices. (This includes <code>_all</code> string or when no indices have been
@@ -955,6 +982,12 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

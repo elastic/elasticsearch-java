@@ -273,6 +273,18 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
+		public Builder() {
+		}
+		private Builder(InlineGet<TDocument> instance) {
+			this.fields = instance.fields;
+			this.found = instance.found;
+			this.seqNo = instance.seqNo;
+			this.primaryTerm = instance.primaryTerm;
+			this.routing = instance.routing;
+			this.source = instance.source;
+			this.metadata = instance.metadata;
+
+		}
 		/**
 		 * API name: {@code fields}
 		 * <p>
@@ -360,6 +372,12 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

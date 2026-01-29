@@ -193,6 +193,16 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 
 		private String serviceAccountJson;
 
+		public Builder() {
+		}
+		private Builder(GoogleVertexAIServiceSettings instance) {
+			this.location = instance.location;
+			this.modelId = instance.modelId;
+			this.projectId = instance.projectId;
+			this.rateLimit = instance.rateLimit;
+			this.serviceAccountJson = instance.serviceAccountJson;
+
+		}
 		/**
 		 * Required - The name of the location to use for the inference task. Refer to
 		 * the Google documentation for the list of supported locations.
@@ -277,6 +287,12 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

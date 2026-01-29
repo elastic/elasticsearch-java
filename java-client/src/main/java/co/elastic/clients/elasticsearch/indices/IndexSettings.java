@@ -1306,6 +1306,68 @@ public class IndexSettings implements JsonpSerializable {
 		@Nullable
 		private Storage store;
 
+		public Builder() {
+		}
+		private Builder(IndexSettings instance) {
+			this.index = instance.index;
+			this.mode = instance.mode;
+			this.routingPath = instance.routingPath;
+			this.softDeletes = instance.softDeletes;
+			this.sort = instance.sort;
+			this.numberOfShards = instance.numberOfShards;
+			this.numberOfReplicas = instance.numberOfReplicas;
+			this.numberOfRoutingShards = instance.numberOfRoutingShards;
+			this.checkOnStartup = instance.checkOnStartup;
+			this.codec = instance.codec;
+			this.routingPartitionSize = instance.routingPartitionSize;
+			this.loadFixedBitsetFiltersEagerly = instance.loadFixedBitsetFiltersEagerly;
+			this.hidden = instance.hidden;
+			this.autoExpandReplicas = instance.autoExpandReplicas;
+			this.merge = instance.merge;
+			this.search = instance.search;
+			this.refreshInterval = instance.refreshInterval;
+			this.maxResultWindow = instance.maxResultWindow;
+			this.maxInnerResultWindow = instance.maxInnerResultWindow;
+			this.maxRescoreWindow = instance.maxRescoreWindow;
+			this.maxDocvalueFieldsSearch = instance.maxDocvalueFieldsSearch;
+			this.maxScriptFields = instance.maxScriptFields;
+			this.maxNgramDiff = instance.maxNgramDiff;
+			this.maxShingleDiff = instance.maxShingleDiff;
+			this.blocks = instance.blocks;
+			this.maxRefreshListeners = instance.maxRefreshListeners;
+			this.analyze = instance.analyze;
+			this.highlight = instance.highlight;
+			this.maxTermsCount = instance.maxTermsCount;
+			this.maxRegexLength = instance.maxRegexLength;
+			this.routing = instance.routing;
+			this.gcDeletes = instance.gcDeletes;
+			this.defaultPipeline = instance.defaultPipeline;
+			this.finalPipeline = instance.finalPipeline;
+			this.lifecycle = instance.lifecycle;
+			this.providedName = instance.providedName;
+			this.creationDate = instance.creationDate;
+			this.creationDateString = instance.creationDateString;
+			this.uuid = instance.uuid;
+			this.version = instance.version;
+			this.verifiedBeforeClose = instance.verifiedBeforeClose;
+			this.format = instance.format;
+			this.maxSlicesPerScroll = instance.maxSlicesPerScroll;
+			this.translog = instance.translog;
+			this.queryString = instance.queryString;
+			this.priority = instance.priority;
+			this.topMetricsMaxSize = instance.topMetricsMaxSize;
+			this.analysis = instance.analysis;
+			this.settings = instance.settings;
+			this.timeSeries = instance.timeSeries;
+			this.queries = instance.queries;
+			this.similarity = instance.similarity;
+			this.mapping = instance.mapping;
+			this.indexingSlowlog = instance.indexingSlowlog;
+			this.indexingPressure = instance.indexingPressure;
+			this.store = instance.store;
+			this.otherSettings = instance.otherSettings;
+
+		}
 		/**
 		 * API name: {@code index}
 		 */
@@ -2010,6 +2072,12 @@ public class IndexSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

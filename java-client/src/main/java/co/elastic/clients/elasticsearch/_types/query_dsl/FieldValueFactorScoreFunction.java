@@ -191,6 +191,15 @@ public class FieldValueFactorScoreFunction implements FunctionScoreVariant, Json
 		@Nullable
 		private FieldValueFactorModifier modifier;
 
+		public Builder() {
+		}
+		private Builder(FieldValueFactorScoreFunction instance) {
+			this.field = instance.field;
+			this.factor = instance.factor;
+			this.missing = instance.missing;
+			this.modifier = instance.modifier;
+
+		}
 		/**
 		 * Required - Field to be extracted from the document.
 		 * <p>
@@ -250,6 +259,12 @@ public class FieldValueFactorScoreFunction implements FunctionScoreVariant, Json
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

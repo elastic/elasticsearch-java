@@ -469,6 +469,25 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		@Nullable
 		private Long version;
 
+		public Builder() {
+		}
+		private Builder(PutIndexTemplateRequest instance) {
+			this.meta = instance.meta;
+			this.allowAutoCreate = instance.allowAutoCreate;
+			this.cause = instance.cause;
+			this.composedOf = instance.composedOf;
+			this.create = instance.create;
+			this.dataStream = instance.dataStream;
+			this.deprecated = instance.deprecated;
+			this.ignoreMissingComponentTemplates = instance.ignoreMissingComponentTemplates;
+			this.indexPatterns = instance.indexPatterns;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.priority = instance.priority;
+			this.template = instance.template;
+			this.version = instance.version;
+
+		}
 		/**
 		 * Optional user metadata about the index template. It may have any contents. It
 		 * is not automatically generated or used by Elasticsearch. This user-defined
@@ -749,6 +768,12 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

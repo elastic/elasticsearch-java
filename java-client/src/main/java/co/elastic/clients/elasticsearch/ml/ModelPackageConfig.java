@@ -388,6 +388,25 @@ public class ModelPackageConfig implements JsonpSerializable {
 		@Nullable
 		private String vocabularyFile;
 
+		public Builder() {
+		}
+		private Builder(ModelPackageConfig instance) {
+			this.createTime = instance.createTime;
+			this.description = instance.description;
+			this.inferenceConfig = instance.inferenceConfig;
+			this.metadata = instance.metadata;
+			this.minimumVersion = instance.minimumVersion;
+			this.modelRepository = instance.modelRepository;
+			this.modelType = instance.modelType;
+			this.packagedModelId = instance.packagedModelId;
+			this.platformArchitecture = instance.platformArchitecture;
+			this.prefixStrings = instance.prefixStrings;
+			this.size = instance.size;
+			this.sha256 = instance.sha256;
+			this.tags = instance.tags;
+			this.vocabularyFile = instance.vocabularyFile;
+
+		}
 		/**
 		 * API name: {@code create_time}
 		 */
@@ -562,6 +581,12 @@ public class ModelPackageConfig implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -263,6 +263,20 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 
 		private String number;
 
+		public Builder() {
+		}
+		private Builder(ElasticsearchVersionInfo instance) {
+			this.buildDate = instance.buildDate;
+			this.buildFlavor = instance.buildFlavor;
+			this.buildHash = instance.buildHash;
+			this.buildSnapshot = instance.buildSnapshot;
+			this.buildType = instance.buildType;
+			this.luceneVersion = instance.luceneVersion;
+			this.minimumIndexCompatibilityVersion = instance.minimumIndexCompatibilityVersion;
+			this.minimumWireCompatibilityVersion = instance.minimumWireCompatibilityVersion;
+			this.number = instance.number;
+
+		}
 		/**
 		 * Required - The Elasticsearch Git commit's date.
 		 * <p>
@@ -381,6 +395,12 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

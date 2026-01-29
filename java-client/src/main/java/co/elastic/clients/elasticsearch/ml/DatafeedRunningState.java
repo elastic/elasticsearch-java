@@ -159,6 +159,14 @@ public class DatafeedRunningState implements JsonpSerializable {
 		@Nullable
 		private RunningStateSearchInterval searchInterval;
 
+		public Builder() {
+		}
+		private Builder(DatafeedRunningState instance) {
+			this.realTimeConfigured = instance.realTimeConfigured;
+			this.realTimeRunning = instance.realTimeRunning;
+			this.searchInterval = instance.searchInterval;
+
+		}
 		/**
 		 * Required - Indicates if the datafeed is &quot;real-time&quot;; meaning that
 		 * the datafeed has no configured <code>end</code> time.
@@ -221,6 +229,12 @@ public class DatafeedRunningState implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -861,6 +861,42 @@ public class MultisearchBody implements JsonpSerializable {
 		@Nullable
 		private Suggester suggest;
 
+		public Builder() {
+		}
+		private Builder(MultisearchBody instance) {
+			this.aggregations = instance.aggregations;
+			this.collapse = instance.collapse;
+			this.query = instance.query;
+			this.explain = instance.explain;
+			this.ext = instance.ext;
+			this.storedFields = instance.storedFields;
+			this.docvalueFields = instance.docvalueFields;
+			this.knn = instance.knn;
+			this.from = instance.from;
+			this.highlight = instance.highlight;
+			this.indicesBoost = instance.indicesBoost;
+			this.minScore = instance.minScore;
+			this.postFilter = instance.postFilter;
+			this.profile = instance.profile;
+			this.rescore = instance.rescore;
+			this.scriptFields = instance.scriptFields;
+			this.searchAfter = instance.searchAfter;
+			this.size = instance.size;
+			this.sort = instance.sort;
+			this.source = instance.source;
+			this.fields = instance.fields;
+			this.terminateAfter = instance.terminateAfter;
+			this.stats = instance.stats;
+			this.timeout = instance.timeout;
+			this.trackScores = instance.trackScores;
+			this.trackTotalHits = instance.trackTotalHits;
+			this.version = instance.version;
+			this.runtimeMappings = instance.runtimeMappings;
+			this.seqNoPrimaryTerm = instance.seqNoPrimaryTerm;
+			this.pit = instance.pit;
+			this.suggest = instance.suggest;
+
+		}
 		/**
 		 * API name: {@code aggregations}
 		 * <p>
@@ -1638,6 +1674,12 @@ public class MultisearchBody implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

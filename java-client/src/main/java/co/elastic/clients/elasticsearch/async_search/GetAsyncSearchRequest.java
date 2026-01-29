@@ -145,6 +145,14 @@ public class GetAsyncSearchRequest extends RequestBase {
 		@Nullable
 		private Time waitForCompletionTimeout;
 
+		public Builder() {
+		}
+		private Builder(GetAsyncSearchRequest instance) {
+			this.id = instance.id;
+			this.keepAlive = instance.keepAlive;
+			this.waitForCompletionTimeout = instance.waitForCompletionTimeout;
+
+		}
 		/**
 		 * Required - A unique identifier for the async search.
 		 * <p>
@@ -229,6 +237,12 @@ public class GetAsyncSearchRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

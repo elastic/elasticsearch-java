@@ -199,6 +199,16 @@ public class AnalyzeDetail implements JsonpSerializable {
 		@Nullable
 		private TokenDetail tokenizer;
 
+		public Builder() {
+		}
+		private Builder(AnalyzeDetail instance) {
+			this.analyzer = instance.analyzer;
+			this.charfilters = instance.charfilters;
+			this.customAnalyzer = instance.customAnalyzer;
+			this.tokenfilters = instance.tokenfilters;
+			this.tokenizer = instance.tokenizer;
+
+		}
 		/**
 		 * API name: {@code analyzer}
 		 */
@@ -313,6 +323,12 @@ public class AnalyzeDetail implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

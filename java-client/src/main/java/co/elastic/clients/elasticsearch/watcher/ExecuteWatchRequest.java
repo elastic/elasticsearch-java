@@ -322,6 +322,20 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private Watch watch;
 
+		public Builder() {
+		}
+		private Builder(ExecuteWatchRequest instance) {
+			this.actionModes = instance.actionModes;
+			this.alternativeInput = instance.alternativeInput;
+			this.debug = instance.debug;
+			this.id = instance.id;
+			this.ignoreCondition = instance.ignoreCondition;
+			this.recordExecution = instance.recordExecution;
+			this.simulatedActions = instance.simulatedActions;
+			this.triggerData = instance.triggerData;
+			this.watch = instance.watch;
+
+		}
 		/**
 		 * Determines how to handle the watch actions as part of the watch execution.
 		 * <p>
@@ -494,6 +508,12 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

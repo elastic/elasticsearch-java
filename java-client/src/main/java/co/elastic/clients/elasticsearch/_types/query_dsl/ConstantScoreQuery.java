@@ -110,6 +110,12 @@ public class ConstantScoreQuery extends QueryBase implements QueryVariant {
 				ObjectBuilder<ConstantScoreQuery> {
 		private Query filter;
 
+		public Builder() {
+		}
+		private Builder(ConstantScoreQuery instance) {
+			this.filter = instance.filter;
+
+		}
 		/**
 		 * Required - Filter query you wish to run. Any returned documents must match
 		 * this query. Filter queries do not calculate relevance scores. To speed up
@@ -166,6 +172,12 @@ public class ConstantScoreQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -171,6 +171,15 @@ public class PagerDutyResult implements JsonpSerializable {
 		@Nullable
 		private HttpInputResponseResult response;
 
+		public Builder() {
+		}
+		private Builder(PagerDutyResult instance) {
+			this.event = instance.event;
+			this.reason = instance.reason;
+			this.request = instance.request;
+			this.response = instance.response;
+
+		}
 		/**
 		 * Required - API name: {@code event}
 		 */
@@ -244,6 +253,12 @@ public class PagerDutyResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -135,6 +135,14 @@ public class DeletePipelineRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeletePipelineRequest instance) {
+			this.id = instance.id;
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - Pipeline ID or wildcard expression of pipeline IDs used to limit
 		 * the request. To delete all ingest pipelines in a cluster, use a value of
@@ -207,6 +215,12 @@ public class DeletePipelineRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

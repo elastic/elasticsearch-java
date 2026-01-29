@@ -113,6 +113,12 @@ public class StringStatsAggregation extends MetricAggregationBase implements Agg
 		@Nullable
 		private Boolean showDistribution;
 
+		public Builder() {
+		}
+		private Builder(StringStatsAggregation instance) {
+			this.showDistribution = instance.showDistribution;
+
+		}
 		/**
 		 * Shows the probability distribution for all characters.
 		 * <p>
@@ -141,6 +147,12 @@ public class StringStatsAggregation extends MetricAggregationBase implements Agg
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

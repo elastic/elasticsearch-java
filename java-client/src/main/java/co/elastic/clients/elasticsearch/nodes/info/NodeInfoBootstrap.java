@@ -110,6 +110,12 @@ public class NodeInfoBootstrap implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeInfoBootstrap> {
 		private String memoryLock;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoBootstrap instance) {
+			this.memoryLock = instance.memoryLock;
+
+		}
 		/**
 		 * Required - API name: {@code memory_lock}
 		 */
@@ -136,6 +142,12 @@ public class NodeInfoBootstrap implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -137,6 +137,13 @@ public class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 		@Nullable
 		private NodeInfoXpackSecurityAuthcToken token;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoXpackSecurityAuthc instance) {
+			this.realms = instance.realms;
+			this.token = instance.token;
+
+		}
 		/**
 		 * API name: {@code realms}
 		 */
@@ -187,6 +194,12 @@ public class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

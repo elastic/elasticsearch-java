@@ -147,6 +147,14 @@ public class MappingStats implements JsonpSerializable {
 
 		private Long totalEstimatedOverheadInBytes;
 
+		public Builder() {
+		}
+		private Builder(MappingStats instance) {
+			this.totalCount = instance.totalCount;
+			this.totalEstimatedOverhead = instance.totalEstimatedOverhead;
+			this.totalEstimatedOverheadInBytes = instance.totalEstimatedOverheadInBytes;
+
+		}
 		/**
 		 * Required - API name: {@code total_count}
 		 */
@@ -189,6 +197,12 @@ public class MappingStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -109,6 +109,12 @@ public class CompositeBucket extends MultiBucketBase {
 				ObjectBuilder<CompositeBucket> {
 		private Map<String, FieldValue> key;
 
+		public Builder() {
+		}
+		private Builder(CompositeBucket instance) {
+			this.key = instance.key;
+
+		}
 		/**
 		 * Required - API name: {@code key}
 		 * <p>
@@ -196,6 +202,12 @@ public class CompositeBucket extends MultiBucketBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

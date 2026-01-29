@@ -136,6 +136,13 @@ public class ClusterIngest implements JsonpSerializable {
 
 		private Map<String, ClusterProcessor> processorStats;
 
+		public Builder() {
+		}
+		private Builder(ClusterIngest instance) {
+			this.numberOfPipelines = instance.numberOfPipelines;
+			this.processorStats = instance.processorStats;
+
+		}
 		/**
 		 * Required - API name: {@code number_of_pipelines}
 		 */
@@ -192,6 +199,12 @@ public class ClusterIngest implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

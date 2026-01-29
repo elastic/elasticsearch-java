@@ -748,6 +748,43 @@ public class AggregationProfileDebug implements JsonpSerializable {
 		@Nullable
 		private Integer skippedDueToNoData;
 
+		public Builder() {
+		}
+		private Builder(AggregationProfileDebug instance) {
+			this.segmentsWithMultiValuedOrds = instance.segmentsWithMultiValuedOrds;
+			this.collectionStrategy = instance.collectionStrategy;
+			this.segmentsWithSingleValuedOrds = instance.segmentsWithSingleValuedOrds;
+			this.totalBuckets = instance.totalBuckets;
+			this.builtBuckets = instance.builtBuckets;
+			this.resultStrategy = instance.resultStrategy;
+			this.hasFilter = instance.hasFilter;
+			this.delegate = instance.delegate;
+			this.delegateDebug = instance.delegateDebug;
+			this.charsFetched = instance.charsFetched;
+			this.extractCount = instance.extractCount;
+			this.extractNs = instance.extractNs;
+			this.valuesFetched = instance.valuesFetched;
+			this.collectAnalyzedNs = instance.collectAnalyzedNs;
+			this.collectAnalyzedCount = instance.collectAnalyzedCount;
+			this.survivingBuckets = instance.survivingBuckets;
+			this.ordinalsCollectorsUsed = instance.ordinalsCollectorsUsed;
+			this.ordinalsCollectorsOverheadTooHigh = instance.ordinalsCollectorsOverheadTooHigh;
+			this.stringHashingCollectorsUsed = instance.stringHashingCollectorsUsed;
+			this.numericCollectorsUsed = instance.numericCollectorsUsed;
+			this.emptyCollectorsUsed = instance.emptyCollectorsUsed;
+			this.deferredAggregators = instance.deferredAggregators;
+			this.segmentsWithDocCountField = instance.segmentsWithDocCountField;
+			this.segmentsWithDeletedDocs = instance.segmentsWithDeletedDocs;
+			this.filters = instance.filters;
+			this.segmentsCounted = instance.segmentsCounted;
+			this.segmentsCollected = instance.segmentsCollected;
+			this.mapReducer = instance.mapReducer;
+			this.bruteForceUsed = instance.bruteForceUsed;
+			this.dynamicPruningAttempted = instance.dynamicPruningAttempted;
+			this.dynamicPruningUsed = instance.dynamicPruningUsed;
+			this.skippedDueToNoData = instance.skippedDueToNoData;
+
+		}
 		/**
 		 * API name: {@code segments_with_multi_valued_ords}
 		 */
@@ -1065,6 +1102,12 @@ public class AggregationProfileDebug implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

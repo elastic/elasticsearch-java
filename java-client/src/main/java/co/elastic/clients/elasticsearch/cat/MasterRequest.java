@@ -213,6 +213,17 @@ public class MasterRequest extends CatRequestBase {
 		@Nullable
 		private TimeUnit time;
 
+		public Builder() {
+		}
+		private Builder(MasterRequest instance) {
+			this.bytes = instance.bytes;
+			this.h = instance.h;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.s = instance.s;
+			this.time = instance.time;
+
+		}
 		/**
 		 * Sets the units for columns that contain a byte-size value. Note that
 		 * byte-size value units work in terms of powers of 1024. For instance
@@ -350,6 +361,12 @@ public class MasterRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

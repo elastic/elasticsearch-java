@@ -179,6 +179,15 @@ public class FieldLookup implements JsonpSerializable {
 		@Nullable
 		private String routing;
 
+		public Builder() {
+		}
+		private Builder(FieldLookup instance) {
+			this.id = instance.id;
+			this.index = instance.index;
+			this.path = instance.path;
+			this.routing = instance.routing;
+
+		}
 		/**
 		 * Required - <code>id</code> of the document.
 		 * <p>
@@ -237,6 +246,12 @@ public class FieldLookup implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

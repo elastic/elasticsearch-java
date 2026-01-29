@@ -190,57 +190,53 @@ public class WithJsonTest extends ModelTestCase {
     @Test
     public void testBooleanEnum() {
 
-        String templateJsonBooleanSubobject = """
-            {
-              "component_templates": [
-                {
-                  "name": "test-template",
-                  "component_template": {
-                    "template": {
-                      "mappings": {
-                        "properties": {
-                          "document": {
-                            "subobjects": false,
-                            "properties": {
-                              "body.size": {
-                                "type": "integer"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-            """;
+        String templateJsonBooleanSubobject = "            {\n" +
+                                              "              \"component_templates\": [\n" +
+                                              "                {\n" +
+                                              "                  \"name\": \"test-template\",\n" +
+                                              "                  \"component_template\": {\n" +
+                                              "                    \"template\": {\n" +
+                                              "                      \"mappings\": {\n" +
+                                              "                        \"properties\": {\n" +
+                                              "                          \"document\": {\n" +
+                                              "                            \"subobjects\": false,\n" +
+                                              "                            \"properties\": {\n" +
+                                              "                              \"body.size\": {\n" +
+                                              "                                \"type\": \"integer\"\n" +
+                                              "                              }\n" +
+                                              "                            }\n" +
+                                              "                          }\n" +
+                                              "                        }\n" +
+                                              "                      }\n" +
+                                              "                    }\n" +
+                                              "                  }\n" +
+                                              "                }\n" +
+                                              "              ]\n" +
+                                              "            }";
 
-        String templateJsonStringSubobject = """
-            {
-              "component_templates": [
-                {
-                  "name": "test-template",
-                  "component_template": {
-                    "template": {
-                      "mappings": {
-                        "properties": {
-                          "document": {
-                            "subobjects": "false",
-                            "properties": {
-                              "body.size": {
-                                "type": "integer"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            }
-            """;
+        String templateJsonStringSubobject = "            {\n" +
+                                             "              \"component_templates\": [\n" +
+                                             "                {\n" +
+                                             "                  \"name\": \"test-template\",\n" +
+                                             "                  \"component_template\": {\n" +
+                                             "                    \"template\": {\n" +
+                                             "                      \"mappings\": {\n" +
+                                             "                        \"properties\": {\n" +
+                                             "                          \"document\": {\n" +
+                                             "                            \"subobjects\": \"false\",\n" +
+                                             "                            \"properties\": {\n" +
+                                             "                              \"body.size\": {\n" +
+                                             "                                \"type\": \"integer\"\n" +
+                                             "                              }\n" +
+                                             "                            }\n" +
+                                             "                          }\n" +
+                                             "                        }\n" +
+                                             "                      }\n" +
+                                             "                    }\n" +
+                                             "                  }\n" +
+                                             "                }\n" +
+                                             "              ]\n" +
+                                             "            }";
 
         GetComponentTemplateResponse respBool = GetComponentTemplateResponse.of(t -> t
             .withJson(new StringReader(templateJsonBooleanSubobject)));

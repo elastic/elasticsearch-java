@@ -363,6 +363,27 @@ public class ShardRecovery implements JsonpSerializable {
 
 		private VerifyIndex verifyIndex;
 
+		public Builder() {
+		}
+		private Builder(ShardRecovery instance) {
+			this.id = instance.id;
+			this.index = instance.index;
+			this.primary = instance.primary;
+			this.source = instance.source;
+			this.stage = instance.stage;
+			this.start = instance.start;
+			this.startTime = instance.startTime;
+			this.startTimeInMillis = instance.startTimeInMillis;
+			this.stopTime = instance.stopTime;
+			this.stopTimeInMillis = instance.stopTimeInMillis;
+			this.target = instance.target;
+			this.totalTime = instance.totalTime;
+			this.totalTimeInMillis = instance.totalTimeInMillis;
+			this.translog = instance.translog;
+			this.type = instance.type;
+			this.verifyIndex = instance.verifyIndex;
+
+		}
 		/**
 		 * Required - API name: {@code id}
 		 */
@@ -558,6 +579,12 @@ public class ShardRecovery implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

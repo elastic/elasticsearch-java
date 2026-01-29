@@ -100,6 +100,12 @@ public class EnrichStatsRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		public Builder() {
+		}
+		private Builder(EnrichStatsRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node.
 		 * <p>
@@ -137,6 +143,12 @@ public class EnrichStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

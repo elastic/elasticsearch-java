@@ -152,6 +152,13 @@ public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 
 		private List<String> excludes;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalysisAnalyzedFields instance) {
+			this.includes = instance.includes;
+			this.excludes = instance.excludes;
+
+		}
 		/**
 		 * Required - An array of strings that defines the fields that will be excluded
 		 * from the analysis. You do not need to add fields with unsupported data types
@@ -224,6 +231,12 @@ public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

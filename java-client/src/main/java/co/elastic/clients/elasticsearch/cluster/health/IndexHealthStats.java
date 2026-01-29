@@ -260,6 +260,21 @@ public class IndexHealthStats implements JsonpSerializable {
 
 		private Integer unassignedPrimaryShards;
 
+		public Builder() {
+		}
+		private Builder(IndexHealthStats instance) {
+			this.activePrimaryShards = instance.activePrimaryShards;
+			this.activeShards = instance.activeShards;
+			this.initializingShards = instance.initializingShards;
+			this.numberOfReplicas = instance.numberOfReplicas;
+			this.numberOfShards = instance.numberOfShards;
+			this.relocatingShards = instance.relocatingShards;
+			this.shards = instance.shards;
+			this.status = instance.status;
+			this.unassignedShards = instance.unassignedShards;
+			this.unassignedPrimaryShards = instance.unassignedPrimaryShards;
+
+		}
 		/**
 		 * Required - API name: {@code active_primary_shards}
 		 */
@@ -380,6 +395,12 @@ public class IndexHealthStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

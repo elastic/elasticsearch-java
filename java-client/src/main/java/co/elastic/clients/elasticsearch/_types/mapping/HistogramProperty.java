@@ -112,6 +112,12 @@ public class HistogramProperty extends PropertyBase implements PropertyVariant {
 		@Nullable
 		private Boolean ignoreMalformed;
 
+		public Builder() {
+		}
+		private Builder(HistogramProperty instance) {
+			this.ignoreMalformed = instance.ignoreMalformed;
+
+		}
 		/**
 		 * API name: {@code ignore_malformed}
 		 */
@@ -138,6 +144,12 @@ public class HistogramProperty extends PropertyBase implements PropertyVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

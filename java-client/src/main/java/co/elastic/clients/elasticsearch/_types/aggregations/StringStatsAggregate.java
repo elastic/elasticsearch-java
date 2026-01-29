@@ -260,6 +260,20 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 		@Nullable
 		private String avgLengthAsString;
 
+		public Builder() {
+		}
+		private Builder(StringStatsAggregate instance) {
+			this.count = instance.count;
+			this.minLength = instance.minLength;
+			this.maxLength = instance.maxLength;
+			this.avgLength = instance.avgLength;
+			this.entropy = instance.entropy;
+			this.distribution = instance.distribution;
+			this.minLengthAsString = instance.minLengthAsString;
+			this.maxLengthAsString = instance.maxLengthAsString;
+			this.avgLengthAsString = instance.avgLengthAsString;
+
+		}
 		/**
 		 * Required - API name: {@code count}
 		 */
@@ -370,6 +384,12 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

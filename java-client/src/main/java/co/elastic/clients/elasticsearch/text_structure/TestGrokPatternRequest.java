@@ -164,6 +164,14 @@ public class TestGrokPatternRequest extends RequestBase implements JsonpSerializ
 
 		private List<String> text;
 
+		public Builder() {
+		}
+		private Builder(TestGrokPatternRequest instance) {
+			this.ecsCompatibility = instance.ecsCompatibility;
+			this.grokPattern = instance.grokPattern;
+			this.text = instance.text;
+
+		}
 		/**
 		 * The mode of compatibility with ECS compliant Grok patterns. Use this
 		 * parameter to specify whether to use ECS Grok patterns instead of legacy ones
@@ -229,6 +237,12 @@ public class TestGrokPatternRequest extends RequestBase implements JsonpSerializ
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

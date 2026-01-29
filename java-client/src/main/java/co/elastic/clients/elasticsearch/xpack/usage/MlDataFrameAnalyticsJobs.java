@@ -173,6 +173,15 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		@Nullable
 		private MlDataFrameAnalyticsJobsCount stopped;
 
+		public Builder() {
+		}
+		private Builder(MlDataFrameAnalyticsJobs instance) {
+			this.memoryUsage = instance.memoryUsage;
+			this.all = instance.all;
+			this.analysisCounts = instance.analysisCounts;
+			this.stopped = instance.stopped;
+
+		}
 		/**
 		 * API name: {@code memory_usage}
 		 */
@@ -255,6 +264,12 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

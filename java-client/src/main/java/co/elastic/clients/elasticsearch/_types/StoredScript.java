@@ -156,6 +156,14 @@ public class StoredScript implements JsonpSerializable {
 
 		private String source;
 
+		public Builder() {
+		}
+		private Builder(StoredScript instance) {
+			this.lang = instance.lang;
+			this.options = instance.options;
+			this.source = instance.source;
+
+		}
 		/**
 		 * Required - The language the script is written in. For serach templates, use
 		 * <code>mustache</code>.
@@ -227,6 +235,12 @@ public class StoredScript implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

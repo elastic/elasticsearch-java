@@ -150,6 +150,14 @@ public class MigrationFeatureIndexInfo implements JsonpSerializable {
 		@Nullable
 		private ErrorCause failureCause;
 
+		public Builder() {
+		}
+		private Builder(MigrationFeatureIndexInfo instance) {
+			this.index = instance.index;
+			this.version = instance.version;
+			this.failureCause = instance.failureCause;
+
+		}
 		/**
 		 * Required - API name: {@code index}
 		 */
@@ -199,6 +207,12 @@ public class MigrationFeatureIndexInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

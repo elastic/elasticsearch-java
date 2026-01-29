@@ -194,6 +194,15 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PostVotingConfigExclusionsRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.nodeIds = instance.nodeIds;
+			this.nodeNames = instance.nodeNames;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node.
 		 * <p>
@@ -308,6 +317,12 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

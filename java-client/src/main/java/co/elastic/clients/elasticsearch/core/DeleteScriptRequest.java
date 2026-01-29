@@ -137,6 +137,14 @@ public class DeleteScriptRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeleteScriptRequest instance) {
+			this.id = instance.id;
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - The identifier for the stored script or search template.
 		 * <p>
@@ -213,6 +221,12 @@ public class DeleteScriptRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

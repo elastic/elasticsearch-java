@@ -81,6 +81,11 @@ public class CartesianBoundsAggregation extends MetricAggregationBase implements
 	public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CartesianBoundsAggregation> {
+		public Builder() {
+		}
+		private Builder(CartesianBoundsAggregation instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class CartesianBoundsAggregation extends MetricAggregationBase implements
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

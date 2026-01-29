@@ -166,6 +166,14 @@ public class SyncJobClaimRequest extends RequestBase implements JsonpSerializabl
 
 		private String workerHostname;
 
+		public Builder() {
+		}
+		private Builder(SyncJobClaimRequest instance) {
+			this.connectorSyncJobId = instance.connectorSyncJobId;
+			this.syncCursor = instance.syncCursor;
+			this.workerHostname = instance.workerHostname;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector sync job.
 		 * <p>
@@ -216,6 +224,12 @@ public class SyncJobClaimRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

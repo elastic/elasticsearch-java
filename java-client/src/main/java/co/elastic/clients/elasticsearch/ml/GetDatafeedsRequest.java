@@ -155,6 +155,14 @@ public class GetDatafeedsRequest extends RequestBase {
 		@Nullable
 		private Boolean excludeGenerated;
 
+		public Builder() {
+		}
+		private Builder(GetDatafeedsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.datafeedId = instance.datafeedId;
+			this.excludeGenerated = instance.excludeGenerated;
+
+		}
 		/**
 		 * Specifies what to do when the request:
 		 * <ol>
@@ -235,6 +243,12 @@ public class GetDatafeedsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

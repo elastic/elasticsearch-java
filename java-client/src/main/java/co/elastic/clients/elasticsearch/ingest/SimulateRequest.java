@@ -186,6 +186,15 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Boolean verbose;
 
+		public Builder() {
+		}
+		private Builder(SimulateRequest instance) {
+			this.docs = instance.docs;
+			this.id = instance.id;
+			this.pipeline = instance.pipeline;
+			this.verbose = instance.verbose;
+
+		}
 		/**
 		 * Required - Sample documents to test in the pipeline.
 		 * <p>
@@ -284,6 +293,12 @@ public class SimulateRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

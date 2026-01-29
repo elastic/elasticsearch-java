@@ -132,6 +132,13 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 
 		private String requiredNativeMemoryBytes;
 
+		public Builder() {
+		}
+		private Builder(TrainedModelSizeStats instance) {
+			this.modelSizeBytes = instance.modelSizeBytes;
+			this.requiredNativeMemoryBytes = instance.requiredNativeMemoryBytes;
+
+		}
 		/**
 		 * Required - The size of the model in bytes.
 		 * <p>
@@ -170,6 +177,12 @@ public class TrainedModelSizeStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

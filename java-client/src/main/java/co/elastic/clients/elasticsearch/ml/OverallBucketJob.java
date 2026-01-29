@@ -126,6 +126,13 @@ public class OverallBucketJob implements JsonpSerializable {
 
 		private Double maxAnomalyScore;
 
+		public Builder() {
+		}
+		private Builder(OverallBucketJob instance) {
+			this.jobId = instance.jobId;
+			this.maxAnomalyScore = instance.maxAnomalyScore;
+
+		}
 		/**
 		 * Required - API name: {@code job_id}
 		 */
@@ -160,6 +167,12 @@ public class OverallBucketJob implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

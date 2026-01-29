@@ -109,6 +109,12 @@ public class SizeField implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SizeField> {
 		private Boolean enabled;
 
+		public Builder() {
+		}
+		private Builder(SizeField instance) {
+			this.enabled = instance.enabled;
+
+		}
 		/**
 		 * Required - API name: {@code enabled}
 		 */
@@ -135,6 +141,12 @@ public class SizeField implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

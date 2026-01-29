@@ -154,6 +154,14 @@ public class DataframeAnalyticsStatsDataCounts implements JsonpSerializable {
 
 		private Integer trainingDocsCount;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalyticsStatsDataCounts instance) {
+			this.skippedDocsCount = instance.skippedDocsCount;
+			this.testDocsCount = instance.testDocsCount;
+			this.trainingDocsCount = instance.trainingDocsCount;
+
+		}
 		/**
 		 * Required - The number of documents that are skipped during the analysis
 		 * because they contained values that are not supported by the analysis. For
@@ -207,6 +215,12 @@ public class DataframeAnalyticsStatsDataCounts implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

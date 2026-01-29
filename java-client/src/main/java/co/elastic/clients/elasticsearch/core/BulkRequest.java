@@ -528,6 +528,25 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 
 		private List<BulkOperation> operations;
 
+		public Builder() {
+		}
+		private Builder(BulkRequest instance) {
+			this.source = instance.source;
+			this.sourceExcludes = instance.sourceExcludes;
+			this.sourceIncludes = instance.sourceIncludes;
+			this.includeSourceOnError = instance.includeSourceOnError;
+			this.index = instance.index;
+			this.listExecutedPipelines = instance.listExecutedPipelines;
+			this.pipeline = instance.pipeline;
+			this.refresh = instance.refresh;
+			this.requireAlias = instance.requireAlias;
+			this.requireDataStream = instance.requireDataStream;
+			this.routing = instance.routing;
+			this.timeout = instance.timeout;
+			this.waitForActiveShards = instance.waitForActiveShards;
+			this.operations = instance.operations;
+
+		}
 		/**
 		 * Indicates whether to return the <code>_source</code> field (<code>true</code>
 		 * or <code>false</code>) or contains a list of fields to return.
@@ -816,6 +835,12 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -236,6 +236,17 @@ public class IpPrefixAggregation extends BucketAggregationBase implements Aggreg
 		@Nullable
 		private Long minDocCount;
 
+		public Builder() {
+		}
+		private Builder(IpPrefixAggregation instance) {
+			this.field = instance.field;
+			this.prefixLength = instance.prefixLength;
+			this.isIpv6 = instance.isIpv6;
+			this.appendPrefixLength = instance.appendPrefixLength;
+			this.keyed = instance.keyed;
+			this.minDocCount = instance.minDocCount;
+
+		}
 		/**
 		 * Required - The IP address field to aggregation on. The field mapping type
 		 * must be <code>ip</code>.
@@ -319,6 +330,12 @@ public class IpPrefixAggregation extends BucketAggregationBase implements Aggreg
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

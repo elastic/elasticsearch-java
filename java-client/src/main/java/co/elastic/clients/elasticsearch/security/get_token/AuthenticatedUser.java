@@ -148,6 +148,15 @@ public class AuthenticatedUser extends User {
 
 		private String authenticationType;
 
+		public Builder() {
+		}
+		private Builder(AuthenticatedUser instance) {
+			this.authenticationRealm = instance.authenticationRealm;
+			this.lookupRealm = instance.lookupRealm;
+			this.authenticationProvider = instance.authenticationProvider;
+			this.authenticationType = instance.authenticationType;
+
+		}
 		/**
 		 * Required - API name: {@code authentication_realm}
 		 */
@@ -220,6 +229,12 @@ public class AuthenticatedUser extends User {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

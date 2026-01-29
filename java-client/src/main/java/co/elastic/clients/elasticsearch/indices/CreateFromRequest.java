@@ -138,6 +138,14 @@ public class CreateFromRequest extends RequestBase implements JsonpSerializable 
 
 		private CreateFrom createFrom;
 
+		public Builder() {
+		}
+		private Builder(CreateFromRequest instance) {
+			this.dest = instance.dest;
+			this.source = instance.source;
+			this.createFrom = instance.createFrom;
+
+		}
 		/**
 		 * Required - The destination index or data stream name
 		 * <p>
@@ -199,6 +207,12 @@ public class CreateFromRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<CreateFromRequest> _DESERIALIZER = createCreateFromRequestDeserializer();
 	protected static JsonpDeserializer<CreateFromRequest> createCreateFromRequestDeserializer() {
 

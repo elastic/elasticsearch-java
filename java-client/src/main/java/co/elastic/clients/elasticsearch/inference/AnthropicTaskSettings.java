@@ -194,6 +194,15 @@ public class AnthropicTaskSettings implements JsonpSerializable {
 		@Nullable
 		private Float topP;
 
+		public Builder() {
+		}
+		private Builder(AnthropicTaskSettings instance) {
+			this.maxTokens = instance.maxTokens;
+			this.temperature = instance.temperature;
+			this.topK = instance.topK;
+			this.topP = instance.topP;
+
+		}
 		/**
 		 * Required - For a <code>completion</code> task, it is the maximum number of
 		 * tokens to generate before stopping.
@@ -263,6 +272,12 @@ public class AnthropicTaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

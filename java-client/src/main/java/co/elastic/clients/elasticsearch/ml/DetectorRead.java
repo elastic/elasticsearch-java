@@ -335,6 +335,21 @@ public class DetectorRead implements JsonpSerializable {
 		@Nullable
 		private Boolean useNull;
 
+		public Builder() {
+		}
+		private Builder(DetectorRead instance) {
+			this.byFieldName = instance.byFieldName;
+			this.customRules = instance.customRules;
+			this.detectorDescription = instance.detectorDescription;
+			this.detectorIndex = instance.detectorIndex;
+			this.excludeFrequent = instance.excludeFrequent;
+			this.fieldName = instance.fieldName;
+			this.function = instance.function;
+			this.overFieldName = instance.overFieldName;
+			this.partitionFieldName = instance.partitionFieldName;
+			this.useNull = instance.useNull;
+
+		}
 		/**
 		 * The field used to split the data. In particular, this property is used for
 		 * analyzing the splits with respect to their own history. It is used for
@@ -503,6 +518,12 @@ public class DetectorRead implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

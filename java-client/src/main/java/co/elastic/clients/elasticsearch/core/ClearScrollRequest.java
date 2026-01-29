@@ -124,6 +124,12 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 		@Nullable
 		private List<String> scrollId;
 
+		public Builder() {
+		}
+		private Builder(ClearScrollRequest instance) {
+			this.scrollId = instance.scrollId;
+
+		}
 		/**
 		 * The scroll IDs to clear. To clear all scroll IDs, use <code>_all</code>.
 		 * <p>
@@ -166,6 +172,12 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

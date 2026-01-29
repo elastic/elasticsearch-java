@@ -128,6 +128,12 @@ public class SamplerAggregation extends BucketAggregationBase implements Aggrega
 		@Nullable
 		private Integer shardSize;
 
+		public Builder() {
+		}
+		private Builder(SamplerAggregation instance) {
+			this.shardSize = instance.shardSize;
+
+		}
 		/**
 		 * Limits how many top-scoring documents are collected in the sample processed
 		 * on each shard.
@@ -157,6 +163,12 @@ public class SamplerAggregation extends BucketAggregationBase implements Aggrega
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

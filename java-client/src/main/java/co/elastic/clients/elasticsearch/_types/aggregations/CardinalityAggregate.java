@@ -115,6 +115,12 @@ public class CardinalityAggregate extends AggregateBase implements AggregateVari
 				ObjectBuilder<CardinalityAggregate> {
 		private Long value;
 
+		public Builder() {
+		}
+		private Builder(CardinalityAggregate instance) {
+			this.value = instance.value;
+
+		}
 		/**
 		 * Required - API name: {@code value}
 		 */
@@ -141,6 +147,12 @@ public class CardinalityAggregate extends AggregateBase implements AggregateVari
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

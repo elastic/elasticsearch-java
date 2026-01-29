@@ -104,6 +104,12 @@ public class ParentTaskInfo extends TaskInfo {
 		@Nullable
 		private List<TaskInfo> children;
 
+		public Builder() {
+		}
+		private Builder(ParentTaskInfo instance) {
+			this.children = instance.children;
+
+		}
 		/**
 		 * API name: {@code children}
 		 * <p>
@@ -151,6 +157,12 @@ public class ParentTaskInfo extends TaskInfo {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

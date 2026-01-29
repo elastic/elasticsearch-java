@@ -131,6 +131,12 @@ public class CustomTaskSettings implements JsonpSerializable {
 		@Nullable
 		private JsonData parameters;
 
+		public Builder() {
+		}
+		private Builder(CustomTaskSettings instance) {
+			this.parameters = instance.parameters;
+
+		}
 		/**
 		 * Specifies parameters that are required to run the custom service. The
 		 * parameters depend on the model your custom service uses. For example:
@@ -170,6 +176,12 @@ public class CustomTaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

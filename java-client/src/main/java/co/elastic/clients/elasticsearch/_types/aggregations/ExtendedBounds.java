@@ -151,6 +151,13 @@ public class ExtendedBounds<T> implements JsonpSerializable {
 		@Nullable
 		private JsonpSerializer<T> tSerializer;
 
+		public Builder() {
+		}
+		private Builder(ExtendedBounds<T> instance) {
+			this.max = instance.max;
+			this.min = instance.min;
+
+		}
 		/**
 		 * Maximum value for the bound.
 		 * <p>
@@ -198,6 +205,12 @@ public class ExtendedBounds<T> implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -124,6 +124,13 @@ public class Defaults implements JsonpSerializable {
 
 		private Datafeeds datafeeds;
 
+		public Builder() {
+		}
+		private Builder(Defaults instance) {
+			this.anomalyDetectors = instance.anomalyDetectors;
+			this.datafeeds = instance.datafeeds;
+
+		}
 		/**
 		 * Required - API name: {@code anomaly_detectors}
 		 */
@@ -172,6 +179,12 @@ public class Defaults implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

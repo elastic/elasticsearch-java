@@ -198,6 +198,16 @@ public class PutDataStreamOptionsRequest extends RequestBase implements JsonpSer
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutDataStreamOptionsRequest instance) {
+			this.expandWildcards = instance.expandWildcards;
+			this.failureStore = instance.failureStore;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Type of data stream that wildcard patterns can match. Supports
 		 * comma-separated values, such as <code>open,hidden</code>. Valid values are:
@@ -338,6 +348,12 @@ public class PutDataStreamOptionsRequest extends RequestBase implements JsonpSer
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

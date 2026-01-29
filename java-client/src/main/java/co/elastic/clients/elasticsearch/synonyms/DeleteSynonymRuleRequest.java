@@ -112,6 +112,13 @@ public class DeleteSynonymRuleRequest extends RequestBase {
 
 		private String setId;
 
+		public Builder() {
+		}
+		private Builder(DeleteSynonymRuleRequest instance) {
+			this.ruleId = instance.ruleId;
+			this.setId = instance.setId;
+
+		}
 		/**
 		 * Required - The ID of the synonym rule to delete.
 		 * <p>
@@ -150,6 +157,12 @@ public class DeleteSynonymRuleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

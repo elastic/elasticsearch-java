@@ -311,6 +311,19 @@ public class IngestDocumentSimulation implements JsonpSerializable {
 		@Nullable
 		private ErrorCause error;
 
+		public Builder() {
+		}
+		private Builder(IngestDocumentSimulation instance) {
+			this.id = instance.id;
+			this.index = instance.index;
+			this.source = instance.source;
+			this.version = instance.version;
+			this.executedPipelines = instance.executedPipelines;
+			this.ignoredFields = instance.ignoredFields;
+			this.error = instance.error;
+			this.metadata = instance.metadata;
+
+		}
 		/**
 		 * Required - Identifier for the document.
 		 * <p>
@@ -459,6 +472,12 @@ public class IngestDocumentSimulation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

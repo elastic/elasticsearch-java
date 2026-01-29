@@ -245,6 +245,19 @@ public class QueryCacheStats implements JsonpSerializable {
 
 		private Long totalCount;
 
+		public Builder() {
+		}
+		private Builder(QueryCacheStats instance) {
+			this.cacheCount = instance.cacheCount;
+			this.cacheSize = instance.cacheSize;
+			this.evictions = instance.evictions;
+			this.hitCount = instance.hitCount;
+			this.memorySize = instance.memorySize;
+			this.memorySizeInBytes = instance.memorySizeInBytes;
+			this.missCount = instance.missCount;
+			this.totalCount = instance.totalCount;
+
+		}
 		/**
 		 * Required - Total number of entries added to the query cache across all shards
 		 * assigned to selected nodes. This number includes current and evicted entries.
@@ -351,6 +364,12 @@ public class QueryCacheStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

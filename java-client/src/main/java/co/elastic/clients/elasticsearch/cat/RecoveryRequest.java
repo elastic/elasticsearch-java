@@ -229,6 +229,18 @@ public class RecoveryRequest extends CatRequestBase {
 		@Nullable
 		private TimeUnit time;
 
+		public Builder() {
+		}
+		private Builder(RecoveryRequest instance) {
+			this.activeOnly = instance.activeOnly;
+			this.bytes = instance.bytes;
+			this.detailed = instance.detailed;
+			this.h = instance.h;
+			this.index = instance.index;
+			this.s = instance.s;
+			this.time = instance.time;
+
+		}
 		/**
 		 * If <code>true</code>, the response only includes ongoing shard recoveries.
 		 * <p>
@@ -398,6 +410,12 @@ public class RecoveryRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

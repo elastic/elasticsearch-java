@@ -161,6 +161,14 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 		@Nullable
 		private Query query;
 
+		public Builder() {
+		}
+		private Builder(EvaluateDataFrameRequest instance) {
+			this.evaluation = instance.evaluation;
+			this.index = instance.index;
+			this.query = instance.query;
+
+		}
 		/**
 		 * Required - Defines the type of evaluation you want to perform.
 		 * <p>
@@ -248,6 +256,12 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

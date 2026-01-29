@@ -156,6 +156,15 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeleteDanglingIndexRequest instance) {
+			this.acceptDataLoss = instance.acceptDataLoss;
+			this.indexUuid = instance.indexUuid;
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * This parameter must be set to true to acknowledge that it will no longer be
 		 * possible to recove data from the dangling index.
@@ -234,6 +243,12 @@ public class DeleteDanglingIndexRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

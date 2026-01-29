@@ -242,6 +242,16 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private List<SortOptions> sort;
 
+		public Builder() {
+		}
+		private Builder(QueryRoleRequest instance) {
+			this.from = instance.from;
+			this.query = instance.query;
+			this.searchAfter = instance.searchAfter;
+			this.size = instance.size;
+			this.sort = instance.sort;
+
+		}
 		/**
 		 * The starting document offset. It must not be negative. By default, you cannot
 		 * page through more than 10,000 hits using the <code>from</code> and
@@ -478,6 +488,12 @@ public class QueryRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

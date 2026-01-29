@@ -126,6 +126,13 @@ public class VertexInclude implements JsonpSerializable {
 
 		private String term;
 
+		public Builder() {
+		}
+		private Builder(VertexInclude instance) {
+			this.boost = instance.boost;
+			this.term = instance.term;
+
+		}
 		/**
 		 * Required - API name: {@code boost}
 		 */
@@ -160,6 +167,12 @@ public class VertexInclude implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

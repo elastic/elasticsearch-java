@@ -288,6 +288,21 @@ public class NodeShard implements JsonpSerializable {
 		@Nullable
 		private RelocationFailureInfo relocationFailureInfo;
 
+		public Builder() {
+		}
+		private Builder(NodeShard instance) {
+			this.state = instance.state;
+			this.primary = instance.primary;
+			this.node = instance.node;
+			this.shard = instance.shard;
+			this.index = instance.index;
+			this.allocationId = instance.allocationId;
+			this.recoverySource = instance.recoverySource;
+			this.unassignedInfo = instance.unassignedInfo;
+			this.relocatingNode = instance.relocatingNode;
+			this.relocationFailureInfo = instance.relocationFailureInfo;
+
+		}
 		/**
 		 * Required - API name: {@code state}
 		 */
@@ -426,6 +441,12 @@ public class NodeShard implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

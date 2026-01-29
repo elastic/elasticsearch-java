@@ -248,6 +248,18 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 		@Nullable
 		private Integer shard;
 
+		public Builder() {
+		}
+		private Builder(AllocationExplainRequest instance) {
+			this.currentNode = instance.currentNode;
+			this.includeDiskInfo = instance.includeDiskInfo;
+			this.includeYesDecisions = instance.includeYesDecisions;
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.primary = instance.primary;
+			this.shard = instance.shard;
+
+		}
 		/**
 		 * Specifies the node ID or the name of the node to only explain a shard that is
 		 * currently located on the specified node.
@@ -346,6 +358,12 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

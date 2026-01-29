@@ -220,6 +220,19 @@ public class DfsStatisticsBreakdown implements JsonpSerializable {
 
 		private Long termStatisticsCount;
 
+		public Builder() {
+		}
+		private Builder(DfsStatisticsBreakdown instance) {
+			this.collectionStatistics = instance.collectionStatistics;
+			this.collectionStatisticsCount = instance.collectionStatisticsCount;
+			this.createWeight = instance.createWeight;
+			this.createWeightCount = instance.createWeightCount;
+			this.rewrite = instance.rewrite;
+			this.rewriteCount = instance.rewriteCount;
+			this.termStatistics = instance.termStatistics;
+			this.termStatisticsCount = instance.termStatisticsCount;
+
+		}
 		/**
 		 * Required - API name: {@code collection_statistics}
 		 */
@@ -302,6 +315,12 @@ public class DfsStatisticsBreakdown implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

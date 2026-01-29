@@ -119,6 +119,13 @@ public class DeleteUserRequest extends RequestBase {
 
 		private String username;
 
+		public Builder() {
+		}
+		private Builder(DeleteUserRequest instance) {
+			this.refresh = instance.refresh;
+			this.username = instance.username;
+
+		}
 		/**
 		 * If <code>true</code> (the default) then refresh the affected shards to make
 		 * this operation visible to search, if <code>wait_for</code> then wait for a
@@ -160,6 +167,12 @@ public class DeleteUserRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

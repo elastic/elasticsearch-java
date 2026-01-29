@@ -198,6 +198,16 @@ public class MemStats implements JsonpSerializable {
 
 		private MemMlStats ml;
 
+		public Builder() {
+		}
+		private Builder(MemStats instance) {
+			this.adjustedTotal = instance.adjustedTotal;
+			this.adjustedTotalInBytes = instance.adjustedTotalInBytes;
+			this.total = instance.total;
+			this.totalInBytes = instance.totalInBytes;
+			this.ml = instance.ml;
+
+		}
 		/**
 		 * If the amount of physical memory has been overridden using the
 		 * es.total_memory_bytes system property then this reports the overridden value.
@@ -282,6 +292,12 @@ public class MemStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -182,6 +182,16 @@ public class JobUsage implements JsonpSerializable {
 
 		private JobStatistics modelSize;
 
+		public Builder() {
+		}
+		private Builder(JobUsage instance) {
+			this.count = instance.count;
+			this.createdBy = instance.createdBy;
+			this.detectors = instance.detectors;
+			this.forecasts = instance.forecasts;
+			this.modelSize = instance.modelSize;
+
+		}
 		/**
 		 * Required - API name: {@code count}
 		 */
@@ -273,6 +283,12 @@ public class JobUsage implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

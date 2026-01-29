@@ -160,6 +160,14 @@ public class TrainedModelInferenceFeatureImportance implements JsonpSerializable
 		@Nullable
 		private List<TrainedModelInferenceClassImportance> classes;
 
+		public Builder() {
+		}
+		private Builder(TrainedModelInferenceFeatureImportance instance) {
+			this.featureName = instance.featureName;
+			this.importance = instance.importance;
+			this.classes = instance.classes;
+
+		}
 		/**
 		 * Required - API name: {@code feature_name}
 		 */
@@ -225,6 +233,12 @@ public class TrainedModelInferenceFeatureImportance implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

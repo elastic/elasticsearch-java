@@ -115,6 +115,12 @@ public class NodeInfoXpackMl implements JsonpSerializable {
 		@Nullable
 		private Boolean useAutoMachineMemoryPercent;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoXpackMl instance) {
+			this.useAutoMachineMemoryPercent = instance.useAutoMachineMemoryPercent;
+
+		}
 		/**
 		 * API name: {@code use_auto_machine_memory_percent}
 		 */
@@ -141,6 +147,12 @@ public class NodeInfoXpackMl implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

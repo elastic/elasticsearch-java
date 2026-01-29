@@ -157,6 +157,13 @@ public class Pivot implements JsonpSerializable {
 		@Nullable
 		private Map<String, PivotGroupBy> groupBy;
 
+		public Builder() {
+		}
+		private Builder(Pivot instance) {
+			this.aggregations = instance.aggregations;
+			this.groupBy = instance.groupBy;
+
+		}
 		/**
 		 * Defines how to aggregate the grouped data. The following aggregations are
 		 * currently supported: average, bucket script, bucket selector, cardinality,
@@ -293,6 +300,12 @@ public class Pivot implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

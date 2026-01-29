@@ -118,6 +118,13 @@ public class WatcherStatsRequest extends RequestBase {
 		@Nullable
 		private List<WatcherMetric> metric;
 
+		public Builder() {
+		}
+		private Builder(WatcherStatsRequest instance) {
+			this.emitStacktraces = instance.emitStacktraces;
+			this.metric = instance.metric;
+
+		}
 		/**
 		 * Defines whether stack traces are generated for each watch that is running.
 		 * <p>
@@ -170,6 +177,12 @@ public class WatcherStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

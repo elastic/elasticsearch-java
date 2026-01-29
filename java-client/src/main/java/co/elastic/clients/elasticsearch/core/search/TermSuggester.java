@@ -368,6 +368,23 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 		@Nullable
 		private String text;
 
+		public Builder() {
+		}
+		private Builder(TermSuggester instance) {
+			this.lowercaseTerms = instance.lowercaseTerms;
+			this.maxEdits = instance.maxEdits;
+			this.maxInspections = instance.maxInspections;
+			this.maxTermFreq = instance.maxTermFreq;
+			this.minDocFreq = instance.minDocFreq;
+			this.minWordLength = instance.minWordLength;
+			this.prefixLength = instance.prefixLength;
+			this.shardSize = instance.shardSize;
+			this.sort = instance.sort;
+			this.stringDistance = instance.stringDistance;
+			this.suggestMode = instance.suggestMode;
+			this.text = instance.text;
+
+		}
 		/**
 		 * API name: {@code lowercase_terms}
 		 */
@@ -520,6 +537,12 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

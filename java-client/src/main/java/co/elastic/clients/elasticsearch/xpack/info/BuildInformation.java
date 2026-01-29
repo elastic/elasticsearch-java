@@ -125,6 +125,13 @@ public class BuildInformation implements JsonpSerializable {
 
 		private String hash;
 
+		public Builder() {
+		}
+		private Builder(BuildInformation instance) {
+			this.date = instance.date;
+			this.hash = instance.hash;
+
+		}
 		/**
 		 * Required - API name: {@code date}
 		 */
@@ -159,6 +166,12 @@ public class BuildInformation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

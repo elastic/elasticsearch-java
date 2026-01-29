@@ -335,6 +335,21 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 
 		private IndexSettings settings;
 
+		public Builder() {
+		}
+		private Builder(PutIndicesSettingsRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.flatSettings = instance.flatSettings;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.preserveExisting = instance.preserveExisting;
+			this.reopen = instance.reopen;
+			this.timeout = instance.timeout;
+			this.settings = instance.settings;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -533,6 +548,12 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<PutIndicesSettingsRequest> _DESERIALIZER = createPutIndicesSettingsRequestDeserializer();
 	protected static JsonpDeserializer<PutIndicesSettingsRequest> createPutIndicesSettingsRequestDeserializer() {
 

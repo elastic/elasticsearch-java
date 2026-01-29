@@ -189,6 +189,15 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 		@Nullable
 		private TDigest tdigest;
 
+		public Builder() {
+		}
+		private Builder(PercentileRanksAggregation instance) {
+			this.keyed = instance.keyed;
+			this.values = instance.values;
+			this.hdr = instance.hdr;
+			this.tdigest = instance.tdigest;
+
+		}
 		/**
 		 * By default, the aggregation associates a unique string key with each bucket
 		 * and returns the ranges as a hash rather than an array. Set to
@@ -285,6 +294,12 @@ public class PercentileRanksAggregation extends FormatMetricAggregationBase impl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

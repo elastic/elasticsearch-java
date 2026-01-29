@@ -183,6 +183,16 @@ public class CancelRequest extends RequestBase {
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(CancelRequest instance) {
+			this.actions = instance.actions;
+			this.nodes = instance.nodes;
+			this.parentTaskId = instance.parentTaskId;
+			this.taskId = instance.taskId;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * A comma-separated list or wildcard expression of actions that is used to
 		 * limit the request.
@@ -283,6 +293,12 @@ public class CancelRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

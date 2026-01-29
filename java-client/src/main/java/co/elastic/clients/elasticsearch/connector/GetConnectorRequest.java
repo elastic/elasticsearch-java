@@ -99,6 +99,12 @@ public class GetConnectorRequest extends RequestBase {
 				ObjectBuilder<GetConnectorRequest> {
 		private String connectorId;
 
+		public Builder() {
+		}
+		private Builder(GetConnectorRequest instance) {
+			this.connectorId = instance.connectorId;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector
 		 * <p>
@@ -127,6 +133,12 @@ public class GetConnectorRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

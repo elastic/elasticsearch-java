@@ -573,6 +573,31 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Long resultsRetentionDays;
 
+		public Builder() {
+		}
+		private Builder(PutJobRequest instance) {
+			this.allowLazyOpen = instance.allowLazyOpen;
+			this.allowNoIndices = instance.allowNoIndices;
+			this.analysisConfig = instance.analysisConfig;
+			this.analysisLimits = instance.analysisLimits;
+			this.backgroundPersistInterval = instance.backgroundPersistInterval;
+			this.customSettings = instance.customSettings;
+			this.dailyModelSnapshotRetentionAfterDays = instance.dailyModelSnapshotRetentionAfterDays;
+			this.dataDescription = instance.dataDescription;
+			this.datafeedConfig = instance.datafeedConfig;
+			this.description = instance.description;
+			this.expandWildcards = instance.expandWildcards;
+			this.groups = instance.groups;
+			this.ignoreThrottled = instance.ignoreThrottled;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.jobId = instance.jobId;
+			this.modelPlotConfig = instance.modelPlotConfig;
+			this.modelSnapshotRetentionDays = instance.modelSnapshotRetentionDays;
+			this.renormalizationWindowDays = instance.renormalizationWindowDays;
+			this.resultsIndexName = instance.resultsIndexName;
+			this.resultsRetentionDays = instance.resultsRetentionDays;
+
+		}
 		/**
 		 * Advanced configuration option. Specifies whether this job can open when there
 		 * is insufficient machine learning node capacity for it to be immediately
@@ -963,6 +988,12 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

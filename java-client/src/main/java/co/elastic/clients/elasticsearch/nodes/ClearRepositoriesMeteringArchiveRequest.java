@@ -119,6 +119,13 @@ public class ClearRepositoriesMeteringArchiveRequest extends RequestBase {
 
 		private List<String> nodeId;
 
+		public Builder() {
+		}
+		private Builder(ClearRepositoriesMeteringArchiveRequest instance) {
+			this.maxArchiveVersion = instance.maxArchiveVersion;
+			this.nodeId = instance.nodeId;
+
+		}
 		/**
 		 * Required - Specifies the maximum <code>archive_version</code> to be cleared
 		 * from the archive.
@@ -174,6 +181,12 @@ public class ClearRepositoriesMeteringArchiveRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

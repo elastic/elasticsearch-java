@@ -227,6 +227,17 @@ public class AliasesRecord implements JsonpSerializable {
 		@Nullable
 		private String isWriteIndex;
 
+		public Builder() {
+		}
+		private Builder(AliasesRecord instance) {
+			this.alias = instance.alias;
+			this.index = instance.index;
+			this.filter = instance.filter;
+			this.routingIndex = instance.routingIndex;
+			this.routingSearch = instance.routingSearch;
+			this.isWriteIndex = instance.isWriteIndex;
+
+		}
 		/**
 		 * alias name
 		 * <p>
@@ -305,6 +316,12 @@ public class AliasesRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

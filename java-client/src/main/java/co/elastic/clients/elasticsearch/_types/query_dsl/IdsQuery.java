@@ -150,6 +150,12 @@ public class IdsQuery extends QueryBase
 		@Nullable
 		private List<String> values;
 
+		public Builder() {
+		}
+		private Builder(IdsQuery instance) {
+			this.values = instance.values;
+
+		}
 		/**
 		 * An array of document IDs.
 		 * <p>
@@ -192,6 +198,12 @@ public class IdsQuery extends QueryBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

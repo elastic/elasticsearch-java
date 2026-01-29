@@ -154,6 +154,15 @@ public class JobStatistics implements JsonpSerializable {
 
 		private Double total;
 
+		public Builder() {
+		}
+		private Builder(JobStatistics instance) {
+			this.avg = instance.avg;
+			this.max = instance.max;
+			this.min = instance.min;
+			this.total = instance.total;
+
+		}
 		/**
 		 * Required - API name: {@code avg}
 		 */
@@ -204,6 +213,12 @@ public class JobStatistics implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

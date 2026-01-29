@@ -101,6 +101,12 @@ public class GetBehavioralAnalyticsRequest extends RequestBase {
 		@Nullable
 		private List<String> name;
 
+		public Builder() {
+		}
+		private Builder(GetBehavioralAnalyticsRequest instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * A list of analytics collections to limit the returned information
 		 * <p>
@@ -143,6 +149,12 @@ public class GetBehavioralAnalyticsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

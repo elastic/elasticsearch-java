@@ -178,6 +178,16 @@ public class IndicesVersions implements JsonpSerializable {
 
 		private String version;
 
+		public Builder() {
+		}
+		private Builder(IndicesVersions instance) {
+			this.indexCount = instance.indexCount;
+			this.primaryShardCount = instance.primaryShardCount;
+			this.totalPrimaryBytes = instance.totalPrimaryBytes;
+			this.totalPrimarySize = instance.totalPrimarySize;
+			this.version = instance.version;
+
+		}
 		/**
 		 * Required - API name: {@code index_count}
 		 */
@@ -236,6 +246,12 @@ public class IndicesVersions implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

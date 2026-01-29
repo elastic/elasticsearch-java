@@ -306,6 +306,19 @@ public class Source implements JsonpSerializable {
 		@Nullable
 		private Map<String, RuntimeField> runtimeMappings;
 
+		public Builder() {
+		}
+		private Builder(Source instance) {
+			this.index = instance.index;
+			this.query = instance.query;
+			this.remote = instance.remote;
+			this.size = instance.size;
+			this.slice = instance.slice;
+			this.sort = instance.sort;
+			this.sourceFields = instance.sourceFields;
+			this.runtimeMappings = instance.runtimeMappings;
+
+		}
 		/**
 		 * Required - The name of the data stream, index, or alias you are copying from.
 		 * It accepts a comma-separated list to reindex from multiple sources.
@@ -555,6 +568,12 @@ public class Source implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

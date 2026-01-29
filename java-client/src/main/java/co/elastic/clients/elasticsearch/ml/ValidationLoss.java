@@ -138,6 +138,13 @@ public class ValidationLoss implements JsonpSerializable {
 
 		private String lossType;
 
+		public Builder() {
+		}
+		private Builder(ValidationLoss instance) {
+			this.foldValues = instance.foldValues;
+			this.lossType = instance.lossType;
+
+		}
 		/**
 		 * Required - Validation loss values for every added decision tree during the
 		 * forest growing procedure.
@@ -192,6 +199,12 @@ public class ValidationLoss implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
