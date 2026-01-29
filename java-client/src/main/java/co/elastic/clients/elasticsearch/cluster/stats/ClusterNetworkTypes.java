@@ -153,6 +153,13 @@ public class ClusterNetworkTypes implements JsonpSerializable {
 
 		private Map<String, Integer> transportTypes;
 
+		public Builder() {
+		}
+		private Builder(ClusterNetworkTypes instance) {
+			this.httpTypes = instance.httpTypes;
+			this.transportTypes = instance.transportTypes;
+
+		}
 		/**
 		 * Required - Contains statistics about the HTTP network types used by selected
 		 * nodes.
@@ -223,6 +230,12 @@ public class ClusterNetworkTypes implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

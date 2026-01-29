@@ -143,6 +143,13 @@ public class ShardStoreIndex implements JsonpSerializable {
 		@Nullable
 		private Query filter;
 
+		public Builder() {
+		}
+		private Builder(ShardStoreIndex instance) {
+			this.aliases = instance.aliases;
+			this.filter = instance.filter;
+
+		}
 		/**
 		 * API name: {@code aliases}
 		 * <p>
@@ -204,6 +211,12 @@ public class ShardStoreIndex implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

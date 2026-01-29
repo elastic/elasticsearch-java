@@ -220,6 +220,16 @@ public class TemplateConfig implements JsonpSerializable {
 		@Nullable
 		private ScriptSource source;
 
+		public Builder() {
+		}
+		private Builder(TemplateConfig instance) {
+			this.explain = instance.explain;
+			this.id = instance.id;
+			this.params = instance.params;
+			this.profile = instance.profile;
+			this.source = instance.source;
+
+		}
 		/**
 		 * If <code>true</code>, returns detailed information about score calculation as
 		 * part of each hit.
@@ -319,6 +329,12 @@ public class TemplateConfig implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

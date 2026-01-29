@@ -167,6 +167,15 @@ public class SuggestContext implements JsonpSerializable {
 		@Nullable
 		private String precision;
 
+		public Builder() {
+		}
+		private Builder(SuggestContext instance) {
+			this.name = instance.name;
+			this.path = instance.path;
+			this.type = instance.type;
+			this.precision = instance.precision;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -217,6 +226,12 @@ public class SuggestContext implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

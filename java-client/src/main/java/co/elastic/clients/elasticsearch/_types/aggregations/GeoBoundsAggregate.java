@@ -111,6 +111,12 @@ public class GeoBoundsAggregate extends AggregateBase implements AggregateVarian
 		@Nullable
 		private GeoBounds bounds;
 
+		public Builder() {
+		}
+		private Builder(GeoBoundsAggregate instance) {
+			this.bounds = instance.bounds;
+
+		}
 		/**
 		 * API name: {@code bounds}
 		 */
@@ -144,6 +150,12 @@ public class GeoBoundsAggregate extends AggregateBase implements AggregateVarian
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

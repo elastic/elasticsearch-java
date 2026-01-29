@@ -149,6 +149,14 @@ public class DocumentRating implements JsonpSerializable {
 
 		private Integer rating;
 
+		public Builder() {
+		}
+		private Builder(DocumentRating instance) {
+			this.id = instance.id;
+			this.index = instance.index;
+			this.rating = instance.rating;
+
+		}
 		/**
 		 * Required - The document ID.
 		 * <p>
@@ -198,6 +206,12 @@ public class DocumentRating implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

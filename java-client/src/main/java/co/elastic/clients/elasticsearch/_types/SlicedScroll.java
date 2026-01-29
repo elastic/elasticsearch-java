@@ -146,6 +146,14 @@ public class SlicedScroll implements JsonpSerializable {
 
 		private Integer max;
 
+		public Builder() {
+		}
+		private Builder(SlicedScroll instance) {
+			this.field = instance.field;
+			this.id = instance.id;
+			this.max = instance.max;
+
+		}
 		/**
 		 * API name: {@code field}
 		 */
@@ -188,6 +196,12 @@ public class SlicedScroll implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

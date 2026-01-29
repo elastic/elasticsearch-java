@@ -139,6 +139,13 @@ public class DataframeAnalyticsMemoryEstimation implements JsonpSerializable {
 
 		private String expectedMemoryWithoutDisk;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalyticsMemoryEstimation instance) {
+			this.expectedMemoryWithDisk = instance.expectedMemoryWithDisk;
+			this.expectedMemoryWithoutDisk = instance.expectedMemoryWithoutDisk;
+
+		}
 		/**
 		 * Required - Estimated memory usage under the assumption that overflowing to
 		 * disk is allowed during data frame analytics. expected_memory_with_disk is
@@ -181,6 +188,12 @@ public class DataframeAnalyticsMemoryEstimation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

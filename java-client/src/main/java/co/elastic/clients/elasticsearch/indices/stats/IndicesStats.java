@@ -228,6 +228,17 @@ public class IndicesStats implements JsonpSerializable {
 		@Nullable
 		private IndexMetadataState status;
 
+		public Builder() {
+		}
+		private Builder(IndicesStats instance) {
+			this.primaries = instance.primaries;
+			this.shards = instance.shards;
+			this.total = instance.total;
+			this.uuid = instance.uuid;
+			this.health = instance.health;
+			this.status = instance.status;
+
+		}
 		/**
 		 * API name: {@code primaries}
 		 */
@@ -320,6 +331,12 @@ public class IndicesStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

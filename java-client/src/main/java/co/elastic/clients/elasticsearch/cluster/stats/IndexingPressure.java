@@ -111,6 +111,12 @@ public class IndexingPressure implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndexingPressure> {
 		private IndexingPressureMemory memory;
 
+		public Builder() {
+		}
+		private Builder(IndexingPressure instance) {
+			this.memory = instance.memory;
+
+		}
 		/**
 		 * Required - API name: {@code memory}
 		 */
@@ -145,6 +151,12 @@ public class IndexingPressure implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

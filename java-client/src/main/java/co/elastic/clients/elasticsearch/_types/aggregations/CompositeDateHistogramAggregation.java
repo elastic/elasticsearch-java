@@ -201,6 +201,16 @@ public class CompositeDateHistogramAggregation extends CompositeAggregationBase
 		@Nullable
 		private String timeZone;
 
+		public Builder() {
+		}
+		private Builder(CompositeDateHistogramAggregation instance) {
+			this.format = instance.format;
+			this.calendarInterval = instance.calendarInterval;
+			this.fixedInterval = instance.fixedInterval;
+			this.offset = instance.offset;
+			this.timeZone = instance.timeZone;
+
+		}
 		/**
 		 * API name: {@code format}
 		 */
@@ -292,6 +302,12 @@ public class CompositeDateHistogramAggregation extends CompositeAggregationBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

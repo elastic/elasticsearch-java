@@ -81,6 +81,11 @@ public class GeoTileGridAggregate extends MultiBucketAggregateBase<GeoTileGridBu
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<GeoTileGridBucket, Builder>
 			implements
 				ObjectBuilder<GeoTileGridAggregate> {
+		public Builder() {
+		}
+		private Builder(GeoTileGridAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -100,6 +105,12 @@ public class GeoTileGridAggregate extends MultiBucketAggregateBase<GeoTileGridBu
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

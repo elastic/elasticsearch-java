@@ -218,6 +218,17 @@ public class DataStreamIndex implements JsonpSerializable {
 		@Nullable
 		private IndexMode indexMode;
 
+		public Builder() {
+		}
+		private Builder(DataStreamIndex instance) {
+			this.indexName = instance.indexName;
+			this.indexUuid = instance.indexUuid;
+			this.ilmPolicy = instance.ilmPolicy;
+			this.managedBy = instance.managedBy;
+			this.preferIlm = instance.preferIlm;
+			this.indexMode = instance.indexMode;
+
+		}
 		/**
 		 * Required - Name of the backing index.
 		 * <p>
@@ -297,6 +308,12 @@ public class DataStreamIndex implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -176,6 +176,16 @@ public class CoordinatorStats implements JsonpSerializable {
 
 		private Long remoteRequestsTotal;
 
+		public Builder() {
+		}
+		private Builder(CoordinatorStats instance) {
+			this.executedSearchesTotal = instance.executedSearchesTotal;
+			this.nodeId = instance.nodeId;
+			this.queueSize = instance.queueSize;
+			this.remoteRequestsCurrent = instance.remoteRequestsCurrent;
+			this.remoteRequestsTotal = instance.remoteRequestsTotal;
+
+		}
 		/**
 		 * Required - API name: {@code executed_searches_total}
 		 */
@@ -234,6 +244,12 @@ public class CoordinatorStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

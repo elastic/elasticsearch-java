@@ -153,6 +153,14 @@ public class GetJobsRequest extends RequestBase {
 		@Nullable
 		private List<String> jobId;
 
+		public Builder() {
+		}
+		private Builder(GetJobsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.excludeGenerated = instance.excludeGenerated;
+			this.jobId = instance.jobId;
+
+		}
 		/**
 		 * Specifies what to do when the request:
 		 * <ol>
@@ -232,6 +240,12 @@ public class GetJobsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

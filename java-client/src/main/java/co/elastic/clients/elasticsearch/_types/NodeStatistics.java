@@ -173,6 +173,15 @@ public class NodeStatistics implements JsonpSerializable {
 
 		private Integer failed;
 
+		public Builder() {
+		}
+		private Builder(NodeStatistics instance) {
+			this.failures = instance.failures;
+			this.total = instance.total;
+			this.successful = instance.successful;
+			this.failed = instance.failed;
+
+		}
 		/**
 		 * API name: {@code failures}
 		 * <p>
@@ -252,6 +261,12 @@ public class NodeStatistics implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

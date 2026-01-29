@@ -279,6 +279,18 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 		@Nullable
 		private JsonpSerializer<TPartialDocument> tPartialDocumentSerializer;
 
+		public Builder() {
+		}
+		private Builder(UpdateAction<TDocument, TPartialDocument> instance) {
+			this.detectNoop = instance.detectNoop;
+			this.doc = instance.doc;
+			this.docAsUpsert = instance.docAsUpsert;
+			this.script = instance.script;
+			this.scriptedUpsert = instance.scriptedUpsert;
+			this.source = instance.source;
+			this.upsert = instance.upsert;
+
+		}
 		/**
 		 * If true, the <code>result</code> in the response is set to 'noop' when no
 		 * changes to the document occur.
@@ -413,6 +425,12 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -112,6 +112,12 @@ public class TermSuggest extends SuggestBase implements SuggestionVariant {
 	public static class Builder extends SuggestBase.AbstractBuilder<Builder> implements ObjectBuilder<TermSuggest> {
 		private List<TermSuggestOption> options;
 
+		public Builder() {
+		}
+		private Builder(TermSuggest instance) {
+			this.options = instance.options;
+
+		}
 		/**
 		 * Required - API name: {@code options}
 		 * <p>
@@ -159,6 +165,12 @@ public class TermSuggest extends SuggestBase implements SuggestionVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

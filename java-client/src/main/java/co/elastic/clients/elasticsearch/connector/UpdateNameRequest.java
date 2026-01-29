@@ -153,6 +153,14 @@ public class UpdateNameRequest extends RequestBase implements JsonpSerializable 
 		@Nullable
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(UpdateNameRequest instance) {
+			this.connectorId = instance.connectorId;
+			this.description = instance.description;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector to be updated
 		 * <p>
@@ -197,6 +205,12 @@ public class UpdateNameRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

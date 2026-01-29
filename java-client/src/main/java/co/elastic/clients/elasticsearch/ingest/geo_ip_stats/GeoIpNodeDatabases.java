@@ -151,6 +151,13 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 
 		private List<String> filesInTemp;
 
+		public Builder() {
+		}
+		private Builder(GeoIpNodeDatabases instance) {
+			this.databases = instance.databases;
+			this.filesInTemp = instance.filesInTemp;
+
+		}
 		/**
 		 * Required - Downloaded databases for the node.
 		 * <p>
@@ -233,6 +240,12 @@ public class GeoIpNodeDatabases implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

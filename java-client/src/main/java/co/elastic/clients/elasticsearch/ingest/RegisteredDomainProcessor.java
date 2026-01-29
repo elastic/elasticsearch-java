@@ -156,6 +156,14 @@ public class RegisteredDomainProcessor extends ProcessorBase implements Processo
 		@Nullable
 		private Boolean ignoreMissing;
 
+		public Builder() {
+		}
+		private Builder(RegisteredDomainProcessor instance) {
+			this.field = instance.field;
+			this.targetField = instance.targetField;
+			this.ignoreMissing = instance.ignoreMissing;
+
+		}
 		/**
 		 * Required - Field containing the source FQDN.
 		 * <p>
@@ -206,6 +214,12 @@ public class RegisteredDomainProcessor extends ProcessorBase implements Processo
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

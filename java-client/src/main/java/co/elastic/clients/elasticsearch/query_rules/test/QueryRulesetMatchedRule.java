@@ -132,6 +132,13 @@ public class QueryRulesetMatchedRule implements JsonpSerializable {
 
 		private String ruleId;
 
+		public Builder() {
+		}
+		private Builder(QueryRulesetMatchedRule instance) {
+			this.rulesetId = instance.rulesetId;
+			this.ruleId = instance.ruleId;
+
+		}
 		/**
 		 * Required - Ruleset unique identifier
 		 * <p>
@@ -170,6 +177,12 @@ public class QueryRulesetMatchedRule implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

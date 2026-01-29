@@ -421,6 +421,24 @@ public class SimpleQueryStringQuery extends QueryBase
 		@Nullable
 		private String quoteFieldSuffix;
 
+		public Builder() {
+		}
+		private Builder(SimpleQueryStringQuery instance) {
+			this.analyzer = instance.analyzer;
+			this.analyzeWildcard = instance.analyzeWildcard;
+			this.autoGenerateSynonymsPhraseQuery = instance.autoGenerateSynonymsPhraseQuery;
+			this.defaultOperator = instance.defaultOperator;
+			this.fields = instance.fields;
+			this.flags = instance.flags;
+			this.fuzzyMaxExpansions = instance.fuzzyMaxExpansions;
+			this.fuzzyPrefixLength = instance.fuzzyPrefixLength;
+			this.fuzzyTranspositions = instance.fuzzyTranspositions;
+			this.lenient = instance.lenient;
+			this.minimumShouldMatch = instance.minimumShouldMatch;
+			this.query = instance.query;
+			this.quoteFieldSuffix = instance.quoteFieldSuffix;
+
+		}
 		/**
 		 * Analyzer used to convert text in the query string into tokens.
 		 * <p>
@@ -611,6 +629,12 @@ public class SimpleQueryStringQuery extends QueryBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

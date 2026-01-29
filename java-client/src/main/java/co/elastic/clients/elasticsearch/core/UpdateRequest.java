@@ -522,6 +522,30 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		@Nullable
 		private JsonpSerializer<TPartialDocument> tPartialDocumentSerializer;
 
+		public Builder() {
+		}
+		private Builder(UpdateRequest<TDocument, TPartialDocument> instance) {
+			this.source = instance.source;
+			this.detectNoop = instance.detectNoop;
+			this.doc = instance.doc;
+			this.docAsUpsert = instance.docAsUpsert;
+			this.id = instance.id;
+			this.ifPrimaryTerm = instance.ifPrimaryTerm;
+			this.ifSeqNo = instance.ifSeqNo;
+			this.includeSourceOnError = instance.includeSourceOnError;
+			this.index = instance.index;
+			this.lang = instance.lang;
+			this.refresh = instance.refresh;
+			this.requireAlias = instance.requireAlias;
+			this.retryOnConflict = instance.retryOnConflict;
+			this.routing = instance.routing;
+			this.script = instance.script;
+			this.scriptedUpsert = instance.scriptedUpsert;
+			this.timeout = instance.timeout;
+			this.upsert = instance.upsert;
+			this.waitForActiveShards = instance.waitForActiveShards;
+
+		}
 		/**
 		 * If <code>false</code>, turn off source retrieval. You can also specify a
 		 * comma-separated list of the fields you want to retrieve.
@@ -811,6 +835,12 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

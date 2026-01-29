@@ -160,6 +160,14 @@ public class SnapshotResponseItem implements JsonpSerializable {
 		@Nullable
 		private ErrorCause error;
 
+		public Builder() {
+		}
+		private Builder(SnapshotResponseItem instance) {
+			this.repository = instance.repository;
+			this.snapshots = instance.snapshots;
+			this.error = instance.error;
+
+		}
 		/**
 		 * Required - API name: {@code repository}
 		 */
@@ -230,6 +238,12 @@ public class SnapshotResponseItem implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

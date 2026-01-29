@@ -148,6 +148,13 @@ public class OidcLogoutRequest extends RequestBase implements JsonpSerializable 
 
 		private String token;
 
+		public Builder() {
+		}
+		private Builder(OidcLogoutRequest instance) {
+			this.refreshToken = instance.refreshToken;
+			this.token = instance.token;
+
+		}
 		/**
 		 * The refresh token to be invalidated.
 		 * <p>
@@ -186,6 +193,12 @@ public class OidcLogoutRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

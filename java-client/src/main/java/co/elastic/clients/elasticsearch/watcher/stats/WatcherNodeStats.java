@@ -228,6 +228,17 @@ public class WatcherNodeStats implements JsonpSerializable {
 
 		private String nodeId;
 
+		public Builder() {
+		}
+		private Builder(WatcherNodeStats instance) {
+			this.currentWatches = instance.currentWatches;
+			this.executionThreadPool = instance.executionThreadPool;
+			this.queuedWatches = instance.queuedWatches;
+			this.watchCount = instance.watchCount;
+			this.watcherState = instance.watcherState;
+			this.nodeId = instance.nodeId;
+
+		}
 		/**
 		 * The current executing watches metric gives insight into the watches that are
 		 * currently being executed by Watcher. Additional information is shared per
@@ -406,6 +417,12 @@ public class WatcherNodeStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

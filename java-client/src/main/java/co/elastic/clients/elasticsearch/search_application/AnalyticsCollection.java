@@ -114,6 +114,12 @@ public class AnalyticsCollection implements JsonpSerializable {
 				ObjectBuilder<AnalyticsCollection> {
 		private EventDataStream eventDataStream;
 
+		public Builder() {
+		}
+		private Builder(AnalyticsCollection instance) {
+			this.eventDataStream = instance.eventDataStream;
+
+		}
 		/**
 		 * Required - Data stream for the collection.
 		 * <p>
@@ -151,6 +157,12 @@ public class AnalyticsCollection implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

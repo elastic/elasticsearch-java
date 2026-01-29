@@ -246,6 +246,17 @@ public class OutlierDetectionParameters implements JsonpSerializable {
 		@Nullable
 		private Boolean standardizationEnabled;
 
+		public Builder() {
+		}
+		private Builder(OutlierDetectionParameters instance) {
+			this.computeFeatureInfluence = instance.computeFeatureInfluence;
+			this.featureInfluenceThreshold = instance.featureInfluenceThreshold;
+			this.method = instance.method;
+			this.nNeighbors = instance.nNeighbors;
+			this.outlierFraction = instance.outlierFraction;
+			this.standardizationEnabled = instance.standardizationEnabled;
+
+		}
 		/**
 		 * Specifies whether the feature influence calculation is enabled.
 		 * <p>
@@ -337,6 +348,12 @@ public class OutlierDetectionParameters implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

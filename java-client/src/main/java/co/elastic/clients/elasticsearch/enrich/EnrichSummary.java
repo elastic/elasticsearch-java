@@ -114,6 +114,12 @@ public class EnrichSummary implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<EnrichSummary> {
 		private Pair<EnrichPolicyType, EnrichPolicy> config;
 
+		public Builder() {
+		}
+		private Builder(EnrichSummary instance) {
+			this.config = instance.config;
+
+		}
 		/**
 		 * Required - API name: {@code config}
 		 */
@@ -155,6 +161,12 @@ public class EnrichSummary implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

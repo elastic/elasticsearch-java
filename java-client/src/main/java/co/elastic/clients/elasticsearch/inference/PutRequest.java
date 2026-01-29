@@ -106,7 +106,8 @@ import javax.annotation.Nullable;
  * <li>OpenAI (<code>chat_completion</code>, <code>completion</code>,
  * <code>text_embedding</code>)</li>
  * <li>VoyageAI (<code>rerank</code>, <code>text_embedding</code>)</li>
- * <li>Watsonx inference integration (<code>text_embedding</code>)</li>
+ * <li>Watsonx (<code>chat_completion</code>, <code>completion</code>,
+ * <code>rerank</code>, <code>text_embedding</code>)</li>
  * </ul>
  *
  * @see <a href="../doc-files/api-spec.html#inference.put.Request">API
@@ -202,6 +203,15 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 
 		private InferenceEndpoint inferenceConfig;
 
+		public Builder() {
+		}
+		private Builder(PutRequest instance) {
+			this.inferenceId = instance.inferenceId;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+			this.inferenceConfig = instance.inferenceConfig;
+
+		}
 		/**
 		 * Required - The inference Id
 		 * <p>
@@ -285,6 +295,12 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<PutRequest> _DESERIALIZER = createPutRequestDeserializer();
 	protected static JsonpDeserializer<PutRequest> createPutRequestDeserializer() {
 

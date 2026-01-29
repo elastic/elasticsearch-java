@@ -169,6 +169,14 @@ public class UpdateTrainedModelDeploymentRequest extends RequestBase implements 
 		@Nullable
 		private Integer numberOfAllocations;
 
+		public Builder() {
+		}
+		private Builder(UpdateTrainedModelDeploymentRequest instance) {
+			this.adaptiveAllocations = instance.adaptiveAllocations;
+			this.modelId = instance.modelId;
+			this.numberOfAllocations = instance.numberOfAllocations;
+
+		}
 		/**
 		 * Adaptive allocations configuration. When enabled, the number of allocations
 		 * is set based on the current load. If adaptive_allocations is enabled, do not
@@ -238,6 +246,12 @@ public class UpdateTrainedModelDeploymentRequest extends RequestBase implements 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

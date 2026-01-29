@@ -148,6 +148,12 @@ public class DelegatePkiRequest extends RequestBase implements JsonpSerializable
 				ObjectBuilder<DelegatePkiRequest> {
 		private List<String> x509CertificateChain;
 
+		public Builder() {
+		}
+		private Builder(DelegatePkiRequest instance) {
+			this.x509CertificateChain = instance.x509CertificateChain;
+
+		}
 		/**
 		 * Required - The X509Certificate chain, which is represented as an ordered
 		 * string array. Each string in the array is a base64-encoded (Section 4 of
@@ -204,6 +210,12 @@ public class DelegatePkiRequest extends RequestBase implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

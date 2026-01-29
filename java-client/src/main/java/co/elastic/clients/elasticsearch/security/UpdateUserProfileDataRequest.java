@@ -253,6 +253,17 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 
 		private String uid;
 
+		public Builder() {
+		}
+		private Builder(UpdateUserProfileDataRequest instance) {
+			this.data = instance.data;
+			this.ifPrimaryTerm = instance.ifPrimaryTerm;
+			this.ifSeqNo = instance.ifSeqNo;
+			this.labels = instance.labels;
+			this.refresh = instance.refresh;
+			this.uid = instance.uid;
+
+		}
 		/**
 		 * Non-searchable data that you want to associate with the user profile. This
 		 * field supports a nested data structure. Within the <code>data</code> object,
@@ -375,6 +386,12 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -233,6 +233,18 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
 		@Nullable
 		private Boolean discardCompoundToken;
 
+		public Builder() {
+		}
+		private Builder(KuromojiTokenizer instance) {
+			this.discardPunctuation = instance.discardPunctuation;
+			this.mode = instance.mode;
+			this.nbestCost = instance.nbestCost;
+			this.nbestExamples = instance.nbestExamples;
+			this.userDictionary = instance.userDictionary;
+			this.userDictionaryRules = instance.userDictionaryRules;
+			this.discardCompoundToken = instance.discardCompoundToken;
+
+		}
 		/**
 		 * API name: {@code discard_punctuation}
 		 */
@@ -319,6 +331,12 @@ public class KuromojiTokenizer extends TokenizerBase implements TokenizerDefinit
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

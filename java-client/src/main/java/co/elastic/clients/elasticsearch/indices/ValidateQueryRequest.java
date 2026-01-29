@@ -363,6 +363,25 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private Boolean rewrite;
 
+		public Builder() {
+		}
+		private Builder(ValidateQueryRequest instance) {
+			this.allShards = instance.allShards;
+			this.allowNoIndices = instance.allowNoIndices;
+			this.analyzeWildcard = instance.analyzeWildcard;
+			this.analyzer = instance.analyzer;
+			this.defaultOperator = instance.defaultOperator;
+			this.df = instance.df;
+			this.expandWildcards = instance.expandWildcards;
+			this.explain = instance.explain;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.lenient = instance.lenient;
+			this.q = instance.q;
+			this.query = instance.query;
+			this.rewrite = instance.rewrite;
+
+		}
 		/**
 		 * If <code>true</code>, the validation is executed on all shards instead of one
 		 * random shard per index.
@@ -590,6 +609,12 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -196,6 +196,14 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 		@Nullable
 		private Tokenizer tokenizer;
 
+		public Builder() {
+		}
+		private Builder(CategorizationAnalyzerDefinition instance) {
+			this.charFilter = instance.charFilter;
+			this.filter = instance.filter;
+			this.tokenizer = instance.tokenizer;
+
+		}
 		/**
 		 * One or more character filters. In addition to the built-in character filters,
 		 * other plugins can provide more character filters. If this property is not
@@ -353,6 +361,12 @@ public class CategorizationAnalyzerDefinition implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

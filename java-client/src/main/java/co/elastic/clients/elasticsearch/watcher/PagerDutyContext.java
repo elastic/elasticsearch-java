@@ -150,6 +150,14 @@ public class PagerDutyContext implements JsonpSerializable {
 
 		private PagerDutyContextType type;
 
+		public Builder() {
+		}
+		private Builder(PagerDutyContext instance) {
+			this.href = instance.href;
+			this.src = instance.src;
+			this.type = instance.type;
+
+		}
 		/**
 		 * API name: {@code href}
 		 */
@@ -192,6 +200,12 @@ public class PagerDutyContext implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

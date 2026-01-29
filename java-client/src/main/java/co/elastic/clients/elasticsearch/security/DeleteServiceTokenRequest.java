@@ -148,6 +148,15 @@ public class DeleteServiceTokenRequest extends RequestBase {
 
 		private String service;
 
+		public Builder() {
+		}
+		private Builder(DeleteServiceTokenRequest instance) {
+			this.name = instance.name;
+			this.namespace = instance.namespace;
+			this.refresh = instance.refresh;
+			this.service = instance.service;
+
+		}
 		/**
 		 * Required - The name of the service account token.
 		 * <p>
@@ -209,6 +218,12 @@ public class DeleteServiceTokenRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

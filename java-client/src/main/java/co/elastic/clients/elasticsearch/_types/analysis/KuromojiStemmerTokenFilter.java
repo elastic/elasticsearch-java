@@ -106,6 +106,12 @@ public class KuromojiStemmerTokenFilter extends TokenFilterBase implements Token
 				ObjectBuilder<KuromojiStemmerTokenFilter> {
 		private Integer minimumLength;
 
+		public Builder() {
+		}
+		private Builder(KuromojiStemmerTokenFilter instance) {
+			this.minimumLength = instance.minimumLength;
+
+		}
 		/**
 		 * Required - API name: {@code minimum_length}
 		 */
@@ -132,6 +138,12 @@ public class KuromojiStemmerTokenFilter extends TokenFilterBase implements Token
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -96,9 +96,7 @@ public class WatsonxServiceSettings implements JsonpSerializable {
 	 * <p>
 	 * IMPORTANT: You need to provide the API key only once, during the inference
 	 * model creation. The get inference endpoint API does not retrieve your API
-	 * key. After creating the inference model, you cannot change the associated API
-	 * key. If you want to use a different API key, delete the inference model and
-	 * recreate it with the same name and the updated API key.
+	 * key.
 	 * <p>
 	 * API name: {@code api_key}
 	 */
@@ -220,15 +218,24 @@ public class WatsonxServiceSettings implements JsonpSerializable {
 
 		private String url;
 
+		public Builder() {
+		}
+		private Builder(WatsonxServiceSettings instance) {
+			this.apiKey = instance.apiKey;
+			this.apiVersion = instance.apiVersion;
+			this.modelId = instance.modelId;
+			this.projectId = instance.projectId;
+			this.rateLimit = instance.rateLimit;
+			this.url = instance.url;
+
+		}
 		/**
 		 * Required - A valid API key of your Watsonx account. You can find your Watsonx
 		 * API keys or you can create a new one on the API keys page.
 		 * <p>
 		 * IMPORTANT: You need to provide the API key only once, during the inference
 		 * model creation. The get inference endpoint API does not retrieve your API
-		 * key. After creating the inference model, you cannot change the associated API
-		 * key. If you want to use a different API key, delete the inference model and
-		 * recreate it with the same name and the updated API key.
+		 * key.
 		 * <p>
 		 * API name: {@code api_key}
 		 */
@@ -324,6 +331,12 @@ public class WatsonxServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

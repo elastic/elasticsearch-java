@@ -149,6 +149,13 @@ public class SparseVectorIndexOptions implements JsonpSerializable {
 		@Nullable
 		private TokenPruningConfig pruningConfig;
 
+		public Builder() {
+		}
+		private Builder(SparseVectorIndexOptions instance) {
+			this.prune = instance.prune;
+			this.pruningConfig = instance.pruningConfig;
+
+		}
 		/**
 		 * Whether to perform pruning, omitting the non-significant tokens from the
 		 * query to improve query performance. If prune is true but the pruning_config
@@ -205,6 +212,12 @@ public class SparseVectorIndexOptions implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

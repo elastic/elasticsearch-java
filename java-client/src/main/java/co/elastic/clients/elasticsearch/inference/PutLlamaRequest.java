@@ -204,6 +204,17 @@ public class PutLlamaRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutLlamaRequest instance) {
+			this.chunkingSettings = instance.chunkingSettings;
+			this.llamaInferenceId = instance.llamaInferenceId;
+			this.service = instance.service;
+			this.serviceSettings = instance.serviceSettings;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * The chunking configuration object. Applies only to the
 		 * <code>text_embedding</code> task type. Not applicable to the
@@ -320,6 +331,12 @@ public class PutLlamaRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

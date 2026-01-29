@@ -133,6 +133,13 @@ public class ExecutionThreadPool implements JsonpSerializable {
 
 		private Long queueSize;
 
+		public Builder() {
+		}
+		private Builder(ExecutionThreadPool instance) {
+			this.maxSize = instance.maxSize;
+			this.queueSize = instance.queueSize;
+
+		}
 		/**
 		 * Required - The largest size of the execution thread pool, which indicates the
 		 * largest number of concurrent running watches.
@@ -173,6 +180,12 @@ public class ExecutionThreadPool implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

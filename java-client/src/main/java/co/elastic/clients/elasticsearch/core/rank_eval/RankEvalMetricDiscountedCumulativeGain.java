@@ -110,6 +110,12 @@ public class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetricBase {
 		@Nullable
 		private Boolean normalize;
 
+		public Builder() {
+		}
+		private Builder(RankEvalMetricDiscountedCumulativeGain instance) {
+			this.normalize = instance.normalize;
+
+		}
 		/**
 		 * If set to true, this metric will calculate the Normalized DCG.
 		 * <p>
@@ -138,6 +144,12 @@ public class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetricBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

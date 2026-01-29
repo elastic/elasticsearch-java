@@ -201,6 +201,16 @@ public class UriPartsProcessor extends ProcessorBase implements ProcessorVariant
 		@Nullable
 		private String targetField;
 
+		public Builder() {
+		}
+		private Builder(UriPartsProcessor instance) {
+			this.field = instance.field;
+			this.ignoreMissing = instance.ignoreMissing;
+			this.keepOriginal = instance.keepOriginal;
+			this.removeIfSuccessful = instance.removeIfSuccessful;
+			this.targetField = instance.targetField;
+
+		}
 		/**
 		 * Required - Field containing the URI string.
 		 * <p>
@@ -273,6 +283,12 @@ public class UriPartsProcessor extends ProcessorBase implements ProcessorVariant
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

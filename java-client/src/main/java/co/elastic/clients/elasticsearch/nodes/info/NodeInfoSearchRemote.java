@@ -113,6 +113,12 @@ public class NodeInfoSearchRemote implements JsonpSerializable {
 				ObjectBuilder<NodeInfoSearchRemote> {
 		private String connect;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoSearchRemote instance) {
+			this.connect = instance.connect;
+
+		}
 		/**
 		 * Required - API name: {@code connect}
 		 */
@@ -139,6 +145,12 @@ public class NodeInfoSearchRemote implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

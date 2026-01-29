@@ -131,6 +131,13 @@ public class UpdateFilteringValidationRequest extends RequestBase implements Jso
 
 		private FilteringRulesValidation validation;
 
+		public Builder() {
+		}
+		private Builder(UpdateFilteringValidationRequest instance) {
+			this.connectorId = instance.connectorId;
+			this.validation = instance.validation;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector to be updated
 		 * <p>
@@ -175,6 +182,12 @@ public class UpdateFilteringValidationRequest extends RequestBase implements Jso
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

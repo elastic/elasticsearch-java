@@ -197,6 +197,16 @@ public class Tags implements JsonpSerializable {
 
 		private String organisation;
 
+		public Builder() {
+		}
+		private Builder(Tags instance) {
+			this.id = instance.id;
+			this.alias = instance.alias;
+			this.type = instance.type;
+			this.organisation = instance.organisation;
+			this.userDefinedTags = instance.userDefinedTags;
+
+		}
 		/**
 		 * Required - API name: {@code _id}
 		 */
@@ -247,6 +257,12 @@ public class Tags implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

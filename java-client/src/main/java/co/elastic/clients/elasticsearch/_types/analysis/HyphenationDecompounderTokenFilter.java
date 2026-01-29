@@ -163,6 +163,14 @@ public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterB
 		@Nullable
 		private Boolean noOverlappingMatches;
 
+		public Builder() {
+		}
+		private Builder(HyphenationDecompounderTokenFilter instance) {
+			this.hyphenationPatternsPath = instance.hyphenationPatternsPath;
+			this.noSubMatches = instance.noSubMatches;
+			this.noOverlappingMatches = instance.noOverlappingMatches;
+
+		}
 		/**
 		 * Required - Path to an Apache FOP (Formatting Objects Processor) XML
 		 * hyphenation pattern file. This path must be absolute or relative to the
@@ -215,6 +223,12 @@ public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterB
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

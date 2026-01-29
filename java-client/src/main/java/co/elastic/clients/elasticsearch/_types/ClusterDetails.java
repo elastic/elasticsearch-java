@@ -206,6 +206,17 @@ public class ClusterDetails implements JsonpSerializable {
 		@Nullable
 		private List<ShardFailure> failures;
 
+		public Builder() {
+		}
+		private Builder(ClusterDetails instance) {
+			this.status = instance.status;
+			this.indices = instance.indices;
+			this.took = instance.took;
+			this.timedOut = instance.timedOut;
+			this.shards = instance.shards;
+			this.failures = instance.failures;
+
+		}
 		/**
 		 * Required - API name: {@code status}
 		 */
@@ -300,6 +311,12 @@ public class ClusterDetails implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

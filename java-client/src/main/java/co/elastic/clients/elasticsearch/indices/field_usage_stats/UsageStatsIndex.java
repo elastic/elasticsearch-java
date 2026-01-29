@@ -119,6 +119,12 @@ public class UsageStatsIndex implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<UsageStatsIndex> {
 		private List<UsageStatsShards> shards;
 
+		public Builder() {
+		}
+		private Builder(UsageStatsIndex instance) {
+			this.shards = instance.shards;
+
+		}
 		/**
 		 * Required - API name: {@code shards}
 		 * <p>
@@ -166,6 +172,12 @@ public class UsageStatsIndex implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

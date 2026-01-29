@@ -145,6 +145,13 @@ public class UpdateIndexNameRequest extends RequestBase implements JsonpSerializ
 
 		private boolean isExpNullIndexName;
 
+		public Builder() {
+		}
+		private Builder(UpdateIndexNameRequest instance) {
+			this.connectorId = instance.connectorId;
+			this.indexName = instance.indexName;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector to be updated
 		 * <p>
@@ -191,6 +198,12 @@ public class UpdateIndexNameRequest extends RequestBase implements JsonpSerializ
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

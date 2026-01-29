@@ -315,6 +315,25 @@ public class RuntimeFieldsType implements JsonpSerializable {
 
 		private Long sourceTotal;
 
+		public Builder() {
+		}
+		private Builder(RuntimeFieldsType instance) {
+			this.charsMax = instance.charsMax;
+			this.charsTotal = instance.charsTotal;
+			this.count = instance.count;
+			this.docMax = instance.docMax;
+			this.docTotal = instance.docTotal;
+			this.indexCount = instance.indexCount;
+			this.lang = instance.lang;
+			this.linesMax = instance.linesMax;
+			this.linesTotal = instance.linesTotal;
+			this.name = instance.name;
+			this.scriptlessCount = instance.scriptlessCount;
+			this.shadowedCount = instance.shadowedCount;
+			this.sourceMax = instance.sourceMax;
+			this.sourceTotal = instance.sourceTotal;
+
+		}
 		/**
 		 * Required - API name: {@code chars_max}
 		 */
@@ -457,6 +476,12 @@ public class RuntimeFieldsType implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

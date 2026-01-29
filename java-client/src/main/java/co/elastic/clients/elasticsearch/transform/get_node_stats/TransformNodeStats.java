@@ -112,6 +112,12 @@ public class TransformNodeStats implements JsonpSerializable {
 				ObjectBuilder<TransformNodeStats> {
 		private TransformSchedulerStats scheduler;
 
+		public Builder() {
+		}
+		private Builder(TransformNodeStats instance) {
+			this.scheduler = instance.scheduler;
+
+		}
 		/**
 		 * Required - API name: {@code scheduler}
 		 */
@@ -146,6 +152,12 @@ public class TransformNodeStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

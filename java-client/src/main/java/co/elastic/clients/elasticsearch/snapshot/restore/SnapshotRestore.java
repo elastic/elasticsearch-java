@@ -150,6 +150,14 @@ public class SnapshotRestore implements JsonpSerializable {
 
 		private ShardStatistics shards;
 
+		public Builder() {
+		}
+		private Builder(SnapshotRestore instance) {
+			this.indices = instance.indices;
+			this.snapshot = instance.snapshot;
+			this.shards = instance.shards;
+
+		}
 		/**
 		 * Required - API name: {@code indices}
 		 * <p>
@@ -211,6 +219,12 @@ public class SnapshotRestore implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -216,6 +216,16 @@ public class GeohexGridAggregation extends BucketAggregationBase implements Aggr
 		@Nullable
 		private Integer shardSize;
 
+		public Builder() {
+		}
+		private Builder(GeohexGridAggregation instance) {
+			this.field = instance.field;
+			this.precision = instance.precision;
+			this.bounds = instance.bounds;
+			this.size = instance.size;
+			this.shardSize = instance.shardSize;
+
+		}
 		/**
 		 * Required - Field containing indexed <code>geo_point</code> or
 		 * <code>geo_shape</code> values. If the field contains an array,
@@ -296,6 +306,12 @@ public class GeohexGridAggregation extends BucketAggregationBase implements Aggr
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

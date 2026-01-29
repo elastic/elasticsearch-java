@@ -278,6 +278,21 @@ public class SnapshotLifecycle implements JsonpSerializable {
 
 		private Statistics stats;
 
+		public Builder() {
+		}
+		private Builder(SnapshotLifecycle instance) {
+			this.inProgress = instance.inProgress;
+			this.lastFailure = instance.lastFailure;
+			this.lastSuccess = instance.lastSuccess;
+			this.modifiedDate = instance.modifiedDate;
+			this.modifiedDateMillis = instance.modifiedDateMillis;
+			this.nextExecution = instance.nextExecution;
+			this.nextExecutionMillis = instance.nextExecutionMillis;
+			this.policy = instance.policy;
+			this.version = instance.version;
+			this.stats = instance.stats;
+
+		}
 		/**
 		 * API name: {@code in_progress}
 		 */
@@ -418,6 +433,12 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

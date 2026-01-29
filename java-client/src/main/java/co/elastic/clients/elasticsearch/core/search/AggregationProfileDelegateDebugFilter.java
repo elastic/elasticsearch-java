@@ -180,6 +180,15 @@ public class AggregationProfileDelegateDebugFilter implements JsonpSerializable 
 		@Nullable
 		private Integer segmentsCountedInConstantTime;
 
+		public Builder() {
+		}
+		private Builder(AggregationProfileDelegateDebugFilter instance) {
+			this.resultsFromMetadata = instance.resultsFromMetadata;
+			this.query = instance.query;
+			this.specializedFor = instance.specializedFor;
+			this.segmentsCountedInConstantTime = instance.segmentsCountedInConstantTime;
+
+		}
 		/**
 		 * API name: {@code results_from_metadata}
 		 */
@@ -230,6 +239,12 @@ public class AggregationProfileDelegateDebugFilter implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

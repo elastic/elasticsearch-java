@@ -328,6 +328,19 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private List<String> runAs;
 
+		public Builder() {
+		}
+		private Builder(PutRoleMappingRequest instance) {
+			this.enabled = instance.enabled;
+			this.metadata = instance.metadata;
+			this.name = instance.name;
+			this.refresh = instance.refresh;
+			this.roleTemplates = instance.roleTemplates;
+			this.roles = instance.roles;
+			this.rules = instance.rules;
+			this.runAs = instance.runAs;
+
+		}
 		/**
 		 * Mappings that have <code>enabled</code> set to <code>false</code> are ignored
 		 * when role mapping is performed.
@@ -534,6 +547,12 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

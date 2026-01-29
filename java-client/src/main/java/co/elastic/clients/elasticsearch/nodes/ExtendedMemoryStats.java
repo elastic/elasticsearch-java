@@ -127,6 +127,13 @@ public class ExtendedMemoryStats extends MemoryStats {
 		@Nullable
 		private Integer usedPercent;
 
+		public Builder() {
+		}
+		private Builder(ExtendedMemoryStats instance) {
+			this.freePercent = instance.freePercent;
+			this.usedPercent = instance.usedPercent;
+
+		}
 		/**
 		 * Percentage of free memory.
 		 * <p>
@@ -165,6 +172,12 @@ public class ExtendedMemoryStats extends MemoryStats {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

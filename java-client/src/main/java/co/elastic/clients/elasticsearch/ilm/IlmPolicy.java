@@ -140,6 +140,13 @@ public class IlmPolicy implements JsonpSerializable {
 		@Nullable
 		private Map<String, JsonData> meta;
 
+		public Builder() {
+		}
+		private Builder(IlmPolicy instance) {
+			this.phases = instance.phases;
+			this.meta = instance.meta;
+
+		}
 		/**
 		 * Required - API name: {@code phases}
 		 */
@@ -199,6 +206,12 @@ public class IlmPolicy implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

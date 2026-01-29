@@ -161,6 +161,14 @@ public class JvmClasses implements JsonpSerializable {
 		@Nullable
 		private Long totalUnloadedCount;
 
+		public Builder() {
+		}
+		private Builder(JvmClasses instance) {
+			this.currentLoadedCount = instance.currentLoadedCount;
+			this.totalLoadedCount = instance.totalLoadedCount;
+			this.totalUnloadedCount = instance.totalUnloadedCount;
+
+		}
 		/**
 		 * Number of classes currently loaded by JVM.
 		 * <p>
@@ -209,6 +217,12 @@ public class JvmClasses implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

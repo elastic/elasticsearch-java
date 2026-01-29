@@ -79,6 +79,11 @@ public class MatchNoneQuery extends QueryBase implements QueryVariant {
 	 */
 
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MatchNoneQuery> {
+		public Builder() {
+		}
+		private Builder(MatchNoneQuery instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -97,6 +102,12 @@ public class MatchNoneQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

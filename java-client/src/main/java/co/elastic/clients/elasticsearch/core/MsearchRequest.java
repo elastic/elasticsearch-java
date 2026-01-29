@@ -387,6 +387,25 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 
 		private List<RequestItem> searches;
 
+		public Builder() {
+		}
+		private Builder(MsearchRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.ccsMinimizeRoundtrips = instance.ccsMinimizeRoundtrips;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreThrottled = instance.ignoreThrottled;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.includeNamedQueriesScore = instance.includeNamedQueriesScore;
+			this.index = instance.index;
+			this.maxConcurrentSearches = instance.maxConcurrentSearches;
+			this.maxConcurrentShardRequests = instance.maxConcurrentShardRequests;
+			this.preFilterShardSize = instance.preFilterShardSize;
+			this.projectRouting = instance.projectRouting;
+			this.routing = instance.routing;
+			this.searchType = instance.searchType;
+			this.searches = instance.searches;
+
+		}
 		/**
 		 * If false, the request returns an error if any wildcard expression, index
 		 * alias, or _all value targets only missing or closed indices. This behavior
@@ -623,6 +642,12 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

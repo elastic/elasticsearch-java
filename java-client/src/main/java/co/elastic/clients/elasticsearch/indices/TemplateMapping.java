@@ -220,6 +220,17 @@ public class TemplateMapping implements JsonpSerializable {
 		@Nullable
 		private Long version;
 
+		public Builder() {
+		}
+		private Builder(TemplateMapping instance) {
+			this.aliases = instance.aliases;
+			this.indexPatterns = instance.indexPatterns;
+			this.mappings = instance.mappings;
+			this.order = instance.order;
+			this.settings = instance.settings;
+			this.version = instance.version;
+
+		}
 		/**
 		 * Required - API name: {@code aliases}
 		 * <p>
@@ -338,6 +349,12 @@ public class TemplateMapping implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

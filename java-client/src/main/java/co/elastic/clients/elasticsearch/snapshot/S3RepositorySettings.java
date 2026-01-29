@@ -470,6 +470,26 @@ public class S3RepositorySettings extends RepositorySettingsBase {
 		@Nullable
 		private Integer throttledDeleteRetryMaximumNumberOfRetries;
 
+		public Builder() {
+		}
+		private Builder(S3RepositorySettings instance) {
+			this.bucket = instance.bucket;
+			this.basePath = instance.basePath;
+			this.bufferSize = instance.bufferSize;
+			this.cannedAcl = instance.cannedAcl;
+			this.client = instance.client;
+			this.deleteObjectsMaxSize = instance.deleteObjectsMaxSize;
+			this.getRegisterRetryDelay = instance.getRegisterRetryDelay;
+			this.maxMultipartParts = instance.maxMultipartParts;
+			this.maxMultipartUploadCleanupSize = instance.maxMultipartUploadCleanupSize;
+			this.readonly = instance.readonly;
+			this.serverSideEncryption = instance.serverSideEncryption;
+			this.storageClass = instance.storageClass;
+			this.throttledDeleteRetryDelayIncrement = instance.throttledDeleteRetryDelayIncrement;
+			this.throttledDeleteRetryMaximumDelay = instance.throttledDeleteRetryMaximumDelay;
+			this.throttledDeleteRetryMaximumNumberOfRetries = instance.throttledDeleteRetryMaximumNumberOfRetries;
+
+		}
 		/**
 		 * Required - The name of the S3 bucket to use for snapshots. The bucket name
 		 * must adhere to Amazon's S3 bucket naming rules.
@@ -726,6 +746,12 @@ public class S3RepositorySettings extends RepositorySettingsBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

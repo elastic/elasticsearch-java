@@ -139,6 +139,13 @@ public class DisMaxQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private Double tieBreaker;
 
+		public Builder() {
+		}
+		private Builder(DisMaxQuery instance) {
+			this.queries = instance.queries;
+			this.tieBreaker = instance.tieBreaker;
+
+		}
 		/**
 		 * Required - One or more query clauses. Returned documents must match one or
 		 * more of these queries. If a document matches multiple queries, Elasticsearch
@@ -226,6 +233,12 @@ public class DisMaxQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

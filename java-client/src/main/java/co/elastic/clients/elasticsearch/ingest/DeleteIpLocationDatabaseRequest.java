@@ -139,6 +139,14 @@ public class DeleteIpLocationDatabaseRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeleteIpLocationDatabaseRequest instance) {
+			this.id = instance.id;
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - A comma-separated list of IP location database configurations.
 		 * <p>
@@ -227,6 +235,12 @@ public class DeleteIpLocationDatabaseRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -201,6 +201,15 @@ public class ApiKeyFiltersAggregation extends BucketAggregationBase
 		@Nullable
 		private Boolean keyed;
 
+		public Builder() {
+		}
+		private Builder(ApiKeyFiltersAggregation instance) {
+			this.filters = instance.filters;
+			this.otherBucket = instance.otherBucket;
+			this.otherBucketKey = instance.otherBucketKey;
+			this.keyed = instance.keyed;
+
+		}
 		/**
 		 * Collection of queries from which to build buckets.
 		 * <p>
@@ -270,6 +279,12 @@ public class ApiKeyFiltersAggregation extends BucketAggregationBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

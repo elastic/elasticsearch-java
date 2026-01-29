@@ -184,6 +184,16 @@ public class SnapshotCurrentCounts implements JsonpSerializable {
 
 		private Integer cleanups;
 
+		public Builder() {
+		}
+		private Builder(SnapshotCurrentCounts instance) {
+			this.snapshots = instance.snapshots;
+			this.shardSnapshots = instance.shardSnapshots;
+			this.snapshotDeletions = instance.snapshotDeletions;
+			this.concurrentOperations = instance.concurrentOperations;
+			this.cleanups = instance.cleanups;
+
+		}
 		/**
 		 * Required - Snapshots currently in progress
 		 * <p>
@@ -253,6 +263,12 @@ public class SnapshotCurrentCounts implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -391,6 +391,26 @@ public class SlackAttachment implements JsonpSerializable {
 		@Nullable
 		private Long ts;
 
+		public Builder() {
+		}
+		private Builder(SlackAttachment instance) {
+			this.authorIcon = instance.authorIcon;
+			this.authorLink = instance.authorLink;
+			this.authorName = instance.authorName;
+			this.color = instance.color;
+			this.fallback = instance.fallback;
+			this.fields = instance.fields;
+			this.footer = instance.footer;
+			this.footerIcon = instance.footerIcon;
+			this.imageUrl = instance.imageUrl;
+			this.pretext = instance.pretext;
+			this.text = instance.text;
+			this.thumbUrl = instance.thumbUrl;
+			this.title = instance.title;
+			this.titleLink = instance.titleLink;
+			this.ts = instance.ts;
+
+		}
 		/**
 		 * API name: {@code author_icon}
 		 */
@@ -550,6 +570,12 @@ public class SlackAttachment implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

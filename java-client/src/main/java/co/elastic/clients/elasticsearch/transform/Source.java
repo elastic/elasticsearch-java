@@ -184,6 +184,14 @@ public class Source implements JsonpSerializable {
 		@Nullable
 		private Map<String, RuntimeField> runtimeMappings;
 
+		public Builder() {
+		}
+		private Builder(Source instance) {
+			this.index = instance.index;
+			this.query = instance.query;
+			this.runtimeMappings = instance.runtimeMappings;
+
+		}
 		/**
 		 * Required - The source indices for the transform. It can be a single index, an
 		 * index pattern (for example, <code>&quot;my-index-*&quot;&quot;</code>), an
@@ -315,6 +323,12 @@ public class Source implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

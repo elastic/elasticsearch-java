@@ -144,6 +144,14 @@ public class ClearCachedServiceTokensRequest extends RequestBase {
 
 		private String service;
 
+		public Builder() {
+		}
+		private Builder(ClearCachedServiceTokensRequest instance) {
+			this.name = instance.name;
+			this.namespace = instance.namespace;
+			this.service = instance.service;
+
+		}
 		/**
 		 * Required - A comma-separated list of token names to evict from the service
 		 * account token caches. Use a wildcard (<code>*</code>) to evict all tokens
@@ -213,6 +221,12 @@ public class ClearCachedServiceTokensRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

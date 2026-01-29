@@ -143,6 +143,14 @@ public class SecurityRolesNative implements JsonpSerializable {
 
 		private Long size;
 
+		public Builder() {
+		}
+		private Builder(SecurityRolesNative instance) {
+			this.dls = instance.dls;
+			this.fls = instance.fls;
+			this.size = instance.size;
+
+		}
 		/**
 		 * Required - API name: {@code dls}
 		 */
@@ -185,6 +193,12 @@ public class SecurityRolesNative implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

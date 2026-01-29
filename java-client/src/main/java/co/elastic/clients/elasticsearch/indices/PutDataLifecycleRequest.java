@@ -250,6 +250,18 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutDataLifecycleRequest instance) {
+			this.dataRetention = instance.dataRetention;
+			this.downsampling = instance.downsampling;
+			this.enabled = instance.enabled;
+			this.expandWildcards = instance.expandWildcards;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * If defined, every document added to this data stream will be stored at least
 		 * for this time frame. Any time after this duration the document could be
@@ -440,6 +452,12 @@ public class PutDataLifecycleRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

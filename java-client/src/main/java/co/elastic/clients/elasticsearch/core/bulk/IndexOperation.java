@@ -120,6 +120,11 @@ public class IndexOperation<TDocument> extends WriteOperation implements NdJsonp
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
+		public Builder() {
+		}
+		private Builder(IndexOperation<TDocument> instance) {
+
+		}
 		/**
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
@@ -147,4 +152,10 @@ public class IndexOperation<TDocument> extends WriteOperation implements NdJsonp
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 }

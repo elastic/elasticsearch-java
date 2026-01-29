@@ -176,6 +176,15 @@ public class GetCalendarsRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(GetCalendarsRequest instance) {
+			this.calendarId = instance.calendarId;
+			this.from = instance.from;
+			this.page = instance.page;
+			this.size = instance.size;
+
+		}
 		/**
 		 * A string that uniquely identifies a calendar. You can get information for
 		 * multiple calendars by using a comma-separated list of ids or a wildcard
@@ -248,6 +257,12 @@ public class GetCalendarsRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

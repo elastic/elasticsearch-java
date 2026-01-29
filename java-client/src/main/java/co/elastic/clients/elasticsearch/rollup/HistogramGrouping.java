@@ -143,6 +143,13 @@ public class HistogramGrouping implements JsonpSerializable {
 
 		private Long interval;
 
+		public Builder() {
+		}
+		private Builder(HistogramGrouping instance) {
+			this.fields = instance.fields;
+			this.interval = instance.interval;
+
+		}
 		/**
 		 * Required - The set of fields that you wish to build histograms for. All
 		 * fields specified must be some kind of numeric. Order does not matter.
@@ -201,6 +208,12 @@ public class HistogramGrouping implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

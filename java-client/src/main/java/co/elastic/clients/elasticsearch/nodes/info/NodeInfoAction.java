@@ -111,6 +111,12 @@ public class NodeInfoAction implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeInfoAction> {
 		private String destructiveRequiresName;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoAction instance) {
+			this.destructiveRequiresName = instance.destructiveRequiresName;
+
+		}
 		/**
 		 * Required - API name: {@code destructive_requires_name}
 		 */
@@ -137,6 +143,12 @@ public class NodeInfoAction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

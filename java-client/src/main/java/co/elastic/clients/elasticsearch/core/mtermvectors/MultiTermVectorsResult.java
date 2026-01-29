@@ -243,6 +243,18 @@ public class MultiTermVectorsResult implements JsonpSerializable {
 		@Nullable
 		private ErrorCause error;
 
+		public Builder() {
+		}
+		private Builder(MultiTermVectorsResult instance) {
+			this.id = instance.id;
+			this.index = instance.index;
+			this.version = instance.version;
+			this.took = instance.took;
+			this.found = instance.found;
+			this.termVectors = instance.termVectors;
+			this.error = instance.error;
+
+		}
 		/**
 		 * API name: {@code _id}
 		 */
@@ -345,6 +357,12 @@ public class MultiTermVectorsResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

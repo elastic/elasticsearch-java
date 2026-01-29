@@ -188,6 +188,17 @@ public class DiskUsage implements JsonpSerializable {
 
 		private Double usedDiskPercent;
 
+		public Builder() {
+		}
+		private Builder(DiskUsage instance) {
+			this.path = instance.path;
+			this.totalBytes = instance.totalBytes;
+			this.usedBytes = instance.usedBytes;
+			this.freeBytes = instance.freeBytes;
+			this.freeDiskPercent = instance.freeDiskPercent;
+			this.usedDiskPercent = instance.usedDiskPercent;
+
+		}
 		/**
 		 * Required - API name: {@code path}
 		 */
@@ -254,6 +265,12 @@ public class DiskUsage implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

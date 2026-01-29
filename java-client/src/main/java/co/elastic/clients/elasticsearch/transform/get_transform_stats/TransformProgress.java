@@ -188,6 +188,16 @@ public class TransformProgress implements JsonpSerializable {
 		@Nullable
 		private Long totalDocs;
 
+		public Builder() {
+		}
+		private Builder(TransformProgress instance) {
+			this.docsIndexed = instance.docsIndexed;
+			this.docsProcessed = instance.docsProcessed;
+			this.docsRemaining = instance.docsRemaining;
+			this.percentComplete = instance.percentComplete;
+			this.totalDocs = instance.totalDocs;
+
+		}
 		/**
 		 * Required - API name: {@code docs_indexed}
 		 */
@@ -246,6 +256,12 @@ public class TransformProgress implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

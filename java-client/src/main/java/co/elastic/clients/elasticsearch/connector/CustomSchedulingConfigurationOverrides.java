@@ -212,6 +212,16 @@ public class CustomSchedulingConfigurationOverrides implements JsonpSerializable
 		@Nullable
 		private List<String> seedUrls;
 
+		public Builder() {
+		}
+		private Builder(CustomSchedulingConfigurationOverrides instance) {
+			this.maxCrawlDepth = instance.maxCrawlDepth;
+			this.sitemapDiscoveryDisabled = instance.sitemapDiscoveryDisabled;
+			this.domainAllowlist = instance.domainAllowlist;
+			this.sitemapUrls = instance.sitemapUrls;
+			this.seedUrls = instance.seedUrls;
+
+		}
 		/**
 		 * API name: {@code max_crawl_depth}
 		 */
@@ -306,6 +316,12 @@ public class CustomSchedulingConfigurationOverrides implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

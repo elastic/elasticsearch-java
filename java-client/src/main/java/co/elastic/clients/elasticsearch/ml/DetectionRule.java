@@ -180,6 +180,14 @@ public class DetectionRule implements JsonpSerializable {
 		@Nullable
 		private Map<String, FilterRef> scope;
 
+		public Builder() {
+		}
+		private Builder(DetectionRule instance) {
+			this.actions = instance.actions;
+			this.conditions = instance.conditions;
+			this.scope = instance.scope;
+
+		}
 		/**
 		 * The set of actions to be triggered when the rule applies. If more than one
 		 * action is specified the effects of all actions are combined.
@@ -312,6 +320,12 @@ public class DetectionRule implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

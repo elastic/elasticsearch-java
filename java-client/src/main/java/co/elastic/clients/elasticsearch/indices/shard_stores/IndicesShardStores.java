@@ -123,6 +123,12 @@ public class IndicesShardStores implements JsonpSerializable {
 				ObjectBuilder<IndicesShardStores> {
 		private Map<String, ShardStoreWrapper> shards;
 
+		public Builder() {
+		}
+		private Builder(IndicesShardStores instance) {
+			this.shards = instance.shards;
+
+		}
 		/**
 		 * Required - API name: {@code shards}
 		 * <p>
@@ -171,6 +177,12 @@ public class IndicesShardStores implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

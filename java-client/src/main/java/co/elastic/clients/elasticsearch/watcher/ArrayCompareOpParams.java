@@ -128,6 +128,13 @@ public class ArrayCompareOpParams implements JsonpSerializable {
 
 		private FieldValue value;
 
+		public Builder() {
+		}
+		private Builder(ArrayCompareOpParams instance) {
+			this.quantifier = instance.quantifier;
+			this.value = instance.value;
+
+		}
 		/**
 		 * Required - API name: {@code quantifier}
 		 */
@@ -201,6 +208,12 @@ public class ArrayCompareOpParams implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

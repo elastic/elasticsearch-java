@@ -120,6 +120,12 @@ public class DataStreamOptions implements JsonpSerializable {
 		@Nullable
 		private DataStreamFailureStore failureStore;
 
+		public Builder() {
+		}
+		private Builder(DataStreamOptions instance) {
+			this.failureStore = instance.failureStore;
+
+		}
 		/**
 		 * If defined, it specifies configuration for the failure store of this data
 		 * stream.
@@ -160,6 +166,12 @@ public class DataStreamOptions implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

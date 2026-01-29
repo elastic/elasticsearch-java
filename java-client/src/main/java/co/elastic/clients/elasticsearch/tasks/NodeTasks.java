@@ -248,6 +248,18 @@ public class NodeTasks implements JsonpSerializable {
 
 		private Map<String, TaskInfo> tasks;
 
+		public Builder() {
+		}
+		private Builder(NodeTasks instance) {
+			this.name = instance.name;
+			this.transportAddress = instance.transportAddress;
+			this.host = instance.host;
+			this.ip = instance.ip;
+			this.roles = instance.roles;
+			this.attributes = instance.attributes;
+			this.tasks = instance.tasks;
+
+		}
 		/**
 		 * API name: {@code name}
 		 */
@@ -367,6 +379,12 @@ public class NodeTasks implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

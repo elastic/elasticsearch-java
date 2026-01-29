@@ -126,6 +126,12 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DailySchedule> {
 		private List<ScheduleTimeOfDay> at;
 
+		public Builder() {
+		}
+		private Builder(DailySchedule instance) {
+			this.at = instance.at;
+
+		}
 		/**
 		 * Required - API name: {@code at}
 		 * <p>
@@ -173,6 +179,12 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

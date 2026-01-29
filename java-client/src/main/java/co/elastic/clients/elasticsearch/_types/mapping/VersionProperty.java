@@ -89,6 +89,11 @@ public class VersionProperty extends DocValuesPropertyBase implements PropertyVa
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<VersionProperty> {
+		public Builder() {
+		}
+		private Builder(VersionProperty instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class VersionProperty extends DocValuesPropertyBase implements PropertyVa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

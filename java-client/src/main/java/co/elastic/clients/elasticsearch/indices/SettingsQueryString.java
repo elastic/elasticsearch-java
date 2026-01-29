@@ -112,6 +112,12 @@ public class SettingsQueryString implements JsonpSerializable {
 				ObjectBuilder<SettingsQueryString> {
 		private Boolean lenient;
 
+		public Builder() {
+		}
+		private Builder(SettingsQueryString instance) {
+			this.lenient = instance.lenient;
+
+		}
 		/**
 		 * Required - API name: {@code lenient}
 		 */
@@ -138,6 +144,12 @@ public class SettingsQueryString implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -310,6 +310,22 @@ public class Authentication implements JsonpSerializable {
 		@Nullable
 		private Map<String, String> apiKey;
 
+		public Builder() {
+		}
+		private Builder(Authentication instance) {
+			this.username = instance.username;
+			this.roles = instance.roles;
+			this.fullName = instance.fullName;
+			this.email = instance.email;
+			this.token = instance.token;
+			this.metadata = instance.metadata;
+			this.enabled = instance.enabled;
+			this.authenticationRealm = instance.authenticationRealm;
+			this.lookupRealm = instance.lookupRealm;
+			this.authenticationType = instance.authenticationType;
+			this.apiKey = instance.apiKey;
+
+		}
 		/**
 		 * Required - API name: {@code username}
 		 */
@@ -479,6 +495,12 @@ public class Authentication implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

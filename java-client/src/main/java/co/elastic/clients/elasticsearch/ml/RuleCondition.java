@@ -149,6 +149,14 @@ public class RuleCondition implements JsonpSerializable {
 
 		private Double value;
 
+		public Builder() {
+		}
+		private Builder(RuleCondition instance) {
+			this.appliesTo = instance.appliesTo;
+			this.operator = instance.operator;
+			this.value = instance.value;
+
+		}
 		/**
 		 * Required - Specifies the result property to which the condition applies. If
 		 * your detector uses <code>lat_long</code>, <code>metric</code>,
@@ -202,6 +210,12 @@ public class RuleCondition implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

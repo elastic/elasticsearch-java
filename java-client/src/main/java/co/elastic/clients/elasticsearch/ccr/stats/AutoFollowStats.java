@@ -207,6 +207,16 @@ public class AutoFollowStats implements JsonpSerializable {
 
 		private List<ErrorCause> recentAutoFollowErrors;
 
+		public Builder() {
+		}
+		private Builder(AutoFollowStats instance) {
+			this.autoFollowedClusters = instance.autoFollowedClusters;
+			this.numberOfFailedFollowIndices = instance.numberOfFailedFollowIndices;
+			this.numberOfFailedRemoteClusterStateRequests = instance.numberOfFailedRemoteClusterStateRequests;
+			this.numberOfSuccessfulFollowIndices = instance.numberOfSuccessfulFollowIndices;
+			this.recentAutoFollowErrors = instance.recentAutoFollowErrors;
+
+		}
 		/**
 		 * Required - API name: {@code auto_followed_clusters}
 		 * <p>
@@ -330,6 +340,12 @@ public class AutoFollowStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

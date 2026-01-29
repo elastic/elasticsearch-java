@@ -114,6 +114,12 @@ public class GeoBoundsAggregation extends MetricAggregationBase implements Aggre
 		@Nullable
 		private Boolean wrapLongitude;
 
+		public Builder() {
+		}
+		private Builder(GeoBoundsAggregation instance) {
+			this.wrapLongitude = instance.wrapLongitude;
+
+		}
 		/**
 		 * Specifies whether the bounding box should be allowed to overlap the
 		 * international date line.
@@ -143,6 +149,12 @@ public class GeoBoundsAggregation extends MetricAggregationBase implements Aggre
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

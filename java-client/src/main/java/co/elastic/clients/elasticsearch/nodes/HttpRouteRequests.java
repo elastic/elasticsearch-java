@@ -149,6 +149,14 @@ public class HttpRouteRequests implements JsonpSerializable {
 
 		private List<SizeHttpHistogram> sizeHistogram;
 
+		public Builder() {
+		}
+		private Builder(HttpRouteRequests instance) {
+			this.count = instance.count;
+			this.totalSizeInBytes = instance.totalSizeInBytes;
+			this.sizeHistogram = instance.sizeHistogram;
+
+		}
 		/**
 		 * Required - API name: {@code count}
 		 */
@@ -212,6 +220,12 @@ public class HttpRouteRequests implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

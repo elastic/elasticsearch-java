@@ -105,7 +105,8 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * The chunking configuration object. Applies only to the
 	 * <code>text_embedding</code> task type. Not applicable to the
-	 * <code>completion</code> or <code>chat_completion</code> task types.
+	 * <code>rerank</code>, <code>completion</code> or <code>chat_completion</code>
+	 * task types.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -209,10 +210,22 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 
 		private String watsonxInferenceId;
 
+		public Builder() {
+		}
+		private Builder(PutWatsonxRequest instance) {
+			this.chunkingSettings = instance.chunkingSettings;
+			this.service = instance.service;
+			this.serviceSettings = instance.serviceSettings;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+			this.watsonxInferenceId = instance.watsonxInferenceId;
+
+		}
 		/**
 		 * The chunking configuration object. Applies only to the
 		 * <code>text_embedding</code> task type. Not applicable to the
-		 * <code>completion</code> or <code>chat_completion</code> task types.
+		 * <code>rerank</code>, <code>completion</code> or <code>chat_completion</code>
+		 * task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -224,7 +237,8 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 		/**
 		 * The chunking configuration object. Applies only to the
 		 * <code>text_embedding</code> task type. Not applicable to the
-		 * <code>completion</code> or <code>chat_completion</code> task types.
+		 * <code>rerank</code>, <code>completion</code> or <code>chat_completion</code>
+		 * task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -325,6 +339,12 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

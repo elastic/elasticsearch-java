@@ -144,6 +144,14 @@ public class IlmIndicatorDetails implements JsonpSerializable {
 
 		private Integer stagnatingIndices;
 
+		public Builder() {
+		}
+		private Builder(IlmIndicatorDetails instance) {
+			this.ilmStatus = instance.ilmStatus;
+			this.policies = instance.policies;
+			this.stagnatingIndices = instance.stagnatingIndices;
+
+		}
 		/**
 		 * Required - API name: {@code ilm_status}
 		 */
@@ -186,6 +194,12 @@ public class IlmIndicatorDetails implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

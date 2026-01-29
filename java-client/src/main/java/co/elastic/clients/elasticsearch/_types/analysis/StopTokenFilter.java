@@ -193,6 +193,15 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 		@Nullable
 		private String stopwordsPath;
 
+		public Builder() {
+		}
+		private Builder(StopTokenFilter instance) {
+			this.ignoreCase = instance.ignoreCase;
+			this.removeTrailing = instance.removeTrailing;
+			this.stopwords = instance.stopwords;
+			this.stopwordsPath = instance.stopwordsPath;
+
+		}
 		/**
 		 * If <code>true</code>, stop word matching is case insensitive. For example, if
 		 * <code>true</code>, a stop word of the matches and removes <code>The</code>,
@@ -273,6 +282,12 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

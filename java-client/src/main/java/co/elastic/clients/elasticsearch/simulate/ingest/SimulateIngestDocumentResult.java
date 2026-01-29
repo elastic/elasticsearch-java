@@ -117,6 +117,12 @@ public class SimulateIngestDocumentResult implements JsonpSerializable {
 		@Nullable
 		private IngestDocumentSimulation doc;
 
+		public Builder() {
+		}
+		private Builder(SimulateIngestDocumentResult instance) {
+			this.doc = instance.doc;
+
+		}
 		/**
 		 * API name: {@code doc}
 		 */
@@ -151,6 +157,12 @@ public class SimulateIngestDocumentResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -197,6 +197,17 @@ public class ShardsStats implements JsonpSerializable {
 
 		private Long total;
 
+		public Builder() {
+		}
+		private Builder(ShardsStats instance) {
+			this.done = instance.done;
+			this.failed = instance.failed;
+			this.finalizing = instance.finalizing;
+			this.initializing = instance.initializing;
+			this.started = instance.started;
+			this.total = instance.total;
+
+		}
 		/**
 		 * Required - The number of shards that initialized, started, and finalized
 		 * successfully.
@@ -276,6 +287,12 @@ public class ShardsStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -151,6 +151,14 @@ public class RerouteExplanation implements JsonpSerializable {
 
 		private RerouteParameters parameters;
 
+		public Builder() {
+		}
+		private Builder(RerouteExplanation instance) {
+			this.command = instance.command;
+			this.decisions = instance.decisions;
+			this.parameters = instance.parameters;
+
+		}
 		/**
 		 * Required - API name: {@code command}
 		 */
@@ -221,6 +229,12 @@ public class RerouteExplanation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

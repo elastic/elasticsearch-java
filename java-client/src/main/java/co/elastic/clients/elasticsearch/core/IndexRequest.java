@@ -606,6 +606,27 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
+		public Builder() {
+		}
+		private Builder(IndexRequest<TDocument> instance) {
+			this.id = instance.id;
+			this.ifPrimaryTerm = instance.ifPrimaryTerm;
+			this.ifSeqNo = instance.ifSeqNo;
+			this.includeSourceOnError = instance.includeSourceOnError;
+			this.index = instance.index;
+			this.opType = instance.opType;
+			this.pipeline = instance.pipeline;
+			this.refresh = instance.refresh;
+			this.requireAlias = instance.requireAlias;
+			this.requireDataStream = instance.requireDataStream;
+			this.routing = instance.routing;
+			this.timeout = instance.timeout;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+			this.waitForActiveShards = instance.waitForActiveShards;
+			this.document = instance.document;
+
+		}
 		/**
 		 * A unique identifier for the document. To automatically generate a document
 		 * ID, use the <code>POST /&lt;target&gt;/_doc/</code> request format and omit
@@ -868,6 +889,12 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	/**
 	 * Json deserializer for {@link IndexRequest} based on named deserializers
 	 * provided by the calling {@code JsonMapper}.

@@ -113,6 +113,12 @@ public class TopMetricsValue implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TopMetricsValue> {
 		private String field;
 
+		public Builder() {
+		}
+		private Builder(TopMetricsValue instance) {
+			this.field = instance.field;
+
+		}
 		/**
 		 * Required - A field to return as a metric.
 		 * <p>
@@ -141,6 +147,12 @@ public class TopMetricsValue implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
