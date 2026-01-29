@@ -186,6 +186,14 @@ public class SamlInvalidateRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private String realm;
 
+		public Builder() {
+		}
+		private Builder(SamlInvalidateRequest instance) {
+			this.acs = instance.acs;
+			this.queryString = instance.queryString;
+			this.realm = instance.realm;
+
+		}
 		/**
 		 * The Assertion Consumer Service URL that matches the one of the SAML realm in
 		 * Elasticsearch that should be used. You must specify either this parameter or
@@ -247,6 +255,12 @@ public class SamlInvalidateRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

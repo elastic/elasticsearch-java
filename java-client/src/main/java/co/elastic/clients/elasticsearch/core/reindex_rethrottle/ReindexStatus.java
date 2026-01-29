@@ -338,6 +338,24 @@ public class ReindexStatus implements JsonpSerializable {
 
 		private Long versionConflicts;
 
+		public Builder() {
+		}
+		private Builder(ReindexStatus instance) {
+			this.batches = instance.batches;
+			this.created = instance.created;
+			this.deleted = instance.deleted;
+			this.noops = instance.noops;
+			this.requestsPerSecond = instance.requestsPerSecond;
+			this.retries = instance.retries;
+			this.throttled = instance.throttled;
+			this.throttledMillis = instance.throttledMillis;
+			this.throttledUntil = instance.throttledUntil;
+			this.throttledUntilMillis = instance.throttledUntilMillis;
+			this.total = instance.total;
+			this.updated = instance.updated;
+			this.versionConflicts = instance.versionConflicts;
+
+		}
 		/**
 		 * Required - The number of scroll responses pulled back by the reindex.
 		 * <p>
@@ -518,6 +536,12 @@ public class ReindexStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

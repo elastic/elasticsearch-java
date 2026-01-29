@@ -362,6 +362,22 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		@Nullable
 		private Boolean mustExist;
 
+		public Builder() {
+		}
+		private Builder(AddAction instance) {
+			this.alias = instance.alias;
+			this.aliases = instance.aliases;
+			this.filter = instance.filter;
+			this.index = instance.index;
+			this.indices = instance.indices;
+			this.indexRouting = instance.indexRouting;
+			this.isHidden = instance.isHidden;
+			this.isWriteIndex = instance.isWriteIndex;
+			this.routing = instance.routing;
+			this.searchRouting = instance.searchRouting;
+			this.mustExist = instance.mustExist;
+
+		}
 		/**
 		 * Alias for the action. Index alias names support date math.
 		 * <p>
@@ -542,6 +558,12 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

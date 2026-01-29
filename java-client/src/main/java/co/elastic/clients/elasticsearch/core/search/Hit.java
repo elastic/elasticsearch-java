@@ -551,6 +551,31 @@ public class Hit<TDocument> implements JsonpSerializable {
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
+		public Builder() {
+		}
+		private Builder(Hit<TDocument> instance) {
+			this.index = instance.index;
+			this.id = instance.id;
+			this.score = instance.score;
+			this.explanation = instance.explanation;
+			this.fields = instance.fields;
+			this.highlight = instance.highlight;
+			this.innerHits = instance.innerHits;
+			this.matchedQueries = instance.matchedQueries;
+			this.nested = instance.nested;
+			this.ignored = instance.ignored;
+			this.ignoredFieldValues = instance.ignoredFieldValues;
+			this.shard = instance.shard;
+			this.node = instance.node;
+			this.routing = instance.routing;
+			this.source = instance.source;
+			this.rank = instance.rank;
+			this.seqNo = instance.seqNo;
+			this.primaryTerm = instance.primaryTerm;
+			this.version = instance.version;
+			this.sort = instance.sort;
+
+		}
 		/**
 		 * Required - API name: {@code _index}
 		 */
@@ -909,6 +934,12 @@ public class Hit<TDocument> implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

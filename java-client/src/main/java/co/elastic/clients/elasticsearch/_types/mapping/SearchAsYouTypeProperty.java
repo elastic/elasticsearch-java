@@ -272,6 +272,20 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
 		@Nullable
 		private TermVectorOption termVector;
 
+		public Builder() {
+		}
+		private Builder(SearchAsYouTypeProperty instance) {
+			this.analyzer = instance.analyzer;
+			this.index = instance.index;
+			this.indexOptions = instance.indexOptions;
+			this.maxShingleSize = instance.maxShingleSize;
+			this.norms = instance.norms;
+			this.searchAnalyzer = instance.searchAnalyzer;
+			this.searchQuoteAnalyzer = instance.searchQuoteAnalyzer;
+			this.similarity = instance.similarity;
+			this.termVector = instance.termVector;
+
+		}
 		/**
 		 * API name: {@code analyzer}
 		 */
@@ -362,6 +376,12 @@ public class SearchAsYouTypeProperty extends CorePropertyBase implements Propert
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

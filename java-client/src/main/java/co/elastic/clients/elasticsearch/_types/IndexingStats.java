@@ -356,6 +356,26 @@ public class IndexingStats implements JsonpSerializable {
 		@Nullable
 		private Double writeLoad;
 
+		public Builder() {
+		}
+		private Builder(IndexingStats instance) {
+			this.indexCurrent = instance.indexCurrent;
+			this.deleteCurrent = instance.deleteCurrent;
+			this.deleteTime = instance.deleteTime;
+			this.deleteTimeInMillis = instance.deleteTimeInMillis;
+			this.deleteTotal = instance.deleteTotal;
+			this.isThrottled = instance.isThrottled;
+			this.noopUpdateTotal = instance.noopUpdateTotal;
+			this.throttleTime = instance.throttleTime;
+			this.throttleTimeInMillis = instance.throttleTimeInMillis;
+			this.indexTime = instance.indexTime;
+			this.indexTimeInMillis = instance.indexTimeInMillis;
+			this.indexTotal = instance.indexTotal;
+			this.indexFailed = instance.indexFailed;
+			this.types = instance.types;
+			this.writeLoad = instance.writeLoad;
+
+		}
 		/**
 		 * Required - API name: {@code index_current}
 		 */
@@ -536,6 +556,12 @@ public class IndexingStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -144,6 +144,13 @@ public class DelayedDataCheckConfig implements JsonpSerializable {
 
 		private Boolean enabled;
 
+		public Builder() {
+		}
+		private Builder(DelayedDataCheckConfig instance) {
+			this.checkWindow = instance.checkWindow;
+			this.enabled = instance.enabled;
+
+		}
 		/**
 		 * The window of time that is searched for late data. This window of time ends
 		 * with the latest finalized bucket. It defaults to null, which causes an
@@ -202,6 +209,12 @@ public class DelayedDataCheckConfig implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

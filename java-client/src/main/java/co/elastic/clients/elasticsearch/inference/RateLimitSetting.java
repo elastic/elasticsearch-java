@@ -118,6 +118,12 @@ public class RateLimitSetting implements JsonpSerializable {
 		@Nullable
 		private Integer requestsPerMinute;
 
+		public Builder() {
+		}
+		private Builder(RateLimitSetting instance) {
+			this.requestsPerMinute = instance.requestsPerMinute;
+
+		}
 		/**
 		 * The number of requests allowed per minute.
 		 * <p>
@@ -146,6 +152,12 @@ public class RateLimitSetting implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

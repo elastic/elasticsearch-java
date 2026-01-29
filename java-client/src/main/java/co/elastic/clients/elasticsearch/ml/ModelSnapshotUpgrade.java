@@ -172,6 +172,16 @@ public class ModelSnapshotUpgrade implements JsonpSerializable {
 
 		private String assignmentExplanation;
 
+		public Builder() {
+		}
+		private Builder(ModelSnapshotUpgrade instance) {
+			this.jobId = instance.jobId;
+			this.snapshotId = instance.snapshotId;
+			this.state = instance.state;
+			this.node = instance.node;
+			this.assignmentExplanation = instance.assignmentExplanation;
+
+		}
 		/**
 		 * Required - API name: {@code job_id}
 		 */
@@ -237,6 +247,12 @@ public class ModelSnapshotUpgrade implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -209,6 +209,15 @@ public class ActivateUserProfileRequest extends RequestBase implements JsonpSeri
 		@Nullable
 		private String username;
 
+		public Builder() {
+		}
+		private Builder(ActivateUserProfileRequest instance) {
+			this.accessToken = instance.accessToken;
+			this.grantType = instance.grantType;
+			this.password = instance.password;
+			this.username = instance.username;
+
+		}
 		/**
 		 * The user's Elasticsearch access token or JWT. Both <code>access</code> and
 		 * <code>id</code> JWT token types are supported and they depend on the
@@ -274,6 +283,12 @@ public class ActivateUserProfileRequest extends RequestBase implements JsonpSeri
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

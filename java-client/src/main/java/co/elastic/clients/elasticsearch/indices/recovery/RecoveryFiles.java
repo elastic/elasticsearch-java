@@ -181,6 +181,16 @@ public class RecoveryFiles implements JsonpSerializable {
 
 		private Long total;
 
+		public Builder() {
+		}
+		private Builder(RecoveryFiles instance) {
+			this.details = instance.details;
+			this.percent = instance.percent;
+			this.recovered = instance.recovered;
+			this.reused = instance.reused;
+			this.total = instance.total;
+
+		}
 		/**
 		 * API name: {@code details}
 		 * <p>
@@ -260,6 +270,12 @@ public class RecoveryFiles implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

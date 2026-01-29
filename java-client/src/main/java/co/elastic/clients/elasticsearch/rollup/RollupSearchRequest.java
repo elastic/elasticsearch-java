@@ -250,6 +250,15 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(RollupSearchRequest instance) {
+			this.aggregations = instance.aggregations;
+			this.index = instance.index;
+			this.query = instance.query;
+			this.size = instance.size;
+
+		}
 		/**
 		 * Specifies aggregations.
 		 * <p>
@@ -404,6 +413,12 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

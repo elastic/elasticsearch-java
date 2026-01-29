@@ -309,6 +309,21 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		@Nullable
 		private DateTime start;
 
+		public Builder() {
+		}
+		private Builder(GetRecordsRequest instance) {
+			this.desc = instance.desc;
+			this.end = instance.end;
+			this.excludeInterim = instance.excludeInterim;
+			this.from = instance.from;
+			this.jobId = instance.jobId;
+			this.page = instance.page;
+			this.recordScore = instance.recordScore;
+			this.size = instance.size;
+			this.sort = instance.sort;
+			this.start = instance.start;
+
+		}
 		/**
 		 * Refer to the description for the <code>desc</code> query parameter.
 		 * <p>
@@ -433,6 +448,12 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

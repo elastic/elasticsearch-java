@@ -109,6 +109,12 @@ public class HoltWintersMovingAverageAggregation extends MovingAverageAggregatio
 				ObjectBuilder<HoltWintersMovingAverageAggregation> {
 		private HoltWintersModelSettings settings;
 
+		public Builder() {
+		}
+		private Builder(HoltWintersMovingAverageAggregation instance) {
+			this.settings = instance.settings;
+
+		}
 		/**
 		 * Required - API name: {@code settings}
 		 */
@@ -143,6 +149,12 @@ public class HoltWintersMovingAverageAggregation extends MovingAverageAggregatio
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

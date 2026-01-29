@@ -145,6 +145,13 @@ public class UpdateErrorRequest extends RequestBase implements JsonpSerializable
 
 		private boolean isExpNullError;
 
+		public Builder() {
+		}
+		private Builder(UpdateErrorRequest instance) {
+			this.connectorId = instance.connectorId;
+			this.error = instance.error;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector to be updated
 		 * <p>
@@ -191,6 +198,12 @@ public class UpdateErrorRequest extends RequestBase implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

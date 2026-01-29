@@ -207,6 +207,16 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PostRequest instance) {
+			this.acknowledge = instance.acknowledge;
+			this.license = instance.license;
+			this.licenses = instance.licenses;
+			this.masterTimeout = instance.masterTimeout;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Specifies whether you acknowledge the license changes.
 		 * <p>
@@ -325,6 +335,12 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

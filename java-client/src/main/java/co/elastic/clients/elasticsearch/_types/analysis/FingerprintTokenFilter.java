@@ -139,6 +139,13 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
 		@Nullable
 		private String separator;
 
+		public Builder() {
+		}
+		private Builder(FingerprintTokenFilter instance) {
+			this.maxOutputSize = instance.maxOutputSize;
+			this.separator = instance.separator;
+
+		}
 		/**
 		 * Maximum character length, including whitespace, of the output token. Defaults
 		 * to <code>255</code>. Concatenated tokens longer than this will result in no
@@ -179,6 +186,12 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

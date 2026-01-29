@@ -193,6 +193,16 @@ public class QueryWatch implements JsonpSerializable {
 		@Nullable
 		private Long seqNo;
 
+		public Builder() {
+		}
+		private Builder(QueryWatch instance) {
+			this.id = instance.id;
+			this.status = instance.status;
+			this.watch = instance.watch;
+			this.primaryTerm = instance.primaryTerm;
+			this.seqNo = instance.seqNo;
+
+		}
 		/**
 		 * Required - API name: {@code _id}
 		 */
@@ -265,6 +275,12 @@ public class QueryWatch implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

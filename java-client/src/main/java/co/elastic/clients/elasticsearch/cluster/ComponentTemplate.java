@@ -126,6 +126,13 @@ public class ComponentTemplate implements JsonpSerializable {
 
 		private ComponentTemplateNode componentTemplate;
 
+		public Builder() {
+		}
+		private Builder(ComponentTemplate instance) {
+			this.name = instance.name;
+			this.componentTemplate = instance.componentTemplate;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -168,6 +175,12 @@ public class ComponentTemplate implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

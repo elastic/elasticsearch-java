@@ -930,6 +930,30 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 
 		private Integer zoom;
 
+		public Builder() {
+		}
+		private Builder(SearchMvtRequest instance) {
+			this.aggs = instance.aggs;
+			this.buffer = instance.buffer;
+			this.exactBounds = instance.exactBounds;
+			this.extent = instance.extent;
+			this.field = instance.field;
+			this.fields = instance.fields;
+			this.gridAgg = instance.gridAgg;
+			this.gridPrecision = instance.gridPrecision;
+			this.gridType = instance.gridType;
+			this.index = instance.index;
+			this.query = instance.query;
+			this.runtimeMappings = instance.runtimeMappings;
+			this.size = instance.size;
+			this.sort = instance.sort;
+			this.trackTotalHits = instance.trackTotalHits;
+			this.withLabels = instance.withLabels;
+			this.x = instance.x;
+			this.y = instance.y;
+			this.zoom = instance.zoom;
+
+		}
 		/**
 		 * Sub-aggregations for the geotile_grid.
 		 * <p>
@@ -1423,6 +1447,12 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

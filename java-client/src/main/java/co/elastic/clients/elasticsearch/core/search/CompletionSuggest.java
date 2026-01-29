@@ -125,6 +125,12 @@ public class CompletionSuggest<TDocument> extends SuggestBase implements Suggest
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
+		public Builder() {
+		}
+		private Builder(CompletionSuggest<TDocument> instance) {
+			this.options = instance.options;
+
+		}
 		/**
 		 * Required - API name: {@code options}
 		 * <p>
@@ -183,6 +189,12 @@ public class CompletionSuggest<TDocument> extends SuggestBase implements Suggest
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

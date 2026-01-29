@@ -112,6 +112,12 @@ public class ConstantKeywordProperty extends PropertyBase implements PropertyVar
 		@Nullable
 		private JsonData value;
 
+		public Builder() {
+		}
+		private Builder(ConstantKeywordProperty instance) {
+			this.value = instance.value;
+
+		}
 		/**
 		 * API name: {@code value}
 		 */
@@ -138,6 +144,12 @@ public class ConstantKeywordProperty extends PropertyBase implements PropertyVar
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -144,6 +144,14 @@ public class GetModelSnapshotUpgradeStatsRequest extends RequestBase {
 
 		private String snapshotId;
 
+		public Builder() {
+		}
+		private Builder(GetModelSnapshotUpgradeStatsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.jobId = instance.jobId;
+			this.snapshotId = instance.snapshotId;
+
+		}
 		/**
 		 * Specifies what to do when the request:
 		 * <ul>
@@ -206,6 +214,12 @@ public class GetModelSnapshotUpgradeStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

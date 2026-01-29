@@ -166,6 +166,15 @@ public class ExistsTemplateRequest extends RequestBase {
 
 		private List<String> name;
 
+		public Builder() {
+		}
+		private Builder(ExistsTemplateRequest instance) {
+			this.flatSettings = instance.flatSettings;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Indicates whether to use a flat format for the response.
 		 * <p>
@@ -257,6 +266,12 @@ public class ExistsTemplateRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

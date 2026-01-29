@@ -176,6 +176,15 @@ public class NodeUsage implements JsonpSerializable {
 
 		private Map<String, JsonData> aggregations;
 
+		public Builder() {
+		}
+		private Builder(NodeUsage instance) {
+			this.restActions = instance.restActions;
+			this.since = instance.since;
+			this.timestamp = instance.timestamp;
+			this.aggregations = instance.aggregations;
+
+		}
 		/**
 		 * Required - API name: {@code rest_actions}
 		 * <p>
@@ -250,6 +259,12 @@ public class NodeUsage implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

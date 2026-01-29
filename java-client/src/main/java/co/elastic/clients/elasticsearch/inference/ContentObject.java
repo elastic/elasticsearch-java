@@ -130,6 +130,13 @@ public class ContentObject implements JsonpSerializable {
 
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(ContentObject instance) {
+			this.text = instance.text;
+			this.type = instance.type;
+
+		}
 		/**
 		 * Required - The text content.
 		 * <p>
@@ -168,6 +175,12 @@ public class ContentObject implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

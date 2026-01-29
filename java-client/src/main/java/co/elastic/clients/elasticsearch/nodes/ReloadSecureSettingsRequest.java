@@ -172,6 +172,14 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(ReloadSecureSettingsRequest instance) {
+			this.nodeId = instance.nodeId;
+			this.secureSettingsPassword = instance.secureSettingsPassword;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * The names of particular nodes in the cluster to target.
 		 * <p>
@@ -245,6 +253,12 @@ public class ReloadSecureSettingsRequest extends RequestBase implements JsonpSer
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

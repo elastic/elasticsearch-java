@@ -187,6 +187,15 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private List<String> removeItems;
 
+		public Builder() {
+		}
+		private Builder(UpdateFilterRequest instance) {
+			this.addItems = instance.addItems;
+			this.description = instance.description;
+			this.filterId = instance.filterId;
+			this.removeItems = instance.removeItems;
+
+		}
 		/**
 		 * The items to add to the filter.
 		 * <p>
@@ -273,6 +282,12 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

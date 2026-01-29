@@ -81,6 +81,11 @@ public class SimpleValueAggregate extends SingleMetricAggregateBase implements A
 	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SimpleValueAggregate> {
+		public Builder() {
+		}
+		private Builder(SimpleValueAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class SimpleValueAggregate extends SingleMetricAggregateBase implements A
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

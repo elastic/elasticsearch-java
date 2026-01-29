@@ -167,6 +167,15 @@ public class DanglingIndex implements JsonpSerializable {
 
 		private List<String> nodeIds;
 
+		public Builder() {
+		}
+		private Builder(DanglingIndex instance) {
+			this.indexName = instance.indexName;
+			this.indexUuid = instance.indexUuid;
+			this.creationDateMillis = instance.creationDateMillis;
+			this.nodeIds = instance.nodeIds;
+
+		}
 		/**
 		 * Required - API name: {@code index_name}
 		 */
@@ -229,6 +238,12 @@ public class DanglingIndex implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

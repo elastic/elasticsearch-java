@@ -270,6 +270,20 @@ public class FieldStat implements JsonpSerializable {
 		@Nullable
 		private String latest;
 
+		public Builder() {
+		}
+		private Builder(FieldStat instance) {
+			this.count = instance.count;
+			this.cardinality = instance.cardinality;
+			this.topHits = instance.topHits;
+			this.meanValue = instance.meanValue;
+			this.medianValue = instance.medianValue;
+			this.maxValue = instance.maxValue;
+			this.minValue = instance.minValue;
+			this.earliest = instance.earliest;
+			this.latest = instance.latest;
+
+		}
 		/**
 		 * Required - API name: {@code count}
 		 */
@@ -381,6 +395,12 @@ public class FieldStat implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

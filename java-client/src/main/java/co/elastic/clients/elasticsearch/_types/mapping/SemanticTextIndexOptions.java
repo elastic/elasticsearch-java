@@ -117,6 +117,12 @@ public class SemanticTextIndexOptions implements JsonpSerializable {
 		@Nullable
 		private DenseVectorIndexOptions denseVector;
 
+		public Builder() {
+		}
+		private Builder(SemanticTextIndexOptions instance) {
+			this.denseVector = instance.denseVector;
+
+		}
 		/**
 		 * API name: {@code dense_vector}
 		 */
@@ -151,6 +157,12 @@ public class SemanticTextIndexOptions implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

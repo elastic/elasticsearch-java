@@ -136,6 +136,12 @@ public class SpanTermQuery extends QueryBase implements SpanQueryVariant, QueryV
 
 		private String value;
 
+		public Builder() {
+		}
+		private Builder(SpanTermQuery instance) {
+			this.value = instance.value;
+
+		}
 		/**
 		 * Required - API name: {@code value}
 		 */
@@ -162,6 +168,12 @@ public class SpanTermQuery extends QueryBase implements SpanQueryVariant, QueryV
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

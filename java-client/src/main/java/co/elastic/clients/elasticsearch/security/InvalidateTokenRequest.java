@@ -206,6 +206,15 @@ public class InvalidateTokenRequest extends RequestBase implements JsonpSerializ
 		@Nullable
 		private String username;
 
+		public Builder() {
+		}
+		private Builder(InvalidateTokenRequest instance) {
+			this.realmName = instance.realmName;
+			this.refreshToken = instance.refreshToken;
+			this.token = instance.token;
+			this.username = instance.username;
+
+		}
 		/**
 		 * The name of an authentication realm. This parameter cannot be used with
 		 * either <code>refresh_token</code> or <code>token</code>.
@@ -270,6 +279,12 @@ public class InvalidateTokenRequest extends RequestBase implements JsonpSerializ
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

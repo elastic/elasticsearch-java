@@ -527,6 +527,27 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
+		public Builder() {
+		}
+		private Builder(TermvectorsRequest<TDocument> instance) {
+			this.doc = instance.doc;
+			this.fieldStatistics = instance.fieldStatistics;
+			this.fields = instance.fields;
+			this.filter = instance.filter;
+			this.id = instance.id;
+			this.index = instance.index;
+			this.offsets = instance.offsets;
+			this.payloads = instance.payloads;
+			this.perFieldAnalyzer = instance.perFieldAnalyzer;
+			this.positions = instance.positions;
+			this.preference = instance.preference;
+			this.realtime = instance.realtime;
+			this.routing = instance.routing;
+			this.termStatistics = instance.termStatistics;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+
+		}
 		/**
 		 * An artificial document (a document not present in the index) for which you
 		 * want to retrieve term vectors.
@@ -782,6 +803,12 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -146,6 +146,14 @@ public class AutoFollowedCluster implements JsonpSerializable {
 
 		private Long timeSinceLastCheckMillis;
 
+		public Builder() {
+		}
+		private Builder(AutoFollowedCluster instance) {
+			this.clusterName = instance.clusterName;
+			this.lastSeenMetadataVersion = instance.lastSeenMetadataVersion;
+			this.timeSinceLastCheckMillis = instance.timeSinceLastCheckMillis;
+
+		}
 		/**
 		 * Required - API name: {@code cluster_name}
 		 */
@@ -188,6 +196,12 @@ public class AutoFollowedCluster implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -220,6 +220,17 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		@Nullable
 		private String stopwordsPath;
 
+		public Builder() {
+		}
+		private Builder(FingerprintAnalyzer instance) {
+			this.version = instance.version;
+			this.maxOutputSize = instance.maxOutputSize;
+			this.preserveOriginal = instance.preserveOriginal;
+			this.separator = instance.separator;
+			this.stopwords = instance.stopwords;
+			this.stopwordsPath = instance.stopwordsPath;
+
+		}
 		/**
 		 * API name: {@code version}
 		 */
@@ -298,6 +309,12 @@ public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

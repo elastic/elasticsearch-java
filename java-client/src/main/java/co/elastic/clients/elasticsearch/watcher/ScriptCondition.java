@@ -190,6 +190,15 @@ public class ScriptCondition implements ConditionVariant, JsonpSerializable {
 		@Nullable
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(ScriptCondition instance) {
+			this.lang = instance.lang;
+			this.params = instance.params;
+			this.source = instance.source;
+			this.id = instance.id;
+
+		}
 		/**
 		 * API name: {@code lang}
 		 */
@@ -252,6 +261,12 @@ public class ScriptCondition implements ConditionVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

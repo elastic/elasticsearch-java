@@ -173,6 +173,14 @@ public class TextExpansionQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private TokenPruningConfig pruningConfig;
 
+		public Builder() {
+		}
+		private Builder(TextExpansionQuery instance) {
+			this.modelId = instance.modelId;
+			this.modelText = instance.modelText;
+			this.pruningConfig = instance.pruningConfig;
+
+		}
 		/**
 		 * Required - The text expansion NLP model to use
 		 * <p>
@@ -230,6 +238,12 @@ public class TextExpansionQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

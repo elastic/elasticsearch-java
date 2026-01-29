@@ -177,6 +177,16 @@ public class MachineLearning extends Base {
 
 		private MlInference inference;
 
+		public Builder() {
+		}
+		private Builder(MachineLearning instance) {
+			this.datafeeds = instance.datafeeds;
+			this.jobs = instance.jobs;
+			this.nodeCount = instance.nodeCount;
+			this.dataFrameAnalyticsJobs = instance.dataFrameAnalyticsJobs;
+			this.inference = instance.inference;
+
+		}
 		/**
 		 * Required - API name: {@code datafeeds}
 		 * <p>
@@ -301,6 +311,12 @@ public class MachineLearning extends Base {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

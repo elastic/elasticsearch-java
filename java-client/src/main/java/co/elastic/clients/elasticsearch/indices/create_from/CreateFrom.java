@@ -164,6 +164,14 @@ public class CreateFrom implements JsonpSerializable {
 		@Nullable
 		private Boolean removeIndexBlocks;
 
+		public Builder() {
+		}
+		private Builder(CreateFrom instance) {
+			this.mappingsOverride = instance.mappingsOverride;
+			this.settingsOverride = instance.settingsOverride;
+			this.removeIndexBlocks = instance.removeIndexBlocks;
+
+		}
 		/**
 		 * Mappings overrides to be applied to the destination index (optional)
 		 * <p>
@@ -230,6 +238,12 @@ public class CreateFrom implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

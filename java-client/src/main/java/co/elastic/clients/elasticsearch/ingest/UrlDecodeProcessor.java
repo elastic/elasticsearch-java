@@ -157,6 +157,14 @@ public class UrlDecodeProcessor extends ProcessorBase implements ProcessorVarian
 		@Nullable
 		private String targetField;
 
+		public Builder() {
+		}
+		private Builder(UrlDecodeProcessor instance) {
+			this.field = instance.field;
+			this.ignoreMissing = instance.ignoreMissing;
+			this.targetField = instance.targetField;
+
+		}
 		/**
 		 * Required - The field to decode.
 		 * <p>
@@ -208,6 +216,12 @@ public class UrlDecodeProcessor extends ProcessorBase implements ProcessorVarian
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

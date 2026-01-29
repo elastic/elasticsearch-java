@@ -447,6 +447,27 @@ public class TasksRecord implements JsonpSerializable {
 		@Nullable
 		private String description;
 
+		public Builder() {
+		}
+		private Builder(TasksRecord instance) {
+			this.id = instance.id;
+			this.action = instance.action;
+			this.taskId = instance.taskId;
+			this.parentTaskId = instance.parentTaskId;
+			this.type = instance.type;
+			this.startTime = instance.startTime;
+			this.timestamp = instance.timestamp;
+			this.runningTimeNs = instance.runningTimeNs;
+			this.runningTime = instance.runningTime;
+			this.nodeId = instance.nodeId;
+			this.ip = instance.ip;
+			this.port = instance.port;
+			this.node = instance.node;
+			this.version = instance.version;
+			this.xOpaqueId = instance.xOpaqueId;
+			this.description = instance.description;
+
+		}
 		/**
 		 * The identifier of the task with the node.
 		 * <p>
@@ -625,6 +646,12 @@ public class TasksRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

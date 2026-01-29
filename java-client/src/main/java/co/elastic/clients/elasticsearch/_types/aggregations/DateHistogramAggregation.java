@@ -476,6 +476,26 @@ public class DateHistogramAggregation extends BucketAggregationBase
 		@Nullable
 		private Boolean keyed;
 
+		public Builder() {
+		}
+		private Builder(DateHistogramAggregation instance) {
+			this.calendarInterval = instance.calendarInterval;
+			this.extendedBounds = instance.extendedBounds;
+			this.hardBounds = instance.hardBounds;
+			this.field = instance.field;
+			this.fixedInterval = instance.fixedInterval;
+			this.format = instance.format;
+			this.interval = instance.interval;
+			this.minDocCount = instance.minDocCount;
+			this.missing = instance.missing;
+			this.offset = instance.offset;
+			this.order = instance.order;
+			this.params = instance.params;
+			this.script = instance.script;
+			this.timeZone = instance.timeZone;
+			this.keyed = instance.keyed;
+
+		}
 		/**
 		 * Calendar-aware interval. Can be specified using the unit name, such as
 		 * <code>month</code>, or as a single unit quantity, such as <code>1M</code>.
@@ -737,6 +757,12 @@ public class DateHistogramAggregation extends BucketAggregationBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

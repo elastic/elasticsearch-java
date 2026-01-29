@@ -165,6 +165,15 @@ public class PerRepositoryStats implements JsonpSerializable {
 
 		private RepositoryStatsCurrentCounts currentCounts;
 
+		public Builder() {
+		}
+		private Builder(PerRepositoryStats instance) {
+			this.type = instance.type;
+			this.oldestStartTimeMillis = instance.oldestStartTimeMillis;
+			this.oldestStartTime = instance.oldestStartTime;
+			this.currentCounts = instance.currentCounts;
+
+		}
 		/**
 		 * Required - API name: {@code type}
 		 */
@@ -223,6 +232,12 @@ public class PerRepositoryStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

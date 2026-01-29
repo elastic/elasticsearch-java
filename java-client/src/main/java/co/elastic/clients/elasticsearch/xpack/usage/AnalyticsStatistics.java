@@ -241,6 +241,20 @@ public class AnalyticsStatistics implements JsonpSerializable {
 		@Nullable
 		private Long multiTermsUsage;
 
+		public Builder() {
+		}
+		private Builder(AnalyticsStatistics instance) {
+			this.boxplotUsage = instance.boxplotUsage;
+			this.cumulativeCardinalityUsage = instance.cumulativeCardinalityUsage;
+			this.stringStatsUsage = instance.stringStatsUsage;
+			this.topMetricsUsage = instance.topMetricsUsage;
+			this.tTestUsage = instance.tTestUsage;
+			this.movingPercentilesUsage = instance.movingPercentilesUsage;
+			this.normalizeUsage = instance.normalizeUsage;
+			this.rateUsage = instance.rateUsage;
+			this.multiTermsUsage = instance.multiTermsUsage;
+
+		}
 		/**
 		 * Required - API name: {@code boxplot_usage}
 		 */
@@ -331,6 +345,12 @@ public class AnalyticsStatistics implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -128,6 +128,13 @@ public class FileCountSnapshotStats implements JsonpSerializable {
 
 		private Long sizeInBytes;
 
+		public Builder() {
+		}
+		private Builder(FileCountSnapshotStats instance) {
+			this.fileCount = instance.fileCount;
+			this.sizeInBytes = instance.sizeInBytes;
+
+		}
 		/**
 		 * Required - API name: {@code file_count}
 		 */
@@ -162,6 +169,12 @@ public class FileCountSnapshotStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

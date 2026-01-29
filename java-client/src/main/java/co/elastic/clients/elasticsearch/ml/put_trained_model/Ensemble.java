@@ -206,6 +206,16 @@ public class Ensemble implements JsonpSerializable {
 
 		private List<TrainedModel> trainedModels;
 
+		public Builder() {
+		}
+		private Builder(Ensemble instance) {
+			this.aggregateOutput = instance.aggregateOutput;
+			this.classificationLabels = instance.classificationLabels;
+			this.featureNames = instance.featureNames;
+			this.targetType = instance.targetType;
+			this.trainedModels = instance.trainedModels;
+
+		}
 		/**
 		 * API name: {@code aggregate_output}
 		 */
@@ -316,6 +326,12 @@ public class Ensemble implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

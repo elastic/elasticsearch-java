@@ -123,6 +123,12 @@ public class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 				ObjectBuilder<NodeInfoXpackSecuritySsl> {
 		private Map<String, String> ssl;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoXpackSecuritySsl instance) {
+			this.ssl = instance.ssl;
+
+		}
 		/**
 		 * Required - API name: {@code ssl}
 		 * <p>
@@ -161,6 +167,12 @@ public class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

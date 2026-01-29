@@ -139,6 +139,13 @@ public class GeoResults implements JsonpSerializable {
 		@Nullable
 		private String typicalPoint;
 
+		public Builder() {
+		}
+		private Builder(GeoResults instance) {
+			this.actualPoint = instance.actualPoint;
+			this.typicalPoint = instance.typicalPoint;
+
+		}
 		/**
 		 * The actual value for the bucket formatted as a <code>geo_point</code>.
 		 * <p>
@@ -177,6 +184,12 @@ public class GeoResults implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -128,6 +128,13 @@ public class SlackDynamicAttachment implements JsonpSerializable {
 
 		private String listPath;
 
+		public Builder() {
+		}
+		private Builder(SlackDynamicAttachment instance) {
+			this.attachmentTemplate = instance.attachmentTemplate;
+			this.listPath = instance.listPath;
+
+		}
 		/**
 		 * Required - API name: {@code attachment_template}
 		 */
@@ -169,6 +176,12 @@ public class SlackDynamicAttachment implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

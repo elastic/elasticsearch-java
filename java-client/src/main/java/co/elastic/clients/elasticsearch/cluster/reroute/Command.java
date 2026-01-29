@@ -228,6 +228,16 @@ public class Command implements JsonpSerializable {
 		@Nullable
 		private CommandAllocatePrimaryAction allocateEmptyPrimary;
 
+		public Builder() {
+		}
+		private Builder(Command instance) {
+			this.cancel = instance.cancel;
+			this.move = instance.move;
+			this.allocateReplica = instance.allocateReplica;
+			this.allocateStalePrimary = instance.allocateStalePrimary;
+			this.allocateEmptyPrimary = instance.allocateEmptyPrimary;
+
+		}
 		/**
 		 * Cancel allocation of a shard (or recovery). Accepts index and shard for index
 		 * name and shard number, and node for the node to cancel the shard allocation
@@ -392,6 +402,12 @@ public class Command implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

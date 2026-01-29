@@ -163,6 +163,14 @@ public class GeoShapeFieldQuery implements JsonpSerializable {
 		@Nullable
 		private GeoShapeRelation relation;
 
+		public Builder() {
+		}
+		private Builder(GeoShapeFieldQuery instance) {
+			this.shape = instance.shape;
+			this.indexedShape = instance.indexedShape;
+			this.relation = instance.relation;
+
+		}
 		/**
 		 * API name: {@code shape}
 		 */
@@ -220,6 +228,12 @@ public class GeoShapeFieldQuery implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

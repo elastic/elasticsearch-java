@@ -89,6 +89,11 @@ public class Murmur3HashProperty extends DocValuesPropertyBase implements Proper
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<Murmur3HashProperty> {
+		public Builder() {
+		}
+		private Builder(Murmur3HashProperty instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class Murmur3HashProperty extends DocValuesPropertyBase implements Proper
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

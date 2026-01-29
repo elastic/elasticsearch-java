@@ -208,6 +208,15 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		@Nullable
 		private Map<String, ConfusionMatrixThreshold> confusionMatrix;
 
+		public Builder() {
+		}
+		private Builder(DataframeOutlierDetectionSummary instance) {
+			this.aucRoc = instance.aucRoc;
+			this.precision = instance.precision;
+			this.recall = instance.recall;
+			this.confusionMatrix = instance.confusionMatrix;
+
+		}
 		/**
 		 * The AUC ROC (area under the curve of the receiver operating characteristic)
 		 * score and optionally the curve.
@@ -345,6 +354,12 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

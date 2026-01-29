@@ -107,6 +107,12 @@ public class TopHitsAggregate extends AggregateBase implements AggregateVariant 
 				ObjectBuilder<TopHitsAggregate> {
 		private HitsMetadata<JsonData> hits;
 
+		public Builder() {
+		}
+		private Builder(TopHitsAggregate instance) {
+			this.hits = instance.hits;
+
+		}
 		/**
 		 * Required - API name: {@code hits}
 		 */
@@ -140,6 +146,12 @@ public class TopHitsAggregate extends AggregateBase implements AggregateVariant 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

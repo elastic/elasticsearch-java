@@ -172,6 +172,16 @@ public class GetAsyncRequest extends RequestBase {
 		@Nullable
 		private Time waitForCompletionTimeout;
 
+		public Builder() {
+		}
+		private Builder(GetAsyncRequest instance) {
+			this.delimiter = instance.delimiter;
+			this.format = instance.format;
+			this.id = instance.id;
+			this.keepAlive = instance.keepAlive;
+			this.waitForCompletionTimeout = instance.waitForCompletionTimeout;
+
+		}
 		/**
 		 * The separator for CSV results. The API supports this parameter only for CSV
 		 * responses.
@@ -265,6 +275,12 @@ public class GetAsyncRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

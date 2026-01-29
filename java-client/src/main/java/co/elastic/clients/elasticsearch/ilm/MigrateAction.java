@@ -115,6 +115,12 @@ public class MigrateAction implements JsonpSerializable {
 		@Nullable
 		private Boolean enabled;
 
+		public Builder() {
+		}
+		private Builder(MigrateAction instance) {
+			this.enabled = instance.enabled;
+
+		}
 		/**
 		 * API name: {@code enabled}
 		 */
@@ -141,6 +147,12 @@ public class MigrateAction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -287,6 +287,21 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 		@Nullable
 		private NodeInfoMemory swap;
 
+		public Builder() {
+		}
+		private Builder(NodeOperatingSystemInfo instance) {
+			this.arch = instance.arch;
+			this.availableProcessors = instance.availableProcessors;
+			this.allocatedProcessors = instance.allocatedProcessors;
+			this.name = instance.name;
+			this.prettyName = instance.prettyName;
+			this.refreshIntervalInMillis = instance.refreshIntervalInMillis;
+			this.version = instance.version;
+			this.cpu = instance.cpu;
+			this.mem = instance.mem;
+			this.swap = instance.swap;
+
+		}
 		/**
 		 * Required - Name of the JVM architecture (ex: amd64, x86)
 		 * <p>
@@ -420,6 +435,12 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

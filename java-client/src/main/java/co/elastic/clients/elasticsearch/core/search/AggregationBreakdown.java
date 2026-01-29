@@ -291,6 +291,23 @@ public class AggregationBreakdown implements JsonpSerializable {
 
 		private Long reduceCount;
 
+		public Builder() {
+		}
+		private Builder(AggregationBreakdown instance) {
+			this.buildAggregation = instance.buildAggregation;
+			this.buildAggregationCount = instance.buildAggregationCount;
+			this.buildLeafCollector = instance.buildLeafCollector;
+			this.buildLeafCollectorCount = instance.buildLeafCollectorCount;
+			this.collect = instance.collect;
+			this.collectCount = instance.collectCount;
+			this.initialize = instance.initialize;
+			this.initializeCount = instance.initializeCount;
+			this.postCollection = instance.postCollection;
+			this.postCollectionCount = instance.postCollectionCount;
+			this.reduce = instance.reduce;
+			this.reduceCount = instance.reduceCount;
+
+		}
 		/**
 		 * Required - API name: {@code build_aggregation}
 		 */
@@ -405,6 +422,12 @@ public class AggregationBreakdown implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

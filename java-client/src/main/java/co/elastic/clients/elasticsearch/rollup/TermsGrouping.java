@@ -122,6 +122,12 @@ public class TermsGrouping implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TermsGrouping> {
 		private List<String> fields;
 
+		public Builder() {
+		}
+		private Builder(TermsGrouping instance) {
+			this.fields = instance.fields;
+
+		}
 		/**
 		 * Required - The set of fields that you wish to collect terms for. This array
 		 * can contain fields that are both keyword and numerics. Order does not matter.
@@ -166,6 +172,12 @@ public class TermsGrouping implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

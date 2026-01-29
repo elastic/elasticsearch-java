@@ -124,6 +124,13 @@ public class Column implements JsonpSerializable {
 
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(Column instance) {
+			this.name = instance.name;
+			this.type = instance.type;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -158,6 +165,12 @@ public class Column implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

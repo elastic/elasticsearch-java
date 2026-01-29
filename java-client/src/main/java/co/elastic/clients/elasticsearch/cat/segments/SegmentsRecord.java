@@ -443,6 +443,26 @@ public class SegmentsRecord implements JsonpSerializable {
 		@Nullable
 		private String compound;
 
+		public Builder() {
+		}
+		private Builder(SegmentsRecord instance) {
+			this.index = instance.index;
+			this.shard = instance.shard;
+			this.prirep = instance.prirep;
+			this.ip = instance.ip;
+			this.id = instance.id;
+			this.segment = instance.segment;
+			this.generation = instance.generation;
+			this.docsCount = instance.docsCount;
+			this.docsDeleted = instance.docsDeleted;
+			this.size = instance.size;
+			this.sizeMemory = instance.sizeMemory;
+			this.committed = instance.committed;
+			this.searchable = instance.searchable;
+			this.version = instance.version;
+			this.compound = instance.compound;
+
+		}
 		/**
 		 * The index name.
 		 * <p>
@@ -629,6 +649,12 @@ public class SegmentsRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -139,6 +139,13 @@ public class JvmThreads implements JsonpSerializable {
 		@Nullable
 		private Long peakCount;
 
+		public Builder() {
+		}
+		private Builder(JvmThreads instance) {
+			this.count = instance.count;
+			this.peakCount = instance.peakCount;
+
+		}
 		/**
 		 * Number of active threads in use by JVM.
 		 * <p>
@@ -177,6 +184,12 @@ public class JvmThreads implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -200,6 +200,18 @@ public class EqlFeatures implements JsonpSerializable {
 
 		private EqlFeaturesSequences sequences;
 
+		public Builder() {
+		}
+		private Builder(EqlFeatures instance) {
+			this.join = instance.join;
+			this.joins = instance.joins;
+			this.keys = instance.keys;
+			this.event = instance.event;
+			this.pipes = instance.pipes;
+			this.sequence = instance.sequence;
+			this.sequences = instance.sequences;
+
+		}
 		/**
 		 * Required - API name: {@code join}
 		 */
@@ -302,6 +314,12 @@ public class EqlFeatures implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

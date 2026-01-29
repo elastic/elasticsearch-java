@@ -478,6 +478,29 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		@Nullable
 		private Integer timeoutCount;
 
+		public Builder() {
+		}
+		private Builder(TrainedModelDeploymentNodesStats instance) {
+			this.averageInferenceTimeMs = instance.averageInferenceTimeMs;
+			this.averageInferenceTimeMsLastMinute = instance.averageInferenceTimeMsLastMinute;
+			this.averageInferenceTimeMsExcludingCacheHits = instance.averageInferenceTimeMsExcludingCacheHits;
+			this.errorCount = instance.errorCount;
+			this.inferenceCount = instance.inferenceCount;
+			this.inferenceCacheHitCount = instance.inferenceCacheHitCount;
+			this.inferenceCacheHitCountLastMinute = instance.inferenceCacheHitCountLastMinute;
+			this.lastAccess = instance.lastAccess;
+			this.node = instance.node;
+			this.numberOfAllocations = instance.numberOfAllocations;
+			this.numberOfPendingRequests = instance.numberOfPendingRequests;
+			this.peakThroughputPerMinute = instance.peakThroughputPerMinute;
+			this.rejectedExecutionCount = instance.rejectedExecutionCount;
+			this.routingState = instance.routingState;
+			this.startTime = instance.startTime;
+			this.threadsPerAllocation = instance.threadsPerAllocation;
+			this.throughputLastMinute = instance.throughputLastMinute;
+			this.timeoutCount = instance.timeoutCount;
+
+		}
 		/**
 		 * The average time for each inference call to complete on this node.
 		 * <p>
@@ -689,6 +712,12 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

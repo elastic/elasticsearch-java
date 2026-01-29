@@ -142,6 +142,13 @@ public class PhraseSuggestCollateQuery implements JsonpSerializable {
 		@Nullable
 		private String source;
 
+		public Builder() {
+		}
+		private Builder(PhraseSuggestCollateQuery instance) {
+			this.id = instance.id;
+			this.source = instance.source;
+
+		}
 		/**
 		 * The search template ID.
 		 * <p>
@@ -180,6 +187,12 @@ public class PhraseSuggestCollateQuery implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

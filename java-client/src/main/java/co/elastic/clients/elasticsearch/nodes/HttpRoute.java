@@ -124,6 +124,13 @@ public class HttpRoute implements JsonpSerializable {
 
 		private HttpRouteResponses responses;
 
+		public Builder() {
+		}
+		private Builder(HttpRoute instance) {
+			this.requests = instance.requests;
+			this.responses = instance.responses;
+
+		}
 		/**
 		 * Required - API name: {@code requests}
 		 */
@@ -172,6 +179,12 @@ public class HttpRoute implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

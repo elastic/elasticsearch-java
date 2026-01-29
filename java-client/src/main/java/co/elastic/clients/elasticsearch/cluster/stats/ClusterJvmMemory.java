@@ -179,6 +179,15 @@ public class ClusterJvmMemory implements JsonpSerializable {
 		@Nullable
 		private String heapUsed;
 
+		public Builder() {
+		}
+		private Builder(ClusterJvmMemory instance) {
+			this.heapMaxInBytes = instance.heapMaxInBytes;
+			this.heapMax = instance.heapMax;
+			this.heapUsedInBytes = instance.heapUsedInBytes;
+			this.heapUsed = instance.heapUsed;
+
+		}
 		/**
 		 * Required - Maximum amount of memory, in bytes, available for use by the heap
 		 * across all selected nodes.
@@ -240,6 +249,12 @@ public class ClusterJvmMemory implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

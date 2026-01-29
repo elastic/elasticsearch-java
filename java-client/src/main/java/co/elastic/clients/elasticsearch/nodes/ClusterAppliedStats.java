@@ -122,6 +122,12 @@ public class ClusterAppliedStats implements JsonpSerializable {
 		@Nullable
 		private List<Recording> recordings;
 
+		public Builder() {
+		}
+		private Builder(ClusterAppliedStats instance) {
+			this.recordings = instance.recordings;
+
+		}
 		/**
 		 * API name: {@code recordings}
 		 * <p>
@@ -169,6 +175,12 @@ public class ClusterAppliedStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

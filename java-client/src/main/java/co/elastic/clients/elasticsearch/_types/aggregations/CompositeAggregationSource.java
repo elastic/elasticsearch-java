@@ -185,6 +185,15 @@ public class CompositeAggregationSource implements JsonpSerializable {
 		@Nullable
 		private CompositeGeoTileGridAggregation geotileGrid;
 
+		public Builder() {
+		}
+		private Builder(CompositeAggregationSource instance) {
+			this.terms = instance.terms;
+			this.histogram = instance.histogram;
+			this.dateHistogram = instance.dateHistogram;
+			this.geotileGrid = instance.geotileGrid;
+
+		}
 		/**
 		 * A terms aggregation.
 		 * <p>
@@ -283,6 +292,12 @@ public class CompositeAggregationSource implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

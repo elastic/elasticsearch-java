@@ -131,6 +131,13 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 		@Nullable
 		private List<MatrixStatsFields> fields;
 
+		public Builder() {
+		}
+		private Builder(MatrixStatsAggregate instance) {
+			this.docCount = instance.docCount;
+			this.fields = instance.fields;
+
+		}
 		/**
 		 * Required - API name: {@code doc_count}
 		 */
@@ -186,6 +193,12 @@ public class MatrixStatsAggregate extends AggregateBase implements AggregateVari
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

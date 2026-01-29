@@ -135,6 +135,13 @@ public class DataStreamWithOptions implements JsonpSerializable {
 		@Nullable
 		private DataStreamOptions options;
 
+		public Builder() {
+		}
+		private Builder(DataStreamWithOptions instance) {
+			this.name = instance.name;
+			this.options = instance.options;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -176,6 +183,12 @@ public class DataStreamWithOptions implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

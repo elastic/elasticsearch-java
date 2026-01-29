@@ -142,6 +142,13 @@ public class Destination implements JsonpSerializable {
 		@Nullable
 		private String pipeline;
 
+		public Builder() {
+		}
+		private Builder(Destination instance) {
+			this.index = instance.index;
+			this.pipeline = instance.pipeline;
+
+		}
 		/**
 		 * The destination index for the transform. The mappings of the destination
 		 * index are deduced based on the source fields when possible. If alternate
@@ -183,6 +190,12 @@ public class Destination implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

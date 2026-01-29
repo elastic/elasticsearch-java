@@ -118,6 +118,12 @@ public class NodeInfoIngest implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeInfoIngest> {
 		private List<NodeInfoIngestProcessor> processors;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoIngest instance) {
+			this.processors = instance.processors;
+
+		}
 		/**
 		 * Required - API name: {@code processors}
 		 * <p>
@@ -166,6 +172,12 @@ public class NodeInfoIngest implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

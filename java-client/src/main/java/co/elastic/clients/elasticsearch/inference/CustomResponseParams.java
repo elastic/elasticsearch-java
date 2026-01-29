@@ -251,6 +251,12 @@ public class CustomResponseParams implements JsonpSerializable {
 				ObjectBuilder<CustomResponseParams> {
 		private JsonData jsonParser;
 
+		public Builder() {
+		}
+		private Builder(CustomResponseParams instance) {
+			this.jsonParser = instance.jsonParser;
+
+		}
 		/**
 		 * Required - Specifies the JSON parser that is used to parse the response from
 		 * the custom service. Different task types require different json_parser
@@ -415,6 +421,12 @@ public class CustomResponseParams implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

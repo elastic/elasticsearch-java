@@ -99,6 +99,12 @@ public class RetryRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<RetryRequest> {
 		private String index;
 
+		public Builder() {
+		}
+		private Builder(RetryRequest instance) {
+			this.index = instance.index;
+
+		}
 		/**
 		 * Required - The name of the indices (comma-separated) whose failed lifecycle
 		 * step is to be retry
@@ -128,6 +134,12 @@ public class RetryRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

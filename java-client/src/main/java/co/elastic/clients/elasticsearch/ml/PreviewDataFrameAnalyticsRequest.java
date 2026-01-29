@@ -143,6 +143,13 @@ public class PreviewDataFrameAnalyticsRequest extends RequestBase implements Jso
 		@Nullable
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(PreviewDataFrameAnalyticsRequest instance) {
+			this.config = instance.config;
+			this.id = instance.id;
+
+		}
 		/**
 		 * A data frame analytics config as described in create data frame analytics
 		 * jobs. Note that <code>id</code> and <code>dest</code> don’t need to be
@@ -195,6 +202,12 @@ public class PreviewDataFrameAnalyticsRequest extends RequestBase implements Jso
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

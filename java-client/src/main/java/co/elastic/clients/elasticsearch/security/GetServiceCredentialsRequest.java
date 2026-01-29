@@ -125,6 +125,13 @@ public class GetServiceCredentialsRequest extends RequestBase {
 
 		private String service;
 
+		public Builder() {
+		}
+		private Builder(GetServiceCredentialsRequest instance) {
+			this.namespace = instance.namespace;
+			this.service = instance.service;
+
+		}
 		/**
 		 * Required - The name of the namespace.
 		 * <p>
@@ -163,6 +170,12 @@ public class GetServiceCredentialsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

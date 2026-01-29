@@ -261,6 +261,17 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 		@Nullable
 		private Map<String, Property> fields;
 
+		public Builder() {
+		}
+		private Builder(SemanticTextProperty instance) {
+			this.meta = instance.meta;
+			this.inferenceId = instance.inferenceId;
+			this.searchInferenceId = instance.searchInferenceId;
+			this.indexOptions = instance.indexOptions;
+			this.chunkingSettings = instance.chunkingSettings;
+			this.fields = instance.fields;
+
+		}
 		/**
 		 * API name: {@code meta}
 		 * <p>
@@ -416,6 +427,12 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

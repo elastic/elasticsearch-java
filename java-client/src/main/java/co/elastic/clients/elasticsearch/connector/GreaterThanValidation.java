@@ -122,6 +122,12 @@ public class GreaterThanValidation implements ValidationVariant, JsonpSerializab
 				ObjectBuilder<GreaterThanValidation> {
 		private Double constraint;
 
+		public Builder() {
+		}
+		private Builder(GreaterThanValidation instance) {
+			this.constraint = instance.constraint;
+
+		}
 		/**
 		 * Required - API name: {@code constraint}
 		 */
@@ -148,6 +154,12 @@ public class GreaterThanValidation implements ValidationVariant, JsonpSerializab
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

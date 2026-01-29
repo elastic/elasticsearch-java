@@ -246,6 +246,17 @@ public class IntervalsRange implements IntervalsQueryVariant, IntervalsVariant, 
 		@Nullable
 		private String useField;
 
+		public Builder() {
+		}
+		private Builder(IntervalsRange instance) {
+			this.analyzer = instance.analyzer;
+			this.gte = instance.gte;
+			this.gt = instance.gt;
+			this.lte = instance.lte;
+			this.lt = instance.lt;
+			this.useField = instance.useField;
+
+		}
 		/**
 		 * Analyzer used to analyze the <code>prefix</code>.
 		 * <p>
@@ -326,6 +337,12 @@ public class IntervalsRange implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

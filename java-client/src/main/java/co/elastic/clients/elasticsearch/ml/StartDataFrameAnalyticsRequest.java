@@ -151,6 +151,13 @@ public class StartDataFrameAnalyticsRequest extends RequestBase implements Jsonp
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(StartDataFrameAnalyticsRequest instance) {
+			this.id = instance.id;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - Identifier for the data frame analytics job. This identifier can
 		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
@@ -202,6 +209,12 @@ public class StartDataFrameAnalyticsRequest extends RequestBase implements Jsonp
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -913,6 +913,46 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(UpdateByQueryRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.analyzeWildcard = instance.analyzeWildcard;
+			this.analyzer = instance.analyzer;
+			this.conflicts = instance.conflicts;
+			this.defaultOperator = instance.defaultOperator;
+			this.df = instance.df;
+			this.expandWildcards = instance.expandWildcards;
+			this.from = instance.from;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.lenient = instance.lenient;
+			this.maxDocs = instance.maxDocs;
+			this.pipeline = instance.pipeline;
+			this.preference = instance.preference;
+			this.q = instance.q;
+			this.query = instance.query;
+			this.refresh = instance.refresh;
+			this.requestCache = instance.requestCache;
+			this.requestsPerSecond = instance.requestsPerSecond;
+			this.routing = instance.routing;
+			this.script = instance.script;
+			this.scroll = instance.scroll;
+			this.scrollSize = instance.scrollSize;
+			this.searchTimeout = instance.searchTimeout;
+			this.searchType = instance.searchType;
+			this.slice = instance.slice;
+			this.slices = instance.slices;
+			this.sort = instance.sort;
+			this.stats = instance.stats;
+			this.terminateAfter = instance.terminateAfter;
+			this.timeout = instance.timeout;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+			this.waitForActiveShards = instance.waitForActiveShards;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -1488,6 +1528,12 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

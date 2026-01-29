@@ -207,6 +207,15 @@ public class DecayPlacement<TOrigin, TScale> implements JsonpSerializable {
 		@Nullable
 		private JsonpSerializer<TScale> tScaleSerializer;
 
+		public Builder() {
+		}
+		private Builder(DecayPlacement<TOrigin, TScale> instance) {
+			this.decay = instance.decay;
+			this.offset = instance.offset;
+			this.scale = instance.scale;
+			this.origin = instance.origin;
+
+		}
 		/**
 		 * Defines how documents are scored at the distance given at scale.
 		 * <p>
@@ -286,6 +295,12 @@ public class DecayPlacement<TOrigin, TScale> implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

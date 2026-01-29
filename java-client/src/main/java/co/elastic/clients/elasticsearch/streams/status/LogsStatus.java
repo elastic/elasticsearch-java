@@ -111,6 +111,12 @@ public class LogsStatus implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<LogsStatus> {
 		private Boolean enabled;
 
+		public Builder() {
+		}
+		private Builder(LogsStatus instance) {
+			this.enabled = instance.enabled;
+
+		}
 		/**
 		 * Required - If true, the logs stream feature is enabled.
 		 * <p>
@@ -139,6 +145,12 @@ public class LogsStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

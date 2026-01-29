@@ -117,6 +117,12 @@ public class DataStreamTimestampField implements JsonpSerializable {
 				ObjectBuilder<DataStreamTimestampField> {
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(DataStreamTimestampField instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - Name of the timestamp field for the data stream, which must be
 		 * <code>@timestamp</code>. The <code>@timestamp</code> field must be included
@@ -147,6 +153,12 @@ public class DataStreamTimestampField implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

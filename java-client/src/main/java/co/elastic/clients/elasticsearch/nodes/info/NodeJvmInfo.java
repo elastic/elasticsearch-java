@@ -306,6 +306,23 @@ public class NodeJvmInfo implements JsonpSerializable {
 
 		private List<String> inputArguments;
 
+		public Builder() {
+		}
+		private Builder(NodeJvmInfo instance) {
+			this.gcCollectors = instance.gcCollectors;
+			this.mem = instance.mem;
+			this.memoryPools = instance.memoryPools;
+			this.pid = instance.pid;
+			this.startTimeInMillis = instance.startTimeInMillis;
+			this.version = instance.version;
+			this.vmName = instance.vmName;
+			this.vmVendor = instance.vmVendor;
+			this.vmVersion = instance.vmVersion;
+			this.usingBundledJdk = instance.usingBundledJdk;
+			this.usingCompressedOrdinaryObjectPointers = instance.usingCompressedOrdinaryObjectPointers;
+			this.inputArguments = instance.inputArguments;
+
+		}
 		/**
 		 * Required - API name: {@code gc_collectors}
 		 * <p>
@@ -463,6 +480,12 @@ public class NodeJvmInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -141,6 +141,13 @@ public class BulkError implements JsonpSerializable {
 
 		private Map<String, ErrorCause> details;
 
+		public Builder() {
+		}
+		private Builder(BulkError instance) {
+			this.count = instance.count;
+			this.details = instance.details;
+
+		}
 		/**
 		 * Required - The number of errors
 		 * <p>
@@ -204,6 +211,12 @@ public class BulkError implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

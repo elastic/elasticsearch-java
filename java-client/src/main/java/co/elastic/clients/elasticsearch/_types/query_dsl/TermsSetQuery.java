@@ -209,6 +209,15 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 
 		private List<String> terms;
 
+		public Builder() {
+		}
+		private Builder(TermsSetQuery instance) {
+			this.minimumShouldMatch = instance.minimumShouldMatch;
+			this.minimumShouldMatchField = instance.minimumShouldMatchField;
+			this.minimumShouldMatchScript = instance.minimumShouldMatchScript;
+			this.terms = instance.terms;
+
+		}
 		/**
 		 * Specification describing number of matching terms required to return a
 		 * document.
@@ -294,6 +303,12 @@ public class TermsSetQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

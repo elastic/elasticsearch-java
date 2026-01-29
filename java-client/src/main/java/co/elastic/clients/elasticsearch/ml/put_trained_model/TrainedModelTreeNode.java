@@ -277,6 +277,20 @@ public class TrainedModelTreeNode implements JsonpSerializable {
 		@Nullable
 		private Double threshold;
 
+		public Builder() {
+		}
+		private Builder(TrainedModelTreeNode instance) {
+			this.decisionType = instance.decisionType;
+			this.defaultLeft = instance.defaultLeft;
+			this.leafValue = instance.leafValue;
+			this.leftChild = instance.leftChild;
+			this.nodeIndex = instance.nodeIndex;
+			this.rightChild = instance.rightChild;
+			this.splitFeature = instance.splitFeature;
+			this.splitGain = instance.splitGain;
+			this.threshold = instance.threshold;
+
+		}
 		/**
 		 * API name: {@code decision_type}
 		 */
@@ -367,6 +381,12 @@ public class TrainedModelTreeNode implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

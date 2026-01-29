@@ -150,6 +150,14 @@ public class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 
 		private Number memoryInBytes;
 
+		public Builder() {
+		}
+		private Builder(SecurityRolesDlsBitSetCache instance) {
+			this.count = instance.count;
+			this.memory = instance.memory;
+			this.memoryInBytes = instance.memoryInBytes;
+
+		}
 		/**
 		 * Required - API name: {@code count}
 		 */
@@ -192,6 +200,12 @@ public class SecurityRolesDlsBitSetCache implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

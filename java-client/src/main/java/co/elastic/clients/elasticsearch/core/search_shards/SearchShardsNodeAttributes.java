@@ -259,6 +259,20 @@ public class SearchShardsNodeAttributes implements JsonpSerializable {
 
 		private Integer maxIndexVersion;
 
+		public Builder() {
+		}
+		private Builder(SearchShardsNodeAttributes instance) {
+			this.name = instance.name;
+			this.ephemeralId = instance.ephemeralId;
+			this.transportAddress = instance.transportAddress;
+			this.externalId = instance.externalId;
+			this.attributes = instance.attributes;
+			this.roles = instance.roles;
+			this.version = instance.version;
+			this.minIndexVersion = instance.minIndexVersion;
+			this.maxIndexVersion = instance.maxIndexVersion;
+
+		}
 		/**
 		 * Required - The human-readable identifier of the node.
 		 * <p>
@@ -383,6 +397,12 @@ public class SearchShardsNodeAttributes implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

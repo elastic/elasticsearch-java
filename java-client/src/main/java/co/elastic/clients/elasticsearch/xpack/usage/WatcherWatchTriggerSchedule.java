@@ -112,6 +112,13 @@ public class WatcherWatchTriggerSchedule extends Counter {
 
 		private Counter all;
 
+		public Builder() {
+		}
+		private Builder(WatcherWatchTriggerSchedule instance) {
+			this.cron = instance.cron;
+			this.all = instance.all;
+
+		}
 		/**
 		 * Required - API name: {@code cron}
 		 */
@@ -160,6 +167,12 @@ public class WatcherWatchTriggerSchedule extends Counter {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -151,6 +151,14 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 		@Nullable
 		private String valueAsString;
 
+		public Builder() {
+		}
+		private Builder(ArrayPercentilesItem instance) {
+			this.key = instance.key;
+			this.value = instance.value;
+			this.valueAsString = instance.valueAsString;
+
+		}
 		/**
 		 * Required - API name: {@code key}
 		 */
@@ -195,6 +203,12 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -162,6 +162,13 @@ public class UntypedRangeQuery extends RangeQueryBase<JsonData> implements Range
 		@Nullable
 		private String timeZone;
 
+		public Builder() {
+		}
+		private Builder(UntypedRangeQuery instance) {
+			this.format = instance.format;
+			this.timeZone = instance.timeZone;
+
+		}
 		/**
 		 * Date format used to convert <code>date</code> values in the query.
 		 * <p>
@@ -202,6 +209,12 @@ public class UntypedRangeQuery extends RangeQueryBase<JsonData> implements Range
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

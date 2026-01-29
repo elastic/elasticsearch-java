@@ -123,6 +123,12 @@ public class ListTypeValidation implements ValidationVariant, JsonpSerializable 
 				ObjectBuilder<ListTypeValidation> {
 		private String constraint;
 
+		public Builder() {
+		}
+		private Builder(ListTypeValidation instance) {
+			this.constraint = instance.constraint;
+
+		}
 		/**
 		 * Required - API name: {@code constraint}
 		 */
@@ -149,6 +155,12 @@ public class ListTypeValidation implements ValidationVariant, JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -185,6 +185,17 @@ public class ListRequest extends RequestBase {
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(ListRequest instance) {
+			this.connectorName = instance.connectorName;
+			this.from = instance.from;
+			this.indexName = instance.indexName;
+			this.query = instance.query;
+			this.serviceType = instance.serviceType;
+			this.size = instance.size;
+
+		}
 		/**
 		 * A comma-separated list of connector names to fetch connector documents for
 		 * <p>
@@ -310,6 +321,12 @@ public class ListRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

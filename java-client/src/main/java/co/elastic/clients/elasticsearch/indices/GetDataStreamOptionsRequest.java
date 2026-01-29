@@ -141,6 +141,14 @@ public class GetDataStreamOptionsRequest extends RequestBase {
 
 		private List<String> name;
 
+		public Builder() {
+		}
+		private Builder(GetDataStreamOptionsRequest instance) {
+			this.expandWildcards = instance.expandWildcards;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Type of data stream that wildcard patterns can match. Supports
 		 * comma-separated values, such as <code>open,hidden</code>. Valid values are:
@@ -238,6 +246,12 @@ public class GetDataStreamOptionsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

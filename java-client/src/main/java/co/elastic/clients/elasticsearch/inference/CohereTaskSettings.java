@@ -212,6 +212,15 @@ public class CohereTaskSettings implements JsonpSerializable {
 		@Nullable
 		private CohereTruncateType truncate;
 
+		public Builder() {
+		}
+		private Builder(CohereTaskSettings instance) {
+			this.inputType = instance.inputType;
+			this.returnDocuments = instance.returnDocuments;
+			this.topN = instance.topN;
+			this.truncate = instance.truncate;
+
+		}
 		/**
 		 * For a <code>text_embedding</code> task, the type of input passed to the
 		 * model. Valid values are:
@@ -297,6 +306,12 @@ public class CohereTaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

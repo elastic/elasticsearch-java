@@ -185,6 +185,15 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private String timeZone;
 
+		public Builder() {
+		}
+		private Builder(TranslateRequest instance) {
+			this.fetchSize = instance.fetchSize;
+			this.filter = instance.filter;
+			this.query = instance.query;
+			this.timeZone = instance.timeZone;
+
+		}
 		/**
 		 * The maximum number of rows (or entries) to return in one response.
 		 * <p>
@@ -262,6 +271,12 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

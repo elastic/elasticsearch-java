@@ -157,6 +157,14 @@ public class ParentIdQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(ParentIdQuery instance) {
+			this.id = instance.id;
+			this.ignoreUnmapped = instance.ignoreUnmapped;
+			this.type = instance.type;
+
+		}
 		/**
 		 * ID of the parent document.
 		 * <p>
@@ -206,6 +214,12 @@ public class ParentIdQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -178,6 +178,15 @@ public class CompletionRequest extends RequestBase implements JsonpSerializable 
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(CompletionRequest instance) {
+			this.inferenceId = instance.inferenceId;
+			this.input = instance.input;
+			this.taskSettings = instance.taskSettings;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - The inference Id
 		 * <p>
@@ -259,6 +268,12 @@ public class CompletionRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

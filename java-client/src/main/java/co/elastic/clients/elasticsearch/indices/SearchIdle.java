@@ -115,6 +115,12 @@ public class SearchIdle implements JsonpSerializable {
 		@Nullable
 		private Time after;
 
+		public Builder() {
+		}
+		private Builder(SearchIdle instance) {
+			this.after = instance.after;
+
+		}
 		/**
 		 * API name: {@code after}
 		 */
@@ -148,6 +154,12 @@ public class SearchIdle implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

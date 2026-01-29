@@ -217,6 +217,18 @@ public class TransformStats implements JsonpSerializable {
 
 		private TransformIndexerStats stats;
 
+		public Builder() {
+		}
+		private Builder(TransformStats instance) {
+			this.checkpointing = instance.checkpointing;
+			this.health = instance.health;
+			this.id = instance.id;
+			this.node = instance.node;
+			this.reason = instance.reason;
+			this.state = instance.state;
+			this.stats = instance.stats;
+
+		}
 		/**
 		 * Required - API name: {@code checkpointing}
 		 */
@@ -319,6 +331,12 @@ public class TransformStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

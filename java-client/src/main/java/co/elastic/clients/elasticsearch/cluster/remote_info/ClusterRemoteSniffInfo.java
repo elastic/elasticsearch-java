@@ -234,6 +234,17 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 
 		private List<String> seeds;
 
+		public Builder() {
+		}
+		private Builder(ClusterRemoteSniffInfo instance) {
+			this.connected = instance.connected;
+			this.maxConnectionsPerCluster = instance.maxConnectionsPerCluster;
+			this.numNodesConnected = instance.numNodesConnected;
+			this.initialConnectTimeout = instance.initialConnectTimeout;
+			this.skipUnavailable = instance.skipUnavailable;
+			this.seeds = instance.seeds;
+
+		}
 		/**
 		 * Required - If it is <code>true</code>, there is at least one open connection
 		 * to the remote cluster. If it is <code>false</code>, it means that the cluster
@@ -345,6 +356,12 @@ public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -2216,6 +2216,107 @@ public class NodesRecord implements JsonpSerializable {
 		@Nullable
 		private String bulkAvgSizeInBytes;
 
+		public Builder() {
+		}
+		private Builder(NodesRecord instance) {
+			this.id = instance.id;
+			this.pid = instance.pid;
+			this.ip = instance.ip;
+			this.port = instance.port;
+			this.httpAddress = instance.httpAddress;
+			this.version = instance.version;
+			this.flavor = instance.flavor;
+			this.type = instance.type;
+			this.build = instance.build;
+			this.jdk = instance.jdk;
+			this.diskTotal = instance.diskTotal;
+			this.diskUsed = instance.diskUsed;
+			this.diskAvail = instance.diskAvail;
+			this.diskUsedPercent = instance.diskUsedPercent;
+			this.heapCurrent = instance.heapCurrent;
+			this.heapPercent = instance.heapPercent;
+			this.heapMax = instance.heapMax;
+			this.ramCurrent = instance.ramCurrent;
+			this.ramPercent = instance.ramPercent;
+			this.ramMax = instance.ramMax;
+			this.fileDescCurrent = instance.fileDescCurrent;
+			this.fileDescPercent = instance.fileDescPercent;
+			this.fileDescMax = instance.fileDescMax;
+			this.cpu = instance.cpu;
+			this.load1m = instance.load1m;
+			this.load5m = instance.load5m;
+			this.load15m = instance.load15m;
+			this.uptime = instance.uptime;
+			this.nodeRole = instance.nodeRole;
+			this.master = instance.master;
+			this.name = instance.name;
+			this.completionSize = instance.completionSize;
+			this.fielddataMemorySize = instance.fielddataMemorySize;
+			this.fielddataEvictions = instance.fielddataEvictions;
+			this.queryCacheMemorySize = instance.queryCacheMemorySize;
+			this.queryCacheEvictions = instance.queryCacheEvictions;
+			this.queryCacheHitCount = instance.queryCacheHitCount;
+			this.queryCacheMissCount = instance.queryCacheMissCount;
+			this.requestCacheMemorySize = instance.requestCacheMemorySize;
+			this.requestCacheEvictions = instance.requestCacheEvictions;
+			this.requestCacheHitCount = instance.requestCacheHitCount;
+			this.requestCacheMissCount = instance.requestCacheMissCount;
+			this.flushTotal = instance.flushTotal;
+			this.flushTotalTime = instance.flushTotalTime;
+			this.getCurrent = instance.getCurrent;
+			this.getTime = instance.getTime;
+			this.getTotal = instance.getTotal;
+			this.getExistsTime = instance.getExistsTime;
+			this.getExistsTotal = instance.getExistsTotal;
+			this.getMissingTime = instance.getMissingTime;
+			this.getMissingTotal = instance.getMissingTotal;
+			this.indexingDeleteCurrent = instance.indexingDeleteCurrent;
+			this.indexingDeleteTime = instance.indexingDeleteTime;
+			this.indexingDeleteTotal = instance.indexingDeleteTotal;
+			this.indexingIndexCurrent = instance.indexingIndexCurrent;
+			this.indexingIndexTime = instance.indexingIndexTime;
+			this.indexingIndexTotal = instance.indexingIndexTotal;
+			this.indexingIndexFailed = instance.indexingIndexFailed;
+			this.mergesCurrent = instance.mergesCurrent;
+			this.mergesCurrentDocs = instance.mergesCurrentDocs;
+			this.mergesCurrentSize = instance.mergesCurrentSize;
+			this.mergesTotal = instance.mergesTotal;
+			this.mergesTotalDocs = instance.mergesTotalDocs;
+			this.mergesTotalSize = instance.mergesTotalSize;
+			this.mergesTotalTime = instance.mergesTotalTime;
+			this.refreshTotal = instance.refreshTotal;
+			this.refreshTime = instance.refreshTime;
+			this.refreshExternalTotal = instance.refreshExternalTotal;
+			this.refreshExternalTime = instance.refreshExternalTime;
+			this.refreshListeners = instance.refreshListeners;
+			this.scriptCompilations = instance.scriptCompilations;
+			this.scriptCacheEvictions = instance.scriptCacheEvictions;
+			this.scriptCompilationLimitTriggered = instance.scriptCompilationLimitTriggered;
+			this.searchFetchCurrent = instance.searchFetchCurrent;
+			this.searchFetchTime = instance.searchFetchTime;
+			this.searchFetchTotal = instance.searchFetchTotal;
+			this.searchOpenContexts = instance.searchOpenContexts;
+			this.searchQueryCurrent = instance.searchQueryCurrent;
+			this.searchQueryTime = instance.searchQueryTime;
+			this.searchQueryTotal = instance.searchQueryTotal;
+			this.searchScrollCurrent = instance.searchScrollCurrent;
+			this.searchScrollTime = instance.searchScrollTime;
+			this.searchScrollTotal = instance.searchScrollTotal;
+			this.segmentsCount = instance.segmentsCount;
+			this.segmentsMemory = instance.segmentsMemory;
+			this.segmentsIndexWriterMemory = instance.segmentsIndexWriterMemory;
+			this.segmentsVersionMapMemory = instance.segmentsVersionMapMemory;
+			this.segmentsFixedBitsetMemory = instance.segmentsFixedBitsetMemory;
+			this.suggestCurrent = instance.suggestCurrent;
+			this.suggestTime = instance.suggestTime;
+			this.suggestTotal = instance.suggestTotal;
+			this.bulkTotalOperations = instance.bulkTotalOperations;
+			this.bulkTotalTime = instance.bulkTotalTime;
+			this.bulkTotalSizeInBytes = instance.bulkTotalSizeInBytes;
+			this.bulkAvgTime = instance.bulkAvgTime;
+			this.bulkAvgSizeInBytes = instance.bulkAvgSizeInBytes;
+
+		}
 		/**
 		 * The unique node identifier.
 		 * <p>
@@ -3203,6 +3304,12 @@ public class NodesRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

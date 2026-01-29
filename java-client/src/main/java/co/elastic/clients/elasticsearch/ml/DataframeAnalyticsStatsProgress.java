@@ -135,6 +135,13 @@ public class DataframeAnalyticsStatsProgress implements JsonpSerializable {
 
 		private Integer progressPercent;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalyticsStatsProgress instance) {
+			this.phase = instance.phase;
+			this.progressPercent = instance.progressPercent;
+
+		}
 		/**
 		 * Required - Defines the phase of the data frame analytics job.
 		 * <p>
@@ -174,6 +181,12 @@ public class DataframeAnalyticsStatsProgress implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

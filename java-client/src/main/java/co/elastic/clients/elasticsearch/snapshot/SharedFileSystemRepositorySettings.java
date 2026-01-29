@@ -166,6 +166,14 @@ public class SharedFileSystemRepositorySettings extends RepositorySettingsBase {
 		@Nullable
 		private Boolean readonly;
 
+		public Builder() {
+		}
+		private Builder(SharedFileSystemRepositorySettings instance) {
+			this.location = instance.location;
+			this.maxNumberOfSnapshots = instance.maxNumberOfSnapshots;
+			this.readonly = instance.readonly;
+
+		}
 		/**
 		 * Required - The location of the shared filesystem used to store and retrieve
 		 * snapshots. This location must be registered in the <code>path.repo</code>
@@ -232,6 +240,12 @@ public class SharedFileSystemRepositorySettings extends RepositorySettingsBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

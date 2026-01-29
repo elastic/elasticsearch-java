@@ -152,6 +152,13 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		@Nullable
 		private List<String> stopwords;
 
+		public Builder() {
+		}
+		private Builder(StandardAnalyzer instance) {
+			this.maxTokenLength = instance.maxTokenLength;
+			this.stopwords = instance.stopwords;
+
+		}
 		/**
 		 * API name: {@code max_token_length}
 		 */
@@ -198,6 +205,12 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

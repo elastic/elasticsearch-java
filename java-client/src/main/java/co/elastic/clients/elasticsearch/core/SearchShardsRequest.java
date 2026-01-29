@@ -244,6 +244,19 @@ public class SearchShardsRequest extends RequestBase {
 		@Nullable
 		private String routing;
 
+		public Builder() {
+		}
+		private Builder(SearchShardsRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.preference = instance.preference;
+			this.routing = instance.routing;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -403,6 +416,12 @@ public class SearchShardsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -109,6 +109,12 @@ public class GlobalPrivilege implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GlobalPrivilege> {
 		private ApplicationGlobalUserPrivileges application;
 
+		public Builder() {
+		}
+		private Builder(GlobalPrivilege instance) {
+			this.application = instance.application;
+
+		}
 		/**
 		 * Required - API name: {@code application}
 		 */
@@ -143,6 +149,12 @@ public class GlobalPrivilege implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

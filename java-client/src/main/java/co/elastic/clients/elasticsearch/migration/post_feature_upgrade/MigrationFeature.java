@@ -111,6 +111,12 @@ public class MigrationFeature implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<MigrationFeature> {
 		private String featureName;
 
+		public Builder() {
+		}
+		private Builder(MigrationFeature instance) {
+			this.featureName = instance.featureName;
+
+		}
 		/**
 		 * Required - API name: {@code feature_name}
 		 */
@@ -137,6 +143,12 @@ public class MigrationFeature implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

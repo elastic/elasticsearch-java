@@ -324,6 +324,20 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 		@Nullable
 		private DataframeAnalyticsSource source;
 
+		public Builder() {
+		}
+		private Builder(ExplainDataFrameAnalyticsRequest instance) {
+			this.allowLazyStart = instance.allowLazyStart;
+			this.analysis = instance.analysis;
+			this.analyzedFields = instance.analyzedFields;
+			this.description = instance.description;
+			this.dest = instance.dest;
+			this.id = instance.id;
+			this.maxNumThreads = instance.maxNumThreads;
+			this.modelMemoryLimit = instance.modelMemoryLimit;
+			this.source = instance.source;
+
+		}
 		/**
 		 * Specifies whether this job can start when there is insufficient machine
 		 * learning node capacity for it to be immediately assigned to a node.
@@ -509,6 +523,12 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

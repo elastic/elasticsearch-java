@@ -244,6 +244,17 @@ public class DataframeAnalysisFeatureProcessorNGramEncoding
 		@Nullable
 		private Boolean custom;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalysisFeatureProcessorNGramEncoding instance) {
+			this.featurePrefix = instance.featurePrefix;
+			this.field = instance.field;
+			this.length = instance.length;
+			this.nGrams = instance.nGrams;
+			this.start = instance.start;
+			this.custom = instance.custom;
+
+		}
 		/**
 		 * The feature name prefix. Defaults to ngram_&lt;start&gt;_&lt;length&gt;.
 		 * <p>
@@ -338,6 +349,12 @@ public class DataframeAnalysisFeatureProcessorNGramEncoding
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

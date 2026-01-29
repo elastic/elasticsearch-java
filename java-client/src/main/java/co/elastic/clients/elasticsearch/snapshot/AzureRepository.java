@@ -107,6 +107,12 @@ public class AzureRepository extends RepositoryBase implements RepositoryVariant
 				ObjectBuilder<AzureRepository> {
 		private AzureRepositorySettings settings;
 
+		public Builder() {
+		}
+		private Builder(AzureRepository instance) {
+			this.settings = instance.settings;
+
+		}
 		/**
 		 * Required - The repository settings.
 		 * <p>
@@ -145,6 +151,12 @@ public class AzureRepository extends RepositoryBase implements RepositoryVariant
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

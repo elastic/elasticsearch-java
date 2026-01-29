@@ -81,6 +81,11 @@ public class HdrPercentilesAggregate extends PercentilesAggregateBase implements
 	public static class Builder extends PercentilesAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HdrPercentilesAggregate> {
+		public Builder() {
+		}
+		private Builder(HdrPercentilesAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class HdrPercentilesAggregate extends PercentilesAggregateBase implements
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

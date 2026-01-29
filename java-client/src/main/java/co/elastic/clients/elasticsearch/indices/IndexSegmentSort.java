@@ -186,6 +186,15 @@ public class IndexSegmentSort implements JsonpSerializable {
 		@Nullable
 		private List<SegmentSortMissing> missing;
 
+		public Builder() {
+		}
+		private Builder(IndexSegmentSort instance) {
+			this.field = instance.field;
+			this.order = instance.order;
+			this.mode = instance.mode;
+			this.missing = instance.missing;
+
+		}
 		/**
 		 * API name: {@code field}
 		 * <p>
@@ -284,6 +293,12 @@ public class IndexSegmentSort implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

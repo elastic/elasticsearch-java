@@ -154,6 +154,14 @@ public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSe
 
 		private RequestChatCompletion chatCompletionRequest;
 
+		public Builder() {
+		}
+		private Builder(ChatCompletionUnifiedRequest instance) {
+			this.inferenceId = instance.inferenceId;
+			this.timeout = instance.timeout;
+			this.chatCompletionRequest = instance.chatCompletionRequest;
+
+		}
 		/**
 		 * Required - The inference Id
 		 * <p>
@@ -226,6 +234,12 @@ public class ChatCompletionUnifiedRequest extends RequestBase implements JsonpSe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<ChatCompletionUnifiedRequest> _DESERIALIZER = createChatCompletionUnifiedRequestDeserializer();
 	protected static JsonpDeserializer<ChatCompletionUnifiedRequest> createChatCompletionUnifiedRequestDeserializer() {
 

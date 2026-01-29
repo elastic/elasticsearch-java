@@ -165,6 +165,14 @@ public class AggregationRange implements JsonpSerializable {
 		@Nullable
 		private Double to;
 
+		public Builder() {
+		}
+		private Builder(AggregationRange instance) {
+			this.from = instance.from;
+			this.key = instance.key;
+			this.to = instance.to;
+
+		}
 		/**
 		 * Start of the range (inclusive).
 		 * <p>
@@ -217,6 +225,12 @@ public class AggregationRange implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

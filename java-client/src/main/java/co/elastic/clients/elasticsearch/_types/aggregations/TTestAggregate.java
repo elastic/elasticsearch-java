@@ -130,6 +130,13 @@ public class TTestAggregate extends AggregateBase implements AggregateVariant {
 		@Nullable
 		private String valueAsString;
 
+		public Builder() {
+		}
+		private Builder(TTestAggregate instance) {
+			this.value = instance.value;
+			this.valueAsString = instance.valueAsString;
+
+		}
 		/**
 		 * Required - API name: {@code value}
 		 * <p>
@@ -166,6 +173,12 @@ public class TTestAggregate extends AggregateBase implements AggregateVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

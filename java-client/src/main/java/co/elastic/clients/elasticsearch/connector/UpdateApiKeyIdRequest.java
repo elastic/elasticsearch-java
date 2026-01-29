@@ -160,6 +160,14 @@ public class UpdateApiKeyIdRequest extends RequestBase implements JsonpSerializa
 
 		private String connectorId;
 
+		public Builder() {
+		}
+		private Builder(UpdateApiKeyIdRequest instance) {
+			this.apiKeyId = instance.apiKeyId;
+			this.apiKeySecretId = instance.apiKeySecretId;
+			this.connectorId = instance.connectorId;
+
+		}
 		/**
 		 * API name: {@code api_key_id}
 		 */
@@ -204,6 +212,12 @@ public class UpdateApiKeyIdRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -155,6 +155,14 @@ public class RollupJobSummaryField implements JsonpSerializable {
 		@Nullable
 		private Time calendarInterval;
 
+		public Builder() {
+		}
+		private Builder(RollupJobSummaryField instance) {
+			this.agg = instance.agg;
+			this.timeZone = instance.timeZone;
+			this.calendarInterval = instance.calendarInterval;
+
+		}
 		/**
 		 * Required - API name: {@code agg}
 		 */
@@ -204,6 +212,12 @@ public class RollupJobSummaryField implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

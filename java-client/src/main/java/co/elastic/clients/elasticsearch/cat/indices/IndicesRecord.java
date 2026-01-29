@@ -3221,6 +3221,153 @@ public class IndicesRecord implements JsonpSerializable {
 		@Nullable
 		private String priBulkAvgSizeInBytes;
 
+		public Builder() {
+		}
+		private Builder(IndicesRecord instance) {
+			this.health = instance.health;
+			this.status = instance.status;
+			this.index = instance.index;
+			this.uuid = instance.uuid;
+			this.pri = instance.pri;
+			this.rep = instance.rep;
+			this.docsCount = instance.docsCount;
+			this.docsDeleted = instance.docsDeleted;
+			this.creationDate = instance.creationDate;
+			this.creationDateString = instance.creationDateString;
+			this.storeSize = instance.storeSize;
+			this.priStoreSize = instance.priStoreSize;
+			this.datasetSize = instance.datasetSize;
+			this.completionSize = instance.completionSize;
+			this.priCompletionSize = instance.priCompletionSize;
+			this.fielddataMemorySize = instance.fielddataMemorySize;
+			this.priFielddataMemorySize = instance.priFielddataMemorySize;
+			this.fielddataEvictions = instance.fielddataEvictions;
+			this.priFielddataEvictions = instance.priFielddataEvictions;
+			this.queryCacheMemorySize = instance.queryCacheMemorySize;
+			this.priQueryCacheMemorySize = instance.priQueryCacheMemorySize;
+			this.queryCacheEvictions = instance.queryCacheEvictions;
+			this.priQueryCacheEvictions = instance.priQueryCacheEvictions;
+			this.requestCacheMemorySize = instance.requestCacheMemorySize;
+			this.priRequestCacheMemorySize = instance.priRequestCacheMemorySize;
+			this.requestCacheEvictions = instance.requestCacheEvictions;
+			this.priRequestCacheEvictions = instance.priRequestCacheEvictions;
+			this.requestCacheHitCount = instance.requestCacheHitCount;
+			this.priRequestCacheHitCount = instance.priRequestCacheHitCount;
+			this.requestCacheMissCount = instance.requestCacheMissCount;
+			this.priRequestCacheMissCount = instance.priRequestCacheMissCount;
+			this.flushTotal = instance.flushTotal;
+			this.priFlushTotal = instance.priFlushTotal;
+			this.flushTotalTime = instance.flushTotalTime;
+			this.priFlushTotalTime = instance.priFlushTotalTime;
+			this.getCurrent = instance.getCurrent;
+			this.priGetCurrent = instance.priGetCurrent;
+			this.getTime = instance.getTime;
+			this.priGetTime = instance.priGetTime;
+			this.getTotal = instance.getTotal;
+			this.priGetTotal = instance.priGetTotal;
+			this.getExistsTime = instance.getExistsTime;
+			this.priGetExistsTime = instance.priGetExistsTime;
+			this.getExistsTotal = instance.getExistsTotal;
+			this.priGetExistsTotal = instance.priGetExistsTotal;
+			this.getMissingTime = instance.getMissingTime;
+			this.priGetMissingTime = instance.priGetMissingTime;
+			this.getMissingTotal = instance.getMissingTotal;
+			this.priGetMissingTotal = instance.priGetMissingTotal;
+			this.indexingDeleteCurrent = instance.indexingDeleteCurrent;
+			this.priIndexingDeleteCurrent = instance.priIndexingDeleteCurrent;
+			this.indexingDeleteTime = instance.indexingDeleteTime;
+			this.priIndexingDeleteTime = instance.priIndexingDeleteTime;
+			this.indexingDeleteTotal = instance.indexingDeleteTotal;
+			this.priIndexingDeleteTotal = instance.priIndexingDeleteTotal;
+			this.indexingIndexCurrent = instance.indexingIndexCurrent;
+			this.priIndexingIndexCurrent = instance.priIndexingIndexCurrent;
+			this.indexingIndexTime = instance.indexingIndexTime;
+			this.priIndexingIndexTime = instance.priIndexingIndexTime;
+			this.indexingIndexTotal = instance.indexingIndexTotal;
+			this.priIndexingIndexTotal = instance.priIndexingIndexTotal;
+			this.indexingIndexFailed = instance.indexingIndexFailed;
+			this.priIndexingIndexFailed = instance.priIndexingIndexFailed;
+			this.mergesCurrent = instance.mergesCurrent;
+			this.priMergesCurrent = instance.priMergesCurrent;
+			this.mergesCurrentDocs = instance.mergesCurrentDocs;
+			this.priMergesCurrentDocs = instance.priMergesCurrentDocs;
+			this.mergesCurrentSize = instance.mergesCurrentSize;
+			this.priMergesCurrentSize = instance.priMergesCurrentSize;
+			this.mergesTotal = instance.mergesTotal;
+			this.priMergesTotal = instance.priMergesTotal;
+			this.mergesTotalDocs = instance.mergesTotalDocs;
+			this.priMergesTotalDocs = instance.priMergesTotalDocs;
+			this.mergesTotalSize = instance.mergesTotalSize;
+			this.priMergesTotalSize = instance.priMergesTotalSize;
+			this.mergesTotalTime = instance.mergesTotalTime;
+			this.priMergesTotalTime = instance.priMergesTotalTime;
+			this.refreshTotal = instance.refreshTotal;
+			this.priRefreshTotal = instance.priRefreshTotal;
+			this.refreshTime = instance.refreshTime;
+			this.priRefreshTime = instance.priRefreshTime;
+			this.refreshExternalTotal = instance.refreshExternalTotal;
+			this.priRefreshExternalTotal = instance.priRefreshExternalTotal;
+			this.refreshExternalTime = instance.refreshExternalTime;
+			this.priRefreshExternalTime = instance.priRefreshExternalTime;
+			this.refreshListeners = instance.refreshListeners;
+			this.priRefreshListeners = instance.priRefreshListeners;
+			this.searchFetchCurrent = instance.searchFetchCurrent;
+			this.priSearchFetchCurrent = instance.priSearchFetchCurrent;
+			this.searchFetchTime = instance.searchFetchTime;
+			this.priSearchFetchTime = instance.priSearchFetchTime;
+			this.searchFetchTotal = instance.searchFetchTotal;
+			this.priSearchFetchTotal = instance.priSearchFetchTotal;
+			this.searchOpenContexts = instance.searchOpenContexts;
+			this.priSearchOpenContexts = instance.priSearchOpenContexts;
+			this.searchQueryCurrent = instance.searchQueryCurrent;
+			this.priSearchQueryCurrent = instance.priSearchQueryCurrent;
+			this.searchQueryTime = instance.searchQueryTime;
+			this.priSearchQueryTime = instance.priSearchQueryTime;
+			this.searchQueryTotal = instance.searchQueryTotal;
+			this.priSearchQueryTotal = instance.priSearchQueryTotal;
+			this.searchScrollCurrent = instance.searchScrollCurrent;
+			this.priSearchScrollCurrent = instance.priSearchScrollCurrent;
+			this.searchScrollTime = instance.searchScrollTime;
+			this.priSearchScrollTime = instance.priSearchScrollTime;
+			this.searchScrollTotal = instance.searchScrollTotal;
+			this.priSearchScrollTotal = instance.priSearchScrollTotal;
+			this.segmentsCount = instance.segmentsCount;
+			this.priSegmentsCount = instance.priSegmentsCount;
+			this.segmentsMemory = instance.segmentsMemory;
+			this.priSegmentsMemory = instance.priSegmentsMemory;
+			this.segmentsIndexWriterMemory = instance.segmentsIndexWriterMemory;
+			this.priSegmentsIndexWriterMemory = instance.priSegmentsIndexWriterMemory;
+			this.segmentsVersionMapMemory = instance.segmentsVersionMapMemory;
+			this.priSegmentsVersionMapMemory = instance.priSegmentsVersionMapMemory;
+			this.segmentsFixedBitsetMemory = instance.segmentsFixedBitsetMemory;
+			this.priSegmentsFixedBitsetMemory = instance.priSegmentsFixedBitsetMemory;
+			this.warmerCurrent = instance.warmerCurrent;
+			this.priWarmerCurrent = instance.priWarmerCurrent;
+			this.warmerTotal = instance.warmerTotal;
+			this.priWarmerTotal = instance.priWarmerTotal;
+			this.warmerTotalTime = instance.warmerTotalTime;
+			this.priWarmerTotalTime = instance.priWarmerTotalTime;
+			this.suggestCurrent = instance.suggestCurrent;
+			this.priSuggestCurrent = instance.priSuggestCurrent;
+			this.suggestTime = instance.suggestTime;
+			this.priSuggestTime = instance.priSuggestTime;
+			this.suggestTotal = instance.suggestTotal;
+			this.priSuggestTotal = instance.priSuggestTotal;
+			this.memoryTotal = instance.memoryTotal;
+			this.priMemoryTotal = instance.priMemoryTotal;
+			this.searchThrottled = instance.searchThrottled;
+			this.bulkTotalOperations = instance.bulkTotalOperations;
+			this.priBulkTotalOperations = instance.priBulkTotalOperations;
+			this.bulkTotalTime = instance.bulkTotalTime;
+			this.priBulkTotalTime = instance.priBulkTotalTime;
+			this.bulkTotalSizeInBytes = instance.bulkTotalSizeInBytes;
+			this.priBulkTotalSizeInBytes = instance.priBulkTotalSizeInBytes;
+			this.bulkAvgTime = instance.bulkAvgTime;
+			this.priBulkAvgTime = instance.priBulkAvgTime;
+			this.bulkAvgSizeInBytes = instance.bulkAvgSizeInBytes;
+			this.priBulkAvgSizeInBytes = instance.priBulkAvgSizeInBytes;
+
+		}
 		/**
 		 * current health status
 		 * <p>
@@ -4661,6 +4808,12 @@ public class IndicesRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

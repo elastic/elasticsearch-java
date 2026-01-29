@@ -189,6 +189,15 @@ public class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		@Nullable
 		private String userDictionary;
 
+		public Builder() {
+		}
+		private Builder(NoriAnalyzer instance) {
+			this.version = instance.version;
+			this.decompoundMode = instance.decompoundMode;
+			this.stoptags = instance.stoptags;
+			this.userDictionary = instance.userDictionary;
+
+		}
 		/**
 		 * API name: {@code version}
 		 */
@@ -251,6 +260,12 @@ public class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

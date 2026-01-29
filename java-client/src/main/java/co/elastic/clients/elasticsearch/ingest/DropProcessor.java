@@ -78,6 +78,11 @@ public class DropProcessor extends ProcessorBase implements ProcessorVariant {
 	 */
 
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<DropProcessor> {
+		public Builder() {
+		}
+		private Builder(DropProcessor instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -96,6 +101,12 @@ public class DropProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

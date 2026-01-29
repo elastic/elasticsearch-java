@@ -226,6 +226,17 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private DateTime start;
 
+		public Builder() {
+		}
+		private Builder(FlushJobRequest instance) {
+			this.advanceTime = instance.advanceTime;
+			this.calcInterim = instance.calcInterim;
+			this.end = instance.end;
+			this.jobId = instance.jobId;
+			this.skipTime = instance.skipTime;
+			this.start = instance.start;
+
+		}
 		/**
 		 * Refer to the description for the <code>advance_time</code> query parameter.
 		 * <p>
@@ -304,6 +315,12 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

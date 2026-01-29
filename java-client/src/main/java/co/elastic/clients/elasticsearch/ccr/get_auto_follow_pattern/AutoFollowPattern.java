@@ -126,6 +126,13 @@ public class AutoFollowPattern implements JsonpSerializable {
 
 		private AutoFollowPatternSummary pattern;
 
+		public Builder() {
+		}
+		private Builder(AutoFollowPattern instance) {
+			this.name = instance.name;
+			this.pattern = instance.pattern;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -168,6 +175,12 @@ public class AutoFollowPattern implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

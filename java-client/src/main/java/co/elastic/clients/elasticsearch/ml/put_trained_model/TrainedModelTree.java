@@ -185,6 +185,15 @@ public class TrainedModelTree implements JsonpSerializable {
 
 		private List<TrainedModelTreeNode> treeStructure;
 
+		public Builder() {
+		}
+		private Builder(TrainedModelTree instance) {
+			this.classificationLabels = instance.classificationLabels;
+			this.featureNames = instance.featureNames;
+			this.targetType = instance.targetType;
+			this.treeStructure = instance.treeStructure;
+
+		}
 		/**
 		 * API name: {@code classification_labels}
 		 * <p>
@@ -281,6 +290,12 @@ public class TrainedModelTree implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

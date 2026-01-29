@@ -245,6 +245,16 @@ public class ClassificationInferenceOptions
 		@Nullable
 		private String topClassesResultsField;
 
+		public Builder() {
+		}
+		private Builder(ClassificationInferenceOptions instance) {
+			this.numTopClasses = instance.numTopClasses;
+			this.numTopFeatureImportanceValues = instance.numTopFeatureImportanceValues;
+			this.predictionFieldType = instance.predictionFieldType;
+			this.resultsField = instance.resultsField;
+			this.topClassesResultsField = instance.topClassesResultsField;
+
+		}
 		/**
 		 * Specifies the number of top class predictions to return. Defaults to 0.
 		 * <p>
@@ -317,6 +327,12 @@ public class ClassificationInferenceOptions
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

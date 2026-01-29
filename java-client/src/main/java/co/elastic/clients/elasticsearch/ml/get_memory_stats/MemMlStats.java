@@ -304,6 +304,21 @@ public class MemMlStats implements JsonpSerializable {
 
 		private Integer nativeInferenceInBytes;
 
+		public Builder() {
+		}
+		private Builder(MemMlStats instance) {
+			this.anomalyDetectors = instance.anomalyDetectors;
+			this.anomalyDetectorsInBytes = instance.anomalyDetectorsInBytes;
+			this.dataFrameAnalytics = instance.dataFrameAnalytics;
+			this.dataFrameAnalyticsInBytes = instance.dataFrameAnalyticsInBytes;
+			this.max = instance.max;
+			this.maxInBytes = instance.maxInBytes;
+			this.nativeCodeOverhead = instance.nativeCodeOverhead;
+			this.nativeCodeOverheadInBytes = instance.nativeCodeOverheadInBytes;
+			this.nativeInference = instance.nativeInference;
+			this.nativeInferenceInBytes = instance.nativeInferenceInBytes;
+
+		}
 		/**
 		 * Amount of native memory set aside for anomaly detection jobs.
 		 * <p>
@@ -430,6 +445,12 @@ public class MemMlStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

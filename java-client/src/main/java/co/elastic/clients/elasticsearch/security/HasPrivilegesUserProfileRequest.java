@@ -152,6 +152,13 @@ public class HasPrivilegesUserProfileRequest extends RequestBase implements Json
 
 		private List<String> uids;
 
+		public Builder() {
+		}
+		private Builder(HasPrivilegesUserProfileRequest instance) {
+			this.privileges = instance.privileges;
+			this.uids = instance.uids;
+
+		}
 		/**
 		 * Required - An object containing all the privileges to be checked.
 		 * <p>
@@ -215,6 +222,12 @@ public class HasPrivilegesUserProfileRequest extends RequestBase implements Json
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

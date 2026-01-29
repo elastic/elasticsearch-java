@@ -140,6 +140,14 @@ public class InnerRetriever implements JsonpSerializable {
 
 		private ScoreNormalizer normalizer;
 
+		public Builder() {
+		}
+		private Builder(InnerRetriever instance) {
+			this.retriever = instance.retriever;
+			this.weight = instance.weight;
+			this.normalizer = instance.normalizer;
+
+		}
 		/**
 		 * Required - API name: {@code retriever}
 		 */
@@ -197,6 +205,12 @@ public class InnerRetriever implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

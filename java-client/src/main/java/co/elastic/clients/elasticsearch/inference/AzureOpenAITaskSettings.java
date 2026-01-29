@@ -122,6 +122,12 @@ public class AzureOpenAITaskSettings implements JsonpSerializable {
 		@Nullable
 		private String user;
 
+		public Builder() {
+		}
+		private Builder(AzureOpenAITaskSettings instance) {
+			this.user = instance.user;
+
+		}
 		/**
 		 * For a <code>completion</code> or <code>text_embedding</code> task, specify
 		 * the user issuing the request. This information can be used for abuse
@@ -152,6 +158,12 @@ public class AzureOpenAITaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -210,6 +210,18 @@ public class ExistsRequest extends RequestBase {
 		@Nullable
 		private Boolean local;
 
+		public Builder() {
+		}
+		private Builder(ExistsRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.flatSettings = instance.flatSettings;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.includeDefaults = instance.includeDefaults;
+			this.index = instance.index;
+			this.local = instance.local;
+
+		}
 		/**
 		 * If <code>false</code>, the request returns an error if any wildcard
 		 * expression, index alias, or <code>_all</code> value targets only missing or
@@ -339,6 +351,12 @@ public class ExistsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

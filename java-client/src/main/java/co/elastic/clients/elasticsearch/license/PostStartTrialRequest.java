@@ -145,6 +145,14 @@ public class PostStartTrialRequest extends RequestBase {
 		@Nullable
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(PostStartTrialRequest instance) {
+			this.acknowledge = instance.acknowledge;
+			this.masterTimeout = instance.masterTimeout;
+			this.type = instance.type;
+
+		}
 		/**
 		 * Whether the user has acknowledged acknowledge messages
 		 * <p>
@@ -202,6 +210,12 @@ public class PostStartTrialRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

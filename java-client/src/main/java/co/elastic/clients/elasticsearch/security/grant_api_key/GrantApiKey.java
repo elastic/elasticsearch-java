@@ -204,6 +204,15 @@ public class GrantApiKey implements JsonpSerializable {
 		@Nullable
 		private Map<String, JsonData> metadata;
 
+		public Builder() {
+		}
+		private Builder(GrantApiKey instance) {
+			this.name = instance.name;
+			this.expiration = instance.expiration;
+			this.roleDescriptors = instance.roleDescriptors;
+			this.metadata = instance.metadata;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -309,6 +318,12 @@ public class GrantApiKey implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

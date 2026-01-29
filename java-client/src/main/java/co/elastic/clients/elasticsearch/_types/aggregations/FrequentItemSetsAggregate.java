@@ -83,6 +83,11 @@ public class FrequentItemSetsAggregate extends MultiBucketAggregateBase<Frequent
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<FrequentItemSetsBucket, Builder>
 			implements
 				ObjectBuilder<FrequentItemSetsAggregate> {
+		public Builder() {
+		}
+		private Builder(FrequentItemSetsAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -102,6 +107,12 @@ public class FrequentItemSetsAggregate extends MultiBucketAggregateBase<Frequent
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

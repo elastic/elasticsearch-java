@@ -199,6 +199,14 @@ public class MatchOnlyTextProperty implements PropertyVariant, JsonpSerializable
 		@Nullable
 		private List<String> copyTo;
 
+		public Builder() {
+		}
+		private Builder(MatchOnlyTextProperty instance) {
+			this.fields = instance.fields;
+			this.meta = instance.meta;
+			this.copyTo = instance.copyTo;
+
+		}
 		/**
 		 * Multi-fields allow the same string value to be indexed in multiple ways for
 		 * different purposes, such as one field for search and a multi-field for
@@ -311,6 +319,12 @@ public class MatchOnlyTextProperty implements PropertyVariant, JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

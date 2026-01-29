@@ -147,6 +147,14 @@ public class ToolCall implements JsonpSerializable {
 
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(ToolCall instance) {
+			this.id = instance.id;
+			this.function = instance.function;
+			this.type = instance.type;
+
+		}
 		/**
 		 * Required - The identifier of the tool call.
 		 * <p>
@@ -204,6 +212,12 @@ public class ToolCall implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

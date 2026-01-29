@@ -210,6 +210,15 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 		@Nullable
 		private Long size;
 
+		public Builder() {
+		}
+		private Builder(SuggestUserProfilesRequest instance) {
+			this.data = instance.data;
+			this.hint = instance.hint;
+			this.name = instance.name;
+			this.size = instance.size;
+
+		}
 		/**
 		 * A comma-separated list of filters for the <code>data</code> field of the
 		 * profile document. To return all content use <code>data=*</code>. To return a
@@ -309,6 +318,12 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

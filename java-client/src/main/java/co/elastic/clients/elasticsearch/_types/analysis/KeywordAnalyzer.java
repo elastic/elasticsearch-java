@@ -126,6 +126,12 @@ public class KeywordAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		@Nullable
 		private String version;
 
+		public Builder() {
+		}
+		private Builder(KeywordAnalyzer instance) {
+			this.version = instance.version;
+
+		}
 		/**
 		 * API name: {@code version}
 		 */
@@ -152,6 +158,12 @@ public class KeywordAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

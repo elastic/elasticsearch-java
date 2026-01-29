@@ -274,6 +274,19 @@ public class NodeAttributesRecord implements JsonpSerializable {
 		@Nullable
 		private String value;
 
+		public Builder() {
+		}
+		private Builder(NodeAttributesRecord instance) {
+			this.node = instance.node;
+			this.id = instance.id;
+			this.pid = instance.pid;
+			this.host = instance.host;
+			this.ip = instance.ip;
+			this.port = instance.port;
+			this.attr = instance.attr;
+			this.value = instance.value;
+
+		}
 		/**
 		 * The node name.
 		 * <p>
@@ -372,6 +385,12 @@ public class NodeAttributesRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -150,6 +150,13 @@ public class FailureStoreLifecycleTemplate implements JsonpSerializable {
 		@Nullable
 		private Boolean enabled;
 
+		public Builder() {
+		}
+		private Builder(FailureStoreLifecycleTemplate instance) {
+			this.dataRetention = instance.dataRetention;
+			this.enabled = instance.enabled;
+
+		}
 		/**
 		 * If defined, every document added to this data stream will be stored at least
 		 * for this time frame. Any time after this duration the document could be
@@ -206,6 +213,12 @@ public class FailureStoreLifecycleTemplate implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
