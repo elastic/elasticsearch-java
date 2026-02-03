@@ -27,7 +27,7 @@ import java.util.Base64;
  * which will translate float array vectors in a base64 format accepted by Elasticsearch version 9.3+,
  * with increased ingestion performance
  * <p>
- * Check {@link Base64VectorTest} for example usage
+ * Check co.elastic.clients.elasticsearch._helpers.vector.Base64VectorTest for example usage
  */
 public class AbstractBase64VectorDocument {
     private String vector;
