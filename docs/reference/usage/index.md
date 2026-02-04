@@ -5,6 +5,13 @@ mapped_pages:
 
 # Using the Java API client [usage]
 
+## Code Examples
+
+The Elasticsearch [API reference](https://www.elastic.co/docs/api/doc/elasticsearch/) provides examples of requests in various languages, including Java, available in the dropdown menu on the right.
+
+![Create API java example](../images/create-api-java-example.png)
+
+## General Usage
 The sections below provide tutorials on the most frequently used and some less obvious features of {{es}}.
 
 For a full reference, see the [Elasticsearch documentation](docs-content://get-started/index.md) and in particular the [REST APIs](elasticsearch://reference/elasticsearch/rest-apis/index.md) section. The Java API Client follows closely the JSON structures described there, using the [Java API conventions](/reference/api-conventions/index.md).
