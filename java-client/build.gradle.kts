@@ -180,6 +180,7 @@ dependencies {
     val elasticsearchVersion = "8.19.0"
     val jacksonVersion = "2.17.0"
     val openTelemetryVersion = "1.29.0"
+    val jackson3Version = "3.0.0"
 
     // Apache 2.0
     // https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html
@@ -216,6 +217,11 @@ dependencies {
     compileOnly("com.fasterxml.jackson.core", "jackson-databind", jacksonVersion)
     testImplementation("com.fasterxml.jackson.core", "jackson-core", jacksonVersion)
     testImplementation("com.fasterxml.jackson.core", "jackson-databind", jacksonVersion)
+
+    // Apache 2.0
+    // https://github.com/FasterXML/jackson
+    implementation("tools.jackson.core", "jackson-databind", jackson3Version)
+    implementation("tools.jackson.core", "jackson-core", jackson3Version)
 
     // EPL-2.0 OR BSD-3-Clause
     // https://eclipse-ee4j.github.io/yasson/
@@ -288,7 +294,17 @@ class SpdxReporter(val dest: File) : ReportRenderer {
                 val depName = dep.group + ":" + dep.name
 
                 val info = LicenseDataCollector.multiModuleLicenseInfo(dep)
-                val depUrl = info.moduleUrls.first()
+                val depUrl = when(dep.group) {
+                    "org.apache.httpcomponents.client5" -> "https://hc.apache.org/"
+                    "org.apache.httpcomponents.core5" -> "https://hc.apache.org/"
+                    "com.fasterxml.jackson" -> "https://github.com/FasterXML/jackson"
+                    "tools.jackson" -> " https://github.com/FasterXML/jackson-bom "
+                    else -> if (info.moduleUrls.isEmpty()) {
+                                throw RuntimeException("No URL found for module '$depName'")
+                            } else {
+                                info.moduleUrls.first()
+                            }
+                }
 
                 val licenseIds = info.licenses.mapNotNull { license ->
                     license.name?.let {

@@ -20,8 +20,6 @@
 package co.elastic.clients.json.jackson;
 
 import co.elastic.clients.json.JsonpUtils;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonToken;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
 import jakarta.json.JsonNumber;
@@ -30,46 +28,46 @@ import jakarta.json.JsonObjectBuilder;
 import jakarta.json.JsonValue;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonParsingException;
+import tools.jackson.core.JsonParser;
+import tools.jackson.core.JsonToken;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
- * Reads a Jsonp value/object/array from a Jackson parser. The parser's current token should be the start of the
+ * Reads a Jsonp value/object/array from a Jackson parser. The parser's current token should be the start
+ * of the
  * object (e.g. START_OBJECT, VALUE_NUMBER, etc).
- * @deprecated Use {@link Jackson3JsonValueParser}
  */
-@Deprecated
-class JsonValueParser {
-    private final JsonProvider provider = JsonpUtils.provider();
+class Jackson3JsonValueParser {
+    private final JsonProvider systemProvider = JsonpUtils.systemProvider();
 
-    public JsonObject parseObject(JsonParser parser) throws IOException {
+    public JsonObject parseObject(JsonParser parser) {
 
-        JsonObjectBuilder ob = provider.createObjectBuilder();
+        JsonObjectBuilder ob = systemProvider.createObjectBuilder();
 
         JsonToken token;
-        while((token = parser.nextToken()) != JsonToken.END_OBJECT) {
-            if (token != JsonToken.FIELD_NAME) {
-                throw new JsonParsingException("Expected a property name", new JacksonJsonpLocation(parser));
+        while ((token = parser.nextToken()) != JsonToken.END_OBJECT) {
+            if (token != JsonToken.PROPERTY_NAME) {
+                throw new JsonParsingException("Expected a property name", new Jackson3JsonpLocation(parser));
             }
-            String name = parser.getCurrentName();
+            String name = parser.currentName();
             parser.nextToken();
             ob.add(name, parseValue(parser));
         }
         return ob.build();
     }
 
-    public JsonArray parseArray(JsonParser parser) throws IOException {
-        JsonArrayBuilder ab = provider.createArrayBuilder();
+    public JsonArray parseArray(JsonParser parser){
+        JsonArrayBuilder ab = systemProvider.createArrayBuilder();
 
-        while(parser.nextToken() != JsonToken.END_ARRAY) {
+        while (parser.nextToken() != JsonToken.END_ARRAY) {
             ab.add(parseValue(parser));
         }
         return ab.build();
     }
 
-    public JsonValue parseValue(JsonParser parser) throws IOException {
+    public JsonValue parseValue(JsonParser parser) {
         JsonToken jsonToken = parser.currentToken();
         switch (parser.currentToken()) {
             case START_OBJECT:
@@ -88,27 +86,28 @@ class JsonValueParser {
                 return JsonValue.NULL;
 
             case VALUE_STRING:
-                return provider.createValue(parser.getText());
+                return systemProvider.createValue(parser.getText());
 
             case VALUE_NUMBER_FLOAT:
             case VALUE_NUMBER_INT:
-                switch(parser.getNumberType()) {
+                switch (parser.getNumberType()) {
                     case INT:
-                        return provider.createValue(parser.getIntValue());
+                        return systemProvider.createValue(parser.getIntValue());
                     case LONG:
-                        return provider.createValue(parser.getLongValue());
+                        return systemProvider.createValue(parser.getLongValue());
                     case FLOAT:
                     case DOUBLE:
                         // Use double also for floats, as JSON-P has no support for float
                         return new DoubleNumber(parser.getDoubleValue());
                     case BIG_DECIMAL:
-                        return provider.createValue(parser.getDecimalValue());
+                        return systemProvider.createValue(parser.getDecimalValue());
                     case BIG_INTEGER:
-                        return provider.createValue(parser.getBigIntegerValue());
+                        return systemProvider.createValue(parser.getBigIntegerValue());
                 }
 
             default:
-                throw new JsonParsingException("Unexpected token '" + parser.currentToken() + "'", new JacksonJsonpLocation(parser));
+                throw new JsonParsingException("Unexpected token '" + parser.currentToken() + "'",
+                    new Jackson3JsonpLocation(parser));
 
         }
     }
@@ -135,7 +134,7 @@ class JsonValueParser {
         public int intValueExact() {
             int result = (int) value;
 
-            if ((double)result == value) {
+            if ((double) result == value) {
                 return result;
             } else {
                 throw new ArithmeticException();
@@ -151,7 +150,7 @@ class JsonValueParser {
         public long longValueExact() {
             long result = (long) value;
 
-            if ((double)result == value) {
+            if ((double) result == value) {
                 return result;
             } else {
                 throw new ArithmeticException();
@@ -200,7 +199,7 @@ class JsonValueParser {
 
         @Override
         public boolean equals(Object obj) {
-            return obj instanceof DoubleNumber && ((DoubleNumber)obj).value == value;
+            return obj instanceof DoubleNumber && ((DoubleNumber) obj).value == value;
         }
     }
 }
