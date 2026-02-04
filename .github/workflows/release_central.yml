@@ -12,6 +12,9 @@ on:
       prev_version:
           description: "The previous version, used in the release git diff."
           required: true
+      next_version:
+        description: "The next version, used to update the tags."
+        required: true
       dry_run:
         description: Used to test other workflow steps, does not publish to Maven Central.
         type: boolean
@@ -28,6 +31,7 @@ env:
   BRANCH: ${{ inputs.branch }}
   VERSION: ${{ inputs.version }}
   PREV_VERSION: ${{ inputs.prev_version }}
+  NEXT_VERSION: ${{ inputs.next_version }}
   DRY_RUN: ${{ inputs.dry_run }}
   GIT_USER: 'Laura Trotta'
   GIT_MAIL: laura.trotta@elastic.co
@@ -92,8 +96,8 @@ jobs:
             git config user.email "$GIT_MAIL"
             git tag v${{ inputs.version }}
             git push origin tag v${{ inputs.version }}
-            echo ${{ inputs.version }} > config/version.txt
-            sed -i '/static final String VERSION/s/".*"/"${{ inputs.version }}"/' java-client/src/main-flavored/java/co/elastic/clients/transport/VersionInfo.java
+            echo ${{ inputs.next_version }} > config/version.txt
+            sed -i '/static final String VERSION/s/".*"/"${{ inputs.next_version }}"/' java-client/src/main-flavored/java/co/elastic/clients/transport/VersionInfo.java
             git commit -m "bump version" -a
             git push origin ${{ inputs.branch }}
 
