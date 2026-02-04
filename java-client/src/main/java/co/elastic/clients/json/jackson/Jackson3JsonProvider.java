@@ -135,7 +135,7 @@ public class Jackson3JsonProvider extends JsonProvider {
          */
         @Override
         public JsonParser createParser(JsonObject obj) {
-            return JsonpUtils.systemProvider().createParserFactory(null).createParser(obj);
+            return JsonpUtils.provider().createParserFactory(null).createParser(obj);
         }
 
         /**
@@ -143,7 +143,7 @@ public class Jackson3JsonProvider extends JsonProvider {
          */
         @Override
         public JsonParser createParser(JsonArray array) {
-            return JsonpUtils.systemProvider().createParserFactory(null).createParser(array);
+            return JsonpUtils.provider().createParserFactory(null).createParser(array);
         }
 
         /**

@@ -40,7 +40,7 @@ import java.math.BigInteger;
  * object (e.g. START_OBJECT, VALUE_NUMBER, etc).
  */
 class Jackson3JsonValueParser {
-    private final JsonProvider systemProvider = JsonpUtils.systemProvider();
+    private final JsonProvider systemProvider = JsonpUtils.provider();
 
     public JsonObject parseObject(JsonParser parser) {
 
