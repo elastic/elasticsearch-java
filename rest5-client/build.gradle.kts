@@ -149,9 +149,13 @@ dependencies {
     testImplementation("org.apache.commons:commons-lang3:3.14.0")
     testImplementation("junit:junit:4.13.2")
 
-    // EPL-2.0
+    // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+    // https://github.com/eclipse-ee4j/jsonp
+    api("jakarta.json:jakarta.json-api:2.1.3")
+
+    // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/parsson
-    implementation("org.eclipse.parsson:jakarta.json:1.1.7")
+    implementation("org.eclipse.parsson:parsson:1.1.7")
 
 //    // Apache-2.0
 //    testImplementation("commons-io:commons-io:2.17.0")
