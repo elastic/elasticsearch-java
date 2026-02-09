@@ -18,21 +18,28 @@
  */
 package co.elastic.clients.transport.rest5_client.low_level;
 
+import org.apache.hc.core5.concurrent.FutureCallback;
 import org.apache.hc.core5.http.ContentTooLongException;
 import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.EntityDetails;
 import org.apache.hc.core5.http.io.entity.ByteArrayEntity;
-import org.apache.hc.core5.http.nio.entity.AbstractBinAsyncEntityConsumer;
+import org.apache.hc.core5.http.nio.AsyncEntityConsumer;
+import org.apache.hc.core5.http.nio.entity.AbstractBinDataConsumer;
 import org.apache.hc.core5.util.ByteArrayBuffer;
 
+import java.io.IOException;
 import java.nio.ByteBuffer;
 
 import static co.elastic.clients.transport.rest5_client.low_level.Constants.DEFAULT_BUFFER_INITIAL_CAPACITY;
 
-class BufferedByteConsumer extends AbstractBinAsyncEntityConsumer<ByteArrayEntity> {
+public class BufferedByteConsumer extends AbstractBinDataConsumer implements AsyncEntityConsumer<ByteArrayEntity> {
 
-    private volatile ByteArrayBuffer buffer;
     private final int limit;
-    private ContentType contentType;
+    private volatile ByteArrayBuffer buffer;
+    private volatile FutureCallback<ByteArrayEntity> resultCallback;
+    private volatile ContentType contentType;
+    private volatile String contentEncoding;
+    private volatile ByteArrayEntity result;
 
     BufferedByteConsumer(int bufferLimit) {
         super();
@@ -44,8 +51,11 @@ class BufferedByteConsumer extends AbstractBinAsyncEntityConsumer<ByteArrayEntit
     }
 
     @Override
-    protected void streamStart(final ContentType contentType) {
-        this.contentType = contentType;
+    public void streamStart(final EntityDetails entityDetails,
+                            final FutureCallback<ByteArrayEntity> resultCallback) {
+        this.contentType = entityDetails != null ? ContentType.parse(entityDetails.getContentType()) : null;
+        this.contentEncoding = entityDetails != null ? entityDetails.getContentEncoding() : null;
+        this.resultCallback = resultCallback;
     }
 
     @Override
@@ -64,8 +74,25 @@ class BufferedByteConsumer extends AbstractBinAsyncEntityConsumer<ByteArrayEntit
     }
 
     @Override
-    protected ByteArrayEntity generateContent() {
-        return new ByteArrayEntity(buffer.toByteArray(), contentType);
+    protected final void completed() throws IOException {
+        result = new ByteArrayEntity(buffer.toByteArray(), contentType, contentEncoding);
+        if (resultCallback != null) {
+            resultCallback.completed(result);
+        }
+        releaseResources();
+    }
+
+    @Override
+    public ByteArrayEntity getContent() {
+        return result;
+    }
+
+    @Override
+    public final void failed(final Exception cause) {
+        if (resultCallback != null) {
+            resultCallback.failed(cause);
+        }
+        releaseResources();
     }
 
     @Override
