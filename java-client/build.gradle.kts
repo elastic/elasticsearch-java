@@ -186,7 +186,7 @@ dependencies {
 
     // Apache 2.0
     // https://hc.apache.org/httpcomponents-client-ga/
-    api("org.apache.httpcomponents.client5","httpclient5","5.4.4")
+    api("org.apache.httpcomponents.client5","httpclient5","5.6")
 
     // Apache 2.0
     // https://search.maven.org/artifact/com.google.code.findbugs/jsr305
