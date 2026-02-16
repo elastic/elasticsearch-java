@@ -7,6 +7,60 @@ navigation_title: "Known issues"
 
 For detailed issues, refer to the [Java client repo](https://github.com/elastic/elasticsearch-java/issues).
 
+## 9.3.0 [known-issues-9-3-0]
+
+Version 9.3.0 of the client introduced a long list of breaking changes to better represent the server's API, but some of the [changes](9-3-0.md#breaking-changes-elasticsearch-java-client-930-breaking-changes) from `String` to `List<String>` were wrong and have been fixed with the 9.3.1 release.
+Here's the list of the reverted changes:
+
+::::{dropdown} List<String> to String
+
+- elasticsearch._types.query_dsl.FieldLookup
+    - `routing`: modified from `List<String>` to `String`, now optional
+
+
+- elasticsearch._types.query_dsl.MoreLikeThisQuery
+    - `routing`: modified from `List<String>` to `String`, now optional
+
+
+- elasticsearch._types.query_dsl.PercolateQuery
+    - `routing`: modified from `List<String>` to `String`, now optional
+
+
+- elasticsearch._types.query_dsl.TermsLookup
+    - `routing`: modified from `List<String>` to `String`, now optional
+
+
+- elasticsearch.core.bulk.BulkOperationBase
+    - `routing`: modified from `List<String>` to `String`, now optional
+
+
+- elasticsearch.core.reindex.Destination
+    - `routing`: modified from `List<String>` to `String`, now optional
+
+
+- elasticsearch.core.search.CompletionSuggestOption
+    - `routing`: modified from `List<String>` to `String`, now optional
+
+
+- elasticsearch.indices.Alias
+    - `indexRouting`: modified from `List<String>` to `String`, now optional
+    - `routing`: modified from `List<String>` to `String`, now optional
+    - `searchRouting`: modified from `List<String>` to `String`, now optional
+
+
+- elasticsearch.indices.PutAliasRequest
+    - `indexRouting`: modified from `List<String>` to `String`, now optional
+    - `routing`: modified from `List<String>` to `String`, now optional
+    - `searchRouting`: modified from `List<String>` to `String`, now optional
+
+
+- elasticsearch.indices.update_aliases.AddAction
+    - `indexRouting`: modified from `List<String>` to `String`, now optional
+    - `routing`: modified from `List<String>` to `String`, now optional
+    - `searchRouting`: modified from `List<String>` to `String`, now optional
+
+::::
+
 ## 9.x [known-issues-9-x]
 
 All 9.x versions of the client previous to, respectively, 9.2.4, 9.1.10 and 9.0.9 are affected by a bug with the new Rest5Client where memory usage is substantially higher than necessary.
