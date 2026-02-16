@@ -113,7 +113,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 * Returns an object extended information about a running ES|QL query.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-get-query">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-esql-get-query">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -133,7 +133,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 *            a function that initializes a builder to create the
 	 *            {@link GetQueryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-get-query">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-esql-get-query">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -203,7 +203,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 * ES|QL queries.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-list-queries">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-esql-list-queries">Documentation
 	 *      on elastic.co</a>
 	 */
 	public ListQueriesResponse listQueries() throws IOException, ElasticsearchException {

@@ -75,7 +75,7 @@ public class ElasticsearchTransformAsyncClient
 	 * Delete a transform.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-delete-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-delete-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -93,7 +93,7 @@ public class ElasticsearchTransformAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-delete-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-delete-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -110,7 +110,7 @@ public class ElasticsearchTransformAsyncClient
 	 * Get per-node information about transform usage.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-get-node-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-get-node-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetNodeStatsResponse> getNodeStats() {
@@ -126,7 +126,7 @@ public class ElasticsearchTransformAsyncClient
 	 * Get configuration information for transforms.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-get-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-get-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -146,7 +146,7 @@ public class ElasticsearchTransformAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-get-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-get-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -161,7 +161,7 @@ public class ElasticsearchTransformAsyncClient
 	 * Get configuration information for transforms.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-get-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-get-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -178,7 +178,7 @@ public class ElasticsearchTransformAsyncClient
 	 * Get usage information for transforms.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-get-transform-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-get-transform-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -198,7 +198,7 @@ public class ElasticsearchTransformAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTransformStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-get-transform-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-get-transform-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -221,7 +221,7 @@ public class ElasticsearchTransformAsyncClient
 	 * field types of the source index and the transform aggregations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-preview-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-preview-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -251,7 +251,7 @@ public class ElasticsearchTransformAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PreviewTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-preview-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-preview-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -294,7 +294,7 @@ public class ElasticsearchTransformAsyncClient
 	 * field types of the source index and the transform aggregations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-preview-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-preview-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -324,7 +324,7 @@ public class ElasticsearchTransformAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PreviewTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-preview-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-preview-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -370,7 +370,7 @@ public class ElasticsearchTransformAsyncClient
 	 * privileges on <code>.data-frame-internal*</code> indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-put-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-put-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -419,7 +419,7 @@ public class ElasticsearchTransformAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-put-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-put-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -438,7 +438,7 @@ public class ElasticsearchTransformAsyncClient
 	 * the transform, it is deleted.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-reset-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-reset-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -460,7 +460,7 @@ public class ElasticsearchTransformAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ResetTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-reset-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-reset-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -481,7 +481,7 @@ public class ElasticsearchTransformAsyncClient
 	 * meantime.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-schedule-now-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-schedule-now-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -505,7 +505,7 @@ public class ElasticsearchTransformAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ScheduleNowTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-schedule-now-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-schedule-now-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -532,7 +532,7 @@ public class ElasticsearchTransformAsyncClient
 	 * transform info API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-set-upgrade-mode">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-set-upgrade-mode">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -562,7 +562,7 @@ public class ElasticsearchTransformAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SetUpgradeModeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-set-upgrade-mode">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-set-upgrade-mode">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -587,7 +587,7 @@ public class ElasticsearchTransformAsyncClient
 	 * transform info API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-set-upgrade-mode">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-set-upgrade-mode">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -624,7 +624,7 @@ public class ElasticsearchTransformAsyncClient
 	 * unauthorized operations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-start-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-start-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -664,7 +664,7 @@ public class ElasticsearchTransformAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link StartTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-start-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-start-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -681,7 +681,7 @@ public class ElasticsearchTransformAsyncClient
 	 * Stops one or more transforms.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-stop-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-stop-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -701,7 +701,7 @@ public class ElasticsearchTransformAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link StopTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-stop-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-stop-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -727,7 +727,7 @@ public class ElasticsearchTransformAsyncClient
 	 * at the time of update and runs with those privileges.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-update-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-update-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -756,7 +756,7 @@ public class ElasticsearchTransformAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateTransformRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-update-transform">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-update-transform">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -790,7 +790,7 @@ public class ElasticsearchTransformAsyncClient
 	 * cluster backup prior to the upgrade.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-upgrade-transforms">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-upgrade-transforms">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -827,7 +827,7 @@ public class ElasticsearchTransformAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpgradeTransformsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-upgrade-transforms">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-upgrade-transforms">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -859,7 +859,7 @@ public class ElasticsearchTransformAsyncClient
 	 * cluster backup prior to the upgrade.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-transform-upgrade-transforms">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-transform-upgrade-transforms">Documentation
 	 *      on elastic.co</a>
 	 */
 

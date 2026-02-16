@@ -79,7 +79,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * For application consumption, use the aliases API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-aliases">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-aliases">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -104,7 +104,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link AliasesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-aliases">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-aliases">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -124,7 +124,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * For application consumption, use the aliases API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-aliases">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-aliases">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -145,7 +145,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * line or Kibana console. They are not intended for use by applications.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-allocation">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-allocation">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -169,7 +169,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link AllocationRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-allocation">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-allocation">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -188,7 +188,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * line or Kibana console. They are not intended for use by applications.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-allocation">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-allocation">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -211,7 +211,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the get component template API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-component-templates">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-component-templates">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -238,7 +238,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link ComponentTemplatesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-component-templates">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-component-templates">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -260,7 +260,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the get component template API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-component-templates">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-component-templates">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -283,7 +283,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the count API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-count">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-count">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -309,7 +309,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link CountRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-count">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-count">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -330,7 +330,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the count API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-count">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-count">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -352,7 +352,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the nodes stats API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-fielddata">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-fielddata">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -377,7 +377,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link FielddataRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-fielddata">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-fielddata">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -397,7 +397,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the nodes stats API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-fielddata">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-fielddata">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -424,7 +424,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * of a large cluster over a longer period of time.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-health">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-health">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -454,7 +454,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link HealthRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-health">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-health">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -479,7 +479,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * of a large cluster over a longer period of time.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-health">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-health">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -496,7 +496,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * Get help for the CAT APIs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-cat">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-cat">Documentation
 	 *      on elastic.co</a>
 	 */
 	public TextResponse help() throws IOException, ElasticsearchException {
@@ -531,7 +531,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use an index endpoint.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-indices">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-indices">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -571,7 +571,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link IndicesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-indices">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-indices">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -606,7 +606,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use an index endpoint.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-indices">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-indices">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -628,7 +628,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the nodes info API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-master">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-master">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -653,7 +653,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link MasterRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-master">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-master">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -673,7 +673,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the nodes info API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-master">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-master">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -695,7 +695,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-ml-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-ml-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -721,7 +721,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link MlDataFrameAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-ml-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-ml-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -742,7 +742,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-ml-data-frame-analytics">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-ml-data-frame-analytics">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -767,7 +767,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the get datafeed statistics API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-ml-datafeeds">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-ml-datafeeds">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -795,7 +795,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link MlDatafeedsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-ml-datafeeds">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-ml-datafeeds">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -819,7 +819,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the get datafeed statistics API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-ml-datafeeds">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-ml-datafeeds">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -844,7 +844,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the get anomaly detection job statistics API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-ml-jobs">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-ml-jobs">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -872,7 +872,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link MlJobsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-ml-jobs">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-ml-jobs">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -895,7 +895,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the get anomaly detection job statistics API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-ml-jobs">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-ml-jobs">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -916,7 +916,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the get trained models statistics API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-ml-trained-models">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-ml-trained-models">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -941,7 +941,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link MlTrainedModelsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-ml-trained-models">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-ml-trained-models">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -961,7 +961,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the get trained models statistics API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-ml-trained-models">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-ml-trained-models">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -981,7 +981,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * the nodes info API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-nodeattrs">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-nodeattrs">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1004,7 +1004,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link NodeattrsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-nodeattrs">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-nodeattrs">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1022,7 +1022,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * the nodes info API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-nodeattrs">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-nodeattrs">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1042,7 +1042,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * the nodes info API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-nodes">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-nodes">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1065,7 +1065,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link NodesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-nodes">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-nodes">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1083,7 +1083,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * the nodes info API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-nodes">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-nodes">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1103,7 +1103,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the pending cluster tasks API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-pending-tasks">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-pending-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1126,7 +1126,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link PendingTasksRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-pending-tasks">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-pending-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1145,7 +1145,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the pending cluster tasks API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-pending-tasks">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-pending-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1165,7 +1165,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * consumption, use the nodes info API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-plugins">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-plugins">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1188,7 +1188,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link PluginsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-plugins">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-plugins">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1206,7 +1206,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * consumption, use the nodes info API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-plugins">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-plugins">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1230,7 +1230,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * applications. For application consumption, use the index recovery API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-recovery">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-recovery">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1257,7 +1257,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link RecoveryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-recovery">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-recovery">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1279,7 +1279,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * applications. For application consumption, use the index recovery API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-recovery">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-recovery">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1299,7 +1299,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * use the get snapshot repository API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-repositories">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-repositories">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1322,7 +1322,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link RepositoriesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-repositories">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-repositories">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1341,7 +1341,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * use the get snapshot repository API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-repositories">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-repositories">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1362,7 +1362,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the index segments API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-segments">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-segments">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1386,7 +1386,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link SegmentsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-segments">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-segments">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1405,7 +1405,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the index segments API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-segments">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-segments">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1425,7 +1425,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * are not intended for use by applications.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-shards">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-shards">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1448,7 +1448,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link ShardsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-shards">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-shards">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1466,7 +1466,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * are not intended for use by applications.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-shards">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-shards">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1487,7 +1487,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the get snapshot API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-snapshots">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-snapshots">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1511,7 +1511,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link SnapshotsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-snapshots">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-snapshots">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1530,7 +1530,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * application consumption, use the get snapshot API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-snapshots">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-snapshots">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1550,7 +1550,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * consumption, use the task management API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-tasks">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1573,7 +1573,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link TasksRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-tasks">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1591,7 +1591,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * consumption, use the task management API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-tasks">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1612,7 +1612,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * applications. For application consumption, use the get index template API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-templates">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-templates">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1636,7 +1636,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link TemplatesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-templates">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-templates">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1655,7 +1655,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * applications. For application consumption, use the get index template API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-templates">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-templates">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1676,7 +1676,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * consumption, use the nodes info API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-thread-pool">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-thread-pool">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1700,7 +1700,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link ThreadPoolRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-thread-pool">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-thread-pool">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1719,7 +1719,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * consumption, use the nodes info API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-thread-pool">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-thread-pool">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1740,7 +1740,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * consumption, use the get transform statistics API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-transforms">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-transforms">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1764,7 +1764,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link TransformsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-transforms">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-transforms">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1783,7 +1783,7 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * consumption, use the get transform statistics API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-transforms">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cat-transforms">Documentation
 	 *      on elastic.co</a>
 	 */
 

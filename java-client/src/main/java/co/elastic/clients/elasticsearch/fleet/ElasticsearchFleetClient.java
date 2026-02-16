@@ -77,7 +77,7 @@ public class ElasticsearchFleetClient extends ApiClient<ElasticsearchTransport, 
 	 * visible for searches inside of Elasticsearch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-fleet-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-fleet-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -102,7 +102,7 @@ public class ElasticsearchFleetClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link FleetSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-fleet-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-fleet-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -142,7 +142,7 @@ public class ElasticsearchFleetClient extends ApiClient<ElasticsearchTransport, 
 	 * visible for searches inside of Elasticsearch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-fleet-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-fleet-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -167,7 +167,7 @@ public class ElasticsearchFleetClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link FleetSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-fleet-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-fleet-search">Documentation
 	 *      on elastic.co</a>
 	 */
 

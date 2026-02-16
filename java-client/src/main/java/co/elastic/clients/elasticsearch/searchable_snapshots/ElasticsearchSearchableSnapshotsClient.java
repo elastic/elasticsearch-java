@@ -76,7 +76,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	 * Get statistics about the shared cache for partially mounted indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-searchable-snapshots-cache-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-searchable-snapshots-cache-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -96,7 +96,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CacheStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-searchable-snapshots-cache-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-searchable-snapshots-cache-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -111,7 +111,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	 * Get statistics about the shared cache for partially mounted indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-searchable-snapshots-cache-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-searchable-snapshots-cache-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -129,7 +129,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	 * indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-searchable-snapshots-clear-cache">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-searchable-snapshots-clear-cache">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -150,7 +150,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearCacheRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-searchable-snapshots-clear-cache">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-searchable-snapshots-clear-cache">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -166,7 +166,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	 * indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-searchable-snapshots-clear-cache">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-searchable-snapshots-clear-cache">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -185,7 +185,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	 * ILM-managed snapshots can interfere with ILM processes.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-searchable-snapshots-mount">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-searchable-snapshots-mount">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -207,7 +207,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	 *            a function that initializes a builder to create the
 	 *            {@link MountRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-searchable-snapshots-mount">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-searchable-snapshots-mount">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -222,7 +222,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	 * Get searchable snapshot statistics.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-searchable-snapshots-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-searchable-snapshots-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -241,7 +241,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SearchableSnapshotsStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-searchable-snapshots-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-searchable-snapshots-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -255,7 +255,7 @@ public class ElasticsearchSearchableSnapshotsClient
 	 * Get searchable snapshot statistics.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-searchable-snapshots-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-searchable-snapshots-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 

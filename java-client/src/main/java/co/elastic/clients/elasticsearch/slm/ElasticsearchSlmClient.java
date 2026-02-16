@@ -75,7 +75,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 * or remove previously-taken snapshots.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-delete-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-delete-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -98,7 +98,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-delete-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-delete-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -119,7 +119,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 * policy before performing an upgrade or other maintenance.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-execute-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-execute-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -143,7 +143,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link ExecuteLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-execute-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-execute-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -163,7 +163,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 * The retention policy is normally applied according to its schedule.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-execute-retention">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-execute-retention">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -186,7 +186,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link ExecuteRetentionRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-execute-retention">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-execute-retention">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -204,7 +204,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 * The retention policy is normally applied according to its schedule.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-execute-retention">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-execute-retention">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -222,7 +222,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 * snapshot attempts.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-get-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-get-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -243,7 +243,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link GetLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-get-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-get-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -260,7 +260,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 * snapshot attempts.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-get-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-get-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -278,7 +278,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 * lifecycle management.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-get-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-get-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -299,7 +299,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link GetStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-get-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-get-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -315,7 +315,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 * lifecycle management.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-get-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-get-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -330,7 +330,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 * Get the snapshot lifecycle management status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-get-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-get-status">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -348,7 +348,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSlmStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-get-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-get-status">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -362,7 +362,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 * Get the snapshot lifecycle management status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-get-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-get-status">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -381,7 +381,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 * policy is stored.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-put-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-put-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -403,7 +403,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link PutLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-put-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-put-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -423,7 +423,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 * the stop SLM API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-start">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-start">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -445,7 +445,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link StartSlmRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-start">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-start">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -462,7 +462,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 * the stop SLM API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-start">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-start">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -489,7 +489,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 * see if SLM is running.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-stop">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-stop">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -519,7 +519,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link StopSlmRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-stop">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-stop">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -544,7 +544,7 @@ public class ElasticsearchSlmClient extends ApiClient<ElasticsearchTransport, El
 	 * see if SLM is running.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-slm-stop">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-slm-stop">Documentation
 	 *      on elastic.co</a>
 	 */
 

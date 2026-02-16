@@ -101,7 +101,7 @@ public class ElasticsearchTextStructureClient
 	 * response. It helps determine why the returned structure was chosen.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-text_structure">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-text_structure">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -147,7 +147,7 @@ public class ElasticsearchTextStructureClient
 	 *            a function that initializes a builder to create the
 	 *            {@link FindFieldStructureRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-text_structure">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-text_structure">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -191,7 +191,7 @@ public class ElasticsearchTextStructureClient
 	 * response. It helps determine why the returned structure was chosen.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-text-structure-find-message-structure">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-text-structure-find-message-structure">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -238,7 +238,7 @@ public class ElasticsearchTextStructureClient
 	 *            a function that initializes a builder to create the
 	 *            {@link FindMessageStructureRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-text-structure-find-message-structure">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-text-structure-find-message-structure">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -258,7 +258,7 @@ public class ElasticsearchTextStructureClient
 	 * matched substrings.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-text-structure-test-grok-pattern">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-text-structure-test-grok-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -281,7 +281,7 @@ public class ElasticsearchTextStructureClient
 	 *            a function that initializes a builder to create the
 	 *            {@link TestGrokPatternRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-text-structure-test-grok-pattern">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-text-structure-test-grok-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 

@@ -80,7 +80,7 @@ public class ElasticsearchMigrationAsyncClient
 	 * strongly recommended to use the Upgrade Assistant.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-migration-deprecations">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-migration-deprecations">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -105,7 +105,7 @@ public class ElasticsearchMigrationAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeprecationsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-migration-deprecations">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-migration-deprecations">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -125,7 +125,7 @@ public class ElasticsearchMigrationAsyncClient
 	 * strongly recommended to use the Upgrade Assistant.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-migration-deprecations">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-migration-deprecations">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -147,7 +147,7 @@ public class ElasticsearchMigrationAsyncClient
 	 * strongly recommended to use the Upgrade Assistant.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-migration-get-feature-upgrade-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-migration-get-feature-upgrade-status">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetFeatureUpgradeStatusResponse> getFeatureUpgradeStatus() {
@@ -171,7 +171,7 @@ public class ElasticsearchMigrationAsyncClient
 	 * strongly recommend you use the Upgrade Assistant.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-migration-get-feature-upgrade-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-migration-get-feature-upgrade-status">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<PostFeatureUpgradeResponse> postFeatureUpgrade() {

@@ -77,7 +77,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 
 	private final List<String> indices;
 
-	private final List<String> indexRouting;
+	@Nullable
+	private final String indexRouting;
 
 	@Nullable
 	private final Boolean isHidden;
@@ -85,9 +86,11 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	@Nullable
 	private final Boolean isWriteIndex;
 
-	private final List<String> routing;
+	@Nullable
+	private final String routing;
 
-	private final List<String> searchRouting;
+	@Nullable
+	private final String searchRouting;
 
 	@Nullable
 	private final Boolean mustExist;
@@ -101,11 +104,11 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		this.filter = builder.filter;
 		this.index = builder.index;
 		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
-		this.indexRouting = ApiTypeHelper.unmodifiable(builder.indexRouting);
+		this.indexRouting = builder.indexRouting;
 		this.isHidden = builder.isHidden;
 		this.isWriteIndex = builder.isWriteIndex;
-		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
-		this.searchRouting = ApiTypeHelper.unmodifiable(builder.searchRouting);
+		this.routing = builder.routing;
+		this.searchRouting = builder.searchRouting;
 		this.mustExist = builder.mustExist;
 
 	}
@@ -177,7 +180,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	 * <p>
 	 * API name: {@code index_routing}
 	 */
-	public final List<String> indexRouting() {
+	@Nullable
+	public final String indexRouting() {
 		return this.indexRouting;
 	}
 
@@ -207,7 +211,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	public final List<String> routing() {
+	@Nullable
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -218,7 +223,8 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	 * <p>
 	 * API name: {@code search_routing}
 	 */
-	public final List<String> searchRouting() {
+	@Nullable
+	public final String searchRouting() {
 		return this.searchRouting;
 	}
 
@@ -278,14 +284,9 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ApiTypeHelper.isDefined(this.indexRouting)) {
+		if (this.indexRouting != null) {
 			generator.writeKey("index_routing");
-			generator.writeStartArray();
-			for (String item0 : this.indexRouting) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			generator.write(this.indexRouting);
 
 		}
 		if (this.isHidden != null) {
@@ -298,24 +299,14 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 			generator.write(this.isWriteIndex);
 
 		}
-		if (ApiTypeHelper.isDefined(this.routing)) {
+		if (this.routing != null) {
 			generator.writeKey("routing");
-			generator.writeStartArray();
-			for (String item0 : this.routing) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			generator.write(this.routing);
 
 		}
-		if (ApiTypeHelper.isDefined(this.searchRouting)) {
+		if (this.searchRouting != null) {
 			generator.writeKey("search_routing");
-			generator.writeStartArray();
-			for (String item0 : this.searchRouting) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			generator.write(this.searchRouting);
 
 		}
 		if (this.mustExist != null) {
@@ -354,7 +345,7 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		private List<String> indices;
 
 		@Nullable
-		private List<String> indexRouting;
+		private String indexRouting;
 
 		@Nullable
 		private Boolean isHidden;
@@ -363,10 +354,10 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		private Boolean isWriteIndex;
 
 		@Nullable
-		private List<String> routing;
+		private String routing;
 
 		@Nullable
-		private List<String> searchRouting;
+		private String searchRouting;
 
 		@Nullable
 		private Boolean mustExist;
@@ -490,25 +481,9 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		 * stream aliases don’t support this parameter.
 		 * <p>
 		 * API name: {@code index_routing}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indexRouting</code>.
 		 */
-		public final Builder indexRouting(List<String> list) {
-			this.indexRouting = _listAddAll(this.indexRouting, list);
-			return this;
-		}
-
-		/**
-		 * Value used to route indexing operations to a specific shard. If specified,
-		 * this overwrites the <code>routing</code> value for indexing operations. Data
-		 * stream aliases don’t support this parameter.
-		 * <p>
-		 * API name: {@code index_routing}
-		 * <p>
-		 * Adds one or more values to <code>indexRouting</code>.
-		 */
-		public final Builder indexRouting(String value, String... values) {
-			this.indexRouting = _listAdd(this.indexRouting, value, values);
+		public final Builder indexRouting(@Nullable String value) {
+			this.indexRouting = value;
 			return this;
 		}
 
@@ -537,24 +512,9 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		 * stream aliases don’t support this parameter.
 		 * <p>
 		 * API name: {@code routing}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(List<String> list) {
-			this.routing = _listAddAll(this.routing, list);
-			return this;
-		}
-
-		/**
-		 * Value used to route indexing and search operations to a specific shard. Data
-		 * stream aliases don’t support this parameter.
-		 * <p>
-		 * API name: {@code routing}
-		 * <p>
-		 * Adds one or more values to <code>routing</code>.
-		 */
-		public final Builder routing(String value, String... values) {
-			this.routing = _listAdd(this.routing, value, values);
+		public final Builder routing(@Nullable String value) {
+			this.routing = value;
 			return this;
 		}
 
@@ -564,25 +524,9 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		 * aliases don’t support this parameter.
 		 * <p>
 		 * API name: {@code search_routing}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>searchRouting</code>.
 		 */
-		public final Builder searchRouting(List<String> list) {
-			this.searchRouting = _listAddAll(this.searchRouting, list);
-			return this;
-		}
-
-		/**
-		 * Value used to route search operations to a specific shard. If specified, this
-		 * overwrites the <code>routing</code> value for search operations. Data stream
-		 * aliases don’t support this parameter.
-		 * <p>
-		 * API name: {@code search_routing}
-		 * <p>
-		 * Adds one or more values to <code>searchRouting</code>.
-		 */
-		public final Builder searchRouting(String value, String... values) {
-			this.searchRouting = _listAdd(this.searchRouting, value, values);
+		public final Builder searchRouting(@Nullable String value) {
+			this.searchRouting = value;
 			return this;
 		}
 
@@ -637,14 +581,11 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
-		op.add(Builder::indexRouting, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"index_routing");
+		op.add(Builder::indexRouting, JsonpDeserializer.stringDeserializer(), "index_routing");
 		op.add(Builder::isHidden, JsonpDeserializer.booleanDeserializer(), "is_hidden");
 		op.add(Builder::isWriteIndex, JsonpDeserializer.booleanDeserializer(), "is_write_index");
-		op.add(Builder::routing, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"routing");
-		op.add(Builder::searchRouting, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"search_routing");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(Builder::searchRouting, JsonpDeserializer.stringDeserializer(), "search_routing");
 		op.add(Builder::mustExist, JsonpDeserializer.booleanDeserializer(), "must_exist");
 
 	}

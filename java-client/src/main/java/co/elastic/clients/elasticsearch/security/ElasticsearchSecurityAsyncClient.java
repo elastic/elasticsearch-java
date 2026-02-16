@@ -96,7 +96,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * <code>labels</code> or <code>data</code> fields.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-activate-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-activate-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -136,7 +136,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ActivateUserProfileRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-activate-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-activate-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -160,7 +160,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * returns a 401 status code.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-authenticate">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-authenticate">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<AuthenticateResponse> authenticate() {
@@ -178,7 +178,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * cannot delete roles that are defined in roles files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-bulk-delete-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-bulk-delete-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -200,7 +200,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link BulkDeleteRoleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-bulk-delete-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-bulk-delete-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -219,7 +219,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * API cannot update roles that are defined in roles files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-bulk-put-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-bulk-put-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -241,7 +241,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link BulkPutRoleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-bulk-put-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-bulk-put-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -283,7 +283,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * and did not require an update, and error details for any failed update.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-bulk-update-api-keys">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-bulk-update-api-keys">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -328,7 +328,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link BulkUpdateApiKeysRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-bulk-update-api-keys">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-bulk-update-api-keys">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -345,7 +345,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * Change the passwords of users in the native realm and built-in users.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-change-password">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-change-password">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -365,7 +365,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ChangePasswordRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-change-password">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-change-password">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -380,7 +380,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * Change the passwords of users in the native realm and built-in users.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-change-password">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-change-password">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -398,7 +398,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * automatically cleared on state changes of the security index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-api-key-cache">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-api-key-cache">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -419,7 +419,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearApiKeyCacheRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-api-key-cache">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-api-key-cache">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -438,7 +438,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * updated.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-cached-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-cached-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -461,7 +461,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearCachedPrivilegesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-cached-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-cached-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -485,7 +485,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * cache.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-cached-realms">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-cached-realms">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -512,7 +512,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearCachedRealmsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-cached-realms">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-cached-realms">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -529,7 +529,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * Evict roles from the native role cache.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-cached-roles">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-cached-roles">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -549,7 +549,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearCachedRolesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-cached-roles">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-cached-roles">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -575,7 +575,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * automatically on file changes.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-cached-service-tokens">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-cached-service-tokens">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -605,7 +605,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearCachedServiceTokensRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-clear-cached-service-tokens">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-clear-cached-service-tokens">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -637,7 +637,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * API key service setting documentation.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-create-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-create-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -672,7 +672,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-create-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-create-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -702,7 +702,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * API key service setting documentation.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-create-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-create-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -743,7 +743,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * bulk update REST API keys API will result in an error.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-create-cross-cluster-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-create-cross-cluster-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -788,7 +788,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateCrossClusterApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-create-cross-cluster-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-create-cross-cluster-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -809,7 +809,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * they are no longer needed.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-create-service-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-create-service-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -833,7 +833,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateServiceTokenRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-create-service-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-create-service-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -866,7 +866,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * this API translates that authentication into an Elasticsearch access token.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delegate-pki">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delegate-pki">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -902,7 +902,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DelegatePkiRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delegate-pki">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delegate-pki">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -925,7 +925,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -951,7 +951,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeletePrivilegesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -970,7 +970,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * The delete roles API cannot remove roles that are defined in roles files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -992,7 +992,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRoleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1012,7 +1012,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * mappings that are defined in role mapping files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-role-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-role-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1035,7 +1035,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRoleMappingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-role-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-role-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1052,7 +1052,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * Delete service account tokens for a service in a specified namespace.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-service-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-service-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1072,7 +1072,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteServiceTokenRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-service-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-service-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1089,7 +1089,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * Delete users from the native realm.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1109,7 +1109,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteUserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-delete-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1127,7 +1127,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * are enabled. You can use this API to revoke a user's access to Elasticsearch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-disable-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-disable-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1148,7 +1148,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DisableUserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-disable-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-disable-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1176,7 +1176,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * user profile, use the enable user profile API .
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-disable-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-disable-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1207,7 +1207,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DisableUserProfileRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-disable-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-disable-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1225,7 +1225,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * enabled.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-enable-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-enable-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1246,7 +1246,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link EnableUserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-enable-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-enable-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1273,7 +1273,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * enable user profile API to make the profile visible in these searches again.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-enable-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-enable-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1303,7 +1303,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link EnableUserProfileRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-enable-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-enable-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1325,7 +1325,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * Elasticsearch cluster that already has security features enabled.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-enroll-kibana">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-enroll-kibana">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<EnrollKibanaResponse> enrollKibana() {
@@ -1348,7 +1348,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * all nodes in the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-enroll-node">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-enroll-node">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<EnrollNodeResponse> enrollNode() {
@@ -1369,7 +1369,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * ownership.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1394,7 +1394,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1414,7 +1414,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * ownership.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1432,7 +1432,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * this version of Elasticsearch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-builtin-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-builtin-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetBuiltinPrivilegesResponse> getBuiltinPrivileges() {
@@ -1454,7 +1454,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1480,7 +1480,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetPrivilegesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1501,7 +1501,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1520,7 +1520,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * The get roles API cannot retrieve roles that are defined in roles files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1542,7 +1542,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRoleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1559,7 +1559,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * The get roles API cannot retrieve roles that are defined in roles files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1579,7 +1579,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * mappings that are defined in role mapping files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-role-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-role-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1602,7 +1602,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRoleMappingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-role-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-role-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1620,7 +1620,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * mappings that are defined in role mapping files.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-role-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-role-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1640,7 +1640,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * is available.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-service-accounts">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-service-accounts">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1663,7 +1663,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetServiceAccountsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-service-accounts">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-service-accounts">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1681,7 +1681,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * is available.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-service-accounts">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-service-accounts">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1709,7 +1709,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * towards the total number of service tokens.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-service-credentials">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-service-credentials">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1741,7 +1741,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetServiceCredentialsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-service-credentials">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-service-credentials">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1764,7 +1764,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1790,7 +1790,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSecuritySettingsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1811,7 +1811,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1828,7 +1828,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * Gather security usage statistics from all node(s) within the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetStatsResponse> getStats() {
@@ -1864,7 +1864,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1904,7 +1904,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetTokenRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1939,7 +1939,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1956,7 +1956,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * Get information about users in the native realm and built-in users.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1976,7 +1976,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetUserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1991,7 +1991,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * Get information about users in the native realm and built-in users.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2011,7 +2011,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * specific list of privileges, use the has privileges API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-user-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-user-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetUserPrivilegesResponse> getUserPrivileges() {
@@ -2033,7 +2033,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * releases without prior notice.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2059,7 +2059,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetUserProfileRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-get-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-get-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2102,7 +2102,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * when you create the API keys.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-grant-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-grant-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2148,7 +2148,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GrantApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-grant-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-grant-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2167,7 +2167,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * the privileges of other users, you must use the run as feature.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-has-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-has-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2189,7 +2189,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link HasPrivilegesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-has-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-has-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2206,7 +2206,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * the privileges of other users, you must use the run as feature.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-has-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-has-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2230,7 +2230,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * releases without prior notice.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-has-privileges-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-has-privileges-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2258,7 +2258,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link HasPrivilegesUserProfileRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-has-privileges-user-profile">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-has-privileges-user-profile">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2295,7 +2295,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-invalidate-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-invalidate-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2335,7 +2335,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link InvalidateApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-invalidate-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-invalidate-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2370,7 +2370,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-invalidate-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-invalidate-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2400,7 +2400,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * be specified.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-invalidate-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-invalidate-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2433,7 +2433,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link InvalidateTokenRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-invalidate-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-invalidate-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2461,7 +2461,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * be specified.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-invalidate-token">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-invalidate-token">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2485,7 +2485,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * other, custom web applications or other clients.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-oidc-authenticate">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-oidc-authenticate">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2512,7 +2512,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link OidcAuthenticateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-oidc-authenticate">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-oidc-authenticate">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2540,7 +2540,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * other, custom web applications or other clients.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-oidc-logout">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-oidc-logout">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2571,7 +2571,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link OidcLogoutRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-oidc-logout">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-oidc-logout">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2598,7 +2598,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * other, custom web applications or other clients.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-oidc-prepare-authentication">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-oidc-prepare-authentication">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2629,7 +2629,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link OidcPrepareAuthenticationRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-oidc-prepare-authentication">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-oidc-prepare-authentication">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2654,7 +2654,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * other, custom web applications or other clients.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-oidc-prepare-authentication">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-oidc-prepare-authentication">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2700,7 +2700,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * <code>*</code>, <code>:</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-put-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2749,7 +2749,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutPrivilegesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-put-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2793,7 +2793,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * <code>*</code>, <code>:</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-privileges">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-put-privileges">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2813,7 +2813,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * File-based role management is not available in Elastic Serverless.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-put-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2836,7 +2836,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRoleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-put-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2888,7 +2888,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * a JSON string or an array of JSON strings for the role names.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-role-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-put-role-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2943,7 +2943,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutRoleMappingRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-role-mapping">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-put-role-mapping">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2962,7 +2962,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * password without updating any other fields, use the change password API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-put-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2984,7 +2984,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutUserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-put-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3011,7 +3011,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * keys:
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-query-api-keys">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-api-keys">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3041,7 +3041,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link QueryApiKeysRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-query-api-keys">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-api-keys">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3066,7 +3066,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * keys:
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-query-api-keys">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-api-keys">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3087,7 +3087,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * the results can be paginated and sorted.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-query-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3111,7 +3111,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link QueryRoleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-query-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3130,7 +3130,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * the results can be paginated and sorted.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-query-role">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-role">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3151,7 +3151,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * result. This API is only for native users.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-query-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3175,7 +3175,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link QueryUserRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-query-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3194,7 +3194,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * result. This API is only for native users.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-query-user">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-query-user">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3232,7 +3232,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * refresh tokens, which can be used for authentication against Elasticsearch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-authenticate">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-authenticate">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3273,7 +3273,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SamlAuthenticateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-authenticate">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-authenticate">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3302,7 +3302,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * either of them.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-complete-logout">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-complete-logout">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3334,7 +3334,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SamlCompleteLogoutRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-complete-logout">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-complete-logout">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3363,7 +3363,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * IdP.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-invalidate">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-invalidate">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3395,7 +3395,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SamlInvalidateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-invalidate">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-invalidate">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3422,7 +3422,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * request (starting an SP-initiated SAML Single Logout).
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-logout">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-logout">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3452,7 +3452,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SamlLogoutRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-logout">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-logout">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3487,7 +3487,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * as it needs to be used in a following step of the authentication process.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-prepare-authentication">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-prepare-authentication">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3526,7 +3526,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SamlPrepareAuthenticationRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-prepare-authentication">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-prepare-authentication">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3559,7 +3559,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * as it needs to be used in a following step of the authentication process.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-prepare-authentication">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-prepare-authentication">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3581,7 +3581,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * realm in Elasticsearch.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-service-provider-metadata">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-service-provider-metadata">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3607,7 +3607,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SamlServiceProviderMetadataRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-saml-service-provider-metadata">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-saml-service-provider-metadata">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3630,7 +3630,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * releases without prior notice.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-suggest-user-profiles">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-suggest-user-profiles">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3656,7 +3656,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SuggestUserProfilesRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-suggest-user-profiles">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-suggest-user-profiles">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3677,7 +3677,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * releases without prior notice.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-suggest-user-profiles">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-suggest-user-profiles">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3719,7 +3719,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * created or last modified.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-update-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3764,7 +3764,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-update-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3805,7 +3805,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * cross cluter API key API examples page</a>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-update-cross-cluster-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-cross-cluster-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3850,7 +3850,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateCrossClusterApiKeyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-update-cross-cluster-api-key">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-cross-cluster-api-key">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3878,7 +3878,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * the settings for indices before they are in use.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-update-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3909,7 +3909,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateSettingsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-update-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3935,7 +3935,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * the settings for indices before they are in use.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-update-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -3975,7 +3975,7 @@ public class ElasticsearchSecurityAsyncClient
 	 * updating only the allowed namespaces.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-update-user-profile-data">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-user-profile-data">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -4019,7 +4019,7 @@ public class ElasticsearchSecurityAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link UpdateUserProfileDataRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-update-user-profile-data">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-security-update-user-profile-data">Documentation
 	 *      on elastic.co</a>
 	 */
 

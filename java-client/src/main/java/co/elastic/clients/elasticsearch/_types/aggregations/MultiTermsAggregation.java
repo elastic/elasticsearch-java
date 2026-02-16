@@ -430,6 +430,21 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 		 * <p>
 		 * API name: {@code terms}
 		 * <p>
+		 * Adds one or more values to <code>terms</code>.
+		 */
+		public final Builder terms(MultiTermLookupVariant value, MultiTermLookupVariant... values) {
+			this.terms = _listAdd(this.terms, value._toMultiTermLookup());
+			for (MultiTermLookupVariant v : values) {
+				_listAdd(this.terms, v._toMultiTermLookup());
+			}
+			return this;
+		}
+
+		/**
+		 * Required - The field from which to generate sets of terms.
+		 * <p>
+		 * API name: {@code terms}
+		 * <p>
 		 * Adds a value to <code>terms</code> using a builder lambda.
 		 */
 		public final Builder terms(Function<MultiTermLookup.Builder, ObjectBuilder<MultiTermLookup>> fn) {

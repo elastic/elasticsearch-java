@@ -150,8 +150,8 @@ public class AmazonBedrockServiceSettings implements JsonpSerializable {
 
 	/**
 	 * This setting helps to minimize the number of rate limit errors returned from
-	 * Watsonx. By default, the <code>watsonxai</code> service sets the number of
-	 * requests allowed per minute to 120.
+	 * Amazon Bedrock. By default, the <code>amazonbedrock</code> service sets the
+	 * number of requests allowed per minute to 240.
 	 * <p>
 	 * API name: {@code rate_limit}
 	 */
@@ -307,8 +307,8 @@ public class AmazonBedrockServiceSettings implements JsonpSerializable {
 
 		/**
 		 * This setting helps to minimize the number of rate limit errors returned from
-		 * Watsonx. By default, the <code>watsonxai</code> service sets the number of
-		 * requests allowed per minute to 120.
+		 * Amazon Bedrock. By default, the <code>amazonbedrock</code> service sets the
+		 * number of requests allowed per minute to 240.
 		 * <p>
 		 * API name: {@code rate_limit}
 		 */
@@ -319,8 +319,8 @@ public class AmazonBedrockServiceSettings implements JsonpSerializable {
 
 		/**
 		 * This setting helps to minimize the number of rate limit errors returned from
-		 * Watsonx. By default, the <code>watsonxai</code> service sets the number of
-		 * requests allowed per minute to 120.
+		 * Amazon Bedrock. By default, the <code>amazonbedrock</code> service sets the
+		 * number of requests allowed per minute to 240.
 		 * <p>
 		 * API name: {@code rate_limit}
 		 */

@@ -19,6 +19,8 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.elasticsearch._types.aggregations.MultiTermLookup;
+import co.elastic.clients.elasticsearch._types.aggregations.MultiTermLookupVariant;
 import co.elastic.clients.elasticsearch._types.query_dsl.IntervalsFilter;
 import co.elastic.clients.elasticsearch._types.query_dsl.IntervalsFilterVariant;
 import co.elastic.clients.json.JsonData;
@@ -61,7 +63,7 @@ import javax.annotation.Nullable;
  * @see <a href="../doc-files/api-spec.html#_types.Script">API specification</a>
  */
 @JsonpDeserializable
-public class Script implements IntervalsFilterVariant, JsonpSerializable {
+public class Script implements IntervalsFilterVariant, MultiTermLookupVariant, JsonpSerializable {
 	@Nullable
 	private final ScriptSource source;
 
@@ -97,6 +99,14 @@ public class Script implements IntervalsFilterVariant, JsonpSerializable {
 	@Override
 	public IntervalsFilter.Kind _intervalsFilterKind() {
 		return IntervalsFilter.Kind.Script;
+	}
+
+	/**
+	 * MultiTermLookup variant kind.
+	 */
+	@Override
+	public MultiTermLookup.Kind _multiTermLookupKind() {
+		return MultiTermLookup.Kind.Script;
 	}
 
 	/**
