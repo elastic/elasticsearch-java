@@ -9,7 +9,7 @@ For detailed issues, refer to the [Java client repo](https://github.com/elastic/
 
 ## 9.3.0 [known-issues-9-3-0]
 
-Version 9.3.0 of the client introduced a long list of breaking changes to better represent the server's API, but some of the [changes](9-3-0.md#breaking-changes-elasticsearch-java-client-930-breaking-changes) from `String` to `List<String>` were wrong and have been fixed with the 9.3.1 release.
+Version 9.3.0 of the client introduced a long list of breaking changes to better represent the server's API, but some of the [changes](9-3-0.md) from `String` to `List<String>` were wrong and have been fixed with the 9.3.1 release.
 Here's the list of the reverted changes:
 
 ::::{dropdown} List<String> to String
