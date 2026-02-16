@@ -85,7 +85,7 @@ public class ElasticsearchClusterAsyncClient
 	 * allocation issues using this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-allocation-explain">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-allocation-explain">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -114,7 +114,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link AllocationExplainRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-allocation-explain">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-allocation-explain">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -138,7 +138,7 @@ public class ElasticsearchClusterAsyncClient
 	 * allocation issues using this API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-allocation-explain">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-allocation-explain">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -156,7 +156,7 @@ public class ElasticsearchClusterAsyncClient
 	 * specify index mappings, settings, and aliases.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-component-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-put-component-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -178,7 +178,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteComponentTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-component-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-put-component-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -195,7 +195,7 @@ public class ElasticsearchClusterAsyncClient
 	 * Remove master-eligible nodes from the voting configuration exclusion list.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-post-voting-config-exclusions">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-post-voting-config-exclusions">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -216,7 +216,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteVotingConfigExclusionsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-post-voting-config-exclusions">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-post-voting-config-exclusions">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -231,7 +231,7 @@ public class ElasticsearchClusterAsyncClient
 	 * Remove master-eligible nodes from the voting configuration exclusion list.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-post-voting-config-exclusions">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-post-voting-config-exclusions">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -248,7 +248,7 @@ public class ElasticsearchClusterAsyncClient
 	 * Returns information about whether a particular component template exists.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-component-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-put-component-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -268,7 +268,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ExistsComponentTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-component-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-put-component-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -285,7 +285,7 @@ public class ElasticsearchClusterAsyncClient
 	 * Get information about component templates.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-component-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-put-component-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -305,7 +305,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetComponentTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-component-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-put-component-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -320,7 +320,7 @@ public class ElasticsearchClusterAsyncClient
 	 * Get information about component templates.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-component-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-put-component-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -337,7 +337,7 @@ public class ElasticsearchClusterAsyncClient
 	 * By default, it returns only settings that have been explicitly defined.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-get-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-get-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -357,7 +357,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetClusterSettingsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-get-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-get-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -372,7 +372,7 @@ public class ElasticsearchClusterAsyncClient
 	 * By default, it returns only settings that have been explicitly defined.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-get-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-get-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -401,7 +401,7 @@ public class ElasticsearchClusterAsyncClient
 	 * controlled by the worst index status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-health">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-health">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -433,7 +433,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link HealthRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-health">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-health">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -460,7 +460,7 @@ public class ElasticsearchClusterAsyncClient
 	 * controlled by the worst index status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-health">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-health">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -477,7 +477,7 @@ public class ElasticsearchClusterAsyncClient
 	 * Returns basic information about the cluster.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-info">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-info">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -497,7 +497,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ClusterInfoRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-info">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-info">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -522,7 +522,7 @@ public class ElasticsearchClusterAsyncClient
 	 * this task might be reported by both task api and pending cluster tasks API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-pending-tasks">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-pending-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -550,7 +550,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PendingTasksRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-pending-tasks">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-pending-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -573,7 +573,7 @@ public class ElasticsearchClusterAsyncClient
 	 * this task might be reported by both task api and pending cluster tasks API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-pending-tasks">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-pending-tasks">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -624,7 +624,7 @@ public class ElasticsearchClusterAsyncClient
 	 * half of the master-eligible nodes.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-post-voting-config-exclusions">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-post-voting-config-exclusions">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -678,7 +678,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PostVotingConfigExclusionsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-post-voting-config-exclusions">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-post-voting-config-exclusions">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -727,7 +727,7 @@ public class ElasticsearchClusterAsyncClient
 	 * half of the master-eligible nodes.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-post-voting-config-exclusions">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-post-voting-config-exclusions">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -769,7 +769,7 @@ public class ElasticsearchClusterAsyncClient
 	 * <code>composed_of</code> list.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-component-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-put-component-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -814,7 +814,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutComponentTemplateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-component-template">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-put-component-template">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -857,7 +857,7 @@ public class ElasticsearchClusterAsyncClient
 	 * configuration.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-put-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -903,7 +903,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link PutClusterSettingsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-put-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -944,7 +944,7 @@ public class ElasticsearchClusterAsyncClient
 	 * configuration.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-settings">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-put-settings">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -975,7 +975,7 @@ public class ElasticsearchClusterAsyncClient
 	 * </blockquote>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-remote-info">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-remote-info">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<RemoteInfoResponse> remoteInfo() {
@@ -1017,7 +1017,7 @@ public class ElasticsearchClusterAsyncClient
 	 * parameter, which will attempt a single retry round for these shards.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-reroute">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-reroute">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1063,7 +1063,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link RerouteRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-reroute">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-reroute">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1104,7 +1104,7 @@ public class ElasticsearchClusterAsyncClient
 	 * parameter, which will attempt a single retry round for these shards.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-reroute">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-reroute">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1149,7 +1149,7 @@ public class ElasticsearchClusterAsyncClient
 	 * using other more stable cluster APIs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-state">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-state">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1197,7 +1197,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link StateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-state">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-state">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1240,7 +1240,7 @@ public class ElasticsearchClusterAsyncClient
 	 * using other more stable cluster APIs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-state">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-state">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1259,7 +1259,7 @@ public class ElasticsearchClusterAsyncClient
 	 * jvm versions, memory usage, cpu and installed plugins).
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1281,7 +1281,7 @@ public class ElasticsearchClusterAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ClusterStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1298,7 +1298,7 @@ public class ElasticsearchClusterAsyncClient
 	 * jvm versions, memory usage, cpu and installed plugins).
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-cluster-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 

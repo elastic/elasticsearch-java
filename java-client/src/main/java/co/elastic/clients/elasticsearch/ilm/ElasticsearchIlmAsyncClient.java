@@ -73,7 +73,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * used to manage any indices, the request fails and returns an error.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-delete-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-delete-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -94,7 +94,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-delete-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-delete-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -116,7 +116,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * the definition of the running phase, and information about any failures.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-explain-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-explain-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -141,7 +141,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link ExplainLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-explain-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-explain-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -156,7 +156,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * Get lifecycle policies.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-get-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-get-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -174,7 +174,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-get-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-get-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -187,7 +187,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * Get lifecycle policies.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-get-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-get-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -204,7 +204,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * Get the current index lifecycle management status.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-get-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-get-status">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<GetIlmStatusResponse> getStatus() {
@@ -238,7 +238,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * <code>STOPPED</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-migrate-to-data-tiers">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-migrate-to-data-tiers">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -276,7 +276,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link MigrateToDataTiersRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-migrate-to-data-tiers">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-migrate-to-data-tiers">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -309,7 +309,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * <code>STOPPED</code>.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-migrate-to-data-tiers">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-migrate-to-data-tiers">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -345,7 +345,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * index cannot move to a step that is not part of its policy.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-move-to-step">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-move-to-step">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -384,7 +384,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link MoveToStepRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-move-to-step">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-move-to-step">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -405,7 +405,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * previous versions.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-put-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-put-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -429,7 +429,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link PutLifecycleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-put-lifecycle">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-put-lifecycle">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -447,7 +447,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * backing indices. It also stops managing the indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-remove-policy">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-remove-policy">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -468,7 +468,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link RemovePolicyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-remove-policy">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-remove-policy">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -488,7 +488,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * is in the ERROR step.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-retry">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-retry">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -511,7 +511,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link RetryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-retry">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-retry">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -530,7 +530,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * necessary only when it has been stopped using the stop ILM API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-start">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-start">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -552,7 +552,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link StartIlmRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-start">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-start">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -569,7 +569,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * necessary only when it has been stopped using the stop ILM API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-start">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-start">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -593,7 +593,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * is running.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-stop">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-stop">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -620,7 +620,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link StopIlmRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-stop">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-stop">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -642,7 +642,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * is running.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ilm-stop">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ilm-stop">Documentation
 	 *      on elastic.co</a>
 	 */
 

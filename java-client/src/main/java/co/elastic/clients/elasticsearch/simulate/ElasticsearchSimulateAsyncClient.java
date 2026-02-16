@@ -103,7 +103,7 @@ public class ElasticsearchSimulateAsyncClient
 	 * within this request.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-simulate-ingest">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-simulate-ingest">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -151,7 +151,7 @@ public class ElasticsearchSimulateAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link IngestRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-simulate-ingest">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-simulate-ingest">Documentation
 	 *      on elastic.co</a>
 	 */
 

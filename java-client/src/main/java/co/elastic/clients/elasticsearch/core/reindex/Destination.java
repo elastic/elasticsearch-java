@@ -33,7 +33,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -70,7 +69,8 @@ public class Destination implements JsonpSerializable {
 	@Nullable
 	private final String pipeline;
 
-	private final List<String> routing;
+	@Nullable
+	private final String routing;
 
 	@Nullable
 	private final VersionType versionType;
@@ -82,7 +82,7 @@ public class Destination implements JsonpSerializable {
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.opType = builder.opType;
 		this.pipeline = builder.pipeline;
-		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
+		this.routing = builder.routing;
 		this.versionType = builder.versionType;
 
 	}
@@ -136,7 +136,8 @@ public class Destination implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	public final List<String> routing() {
+	@Nullable
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -173,14 +174,9 @@ public class Destination implements JsonpSerializable {
 			generator.write(this.pipeline);
 
 		}
-		if (ApiTypeHelper.isDefined(this.routing)) {
+		if (this.routing != null) {
 			generator.writeKey("routing");
-			generator.writeStartArray();
-			for (String item0 : this.routing) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			generator.write(this.routing);
 
 		}
 		if (this.versionType != null) {
@@ -211,7 +207,7 @@ public class Destination implements JsonpSerializable {
 		private String pipeline;
 
 		@Nullable
-		private List<String> routing;
+		private String routing;
 
 		@Nullable
 		private VersionType versionType;
@@ -271,29 +267,9 @@ public class Destination implements JsonpSerializable {
 		 * sign (<code>=</code>).
 		 * <p>
 		 * API name: {@code routing}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(List<String> list) {
-			this.routing = _listAddAll(this.routing, list);
-			return this;
-		}
-
-		/**
-		 * By default, a document's routing is preserved unless it's changed by the
-		 * script. If it is <code>keep</code>, the routing on the bulk request sent for
-		 * each match is set to the routing on the match. If it is <code>discard</code>,
-		 * the routing on the bulk request sent for each match is set to
-		 * <code>null</code>. If it is <code>=value</code>, the routing on the bulk
-		 * request sent for each match is set to all value specified after the equals
-		 * sign (<code>=</code>).
-		 * <p>
-		 * API name: {@code routing}
-		 * <p>
-		 * Adds one or more values to <code>routing</code>.
-		 */
-		public final Builder routing(String value, String... values) {
-			this.routing = _listAdd(this.routing, value, values);
+		public final Builder routing(@Nullable String value) {
+			this.routing = value;
 			return this;
 		}
 
@@ -344,8 +320,7 @@ public class Destination implements JsonpSerializable {
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::opType, OpType._DESERIALIZER, "op_type");
 		op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
-		op.add(Builder::routing, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"routing");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
 		op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");
 
 	}

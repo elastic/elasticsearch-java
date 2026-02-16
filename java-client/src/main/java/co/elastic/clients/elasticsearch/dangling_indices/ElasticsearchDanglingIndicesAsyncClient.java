@@ -79,7 +79,7 @@ public class ElasticsearchDanglingIndicesAsyncClient
 	 * node is offline.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-dangling-indices-delete-dangling-index">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-dangling-indices-delete-dangling-index">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -103,7 +103,7 @@ public class ElasticsearchDanglingIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteDanglingIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-dangling-indices-delete-dangling-index">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-dangling-indices-delete-dangling-index">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -124,7 +124,7 @@ public class ElasticsearchDanglingIndicesAsyncClient
 	 * node is offline.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-dangling-indices-import-dangling-index">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-dangling-indices-import-dangling-index">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -148,7 +148,7 @@ public class ElasticsearchDanglingIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link ImportDanglingIndexRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-dangling-indices-import-dangling-index">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-dangling-indices-import-dangling-index">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -171,7 +171,7 @@ public class ElasticsearchDanglingIndicesAsyncClient
 	 * Use this API to list dangling indices, which you can then import or delete.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-dangling-indices-list-dangling-indices">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-dangling-indices-list-dangling-indices">Documentation
 	 *      on elastic.co</a>
 	 */
 	public CompletableFuture<ListDanglingIndicesResponse> listDanglingIndices() {

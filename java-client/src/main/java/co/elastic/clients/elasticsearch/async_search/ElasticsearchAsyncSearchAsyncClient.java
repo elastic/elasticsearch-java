@@ -81,7 +81,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 * have the <code>cancel_task</code> cluster privilege.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -105,7 +105,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteAsyncSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -125,7 +125,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 * it.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -151,7 +151,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAsyncSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -191,7 +191,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 * it.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -217,7 +217,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAsyncSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -243,7 +243,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -272,7 +272,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link AsyncSearchStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -300,7 +300,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 * setting.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -335,7 +335,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SubmitRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -382,7 +382,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 * setting.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -416,7 +416,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link SubmitRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-async-search-submit">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-async-search-submit">Documentation
 	 *      on elastic.co</a>
 	 */
 

@@ -73,7 +73,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 * Delete a collection of cross-cluster replication auto-follow patterns.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-delete-auto-follow-pattern">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-delete-auto-follow-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -94,7 +94,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteAutoFollowPatternRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-delete-auto-follow-pattern">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-delete-auto-follow-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -115,7 +115,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 * to the follower index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-follow">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-follow">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -138,7 +138,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link FollowRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-follow">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-follow">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -157,7 +157,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 * replication options, and whether the follower indices are active or paused.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-follow-info">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-follow-info">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -179,7 +179,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link FollowInfoRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-follow-info">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-follow-info">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -198,7 +198,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 * the specified indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-follow-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-follow-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -220,7 +220,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link FollowStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-follow-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-follow-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -258,7 +258,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 * retention leases after the unfollow API is invoked.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-forget-follower">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-forget-follower">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -299,7 +299,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link ForgetFollowerRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-forget-follower">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-forget-follower">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -317,7 +317,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 * Get cross-cluster replication auto-follow patterns.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-get-auto-follow-pattern-1">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-get-auto-follow-pattern-1">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -338,7 +338,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAutoFollowPatternRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-get-auto-follow-pattern-1">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-get-auto-follow-pattern-1">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -354,7 +354,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 * Get cross-cluster replication auto-follow patterns.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-get-auto-follow-pattern-1">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-get-auto-follow-pattern-1">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -380,7 +380,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 * the interim.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-pause-auto-follow-pattern">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-pause-auto-follow-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -410,7 +410,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link PauseAutoFollowPatternRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-pause-auto-follow-pattern">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-pause-auto-follow-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -431,7 +431,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 * index to change the configuration of the following task.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-pause-follow">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-pause-follow">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -454,7 +454,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link PauseFollowRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-pause-follow">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-pause-follow">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -481,7 +481,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 * patterns.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-put-auto-follow-pattern">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-put-auto-follow-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -511,7 +511,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link PutAutoFollowPatternRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-put-auto-follow-pattern">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-put-auto-follow-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -533,7 +533,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 * been deleted or closed in the interim.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-resume-auto-follow-pattern">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-resume-auto-follow-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -558,7 +558,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link ResumeAutoFollowPatternRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-resume-auto-follow-pattern">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-resume-auto-follow-pattern">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -580,7 +580,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 * index will resume fetching operations from the leader index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-resume-follow">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-resume-follow">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -604,7 +604,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link ResumeFollowRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-resume-follow">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-resume-follow">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -623,7 +623,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 * the get follower stats API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -644,7 +644,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link CcrStatsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -660,7 +660,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 * the get follower stats API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-stats">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-stats">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -687,7 +687,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 * </blockquote>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-unfollow">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-unfollow">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -717,7 +717,7 @@ public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, El
 	 *            a function that initializes a builder to create the
 	 *            {@link UnfollowRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ccr-unfollow">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ccr-unfollow">Documentation
 	 *      on elastic.co</a>
 	 */
 

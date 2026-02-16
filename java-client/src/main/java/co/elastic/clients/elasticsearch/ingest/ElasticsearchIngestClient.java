@@ -73,7 +73,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * Delete one or more IP geolocation database configurations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-delete-geoip-database">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-delete-geoip-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -94,7 +94,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteGeoipDatabaseRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-delete-geoip-database">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-delete-geoip-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -110,7 +110,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * Delete IP geolocation database configurations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-delete-ip-location-database">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-delete-ip-location-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -129,7 +129,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteIpLocationDatabaseRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-delete-ip-location-database">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-delete-ip-location-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -147,7 +147,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * Delete one or more ingest pipelines.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-delete-pipeline">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-delete-pipeline">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -168,7 +168,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *            a function that initializes a builder to create the
 	 *            {@link DeletePipelineRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-delete-pipeline">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-delete-pipeline">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -203,7 +203,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * Get information about one or more IP geolocation database configurations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-get-geoip-database">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-get-geoip-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -224,7 +224,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *            a function that initializes a builder to create the
 	 *            {@link GetGeoipDatabaseRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-get-geoip-database">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-get-geoip-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -240,7 +240,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * Get information about one or more IP geolocation database configurations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-get-geoip-database">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-get-geoip-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -255,7 +255,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * Get IP geolocation database configurations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-get-ip-location-database">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-get-ip-location-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -274,7 +274,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *            a function that initializes a builder to create the
 	 *            {@link GetIpLocationDatabaseRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-get-ip-location-database">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-get-ip-location-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -288,7 +288,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * Get IP geolocation database configurations.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-get-ip-location-database">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-get-ip-location-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -306,7 +306,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * reference of the pipeline.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-get-pipeline">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-get-pipeline">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -327,7 +327,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *            a function that initializes a builder to create the
 	 *            {@link GetPipelineRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-get-pipeline">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-get-pipeline">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -344,7 +344,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * reference of the pipeline.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-get-pipeline">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-get-pipeline">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -380,7 +380,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * Refer to the create or update IP geolocation database configuration API.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-put-geoip-database">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-put-geoip-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -401,7 +401,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *            a function that initializes a builder to create the
 	 *            {@link PutGeoipDatabaseRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-put-geoip-database">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-put-geoip-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -417,7 +417,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * Create or update an IP geolocation database configuration.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-put-ip-location-database">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-put-ip-location-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -436,7 +436,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *            a function that initializes a builder to create the
 	 *            {@link PutIpLocationDatabaseRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-put-ip-location-database">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-put-ip-location-database">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -494,7 +494,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 * pipeline definition in the body of the request.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-simulate">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-simulate">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -516,7 +516,7 @@ public class ElasticsearchIngestClient extends ApiClient<ElasticsearchTransport,
 	 *            a function that initializes a builder to create the
 	 *            {@link SimulateRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-ingest-simulate">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-ingest-simulate">Documentation
 	 *      on elastic.co</a>
 	 */
 

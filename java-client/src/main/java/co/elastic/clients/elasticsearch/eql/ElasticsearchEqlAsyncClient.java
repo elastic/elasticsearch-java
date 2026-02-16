@@ -75,7 +75,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * deletes results for the search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-eql-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -96,7 +96,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link EqlDeleteRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-eql-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -114,7 +114,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * stored synchronous EQL search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-eql-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -137,7 +137,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link EqlGetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-eql-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -174,7 +174,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * stored synchronous EQL search.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-eql-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -197,7 +197,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link EqlGetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-eql-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -215,7 +215,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * search without returning results.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-get-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-eql-get-status">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -236,7 +236,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetEqlStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-get-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-eql-get-status">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -254,7 +254,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * each document in a data stream or index corresponds to an event.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-eql-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -278,7 +278,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link EqlSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-eql-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -315,7 +315,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * each document in a data stream or index corresponds to an event.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-eql-search">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -338,7 +338,7 @@ public class ElasticsearchEqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link EqlSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-eql-search">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-eql-search">Documentation
 	 *      on elastic.co</a>
 	 */
 

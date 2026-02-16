@@ -79,7 +79,7 @@ public class ElasticsearchXpackClient extends ApiClient<ElasticsearchTransport, 
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-info">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-info">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -105,7 +105,7 @@ public class ElasticsearchXpackClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link XpackInfoRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-info">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-info">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -126,7 +126,7 @@ public class ElasticsearchXpackClient extends ApiClient<ElasticsearchTransport, 
 	 * </ul>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-info">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-info">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -144,7 +144,7 @@ public class ElasticsearchXpackClient extends ApiClient<ElasticsearchTransport, 
 	 * under the current license. The API also provides some usage statistics.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-xpack">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-xpack">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -165,7 +165,7 @@ public class ElasticsearchXpackClient extends ApiClient<ElasticsearchTransport, 
 	 *            a function that initializes a builder to create the
 	 *            {@link XpackUsageRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-xpack">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-xpack">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -181,7 +181,7 @@ public class ElasticsearchXpackClient extends ApiClient<ElasticsearchTransport, 
 	 * under the current license. The API also provides some usage statistics.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-xpack">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-xpack">Documentation
 	 *      on elastic.co</a>
 	 */
 

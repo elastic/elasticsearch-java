@@ -92,7 +92,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	 * delete it.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-delete-synonym">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-synonyms-delete-synonym">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -132,7 +132,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteSynonymRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-delete-synonym">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-synonyms-delete-synonym">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -150,7 +150,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	 * Delete a synonym rule from a synonym set.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-delete-synonym-rule">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-synonyms-delete-synonym-rule">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -171,7 +171,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteSynonymRuleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-delete-synonym-rule">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-synonyms-delete-synonym-rule">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -187,7 +187,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	 * Get a synonym set.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-get-synonym">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-synonyms-get-synonym">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -205,7 +205,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSynonymRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-get-synonym">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-synonyms-get-synonym">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -222,7 +222,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	 * Get a synonym rule from a synonym set.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-get-synonym-rule">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-synonyms-get-synonym-rule">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -243,7 +243,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSynonymRuleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-get-synonym-rule">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-synonyms-get-synonym-rule">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -261,7 +261,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	 * Get a summary of all defined synonym sets.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-get-synonym">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-synonyms-get-synonym">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -282,7 +282,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSynonymsSetsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-get-synonym">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-synonyms-get-synonym">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -298,7 +298,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	 * Get a summary of all defined synonym sets.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-get-synonym">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-synonyms-get-synonym">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -324,7 +324,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	 * the External documentation.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-put-synonym">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-synonyms-put-synonym">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -353,7 +353,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link PutSynonymRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-put-synonym">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-synonyms-put-synonym">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -375,7 +375,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	 * reloaded automatically to reflect the new rule.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-put-synonym-rule">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-synonyms-put-synonym-rule">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -401,7 +401,7 @@ public class ElasticsearchSynonymsClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link PutSynonymRuleRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-synonyms-put-synonym-rule">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-synonyms-put-synonym-rule">Documentation
 	 *      on elastic.co</a>
 	 */
 

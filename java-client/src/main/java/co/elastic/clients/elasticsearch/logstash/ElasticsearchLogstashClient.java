@@ -76,7 +76,7 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 	 * code.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-logstash-delete-pipeline">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-logstash-delete-pipeline">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -98,7 +98,7 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link DeletePipelineRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-logstash-delete-pipeline">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-logstash-delete-pipeline">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -116,7 +116,7 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 	 * Get pipelines that are used for Logstash Central Management.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-logstash-get-pipeline">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-logstash-get-pipeline">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -136,7 +136,7 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetPipelineRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-logstash-get-pipeline">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-logstash-get-pipeline">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -152,7 +152,7 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 	 * Get pipelines that are used for Logstash Central Management.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-logstash-get-pipeline">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-logstash-get-pipeline">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -170,7 +170,7 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 	 * specified pipeline exists, it is replaced.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-logstash-put-pipeline">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-logstash-put-pipeline">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -191,7 +191,7 @@ public class ElasticsearchLogstashClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link PutPipelineRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-logstash-put-pipeline">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-logstash-put-pipeline">Documentation
 	 *      on elastic.co</a>
 	 */
 
