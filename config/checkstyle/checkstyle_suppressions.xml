@@ -32,4 +32,6 @@
     <suppress files="[/\\]temp[/\\]" checks="." />
     <suppress files="Temp.java*" checks="." />
     <suppress files="TempTest.java*" checks="." />
+    <!-- Exclude markdoc directory -->
+    <suppress files="[/\\]markdoc[/\\]" checks="." />
 </suppressions>
