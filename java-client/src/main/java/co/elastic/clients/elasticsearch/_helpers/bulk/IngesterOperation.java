@@ -35,16 +35,16 @@ import java.util.List;
 /**
  * A bulk operation whose size has been calculated and content turned to a binary blob (to compute its size).
  */
-class IngesterOperation {
-    private final RetryableBulkOperation repeatableOp;
+class IngesterOperation<Context> {
+    private final RetryableBulkOperation<Context> repeatableOp;
     private final long size;
 
-    IngesterOperation(RetryableBulkOperation repeatableOp, long size) {
+    IngesterOperation(RetryableBulkOperation<Context> repeatableOp, long size) {
         this.repeatableOp = repeatableOp;
         this.size = size;
     }
 
-    public static IngesterOperation of(RetryableBulkOperation repeatableOp, JsonpMapper mapper) {
+    public static <Context> IngesterOperation<Context> of(RetryableBulkOperation<Context> repeatableOp, JsonpMapper mapper) {
         switch (repeatableOp.operation()._kind()) {
             case Create:
                 return createOperation(repeatableOp, mapper);
@@ -59,7 +59,7 @@ class IngesterOperation {
         }
     }
 
-    public RetryableBulkOperation repeatableOperation() {
+    public RetryableBulkOperation<Context> repeatableOperation() {
         return this.repeatableOp;
     }
 
@@ -67,9 +67,25 @@ class IngesterOperation {
         return this.size;
     }
 
-    private static IngesterOperation createOperation(RetryableBulkOperation repeatableOp, JsonpMapper mapper) {
+    public BulkOperation operation() {
+        return repeatableOp.operation();
+    }
+
+    public Context context() {
+        return repeatableOp.context();
+    }
+
+    public boolean isSendable() {
+        return repeatableOp.isSendable();
+    }
+
+    public boolean canRetry() {
+        return repeatableOp.canRetry();
+    }
+
+    private static <Context> IngesterOperation<Context> createOperation(RetryableBulkOperation<Context> repeatableOp, JsonpMapper mapper) {
         CreateOperation<?> create = repeatableOp.operation().create();
-        RetryableBulkOperation newOperation;
+        RetryableBulkOperation<Context> newOperation;
 
         long size = basePropertiesSize(create);
 
@@ -80,18 +96,18 @@ class IngesterOperation {
         } else {
             BinaryData binaryDoc = BinaryData.of(create.document(), mapper);
             size += binaryDoc.size();
-            newOperation = new RetryableBulkOperation(BulkOperation.of(bo -> bo.create(idx -> {
+            newOperation = new RetryableBulkOperation<>(BulkOperation.of(bo -> bo.create(idx -> {
                 copyCreateProperties(create, idx);
                 return idx.document(binaryDoc);
             })),repeatableOp.context(),repeatableOp.retries());
         }
 
-        return new IngesterOperation(newOperation, size);
+        return new IngesterOperation<>(newOperation, size);
     }
 
-    private static IngesterOperation indexOperation(RetryableBulkOperation repeatableOp, JsonpMapper mapper) {
+    private static <Context> IngesterOperation<Context> indexOperation(RetryableBulkOperation<Context> repeatableOp, JsonpMapper mapper) {
         IndexOperation<?> index = repeatableOp.operation().index();
-        RetryableBulkOperation newOperation;
+        RetryableBulkOperation<Context> newOperation;
 
         long size = basePropertiesSize(index);
 
@@ -102,18 +118,18 @@ class IngesterOperation {
         } else {
             BinaryData binaryDoc = BinaryData.of(index.document(), mapper);
             size += binaryDoc.size();
-            newOperation = new RetryableBulkOperation(BulkOperation.of(bo -> bo.index(idx -> {
+            newOperation = new RetryableBulkOperation<>(BulkOperation.of(bo -> bo.index(idx -> {
                 copyIndexProperties(index, idx);
                 return idx.document(binaryDoc);
             })),repeatableOp.context(),repeatableOp.retries());
         }
 
-        return new IngesterOperation(newOperation, size);
+        return new IngesterOperation<>(newOperation, size);
     }
 
-    private static IngesterOperation updateOperation(RetryableBulkOperation repeatableOp, JsonpMapper mapper) {
+    private static <Context> IngesterOperation<Context> updateOperation(RetryableBulkOperation<Context> repeatableOp, JsonpMapper mapper) {
         UpdateOperation<?, ?> update = repeatableOp.operation().update();
-        RetryableBulkOperation newOperation;
+        RetryableBulkOperation<Context> newOperation;
 
         long size = basePropertiesSize(update) +
             size("retry_on_conflict", update.retryOnConflict()) +
@@ -126,7 +142,7 @@ class IngesterOperation {
         } else {
             BinaryData action = BinaryData.of(update.action(), mapper);
             size += action.size();
-            newOperation = new RetryableBulkOperation(BulkOperation.of(bo -> bo.update(u -> {
+            newOperation = new RetryableBulkOperation<>(BulkOperation.of(bo -> bo.update(u -> {
                 copyBaseProperties(update, u);
                 return u
                     .binaryAction(action)
@@ -135,12 +151,12 @@ class IngesterOperation {
             })),repeatableOp.context(),repeatableOp.retries());
         }
 
-        return new IngesterOperation(newOperation, size);
+        return new IngesterOperation<>(newOperation, size);
     }
 
-    private static IngesterOperation deleteOperation(RetryableBulkOperation repeatableOp) {
+    private static <Context> IngesterOperation<Context> deleteOperation(RetryableBulkOperation<Context> repeatableOp) {
         DeleteOperation delete = repeatableOp.operation().delete();
-        return new IngesterOperation(repeatableOp, basePropertiesSize(delete));
+        return new IngesterOperation<>(repeatableOp, basePropertiesSize(delete));
     }
 
 
