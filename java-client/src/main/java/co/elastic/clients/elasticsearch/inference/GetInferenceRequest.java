@@ -82,7 +82,10 @@ public class GetInferenceRequest extends RequestBase {
 	}
 
 	/**
-	 * The inference Id
+	 * The inference Id of the endpoint to return. Using <code>_all</code> or
+	 * <code>*</code> will return all endpoints with the specified
+	 * <code>task_type</code> if one is specified, or all endpoints for all task
+	 * types if no <code>task_type</code> is specified
 	 * <p>
 	 * API name: {@code inference_id}
 	 */
@@ -92,7 +95,7 @@ public class GetInferenceRequest extends RequestBase {
 	}
 
 	/**
-	 * The task type
+	 * The task type of the endpoint to return
 	 * <p>
 	 * API name: {@code task_type}
 	 */
@@ -124,7 +127,10 @@ public class GetInferenceRequest extends RequestBase {
 
 		}
 		/**
-		 * The inference Id
+		 * The inference Id of the endpoint to return. Using <code>_all</code> or
+		 * <code>*</code> will return all endpoints with the specified
+		 * <code>task_type</code> if one is specified, or all endpoints for all task
+		 * types if no <code>task_type</code> is specified
 		 * <p>
 		 * API name: {@code inference_id}
 		 */
@@ -134,7 +140,7 @@ public class GetInferenceRequest extends RequestBase {
 		}
 
 		/**
-		 * The task type
+		 * The task type of the endpoint to return
 		 * <p>
 		 * API name: {@code task_type}
 		 */
@@ -214,6 +220,14 @@ public class GetInferenceRequest extends RequestBase {
 					SimpleEndpoint.pathEncode(request.inferenceId, buf);
 					return buf.toString();
 				}
+				if (propsSet == (_taskType)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_inference");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.taskType.jsonValue(), buf);
+					buf.append("/_all");
+					return buf.toString();
+				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
@@ -239,6 +253,9 @@ public class GetInferenceRequest extends RequestBase {
 				if (propsSet == (_taskType | _inferenceId)) {
 					params.put("taskType", request.taskType.jsonValue());
 					params.put("inferenceId", request.inferenceId);
+				}
+				if (propsSet == (_taskType)) {
+					params.put("taskType", request.taskType.jsonValue());
 				}
 				return params;
 			},
