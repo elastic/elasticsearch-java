@@ -220,6 +220,17 @@ public class MlDatafeedsRequest extends CatRequestBase {
 		@Nullable
 		private TimeUnit time;
 
+		public Builder() {
+		}
+		private Builder(MlDatafeedsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.bytes = instance.bytes;
+			this.datafeedId = instance.datafeedId;
+			this.h = instance.h;
+			this.s = instance.s;
+			this.time = instance.time;
+
+		}
 		/**
 		 * Specifies what to do when the request:
 		 * <ul>
@@ -353,6 +364,12 @@ public class MlDatafeedsRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

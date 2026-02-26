@@ -165,6 +165,14 @@ public class RepositoryIntegrityIndicatorDetails implements JsonpSerializable {
 		@Nullable
 		private List<String> corrupted;
 
+		public Builder() {
+		}
+		private Builder(RepositoryIntegrityIndicatorDetails instance) {
+			this.totalRepositories = instance.totalRepositories;
+			this.corruptedRepositories = instance.corruptedRepositories;
+			this.corrupted = instance.corrupted;
+
+		}
 		/**
 		 * API name: {@code total_repositories}
 		 */
@@ -219,6 +227,12 @@ public class RepositoryIntegrityIndicatorDetails implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

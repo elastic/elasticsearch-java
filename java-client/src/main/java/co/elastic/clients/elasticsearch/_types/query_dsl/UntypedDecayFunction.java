@@ -82,6 +82,11 @@ public class UntypedDecayFunction extends DecayFunctionBase<JsonData, JsonData> 
 	public static class Builder extends DecayFunctionBase.AbstractBuilder<JsonData, JsonData, Builder>
 			implements
 				ObjectBuilder<UntypedDecayFunction> {
+		public Builder() {
+		}
+		private Builder(UntypedDecayFunction instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -102,6 +107,12 @@ public class UntypedDecayFunction extends DecayFunctionBase<JsonData, JsonData> 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

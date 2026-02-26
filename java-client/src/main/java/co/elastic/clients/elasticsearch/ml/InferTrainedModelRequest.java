@@ -189,6 +189,15 @@ public class InferTrainedModelRequest extends RequestBase implements JsonpSerial
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(InferTrainedModelRequest instance) {
+			this.docs = instance.docs;
+			this.inferenceConfig = instance.inferenceConfig;
+			this.modelId = instance.modelId;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - An array of objects to pass to the model for inference. The
 		 * objects should contain a fields matching your configured trained model input.
@@ -296,6 +305,12 @@ public class InferTrainedModelRequest extends RequestBase implements JsonpSerial
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -140,6 +140,13 @@ public class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSerializa
 		@Nullable
 		private DateTime triggeredTime;
 
+		public Builder() {
+		}
+		private Builder(ScheduleTriggerEvent instance) {
+			this.scheduledTime = instance.scheduledTime;
+			this.triggeredTime = instance.triggeredTime;
+
+		}
 		/**
 		 * Required - API name: {@code scheduled_time}
 		 */
@@ -174,6 +181,12 @@ public class ScheduleTriggerEvent implements TriggerEventVariant, JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

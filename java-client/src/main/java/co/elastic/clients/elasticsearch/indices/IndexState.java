@@ -227,6 +227,17 @@ public class IndexState implements JsonpSerializable {
 		@Nullable
 		private DataStreamLifecycle lifecycle;
 
+		public Builder() {
+		}
+		private Builder(IndexState instance) {
+			this.aliases = instance.aliases;
+			this.mappings = instance.mappings;
+			this.settings = instance.settings;
+			this.defaults = instance.defaults;
+			this.dataStream = instance.dataStream;
+			this.lifecycle = instance.lifecycle;
+
+		}
 		/**
 		 * API name: {@code aliases}
 		 * <p>
@@ -352,6 +363,12 @@ public class IndexState implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

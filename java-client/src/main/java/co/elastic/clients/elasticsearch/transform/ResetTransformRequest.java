@@ -142,6 +142,14 @@ public class ResetTransformRequest extends RequestBase {
 
 		private String transformId;
 
+		public Builder() {
+		}
+		private Builder(ResetTransformRequest instance) {
+			this.force = instance.force;
+			this.timeout = instance.timeout;
+			this.transformId = instance.transformId;
+
+		}
 		/**
 		 * If this value is <code>true</code>, the transform is reset regardless of its
 		 * current state. If it's <code>false</code>, the transform must be stopped
@@ -205,6 +213,12 @@ public class ResetTransformRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

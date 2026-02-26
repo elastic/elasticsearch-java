@@ -136,6 +136,13 @@ public class RemoveClusterServer implements JsonpSerializable {
 
 		private String publishAddress;
 
+		public Builder() {
+		}
+		private Builder(RemoveClusterServer instance) {
+			this.boundAddress = instance.boundAddress;
+			this.publishAddress = instance.publishAddress;
+
+		}
 		/**
 		 * Required - API name: {@code bound_address}
 		 * <p>
@@ -182,6 +189,12 @@ public class RemoveClusterServer implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

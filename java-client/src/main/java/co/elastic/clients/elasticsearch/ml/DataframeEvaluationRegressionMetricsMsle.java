@@ -122,6 +122,12 @@ public class DataframeEvaluationRegressionMetricsMsle implements JsonpSerializab
 		@Nullable
 		private Double offset;
 
+		public Builder() {
+		}
+		private Builder(DataframeEvaluationRegressionMetricsMsle instance) {
+			this.offset = instance.offset;
+
+		}
 		/**
 		 * Defines the transition point at which you switch from minimizing quadratic
 		 * error to minimizing quadratic log error. Defaults to 1.
@@ -151,6 +157,12 @@ public class DataframeEvaluationRegressionMetricsMsle implements JsonpSerializab
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

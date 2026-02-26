@@ -138,6 +138,13 @@ public class DataframeClassificationSummaryMulticlassConfusionMatrix implements 
 
 		private Integer otherActualClassCount;
 
+		public Builder() {
+		}
+		private Builder(DataframeClassificationSummaryMulticlassConfusionMatrix instance) {
+			this.confusionMatrix = instance.confusionMatrix;
+			this.otherActualClassCount = instance.otherActualClassCount;
+
+		}
 		/**
 		 * Required - API name: {@code confusion_matrix}
 		 * <p>
@@ -194,6 +201,12 @@ public class DataframeClassificationSummaryMulticlassConfusionMatrix implements 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

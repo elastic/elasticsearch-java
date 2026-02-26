@@ -233,6 +233,16 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		@Nullable
 		private Map<String, JsonData> transient_;
 
+		public Builder() {
+		}
+		private Builder(PutClusterSettingsRequest instance) {
+			this.flatSettings = instance.flatSettings;
+			this.masterTimeout = instance.masterTimeout;
+			this.persistent = instance.persistent;
+			this.timeout = instance.timeout;
+			this.transient_ = instance.transient_;
+
+		}
 		/**
 		 * Return settings in flat format
 		 * <p>
@@ -347,6 +357,12 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

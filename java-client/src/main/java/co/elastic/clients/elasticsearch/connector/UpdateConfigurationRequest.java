@@ -165,6 +165,14 @@ public class UpdateConfigurationRequest extends RequestBase implements JsonpSeri
 		@Nullable
 		private Map<String, JsonData> values;
 
+		public Builder() {
+		}
+		private Builder(UpdateConfigurationRequest instance) {
+			this.configuration = instance.configuration;
+			this.connectorId = instance.connectorId;
+			this.values = instance.values;
+
+		}
 		/**
 		 * API name: {@code configuration}
 		 * <p>
@@ -243,6 +251,12 @@ public class UpdateConfigurationRequest extends RequestBase implements JsonpSeri
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

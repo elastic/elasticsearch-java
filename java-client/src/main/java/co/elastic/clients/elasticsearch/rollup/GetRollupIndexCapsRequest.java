@@ -113,6 +113,12 @@ public class GetRollupIndexCapsRequest extends RequestBase {
 				ObjectBuilder<GetRollupIndexCapsRequest> {
 		private List<String> index;
 
+		public Builder() {
+		}
+		private Builder(GetRollupIndexCapsRequest instance) {
+			this.index = instance.index;
+
+		}
 		/**
 		 * Required - Data stream or index to check for rollup capabilities. Wildcard
 		 * (<code>*</code>) expressions are supported.
@@ -157,6 +163,12 @@ public class GetRollupIndexCapsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

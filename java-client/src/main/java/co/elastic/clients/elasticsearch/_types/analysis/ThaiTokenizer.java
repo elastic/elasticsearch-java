@@ -87,6 +87,11 @@ public class ThaiTokenizer extends TokenizerBase implements TokenizerDefinitionV
 	 */
 
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<ThaiTokenizer> {
+		public Builder() {
+		}
+		private Builder(ThaiTokenizer instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -105,6 +110,12 @@ public class ThaiTokenizer extends TokenizerBase implements TokenizerDefinitionV
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

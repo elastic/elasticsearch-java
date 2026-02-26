@@ -173,6 +173,14 @@ public class PrivilegesCheck implements JsonpSerializable {
 		@Nullable
 		private List<IndexPrivilegesCheck> index;
 
+		public Builder() {
+		}
+		private Builder(PrivilegesCheck instance) {
+			this.application = instance.application;
+			this.cluster = instance.cluster;
+			this.index = instance.index;
+
+		}
 		/**
 		 * API name: {@code application}
 		 * <p>
@@ -287,6 +295,12 @@ public class PrivilegesCheck implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

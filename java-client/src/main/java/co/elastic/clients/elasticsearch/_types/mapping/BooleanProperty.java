@@ -257,6 +257,19 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
 		@Nullable
 		private Boolean timeSeriesDimension;
 
+		public Builder() {
+		}
+		private Builder(BooleanProperty instance) {
+			this.boost = instance.boost;
+			this.fielddata = instance.fielddata;
+			this.index = instance.index;
+			this.nullValue = instance.nullValue;
+			this.ignoreMalformed = instance.ignoreMalformed;
+			this.script = instance.script;
+			this.onScriptError = instance.onScriptError;
+			this.timeSeriesDimension = instance.timeSeriesDimension;
+
+		}
 		/**
 		 * API name: {@code boost}
 		 */
@@ -356,6 +369,12 @@ public class BooleanProperty extends DocValuesPropertyBase implements PropertyVa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

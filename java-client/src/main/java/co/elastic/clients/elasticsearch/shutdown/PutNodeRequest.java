@@ -269,6 +269,18 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 
 		private Type type;
 
+		public Builder() {
+		}
+		private Builder(PutNodeRequest instance) {
+			this.allocationDelay = instance.allocationDelay;
+			this.masterTimeout = instance.masterTimeout;
+			this.nodeId = instance.nodeId;
+			this.reason = instance.reason;
+			this.targetNodeName = instance.targetNodeName;
+			this.timeout = instance.timeout;
+			this.type = instance.type;
+
+		}
 		/**
 		 * Only valid if type is restart. Controls how long Elasticsearch will wait for
 		 * the node to restart and join the cluster before reassigning its shards to
@@ -402,6 +414,12 @@ public class PutNodeRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

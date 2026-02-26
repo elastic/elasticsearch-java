@@ -152,6 +152,13 @@ public class PassThroughInferenceUpdateOptions implements InferenceConfigUpdateV
 		@Nullable
 		private String resultsField;
 
+		public Builder() {
+		}
+		private Builder(PassThroughInferenceUpdateOptions instance) {
+			this.tokenization = instance.tokenization;
+			this.resultsField = instance.resultsField;
+
+		}
 		/**
 		 * The tokenization options to update when inferring
 		 * <p>
@@ -201,6 +208,12 @@ public class PassThroughInferenceUpdateOptions implements InferenceConfigUpdateV
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

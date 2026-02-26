@@ -254,6 +254,18 @@ public class SyncJobUpdateStatsRequest extends RequestBase implements JsonpSeria
 		@Nullable
 		private Integer totalDocumentCount;
 
+		public Builder() {
+		}
+		private Builder(SyncJobUpdateStatsRequest instance) {
+			this.connectorSyncJobId = instance.connectorSyncJobId;
+			this.deletedDocumentCount = instance.deletedDocumentCount;
+			this.indexedDocumentCount = instance.indexedDocumentCount;
+			this.indexedDocumentVolume = instance.indexedDocumentVolume;
+			this.lastSeen = instance.lastSeen;
+			this.metadata = instance.metadata;
+			this.totalDocumentCount = instance.totalDocumentCount;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector sync job.
 		 * <p>
@@ -368,6 +380,12 @@ public class SyncJobUpdateStatsRequest extends RequestBase implements JsonpSeria
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -213,6 +213,16 @@ public class Discovery implements JsonpSerializable {
 		@Nullable
 		private ClusterAppliedStats clusterApplierStats;
 
+		public Builder() {
+		}
+		private Builder(Discovery instance) {
+			this.clusterStateQueue = instance.clusterStateQueue;
+			this.publishedClusterStates = instance.publishedClusterStates;
+			this.clusterStateUpdate = instance.clusterStateUpdate;
+			this.serializedClusterStates = instance.serializedClusterStates;
+			this.clusterApplierStats = instance.clusterApplierStats;
+
+		}
 		/**
 		 * Contains statistics for the cluster state queue of the node.
 		 * <p>
@@ -357,6 +367,12 @@ public class Discovery implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

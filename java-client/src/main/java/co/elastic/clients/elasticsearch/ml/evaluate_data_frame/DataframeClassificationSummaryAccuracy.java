@@ -137,6 +137,13 @@ public class DataframeClassificationSummaryAccuracy implements JsonpSerializable
 
 		private Double overallAccuracy;
 
+		public Builder() {
+		}
+		private Builder(DataframeClassificationSummaryAccuracy instance) {
+			this.classes = instance.classes;
+			this.overallAccuracy = instance.overallAccuracy;
+
+		}
 		/**
 		 * Required - API name: {@code classes}
 		 * <p>
@@ -193,6 +200,12 @@ public class DataframeClassificationSummaryAccuracy implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -199,6 +199,15 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 		@Nullable
 		private Boolean queryMode;
 
+		public Builder() {
+		}
+		private Builder(CommonGramsTokenFilter instance) {
+			this.commonWords = instance.commonWords;
+			this.commonWordsPath = instance.commonWordsPath;
+			this.ignoreCase = instance.ignoreCase;
+			this.queryMode = instance.queryMode;
+
+		}
 		/**
 		 * A list of tokens. The filter generates bigrams for these tokens. Either this
 		 * or the <code>common_words_path</code> parameter is required.
@@ -285,6 +294,12 @@ public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilt
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

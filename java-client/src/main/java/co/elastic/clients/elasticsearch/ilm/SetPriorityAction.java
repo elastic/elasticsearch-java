@@ -115,6 +115,12 @@ public class SetPriorityAction implements JsonpSerializable {
 		@Nullable
 		private Integer priority;
 
+		public Builder() {
+		}
+		private Builder(SetPriorityAction instance) {
+			this.priority = instance.priority;
+
+		}
 		/**
 		 * API name: {@code priority}
 		 */
@@ -141,6 +147,12 @@ public class SetPriorityAction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -154,6 +154,14 @@ public class CCSUsageClusterStats implements JsonpSerializable {
 
 		private CCSUsageTimeValue took;
 
+		public Builder() {
+		}
+		private Builder(CCSUsageClusterStats instance) {
+			this.total = instance.total;
+			this.skipped = instance.skipped;
+			this.took = instance.took;
+
+		}
 		/**
 		 * Required - The total number of successful (not skipped) cross-cluster search
 		 * requests that were executed against this cluster. This may include requests
@@ -217,6 +225,12 @@ public class CCSUsageClusterStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

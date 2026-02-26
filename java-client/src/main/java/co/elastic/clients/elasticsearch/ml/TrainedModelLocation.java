@@ -111,6 +111,12 @@ public class TrainedModelLocation implements JsonpSerializable {
 				ObjectBuilder<TrainedModelLocation> {
 		private TrainedModelLocationIndex index;
 
+		public Builder() {
+		}
+		private Builder(TrainedModelLocation instance) {
+			this.index = instance.index;
+
+		}
 		/**
 		 * Required - API name: {@code index}
 		 */
@@ -145,6 +151,12 @@ public class TrainedModelLocation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -162,6 +162,14 @@ public class RevertModelSnapshotRequest extends RequestBase implements JsonpSeri
 
 		private String snapshotId;
 
+		public Builder() {
+		}
+		private Builder(RevertModelSnapshotRequest instance) {
+			this.deleteInterveningResults = instance.deleteInterveningResults;
+			this.jobId = instance.jobId;
+			this.snapshotId = instance.snapshotId;
+
+		}
 		/**
 		 * Refer to the description for the <code>delete_intervening_results</code>
 		 * query parameter.
@@ -213,6 +221,12 @@ public class RevertModelSnapshotRequest extends RequestBase implements JsonpSeri
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

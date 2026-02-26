@@ -162,6 +162,14 @@ public class FrequencyEncodingPreprocessor implements PreprocessorVariant, Jsonp
 
 		private Map<String, Double> frequencyMap;
 
+		public Builder() {
+		}
+		private Builder(FrequencyEncodingPreprocessor instance) {
+			this.field = instance.field;
+			this.featureName = instance.featureName;
+			this.frequencyMap = instance.frequencyMap;
+
+		}
 		/**
 		 * Required - API name: {@code field}
 		 */
@@ -216,6 +224,12 @@ public class FrequencyEncodingPreprocessor implements PreprocessorVariant, Jsonp
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

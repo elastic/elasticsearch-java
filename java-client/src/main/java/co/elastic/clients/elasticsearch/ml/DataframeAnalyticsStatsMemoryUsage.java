@@ -180,6 +180,15 @@ public class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializable {
 		@Nullable
 		private Long timestamp;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalyticsStatsMemoryUsage instance) {
+			this.memoryReestimateBytes = instance.memoryReestimateBytes;
+			this.peakUsageBytes = instance.peakUsageBytes;
+			this.status = instance.status;
+			this.timestamp = instance.timestamp;
+
+		}
 		/**
 		 * This value is present when the status is hard_limit and it is a new estimate
 		 * of how much memory the job needs.
@@ -239,6 +248,12 @@ public class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -181,6 +181,15 @@ public class HealthReportRequest extends RequestBase {
 		@Nullable
 		private Boolean verbose;
 
+		public Builder() {
+		}
+		private Builder(HealthReportRequest instance) {
+			this.feature = instance.feature;
+			this.size = instance.size;
+			this.timeout = instance.timeout;
+			this.verbose = instance.verbose;
+
+		}
 		/**
 		 * A feature of the cluster, as returned by the top-level health report API.
 		 * <p>
@@ -262,6 +271,12 @@ public class HealthReportRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

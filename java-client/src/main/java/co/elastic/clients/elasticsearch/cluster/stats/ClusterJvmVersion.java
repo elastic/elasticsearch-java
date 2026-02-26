@@ -219,6 +219,18 @@ public class ClusterJvmVersion implements JsonpSerializable {
 
 		private String vmVersion;
 
+		public Builder() {
+		}
+		private Builder(ClusterJvmVersion instance) {
+			this.bundledJdk = instance.bundledJdk;
+			this.count = instance.count;
+			this.usingBundledJdk = instance.usingBundledJdk;
+			this.version = instance.version;
+			this.vmName = instance.vmName;
+			this.vmVendor = instance.vmVendor;
+			this.vmVersion = instance.vmVersion;
+
+		}
 		/**
 		 * Required - Always <code>true</code>. All distributions come with a bundled
 		 * Java Development Kit (JDK).
@@ -309,6 +321,12 @@ public class ClusterJvmVersion implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -144,6 +144,13 @@ public class UpdateFeaturesRequest extends RequestBase implements JsonpSerializa
 
 		private ConnectorFeatures features;
 
+		public Builder() {
+		}
+		private Builder(UpdateFeaturesRequest instance) {
+			this.connectorId = instance.connectorId;
+			this.features = instance.features;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector to be updated.
 		 * <p>
@@ -187,6 +194,12 @@ public class UpdateFeaturesRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

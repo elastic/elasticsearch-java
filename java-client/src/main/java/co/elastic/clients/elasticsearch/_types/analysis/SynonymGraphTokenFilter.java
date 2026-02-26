@@ -89,6 +89,11 @@ public class SynonymGraphTokenFilter extends SynonymTokenFilterBase implements T
 	public static class Builder extends SynonymTokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SynonymGraphTokenFilter> {
+		public Builder() {
+		}
+		private Builder(SynonymGraphTokenFilter instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class SynonymGraphTokenFilter extends SynonymTokenFilterBase implements T
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

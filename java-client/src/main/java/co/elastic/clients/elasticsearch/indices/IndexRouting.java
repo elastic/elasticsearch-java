@@ -134,6 +134,13 @@ public class IndexRouting implements JsonpSerializable {
 		@Nullable
 		private IndexRoutingRebalance rebalance;
 
+		public Builder() {
+		}
+		private Builder(IndexRouting instance) {
+			this.allocation = instance.allocation;
+			this.rebalance = instance.rebalance;
+
+		}
 		/**
 		 * API name: {@code allocation}
 		 */
@@ -184,6 +191,12 @@ public class IndexRouting implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

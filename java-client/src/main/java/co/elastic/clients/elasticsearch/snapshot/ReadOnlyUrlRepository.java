@@ -108,6 +108,12 @@ public class ReadOnlyUrlRepository extends RepositoryBase implements RepositoryV
 				ObjectBuilder<ReadOnlyUrlRepository> {
 		private ReadOnlyUrlRepositorySettings settings;
 
+		public Builder() {
+		}
+		private Builder(ReadOnlyUrlRepository instance) {
+			this.settings = instance.settings;
+
+		}
 		/**
 		 * Required - The repository settings.
 		 * <p>
@@ -146,6 +152,12 @@ public class ReadOnlyUrlRepository extends RepositoryBase implements RepositoryV
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

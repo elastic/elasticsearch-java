@@ -160,6 +160,15 @@ public class IngestPipelineParams implements JsonpSerializable {
 
 		private Boolean runMlInference;
 
+		public Builder() {
+		}
+		private Builder(IngestPipelineParams instance) {
+			this.extractBinaryContent = instance.extractBinaryContent;
+			this.name = instance.name;
+			this.reduceWhitespace = instance.reduceWhitespace;
+			this.runMlInference = instance.runMlInference;
+
+		}
 		/**
 		 * Required - API name: {@code extract_binary_content}
 		 */
@@ -210,6 +219,12 @@ public class IngestPipelineParams implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

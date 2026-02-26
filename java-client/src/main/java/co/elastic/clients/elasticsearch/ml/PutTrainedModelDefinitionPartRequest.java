@@ -188,6 +188,16 @@ public class PutTrainedModelDefinitionPartRequest extends RequestBase implements
 
 		private Integer totalParts;
 
+		public Builder() {
+		}
+		private Builder(PutTrainedModelDefinitionPartRequest instance) {
+			this.definition = instance.definition;
+			this.modelId = instance.modelId;
+			this.part = instance.part;
+			this.totalDefinitionLength = instance.totalDefinitionLength;
+			this.totalParts = instance.totalParts;
+
+		}
 		/**
 		 * Required - The definition part for the model. Must be a base64 encoded
 		 * string.
@@ -262,6 +272,12 @@ public class PutTrainedModelDefinitionPartRequest extends RequestBase implements
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

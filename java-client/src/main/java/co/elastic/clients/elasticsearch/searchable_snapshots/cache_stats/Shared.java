@@ -219,6 +219,19 @@ public class Shared implements JsonpSerializable {
 
 		private String regionSizeInBytes;
 
+		public Builder() {
+		}
+		private Builder(Shared instance) {
+			this.reads = instance.reads;
+			this.bytesReadInBytes = instance.bytesReadInBytes;
+			this.writes = instance.writes;
+			this.bytesWrittenInBytes = instance.bytesWrittenInBytes;
+			this.evictions = instance.evictions;
+			this.numRegions = instance.numRegions;
+			this.sizeInBytes = instance.sizeInBytes;
+			this.regionSizeInBytes = instance.regionSizeInBytes;
+
+		}
 		/**
 		 * Required - API name: {@code reads}
 		 */
@@ -301,6 +314,12 @@ public class Shared implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

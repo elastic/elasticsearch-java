@@ -273,6 +273,19 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private RescoreVector rescoreVector;
 
+		public Builder() {
+		}
+		private Builder(KnnQuery instance) {
+			this.field = instance.field;
+			this.queryVector = instance.queryVector;
+			this.queryVectorBuilder = instance.queryVectorBuilder;
+			this.numCandidates = instance.numCandidates;
+			this.k = instance.k;
+			this.filter = instance.filter;
+			this.similarity = instance.similarity;
+			this.rescoreVector = instance.rescoreVector;
+
+		}
 		/**
 		 * Required - The name of the vector field to search against
 		 * <p>
@@ -457,6 +470,12 @@ public class KnnQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

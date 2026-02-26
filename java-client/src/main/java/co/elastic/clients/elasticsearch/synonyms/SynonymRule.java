@@ -136,6 +136,13 @@ public class SynonymRule implements JsonpSerializable {
 
 		private String synonyms;
 
+		public Builder() {
+		}
+		private Builder(SynonymRule instance) {
+			this.id = instance.id;
+			this.synonyms = instance.synonyms;
+
+		}
 		/**
 		 * The identifier for the synonym rule. If you do not specify a synonym rule ID
 		 * when you create a rule, an identifier is created automatically by
@@ -176,6 +183,12 @@ public class SynonymRule implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

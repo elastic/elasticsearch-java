@@ -193,6 +193,17 @@ public class TranslogStatus implements JsonpSerializable {
 
 		private Long totalTimeInMillis;
 
+		public Builder() {
+		}
+		private Builder(TranslogStatus instance) {
+			this.percent = instance.percent;
+			this.recovered = instance.recovered;
+			this.total = instance.total;
+			this.totalOnStart = instance.totalOnStart;
+			this.totalTime = instance.totalTime;
+			this.totalTimeInMillis = instance.totalTimeInMillis;
+
+		}
 		/**
 		 * Required - API name: {@code percent}
 		 */
@@ -266,6 +277,12 @@ public class TranslogStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

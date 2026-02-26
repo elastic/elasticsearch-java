@@ -186,6 +186,15 @@ public class UpdateFilteringRequest extends RequestBase implements JsonpSerializ
 		@Nullable
 		private List<FilteringRule> rules;
 
+		public Builder() {
+		}
+		private Builder(UpdateFilteringRequest instance) {
+			this.advancedSnippet = instance.advancedSnippet;
+			this.connectorId = instance.connectorId;
+			this.filtering = instance.filtering;
+			this.rules = instance.rules;
+
+		}
 		/**
 		 * API name: {@code advanced_snippet}
 		 */
@@ -288,6 +297,12 @@ public class UpdateFilteringRequest extends RequestBase implements JsonpSerializ
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -367,6 +367,23 @@ public class CCSUsageStats implements JsonpSerializable {
 
 		private Map<String, CCSUsageClusterStats> clusters;
 
+		public Builder() {
+		}
+		private Builder(CCSUsageStats instance) {
+			this.total = instance.total;
+			this.success = instance.success;
+			this.skipped = instance.skipped;
+			this.took = instance.took;
+			this.tookMrtTrue = instance.tookMrtTrue;
+			this.tookMrtFalse = instance.tookMrtFalse;
+			this.remotesPerSearchMax = instance.remotesPerSearchMax;
+			this.remotesPerSearchAvg = instance.remotesPerSearchAvg;
+			this.failureReasons = instance.failureReasons;
+			this.features = instance.features;
+			this.clients = instance.clients;
+			this.clusters = instance.clusters;
+
+		}
 		/**
 		 * Required - The total number of cross-cluster search requests that have been
 		 * executed by the cluster.
@@ -638,6 +655,12 @@ public class CCSUsageStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

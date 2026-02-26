@@ -212,6 +212,18 @@ public class ClusterStatistics implements JsonpSerializable {
 		@Nullable
 		private Map<String, ClusterDetails> details;
 
+		public Builder() {
+		}
+		private Builder(ClusterStatistics instance) {
+			this.skipped = instance.skipped;
+			this.successful = instance.successful;
+			this.total = instance.total;
+			this.running = instance.running;
+			this.partial = instance.partial;
+			this.failed = instance.failed;
+			this.details = instance.details;
+
+		}
 		/**
 		 * Required - API name: {@code skipped}
 		 */
@@ -307,6 +319,12 @@ public class ClusterStatistics implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

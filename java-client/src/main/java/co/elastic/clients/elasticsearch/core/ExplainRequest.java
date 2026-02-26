@@ -373,6 +373,26 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private List<String> storedFields;
 
+		public Builder() {
+		}
+		private Builder(ExplainRequest instance) {
+			this.source = instance.source;
+			this.sourceExcludes = instance.sourceExcludes;
+			this.sourceIncludes = instance.sourceIncludes;
+			this.analyzeWildcard = instance.analyzeWildcard;
+			this.analyzer = instance.analyzer;
+			this.defaultOperator = instance.defaultOperator;
+			this.df = instance.df;
+			this.id = instance.id;
+			this.index = instance.index;
+			this.lenient = instance.lenient;
+			this.preference = instance.preference;
+			this.q = instance.q;
+			this.query = instance.query;
+			this.routing = instance.routing;
+			this.storedFields = instance.storedFields;
+
+		}
 		/**
 		 * <code>True</code> or <code>false</code> to return the <code>_source</code>
 		 * field or not or a list of fields to return.
@@ -638,6 +658,12 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

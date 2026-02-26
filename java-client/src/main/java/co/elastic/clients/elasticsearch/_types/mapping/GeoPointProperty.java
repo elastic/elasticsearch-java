@@ -232,6 +232,18 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 		@Nullable
 		private GeoPointMetricType timeSeriesMetric;
 
+		public Builder() {
+		}
+		private Builder(GeoPointProperty instance) {
+			this.ignoreMalformed = instance.ignoreMalformed;
+			this.ignoreZValue = instance.ignoreZValue;
+			this.nullValue = instance.nullValue;
+			this.index = instance.index;
+			this.onScriptError = instance.onScriptError;
+			this.script = instance.script;
+			this.timeSeriesMetric = instance.timeSeriesMetric;
+
+		}
 		/**
 		 * API name: {@code ignore_malformed}
 		 */
@@ -320,6 +332,12 @@ public class GeoPointProperty extends DocValuesPropertyBase implements PropertyV
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

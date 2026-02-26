@@ -147,6 +147,14 @@ public class FilteringRules implements JsonpSerializable {
 
 		private FilteringRulesValidation validation;
 
+		public Builder() {
+		}
+		private Builder(FilteringRules instance) {
+			this.advancedSnippet = instance.advancedSnippet;
+			this.rules = instance.rules;
+			this.validation = instance.validation;
+
+		}
 		/**
 		 * Required - API name: {@code advanced_snippet}
 		 */
@@ -226,6 +234,12 @@ public class FilteringRules implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

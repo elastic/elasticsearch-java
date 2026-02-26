@@ -211,6 +211,17 @@ public class SlackMessage implements JsonpSerializable {
 
 		private List<String> to;
 
+		public Builder() {
+		}
+		private Builder(SlackMessage instance) {
+			this.attachments = instance.attachments;
+			this.dynamicAttachments = instance.dynamicAttachments;
+			this.from = instance.from;
+			this.icon = instance.icon;
+			this.text = instance.text;
+			this.to = instance.to;
+
+		}
 		/**
 		 * Required - API name: {@code attachments}
 		 * <p>
@@ -318,6 +329,12 @@ public class SlackMessage implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

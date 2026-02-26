@@ -81,6 +81,11 @@ public class ExtendedStatsBucketAggregate extends ExtendedStatsAggregate impleme
 	public static class Builder extends ExtendedStatsAggregate.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ExtendedStatsBucketAggregate> {
+		public Builder() {
+		}
+		private Builder(ExtendedStatsBucketAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class ExtendedStatsBucketAggregate extends ExtendedStatsAggregate impleme
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

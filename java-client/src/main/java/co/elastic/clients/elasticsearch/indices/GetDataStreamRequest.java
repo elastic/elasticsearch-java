@@ -175,6 +175,16 @@ public class GetDataStreamRequest extends RequestBase {
 		@Nullable
 		private Boolean verbose;
 
+		public Builder() {
+		}
+		private Builder(GetDataStreamRequest instance) {
+			this.expandWildcards = instance.expandWildcards;
+			this.includeDefaults = instance.includeDefaults;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.verbose = instance.verbose;
+
+		}
 		/**
 		 * Type of data stream that wildcard patterns can match. Supports
 		 * comma-separated values, such as <code>open,hidden</code>.
@@ -289,6 +299,12 @@ public class GetDataStreamRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

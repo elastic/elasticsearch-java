@@ -500,6 +500,28 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		@Nullable
 		private Map<String, JsonData> settings;
 
+		public Builder() {
+		}
+		private Builder(PutAutoFollowPatternRequest instance) {
+			this.followIndexPattern = instance.followIndexPattern;
+			this.leaderIndexExclusionPatterns = instance.leaderIndexExclusionPatterns;
+			this.leaderIndexPatterns = instance.leaderIndexPatterns;
+			this.masterTimeout = instance.masterTimeout;
+			this.maxOutstandingReadRequests = instance.maxOutstandingReadRequests;
+			this.maxOutstandingWriteRequests = instance.maxOutstandingWriteRequests;
+			this.maxReadRequestOperationCount = instance.maxReadRequestOperationCount;
+			this.maxReadRequestSize = instance.maxReadRequestSize;
+			this.maxRetryDelay = instance.maxRetryDelay;
+			this.maxWriteBufferCount = instance.maxWriteBufferCount;
+			this.maxWriteBufferSize = instance.maxWriteBufferSize;
+			this.maxWriteRequestOperationCount = instance.maxWriteRequestOperationCount;
+			this.maxWriteRequestSize = instance.maxWriteRequestSize;
+			this.name = instance.name;
+			this.readPollTimeout = instance.readPollTimeout;
+			this.remoteCluster = instance.remoteCluster;
+			this.settings = instance.settings;
+
+		}
 		/**
 		 * The name of follower index. The template {{leader_index}} can be used to
 		 * derive the name of the follower index from the name of the leader index. When
@@ -788,6 +810,12 @@ public class PutAutoFollowPatternRequest extends RequestBase implements JsonpSer
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

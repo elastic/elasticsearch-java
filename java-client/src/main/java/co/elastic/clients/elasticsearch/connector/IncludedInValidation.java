@@ -132,6 +132,12 @@ public class IncludedInValidation implements ValidationVariant, JsonpSerializabl
 				ObjectBuilder<IncludedInValidation> {
 		private List<FieldValue> constraint;
 
+		public Builder() {
+		}
+		private Builder(IncludedInValidation instance) {
+			this.constraint = instance.constraint;
+
+		}
 		/**
 		 * Required - API name: {@code constraint}
 		 * <p>
@@ -179,6 +185,12 @@ public class IncludedInValidation implements ValidationVariant, JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

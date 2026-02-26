@@ -157,6 +157,15 @@ public class MlInferenceIngestProcessor implements JsonpSerializable {
 
 		private MlInferenceIngestProcessorCount timeMs;
 
+		public Builder() {
+		}
+		private Builder(MlInferenceIngestProcessor instance) {
+			this.numDocsProcessed = instance.numDocsProcessed;
+			this.pipelines = instance.pipelines;
+			this.numFailures = instance.numFailures;
+			this.timeMs = instance.timeMs;
+
+		}
 		/**
 		 * Required - API name: {@code num_docs_processed}
 		 */
@@ -238,6 +247,12 @@ public class MlInferenceIngestProcessor implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -215,6 +215,16 @@ public class AlibabaCloudServiceSettings implements JsonpSerializable {
 
 		private String workspace;
 
+		public Builder() {
+		}
+		private Builder(AlibabaCloudServiceSettings instance) {
+			this.apiKey = instance.apiKey;
+			this.host = instance.host;
+			this.rateLimit = instance.rateLimit;
+			this.serviceId = instance.serviceId;
+			this.workspace = instance.workspace;
+
+		}
 		/**
 		 * Required - A valid API key for the AlibabaCloud AI Search API.
 		 * <p>
@@ -321,6 +331,12 @@ public class AlibabaCloudServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

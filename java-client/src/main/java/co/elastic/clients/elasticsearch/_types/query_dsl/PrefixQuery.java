@@ -214,6 +214,14 @@ public class PrefixQuery extends QueryBase
 		@Nullable
 		private Boolean caseInsensitive;
 
+		public Builder() {
+		}
+		private Builder(PrefixQuery instance) {
+			this.rewrite = instance.rewrite;
+			this.value = instance.value;
+			this.caseInsensitive = instance.caseInsensitive;
+
+		}
 		/**
 		 * Method used to rewrite the query.
 		 * <p>
@@ -266,6 +274,12 @@ public class PrefixQuery extends QueryBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

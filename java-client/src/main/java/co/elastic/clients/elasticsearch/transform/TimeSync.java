@@ -146,6 +146,13 @@ public class TimeSync implements SyncVariant, JsonpSerializable {
 
 		private String field;
 
+		public Builder() {
+		}
+		private Builder(TimeSync instance) {
+			this.delay = instance.delay;
+			this.field = instance.field;
+
+		}
 		/**
 		 * The time delay between the current time and the latest input data time.
 		 * <p>
@@ -196,6 +203,12 @@ public class TimeSync implements SyncVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

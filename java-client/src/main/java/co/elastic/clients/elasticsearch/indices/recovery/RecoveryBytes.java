@@ -256,6 +256,20 @@ public class RecoveryBytes implements JsonpSerializable {
 
 		private String totalInBytes;
 
+		public Builder() {
+		}
+		private Builder(RecoveryBytes instance) {
+			this.percent = instance.percent;
+			this.recovered = instance.recovered;
+			this.recoveredInBytes = instance.recoveredInBytes;
+			this.recoveredFromSnapshot = instance.recoveredFromSnapshot;
+			this.recoveredFromSnapshotInBytes = instance.recoveredFromSnapshotInBytes;
+			this.reused = instance.reused;
+			this.reusedInBytes = instance.reusedInBytes;
+			this.total = instance.total;
+			this.totalInBytes = instance.totalInBytes;
+
+		}
 		/**
 		 * Required - API name: {@code percent}
 		 */
@@ -346,6 +360,12 @@ public class RecoveryBytes implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

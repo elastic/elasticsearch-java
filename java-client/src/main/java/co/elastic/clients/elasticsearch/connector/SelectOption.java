@@ -126,6 +126,13 @@ public class SelectOption implements JsonpSerializable {
 
 		private FieldValue value;
 
+		public Builder() {
+		}
+		private Builder(SelectOption instance) {
+			this.label = instance.label;
+			this.value = instance.value;
+
+		}
 		/**
 		 * Required - API name: {@code label}
 		 */
@@ -199,6 +206,12 @@ public class SelectOption implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

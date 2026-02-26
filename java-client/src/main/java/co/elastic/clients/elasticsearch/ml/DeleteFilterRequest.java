@@ -100,6 +100,12 @@ public class DeleteFilterRequest extends RequestBase {
 				ObjectBuilder<DeleteFilterRequest> {
 		private String filterId;
 
+		public Builder() {
+		}
+		private Builder(DeleteFilterRequest instance) {
+			this.filterId = instance.filterId;
+
+		}
 		/**
 		 * Required - A string that uniquely identifies a filter.
 		 * <p>
@@ -128,6 +134,12 @@ public class DeleteFilterRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

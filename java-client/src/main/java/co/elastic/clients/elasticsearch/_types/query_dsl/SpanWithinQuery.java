@@ -132,6 +132,13 @@ public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, Quer
 
 		private SpanQuery little;
 
+		public Builder() {
+		}
+		private Builder(SpanWithinQuery instance) {
+			this.big = instance.big;
+			this.little = instance.little;
+
+		}
 		/**
 		 * Required - Can be any span query. Matching spans from <code>little</code>
 		 * that are enclosed within <code>big</code> are returned.
@@ -214,6 +221,12 @@ public class SpanWithinQuery extends QueryBase implements SpanQueryVariant, Quer
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

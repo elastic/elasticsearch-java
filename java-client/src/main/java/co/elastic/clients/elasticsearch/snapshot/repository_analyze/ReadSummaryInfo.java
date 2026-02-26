@@ -297,6 +297,22 @@ public class ReadSummaryInfo implements JsonpSerializable {
 
 		private Long totalWaitNanos;
 
+		public Builder() {
+		}
+		private Builder(ReadSummaryInfo instance) {
+			this.count = instance.count;
+			this.maxWait = instance.maxWait;
+			this.maxWaitNanos = instance.maxWaitNanos;
+			this.totalElapsed = instance.totalElapsed;
+			this.totalElapsedNanos = instance.totalElapsedNanos;
+			this.totalSize = instance.totalSize;
+			this.totalSizeBytes = instance.totalSizeBytes;
+			this.totalThrottled = instance.totalThrottled;
+			this.totalThrottledNanos = instance.totalThrottledNanos;
+			this.totalWait = instance.totalWait;
+			this.totalWaitNanos = instance.totalWaitNanos;
+
+		}
 		/**
 		 * Required - The number of read operations performed in the test.
 		 * <p>
@@ -475,6 +491,12 @@ public class ReadSummaryInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

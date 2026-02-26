@@ -135,6 +135,13 @@ public class PinnedDoc implements JsonpSerializable {
 		@Nullable
 		private String index;
 
+		public Builder() {
+		}
+		private Builder(PinnedDoc instance) {
+			this.id = instance.id;
+			this.index = instance.index;
+
+		}
 		/**
 		 * Required - The unique document ID.
 		 * <p>
@@ -173,6 +180,12 @@ public class PinnedDoc implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -111,6 +111,12 @@ public class SourceIndex implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SourceIndex> {
 		private String index;
 
+		public Builder() {
+		}
+		private Builder(SourceIndex instance) {
+			this.index = instance.index;
+
+		}
 		/**
 		 * Required - API name: {@code index}
 		 */
@@ -137,6 +143,12 @@ public class SourceIndex implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -129,6 +129,12 @@ public class SimpleAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		@Nullable
 		private String version;
 
+		public Builder() {
+		}
+		private Builder(SimpleAnalyzer instance) {
+			this.version = instance.version;
+
+		}
 		/**
 		 * API name: {@code version}
 		 * 
@@ -158,6 +164,12 @@ public class SimpleAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

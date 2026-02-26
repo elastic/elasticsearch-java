@@ -222,6 +222,18 @@ public class WriteSummaryInfo implements JsonpSerializable {
 
 		private Long totalThrottledNanos;
 
+		public Builder() {
+		}
+		private Builder(WriteSummaryInfo instance) {
+			this.count = instance.count;
+			this.totalElapsed = instance.totalElapsed;
+			this.totalElapsedNanos = instance.totalElapsedNanos;
+			this.totalSize = instance.totalSize;
+			this.totalSizeBytes = instance.totalSizeBytes;
+			this.totalThrottled = instance.totalThrottled;
+			this.totalThrottledNanos = instance.totalThrottledNanos;
+
+		}
 		/**
 		 * Required - The number of write operations performed in the test.
 		 * <p>
@@ -332,6 +344,12 @@ public class WriteSummaryInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

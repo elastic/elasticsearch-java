@@ -151,6 +151,13 @@ public class LearningToRank implements RescoreVariant, JsonpSerializable {
 		@Nullable
 		private Map<String, JsonData> params;
 
+		public Builder() {
+		}
+		private Builder(LearningToRank instance) {
+			this.modelId = instance.modelId;
+			this.params = instance.params;
+
+		}
 		/**
 		 * Required - The unique identifier of the trained model uploaded to
 		 * Elasticsearch
@@ -204,6 +211,12 @@ public class LearningToRank implements RescoreVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

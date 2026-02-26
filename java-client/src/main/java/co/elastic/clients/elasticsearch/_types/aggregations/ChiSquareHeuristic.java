@@ -135,6 +135,13 @@ public class ChiSquareHeuristic implements JsonpSerializable {
 
 		private Boolean includeNegatives;
 
+		public Builder() {
+		}
+		private Builder(ChiSquareHeuristic instance) {
+			this.backgroundIsSuperset = instance.backgroundIsSuperset;
+			this.includeNegatives = instance.includeNegatives;
+
+		}
 		/**
 		 * Required - Set to <code>false</code> if you defined a custom background
 		 * filter that represents a different set of documents that you want to compare
@@ -176,6 +183,12 @@ public class ChiSquareHeuristic implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

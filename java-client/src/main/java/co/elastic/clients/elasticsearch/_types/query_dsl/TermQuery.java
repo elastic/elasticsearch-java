@@ -191,6 +191,13 @@ public class TermQuery extends QueryBase
 		@Nullable
 		private Boolean caseInsensitive;
 
+		public Builder() {
+		}
+		private Builder(TermQuery instance) {
+			this.value = instance.value;
+			this.caseInsensitive = instance.caseInsensitive;
+
+		}
 		/**
 		 * Required - Term you wish to find in the provided field.
 		 * <p>
@@ -280,6 +287,12 @@ public class TermQuery extends QueryBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

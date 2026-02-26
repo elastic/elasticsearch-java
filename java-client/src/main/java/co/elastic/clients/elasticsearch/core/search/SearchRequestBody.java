@@ -972,6 +972,45 @@ public class SearchRequestBody implements JsonpSerializable {
 		@Nullable
 		private List<String> stats;
 
+		public Builder() {
+		}
+		private Builder(SearchRequestBody instance) {
+			this.aggregations = instance.aggregations;
+			this.collapse = instance.collapse;
+			this.explain = instance.explain;
+			this.ext = instance.ext;
+			this.from = instance.from;
+			this.highlight = instance.highlight;
+			this.trackTotalHits = instance.trackTotalHits;
+			this.indicesBoost = instance.indicesBoost;
+			this.docvalueFields = instance.docvalueFields;
+			this.knn = instance.knn;
+			this.rank = instance.rank;
+			this.minScore = instance.minScore;
+			this.postFilter = instance.postFilter;
+			this.profile = instance.profile;
+			this.query = instance.query;
+			this.rescore = instance.rescore;
+			this.retriever = instance.retriever;
+			this.scriptFields = instance.scriptFields;
+			this.searchAfter = instance.searchAfter;
+			this.size = instance.size;
+			this.slice = instance.slice;
+			this.sort = instance.sort;
+			this.source = instance.source;
+			this.fields = instance.fields;
+			this.suggest = instance.suggest;
+			this.terminateAfter = instance.terminateAfter;
+			this.timeout = instance.timeout;
+			this.trackScores = instance.trackScores;
+			this.version = instance.version;
+			this.seqNoPrimaryTerm = instance.seqNoPrimaryTerm;
+			this.storedFields = instance.storedFields;
+			this.pit = instance.pit;
+			this.runtimeMappings = instance.runtimeMappings;
+			this.stats = instance.stats;
+
+		}
 		/**
 		 * Defines the aggregations that are run as part of the search request.
 		 * <p>
@@ -1946,6 +1985,12 @@ public class SearchRequestBody implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

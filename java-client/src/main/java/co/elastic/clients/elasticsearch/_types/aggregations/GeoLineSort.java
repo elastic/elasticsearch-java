@@ -114,6 +114,12 @@ public class GeoLineSort implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GeoLineSort> {
 		private String field;
 
+		public Builder() {
+		}
+		private Builder(GeoLineSort instance) {
+			this.field = instance.field;
+
+		}
 		/**
 		 * Required - The name of the numeric field to use as the sort key for ordering
 		 * the points.
@@ -143,6 +149,12 @@ public class GeoLineSort implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

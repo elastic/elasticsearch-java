@@ -112,6 +112,12 @@ public class SimplePatternTokenizer extends TokenizerBase implements TokenizerDe
 		@Nullable
 		private String pattern;
 
+		public Builder() {
+		}
+		private Builder(SimplePatternTokenizer instance) {
+			this.pattern = instance.pattern;
+
+		}
 		/**
 		 * API name: {@code pattern}
 		 */
@@ -138,6 +144,12 @@ public class SimplePatternTokenizer extends TokenizerBase implements TokenizerDe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

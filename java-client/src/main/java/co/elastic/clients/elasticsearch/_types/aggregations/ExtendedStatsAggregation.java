@@ -113,6 +113,12 @@ public class ExtendedStatsAggregation extends FormatMetricAggregationBase implem
 		@Nullable
 		private Double sigma;
 
+		public Builder() {
+		}
+		private Builder(ExtendedStatsAggregation instance) {
+			this.sigma = instance.sigma;
+
+		}
 		/**
 		 * The number of standard deviations above/below the mean to display.
 		 * <p>
@@ -141,6 +147,12 @@ public class ExtendedStatsAggregation extends FormatMetricAggregationBase implem
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

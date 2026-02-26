@@ -151,6 +151,14 @@ public class EmailResult implements JsonpSerializable {
 		@Nullable
 		private String reason;
 
+		public Builder() {
+		}
+		private Builder(EmailResult instance) {
+			this.account = instance.account;
+			this.message = instance.message;
+			this.reason = instance.reason;
+
+		}
 		/**
 		 * API name: {@code account}
 		 */
@@ -200,6 +208,12 @@ public class EmailResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

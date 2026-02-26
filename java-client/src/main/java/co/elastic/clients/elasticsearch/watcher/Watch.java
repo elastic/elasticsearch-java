@@ -273,6 +273,20 @@ public class Watch implements JsonpSerializable {
 
 		private Trigger trigger;
 
+		public Builder() {
+		}
+		private Builder(Watch instance) {
+			this.actions = instance.actions;
+			this.condition = instance.condition;
+			this.input = instance.input;
+			this.metadata = instance.metadata;
+			this.status = instance.status;
+			this.throttlePeriod = instance.throttlePeriod;
+			this.throttlePeriodInMillis = instance.throttlePeriodInMillis;
+			this.transform = instance.transform;
+			this.trigger = instance.trigger;
+
+		}
 		/**
 		 * Required - API name: {@code actions}
 		 * <p>
@@ -470,6 +484,12 @@ public class Watch implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

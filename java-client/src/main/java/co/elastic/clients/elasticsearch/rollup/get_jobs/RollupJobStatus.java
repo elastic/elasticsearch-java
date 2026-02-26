@@ -158,6 +158,14 @@ public class RollupJobStatus implements JsonpSerializable {
 		@Nullable
 		private Boolean upgradedDocId;
 
+		public Builder() {
+		}
+		private Builder(RollupJobStatus instance) {
+			this.currentPosition = instance.currentPosition;
+			this.jobState = instance.jobState;
+			this.upgradedDocId = instance.upgradedDocId;
+
+		}
 		/**
 		 * API name: {@code current_position}
 		 * <p>
@@ -212,6 +220,12 @@ public class RollupJobStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

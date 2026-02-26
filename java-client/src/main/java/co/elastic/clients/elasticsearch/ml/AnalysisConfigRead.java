@@ -379,6 +379,22 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		@Nullable
 		private String summaryCountFieldName;
 
+		public Builder() {
+		}
+		private Builder(AnalysisConfigRead instance) {
+			this.bucketSpan = instance.bucketSpan;
+			this.categorizationAnalyzer = instance.categorizationAnalyzer;
+			this.categorizationFieldName = instance.categorizationFieldName;
+			this.categorizationFilters = instance.categorizationFilters;
+			this.detectors = instance.detectors;
+			this.influencers = instance.influencers;
+			this.modelPruneWindow = instance.modelPruneWindow;
+			this.latency = instance.latency;
+			this.multivariateByFields = instance.multivariateByFields;
+			this.perPartitionCategorization = instance.perPartitionCategorization;
+			this.summaryCountFieldName = instance.summaryCountFieldName;
+
+		}
 		/**
 		 * Required - The size of the interval that the analysis is aggregated into,
 		 * typically between <code>5m</code> and <code>1h</code>.
@@ -667,6 +683,12 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

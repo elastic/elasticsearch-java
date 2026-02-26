@@ -231,6 +231,17 @@ public class Breaker implements JsonpSerializable {
 		@Nullable
 		private Float tripped;
 
+		public Builder() {
+		}
+		private Builder(Breaker instance) {
+			this.estimatedSize = instance.estimatedSize;
+			this.estimatedSizeInBytes = instance.estimatedSizeInBytes;
+			this.limitSize = instance.limitSize;
+			this.limitSizeInBytes = instance.limitSizeInBytes;
+			this.overhead = instance.overhead;
+			this.tripped = instance.tripped;
+
+		}
 		/**
 		 * Estimated memory used for the operation.
 		 * <p>
@@ -311,6 +322,12 @@ public class Breaker implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

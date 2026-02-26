@@ -192,6 +192,15 @@ public class ExploreControls implements JsonpSerializable {
 
 		private Boolean useSignificance;
 
+		public Builder() {
+		}
+		private Builder(ExploreControls instance) {
+			this.sampleDiversity = instance.sampleDiversity;
+			this.sampleSize = instance.sampleSize;
+			this.timeout = instance.timeout;
+			this.useSignificance = instance.useSignificance;
+
+		}
 		/**
 		 * To avoid the top-matching documents sample being dominated by a single source
 		 * of results, it is sometimes necessary to request diversity in the sample. You
@@ -286,6 +295,12 @@ public class ExploreControls implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

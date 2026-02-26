@@ -164,6 +164,14 @@ public class CCSStats implements JsonpSerializable {
 		@Nullable
 		private CCSUsageStats esql;
 
+		public Builder() {
+		}
+		private Builder(CCSStats instance) {
+			this.clusters = instance.clusters;
+			this.search = instance.search;
+			this.esql = instance.esql;
+
+		}
 		/**
 		 * Contains remote cluster settings and metrics collected from them. The keys
 		 * are cluster names, and the values are per-cluster data. Only present if
@@ -262,6 +270,12 @@ public class CCSStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

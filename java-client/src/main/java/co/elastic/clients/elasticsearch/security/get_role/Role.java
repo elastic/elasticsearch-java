@@ -378,6 +378,22 @@ public class Role implements JsonpSerializable {
 		@Nullable
 		private Map<String, Map<String, Map<String, List<String>>>> global;
 
+		public Builder() {
+		}
+		private Builder(Role instance) {
+			this.cluster = instance.cluster;
+			this.indices = instance.indices;
+			this.remoteIndices = instance.remoteIndices;
+			this.remoteCluster = instance.remoteCluster;
+			this.metadata = instance.metadata;
+			this.description = instance.description;
+			this.runAs = instance.runAs;
+			this.transientMetadata = instance.transientMetadata;
+			this.applications = instance.applications;
+			this.roleTemplates = instance.roleTemplates;
+			this.global = instance.global;
+
+		}
 		/**
 		 * Required - API name: {@code cluster}
 		 * <p>
@@ -663,6 +679,12 @@ public class Role implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

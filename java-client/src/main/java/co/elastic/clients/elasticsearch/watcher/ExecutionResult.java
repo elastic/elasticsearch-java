@@ -178,6 +178,16 @@ public class ExecutionResult implements JsonpSerializable {
 
 		private ExecutionResultInput input;
 
+		public Builder() {
+		}
+		private Builder(ExecutionResult instance) {
+			this.actions = instance.actions;
+			this.condition = instance.condition;
+			this.executionDuration = instance.executionDuration;
+			this.executionTime = instance.executionTime;
+			this.input = instance.input;
+
+		}
 		/**
 		 * Required - API name: {@code actions}
 		 * <p>
@@ -272,6 +282,12 @@ public class ExecutionResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -177,6 +177,15 @@ public class NodeInfoXpack implements JsonpSerializable {
 		@Nullable
 		private NodeInfoXpackMl ml;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoXpack instance) {
+			this.license = instance.license;
+			this.security = instance.security;
+			this.notification = instance.notification;
+			this.ml = instance.ml;
+
+		}
 		/**
 		 * API name: {@code license}
 		 */
@@ -261,6 +270,12 @@ public class NodeInfoXpack implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

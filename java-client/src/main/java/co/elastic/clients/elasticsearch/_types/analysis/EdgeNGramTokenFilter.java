@@ -184,6 +184,15 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
 		@Nullable
 		private Boolean preserveOriginal;
 
+		public Builder() {
+		}
+		private Builder(EdgeNGramTokenFilter instance) {
+			this.maxGram = instance.maxGram;
+			this.minGram = instance.minGram;
+			this.side = instance.side;
+			this.preserveOriginal = instance.preserveOriginal;
+
+		}
 		/**
 		 * Maximum character length of a gram. For custom token filters, defaults to
 		 * <code>2</code>. For the built-in edge_ngram filter, defaults to
@@ -246,6 +255,12 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -141,6 +141,14 @@ public class NodeDiskUsage implements JsonpSerializable {
 
 		private DiskUsage mostAvailable;
 
+		public Builder() {
+		}
+		private Builder(NodeDiskUsage instance) {
+			this.nodeName = instance.nodeName;
+			this.leastAvailable = instance.leastAvailable;
+			this.mostAvailable = instance.mostAvailable;
+
+		}
 		/**
 		 * Required - API name: {@code node_name}
 		 */
@@ -197,6 +205,12 @@ public class NodeDiskUsage implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

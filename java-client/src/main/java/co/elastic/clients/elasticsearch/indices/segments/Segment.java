@@ -243,6 +243,20 @@ public class Segment implements JsonpSerializable {
 
 		private String version;
 
+		public Builder() {
+		}
+		private Builder(Segment instance) {
+			this.attributes = instance.attributes;
+			this.committed = instance.committed;
+			this.compound = instance.compound;
+			this.deletedDocs = instance.deletedDocs;
+			this.generation = instance.generation;
+			this.search = instance.search;
+			this.sizeInBytes = instance.sizeInBytes;
+			this.numDocs = instance.numDocs;
+			this.version = instance.version;
+
+		}
 		/**
 		 * Required - API name: {@code attributes}
 		 * <p>
@@ -345,6 +359,12 @@ public class Segment implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

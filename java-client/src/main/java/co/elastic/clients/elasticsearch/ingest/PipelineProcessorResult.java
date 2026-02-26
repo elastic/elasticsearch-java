@@ -238,6 +238,18 @@ public class PipelineProcessorResult implements JsonpSerializable {
 		@Nullable
 		private ErrorCause error;
 
+		public Builder() {
+		}
+		private Builder(PipelineProcessorResult instance) {
+			this.doc = instance.doc;
+			this.tag = instance.tag;
+			this.processorType = instance.processorType;
+			this.status = instance.status;
+			this.description = instance.description;
+			this.ignoredError = instance.ignoredError;
+			this.error = instance.error;
+
+		}
 		/**
 		 * API name: {@code doc}
 		 */
@@ -333,6 +345,12 @@ public class PipelineProcessorResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

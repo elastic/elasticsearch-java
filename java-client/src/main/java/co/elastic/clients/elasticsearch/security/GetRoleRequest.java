@@ -104,6 +104,12 @@ public class GetRoleRequest extends RequestBase {
 		@Nullable
 		private List<String> name;
 
+		public Builder() {
+		}
+		private Builder(GetRoleRequest instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * The name of the role. You can specify multiple roles as a comma-separated
 		 * list. If you do not specify this parameter, the API returns information about
@@ -150,6 +156,12 @@ public class GetRoleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -183,6 +183,15 @@ public class Pool implements JsonpSerializable {
 		@Nullable
 		private Long peakMaxInBytes;
 
+		public Builder() {
+		}
+		private Builder(Pool instance) {
+			this.usedInBytes = instance.usedInBytes;
+			this.maxInBytes = instance.maxInBytes;
+			this.peakUsedInBytes = instance.peakUsedInBytes;
+			this.peakMaxInBytes = instance.peakMaxInBytes;
+
+		}
 		/**
 		 * Memory, in bytes, used by the heap.
 		 * <p>
@@ -241,6 +250,12 @@ public class Pool implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

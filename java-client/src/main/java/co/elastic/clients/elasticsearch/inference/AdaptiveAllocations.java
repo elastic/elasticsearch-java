@@ -167,6 +167,14 @@ public class AdaptiveAllocations implements JsonpSerializable {
 		@Nullable
 		private Integer minNumberOfAllocations;
 
+		public Builder() {
+		}
+		private Builder(AdaptiveAllocations instance) {
+			this.enabled = instance.enabled;
+			this.maxNumberOfAllocations = instance.maxNumberOfAllocations;
+			this.minNumberOfAllocations = instance.minNumberOfAllocations;
+
+		}
 		/**
 		 * Turn on <code>adaptive_allocations</code>.
 		 * <p>
@@ -217,6 +225,12 @@ public class AdaptiveAllocations implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

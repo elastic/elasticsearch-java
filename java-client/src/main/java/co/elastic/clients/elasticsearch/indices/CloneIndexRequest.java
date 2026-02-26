@@ -304,6 +304,18 @@ public class CloneIndexRequest extends RequestBase implements JsonpSerializable 
 		@Nullable
 		private WaitForActiveShards waitForActiveShards;
 
+		public Builder() {
+		}
+		private Builder(CloneIndexRequest instance) {
+			this.aliases = instance.aliases;
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.settings = instance.settings;
+			this.target = instance.target;
+			this.timeout = instance.timeout;
+			this.waitForActiveShards = instance.waitForActiveShards;
+
+		}
 		/**
 		 * Aliases for the resulting index.
 		 * <p>
@@ -467,6 +479,12 @@ public class CloneIndexRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -159,6 +159,14 @@ public class GlobalOrdinalsStats implements JsonpSerializable {
 		@Nullable
 		private Map<String, GlobalOrdinalFieldStats> fields;
 
+		public Builder() {
+		}
+		private Builder(GlobalOrdinalsStats instance) {
+			this.buildTimeInMillis = instance.buildTimeInMillis;
+			this.buildTime = instance.buildTime;
+			this.fields = instance.fields;
+
+		}
 		/**
 		 * Required - API name: {@code build_time_in_millis}
 		 */
@@ -223,6 +231,12 @@ public class GlobalOrdinalsStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

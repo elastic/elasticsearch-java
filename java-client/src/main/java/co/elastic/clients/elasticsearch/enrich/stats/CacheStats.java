@@ -218,6 +218,19 @@ public class CacheStats implements JsonpSerializable {
 
 		private Long sizeInBytes;
 
+		public Builder() {
+		}
+		private Builder(CacheStats instance) {
+			this.nodeId = instance.nodeId;
+			this.count = instance.count;
+			this.hits = instance.hits;
+			this.hitsTimeInMillis = instance.hitsTimeInMillis;
+			this.misses = instance.misses;
+			this.missesTimeInMillis = instance.missesTimeInMillis;
+			this.evictions = instance.evictions;
+			this.sizeInBytes = instance.sizeInBytes;
+
+		}
 		/**
 		 * Required - API name: {@code node_id}
 		 */
@@ -300,6 +313,12 @@ public class CacheStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

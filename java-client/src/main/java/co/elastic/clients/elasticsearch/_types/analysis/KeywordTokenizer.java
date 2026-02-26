@@ -112,6 +112,12 @@ public class KeywordTokenizer extends TokenizerBase implements TokenizerDefiniti
 		@Nullable
 		private Integer bufferSize;
 
+		public Builder() {
+		}
+		private Builder(KeywordTokenizer instance) {
+			this.bufferSize = instance.bufferSize;
+
+		}
 		/**
 		 * API name: {@code buffer_size}
 		 */
@@ -138,6 +144,12 @@ public class KeywordTokenizer extends TokenizerBase implements TokenizerDefiniti
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

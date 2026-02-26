@@ -128,6 +128,13 @@ public class Retries implements JsonpSerializable {
 
 		private Long search;
 
+		public Builder() {
+		}
+		private Builder(Retries instance) {
+			this.bulk = instance.bulk;
+			this.search = instance.search;
+
+		}
 		/**
 		 * Required - The number of bulk actions retried.
 		 * <p>
@@ -166,6 +173,12 @@ public class Retries implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

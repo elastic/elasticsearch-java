@@ -177,6 +177,15 @@ public class SlowlogSettings implements JsonpSerializable {
 		@Nullable
 		private SlowlogTresholds threshold;
 
+		public Builder() {
+		}
+		private Builder(SlowlogSettings instance) {
+			this.level = instance.level;
+			this.source = instance.source;
+			this.reformat = instance.reformat;
+			this.threshold = instance.threshold;
+
+		}
 		/**
 		 * API name: {@code level}
 		 */
@@ -234,6 +243,12 @@ public class SlowlogSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

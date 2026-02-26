@@ -126,6 +126,13 @@ public class TopHit implements JsonpSerializable {
 
 		private JsonData value;
 
+		public Builder() {
+		}
+		private Builder(TopHit instance) {
+			this.count = instance.count;
+			this.value = instance.value;
+
+		}
 		/**
 		 * Required - API name: {@code count}
 		 */
@@ -160,6 +167,12 @@ public class TopHit implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

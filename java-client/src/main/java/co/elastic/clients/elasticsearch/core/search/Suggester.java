@@ -182,6 +182,13 @@ public class Suggester implements JsonpSerializable {
 		@Nullable
 		private String text;
 
+		public Builder() {
+		}
+		private Builder(Suggester instance) {
+			this.text = instance.text;
+			this.suggesters = instance.suggesters;
+
+		}
 		/**
 		 * Global suggest text, to avoid repetition when the same text is used in
 		 * several suggesters
@@ -211,6 +218,12 @@ public class Suggester implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

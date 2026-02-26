@@ -77,6 +77,11 @@ public class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
 	public static class Builder extends RankEvalMetricRatingTreshold.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RankEvalMetricRecall> {
+		public Builder() {
+		}
+		private Builder(RankEvalMetricRecall instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -95,6 +100,12 @@ public class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

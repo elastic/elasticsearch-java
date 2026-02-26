@@ -141,6 +141,13 @@ public class RegexOptions implements JsonpSerializable {
 		@Nullable
 		private Integer maxDeterminizedStates;
 
+		public Builder() {
+		}
+		private Builder(RegexOptions instance) {
+			this.flags = instance.flags;
+			this.maxDeterminizedStates = instance.maxDeterminizedStates;
+
+		}
 		/**
 		 * Optional operators for the regular expression.
 		 * <p>
@@ -179,6 +186,12 @@ public class RegexOptions implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

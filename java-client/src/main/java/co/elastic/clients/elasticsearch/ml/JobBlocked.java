@@ -130,6 +130,13 @@ public class JobBlocked implements JsonpSerializable {
 		@Nullable
 		private String taskId;
 
+		public Builder() {
+		}
+		private Builder(JobBlocked instance) {
+			this.reason = instance.reason;
+			this.taskId = instance.taskId;
+
+		}
 		/**
 		 * Required - API name: {@code reason}
 		 */
@@ -164,6 +171,12 @@ public class JobBlocked implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

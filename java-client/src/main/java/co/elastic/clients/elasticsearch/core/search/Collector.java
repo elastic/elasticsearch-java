@@ -167,6 +167,15 @@ public class Collector implements JsonpSerializable {
 		@Nullable
 		private List<Collector> children;
 
+		public Builder() {
+		}
+		private Builder(Collector instance) {
+			this.name = instance.name;
+			this.reason = instance.reason;
+			this.timeInNanos = instance.timeInNanos;
+			this.children = instance.children;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -238,6 +247,12 @@ public class Collector implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

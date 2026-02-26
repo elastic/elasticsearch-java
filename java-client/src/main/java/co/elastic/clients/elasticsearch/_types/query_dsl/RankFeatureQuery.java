@@ -200,6 +200,16 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private RankFeatureFunctionSigmoid sigmoid;
 
+		public Builder() {
+		}
+		private Builder(RankFeatureQuery instance) {
+			this.field = instance.field;
+			this.saturation = instance.saturation;
+			this.log = instance.log;
+			this.linear = instance.linear;
+			this.sigmoid = instance.sigmoid;
+
+		}
 		/**
 		 * Required - <code>rank_feature</code> or <code>rank_features</code> field used
 		 * to boost relevance scores.
@@ -317,6 +327,12 @@ public class RankFeatureQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

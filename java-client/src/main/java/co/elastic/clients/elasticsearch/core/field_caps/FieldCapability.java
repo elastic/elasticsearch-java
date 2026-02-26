@@ -376,6 +376,23 @@ public class FieldCapability implements JsonpSerializable {
 		@Nullable
 		private List<String> metricConflictsIndices;
 
+		public Builder() {
+		}
+		private Builder(FieldCapability instance) {
+			this.aggregatable = instance.aggregatable;
+			this.indices = instance.indices;
+			this.meta = instance.meta;
+			this.nonAggregatableIndices = instance.nonAggregatableIndices;
+			this.nonSearchableIndices = instance.nonSearchableIndices;
+			this.searchable = instance.searchable;
+			this.type = instance.type;
+			this.metadataField = instance.metadataField;
+			this.timeSeriesDimension = instance.timeSeriesDimension;
+			this.timeSeriesMetric = instance.timeSeriesMetric;
+			this.nonDimensionIndices = instance.nonDimensionIndices;
+			this.metricConflictsIndices = instance.metricConflictsIndices;
+
+		}
 		/**
 		 * Required - Whether this field can be aggregated on all indices.
 		 * <p>
@@ -615,6 +632,12 @@ public class FieldCapability implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

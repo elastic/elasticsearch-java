@@ -167,6 +167,14 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 		@Nullable
 		private ResponseContentType responseContentType;
 
+		public Builder() {
+		}
+		private Builder(HttpInput instance) {
+			this.extract = instance.extract;
+			this.request = instance.request;
+			this.responseContentType = instance.responseContentType;
+
+		}
 		/**
 		 * API name: {@code extract}
 		 * <p>
@@ -229,6 +237,12 @@ public class HttpInput implements InputVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

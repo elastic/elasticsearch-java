@@ -149,6 +149,13 @@ public class RenderQueryRequest extends RequestBase implements JsonpSerializable
 		@Nullable
 		private Map<String, JsonData> params;
 
+		public Builder() {
+		}
+		private Builder(RenderQueryRequest instance) {
+			this.name = instance.name;
+			this.params = instance.params;
+
+		}
 		/**
 		 * Required - The name of the search application to render teh query for.
 		 * <p>
@@ -197,6 +204,12 @@ public class RenderQueryRequest extends RequestBase implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

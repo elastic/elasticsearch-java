@@ -236,6 +236,19 @@ public class MatrixStatsFields implements JsonpSerializable {
 
 		private Map<String, Double> correlation;
 
+		public Builder() {
+		}
+		private Builder(MatrixStatsFields instance) {
+			this.name = instance.name;
+			this.count = instance.count;
+			this.mean = instance.mean;
+			this.variance = instance.variance;
+			this.skewness = instance.skewness;
+			this.kurtosis = instance.kurtosis;
+			this.covariance = instance.covariance;
+			this.correlation = instance.correlation;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -342,6 +355,12 @@ public class MatrixStatsFields implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

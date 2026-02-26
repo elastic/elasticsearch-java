@@ -161,6 +161,14 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 		@Nullable
 		private List<String> jobIds;
 
+		public Builder() {
+		}
+		private Builder(PutCalendarRequest instance) {
+			this.calendarId = instance.calendarId;
+			this.description = instance.description;
+			this.jobIds = instance.jobIds;
+
+		}
 		/**
 		 * Required - A string that uniquely identifies a calendar.
 		 * <p>
@@ -223,6 +231,12 @@ public class PutCalendarRequest extends RequestBase implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

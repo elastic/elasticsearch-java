@@ -135,6 +135,13 @@ public class IndexVersioning implements JsonpSerializable {
 		@Nullable
 		private String createdString;
 
+		public Builder() {
+		}
+		private Builder(IndexVersioning instance) {
+			this.created = instance.created;
+			this.createdString = instance.createdString;
+
+		}
 		/**
 		 * API name: {@code created}
 		 */
@@ -169,6 +176,12 @@ public class IndexVersioning implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -134,6 +134,13 @@ public class ClusterOperatingSystemArchitecture implements JsonpSerializable {
 
 		private Integer count;
 
+		public Builder() {
+		}
+		private Builder(ClusterOperatingSystemArchitecture instance) {
+			this.arch = instance.arch;
+			this.count = instance.count;
+
+		}
 		/**
 		 * Required - Name of an architecture used by one or more selected nodes.
 		 * <p>
@@ -172,6 +179,12 @@ public class ClusterOperatingSystemArchitecture implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -206,6 +206,16 @@ public class SearchUsageStats implements JsonpSerializable {
 
 		private Map<String, Long> retrievers;
 
+		public Builder() {
+		}
+		private Builder(SearchUsageStats instance) {
+			this.total = instance.total;
+			this.queries = instance.queries;
+			this.rescorers = instance.rescorers;
+			this.sections = instance.sections;
+			this.retrievers = instance.retrievers;
+
+		}
 		/**
 		 * Required - API name: {@code total}
 		 */
@@ -312,6 +322,12 @@ public class SearchUsageStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

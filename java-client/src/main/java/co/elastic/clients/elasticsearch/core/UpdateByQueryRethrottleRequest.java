@@ -119,6 +119,13 @@ public class UpdateByQueryRethrottleRequest extends RequestBase {
 
 		private String taskId;
 
+		public Builder() {
+		}
+		private Builder(UpdateByQueryRethrottleRequest instance) {
+			this.requestsPerSecond = instance.requestsPerSecond;
+			this.taskId = instance.taskId;
+
+		}
 		/**
 		 * Required - The throttle for this request in sub-requests per second. To turn
 		 * off throttling, set it to <code>-1</code>.
@@ -158,6 +165,12 @@ public class UpdateByQueryRethrottleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

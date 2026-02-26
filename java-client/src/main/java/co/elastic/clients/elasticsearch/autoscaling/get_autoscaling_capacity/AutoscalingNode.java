@@ -111,6 +111,12 @@ public class AutoscalingNode implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AutoscalingNode> {
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(AutoscalingNode instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -137,6 +143,12 @@ public class AutoscalingNode implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

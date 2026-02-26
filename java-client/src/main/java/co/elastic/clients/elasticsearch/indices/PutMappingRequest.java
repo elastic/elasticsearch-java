@@ -527,6 +527,29 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		@Nullable
 		private Boolean writeIndexOnly;
 
+		public Builder() {
+		}
+		private Builder(PutMappingRequest instance) {
+			this.fieldNames = instance.fieldNames;
+			this.meta = instance.meta;
+			this.routing = instance.routing;
+			this.source = instance.source;
+			this.allowNoIndices = instance.allowNoIndices;
+			this.dateDetection = instance.dateDetection;
+			this.dynamic = instance.dynamic;
+			this.dynamicDateFormats = instance.dynamicDateFormats;
+			this.dynamicTemplates = instance.dynamicTemplates;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.numericDetection = instance.numericDetection;
+			this.properties = instance.properties;
+			this.runtime = instance.runtime;
+			this.timeout = instance.timeout;
+			this.writeIndexOnly = instance.writeIndexOnly;
+
+		}
 		/**
 		 * Control whether field names are enabled for the index.
 		 * <p>
@@ -934,6 +957,12 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

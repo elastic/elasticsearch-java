@@ -113,6 +113,12 @@ public class ClusterProcessCpu implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ClusterProcessCpu> {
 		private Integer percent;
 
+		public Builder() {
+		}
+		private Builder(ClusterProcessCpu instance) {
+			this.percent = instance.percent;
+
+		}
 		/**
 		 * Required - Percentage of CPU used across all selected nodes. Returns
 		 * <code>-1</code> if not supported.
@@ -142,6 +148,12 @@ public class ClusterProcessCpu implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

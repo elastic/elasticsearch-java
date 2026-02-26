@@ -106,6 +106,12 @@ public class ScriptQuery extends QueryBase implements QueryVariant {
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ScriptQuery> {
 		private Script script;
 
+		public Builder() {
+		}
+		private Builder(ScriptQuery instance) {
+			this.script = instance.script;
+
+		}
 		/**
 		 * Required - Contains a script to run as a query. This script must return a
 		 * boolean value, <code>true</code> or <code>false</code>.
@@ -145,6 +151,12 @@ public class ScriptQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

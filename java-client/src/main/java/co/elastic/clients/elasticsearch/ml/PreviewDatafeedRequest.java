@@ -214,6 +214,16 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 		@Nullable
 		private DateTime start;
 
+		public Builder() {
+		}
+		private Builder(PreviewDatafeedRequest instance) {
+			this.datafeedConfig = instance.datafeedConfig;
+			this.datafeedId = instance.datafeedId;
+			this.end = instance.end;
+			this.jobConfig = instance.jobConfig;
+			this.start = instance.start;
+
+		}
 		/**
 		 * The datafeed definition to preview.
 		 * <p>
@@ -316,6 +326,12 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

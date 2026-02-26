@@ -48,6 +48,8 @@ import co.elastic.clients.json.JsonpDeserializer;
 public enum WatsonxTaskType implements JsonEnum {
 	TextEmbedding("text_embedding"),
 
+	Rerank("rerank"),
+
 	ChatCompletion("chat_completion"),
 
 	Completion("completion"),

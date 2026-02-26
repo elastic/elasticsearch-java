@@ -159,6 +159,14 @@ public class MlDataFrameAnalyticsJobsAnalysis implements JsonpSerializable {
 		@Nullable
 		private Integer regression;
 
+		public Builder() {
+		}
+		private Builder(MlDataFrameAnalyticsJobsAnalysis instance) {
+			this.classification = instance.classification;
+			this.outlierDetection = instance.outlierDetection;
+			this.regression = instance.regression;
+
+		}
 		/**
 		 * API name: {@code classification}
 		 */
@@ -201,6 +209,12 @@ public class MlDataFrameAnalyticsJobsAnalysis implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

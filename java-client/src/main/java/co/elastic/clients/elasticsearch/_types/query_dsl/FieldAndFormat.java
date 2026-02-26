@@ -160,6 +160,14 @@ public class FieldAndFormat implements JsonpSerializable {
 		@Nullable
 		private Boolean includeUnmapped;
 
+		public Builder() {
+		}
+		private Builder(FieldAndFormat instance) {
+			this.field = instance.field;
+			this.format = instance.format;
+			this.includeUnmapped = instance.includeUnmapped;
+
+		}
 		/**
 		 * Required - A wildcard pattern. The request returns values for field names
 		 * matching this pattern.
@@ -207,6 +215,12 @@ public class FieldAndFormat implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -185,6 +185,16 @@ public class DatabaseConfigurationMetadata implements JsonpSerializable {
 
 		private DatabaseConfigurationFull database;
 
+		public Builder() {
+		}
+		private Builder(DatabaseConfigurationMetadata instance) {
+			this.id = instance.id;
+			this.version = instance.version;
+			this.modifiedDateMillis = instance.modifiedDateMillis;
+			this.modifiedDate = instance.modifiedDate;
+			this.database = instance.database;
+
+		}
 		/**
 		 * Required - API name: {@code id}
 		 */
@@ -251,6 +261,12 @@ public class DatabaseConfigurationMetadata implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

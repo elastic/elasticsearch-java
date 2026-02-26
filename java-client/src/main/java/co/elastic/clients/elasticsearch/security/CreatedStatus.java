@@ -109,6 +109,12 @@ public class CreatedStatus implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CreatedStatus> {
 		private Boolean created;
 
+		public Builder() {
+		}
+		private Builder(CreatedStatus instance) {
+			this.created = instance.created;
+
+		}
 		/**
 		 * Required - API name: {@code created}
 		 */
@@ -135,6 +141,12 @@ public class CreatedStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

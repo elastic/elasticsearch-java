@@ -141,6 +141,14 @@ public class FieldStatistics implements JsonpSerializable {
 
 		private Long sumTtf;
 
+		public Builder() {
+		}
+		private Builder(FieldStatistics instance) {
+			this.docCount = instance.docCount;
+			this.sumDocFreq = instance.sumDocFreq;
+			this.sumTtf = instance.sumTtf;
+
+		}
 		/**
 		 * Required - API name: {@code doc_count}
 		 */
@@ -183,6 +191,12 @@ public class FieldStatistics implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

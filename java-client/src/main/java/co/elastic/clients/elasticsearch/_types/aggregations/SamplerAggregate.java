@@ -81,6 +81,11 @@ public class SamplerAggregate extends SingleBucketAggregateBase implements Aggre
 	public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SamplerAggregate> {
+		public Builder() {
+		}
+		private Builder(SamplerAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class SamplerAggregate extends SingleBucketAggregateBase implements Aggre
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -227,6 +227,17 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private FunctionScoreMode scoreMode;
 
+		public Builder() {
+		}
+		private Builder(FunctionScoreQuery instance) {
+			this.boostMode = instance.boostMode;
+			this.functions = instance.functions;
+			this.maxBoost = instance.maxBoost;
+			this.minScore = instance.minScore;
+			this.query = instance.query;
+			this.scoreMode = instance.scoreMode;
+
+		}
 		/**
 		 * Defines how he newly computed score is combined with the score of the query
 		 * <p>
@@ -368,6 +379,12 @@ public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

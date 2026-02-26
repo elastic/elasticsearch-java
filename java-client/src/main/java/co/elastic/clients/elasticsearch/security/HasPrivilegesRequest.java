@@ -195,6 +195,15 @@ public class HasPrivilegesRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private String user;
 
+		public Builder() {
+		}
+		private Builder(HasPrivilegesRequest instance) {
+			this.application = instance.application;
+			this.cluster = instance.cluster;
+			this.index = instance.index;
+			this.user = instance.user;
+
+		}
 		/**
 		 * API name: {@code application}
 		 * <p>
@@ -319,6 +328,12 @@ public class HasPrivilegesRequest extends RequestBase implements JsonpSerializab
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

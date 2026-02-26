@@ -150,8 +150,8 @@ public class AmazonBedrockServiceSettings implements JsonpSerializable {
 
 	/**
 	 * This setting helps to minimize the number of rate limit errors returned from
-	 * Watsonx. By default, the <code>watsonxai</code> service sets the number of
-	 * requests allowed per minute to 120.
+	 * Amazon Bedrock. By default, the <code>amazonbedrock</code> service sets the
+	 * number of requests allowed per minute to 240.
 	 * <p>
 	 * API name: {@code rate_limit}
 	 */
@@ -234,6 +234,17 @@ public class AmazonBedrockServiceSettings implements JsonpSerializable {
 
 		private String secretKey;
 
+		public Builder() {
+		}
+		private Builder(AmazonBedrockServiceSettings instance) {
+			this.accessKey = instance.accessKey;
+			this.model = instance.model;
+			this.provider = instance.provider;
+			this.region = instance.region;
+			this.rateLimit = instance.rateLimit;
+			this.secretKey = instance.secretKey;
+
+		}
 		/**
 		 * Required - A valid AWS access key that has permissions to use Amazon Bedrock
 		 * and access to models for inference requests.
@@ -296,8 +307,8 @@ public class AmazonBedrockServiceSettings implements JsonpSerializable {
 
 		/**
 		 * This setting helps to minimize the number of rate limit errors returned from
-		 * Watsonx. By default, the <code>watsonxai</code> service sets the number of
-		 * requests allowed per minute to 120.
+		 * Amazon Bedrock. By default, the <code>amazonbedrock</code> service sets the
+		 * number of requests allowed per minute to 240.
 		 * <p>
 		 * API name: {@code rate_limit}
 		 */
@@ -308,8 +319,8 @@ public class AmazonBedrockServiceSettings implements JsonpSerializable {
 
 		/**
 		 * This setting helps to minimize the number of rate limit errors returned from
-		 * Watsonx. By default, the <code>watsonxai</code> service sets the number of
-		 * requests allowed per minute to 120.
+		 * Amazon Bedrock. By default, the <code>amazonbedrock</code> service sets the
+		 * number of requests allowed per minute to 240.
 		 * <p>
 		 * API name: {@code rate_limit}
 		 */
@@ -347,6 +358,12 @@ public class AmazonBedrockServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -124,6 +124,12 @@ public class Restriction implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Restriction> {
 		private List<String> workflows;
 
+		public Builder() {
+		}
+		private Builder(Restriction instance) {
+			this.workflows = instance.workflows;
+
+		}
 		/**
 		 * Required - A list of workflows to which the API key is restricted. NOTE: In
 		 * order to use a role restriction, an API key must be created with a single
@@ -185,6 +191,12 @@ public class Restriction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

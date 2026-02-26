@@ -166,6 +166,15 @@ public class ReservedSize implements JsonpSerializable {
 
 		private List<String> shards;
 
+		public Builder() {
+		}
+		private Builder(ReservedSize instance) {
+			this.nodeId = instance.nodeId;
+			this.path = instance.path;
+			this.total = instance.total;
+			this.shards = instance.shards;
+
+		}
 		/**
 		 * Required - API name: {@code node_id}
 		 */
@@ -228,6 +237,12 @@ public class ReservedSize implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

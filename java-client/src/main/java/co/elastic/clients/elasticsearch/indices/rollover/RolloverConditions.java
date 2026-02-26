@@ -400,6 +400,26 @@ public class RolloverConditions implements JsonpSerializable {
 		@Nullable
 		private Long minPrimaryShardDocs;
 
+		public Builder() {
+		}
+		private Builder(RolloverConditions instance) {
+			this.minAge = instance.minAge;
+			this.maxAge = instance.maxAge;
+			this.maxAgeMillis = instance.maxAgeMillis;
+			this.minDocs = instance.minDocs;
+			this.maxDocs = instance.maxDocs;
+			this.maxSize = instance.maxSize;
+			this.maxSizeBytes = instance.maxSizeBytes;
+			this.minSize = instance.minSize;
+			this.minSizeBytes = instance.minSizeBytes;
+			this.maxPrimaryShardSize = instance.maxPrimaryShardSize;
+			this.maxPrimaryShardSizeBytes = instance.maxPrimaryShardSizeBytes;
+			this.minPrimaryShardSize = instance.minPrimaryShardSize;
+			this.minPrimaryShardSizeBytes = instance.minPrimaryShardSizeBytes;
+			this.maxPrimaryShardDocs = instance.maxPrimaryShardDocs;
+			this.minPrimaryShardDocs = instance.minPrimaryShardDocs;
+
+		}
 		/**
 		 * API name: {@code min_age}
 		 */
@@ -552,6 +572,12 @@ public class RolloverConditions implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

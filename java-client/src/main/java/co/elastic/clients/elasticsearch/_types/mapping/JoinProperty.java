@@ -144,6 +144,13 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
 		@Nullable
 		private Boolean eagerGlobalOrdinals;
 
+		public Builder() {
+		}
+		private Builder(JoinProperty instance) {
+			this.relations = instance.relations;
+			this.eagerGlobalOrdinals = instance.eagerGlobalOrdinals;
+
+		}
 		/**
 		 * API name: {@code relations}
 		 * <p>
@@ -190,6 +197,12 @@ public class JoinProperty extends PropertyBase implements PropertyVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -198,6 +198,16 @@ public class HealthRequest extends CatRequestBase {
 		@Nullable
 		private Boolean ts;
 
+		public Builder() {
+		}
+		private Builder(HealthRequest instance) {
+			this.bytes = instance.bytes;
+			this.h = instance.h;
+			this.s = instance.s;
+			this.time = instance.time;
+			this.ts = instance.ts;
+
+		}
 		/**
 		 * Sets the units for columns that contain a byte-size value. Note that
 		 * byte-size value units work in terms of powers of 1024. For instance
@@ -328,6 +338,12 @@ public class HealthRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

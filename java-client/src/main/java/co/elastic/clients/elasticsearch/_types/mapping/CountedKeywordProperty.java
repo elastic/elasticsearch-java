@@ -112,6 +112,12 @@ public class CountedKeywordProperty extends PropertyBase implements PropertyVari
 		@Nullable
 		private Boolean index;
 
+		public Builder() {
+		}
+		private Builder(CountedKeywordProperty instance) {
+			this.index = instance.index;
+
+		}
 		/**
 		 * API name: {@code index}
 		 */
@@ -138,6 +144,12 @@ public class CountedKeywordProperty extends PropertyBase implements PropertyVari
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

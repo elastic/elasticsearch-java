@@ -126,6 +126,13 @@ public class RateAggregate extends AggregateBase implements AggregateVariant {
 		@Nullable
 		private String valueAsString;
 
+		public Builder() {
+		}
+		private Builder(RateAggregate instance) {
+			this.value = instance.value;
+			this.valueAsString = instance.valueAsString;
+
+		}
 		/**
 		 * Required - API name: {@code value}
 		 */
@@ -160,6 +167,12 @@ public class RateAggregate extends AggregateBase implements AggregateVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

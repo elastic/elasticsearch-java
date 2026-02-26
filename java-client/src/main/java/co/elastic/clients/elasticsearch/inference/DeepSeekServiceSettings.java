@@ -87,9 +87,7 @@ public class DeepSeekServiceSettings implements JsonpSerializable {
 	 * <p>
 	 * IMPORTANT: You need to provide the API key only once, during the inference
 	 * model creation. The get inference endpoint API does not retrieve your API
-	 * key. After creating the inference model, you cannot change the associated API
-	 * key. If you want to use a different API key, delete the inference model and
-	 * recreate it with the same name and the updated API key.
+	 * key.
 	 * <p>
 	 * API name: {@code api_key}
 	 */
@@ -169,15 +167,21 @@ public class DeepSeekServiceSettings implements JsonpSerializable {
 		@Nullable
 		private String url;
 
+		public Builder() {
+		}
+		private Builder(DeepSeekServiceSettings instance) {
+			this.apiKey = instance.apiKey;
+			this.modelId = instance.modelId;
+			this.url = instance.url;
+
+		}
 		/**
 		 * Required - A valid API key for your DeepSeek account. You can find or create
 		 * your DeepSeek API keys on the DeepSeek API key page.
 		 * <p>
 		 * IMPORTANT: You need to provide the API key only once, during the inference
 		 * model creation. The get inference endpoint API does not retrieve your API
-		 * key. After creating the inference model, you cannot change the associated API
-		 * key. If you want to use a different API key, delete the inference model and
-		 * recreate it with the same name and the updated API key.
+		 * key.
 		 * <p>
 		 * API name: {@code api_key}
 		 */
@@ -231,6 +235,12 @@ public class DeepSeekServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

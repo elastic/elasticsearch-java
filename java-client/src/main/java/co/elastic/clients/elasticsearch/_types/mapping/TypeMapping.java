@@ -461,6 +461,28 @@ public class TypeMapping implements JsonpSerializable {
 		@Nullable
 		private DataStreamTimestamp dataStreamTimestamp;
 
+		public Builder() {
+		}
+		private Builder(TypeMapping instance) {
+			this.allField = instance.allField;
+			this.dateDetection = instance.dateDetection;
+			this.dynamic = instance.dynamic;
+			this.dynamicDateFormats = instance.dynamicDateFormats;
+			this.dynamicTemplates = instance.dynamicTemplates;
+			this.fieldNames = instance.fieldNames;
+			this.indexField = instance.indexField;
+			this.meta = instance.meta;
+			this.numericDetection = instance.numericDetection;
+			this.properties = instance.properties;
+			this.routing = instance.routing;
+			this.size = instance.size;
+			this.source = instance.source;
+			this.runtime = instance.runtime;
+			this.enabled = instance.enabled;
+			this.subobjects = instance.subobjects;
+			this.dataStreamTimestamp = instance.dataStreamTimestamp;
+
+		}
 		/**
 		 * API name: {@code all_field}
 		 */
@@ -745,6 +767,12 @@ public class TypeMapping implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -112,6 +112,12 @@ public class SimplePatternSplitTokenizer extends TokenizerBase implements Tokeni
 		@Nullable
 		private String pattern;
 
+		public Builder() {
+		}
+		private Builder(SimplePatternSplitTokenizer instance) {
+			this.pattern = instance.pattern;
+
+		}
 		/**
 		 * API name: {@code pattern}
 		 */
@@ -138,6 +144,12 @@ public class SimplePatternSplitTokenizer extends TokenizerBase implements Tokeni
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

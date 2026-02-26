@@ -154,6 +154,13 @@ public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 		@Nullable
 		private List<String> filter;
 
+		public Builder() {
+		}
+		private Builder(CustomNormalizer instance) {
+			this.charFilter = instance.charFilter;
+			this.filter = instance.filter;
+
+		}
 		/**
 		 * API name: {@code char_filter}
 		 * <p>
@@ -212,6 +219,12 @@ public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

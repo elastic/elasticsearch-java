@@ -126,6 +126,13 @@ public class ExecutingPolicy implements JsonpSerializable {
 
 		private TaskInfo task;
 
+		public Builder() {
+		}
+		private Builder(ExecutingPolicy instance) {
+			this.name = instance.name;
+			this.task = instance.task;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -167,6 +174,12 @@ public class ExecutingPolicy implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

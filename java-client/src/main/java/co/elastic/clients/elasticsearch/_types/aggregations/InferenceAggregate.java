@@ -222,6 +222,16 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 		@Nullable
 		private String warning;
 
+		public Builder() {
+		}
+		private Builder(InferenceAggregate instance) {
+			this.value = instance.value;
+			this.featureImportance = instance.featureImportance;
+			this.topClasses = instance.topClasses;
+			this.warning = instance.warning;
+			this.data = instance.data;
+
+		}
 		/**
 		 * API name: {@code value}
 		 */
@@ -355,6 +365,12 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

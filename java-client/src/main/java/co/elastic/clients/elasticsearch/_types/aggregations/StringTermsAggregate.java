@@ -95,6 +95,11 @@ public class StringTermsAggregate extends TermsAggregateBase<StringTermsBucket>
 	public static class Builder extends TermsAggregateBase.AbstractBuilder<StringTermsBucket, Builder>
 			implements
 				ObjectBuilder<StringTermsAggregate> {
+		public Builder() {
+		}
+		private Builder(StringTermsAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -114,6 +119,12 @@ public class StringTermsAggregate extends TermsAggregateBase<StringTermsBucket>
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

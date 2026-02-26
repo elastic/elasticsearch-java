@@ -188,6 +188,14 @@ public class SamlAuthenticateRequest extends RequestBase implements JsonpSeriali
 		@Nullable
 		private String realm;
 
+		public Builder() {
+		}
+		private Builder(SamlAuthenticateRequest instance) {
+			this.content = instance.content;
+			this.ids = instance.ids;
+			this.realm = instance.realm;
+
+		}
 		/**
 		 * Required - The SAML response as it was sent by the user's browser, usually a
 		 * Base64 encoded XML document.
@@ -254,6 +262,12 @@ public class SamlAuthenticateRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

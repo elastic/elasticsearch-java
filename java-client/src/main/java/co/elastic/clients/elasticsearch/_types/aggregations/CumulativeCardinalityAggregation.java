@@ -82,6 +82,11 @@ public class CumulativeCardinalityAggregation extends PipelineAggregationBase im
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CumulativeCardinalityAggregation> {
+		public Builder() {
+		}
+		private Builder(CumulativeCardinalityAggregation instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -100,6 +105,12 @@ public class CumulativeCardinalityAggregation extends PipelineAggregationBase im
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

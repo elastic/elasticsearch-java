@@ -212,6 +212,17 @@ public class IndexAction implements JsonpSerializable {
 		@Nullable
 		private String executionTimeField;
 
+		public Builder() {
+		}
+		private Builder(IndexAction instance) {
+			this.index = instance.index;
+			this.docId = instance.docId;
+			this.refresh = instance.refresh;
+			this.opType = instance.opType;
+			this.timeout = instance.timeout;
+			this.executionTimeField = instance.executionTimeField;
+
+		}
 		/**
 		 * Required - API name: {@code index}
 		 */
@@ -285,6 +296,12 @@ public class IndexAction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -177,6 +177,16 @@ public class ClusterProcessor implements JsonpSerializable {
 
 		private Long timeInMillis;
 
+		public Builder() {
+		}
+		private Builder(ClusterProcessor instance) {
+			this.count = instance.count;
+			this.current = instance.current;
+			this.failed = instance.failed;
+			this.time = instance.time;
+			this.timeInMillis = instance.timeInMillis;
+
+		}
 		/**
 		 * Required - API name: {@code count}
 		 */
@@ -242,6 +252,12 @@ public class ClusterProcessor implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -402,6 +402,26 @@ public class AnomalyCause implements JsonpSerializable {
 		@Nullable
 		private List<Double> typical;
 
+		public Builder() {
+		}
+		private Builder(AnomalyCause instance) {
+			this.actual = instance.actual;
+			this.byFieldName = instance.byFieldName;
+			this.byFieldValue = instance.byFieldValue;
+			this.correlatedByFieldValue = instance.correlatedByFieldValue;
+			this.fieldName = instance.fieldName;
+			this.function = instance.function;
+			this.functionDescription = instance.functionDescription;
+			this.geoResults = instance.geoResults;
+			this.influencers = instance.influencers;
+			this.overFieldName = instance.overFieldName;
+			this.overFieldValue = instance.overFieldValue;
+			this.partitionFieldName = instance.partitionFieldName;
+			this.partitionFieldValue = instance.partitionFieldValue;
+			this.probability = instance.probability;
+			this.typical = instance.typical;
+
+		}
 		/**
 		 * API name: {@code actual}
 		 * <p>
@@ -592,6 +612,12 @@ public class AnomalyCause implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

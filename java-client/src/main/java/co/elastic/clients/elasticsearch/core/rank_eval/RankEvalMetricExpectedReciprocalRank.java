@@ -105,6 +105,12 @@ public class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBase {
 				ObjectBuilder<RankEvalMetricExpectedReciprocalRank> {
 		private Integer maximumRelevance;
 
+		public Builder() {
+		}
+		private Builder(RankEvalMetricExpectedReciprocalRank instance) {
+			this.maximumRelevance = instance.maximumRelevance;
+
+		}
 		/**
 		 * Required - The highest relevance grade used in the user-supplied relevance
 		 * judgments.
@@ -134,6 +140,12 @@ public class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

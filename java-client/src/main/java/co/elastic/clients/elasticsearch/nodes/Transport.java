@@ -337,6 +337,21 @@ public class Transport implements JsonpSerializable {
 		@Nullable
 		private Long totalOutboundConnections;
 
+		public Builder() {
+		}
+		private Builder(Transport instance) {
+			this.inboundHandlingTimeHistogram = instance.inboundHandlingTimeHistogram;
+			this.outboundHandlingTimeHistogram = instance.outboundHandlingTimeHistogram;
+			this.rxCount = instance.rxCount;
+			this.rxSize = instance.rxSize;
+			this.rxSizeInBytes = instance.rxSizeInBytes;
+			this.serverOpen = instance.serverOpen;
+			this.txCount = instance.txCount;
+			this.txSize = instance.txSize;
+			this.txSizeInBytes = instance.txSizeInBytes;
+			this.totalOutboundConnections = instance.totalOutboundConnections;
+
+		}
 		/**
 		 * The distribution of the time spent handling each inbound message on a
 		 * transport thread, represented as a histogram.
@@ -527,6 +542,12 @@ public class Transport implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

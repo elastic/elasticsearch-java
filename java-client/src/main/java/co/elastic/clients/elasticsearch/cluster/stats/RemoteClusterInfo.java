@@ -388,6 +388,26 @@ public class RemoteClusterInfo implements JsonpSerializable {
 		@Nullable
 		private String memTotal;
 
+		public Builder() {
+		}
+		private Builder(RemoteClusterInfo instance) {
+			this.clusterUuid = instance.clusterUuid;
+			this.mode = instance.mode;
+			this.skipUnavailable = instance.skipUnavailable;
+			this.transportCompress = instance.transportCompress;
+			this.status = instance.status;
+			this.version = instance.version;
+			this.nodesCount = instance.nodesCount;
+			this.shardsCount = instance.shardsCount;
+			this.indicesCount = instance.indicesCount;
+			this.indicesTotalSizeInBytes = instance.indicesTotalSizeInBytes;
+			this.indicesTotalSize = instance.indicesTotalSize;
+			this.maxHeapInBytes = instance.maxHeapInBytes;
+			this.maxHeap = instance.maxHeap;
+			this.memTotalInBytes = instance.memTotalInBytes;
+			this.memTotal = instance.memTotal;
+
+		}
 		/**
 		 * Required - The UUID of the remote cluster.
 		 * <p>
@@ -580,6 +600,12 @@ public class RemoteClusterInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

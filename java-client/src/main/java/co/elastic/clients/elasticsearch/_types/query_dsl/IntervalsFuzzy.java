@@ -245,6 +245,17 @@ public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, 
 		@Nullable
 		private String useField;
 
+		public Builder() {
+		}
+		private Builder(IntervalsFuzzy instance) {
+			this.analyzer = instance.analyzer;
+			this.fuzziness = instance.fuzziness;
+			this.prefixLength = instance.prefixLength;
+			this.term = instance.term;
+			this.transpositions = instance.transpositions;
+			this.useField = instance.useField;
+
+		}
 		/**
 		 * Analyzer used to normalize the term.
 		 * <p>
@@ -326,6 +337,12 @@ public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

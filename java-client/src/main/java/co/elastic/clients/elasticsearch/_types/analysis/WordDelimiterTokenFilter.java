@@ -89,6 +89,11 @@ public class WordDelimiterTokenFilter extends WordDelimiterTokenFilterBase imple
 	public static class Builder extends WordDelimiterTokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<WordDelimiterTokenFilter> {
+		public Builder() {
+		}
+		private Builder(WordDelimiterTokenFilter instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class WordDelimiterTokenFilter extends WordDelimiterTokenFilterBase imple
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

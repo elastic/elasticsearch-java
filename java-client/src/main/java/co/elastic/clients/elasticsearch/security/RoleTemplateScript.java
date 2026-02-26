@@ -217,6 +217,16 @@ public class RoleTemplateScript implements JsonpSerializable {
 		@Nullable
 		private Map<String, String> options;
 
+		public Builder() {
+		}
+		private Builder(RoleTemplateScript instance) {
+			this.source = instance.source;
+			this.id = instance.id;
+			this.params = instance.params;
+			this.lang = instance.lang;
+			this.options = instance.options;
+
+		}
 		/**
 		 * API name: {@code source}
 		 */
@@ -327,6 +337,12 @@ public class RoleTemplateScript implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

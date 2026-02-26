@@ -215,6 +215,16 @@ public class DiagnosisAffectedResources implements JsonpSerializable {
 		@Nullable
 		private List<String> snapshotRepositories;
 
+		public Builder() {
+		}
+		private Builder(DiagnosisAffectedResources instance) {
+			this.indices = instance.indices;
+			this.nodes = instance.nodes;
+			this.slmPolicies = instance.slmPolicies;
+			this.featureStates = instance.featureStates;
+			this.snapshotRepositories = instance.snapshotRepositories;
+
+		}
 		/**
 		 * API name: {@code indices}
 		 * <p>
@@ -342,6 +352,12 @@ public class DiagnosisAffectedResources implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

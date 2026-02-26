@@ -130,6 +130,13 @@ public class WebhookResult implements JsonpSerializable {
 		@Nullable
 		private HttpInputResponseResult response;
 
+		public Builder() {
+		}
+		private Builder(WebhookResult instance) {
+			this.request = instance.request;
+			this.response = instance.response;
+
+		}
 		/**
 		 * Required - API name: {@code request}
 		 */
@@ -180,6 +187,12 @@ public class WebhookResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

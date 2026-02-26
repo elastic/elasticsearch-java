@@ -141,6 +141,14 @@ public class ShardPath implements JsonpSerializable {
 
 		private String statePath;
 
+		public Builder() {
+		}
+		private Builder(ShardPath instance) {
+			this.dataPath = instance.dataPath;
+			this.isCustomDataPath = instance.isCustomDataPath;
+			this.statePath = instance.statePath;
+
+		}
 		/**
 		 * Required - API name: {@code data_path}
 		 */
@@ -183,6 +191,12 @@ public class ShardPath implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

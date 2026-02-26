@@ -410,6 +410,24 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		@Nullable
 		private Boolean seqNoPrimaryTerm;
 
+		public Builder() {
+		}
+		private Builder(TopHitsAggregation instance) {
+			this.docvalueFields = instance.docvalueFields;
+			this.explain = instance.explain;
+			this.fields = instance.fields;
+			this.from = instance.from;
+			this.highlight = instance.highlight;
+			this.scriptFields = instance.scriptFields;
+			this.size = instance.size;
+			this.sort = instance.sort;
+			this.source = instance.source;
+			this.storedFields = instance.storedFields;
+			this.trackScores = instance.trackScores;
+			this.version = instance.version;
+			this.seqNoPrimaryTerm = instance.seqNoPrimaryTerm;
+
+		}
 		/**
 		 * Fields for which to return doc values.
 		 * <p>
@@ -703,6 +721,12 @@ public class TopHitsAggregation extends MetricAggregationBase implements Aggrega
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

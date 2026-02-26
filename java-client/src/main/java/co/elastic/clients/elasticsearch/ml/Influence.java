@@ -136,6 +136,13 @@ public class Influence implements JsonpSerializable {
 
 		private List<String> influencerFieldValues;
 
+		public Builder() {
+		}
+		private Builder(Influence instance) {
+			this.influencerFieldName = instance.influencerFieldName;
+			this.influencerFieldValues = instance.influencerFieldValues;
+
+		}
 		/**
 		 * Required - API name: {@code influencer_field_name}
 		 */
@@ -182,6 +189,12 @@ public class Influence implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

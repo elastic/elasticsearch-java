@@ -153,6 +153,14 @@ public class Template implements JsonpSerializable {
 
 		private IndexSettings settings;
 
+		public Builder() {
+		}
+		private Builder(Template instance) {
+			this.aliases = instance.aliases;
+			this.mappings = instance.mappings;
+			this.settings = instance.settings;
+
+		}
 		/**
 		 * Required - API name: {@code aliases}
 		 * <p>
@@ -230,6 +238,12 @@ public class Template implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

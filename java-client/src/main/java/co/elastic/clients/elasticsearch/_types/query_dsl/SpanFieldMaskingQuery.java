@@ -129,6 +129,13 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 
 		private SpanQuery query;
 
+		public Builder() {
+		}
+		private Builder(SpanFieldMaskingQuery instance) {
+			this.field = instance.field;
+			this.query = instance.query;
+
+		}
 		/**
 		 * Required - API name: {@code field}
 		 */
@@ -178,6 +185,12 @@ public class SpanFieldMaskingQuery extends QueryBase implements SpanQueryVariant
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

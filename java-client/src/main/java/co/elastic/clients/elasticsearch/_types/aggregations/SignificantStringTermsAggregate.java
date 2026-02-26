@@ -86,6 +86,11 @@ public class SignificantStringTermsAggregate extends SignificantTermsAggregateBa
 				SignificantTermsAggregateBase.AbstractBuilder<SignificantStringTermsBucket, Builder>
 			implements
 				ObjectBuilder<SignificantStringTermsAggregate> {
+		public Builder() {
+		}
+		private Builder(SignificantStringTermsAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -105,6 +110,12 @@ public class SignificantStringTermsAggregate extends SignificantTermsAggregateBa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

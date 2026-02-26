@@ -322,6 +322,23 @@ public class SegmentsRequest extends CatRequestBase {
 		@Nullable
 		private TimeUnit time;
 
+		public Builder() {
+		}
+		private Builder(SegmentsRequest instance) {
+			this.allowClosed = instance.allowClosed;
+			this.allowNoIndices = instance.allowNoIndices;
+			this.bytes = instance.bytes;
+			this.expandWildcards = instance.expandWildcards;
+			this.h = instance.h;
+			this.ignoreThrottled = instance.ignoreThrottled;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.s = instance.s;
+			this.time = instance.time;
+
+		}
 		/**
 		 * If true, allow closed indices to be returned in the response otherwise if
 		 * false, keep the legacy behaviour of throwing an exception if index pattern
@@ -577,6 +594,12 @@ public class SegmentsRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -105,6 +105,12 @@ public class ClearApiKeyCacheRequest extends RequestBase {
 				ObjectBuilder<ClearApiKeyCacheRequest> {
 		private List<String> ids;
 
+		public Builder() {
+		}
+		private Builder(ClearApiKeyCacheRequest instance) {
+			this.ids = instance.ids;
+
+		}
 		/**
 		 * Required - Comma-separated list of API key IDs to evict from the API key
 		 * cache. To evict all API keys, use <code>*</code>. Does not support other
@@ -151,6 +157,12 @@ public class ClearApiKeyCacheRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

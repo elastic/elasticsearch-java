@@ -119,6 +119,13 @@ public class GetSynonymsSetsRequest extends RequestBase {
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(GetSynonymsSetsRequest instance) {
+			this.from = instance.from;
+			this.size = instance.size;
+
+		}
 		/**
 		 * The starting offset for synonyms sets to retrieve.
 		 * <p>
@@ -157,6 +164,12 @@ public class GetSynonymsSetsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

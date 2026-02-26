@@ -154,6 +154,15 @@ public class CoordsGeoBounds implements JsonpSerializable {
 
 		private Double right;
 
+		public Builder() {
+		}
+		private Builder(CoordsGeoBounds instance) {
+			this.top = instance.top;
+			this.bottom = instance.bottom;
+			this.left = instance.left;
+			this.right = instance.right;
+
+		}
 		/**
 		 * Required - API name: {@code top}
 		 */
@@ -204,6 +213,12 @@ public class CoordsGeoBounds implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -151,6 +151,13 @@ public class NerInferenceUpdateOptions implements InferenceConfigUpdateVariant, 
 		@Nullable
 		private String resultsField;
 
+		public Builder() {
+		}
+		private Builder(NerInferenceUpdateOptions instance) {
+			this.tokenization = instance.tokenization;
+			this.resultsField = instance.resultsField;
+
+		}
 		/**
 		 * The tokenization options to update when inferring
 		 * <p>
@@ -200,6 +207,12 @@ public class NerInferenceUpdateOptions implements InferenceConfigUpdateVariant, 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

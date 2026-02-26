@@ -155,6 +155,15 @@ public class Connection implements JsonpSerializable {
 
 		private Double weight;
 
+		public Builder() {
+		}
+		private Builder(Connection instance) {
+			this.docCount = instance.docCount;
+			this.source = instance.source;
+			this.target = instance.target;
+			this.weight = instance.weight;
+
+		}
 		/**
 		 * Required - API name: {@code doc_count}
 		 */
@@ -205,6 +214,12 @@ public class Connection implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

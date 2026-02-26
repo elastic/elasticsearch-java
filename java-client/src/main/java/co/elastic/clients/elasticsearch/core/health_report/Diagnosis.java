@@ -171,6 +171,16 @@ public class Diagnosis implements JsonpSerializable {
 
 		private String helpUrl;
 
+		public Builder() {
+		}
+		private Builder(Diagnosis instance) {
+			this.id = instance.id;
+			this.action = instance.action;
+			this.affectedResources = instance.affectedResources;
+			this.cause = instance.cause;
+			this.helpUrl = instance.helpUrl;
+
+		}
 		/**
 		 * Required - API name: {@code id}
 		 */
@@ -237,6 +247,12 @@ public class Diagnosis implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

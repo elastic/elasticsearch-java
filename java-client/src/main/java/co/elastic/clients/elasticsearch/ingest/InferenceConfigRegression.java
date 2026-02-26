@@ -152,6 +152,13 @@ public class InferenceConfigRegression implements InferenceConfigVariant, JsonpS
 		@Nullable
 		private Integer numTopFeatureImportanceValues;
 
+		public Builder() {
+		}
+		private Builder(InferenceConfigRegression instance) {
+			this.resultsField = instance.resultsField;
+			this.numTopFeatureImportanceValues = instance.numTopFeatureImportanceValues;
+
+		}
 		/**
 		 * The field that is added to incoming documents to contain the inference
 		 * prediction.
@@ -191,6 +198,12 @@ public class InferenceConfigRegression implements InferenceConfigVariant, JsonpS
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

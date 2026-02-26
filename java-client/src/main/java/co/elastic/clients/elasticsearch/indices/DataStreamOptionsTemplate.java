@@ -119,6 +119,12 @@ public class DataStreamOptionsTemplate implements JsonpSerializable {
 		@Nullable
 		private DataStreamFailureStoreTemplate failureStore;
 
+		public Builder() {
+		}
+		private Builder(DataStreamOptionsTemplate instance) {
+			this.failureStore = instance.failureStore;
+
+		}
 		/**
 		 * API name: {@code failure_store}
 		 */
@@ -153,6 +159,12 @@ public class DataStreamOptionsTemplate implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

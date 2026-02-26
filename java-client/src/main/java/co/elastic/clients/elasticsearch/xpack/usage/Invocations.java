@@ -109,6 +109,12 @@ public class Invocations implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Invocations> {
 		private Long total;
 
+		public Builder() {
+		}
+		private Builder(Invocations instance) {
+			this.total = instance.total;
+
+		}
 		/**
 		 * Required - API name: {@code total}
 		 */
@@ -135,6 +141,12 @@ public class Invocations implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

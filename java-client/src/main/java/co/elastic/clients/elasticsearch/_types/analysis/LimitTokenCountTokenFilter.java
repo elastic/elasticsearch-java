@@ -140,6 +140,13 @@ public class LimitTokenCountTokenFilter extends TokenFilterBase implements Token
 		@Nullable
 		private Integer maxTokenCount;
 
+		public Builder() {
+		}
+		private Builder(LimitTokenCountTokenFilter instance) {
+			this.consumeAllTokens = instance.consumeAllTokens;
+			this.maxTokenCount = instance.maxTokenCount;
+
+		}
 		/**
 		 * If <code>true</code>, the limit filter exhausts the token stream, even if the
 		 * <code>max_token_count</code> has already been reached. Defaults to
@@ -181,6 +188,12 @@ public class LimitTokenCountTokenFilter extends TokenFilterBase implements Token
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

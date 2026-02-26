@@ -213,6 +213,16 @@ public class GcsRepositorySettings extends RepositorySettingsBase {
 		@Nullable
 		private Boolean readonly;
 
+		public Builder() {
+		}
+		private Builder(GcsRepositorySettings instance) {
+			this.bucket = instance.bucket;
+			this.applicationName = instance.applicationName;
+			this.basePath = instance.basePath;
+			this.client = instance.client;
+			this.readonly = instance.readonly;
+
+		}
 		/**
 		 * Required - The name of the bucket to be used for snapshots.
 		 * <p>
@@ -304,6 +314,12 @@ public class GcsRepositorySettings extends RepositorySettingsBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

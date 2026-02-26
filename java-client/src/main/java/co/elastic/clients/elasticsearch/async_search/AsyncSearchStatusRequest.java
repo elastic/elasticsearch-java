@@ -126,6 +126,13 @@ public class AsyncSearchStatusRequest extends RequestBase {
 		@Nullable
 		private Time keepAlive;
 
+		public Builder() {
+		}
+		private Builder(AsyncSearchStatusRequest instance) {
+			this.id = instance.id;
+			this.keepAlive = instance.keepAlive;
+
+		}
 		/**
 		 * Required - A unique identifier for the async search.
 		 * <p>
@@ -175,6 +182,12 @@ public class AsyncSearchStatusRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

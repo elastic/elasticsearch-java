@@ -166,6 +166,14 @@ public class TransportHistogram implements JsonpSerializable {
 		@Nullable
 		private Long geMillis;
 
+		public Builder() {
+		}
+		private Builder(TransportHistogram instance) {
+			this.count = instance.count;
+			this.ltMillis = instance.ltMillis;
+			this.geMillis = instance.geMillis;
+
+		}
 		/**
 		 * The number of times a transport thread took a period of time within the
 		 * bounds of this bucket to handle an inbound message.
@@ -217,6 +225,12 @@ public class TransportHistogram implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

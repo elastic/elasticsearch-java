@@ -254,6 +254,21 @@ public class ShardsAvailabilityIndicatorDetails implements JsonpSerializable {
 
 		private Long unassignedReplicas;
 
+		public Builder() {
+		}
+		private Builder(ShardsAvailabilityIndicatorDetails instance) {
+			this.creatingPrimaries = instance.creatingPrimaries;
+			this.creatingReplicas = instance.creatingReplicas;
+			this.initializingPrimaries = instance.initializingPrimaries;
+			this.initializingReplicas = instance.initializingReplicas;
+			this.restartingPrimaries = instance.restartingPrimaries;
+			this.restartingReplicas = instance.restartingReplicas;
+			this.startedPrimaries = instance.startedPrimaries;
+			this.startedReplicas = instance.startedReplicas;
+			this.unassignedPrimaries = instance.unassignedPrimaries;
+			this.unassignedReplicas = instance.unassignedReplicas;
+
+		}
 		/**
 		 * Required - API name: {@code creating_primaries}
 		 */
@@ -352,6 +367,12 @@ public class ShardsAvailabilityIndicatorDetails implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

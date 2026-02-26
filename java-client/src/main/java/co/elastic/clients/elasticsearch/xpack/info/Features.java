@@ -526,6 +526,38 @@ public class Features implements JsonpSerializable {
 		@Nullable
 		private Feature archive;
 
+		public Builder() {
+		}
+		private Builder(Features instance) {
+			this.aggregateMetric = instance.aggregateMetric;
+			this.analytics = instance.analytics;
+			this.ccr = instance.ccr;
+			this.dataStreams = instance.dataStreams;
+			this.dataTiers = instance.dataTiers;
+			this.enrich = instance.enrich;
+			this.enterpriseSearch = instance.enterpriseSearch;
+			this.eql = instance.eql;
+			this.esql = instance.esql;
+			this.graph = instance.graph;
+			this.ilm = instance.ilm;
+			this.logstash = instance.logstash;
+			this.logsdb = instance.logsdb;
+			this.ml = instance.ml;
+			this.monitoring = instance.monitoring;
+			this.rollup = instance.rollup;
+			this.runtimeFields = instance.runtimeFields;
+			this.searchableSnapshots = instance.searchableSnapshots;
+			this.security = instance.security;
+			this.slm = instance.slm;
+			this.spatial = instance.spatial;
+			this.sql = instance.sql;
+			this.transform = instance.transform;
+			this.universalProfiling = instance.universalProfiling;
+			this.votingOnly = instance.votingOnly;
+			this.watcher = instance.watcher;
+			this.archive = instance.archive;
+
+		}
 		/**
 		 * Required - API name: {@code aggregate_metric}
 		 */
@@ -949,6 +981,12 @@ public class Features implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

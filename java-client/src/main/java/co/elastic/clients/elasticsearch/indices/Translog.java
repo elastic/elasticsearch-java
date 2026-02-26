@@ -189,6 +189,15 @@ public class Translog implements JsonpSerializable {
 		@Nullable
 		private TranslogRetention retention;
 
+		public Builder() {
+		}
+		private Builder(Translog instance) {
+			this.syncInterval = instance.syncInterval;
+			this.durability = instance.durability;
+			this.flushThresholdSize = instance.flushThresholdSize;
+			this.retention = instance.retention;
+
+		}
 		/**
 		 * How often the translog is fsynced to disk and committed, regardless of write
 		 * operations. Values less than 100ms are not allowed.
@@ -270,6 +279,12 @@ public class Translog implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

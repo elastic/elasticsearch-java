@@ -101,6 +101,12 @@ public class DeleteRulesetRequest extends RequestBase {
 				ObjectBuilder<DeleteRulesetRequest> {
 		private String rulesetId;
 
+		public Builder() {
+		}
+		private Builder(DeleteRulesetRequest instance) {
+			this.rulesetId = instance.rulesetId;
+
+		}
 		/**
 		 * Required - The unique identifier of the query ruleset to delete
 		 * <p>
@@ -129,6 +135,12 @@ public class DeleteRulesetRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

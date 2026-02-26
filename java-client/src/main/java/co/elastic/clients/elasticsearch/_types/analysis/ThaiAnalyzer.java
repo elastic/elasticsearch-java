@@ -150,6 +150,13 @@ public class ThaiAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		@Nullable
 		private String stopwordsPath;
 
+		public Builder() {
+		}
+		private Builder(ThaiAnalyzer instance) {
+			this.stopwords = instance.stopwords;
+			this.stopwordsPath = instance.stopwordsPath;
+
+		}
 		/**
 		 * API name: {@code stopwords}
 		 * <p>
@@ -196,6 +203,12 @@ public class ThaiAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

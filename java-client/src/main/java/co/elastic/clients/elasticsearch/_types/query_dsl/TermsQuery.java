@@ -172,6 +172,11 @@ public class TermsQuery extends QueryBase
 			return this.terms(fn.apply(new TermsQueryField.Builder()).build());
 		}
 
+		public Builder() {
+		}
+		private Builder(TermsQuery instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -190,6 +195,12 @@ public class TermsQuery extends QueryBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -294,6 +294,19 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		@Nullable
 		private Integer topN;
 
+		public Builder() {
+		}
+		private Builder(GetOverallBucketsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.bucketSpan = instance.bucketSpan;
+			this.end = instance.end;
+			this.excludeInterim = instance.excludeInterim;
+			this.jobId = instance.jobId;
+			this.overallScore = instance.overallScore;
+			this.start = instance.start;
+			this.topN = instance.topN;
+
+		}
 		/**
 		 * Refer to the description for the <code>allow_no_match</code> query parameter.
 		 * <p>
@@ -408,6 +421,12 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

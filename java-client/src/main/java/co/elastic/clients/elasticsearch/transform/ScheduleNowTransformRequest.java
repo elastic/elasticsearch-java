@@ -121,6 +121,13 @@ public class ScheduleNowTransformRequest extends RequestBase {
 
 		private String transformId;
 
+		public Builder() {
+		}
+		private Builder(ScheduleNowTransformRequest instance) {
+			this.timeout = instance.timeout;
+			this.transformId = instance.transformId;
+
+		}
 		/**
 		 * Controls the time to wait for the scheduling to take place
 		 * <p>
@@ -168,6 +175,12 @@ public class ScheduleNowTransformRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

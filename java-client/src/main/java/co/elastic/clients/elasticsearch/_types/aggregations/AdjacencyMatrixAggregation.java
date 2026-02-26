@@ -157,6 +157,13 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 		@Nullable
 		private String separator;
 
+		public Builder() {
+		}
+		private Builder(AdjacencyMatrixAggregation instance) {
+			this.filters = instance.filters;
+			this.separator = instance.separator;
+
+		}
 		/**
 		 * Filters used to create buckets. At least one filter is required.
 		 * <p>
@@ -232,6 +239,12 @@ public class AdjacencyMatrixAggregation extends BucketAggregationBase implements
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

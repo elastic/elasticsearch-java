@@ -222,6 +222,17 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 		@Nullable
 		private String outputFormat;
 
+		public Builder() {
+		}
+		private Builder(DateProcessor instance) {
+			this.field = instance.field;
+			this.formats = instance.formats;
+			this.locale = instance.locale;
+			this.targetField = instance.targetField;
+			this.timezone = instance.timezone;
+			this.outputFormat = instance.outputFormat;
+
+		}
 		/**
 		 * Required - The field to get the date from.
 		 * <p>
@@ -318,6 +329,12 @@ public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

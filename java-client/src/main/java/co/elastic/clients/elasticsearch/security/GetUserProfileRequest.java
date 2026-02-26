@@ -126,6 +126,13 @@ public class GetUserProfileRequest extends RequestBase {
 
 		private List<String> uid;
 
+		public Builder() {
+		}
+		private Builder(GetUserProfileRequest instance) {
+			this.data = instance.data;
+			this.uid = instance.uid;
+
+		}
 		/**
 		 * A comma-separated list of filters for the <code>data</code> field of the
 		 * profile document. To return all content use <code>data=*</code>. To return a
@@ -200,6 +207,12 @@ public class GetUserProfileRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

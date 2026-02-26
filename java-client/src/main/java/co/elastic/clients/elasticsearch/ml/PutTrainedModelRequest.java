@@ -417,6 +417,25 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(PutTrainedModelRequest instance) {
+			this.compressedDefinition = instance.compressedDefinition;
+			this.deferDefinitionDecompression = instance.deferDefinitionDecompression;
+			this.definition = instance.definition;
+			this.description = instance.description;
+			this.inferenceConfig = instance.inferenceConfig;
+			this.input = instance.input;
+			this.metadata = instance.metadata;
+			this.modelId = instance.modelId;
+			this.modelSizeBytes = instance.modelSizeBytes;
+			this.modelType = instance.modelType;
+			this.platformArchitecture = instance.platformArchitecture;
+			this.prefixStrings = instance.prefixStrings;
+			this.tags = instance.tags;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * The compressed (GZipped and Base64 encoded) inference definition of the
 		 * model. If compressed_definition is specified, then definition cannot be
@@ -662,6 +681,12 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

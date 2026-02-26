@@ -452,6 +452,27 @@ public class ApiKey implements JsonpSerializable {
 		@Nullable
 		private List<FieldValue> sort;
 
+		public Builder() {
+		}
+		private Builder(ApiKey instance) {
+			this.id = instance.id;
+			this.name = instance.name;
+			this.type = instance.type;
+			this.creation = instance.creation;
+			this.expiration = instance.expiration;
+			this.invalidated = instance.invalidated;
+			this.invalidation = instance.invalidation;
+			this.username = instance.username;
+			this.realm = instance.realm;
+			this.realmType = instance.realmType;
+			this.metadata = instance.metadata;
+			this.roleDescriptors = instance.roleDescriptors;
+			this.limitedBy = instance.limitedBy;
+			this.access = instance.access;
+			this.profileUid = instance.profileUid;
+			this.sort = instance.sort;
+
+		}
 		/**
 		 * Required - Id for the API key
 		 * <p>
@@ -807,6 +828,12 @@ public class ApiKey implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

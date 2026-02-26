@@ -151,6 +151,14 @@ public class LoggingAction implements JsonpSerializable {
 		@Nullable
 		private String category;
 
+		public Builder() {
+		}
+		private Builder(LoggingAction instance) {
+			this.level = instance.level;
+			this.text = instance.text;
+			this.category = instance.category;
+
+		}
 		/**
 		 * API name: {@code level}
 		 */
@@ -193,6 +201,12 @@ public class LoggingAction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

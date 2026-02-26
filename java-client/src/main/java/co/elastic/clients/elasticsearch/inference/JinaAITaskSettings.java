@@ -179,6 +179,14 @@ public class JinaAITaskSettings implements JsonpSerializable {
 		@Nullable
 		private Integer topN;
 
+		public Builder() {
+		}
+		private Builder(JinaAITaskSettings instance) {
+			this.returnDocuments = instance.returnDocuments;
+			this.task = instance.task;
+			this.topN = instance.topN;
+
+		}
 		/**
 		 * For a <code>rerank</code> task, return the doc text within the results.
 		 * <p>
@@ -242,6 +250,12 @@ public class JinaAITaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

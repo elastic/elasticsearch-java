@@ -393,6 +393,25 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
+		public Builder() {
+		}
+		private Builder(AsyncSearch<TDocument> instance) {
+			this.aggregations = instance.aggregations;
+			this.clusters = instance.clusters;
+			this.fields = instance.fields;
+			this.hits = instance.hits;
+			this.maxScore = instance.maxScore;
+			this.numReducePhases = instance.numReducePhases;
+			this.profile = instance.profile;
+			this.pitId = instance.pitId;
+			this.scrollId = instance.scrollId;
+			this.shards = instance.shards;
+			this.suggest = instance.suggest;
+			this.terminatedEarly = instance.terminatedEarly;
+			this.timedOut = instance.timedOut;
+			this.took = instance.took;
+
+		}
 		/**
 		 * Partial aggregations results, coming from the shards that have already
 		 * completed running the query.
@@ -630,6 +649,12 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

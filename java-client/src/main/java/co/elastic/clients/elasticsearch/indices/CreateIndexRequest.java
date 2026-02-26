@@ -294,6 +294,18 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		@Nullable
 		private WaitForActiveShards waitForActiveShards;
 
+		public Builder() {
+		}
+		private Builder(CreateIndexRequest instance) {
+			this.aliases = instance.aliases;
+			this.index = instance.index;
+			this.mappings = instance.mappings;
+			this.masterTimeout = instance.masterTimeout;
+			this.settings = instance.settings;
+			this.timeout = instance.timeout;
+			this.waitForActiveShards = instance.waitForActiveShards;
+
+		}
 		/**
 		 * Aliases for the index.
 		 * <p>
@@ -487,6 +499,12 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

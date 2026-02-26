@@ -204,6 +204,17 @@ public class AggregationProfile implements JsonpSerializable {
 		@Nullable
 		private List<AggregationProfile> children;
 
+		public Builder() {
+		}
+		private Builder(AggregationProfile instance) {
+			this.breakdown = instance.breakdown;
+			this.description = instance.description;
+			this.timeInNanos = instance.timeInNanos;
+			this.type = instance.type;
+			this.debug = instance.debug;
+			this.children = instance.children;
+
+		}
 		/**
 		 * Required - API name: {@code breakdown}
 		 */
@@ -306,6 +317,12 @@ public class AggregationProfile implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

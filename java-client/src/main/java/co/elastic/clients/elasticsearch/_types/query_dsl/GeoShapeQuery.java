@@ -164,6 +164,12 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private Boolean ignoreUnmapped;
 
+		public Builder() {
+		}
+		private Builder(GeoShapeQuery instance) {
+			this.ignoreUnmapped = instance.ignoreUnmapped;
+
+		}
 		/**
 		 * Set to <code>true</code> to ignore an unmapped field and not match any
 		 * documents for this query. Set to <code>false</code> to throw an exception if
@@ -194,6 +200,12 @@ public class GeoShapeQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -213,6 +213,17 @@ public class ShardFailure implements JsonpSerializable {
 		@Nullable
 		private Boolean primary;
 
+		public Builder() {
+		}
+		private Builder(ShardFailure instance) {
+			this.index = instance.index;
+			this.node = instance.node;
+			this.reason = instance.reason;
+			this.shard = instance.shard;
+			this.status = instance.status;
+			this.primary = instance.primary;
+
+		}
 		/**
 		 * API name: {@code index}
 		 */
@@ -286,6 +297,12 @@ public class ShardFailure implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

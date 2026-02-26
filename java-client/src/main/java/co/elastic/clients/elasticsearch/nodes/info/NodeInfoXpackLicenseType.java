@@ -113,6 +113,12 @@ public class NodeInfoXpackLicenseType implements JsonpSerializable {
 				ObjectBuilder<NodeInfoXpackLicenseType> {
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoXpackLicenseType instance) {
+			this.type = instance.type;
+
+		}
 		/**
 		 * Required - API name: {@code type}
 		 */
@@ -139,6 +145,12 @@ public class NodeInfoXpackLicenseType implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

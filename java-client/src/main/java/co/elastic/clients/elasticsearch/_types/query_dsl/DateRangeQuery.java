@@ -161,6 +161,13 @@ public class DateRangeQuery extends RangeQueryBase<String> implements RangeQuery
 		@Nullable
 		private String timeZone;
 
+		public Builder() {
+		}
+		private Builder(DateRangeQuery instance) {
+			this.format = instance.format;
+			this.timeZone = instance.timeZone;
+
+		}
 		/**
 		 * Date format used to convert <code>date</code> values in the query.
 		 * <p>
@@ -201,6 +208,12 @@ public class DateRangeQuery extends RangeQueryBase<String> implements RangeQuery
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

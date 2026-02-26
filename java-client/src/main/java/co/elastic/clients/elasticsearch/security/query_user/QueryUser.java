@@ -108,6 +108,12 @@ public class QueryUser extends User {
 		@Nullable
 		private List<FieldValue> sort;
 
+		public Builder() {
+		}
+		private Builder(QueryUser instance) {
+			this.sort = instance.sort;
+
+		}
 		/**
 		 * API name: {@code _sort}
 		 * <p>
@@ -207,6 +213,12 @@ public class QueryUser extends User {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

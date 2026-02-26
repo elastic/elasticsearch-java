@@ -190,6 +190,16 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutScriptRequest instance) {
+			this.context = instance.context;
+			this.id = instance.id;
+			this.masterTimeout = instance.masterTimeout;
+			this.script = instance.script;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * The context in which the script or search template should run. To prevent
 		 * errors, the API immediately compiles the script or template in this context.
@@ -297,6 +307,12 @@ public class PutScriptRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

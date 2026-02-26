@@ -126,6 +126,13 @@ public class ReindexRethrottleRequest extends RequestBase {
 
 		private String taskId;
 
+		public Builder() {
+		}
+		private Builder(ReindexRethrottleRequest instance) {
+			this.requestsPerSecond = instance.requestsPerSecond;
+			this.taskId = instance.taskId;
+
+		}
 		/**
 		 * Required - The throttle for this request in sub-requests per second. It can
 		 * be either <code>-1</code> to turn off throttling or any decimal number like
@@ -166,6 +173,12 @@ public class ReindexRethrottleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

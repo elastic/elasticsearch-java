@@ -186,6 +186,16 @@ public class GetTransformRequest extends RequestBase {
 		@Nullable
 		private List<String> transformId;
 
+		public Builder() {
+		}
+		private Builder(GetTransformRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.excludeGenerated = instance.excludeGenerated;
+			this.from = instance.from;
+			this.size = instance.size;
+			this.transformId = instance.transformId;
+
+		}
 		/**
 		 * Specifies what to do when the request:
 		 * <ol>
@@ -287,6 +297,12 @@ public class GetTransformRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

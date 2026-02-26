@@ -84,6 +84,11 @@ public class UntypedDistanceFeatureQuery extends DistanceFeatureQueryBase<JsonDa
 	public static class Builder extends DistanceFeatureQueryBase.AbstractBuilder<JsonData, JsonData, Builder>
 			implements
 				ObjectBuilder<UntypedDistanceFeatureQuery> {
+		public Builder() {
+		}
+		private Builder(UntypedDistanceFeatureQuery instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -104,6 +109,12 @@ public class UntypedDistanceFeatureQuery extends DistanceFeatureQueryBase<JsonDa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

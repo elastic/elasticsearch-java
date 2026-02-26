@@ -249,6 +249,21 @@ public class AllField implements JsonpSerializable {
 
 		private Boolean storeTermVectors;
 
+		public Builder() {
+		}
+		private Builder(AllField instance) {
+			this.analyzer = instance.analyzer;
+			this.enabled = instance.enabled;
+			this.omitNorms = instance.omitNorms;
+			this.searchAnalyzer = instance.searchAnalyzer;
+			this.similarity = instance.similarity;
+			this.store = instance.store;
+			this.storeTermVectorOffsets = instance.storeTermVectorOffsets;
+			this.storeTermVectorPayloads = instance.storeTermVectorPayloads;
+			this.storeTermVectorPositions = instance.storeTermVectorPositions;
+			this.storeTermVectors = instance.storeTermVectors;
+
+		}
 		/**
 		 * Required - API name: {@code analyzer}
 		 */
@@ -347,6 +362,12 @@ public class AllField implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

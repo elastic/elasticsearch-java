@@ -141,6 +141,13 @@ public class TermVector implements JsonpSerializable {
 
 		private Map<String, Term> terms;
 
+		public Builder() {
+		}
+		private Builder(TermVector instance) {
+			this.fieldStatistics = instance.fieldStatistics;
+			this.terms = instance.terms;
+
+		}
 		/**
 		 * API name: {@code field_statistics}
 		 */
@@ -203,6 +210,12 @@ public class TermVector implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

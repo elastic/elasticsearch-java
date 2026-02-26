@@ -169,6 +169,15 @@ public class IndicesValidationExplanation implements JsonpSerializable {
 
 		private Boolean valid;
 
+		public Builder() {
+		}
+		private Builder(IndicesValidationExplanation instance) {
+			this.error = instance.error;
+			this.explanation = instance.explanation;
+			this.index = instance.index;
+			this.valid = instance.valid;
+
+		}
 		/**
 		 * API name: {@code error}
 		 */
@@ -219,6 +228,12 @@ public class IndicesValidationExplanation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -199,6 +199,15 @@ public class CloseJobRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(CloseJobRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.force = instance.force;
+			this.jobId = instance.jobId;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Refer to the description for the <code>allow_no_match</code> query parameter.
 		 * <p>
@@ -271,6 +280,12 @@ public class CloseJobRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -162,6 +162,15 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 
 		private List<BulkOperation> operations;
 
+		public Builder() {
+		}
+		private Builder(BulkRequest instance) {
+			this.interval = instance.interval;
+			this.systemApiVersion = instance.systemApiVersion;
+			this.systemId = instance.systemId;
+			this.operations = instance.operations;
+
+		}
 		/**
 		 * Required - Collection interval (e.g., '10s' or '10000ms') of the payload
 		 * <p>
@@ -261,6 +270,12 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

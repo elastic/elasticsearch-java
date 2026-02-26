@@ -355,6 +355,22 @@ public class DirectGenerator implements JsonpSerializable {
 		@Nullable
 		private SuggestMode suggestMode;
 
+		public Builder() {
+		}
+		private Builder(DirectGenerator instance) {
+			this.field = instance.field;
+			this.maxEdits = instance.maxEdits;
+			this.maxInspections = instance.maxInspections;
+			this.maxTermFreq = instance.maxTermFreq;
+			this.minDocFreq = instance.minDocFreq;
+			this.minWordLength = instance.minWordLength;
+			this.postFilter = instance.postFilter;
+			this.preFilter = instance.preFilter;
+			this.prefixLength = instance.prefixLength;
+			this.size = instance.size;
+			this.suggestMode = instance.suggestMode;
+
+		}
 		/**
 		 * Required - The field to fetch the candidate suggestions from. Needs to be set
 		 * globally or per suggestion.
@@ -502,6 +518,12 @@ public class DirectGenerator implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

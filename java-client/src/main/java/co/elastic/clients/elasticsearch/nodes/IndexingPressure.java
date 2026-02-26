@@ -116,6 +116,12 @@ public class IndexingPressure implements JsonpSerializable {
 		@Nullable
 		private IndexingPressureMemory memory;
 
+		public Builder() {
+		}
+		private Builder(IndexingPressure instance) {
+			this.memory = instance.memory;
+
+		}
 		/**
 		 * Contains statistics for memory consumption from indexing load.
 		 * <p>
@@ -154,6 +160,12 @@ public class IndexingPressure implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -105,6 +105,12 @@ public class ClearTrainedModelDeploymentCacheRequest extends RequestBase {
 				ObjectBuilder<ClearTrainedModelDeploymentCacheRequest> {
 		private String modelId;
 
+		public Builder() {
+		}
+		private Builder(ClearTrainedModelDeploymentCacheRequest instance) {
+			this.modelId = instance.modelId;
+
+		}
 		/**
 		 * Required - The unique identifier of the trained model.
 		 * <p>
@@ -133,6 +139,12 @@ public class ClearTrainedModelDeploymentCacheRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

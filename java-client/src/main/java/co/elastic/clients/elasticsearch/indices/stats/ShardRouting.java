@@ -161,6 +161,15 @@ public class ShardRouting implements JsonpSerializable {
 
 		private ShardRoutingState state;
 
+		public Builder() {
+		}
+		private Builder(ShardRouting instance) {
+			this.node = instance.node;
+			this.primary = instance.primary;
+			this.relocatingNode = instance.relocatingNode;
+			this.state = instance.state;
+
+		}
 		/**
 		 * Required - API name: {@code node}
 		 */
@@ -211,6 +220,12 @@ public class ShardRouting implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

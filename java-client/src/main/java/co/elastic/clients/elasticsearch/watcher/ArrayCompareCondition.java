@@ -163,6 +163,12 @@ public class ArrayCompareCondition implements JsonpSerializable {
 
 		private String path;
 
+		public Builder() {
+		}
+		private Builder(ArrayCompareCondition instance) {
+			this.path = instance.path;
+
+		}
 		/**
 		 * Required - API name: {@code path}
 		 */
@@ -189,6 +195,12 @@ public class ArrayCompareCondition implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

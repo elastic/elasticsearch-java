@@ -250,6 +250,16 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private Map<String, RoleDescriptor> roleDescriptors;
 
+		public Builder() {
+		}
+		private Builder(CreateApiKeyRequest instance) {
+			this.expiration = instance.expiration;
+			this.metadata = instance.metadata;
+			this.name = instance.name;
+			this.refresh = instance.refresh;
+			this.roleDescriptors = instance.roleDescriptors;
+
+		}
 		/**
 		 * The expiration time for the API key. By default, API keys never expire.
 		 * <p>
@@ -413,6 +423,12 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

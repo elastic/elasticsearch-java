@@ -216,6 +216,19 @@ public class FieldSummary implements JsonpSerializable {
 
 		private InvertedIndex invertedIndex;
 
+		public Builder() {
+		}
+		private Builder(FieldSummary instance) {
+			this.any = instance.any;
+			this.storedFields = instance.storedFields;
+			this.docValues = instance.docValues;
+			this.points = instance.points;
+			this.norms = instance.norms;
+			this.termVectors = instance.termVectors;
+			this.knnVectors = instance.knnVectors;
+			this.invertedIndex = instance.invertedIndex;
+
+		}
 		/**
 		 * Required - API name: {@code any}
 		 */
@@ -305,6 +318,12 @@ public class FieldSummary implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

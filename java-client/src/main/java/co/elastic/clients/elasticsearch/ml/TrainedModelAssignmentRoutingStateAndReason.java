@@ -139,6 +139,13 @@ public class TrainedModelAssignmentRoutingStateAndReason implements JsonpSeriali
 
 		private RoutingState routingState;
 
+		public Builder() {
+		}
+		private Builder(TrainedModelAssignmentRoutingStateAndReason instance) {
+			this.reason = instance.reason;
+			this.routingState = instance.routingState;
+
+		}
 		/**
 		 * The reason for the current state. It is usually populated only when the
 		 * <code>routing_state</code> is <code>failed</code>.
@@ -178,6 +185,12 @@ public class TrainedModelAssignmentRoutingStateAndReason implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

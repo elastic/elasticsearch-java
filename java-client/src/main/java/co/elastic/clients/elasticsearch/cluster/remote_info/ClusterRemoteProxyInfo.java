@@ -264,6 +264,19 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 		@Nullable
 		private String clusterCredentials;
 
+		public Builder() {
+		}
+		private Builder(ClusterRemoteProxyInfo instance) {
+			this.connected = instance.connected;
+			this.initialConnectTimeout = instance.initialConnectTimeout;
+			this.skipUnavailable = instance.skipUnavailable;
+			this.proxyAddress = instance.proxyAddress;
+			this.serverName = instance.serverName;
+			this.numProxySocketsConnected = instance.numProxySocketsConnected;
+			this.maxProxySocketConnections = instance.maxProxySocketConnections;
+			this.clusterCredentials = instance.clusterCredentials;
+
+		}
 		/**
 		 * Required - If it is <code>true</code>, there is at least one open connection
 		 * to the remote cluster. If it is <code>false</code>, it means that the cluster
@@ -379,6 +392,12 @@ public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

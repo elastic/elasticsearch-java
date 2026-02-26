@@ -176,6 +176,14 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 		@Nullable
 		private Boolean mustExist;
 
+		public Builder() {
+		}
+		private Builder(RemoveIndexAction instance) {
+			this.index = instance.index;
+			this.indices = instance.indices;
+			this.mustExist = instance.mustExist;
+
+		}
 		/**
 		 * Data stream or index for the action. Supports wildcards (<code>*</code>).
 		 * <p>
@@ -238,6 +246,12 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

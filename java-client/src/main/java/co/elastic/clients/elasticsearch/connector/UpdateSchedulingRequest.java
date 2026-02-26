@@ -128,6 +128,13 @@ public class UpdateSchedulingRequest extends RequestBase implements JsonpSeriali
 
 		private SchedulingConfiguration scheduling;
 
+		public Builder() {
+		}
+		private Builder(UpdateSchedulingRequest instance) {
+			this.connectorId = instance.connectorId;
+			this.scheduling = instance.scheduling;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector to be updated
 		 * <p>
@@ -172,6 +179,12 @@ public class UpdateSchedulingRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

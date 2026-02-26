@@ -127,6 +127,12 @@ public class ModifyDataStreamRequest extends RequestBase implements JsonpSeriali
 				ObjectBuilder<ModifyDataStreamRequest> {
 		private List<Action> actions;
 
+		public Builder() {
+		}
+		private Builder(ModifyDataStreamRequest instance) {
+			this.actions = instance.actions;
+
+		}
 		/**
 		 * Required - Actions to perform.
 		 * <p>
@@ -195,6 +201,12 @@ public class ModifyDataStreamRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

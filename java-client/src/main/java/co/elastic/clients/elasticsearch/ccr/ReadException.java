@@ -149,6 +149,14 @@ public class ReadException implements JsonpSerializable {
 
 		private Integer retries;
 
+		public Builder() {
+		}
+		private Builder(ReadException instance) {
+			this.exception = instance.exception;
+			this.fromSeqNo = instance.fromSeqNo;
+			this.retries = instance.retries;
+
+		}
 		/**
 		 * Required - The exception that caused the read to fail.
 		 * <p>
@@ -207,6 +215,12 @@ public class ReadException implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

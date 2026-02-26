@@ -494,6 +494,29 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		@Nullable
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(TrainedModelsRecord instance) {
+			this.id = instance.id;
+			this.createdBy = instance.createdBy;
+			this.heapSize = instance.heapSize;
+			this.operations = instance.operations;
+			this.license = instance.license;
+			this.createTime = instance.createTime;
+			this.version = instance.version;
+			this.description = instance.description;
+			this.ingestPipelines = instance.ingestPipelines;
+			this.ingestCount = instance.ingestCount;
+			this.ingestTime = instance.ingestTime;
+			this.ingestCurrent = instance.ingestCurrent;
+			this.ingestFailed = instance.ingestFailed;
+			this.dataFrameId = instance.dataFrameId;
+			this.dataFrameCreateTime = instance.dataFrameCreateTime;
+			this.dataFrameSourceIndex = instance.dataFrameSourceIndex;
+			this.dataFrameAnalysis = instance.dataFrameAnalysis;
+			this.type = instance.type;
+
+		}
 		/**
 		 * The model identifier.
 		 * <p>
@@ -692,6 +715,12 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

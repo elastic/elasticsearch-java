@@ -103,6 +103,12 @@ public class ValidateDetectorRequest extends RequestBase implements JsonpSeriali
 				ObjectBuilder<ValidateDetectorRequest> {
 		private Detector detector;
 
+		public Builder() {
+		}
+		private Builder(ValidateDetectorRequest instance) {
+			this.detector = instance.detector;
+
+		}
 		/**
 		 * Required - Request body.
 		 */
@@ -144,6 +150,12 @@ public class ValidateDetectorRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<ValidateDetectorRequest> _DESERIALIZER = createValidateDetectorRequestDeserializer();
 	protected static JsonpDeserializer<ValidateDetectorRequest> createValidateDetectorRequestDeserializer() {
 

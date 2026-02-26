@@ -275,6 +275,20 @@ public class Indicators implements JsonpSerializable {
 		@Nullable
 		private FileSettingsIndicator fileSettings;
 
+		public Builder() {
+		}
+		private Builder(Indicators instance) {
+			this.masterIsStable = instance.masterIsStable;
+			this.shardsAvailability = instance.shardsAvailability;
+			this.disk = instance.disk;
+			this.repositoryIntegrity = instance.repositoryIntegrity;
+			this.dataStreamLifecycle = instance.dataStreamLifecycle;
+			this.ilm = instance.ilm;
+			this.slm = instance.slm;
+			this.shardsCapacity = instance.shardsCapacity;
+			this.fileSettings = instance.fileSettings;
+
+		}
 		/**
 		 * API name: {@code master_is_stable}
 		 */
@@ -434,6 +448,12 @@ public class Indicators implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -194,6 +194,16 @@ public class DataframePreviewConfig implements JsonpSerializable {
 		@Nullable
 		private DataframeAnalysisAnalyzedFields analyzedFields;
 
+		public Builder() {
+		}
+		private Builder(DataframePreviewConfig instance) {
+			this.source = instance.source;
+			this.analysis = instance.analysis;
+			this.modelMemoryLimit = instance.modelMemoryLimit;
+			this.maxNumThreads = instance.maxNumThreads;
+			this.analyzedFields = instance.analyzedFields;
+
+		}
 		/**
 		 * Required - API name: {@code source}
 		 */
@@ -283,6 +293,12 @@ public class DataframePreviewConfig implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

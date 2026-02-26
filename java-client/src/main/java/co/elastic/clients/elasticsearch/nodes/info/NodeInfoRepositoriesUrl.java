@@ -113,6 +113,12 @@ public class NodeInfoRepositoriesUrl implements JsonpSerializable {
 				ObjectBuilder<NodeInfoRepositoriesUrl> {
 		private String allowedUrls;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoRepositoriesUrl instance) {
+			this.allowedUrls = instance.allowedUrls;
+
+		}
 		/**
 		 * Required - API name: {@code allowed_urls}
 		 */
@@ -139,6 +145,12 @@ public class NodeInfoRepositoriesUrl implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

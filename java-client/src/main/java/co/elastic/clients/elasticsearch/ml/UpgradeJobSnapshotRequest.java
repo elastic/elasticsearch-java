@@ -157,6 +157,15 @@ public class UpgradeJobSnapshotRequest extends RequestBase {
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(UpgradeJobSnapshotRequest instance) {
+			this.jobId = instance.jobId;
+			this.snapshotId = instance.snapshotId;
+			this.timeout = instance.timeout;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * Required - Identifier for the anomaly detection job.
 		 * <p>
@@ -226,6 +235,12 @@ public class UpgradeJobSnapshotRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

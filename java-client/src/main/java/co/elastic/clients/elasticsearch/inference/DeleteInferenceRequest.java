@@ -150,6 +150,15 @@ public class DeleteInferenceRequest extends RequestBase {
 		@Nullable
 		private TaskType taskType;
 
+		public Builder() {
+		}
+		private Builder(DeleteInferenceRequest instance) {
+			this.dryRun = instance.dryRun;
+			this.force = instance.force;
+			this.inferenceId = instance.inferenceId;
+			this.taskType = instance.taskType;
+
+		}
 		/**
 		 * When true, the endpoint is not deleted and a list of ingest processors which
 		 * reference this endpoint is returned.
@@ -210,6 +219,12 @@ public class DeleteInferenceRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

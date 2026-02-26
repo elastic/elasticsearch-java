@@ -341,6 +341,22 @@ public class CommunityIDProcessor extends ProcessorBase implements ProcessorVari
 		@Nullable
 		private Boolean ignoreMissing;
 
+		public Builder() {
+		}
+		private Builder(CommunityIDProcessor instance) {
+			this.sourceIp = instance.sourceIp;
+			this.sourcePort = instance.sourcePort;
+			this.destinationIp = instance.destinationIp;
+			this.destinationPort = instance.destinationPort;
+			this.ianaNumber = instance.ianaNumber;
+			this.icmpType = instance.icmpType;
+			this.icmpCode = instance.icmpCode;
+			this.transport = instance.transport;
+			this.targetField = instance.targetField;
+			this.seed = instance.seed;
+			this.ignoreMissing = instance.ignoreMissing;
+
+		}
 		/**
 		 * Field containing the source IP address.
 		 * <p>
@@ -475,6 +491,12 @@ public class CommunityIDProcessor extends ProcessorBase implements ProcessorVari
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

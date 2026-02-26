@@ -123,6 +123,12 @@ public class ScriptScoreFunction implements FunctionScoreVariant, JsonpSerializa
 				ObjectBuilder<ScriptScoreFunction> {
 		private Script script;
 
+		public Builder() {
+		}
+		private Builder(ScriptScoreFunction instance) {
+			this.script = instance.script;
+
+		}
 		/**
 		 * Required - A script that computes a score.
 		 * <p>
@@ -160,6 +166,12 @@ public class ScriptScoreFunction implements FunctionScoreVariant, JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

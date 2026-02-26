@@ -135,6 +135,13 @@ public class ClusterOperatingSystemPrettyName implements JsonpSerializable {
 
 		private String prettyName;
 
+		public Builder() {
+		}
+		private Builder(ClusterOperatingSystemPrettyName instance) {
+			this.count = instance.count;
+			this.prettyName = instance.prettyName;
+
+		}
 		/**
 		 * Required - Number of selected nodes using the operating system.
 		 * <p>
@@ -174,6 +181,12 @@ public class ClusterOperatingSystemPrettyName implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
