@@ -80,6 +80,9 @@ public class Features implements JsonpSerializable {
 
 	private final Feature graph;
 
+	@Nullable
+	private final Feature gpuVectorIndexing;
+
 	private final Feature ilm;
 
 	private final Feature logstash;
@@ -131,6 +134,7 @@ public class Features implements JsonpSerializable {
 		this.eql = ApiTypeHelper.requireNonNull(builder.eql, this, "eql");
 		this.esql = builder.esql;
 		this.graph = ApiTypeHelper.requireNonNull(builder.graph, this, "graph");
+		this.gpuVectorIndexing = builder.gpuVectorIndexing;
 		this.ilm = ApiTypeHelper.requireNonNull(builder.ilm, this, "ilm");
 		this.logstash = ApiTypeHelper.requireNonNull(builder.logstash, this, "logstash");
 		this.logsdb = ApiTypeHelper.requireNonNull(builder.logsdb, this, "logsdb");
@@ -226,6 +230,14 @@ public class Features implements JsonpSerializable {
 	 */
 	public final Feature graph() {
 		return this.graph;
+	}
+
+	/**
+	 * Required - API name: {@code gpu_vector_indexing}
+	 */
+	@Nullable
+	public final Feature gpuVectorIndexing() {
+		return this.gpuVectorIndexing;
 	}
 
 	/**
@@ -395,6 +407,11 @@ public class Features implements JsonpSerializable {
 		generator.writeKey("graph");
 		this.graph.serialize(generator, mapper);
 
+		if (this.gpuVectorIndexing != null) {
+			generator.writeKey("gpu_vector_indexing");
+			this.gpuVectorIndexing.serialize(generator, mapper);
+
+		}
 		generator.writeKey("ilm");
 		this.ilm.serialize(generator, mapper);
 
@@ -489,6 +506,9 @@ public class Features implements JsonpSerializable {
 
 		private Feature graph;
 
+		@Nullable
+		private Feature gpuVectorIndexing;
+
 		private Feature ilm;
 
 		private Feature logstash;
@@ -539,6 +559,7 @@ public class Features implements JsonpSerializable {
 			this.eql = instance.eql;
 			this.esql = instance.esql;
 			this.graph = instance.graph;
+			this.gpuVectorIndexing = instance.gpuVectorIndexing;
 			this.ilm = instance.ilm;
 			this.logstash = instance.logstash;
 			this.logsdb = instance.logsdb;
@@ -706,6 +727,21 @@ public class Features implements JsonpSerializable {
 		 */
 		public final Builder graph(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.graph(fn.apply(new Feature.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code gpu_vector_indexing}
+		 */
+		public final Builder gpuVectorIndexing(@Nullable Feature value) {
+			this.gpuVectorIndexing = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code gpu_vector_indexing}
+		 */
+		public final Builder gpuVectorIndexing(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.gpuVectorIndexing(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -1007,6 +1043,7 @@ public class Features implements JsonpSerializable {
 		op.add(Builder::eql, Feature._DESERIALIZER, "eql");
 		op.add(Builder::esql, Feature._DESERIALIZER, "esql");
 		op.add(Builder::graph, Feature._DESERIALIZER, "graph");
+		op.add(Builder::gpuVectorIndexing, Feature._DESERIALIZER, "gpu_vector_indexing");
 		op.add(Builder::ilm, Feature._DESERIALIZER, "ilm");
 		op.add(Builder::logstash, Feature._DESERIALIZER, "logstash");
 		op.add(Builder::logsdb, Feature._DESERIALIZER, "logsdb");
