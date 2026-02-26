@@ -64,6 +64,8 @@ import javax.annotation.Nullable;
 /**
  * Update data stream settings.
  * <p>
+ * NOTE: Available in 8.19. Not available in earlier versions.
+ * <p>
  * This API can be used to override settings on specific data streams. These
  * overrides will take precedence over what is specified in the template that
  * the data stream matches. To prevent your data stream from getting into an

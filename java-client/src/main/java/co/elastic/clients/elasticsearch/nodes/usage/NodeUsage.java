@@ -87,28 +87,39 @@ public class NodeUsage implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code rest_actions}
+	 * Required - The total number of times each REST endpoint has been called on
+	 * this node since the last restart. Note that the REST endpoint names are not
+	 * considered stable.
+	 * <p>
+	 * API name: {@code rest_actions}
 	 */
 	public final Map<String, Integer> restActions() {
 		return this.restActions;
 	}
 
 	/**
-	 * Required - API name: {@code since}
+	 * Required - The timestamp for when the collection of these statistics started.
+	 * <p>
+	 * API name: {@code since}
 	 */
 	public final long since() {
 		return this.since;
 	}
 
 	/**
-	 * Required - API name: {@code timestamp}
+	 * Required - The timestamp for when these statistics were collected.
+	 * <p>
+	 * API name: {@code timestamp}
 	 */
 	public final long timestamp() {
 		return this.timestamp;
 	}
 
 	/**
-	 * Required - API name: {@code aggregations}
+	 * Required - The total number of times search aggregations have been called on
+	 * this node since the last restart.
+	 * <p>
+	 * API name: {@code aggregations}
 	 */
 	public final Map<String, JsonData> aggregations() {
 		return this.aggregations;
@@ -186,7 +197,11 @@ public class NodeUsage implements JsonpSerializable {
 
 		}
 		/**
-		 * Required - API name: {@code rest_actions}
+		 * Required - The total number of times each REST endpoint has been called on
+		 * this node since the last restart. Note that the REST endpoint names are not
+		 * considered stable.
+		 * <p>
+		 * API name: {@code rest_actions}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>restActions</code>.
 		 */
@@ -196,7 +211,11 @@ public class NodeUsage implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code rest_actions}
+		 * Required - The total number of times each REST endpoint has been called on
+		 * this node since the last restart. Note that the REST endpoint names are not
+		 * considered stable.
+		 * <p>
+		 * API name: {@code rest_actions}
 		 * <p>
 		 * Adds an entry to <code>restActions</code>.
 		 */
@@ -206,7 +225,9 @@ public class NodeUsage implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code since}
+		 * Required - The timestamp for when the collection of these statistics started.
+		 * <p>
+		 * API name: {@code since}
 		 */
 		public final Builder since(long value) {
 			this.since = value;
@@ -214,7 +235,9 @@ public class NodeUsage implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code timestamp}
+		 * Required - The timestamp for when these statistics were collected.
+		 * <p>
+		 * API name: {@code timestamp}
 		 */
 		public final Builder timestamp(long value) {
 			this.timestamp = value;
@@ -222,7 +245,10 @@ public class NodeUsage implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code aggregations}
+		 * Required - The total number of times search aggregations have been called on
+		 * this node since the last restart.
+		 * <p>
+		 * API name: {@code aggregations}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 */
@@ -232,7 +258,10 @@ public class NodeUsage implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code aggregations}
+		 * Required - The total number of times search aggregations have been called on
+		 * this node since the last restart.
+		 * <p>
+		 * API name: {@code aggregations}
 		 * <p>
 		 * Adds an entry to <code>aggregations</code>.
 		 */
