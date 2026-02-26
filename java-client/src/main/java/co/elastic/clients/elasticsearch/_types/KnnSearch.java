@@ -95,6 +95,9 @@ public class KnnSearch implements JsonpSerializable {
 	@Nullable
 	private final RescoreVector rescoreVector;
 
+	@Nullable
+	private final String queryName;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private KnnSearch(Builder builder) {
@@ -110,6 +113,7 @@ public class KnnSearch implements JsonpSerializable {
 		this.similarity = builder.similarity;
 		this.innerHits = builder.innerHits;
 		this.rescoreVector = builder.rescoreVector;
+		this.queryName = builder.queryName;
 
 	}
 
@@ -227,6 +231,14 @@ public class KnnSearch implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code _name}
+	 */
+	@Nullable
+	public final String queryName() {
+		return this.queryName;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -300,6 +312,11 @@ public class KnnSearch implements JsonpSerializable {
 			this.rescoreVector.serialize(generator, mapper);
 
 		}
+		if (this.queryName != null) {
+			generator.writeKey("_name");
+			generator.write(this.queryName);
+
+		}
 
 	}
 
@@ -347,6 +364,9 @@ public class KnnSearch implements JsonpSerializable {
 		@Nullable
 		private RescoreVector rescoreVector;
 
+		@Nullable
+		private String queryName;
+
 		public Builder() {
 		}
 		private Builder(KnnSearch instance) {
@@ -361,6 +381,7 @@ public class KnnSearch implements JsonpSerializable {
 			this.similarity = instance.similarity;
 			this.innerHits = instance.innerHits;
 			this.rescoreVector = instance.rescoreVector;
+			this.queryName = instance.queryName;
 
 		}
 		/**
@@ -569,6 +590,14 @@ public class KnnSearch implements JsonpSerializable {
 			return this.rescoreVector(fn.apply(new RescoreVector.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code _name}
+		 */
+		public final Builder queryName(@Nullable String value) {
+			this.queryName = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -615,6 +644,7 @@ public class KnnSearch implements JsonpSerializable {
 		op.add(Builder::similarity, JsonpDeserializer.floatDeserializer(), "similarity");
 		op.add(Builder::innerHits, InnerHits._DESERIALIZER, "inner_hits");
 		op.add(Builder::rescoreVector, RescoreVector._DESERIALIZER, "rescore_vector");
+		op.add(Builder::queryName, JsonpDeserializer.stringDeserializer(), "_name");
 
 	}
 
