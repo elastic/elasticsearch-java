@@ -106,6 +106,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean profile;
 
+	@Nullable
+	private final String projectRouting;
+
 	private final String query;
 
 	private final Map<String, Map<String, TableValues>> tables;
@@ -125,6 +128,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		this.locale = builder.locale;
 		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.profile = builder.profile;
+		this.projectRouting = builder.projectRouting;
 		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.tables = ApiTypeHelper.unmodifiable(builder.tables);
 
@@ -273,6 +277,19 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Specifies a subset of projects to target using project metadata tags in a
+	 * subset of Lucene query syntax. Allowed Lucene queries: the _alias tag and a
+	 * single value (possibly wildcarded). Examples: _alias:my-project
+	 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
+	}
+
+	/**
 	 * Required - The ES|QL query API accepts an ES|QL query string in the query
 	 * parameter, runs it, and returns the results.
 	 * <p>
@@ -343,6 +360,11 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.profile);
 
 		}
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
 		generator.writeKey("query");
 		generator.write(this.query);
 
@@ -408,6 +430,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Boolean profile;
 
+		@Nullable
+		private String projectRouting;
+
 		private String query;
 
 		@Nullable
@@ -427,6 +452,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 			this.locale = instance.locale;
 			this.params = instance.params;
 			this.profile = instance.profile;
+			this.projectRouting = instance.projectRouting;
 			this.query = instance.query;
 			this.tables = instance.tables;
 
@@ -689,6 +715,19 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Specifies a subset of projects to target using project metadata tags in a
+		 * subset of Lucene query syntax. Allowed Lucene queries: the _alias tag and a
+		 * single value (possibly wildcarded). Examples: _alias:my-project
+		 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
+			return this;
+		}
+
+		/**
 		 * Required - The ES|QL query API accepts an ES|QL query string in the query
 		 * parameter, runs it, and returns the results.
 		 * <p>
@@ -767,6 +806,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::locale, JsonpDeserializer.stringDeserializer(), "locale");
 		op.add(Builder::params, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "params");
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::tables, JsonpDeserializer
 				.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(TableValues._DESERIALIZER)), "tables");
