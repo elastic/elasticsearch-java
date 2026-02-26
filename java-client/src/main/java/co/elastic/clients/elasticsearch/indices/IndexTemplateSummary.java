@@ -33,7 +33,6 @@ import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -74,7 +73,7 @@ public class IndexTemplateSummary implements JsonpSerializable {
 	private final DataStreamLifecycleWithRollover lifecycle;
 
 	@Nullable
-	private final DataStreamOptions dataStreamOptions;
+	private final DataStreamOptionsTemplate dataStreamOptions;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -137,7 +136,7 @@ public class IndexTemplateSummary implements JsonpSerializable {
 	 * API name: {@code data_stream_options}
 	 */
 	@Nullable
-	public final DataStreamOptions dataStreamOptions() {
+	public final DataStreamOptionsTemplate dataStreamOptions() {
 		return this.dataStreamOptions;
 	}
 
@@ -213,7 +212,7 @@ public class IndexTemplateSummary implements JsonpSerializable {
 		private DataStreamLifecycleWithRollover lifecycle;
 
 		@Nullable
-		private DataStreamOptions dataStreamOptions;
+		private DataStreamOptionsTemplate dataStreamOptions;
 
 		public Builder() {
 		}
@@ -328,7 +327,7 @@ public class IndexTemplateSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code data_stream_options}
 		 */
-		public final Builder dataStreamOptions(@Nullable DataStreamOptions value) {
+		public final Builder dataStreamOptions(@Nullable DataStreamOptionsTemplate value) {
 			this.dataStreamOptions = value;
 			return this;
 		}
@@ -337,8 +336,8 @@ public class IndexTemplateSummary implements JsonpSerializable {
 		 * API name: {@code data_stream_options}
 		 */
 		public final Builder dataStreamOptions(
-				Function<DataStreamOptions.Builder, ObjectBuilder<DataStreamOptions>> fn) {
-			return this.dataStreamOptions(fn.apply(new DataStreamOptions.Builder()).build());
+				Function<DataStreamOptionsTemplate.Builder, ObjectBuilder<DataStreamOptionsTemplate>> fn) {
+			return this.dataStreamOptions(fn.apply(new DataStreamOptionsTemplate.Builder()).build());
 		}
 
 		@Override
@@ -379,7 +378,7 @@ public class IndexTemplateSummary implements JsonpSerializable {
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 		op.add(Builder::lifecycle, DataStreamLifecycleWithRollover._DESERIALIZER, "lifecycle");
-		op.add(Builder::dataStreamOptions, DataStreamOptions._DESERIALIZER, "data_stream_options");
+		op.add(Builder::dataStreamOptions, DataStreamOptionsTemplate._DESERIALIZER, "data_stream_options");
 
 	}
 
