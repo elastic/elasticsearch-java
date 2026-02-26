@@ -173,6 +173,16 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 
 		private String watchRecordId;
 
+		public Builder() {
+		}
+		private Builder(WatchRecordStats instance) {
+			this.executionPhase = instance.executionPhase;
+			this.triggeredTime = instance.triggeredTime;
+			this.executedActions = instance.executedActions;
+			this.watchId = instance.watchId;
+			this.watchRecordId = instance.watchRecordId;
+
+		}
 		/**
 		 * Required - The current watch execution phase.
 		 * <p>
@@ -249,6 +259,12 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

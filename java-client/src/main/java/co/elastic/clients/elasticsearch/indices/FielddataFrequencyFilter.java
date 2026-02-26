@@ -143,6 +143,14 @@ public class FielddataFrequencyFilter implements JsonpSerializable {
 
 		private Integer minSegmentSize;
 
+		public Builder() {
+		}
+		private Builder(FielddataFrequencyFilter instance) {
+			this.max = instance.max;
+			this.min = instance.min;
+			this.minSegmentSize = instance.minSegmentSize;
+
+		}
 		/**
 		 * Required - API name: {@code max}
 		 */
@@ -185,6 +193,12 @@ public class FielddataFrequencyFilter implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

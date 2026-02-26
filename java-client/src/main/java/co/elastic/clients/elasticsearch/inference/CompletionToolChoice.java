@@ -133,6 +133,13 @@ public class CompletionToolChoice implements JsonpSerializable {
 
 		private CompletionToolChoiceFunction function;
 
+		public Builder() {
+		}
+		private Builder(CompletionToolChoice instance) {
+			this.type = instance.type;
+			this.function = instance.function;
+
+		}
 		/**
 		 * Required - The type of the tool.
 		 * <p>
@@ -181,6 +188,12 @@ public class CompletionToolChoice implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

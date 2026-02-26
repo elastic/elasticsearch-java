@@ -212,6 +212,14 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private Boolean ignoreUnmapped;
 
+		public Builder() {
+		}
+		private Builder(GeoBoundingBoxQuery instance) {
+			this.type = instance.type;
+			this.validationMethod = instance.validationMethod;
+			this.ignoreUnmapped = instance.ignoreUnmapped;
+
+		}
 		/**
 		 * API name: {@code type}
 		 * 
@@ -265,6 +273,12 @@ public class GeoBoundingBoxQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

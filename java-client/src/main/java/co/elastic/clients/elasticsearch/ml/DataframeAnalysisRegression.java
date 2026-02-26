@@ -139,6 +139,13 @@ public class DataframeAnalysisRegression extends DataframeAnalysisBase implement
 		@Nullable
 		private Double lossFunctionParameter;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalysisRegression instance) {
+			this.lossFunction = instance.lossFunction;
+			this.lossFunctionParameter = instance.lossFunctionParameter;
+
+		}
 		/**
 		 * The loss function used during regression. Available options are
 		 * <code>mse</code> (mean squared error), <code>msle</code> (mean squared
@@ -180,6 +187,12 @@ public class DataframeAnalysisRegression extends DataframeAnalysisBase implement
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

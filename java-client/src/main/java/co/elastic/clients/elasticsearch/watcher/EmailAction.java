@@ -70,6 +70,11 @@ public class EmailAction extends Email {
 	 */
 
 	public static class Builder extends Email.AbstractBuilder<Builder> implements ObjectBuilder<EmailAction> {
+		public Builder() {
+		}
+		private Builder(EmailAction instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -88,6 +93,12 @@ public class EmailAction extends Email {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

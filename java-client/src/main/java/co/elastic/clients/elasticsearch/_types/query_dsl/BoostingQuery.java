@@ -141,6 +141,14 @@ public class BoostingQuery extends QueryBase implements QueryVariant {
 
 		private Query positive;
 
+		public Builder() {
+		}
+		private Builder(BoostingQuery instance) {
+			this.negativeBoost = instance.negativeBoost;
+			this.negative = instance.negative;
+			this.positive = instance.positive;
+
+		}
 		/**
 		 * Required - Floating point number between 0 and 1.0 used to decrease the
 		 * relevance scores of documents matching the <code>negative</code> query.
@@ -228,6 +236,12 @@ public class BoostingQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -241,6 +241,20 @@ public class PluginStats implements JsonpSerializable {
 
 		private Boolean licensed;
 
+		public Builder() {
+		}
+		private Builder(PluginStats instance) {
+			this.classname = instance.classname;
+			this.description = instance.description;
+			this.elasticsearchVersion = instance.elasticsearchVersion;
+			this.extendedPlugins = instance.extendedPlugins;
+			this.hasNativeController = instance.hasNativeController;
+			this.javaVersion = instance.javaVersion;
+			this.name = instance.name;
+			this.version = instance.version;
+			this.licensed = instance.licensed;
+
+		}
 		/**
 		 * Required - API name: {@code classname}
 		 */
@@ -343,6 +357,12 @@ public class PluginStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

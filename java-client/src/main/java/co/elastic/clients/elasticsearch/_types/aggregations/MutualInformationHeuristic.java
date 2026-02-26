@@ -144,6 +144,13 @@ public class MutualInformationHeuristic implements JsonpSerializable {
 		@Nullable
 		private Boolean includeNegatives;
 
+		public Builder() {
+		}
+		private Builder(MutualInformationHeuristic instance) {
+			this.backgroundIsSuperset = instance.backgroundIsSuperset;
+			this.includeNegatives = instance.includeNegatives;
+
+		}
 		/**
 		 * Set to <code>false</code> if you defined a custom background filter that
 		 * represents a different set of documents that you want to compare to.
@@ -184,6 +191,12 @@ public class MutualInformationHeuristic implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

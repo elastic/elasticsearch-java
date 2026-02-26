@@ -379,6 +379,25 @@ public class Action implements JsonpSerializable {
 		@Nullable
 		private WebhookAction webhook;
 
+		public Builder() {
+		}
+		private Builder(Action instance) {
+			this.actionType = instance.actionType;
+			this.condition = instance.condition;
+			this.foreach = instance.foreach;
+			this.maxIterations = instance.maxIterations;
+			this.name = instance.name;
+			this.throttlePeriod = instance.throttlePeriod;
+			this.throttlePeriodInMillis = instance.throttlePeriodInMillis;
+			this.transform = instance.transform;
+			this.index = instance.index;
+			this.logging = instance.logging;
+			this.email = instance.email;
+			this.pagerduty = instance.pagerduty;
+			this.slack = instance.slack;
+			this.webhook = instance.webhook;
+
+		}
 		/**
 		 * API name: {@code action_type}
 		 */
@@ -588,6 +607,12 @@ public class Action implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

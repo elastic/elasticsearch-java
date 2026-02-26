@@ -107,6 +107,12 @@ public class WrapperQuery extends QueryBase implements QueryVariant {
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<WrapperQuery> {
 		private String query;
 
+		public Builder() {
+		}
+		private Builder(WrapperQuery instance) {
+			this.query = instance.query;
+
+		}
 		/**
 		 * Required - A base64 encoded query. The binary data format can be any of JSON,
 		 * YAML, CBOR or SMILE encodings
@@ -136,6 +142,12 @@ public class WrapperQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

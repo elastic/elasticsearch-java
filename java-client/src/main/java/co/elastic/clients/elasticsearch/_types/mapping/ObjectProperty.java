@@ -131,6 +131,13 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 		@Nullable
 		private Subobjects subobjects;
 
+		public Builder() {
+		}
+		private Builder(ObjectProperty instance) {
+			this.enabled = instance.enabled;
+			this.subobjects = instance.subobjects;
+
+		}
 		/**
 		 * API name: {@code enabled}
 		 */
@@ -165,6 +172,12 @@ public class ObjectProperty extends CorePropertyBase implements PropertyVariant 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

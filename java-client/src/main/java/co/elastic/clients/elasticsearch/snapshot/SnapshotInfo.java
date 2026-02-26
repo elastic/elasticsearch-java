@@ -531,6 +531,32 @@ public class SnapshotInfo implements JsonpSerializable {
 		@Nullable
 		private List<InfoFeatureState> featureStates;
 
+		public Builder() {
+		}
+		private Builder(SnapshotInfo instance) {
+			this.dataStreams = instance.dataStreams;
+			this.duration = instance.duration;
+			this.durationInMillis = instance.durationInMillis;
+			this.endTime = instance.endTime;
+			this.endTimeInMillis = instance.endTimeInMillis;
+			this.failures = instance.failures;
+			this.includeGlobalState = instance.includeGlobalState;
+			this.indices = instance.indices;
+			this.indexDetails = instance.indexDetails;
+			this.metadata = instance.metadata;
+			this.reason = instance.reason;
+			this.repository = instance.repository;
+			this.snapshot = instance.snapshot;
+			this.shards = instance.shards;
+			this.startTime = instance.startTime;
+			this.startTimeInMillis = instance.startTimeInMillis;
+			this.state = instance.state;
+			this.uuid = instance.uuid;
+			this.version = instance.version;
+			this.versionId = instance.versionId;
+			this.featureStates = instance.featureStates;
+
+		}
 		/**
 		 * Required - API name: {@code data_streams}
 		 * <p>
@@ -830,6 +856,12 @@ public class SnapshotInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

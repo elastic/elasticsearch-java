@@ -138,6 +138,13 @@ public class FollowIndexStats implements JsonpSerializable {
 
 		private List<ShardStats> shards;
 
+		public Builder() {
+		}
+		private Builder(FollowIndexStats instance) {
+			this.index = instance.index;
+			this.shards = instance.shards;
+
+		}
 		/**
 		 * Required - The name of the follower index.
 		 * <p>
@@ -201,6 +208,12 @@ public class FollowIndexStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

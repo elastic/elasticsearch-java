@@ -115,6 +115,12 @@ public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFil
 		@Nullable
 		private Boolean preserveOriginal;
 
+		public Builder() {
+		}
+		private Builder(AsciiFoldingTokenFilter instance) {
+			this.preserveOriginal = instance.preserveOriginal;
+
+		}
 		/**
 		 * If <code>true</code>, emit both original tokens and folded tokens. Defaults
 		 * to <code>false</code>.
@@ -144,6 +150,12 @@ public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFil
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

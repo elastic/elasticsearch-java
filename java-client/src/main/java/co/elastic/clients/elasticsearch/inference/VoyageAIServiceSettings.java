@@ -197,6 +197,15 @@ public class VoyageAIServiceSettings implements JsonpSerializable {
 		@Nullable
 		private Float embeddingType;
 
+		public Builder() {
+		}
+		private Builder(VoyageAIServiceSettings instance) {
+			this.dimensions = instance.dimensions;
+			this.modelId = instance.modelId;
+			this.rateLimit = instance.rateLimit;
+			this.embeddingType = instance.embeddingType;
+
+		}
 		/**
 		 * The number of dimensions for resulting output embeddings. This setting maps
 		 * to <code>output_dimension</code> in the VoyageAI documentation. Only for the
@@ -281,6 +290,12 @@ public class VoyageAIServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

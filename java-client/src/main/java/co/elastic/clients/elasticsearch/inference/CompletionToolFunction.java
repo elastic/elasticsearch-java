@@ -187,6 +187,15 @@ public class CompletionToolFunction implements JsonpSerializable {
 		@Nullable
 		private Boolean strict;
 
+		public Builder() {
+		}
+		private Builder(CompletionToolFunction instance) {
+			this.description = instance.description;
+			this.name = instance.name;
+			this.parameters = instance.parameters;
+			this.strict = instance.strict;
+
+		}
 		/**
 		 * A description of what the function does. This is used by the model to choose
 		 * when and how to call the function.
@@ -247,6 +256,12 @@ public class CompletionToolFunction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

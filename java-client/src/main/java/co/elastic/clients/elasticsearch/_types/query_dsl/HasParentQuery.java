@@ -198,6 +198,16 @@ public class HasParentQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private Boolean score;
 
+		public Builder() {
+		}
+		private Builder(HasParentQuery instance) {
+			this.ignoreUnmapped = instance.ignoreUnmapped;
+			this.innerHits = instance.innerHits;
+			this.parentType = instance.parentType;
+			this.query = instance.query;
+			this.score = instance.score;
+
+		}
 		/**
 		 * Indicates whether to ignore an unmapped <code>parent_type</code> and not
 		 * return any documents instead of an error. You can use this parameter to query
@@ -304,6 +314,12 @@ public class HasParentQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

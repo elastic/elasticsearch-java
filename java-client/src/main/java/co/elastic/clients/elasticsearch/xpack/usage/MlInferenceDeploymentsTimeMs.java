@@ -112,6 +112,12 @@ public class MlInferenceDeploymentsTimeMs implements JsonpSerializable {
 				ObjectBuilder<MlInferenceDeploymentsTimeMs> {
 		private Double avg;
 
+		public Builder() {
+		}
+		private Builder(MlInferenceDeploymentsTimeMs instance) {
+			this.avg = instance.avg;
+
+		}
 		/**
 		 * Required - API name: {@code avg}
 		 */
@@ -138,6 +144,12 @@ public class MlInferenceDeploymentsTimeMs implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -273,6 +273,17 @@ public class InferenceChunkingSettings implements JsonpSerializable {
 		@Nullable
 		private String strategy;
 
+		public Builder() {
+		}
+		private Builder(InferenceChunkingSettings instance) {
+			this.maxChunkSize = instance.maxChunkSize;
+			this.overlap = instance.overlap;
+			this.sentenceOverlap = instance.sentenceOverlap;
+			this.separatorGroup = instance.separatorGroup;
+			this.separators = instance.separators;
+			this.strategy = instance.strategy;
+
+		}
 		/**
 		 * The maximum size of a chunk in words. This value cannot be higher than
 		 * <code>300</code> or lower than <code>20</code> (for <code>sentence</code>
@@ -412,6 +423,12 @@ public class InferenceChunkingSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

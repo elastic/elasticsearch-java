@@ -184,6 +184,16 @@ public class DiscoveryNodeCompact implements JsonpSerializable {
 
 		private Map<String, String> attributes;
 
+		public Builder() {
+		}
+		private Builder(DiscoveryNodeCompact instance) {
+			this.name = instance.name;
+			this.ephemeralId = instance.ephemeralId;
+			this.id = instance.id;
+			this.transportAddress = instance.transportAddress;
+			this.attributes = instance.attributes;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -254,6 +264,12 @@ public class DiscoveryNodeCompact implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

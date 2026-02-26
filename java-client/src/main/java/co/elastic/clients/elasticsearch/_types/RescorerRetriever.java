@@ -132,6 +132,13 @@ public class RescorerRetriever extends RetrieverBase implements RetrieverVariant
 
 		private List<Rescore> rescore;
 
+		public Builder() {
+		}
+		private Builder(RescorerRetriever instance) {
+			this.retriever = instance.retriever;
+			this.rescore = instance.rescore;
+
+		}
 		/**
 		 * Required - Inner retriever.
 		 * <p>
@@ -221,6 +228,12 @@ public class RescorerRetriever extends RetrieverBase implements RetrieverVariant
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

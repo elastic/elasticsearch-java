@@ -39,7 +39,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
-import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -259,6 +258,18 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		@Nullable
 		private DataStreamOptionsTemplate dataStreamOptions;
 
+		public Builder() {
+		}
+		private Builder(ComponentTemplateSummary instance) {
+			this.meta = instance.meta;
+			this.version = instance.version;
+			this.settings = instance.settings;
+			this.mappings = instance.mappings;
+			this.aliases = instance.aliases;
+			this.lifecycle = instance.lifecycle;
+			this.dataStreamOptions = instance.dataStreamOptions;
+
+		}
 		/**
 		 * API name: {@code _meta}
 		 * <p>
@@ -410,6 +421,12 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

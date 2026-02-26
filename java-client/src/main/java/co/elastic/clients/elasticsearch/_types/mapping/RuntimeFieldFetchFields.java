@@ -134,6 +134,13 @@ public class RuntimeFieldFetchFields implements JsonpSerializable {
 		@Nullable
 		private String format;
 
+		public Builder() {
+		}
+		private Builder(RuntimeFieldFetchFields instance) {
+			this.field = instance.field;
+			this.format = instance.format;
+
+		}
 		/**
 		 * Required - API name: {@code field}
 		 */
@@ -168,6 +175,12 @@ public class RuntimeFieldFetchFields implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

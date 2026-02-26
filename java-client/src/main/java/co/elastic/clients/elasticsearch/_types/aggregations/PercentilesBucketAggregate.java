@@ -81,6 +81,11 @@ public class PercentilesBucketAggregate extends PercentilesAggregateBase impleme
 	public static class Builder extends PercentilesAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PercentilesBucketAggregate> {
+		public Builder() {
+		}
+		private Builder(PercentilesBucketAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class PercentilesBucketAggregate extends PercentilesAggregateBase impleme
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

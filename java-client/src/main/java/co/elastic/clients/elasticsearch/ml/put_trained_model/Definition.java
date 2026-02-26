@@ -138,6 +138,13 @@ public class Definition implements JsonpSerializable {
 
 		private TrainedModel trainedModel;
 
+		public Builder() {
+		}
+		private Builder(Definition instance) {
+			this.preprocessors = instance.preprocessors;
+			this.trainedModel = instance.trainedModel;
+
+		}
 		/**
 		 * Collection of preprocessors
 		 * <p>
@@ -225,6 +232,12 @@ public class Definition implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

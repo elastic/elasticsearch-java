@@ -638,6 +638,37 @@ public class ShardStats implements JsonpSerializable {
 		@Nullable
 		private IndicesStats indices;
 
+		public Builder() {
+		}
+		private Builder(ShardStats instance) {
+			this.commit = instance.commit;
+			this.completion = instance.completion;
+			this.docs = instance.docs;
+			this.fielddata = instance.fielddata;
+			this.flush = instance.flush;
+			this.get = instance.get;
+			this.indexing = instance.indexing;
+			this.mappings = instance.mappings;
+			this.merges = instance.merges;
+			this.shardPath = instance.shardPath;
+			this.queryCache = instance.queryCache;
+			this.recovery = instance.recovery;
+			this.refresh = instance.refresh;
+			this.requestCache = instance.requestCache;
+			this.retentionLeases = instance.retentionLeases;
+			this.routing = instance.routing;
+			this.search = instance.search;
+			this.segments = instance.segments;
+			this.seqNo = instance.seqNo;
+			this.store = instance.store;
+			this.translog = instance.translog;
+			this.warmer = instance.warmer;
+			this.bulk = instance.bulk;
+			this.shards = instance.shards;
+			this.shardStats = instance.shardStats;
+			this.indices = instance.indices;
+
+		}
 		/**
 		 * API name: {@code commit}
 		 */
@@ -1052,6 +1083,12 @@ public class ShardStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

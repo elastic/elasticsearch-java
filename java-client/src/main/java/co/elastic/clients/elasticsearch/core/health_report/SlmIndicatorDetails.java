@@ -149,6 +149,14 @@ public class SlmIndicatorDetails implements JsonpSerializable {
 		@Nullable
 		private SlmIndicatorUnhealthyPolicies unhealthyPolicies;
 
+		public Builder() {
+		}
+		private Builder(SlmIndicatorDetails instance) {
+			this.slmStatus = instance.slmStatus;
+			this.policies = instance.policies;
+			this.unhealthyPolicies = instance.unhealthyPolicies;
+
+		}
 		/**
 		 * Required - API name: {@code slm_status}
 		 */
@@ -199,6 +207,12 @@ public class SlmIndicatorDetails implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

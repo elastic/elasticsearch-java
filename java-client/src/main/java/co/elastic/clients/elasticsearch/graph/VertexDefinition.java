@@ -236,6 +236,17 @@ public class VertexDefinition implements JsonpSerializable {
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(VertexDefinition instance) {
+			this.exclude = instance.exclude;
+			this.field = instance.field;
+			this.include = instance.include;
+			this.minDocCount = instance.minDocCount;
+			this.shardMinDocCount = instance.shardMinDocCount;
+			this.size = instance.size;
+
+		}
 		/**
 		 * Prevents the specified terms from being included in the results.
 		 * <p>
@@ -359,6 +370,12 @@ public class VertexDefinition implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

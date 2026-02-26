@@ -265,6 +265,19 @@ public class Cpu implements JsonpSerializable {
 		@Nullable
 		private Map<String, Double> loadAverage;
 
+		public Builder() {
+		}
+		private Builder(Cpu instance) {
+			this.percent = instance.percent;
+			this.sys = instance.sys;
+			this.sysInMillis = instance.sysInMillis;
+			this.total = instance.total;
+			this.totalInMillis = instance.totalInMillis;
+			this.user = instance.user;
+			this.userInMillis = instance.userInMillis;
+			this.loadAverage = instance.loadAverage;
+
+		}
 		/**
 		 * API name: {@code percent}
 		 */
@@ -380,6 +393,12 @@ public class Cpu implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

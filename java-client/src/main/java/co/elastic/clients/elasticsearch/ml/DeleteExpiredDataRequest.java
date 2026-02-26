@@ -172,6 +172,14 @@ public class DeleteExpiredDataRequest extends RequestBase implements JsonpSerial
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeleteExpiredDataRequest instance) {
+			this.jobId = instance.jobId;
+			this.requestsPerSecond = instance.requestsPerSecond;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Identifier for an anomaly detection job. It can be a job identifier, a group
 		 * name, or a wildcard expression.
@@ -231,6 +239,12 @@ public class DeleteExpiredDataRequest extends RequestBase implements JsonpSerial
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

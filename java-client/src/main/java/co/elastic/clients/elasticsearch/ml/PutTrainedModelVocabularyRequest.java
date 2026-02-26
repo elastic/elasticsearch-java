@@ -195,6 +195,15 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 
 		private List<String> vocabulary;
 
+		public Builder() {
+		}
+		private Builder(PutTrainedModelVocabularyRequest instance) {
+			this.merges = instance.merges;
+			this.modelId = instance.modelId;
+			this.scores = instance.scores;
+			this.vocabulary = instance.vocabulary;
+
+		}
 		/**
 		 * The optional model merges if required by the tokenizer.
 		 * <p>
@@ -295,6 +304,12 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -107,6 +107,12 @@ public class MultiSearchItem<TDocument> extends ResponseBody<TDocument> {
 		@Nullable
 		private Integer status;
 
+		public Builder() {
+		}
+		private Builder(MultiSearchItem<TDocument> instance) {
+			this.status = instance.status;
+
+		}
 		/**
 		 * API name: {@code status}
 		 */
@@ -133,6 +139,12 @@ public class MultiSearchItem<TDocument> extends ResponseBody<TDocument> {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

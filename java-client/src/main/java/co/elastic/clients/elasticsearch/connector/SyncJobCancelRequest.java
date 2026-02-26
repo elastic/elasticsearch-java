@@ -103,6 +103,12 @@ public class SyncJobCancelRequest extends RequestBase {
 				ObjectBuilder<SyncJobCancelRequest> {
 		private String connectorSyncJobId;
 
+		public Builder() {
+		}
+		private Builder(SyncJobCancelRequest instance) {
+			this.connectorSyncJobId = instance.connectorSyncJobId;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector sync job
 		 * <p>
@@ -131,6 +137,12 @@ public class SyncJobCancelRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

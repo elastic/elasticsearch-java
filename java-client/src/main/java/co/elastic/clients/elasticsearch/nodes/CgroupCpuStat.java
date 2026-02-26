@@ -164,6 +164,14 @@ public class CgroupCpuStat implements JsonpSerializable {
 		@Nullable
 		private Long timeThrottledNanos;
 
+		public Builder() {
+		}
+		private Builder(CgroupCpuStat instance) {
+			this.numberOfElapsedPeriods = instance.numberOfElapsedPeriods;
+			this.numberOfTimesThrottled = instance.numberOfTimesThrottled;
+			this.timeThrottledNanos = instance.timeThrottledNanos;
+
+		}
 		/**
 		 * The number of reporting periods (as specified by
 		 * <code>cfs_period_micros</code>) that have elapsed.
@@ -215,6 +223,12 @@ public class CgroupCpuStat implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

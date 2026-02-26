@@ -387,6 +387,25 @@ public class Category implements JsonpSerializable {
 
 		private String mlcategory;
 
+		public Builder() {
+		}
+		private Builder(Category instance) {
+			this.categoryId = instance.categoryId;
+			this.examples = instance.examples;
+			this.grokPattern = instance.grokPattern;
+			this.jobId = instance.jobId;
+			this.maxMatchingLength = instance.maxMatchingLength;
+			this.partitionFieldName = instance.partitionFieldName;
+			this.partitionFieldValue = instance.partitionFieldValue;
+			this.regex = instance.regex;
+			this.terms = instance.terms;
+			this.numMatches = instance.numMatches;
+			this.preferredToCategories = instance.preferredToCategories;
+			this.p = instance.p;
+			this.resultType = instance.resultType;
+			this.mlcategory = instance.mlcategory;
+
+		}
 		/**
 		 * Required - A unique identifier for the category. category_id is unique at the
 		 * job level, even when per-partition categorization is enabled.
@@ -587,6 +606,12 @@ public class Category implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -180,6 +180,15 @@ public class MasterIsStableIndicatorDetails implements JsonpSerializable {
 		@Nullable
 		private List<MasterIsStableIndicatorClusterFormationNode> clusterFormation;
 
+		public Builder() {
+		}
+		private Builder(MasterIsStableIndicatorDetails instance) {
+			this.currentMaster = instance.currentMaster;
+			this.recentMasters = instance.recentMasters;
+			this.exceptionFetchingHistory = instance.exceptionFetchingHistory;
+			this.clusterFormation = instance.clusterFormation;
+
+		}
 		/**
 		 * Required - API name: {@code current_master}
 		 */
@@ -290,6 +299,12 @@ public class MasterIsStableIndicatorDetails implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

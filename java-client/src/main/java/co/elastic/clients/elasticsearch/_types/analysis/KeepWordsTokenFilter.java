@@ -171,6 +171,14 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
 		@Nullable
 		private String keepWordsPath;
 
+		public Builder() {
+		}
+		private Builder(KeepWordsTokenFilter instance) {
+			this.keepWords = instance.keepWords;
+			this.keepWordsCase = instance.keepWordsCase;
+			this.keepWordsPath = instance.keepWordsPath;
+
+		}
 		/**
 		 * List of words to keep. Only tokens that match words in this list are included
 		 * in the output. Either this parameter or <code>keep_words_path</code> must be
@@ -242,6 +250,12 @@ public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilter
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

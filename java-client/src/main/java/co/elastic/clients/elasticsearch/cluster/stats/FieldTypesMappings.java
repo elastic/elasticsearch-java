@@ -267,6 +267,18 @@ public class FieldTypesMappings implements JsonpSerializable {
 
 		private Map<String, Integer> sourceModes;
 
+		public Builder() {
+		}
+		private Builder(FieldTypesMappings instance) {
+			this.fieldTypes = instance.fieldTypes;
+			this.runtimeFieldTypes = instance.runtimeFieldTypes;
+			this.totalFieldCount = instance.totalFieldCount;
+			this.totalDeduplicatedFieldCount = instance.totalDeduplicatedFieldCount;
+			this.totalDeduplicatedMappingSize = instance.totalDeduplicatedMappingSize;
+			this.totalDeduplicatedMappingSizeInBytes = instance.totalDeduplicatedMappingSizeInBytes;
+			this.sourceModes = instance.sourceModes;
+
+		}
 		/**
 		 * Required - Contains statistics about field data types used in selected nodes.
 		 * <p>
@@ -424,6 +436,12 @@ public class FieldTypesMappings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

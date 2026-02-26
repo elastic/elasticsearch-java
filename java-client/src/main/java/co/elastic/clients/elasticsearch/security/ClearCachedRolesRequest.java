@@ -104,6 +104,12 @@ public class ClearCachedRolesRequest extends RequestBase {
 				ObjectBuilder<ClearCachedRolesRequest> {
 		private List<String> name;
 
+		public Builder() {
+		}
+		private Builder(ClearCachedRolesRequest instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - A comma-separated list of roles to evict from the role cache. To
 		 * evict all roles, use an asterisk (<code>*</code>). It does not support other
@@ -150,6 +156,12 @@ public class ClearCachedRolesRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

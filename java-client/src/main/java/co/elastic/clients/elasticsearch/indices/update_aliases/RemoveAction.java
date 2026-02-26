@@ -223,6 +223,16 @@ public class RemoveAction implements ActionVariant, JsonpSerializable {
 		@Nullable
 		private Boolean mustExist;
 
+		public Builder() {
+		}
+		private Builder(RemoveAction instance) {
+			this.alias = instance.alias;
+			this.aliases = instance.aliases;
+			this.index = instance.index;
+			this.indices = instance.indices;
+			this.mustExist = instance.mustExist;
+
+		}
 		/**
 		 * Alias for the action. Index alias names support date math.
 		 * <p>
@@ -319,6 +329,12 @@ public class RemoveAction implements ActionVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

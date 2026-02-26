@@ -231,6 +231,18 @@ public class Checkpointing implements JsonpSerializable {
 		@Nullable
 		private DateTime lastSearchTimeString;
 
+		public Builder() {
+		}
+		private Builder(Checkpointing instance) {
+			this.changesLastDetectedAt = instance.changesLastDetectedAt;
+			this.changesLastDetectedAtString = instance.changesLastDetectedAtString;
+			this.last = instance.last;
+			this.next = instance.next;
+			this.operationsBehind = instance.operationsBehind;
+			this.lastSearchTime = instance.lastSearchTime;
+			this.lastSearchTimeString = instance.lastSearchTimeString;
+
+		}
 		/**
 		 * API name: {@code changes_last_detected_at}
 		 */
@@ -319,6 +331,12 @@ public class Checkpointing implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

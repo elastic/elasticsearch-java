@@ -122,6 +122,12 @@ public class GoogleNormalizedDistanceHeuristic implements JsonpSerializable {
 		@Nullable
 		private Boolean backgroundIsSuperset;
 
+		public Builder() {
+		}
+		private Builder(GoogleNormalizedDistanceHeuristic instance) {
+			this.backgroundIsSuperset = instance.backgroundIsSuperset;
+
+		}
 		/**
 		 * Set to <code>false</code> if you defined a custom background filter that
 		 * represents a different set of documents that you want to compare to.
@@ -151,6 +157,12 @@ public class GoogleNormalizedDistanceHeuristic implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

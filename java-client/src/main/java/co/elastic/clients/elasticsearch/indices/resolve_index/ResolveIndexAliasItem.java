@@ -137,6 +137,13 @@ public class ResolveIndexAliasItem implements JsonpSerializable {
 
 		private List<String> indices;
 
+		public Builder() {
+		}
+		private Builder(ResolveIndexAliasItem instance) {
+			this.name = instance.name;
+			this.indices = instance.indices;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -183,6 +190,12 @@ public class ResolveIndexAliasItem implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

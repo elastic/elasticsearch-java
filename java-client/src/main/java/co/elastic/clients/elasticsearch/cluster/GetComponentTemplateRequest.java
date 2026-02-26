@@ -197,6 +197,17 @@ public class GetComponentTemplateRequest extends RequestBase {
 		@Nullable
 		private List<String> settingsFilter;
 
+		public Builder() {
+		}
+		private Builder(GetComponentTemplateRequest instance) {
+			this.flatSettings = instance.flatSettings;
+			this.includeDefaults = instance.includeDefaults;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.settingsFilter = instance.settingsFilter;
+
+		}
 		/**
 		 * If <code>true</code>, returns settings in flat format.
 		 * <p>
@@ -308,6 +319,12 @@ public class GetComponentTemplateRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

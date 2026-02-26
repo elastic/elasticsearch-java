@@ -112,6 +112,12 @@ public class FieldAliasProperty extends PropertyBase implements PropertyVariant 
 		@Nullable
 		private String path;
 
+		public Builder() {
+		}
+		private Builder(FieldAliasProperty instance) {
+			this.path = instance.path;
+
+		}
 		/**
 		 * API name: {@code path}
 		 */
@@ -138,6 +144,12 @@ public class FieldAliasProperty extends PropertyBase implements PropertyVariant 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

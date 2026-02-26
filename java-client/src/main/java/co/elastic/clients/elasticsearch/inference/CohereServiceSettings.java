@@ -95,9 +95,7 @@ public class CohereServiceSettings implements JsonpSerializable {
 	 * <p>
 	 * IMPORTANT: You need to provide the API key only once, during the inference
 	 * model creation. The get inference endpoint API does not retrieve your API
-	 * key. After creating the inference model, you cannot change the associated API
-	 * key. If you want to use a different API key, delete the inference model and
-	 * recreate it with the same name and the updated API key.
+	 * key.
 	 * <p>
 	 * API name: {@code api_key}
 	 */
@@ -227,15 +225,23 @@ public class CohereServiceSettings implements JsonpSerializable {
 		@Nullable
 		private CohereSimilarityType similarity;
 
+		public Builder() {
+		}
+		private Builder(CohereServiceSettings instance) {
+			this.apiKey = instance.apiKey;
+			this.embeddingType = instance.embeddingType;
+			this.modelId = instance.modelId;
+			this.rateLimit = instance.rateLimit;
+			this.similarity = instance.similarity;
+
+		}
 		/**
 		 * Required - A valid API key for your Cohere account. You can find or create
 		 * your Cohere API keys on the Cohere API key settings page.
 		 * <p>
 		 * IMPORTANT: You need to provide the API key only once, during the inference
 		 * model creation. The get inference endpoint API does not retrieve your API
-		 * key. After creating the inference model, you cannot change the associated API
-		 * key. If you want to use a different API key, delete the inference model and
-		 * recreate it with the same name and the updated API key.
+		 * key.
 		 * <p>
 		 * API name: {@code api_key}
 		 */
@@ -336,6 +342,12 @@ public class CohereServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

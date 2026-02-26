@@ -85,6 +85,11 @@ public class GeoDistanceFeatureQuery extends DistanceFeatureQueryBase<GeoLocatio
 	public static class Builder extends DistanceFeatureQueryBase.AbstractBuilder<GeoLocation, String, Builder>
 			implements
 				ObjectBuilder<GeoDistanceFeatureQuery> {
+		public Builder() {
+		}
+		private Builder(GeoDistanceFeatureQuery instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -105,6 +110,12 @@ public class GeoDistanceFeatureQuery extends DistanceFeatureQueryBase<GeoLocatio
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

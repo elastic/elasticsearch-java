@@ -134,6 +134,13 @@ public class TokenDetail implements JsonpSerializable {
 
 		private List<ExplainAnalyzeToken> tokens;
 
+		public Builder() {
+		}
+		private Builder(TokenDetail instance) {
+			this.name = instance.name;
+			this.tokens = instance.tokens;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -189,6 +196,12 @@ public class TokenDetail implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

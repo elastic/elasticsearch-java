@@ -143,6 +143,14 @@ public class ClusterStatsRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(ClusterStatsRequest instance) {
+			this.includeRemotes = instance.includeRemotes;
+			this.nodeId = instance.nodeId;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Include remote cluster data into the response
 		 * <p>
@@ -222,6 +230,12 @@ public class ClusterStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

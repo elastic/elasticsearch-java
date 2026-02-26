@@ -168,6 +168,14 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 
 		private List<String> resources;
 
+		public Builder() {
+		}
+		private Builder(ApplicationPrivilegesCheck instance) {
+			this.application = instance.application;
+			this.privileges = instance.privileges;
+			this.resources = instance.resources;
+
+		}
 		/**
 		 * Required - The name of the application.
 		 * <p>
@@ -250,6 +258,12 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

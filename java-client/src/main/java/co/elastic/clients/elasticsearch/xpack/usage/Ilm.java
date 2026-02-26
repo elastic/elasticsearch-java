@@ -134,6 +134,13 @@ public class Ilm implements JsonpSerializable {
 
 		private List<IlmPolicyStatistics> policyStats;
 
+		public Builder() {
+		}
+		private Builder(Ilm instance) {
+			this.policyCount = instance.policyCount;
+			this.policyStats = instance.policyStats;
+
+		}
 		/**
 		 * Required - API name: {@code policy_count}
 		 */
@@ -189,6 +196,12 @@ public class Ilm implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

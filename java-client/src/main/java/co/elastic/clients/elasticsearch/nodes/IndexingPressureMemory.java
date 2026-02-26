@@ -189,6 +189,15 @@ public class IndexingPressureMemory implements JsonpSerializable {
 		@Nullable
 		private PressureMemory total;
 
+		public Builder() {
+		}
+		private Builder(IndexingPressureMemory instance) {
+			this.limit = instance.limit;
+			this.limitInBytes = instance.limitInBytes;
+			this.current = instance.current;
+			this.total = instance.total;
+
+		}
 		/**
 		 * Configured memory limit for the indexing requests. Replica requests have an
 		 * automatic limit that is 1.5x this value.
@@ -267,6 +276,12 @@ public class IndexingPressureMemory implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

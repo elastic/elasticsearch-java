@@ -137,6 +137,14 @@ public class DeleteTrainedModelRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeleteTrainedModelRequest instance) {
+			this.force = instance.force;
+			this.modelId = instance.modelId;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Forcefully deletes a trained model that is referenced by ingest pipelines or
 		 * has a started deployment.
@@ -197,6 +205,12 @@ public class DeleteTrainedModelRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

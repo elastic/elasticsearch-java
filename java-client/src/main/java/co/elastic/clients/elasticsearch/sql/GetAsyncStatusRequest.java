@@ -100,6 +100,12 @@ public class GetAsyncStatusRequest extends RequestBase {
 				ObjectBuilder<GetAsyncStatusRequest> {
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(GetAsyncStatusRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Required - The identifier for the search.
 		 * <p>
@@ -128,6 +134,12 @@ public class GetAsyncStatusRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

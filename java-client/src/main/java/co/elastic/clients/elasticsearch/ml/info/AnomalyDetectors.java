@@ -176,6 +176,16 @@ public class AnomalyDetectors implements JsonpSerializable {
 
 		private Integer dailyModelSnapshotRetentionAfterDays;
 
+		public Builder() {
+		}
+		private Builder(AnomalyDetectors instance) {
+			this.categorizationAnalyzer = instance.categorizationAnalyzer;
+			this.categorizationExamplesLimit = instance.categorizationExamplesLimit;
+			this.modelMemoryLimit = instance.modelMemoryLimit;
+			this.modelSnapshotRetentionDays = instance.modelSnapshotRetentionDays;
+			this.dailyModelSnapshotRetentionAfterDays = instance.dailyModelSnapshotRetentionAfterDays;
+
+		}
 		/**
 		 * Required - API name: {@code categorization_analyzer}
 		 */
@@ -242,6 +252,12 @@ public class AnomalyDetectors implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

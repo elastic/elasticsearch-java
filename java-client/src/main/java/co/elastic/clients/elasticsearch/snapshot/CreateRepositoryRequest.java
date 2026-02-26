@@ -194,6 +194,16 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 
 		private Repository repository;
 
+		public Builder() {
+		}
+		private Builder(CreateRepositoryRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.timeout = instance.timeout;
+			this.verify = instance.verify;
+			this.repository = instance.repository;
+
+		}
 		/**
 		 * The period to wait for the master node. If the master node is not available
 		 * before the timeout expires, the request fails and returns an error. To
@@ -308,6 +318,12 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<CreateRepositoryRequest> _DESERIALIZER = createCreateRepositoryRequestDeserializer();
 	protected static JsonpDeserializer<CreateRepositoryRequest> createCreateRepositoryRequestDeserializer() {
 

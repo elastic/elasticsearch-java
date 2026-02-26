@@ -114,6 +114,12 @@ public class SerialDifferencingAggregation extends PipelineAggregationBase imple
 		@Nullable
 		private Integer lag;
 
+		public Builder() {
+		}
+		private Builder(SerialDifferencingAggregation instance) {
+			this.lag = instance.lag;
+
+		}
 		/**
 		 * The historical bucket to subtract from the current value. Must be a positive,
 		 * non-zero integer.
@@ -143,6 +149,12 @@ public class SerialDifferencingAggregation extends PipelineAggregationBase imple
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

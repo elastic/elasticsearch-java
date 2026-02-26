@@ -194,6 +194,15 @@ public class VoyageAITaskSettings implements JsonpSerializable {
 		@Nullable
 		private Boolean truncation;
 
+		public Builder() {
+		}
+		private Builder(VoyageAITaskSettings instance) {
+			this.inputType = instance.inputType;
+			this.returnDocuments = instance.returnDocuments;
+			this.topK = instance.topK;
+			this.truncation = instance.truncation;
+
+		}
 		/**
 		 * Type of the input text. Permitted values: <code>ingest</code> (maps to
 		 * <code>document</code> in the VoyageAI documentation), <code>search</code>
@@ -258,6 +267,12 @@ public class VoyageAITaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

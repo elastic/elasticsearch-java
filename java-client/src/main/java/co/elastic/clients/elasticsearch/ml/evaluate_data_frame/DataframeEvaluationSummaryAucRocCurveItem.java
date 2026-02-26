@@ -143,6 +143,14 @@ public class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSerializa
 
 		private Double threshold;
 
+		public Builder() {
+		}
+		private Builder(DataframeEvaluationSummaryAucRocCurveItem instance) {
+			this.tpr = instance.tpr;
+			this.fpr = instance.fpr;
+			this.threshold = instance.threshold;
+
+		}
 		/**
 		 * Required - API name: {@code tpr}
 		 */
@@ -185,6 +193,12 @@ public class DataframeEvaluationSummaryAucRocCurveItem implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -94,6 +94,11 @@ public class FiltersAggregate extends MultiBucketAggregateBase<FiltersBucket>
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<FiltersBucket, Builder>
 			implements
 				ObjectBuilder<FiltersAggregate> {
+		public Builder() {
+		}
+		private Builder(FiltersAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -113,6 +118,12 @@ public class FiltersAggregate extends MultiBucketAggregateBase<FiltersBucket>
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

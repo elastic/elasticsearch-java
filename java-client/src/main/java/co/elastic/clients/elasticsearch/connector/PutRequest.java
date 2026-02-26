@@ -235,6 +235,18 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private String serviceType;
 
+		public Builder() {
+		}
+		private Builder(PutRequest instance) {
+			this.connectorId = instance.connectorId;
+			this.description = instance.description;
+			this.indexName = instance.indexName;
+			this.isNative = instance.isNative;
+			this.language = instance.language;
+			this.name = instance.name;
+			this.serviceType = instance.serviceType;
+
+		}
 		/**
 		 * The unique identifier of the connector to be created or updated. ID is
 		 * auto-generated if not provided.
@@ -312,6 +324,12 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

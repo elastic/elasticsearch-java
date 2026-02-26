@@ -194,6 +194,16 @@ public class TokenCountProperty extends DocValuesPropertyBase implements Propert
 		@Nullable
 		private Boolean enablePositionIncrements;
 
+		public Builder() {
+		}
+		private Builder(TokenCountProperty instance) {
+			this.analyzer = instance.analyzer;
+			this.boost = instance.boost;
+			this.index = instance.index;
+			this.nullValue = instance.nullValue;
+			this.enablePositionIncrements = instance.enablePositionIncrements;
+
+		}
 		/**
 		 * API name: {@code analyzer}
 		 */
@@ -252,6 +262,12 @@ public class TokenCountProperty extends DocValuesPropertyBase implements Propert
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

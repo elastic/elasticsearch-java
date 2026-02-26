@@ -131,6 +131,13 @@ public class ConnectorScheduling implements JsonpSerializable {
 
 		private String interval;
 
+		public Builder() {
+		}
+		private Builder(ConnectorScheduling instance) {
+			this.enabled = instance.enabled;
+			this.interval = instance.interval;
+
+		}
 		/**
 		 * Required - API name: {@code enabled}
 		 */
@@ -167,6 +174,12 @@ public class ConnectorScheduling implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

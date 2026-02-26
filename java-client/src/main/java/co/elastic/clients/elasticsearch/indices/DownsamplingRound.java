@@ -131,6 +131,13 @@ public class DownsamplingRound implements JsonpSerializable {
 
 		private DownsampleConfig config;
 
+		public Builder() {
+		}
+		private Builder(DownsamplingRound instance) {
+			this.after = instance.after;
+			this.config = instance.config;
+
+		}
 		/**
 		 * Required - The duration since rollover when this downsampling round should
 		 * execute
@@ -189,6 +196,12 @@ public class DownsamplingRound implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

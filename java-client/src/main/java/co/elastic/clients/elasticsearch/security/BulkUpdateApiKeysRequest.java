@@ -241,6 +241,15 @@ public class BulkUpdateApiKeysRequest extends RequestBase implements JsonpSerial
 		@Nullable
 		private Map<String, RoleDescriptor> roleDescriptors;
 
+		public Builder() {
+		}
+		private Builder(BulkUpdateApiKeysRequest instance) {
+			this.expiration = instance.expiration;
+			this.ids = instance.ids;
+			this.metadata = instance.metadata;
+			this.roleDescriptors = instance.roleDescriptors;
+
+		}
 		/**
 		 * Expiration time for the API keys. By default, API keys never expire. This
 		 * property can be omitted to leave the value unchanged.
@@ -399,6 +408,12 @@ public class BulkUpdateApiKeysRequest extends RequestBase implements JsonpSerial
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -208,6 +208,15 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 
 		private Map<String, Map<String, JsonData>> metricDetails;
 
+		public Builder() {
+		}
+		private Builder(RankEvalMetricDetail instance) {
+			this.metricScore = instance.metricScore;
+			this.unratedDocs = instance.unratedDocs;
+			this.hits = instance.hits;
+			this.metricDetails = instance.metricDetails;
+
+		}
 		/**
 		 * Required - The metric_score in the details section shows the contribution of
 		 * this query to the global quality metric score
@@ -346,6 +355,12 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

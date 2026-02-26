@@ -208,6 +208,15 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 		@Nullable
 		private IntervalsFilter filter;
 
+		public Builder() {
+		}
+		private Builder(IntervalsAllOf instance) {
+			this.intervals = instance.intervals;
+			this.maxGaps = instance.maxGaps;
+			this.ordered = instance.ordered;
+			this.filter = instance.filter;
+
+		}
 		/**
 		 * Required - An array of rules to combine. All rules must produce a match in a
 		 * document for the overall source to match.
@@ -331,6 +340,12 @@ public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

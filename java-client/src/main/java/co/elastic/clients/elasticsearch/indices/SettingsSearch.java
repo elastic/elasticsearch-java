@@ -134,6 +134,13 @@ public class SettingsSearch implements JsonpSerializable {
 		@Nullable
 		private SlowlogSettings slowlog;
 
+		public Builder() {
+		}
+		private Builder(SettingsSearch instance) {
+			this.idle = instance.idle;
+			this.slowlog = instance.slowlog;
+
+		}
 		/**
 		 * API name: {@code idle}
 		 */
@@ -182,6 +189,12 @@ public class SettingsSearch implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -200,6 +200,16 @@ public class LinearRetriever extends RetrieverBase implements RetrieverVariant {
 		@Nullable
 		private ScoreNormalizer normalizer;
 
+		public Builder() {
+		}
+		private Builder(LinearRetriever instance) {
+			this.retrievers = instance.retrievers;
+			this.rankWindowSize = instance.rankWindowSize;
+			this.query = instance.query;
+			this.fields = instance.fields;
+			this.normalizer = instance.normalizer;
+
+		}
 		/**
 		 * Inner retrievers.
 		 * <p>
@@ -297,6 +307,12 @@ public class LinearRetriever extends RetrieverBase implements RetrieverVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

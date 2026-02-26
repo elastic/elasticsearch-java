@@ -140,6 +140,13 @@ public class ChunkingConfig implements JsonpSerializable {
 		@Nullable
 		private Time timeSpan;
 
+		public Builder() {
+		}
+		private Builder(ChunkingConfig instance) {
+			this.mode = instance.mode;
+			this.timeSpan = instance.timeSpan;
+
+		}
 		/**
 		 * Required - If the mode is <code>auto</code>, the chunk size is dynamically
 		 * calculated; this is the recommended value when the datafeed does not use
@@ -194,6 +201,12 @@ public class ChunkingConfig implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

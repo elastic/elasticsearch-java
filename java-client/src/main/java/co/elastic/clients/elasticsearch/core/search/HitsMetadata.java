@@ -175,6 +175,14 @@ public class HitsMetadata<T> implements JsonpSerializable {
 		@Nullable
 		private JsonpSerializer<T> tSerializer;
 
+		public Builder() {
+		}
+		private Builder(HitsMetadata<T> instance) {
+			this.total = instance.total;
+			this.hits = instance.hits;
+			this.maxScore = instance.maxScore;
+
+		}
 		/**
 		 * Total hit count information, present only if <code>track_total_hits</code>
 		 * wasn't <code>false</code> in the search request.
@@ -260,6 +268,12 @@ public class HitsMetadata<T> implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -102,6 +102,12 @@ public class DeleteBehavioralAnalyticsRequest extends RequestBase {
 				ObjectBuilder<DeleteBehavioralAnalyticsRequest> {
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(DeleteBehavioralAnalyticsRequest instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - The name of the analytics collection to be deleted
 		 * <p>
@@ -130,6 +136,12 @@ public class DeleteBehavioralAnalyticsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

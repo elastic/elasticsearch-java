@@ -99,6 +99,12 @@ public class DeleteCalendarRequest extends RequestBase {
 				ObjectBuilder<DeleteCalendarRequest> {
 		private String calendarId;
 
+		public Builder() {
+		}
+		private Builder(DeleteCalendarRequest instance) {
+			this.calendarId = instance.calendarId;
+
+		}
 		/**
 		 * Required - A string that uniquely identifies a calendar.
 		 * <p>
@@ -127,6 +133,12 @@ public class DeleteCalendarRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

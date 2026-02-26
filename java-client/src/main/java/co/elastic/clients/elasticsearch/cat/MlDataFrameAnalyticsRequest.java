@@ -208,6 +208,17 @@ public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 		@Nullable
 		private TimeUnit time;
 
+		public Builder() {
+		}
+		private Builder(MlDataFrameAnalyticsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.bytes = instance.bytes;
+			this.h = instance.h;
+			this.id = instance.id;
+			this.s = instance.s;
+			this.time = instance.time;
+
+		}
 		/**
 		 * Whether to ignore if a wildcard expression matches no configs. (This includes
 		 * <code>_all</code> string or when no configs have been specified.)
@@ -331,6 +342,12 @@ public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

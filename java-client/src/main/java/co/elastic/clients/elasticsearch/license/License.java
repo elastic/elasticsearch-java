@@ -261,6 +261,21 @@ public class License implements JsonpSerializable {
 
 		private String uid;
 
+		public Builder() {
+		}
+		private Builder(License instance) {
+			this.expiryDateInMillis = instance.expiryDateInMillis;
+			this.issueDateInMillis = instance.issueDateInMillis;
+			this.startDateInMillis = instance.startDateInMillis;
+			this.issuedTo = instance.issuedTo;
+			this.issuer = instance.issuer;
+			this.maxNodes = instance.maxNodes;
+			this.maxResourceUnits = instance.maxResourceUnits;
+			this.signature = instance.signature;
+			this.type = instance.type;
+			this.uid = instance.uid;
+
+		}
 		/**
 		 * Required - API name: {@code expiry_date_in_millis}
 		 */
@@ -359,6 +374,12 @@ public class License implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

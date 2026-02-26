@@ -199,6 +199,17 @@ public class RerouteParameters implements JsonpSerializable {
 		@Nullable
 		private String toNode;
 
+		public Builder() {
+		}
+		private Builder(RerouteParameters instance) {
+			this.allowPrimary = instance.allowPrimary;
+			this.index = instance.index;
+			this.node = instance.node;
+			this.shard = instance.shard;
+			this.fromNode = instance.fromNode;
+			this.toNode = instance.toNode;
+
+		}
 		/**
 		 * Required - API name: {@code allow_primary}
 		 */
@@ -265,6 +276,12 @@ public class RerouteParameters implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

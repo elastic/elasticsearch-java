@@ -123,6 +123,13 @@ public class Monitoring extends Base {
 
 		private Map<String, Long> enabledExporters;
 
+		public Builder() {
+		}
+		private Builder(Monitoring instance) {
+			this.collectionEnabled = instance.collectionEnabled;
+			this.enabledExporters = instance.enabledExporters;
+
+		}
 		/**
 		 * Required - API name: {@code collection_enabled}
 		 */
@@ -169,6 +176,12 @@ public class Monitoring extends Base {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

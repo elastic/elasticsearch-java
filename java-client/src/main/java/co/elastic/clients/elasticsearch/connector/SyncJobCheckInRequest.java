@@ -105,6 +105,12 @@ public class SyncJobCheckInRequest extends RequestBase {
 				ObjectBuilder<SyncJobCheckInRequest> {
 		private String connectorSyncJobId;
 
+		public Builder() {
+		}
+		private Builder(SyncJobCheckInRequest instance) {
+			this.connectorSyncJobId = instance.connectorSyncJobId;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector sync job to be checked in.
 		 * <p>
@@ -133,6 +139,12 @@ public class SyncJobCheckInRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

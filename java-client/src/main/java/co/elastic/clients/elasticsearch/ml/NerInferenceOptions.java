@@ -198,6 +198,15 @@ public class NerInferenceOptions implements InferenceConfigCreateVariant, JsonpS
 		@Nullable
 		private Vocabulary vocabulary;
 
+		public Builder() {
+		}
+		private Builder(NerInferenceOptions instance) {
+			this.tokenization = instance.tokenization;
+			this.resultsField = instance.resultsField;
+			this.classificationLabels = instance.classificationLabels;
+			this.vocabulary = instance.vocabulary;
+
+		}
 		/**
 		 * The tokenization options
 		 * <p>
@@ -295,6 +304,12 @@ public class NerInferenceOptions implements InferenceConfigCreateVariant, JsonpS
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

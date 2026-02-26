@@ -209,6 +209,16 @@ public class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 		private String tokenizer;
 
+		public Builder() {
+		}
+		private Builder(CustomAnalyzer instance) {
+			this.charFilter = instance.charFilter;
+			this.filter = instance.filter;
+			this.positionIncrementGap = instance.positionIncrementGap;
+			this.positionOffsetGap = instance.positionOffsetGap;
+			this.tokenizer = instance.tokenizer;
+
+		}
 		/**
 		 * API name: {@code char_filter}
 		 * <p>
@@ -291,6 +301,12 @@ public class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -113,6 +113,12 @@ public class BucketSelectorAggregation extends PipelineAggregationBase implement
 		@Nullable
 		private Script script;
 
+		public Builder() {
+		}
+		private Builder(BucketSelectorAggregation instance) {
+			this.script = instance.script;
+
+		}
 		/**
 		 * The script to run for this aggregation.
 		 * <p>
@@ -150,6 +156,12 @@ public class BucketSelectorAggregation extends PipelineAggregationBase implement
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

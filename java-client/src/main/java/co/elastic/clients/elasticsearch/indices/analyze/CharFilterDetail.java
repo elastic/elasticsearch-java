@@ -134,6 +134,13 @@ public class CharFilterDetail implements JsonpSerializable {
 
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(CharFilterDetail instance) {
+			this.filteredText = instance.filteredText;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - API name: {@code filtered_text}
 		 * <p>
@@ -180,6 +187,12 @@ public class CharFilterDetail implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

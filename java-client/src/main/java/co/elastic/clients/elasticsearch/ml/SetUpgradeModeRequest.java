@@ -131,6 +131,13 @@ public class SetUpgradeModeRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(SetUpgradeModeRequest instance) {
+			this.enabled = instance.enabled;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * When <code>true</code>, it enables <code>upgrade_mode</code> which
 		 * temporarily halts all job and datafeed tasks and prohibits new job and
@@ -180,6 +187,12 @@ public class SetUpgradeModeRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

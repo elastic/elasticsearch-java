@@ -617,6 +617,33 @@ public class Stats implements JsonpSerializable {
 		@Nullable
 		private ShardStats indices;
 
+		public Builder() {
+		}
+		private Builder(Stats instance) {
+			this.adaptiveSelection = instance.adaptiveSelection;
+			this.breakers = instance.breakers;
+			this.fs = instance.fs;
+			this.host = instance.host;
+			this.http = instance.http;
+			this.ingest = instance.ingest;
+			this.ip = instance.ip;
+			this.jvm = instance.jvm;
+			this.name = instance.name;
+			this.os = instance.os;
+			this.process = instance.process;
+			this.roles = instance.roles;
+			this.script = instance.script;
+			this.scriptCache = instance.scriptCache;
+			this.threadPool = instance.threadPool;
+			this.timestamp = instance.timestamp;
+			this.transport = instance.transport;
+			this.transportAddress = instance.transportAddress;
+			this.attributes = instance.attributes;
+			this.discovery = instance.discovery;
+			this.indexingPressure = instance.indexingPressure;
+			this.indices = instance.indices;
+
+		}
 		/**
 		 * Statistics about adaptive replica selection.
 		 * <p>
@@ -1088,6 +1115,12 @@ public class Stats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

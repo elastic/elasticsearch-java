@@ -191,6 +191,16 @@ public class FielddataStats implements JsonpSerializable {
 
 		private GlobalOrdinalsStats globalOrdinals;
 
+		public Builder() {
+		}
+		private Builder(FielddataStats instance) {
+			this.evictions = instance.evictions;
+			this.memorySize = instance.memorySize;
+			this.memorySizeInBytes = instance.memorySizeInBytes;
+			this.fields = instance.fields;
+			this.globalOrdinals = instance.globalOrdinals;
+
+		}
 		/**
 		 * API name: {@code evictions}
 		 */
@@ -279,6 +289,12 @@ public class FielddataStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

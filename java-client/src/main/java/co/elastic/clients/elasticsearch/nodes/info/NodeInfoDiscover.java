@@ -206,6 +206,15 @@ public class NodeInfoDiscover implements JsonpSerializable {
 		@Nullable
 		private List<String> seedProviders;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoDiscover instance) {
+			this.seedHosts = instance.seedHosts;
+			this.type = instance.type;
+			this.seedProviders = instance.seedProviders;
+			this.settings = instance.settings;
+
+		}
 		/**
 		 * API name: {@code seed_hosts}
 		 * <p>
@@ -272,6 +281,12 @@ public class NodeInfoDiscover implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

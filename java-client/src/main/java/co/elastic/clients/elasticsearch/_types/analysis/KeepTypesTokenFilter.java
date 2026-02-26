@@ -139,6 +139,13 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 
 		private List<String> types;
 
+		public Builder() {
+		}
+		private Builder(KeepTypesTokenFilter instance) {
+			this.mode = instance.mode;
+			this.types = instance.types;
+
+		}
 		/**
 		 * Indicates whether to keep or remove the specified token types.
 		 * <p>
@@ -191,6 +198,12 @@ public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilter
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

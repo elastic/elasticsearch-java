@@ -128,6 +128,13 @@ public class CartesianCentroidAggregate extends AggregateBase implements Aggrega
 		@Nullable
 		private CartesianPoint location;
 
+		public Builder() {
+		}
+		private Builder(CartesianCentroidAggregate instance) {
+			this.count = instance.count;
+			this.location = instance.location;
+
+		}
 		/**
 		 * Required - API name: {@code count}
 		 */
@@ -169,6 +176,12 @@ public class CartesianCentroidAggregate extends AggregateBase implements Aggrega
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

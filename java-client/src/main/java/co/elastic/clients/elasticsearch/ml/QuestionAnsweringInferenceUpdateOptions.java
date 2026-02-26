@@ -215,6 +215,16 @@ public class QuestionAnsweringInferenceUpdateOptions implements InferenceConfigU
 		@Nullable
 		private Integer maxAnswerLength;
 
+		public Builder() {
+		}
+		private Builder(QuestionAnsweringInferenceUpdateOptions instance) {
+			this.question = instance.question;
+			this.numTopClasses = instance.numTopClasses;
+			this.tokenization = instance.tokenization;
+			this.resultsField = instance.resultsField;
+			this.maxAnswerLength = instance.maxAnswerLength;
+
+		}
 		/**
 		 * Required - The question to answer given the inference context
 		 * <p>
@@ -294,6 +304,12 @@ public class QuestionAnsweringInferenceUpdateOptions implements InferenceConfigU
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

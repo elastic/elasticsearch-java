@@ -106,6 +106,12 @@ public class GetJobsRequest extends RequestBase {
 		@Nullable
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(GetJobsRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Identifier for the rollup job. If it is <code>_all</code> or omitted, the API
 		 * returns all rollup jobs.
@@ -135,6 +141,12 @@ public class GetJobsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

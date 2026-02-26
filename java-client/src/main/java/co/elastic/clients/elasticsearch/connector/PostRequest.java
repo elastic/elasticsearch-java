@@ -221,6 +221,17 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private String serviceType;
 
+		public Builder() {
+		}
+		private Builder(PostRequest instance) {
+			this.description = instance.description;
+			this.indexName = instance.indexName;
+			this.isNative = instance.isNative;
+			this.language = instance.language;
+			this.name = instance.name;
+			this.serviceType = instance.serviceType;
+
+		}
 		/**
 		 * API name: {@code description}
 		 */
@@ -287,6 +298,12 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

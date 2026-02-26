@@ -160,6 +160,15 @@ public class DeleteForecastRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeleteForecastRequest instance) {
+			this.allowNoForecasts = instance.allowNoForecasts;
+			this.forecastId = instance.forecastId;
+			this.jobId = instance.jobId;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Specifies whether an error occurs when there are no forecasts. In particular,
 		 * if this parameter is set to <code>false</code> and there are no forecasts
@@ -235,6 +244,12 @@ public class DeleteForecastRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

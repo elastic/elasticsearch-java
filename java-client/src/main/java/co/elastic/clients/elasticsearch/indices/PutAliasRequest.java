@@ -292,6 +292,20 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutAliasRequest instance) {
+			this.filter = instance.filter;
+			this.index = instance.index;
+			this.indexRouting = instance.indexRouting;
+			this.isWriteIndex = instance.isWriteIndex;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.routing = instance.routing;
+			this.searchRouting = instance.searchRouting;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Query used to limit documents the alias can access.
 		 * <p>
@@ -471,6 +485,12 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

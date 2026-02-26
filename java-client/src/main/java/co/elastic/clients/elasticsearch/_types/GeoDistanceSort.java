@@ -285,6 +285,17 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 		@Nullable
 		private NestedSortValue nested;
 
+		public Builder() {
+		}
+		private Builder(GeoDistanceSort instance) {
+			this.mode = instance.mode;
+			this.distanceType = instance.distanceType;
+			this.ignoreUnmapped = instance.ignoreUnmapped;
+			this.order = instance.order;
+			this.unit = instance.unit;
+			this.nested = instance.nested;
+
+		}
 		/**
 		 * API name: {@code mode}
 		 */
@@ -358,6 +369,12 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

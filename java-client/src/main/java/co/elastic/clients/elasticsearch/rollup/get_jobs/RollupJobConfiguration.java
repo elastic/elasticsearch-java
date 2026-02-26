@@ -230,6 +230,19 @@ public class RollupJobConfiguration implements JsonpSerializable {
 
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(RollupJobConfiguration instance) {
+			this.cron = instance.cron;
+			this.groups = instance.groups;
+			this.id = instance.id;
+			this.indexPattern = instance.indexPattern;
+			this.metrics = instance.metrics;
+			this.pageSize = instance.pageSize;
+			this.rollupIndex = instance.rollupIndex;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - API name: {@code cron}
 		 */
@@ -347,6 +360,12 @@ public class RollupJobConfiguration implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

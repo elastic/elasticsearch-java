@@ -142,6 +142,13 @@ public class NodesCredentials implements JsonpSerializable {
 
 		private Map<String, NodesCredentialsFileToken> fileTokens;
 
+		public Builder() {
+		}
+		private Builder(NodesCredentials instance) {
+			this.nodeStats = instance.nodeStats;
+			this.fileTokens = instance.fileTokens;
+
+		}
 		/**
 		 * Required - General status showing how nodes respond to the above collection
 		 * request
@@ -217,6 +224,12 @@ public class NodesCredentials implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

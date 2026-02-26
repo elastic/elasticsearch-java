@@ -121,6 +121,12 @@ public class IndexingSlowlogTresholds implements JsonpSerializable {
 		@Nullable
 		private SlowlogTresholdLevels index;
 
+		public Builder() {
+		}
+		private Builder(IndexingSlowlogTresholds instance) {
+			this.index = instance.index;
+
+		}
 		/**
 		 * The indexing slow log, similar in functionality to the search slow log. The
 		 * log file name ends with <code>_index_indexing_slowlog.json</code>. Log and
@@ -162,6 +168,12 @@ public class IndexingSlowlogTresholds implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -548,6 +548,29 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private Integer scrollSize;
 
+		public Builder() {
+		}
+		private Builder(UpdateDatafeedRequest instance) {
+			this.aggregations = instance.aggregations;
+			this.allowNoIndices = instance.allowNoIndices;
+			this.chunkingConfig = instance.chunkingConfig;
+			this.datafeedId = instance.datafeedId;
+			this.delayedDataCheckConfig = instance.delayedDataCheckConfig;
+			this.expandWildcards = instance.expandWildcards;
+			this.frequency = instance.frequency;
+			this.ignoreThrottled = instance.ignoreThrottled;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.indices = instance.indices;
+			this.indicesOptions = instance.indicesOptions;
+			this.jobId = instance.jobId;
+			this.maxEmptySearches = instance.maxEmptySearches;
+			this.query = instance.query;
+			this.queryDelay = instance.queryDelay;
+			this.runtimeMappings = instance.runtimeMappings;
+			this.scriptFields = instance.scriptFields;
+			this.scrollSize = instance.scrollSize;
+
+		}
 		/**
 		 * If set, the datafeed performs aggregation searches. Support for aggregations
 		 * is limited and should be used only with low cardinality data.
@@ -1024,6 +1047,12 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

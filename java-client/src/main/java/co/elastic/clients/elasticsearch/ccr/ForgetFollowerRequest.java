@@ -234,6 +234,17 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(ForgetFollowerRequest instance) {
+			this.followerCluster = instance.followerCluster;
+			this.followerIndex = instance.followerIndex;
+			this.followerIndexUuid = instance.followerIndexUuid;
+			this.index = instance.index;
+			this.leaderRemoteCluster = instance.leaderRemoteCluster;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * API name: {@code follower_cluster}
 		 */
@@ -316,6 +327,12 @@ public class ForgetFollowerRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

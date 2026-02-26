@@ -167,6 +167,14 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 
 		private PhraseSuggestCollateQuery query;
 
+		public Builder() {
+		}
+		private Builder(PhraseSuggestCollate instance) {
+			this.params = instance.params;
+			this.prune = instance.prune;
+			this.query = instance.query;
+
+		}
 		/**
 		 * Parameters to use if the query is templated.
 		 * <p>
@@ -240,6 +248,12 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

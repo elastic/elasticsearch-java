@@ -141,6 +141,13 @@ public class HasPrivilegesUserProfileErrors implements JsonpSerializable {
 
 		private Map<String, ErrorCause> details;
 
+		public Builder() {
+		}
+		private Builder(HasPrivilegesUserProfileErrors instance) {
+			this.count = instance.count;
+			this.details = instance.details;
+
+		}
 		/**
 		 * Required - API name: {@code count}
 		 */
@@ -196,6 +203,12 @@ public class HasPrivilegesUserProfileErrors implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -421,6 +421,26 @@ public class TransformSummary implements JsonpSerializable {
 		@Nullable
 		private Map<String, JsonData> meta;
 
+		public Builder() {
+		}
+		private Builder(TransformSummary instance) {
+			this.authorization = instance.authorization;
+			this.createTime = instance.createTime;
+			this.createTimeString = instance.createTimeString;
+			this.description = instance.description;
+			this.dest = instance.dest;
+			this.frequency = instance.frequency;
+			this.id = instance.id;
+			this.latest = instance.latest;
+			this.pivot = instance.pivot;
+			this.retentionPolicy = instance.retentionPolicy;
+			this.settings = instance.settings;
+			this.source = instance.source;
+			this.sync = instance.sync;
+			this.version = instance.version;
+			this.meta = instance.meta;
+
+		}
 		/**
 		 * The security privileges that the transform uses to run its queries. If
 		 * Elastic Stack security features were disabled at the time of the most recent
@@ -688,6 +708,12 @@ public class TransformSummary implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

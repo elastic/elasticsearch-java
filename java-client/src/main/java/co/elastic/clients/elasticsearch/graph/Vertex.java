@@ -157,6 +157,15 @@ public class Vertex implements JsonpSerializable {
 
 		private Double weight;
 
+		public Builder() {
+		}
+		private Builder(Vertex instance) {
+			this.depth = instance.depth;
+			this.field = instance.field;
+			this.term = instance.term;
+			this.weight = instance.weight;
+
+		}
 		/**
 		 * Required - API name: {@code depth}
 		 */
@@ -207,6 +216,12 @@ public class Vertex implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

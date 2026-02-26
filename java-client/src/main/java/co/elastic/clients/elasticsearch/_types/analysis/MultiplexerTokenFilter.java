@@ -142,6 +142,13 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 		@Nullable
 		private Boolean preserveOriginal;
 
+		public Builder() {
+		}
+		private Builder(MultiplexerTokenFilter instance) {
+			this.filters = instance.filters;
+			this.preserveOriginal = instance.preserveOriginal;
+
+		}
 		/**
 		 * Required - A list of token filters to apply to incoming tokens.
 		 * <p>
@@ -195,6 +202,12 @@ public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilt
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

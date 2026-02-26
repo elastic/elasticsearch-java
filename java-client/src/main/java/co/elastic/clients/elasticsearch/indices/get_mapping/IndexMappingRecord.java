@@ -133,6 +133,13 @@ public class IndexMappingRecord implements JsonpSerializable {
 
 		private TypeMapping mappings;
 
+		public Builder() {
+		}
+		private Builder(IndexMappingRecord instance) {
+			this.item = instance.item;
+			this.mappings = instance.mappings;
+
+		}
 		/**
 		 * API name: {@code item}
 		 */
@@ -181,6 +188,12 @@ public class IndexMappingRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

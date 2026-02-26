@@ -218,6 +218,16 @@ public class DataframeClassificationSummary implements ResponseBodyVariant, Json
 		@Nullable
 		private DataframeClassificationSummaryRecall recall;
 
+		public Builder() {
+		}
+		private Builder(DataframeClassificationSummary instance) {
+			this.aucRoc = instance.aucRoc;
+			this.accuracy = instance.accuracy;
+			this.multiclassConfusionMatrix = instance.multiclassConfusionMatrix;
+			this.precision = instance.precision;
+			this.recall = instance.recall;
+
+		}
 		/**
 		 * The AUC ROC (area under the curve of the receiver operating characteristic)
 		 * score and optionally the curve. It is calculated for a specific class
@@ -342,6 +352,12 @@ public class DataframeClassificationSummary implements ResponseBodyVariant, Json
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

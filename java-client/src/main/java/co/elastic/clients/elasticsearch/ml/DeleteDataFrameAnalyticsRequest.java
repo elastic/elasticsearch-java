@@ -135,6 +135,14 @@ public class DeleteDataFrameAnalyticsRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(DeleteDataFrameAnalyticsRequest instance) {
+			this.force = instance.force;
+			this.id = instance.id;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * If <code>true</code>, it deletes a job that is not stopped; this method is
 		 * quicker than stopping and deleting the job.
@@ -193,6 +201,12 @@ public class DeleteDataFrameAnalyticsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

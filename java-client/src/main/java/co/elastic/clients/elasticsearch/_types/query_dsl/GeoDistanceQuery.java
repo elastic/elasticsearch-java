@@ -229,6 +229,15 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private Boolean ignoreUnmapped;
 
+		public Builder() {
+		}
+		private Builder(GeoDistanceQuery instance) {
+			this.distance = instance.distance;
+			this.distanceType = instance.distanceType;
+			this.validationMethod = instance.validationMethod;
+			this.ignoreUnmapped = instance.ignoreUnmapped;
+
+		}
 		/**
 		 * Required - The radius of the circle centred on the specified location. Points
 		 * which fall into this circle are considered to be matches.
@@ -293,6 +302,12 @@ public class GeoDistanceQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

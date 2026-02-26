@@ -214,6 +214,16 @@ public class AmazonSageMakerTaskSettings implements JsonpSerializable {
 		@Nullable
 		private String targetVariant;
 
+		public Builder() {
+		}
+		private Builder(AmazonSageMakerTaskSettings instance) {
+			this.customAttributes = instance.customAttributes;
+			this.enableExplanations = instance.enableExplanations;
+			this.inferenceId = instance.inferenceId;
+			this.sessionId = instance.sessionId;
+			this.targetVariant = instance.targetVariant;
+
+		}
 		/**
 		 * The AWS custom attributes passed verbatim through to the model running in the
 		 * SageMaker Endpoint. Values will be returned in the
@@ -288,6 +298,12 @@ public class AmazonSageMakerTaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

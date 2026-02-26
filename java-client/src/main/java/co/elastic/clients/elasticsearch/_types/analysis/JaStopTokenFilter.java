@@ -117,6 +117,12 @@ public class JaStopTokenFilter extends TokenFilterBase implements TokenFilterDef
 		@Nullable
 		private List<String> stopwords;
 
+		public Builder() {
+		}
+		private Builder(JaStopTokenFilter instance) {
+			this.stopwords = instance.stopwords;
+
+		}
 		/**
 		 * API name: {@code stopwords}
 		 * <p>
@@ -155,6 +161,12 @@ public class JaStopTokenFilter extends TokenFilterBase implements TokenFilterDef
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

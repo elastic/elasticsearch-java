@@ -156,6 +156,14 @@ public class RemoveIndicesBlockStatus implements JsonpSerializable {
 		@Nullable
 		private ErrorCause exception;
 
+		public Builder() {
+		}
+		private Builder(RemoveIndicesBlockStatus instance) {
+			this.name = instance.name;
+			this.unblocked = instance.unblocked;
+			this.exception = instance.exception;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -205,6 +213,12 @@ public class RemoveIndicesBlockStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -158,6 +158,14 @@ public class Document implements JsonpSerializable {
 
 		private JsonData source;
 
+		public Builder() {
+		}
+		private Builder(Document instance) {
+			this.id = instance.id;
+			this.index = instance.index;
+			this.source = instance.source;
+
+		}
 		/**
 		 * Unique identifier for the document. This ID must be unique within the
 		 * <code>_index</code>.
@@ -207,6 +215,12 @@ public class Document implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

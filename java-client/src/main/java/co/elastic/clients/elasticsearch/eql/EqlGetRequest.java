@@ -134,6 +134,14 @@ public class EqlGetRequest extends RequestBase {
 		@Nullable
 		private Time waitForCompletionTimeout;
 
+		public Builder() {
+		}
+		private Builder(EqlGetRequest instance) {
+			this.id = instance.id;
+			this.keepAlive = instance.keepAlive;
+			this.waitForCompletionTimeout = instance.waitForCompletionTimeout;
+
+		}
 		/**
 		 * Required - Identifier for the search.
 		 * <p>
@@ -204,6 +212,12 @@ public class EqlGetRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

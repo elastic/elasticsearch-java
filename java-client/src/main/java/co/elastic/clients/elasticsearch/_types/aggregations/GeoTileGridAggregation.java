@@ -237,6 +237,16 @@ public class GeoTileGridAggregation extends BucketAggregationBase
 		@Nullable
 		private GeoBounds bounds;
 
+		public Builder() {
+		}
+		private Builder(GeoTileGridAggregation instance) {
+			this.field = instance.field;
+			this.precision = instance.precision;
+			this.shardSize = instance.shardSize;
+			this.size = instance.size;
+			this.bounds = instance.bounds;
+
+		}
 		/**
 		 * Field containing indexed <code>geo_point</code> or <code>geo_shape</code>
 		 * values. If the field contains an array, <code>geotile_grid</code> aggregates
@@ -319,6 +329,12 @@ public class GeoTileGridAggregation extends BucketAggregationBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -110,6 +110,12 @@ public class PredicateTokenFilter extends TokenFilterBase implements TokenFilter
 				ObjectBuilder<PredicateTokenFilter> {
 		private Script script;
 
+		public Builder() {
+		}
+		private Builder(PredicateTokenFilter instance) {
+			this.script = instance.script;
+
+		}
 		/**
 		 * Required - Script containing a condition used to filter incoming tokens. Only
 		 * tokens that match this script are included in the output.
@@ -149,6 +155,12 @@ public class PredicateTokenFilter extends TokenFilterBase implements TokenFilter
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -189,6 +189,15 @@ public class ScriptProcessor extends ProcessorBase implements ProcessorVariant {
 		@Nullable
 		private ScriptSource source;
 
+		public Builder() {
+		}
+		private Builder(ScriptProcessor instance) {
+			this.id = instance.id;
+			this.lang = instance.lang;
+			this.params = instance.params;
+			this.source = instance.source;
+
+		}
 		/**
 		 * ID of a stored script. If no <code>source</code> is specified, this parameter
 		 * is required.
@@ -283,6 +292,12 @@ public class ScriptProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

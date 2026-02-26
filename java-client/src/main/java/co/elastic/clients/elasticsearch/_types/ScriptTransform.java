@@ -190,6 +190,15 @@ public class ScriptTransform implements TransformVariant, JsonpSerializable {
 		@Nullable
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(ScriptTransform instance) {
+			this.lang = instance.lang;
+			this.params = instance.params;
+			this.source = instance.source;
+			this.id = instance.id;
+
+		}
 		/**
 		 * API name: {@code lang}
 		 */
@@ -259,6 +268,12 @@ public class ScriptTransform implements TransformVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

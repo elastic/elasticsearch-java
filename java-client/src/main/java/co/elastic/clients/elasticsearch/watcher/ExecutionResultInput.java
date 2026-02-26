@@ -152,6 +152,14 @@ public class ExecutionResultInput implements JsonpSerializable {
 
 		private InputType type;
 
+		public Builder() {
+		}
+		private Builder(ExecutionResultInput instance) {
+			this.payload = instance.payload;
+			this.status = instance.status;
+			this.type = instance.type;
+
+		}
 		/**
 		 * Required - API name: {@code payload}
 		 * <p>
@@ -206,6 +214,12 @@ public class ExecutionResultInput implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

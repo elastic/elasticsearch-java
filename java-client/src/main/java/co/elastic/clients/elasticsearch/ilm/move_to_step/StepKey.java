@@ -154,6 +154,14 @@ public class StepKey implements JsonpSerializable {
 
 		private String phase;
 
+		public Builder() {
+		}
+		private Builder(StepKey instance) {
+			this.action = instance.action;
+			this.name = instance.name;
+			this.phase = instance.phase;
+
+		}
 		/**
 		 * The optional action to which the index will be moved.
 		 * <p>
@@ -200,6 +208,12 @@ public class StepKey implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -146,6 +146,13 @@ public class MatchedText implements JsonpSerializable {
 		@Nullable
 		private Map<String, List<MatchedField>> fields;
 
+		public Builder() {
+		}
+		private Builder(MatchedText instance) {
+			this.matched = instance.matched;
+			this.fields = instance.fields;
+
+		}
 		/**
 		 * Required - API name: {@code matched}
 		 */
@@ -192,6 +199,12 @@ public class MatchedText implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

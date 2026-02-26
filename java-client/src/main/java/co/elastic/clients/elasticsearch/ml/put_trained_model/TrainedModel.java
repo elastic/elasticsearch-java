@@ -167,6 +167,14 @@ public class TrainedModel implements JsonpSerializable {
 		@Nullable
 		private Ensemble ensemble;
 
+		public Builder() {
+		}
+		private Builder(TrainedModel instance) {
+			this.tree = instance.tree;
+			this.treeNode = instance.treeNode;
+			this.ensemble = instance.ensemble;
+
+		}
 		/**
 		 * The definition for a binary decision tree.
 		 * <p>
@@ -254,6 +262,12 @@ public class TrainedModel implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

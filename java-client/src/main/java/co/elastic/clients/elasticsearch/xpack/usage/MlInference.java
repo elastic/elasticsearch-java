@@ -155,6 +155,14 @@ public class MlInference implements JsonpSerializable {
 		@Nullable
 		private MlInferenceDeployments deployments;
 
+		public Builder() {
+		}
+		private Builder(MlInference instance) {
+			this.ingestProcessors = instance.ingestProcessors;
+			this.trainedModels = instance.trainedModels;
+			this.deployments = instance.deployments;
+
+		}
 		/**
 		 * Required - API name: {@code ingest_processors}
 		 * <p>
@@ -235,6 +243,12 @@ public class MlInference implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

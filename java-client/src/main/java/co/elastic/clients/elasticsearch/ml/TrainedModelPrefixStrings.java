@@ -142,6 +142,13 @@ public class TrainedModelPrefixStrings implements JsonpSerializable {
 		@Nullable
 		private String search;
 
+		public Builder() {
+		}
+		private Builder(TrainedModelPrefixStrings instance) {
+			this.ingest = instance.ingest;
+			this.search = instance.search;
+
+		}
 		/**
 		 * String prepended to input at ingest
 		 * <p>
@@ -180,6 +187,12 @@ public class TrainedModelPrefixStrings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

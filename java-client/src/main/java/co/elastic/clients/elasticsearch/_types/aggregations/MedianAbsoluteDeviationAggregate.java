@@ -82,6 +82,11 @@ public class MedianAbsoluteDeviationAggregate extends SingleMetricAggregateBase 
 	public static class Builder extends SingleMetricAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MedianAbsoluteDeviationAggregate> {
+		public Builder() {
+		}
+		private Builder(MedianAbsoluteDeviationAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -100,6 +105,12 @@ public class MedianAbsoluteDeviationAggregate extends SingleMetricAggregateBase 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

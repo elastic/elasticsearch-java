@@ -153,6 +153,14 @@ public class PassthroughObjectProperty extends CorePropertyBase implements Prope
 		@Nullable
 		private Boolean timeSeriesDimension;
 
+		public Builder() {
+		}
+		private Builder(PassthroughObjectProperty instance) {
+			this.enabled = instance.enabled;
+			this.priority = instance.priority;
+			this.timeSeriesDimension = instance.timeSeriesDimension;
+
+		}
 		/**
 		 * API name: {@code enabled}
 		 */
@@ -195,6 +203,12 @@ public class PassthroughObjectProperty extends CorePropertyBase implements Prope
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

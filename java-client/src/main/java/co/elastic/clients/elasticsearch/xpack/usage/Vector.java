@@ -133,6 +133,14 @@ public class Vector extends Base {
 		@Nullable
 		private Integer sparseVectorFieldsCount;
 
+		public Builder() {
+		}
+		private Builder(Vector instance) {
+			this.denseVectorDimsAvgCount = instance.denseVectorDimsAvgCount;
+			this.denseVectorFieldsCount = instance.denseVectorFieldsCount;
+			this.sparseVectorFieldsCount = instance.sparseVectorFieldsCount;
+
+		}
 		/**
 		 * Required - API name: {@code dense_vector_dims_avg_count}
 		 */
@@ -175,6 +183,12 @@ public class Vector extends Base {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

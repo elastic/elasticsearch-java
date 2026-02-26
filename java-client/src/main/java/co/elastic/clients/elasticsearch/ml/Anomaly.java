@@ -632,6 +632,35 @@ public class Anomaly implements JsonpSerializable {
 		@Nullable
 		private List<Double> typical;
 
+		public Builder() {
+		}
+		private Builder(Anomaly instance) {
+			this.actual = instance.actual;
+			this.anomalyScoreExplanation = instance.anomalyScoreExplanation;
+			this.bucketSpan = instance.bucketSpan;
+			this.byFieldName = instance.byFieldName;
+			this.byFieldValue = instance.byFieldValue;
+			this.causes = instance.causes;
+			this.detectorIndex = instance.detectorIndex;
+			this.fieldName = instance.fieldName;
+			this.function = instance.function;
+			this.functionDescription = instance.functionDescription;
+			this.geoResults = instance.geoResults;
+			this.influencers = instance.influencers;
+			this.initialRecordScore = instance.initialRecordScore;
+			this.isInterim = instance.isInterim;
+			this.jobId = instance.jobId;
+			this.overFieldName = instance.overFieldName;
+			this.overFieldValue = instance.overFieldValue;
+			this.partitionFieldName = instance.partitionFieldName;
+			this.partitionFieldValue = instance.partitionFieldValue;
+			this.probability = instance.probability;
+			this.recordScore = instance.recordScore;
+			this.resultType = instance.resultType;
+			this.timestamp = instance.timestamp;
+			this.typical = instance.typical;
+
+		}
 		/**
 		 * The actual value for the bucket.
 		 * <p>
@@ -1050,6 +1079,12 @@ public class Anomaly implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

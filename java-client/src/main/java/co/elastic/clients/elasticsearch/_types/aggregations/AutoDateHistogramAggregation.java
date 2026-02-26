@@ -315,6 +315,20 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase
 		@Nullable
 		private String timeZone;
 
+		public Builder() {
+		}
+		private Builder(AutoDateHistogramAggregation instance) {
+			this.buckets = instance.buckets;
+			this.field = instance.field;
+			this.format = instance.format;
+			this.minimumInterval = instance.minimumInterval;
+			this.missing = instance.missing;
+			this.offset = instance.offset;
+			this.params = instance.params;
+			this.script = instance.script;
+			this.timeZone = instance.timeZone;
+
+		}
 		/**
 		 * The target number of buckets.
 		 * <p>
@@ -443,6 +457,12 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

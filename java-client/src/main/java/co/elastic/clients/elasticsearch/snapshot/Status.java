@@ -248,6 +248,19 @@ public class Status implements JsonpSerializable {
 
 		private String uuid;
 
+		public Builder() {
+		}
+		private Builder(Status instance) {
+			this.includeGlobalState = instance.includeGlobalState;
+			this.indices = instance.indices;
+			this.repository = instance.repository;
+			this.shardsStats = instance.shardsStats;
+			this.snapshot = instance.snapshot;
+			this.state = instance.state;
+			this.stats = instance.stats;
+			this.uuid = instance.uuid;
+
+		}
 		/**
 		 * Required - Indicates whether the current cluster state is included in the
 		 * snapshot.
@@ -393,6 +406,12 @@ public class Status implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -131,6 +131,13 @@ public class PipelineProcessor extends ProcessorBase implements ProcessorVariant
 		@Nullable
 		private Boolean ignoreMissingPipeline;
 
+		public Builder() {
+		}
+		private Builder(PipelineProcessor instance) {
+			this.name = instance.name;
+			this.ignoreMissingPipeline = instance.ignoreMissingPipeline;
+
+		}
 		/**
 		 * Required - The name of the pipeline to execute. Supports template snippets.
 		 * <p>
@@ -169,6 +176,12 @@ public class PipelineProcessor extends ProcessorBase implements ProcessorVariant
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

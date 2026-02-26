@@ -119,6 +119,12 @@ public class HdrMethod implements JsonpSerializable {
 		@Nullable
 		private Integer numberOfSignificantValueDigits;
 
+		public Builder() {
+		}
+		private Builder(HdrMethod instance) {
+			this.numberOfSignificantValueDigits = instance.numberOfSignificantValueDigits;
+
+		}
 		/**
 		 * Specifies the resolution of values for the histogram in number of significant
 		 * digits.
@@ -148,6 +154,12 @@ public class HdrMethod implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -169,6 +169,14 @@ public class CardinalityAggregation extends MetricAggregationBase
 		@Nullable
 		private CardinalityExecutionMode executionHint;
 
+		public Builder() {
+		}
+		private Builder(CardinalityAggregation instance) {
+			this.precisionThreshold = instance.precisionThreshold;
+			this.rehash = instance.rehash;
+			this.executionHint = instance.executionHint;
+
+		}
 		/**
 		 * A unique count below which counts are expected to be close to accurate. This
 		 * allows to trade memory for accuracy.
@@ -216,6 +224,12 @@ public class CardinalityAggregation extends MetricAggregationBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -304,6 +304,21 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 
 		private Integer usedPercent;
 
+		public Builder() {
+		}
+		private Builder(OperatingSystemMemoryInfo instance) {
+			this.adjustedTotalInBytes = instance.adjustedTotalInBytes;
+			this.adjustedTotal = instance.adjustedTotal;
+			this.freeInBytes = instance.freeInBytes;
+			this.free = instance.free;
+			this.freePercent = instance.freePercent;
+			this.totalInBytes = instance.totalInBytes;
+			this.total = instance.total;
+			this.usedInBytes = instance.usedInBytes;
+			this.used = instance.used;
+			this.usedPercent = instance.usedPercent;
+
+		}
 		/**
 		 * Total amount, in bytes, of memory across all selected nodes, but using the
 		 * value specified using the <code>es.total_memory_bytes</code> system property
@@ -431,6 +446,12 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

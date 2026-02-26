@@ -260,6 +260,17 @@ public class GetTokenRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private String username;
 
+		public Builder() {
+		}
+		private Builder(GetTokenRequest instance) {
+			this.grantType = instance.grantType;
+			this.kerberosTicket = instance.kerberosTicket;
+			this.password = instance.password;
+			this.refreshToken = instance.refreshToken;
+			this.scope = instance.scope;
+			this.username = instance.username;
+
+		}
 		/**
 		 * The type of grant. Supported grant types are: <code>password</code>,
 		 * <code>_kerberos</code>, <code>client_credentials</code>, and
@@ -350,6 +361,12 @@ public class GetTokenRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

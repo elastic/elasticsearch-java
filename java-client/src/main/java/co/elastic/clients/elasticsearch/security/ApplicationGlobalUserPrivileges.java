@@ -113,6 +113,12 @@ public class ApplicationGlobalUserPrivileges implements JsonpSerializable {
 				ObjectBuilder<ApplicationGlobalUserPrivileges> {
 		private ManageUserPrivileges manage;
 
+		public Builder() {
+		}
+		private Builder(ApplicationGlobalUserPrivileges instance) {
+			this.manage = instance.manage;
+
+		}
 		/**
 		 * Required - API name: {@code manage}
 		 */
@@ -146,6 +152,12 @@ public class ApplicationGlobalUserPrivileges implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

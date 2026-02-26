@@ -257,6 +257,20 @@ public class ShardProfile implements JsonpSerializable {
 
 		private Integer shardId;
 
+		public Builder() {
+		}
+		private Builder(ShardProfile instance) {
+			this.aggregations = instance.aggregations;
+			this.cluster = instance.cluster;
+			this.dfs = instance.dfs;
+			this.fetch = instance.fetch;
+			this.id = instance.id;
+			this.index = instance.index;
+			this.nodeId = instance.nodeId;
+			this.searches = instance.searches;
+			this.shardId = instance.shardId;
+
+		}
 		/**
 		 * Required - API name: {@code aggregations}
 		 * <p>
@@ -403,6 +417,12 @@ public class ShardProfile implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -259,6 +259,19 @@ public class CalendarEvent implements JsonpSerializable {
 		@Nullable
 		private Integer forceTimeShift;
 
+		public Builder() {
+		}
+		private Builder(CalendarEvent instance) {
+			this.calendarId = instance.calendarId;
+			this.eventId = instance.eventId;
+			this.description = instance.description;
+			this.endTime = instance.endTime;
+			this.startTime = instance.startTime;
+			this.skipResult = instance.skipResult;
+			this.skipModelUpdate = instance.skipModelUpdate;
+			this.forceTimeShift = instance.forceTimeShift;
+
+		}
 		/**
 		 * A string that uniquely identifies a calendar.
 		 * <p>
@@ -358,6 +371,12 @@ public class CalendarEvent implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

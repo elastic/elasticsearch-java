@@ -487,6 +487,25 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(RestoreRequest instance) {
+			this.featureStates = instance.featureStates;
+			this.ignoreIndexSettings = instance.ignoreIndexSettings;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.includeAliases = instance.includeAliases;
+			this.includeGlobalState = instance.includeGlobalState;
+			this.indexSettings = instance.indexSettings;
+			this.indices = instance.indices;
+			this.masterTimeout = instance.masterTimeout;
+			this.partial = instance.partial;
+			this.renamePattern = instance.renamePattern;
+			this.renameReplacement = instance.renameReplacement;
+			this.repository = instance.repository;
+			this.snapshot = instance.snapshot;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * The feature states to restore. If <code>include_global_state</code> is
 		 * <code>true</code>, the request restores all feature states in the snapshot by
@@ -800,6 +819,12 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

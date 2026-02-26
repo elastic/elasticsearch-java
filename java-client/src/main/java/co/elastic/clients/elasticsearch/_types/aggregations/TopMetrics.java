@@ -145,6 +145,13 @@ public class TopMetrics implements JsonpSerializable {
 
 		private Map<String, FieldValue> metrics;
 
+		public Builder() {
+		}
+		private Builder(TopMetrics instance) {
+			this.sort = instance.sort;
+			this.metrics = instance.metrics;
+
+		}
 		/**
 		 * Required - API name: {@code sort}
 		 * <p>
@@ -313,6 +320,12 @@ public class TopMetrics implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

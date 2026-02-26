@@ -157,6 +157,14 @@ public class RepositoryLocation implements JsonpSerializable {
 		@Nullable
 		private String bucket;
 
+		public Builder() {
+		}
+		private Builder(RepositoryLocation instance) {
+			this.basePath = instance.basePath;
+			this.container = instance.container;
+			this.bucket = instance.bucket;
+
+		}
 		/**
 		 * Required - API name: {@code base_path}
 		 */
@@ -203,6 +211,12 @@ public class RepositoryLocation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

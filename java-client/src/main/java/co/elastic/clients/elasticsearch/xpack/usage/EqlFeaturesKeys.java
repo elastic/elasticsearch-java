@@ -170,6 +170,16 @@ public class EqlFeaturesKeys implements JsonpSerializable {
 
 		private Number joinKeysFour;
 
+		public Builder() {
+		}
+		private Builder(EqlFeaturesKeys instance) {
+			this.joinKeysTwo = instance.joinKeysTwo;
+			this.joinKeysOne = instance.joinKeysOne;
+			this.joinKeysThree = instance.joinKeysThree;
+			this.joinKeysFiveOrMore = instance.joinKeysFiveOrMore;
+			this.joinKeysFour = instance.joinKeysFour;
+
+		}
 		/**
 		 * Required - API name: {@code join_keys_two}
 		 */
@@ -228,6 +238,12 @@ public class EqlFeaturesKeys implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -170,6 +170,14 @@ public class CgroupMemory implements JsonpSerializable {
 		@Nullable
 		private String usageInBytes;
 
+		public Builder() {
+		}
+		private Builder(CgroupMemory instance) {
+			this.controlGroup = instance.controlGroup;
+			this.limitInBytes = instance.limitInBytes;
+			this.usageInBytes = instance.usageInBytes;
+
+		}
 		/**
 		 * The <code>memory</code> control group to which the Elasticsearch process
 		 * belongs.
@@ -227,6 +235,12 @@ public class CgroupMemory implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

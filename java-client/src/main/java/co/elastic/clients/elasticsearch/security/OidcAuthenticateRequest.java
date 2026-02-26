@@ -190,6 +190,15 @@ public class OidcAuthenticateRequest extends RequestBase implements JsonpSeriali
 
 		private String state;
 
+		public Builder() {
+		}
+		private Builder(OidcAuthenticateRequest instance) {
+			this.nonce = instance.nonce;
+			this.realm = instance.realm;
+			this.redirectUri = instance.redirectUri;
+			this.state = instance.state;
+
+		}
 		/**
 		 * Required - Associate a client session with an ID token and mitigate replay
 		 * attacks. This value needs to be the same as the one that was provided to the
@@ -259,6 +268,12 @@ public class OidcAuthenticateRequest extends RequestBase implements JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

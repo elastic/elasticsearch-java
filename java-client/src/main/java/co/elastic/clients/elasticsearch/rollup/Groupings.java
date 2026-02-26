@@ -167,6 +167,14 @@ public class Groupings implements JsonpSerializable {
 		@Nullable
 		private TermsGrouping terms;
 
+		public Builder() {
+		}
+		private Builder(Groupings instance) {
+			this.dateHistogram = instance.dateHistogram;
+			this.histogram = instance.histogram;
+			this.terms = instance.terms;
+
+		}
 		/**
 		 * A date histogram group aggregates a date field into time-based buckets. This
 		 * group is mandatory; you currently cannot roll up documents without a
@@ -257,6 +265,12 @@ public class Groupings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

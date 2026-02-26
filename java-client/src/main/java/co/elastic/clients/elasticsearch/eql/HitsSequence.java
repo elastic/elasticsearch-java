@@ -160,6 +160,13 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 		@Nullable
 		private JsonpSerializer<TEvent> tEventSerializer;
 
+		public Builder() {
+		}
+		private Builder(HitsSequence<TEvent> instance) {
+			this.events = instance.events;
+			this.joinKeys = instance.joinKeys;
+
+		}
 		/**
 		 * Required - Contains events matching the query. Each object represents a
 		 * matching event.
@@ -251,6 +258,12 @@ public class HitsSequence<TEvent> implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

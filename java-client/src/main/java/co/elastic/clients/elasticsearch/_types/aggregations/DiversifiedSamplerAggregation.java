@@ -218,6 +218,16 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase
 		@Nullable
 		private String field;
 
+		public Builder() {
+		}
+		private Builder(DiversifiedSamplerAggregation instance) {
+			this.executionHint = instance.executionHint;
+			this.maxDocsPerValue = instance.maxDocsPerValue;
+			this.script = instance.script;
+			this.shardSize = instance.shardSize;
+			this.field = instance.field;
+
+		}
 		/**
 		 * The type of value used for de-duplication.
 		 * <p>
@@ -292,6 +302,12 @@ public class DiversifiedSamplerAggregation extends BucketAggregationBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

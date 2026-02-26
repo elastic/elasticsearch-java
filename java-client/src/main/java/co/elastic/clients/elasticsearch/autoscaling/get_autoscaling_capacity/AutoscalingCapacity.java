@@ -127,6 +127,13 @@ public class AutoscalingCapacity implements JsonpSerializable {
 
 		private AutoscalingResources total;
 
+		public Builder() {
+		}
+		private Builder(AutoscalingCapacity instance) {
+			this.node = instance.node;
+			this.total = instance.total;
+
+		}
 		/**
 		 * Required - API name: {@code node}
 		 */
@@ -175,6 +182,12 @@ public class AutoscalingCapacity implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

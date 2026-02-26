@@ -120,6 +120,12 @@ public class CloseShardResult implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CloseShardResult> {
 		private List<ShardFailure> failures;
 
+		public Builder() {
+		}
+		private Builder(CloseShardResult instance) {
+			this.failures = instance.failures;
+
+		}
 		/**
 		 * Required - API name: {@code failures}
 		 * <p>
@@ -167,6 +173,12 @@ public class CloseShardResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

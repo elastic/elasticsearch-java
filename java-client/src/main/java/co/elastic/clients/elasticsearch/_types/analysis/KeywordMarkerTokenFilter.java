@@ -200,6 +200,15 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 		@Nullable
 		private String keywordsPattern;
 
+		public Builder() {
+		}
+		private Builder(KeywordMarkerTokenFilter instance) {
+			this.ignoreCase = instance.ignoreCase;
+			this.keywords = instance.keywords;
+			this.keywordsPath = instance.keywordsPath;
+			this.keywordsPattern = instance.keywordsPattern;
+
+		}
 		/**
 		 * If <code>true</code>, matching for the <code>keywords</code> and
 		 * <code>keywords_path</code> parameters ignores letter case. Defaults to
@@ -289,6 +298,12 @@ public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFi
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

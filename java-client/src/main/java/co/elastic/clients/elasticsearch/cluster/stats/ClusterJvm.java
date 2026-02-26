@@ -195,6 +195,16 @@ public class ClusterJvm implements JsonpSerializable {
 
 		private List<ClusterJvmVersion> versions;
 
+		public Builder() {
+		}
+		private Builder(ClusterJvm instance) {
+			this.maxUptimeInMillis = instance.maxUptimeInMillis;
+			this.maxUptime = instance.maxUptime;
+			this.mem = instance.mem;
+			this.threads = instance.threads;
+			this.versions = instance.versions;
+
+		}
 		/**
 		 * Required - Uptime duration, in milliseconds, since JVM last started.
 		 * <p>
@@ -306,6 +316,12 @@ public class ClusterJvm implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

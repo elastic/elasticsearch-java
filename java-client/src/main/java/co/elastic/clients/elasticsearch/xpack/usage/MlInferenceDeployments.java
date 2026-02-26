@@ -159,6 +159,15 @@ public class MlInferenceDeployments implements JsonpSerializable {
 
 		private MlInferenceDeploymentsTimeMs timeMs;
 
+		public Builder() {
+		}
+		private Builder(MlInferenceDeployments instance) {
+			this.count = instance.count;
+			this.inferenceCounts = instance.inferenceCounts;
+			this.modelSizesBytes = instance.modelSizesBytes;
+			this.timeMs = instance.timeMs;
+
+		}
 		/**
 		 * Required - API name: {@code count}
 		 */
@@ -231,6 +240,12 @@ public class MlInferenceDeployments implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

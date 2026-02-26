@@ -134,6 +134,13 @@ public class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerializable
 
 		private String order;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoXpackSecurityAuthcRealmsStatus instance) {
+			this.enabled = instance.enabled;
+			this.order = instance.order;
+
+		}
 		/**
 		 * API name: {@code enabled}
 		 */
@@ -168,6 +175,12 @@ public class NodeInfoXpackSecurityAuthcRealmsStatus implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

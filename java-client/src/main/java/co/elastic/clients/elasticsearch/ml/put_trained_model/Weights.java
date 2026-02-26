@@ -109,6 +109,12 @@ public class Weights implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Weights> {
 		private Double weights;
 
+		public Builder() {
+		}
+		private Builder(Weights instance) {
+			this.weights = instance.weights;
+
+		}
 		/**
 		 * Required - API name: {@code weights}
 		 */
@@ -135,6 +141,12 @@ public class Weights implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

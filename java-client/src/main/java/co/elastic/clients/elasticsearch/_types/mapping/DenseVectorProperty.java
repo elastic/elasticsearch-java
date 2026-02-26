@@ -224,6 +224,16 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 		@Nullable
 		private DenseVectorSimilarity similarity;
 
+		public Builder() {
+		}
+		private Builder(DenseVectorProperty instance) {
+			this.dims = instance.dims;
+			this.elementType = instance.elementType;
+			this.index = instance.index;
+			this.indexOptions = instance.indexOptions;
+			this.similarity = instance.similarity;
+
+		}
 		/**
 		 * Number of vector dimensions. Can't exceed <code>4096</code>. If
 		 * <code>dims</code> is not specified, it will be set to the length of the first
@@ -331,6 +341,12 @@ public class DenseVectorProperty extends PropertyBase implements PropertyVariant
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

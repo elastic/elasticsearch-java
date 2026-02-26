@@ -102,6 +102,12 @@ public class StreamsStatusRequest extends RequestBase {
 		@Nullable
 		private TimeUnit masterTimeout;
 
+		public Builder() {
+		}
+		private Builder(StreamsStatusRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -131,6 +137,12 @@ public class StreamsStatusRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

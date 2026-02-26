@@ -160,6 +160,14 @@ public class FrequentItemSetsField implements JsonpSerializable {
 		@Nullable
 		private TermsInclude include;
 
+		public Builder() {
+		}
+		private Builder(FrequentItemSetsField instance) {
+			this.field = instance.field;
+			this.exclude = instance.exclude;
+			this.include = instance.include;
+
+		}
 		/**
 		 * Required - API name: {@code field}
 		 */
@@ -228,6 +236,12 @@ public class FrequentItemSetsField implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

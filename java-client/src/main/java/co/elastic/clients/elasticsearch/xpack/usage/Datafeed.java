@@ -109,6 +109,12 @@ public class Datafeed implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Datafeed> {
 		private Long count;
 
+		public Builder() {
+		}
+		private Builder(Datafeed instance) {
+			this.count = instance.count;
+
+		}
 		/**
 		 * Required - API name: {@code count}
 		 */
@@ -135,6 +141,12 @@ public class Datafeed implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

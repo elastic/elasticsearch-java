@@ -324,6 +324,21 @@ public class KnnSearch implements JsonpSerializable {
 		@Nullable
 		private RescoreVector rescoreVector;
 
+		public Builder() {
+		}
+		private Builder(KnnSearch instance) {
+			this.field = instance.field;
+			this.queryVector = instance.queryVector;
+			this.queryVectorBuilder = instance.queryVectorBuilder;
+			this.k = instance.k;
+			this.numCandidates = instance.numCandidates;
+			this.boost = instance.boost;
+			this.filter = instance.filter;
+			this.similarity = instance.similarity;
+			this.innerHits = instance.innerHits;
+			this.rescoreVector = instance.rescoreVector;
+
+		}
 		/**
 		 * Required - The name of the vector field to search against
 		 * <p>
@@ -537,6 +552,12 @@ public class KnnSearch implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

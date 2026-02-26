@@ -121,6 +121,12 @@ public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
 		@Nullable
 		private SortOrder order;
 
+		public Builder() {
+		}
+		private Builder(ScoreSort instance) {
+			this.order = instance.order;
+
+		}
 		/**
 		 * API name: {@code order}
 		 */
@@ -147,6 +153,12 @@ public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

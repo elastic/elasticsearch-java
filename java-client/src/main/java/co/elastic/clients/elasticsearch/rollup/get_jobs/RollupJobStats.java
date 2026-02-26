@@ -277,6 +277,23 @@ public class RollupJobStats implements JsonpSerializable {
 
 		private Long processingTotal;
 
+		public Builder() {
+		}
+		private Builder(RollupJobStats instance) {
+			this.documentsProcessed = instance.documentsProcessed;
+			this.indexFailures = instance.indexFailures;
+			this.indexTimeInMs = instance.indexTimeInMs;
+			this.indexTotal = instance.indexTotal;
+			this.pagesProcessed = instance.pagesProcessed;
+			this.rollupsIndexed = instance.rollupsIndexed;
+			this.searchFailures = instance.searchFailures;
+			this.searchTimeInMs = instance.searchTimeInMs;
+			this.searchTotal = instance.searchTotal;
+			this.triggerCount = instance.triggerCount;
+			this.processingTimeInMs = instance.processingTimeInMs;
+			this.processingTotal = instance.processingTotal;
+
+		}
 		/**
 		 * Required - API name: {@code documents_processed}
 		 */
@@ -391,6 +408,12 @@ public class RollupJobStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

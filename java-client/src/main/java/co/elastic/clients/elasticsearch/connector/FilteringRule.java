@@ -223,6 +223,19 @@ public class FilteringRule implements JsonpSerializable {
 
 		private String value;
 
+		public Builder() {
+		}
+		private Builder(FilteringRule instance) {
+			this.createdAt = instance.createdAt;
+			this.field = instance.field;
+			this.id = instance.id;
+			this.order = instance.order;
+			this.policy = instance.policy;
+			this.rule = instance.rule;
+			this.updatedAt = instance.updatedAt;
+			this.value = instance.value;
+
+		}
 		/**
 		 * API name: {@code created_at}
 		 */
@@ -305,6 +318,12 @@ public class FilteringRule implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

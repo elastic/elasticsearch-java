@@ -110,6 +110,12 @@ public class FieldNamesField implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FieldNamesField> {
 		private Boolean enabled;
 
+		public Builder() {
+		}
+		private Builder(FieldNamesField instance) {
+			this.enabled = instance.enabled;
+
+		}
 		/**
 		 * Required - API name: {@code enabled}
 		 */
@@ -136,6 +142,12 @@ public class FieldNamesField implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

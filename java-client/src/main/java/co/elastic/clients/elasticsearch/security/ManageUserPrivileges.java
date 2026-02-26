@@ -122,6 +122,12 @@ public class ManageUserPrivileges implements JsonpSerializable {
 				ObjectBuilder<ManageUserPrivileges> {
 		private List<String> applications;
 
+		public Builder() {
+		}
+		private Builder(ManageUserPrivileges instance) {
+			this.applications = instance.applications;
+
+		}
 		/**
 		 * Required - API name: {@code applications}
 		 * <p>
@@ -160,6 +166,12 @@ public class ManageUserPrivileges implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

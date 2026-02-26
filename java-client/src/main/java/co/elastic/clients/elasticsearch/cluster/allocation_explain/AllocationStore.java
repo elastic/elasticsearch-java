@@ -189,6 +189,17 @@ public class AllocationStore implements JsonpSerializable {
 
 		private String storeException;
 
+		public Builder() {
+		}
+		private Builder(AllocationStore instance) {
+			this.allocationId = instance.allocationId;
+			this.found = instance.found;
+			this.inSync = instance.inSync;
+			this.matchingSizeInBytes = instance.matchingSizeInBytes;
+			this.matchingSyncId = instance.matchingSyncId;
+			this.storeException = instance.storeException;
+
+		}
 		/**
 		 * Required - API name: {@code allocation_id}
 		 */
@@ -255,6 +266,12 @@ public class AllocationStore implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

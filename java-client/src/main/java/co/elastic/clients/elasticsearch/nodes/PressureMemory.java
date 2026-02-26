@@ -429,6 +429,26 @@ public class PressureMemory implements JsonpSerializable {
 		@Nullable
 		private Long largeOperationRejections;
 
+		public Builder() {
+		}
+		private Builder(PressureMemory instance) {
+			this.all = instance.all;
+			this.allInBytes = instance.allInBytes;
+			this.combinedCoordinatingAndPrimary = instance.combinedCoordinatingAndPrimary;
+			this.combinedCoordinatingAndPrimaryInBytes = instance.combinedCoordinatingAndPrimaryInBytes;
+			this.coordinating = instance.coordinating;
+			this.coordinatingInBytes = instance.coordinatingInBytes;
+			this.primary = instance.primary;
+			this.primaryInBytes = instance.primaryInBytes;
+			this.replica = instance.replica;
+			this.replicaInBytes = instance.replicaInBytes;
+			this.coordinatingRejections = instance.coordinatingRejections;
+			this.primaryRejections = instance.primaryRejections;
+			this.replicaRejections = instance.replicaRejections;
+			this.primaryDocumentRejections = instance.primaryDocumentRejections;
+			this.largeOperationRejections = instance.largeOperationRejections;
+
+		}
 		/**
 		 * Memory consumed by indexing requests in the coordinating, primary, or replica
 		 * stage.
@@ -600,6 +620,12 @@ public class PressureMemory implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

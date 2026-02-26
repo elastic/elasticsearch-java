@@ -127,6 +127,13 @@ public class IndexTemplateItem implements JsonpSerializable {
 
 		private IndexTemplate indexTemplate;
 
+		public Builder() {
+		}
+		private Builder(IndexTemplateItem instance) {
+			this.name = instance.name;
+			this.indexTemplate = instance.indexTemplate;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -168,6 +175,12 @@ public class IndexTemplateItem implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

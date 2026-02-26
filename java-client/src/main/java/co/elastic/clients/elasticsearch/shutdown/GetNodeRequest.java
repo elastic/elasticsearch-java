@@ -127,6 +127,13 @@ public class GetNodeRequest extends RequestBase {
 		@Nullable
 		private List<String> nodeId;
 
+		public Builder() {
+		}
+		private Builder(GetNodeRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.nodeId = instance.nodeId;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -190,6 +197,12 @@ public class GetNodeRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

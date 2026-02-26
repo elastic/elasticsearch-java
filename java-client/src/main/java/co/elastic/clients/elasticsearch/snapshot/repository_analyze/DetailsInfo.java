@@ -252,6 +252,19 @@ public class DetailsInfo implements JsonpSerializable {
 
 		private SnapshotNodeInfo writerNode;
 
+		public Builder() {
+		}
+		private Builder(DetailsInfo instance) {
+			this.blob = instance.blob;
+			this.overwriteElapsed = instance.overwriteElapsed;
+			this.overwriteElapsedNanos = instance.overwriteElapsedNanos;
+			this.writeElapsed = instance.writeElapsed;
+			this.writeElapsedNanos = instance.writeElapsedNanos;
+			this.writeThrottled = instance.writeThrottled;
+			this.writeThrottledNanos = instance.writeThrottledNanos;
+			this.writerNode = instance.writerNode;
+
+		}
 		/**
 		 * Required - A description of the blob that was written and read.
 		 * <p>
@@ -407,6 +420,12 @@ public class DetailsInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

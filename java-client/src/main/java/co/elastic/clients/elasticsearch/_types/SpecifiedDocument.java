@@ -130,6 +130,13 @@ public class SpecifiedDocument implements JsonpSerializable {
 
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(SpecifiedDocument instance) {
+			this.index = instance.index;
+			this.id = instance.id;
+
+		}
 		/**
 		 * API name: {@code index}
 		 */
@@ -164,6 +171,12 @@ public class SpecifiedDocument implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

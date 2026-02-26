@@ -149,6 +149,14 @@ public class TrendChange implements ChangeTypeVariant, JsonpSerializable {
 
 		private Integer changePoint;
 
+		public Builder() {
+		}
+		private Builder(TrendChange instance) {
+			this.pValue = instance.pValue;
+			this.rValue = instance.rValue;
+			this.changePoint = instance.changePoint;
+
+		}
 		/**
 		 * Required - API name: {@code p_value}
 		 */
@@ -191,6 +199,12 @@ public class TrendChange implements ChangeTypeVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

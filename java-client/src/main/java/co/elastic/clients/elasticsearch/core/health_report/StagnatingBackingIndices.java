@@ -146,6 +146,14 @@ public class StagnatingBackingIndices implements JsonpSerializable {
 
 		private Integer retryCount;
 
+		public Builder() {
+		}
+		private Builder(StagnatingBackingIndices instance) {
+			this.indexName = instance.indexName;
+			this.firstOccurrenceTimestamp = instance.firstOccurrenceTimestamp;
+			this.retryCount = instance.retryCount;
+
+		}
 		/**
 		 * Required - API name: {@code index_name}
 		 */
@@ -188,6 +196,12 @@ public class StagnatingBackingIndices implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

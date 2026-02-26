@@ -167,6 +167,14 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 		@Nullable
 		private Boolean ignoreMissing;
 
+		public Builder() {
+		}
+		private Builder(RemoveProcessor instance) {
+			this.field = instance.field;
+			this.keep = instance.keep;
+			this.ignoreMissing = instance.ignoreMissing;
+
+		}
 		/**
 		 * Required - Fields to be removed. Supports template snippets.
 		 * <p>
@@ -247,6 +255,12 @@ public class RemoveProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

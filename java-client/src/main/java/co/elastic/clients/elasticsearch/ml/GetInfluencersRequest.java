@@ -283,6 +283,21 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private DateTime start;
 
+		public Builder() {
+		}
+		private Builder(GetInfluencersRequest instance) {
+			this.desc = instance.desc;
+			this.end = instance.end;
+			this.excludeInterim = instance.excludeInterim;
+			this.from = instance.from;
+			this.influencerScore = instance.influencerScore;
+			this.jobId = instance.jobId;
+			this.page = instance.page;
+			this.size = instance.size;
+			this.sort = instance.sort;
+			this.start = instance.start;
+
+		}
 		/**
 		 * If true, the results are sorted in descending order.
 		 * <p>
@@ -416,6 +431,12 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

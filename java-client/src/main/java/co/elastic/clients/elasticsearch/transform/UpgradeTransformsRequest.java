@@ -138,6 +138,13 @@ public class UpgradeTransformsRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(UpgradeTransformsRequest instance) {
+			this.dryRun = instance.dryRun;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * When true, the request checks for updates but does not run them.
 		 * <p>
@@ -187,6 +194,12 @@ public class UpgradeTransformsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

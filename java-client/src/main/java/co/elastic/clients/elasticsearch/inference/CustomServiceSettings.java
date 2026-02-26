@@ -324,6 +324,19 @@ public class CustomServiceSettings implements JsonpSerializable {
 		@Nullable
 		private String url;
 
+		public Builder() {
+		}
+		private Builder(CustomServiceSettings instance) {
+			this.batchSize = instance.batchSize;
+			this.headers = instance.headers;
+			this.inputType = instance.inputType;
+			this.queryParameters = instance.queryParameters;
+			this.request = instance.request;
+			this.response = instance.response;
+			this.secretParameters = instance.secretParameters;
+			this.url = instance.url;
+
+		}
 		/**
 		 * Specifies the batch size used for the semantic_text field. If the field is
 		 * not provided, the default is 10. The batch size is the maximum number of
@@ -502,6 +515,12 @@ public class CustomServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

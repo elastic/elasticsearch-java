@@ -191,6 +191,17 @@ public class EqlFeaturesSequences implements JsonpSerializable {
 
 		private Number sequenceMaxspan;
 
+		public Builder() {
+		}
+		private Builder(EqlFeaturesSequences instance) {
+			this.sequenceQueriesThree = instance.sequenceQueriesThree;
+			this.sequenceQueriesFour = instance.sequenceQueriesFour;
+			this.sequenceQueriesTwo = instance.sequenceQueriesTwo;
+			this.sequenceUntil = instance.sequenceUntil;
+			this.sequenceQueriesFiveOrMore = instance.sequenceQueriesFiveOrMore;
+			this.sequenceMaxspan = instance.sequenceMaxspan;
+
+		}
 		/**
 		 * Required - API name: {@code sequence_queries_three}
 		 */
@@ -257,6 +268,12 @@ public class EqlFeaturesSequences implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

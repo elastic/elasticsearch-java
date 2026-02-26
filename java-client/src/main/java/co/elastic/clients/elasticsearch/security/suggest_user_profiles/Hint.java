@@ -158,6 +158,13 @@ public class Hint implements JsonpSerializable {
 		@Nullable
 		private Map<String, List<String>> labels;
 
+		public Builder() {
+		}
+		private Builder(Hint instance) {
+			this.uids = instance.uids;
+			this.labels = instance.labels;
+
+		}
 		/**
 		 * A list of profile UIDs to match against.
 		 * <p>
@@ -226,6 +233,12 @@ public class Hint implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

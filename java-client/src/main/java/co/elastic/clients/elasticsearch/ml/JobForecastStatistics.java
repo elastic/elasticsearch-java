@@ -214,6 +214,17 @@ public class JobForecastStatistics implements JsonpSerializable {
 
 		private Integer forecastedJobs;
 
+		public Builder() {
+		}
+		private Builder(JobForecastStatistics instance) {
+			this.memoryBytes = instance.memoryBytes;
+			this.processingTimeMs = instance.processingTimeMs;
+			this.records = instance.records;
+			this.status = instance.status;
+			this.total = instance.total;
+			this.forecastedJobs = instance.forecastedJobs;
+
+		}
 		/**
 		 * API name: {@code memory_bytes}
 		 */
@@ -313,6 +324,12 @@ public class JobForecastStatistics implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

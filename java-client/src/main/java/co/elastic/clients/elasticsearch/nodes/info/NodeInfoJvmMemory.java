@@ -272,6 +272,21 @@ public class NodeInfoJvmMemory implements JsonpSerializable {
 
 		private Long nonHeapMaxInBytes;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoJvmMemory instance) {
+			this.directMax = instance.directMax;
+			this.directMaxInBytes = instance.directMaxInBytes;
+			this.heapInit = instance.heapInit;
+			this.heapInitInBytes = instance.heapInitInBytes;
+			this.heapMax = instance.heapMax;
+			this.heapMaxInBytes = instance.heapMaxInBytes;
+			this.nonHeapInit = instance.nonHeapInit;
+			this.nonHeapInitInBytes = instance.nonHeapInitInBytes;
+			this.nonHeapMax = instance.nonHeapMax;
+			this.nonHeapMaxInBytes = instance.nonHeapMaxInBytes;
+
+		}
 		/**
 		 * API name: {@code direct_max}
 		 */
@@ -370,6 +385,12 @@ public class NodeInfoJvmMemory implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

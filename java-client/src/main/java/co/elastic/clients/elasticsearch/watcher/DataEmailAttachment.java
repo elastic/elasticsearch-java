@@ -124,6 +124,12 @@ public class DataEmailAttachment implements EmailAttachmentVariant, JsonpSeriali
 		@Nullable
 		private DataAttachmentFormat format;
 
+		public Builder() {
+		}
+		private Builder(DataEmailAttachment instance) {
+			this.format = instance.format;
+
+		}
 		/**
 		 * API name: {@code format}
 		 */
@@ -150,6 +156,12 @@ public class DataEmailAttachment implements EmailAttachmentVariant, JsonpSeriali
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -173,6 +173,14 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 		@Nullable
 		private Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> pki;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoXpackSecurityAuthcRealms instance) {
+			this.file = instance.file;
+			this.native_ = instance.native_;
+			this.pki = instance.pki;
+
+		}
 		/**
 		 * API name: {@code file}
 		 * <p>
@@ -281,6 +289,12 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -129,6 +129,13 @@ public class PendingTasksRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		public Builder() {
+		}
+		private Builder(PendingTasksRequest instance) {
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+
+		}
 		/**
 		 * If <code>true</code>, the request retrieves information from the local node
 		 * only. If <code>false</code>, information is retrieved from the master node.
@@ -179,6 +186,12 @@ public class PendingTasksRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

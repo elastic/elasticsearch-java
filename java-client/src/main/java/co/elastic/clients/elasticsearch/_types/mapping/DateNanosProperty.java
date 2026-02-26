@@ -255,6 +255,19 @@ public class DateNanosProperty extends DocValuesPropertyBase implements Property
 		@Nullable
 		private Integer precisionStep;
 
+		public Builder() {
+		}
+		private Builder(DateNanosProperty instance) {
+			this.boost = instance.boost;
+			this.format = instance.format;
+			this.ignoreMalformed = instance.ignoreMalformed;
+			this.index = instance.index;
+			this.script = instance.script;
+			this.onScriptError = instance.onScriptError;
+			this.nullValue = instance.nullValue;
+			this.precisionStep = instance.precisionStep;
+
+		}
 		/**
 		 * API name: {@code boost}
 		 */
@@ -344,6 +357,12 @@ public class DateNanosProperty extends DocValuesPropertyBase implements Property
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

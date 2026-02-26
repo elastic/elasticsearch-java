@@ -302,6 +302,22 @@ public class BucketInfluencer implements JsonpSerializable {
 		@Nullable
 		private DateTime timestampString;
 
+		public Builder() {
+		}
+		private Builder(BucketInfluencer instance) {
+			this.anomalyScore = instance.anomalyScore;
+			this.bucketSpan = instance.bucketSpan;
+			this.influencerFieldName = instance.influencerFieldName;
+			this.initialAnomalyScore = instance.initialAnomalyScore;
+			this.isInterim = instance.isInterim;
+			this.jobId = instance.jobId;
+			this.probability = instance.probability;
+			this.rawAnomalyScore = instance.rawAnomalyScore;
+			this.resultType = instance.resultType;
+			this.timestamp = instance.timestamp;
+			this.timestampString = instance.timestampString;
+
+		}
 		/**
 		 * Required - A normalized score between 0-100, which is calculated for each
 		 * bucket influencer. This score might be updated as newer data is analyzed.
@@ -439,6 +455,12 @@ public class BucketInfluencer implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

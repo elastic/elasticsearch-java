@@ -170,6 +170,15 @@ public class NodeInfoHttp implements JsonpSerializable {
 
 		private String publishAddress;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoHttp instance) {
+			this.boundAddress = instance.boundAddress;
+			this.maxContentLength = instance.maxContentLength;
+			this.maxContentLengthInBytes = instance.maxContentLengthInBytes;
+			this.publishAddress = instance.publishAddress;
+
+		}
 		/**
 		 * Required - API name: {@code bound_address}
 		 * <p>
@@ -232,6 +241,12 @@ public class NodeInfoHttp implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

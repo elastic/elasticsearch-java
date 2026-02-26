@@ -253,6 +253,18 @@ public class DateHistogramGrouping implements JsonpSerializable {
 		@Nullable
 		private String timeZone;
 
+		public Builder() {
+		}
+		private Builder(DateHistogramGrouping instance) {
+			this.delay = instance.delay;
+			this.field = instance.field;
+			this.format = instance.format;
+			this.interval = instance.interval;
+			this.calendarInterval = instance.calendarInterval;
+			this.fixedInterval = instance.fixedInterval;
+			this.timeZone = instance.timeZone;
+
+		}
 		/**
 		 * How long to wait before rolling up new documents. By default, the indexer
 		 * attempts to roll up all data that is available. However, it is not uncommon
@@ -384,6 +396,12 @@ public class DateHistogramGrouping implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

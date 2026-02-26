@@ -128,6 +128,13 @@ public class AuthenticationProvider implements JsonpSerializable {
 
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(AuthenticationProvider instance) {
+			this.type = instance.type;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - API name: {@code type}
 		 */
@@ -162,6 +169,12 @@ public class AuthenticationProvider implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

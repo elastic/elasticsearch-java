@@ -135,6 +135,13 @@ public class LanguageContext implements JsonpSerializable {
 
 		private String language;
 
+		public Builder() {
+		}
+		private Builder(LanguageContext instance) {
+			this.contexts = instance.contexts;
+			this.language = instance.language;
+
+		}
 		/**
 		 * Required - API name: {@code contexts}
 		 * <p>
@@ -189,6 +196,12 @@ public class LanguageContext implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

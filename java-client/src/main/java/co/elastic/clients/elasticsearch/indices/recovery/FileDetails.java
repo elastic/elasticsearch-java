@@ -141,6 +141,14 @@ public class FileDetails implements JsonpSerializable {
 
 		private Long recovered;
 
+		public Builder() {
+		}
+		private Builder(FileDetails instance) {
+			this.length = instance.length;
+			this.name = instance.name;
+			this.recovered = instance.recovered;
+
+		}
 		/**
 		 * Required - API name: {@code length}
 		 */
@@ -183,6 +191,12 @@ public class FileDetails implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

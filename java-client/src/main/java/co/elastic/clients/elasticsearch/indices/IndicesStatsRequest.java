@@ -286,6 +286,22 @@ public class IndicesStatsRequest extends RequestBase {
 		@Nullable
 		private List<String> metric;
 
+		public Builder() {
+		}
+		private Builder(IndicesStatsRequest instance) {
+			this.completionFields = instance.completionFields;
+			this.expandWildcards = instance.expandWildcards;
+			this.fielddataFields = instance.fielddataFields;
+			this.fields = instance.fields;
+			this.forbidClosedIndices = instance.forbidClosedIndices;
+			this.groups = instance.groups;
+			this.includeSegmentFileSizes = instance.includeSegmentFileSizes;
+			this.includeUnloadedSegments = instance.includeUnloadedSegments;
+			this.index = instance.index;
+			this.level = instance.level;
+			this.metric = instance.metric;
+
+		}
 		/**
 		 * Comma-separated list or wildcard expressions of fields to include in
 		 * fielddata and suggest statistics.
@@ -529,6 +545,12 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

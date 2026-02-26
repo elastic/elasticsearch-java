@@ -107,6 +107,12 @@ public class KuromojiReadingFormTokenFilter extends TokenFilterBase implements T
 				ObjectBuilder<KuromojiReadingFormTokenFilter> {
 		private Boolean useRomaji;
 
+		public Builder() {
+		}
+		private Builder(KuromojiReadingFormTokenFilter instance) {
+			this.useRomaji = instance.useRomaji;
+
+		}
 		/**
 		 * Required - API name: {@code use_romaji}
 		 */
@@ -133,6 +139,12 @@ public class KuromojiReadingFormTokenFilter extends TokenFilterBase implements T
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

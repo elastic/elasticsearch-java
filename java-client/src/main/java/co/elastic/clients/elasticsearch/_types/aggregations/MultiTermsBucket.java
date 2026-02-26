@@ -149,6 +149,14 @@ public class MultiTermsBucket extends MultiBucketBase {
 		@Nullable
 		private Long docCountErrorUpperBound;
 
+		public Builder() {
+		}
+		private Builder(MultiTermsBucket instance) {
+			this.key = instance.key;
+			this.keyAsString = instance.keyAsString;
+			this.docCountErrorUpperBound = instance.docCountErrorUpperBound;
+
+		}
 		/**
 		 * Required - API name: {@code key}
 		 * <p>
@@ -264,6 +272,12 @@ public class MultiTermsBucket extends MultiBucketBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

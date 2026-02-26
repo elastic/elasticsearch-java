@@ -251,6 +251,16 @@ public class BoolQuery extends QueryBase
 		@Nullable
 		private List<Query> should;
 
+		public Builder() {
+		}
+		private Builder(BoolQuery instance) {
+			this.filter = instance.filter;
+			this.minimumShouldMatch = instance.minimumShouldMatch;
+			this.must = instance.must;
+			this.mustNot = instance.mustNot;
+			this.should = instance.should;
+
+		}
 		/**
 		 * The clause (query) must appear in matching documents. However, unlike
 		 * <code>must</code>, the score of the query will be ignored.
@@ -502,6 +512,12 @@ public class BoolQuery extends QueryBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

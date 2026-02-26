@@ -268,6 +268,17 @@ public class PutCustomRequest extends RequestBase implements JsonpSerializable {
 
 		private CustomTaskType taskType;
 
+		public Builder() {
+		}
+		private Builder(PutCustomRequest instance) {
+			this.chunkingSettings = instance.chunkingSettings;
+			this.customInferenceId = instance.customInferenceId;
+			this.service = instance.service;
+			this.serviceSettings = instance.serviceSettings;
+			this.taskSettings = instance.taskSettings;
+			this.taskType = instance.taskType;
+
+		}
 		/**
 		 * The chunking configuration object.
 		 * <p>
@@ -380,6 +391,12 @@ public class PutCustomRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

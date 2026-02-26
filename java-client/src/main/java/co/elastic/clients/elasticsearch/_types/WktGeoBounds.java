@@ -110,6 +110,12 @@ public class WktGeoBounds implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<WktGeoBounds> {
 		private String wkt;
 
+		public Builder() {
+		}
+		private Builder(WktGeoBounds instance) {
+			this.wkt = instance.wkt;
+
+		}
 		/**
 		 * Required - API name: {@code wkt}
 		 */
@@ -136,6 +142,12 @@ public class WktGeoBounds implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

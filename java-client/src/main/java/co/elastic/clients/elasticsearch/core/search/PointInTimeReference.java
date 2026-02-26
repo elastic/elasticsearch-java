@@ -135,6 +135,13 @@ public class PointInTimeReference implements JsonpSerializable {
 		@Nullable
 		private Time keepAlive;
 
+		public Builder() {
+		}
+		private Builder(PointInTimeReference instance) {
+			this.id = instance.id;
+			this.keepAlive = instance.keepAlive;
+
+		}
 		/**
 		 * Required - API name: {@code id}
 		 */
@@ -176,6 +183,12 @@ public class PointInTimeReference implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

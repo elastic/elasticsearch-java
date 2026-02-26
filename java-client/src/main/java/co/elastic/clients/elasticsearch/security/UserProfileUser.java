@@ -208,6 +208,17 @@ public class UserProfileUser implements JsonpSerializable {
 
 		private String username;
 
+		public Builder() {
+		}
+		private Builder(UserProfileUser instance) {
+			this.email = instance.email;
+			this.fullName = instance.fullName;
+			this.realmName = instance.realmName;
+			this.realmDomain = instance.realmDomain;
+			this.roles = instance.roles;
+			this.username = instance.username;
+
+		}
 		/**
 		 * API name: {@code email}
 		 */
@@ -286,6 +297,12 @@ public class UserProfileUser implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

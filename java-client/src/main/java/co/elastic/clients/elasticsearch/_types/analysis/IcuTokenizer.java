@@ -104,6 +104,12 @@ public class IcuTokenizer extends TokenizerBase implements TokenizerDefinitionVa
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<IcuTokenizer> {
 		private String ruleFiles;
 
+		public Builder() {
+		}
+		private Builder(IcuTokenizer instance) {
+			this.ruleFiles = instance.ruleFiles;
+
+		}
 		/**
 		 * Required - API name: {@code rule_files}
 		 */
@@ -130,6 +136,12 @@ public class IcuTokenizer extends TokenizerBase implements TokenizerDefinitionVa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

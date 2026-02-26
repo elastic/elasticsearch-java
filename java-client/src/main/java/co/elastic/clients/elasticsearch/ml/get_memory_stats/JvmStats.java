@@ -217,6 +217,17 @@ public class JvmStats implements JsonpSerializable {
 
 		private Integer javaInferenceMaxInBytes;
 
+		public Builder() {
+		}
+		private Builder(JvmStats instance) {
+			this.heapMax = instance.heapMax;
+			this.heapMaxInBytes = instance.heapMaxInBytes;
+			this.javaInference = instance.javaInference;
+			this.javaInferenceInBytes = instance.javaInferenceInBytes;
+			this.javaInferenceMax = instance.javaInferenceMax;
+			this.javaInferenceMaxInBytes = instance.javaInferenceMaxInBytes;
+
+		}
 		/**
 		 * Maximum amount of memory available for use by the heap.
 		 * <p>
@@ -297,6 +308,12 @@ public class JvmStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -109,6 +109,13 @@ public class DataStreams extends Base {
 
 		private Long indicesCount;
 
+		public Builder() {
+		}
+		private Builder(DataStreams instance) {
+			this.dataStreams = instance.dataStreams;
+			this.indicesCount = instance.indicesCount;
+
+		}
 		/**
 		 * Required - API name: {@code data_streams}
 		 */
@@ -143,6 +150,12 @@ public class DataStreams extends Base {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

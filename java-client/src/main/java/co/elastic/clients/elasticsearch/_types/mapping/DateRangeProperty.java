@@ -112,6 +112,12 @@ public class DateRangeProperty extends RangePropertyBase implements PropertyVari
 		@Nullable
 		private String format;
 
+		public Builder() {
+		}
+		private Builder(DateRangeProperty instance) {
+			this.format = instance.format;
+
+		}
 		/**
 		 * API name: {@code format}
 		 */
@@ -138,6 +144,12 @@ public class DateRangeProperty extends RangePropertyBase implements PropertyVari
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

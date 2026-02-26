@@ -216,6 +216,16 @@ public class CompletionContext implements JsonpSerializable {
 		@Nullable
 		private Boolean prefix;
 
+		public Builder() {
+		}
+		private Builder(CompletionContext instance) {
+			this.boost = instance.boost;
+			this.context = instance.context;
+			this.neighbours = instance.neighbours;
+			this.precision = instance.precision;
+			this.prefix = instance.prefix;
+
+		}
 		/**
 		 * The factor by which the score of the suggestion should be boosted. The score
 		 * is computed by multiplying the boost with the suggestion weight.
@@ -346,6 +356,12 @@ public class CompletionContext implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

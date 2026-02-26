@@ -150,6 +150,14 @@ public class TrainedModelDeploymentAllocationStatus implements JsonpSerializable
 
 		private Integer targetAllocationCount;
 
+		public Builder() {
+		}
+		private Builder(TrainedModelDeploymentAllocationStatus instance) {
+			this.allocationCount = instance.allocationCount;
+			this.state = instance.state;
+			this.targetAllocationCount = instance.targetAllocationCount;
+
+		}
 		/**
 		 * Required - The current number of nodes where the model is allocated.
 		 * <p>
@@ -198,6 +206,12 @@ public class TrainedModelDeploymentAllocationStatus implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

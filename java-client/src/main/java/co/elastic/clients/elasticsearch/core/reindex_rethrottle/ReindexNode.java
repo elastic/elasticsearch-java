@@ -107,6 +107,12 @@ public class ReindexNode extends BaseNode {
 	public static class Builder extends BaseNode.AbstractBuilder<Builder> implements ObjectBuilder<ReindexNode> {
 		private Map<String, ReindexTask> tasks;
 
+		public Builder() {
+		}
+		private Builder(ReindexNode instance) {
+			this.tasks = instance.tasks;
+
+		}
 		/**
 		 * Required - API name: {@code tasks}
 		 * <p>
@@ -154,6 +160,12 @@ public class ReindexNode extends BaseNode {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

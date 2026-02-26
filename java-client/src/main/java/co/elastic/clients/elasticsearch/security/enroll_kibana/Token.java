@@ -132,6 +132,13 @@ public class Token implements JsonpSerializable {
 
 		private String value;
 
+		public Builder() {
+		}
+		private Builder(Token instance) {
+			this.name = instance.name;
+			this.value = instance.value;
+
+		}
 		/**
 		 * Required - The name of the bearer token for the <code>elastic/kibana</code>
 		 * service account.
@@ -173,6 +180,12 @@ public class Token implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

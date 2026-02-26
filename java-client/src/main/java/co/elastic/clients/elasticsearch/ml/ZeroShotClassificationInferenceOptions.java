@@ -252,6 +252,17 @@ public class ZeroShotClassificationInferenceOptions implements InferenceConfigCr
 		@Nullable
 		private List<String> labels;
 
+		public Builder() {
+		}
+		private Builder(ZeroShotClassificationInferenceOptions instance) {
+			this.tokenization = instance.tokenization;
+			this.hypothesisTemplate = instance.hypothesisTemplate;
+			this.classificationLabels = instance.classificationLabels;
+			this.resultsField = instance.resultsField;
+			this.multiLabel = instance.multiLabel;
+			this.labels = instance.labels;
+
+		}
 		/**
 		 * The tokenization options to update when inferring
 		 * <p>
@@ -382,6 +393,12 @@ public class ZeroShotClassificationInferenceOptions implements InferenceConfigCr
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

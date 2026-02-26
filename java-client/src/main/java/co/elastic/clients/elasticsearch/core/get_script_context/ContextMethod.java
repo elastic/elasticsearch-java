@@ -150,6 +150,14 @@ public class ContextMethod implements JsonpSerializable {
 
 		private List<ContextMethodParam> params;
 
+		public Builder() {
+		}
+		private Builder(ContextMethod instance) {
+			this.name = instance.name;
+			this.returnType = instance.returnType;
+			this.params = instance.params;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -213,6 +221,12 @@ public class ContextMethod implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

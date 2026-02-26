@@ -262,6 +262,21 @@ public class GetStats implements JsonpSerializable {
 
 		private Long total;
 
+		public Builder() {
+		}
+		private Builder(GetStats instance) {
+			this.current = instance.current;
+			this.existsTime = instance.existsTime;
+			this.existsTimeInMillis = instance.existsTimeInMillis;
+			this.existsTotal = instance.existsTotal;
+			this.missingTime = instance.missingTime;
+			this.missingTimeInMillis = instance.missingTimeInMillis;
+			this.missingTotal = instance.missingTotal;
+			this.time = instance.time;
+			this.timeInMillis = instance.timeInMillis;
+			this.total = instance.total;
+
+		}
 		/**
 		 * Required - API name: {@code current}
 		 */
@@ -381,6 +396,12 @@ public class GetStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -94,6 +94,12 @@ public class Archive extends Base {
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Archive> {
 		private Long indicesCount;
 
+		public Builder() {
+		}
+		private Builder(Archive instance) {
+			this.indicesCount = instance.indicesCount;
+
+		}
 		/**
 		 * Required - API name: {@code indices_count}
 		 */
@@ -120,6 +126,12 @@ public class Archive extends Base {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -151,6 +151,13 @@ public class ChineseAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		@Nullable
 		private String stopwordsPath;
 
+		public Builder() {
+		}
+		private Builder(ChineseAnalyzer instance) {
+			this.stopwords = instance.stopwords;
+			this.stopwordsPath = instance.stopwordsPath;
+
+		}
 		/**
 		 * API name: {@code stopwords}
 		 * <p>
@@ -197,6 +204,12 @@ public class ChineseAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

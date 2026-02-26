@@ -175,6 +175,14 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 		@Nullable
 		private Boolean articlesCase;
 
+		public Builder() {
+		}
+		private Builder(ElisionTokenFilter instance) {
+			this.articles = instance.articles;
+			this.articlesPath = instance.articlesPath;
+			this.articlesCase = instance.articlesCase;
+
+		}
 		/**
 		 * List of elisions to remove. To be removed, the elision must be at the
 		 * beginning of a token and be immediately followed by an apostrophe. Both the
@@ -251,6 +259,12 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

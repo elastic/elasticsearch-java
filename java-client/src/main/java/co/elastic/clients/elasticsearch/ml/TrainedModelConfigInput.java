@@ -124,6 +124,12 @@ public class TrainedModelConfigInput implements JsonpSerializable {
 				ObjectBuilder<TrainedModelConfigInput> {
 		private List<String> fieldNames;
 
+		public Builder() {
+		}
+		private Builder(TrainedModelConfigInput instance) {
+			this.fieldNames = instance.fieldNames;
+
+		}
 		/**
 		 * Required - An array of input field names for the model.
 		 * <p>
@@ -166,6 +172,12 @@ public class TrainedModelConfigInput implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

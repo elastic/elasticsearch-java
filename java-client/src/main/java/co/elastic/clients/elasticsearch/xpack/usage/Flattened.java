@@ -94,6 +94,12 @@ public class Flattened extends Base {
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Flattened> {
 		private Integer fieldCount;
 
+		public Builder() {
+		}
+		private Builder(Flattened instance) {
+			this.fieldCount = instance.fieldCount;
+
+		}
 		/**
 		 * Required - API name: {@code field_count}
 		 */
@@ -120,6 +126,12 @@ public class Flattened extends Base {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

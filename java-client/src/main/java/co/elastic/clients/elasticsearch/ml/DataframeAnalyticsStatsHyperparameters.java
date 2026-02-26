@@ -196,6 +196,16 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 
 		private ValidationLoss validationLoss;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalyticsStatsHyperparameters instance) {
+			this.hyperparameters = instance.hyperparameters;
+			this.iteration = instance.iteration;
+			this.timestamp = instance.timestamp;
+			this.timingStats = instance.timingStats;
+			this.validationLoss = instance.validationLoss;
+
+		}
 		/**
 		 * Required - An object containing the parameters of the classification analysis
 		 * job.
@@ -296,6 +306,12 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

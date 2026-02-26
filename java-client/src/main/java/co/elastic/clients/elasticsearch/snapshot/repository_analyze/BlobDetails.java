@@ -233,6 +233,19 @@ public class BlobDetails implements JsonpSerializable {
 
 		private Long sizeBytes;
 
+		public Builder() {
+		}
+		private Builder(BlobDetails instance) {
+			this.name = instance.name;
+			this.overwritten = instance.overwritten;
+			this.readEarly = instance.readEarly;
+			this.readEnd = instance.readEnd;
+			this.readStart = instance.readStart;
+			this.reads = instance.reads;
+			this.size = instance.size;
+			this.sizeBytes = instance.sizeBytes;
+
+		}
 		/**
 		 * Required - The name of the blob.
 		 * <p>
@@ -339,6 +352,12 @@ public class BlobDetails implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

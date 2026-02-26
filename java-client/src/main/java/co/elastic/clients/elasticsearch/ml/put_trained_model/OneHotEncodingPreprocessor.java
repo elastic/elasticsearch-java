@@ -146,6 +146,13 @@ public class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSer
 
 		private Map<String, String> hotMap;
 
+		public Builder() {
+		}
+		private Builder(OneHotEncodingPreprocessor instance) {
+			this.field = instance.field;
+			this.hotMap = instance.hotMap;
+
+		}
 		/**
 		 * Required - API name: {@code field}
 		 */
@@ -192,6 +199,12 @@ public class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSer
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

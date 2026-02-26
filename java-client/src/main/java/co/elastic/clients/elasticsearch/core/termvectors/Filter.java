@@ -251,6 +251,18 @@ public class Filter implements JsonpSerializable {
 		@Nullable
 		private Integer minWordLength;
 
+		public Builder() {
+		}
+		private Builder(Filter instance) {
+			this.maxDocFreq = instance.maxDocFreq;
+			this.maxNumTerms = instance.maxNumTerms;
+			this.maxTermFreq = instance.maxTermFreq;
+			this.maxWordLength = instance.maxWordLength;
+			this.minDocFreq = instance.minDocFreq;
+			this.minTermFreq = instance.minTermFreq;
+			this.minWordLength = instance.minWordLength;
+
+		}
 		/**
 		 * Ignore words which occur in more than this many docs. Defaults to unbounded.
 		 * <p>
@@ -341,6 +353,12 @@ public class Filter implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

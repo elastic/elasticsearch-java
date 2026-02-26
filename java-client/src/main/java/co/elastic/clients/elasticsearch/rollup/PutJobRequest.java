@@ -325,6 +325,20 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutJobRequest instance) {
+			this.cron = instance.cron;
+			this.groups = instance.groups;
+			this.headers = instance.headers;
+			this.id = instance.id;
+			this.indexPattern = instance.indexPattern;
+			this.metrics = instance.metrics;
+			this.pageSize = instance.pageSize;
+			this.rollupIndex = instance.rollupIndex;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - A cron string which defines the intervals when the rollup job
 		 * should be executed. When the interval triggers, the indexer attempts to
@@ -531,6 +545,12 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

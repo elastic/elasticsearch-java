@@ -109,6 +109,12 @@ public class NodeInfoSearch implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeInfoSearch> {
 		private NodeInfoSearchRemote remote;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoSearch instance) {
+			this.remote = instance.remote;
+
+		}
 		/**
 		 * Required - API name: {@code remote}
 		 */
@@ -142,6 +148,12 @@ public class NodeInfoSearch implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

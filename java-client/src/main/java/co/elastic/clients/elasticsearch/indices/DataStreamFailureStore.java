@@ -149,6 +149,13 @@ public class DataStreamFailureStore implements JsonpSerializable {
 		@Nullable
 		private FailureStoreLifecycle lifecycle;
 
+		public Builder() {
+		}
+		private Builder(DataStreamFailureStore instance) {
+			this.enabled = instance.enabled;
+			this.lifecycle = instance.lifecycle;
+
+		}
 		/**
 		 * If defined, it turns the failure store on/off
 		 * (<code>true</code>/<code>false</code>) for this data stream. A data stream
@@ -203,6 +210,12 @@ public class DataStreamFailureStore implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

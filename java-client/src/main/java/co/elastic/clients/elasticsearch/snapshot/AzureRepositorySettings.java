@@ -266,6 +266,18 @@ public class AzureRepositorySettings extends RepositorySettingsBase {
 		@Nullable
 		private Boolean readonly;
 
+		public Builder() {
+		}
+		private Builder(AzureRepositorySettings instance) {
+			this.basePath = instance.basePath;
+			this.client = instance.client;
+			this.container = instance.container;
+			this.deleteObjectsMaxSize = instance.deleteObjectsMaxSize;
+			this.locationMode = instance.locationMode;
+			this.maxConcurrentBatchDeletes = instance.maxConcurrentBatchDeletes;
+			this.readonly = instance.readonly;
+
+		}
 		/**
 		 * The path to the repository data within the container. It defaults to the root
 		 * directory.
@@ -381,6 +393,12 @@ public class AzureRepositorySettings extends RepositorySettingsBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

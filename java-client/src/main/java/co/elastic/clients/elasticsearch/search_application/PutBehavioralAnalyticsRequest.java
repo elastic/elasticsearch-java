@@ -99,6 +99,12 @@ public class PutBehavioralAnalyticsRequest extends RequestBase {
 				ObjectBuilder<PutBehavioralAnalyticsRequest> {
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(PutBehavioralAnalyticsRequest instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - The name of the analytics collection to be created or updated.
 		 * <p>
@@ -127,6 +133,12 @@ public class PutBehavioralAnalyticsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

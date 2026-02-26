@@ -99,6 +99,12 @@ public class ActivateWatchRequest extends RequestBase {
 				ObjectBuilder<ActivateWatchRequest> {
 		private String watchId;
 
+		public Builder() {
+		}
+		private Builder(ActivateWatchRequest instance) {
+			this.watchId = instance.watchId;
+
+		}
 		/**
 		 * Required - The watch identifier.
 		 * <p>
@@ -127,6 +133,12 @@ public class ActivateWatchRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

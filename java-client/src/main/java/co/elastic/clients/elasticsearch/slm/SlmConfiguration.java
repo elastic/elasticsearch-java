@@ -257,6 +257,17 @@ public class SlmConfiguration implements JsonpSerializable {
 		@Nullable
 		private Boolean partial;
 
+		public Builder() {
+		}
+		private Builder(SlmConfiguration instance) {
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.indices = instance.indices;
+			this.includeGlobalState = instance.includeGlobalState;
+			this.featureStates = instance.featureStates;
+			this.metadata = instance.metadata;
+			this.partial = instance.partial;
+
+		}
 		/**
 		 * If false, the snapshot fails if any data stream or index in indices is
 		 * missing or closed. If true, the snapshot ignores missing or closed data
@@ -404,6 +415,12 @@ public class SlmConfiguration implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

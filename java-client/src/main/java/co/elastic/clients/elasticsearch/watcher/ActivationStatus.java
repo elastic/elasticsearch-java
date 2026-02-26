@@ -150,6 +150,14 @@ public class ActivationStatus implements JsonpSerializable {
 
 		private Long version;
 
+		public Builder() {
+		}
+		private Builder(ActivationStatus instance) {
+			this.actions = instance.actions;
+			this.state = instance.state;
+			this.version = instance.version;
+
+		}
 		/**
 		 * Required - API name: {@code actions}
 		 * <p>
@@ -220,6 +228,12 @@ public class ActivationStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -97,6 +97,12 @@ public class CompositeHistogramAggregation extends CompositeAggregationBase {
 				ObjectBuilder<CompositeHistogramAggregation> {
 		private Double interval;
 
+		public Builder() {
+		}
+		private Builder(CompositeHistogramAggregation instance) {
+			this.interval = instance.interval;
+
+		}
 		/**
 		 * Required - API name: {@code interval}
 		 */
@@ -123,6 +129,12 @@ public class CompositeHistogramAggregation extends CompositeAggregationBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

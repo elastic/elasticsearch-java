@@ -143,6 +143,14 @@ public class TriggerEventResult implements JsonpSerializable {
 
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(TriggerEventResult instance) {
+			this.manual = instance.manual;
+			this.triggeredTime = instance.triggeredTime;
+			this.type = instance.type;
+
+		}
 		/**
 		 * Required - API name: {@code manual}
 		 */
@@ -200,6 +208,12 @@ public class TriggerEventResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

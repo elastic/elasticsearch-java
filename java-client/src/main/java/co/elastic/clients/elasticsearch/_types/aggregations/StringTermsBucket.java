@@ -99,6 +99,12 @@ public class StringTermsBucket extends TermsBucketBase {
 				ObjectBuilder<StringTermsBucket> {
 		private FieldValue key;
 
+		public Builder() {
+		}
+		private Builder(StringTermsBucket instance) {
+			this.key = instance.key;
+
+		}
 		/**
 		 * Required - API name: {@code key}
 		 */
@@ -164,6 +170,12 @@ public class StringTermsBucket extends TermsBucketBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

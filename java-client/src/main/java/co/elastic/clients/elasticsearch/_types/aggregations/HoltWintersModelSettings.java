@@ -219,6 +219,17 @@ public class HoltWintersModelSettings implements JsonpSerializable {
 		@Nullable
 		private HoltWintersType type;
 
+		public Builder() {
+		}
+		private Builder(HoltWintersModelSettings instance) {
+			this.alpha = instance.alpha;
+			this.beta = instance.beta;
+			this.gamma = instance.gamma;
+			this.pad = instance.pad;
+			this.period = instance.period;
+			this.type = instance.type;
+
+		}
 		/**
 		 * API name: {@code alpha}
 		 */
@@ -285,6 +296,12 @@ public class HoltWintersModelSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

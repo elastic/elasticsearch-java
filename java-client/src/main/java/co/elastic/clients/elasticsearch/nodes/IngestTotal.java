@@ -165,6 +165,15 @@ public class IngestTotal implements JsonpSerializable {
 
 		private Long timeInMillis;
 
+		public Builder() {
+		}
+		private Builder(IngestTotal instance) {
+			this.count = instance.count;
+			this.current = instance.current;
+			this.failed = instance.failed;
+			this.timeInMillis = instance.timeInMillis;
+
+		}
 		/**
 		 * Required - Total number of documents ingested during the lifetime of this
 		 * node.
@@ -226,6 +235,12 @@ public class IngestTotal implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
