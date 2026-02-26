@@ -299,6 +299,23 @@ public class LicenseInformation implements JsonpSerializable {
 
 		private Long startDateInMillis;
 
+		public Builder() {
+		}
+		private Builder(LicenseInformation instance) {
+			this.expiryDate = instance.expiryDate;
+			this.expiryDateInMillis = instance.expiryDateInMillis;
+			this.issueDate = instance.issueDate;
+			this.issueDateInMillis = instance.issueDateInMillis;
+			this.issuedTo = instance.issuedTo;
+			this.issuer = instance.issuer;
+			this.maxNodes = instance.maxNodes;
+			this.maxResourceUnits = instance.maxResourceUnits;
+			this.status = instance.status;
+			this.type = instance.type;
+			this.uid = instance.uid;
+			this.startDateInMillis = instance.startDateInMillis;
+
+		}
 		/**
 		 * API name: {@code expiry_date}
 		 */
@@ -413,6 +430,12 @@ public class LicenseInformation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

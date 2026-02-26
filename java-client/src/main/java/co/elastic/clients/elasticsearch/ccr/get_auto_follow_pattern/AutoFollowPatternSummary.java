@@ -226,6 +226,17 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 
 		private Integer maxOutstandingReadRequests;
 
+		public Builder() {
+		}
+		private Builder(AutoFollowPatternSummary instance) {
+			this.active = instance.active;
+			this.remoteCluster = instance.remoteCluster;
+			this.followIndexPattern = instance.followIndexPattern;
+			this.leaderIndexPatterns = instance.leaderIndexPatterns;
+			this.leaderIndexExclusionPatterns = instance.leaderIndexExclusionPatterns;
+			this.maxOutstandingReadRequests = instance.maxOutstandingReadRequests;
+
+		}
 		/**
 		 * Required - API name: {@code active}
 		 */
@@ -336,6 +347,12 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

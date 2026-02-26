@@ -458,6 +458,25 @@ public class Hyperparameters implements JsonpSerializable {
 		@Nullable
 		private Double softTreeDepthTolerance;
 
+		public Builder() {
+		}
+		private Builder(Hyperparameters instance) {
+			this.alpha = instance.alpha;
+			this.lambda = instance.lambda;
+			this.gamma = instance.gamma;
+			this.eta = instance.eta;
+			this.etaGrowthRatePerTree = instance.etaGrowthRatePerTree;
+			this.featureBagFraction = instance.featureBagFraction;
+			this.downsampleFactor = instance.downsampleFactor;
+			this.maxAttemptsToAddTree = instance.maxAttemptsToAddTree;
+			this.maxOptimizationRoundsPerHyperparameter = instance.maxOptimizationRoundsPerHyperparameter;
+			this.maxTrees = instance.maxTrees;
+			this.numFolds = instance.numFolds;
+			this.numSplitsPerFeature = instance.numSplitsPerFeature;
+			this.softTreeDepthLimit = instance.softTreeDepthLimit;
+			this.softTreeDepthTolerance = instance.softTreeDepthTolerance;
+
+		}
 		/**
 		 * Advanced configuration option. Machine learning uses loss guided tree
 		 * growing, which means that the decision trees grow where the regularized loss
@@ -670,6 +689,12 @@ public class Hyperparameters implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

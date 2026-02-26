@@ -117,6 +117,13 @@ public class CacheStatsRequest extends RequestBase {
 		@Nullable
 		private List<String> nodeId;
 
+		public Builder() {
+		}
+		private Builder(CacheStatsRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.nodeId = instance.nodeId;
+
+		}
 		/**
 		 * API name: {@code master_timeout}
 		 */
@@ -174,6 +181,12 @@ public class CacheStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

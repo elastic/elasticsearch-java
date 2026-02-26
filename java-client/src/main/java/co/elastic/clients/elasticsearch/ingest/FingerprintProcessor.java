@@ -209,6 +209,16 @@ public class FingerprintProcessor extends ProcessorBase implements ProcessorVari
 		@Nullable
 		private Boolean ignoreMissing;
 
+		public Builder() {
+		}
+		private Builder(FingerprintProcessor instance) {
+			this.fields = instance.fields;
+			this.targetField = instance.targetField;
+			this.salt = instance.salt;
+			this.method = instance.method;
+			this.ignoreMissing = instance.ignoreMissing;
+
+		}
 		/**
 		 * Required - Array of fields to include in the fingerprint. For objects, the
 		 * processor hashes both the field key and value. For other fields, the
@@ -297,6 +307,12 @@ public class FingerprintProcessor extends ProcessorBase implements ProcessorVari
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

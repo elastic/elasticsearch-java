@@ -169,6 +169,14 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 		@Nullable
 		private TTestType type;
 
+		public Builder() {
+		}
+		private Builder(TTestAggregation instance) {
+			this.a = instance.a;
+			this.b = instance.b;
+			this.type = instance.type;
+
+		}
 		/**
 		 * Test population A.
 		 * <p>
@@ -235,6 +243,12 @@ public class TTestAggregation extends AggregationBase implements AggregationVari
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

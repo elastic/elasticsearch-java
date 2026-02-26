@@ -117,6 +117,12 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDef
 		@Nullable
 		private List<String> escapedTags;
 
+		public Builder() {
+		}
+		private Builder(HtmlStripCharFilter instance) {
+			this.escapedTags = instance.escapedTags;
+
+		}
 		/**
 		 * API name: {@code escaped_tags}
 		 * <p>
@@ -155,6 +161,12 @@ public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDef
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

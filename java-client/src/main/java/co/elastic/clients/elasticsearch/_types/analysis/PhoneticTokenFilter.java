@@ -209,6 +209,17 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 		@Nullable
 		private PhoneticRuleType ruleType;
 
+		public Builder() {
+		}
+		private Builder(PhoneticTokenFilter instance) {
+			this.encoder = instance.encoder;
+			this.languageset = instance.languageset;
+			this.maxCodeLen = instance.maxCodeLen;
+			this.nameType = instance.nameType;
+			this.replace = instance.replace;
+			this.ruleType = instance.ruleType;
+
+		}
 		/**
 		 * Required - API name: {@code encoder}
 		 */
@@ -287,6 +298,12 @@ public class PhoneticTokenFilter extends TokenFilterBase implements TokenFilterD
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

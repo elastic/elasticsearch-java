@@ -129,6 +129,13 @@ public class RoleTemplate implements JsonpSerializable {
 
 		private Script template;
 
+		public Builder() {
+		}
+		private Builder(RoleTemplate instance) {
+			this.format = instance.format;
+			this.template = instance.template;
+
+		}
 		/**
 		 * API name: {@code format}
 		 */
@@ -170,6 +177,12 @@ public class RoleTemplate implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

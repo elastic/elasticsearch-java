@@ -184,6 +184,14 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 		@Nullable
 		private String searchInferenceId;
 
+		public Builder() {
+		}
+		private Builder(SemanticTextProperty instance) {
+			this.meta = instance.meta;
+			this.inferenceId = instance.inferenceId;
+			this.searchInferenceId = instance.searchInferenceId;
+
+		}
 		/**
 		 * API name: {@code meta}
 		 * <p>
@@ -248,6 +256,12 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

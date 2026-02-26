@@ -223,6 +223,16 @@ public class FrequentItemSetsAggregation implements AggregationVariant, JsonpSer
 		@Nullable
 		private Query filter;
 
+		public Builder() {
+		}
+		private Builder(FrequentItemSetsAggregation instance) {
+			this.fields = instance.fields;
+			this.minimumSetSize = instance.minimumSetSize;
+			this.minimumSupport = instance.minimumSupport;
+			this.size = instance.size;
+			this.filter = instance.filter;
+
+		}
 		/**
 		 * Required - Fields to analyze.
 		 * <p>
@@ -335,6 +345,12 @@ public class FrequentItemSetsAggregation implements AggregationVariant, JsonpSer
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

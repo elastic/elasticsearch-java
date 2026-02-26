@@ -178,6 +178,15 @@ public class SlowlogTresholdLevels implements JsonpSerializable {
 		@Nullable
 		private Time trace;
 
+		public Builder() {
+		}
+		private Builder(SlowlogTresholdLevels instance) {
+			this.warn = instance.warn;
+			this.info = instance.info;
+			this.debug = instance.debug;
+			this.trace = instance.trace;
+
+		}
 		/**
 		 * API name: {@code warn}
 		 */
@@ -256,6 +265,12 @@ public class SlowlogTresholdLevels implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

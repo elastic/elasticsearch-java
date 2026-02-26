@@ -181,6 +181,16 @@ public class AliasesRequest extends CatRequestBase {
 		@Nullable
 		private List<String> s;
 
+		public Builder() {
+		}
+		private Builder(AliasesRequest instance) {
+			this.expandWildcards = instance.expandWildcards;
+			this.h = instance.h;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.s = instance.s;
+
+		}
 		/**
 		 * The type of index that wildcard patterns can match. If the request can target
 		 * data streams, this argument determines whether wildcard expressions match
@@ -350,6 +360,12 @@ public class AliasesRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

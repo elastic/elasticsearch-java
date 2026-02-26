@@ -160,6 +160,14 @@ public class MovingFunctionAggregation extends PipelineAggregationBase implement
 		@Nullable
 		private Integer window;
 
+		public Builder() {
+		}
+		private Builder(MovingFunctionAggregation instance) {
+			this.script = instance.script;
+			this.shift = instance.shift;
+			this.window = instance.window;
+
+		}
 		/**
 		 * The script that should be executed on each window of data.
 		 * <p>
@@ -210,6 +218,12 @@ public class MovingFunctionAggregation extends PipelineAggregationBase implement
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

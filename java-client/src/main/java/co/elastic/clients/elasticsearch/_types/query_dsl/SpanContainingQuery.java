@@ -134,6 +134,13 @@ public class SpanContainingQuery extends QueryBase implements SpanQueryVariant, 
 
 		private SpanQuery little;
 
+		public Builder() {
+		}
+		private Builder(SpanContainingQuery instance) {
+			this.big = instance.big;
+			this.little = instance.little;
+
+		}
 		/**
 		 * Required - Can be any span query. Matching spans from <code>big</code> that
 		 * contain matches from <code>little</code> are returned.
@@ -216,6 +223,12 @@ public class SpanContainingQuery extends QueryBase implements SpanQueryVariant, 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

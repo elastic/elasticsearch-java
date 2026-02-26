@@ -125,6 +125,13 @@ public class InputConfig implements JsonpSerializable {
 
 		private String outputField;
 
+		public Builder() {
+		}
+		private Builder(InputConfig instance) {
+			this.inputField = instance.inputField;
+			this.outputField = instance.outputField;
+
+		}
 		/**
 		 * Required - API name: {@code input_field}
 		 */
@@ -159,6 +166,12 @@ public class InputConfig implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -200,6 +200,15 @@ public class AmazonBedrockTaskSettings implements JsonpSerializable {
 		@Nullable
 		private Float topP;
 
+		public Builder() {
+		}
+		private Builder(AmazonBedrockTaskSettings instance) {
+			this.maxNewTokens = instance.maxNewTokens;
+			this.temperature = instance.temperature;
+			this.topK = instance.topK;
+			this.topP = instance.topP;
+
+		}
 		/**
 		 * For a <code>completion</code> task, it sets the maximum number for the output
 		 * tokens to be generated.
@@ -271,6 +280,12 @@ public class AmazonBedrockTaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

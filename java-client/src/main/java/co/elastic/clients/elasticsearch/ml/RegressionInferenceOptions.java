@@ -175,6 +175,13 @@ public class RegressionInferenceOptions
 		@Nullable
 		private Integer numTopFeatureImportanceValues;
 
+		public Builder() {
+		}
+		private Builder(RegressionInferenceOptions instance) {
+			this.resultsField = instance.resultsField;
+			this.numTopFeatureImportanceValues = instance.numTopFeatureImportanceValues;
+
+		}
 		/**
 		 * The field that is added to incoming documents to contain the inference
 		 * prediction. Defaults to predicted_value.
@@ -214,6 +221,12 @@ public class RegressionInferenceOptions
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

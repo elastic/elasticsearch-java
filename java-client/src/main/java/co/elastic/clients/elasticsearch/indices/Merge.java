@@ -114,6 +114,12 @@ public class Merge implements JsonpSerializable {
 		@Nullable
 		private MergeScheduler scheduler;
 
+		public Builder() {
+		}
+		private Builder(Merge instance) {
+			this.scheduler = instance.scheduler;
+
+		}
 		/**
 		 * API name: {@code scheduler}
 		 */
@@ -147,6 +153,12 @@ public class Merge implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

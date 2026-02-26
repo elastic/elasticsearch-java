@@ -124,6 +124,13 @@ public class QueryRole extends RoleDescriptor {
 
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(QueryRole instance) {
+			this.sort = instance.sort;
+			this.name = instance.name;
+
+		}
 		/**
 		 * API name: {@code _sort}
 		 * <p>
@@ -233,6 +240,12 @@ public class QueryRole extends RoleDescriptor {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

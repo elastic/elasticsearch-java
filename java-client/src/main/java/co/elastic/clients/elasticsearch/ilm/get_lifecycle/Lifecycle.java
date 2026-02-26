@@ -141,6 +141,14 @@ public class Lifecycle implements JsonpSerializable {
 
 		private Long version;
 
+		public Builder() {
+		}
+		private Builder(Lifecycle instance) {
+			this.modifiedDate = instance.modifiedDate;
+			this.policy = instance.policy;
+			this.version = instance.version;
+
+		}
 		/**
 		 * Required - API name: {@code modified_date}
 		 */
@@ -190,6 +198,12 @@ public class Lifecycle implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

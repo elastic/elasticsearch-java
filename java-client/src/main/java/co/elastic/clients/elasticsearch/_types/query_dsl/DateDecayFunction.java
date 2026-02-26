@@ -83,6 +83,11 @@ public class DateDecayFunction extends DecayFunctionBase<String, Time> implement
 	public static class Builder extends DecayFunctionBase.AbstractBuilder<String, Time, Builder>
 			implements
 				ObjectBuilder<DateDecayFunction> {
+		public Builder() {
+		}
+		private Builder(DateDecayFunction instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -103,6 +108,12 @@ public class DateDecayFunction extends DecayFunctionBase<String, Time> implement
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

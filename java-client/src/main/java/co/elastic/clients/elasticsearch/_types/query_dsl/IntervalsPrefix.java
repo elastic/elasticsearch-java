@@ -177,6 +177,14 @@ public class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVariant,
 		@Nullable
 		private String useField;
 
+		public Builder() {
+		}
+		private Builder(IntervalsPrefix instance) {
+			this.analyzer = instance.analyzer;
+			this.prefix = instance.prefix;
+			this.useField = instance.useField;
+
+		}
 		/**
 		 * Analyzer used to analyze the <code>prefix</code>.
 		 * <p>
@@ -228,6 +236,12 @@ public class IntervalsPrefix implements IntervalsQueryVariant, IntervalsVariant,
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

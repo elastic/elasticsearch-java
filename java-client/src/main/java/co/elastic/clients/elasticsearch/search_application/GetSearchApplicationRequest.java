@@ -97,6 +97,12 @@ public class GetSearchApplicationRequest extends RequestBase {
 				ObjectBuilder<GetSearchApplicationRequest> {
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(GetSearchApplicationRequest instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - The name of the search application
 		 * <p>
@@ -125,6 +131,12 @@ public class GetSearchApplicationRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

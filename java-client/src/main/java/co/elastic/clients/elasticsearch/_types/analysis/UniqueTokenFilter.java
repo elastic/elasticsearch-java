@@ -115,6 +115,12 @@ public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterDef
 		@Nullable
 		private Boolean onlyOnSamePosition;
 
+		public Builder() {
+		}
+		private Builder(UniqueTokenFilter instance) {
+			this.onlyOnSamePosition = instance.onlyOnSamePosition;
+
+		}
 		/**
 		 * If <code>true</code>, only remove duplicate tokens in the same position.
 		 * Defaults to <code>false</code>.
@@ -144,6 +150,12 @@ public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterDef
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

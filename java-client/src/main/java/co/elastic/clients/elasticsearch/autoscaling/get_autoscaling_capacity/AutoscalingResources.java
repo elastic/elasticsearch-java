@@ -127,6 +127,13 @@ public class AutoscalingResources implements JsonpSerializable {
 
 		private Integer memory;
 
+		public Builder() {
+		}
+		private Builder(AutoscalingResources instance) {
+			this.storage = instance.storage;
+			this.memory = instance.memory;
+
+		}
 		/**
 		 * Required - API name: {@code storage}
 		 */
@@ -161,6 +168,12 @@ public class AutoscalingResources implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

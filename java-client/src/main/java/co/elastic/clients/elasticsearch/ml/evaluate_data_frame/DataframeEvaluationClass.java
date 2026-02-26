@@ -98,6 +98,12 @@ public class DataframeEvaluationClass extends DataframeEvaluationValue {
 				ObjectBuilder<DataframeEvaluationClass> {
 		private String className;
 
+		public Builder() {
+		}
+		private Builder(DataframeEvaluationClass instance) {
+			this.className = instance.className;
+
+		}
 		/**
 		 * Required - API name: {@code class_name}
 		 */
@@ -124,6 +130,12 @@ public class DataframeEvaluationClass extends DataframeEvaluationValue {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -165,6 +165,15 @@ public class MigrationFeature implements JsonpSerializable {
 
 		private List<MigrationFeatureIndexInfo> indices;
 
+		public Builder() {
+		}
+		private Builder(MigrationFeature instance) {
+			this.featureName = instance.featureName;
+			this.minimumIndexVersion = instance.minimumIndexVersion;
+			this.migrationStatus = instance.migrationStatus;
+			this.indices = instance.indices;
+
+		}
 		/**
 		 * Required - API name: {@code feature_name}
 		 */
@@ -237,6 +246,12 @@ public class MigrationFeature implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

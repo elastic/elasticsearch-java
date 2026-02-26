@@ -122,6 +122,12 @@ public class IndexSettingsLifecycleStep implements JsonpSerializable {
 		@Nullable
 		private Time waitTimeThreshold;
 
+		public Builder() {
+		}
+		private Builder(IndexSettingsLifecycleStep instance) {
+			this.waitTimeThreshold = instance.waitTimeThreshold;
+
+		}
 		/**
 		 * Time to wait for the cluster to resolve allocation issues during an ILM
 		 * shrink action. Must be greater than 1h (1 hour). See Shard allocation for
@@ -163,6 +169,12 @@ public class IndexSettingsLifecycleStep implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

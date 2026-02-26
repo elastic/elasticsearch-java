@@ -118,6 +118,12 @@ public class Local implements DatabaseConfigurationFullVariant, JsonpSerializabl
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Local> {
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(Local instance) {
+			this.type = instance.type;
+
+		}
 		/**
 		 * Required - API name: {@code type}
 		 */
@@ -144,6 +150,12 @@ public class Local implements DatabaseConfigurationFullVariant, JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

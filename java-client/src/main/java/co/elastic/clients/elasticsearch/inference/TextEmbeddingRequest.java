@@ -179,6 +179,15 @@ public class TextEmbeddingRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(TextEmbeddingRequest instance) {
+			this.inferenceId = instance.inferenceId;
+			this.input = instance.input;
+			this.taskSettings = instance.taskSettings;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - The inference Id
 		 * <p>
@@ -260,6 +269,12 @@ public class TextEmbeddingRequest extends RequestBase implements JsonpSerializab
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

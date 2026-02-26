@@ -165,6 +165,15 @@ public class StopDataFrameAnalyticsRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(StopDataFrameAnalyticsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.force = instance.force;
+			this.id = instance.id;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Specifies what to do when the request:
 		 * <ol>
@@ -247,6 +256,12 @@ public class StopDataFrameAnalyticsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

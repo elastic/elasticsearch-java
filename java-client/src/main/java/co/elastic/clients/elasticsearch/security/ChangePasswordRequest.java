@@ -186,6 +186,15 @@ public class ChangePasswordRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private String username;
 
+		public Builder() {
+		}
+		private Builder(ChangePasswordRequest instance) {
+			this.password = instance.password;
+			this.passwordHash = instance.passwordHash;
+			this.refresh = instance.refresh;
+			this.username = instance.username;
+
+		}
 		/**
 		 * The new password value. Passwords must be at least 6 characters long.
 		 * <p>
@@ -251,6 +260,12 @@ public class ChangePasswordRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

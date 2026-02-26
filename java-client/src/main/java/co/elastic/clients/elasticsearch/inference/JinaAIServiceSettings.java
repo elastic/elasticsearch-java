@@ -194,6 +194,15 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 		@Nullable
 		private JinaAISimilarityType similarity;
 
+		public Builder() {
+		}
+		private Builder(JinaAIServiceSettings instance) {
+			this.apiKey = instance.apiKey;
+			this.modelId = instance.modelId;
+			this.rateLimit = instance.rateLimit;
+			this.similarity = instance.similarity;
+
+		}
 		/**
 		 * Required - A valid API key of your JinaAI account.
 		 * <p>
@@ -276,6 +285,12 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

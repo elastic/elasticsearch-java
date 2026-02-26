@@ -126,6 +126,13 @@ public class PipelineMetadata implements JsonpSerializable {
 
 		private String version;
 
+		public Builder() {
+		}
+		private Builder(PipelineMetadata instance) {
+			this.type = instance.type;
+			this.version = instance.version;
+
+		}
 		/**
 		 * Required - API name: {@code type}
 		 */
@@ -160,6 +167,12 @@ public class PipelineMetadata implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

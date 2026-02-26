@@ -131,6 +131,12 @@ public class WhitespaceAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		@Nullable
 		private String version;
 
+		public Builder() {
+		}
+		private Builder(WhitespaceAnalyzer instance) {
+			this.version = instance.version;
+
+		}
 		/**
 		 * API name: {@code version}
 		 * 
@@ -160,6 +166,12 @@ public class WhitespaceAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

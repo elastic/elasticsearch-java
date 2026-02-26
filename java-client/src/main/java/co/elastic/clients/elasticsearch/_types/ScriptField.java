@@ -131,6 +131,13 @@ public class ScriptField implements JsonpSerializable {
 		@Nullable
 		private Boolean ignoreFailure;
 
+		public Builder() {
+		}
+		private Builder(ScriptField instance) {
+			this.script = instance.script;
+			this.ignoreFailure = instance.ignoreFailure;
+
+		}
 		/**
 		 * Required - API name: {@code script}
 		 */
@@ -172,6 +179,12 @@ public class ScriptField implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

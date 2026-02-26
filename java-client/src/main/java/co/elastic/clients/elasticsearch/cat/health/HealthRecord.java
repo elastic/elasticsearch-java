@@ -426,6 +426,26 @@ public class HealthRecord implements JsonpSerializable {
 		@Nullable
 		private String activeShardsPercent;
 
+		public Builder() {
+		}
+		private Builder(HealthRecord instance) {
+			this.epoch = instance.epoch;
+			this.timestamp = instance.timestamp;
+			this.cluster = instance.cluster;
+			this.status = instance.status;
+			this.nodeTotal = instance.nodeTotal;
+			this.nodeData = instance.nodeData;
+			this.shards = instance.shards;
+			this.pri = instance.pri;
+			this.relo = instance.relo;
+			this.init = instance.init;
+			this.unassignPri = instance.unassignPri;
+			this.unassign = instance.unassign;
+			this.pendingTasks = instance.pendingTasks;
+			this.maxTaskWaitTime = instance.maxTaskWaitTime;
+			this.activeShardsPercent = instance.activeShardsPercent;
+
+		}
 		/**
 		 * seconds since 1970-01-01 00:00:00
 		 * <p>
@@ -594,6 +614,12 @@ public class HealthRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

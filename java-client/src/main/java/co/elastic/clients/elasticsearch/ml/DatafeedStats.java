@@ -226,6 +226,17 @@ public class DatafeedStats implements JsonpSerializable {
 		@Nullable
 		private DatafeedRunningState runningState;
 
+		public Builder() {
+		}
+		private Builder(DatafeedStats instance) {
+			this.assignmentExplanation = instance.assignmentExplanation;
+			this.datafeedId = instance.datafeedId;
+			this.node = instance.node;
+			this.state = instance.state;
+			this.timingStats = instance.timingStats;
+			this.runningState = instance.runningState;
+
+		}
 		/**
 		 * For started datafeeds only, contains messages relating to the selection of a
 		 * node.
@@ -344,6 +355,12 @@ public class DatafeedStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

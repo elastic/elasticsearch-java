@@ -128,6 +128,13 @@ public class ShardStoreException implements JsonpSerializable {
 
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(ShardStoreException instance) {
+			this.reason = instance.reason;
+			this.type = instance.type;
+
+		}
 		/**
 		 * Required - API name: {@code reason}
 		 */
@@ -162,6 +169,12 @@ public class ShardStoreException implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

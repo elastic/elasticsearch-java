@@ -274,6 +274,19 @@ public class RedactProcessor extends ProcessorBase implements ProcessorVariant {
 		@Nullable
 		private Boolean traceRedact;
 
+		public Builder() {
+		}
+		private Builder(RedactProcessor instance) {
+			this.field = instance.field;
+			this.patterns = instance.patterns;
+			this.patternDefinitions = instance.patternDefinitions;
+			this.prefix = instance.prefix;
+			this.suffix = instance.suffix;
+			this.ignoreMissing = instance.ignoreMissing;
+			this.skipIfUnlicensed = instance.skipIfUnlicensed;
+			this.traceRedact = instance.traceRedact;
+
+		}
 		/**
 		 * Required - The field to be redacted
 		 * <p>
@@ -401,6 +414,12 @@ public class RedactProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

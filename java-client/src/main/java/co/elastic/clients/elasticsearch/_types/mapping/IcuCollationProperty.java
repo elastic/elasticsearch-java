@@ -417,6 +417,27 @@ public class IcuCollationProperty extends DocValuesPropertyBase implements Prope
 		@Nullable
 		private Boolean hiraganaQuaternaryMode;
 
+		public Builder() {
+		}
+		private Builder(IcuCollationProperty instance) {
+			this.norms = instance.norms;
+			this.indexOptions = instance.indexOptions;
+			this.index = instance.index;
+			this.nullValue = instance.nullValue;
+			this.rules = instance.rules;
+			this.language = instance.language;
+			this.country = instance.country;
+			this.variant = instance.variant;
+			this.strength = instance.strength;
+			this.decomposition = instance.decomposition;
+			this.alternate = instance.alternate;
+			this.caseLevel = instance.caseLevel;
+			this.caseFirst = instance.caseFirst;
+			this.numeric = instance.numeric;
+			this.variableTop = instance.variableTop;
+			this.hiraganaQuaternaryMode = instance.hiraganaQuaternaryMode;
+
+		}
 		/**
 		 * API name: {@code norms}
 		 */
@@ -568,6 +589,12 @@ public class IcuCollationProperty extends DocValuesPropertyBase implements Prope
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -194,6 +194,16 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
 		@Nullable
 		private Integer skip;
 
+		public Builder() {
+		}
+		private Builder(PathHierarchyTokenizer instance) {
+			this.bufferSize = instance.bufferSize;
+			this.delimiter = instance.delimiter;
+			this.replacement = instance.replacement;
+			this.reverse = instance.reverse;
+			this.skip = instance.skip;
+
+		}
 		/**
 		 * API name: {@code buffer_size}
 		 */
@@ -252,6 +262,12 @@ public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

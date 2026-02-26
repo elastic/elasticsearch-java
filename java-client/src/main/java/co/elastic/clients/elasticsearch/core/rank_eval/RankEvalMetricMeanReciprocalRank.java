@@ -78,6 +78,11 @@ public class RankEvalMetricMeanReciprocalRank extends RankEvalMetricRatingTresho
 	public static class Builder extends RankEvalMetricRatingTreshold.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RankEvalMetricMeanReciprocalRank> {
+		public Builder() {
+		}
+		private Builder(RankEvalMetricMeanReciprocalRank instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -96,6 +101,12 @@ public class RankEvalMetricMeanReciprocalRank extends RankEvalMetricRatingTresho
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

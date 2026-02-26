@@ -169,6 +169,14 @@ public class TokenPruningConfig implements JsonpSerializable {
 		@Nullable
 		private Boolean onlyScorePrunedTokens;
 
+		public Builder() {
+		}
+		private Builder(TokenPruningConfig instance) {
+			this.tokensFreqRatioThreshold = instance.tokensFreqRatioThreshold;
+			this.tokensWeightThreshold = instance.tokensWeightThreshold;
+			this.onlyScorePrunedTokens = instance.onlyScorePrunedTokens;
+
+		}
 		/**
 		 * Tokens whose frequency is more than this threshold times the average
 		 * frequency of all tokens in the specified field are considered outliers and
@@ -220,6 +228,12 @@ public class TokenPruningConfig implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

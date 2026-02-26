@@ -128,6 +128,13 @@ public class AckWatchRequest extends RequestBase {
 
 		private String watchId;
 
+		public Builder() {
+		}
+		private Builder(AckWatchRequest instance) {
+			this.actionId = instance.actionId;
+			this.watchId = instance.watchId;
+
+		}
 		/**
 		 * A comma-separated list of the action identifiers to acknowledge. If you omit
 		 * this parameter, all of the actions of the watch are acknowledged.
@@ -182,6 +189,12 @@ public class AckWatchRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

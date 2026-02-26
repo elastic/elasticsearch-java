@@ -150,6 +150,13 @@ public class BulkPutRoleRequest extends RequestBase implements JsonpSerializable
 
 		private Map<String, RoleDescriptor> roles;
 
+		public Builder() {
+		}
+		private Builder(BulkPutRoleRequest instance) {
+			this.refresh = instance.refresh;
+			this.roles = instance.roles;
+
+		}
 		/**
 		 * If <code>true</code> (the default) then refresh the affected shards to make
 		 * this operation visible to search, if <code>wait_for</code> then wait for a
@@ -219,6 +226,12 @@ public class BulkPutRoleRequest extends RequestBase implements JsonpSerializable
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

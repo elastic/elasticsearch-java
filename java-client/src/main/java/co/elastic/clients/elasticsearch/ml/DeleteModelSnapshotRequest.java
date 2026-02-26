@@ -116,6 +116,13 @@ public class DeleteModelSnapshotRequest extends RequestBase {
 
 		private String snapshotId;
 
+		public Builder() {
+		}
+		private Builder(DeleteModelSnapshotRequest instance) {
+			this.jobId = instance.jobId;
+			this.snapshotId = instance.snapshotId;
+
+		}
 		/**
 		 * Required - Identifier for the anomaly detection job.
 		 * <p>
@@ -154,6 +161,12 @@ public class DeleteModelSnapshotRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -228,6 +228,18 @@ public class Memory implements JsonpSerializable {
 
 		private String ephemeralId;
 
+		public Builder() {
+		}
+		private Builder(Memory instance) {
+			this.attributes = instance.attributes;
+			this.jvm = instance.jvm;
+			this.mem = instance.mem;
+			this.name = instance.name;
+			this.roles = instance.roles;
+			this.transportAddress = instance.transportAddress;
+			this.ephemeralId = instance.ephemeralId;
+
+		}
 		/**
 		 * Required - API name: {@code attributes}
 		 * <p>
@@ -357,6 +369,12 @@ public class Memory implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -114,6 +114,12 @@ public class TopMetricsAggregate extends AggregateBase implements AggregateVaria
 				ObjectBuilder<TopMetricsAggregate> {
 		private List<TopMetrics> top;
 
+		public Builder() {
+		}
+		private Builder(TopMetricsAggregate instance) {
+			this.top = instance.top;
+
+		}
 		/**
 		 * Required - API name: {@code top}
 		 * <p>
@@ -161,6 +167,12 @@ public class TopMetricsAggregate extends AggregateBase implements AggregateVaria
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

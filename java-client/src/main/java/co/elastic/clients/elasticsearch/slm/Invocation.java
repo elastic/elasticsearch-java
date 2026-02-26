@@ -126,6 +126,13 @@ public class Invocation implements JsonpSerializable {
 
 		private DateTime time;
 
+		public Builder() {
+		}
+		private Builder(Invocation instance) {
+			this.snapshotName = instance.snapshotName;
+			this.time = instance.time;
+
+		}
 		/**
 		 * Required - API name: {@code snapshot_name}
 		 */
@@ -160,6 +167,12 @@ public class Invocation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

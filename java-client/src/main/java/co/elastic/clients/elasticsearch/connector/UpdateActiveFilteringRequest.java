@@ -100,6 +100,12 @@ public class UpdateActiveFilteringRequest extends RequestBase {
 				ObjectBuilder<UpdateActiveFilteringRequest> {
 		private String connectorId;
 
+		public Builder() {
+		}
+		private Builder(UpdateActiveFilteringRequest instance) {
+			this.connectorId = instance.connectorId;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector to be updated
 		 * <p>
@@ -128,6 +134,12 @@ public class UpdateActiveFilteringRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

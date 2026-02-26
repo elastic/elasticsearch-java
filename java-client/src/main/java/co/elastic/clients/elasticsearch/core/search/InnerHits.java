@@ -450,6 +450,27 @@ public class InnerHits implements JsonpSerializable {
 		@Nullable
 		private Boolean version;
 
+		public Builder() {
+		}
+		private Builder(InnerHits instance) {
+			this.name = instance.name;
+			this.size = instance.size;
+			this.from = instance.from;
+			this.collapse = instance.collapse;
+			this.docvalueFields = instance.docvalueFields;
+			this.explain = instance.explain;
+			this.highlight = instance.highlight;
+			this.ignoreUnmapped = instance.ignoreUnmapped;
+			this.scriptFields = instance.scriptFields;
+			this.seqNoPrimaryTerm = instance.seqNoPrimaryTerm;
+			this.fields = instance.fields;
+			this.sort = instance.sort;
+			this.source = instance.source;
+			this.storedFields = instance.storedFields;
+			this.trackScores = instance.trackScores;
+			this.version = instance.version;
+
+		}
 		/**
 		 * The name for the particular inner hit definition in the response. Useful when
 		 * a search request contains multiple inner hits.
@@ -720,6 +741,12 @@ public class InnerHits implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

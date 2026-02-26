@@ -475,6 +475,24 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(RepositoryAnalyzeRequest instance) {
+			this.blobCount = instance.blobCount;
+			this.concurrency = instance.concurrency;
+			this.detailed = instance.detailed;
+			this.earlyReadNodeCount = instance.earlyReadNodeCount;
+			this.maxBlobSize = instance.maxBlobSize;
+			this.maxTotalDataSize = instance.maxTotalDataSize;
+			this.name = instance.name;
+			this.rareActionProbability = instance.rareActionProbability;
+			this.rarelyAbortWrites = instance.rarelyAbortWrites;
+			this.readNodeCount = instance.readNodeCount;
+			this.registerOperationCount = instance.registerOperationCount;
+			this.seed = instance.seed;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * The total number of blobs to write to the repository during the test. For
 		 * realistic experiments, you should set it to at least <code>2000</code>.
@@ -648,6 +666,12 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -108,6 +108,12 @@ public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 		@Nullable
 		private List<DataframeEvaluationSummaryAucRocCurveItem> curve;
 
+		public Builder() {
+		}
+		private Builder(DataframeEvaluationSummaryAucRoc instance) {
+			this.curve = instance.curve;
+
+		}
 		/**
 		 * API name: {@code curve}
 		 * <p>
@@ -157,6 +163,12 @@ public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

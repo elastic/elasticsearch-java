@@ -125,6 +125,13 @@ public class DeleteRoleMappingRequest extends RequestBase {
 		@Nullable
 		private Refresh refresh;
 
+		public Builder() {
+		}
+		private Builder(DeleteRoleMappingRequest instance) {
+			this.name = instance.name;
+			this.refresh = instance.refresh;
+
+		}
 		/**
 		 * Required - The distinct name that identifies the role mapping. The name is
 		 * used solely as an identifier to facilitate interaction via the API; it does
@@ -168,6 +175,12 @@ public class DeleteRoleMappingRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

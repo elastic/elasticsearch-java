@@ -137,6 +137,14 @@ public class SearchableSnapshots extends Base {
 		@Nullable
 		private Integer sharedCacheIndicesCount;
 
+		public Builder() {
+		}
+		private Builder(SearchableSnapshots instance) {
+			this.indicesCount = instance.indicesCount;
+			this.fullCopyIndicesCount = instance.fullCopyIndicesCount;
+			this.sharedCacheIndicesCount = instance.sharedCacheIndicesCount;
+
+		}
 		/**
 		 * Required - API name: {@code indices_count}
 		 */
@@ -179,6 +187,12 @@ public class SearchableSnapshots extends Base {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

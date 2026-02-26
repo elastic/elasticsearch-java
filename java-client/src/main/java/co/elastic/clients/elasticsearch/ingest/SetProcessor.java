@@ -229,6 +229,17 @@ public class SetProcessor extends ProcessorBase implements ProcessorVariant {
 		@Nullable
 		private JsonData value;
 
+		public Builder() {
+		}
+		private Builder(SetProcessor instance) {
+			this.copyFrom = instance.copyFrom;
+			this.field = instance.field;
+			this.ignoreEmptyValue = instance.ignoreEmptyValue;
+			this.mediaType = instance.mediaType;
+			this.override = instance.override;
+			this.value = instance.value;
+
+		}
 		/**
 		 * The origin field which will be copied to <code>field</code>, cannot set
 		 * <code>value</code> simultaneously. Supported data types are
@@ -318,6 +329,12 @@ public class SetProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

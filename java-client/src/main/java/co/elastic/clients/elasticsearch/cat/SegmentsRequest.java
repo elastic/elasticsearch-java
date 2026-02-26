@@ -198,6 +198,17 @@ public class SegmentsRequest extends CatRequestBase {
 		@Nullable
 		private List<String> s;
 
+		public Builder() {
+		}
+		private Builder(SegmentsRequest instance) {
+			this.bytes = instance.bytes;
+			this.h = instance.h;
+			this.index = instance.index;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.s = instance.s;
+
+		}
 		/**
 		 * The unit used to display byte values.
 		 * <p>
@@ -355,6 +366,12 @@ public class SegmentsRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

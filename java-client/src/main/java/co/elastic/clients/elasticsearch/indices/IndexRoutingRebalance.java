@@ -112,6 +112,12 @@ public class IndexRoutingRebalance implements JsonpSerializable {
 				ObjectBuilder<IndexRoutingRebalance> {
 		private IndexRoutingRebalanceOptions enable;
 
+		public Builder() {
+		}
+		private Builder(IndexRoutingRebalance instance) {
+			this.enable = instance.enable;
+
+		}
 		/**
 		 * Required - API name: {@code enable}
 		 */
@@ -138,6 +144,12 @@ public class IndexRoutingRebalance implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

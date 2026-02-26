@@ -123,6 +123,12 @@ public class GarbageCollector implements JsonpSerializable {
 		@Nullable
 		private Map<String, GarbageCollectorTotal> collectors;
 
+		public Builder() {
+		}
+		private Builder(GarbageCollector instance) {
+			this.collectors = instance.collectors;
+
+		}
 		/**
 		 * Contains statistics about JVM garbage collectors for the node.
 		 * <p>
@@ -177,6 +183,12 @@ public class GarbageCollector implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

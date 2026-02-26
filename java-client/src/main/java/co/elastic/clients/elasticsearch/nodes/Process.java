@@ -209,6 +209,16 @@ public class Process implements JsonpSerializable {
 		@Nullable
 		private Long timestamp;
 
+		public Builder() {
+		}
+		private Builder(Process instance) {
+			this.cpu = instance.cpu;
+			this.mem = instance.mem;
+			this.openFileDescriptors = instance.openFileDescriptors;
+			this.maxFileDescriptors = instance.maxFileDescriptors;
+			this.timestamp = instance.timestamp;
+
+		}
 		/**
 		 * Contains CPU statistics for the node.
 		 * <p>
@@ -298,6 +308,12 @@ public class Process implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

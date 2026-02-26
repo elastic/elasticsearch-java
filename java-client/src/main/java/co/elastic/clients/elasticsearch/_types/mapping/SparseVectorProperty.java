@@ -112,6 +112,12 @@ public class SparseVectorProperty extends PropertyBase implements PropertyVarian
 		@Nullable
 		private Boolean store;
 
+		public Builder() {
+		}
+		private Builder(SparseVectorProperty instance) {
+			this.store = instance.store;
+
+		}
 		/**
 		 * API name: {@code store}
 		 */
@@ -138,6 +144,12 @@ public class SparseVectorProperty extends PropertyBase implements PropertyVarian
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

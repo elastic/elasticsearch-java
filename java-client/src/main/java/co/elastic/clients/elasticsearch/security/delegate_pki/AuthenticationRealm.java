@@ -149,6 +149,14 @@ public class AuthenticationRealm implements JsonpSerializable {
 		@Nullable
 		private String domain;
 
+		public Builder() {
+		}
+		private Builder(AuthenticationRealm instance) {
+			this.name = instance.name;
+			this.type = instance.type;
+			this.domain = instance.domain;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -191,6 +199,12 @@ public class AuthenticationRealm implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

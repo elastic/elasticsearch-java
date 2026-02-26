@@ -114,6 +114,12 @@ public class GetRollupCapsRequest extends RequestBase {
 		@Nullable
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(GetRollupCapsRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Index, indices or index-pattern to return rollup capabilities for.
 		 * <code>_all</code> may be used to fetch rollup capabilities from all jobs.
@@ -143,6 +149,12 @@ public class GetRollupCapsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

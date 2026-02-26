@@ -139,6 +139,13 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 
 		private Script script;
 
+		public Builder() {
+		}
+		private Builder(ConditionTokenFilter instance) {
+			this.filter = instance.filter;
+			this.script = instance.script;
+
+		}
 		/**
 		 * Required - Array of token filters. If a token matches the predicate script in
 		 * the <code>script</code> parameter, these filters are applied to the token in
@@ -208,6 +215,12 @@ public class ConditionTokenFilter extends TokenFilterBase implements TokenFilter
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -171,6 +171,15 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 		@Nullable
 		private TimeSeriesMetricType timeSeriesMetric;
 
+		public Builder() {
+		}
+		private Builder(AggregateMetricDoubleProperty instance) {
+			this.defaultMetric = instance.defaultMetric;
+			this.ignoreMalformed = instance.ignoreMalformed;
+			this.metrics = instance.metrics;
+			this.timeSeriesMetric = instance.timeSeriesMetric;
+
+		}
 		/**
 		 * Required - API name: {@code default_metric}
 		 */
@@ -233,6 +242,12 @@ public class AggregateMetricDoubleProperty extends PropertyBase implements Prope
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

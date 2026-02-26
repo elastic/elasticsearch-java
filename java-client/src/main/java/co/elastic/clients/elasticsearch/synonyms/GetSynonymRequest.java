@@ -131,6 +131,14 @@ public class GetSynonymRequest extends RequestBase {
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(GetSynonymRequest instance) {
+			this.from = instance.from;
+			this.id = instance.id;
+			this.size = instance.size;
+
+		}
 		/**
 		 * The starting offset for query rules to retrieve.
 		 * <p>
@@ -179,6 +187,12 @@ public class GetSynonymRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -287,6 +287,19 @@ public class RuntimeField implements DynamicTemplateVariant, JsonpSerializable {
 
 		private RuntimeFieldType type;
 
+		public Builder() {
+		}
+		private Builder(RuntimeField instance) {
+			this.fields = instance.fields;
+			this.fetchFields = instance.fetchFields;
+			this.format = instance.format;
+			this.inputField = instance.inputField;
+			this.targetField = instance.targetField;
+			this.targetIndex = instance.targetIndex;
+			this.script = instance.script;
+			this.type = instance.type;
+
+		}
 		/**
 		 * For type <code>composite</code>
 		 * <p>
@@ -449,6 +462,12 @@ public class RuntimeField implements DynamicTemplateVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -180,6 +180,13 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 
 		private Map<String, Map<String, Actions>> privileges = new HashMap<>();
 
+		public Builder() {
+		}
+		private Builder(PutPrivilegesRequest instance) {
+			this.refresh = instance.refresh;
+			this.privileges = instance.privileges;
+
+		}
 		/**
 		 * If <code>true</code> (the default) then refresh the affected shards to make
 		 * this operation visible to search, if <code>wait_for</code> then wait for a
@@ -241,6 +248,12 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<PutPrivilegesRequest> _DESERIALIZER = createPutPrivilegesRequestDeserializer();
 	protected static JsonpDeserializer<PutPrivilegesRequest> createPutPrivilegesRequestDeserializer() {
 

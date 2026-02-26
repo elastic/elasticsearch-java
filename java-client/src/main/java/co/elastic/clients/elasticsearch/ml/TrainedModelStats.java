@@ -222,6 +222,17 @@ public class TrainedModelStats implements JsonpSerializable {
 
 		private Integer pipelineCount;
 
+		public Builder() {
+		}
+		private Builder(TrainedModelStats instance) {
+			this.deploymentStats = instance.deploymentStats;
+			this.inferenceStats = instance.inferenceStats;
+			this.ingest = instance.ingest;
+			this.modelId = instance.modelId;
+			this.modelSizeStats = instance.modelSizeStats;
+			this.pipelineCount = instance.pipelineCount;
+
+		}
 		/**
 		 * A collection of deployment stats, which is present when the models are
 		 * deployed.
@@ -350,6 +361,12 @@ public class TrainedModelStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

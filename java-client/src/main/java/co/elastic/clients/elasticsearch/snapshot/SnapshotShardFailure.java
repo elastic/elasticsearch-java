@@ -194,6 +194,17 @@ public class SnapshotShardFailure implements JsonpSerializable {
 
 		private String status;
 
+		public Builder() {
+		}
+		private Builder(SnapshotShardFailure instance) {
+			this.index = instance.index;
+			this.nodeId = instance.nodeId;
+			this.reason = instance.reason;
+			this.shardId = instance.shardId;
+			this.indexUuid = instance.indexUuid;
+			this.status = instance.status;
+
+		}
 		/**
 		 * Required - API name: {@code index}
 		 */
@@ -260,6 +271,12 @@ public class SnapshotShardFailure implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

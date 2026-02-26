@@ -151,6 +151,14 @@ public class UpdateInferenceRequest extends RequestBase implements JsonpSerializ
 
 		private InferenceEndpoint inferenceConfig;
 
+		public Builder() {
+		}
+		private Builder(UpdateInferenceRequest instance) {
+			this.inferenceId = instance.inferenceId;
+			this.taskType = instance.taskType;
+			this.inferenceConfig = instance.inferenceConfig;
+
+		}
 		/**
 		 * Required - The unique identifier of the inference endpoint.
 		 * <p>
@@ -212,6 +220,12 @@ public class UpdateInferenceRequest extends RequestBase implements JsonpSerializ
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<UpdateInferenceRequest> _DESERIALIZER = createUpdateInferenceRequestDeserializer();
 	protected static JsonpDeserializer<UpdateInferenceRequest> createUpdateInferenceRequestDeserializer() {
 

@@ -150,6 +150,14 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
 		@Nullable
 		private String unicodeSetFilter;
 
+		public Builder() {
+		}
+		private Builder(IcuNormalizationCharFilter instance) {
+			this.mode = instance.mode;
+			this.name = instance.name;
+			this.unicodeSetFilter = instance.unicodeSetFilter;
+
+		}
 		/**
 		 * API name: {@code mode}
 		 */
@@ -192,6 +200,12 @@ public class IcuNormalizationCharFilter extends CharFilterBase implements CharFi
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

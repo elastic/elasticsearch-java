@@ -160,6 +160,14 @@ public class RRFRetriever extends RetrieverBase implements RetrieverVariant {
 		@Nullable
 		private Integer rankWindowSize;
 
+		public Builder() {
+		}
+		private Builder(RRFRetriever instance) {
+			this.retrievers = instance.retrievers;
+			this.rankConstant = instance.rankConstant;
+			this.rankWindowSize = instance.rankWindowSize;
+
+		}
 		/**
 		 * Required - A list of child retrievers to specify which sets of returned top
 		 * documents will have the RRF formula applied to them.
@@ -253,6 +261,12 @@ public class RRFRetriever extends RetrieverBase implements RetrieverVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

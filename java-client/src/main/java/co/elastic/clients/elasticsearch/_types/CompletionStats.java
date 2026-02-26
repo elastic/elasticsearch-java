@@ -163,6 +163,14 @@ public class CompletionStats implements JsonpSerializable {
 		@Nullable
 		private Map<String, FieldSizeUsage> fields;
 
+		public Builder() {
+		}
+		private Builder(CompletionStats instance) {
+			this.sizeInBytes = instance.sizeInBytes;
+			this.size = instance.size;
+			this.fields = instance.fields;
+
+		}
 		/**
 		 * Required - Total amount, in bytes, of memory used for completion across all
 		 * shards assigned to selected nodes.
@@ -232,6 +240,12 @@ public class CompletionStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

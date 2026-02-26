@@ -103,6 +103,12 @@ public class ShardsAvailabilityIndicator extends BaseIndicator {
 		@Nullable
 		private ShardsAvailabilityIndicatorDetails details;
 
+		public Builder() {
+		}
+		private Builder(ShardsAvailabilityIndicator instance) {
+			this.details = instance.details;
+
+		}
 		/**
 		 * API name: {@code details}
 		 */
@@ -137,6 +143,12 @@ public class ShardsAvailabilityIndicator extends BaseIndicator {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

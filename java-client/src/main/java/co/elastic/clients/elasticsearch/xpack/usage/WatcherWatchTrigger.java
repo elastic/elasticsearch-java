@@ -132,6 +132,13 @@ public class WatcherWatchTrigger implements JsonpSerializable {
 
 		private Counter all;
 
+		public Builder() {
+		}
+		private Builder(WatcherWatchTrigger instance) {
+			this.schedule = instance.schedule;
+			this.all = instance.all;
+
+		}
 		/**
 		 * API name: {@code schedule}
 		 */
@@ -181,6 +188,12 @@ public class WatcherWatchTrigger implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

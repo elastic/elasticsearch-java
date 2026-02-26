@@ -163,6 +163,15 @@ public class IndexDetails implements JsonpSerializable {
 
 		private Long maxSegmentsPerShard;
 
+		public Builder() {
+		}
+		private Builder(IndexDetails instance) {
+			this.shardCount = instance.shardCount;
+			this.size = instance.size;
+			this.sizeInBytes = instance.sizeInBytes;
+			this.maxSegmentsPerShard = instance.maxSegmentsPerShard;
+
+		}
 		/**
 		 * Required - API name: {@code shard_count}
 		 */
@@ -213,6 +222,12 @@ public class IndexDetails implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -457,6 +457,28 @@ public class DataStream implements JsonpSerializable {
 
 		private DataStreamTimestampField timestampField;
 
+		public Builder() {
+		}
+		private Builder(DataStream instance) {
+			this.meta = instance.meta;
+			this.allowCustomRouting = instance.allowCustomRouting;
+			this.failureStore = instance.failureStore;
+			this.generation = instance.generation;
+			this.hidden = instance.hidden;
+			this.ilmPolicy = instance.ilmPolicy;
+			this.nextGenerationManagedBy = instance.nextGenerationManagedBy;
+			this.preferIlm = instance.preferIlm;
+			this.indices = instance.indices;
+			this.lifecycle = instance.lifecycle;
+			this.name = instance.name;
+			this.replicated = instance.replicated;
+			this.rolloverOnWrite = instance.rolloverOnWrite;
+			this.status = instance.status;
+			this.system = instance.system;
+			this.template = instance.template;
+			this.timestampField = instance.timestampField;
+
+		}
 		/**
 		 * Custom metadata for the stream, copied from the <code>_meta</code> object of
 		 * the stream’s matching index template. If empty, the response omits this
@@ -742,6 +764,12 @@ public class DataStream implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

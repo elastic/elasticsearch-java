@@ -337,6 +337,23 @@ public class RecoveryOrigin implements JsonpSerializable {
 		@Nullable
 		private String index;
 
+		public Builder() {
+		}
+		private Builder(RecoveryOrigin instance) {
+			this.hostname = instance.hostname;
+			this.host = instance.host;
+			this.transportAddress = instance.transportAddress;
+			this.id = instance.id;
+			this.ip = instance.ip;
+			this.name = instance.name;
+			this.bootstrapNewHistoryUuid = instance.bootstrapNewHistoryUuid;
+			this.repository = instance.repository;
+			this.snapshot = instance.snapshot;
+			this.version = instance.version;
+			this.restoreuuid = instance.restoreuuid;
+			this.index = instance.index;
+
+		}
 		/**
 		 * API name: {@code hostname}
 		 */
@@ -451,6 +468,12 @@ public class RecoveryOrigin implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

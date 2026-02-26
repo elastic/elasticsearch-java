@@ -221,6 +221,16 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		@Nullable
 		private DistanceUnit unit;
 
+		public Builder() {
+		}
+		private Builder(GeoDistanceAggregation instance) {
+			this.distanceType = instance.distanceType;
+			this.field = instance.field;
+			this.origin = instance.origin;
+			this.ranges = instance.ranges;
+			this.unit = instance.unit;
+
+		}
 		/**
 		 * The distance calculation type.
 		 * <p>
@@ -323,6 +333,12 @@ public class GeoDistanceAggregation extends BucketAggregationBase implements Agg
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -147,6 +147,13 @@ public class RrfRank extends RankBase implements RankVariant, JsonpSerializable 
 		@Nullable
 		private Long rankWindowSize;
 
+		public Builder() {
+		}
+		private Builder(RrfRank instance) {
+			this.rankConstant = instance.rankConstant;
+			this.rankWindowSize = instance.rankWindowSize;
+
+		}
 		/**
 		 * How much influence documents in individual result sets per query have over
 		 * the final ranked result set
@@ -186,6 +193,12 @@ public class RrfRank extends RankBase implements RankVariant, JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

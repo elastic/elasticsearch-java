@@ -438,6 +438,27 @@ public class Datafeed implements JsonpSerializable {
 		@Nullable
 		private IndicesOptions indicesOptions;
 
+		public Builder() {
+		}
+		private Builder(Datafeed instance) {
+			this.aggregations = instance.aggregations;
+			this.authorization = instance.authorization;
+			this.chunkingConfig = instance.chunkingConfig;
+			this.datafeedId = instance.datafeedId;
+			this.frequency = instance.frequency;
+			this.indices = instance.indices;
+			this.indexes = instance.indexes;
+			this.jobId = instance.jobId;
+			this.maxEmptySearches = instance.maxEmptySearches;
+			this.query = instance.query;
+			this.queryDelay = instance.queryDelay;
+			this.scriptFields = instance.scriptFields;
+			this.scrollSize = instance.scrollSize;
+			this.delayedDataCheckConfig = instance.delayedDataCheckConfig;
+			this.runtimeMappings = instance.runtimeMappings;
+			this.indicesOptions = instance.indicesOptions;
+
+		}
 		/**
 		 * API name: {@code aggregations}
 		 * <p>
@@ -767,6 +788,12 @@ public class Datafeed implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

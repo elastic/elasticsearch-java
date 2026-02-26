@@ -142,6 +142,13 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 		@Nullable
 		private String rulesPath;
 
+		public Builder() {
+		}
+		private Builder(StemmerOverrideTokenFilter instance) {
+			this.rules = instance.rules;
+			this.rulesPath = instance.rulesPath;
+
+		}
 		/**
 		 * A list of mapping rules to use.
 		 * <p>
@@ -195,6 +202,12 @@ public class StemmerOverrideTokenFilter extends TokenFilterBase implements Token
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

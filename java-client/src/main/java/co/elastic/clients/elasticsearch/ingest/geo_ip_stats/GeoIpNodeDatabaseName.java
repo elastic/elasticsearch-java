@@ -115,6 +115,12 @@ public class GeoIpNodeDatabaseName implements JsonpSerializable {
 				ObjectBuilder<GeoIpNodeDatabaseName> {
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(GeoIpNodeDatabaseName instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - Name of the database.
 		 * <p>
@@ -143,6 +149,12 @@ public class GeoIpNodeDatabaseName implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

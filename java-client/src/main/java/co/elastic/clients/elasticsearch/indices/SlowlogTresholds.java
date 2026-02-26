@@ -134,6 +134,13 @@ public class SlowlogTresholds implements JsonpSerializable {
 		@Nullable
 		private SlowlogTresholdLevels fetch;
 
+		public Builder() {
+		}
+		private Builder(SlowlogTresholds instance) {
+			this.query = instance.query;
+			this.fetch = instance.fetch;
+
+		}
 		/**
 		 * API name: {@code query}
 		 */
@@ -182,6 +189,12 @@ public class SlowlogTresholds implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -112,6 +112,12 @@ public class DataStreamLifecycleWithRollover extends DataStreamLifecycle {
 		@Nullable
 		private DataStreamLifecycleRolloverConditions rollover;
 
+		public Builder() {
+		}
+		private Builder(DataStreamLifecycleWithRollover instance) {
+			this.rollover = instance.rollover;
+
+		}
 		/**
 		 * The conditions which will trigger the rollover of a backing index as
 		 * configured by the cluster setting
@@ -160,6 +166,12 @@ public class DataStreamLifecycleWithRollover extends DataStreamLifecycle {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

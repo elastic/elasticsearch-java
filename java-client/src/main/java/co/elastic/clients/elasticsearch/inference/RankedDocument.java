@@ -152,6 +152,14 @@ public class RankedDocument implements JsonpSerializable {
 		@Nullable
 		private String text;
 
+		public Builder() {
+		}
+		private Builder(RankedDocument instance) {
+			this.index = instance.index;
+			this.relevanceScore = instance.relevanceScore;
+			this.text = instance.text;
+
+		}
 		/**
 		 * Required - API name: {@code index}
 		 */
@@ -194,6 +202,12 @@ public class RankedDocument implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

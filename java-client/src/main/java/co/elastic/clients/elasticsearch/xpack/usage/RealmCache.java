@@ -109,6 +109,12 @@ public class RealmCache implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RealmCache> {
 		private Long size;
 
+		public Builder() {
+		}
+		private Builder(RealmCache instance) {
+			this.size = instance.size;
+
+		}
 		/**
 		 * Required - API name: {@code size}
 		 */
@@ -135,6 +141,12 @@ public class RealmCache implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

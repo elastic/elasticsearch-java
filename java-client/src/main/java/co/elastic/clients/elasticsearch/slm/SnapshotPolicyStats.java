@@ -174,6 +174,16 @@ public class SnapshotPolicyStats implements JsonpSerializable {
 
 		private Long snapshotDeletionFailures;
 
+		public Builder() {
+		}
+		private Builder(SnapshotPolicyStats instance) {
+			this.policy = instance.policy;
+			this.snapshotsTaken = instance.snapshotsTaken;
+			this.snapshotsFailed = instance.snapshotsFailed;
+			this.snapshotsDeleted = instance.snapshotsDeleted;
+			this.snapshotDeletionFailures = instance.snapshotDeletionFailures;
+
+		}
 		/**
 		 * Required - API name: {@code policy}
 		 */
@@ -232,6 +242,12 @@ public class SnapshotPolicyStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

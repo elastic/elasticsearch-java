@@ -224,6 +224,17 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutHuggingFaceRequest instance) {
+			this.chunkingSettings = instance.chunkingSettings;
+			this.huggingfaceInferenceId = instance.huggingfaceInferenceId;
+			this.service = instance.service;
+			this.serviceSettings = instance.serviceSettings;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * The chunking configuration object.
 		 * <p>
@@ -336,6 +347,12 @@ public class PutHuggingFaceRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

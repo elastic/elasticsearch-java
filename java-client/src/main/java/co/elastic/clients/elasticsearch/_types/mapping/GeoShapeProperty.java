@@ -215,6 +215,17 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
 		@Nullable
 		private GeoStrategy strategy;
 
+		public Builder() {
+		}
+		private Builder(GeoShapeProperty instance) {
+			this.coerce = instance.coerce;
+			this.ignoreMalformed = instance.ignoreMalformed;
+			this.ignoreZValue = instance.ignoreZValue;
+			this.index = instance.index;
+			this.orientation = instance.orientation;
+			this.strategy = instance.strategy;
+
+		}
 		/**
 		 * API name: {@code coerce}
 		 */
@@ -281,6 +292,12 @@ public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyV
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

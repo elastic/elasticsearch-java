@@ -135,6 +135,13 @@ public class DataStreamWithLifecycle implements JsonpSerializable {
 		@Nullable
 		private DataStreamLifecycleWithRollover lifecycle;
 
+		public Builder() {
+		}
+		private Builder(DataStreamWithLifecycle instance) {
+			this.name = instance.name;
+			this.lifecycle = instance.lifecycle;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -177,6 +184,12 @@ public class DataStreamWithLifecycle implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

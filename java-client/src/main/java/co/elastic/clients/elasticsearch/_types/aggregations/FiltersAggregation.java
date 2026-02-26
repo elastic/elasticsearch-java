@@ -197,6 +197,15 @@ public class FiltersAggregation extends BucketAggregationBase implements Aggrega
 		@Nullable
 		private Boolean keyed;
 
+		public Builder() {
+		}
+		private Builder(FiltersAggregation instance) {
+			this.filters = instance.filters;
+			this.otherBucket = instance.otherBucket;
+			this.otherBucketKey = instance.otherBucketKey;
+			this.keyed = instance.keyed;
+
+		}
 		/**
 		 * Collection of queries from which to build buckets.
 		 * <p>
@@ -266,6 +275,12 @@ public class FiltersAggregation extends BucketAggregationBase implements Aggrega
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

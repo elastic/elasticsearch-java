@@ -196,6 +196,15 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 		@Nullable
 		private Boolean skipDuplicates;
 
+		public Builder() {
+		}
+		private Builder(CompletionSuggester instance) {
+			this.contexts = instance.contexts;
+			this.fuzzy = instance.fuzzy;
+			this.regex = instance.regex;
+			this.skipDuplicates = instance.skipDuplicates;
+
+		}
 		/**
 		 * A value, geo point object, or a geo hash string to filter or boost the
 		 * suggestion on.
@@ -290,6 +299,12 @@ public class CompletionSuggester extends SuggesterBase implements FieldSuggester
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

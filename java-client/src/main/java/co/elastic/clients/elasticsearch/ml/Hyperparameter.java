@@ -199,6 +199,16 @@ public class Hyperparameter implements JsonpSerializable {
 
 		private Double value;
 
+		public Builder() {
+		}
+		private Builder(Hyperparameter instance) {
+			this.absoluteImportance = instance.absoluteImportance;
+			this.name = instance.name;
+			this.relativeImportance = instance.relativeImportance;
+			this.supplied = instance.supplied;
+			this.value = instance.value;
+
+		}
 		/**
 		 * A positive number showing how much the parameter influences the variation of
 		 * the loss function. For hyperparameters with values that are not specified by
@@ -274,6 +284,12 @@ public class Hyperparameter implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

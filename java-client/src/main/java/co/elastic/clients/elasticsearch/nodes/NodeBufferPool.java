@@ -206,6 +206,16 @@ public class NodeBufferPool implements JsonpSerializable {
 		@Nullable
 		private Long usedInBytes;
 
+		public Builder() {
+		}
+		private Builder(NodeBufferPool instance) {
+			this.count = instance.count;
+			this.totalCapacity = instance.totalCapacity;
+			this.totalCapacityInBytes = instance.totalCapacityInBytes;
+			this.used = instance.used;
+			this.usedInBytes = instance.usedInBytes;
+
+		}
 		/**
 		 * Number of buffer pools.
 		 * <p>
@@ -274,6 +284,12 @@ public class NodeBufferPool implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

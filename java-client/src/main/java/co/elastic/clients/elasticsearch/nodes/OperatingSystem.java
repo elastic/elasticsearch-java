@@ -195,6 +195,16 @@ public class OperatingSystem implements JsonpSerializable {
 		@Nullable
 		private Long timestamp;
 
+		public Builder() {
+		}
+		private Builder(OperatingSystem instance) {
+			this.cpu = instance.cpu;
+			this.mem = instance.mem;
+			this.swap = instance.swap;
+			this.cgroup = instance.cgroup;
+			this.timestamp = instance.timestamp;
+
+		}
 		/**
 		 * API name: {@code cpu}
 		 */
@@ -281,6 +291,12 @@ public class OperatingSystem implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -81,6 +81,11 @@ public class DateHistogramAggregate extends MultiBucketAggregateBase<DateHistogr
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<DateHistogramBucket, Builder>
 			implements
 				ObjectBuilder<DateHistogramAggregate> {
+		public Builder() {
+		}
+		private Builder(DateHistogramAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -100,6 +105,12 @@ public class DateHistogramAggregate extends MultiBucketAggregateBase<DateHistogr
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

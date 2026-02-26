@@ -163,6 +163,15 @@ public class RuleQuery extends QueryBase implements QueryVariant {
 
 		private JsonData matchCriteria;
 
+		public Builder() {
+		}
+		private Builder(RuleQuery instance) {
+			this.organic = instance.organic;
+			this.rulesetIds = instance.rulesetIds;
+			this.rulesetId = instance.rulesetId;
+			this.matchCriteria = instance.matchCriteria;
+
+		}
 		/**
 		 * Required - API name: {@code organic}
 		 */
@@ -240,6 +249,12 @@ public class RuleQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -138,6 +138,13 @@ public class ClusterSnapshotStats implements JsonpSerializable {
 
 		private Map<String, PerRepositoryStats> repositories;
 
+		public Builder() {
+		}
+		private Builder(ClusterSnapshotStats instance) {
+			this.currentCounts = instance.currentCounts;
+			this.repositories = instance.repositories;
+
+		}
 		/**
 		 * Required - API name: {@code current_counts}
 		 */
@@ -202,6 +209,12 @@ public class ClusterSnapshotStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

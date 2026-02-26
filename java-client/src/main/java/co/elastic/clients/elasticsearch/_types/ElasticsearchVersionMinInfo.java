@@ -161,6 +161,15 @@ public class ElasticsearchVersionMinInfo implements JsonpSerializable {
 
 		private String number;
 
+		public Builder() {
+		}
+		private Builder(ElasticsearchVersionMinInfo instance) {
+			this.buildFlavor = instance.buildFlavor;
+			this.minimumIndexCompatibilityVersion = instance.minimumIndexCompatibilityVersion;
+			this.minimumWireCompatibilityVersion = instance.minimumWireCompatibilityVersion;
+			this.number = instance.number;
+
+		}
 		/**
 		 * Required - API name: {@code build_flavor}
 		 */
@@ -211,6 +220,12 @@ public class ElasticsearchVersionMinInfo implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

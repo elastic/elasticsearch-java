@@ -173,6 +173,14 @@ public class DataframeAnalyticsAuthorization implements JsonpSerializable {
 		@Nullable
 		private String serviceAccount;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalyticsAuthorization instance) {
+			this.apiKey = instance.apiKey;
+			this.roles = instance.roles;
+			this.serviceAccount = instance.serviceAccount;
+
+		}
 		/**
 		 * If an API key was used for the most recent update to the job, its name and
 		 * identifier are listed in the response.
@@ -249,6 +257,12 @@ public class DataframeAnalyticsAuthorization implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -82,6 +82,11 @@ public class NlpBertTokenizationConfig extends CommonTokenizationConfig implemen
 	public static class Builder extends CommonTokenizationConfig.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<NlpBertTokenizationConfig> {
+		public Builder() {
+		}
+		private Builder(NlpBertTokenizationConfig instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -100,6 +105,12 @@ public class NlpBertTokenizationConfig extends CommonTokenizationConfig implemen
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

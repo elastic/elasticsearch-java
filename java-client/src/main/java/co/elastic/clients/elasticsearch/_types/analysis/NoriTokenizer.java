@@ -175,6 +175,15 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
 		@Nullable
 		private List<String> userDictionaryRules;
 
+		public Builder() {
+		}
+		private Builder(NoriTokenizer instance) {
+			this.decompoundMode = instance.decompoundMode;
+			this.discardPunctuation = instance.discardPunctuation;
+			this.userDictionary = instance.userDictionary;
+			this.userDictionaryRules = instance.userDictionaryRules;
+
+		}
 		/**
 		 * API name: {@code decompound_mode}
 		 */
@@ -237,6 +246,12 @@ public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionV
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

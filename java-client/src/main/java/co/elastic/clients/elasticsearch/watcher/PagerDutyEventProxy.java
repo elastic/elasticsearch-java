@@ -139,6 +139,13 @@ public class PagerDutyEventProxy implements JsonpSerializable {
 		@Nullable
 		private Integer port;
 
+		public Builder() {
+		}
+		private Builder(PagerDutyEventProxy instance) {
+			this.host = instance.host;
+			this.port = instance.port;
+
+		}
 		/**
 		 * API name: {@code host}
 		 */
@@ -173,6 +180,12 @@ public class PagerDutyEventProxy implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

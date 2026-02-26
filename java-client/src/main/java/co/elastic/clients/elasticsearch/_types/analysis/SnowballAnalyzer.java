@@ -168,6 +168,14 @@ public class SnowballAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		@Nullable
 		private List<String> stopwords;
 
+		public Builder() {
+		}
+		private Builder(SnowballAnalyzer instance) {
+			this.version = instance.version;
+			this.language = instance.language;
+			this.stopwords = instance.stopwords;
+
+		}
 		/**
 		 * API name: {@code version}
 		 * 
@@ -225,6 +233,12 @@ public class SnowballAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

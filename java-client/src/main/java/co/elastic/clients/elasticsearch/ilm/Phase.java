@@ -135,6 +135,13 @@ public class Phase implements JsonpSerializable {
 		@Nullable
 		private Time minAge;
 
+		public Builder() {
+		}
+		private Builder(Phase instance) {
+			this.actions = instance.actions;
+			this.minAge = instance.minAge;
+
+		}
 		/**
 		 * API name: {@code actions}
 		 */
@@ -183,6 +190,12 @@ public class Phase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -83,6 +83,11 @@ public class GeoDecayFunction extends DecayFunctionBase<GeoLocation, String> imp
 	public static class Builder extends DecayFunctionBase.AbstractBuilder<GeoLocation, String, Builder>
 			implements
 				ObjectBuilder<GeoDecayFunction> {
+		public Builder() {
+		}
+		private Builder(GeoDecayFunction instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -103,6 +108,12 @@ public class GeoDecayFunction extends DecayFunctionBase<GeoLocation, String> imp
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -143,6 +143,14 @@ public class MlInferenceIngestProcessorCount implements JsonpSerializable {
 
 		private Long min;
 
+		public Builder() {
+		}
+		private Builder(MlInferenceIngestProcessorCount instance) {
+			this.max = instance.max;
+			this.sum = instance.sum;
+			this.min = instance.min;
+
+		}
 		/**
 		 * Required - API name: {@code max}
 		 */
@@ -185,6 +193,12 @@ public class MlInferenceIngestProcessorCount implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

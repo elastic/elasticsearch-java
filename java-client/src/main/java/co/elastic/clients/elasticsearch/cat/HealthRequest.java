@@ -166,6 +166,15 @@ public class HealthRequest extends CatRequestBase {
 		@Nullable
 		private Boolean ts;
 
+		public Builder() {
+		}
+		private Builder(HealthRequest instance) {
+			this.h = instance.h;
+			this.s = instance.s;
+			this.time = instance.time;
+			this.ts = instance.ts;
+
+		}
 		/**
 		 * A comma-separated list of columns names to display. It supports simple
 		 * wildcards.
@@ -272,6 +281,12 @@ public class HealthRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

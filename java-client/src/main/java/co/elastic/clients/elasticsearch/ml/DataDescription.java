@@ -190,6 +190,15 @@ public class DataDescription implements JsonpSerializable {
 		@Nullable
 		private String fieldDelimiter;
 
+		public Builder() {
+		}
+		private Builder(DataDescription instance) {
+			this.format = instance.format;
+			this.timeField = instance.timeField;
+			this.timeFormat = instance.timeFormat;
+			this.fieldDelimiter = instance.fieldDelimiter;
+
+		}
 		/**
 		 * Only JSON format is supported at this time.
 		 * <p>
@@ -255,6 +264,12 @@ public class DataDescription implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

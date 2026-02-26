@@ -176,6 +176,15 @@ public class AutoscalingDeciders implements JsonpSerializable {
 
 		private Map<String, AutoscalingDecider> deciders;
 
+		public Builder() {
+		}
+		private Builder(AutoscalingDeciders instance) {
+			this.requiredCapacity = instance.requiredCapacity;
+			this.currentCapacity = instance.currentCapacity;
+			this.currentNodes = instance.currentNodes;
+			this.deciders = instance.deciders;
+
+		}
 		/**
 		 * Required - API name: {@code required_capacity}
 		 */
@@ -285,6 +294,12 @@ public class AutoscalingDeciders implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

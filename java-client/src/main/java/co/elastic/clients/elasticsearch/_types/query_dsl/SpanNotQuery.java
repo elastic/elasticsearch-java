@@ -202,6 +202,16 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 		@Nullable
 		private Integer pre;
 
+		public Builder() {
+		}
+		private Builder(SpanNotQuery instance) {
+			this.dist = instance.dist;
+			this.exclude = instance.exclude;
+			this.include = instance.include;
+			this.post = instance.post;
+			this.pre = instance.pre;
+
+		}
 		/**
 		 * The number of tokens from within the include span that can’t have overlap
 		 * with the exclude span. Equivalent to setting both <code>pre</code> and
@@ -312,6 +322,12 @@ public class SpanNotQuery extends QueryBase implements SpanQueryVariant, QueryVa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

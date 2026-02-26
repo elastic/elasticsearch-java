@@ -215,6 +215,18 @@ public class TransformsRequest extends CatRequestBase {
 		@Nullable
 		private String transformId;
 
+		public Builder() {
+		}
+		private Builder(TransformsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.from = instance.from;
+			this.h = instance.h;
+			this.s = instance.s;
+			this.size = instance.size;
+			this.time = instance.time;
+			this.transformId = instance.transformId;
+
+		}
 		/**
 		 * Specifies what to do when the request: contains wildcard expressions and
 		 * there are no transforms that match; contains the <code>_all</code> string or
@@ -340,6 +352,12 @@ public class TransformsRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

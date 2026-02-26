@@ -116,6 +116,11 @@ public class NumberRangeQuery extends RangeQueryBase<Double> implements RangeQue
 			return this;
 		}
 
+		public Builder() {
+		}
+		private Builder(NumberRangeQuery instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -135,6 +140,12 @@ public class NumberRangeQuery extends RangeQueryBase<Double> implements RangeQue
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

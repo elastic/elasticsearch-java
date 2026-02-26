@@ -201,6 +201,18 @@ public class InvertedIndex implements JsonpSerializable {
 
 		private Number payloads;
 
+		public Builder() {
+		}
+		private Builder(InvertedIndex instance) {
+			this.terms = instance.terms;
+			this.postings = instance.postings;
+			this.proximity = instance.proximity;
+			this.positions = instance.positions;
+			this.termFrequencies = instance.termFrequencies;
+			this.offsets = instance.offsets;
+			this.payloads = instance.payloads;
+
+		}
 		/**
 		 * Required - API name: {@code terms}
 		 */
@@ -275,6 +287,12 @@ public class InvertedIndex implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -152,6 +152,13 @@ public class AlibabaCloudTaskSettings implements JsonpSerializable {
 		@Nullable
 		private Boolean returnToken;
 
+		public Builder() {
+		}
+		private Builder(AlibabaCloudTaskSettings instance) {
+			this.inputType = instance.inputType;
+			this.returnToken = instance.returnToken;
+
+		}
 		/**
 		 * For a <code>sparse_embedding</code> or <code>text_embedding</code> task,
 		 * specify the type of input passed to the model. Valid values are:
@@ -199,6 +206,12 @@ public class AlibabaCloudTaskSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

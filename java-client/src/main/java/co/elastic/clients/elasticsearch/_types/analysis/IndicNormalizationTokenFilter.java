@@ -89,6 +89,11 @@ public class IndicNormalizationTokenFilter extends TokenFilterBase implements To
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IndicNormalizationTokenFilter> {
+		public Builder() {
+		}
+		private Builder(IndicNormalizationTokenFilter instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class IndicNormalizationTokenFilter extends TokenFilterBase implements To
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -175,6 +175,14 @@ public class FillMaskInferenceUpdateOptions implements InferenceConfigUpdateVari
 		@Nullable
 		private String resultsField;
 
+		public Builder() {
+		}
+		private Builder(FillMaskInferenceUpdateOptions instance) {
+			this.numTopClasses = instance.numTopClasses;
+			this.tokenization = instance.tokenization;
+			this.resultsField = instance.resultsField;
+
+		}
 		/**
 		 * Specifies the number of top class predictions to return. Defaults to 0.
 		 * <p>
@@ -234,6 +242,12 @@ public class FillMaskInferenceUpdateOptions implements InferenceConfigUpdateVari
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

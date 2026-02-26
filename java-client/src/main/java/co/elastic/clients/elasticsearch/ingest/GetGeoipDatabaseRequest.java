@@ -105,6 +105,12 @@ public class GetGeoipDatabaseRequest extends RequestBase {
 		@Nullable
 		private List<String> id;
 
+		public Builder() {
+		}
+		private Builder(GetGeoipDatabaseRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * A comma-separated list of database configuration IDs to retrieve. Wildcard
 		 * (<code>*</code>) expressions are supported. To get all database
@@ -151,6 +157,12 @@ public class GetGeoipDatabaseRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

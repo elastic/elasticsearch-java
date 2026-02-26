@@ -419,6 +419,30 @@ public class DataCounts implements JsonpSerializable {
 
 		private Long sparseBucketCount;
 
+		public Builder() {
+		}
+		private Builder(DataCounts instance) {
+			this.bucketCount = instance.bucketCount;
+			this.earliestRecordTimestamp = instance.earliestRecordTimestamp;
+			this.emptyBucketCount = instance.emptyBucketCount;
+			this.inputBytes = instance.inputBytes;
+			this.inputFieldCount = instance.inputFieldCount;
+			this.inputRecordCount = instance.inputRecordCount;
+			this.invalidDateCount = instance.invalidDateCount;
+			this.jobId = instance.jobId;
+			this.lastDataTime = instance.lastDataTime;
+			this.latestEmptyBucketTimestamp = instance.latestEmptyBucketTimestamp;
+			this.latestRecordTimestamp = instance.latestRecordTimestamp;
+			this.latestSparseBucketTimestamp = instance.latestSparseBucketTimestamp;
+			this.latestBucketTimestamp = instance.latestBucketTimestamp;
+			this.logTime = instance.logTime;
+			this.missingFieldCount = instance.missingFieldCount;
+			this.outOfOrderTimestampCount = instance.outOfOrderTimestampCount;
+			this.processedFieldCount = instance.processedFieldCount;
+			this.processedRecordCount = instance.processedRecordCount;
+			this.sparseBucketCount = instance.sparseBucketCount;
+
+		}
 		/**
 		 * Required - API name: {@code bucket_count}
 		 */
@@ -589,6 +613,12 @@ public class DataCounts implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

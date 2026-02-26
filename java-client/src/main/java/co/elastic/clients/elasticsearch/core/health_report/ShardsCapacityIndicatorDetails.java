@@ -128,6 +128,13 @@ public class ShardsCapacityIndicatorDetails implements JsonpSerializable {
 
 		private ShardsCapacityIndicatorTierDetail frozen;
 
+		public Builder() {
+		}
+		private Builder(ShardsCapacityIndicatorDetails instance) {
+			this.data = instance.data;
+			this.frozen = instance.frozen;
+
+		}
 		/**
 		 * Required - API name: {@code data}
 		 */
@@ -178,6 +185,12 @@ public class ShardsCapacityIndicatorDetails implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

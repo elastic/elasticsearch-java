@@ -106,6 +106,12 @@ public class IcuNormalizationTokenFilter extends TokenFilterBase implements Toke
 				ObjectBuilder<IcuNormalizationTokenFilter> {
 		private IcuNormalizationType name;
 
+		public Builder() {
+		}
+		private Builder(IcuNormalizationTokenFilter instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -132,6 +138,12 @@ public class IcuNormalizationTokenFilter extends TokenFilterBase implements Toke
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

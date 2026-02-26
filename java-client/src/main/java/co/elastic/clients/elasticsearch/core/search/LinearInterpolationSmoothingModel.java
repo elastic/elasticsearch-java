@@ -151,6 +151,14 @@ public class LinearInterpolationSmoothingModel implements SmoothingModelVariant,
 
 		private Double unigramLambda;
 
+		public Builder() {
+		}
+		private Builder(LinearInterpolationSmoothingModel instance) {
+			this.bigramLambda = instance.bigramLambda;
+			this.trigramLambda = instance.trigramLambda;
+			this.unigramLambda = instance.unigramLambda;
+
+		}
 		/**
 		 * Required - API name: {@code bigram_lambda}
 		 */
@@ -193,6 +201,12 @@ public class LinearInterpolationSmoothingModel implements SmoothingModelVariant,
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

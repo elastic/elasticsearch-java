@@ -124,6 +124,14 @@ public class Watcher extends Base {
 
 		private Counter count;
 
+		public Builder() {
+		}
+		private Builder(Watcher instance) {
+			this.execution = instance.execution;
+			this.watch = instance.watch;
+			this.count = instance.count;
+
+		}
 		/**
 		 * Required - API name: {@code execution}
 		 */
@@ -187,6 +195,12 @@ public class Watcher extends Base {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -200,6 +200,18 @@ public class ShardQueryCache implements JsonpSerializable {
 
 		private Long totalCount;
 
+		public Builder() {
+		}
+		private Builder(ShardQueryCache instance) {
+			this.cacheCount = instance.cacheCount;
+			this.cacheSize = instance.cacheSize;
+			this.evictions = instance.evictions;
+			this.hitCount = instance.hitCount;
+			this.memorySizeInBytes = instance.memorySizeInBytes;
+			this.missCount = instance.missCount;
+			this.totalCount = instance.totalCount;
+
+		}
 		/**
 		 * Required - API name: {@code cache_count}
 		 */
@@ -274,6 +286,12 @@ public class ShardQueryCache implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

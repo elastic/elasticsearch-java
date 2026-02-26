@@ -125,6 +125,12 @@ public class DataStreamLifecycleDownsampling implements JsonpSerializable {
 				ObjectBuilder<DataStreamLifecycleDownsampling> {
 		private List<DownsamplingRound> rounds;
 
+		public Builder() {
+		}
+		private Builder(DataStreamLifecycleDownsampling instance) {
+			this.rounds = instance.rounds;
+
+		}
 		/**
 		 * Required - The list of downsampling rounds to execute as part of this
 		 * downsampling configuration
@@ -181,6 +187,12 @@ public class DataStreamLifecycleDownsampling implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -268,6 +268,18 @@ public class IndexSettingsLifecycle implements JsonpSerializable {
 		@Nullable
 		private Boolean preferIlm;
 
+		public Builder() {
+		}
+		private Builder(IndexSettingsLifecycle instance) {
+			this.name = instance.name;
+			this.indexingComplete = instance.indexingComplete;
+			this.originationDate = instance.originationDate;
+			this.parseOriginationDate = instance.parseOriginationDate;
+			this.step = instance.step;
+			this.rolloverAlias = instance.rolloverAlias;
+			this.preferIlm = instance.preferIlm;
+
+		}
 		/**
 		 * The name of the policy to use to manage the index. For information about how
 		 * Elasticsearch applies policy changes, see Policy updates.
@@ -378,6 +390,12 @@ public class IndexSettingsLifecycle implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

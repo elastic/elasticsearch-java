@@ -114,6 +114,12 @@ public class NlpRobertaTokenizationConfig extends CommonTokenizationConfig imple
 		@Nullable
 		private Boolean addPrefixSpace;
 
+		public Builder() {
+		}
+		private Builder(NlpRobertaTokenizationConfig instance) {
+			this.addPrefixSpace = instance.addPrefixSpace;
+
+		}
 		/**
 		 * Should the tokenizer prefix input with a space character
 		 * <p>
@@ -142,6 +148,12 @@ public class NlpRobertaTokenizationConfig extends CommonTokenizationConfig imple
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -165,6 +165,14 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 		@Nullable
 		private Long collectionTimeInMillis;
 
+		public Builder() {
+		}
+		private Builder(GarbageCollectorTotal instance) {
+			this.collectionCount = instance.collectionCount;
+			this.collectionTime = instance.collectionTime;
+			this.collectionTimeInMillis = instance.collectionTimeInMillis;
+
+		}
 		/**
 		 * Total number of JVM garbage collectors that collect objects.
 		 * <p>
@@ -213,6 +221,12 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

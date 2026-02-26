@@ -135,6 +135,13 @@ public class DelimitedPayloadTokenFilter extends TokenFilterBase implements Toke
 		@Nullable
 		private DelimitedPayloadEncoding encoding;
 
+		public Builder() {
+		}
+		private Builder(DelimitedPayloadTokenFilter instance) {
+			this.delimiter = instance.delimiter;
+			this.encoding = instance.encoding;
+
+		}
 		/**
 		 * Character used to separate tokens from payloads. Defaults to <code>|</code>.
 		 * <p>
@@ -173,6 +180,12 @@ public class DelimitedPayloadTokenFilter extends TokenFilterBase implements Toke
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

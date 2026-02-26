@@ -653,6 +653,36 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private TextQueryType type;
 
+		public Builder() {
+		}
+		private Builder(QueryStringQuery instance) {
+			this.allowLeadingWildcard = instance.allowLeadingWildcard;
+			this.analyzer = instance.analyzer;
+			this.analyzeWildcard = instance.analyzeWildcard;
+			this.autoGenerateSynonymsPhraseQuery = instance.autoGenerateSynonymsPhraseQuery;
+			this.defaultField = instance.defaultField;
+			this.defaultOperator = instance.defaultOperator;
+			this.enablePositionIncrements = instance.enablePositionIncrements;
+			this.escape = instance.escape;
+			this.fields = instance.fields;
+			this.fuzziness = instance.fuzziness;
+			this.fuzzyMaxExpansions = instance.fuzzyMaxExpansions;
+			this.fuzzyPrefixLength = instance.fuzzyPrefixLength;
+			this.fuzzyRewrite = instance.fuzzyRewrite;
+			this.fuzzyTranspositions = instance.fuzzyTranspositions;
+			this.lenient = instance.lenient;
+			this.maxDeterminizedStates = instance.maxDeterminizedStates;
+			this.minimumShouldMatch = instance.minimumShouldMatch;
+			this.phraseSlop = instance.phraseSlop;
+			this.query = instance.query;
+			this.quoteAnalyzer = instance.quoteAnalyzer;
+			this.quoteFieldSuffix = instance.quoteFieldSuffix;
+			this.rewrite = instance.rewrite;
+			this.tieBreaker = instance.tieBreaker;
+			this.timeZone = instance.timeZone;
+			this.type = instance.type;
+
+		}
 		/**
 		 * If <code>true</code>, the wildcard characters <code>*</code> and
 		 * <code>?</code> are allowed as the first character of the query string.
@@ -948,6 +978,12 @@ public class QueryStringQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

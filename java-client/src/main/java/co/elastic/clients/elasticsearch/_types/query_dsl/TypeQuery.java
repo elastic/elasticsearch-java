@@ -103,6 +103,12 @@ public class TypeQuery extends QueryBase implements QueryVariant {
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<TypeQuery> {
 		private String value;
 
+		public Builder() {
+		}
+		private Builder(TypeQuery instance) {
+			this.value = instance.value;
+
+		}
 		/**
 		 * Required - API name: {@code value}
 		 */
@@ -129,6 +135,12 @@ public class TypeQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

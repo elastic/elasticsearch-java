@@ -163,6 +163,14 @@ public class ShapeFieldQuery implements JsonpSerializable {
 		@Nullable
 		private JsonData shape;
 
+		public Builder() {
+		}
+		private Builder(ShapeFieldQuery instance) {
+			this.indexedShape = instance.indexedShape;
+			this.relation = instance.relation;
+			this.shape = instance.shape;
+
+		}
 		/**
 		 * Queries using a pre-indexed shape.
 		 * <p>
@@ -221,6 +229,12 @@ public class ShapeFieldQuery implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

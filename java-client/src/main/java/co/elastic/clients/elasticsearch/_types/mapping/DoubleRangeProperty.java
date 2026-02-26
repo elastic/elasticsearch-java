@@ -89,6 +89,11 @@ public class DoubleRangeProperty extends RangePropertyBase implements PropertyVa
 	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DoubleRangeProperty> {
+		public Builder() {
+		}
+		private Builder(DoubleRangeProperty instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class DoubleRangeProperty extends RangePropertyBase implements PropertyVa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

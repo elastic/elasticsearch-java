@@ -714,6 +714,44 @@ public class ShardStats implements JsonpSerializable {
 
 		private String writeBufferSizeInBytes;
 
+		public Builder() {
+		}
+		private Builder(ShardStats instance) {
+			this.bytesRead = instance.bytesRead;
+			this.failedReadRequests = instance.failedReadRequests;
+			this.failedWriteRequests = instance.failedWriteRequests;
+			this.fatalException = instance.fatalException;
+			this.followerAliasesVersion = instance.followerAliasesVersion;
+			this.followerGlobalCheckpoint = instance.followerGlobalCheckpoint;
+			this.followerIndex = instance.followerIndex;
+			this.followerMappingVersion = instance.followerMappingVersion;
+			this.followerMaxSeqNo = instance.followerMaxSeqNo;
+			this.followerSettingsVersion = instance.followerSettingsVersion;
+			this.lastRequestedSeqNo = instance.lastRequestedSeqNo;
+			this.leaderGlobalCheckpoint = instance.leaderGlobalCheckpoint;
+			this.leaderIndex = instance.leaderIndex;
+			this.leaderMaxSeqNo = instance.leaderMaxSeqNo;
+			this.operationsRead = instance.operationsRead;
+			this.operationsWritten = instance.operationsWritten;
+			this.outstandingReadRequests = instance.outstandingReadRequests;
+			this.outstandingWriteRequests = instance.outstandingWriteRequests;
+			this.readExceptions = instance.readExceptions;
+			this.remoteCluster = instance.remoteCluster;
+			this.shardId = instance.shardId;
+			this.successfulReadRequests = instance.successfulReadRequests;
+			this.successfulWriteRequests = instance.successfulWriteRequests;
+			this.timeSinceLastRead = instance.timeSinceLastRead;
+			this.timeSinceLastReadMillis = instance.timeSinceLastReadMillis;
+			this.totalReadRemoteExecTime = instance.totalReadRemoteExecTime;
+			this.totalReadRemoteExecTimeMillis = instance.totalReadRemoteExecTimeMillis;
+			this.totalReadTime = instance.totalReadTime;
+			this.totalReadTimeMillis = instance.totalReadTimeMillis;
+			this.totalWriteTime = instance.totalWriteTime;
+			this.totalWriteTimeMillis = instance.totalWriteTimeMillis;
+			this.writeBufferOperationCount = instance.writeBufferOperationCount;
+			this.writeBufferSizeInBytes = instance.writeBufferSizeInBytes;
+
+		}
 		/**
 		 * Required - The total of transferred bytes read from the leader. This is only
 		 * an estimate and does not account for compression if enabled.
@@ -1125,6 +1163,12 @@ public class ShardStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

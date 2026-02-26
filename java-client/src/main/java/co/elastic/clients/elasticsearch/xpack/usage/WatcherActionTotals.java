@@ -129,6 +129,13 @@ public class WatcherActionTotals implements JsonpSerializable {
 
 		private Long totalTimeInMs;
 
+		public Builder() {
+		}
+		private Builder(WatcherActionTotals instance) {
+			this.total = instance.total;
+			this.totalTimeInMs = instance.totalTimeInMs;
+
+		}
 		/**
 		 * Required - API name: {@code total}
 		 */
@@ -170,6 +177,12 @@ public class WatcherActionTotals implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

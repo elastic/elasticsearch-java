@@ -141,6 +141,13 @@ public class HourAndMinute implements JsonpSerializable {
 
 		private List<Integer> minute;
 
+		public Builder() {
+		}
+		private Builder(HourAndMinute instance) {
+			this.hour = instance.hour;
+			this.minute = instance.minute;
+
+		}
 		/**
 		 * Required - API name: {@code hour}
 		 * <p>
@@ -199,6 +206,12 @@ public class HourAndMinute implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -298,6 +298,19 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 
 		private List<MultiTermLookup> terms;
 
+		public Builder() {
+		}
+		private Builder(MultiTermsAggregation instance) {
+			this.collectMode = instance.collectMode;
+			this.order = instance.order;
+			this.minDocCount = instance.minDocCount;
+			this.shardMinDocCount = instance.shardMinDocCount;
+			this.shardSize = instance.shardSize;
+			this.showTermDocCountError = instance.showTermDocCountError;
+			this.size = instance.size;
+			this.terms = instance.terms;
+
+		}
 		/**
 		 * Specifies the strategy for data collection.
 		 * <p>
@@ -441,6 +454,12 @@ public class MultiTermsAggregation extends BucketAggregationBase implements Aggr
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -303,6 +303,22 @@ public class ExecutionResultAction implements JsonpSerializable {
 		@Nullable
 		private ErrorCause error;
 
+		public Builder() {
+		}
+		private Builder(ExecutionResultAction instance) {
+			this.email = instance.email;
+			this.id = instance.id;
+			this.index = instance.index;
+			this.logging = instance.logging;
+			this.pagerduty = instance.pagerduty;
+			this.reason = instance.reason;
+			this.slack = instance.slack;
+			this.status = instance.status;
+			this.type = instance.type;
+			this.webhook = instance.webhook;
+			this.error = instance.error;
+
+		}
 		/**
 		 * API name: {@code email}
 		 */
@@ -458,6 +474,12 @@ public class ExecutionResultAction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

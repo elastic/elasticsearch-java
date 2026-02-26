@@ -170,6 +170,15 @@ public class RecoveryStartStatus implements JsonpSerializable {
 
 		private Long totalTimeInMillis;
 
+		public Builder() {
+		}
+		private Builder(RecoveryStartStatus instance) {
+			this.checkIndexTime = instance.checkIndexTime;
+			this.checkIndexTimeInMillis = instance.checkIndexTimeInMillis;
+			this.totalTime = instance.totalTime;
+			this.totalTimeInMillis = instance.totalTimeInMillis;
+
+		}
 		/**
 		 * API name: {@code check_index_time}
 		 */
@@ -234,6 +243,12 @@ public class RecoveryStartStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

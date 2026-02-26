@@ -281,6 +281,19 @@ public class DocumentSimulation implements JsonpSerializable {
 		@Nullable
 		private VersionType versionType;
 
+		public Builder() {
+		}
+		private Builder(DocumentSimulation instance) {
+			this.id = instance.id;
+			this.index = instance.index;
+			this.ingest = instance.ingest;
+			this.routing = instance.routing;
+			this.source = instance.source;
+			this.version = instance.version;
+			this.versionType = instance.versionType;
+			this.metadata = instance.metadata;
+
+		}
 		/**
 		 * Required - Unique identifier for the document. This ID must be unique within
 		 * the <code>_index</code>.
@@ -385,6 +398,12 @@ public class DocumentSimulation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

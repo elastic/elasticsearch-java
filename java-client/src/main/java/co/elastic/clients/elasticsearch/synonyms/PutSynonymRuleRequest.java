@@ -151,6 +151,14 @@ public class PutSynonymRuleRequest extends RequestBase implements JsonpSerializa
 
 		private String synonyms;
 
+		public Builder() {
+		}
+		private Builder(PutSynonymRuleRequest instance) {
+			this.ruleId = instance.ruleId;
+			this.setId = instance.setId;
+			this.synonyms = instance.synonyms;
+
+		}
 		/**
 		 * Required - The ID of the synonym rule to be updated or created.
 		 * <p>
@@ -200,6 +208,12 @@ public class PutSynonymRuleRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

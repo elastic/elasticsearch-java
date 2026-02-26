@@ -144,6 +144,14 @@ public class ShardSegmentRouting implements JsonpSerializable {
 
 		private String state;
 
+		public Builder() {
+		}
+		private Builder(ShardSegmentRouting instance) {
+			this.node = instance.node;
+			this.primary = instance.primary;
+			this.state = instance.state;
+
+		}
 		/**
 		 * Required - API name: {@code node}
 		 */
@@ -186,6 +194,12 @@ public class ShardSegmentRouting implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

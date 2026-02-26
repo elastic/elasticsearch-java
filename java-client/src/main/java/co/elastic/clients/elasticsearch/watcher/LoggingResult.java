@@ -110,6 +110,12 @@ public class LoggingResult implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<LoggingResult> {
 		private String loggedText;
 
+		public Builder() {
+		}
+		private Builder(LoggingResult instance) {
+			this.loggedText = instance.loggedText;
+
+		}
 		/**
 		 * Required - API name: {@code logged_text}
 		 */
@@ -136,6 +142,12 @@ public class LoggingResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

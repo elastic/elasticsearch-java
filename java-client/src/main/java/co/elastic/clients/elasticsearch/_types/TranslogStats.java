@@ -215,6 +215,18 @@ public class TranslogStats implements JsonpSerializable {
 
 		private Long uncommittedSizeInBytes;
 
+		public Builder() {
+		}
+		private Builder(TranslogStats instance) {
+			this.earliestLastModifiedAge = instance.earliestLastModifiedAge;
+			this.operations = instance.operations;
+			this.size = instance.size;
+			this.sizeInBytes = instance.sizeInBytes;
+			this.uncommittedOperations = instance.uncommittedOperations;
+			this.uncommittedSize = instance.uncommittedSize;
+			this.uncommittedSizeInBytes = instance.uncommittedSizeInBytes;
+
+		}
 		/**
 		 * Required - API name: {@code earliest_last_modified_age}
 		 */
@@ -289,6 +301,12 @@ public class TranslogStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

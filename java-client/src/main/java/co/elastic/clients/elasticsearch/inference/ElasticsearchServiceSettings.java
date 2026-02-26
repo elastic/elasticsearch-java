@@ -217,6 +217,16 @@ public class ElasticsearchServiceSettings implements JsonpSerializable {
 
 		private Integer numThreads;
 
+		public Builder() {
+		}
+		private Builder(ElasticsearchServiceSettings instance) {
+			this.adaptiveAllocations = instance.adaptiveAllocations;
+			this.deploymentId = instance.deploymentId;
+			this.modelId = instance.modelId;
+			this.numAllocations = instance.numAllocations;
+			this.numThreads = instance.numThreads;
+
+		}
 		/**
 		 * Adaptive allocations configuration details. If <code>enabled</code> is true,
 		 * the number of allocations of the model is set based on the current load the
@@ -320,6 +330,12 @@ public class ElasticsearchServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

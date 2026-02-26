@@ -142,6 +142,13 @@ public class TotalFeatureImportanceClass implements JsonpSerializable {
 
 		private List<TotalFeatureImportanceStatistics> importance;
 
+		public Builder() {
+		}
+		private Builder(TotalFeatureImportanceClass instance) {
+			this.className = instance.className;
+			this.importance = instance.importance;
+
+		}
 		/**
 		 * Required - The target class value. Could be a string, boolean, or number.
 		 * <p>
@@ -210,6 +217,12 @@ public class TotalFeatureImportanceClass implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

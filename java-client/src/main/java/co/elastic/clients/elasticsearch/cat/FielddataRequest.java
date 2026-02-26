@@ -158,6 +158,15 @@ public class FielddataRequest extends CatRequestBase {
 		@Nullable
 		private List<String> s;
 
+		public Builder() {
+		}
+		private Builder(FielddataRequest instance) {
+			this.bytes = instance.bytes;
+			this.fields = instance.fields;
+			this.h = instance.h;
+			this.s = instance.s;
+
+		}
 		/**
 		 * The unit used to display byte values.
 		 * <p>
@@ -280,6 +289,12 @@ public class FielddataRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

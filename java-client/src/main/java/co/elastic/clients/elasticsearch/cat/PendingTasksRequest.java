@@ -181,6 +181,16 @@ public class PendingTasksRequest extends CatRequestBase {
 		@Nullable
 		private TimeUnit time;
 
+		public Builder() {
+		}
+		private Builder(PendingTasksRequest instance) {
+			this.h = instance.h;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.s = instance.s;
+			this.time = instance.time;
+
+		}
 		/**
 		 * A comma-separated list of columns names to display. It supports simple
 		 * wildcards.
@@ -310,6 +320,12 @@ public class PendingTasksRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

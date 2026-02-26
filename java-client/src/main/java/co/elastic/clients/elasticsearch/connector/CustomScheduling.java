@@ -178,6 +178,16 @@ public class CustomScheduling implements JsonpSerializable {
 
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(CustomScheduling instance) {
+			this.configurationOverrides = instance.configurationOverrides;
+			this.enabled = instance.enabled;
+			this.interval = instance.interval;
+			this.lastSynced = instance.lastSynced;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - API name: {@code configuration_overrides}
 		 */
@@ -244,6 +254,12 @@ public class CustomScheduling implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

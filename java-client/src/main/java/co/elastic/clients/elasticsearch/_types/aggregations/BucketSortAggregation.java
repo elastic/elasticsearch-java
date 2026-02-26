@@ -199,6 +199,15 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 		@Nullable
 		private List<SortOptions> sort;
 
+		public Builder() {
+		}
+		private Builder(BucketSortAggregation instance) {
+			this.from = instance.from;
+			this.gapPolicy = instance.gapPolicy;
+			this.size = instance.size;
+			this.sort = instance.sort;
+
+		}
 		/**
 		 * Buckets in positions prior to <code>from</code> will be truncated.
 		 * <p>
@@ -283,6 +292,12 @@ public class BucketSortAggregation extends AggregationBase implements Aggregatio
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

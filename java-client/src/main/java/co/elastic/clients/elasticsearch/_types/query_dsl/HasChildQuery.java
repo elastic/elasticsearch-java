@@ -244,6 +244,18 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(HasChildQuery instance) {
+			this.ignoreUnmapped = instance.ignoreUnmapped;
+			this.innerHits = instance.innerHits;
+			this.maxChildren = instance.maxChildren;
+			this.minChildren = instance.minChildren;
+			this.query = instance.query;
+			this.scoreMode = instance.scoreMode;
+			this.type = instance.type;
+
+		}
 		/**
 		 * Indicates whether to ignore an unmapped <code>type</code> and not return any
 		 * documents instead of an error.
@@ -373,6 +385,12 @@ public class HasChildQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

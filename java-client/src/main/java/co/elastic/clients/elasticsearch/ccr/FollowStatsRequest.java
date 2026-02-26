@@ -121,6 +121,13 @@ public class FollowStatsRequest extends RequestBase {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(FollowStatsRequest instance) {
+			this.index = instance.index;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - A comma-delimited list of index patterns.
 		 * <p>
@@ -184,6 +191,12 @@ public class FollowStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

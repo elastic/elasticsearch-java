@@ -131,6 +131,13 @@ public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, Query
 
 		private SpanQuery match;
 
+		public Builder() {
+		}
+		private Builder(SpanFirstQuery instance) {
+			this.end = instance.end;
+			this.match = instance.match;
+
+		}
 		/**
 		 * Required - Controls the maximum end position permitted in a match.
 		 * <p>
@@ -188,6 +195,12 @@ public class SpanFirstQuery extends QueryBase implements SpanQueryVariant, Query
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -128,6 +128,13 @@ public class GetPrivilegesRequest extends RequestBase {
 		@Nullable
 		private List<String> name;
 
+		public Builder() {
+		}
+		private Builder(GetPrivilegesRequest instance) {
+			this.application = instance.application;
+			this.name = instance.name;
+
+		}
 		/**
 		 * The name of the application. Application privileges are always associated
 		 * with exactly one application. If you do not specify this parameter, the API
@@ -184,6 +191,12 @@ public class GetPrivilegesRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

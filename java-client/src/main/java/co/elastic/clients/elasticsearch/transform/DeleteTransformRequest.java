@@ -153,6 +153,15 @@ public class DeleteTransformRequest extends RequestBase {
 
 		private String transformId;
 
+		public Builder() {
+		}
+		private Builder(DeleteTransformRequest instance) {
+			this.deleteDestIndex = instance.deleteDestIndex;
+			this.force = instance.force;
+			this.timeout = instance.timeout;
+			this.transformId = instance.transformId;
+
+		}
 		/**
 		 * If this value is true, the destination index is deleted together with the
 		 * transform. If false, the destination index will not be deleted
@@ -224,6 +233,12 @@ public class DeleteTransformRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

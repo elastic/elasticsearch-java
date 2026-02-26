@@ -132,6 +132,13 @@ public class ForceMergeAction implements JsonpSerializable {
 		@Nullable
 		private String indexCodec;
 
+		public Builder() {
+		}
+		private Builder(ForceMergeAction instance) {
+			this.maxNumSegments = instance.maxNumSegments;
+			this.indexCodec = instance.indexCodec;
+
+		}
 		/**
 		 * Required - API name: {@code max_num_segments}
 		 */
@@ -166,6 +173,12 @@ public class ForceMergeAction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

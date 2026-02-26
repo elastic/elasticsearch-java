@@ -273,6 +273,21 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 
 		private Integer threadsPerAllocation;
 
+		public Builder() {
+		}
+		private Builder(TrainedModelAssignmentTaskParameters instance) {
+			this.modelBytes = instance.modelBytes;
+			this.modelId = instance.modelId;
+			this.deploymentId = instance.deploymentId;
+			this.cacheSize = instance.cacheSize;
+			this.numberOfAllocations = instance.numberOfAllocations;
+			this.priority = instance.priority;
+			this.perDeploymentMemoryBytes = instance.perDeploymentMemoryBytes;
+			this.perAllocationMemoryBytes = instance.perAllocationMemoryBytes;
+			this.queueCapacity = instance.queueCapacity;
+			this.threadsPerAllocation = instance.threadsPerAllocation;
+
+		}
 		/**
 		 * Required - The size of the trained model in bytes.
 		 * <p>
@@ -386,6 +401,12 @@ public class TrainedModelAssignmentTaskParameters implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

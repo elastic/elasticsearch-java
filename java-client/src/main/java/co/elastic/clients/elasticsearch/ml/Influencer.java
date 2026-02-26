@@ -309,6 +309,22 @@ public class Influencer implements JsonpSerializable {
 		@Nullable
 		private String foo;
 
+		public Builder() {
+		}
+		private Builder(Influencer instance) {
+			this.bucketSpan = instance.bucketSpan;
+			this.influencerScore = instance.influencerScore;
+			this.influencerFieldName = instance.influencerFieldName;
+			this.influencerFieldValue = instance.influencerFieldValue;
+			this.initialInfluencerScore = instance.initialInfluencerScore;
+			this.isInterim = instance.isInterim;
+			this.jobId = instance.jobId;
+			this.probability = instance.probability;
+			this.resultType = instance.resultType;
+			this.timestamp = instance.timestamp;
+			this.foo = instance.foo;
+
+		}
 		/**
 		 * Required - The length of the bucket in seconds. This value matches the bucket
 		 * span that is specified in the job.
@@ -452,6 +468,12 @@ public class Influencer implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

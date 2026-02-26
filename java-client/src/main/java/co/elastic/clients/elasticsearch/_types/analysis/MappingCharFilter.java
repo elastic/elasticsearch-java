@@ -137,6 +137,13 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
 		@Nullable
 		private String mappingsPath;
 
+		public Builder() {
+		}
+		private Builder(MappingCharFilter instance) {
+			this.mappings = instance.mappings;
+			this.mappingsPath = instance.mappingsPath;
+
+		}
 		/**
 		 * API name: {@code mappings}
 		 * <p>
@@ -183,6 +190,12 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

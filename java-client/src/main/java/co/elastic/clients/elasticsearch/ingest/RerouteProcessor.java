@@ -186,6 +186,14 @@ public class RerouteProcessor extends ProcessorBase implements ProcessorVariant 
 		@Nullable
 		private List<String> namespace;
 
+		public Builder() {
+		}
+		private Builder(RerouteProcessor instance) {
+			this.destination = instance.destination;
+			this.dataset = instance.dataset;
+			this.namespace = instance.namespace;
+
+		}
 		/**
 		 * A static value for the target. Can’t be set when the dataset or namespace
 		 * option is set.
@@ -305,6 +313,12 @@ public class RerouteProcessor extends ProcessorBase implements ProcessorVariant 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

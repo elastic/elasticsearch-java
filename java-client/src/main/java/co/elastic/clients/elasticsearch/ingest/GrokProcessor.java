@@ -233,6 +233,17 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		@Nullable
 		private Boolean traceMatch;
 
+		public Builder() {
+		}
+		private Builder(GrokProcessor instance) {
+			this.ecsCompatibility = instance.ecsCompatibility;
+			this.field = instance.field;
+			this.ignoreMissing = instance.ignoreMissing;
+			this.patternDefinitions = instance.patternDefinitions;
+			this.patterns = instance.patterns;
+			this.traceMatch = instance.traceMatch;
+
+		}
 		/**
 		 * Must be disabled or v1. If v1, the processor uses patterns with Elastic
 		 * Common Schema (ECS) field names.
@@ -350,6 +361,12 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

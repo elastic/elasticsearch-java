@@ -668,6 +668,37 @@ public class RecoveryRecord implements JsonpSerializable {
 		@Nullable
 		private String translogOpsPercent;
 
+		public Builder() {
+		}
+		private Builder(RecoveryRecord instance) {
+			this.index = instance.index;
+			this.shard = instance.shard;
+			this.startTime = instance.startTime;
+			this.startTimeMillis = instance.startTimeMillis;
+			this.stopTime = instance.stopTime;
+			this.stopTimeMillis = instance.stopTimeMillis;
+			this.time = instance.time;
+			this.type = instance.type;
+			this.stage = instance.stage;
+			this.sourceHost = instance.sourceHost;
+			this.sourceNode = instance.sourceNode;
+			this.targetHost = instance.targetHost;
+			this.targetNode = instance.targetNode;
+			this.repository = instance.repository;
+			this.snapshot = instance.snapshot;
+			this.files = instance.files;
+			this.filesRecovered = instance.filesRecovered;
+			this.filesPercent = instance.filesPercent;
+			this.filesTotal = instance.filesTotal;
+			this.bytes = instance.bytes;
+			this.bytesRecovered = instance.bytesRecovered;
+			this.bytesPercent = instance.bytesPercent;
+			this.bytesTotal = instance.bytesTotal;
+			this.translogOps = instance.translogOps;
+			this.translogOpsRecovered = instance.translogOpsRecovered;
+			this.translogOpsPercent = instance.translogOpsPercent;
+
+		}
 		/**
 		 * The index name.
 		 * <p>
@@ -955,6 +986,12 @@ public class RecoveryRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

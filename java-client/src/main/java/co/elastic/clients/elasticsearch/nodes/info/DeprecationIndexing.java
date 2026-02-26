@@ -112,6 +112,12 @@ public class DeprecationIndexing implements JsonpSerializable {
 				ObjectBuilder<DeprecationIndexing> {
 		private Boolean enabled;
 
+		public Builder() {
+		}
+		private Builder(DeprecationIndexing instance) {
+			this.enabled = instance.enabled;
+
+		}
 		/**
 		 * Required - API name: {@code enabled}
 		 */
@@ -138,6 +144,12 @@ public class DeprecationIndexing implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

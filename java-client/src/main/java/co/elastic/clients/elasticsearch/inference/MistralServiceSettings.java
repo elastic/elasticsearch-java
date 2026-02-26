@@ -188,6 +188,15 @@ public class MistralServiceSettings implements JsonpSerializable {
 		@Nullable
 		private RateLimitSetting rateLimit;
 
+		public Builder() {
+		}
+		private Builder(MistralServiceSettings instance) {
+			this.apiKey = instance.apiKey;
+			this.maxInputTokens = instance.maxInputTokens;
+			this.model = instance.model;
+			this.rateLimit = instance.rateLimit;
+
+		}
 		/**
 		 * Required - A valid API key of your Mistral account. You can find your Mistral
 		 * API keys or you can create a new one on the API Keys page.
@@ -267,6 +276,12 @@ public class MistralServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

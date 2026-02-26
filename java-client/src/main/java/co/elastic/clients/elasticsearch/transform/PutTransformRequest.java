@@ -407,6 +407,24 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 
 		private String transformId;
 
+		public Builder() {
+		}
+		private Builder(PutTransformRequest instance) {
+			this.meta = instance.meta;
+			this.deferValidation = instance.deferValidation;
+			this.description = instance.description;
+			this.dest = instance.dest;
+			this.frequency = instance.frequency;
+			this.latest = instance.latest;
+			this.pivot = instance.pivot;
+			this.retentionPolicy = instance.retentionPolicy;
+			this.settings = instance.settings;
+			this.source = instance.source;
+			this.sync = instance.sync;
+			this.timeout = instance.timeout;
+			this.transformId = instance.transformId;
+
+		}
 		/**
 		 * Defines optional transform metadata.
 		 * <p>
@@ -693,6 +711,12 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

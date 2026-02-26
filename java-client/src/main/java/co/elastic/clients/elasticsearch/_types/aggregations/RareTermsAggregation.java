@@ -262,6 +262,18 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		@Nullable
 		private String valueType;
 
+		public Builder() {
+		}
+		private Builder(RareTermsAggregation instance) {
+			this.exclude = instance.exclude;
+			this.field = instance.field;
+			this.include = instance.include;
+			this.maxDocCount = instance.maxDocCount;
+			this.missing = instance.missing;
+			this.precision = instance.precision;
+			this.valueType = instance.valueType;
+
+		}
 		/**
 		 * Terms that should be excluded from the aggregation.
 		 * <p>
@@ -422,6 +434,12 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

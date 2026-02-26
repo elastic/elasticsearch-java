@@ -142,6 +142,13 @@ public class RepositoriesRecord implements JsonpSerializable {
 		@Nullable
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(RepositoriesRecord instance) {
+			this.id = instance.id;
+			this.type = instance.type;
+
+		}
 		/**
 		 * The unique repository identifier.
 		 * <p>
@@ -180,6 +187,12 @@ public class RepositoriesRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

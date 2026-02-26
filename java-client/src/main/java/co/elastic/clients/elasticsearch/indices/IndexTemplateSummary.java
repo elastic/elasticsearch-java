@@ -195,6 +195,15 @@ public class IndexTemplateSummary implements JsonpSerializable {
 		@Nullable
 		private DataStreamLifecycleWithRollover lifecycle;
 
+		public Builder() {
+		}
+		private Builder(IndexTemplateSummary instance) {
+			this.aliases = instance.aliases;
+			this.mappings = instance.mappings;
+			this.settings = instance.settings;
+			this.lifecycle = instance.lifecycle;
+
+		}
 		/**
 		 * Aliases to add. If the index template includes a <code>data_stream</code>
 		 * object, these are data stream aliases. Otherwise, these are index aliases.
@@ -313,6 +322,12 @@ public class IndexTemplateSummary implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

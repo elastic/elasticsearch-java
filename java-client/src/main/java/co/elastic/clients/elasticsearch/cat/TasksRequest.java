@@ -241,6 +241,20 @@ public class TasksRequest extends CatRequestBase {
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(TasksRequest instance) {
+			this.actions = instance.actions;
+			this.detailed = instance.detailed;
+			this.h = instance.h;
+			this.nodes = instance.nodes;
+			this.parentTaskId = instance.parentTaskId;
+			this.s = instance.s;
+			this.time = instance.time;
+			this.timeout = instance.timeout;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * The task action names, which are used to limit the response.
 		 * <p>
@@ -437,6 +451,12 @@ public class TasksRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

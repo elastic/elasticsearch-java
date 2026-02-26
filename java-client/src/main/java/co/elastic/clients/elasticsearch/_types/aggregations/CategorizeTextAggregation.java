@@ -354,6 +354,21 @@ public class CategorizeTextAggregation extends AggregationBase implements Aggreg
 		@Nullable
 		private Integer shardMinDocCount;
 
+		public Builder() {
+		}
+		private Builder(CategorizeTextAggregation instance) {
+			this.field = instance.field;
+			this.maxUniqueTokens = instance.maxUniqueTokens;
+			this.maxMatchedTokens = instance.maxMatchedTokens;
+			this.similarityThreshold = instance.similarityThreshold;
+			this.categorizationFilters = instance.categorizationFilters;
+			this.categorizationAnalyzer = instance.categorizationAnalyzer;
+			this.shardSize = instance.shardSize;
+			this.size = instance.size;
+			this.minDocCount = instance.minDocCount;
+			this.shardMinDocCount = instance.shardMinDocCount;
+
+		}
 		/**
 		 * Required - The semi-structured text field to categorize.
 		 * <p>
@@ -532,6 +547,12 @@ public class CategorizeTextAggregation extends AggregationBase implements Aggreg
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

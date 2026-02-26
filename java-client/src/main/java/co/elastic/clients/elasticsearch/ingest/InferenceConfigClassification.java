@@ -219,6 +219,16 @@ public class InferenceConfigClassification implements InferenceConfigVariant, Js
 		@Nullable
 		private String predictionFieldType;
 
+		public Builder() {
+		}
+		private Builder(InferenceConfigClassification instance) {
+			this.numTopClasses = instance.numTopClasses;
+			this.numTopFeatureImportanceValues = instance.numTopFeatureImportanceValues;
+			this.resultsField = instance.resultsField;
+			this.topClassesResultsField = instance.topClassesResultsField;
+			this.predictionFieldType = instance.predictionFieldType;
+
+		}
 		/**
 		 * Specifies the number of top class predictions to return.
 		 * <p>
@@ -289,6 +299,12 @@ public class InferenceConfigClassification implements InferenceConfigVariant, Js
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -161,6 +161,15 @@ public class RepositoriesRequest extends CatRequestBase {
 		@Nullable
 		private List<String> s;
 
+		public Builder() {
+		}
+		private Builder(RepositoriesRequest instance) {
+			this.h = instance.h;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.s = instance.s;
+
+		}
 		/**
 		 * List of columns to appear in the response. Supports simple wildcards.
 		 * <p>
@@ -264,6 +273,12 @@ public class RepositoriesRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

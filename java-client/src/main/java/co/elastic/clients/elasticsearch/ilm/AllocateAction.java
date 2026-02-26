@@ -210,6 +210,16 @@ public class AllocateAction implements JsonpSerializable {
 		@Nullable
 		private Map<String, String> require;
 
+		public Builder() {
+		}
+		private Builder(AllocateAction instance) {
+			this.numberOfReplicas = instance.numberOfReplicas;
+			this.totalShardsPerNode = instance.totalShardsPerNode;
+			this.include = instance.include;
+			this.exclude = instance.exclude;
+			this.require = instance.require;
+
+		}
 		/**
 		 * API name: {@code number_of_replicas}
 		 */
@@ -304,6 +314,12 @@ public class AllocateAction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

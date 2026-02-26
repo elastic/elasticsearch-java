@@ -196,6 +196,15 @@ public class DataframeEvaluationClassification implements DataframeEvaluationVar
 		@Nullable
 		private DataframeEvaluationClassificationMetrics metrics;
 
+		public Builder() {
+		}
+		private Builder(DataframeEvaluationClassification instance) {
+			this.actualField = instance.actualField;
+			this.predictedField = instance.predictedField;
+			this.topClassesField = instance.topClassesField;
+			this.metrics = instance.metrics;
+
+		}
 		/**
 		 * Required - The field of the index which contains the ground truth. The data
 		 * type of this field can be boolean or integer. If the data type is integer,
@@ -269,6 +278,12 @@ public class DataframeEvaluationClassification implements DataframeEvaluationVar
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

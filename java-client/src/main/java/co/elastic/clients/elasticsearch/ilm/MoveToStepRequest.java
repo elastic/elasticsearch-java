@@ -166,6 +166,14 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 
 		private StepKey nextStep;
 
+		public Builder() {
+		}
+		private Builder(MoveToStepRequest instance) {
+			this.currentStep = instance.currentStep;
+			this.index = instance.index;
+			this.nextStep = instance.nextStep;
+
+		}
 		/**
 		 * Required - The step that the index is expected to be in.
 		 * <p>
@@ -232,6 +240,12 @@ public class MoveToStepRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

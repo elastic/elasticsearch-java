@@ -412,6 +412,27 @@ public class ClusterNodeCount implements JsonpSerializable {
 		@Nullable
 		private Integer votingOnly;
 
+		public Builder() {
+		}
+		private Builder(ClusterNodeCount instance) {
+			this.total = instance.total;
+			this.coordinatingOnly = instance.coordinatingOnly;
+			this.data = instance.data;
+			this.dataCold = instance.dataCold;
+			this.dataContent = instance.dataContent;
+			this.dataFrozen = instance.dataFrozen;
+			this.dataHot = instance.dataHot;
+			this.dataWarm = instance.dataWarm;
+			this.index = instance.index;
+			this.ingest = instance.ingest;
+			this.master = instance.master;
+			this.ml = instance.ml;
+			this.remoteClusterClient = instance.remoteClusterClient;
+			this.search = instance.search;
+			this.transform = instance.transform;
+			this.votingOnly = instance.votingOnly;
+
+		}
 		/**
 		 * Required - API name: {@code total}
 		 */
@@ -558,6 +579,12 @@ public class ClusterNodeCount implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

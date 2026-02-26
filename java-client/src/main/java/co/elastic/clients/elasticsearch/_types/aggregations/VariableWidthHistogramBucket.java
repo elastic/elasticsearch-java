@@ -190,6 +190,17 @@ public class VariableWidthHistogramBucket extends MultiBucketBase {
 		@Nullable
 		private String maxAsString;
 
+		public Builder() {
+		}
+		private Builder(VariableWidthHistogramBucket instance) {
+			this.min = instance.min;
+			this.key = instance.key;
+			this.max = instance.max;
+			this.minAsString = instance.minAsString;
+			this.keyAsString = instance.keyAsString;
+			this.maxAsString = instance.maxAsString;
+
+		}
 		/**
 		 * Required - API name: {@code min}
 		 */
@@ -256,6 +267,12 @@ public class VariableWidthHistogramBucket extends MultiBucketBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

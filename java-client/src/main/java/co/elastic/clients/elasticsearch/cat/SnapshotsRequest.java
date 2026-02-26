@@ -195,6 +195,17 @@ public class SnapshotsRequest extends CatRequestBase {
 		@Nullable
 		private TimeUnit time;
 
+		public Builder() {
+		}
+		private Builder(SnapshotsRequest instance) {
+			this.h = instance.h;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.masterTimeout = instance.masterTimeout;
+			this.repository = instance.repository;
+			this.s = instance.s;
+			this.time = instance.time;
+
+		}
 		/**
 		 * A comma-separated list of columns names to display. It supports simple
 		 * wildcards.
@@ -349,6 +360,12 @@ public class SnapshotsRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

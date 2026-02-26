@@ -112,6 +112,12 @@ public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilter
 		@Nullable
 		private LowercaseTokenFilterLanguages language;
 
+		public Builder() {
+		}
+		private Builder(LowercaseTokenFilter instance) {
+			this.language = instance.language;
+
+		}
 		/**
 		 * Language-specific lowercase token filter to use.
 		 * <p>
@@ -140,6 +146,12 @@ public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilter
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

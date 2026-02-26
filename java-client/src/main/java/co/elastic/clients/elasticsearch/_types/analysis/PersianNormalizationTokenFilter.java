@@ -90,6 +90,11 @@ public class PersianNormalizationTokenFilter extends TokenFilterBase implements 
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PersianNormalizationTokenFilter> {
+		public Builder() {
+		}
+		private Builder(PersianNormalizationTokenFilter instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -108,6 +113,12 @@ public class PersianNormalizationTokenFilter extends TokenFilterBase implements 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

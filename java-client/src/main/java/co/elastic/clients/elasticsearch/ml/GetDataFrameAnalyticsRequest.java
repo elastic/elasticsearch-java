@@ -187,6 +187,16 @@ public class GetDataFrameAnalyticsRequest extends RequestBase {
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(GetDataFrameAnalyticsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.excludeGenerated = instance.excludeGenerated;
+			this.from = instance.from;
+			this.id = instance.id;
+			this.size = instance.size;
+
+		}
 		/**
 		 * Specifies what to do when the request:
 		 * <ol>
@@ -271,6 +281,12 @@ public class GetDataFrameAnalyticsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

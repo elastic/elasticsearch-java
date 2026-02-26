@@ -159,6 +159,14 @@ public class TestPopulation implements JsonpSerializable {
 		@Nullable
 		private Query filter;
 
+		public Builder() {
+		}
+		private Builder(TestPopulation instance) {
+			this.field = instance.field;
+			this.script = instance.script;
+			this.filter = instance.filter;
+
+		}
 		/**
 		 * Required - The field to aggregate.
 		 * <p>
@@ -231,6 +239,12 @@ public class TestPopulation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

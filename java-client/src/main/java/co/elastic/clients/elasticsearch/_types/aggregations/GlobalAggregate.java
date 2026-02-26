@@ -81,6 +81,11 @@ public class GlobalAggregate extends SingleBucketAggregateBase implements Aggreg
 	public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GlobalAggregate> {
+		public Builder() {
+		}
+		private Builder(GlobalAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class GlobalAggregate extends SingleBucketAggregateBase implements Aggreg
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

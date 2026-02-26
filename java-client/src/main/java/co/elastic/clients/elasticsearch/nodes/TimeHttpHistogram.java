@@ -151,6 +151,14 @@ public class TimeHttpHistogram implements JsonpSerializable {
 		@Nullable
 		private Long ltMillis;
 
+		public Builder() {
+		}
+		private Builder(TimeHttpHistogram instance) {
+			this.count = instance.count;
+			this.geMillis = instance.geMillis;
+			this.ltMillis = instance.ltMillis;
+
+		}
 		/**
 		 * Required - API name: {@code count}
 		 */
@@ -193,6 +201,12 @@ public class TimeHttpHistogram implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

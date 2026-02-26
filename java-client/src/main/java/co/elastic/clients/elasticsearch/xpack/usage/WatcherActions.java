@@ -120,6 +120,12 @@ public class WatcherActions implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<WatcherActions> {
 		private Map<String, WatcherActionTotals> actions;
 
+		public Builder() {
+		}
+		private Builder(WatcherActions instance) {
+			this.actions = instance.actions;
+
+		}
 		/**
 		 * Required - API name: {@code actions}
 		 * <p>
@@ -168,6 +174,12 @@ public class WatcherActions implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -82,6 +82,11 @@ public class NumericDecayFunction extends DecayFunctionBase<Double, Double> impl
 	public static class Builder extends DecayFunctionBase.AbstractBuilder<Double, Double, Builder>
 			implements
 				ObjectBuilder<NumericDecayFunction> {
+		public Builder() {
+		}
+		private Builder(NumericDecayFunction instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -102,6 +107,12 @@ public class NumericDecayFunction extends DecayFunctionBase<Double, Double> impl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

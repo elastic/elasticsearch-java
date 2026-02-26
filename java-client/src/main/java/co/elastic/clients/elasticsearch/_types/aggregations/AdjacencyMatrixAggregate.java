@@ -83,6 +83,11 @@ public class AdjacencyMatrixAggregate extends MultiBucketAggregateBase<Adjacency
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<AdjacencyMatrixBucket, Builder>
 			implements
 				ObjectBuilder<AdjacencyMatrixAggregate> {
+		public Builder() {
+		}
+		private Builder(AdjacencyMatrixAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -102,6 +107,12 @@ public class AdjacencyMatrixAggregate extends MultiBucketAggregateBase<Adjacency
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

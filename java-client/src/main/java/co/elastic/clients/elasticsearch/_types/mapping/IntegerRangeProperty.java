@@ -89,6 +89,11 @@ public class IntegerRangeProperty extends RangePropertyBase implements PropertyV
 	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IntegerRangeProperty> {
+		public Builder() {
+		}
+		private Builder(IntegerRangeProperty instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class IntegerRangeProperty extends RangePropertyBase implements PropertyV
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

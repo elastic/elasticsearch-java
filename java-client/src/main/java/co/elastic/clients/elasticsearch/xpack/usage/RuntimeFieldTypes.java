@@ -104,6 +104,12 @@ public class RuntimeFieldTypes extends Base {
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<RuntimeFieldTypes> {
 		private List<RuntimeFieldsType> fieldTypes;
 
+		public Builder() {
+		}
+		private Builder(RuntimeFieldTypes instance) {
+			this.fieldTypes = instance.fieldTypes;
+
+		}
 		/**
 		 * Required - API name: {@code field_types}
 		 * <p>
@@ -151,6 +157,12 @@ public class RuntimeFieldTypes extends Base {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

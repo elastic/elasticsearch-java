@@ -177,6 +177,15 @@ public class RunningStateSearchInterval implements JsonpSerializable {
 
 		private Long startMs;
 
+		public Builder() {
+		}
+		private Builder(RunningStateSearchInterval instance) {
+			this.end = instance.end;
+			this.endMs = instance.endMs;
+			this.start = instance.start;
+			this.startMs = instance.startMs;
+
+		}
 		/**
 		 * The end time.
 		 * <p>
@@ -253,6 +262,12 @@ public class RunningStateSearchInterval implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

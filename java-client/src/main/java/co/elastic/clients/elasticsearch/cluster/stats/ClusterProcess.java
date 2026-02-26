@@ -129,6 +129,13 @@ public class ClusterProcess implements JsonpSerializable {
 
 		private ClusterProcessOpenFileDescriptors openFileDescriptors;
 
+		public Builder() {
+		}
+		private Builder(ClusterProcess instance) {
+			this.cpu = instance.cpu;
+			this.openFileDescriptors = instance.openFileDescriptors;
+
+		}
 		/**
 		 * Required - Contains statistics about CPU used by selected nodes.
 		 * <p>
@@ -186,6 +193,12 @@ public class ClusterProcess implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

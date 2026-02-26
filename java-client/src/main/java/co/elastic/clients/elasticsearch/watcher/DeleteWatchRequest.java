@@ -108,6 +108,12 @@ public class DeleteWatchRequest extends RequestBase {
 				ObjectBuilder<DeleteWatchRequest> {
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(DeleteWatchRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Required - The watch identifier.
 		 * <p>
@@ -136,6 +142,12 @@ public class DeleteWatchRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -301,6 +301,21 @@ public class DataStreamLifecycleRolloverConditions implements JsonpSerializable 
 		@Nullable
 		private Long maxPrimaryShardDocs;
 
+		public Builder() {
+		}
+		private Builder(DataStreamLifecycleRolloverConditions instance) {
+			this.minAge = instance.minAge;
+			this.maxAge = instance.maxAge;
+			this.minDocs = instance.minDocs;
+			this.maxDocs = instance.maxDocs;
+			this.minSize = instance.minSize;
+			this.maxSize = instance.maxSize;
+			this.minPrimaryShardSize = instance.minPrimaryShardSize;
+			this.maxPrimaryShardSize = instance.maxPrimaryShardSize;
+			this.minPrimaryShardDocs = instance.minPrimaryShardDocs;
+			this.maxPrimaryShardDocs = instance.maxPrimaryShardDocs;
+
+		}
 		/**
 		 * API name: {@code min_age}
 		 */
@@ -406,6 +421,12 @@ public class DataStreamLifecycleRolloverConditions implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

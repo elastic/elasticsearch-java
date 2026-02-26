@@ -258,6 +258,19 @@ public class FetchProfileBreakdown implements JsonpSerializable {
 		@Nullable
 		private Integer process;
 
+		public Builder() {
+		}
+		private Builder(FetchProfileBreakdown instance) {
+			this.loadSource = instance.loadSource;
+			this.loadSourceCount = instance.loadSourceCount;
+			this.loadStoredFields = instance.loadStoredFields;
+			this.loadStoredFieldsCount = instance.loadStoredFieldsCount;
+			this.nextReader = instance.nextReader;
+			this.nextReaderCount = instance.nextReaderCount;
+			this.processCount = instance.processCount;
+			this.process = instance.process;
+
+		}
 		/**
 		 * API name: {@code load_source}
 		 */
@@ -340,6 +353,12 @@ public class FetchProfileBreakdown implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

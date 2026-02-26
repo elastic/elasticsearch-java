@@ -114,6 +114,12 @@ public class NodeInfoSettingsTransportFeatures implements JsonpSerializable {
 				ObjectBuilder<NodeInfoSettingsTransportFeatures> {
 		private String xPack;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoSettingsTransportFeatures instance) {
+			this.xPack = instance.xPack;
+
+		}
 		/**
 		 * Required - API name: {@code x-pack}
 		 */
@@ -140,6 +146,12 @@ public class NodeInfoSettingsTransportFeatures implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

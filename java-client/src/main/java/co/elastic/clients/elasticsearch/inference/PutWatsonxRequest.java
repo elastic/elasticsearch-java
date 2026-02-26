@@ -186,6 +186,16 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 
 		private String watsonxInferenceId;
 
+		public Builder() {
+		}
+		private Builder(PutWatsonxRequest instance) {
+			this.service = instance.service;
+			this.serviceSettings = instance.serviceSettings;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+			this.watsonxInferenceId = instance.watsonxInferenceId;
+
+		}
 		/**
 		 * Required - The type of service supported for the specified task type. In this
 		 * case, <code>watsonxai</code>.
@@ -279,6 +289,12 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

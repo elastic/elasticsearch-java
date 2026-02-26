@@ -138,6 +138,13 @@ public class MultiTermLookup implements JsonpSerializable {
 		@Nullable
 		private FieldValue missing;
 
+		public Builder() {
+		}
+		private Builder(MultiTermLookup instance) {
+			this.field = instance.field;
+			this.missing = instance.missing;
+
+		}
 		/**
 		 * Required - A fields from which to retrieve terms.
 		 * <p>
@@ -231,6 +238,12 @@ public class MultiTermLookup implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

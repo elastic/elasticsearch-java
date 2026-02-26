@@ -152,6 +152,14 @@ public class ResolveIndexDataStreamsItem implements JsonpSerializable {
 
 		private List<String> backingIndices;
 
+		public Builder() {
+		}
+		private Builder(ResolveIndexDataStreamsItem instance) {
+			this.name = instance.name;
+			this.timestampField = instance.timestampField;
+			this.backingIndices = instance.backingIndices;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -206,6 +214,12 @@ public class ResolveIndexDataStreamsItem implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

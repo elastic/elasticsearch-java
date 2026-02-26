@@ -202,6 +202,17 @@ public class FetchProfile implements JsonpSerializable {
 		@Nullable
 		private List<FetchProfile> children;
 
+		public Builder() {
+		}
+		private Builder(FetchProfile instance) {
+			this.type = instance.type;
+			this.description = instance.description;
+			this.timeInNanos = instance.timeInNanos;
+			this.breakdown = instance.breakdown;
+			this.debug = instance.debug;
+			this.children = instance.children;
+
+		}
 		/**
 		 * Required - API name: {@code type}
 		 */
@@ -304,6 +315,12 @@ public class FetchProfile implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

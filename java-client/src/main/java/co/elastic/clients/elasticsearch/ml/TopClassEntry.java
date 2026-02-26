@@ -141,6 +141,14 @@ public class TopClassEntry implements JsonpSerializable {
 
 		private Double classScore;
 
+		public Builder() {
+		}
+		private Builder(TopClassEntry instance) {
+			this.className = instance.className;
+			this.classProbability = instance.classProbability;
+			this.classScore = instance.classScore;
+
+		}
 		/**
 		 * Required - API name: {@code class_name}
 		 */
@@ -183,6 +191,12 @@ public class TopClassEntry implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

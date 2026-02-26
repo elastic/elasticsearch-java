@@ -190,6 +190,16 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 
 		private Long timestamp;
 
+		public Builder() {
+		}
+		private Builder(TrainedModelInferenceStats instance) {
+			this.cacheMissCount = instance.cacheMissCount;
+			this.failureCount = instance.failureCount;
+			this.inferenceCount = instance.inferenceCount;
+			this.missingAllFieldsCount = instance.missingAllFieldsCount;
+			this.timestamp = instance.timestamp;
+
+		}
 		/**
 		 * Required - The number of times the model was loaded for inference and was not
 		 * retrieved from the cache. If this number is close to the
@@ -264,6 +274,12 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

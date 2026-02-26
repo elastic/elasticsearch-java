@@ -89,6 +89,11 @@ public class BinaryProperty extends DocValuesPropertyBase implements PropertyVar
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<BinaryProperty> {
+		public Builder() {
+		}
+		private Builder(BinaryProperty instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class BinaryProperty extends DocValuesPropertyBase implements PropertyVar
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

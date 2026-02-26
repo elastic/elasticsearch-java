@@ -164,6 +164,15 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 		@Nullable
 		private Integer size;
 
+		public Builder() {
+		}
+		private Builder(GetTrainedModelsStatsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.from = instance.from;
+			this.modelId = instance.modelId;
+			this.size = instance.size;
+
+		}
 		/**
 		 * Specifies what to do when the request:
 		 * <ul>
@@ -246,6 +255,12 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

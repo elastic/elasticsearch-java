@@ -182,6 +182,16 @@ public class QueryProfile implements JsonpSerializable {
 		@Nullable
 		private List<QueryProfile> children;
 
+		public Builder() {
+		}
+		private Builder(QueryProfile instance) {
+			this.breakdown = instance.breakdown;
+			this.description = instance.description;
+			this.timeInNanos = instance.timeInNanos;
+			this.type = instance.type;
+			this.children = instance.children;
+
+		}
 		/**
 		 * Required - API name: {@code breakdown}
 		 */
@@ -268,6 +278,12 @@ public class QueryProfile implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

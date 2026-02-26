@@ -174,6 +174,16 @@ public class MinimalLicenseInformation implements JsonpSerializable {
 
 		private String uid;
 
+		public Builder() {
+		}
+		private Builder(MinimalLicenseInformation instance) {
+			this.expiryDateInMillis = instance.expiryDateInMillis;
+			this.mode = instance.mode;
+			this.status = instance.status;
+			this.type = instance.type;
+			this.uid = instance.uid;
+
+		}
 		/**
 		 * Required - API name: {@code expiry_date_in_millis}
 		 */
@@ -232,6 +242,12 @@ public class MinimalLicenseInformation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

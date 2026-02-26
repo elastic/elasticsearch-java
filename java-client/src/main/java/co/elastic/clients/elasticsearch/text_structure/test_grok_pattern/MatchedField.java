@@ -142,6 +142,14 @@ public class MatchedField implements JsonpSerializable {
 
 		private Integer length;
 
+		public Builder() {
+		}
+		private Builder(MatchedField instance) {
+			this.match = instance.match;
+			this.offset = instance.offset;
+			this.length = instance.length;
+
+		}
 		/**
 		 * Required - API name: {@code match}
 		 */
@@ -184,6 +192,12 @@ public class MatchedField implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

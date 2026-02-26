@@ -168,6 +168,14 @@ public class SourceOnlyRepositorySettings extends RepositorySettingsBase {
 		@Nullable
 		private Boolean readOnly;
 
+		public Builder() {
+		}
+		private Builder(SourceOnlyRepositorySettings instance) {
+			this.delegateType = instance.delegateType;
+			this.maxNumberOfSnapshots = instance.maxNumberOfSnapshots;
+			this.readOnly = instance.readOnly;
+
+		}
 		/**
 		 * The delegated repository type. For valid values, refer to the
 		 * <code>type</code> parameter. Source repositories can use
@@ -233,6 +241,12 @@ public class SourceOnlyRepositorySettings extends RepositorySettingsBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

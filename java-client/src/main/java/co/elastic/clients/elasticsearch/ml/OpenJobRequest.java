@@ -141,6 +141,13 @@ public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(OpenJobRequest instance) {
+			this.jobId = instance.jobId;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - Identifier for the anomaly detection job.
 		 * <p>
@@ -188,6 +195,12 @@ public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

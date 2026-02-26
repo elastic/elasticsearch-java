@@ -144,6 +144,13 @@ public class SourceFilter implements JsonpSerializable {
 		@Nullable
 		private List<String> includes;
 
+		public Builder() {
+		}
+		private Builder(SourceFilter instance) {
+			this.excludes = instance.excludes;
+			this.includes = instance.includes;
+
+		}
 		/**
 		 * API name: {@code excludes}
 		 * <p>
@@ -202,6 +209,12 @@ public class SourceFilter implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

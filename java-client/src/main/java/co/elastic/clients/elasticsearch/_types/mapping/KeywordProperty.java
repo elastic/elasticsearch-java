@@ -336,6 +336,23 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 		@Nullable
 		private Boolean timeSeriesDimension;
 
+		public Builder() {
+		}
+		private Builder(KeywordProperty instance) {
+			this.boost = instance.boost;
+			this.eagerGlobalOrdinals = instance.eagerGlobalOrdinals;
+			this.index = instance.index;
+			this.indexOptions = instance.indexOptions;
+			this.script = instance.script;
+			this.onScriptError = instance.onScriptError;
+			this.normalizer = instance.normalizer;
+			this.norms = instance.norms;
+			this.nullValue = instance.nullValue;
+			this.similarity = instance.similarity;
+			this.splitQueriesOnWhitespace = instance.splitQueriesOnWhitespace;
+			this.timeSeriesDimension = instance.timeSeriesDimension;
+
+		}
 		/**
 		 * API name: {@code boost}
 		 */
@@ -460,6 +477,12 @@ public class KeywordProperty extends DocValuesPropertyBase implements PropertyVa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -131,6 +131,13 @@ public class UpdatePipelineRequest extends RequestBase implements JsonpSerializa
 
 		private IngestPipelineParams pipeline;
 
+		public Builder() {
+		}
+		private Builder(UpdatePipelineRequest instance) {
+			this.connectorId = instance.connectorId;
+			this.pipeline = instance.pipeline;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector to be updated
 		 * <p>
@@ -174,6 +181,12 @@ public class UpdatePipelineRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

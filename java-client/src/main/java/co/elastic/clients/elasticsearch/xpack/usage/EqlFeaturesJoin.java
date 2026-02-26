@@ -171,6 +171,16 @@ public class EqlFeaturesJoin implements JsonpSerializable {
 
 		private Number joinQueriesFour;
 
+		public Builder() {
+		}
+		private Builder(EqlFeaturesJoin instance) {
+			this.joinQueriesTwo = instance.joinQueriesTwo;
+			this.joinQueriesThree = instance.joinQueriesThree;
+			this.joinUntil = instance.joinUntil;
+			this.joinQueriesFiveOrMore = instance.joinQueriesFiveOrMore;
+			this.joinQueriesFour = instance.joinQueriesFour;
+
+		}
 		/**
 		 * Required - API name: {@code join_queries_two}
 		 */
@@ -229,6 +239,12 @@ public class EqlFeaturesJoin implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

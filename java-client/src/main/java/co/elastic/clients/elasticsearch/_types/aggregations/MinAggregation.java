@@ -81,6 +81,11 @@ public class MinAggregation extends FormatMetricAggregationBase implements Aggre
 	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MinAggregation> {
+		public Builder() {
+		}
+		private Builder(MinAggregation instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class MinAggregation extends FormatMetricAggregationBase implements Aggre
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

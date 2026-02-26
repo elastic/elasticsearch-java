@@ -130,6 +130,13 @@ public class TotalHits implements JsonpSerializable {
 
 		private Long value;
 
+		public Builder() {
+		}
+		private Builder(TotalHits instance) {
+			this.relation = instance.relation;
+			this.value = instance.value;
+
+		}
 		/**
 		 * Required - API name: {@code relation}
 		 */
@@ -164,6 +171,12 @@ public class TotalHits implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	/**
 	 * Json deserializer for {@link TotalHits}
 	 */

@@ -395,6 +395,24 @@ public class AllocationRecord implements JsonpSerializable {
 		@Nullable
 		private String nodeRole;
 
+		public Builder() {
+		}
+		private Builder(AllocationRecord instance) {
+			this.shards = instance.shards;
+			this.shardsUndesired = instance.shardsUndesired;
+			this.writeLoadForecast = instance.writeLoadForecast;
+			this.diskIndicesForecast = instance.diskIndicesForecast;
+			this.diskIndices = instance.diskIndices;
+			this.diskUsed = instance.diskUsed;
+			this.diskAvail = instance.diskAvail;
+			this.diskTotal = instance.diskTotal;
+			this.diskPercent = instance.diskPercent;
+			this.host = instance.host;
+			this.ip = instance.ip;
+			this.node = instance.node;
+			this.nodeRole = instance.nodeRole;
+
+		}
 		/**
 		 * Number of primary and replica shards assigned to the node.
 		 * <p>
@@ -555,6 +573,12 @@ public class AllocationRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

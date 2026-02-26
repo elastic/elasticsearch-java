@@ -157,6 +157,14 @@ public class ShrinkAction implements JsonpSerializable {
 		@Nullable
 		private Boolean allowWriteAfterShrink;
 
+		public Builder() {
+		}
+		private Builder(ShrinkAction instance) {
+			this.numberOfShards = instance.numberOfShards;
+			this.maxPrimaryShardSize = instance.maxPrimaryShardSize;
+			this.allowWriteAfterShrink = instance.allowWriteAfterShrink;
+
+		}
 		/**
 		 * API name: {@code number_of_shards}
 		 */
@@ -199,6 +207,12 @@ public class ShrinkAction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

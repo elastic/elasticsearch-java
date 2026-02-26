@@ -112,6 +112,12 @@ public class NodeInfoXpackLicense implements JsonpSerializable {
 				ObjectBuilder<NodeInfoXpackLicense> {
 		private NodeInfoXpackLicenseType selfGenerated;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoXpackLicense instance) {
+			this.selfGenerated = instance.selfGenerated;
+
+		}
 		/**
 		 * Required - API name: {@code self_generated}
 		 */
@@ -146,6 +152,12 @@ public class NodeInfoXpackLicense implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

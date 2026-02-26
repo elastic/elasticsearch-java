@@ -169,6 +169,14 @@ public class DataframeEvaluationOutlierDetection implements DataframeEvaluationV
 		@Nullable
 		private DataframeEvaluationOutlierDetectionMetrics metrics;
 
+		public Builder() {
+		}
+		private Builder(DataframeEvaluationOutlierDetection instance) {
+			this.actualField = instance.actualField;
+			this.predictedProbabilityField = instance.predictedProbabilityField;
+			this.metrics = instance.metrics;
+
+		}
 		/**
 		 * Required - The field of the index which contains the ground truth. The data
 		 * type of this field can be boolean or integer. If the data type is integer,
@@ -231,6 +239,12 @@ public class DataframeEvaluationOutlierDetection implements DataframeEvaluationV
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

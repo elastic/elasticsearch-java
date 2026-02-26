@@ -128,6 +128,12 @@ public class ReverseNestedAggregation extends BucketAggregationBase implements A
 		@Nullable
 		private String path;
 
+		public Builder() {
+		}
+		private Builder(ReverseNestedAggregation instance) {
+			this.path = instance.path;
+
+		}
 		/**
 		 * Defines the nested object field that should be joined back to. The default is
 		 * empty, which means that it joins back to the root/main document level.
@@ -157,6 +163,12 @@ public class ReverseNestedAggregation extends BucketAggregationBase implements A
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

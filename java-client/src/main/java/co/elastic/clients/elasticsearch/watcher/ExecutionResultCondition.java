@@ -142,6 +142,14 @@ public class ExecutionResultCondition implements JsonpSerializable {
 
 		private ConditionType type;
 
+		public Builder() {
+		}
+		private Builder(ExecutionResultCondition instance) {
+			this.met = instance.met;
+			this.status = instance.status;
+			this.type = instance.type;
+
+		}
 		/**
 		 * Required - API name: {@code met}
 		 */
@@ -184,6 +192,12 @@ public class ExecutionResultCondition implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

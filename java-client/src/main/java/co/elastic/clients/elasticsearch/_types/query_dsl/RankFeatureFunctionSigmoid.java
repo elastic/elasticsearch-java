@@ -130,6 +130,13 @@ public class RankFeatureFunctionSigmoid extends RankFeatureFunction implements J
 
 		private Float exponent;
 
+		public Builder() {
+		}
+		private Builder(RankFeatureFunctionSigmoid instance) {
+			this.pivot = instance.pivot;
+			this.exponent = instance.exponent;
+
+		}
 		/**
 		 * Required - Configurable pivot value so that the result will be less than 0.5.
 		 * <p>
@@ -168,6 +175,12 @@ public class RankFeatureFunctionSigmoid extends RankFeatureFunction implements J
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

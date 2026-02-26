@@ -213,6 +213,16 @@ public class StandardRetriever extends RetrieverBase implements RetrieverVariant
 		@Nullable
 		private FieldCollapse collapse;
 
+		public Builder() {
+		}
+		private Builder(StandardRetriever instance) {
+			this.query = instance.query;
+			this.searchAfter = instance.searchAfter;
+			this.terminateAfter = instance.terminateAfter;
+			this.sort = instance.sort;
+			this.collapse = instance.collapse;
+
+		}
 		/**
 		 * Defines a query to retrieve a set of top documents.
 		 * <p>
@@ -421,6 +431,12 @@ public class StandardRetriever extends RetrieverBase implements RetrieverVariant
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

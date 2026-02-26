@@ -119,6 +119,12 @@ public class ShardStoreWrapper implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ShardStoreWrapper> {
 		private List<ShardStore> stores;
 
+		public Builder() {
+		}
+		private Builder(ShardStoreWrapper instance) {
+			this.stores = instance.stores;
+
+		}
 		/**
 		 * Required - API name: {@code stores}
 		 * <p>
@@ -166,6 +172,12 @@ public class ShardStoreWrapper implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

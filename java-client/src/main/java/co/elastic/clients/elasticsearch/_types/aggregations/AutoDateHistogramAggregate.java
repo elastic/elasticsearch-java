@@ -108,6 +108,12 @@ public class AutoDateHistogramAggregate extends MultiBucketAggregateBase<DateHis
 				ObjectBuilder<AutoDateHistogramAggregate> {
 		private Time interval;
 
+		public Builder() {
+		}
+		private Builder(AutoDateHistogramAggregate instance) {
+			this.interval = instance.interval;
+
+		}
 		/**
 		 * Required - API name: {@code interval}
 		 */
@@ -142,6 +148,12 @@ public class AutoDateHistogramAggregate extends MultiBucketAggregateBase<DateHis
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

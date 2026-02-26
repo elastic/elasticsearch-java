@@ -153,6 +153,14 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerDefiniti
 		@Nullable
 		private String pattern;
 
+		public Builder() {
+		}
+		private Builder(PatternTokenizer instance) {
+			this.flags = instance.flags;
+			this.group = instance.group;
+			this.pattern = instance.pattern;
+
+		}
 		/**
 		 * API name: {@code flags}
 		 */
@@ -195,6 +203,12 @@ public class PatternTokenizer extends TokenizerBase implements TokenizerDefiniti
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -128,6 +128,13 @@ public class UpdateServiceTypeRequest extends RequestBase implements JsonpSerial
 
 		private String serviceType;
 
+		public Builder() {
+		}
+		private Builder(UpdateServiceTypeRequest instance) {
+			this.connectorId = instance.connectorId;
+			this.serviceType = instance.serviceType;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector to be updated
 		 * <p>
@@ -164,6 +171,12 @@ public class UpdateServiceTypeRequest extends RequestBase implements JsonpSerial
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

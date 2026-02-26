@@ -206,6 +206,15 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 		@Nullable
 		private List<TotalFeatureImportance> totalFeatureImportance;
 
+		public Builder() {
+		}
+		private Builder(TrainedModelConfigMetadata instance) {
+			this.modelAliases = instance.modelAliases;
+			this.featureImportanceBaseline = instance.featureImportanceBaseline;
+			this.hyperparameters = instance.hyperparameters;
+			this.totalFeatureImportance = instance.totalFeatureImportance;
+
+		}
 		/**
 		 * API name: {@code model_aliases}
 		 * <p>
@@ -357,6 +366,12 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -195,6 +195,16 @@ public class ScriptSort implements SortOptionsVariant, JsonpSerializable {
 		@Nullable
 		private NestedSortValue nested;
 
+		public Builder() {
+		}
+		private Builder(ScriptSort instance) {
+			this.order = instance.order;
+			this.script = instance.script;
+			this.type = instance.type;
+			this.mode = instance.mode;
+			this.nested = instance.nested;
+
+		}
 		/**
 		 * API name: {@code order}
 		 */
@@ -267,6 +277,12 @@ public class ScriptSort implements SortOptionsVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

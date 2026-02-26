@@ -189,6 +189,17 @@ public class StandardDeviationBoundsAsString implements JsonpSerializable {
 
 		private String lowerSampling;
 
+		public Builder() {
+		}
+		private Builder(StandardDeviationBoundsAsString instance) {
+			this.upper = instance.upper;
+			this.lower = instance.lower;
+			this.upperPopulation = instance.upperPopulation;
+			this.lowerPopulation = instance.lowerPopulation;
+			this.upperSampling = instance.upperSampling;
+			this.lowerSampling = instance.lowerSampling;
+
+		}
 		/**
 		 * Required - API name: {@code upper}
 		 */
@@ -255,6 +266,12 @@ public class StandardDeviationBoundsAsString implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

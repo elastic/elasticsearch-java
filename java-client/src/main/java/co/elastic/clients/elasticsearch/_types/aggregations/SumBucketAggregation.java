@@ -81,6 +81,11 @@ public class SumBucketAggregation extends PipelineAggregationBase implements Agg
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SumBucketAggregation> {
+		public Builder() {
+		}
+		private Builder(SumBucketAggregation instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class SumBucketAggregation extends PipelineAggregationBase implements Agg
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

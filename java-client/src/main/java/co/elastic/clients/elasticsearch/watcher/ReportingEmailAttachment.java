@@ -205,6 +205,16 @@ public class ReportingEmailAttachment implements EmailAttachmentVariant, JsonpSe
 		@Nullable
 		private HttpInputRequestDefinition request;
 
+		public Builder() {
+		}
+		private Builder(ReportingEmailAttachment instance) {
+			this.url = instance.url;
+			this.inline = instance.inline;
+			this.retries = instance.retries;
+			this.interval = instance.interval;
+			this.request = instance.request;
+
+		}
 		/**
 		 * Required - API name: {@code url}
 		 */
@@ -278,6 +288,12 @@ public class ReportingEmailAttachment implements EmailAttachmentVariant, JsonpSe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

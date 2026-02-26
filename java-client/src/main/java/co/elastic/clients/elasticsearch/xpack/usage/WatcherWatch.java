@@ -182,6 +182,15 @@ public class WatcherWatch implements JsonpSerializable {
 
 		private WatcherWatchTrigger trigger;
 
+		public Builder() {
+		}
+		private Builder(WatcherWatch instance) {
+			this.input = instance.input;
+			this.condition = instance.condition;
+			this.action = instance.action;
+			this.trigger = instance.trigger;
+
+		}
 		/**
 		 * Required - API name: {@code input}
 		 * <p>
@@ -302,6 +311,12 @@ public class WatcherWatch implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

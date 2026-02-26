@@ -178,6 +178,15 @@ public class ResolveIndexItem implements JsonpSerializable {
 		@Nullable
 		private String dataStream;
 
+		public Builder() {
+		}
+		private Builder(ResolveIndexItem instance) {
+			this.name = instance.name;
+			this.aliases = instance.aliases;
+			this.attributes = instance.attributes;
+			this.dataStream = instance.dataStream;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -252,6 +261,12 @@ public class ResolveIndexItem implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

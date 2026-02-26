@@ -161,6 +161,15 @@ public class RecoveryStats implements JsonpSerializable {
 
 		private Long throttleTimeInMillis;
 
+		public Builder() {
+		}
+		private Builder(RecoveryStats instance) {
+			this.currentAsSource = instance.currentAsSource;
+			this.currentAsTarget = instance.currentAsTarget;
+			this.throttleTime = instance.throttleTime;
+			this.throttleTimeInMillis = instance.throttleTimeInMillis;
+
+		}
 		/**
 		 * Required - API name: {@code current_as_source}
 		 */
@@ -218,6 +227,12 @@ public class RecoveryStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

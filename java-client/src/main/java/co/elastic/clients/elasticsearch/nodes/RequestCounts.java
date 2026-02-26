@@ -341,6 +341,22 @@ public class RequestCounts implements JsonpSerializable {
 		@Nullable
 		private Long putmultipartobject;
 
+		public Builder() {
+		}
+		private Builder(RequestCounts instance) {
+			this.getblobproperties = instance.getblobproperties;
+			this.getblob = instance.getblob;
+			this.listblobs = instance.listblobs;
+			this.putblob = instance.putblob;
+			this.putblock = instance.putblock;
+			this.putblocklist = instance.putblocklist;
+			this.getobject = instance.getobject;
+			this.listobjects = instance.listobjects;
+			this.insertobject = instance.insertobject;
+			this.putobject = instance.putobject;
+			this.putmultipartobject = instance.putmultipartobject;
+
+		}
 		/**
 		 * Number of Get Blob Properties requests (Azure)
 		 * <p>
@@ -473,6 +489,12 @@ public class RequestCounts implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

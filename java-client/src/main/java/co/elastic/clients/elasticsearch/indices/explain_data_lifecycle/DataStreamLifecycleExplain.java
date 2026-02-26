@@ -274,6 +274,20 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 		@Nullable
 		private String error;
 
+		public Builder() {
+		}
+		private Builder(DataStreamLifecycleExplain instance) {
+			this.index = instance.index;
+			this.managedByLifecycle = instance.managedByLifecycle;
+			this.indexCreationDateMillis = instance.indexCreationDateMillis;
+			this.timeSinceIndexCreation = instance.timeSinceIndexCreation;
+			this.rolloverDateMillis = instance.rolloverDateMillis;
+			this.timeSinceRollover = instance.timeSinceRollover;
+			this.lifecycle = instance.lifecycle;
+			this.generationTime = instance.generationTime;
+			this.error = instance.error;
+
+		}
 		/**
 		 * Required - API name: {@code index}
 		 */
@@ -393,6 +407,12 @@ public class DataStreamLifecycleExplain implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

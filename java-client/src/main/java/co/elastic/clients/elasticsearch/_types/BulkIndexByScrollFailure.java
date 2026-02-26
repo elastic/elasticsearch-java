@@ -158,6 +158,15 @@ public class BulkIndexByScrollFailure implements JsonpSerializable {
 
 		private Integer status;
 
+		public Builder() {
+		}
+		private Builder(BulkIndexByScrollFailure instance) {
+			this.cause = instance.cause;
+			this.id = instance.id;
+			this.index = instance.index;
+			this.status = instance.status;
+
+		}
 		/**
 		 * Required - API name: {@code cause}
 		 */
@@ -215,6 +224,12 @@ public class BulkIndexByScrollFailure implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

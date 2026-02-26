@@ -256,6 +256,20 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 
 		private Long totalTimeInMillis;
 
+		public Builder() {
+		}
+		private Builder(RecoveryIndexStatus instance) {
+			this.bytes = instance.bytes;
+			this.files = instance.files;
+			this.size = instance.size;
+			this.sourceThrottleTime = instance.sourceThrottleTime;
+			this.sourceThrottleTimeInMillis = instance.sourceThrottleTimeInMillis;
+			this.targetThrottleTime = instance.targetThrottleTime;
+			this.targetThrottleTimeInMillis = instance.targetThrottleTimeInMillis;
+			this.totalTime = instance.totalTime;
+			this.totalTimeInMillis = instance.totalTimeInMillis;
+
+		}
 		/**
 		 * API name: {@code bytes}
 		 */
@@ -388,6 +402,12 @@ public class RecoveryIndexStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

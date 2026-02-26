@@ -142,6 +142,13 @@ public class TimeOfMonth implements JsonpSerializable {
 
 		private List<Integer> on;
 
+		public Builder() {
+		}
+		private Builder(TimeOfMonth instance) {
+			this.at = instance.at;
+			this.on = instance.on;
+
+		}
 		/**
 		 * Required - API name: {@code at}
 		 * <p>
@@ -200,6 +207,12 @@ public class TimeOfMonth implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

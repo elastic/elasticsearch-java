@@ -113,6 +113,12 @@ public class RankFeatureFunctionLogarithm extends RankFeatureFunction implements
 				ObjectBuilder<RankFeatureFunctionLogarithm> {
 		private Float scalingFactor;
 
+		public Builder() {
+		}
+		private Builder(RankFeatureFunctionLogarithm instance) {
+			this.scalingFactor = instance.scalingFactor;
+
+		}
 		/**
 		 * Required - Configurable scaling factor.
 		 * <p>
@@ -141,6 +147,12 @@ public class RankFeatureFunctionLogarithm extends RankFeatureFunction implements
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

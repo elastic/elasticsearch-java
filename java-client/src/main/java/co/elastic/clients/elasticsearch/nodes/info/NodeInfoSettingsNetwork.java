@@ -123,6 +123,12 @@ public class NodeInfoSettingsNetwork implements JsonpSerializable {
 		@Nullable
 		private List<String> host;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoSettingsNetwork instance) {
+			this.host = instance.host;
+
+		}
 		/**
 		 * API name: {@code host}
 		 * <p>
@@ -161,6 +167,12 @@ public class NodeInfoSettingsNetwork implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

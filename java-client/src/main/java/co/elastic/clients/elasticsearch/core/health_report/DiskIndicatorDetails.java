@@ -177,6 +177,16 @@ public class DiskIndicatorDetails implements JsonpSerializable {
 
 		private Long nodesWithUnknownDiskStatus;
 
+		public Builder() {
+		}
+		private Builder(DiskIndicatorDetails instance) {
+			this.indicesWithReadonlyBlock = instance.indicesWithReadonlyBlock;
+			this.nodesWithEnoughDiskSpace = instance.nodesWithEnoughDiskSpace;
+			this.nodesOverHighWatermark = instance.nodesOverHighWatermark;
+			this.nodesOverFloodStageWatermark = instance.nodesOverFloodStageWatermark;
+			this.nodesWithUnknownDiskStatus = instance.nodesWithUnknownDiskStatus;
+
+		}
 		/**
 		 * Required - API name: {@code indices_with_readonly_block}
 		 */
@@ -235,6 +245,12 @@ public class DiskIndicatorDetails implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

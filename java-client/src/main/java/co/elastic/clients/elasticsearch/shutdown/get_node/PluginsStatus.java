@@ -110,6 +110,12 @@ public class PluginsStatus implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<PluginsStatus> {
 		private ShutdownStatus status;
 
+		public Builder() {
+		}
+		private Builder(PluginsStatus instance) {
+			this.status = instance.status;
+
+		}
 		/**
 		 * Required - API name: {@code status}
 		 */
@@ -136,6 +142,12 @@ public class PluginsStatus implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

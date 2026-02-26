@@ -135,6 +135,13 @@ public class SetSecurityUserProcessor extends ProcessorBase implements Processor
 		@Nullable
 		private List<String> properties;
 
+		public Builder() {
+		}
+		private Builder(SetSecurityUserProcessor instance) {
+			this.field = instance.field;
+			this.properties = instance.properties;
+
+		}
 		/**
 		 * Required - The field to store the user information into.
 		 * <p>
@@ -187,6 +194,12 @@ public class SetSecurityUserProcessor extends ProcessorBase implements Processor
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

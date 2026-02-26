@@ -175,6 +175,14 @@ public class BucketCorrelationFunctionCountCorrelationIndicator implements Jsonp
 		@Nullable
 		private List<Double> fractions;
 
+		public Builder() {
+		}
+		private Builder(BucketCorrelationFunctionCountCorrelationIndicator instance) {
+			this.docCount = instance.docCount;
+			this.expectations = instance.expectations;
+			this.fractions = instance.fractions;
+
+		}
 		/**
 		 * Required - The total number of documents that initially created the
 		 * expectations. It’s required to be greater than or equal to the sum of all
@@ -262,6 +270,12 @@ public class BucketCorrelationFunctionCountCorrelationIndicator implements Jsonp
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

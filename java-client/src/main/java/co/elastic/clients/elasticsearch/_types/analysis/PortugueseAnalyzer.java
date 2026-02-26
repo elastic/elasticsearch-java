@@ -176,6 +176,14 @@ public class PortugueseAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		@Nullable
 		private List<String> stemExclusion;
 
+		public Builder() {
+		}
+		private Builder(PortugueseAnalyzer instance) {
+			this.stopwords = instance.stopwords;
+			this.stopwordsPath = instance.stopwordsPath;
+			this.stemExclusion = instance.stemExclusion;
+
+		}
 		/**
 		 * API name: {@code stopwords}
 		 * <p>
@@ -242,6 +250,12 @@ public class PortugueseAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
