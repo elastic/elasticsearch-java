@@ -247,6 +247,17 @@ public class Pipeline implements JsonpSerializable {
 		@Nullable
 		private Map<String, JsonData> meta;
 
+		public Builder() {
+		}
+		private Builder(Pipeline instance) {
+			this.description = instance.description;
+			this.onFailure = instance.onFailure;
+			this.processors = instance.processors;
+			this.version = instance.version;
+			this.deprecated = instance.deprecated;
+			this.meta = instance.meta;
+
+		}
 		/**
 		 * Description of the ingest pipeline.
 		 * <p>
@@ -427,6 +438,12 @@ public class Pipeline implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

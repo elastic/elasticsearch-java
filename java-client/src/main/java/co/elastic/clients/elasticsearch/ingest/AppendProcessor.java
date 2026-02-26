@@ -158,6 +158,14 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		@Nullable
 		private Boolean allowDuplicates;
 
+		public Builder() {
+		}
+		private Builder(AppendProcessor instance) {
+			this.field = instance.field;
+			this.value = instance.value;
+			this.allowDuplicates = instance.allowDuplicates;
+
+		}
 		/**
 		 * Required - The field to be appended to. Supports template snippets.
 		 * <p>
@@ -221,6 +229,12 @@ public class AppendProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

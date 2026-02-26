@@ -154,6 +154,13 @@ public class MappingLimitSettingsTotalFields implements JsonpSerializable {
 		@Nullable
 		private Boolean ignoreDynamicBeyondLimit;
 
+		public Builder() {
+		}
+		private Builder(MappingLimitSettingsTotalFields instance) {
+			this.limit = instance.limit;
+			this.ignoreDynamicBeyondLimit = instance.ignoreDynamicBeyondLimit;
+
+		}
 		/**
 		 * The maximum number of fields in an index. Field and object mappings, as well
 		 * as field aliases count towards this limit. The limit is in place to prevent
@@ -202,6 +209,12 @@ public class MappingLimitSettingsTotalFields implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

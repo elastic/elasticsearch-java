@@ -151,6 +151,13 @@ public class TimeSeriesAggregation extends BucketAggregationBase implements Aggr
 		@Nullable
 		private Boolean keyed;
 
+		public Builder() {
+		}
+		private Builder(TimeSeriesAggregation instance) {
+			this.size = instance.size;
+			this.keyed = instance.keyed;
+
+		}
 		/**
 		 * The maximum number of results to return.
 		 * <p>
@@ -190,6 +197,12 @@ public class TimeSeriesAggregation extends BucketAggregationBase implements Aggr
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

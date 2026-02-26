@@ -112,6 +112,12 @@ public class DataStreamTimestamp implements JsonpSerializable {
 				ObjectBuilder<DataStreamTimestamp> {
 		private Boolean enabled;
 
+		public Builder() {
+		}
+		private Builder(DataStreamTimestamp instance) {
+			this.enabled = instance.enabled;
+
+		}
 		/**
 		 * Required - API name: {@code enabled}
 		 */
@@ -138,6 +144,12 @@ public class DataStreamTimestamp implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

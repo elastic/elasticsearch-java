@@ -140,6 +140,14 @@ public class StopTrainedModelDeploymentRequest extends RequestBase {
 
 		private String modelId;
 
+		public Builder() {
+		}
+		private Builder(StopTrainedModelDeploymentRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.force = instance.force;
+			this.modelId = instance.modelId;
+
+		}
 		/**
 		 * Specifies what to do when the request: contains wildcard expressions and
 		 * there are no deployments that match; contains the <code>_all</code> string or
@@ -195,6 +203,12 @@ public class StopTrainedModelDeploymentRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

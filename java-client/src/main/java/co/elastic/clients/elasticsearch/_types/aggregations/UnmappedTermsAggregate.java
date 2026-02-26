@@ -97,6 +97,11 @@ public class UnmappedTermsAggregate extends TermsAggregateBase<Void>
 	public static class Builder extends TermsAggregateBase.AbstractBuilder<Void, Builder>
 			implements
 				ObjectBuilder<UnmappedTermsAggregate> {
+		public Builder() {
+		}
+		private Builder(UnmappedTermsAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -116,6 +121,12 @@ public class UnmappedTermsAggregate extends TermsAggregateBase<Void>
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -118,6 +118,12 @@ public class PercentilesBucketAggregation extends PipelineAggregationBase implem
 		@Nullable
 		private List<Double> percents;
 
+		public Builder() {
+		}
+		private Builder(PercentilesBucketAggregation instance) {
+			this.percents = instance.percents;
+
+		}
 		/**
 		 * The list of percentiles to calculate.
 		 * <p>
@@ -160,6 +166,12 @@ public class PercentilesBucketAggregation extends PipelineAggregationBase implem
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

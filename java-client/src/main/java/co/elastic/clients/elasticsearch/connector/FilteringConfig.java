@@ -146,6 +146,14 @@ public class FilteringConfig implements JsonpSerializable {
 
 		private FilteringRules draft;
 
+		public Builder() {
+		}
+		private Builder(FilteringConfig instance) {
+			this.active = instance.active;
+			this.domain = instance.domain;
+			this.draft = instance.draft;
+
+		}
 		/**
 		 * Required - API name: {@code active}
 		 */
@@ -202,6 +210,12 @@ public class FilteringConfig implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

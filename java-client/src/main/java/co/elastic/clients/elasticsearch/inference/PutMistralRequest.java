@@ -205,6 +205,17 @@ public class PutMistralRequest extends RequestBase implements JsonpSerializable 
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutMistralRequest instance) {
+			this.chunkingSettings = instance.chunkingSettings;
+			this.mistralInferenceId = instance.mistralInferenceId;
+			this.service = instance.service;
+			this.serviceSettings = instance.serviceSettings;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * The chunking configuration object.
 		 * <p>
@@ -318,6 +329,12 @@ public class PutMistralRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

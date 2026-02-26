@@ -190,6 +190,15 @@ public class TextEmbeddingInferenceOptions implements InferenceConfigCreateVaria
 
 		private Vocabulary vocabulary;
 
+		public Builder() {
+		}
+		private Builder(TextEmbeddingInferenceOptions instance) {
+			this.embeddingSize = instance.embeddingSize;
+			this.tokenization = instance.tokenization;
+			this.resultsField = instance.resultsField;
+			this.vocabulary = instance.vocabulary;
+
+		}
 		/**
 		 * The number of dimensions in the embedding output
 		 * <p>
@@ -273,6 +282,12 @@ public class TextEmbeddingInferenceOptions implements InferenceConfigCreateVaria
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

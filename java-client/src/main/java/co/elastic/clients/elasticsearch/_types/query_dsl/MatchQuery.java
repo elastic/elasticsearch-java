@@ -437,6 +437,24 @@ public class MatchQuery extends QueryBase
 		@Nullable
 		private ZeroTermsQuery zeroTermsQuery;
 
+		public Builder() {
+		}
+		private Builder(MatchQuery instance) {
+			this.analyzer = instance.analyzer;
+			this.autoGenerateSynonymsPhraseQuery = instance.autoGenerateSynonymsPhraseQuery;
+			this.cutoffFrequency = instance.cutoffFrequency;
+			this.fuzziness = instance.fuzziness;
+			this.fuzzyRewrite = instance.fuzzyRewrite;
+			this.fuzzyTranspositions = instance.fuzzyTranspositions;
+			this.lenient = instance.lenient;
+			this.maxExpansions = instance.maxExpansions;
+			this.minimumShouldMatch = instance.minimumShouldMatch;
+			this.operator = instance.operator;
+			this.prefixLength = instance.prefixLength;
+			this.query = instance.query;
+			this.zeroTermsQuery = instance.zeroTermsQuery;
+
+		}
 		/**
 		 * Analyzer used to convert the text in the query value into tokens.
 		 * <p>
@@ -645,6 +663,12 @@ public class MatchQuery extends QueryBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

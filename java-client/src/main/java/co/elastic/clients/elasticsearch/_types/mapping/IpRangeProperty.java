@@ -89,6 +89,11 @@ public class IpRangeProperty extends RangePropertyBase implements PropertyVarian
 	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IpRangeProperty> {
+		public Builder() {
+		}
+		private Builder(IpRangeProperty instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class IpRangeProperty extends RangePropertyBase implements PropertyVarian
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

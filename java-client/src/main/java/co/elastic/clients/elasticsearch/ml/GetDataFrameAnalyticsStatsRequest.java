@@ -184,6 +184,16 @@ public class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		@Nullable
 		private Boolean verbose;
 
+		public Builder() {
+		}
+		private Builder(GetDataFrameAnalyticsStatsRequest instance) {
+			this.allowNoMatch = instance.allowNoMatch;
+			this.from = instance.from;
+			this.id = instance.id;
+			this.size = instance.size;
+			this.verbose = instance.verbose;
+
+		}
 		/**
 		 * Specifies what to do when the request:
 		 * <ol>
@@ -266,6 +276,12 @@ public class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

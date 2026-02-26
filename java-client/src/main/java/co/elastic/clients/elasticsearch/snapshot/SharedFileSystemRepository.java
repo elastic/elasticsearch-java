@@ -108,6 +108,12 @@ public class SharedFileSystemRepository extends RepositoryBase implements Reposi
 				ObjectBuilder<SharedFileSystemRepository> {
 		private SharedFileSystemRepositorySettings settings;
 
+		public Builder() {
+		}
+		private Builder(SharedFileSystemRepository instance) {
+			this.settings = instance.settings;
+
+		}
 		/**
 		 * Required - The repository settings.
 		 * <p>
@@ -146,6 +152,12 @@ public class SharedFileSystemRepository extends RepositoryBase implements Reposi
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

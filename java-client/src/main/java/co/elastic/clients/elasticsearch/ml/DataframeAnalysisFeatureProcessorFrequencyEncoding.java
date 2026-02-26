@@ -171,6 +171,14 @@ public class DataframeAnalysisFeatureProcessorFrequencyEncoding
 
 		private Map<String, Double> frequencyMap;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalysisFeatureProcessorFrequencyEncoding instance) {
+			this.featureName = instance.featureName;
+			this.field = instance.field;
+			this.frequencyMap = instance.frequencyMap;
+
+		}
 		/**
 		 * Required - The resulting feature name.
 		 * <p>
@@ -233,6 +241,12 @@ public class DataframeAnalysisFeatureProcessorFrequencyEncoding
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

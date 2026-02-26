@@ -186,6 +186,15 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 		@Nullable
 		private Boolean longestOnly;
 
+		public Builder() {
+		}
+		private Builder(HunspellTokenFilter instance) {
+			this.dedup = instance.dedup;
+			this.dictionary = instance.dictionary;
+			this.locale = instance.locale;
+			this.longestOnly = instance.longestOnly;
+
+		}
 		/**
 		 * If <code>true</code>, duplicate tokens are removed from the filter’s output.
 		 * Defaults to <code>true</code>.
@@ -253,6 +262,12 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

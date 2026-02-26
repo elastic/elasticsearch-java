@@ -183,6 +183,15 @@ public class MasterRecord implements JsonpSerializable {
 		@Nullable
 		private String node;
 
+		public Builder() {
+		}
+		private Builder(MasterRecord instance) {
+			this.id = instance.id;
+			this.host = instance.host;
+			this.ip = instance.ip;
+			this.node = instance.node;
+
+		}
 		/**
 		 * node id
 		 * <p>
@@ -241,6 +250,12 @@ public class MasterRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

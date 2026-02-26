@@ -167,6 +167,15 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 
 		private Long modifiedDateInMillis;
 
+		public Builder() {
+		}
+		private Builder(LifecycleExplainPhaseExecution instance) {
+			this.phaseDefinition = instance.phaseDefinition;
+			this.policy = instance.policy;
+			this.version = instance.version;
+			this.modifiedDateInMillis = instance.modifiedDateInMillis;
+
+		}
 		/**
 		 * API name: {@code phase_definition}
 		 */
@@ -224,6 +233,12 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

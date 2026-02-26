@@ -116,6 +116,12 @@ public class SettingsHighlight implements JsonpSerializable {
 		@Nullable
 		private Integer maxAnalyzedOffset;
 
+		public Builder() {
+		}
+		private Builder(SettingsHighlight instance) {
+			this.maxAnalyzedOffset = instance.maxAnalyzedOffset;
+
+		}
 		/**
 		 * API name: {@code max_analyzed_offset}
 		 */
@@ -142,6 +148,12 @@ public class SettingsHighlight implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -247,6 +247,18 @@ public class PutAzureopenaiRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutAzureopenaiRequest instance) {
+			this.azureopenaiInferenceId = instance.azureopenaiInferenceId;
+			this.chunkingSettings = instance.chunkingSettings;
+			this.service = instance.service;
+			this.serviceSettings = instance.serviceSettings;
+			this.taskSettings = instance.taskSettings;
+			this.taskType = instance.taskType;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Required - The unique identifier of the inference endpoint.
 		 * <p>
@@ -383,6 +395,12 @@ public class PutAzureopenaiRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

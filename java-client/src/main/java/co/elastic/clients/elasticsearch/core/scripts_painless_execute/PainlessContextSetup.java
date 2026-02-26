@@ -170,6 +170,14 @@ public class PainlessContextSetup implements JsonpSerializable {
 		@Nullable
 		private Query query;
 
+		public Builder() {
+		}
+		private Builder(PainlessContextSetup instance) {
+			this.document = instance.document;
+			this.index = instance.index;
+			this.query = instance.query;
+
+		}
 		/**
 		 * Required - Document that's temporarily indexed in-memory and accessible from
 		 * the script.
@@ -249,6 +257,12 @@ public class PainlessContextSetup implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

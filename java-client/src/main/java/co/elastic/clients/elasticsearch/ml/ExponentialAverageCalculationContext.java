@@ -157,6 +157,14 @@ public class ExponentialAverageCalculationContext implements JsonpSerializable {
 		@Nullable
 		private Double previousExponentialAverageMs;
 
+		public Builder() {
+		}
+		private Builder(ExponentialAverageCalculationContext instance) {
+			this.incrementalMetricValueMs = instance.incrementalMetricValueMs;
+			this.latestTimestamp = instance.latestTimestamp;
+			this.previousExponentialAverageMs = instance.previousExponentialAverageMs;
+
+		}
 		/**
 		 * Required - API name: {@code incremental_metric_value_ms}
 		 */
@@ -199,6 +207,12 @@ public class ExponentialAverageCalculationContext implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

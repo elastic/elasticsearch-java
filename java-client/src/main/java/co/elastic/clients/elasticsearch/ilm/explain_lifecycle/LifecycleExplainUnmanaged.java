@@ -123,6 +123,12 @@ public class LifecycleExplainUnmanaged implements LifecycleExplainVariant, Jsonp
 				ObjectBuilder<LifecycleExplainUnmanaged> {
 		private String index;
 
+		public Builder() {
+		}
+		private Builder(LifecycleExplainUnmanaged instance) {
+			this.index = instance.index;
+
+		}
 		/**
 		 * Required - API name: {@code index}
 		 */
@@ -149,6 +155,12 @@ public class LifecycleExplainUnmanaged implements LifecycleExplainVariant, Jsonp
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

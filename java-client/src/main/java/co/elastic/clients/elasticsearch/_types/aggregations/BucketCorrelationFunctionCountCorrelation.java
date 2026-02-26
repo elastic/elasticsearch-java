@@ -116,6 +116,12 @@ public class BucketCorrelationFunctionCountCorrelation implements JsonpSerializa
 				ObjectBuilder<BucketCorrelationFunctionCountCorrelation> {
 		private BucketCorrelationFunctionCountCorrelationIndicator indicator;
 
+		public Builder() {
+		}
+		private Builder(BucketCorrelationFunctionCountCorrelation instance) {
+			this.indicator = instance.indicator;
+
+		}
 		/**
 		 * Required - The indicator with which to correlate the configured
 		 * <code>bucket_path</code> values.
@@ -156,6 +162,12 @@ public class BucketCorrelationFunctionCountCorrelation implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

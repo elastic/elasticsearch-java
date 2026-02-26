@@ -117,6 +117,12 @@ public class AnalysisMemoryLimit implements JsonpSerializable {
 				ObjectBuilder<AnalysisMemoryLimit> {
 		private String modelMemoryLimit;
 
+		public Builder() {
+		}
+		private Builder(AnalysisMemoryLimit instance) {
+			this.modelMemoryLimit = instance.modelMemoryLimit;
+
+		}
 		/**
 		 * Required - Limits can be applied for the resources required to hold the
 		 * mathematical models in memory. These limits are approximate and can be set
@@ -148,6 +154,12 @@ public class AnalysisMemoryLimit implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

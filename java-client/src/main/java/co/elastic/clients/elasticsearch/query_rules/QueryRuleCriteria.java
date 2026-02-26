@@ -191,6 +191,14 @@ public class QueryRuleCriteria implements JsonpSerializable {
 		@Nullable
 		private List<JsonData> values;
 
+		public Builder() {
+		}
+		private Builder(QueryRuleCriteria instance) {
+			this.type = instance.type;
+			this.metadata = instance.metadata;
+			this.values = instance.values;
+
+		}
 		/**
 		 * Required - The type of criteria. The following criteria types are supported:
 		 * <ul>
@@ -284,6 +292,12 @@ public class QueryRuleCriteria implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

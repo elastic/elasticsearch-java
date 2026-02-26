@@ -188,6 +188,15 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 		@Nullable
 		private DataframeEvaluationValue rSquared;
 
+		public Builder() {
+		}
+		private Builder(DataframeRegressionSummary instance) {
+			this.huber = instance.huber;
+			this.mse = instance.mse;
+			this.msle = instance.msle;
+			this.rSquared = instance.rSquared;
+
+		}
 		/**
 		 * Pseudo Huber loss function.
 		 * <p>
@@ -292,6 +301,12 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

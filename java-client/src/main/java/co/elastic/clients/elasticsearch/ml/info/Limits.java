@@ -191,6 +191,16 @@ public class Limits implements JsonpSerializable {
 
 		private String totalMlMemory;
 
+		public Builder() {
+		}
+		private Builder(Limits instance) {
+			this.maxSingleMlNodeProcessors = instance.maxSingleMlNodeProcessors;
+			this.totalMlProcessors = instance.totalMlProcessors;
+			this.maxModelMemoryLimit = instance.maxModelMemoryLimit;
+			this.effectiveMaxModelMemoryLimit = instance.effectiveMaxModelMemoryLimit;
+			this.totalMlMemory = instance.totalMlMemory;
+
+		}
 		/**
 		 * API name: {@code max_single_ml_node_processors}
 		 */
@@ -249,6 +259,12 @@ public class Limits implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -346,6 +346,21 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Tokenizer tokenizer;
 
+		public Builder() {
+		}
+		private Builder(AnalyzeRequest instance) {
+			this.analyzer = instance.analyzer;
+			this.attributes = instance.attributes;
+			this.charFilter = instance.charFilter;
+			this.explain = instance.explain;
+			this.field = instance.field;
+			this.filter = instance.filter;
+			this.index = instance.index;
+			this.normalizer = instance.normalizer;
+			this.text = instance.text;
+			this.tokenizer = instance.tokenizer;
+
+		}
 		/**
 		 * The name of the analyzer that should be applied to the provided
 		 * <code>text</code>. This could be a built-in analyzer, or an analyzer that’s
@@ -565,6 +580,12 @@ public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

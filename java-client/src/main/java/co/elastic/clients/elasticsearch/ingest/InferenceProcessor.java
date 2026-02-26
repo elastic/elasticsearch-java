@@ -238,6 +238,17 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		@Nullable
 		private Boolean ignoreMissing;
 
+		public Builder() {
+		}
+		private Builder(InferenceProcessor instance) {
+			this.modelId = instance.modelId;
+			this.targetField = instance.targetField;
+			this.fieldMap = instance.fieldMap;
+			this.inferenceConfig = instance.inferenceConfig;
+			this.inputOutput = instance.inputOutput;
+			this.ignoreMissing = instance.ignoreMissing;
+
+		}
 		/**
 		 * Required - The ID or alias for the trained model, or the ID of the
 		 * deployment.
@@ -388,6 +399,12 @@ public class InferenceProcessor extends ProcessorBase implements ProcessorVarian
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -126,6 +126,13 @@ public class ActivationState implements JsonpSerializable {
 
 		private DateTime timestamp;
 
+		public Builder() {
+		}
+		private Builder(ActivationState instance) {
+			this.active = instance.active;
+			this.timestamp = instance.timestamp;
+
+		}
 		/**
 		 * Required - API name: {@code active}
 		 */
@@ -160,6 +167,12 @@ public class ActivationState implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

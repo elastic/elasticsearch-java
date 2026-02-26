@@ -278,6 +278,20 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(MountRequest instance) {
+			this.ignoreIndexSettings = instance.ignoreIndexSettings;
+			this.index = instance.index;
+			this.indexSettings = instance.indexSettings;
+			this.masterTimeout = instance.masterTimeout;
+			this.renamedIndex = instance.renamedIndex;
+			this.repository = instance.repository;
+			this.snapshot = instance.snapshot;
+			this.storage = instance.storage;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * The names of settings that should be removed from the index when it is
 		 * mounted.
@@ -432,6 +446,12 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

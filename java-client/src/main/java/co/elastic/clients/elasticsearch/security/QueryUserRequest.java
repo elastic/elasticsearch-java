@@ -262,6 +262,17 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Boolean withProfileUid;
 
+		public Builder() {
+		}
+		private Builder(QueryUserRequest instance) {
+			this.from = instance.from;
+			this.query = instance.query;
+			this.searchAfter = instance.searchAfter;
+			this.size = instance.size;
+			this.sort = instance.sort;
+			this.withProfileUid = instance.withProfileUid;
+
+		}
 		/**
 		 * The starting document offset. It must not be negative. By default, you cannot
 		 * page through more than 10,000 hits using the <code>from</code> and
@@ -506,6 +517,12 @@ public class QueryUserRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

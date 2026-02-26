@@ -146,6 +146,13 @@ public class Access implements JsonpSerializable {
 		@Nullable
 		private List<SearchAccess> search;
 
+		public Builder() {
+		}
+		private Builder(Access instance) {
+			this.replication = instance.replication;
+			this.search = instance.search;
+
+		}
 		/**
 		 * A list of indices permission entries for cross-cluster replication.
 		 * <p>
@@ -234,6 +241,12 @@ public class Access implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

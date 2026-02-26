@@ -122,6 +122,13 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase implements C
 
 		private Boolean normalizeKanji;
 
+		public Builder() {
+		}
+		private Builder(KuromojiIterationMarkCharFilter instance) {
+			this.normalizeKana = instance.normalizeKana;
+			this.normalizeKanji = instance.normalizeKanji;
+
+		}
 		/**
 		 * Required - API name: {@code normalize_kana}
 		 */
@@ -156,6 +163,12 @@ public class KuromojiIterationMarkCharFilter extends CharFilterBase implements C
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

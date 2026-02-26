@@ -137,6 +137,13 @@ public class LinearRetriever extends RetrieverBase implements RetrieverVariant {
 		@Nullable
 		private Integer rankWindowSize;
 
+		public Builder() {
+		}
+		private Builder(LinearRetriever instance) {
+			this.retrievers = instance.retrievers;
+			this.rankWindowSize = instance.rankWindowSize;
+
+		}
 		/**
 		 * Inner retrievers.
 		 * <p>
@@ -198,6 +205,12 @@ public class LinearRetriever extends RetrieverBase implements RetrieverVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

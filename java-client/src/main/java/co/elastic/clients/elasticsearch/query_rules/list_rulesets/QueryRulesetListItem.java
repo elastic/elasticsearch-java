@@ -192,6 +192,15 @@ public class QueryRulesetListItem implements JsonpSerializable {
 
 		private Map<String, Integer> ruleTypeCounts;
 
+		public Builder() {
+		}
+		private Builder(QueryRulesetListItem instance) {
+			this.rulesetId = instance.rulesetId;
+			this.ruleTotalCount = instance.ruleTotalCount;
+			this.ruleCriteriaTypesCounts = instance.ruleCriteriaTypesCounts;
+			this.ruleTypeCounts = instance.ruleTypeCounts;
+
+		}
 		/**
 		 * Required - A unique identifier for the ruleset.
 		 * <p>
@@ -290,6 +299,12 @@ public class QueryRulesetListItem implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

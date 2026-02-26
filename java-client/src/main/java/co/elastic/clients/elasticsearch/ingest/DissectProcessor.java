@@ -171,6 +171,15 @@ public class DissectProcessor extends ProcessorBase implements ProcessorVariant 
 
 		private String pattern;
 
+		public Builder() {
+		}
+		private Builder(DissectProcessor instance) {
+			this.appendSeparator = instance.appendSeparator;
+			this.field = instance.field;
+			this.ignoreMissing = instance.ignoreMissing;
+			this.pattern = instance.pattern;
+
+		}
 		/**
 		 * The character(s) that separate the appended fields.
 		 * <p>
@@ -231,6 +240,12 @@ public class DissectProcessor extends ProcessorBase implements ProcessorVariant 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

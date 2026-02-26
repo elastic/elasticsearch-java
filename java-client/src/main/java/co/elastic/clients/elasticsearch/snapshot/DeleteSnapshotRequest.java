@@ -151,6 +151,15 @@ public class DeleteSnapshotRequest extends RequestBase {
 		@Nullable
 		private Boolean waitForCompletion;
 
+		public Builder() {
+		}
+		private Builder(DeleteSnapshotRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.repository = instance.repository;
+			this.snapshot = instance.snapshot;
+			this.waitForCompletion = instance.waitForCompletion;
+
+		}
 		/**
 		 * The period to wait for the master node. If the master node is not available
 		 * before the timeout expires, the request fails and returns an error. To
@@ -225,6 +234,12 @@ public class DeleteSnapshotRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

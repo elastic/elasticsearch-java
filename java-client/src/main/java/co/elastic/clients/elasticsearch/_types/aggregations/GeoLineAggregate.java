@@ -138,6 +138,14 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 
 		private JsonData properties;
 
+		public Builder() {
+		}
+		private Builder(GeoLineAggregate instance) {
+			this.type = instance.type;
+			this.geometry = instance.geometry;
+			this.properties = instance.properties;
+
+		}
 		/**
 		 * Required - API name: {@code type}
 		 */
@@ -187,6 +195,12 @@ public class GeoLineAggregate extends AggregateBase implements AggregateVariant 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

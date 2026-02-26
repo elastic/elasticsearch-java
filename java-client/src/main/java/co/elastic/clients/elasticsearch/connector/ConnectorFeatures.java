@@ -181,6 +181,15 @@ public class ConnectorFeatures implements JsonpSerializable {
 		@Nullable
 		private SyncRulesFeature syncRules;
 
+		public Builder() {
+		}
+		private Builder(ConnectorFeatures instance) {
+			this.documentLevelSecurity = instance.documentLevelSecurity;
+			this.incrementalSync = instance.incrementalSync;
+			this.nativeConnectorApiKeys = instance.nativeConnectorApiKeys;
+			this.syncRules = instance.syncRules;
+
+		}
 		/**
 		 * Indicates whether document-level security is enabled.
 		 * <p>
@@ -272,6 +281,12 @@ public class ConnectorFeatures implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

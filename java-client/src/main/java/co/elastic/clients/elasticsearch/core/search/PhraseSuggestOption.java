@@ -171,6 +171,15 @@ public class PhraseSuggestOption implements JsonpSerializable {
 		@Nullable
 		private Boolean collateMatch;
 
+		public Builder() {
+		}
+		private Builder(PhraseSuggestOption instance) {
+			this.text = instance.text;
+			this.score = instance.score;
+			this.highlighted = instance.highlighted;
+			this.collateMatch = instance.collateMatch;
+
+		}
 		/**
 		 * Required - API name: {@code text}
 		 */
@@ -221,6 +230,12 @@ public class PhraseSuggestOption implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

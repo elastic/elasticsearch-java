@@ -218,6 +218,15 @@ public class CreateCrossClusterApiKeyRequest extends RequestBase implements Json
 
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(CreateCrossClusterApiKeyRequest instance) {
+			this.access = instance.access;
+			this.expiration = instance.expiration;
+			this.metadata = instance.metadata;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - The access to be granted to this API key. The access is composed
 		 * of permissions for cross-cluster search and cross-cluster replication. At
@@ -326,6 +335,12 @@ public class CreateCrossClusterApiKeyRequest extends RequestBase implements Json
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

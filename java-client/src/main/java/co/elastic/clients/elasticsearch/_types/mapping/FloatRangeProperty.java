@@ -89,6 +89,11 @@ public class FloatRangeProperty extends RangePropertyBase implements PropertyVar
 	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FloatRangeProperty> {
+		public Builder() {
+		}
+		private Builder(FloatRangeProperty instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class FloatRangeProperty extends RangePropertyBase implements PropertyVar
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

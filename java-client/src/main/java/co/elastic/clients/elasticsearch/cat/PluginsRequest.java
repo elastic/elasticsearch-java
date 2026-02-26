@@ -180,6 +180,16 @@ public class PluginsRequest extends CatRequestBase {
 		@Nullable
 		private List<String> s;
 
+		public Builder() {
+		}
+		private Builder(PluginsRequest instance) {
+			this.h = instance.h;
+			this.includeBootstrap = instance.includeBootstrap;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.s = instance.s;
+
+		}
 		/**
 		 * A comma-separated list of columns names to display. It supports simple
 		 * wildcards.
@@ -309,6 +319,12 @@ public class PluginsRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

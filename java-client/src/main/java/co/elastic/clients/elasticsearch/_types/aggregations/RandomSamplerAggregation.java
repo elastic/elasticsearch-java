@@ -172,6 +172,14 @@ public class RandomSamplerAggregation extends BucketAggregationBase implements A
 		@Nullable
 		private Integer shardSeed;
 
+		public Builder() {
+		}
+		private Builder(RandomSamplerAggregation instance) {
+			this.probability = instance.probability;
+			this.seed = instance.seed;
+			this.shardSeed = instance.shardSeed;
+
+		}
 		/**
 		 * Required - The probability that a document will be included in the aggregated
 		 * data. Must be greater than 0, less than 0.5, or exactly 1. The lower the
@@ -224,6 +232,12 @@ public class RandomSamplerAggregation extends BucketAggregationBase implements A
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

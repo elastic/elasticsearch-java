@@ -148,6 +148,14 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 
 		private String targetField;
 
+		public Builder() {
+		}
+		private Builder(RenameProcessor instance) {
+			this.field = instance.field;
+			this.ignoreMissing = instance.ignoreMissing;
+			this.targetField = instance.targetField;
+
+		}
 		/**
 		 * Required - The field to be renamed. Supports template snippets.
 		 * <p>
@@ -197,6 +205,12 @@ public class RenameProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

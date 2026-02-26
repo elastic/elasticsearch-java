@@ -211,6 +211,17 @@ public class CheckpointStats implements JsonpSerializable {
 		@Nullable
 		private Long timeUpperBoundMillis;
 
+		public Builder() {
+		}
+		private Builder(CheckpointStats instance) {
+			this.checkpoint = instance.checkpoint;
+			this.checkpointProgress = instance.checkpointProgress;
+			this.timestamp = instance.timestamp;
+			this.timestampMillis = instance.timestampMillis;
+			this.timeUpperBound = instance.timeUpperBound;
+			this.timeUpperBoundMillis = instance.timeUpperBoundMillis;
+
+		}
 		/**
 		 * Required - API name: {@code checkpoint}
 		 */
@@ -285,6 +296,12 @@ public class CheckpointStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

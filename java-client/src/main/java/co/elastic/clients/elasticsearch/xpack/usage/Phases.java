@@ -194,6 +194,16 @@ public class Phases implements JsonpSerializable {
 		@Nullable
 		private Phase warm;
 
+		public Builder() {
+		}
+		private Builder(Phases instance) {
+			this.cold = instance.cold;
+			this.delete = instance.delete;
+			this.frozen = instance.frozen;
+			this.hot = instance.hot;
+			this.warm = instance.warm;
+
+		}
 		/**
 		 * API name: {@code cold}
 		 */
@@ -287,6 +297,12 @@ public class Phases implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

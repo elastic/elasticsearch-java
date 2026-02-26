@@ -112,6 +112,12 @@ public class RankFeaturesProperty extends PropertyBase implements PropertyVarian
 		@Nullable
 		private Boolean positiveScoreImpact;
 
+		public Builder() {
+		}
+		private Builder(RankFeaturesProperty instance) {
+			this.positiveScoreImpact = instance.positiveScoreImpact;
+
+		}
 		/**
 		 * API name: {@code positive_score_impact}
 		 */
@@ -138,6 +144,12 @@ public class RankFeaturesProperty extends PropertyBase implements PropertyVarian
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

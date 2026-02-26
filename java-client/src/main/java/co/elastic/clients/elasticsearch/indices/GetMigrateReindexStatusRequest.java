@@ -103,6 +103,12 @@ public class GetMigrateReindexStatusRequest extends RequestBase {
 				ObjectBuilder<GetMigrateReindexStatusRequest> {
 		private List<String> index;
 
+		public Builder() {
+		}
+		private Builder(GetMigrateReindexStatusRequest instance) {
+			this.index = instance.index;
+
+		}
 		/**
 		 * Required - The index or data stream name.
 		 * <p>
@@ -145,6 +151,12 @@ public class GetMigrateReindexStatusRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

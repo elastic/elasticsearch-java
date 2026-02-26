@@ -124,6 +124,12 @@ public class SparseEmbeddingResult implements JsonpSerializable {
 				ObjectBuilder<SparseEmbeddingResult> {
 		private Map<String, Float> embedding;
 
+		public Builder() {
+		}
+		private Builder(SparseEmbeddingResult instance) {
+			this.embedding = instance.embedding;
+
+		}
 		/**
 		 * Required - API name: {@code embedding}
 		 * <p>
@@ -162,6 +168,12 @@ public class SparseEmbeddingResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

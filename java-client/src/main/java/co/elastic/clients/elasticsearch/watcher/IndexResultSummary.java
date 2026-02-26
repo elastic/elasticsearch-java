@@ -175,6 +175,16 @@ public class IndexResultSummary implements JsonpSerializable {
 
 		private Long version;
 
+		public Builder() {
+		}
+		private Builder(IndexResultSummary instance) {
+			this.created = instance.created;
+			this.id = instance.id;
+			this.index = instance.index;
+			this.result = instance.result;
+			this.version = instance.version;
+
+		}
 		/**
 		 * Required - API name: {@code created}
 		 */
@@ -233,6 +243,12 @@ public class IndexResultSummary implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

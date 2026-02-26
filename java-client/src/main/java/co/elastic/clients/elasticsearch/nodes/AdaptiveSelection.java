@@ -257,6 +257,18 @@ public class AdaptiveSelection implements JsonpSerializable {
 		@Nullable
 		private String rank;
 
+		public Builder() {
+		}
+		private Builder(AdaptiveSelection instance) {
+			this.avgQueueSize = instance.avgQueueSize;
+			this.avgResponseTime = instance.avgResponseTime;
+			this.avgResponseTimeNs = instance.avgResponseTimeNs;
+			this.avgServiceTime = instance.avgServiceTime;
+			this.avgServiceTimeNs = instance.avgServiceTimeNs;
+			this.outgoingSearches = instance.outgoingSearches;
+			this.rank = instance.rank;
+
+		}
 		/**
 		 * The exponentially weighted moving average queue size of search requests on
 		 * the keyed node.
@@ -371,6 +383,12 @@ public class AdaptiveSelection implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

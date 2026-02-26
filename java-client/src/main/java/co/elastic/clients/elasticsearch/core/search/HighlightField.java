@@ -129,6 +129,13 @@ public class HighlightField extends HighlightBase {
 		@Nullable
 		private List<String> matchedFields;
 
+		public Builder() {
+		}
+		private Builder(HighlightField instance) {
+			this.fragmentOffset = instance.fragmentOffset;
+			this.matchedFields = instance.matchedFields;
+
+		}
 		/**
 		 * API name: {@code fragment_offset}
 		 */
@@ -175,6 +182,12 @@ public class HighlightField extends HighlightBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

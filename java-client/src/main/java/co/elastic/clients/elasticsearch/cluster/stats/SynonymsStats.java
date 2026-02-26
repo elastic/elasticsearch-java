@@ -124,6 +124,13 @@ public class SynonymsStats implements JsonpSerializable {
 
 		private Integer indexCount;
 
+		public Builder() {
+		}
+		private Builder(SynonymsStats instance) {
+			this.count = instance.count;
+			this.indexCount = instance.indexCount;
+
+		}
 		/**
 		 * Required - API name: {@code count}
 		 */
@@ -158,6 +165,12 @@ public class SynonymsStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -129,6 +129,13 @@ public class TermsPartition implements JsonpSerializable {
 
 		private Long partition;
 
+		public Builder() {
+		}
+		private Builder(TermsPartition instance) {
+			this.numPartitions = instance.numPartitions;
+			this.partition = instance.partition;
+
+		}
 		/**
 		 * Required - The number of partitions.
 		 * <p>
@@ -167,6 +174,12 @@ public class TermsPartition implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

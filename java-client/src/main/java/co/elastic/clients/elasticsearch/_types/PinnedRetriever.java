@@ -176,6 +176,15 @@ public class PinnedRetriever extends RetrieverBase implements RetrieverVariant {
 		@Nullable
 		private Integer rankWindowSize;
 
+		public Builder() {
+		}
+		private Builder(PinnedRetriever instance) {
+			this.retriever = instance.retriever;
+			this.ids = instance.ids;
+			this.docs = instance.docs;
+			this.rankWindowSize = instance.rankWindowSize;
+
+		}
 		/**
 		 * Required - Inner retriever.
 		 * <p>
@@ -280,6 +289,12 @@ public class PinnedRetriever extends RetrieverBase implements RetrieverVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

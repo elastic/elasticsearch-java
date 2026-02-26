@@ -147,6 +147,13 @@ public class ReplicationAccess implements JsonpSerializable {
 		@Nullable
 		private Boolean allowRestrictedIndices;
 
+		public Builder() {
+		}
+		private Builder(ReplicationAccess instance) {
+			this.names = instance.names;
+			this.allowRestrictedIndices = instance.allowRestrictedIndices;
+
+		}
 		/**
 		 * Required - A list of indices (or index name patterns) to which the
 		 * permissions in this entry apply.
@@ -202,6 +209,12 @@ public class ReplicationAccess implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

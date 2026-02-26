@@ -840,6 +840,44 @@ public class TransformsRecord implements JsonpSerializable {
 		@Nullable
 		private String processedDocumentsExpAvg;
 
+		public Builder() {
+		}
+		private Builder(TransformsRecord instance) {
+			this.id = instance.id;
+			this.state = instance.state;
+			this.checkpoint = instance.checkpoint;
+			this.documentsProcessed = instance.documentsProcessed;
+			this.checkpointProgress = instance.checkpointProgress;
+			this.lastSearchTime = instance.lastSearchTime;
+			this.changesLastDetectionTime = instance.changesLastDetectionTime;
+			this.createTime = instance.createTime;
+			this.version = instance.version;
+			this.sourceIndex = instance.sourceIndex;
+			this.destIndex = instance.destIndex;
+			this.pipeline = instance.pipeline;
+			this.description = instance.description;
+			this.transformType = instance.transformType;
+			this.frequency = instance.frequency;
+			this.maxPageSearchSize = instance.maxPageSearchSize;
+			this.docsPerSecond = instance.docsPerSecond;
+			this.reason = instance.reason;
+			this.searchTotal = instance.searchTotal;
+			this.searchFailure = instance.searchFailure;
+			this.searchTime = instance.searchTime;
+			this.indexTotal = instance.indexTotal;
+			this.indexFailure = instance.indexFailure;
+			this.indexTime = instance.indexTime;
+			this.documentsIndexed = instance.documentsIndexed;
+			this.deleteTime = instance.deleteTime;
+			this.documentsDeleted = instance.documentsDeleted;
+			this.triggerCount = instance.triggerCount;
+			this.pagesProcessed = instance.pagesProcessed;
+			this.processingTime = instance.processingTime;
+			this.checkpointDurationTimeExpAvg = instance.checkpointDurationTimeExpAvg;
+			this.indexedDocumentsExpAvg = instance.indexedDocumentsExpAvg;
+			this.processedDocumentsExpAvg = instance.processedDocumentsExpAvg;
+
+		}
 		/**
 		 * The transform identifier.
 		 * <p>
@@ -1206,6 +1244,12 @@ public class TransformsRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

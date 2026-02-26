@@ -141,6 +141,13 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 		@Nullable
 		private Boolean preserveOriginal;
 
+		public Builder() {
+		}
+		private Builder(PatternCaptureTokenFilter instance) {
+			this.patterns = instance.patterns;
+			this.preserveOriginal = instance.preserveOriginal;
+
+		}
 		/**
 		 * Required - A list of regular expressions to match.
 		 * <p>
@@ -193,6 +200,12 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

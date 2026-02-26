@@ -85,6 +85,11 @@ public class DateDistanceFeatureQuery extends DistanceFeatureQueryBase<String, T
 	public static class Builder extends DistanceFeatureQueryBase.AbstractBuilder<String, Time, Builder>
 			implements
 				ObjectBuilder<DateDistanceFeatureQuery> {
+		public Builder() {
+		}
+		private Builder(DateDistanceFeatureQuery instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -105,6 +110,12 @@ public class DateDistanceFeatureQuery extends DistanceFeatureQueryBase<String, T
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

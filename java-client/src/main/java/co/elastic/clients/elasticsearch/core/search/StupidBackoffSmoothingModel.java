@@ -123,6 +123,12 @@ public class StupidBackoffSmoothingModel implements SmoothingModelVariant, Jsonp
 				ObjectBuilder<StupidBackoffSmoothingModel> {
 		private Double discount;
 
+		public Builder() {
+		}
+		private Builder(StupidBackoffSmoothingModel instance) {
+			this.discount = instance.discount;
+
+		}
 		/**
 		 * Required - A constant factor that the lower order n-gram model is discounted
 		 * by.
@@ -152,6 +158,12 @@ public class StupidBackoffSmoothingModel implements SmoothingModelVariant, Jsonp
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

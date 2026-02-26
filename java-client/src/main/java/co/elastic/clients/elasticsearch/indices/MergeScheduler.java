@@ -135,6 +135,13 @@ public class MergeScheduler implements JsonpSerializable {
 		@Nullable
 		private Integer maxMergeCount;
 
+		public Builder() {
+		}
+		private Builder(MergeScheduler instance) {
+			this.maxThreadCount = instance.maxThreadCount;
+			this.maxMergeCount = instance.maxMergeCount;
+
+		}
 		/**
 		 * API name: {@code max_thread_count}
 		 */
@@ -169,6 +176,12 @@ public class MergeScheduler implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

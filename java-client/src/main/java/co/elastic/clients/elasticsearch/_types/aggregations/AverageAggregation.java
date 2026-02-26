@@ -81,6 +81,11 @@ public class AverageAggregation extends FormatMetricAggregationBase implements A
 	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AverageAggregation> {
+		public Builder() {
+		}
+		private Builder(AverageAggregation instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class AverageAggregation extends FormatMetricAggregationBase implements A
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -189,6 +189,15 @@ public class CgroupCpu implements JsonpSerializable {
 		@Nullable
 		private CgroupCpuStat stat;
 
+		public Builder() {
+		}
+		private Builder(CgroupCpu instance) {
+			this.controlGroup = instance.controlGroup;
+			this.cfsPeriodMicros = instance.cfsPeriodMicros;
+			this.cfsQuotaMicros = instance.cfsQuotaMicros;
+			this.stat = instance.stat;
+
+		}
 		/**
 		 * The <code>cpu</code> control group to which the Elasticsearch process
 		 * belongs.
@@ -261,6 +270,12 @@ public class CgroupCpu implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

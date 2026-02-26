@@ -247,6 +247,18 @@ public class IngestStats implements JsonpSerializable {
 
 		private Long producedAsFirstPipelineInBytes;
 
+		public Builder() {
+		}
+		private Builder(IngestStats instance) {
+			this.count = instance.count;
+			this.current = instance.current;
+			this.failed = instance.failed;
+			this.processors = instance.processors;
+			this.timeInMillis = instance.timeInMillis;
+			this.ingestedAsFirstPipelineInBytes = instance.ingestedAsFirstPipelineInBytes;
+			this.producedAsFirstPipelineInBytes = instance.producedAsFirstPipelineInBytes;
+
+		}
 		/**
 		 * Required - Total number of documents ingested during the lifetime of this
 		 * node.
@@ -362,6 +374,12 @@ public class IngestStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

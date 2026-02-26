@@ -116,6 +116,12 @@ public class CompletionToolChoiceFunction implements JsonpSerializable {
 				ObjectBuilder<CompletionToolChoiceFunction> {
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(CompletionToolChoiceFunction instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - The name of the function to call.
 		 * <p>
@@ -144,6 +150,12 @@ public class CompletionToolChoiceFunction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

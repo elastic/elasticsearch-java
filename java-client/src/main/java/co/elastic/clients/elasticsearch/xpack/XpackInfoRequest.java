@@ -143,6 +143,14 @@ public class XpackInfoRequest extends RequestBase {
 		@Nullable
 		private Boolean human;
 
+		public Builder() {
+		}
+		private Builder(XpackInfoRequest instance) {
+			this.acceptEnterprise = instance.acceptEnterprise;
+			this.categories = instance.categories;
+			this.human = instance.human;
+
+		}
 		/**
 		 * If this param is used it must be set to true
 		 * <p>
@@ -208,6 +216,12 @@ public class XpackInfoRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -173,6 +173,15 @@ public class RollupJobSummary implements JsonpSerializable {
 
 		private String rollupIndex;
 
+		public Builder() {
+		}
+		private Builder(RollupJobSummary instance) {
+			this.fields = instance.fields;
+			this.indexPattern = instance.indexPattern;
+			this.jobId = instance.jobId;
+			this.rollupIndex = instance.rollupIndex;
+
+		}
 		/**
 		 * Required - API name: {@code fields}
 		 * <p>
@@ -235,6 +244,12 @@ public class RollupJobSummary implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

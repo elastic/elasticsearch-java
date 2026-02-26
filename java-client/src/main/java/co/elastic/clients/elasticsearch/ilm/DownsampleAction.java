@@ -131,6 +131,13 @@ public class DownsampleAction implements JsonpSerializable {
 		@Nullable
 		private Time waitTimeout;
 
+		public Builder() {
+		}
+		private Builder(DownsampleAction instance) {
+			this.fixedInterval = instance.fixedInterval;
+			this.waitTimeout = instance.waitTimeout;
+
+		}
 		/**
 		 * Required - API name: {@code fixed_interval}
 		 */
@@ -179,6 +186,12 @@ public class DownsampleAction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

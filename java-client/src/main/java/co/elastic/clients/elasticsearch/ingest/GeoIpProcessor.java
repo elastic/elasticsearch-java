@@ -255,6 +255,18 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 		@Nullable
 		private Boolean downloadDatabaseOnPipelineCreation;
 
+		public Builder() {
+		}
+		private Builder(GeoIpProcessor instance) {
+			this.databaseFile = instance.databaseFile;
+			this.field = instance.field;
+			this.firstOnly = instance.firstOnly;
+			this.ignoreMissing = instance.ignoreMissing;
+			this.properties = instance.properties;
+			this.targetField = instance.targetField;
+			this.downloadDatabaseOnPipelineCreation = instance.downloadDatabaseOnPipelineCreation;
+
+		}
 		/**
 		 * The database filename referring to a database the module ships with
 		 * (GeoLite2-City.mmdb, GeoLite2-Country.mmdb, or GeoLite2-ASN.mmdb) or a custom
@@ -368,6 +380,12 @@ public class GeoIpProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

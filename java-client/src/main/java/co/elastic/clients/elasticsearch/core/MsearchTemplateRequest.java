@@ -207,6 +207,16 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 
 		private List<RequestItem> searchTemplates;
 
+		public Builder() {
+		}
+		private Builder(MsearchTemplateRequest instance) {
+			this.ccsMinimizeRoundtrips = instance.ccsMinimizeRoundtrips;
+			this.index = instance.index;
+			this.maxConcurrentSearches = instance.maxConcurrentSearches;
+			this.searchType = instance.searchType;
+			this.searchTemplates = instance.searchTemplates;
+
+		}
 		/**
 		 * If <code>true</code>, network round-trips are minimized for cross-cluster
 		 * search requests.
@@ -313,6 +323,12 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -207,6 +207,17 @@ public class PipelineSettings implements JsonpSerializable {
 
 		private Integer queueCheckpointWrites;
 
+		public Builder() {
+		}
+		private Builder(PipelineSettings instance) {
+			this.pipelineWorkers = instance.pipelineWorkers;
+			this.pipelineBatchSize = instance.pipelineBatchSize;
+			this.pipelineBatchDelay = instance.pipelineBatchDelay;
+			this.queueType = instance.queueType;
+			this.queueMaxBytes = instance.queueMaxBytes;
+			this.queueCheckpointWrites = instance.queueCheckpointWrites;
+
+		}
 		/**
 		 * Required - The number of workers that will, in parallel, execute the filter
 		 * and output stages of the pipeline.
@@ -291,6 +302,12 @@ public class PipelineSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

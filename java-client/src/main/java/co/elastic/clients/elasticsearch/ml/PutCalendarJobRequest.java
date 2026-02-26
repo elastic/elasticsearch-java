@@ -114,6 +114,13 @@ public class PutCalendarJobRequest extends RequestBase {
 
 		private List<String> jobId;
 
+		public Builder() {
+		}
+		private Builder(PutCalendarJobRequest instance) {
+			this.calendarId = instance.calendarId;
+			this.jobId = instance.jobId;
+
+		}
 		/**
 		 * Required - A string that uniquely identifies a calendar.
 		 * <p>
@@ -168,6 +175,12 @@ public class PutCalendarJobRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

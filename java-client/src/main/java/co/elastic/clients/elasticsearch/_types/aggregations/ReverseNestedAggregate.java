@@ -81,6 +81,11 @@ public class ReverseNestedAggregate extends SingleBucketAggregateBase implements
 	public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ReverseNestedAggregate> {
+		public Builder() {
+		}
+		private Builder(ReverseNestedAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -99,6 +104,12 @@ public class ReverseNestedAggregate extends SingleBucketAggregateBase implements
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

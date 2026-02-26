@@ -135,6 +135,13 @@ public class SearchableSnapshotAction implements JsonpSerializable {
 		@Nullable
 		private Boolean forceMergeIndex;
 
+		public Builder() {
+		}
+		private Builder(SearchableSnapshotAction instance) {
+			this.snapshotRepository = instance.snapshotRepository;
+			this.forceMergeIndex = instance.forceMergeIndex;
+
+		}
 		/**
 		 * Required - API name: {@code snapshot_repository}
 		 */
@@ -169,6 +176,12 @@ public class SearchableSnapshotAction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

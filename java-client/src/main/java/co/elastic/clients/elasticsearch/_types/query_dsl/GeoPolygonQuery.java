@@ -181,6 +181,13 @@ public class GeoPolygonQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private Boolean ignoreUnmapped;
 
+		public Builder() {
+		}
+		private Builder(GeoPolygonQuery instance) {
+			this.validationMethod = instance.validationMethod;
+			this.ignoreUnmapped = instance.ignoreUnmapped;
+
+		}
 		/**
 		 * API name: {@code validation_method}
 		 */
@@ -215,6 +222,12 @@ public class GeoPolygonQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

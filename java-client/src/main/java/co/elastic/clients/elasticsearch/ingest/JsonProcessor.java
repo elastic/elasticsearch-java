@@ -202,6 +202,16 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 		@Nullable
 		private String targetField;
 
+		public Builder() {
+		}
+		private Builder(JsonProcessor instance) {
+			this.addToRoot = instance.addToRoot;
+			this.addToRootConflictStrategy = instance.addToRootConflictStrategy;
+			this.allowDuplicateKeys = instance.allowDuplicateKeys;
+			this.field = instance.field;
+			this.targetField = instance.targetField;
+
+		}
 		/**
 		 * Flag that forces the parsed JSON to be added at the top level of the
 		 * document. <code>target_field</code> must not be set when this option is
@@ -278,6 +288,12 @@ public class JsonProcessor extends ProcessorBase implements ProcessorVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

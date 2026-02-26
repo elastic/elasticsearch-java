@@ -172,6 +172,15 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 
 		private ConvertType type;
 
+		public Builder() {
+		}
+		private Builder(ConvertProcessor instance) {
+			this.field = instance.field;
+			this.ignoreMissing = instance.ignoreMissing;
+			this.targetField = instance.targetField;
+			this.type = instance.type;
+
+		}
 		/**
 		 * Required - The field whose value is to be converted.
 		 * <p>
@@ -233,6 +242,12 @@ public class ConvertProcessor extends ProcessorBase implements ProcessorVariant 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

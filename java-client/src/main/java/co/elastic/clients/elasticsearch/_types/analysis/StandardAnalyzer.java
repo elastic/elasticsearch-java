@@ -181,6 +181,14 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		@Nullable
 		private String stopwordsPath;
 
+		public Builder() {
+		}
+		private Builder(StandardAnalyzer instance) {
+			this.maxTokenLength = instance.maxTokenLength;
+			this.stopwords = instance.stopwords;
+			this.stopwordsPath = instance.stopwordsPath;
+
+		}
 		/**
 		 * The maximum token length. If a token is seen that exceeds this length then it
 		 * is split at <code>max_token_length</code> intervals. Defaults to
@@ -247,6 +255,12 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

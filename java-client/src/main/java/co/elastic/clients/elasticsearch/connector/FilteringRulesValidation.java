@@ -135,6 +135,13 @@ public class FilteringRulesValidation implements JsonpSerializable {
 
 		private FilteringValidationState state;
 
+		public Builder() {
+		}
+		private Builder(FilteringRulesValidation instance) {
+			this.errors = instance.errors;
+			this.state = instance.state;
+
+		}
 		/**
 		 * Required - API name: {@code errors}
 		 * <p>
@@ -190,6 +197,12 @@ public class FilteringRulesValidation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

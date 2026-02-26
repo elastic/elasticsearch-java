@@ -109,6 +109,12 @@ public class IndexResult implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndexResult> {
 		private IndexResultSummary response;
 
+		public Builder() {
+		}
+		private Builder(IndexResult instance) {
+			this.response = instance.response;
+
+		}
 		/**
 		 * Required - API name: {@code response}
 		 */
@@ -142,6 +148,12 @@ public class IndexResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

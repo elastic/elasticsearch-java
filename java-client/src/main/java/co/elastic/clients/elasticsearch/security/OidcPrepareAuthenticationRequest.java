@@ -234,6 +234,16 @@ public class OidcPrepareAuthenticationRequest extends RequestBase implements Jso
 		@Nullable
 		private String state;
 
+		public Builder() {
+		}
+		private Builder(OidcPrepareAuthenticationRequest instance) {
+			this.iss = instance.iss;
+			this.loginHint = instance.loginHint;
+			this.nonce = instance.nonce;
+			this.realm = instance.realm;
+			this.state = instance.state;
+
+		}
 		/**
 		 * In the case of a third party initiated single sign on, this is the issuer
 		 * identifier for the OP that the RP is to send the authentication request to.
@@ -316,6 +326,12 @@ public class OidcPrepareAuthenticationRequest extends RequestBase implements Jso
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

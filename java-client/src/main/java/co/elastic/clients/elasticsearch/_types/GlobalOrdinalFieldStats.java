@@ -149,6 +149,14 @@ public class GlobalOrdinalFieldStats implements JsonpSerializable {
 
 		private Long shardMaxValueCount;
 
+		public Builder() {
+		}
+		private Builder(GlobalOrdinalFieldStats instance) {
+			this.buildTimeInMillis = instance.buildTimeInMillis;
+			this.buildTime = instance.buildTime;
+			this.shardMaxValueCount = instance.shardMaxValueCount;
+
+		}
 		/**
 		 * Required - API name: {@code build_time_in_millis}
 		 */
@@ -191,6 +199,12 @@ public class GlobalOrdinalFieldStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

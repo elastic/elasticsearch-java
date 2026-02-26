@@ -122,6 +122,12 @@ public class LaplaceSmoothingModel implements SmoothingModelVariant, JsonpSerial
 				ObjectBuilder<LaplaceSmoothingModel> {
 		private Double alpha;
 
+		public Builder() {
+		}
+		private Builder(LaplaceSmoothingModel instance) {
+			this.alpha = instance.alpha;
+
+		}
 		/**
 		 * Required - A constant that is added to all counts to balance weights.
 		 * <p>
@@ -150,6 +156,12 @@ public class LaplaceSmoothingModel implements SmoothingModelVariant, JsonpSerial
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

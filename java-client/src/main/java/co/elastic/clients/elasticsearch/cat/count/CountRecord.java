@@ -162,6 +162,14 @@ public class CountRecord implements JsonpSerializable {
 		@Nullable
 		private String count;
 
+		public Builder() {
+		}
+		private Builder(CountRecord instance) {
+			this.epoch = instance.epoch;
+			this.timestamp = instance.timestamp;
+			this.count = instance.count;
+
+		}
 		/**
 		 * seconds since 1970-01-01 00:00:00
 		 * <p>
@@ -210,6 +218,12 @@ public class CountRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

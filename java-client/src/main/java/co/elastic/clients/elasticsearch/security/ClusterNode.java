@@ -110,6 +110,12 @@ public class ClusterNode implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ClusterNode> {
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(ClusterNode instance) {
+			this.name = instance.name;
+
+		}
 		/**
 		 * Required - API name: {@code name}
 		 */
@@ -136,6 +142,12 @@ public class ClusterNode implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

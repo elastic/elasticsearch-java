@@ -114,6 +114,12 @@ public class ExtendedStatsBucketAggregation extends PipelineAggregationBase impl
 		@Nullable
 		private Double sigma;
 
+		public Builder() {
+		}
+		private Builder(ExtendedStatsBucketAggregation instance) {
+			this.sigma = instance.sigma;
+
+		}
 		/**
 		 * The number of standard deviations above/below the mean to display.
 		 * <p>
@@ -142,6 +148,12 @@ public class ExtendedStatsBucketAggregation extends PipelineAggregationBase impl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

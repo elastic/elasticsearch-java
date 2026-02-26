@@ -173,6 +173,15 @@ public class NestedSortValue implements JsonpSerializable {
 
 		private String path;
 
+		public Builder() {
+		}
+		private Builder(NestedSortValue instance) {
+			this.filter = instance.filter;
+			this.maxChildren = instance.maxChildren;
+			this.nested = instance.nested;
+			this.path = instance.path;
+
+		}
 		/**
 		 * API name: {@code filter}
 		 */
@@ -245,6 +254,12 @@ public class NestedSortValue implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -142,6 +142,14 @@ public class ShardSequenceNumber implements JsonpSerializable {
 
 		private Long maxSeqNo;
 
+		public Builder() {
+		}
+		private Builder(ShardSequenceNumber instance) {
+			this.globalCheckpoint = instance.globalCheckpoint;
+			this.localCheckpoint = instance.localCheckpoint;
+			this.maxSeqNo = instance.maxSeqNo;
+
+		}
 		/**
 		 * Required - API name: {@code global_checkpoint}
 		 */
@@ -184,6 +192,12 @@ public class ShardSequenceNumber implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

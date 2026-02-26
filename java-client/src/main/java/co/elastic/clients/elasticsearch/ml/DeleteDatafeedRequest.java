@@ -118,6 +118,13 @@ public class DeleteDatafeedRequest extends RequestBase {
 		@Nullable
 		private Boolean force;
 
+		public Builder() {
+		}
+		private Builder(DeleteDatafeedRequest instance) {
+			this.datafeedId = instance.datafeedId;
+			this.force = instance.force;
+
+		}
 		/**
 		 * Required - A numerical character string that uniquely identifies the
 		 * datafeed. This identifier can contain lowercase alphanumeric characters (a-z
@@ -160,6 +167,12 @@ public class DeleteDatafeedRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -133,6 +133,13 @@ public class RateAggregation extends FormatMetricAggregationBase implements Aggr
 		@Nullable
 		private RateMode mode;
 
+		public Builder() {
+		}
+		private Builder(RateAggregation instance) {
+			this.unit = instance.unit;
+			this.mode = instance.mode;
+
+		}
 		/**
 		 * The interval used to calculate the rate. By default, the interval of the
 		 * <code>date_histogram</code> is used.
@@ -172,6 +179,12 @@ public class RateAggregation extends FormatMetricAggregationBase implements Aggr
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

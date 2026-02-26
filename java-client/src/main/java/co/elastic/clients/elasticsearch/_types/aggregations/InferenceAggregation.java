@@ -131,6 +131,13 @@ public class InferenceAggregation extends PipelineAggregationBase implements Agg
 		@Nullable
 		private InferenceConfig inferenceConfig;
 
+		public Builder() {
+		}
+		private Builder(InferenceAggregation instance) {
+			this.modelId = instance.modelId;
+			this.inferenceConfig = instance.inferenceConfig;
+
+		}
 		/**
 		 * Required - The ID or alias for the trained model.
 		 * <p>
@@ -188,6 +195,12 @@ public class InferenceAggregation extends PipelineAggregationBase implements Agg
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

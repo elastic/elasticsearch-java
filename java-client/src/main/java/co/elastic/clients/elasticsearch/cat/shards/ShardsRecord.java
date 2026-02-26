@@ -1823,6 +1823,88 @@ public class ShardsRecord implements JsonpSerializable {
 		@Nullable
 		private String bulkAvgSizeInBytes;
 
+		public Builder() {
+		}
+		private Builder(ShardsRecord instance) {
+			this.index = instance.index;
+			this.shard = instance.shard;
+			this.prirep = instance.prirep;
+			this.state = instance.state;
+			this.docs = instance.docs;
+			this.store = instance.store;
+			this.dataset = instance.dataset;
+			this.ip = instance.ip;
+			this.id = instance.id;
+			this.node = instance.node;
+			this.syncId = instance.syncId;
+			this.unassignedReason = instance.unassignedReason;
+			this.unassignedAt = instance.unassignedAt;
+			this.unassignedFor = instance.unassignedFor;
+			this.unassignedDetails = instance.unassignedDetails;
+			this.recoverysourceType = instance.recoverysourceType;
+			this.completionSize = instance.completionSize;
+			this.fielddataMemorySize = instance.fielddataMemorySize;
+			this.fielddataEvictions = instance.fielddataEvictions;
+			this.queryCacheMemorySize = instance.queryCacheMemorySize;
+			this.queryCacheEvictions = instance.queryCacheEvictions;
+			this.flushTotal = instance.flushTotal;
+			this.flushTotalTime = instance.flushTotalTime;
+			this.getCurrent = instance.getCurrent;
+			this.getTime = instance.getTime;
+			this.getTotal = instance.getTotal;
+			this.getExistsTime = instance.getExistsTime;
+			this.getExistsTotal = instance.getExistsTotal;
+			this.getMissingTime = instance.getMissingTime;
+			this.getMissingTotal = instance.getMissingTotal;
+			this.indexingDeleteCurrent = instance.indexingDeleteCurrent;
+			this.indexingDeleteTime = instance.indexingDeleteTime;
+			this.indexingDeleteTotal = instance.indexingDeleteTotal;
+			this.indexingIndexCurrent = instance.indexingIndexCurrent;
+			this.indexingIndexTime = instance.indexingIndexTime;
+			this.indexingIndexTotal = instance.indexingIndexTotal;
+			this.indexingIndexFailed = instance.indexingIndexFailed;
+			this.mergesCurrent = instance.mergesCurrent;
+			this.mergesCurrentDocs = instance.mergesCurrentDocs;
+			this.mergesCurrentSize = instance.mergesCurrentSize;
+			this.mergesTotal = instance.mergesTotal;
+			this.mergesTotalDocs = instance.mergesTotalDocs;
+			this.mergesTotalSize = instance.mergesTotalSize;
+			this.mergesTotalTime = instance.mergesTotalTime;
+			this.refreshTotal = instance.refreshTotal;
+			this.refreshTime = instance.refreshTime;
+			this.refreshExternalTotal = instance.refreshExternalTotal;
+			this.refreshExternalTime = instance.refreshExternalTime;
+			this.refreshListeners = instance.refreshListeners;
+			this.searchFetchCurrent = instance.searchFetchCurrent;
+			this.searchFetchTime = instance.searchFetchTime;
+			this.searchFetchTotal = instance.searchFetchTotal;
+			this.searchOpenContexts = instance.searchOpenContexts;
+			this.searchQueryCurrent = instance.searchQueryCurrent;
+			this.searchQueryTime = instance.searchQueryTime;
+			this.searchQueryTotal = instance.searchQueryTotal;
+			this.searchScrollCurrent = instance.searchScrollCurrent;
+			this.searchScrollTime = instance.searchScrollTime;
+			this.searchScrollTotal = instance.searchScrollTotal;
+			this.segmentsCount = instance.segmentsCount;
+			this.segmentsMemory = instance.segmentsMemory;
+			this.segmentsIndexWriterMemory = instance.segmentsIndexWriterMemory;
+			this.segmentsVersionMapMemory = instance.segmentsVersionMapMemory;
+			this.segmentsFixedBitsetMemory = instance.segmentsFixedBitsetMemory;
+			this.seqNoMax = instance.seqNoMax;
+			this.seqNoLocalCheckpoint = instance.seqNoLocalCheckpoint;
+			this.seqNoGlobalCheckpoint = instance.seqNoGlobalCheckpoint;
+			this.warmerCurrent = instance.warmerCurrent;
+			this.warmerTotal = instance.warmerTotal;
+			this.warmerTotalTime = instance.warmerTotalTime;
+			this.pathData = instance.pathData;
+			this.pathState = instance.pathState;
+			this.bulkTotalOperations = instance.bulkTotalOperations;
+			this.bulkTotalTime = instance.bulkTotalTime;
+			this.bulkTotalSizeInBytes = instance.bulkTotalSizeInBytes;
+			this.bulkAvgTime = instance.bulkAvgTime;
+			this.bulkAvgSizeInBytes = instance.bulkAvgSizeInBytes;
+
+		}
 		/**
 		 * The index name.
 		 * <p>
@@ -2645,6 +2727,12 @@ public class ShardsRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

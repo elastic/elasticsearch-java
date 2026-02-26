@@ -108,6 +108,12 @@ public class MigrateReindexRequest extends RequestBase implements JsonpSerializa
 				ObjectBuilder<MigrateReindexRequest> {
 		private MigrateReindex reindex;
 
+		public Builder() {
+		}
+		private Builder(MigrateReindexRequest instance) {
+			this.reindex = instance.reindex;
+
+		}
 		/**
 		 * Required - Request body.
 		 */
@@ -149,6 +155,12 @@ public class MigrateReindexRequest extends RequestBase implements JsonpSerializa
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<MigrateReindexRequest> _DESERIALIZER = createMigrateReindexRequestDeserializer();
 	protected static JsonpDeserializer<MigrateReindexRequest> createMigrateReindexRequestDeserializer() {
 

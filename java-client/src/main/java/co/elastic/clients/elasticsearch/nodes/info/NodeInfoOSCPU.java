@@ -216,6 +216,19 @@ public class NodeInfoOSCPU implements JsonpSerializable {
 
 		private String vendor;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoOSCPU instance) {
+			this.cacheSize = instance.cacheSize;
+			this.cacheSizeInBytes = instance.cacheSizeInBytes;
+			this.coresPerSocket = instance.coresPerSocket;
+			this.mhz = instance.mhz;
+			this.model = instance.model;
+			this.totalCores = instance.totalCores;
+			this.totalSockets = instance.totalSockets;
+			this.vendor = instance.vendor;
+
+		}
 		/**
 		 * Required - API name: {@code cache_size}
 		 */
@@ -298,6 +311,12 @@ public class NodeInfoOSCPU implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -115,6 +115,12 @@ public class BoxplotAggregation extends MetricAggregationBase implements Aggrega
 		@Nullable
 		private Double compression;
 
+		public Builder() {
+		}
+		private Builder(BoxplotAggregation instance) {
+			this.compression = instance.compression;
+
+		}
 		/**
 		 * Limits the maximum number of nodes used by the underlying TDigest algorithm
 		 * to <code>20 * compression</code>, enabling control of memory usage and
@@ -145,6 +151,12 @@ public class BoxplotAggregation extends MetricAggregationBase implements Aggrega
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -103,6 +103,12 @@ public class GetIpLocationDatabaseRequest extends RequestBase {
 		@Nullable
 		private List<String> id;
 
+		public Builder() {
+		}
+		private Builder(GetIpLocationDatabaseRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Comma-separated list of database configuration IDs to retrieve. Wildcard
 		 * (<code>*</code>) expressions are supported. To get all database
@@ -149,6 +155,12 @@ public class GetIpLocationDatabaseRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

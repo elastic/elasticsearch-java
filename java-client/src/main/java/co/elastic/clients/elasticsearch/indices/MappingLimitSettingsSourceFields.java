@@ -113,6 +113,12 @@ public class MappingLimitSettingsSourceFields implements JsonpSerializable {
 				ObjectBuilder<MappingLimitSettingsSourceFields> {
 		private SourceMode mode;
 
+		public Builder() {
+		}
+		private Builder(MappingLimitSettingsSourceFields instance) {
+			this.mode = instance.mode;
+
+		}
 		/**
 		 * Required - API name: {@code mode}
 		 */
@@ -139,6 +145,12 @@ public class MappingLimitSettingsSourceFields implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

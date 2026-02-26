@@ -176,6 +176,15 @@ public class IndexRoutingAllocation implements JsonpSerializable {
 		@Nullable
 		private IndexRoutingAllocationDisk disk;
 
+		public Builder() {
+		}
+		private Builder(IndexRoutingAllocation instance) {
+			this.enable = instance.enable;
+			this.include = instance.include;
+			this.initialRecovery = instance.initialRecovery;
+			this.disk = instance.disk;
+
+		}
 		/**
 		 * API name: {@code enable}
 		 */
@@ -250,6 +259,12 @@ public class IndexRoutingAllocation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

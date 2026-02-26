@@ -125,6 +125,12 @@ public class RollupCapabilities implements JsonpSerializable {
 				ObjectBuilder<RollupCapabilities> {
 		private List<RollupCapabilitySummary> rollupJobs;
 
+		public Builder() {
+		}
+		private Builder(RollupCapabilities instance) {
+			this.rollupJobs = instance.rollupJobs;
+
+		}
 		/**
 		 * Required - There can be multiple, independent jobs configured for a single
 		 * index or index pattern. Each of these jobs may have different configurations,
@@ -185,6 +191,12 @@ public class RollupCapabilities implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

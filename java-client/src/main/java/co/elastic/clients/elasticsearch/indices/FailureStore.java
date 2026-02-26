@@ -148,6 +148,14 @@ public class FailureStore implements JsonpSerializable {
 
 		private Boolean rolloverOnWrite;
 
+		public Builder() {
+		}
+		private Builder(FailureStore instance) {
+			this.enabled = instance.enabled;
+			this.indices = instance.indices;
+			this.rolloverOnWrite = instance.rolloverOnWrite;
+
+		}
 		/**
 		 * Required - API name: {@code enabled}
 		 */
@@ -211,6 +219,12 @@ public class FailureStore implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

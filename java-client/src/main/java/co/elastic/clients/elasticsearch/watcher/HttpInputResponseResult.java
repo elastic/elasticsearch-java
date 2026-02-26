@@ -161,6 +161,14 @@ public class HttpInputResponseResult implements JsonpSerializable {
 
 		private Integer status;
 
+		public Builder() {
+		}
+		private Builder(HttpInputResponseResult instance) {
+			this.body = instance.body;
+			this.headers = instance.headers;
+			this.status = instance.status;
+
+		}
 		/**
 		 * Required - API name: {@code body}
 		 */
@@ -215,6 +223,12 @@ public class HttpInputResponseResult implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

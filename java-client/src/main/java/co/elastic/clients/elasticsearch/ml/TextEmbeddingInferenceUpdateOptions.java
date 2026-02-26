@@ -150,6 +150,13 @@ public class TextEmbeddingInferenceUpdateOptions implements InferenceConfigUpdat
 		@Nullable
 		private String resultsField;
 
+		public Builder() {
+		}
+		private Builder(TextEmbeddingInferenceUpdateOptions instance) {
+			this.tokenization = instance.tokenization;
+			this.resultsField = instance.resultsField;
+
+		}
 		/**
 		 * API name: {@code tokenization}
 		 */
@@ -195,6 +202,12 @@ public class TextEmbeddingInferenceUpdateOptions implements InferenceConfigUpdat
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

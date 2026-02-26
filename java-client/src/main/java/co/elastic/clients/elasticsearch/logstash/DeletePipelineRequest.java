@@ -102,6 +102,12 @@ public class DeletePipelineRequest extends RequestBase {
 				ObjectBuilder<DeletePipelineRequest> {
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(DeletePipelineRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Required - An identifier for the pipeline.
 		 * <p>
@@ -130,6 +136,12 @@ public class DeletePipelineRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

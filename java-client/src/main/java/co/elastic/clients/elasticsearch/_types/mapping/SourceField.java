@@ -223,6 +223,17 @@ public class SourceField implements JsonpSerializable {
 		@Nullable
 		private SourceFieldMode mode;
 
+		public Builder() {
+		}
+		private Builder(SourceField instance) {
+			this.compress = instance.compress;
+			this.compressThreshold = instance.compressThreshold;
+			this.enabled = instance.enabled;
+			this.excludes = instance.excludes;
+			this.includes = instance.includes;
+			this.mode = instance.mode;
+
+		}
 		/**
 		 * API name: {@code compress}
 		 */
@@ -313,6 +324,12 @@ public class SourceField implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

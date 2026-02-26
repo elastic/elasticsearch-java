@@ -215,6 +215,16 @@ public class UpdateDataFrameAnalyticsRequest extends RequestBase implements Json
 		@Nullable
 		private String modelMemoryLimit;
 
+		public Builder() {
+		}
+		private Builder(UpdateDataFrameAnalyticsRequest instance) {
+			this.allowLazyStart = instance.allowLazyStart;
+			this.description = instance.description;
+			this.id = instance.id;
+			this.maxNumThreads = instance.maxNumThreads;
+			this.modelMemoryLimit = instance.modelMemoryLimit;
+
+		}
 		/**
 		 * Specifies whether this job can start when there is insufficient machine
 		 * learning node capacity for it to be immediately assigned to a node.
@@ -293,6 +303,12 @@ public class UpdateDataFrameAnalyticsRequest extends RequestBase implements Json
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

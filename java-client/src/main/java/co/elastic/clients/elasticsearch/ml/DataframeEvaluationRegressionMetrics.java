@@ -201,6 +201,15 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 		@Nullable
 		private Map<String, JsonData> rSquared;
 
+		public Builder() {
+		}
+		private Builder(DataframeEvaluationRegressionMetrics instance) {
+			this.mse = instance.mse;
+			this.msle = instance.msle;
+			this.huber = instance.huber;
+			this.rSquared = instance.rSquared;
+
+		}
 		/**
 		 * Average squared difference between the predicted values and the actual
 		 * (ground truth) value. For more information, read this wiki article.
@@ -313,6 +322,12 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -234,6 +234,17 @@ public class FileSystemTotal implements JsonpSerializable {
 		@Nullable
 		private Long totalInBytes;
 
+		public Builder() {
+		}
+		private Builder(FileSystemTotal instance) {
+			this.available = instance.available;
+			this.availableInBytes = instance.availableInBytes;
+			this.free = instance.free;
+			this.freeInBytes = instance.freeInBytes;
+			this.total = instance.total;
+			this.totalInBytes = instance.totalInBytes;
+
+		}
 		/**
 		 * Total disk space available to this Java virtual machine on all file stores.
 		 * Depending on OS or process level restrictions, this might appear less than
@@ -318,6 +329,12 @@ public class FileSystemTotal implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

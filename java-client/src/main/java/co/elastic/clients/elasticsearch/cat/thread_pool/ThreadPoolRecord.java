@@ -538,6 +538,31 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		@Nullable
 		private String keepAlive;
 
+		public Builder() {
+		}
+		private Builder(ThreadPoolRecord instance) {
+			this.nodeName = instance.nodeName;
+			this.nodeId = instance.nodeId;
+			this.ephemeralNodeId = instance.ephemeralNodeId;
+			this.pid = instance.pid;
+			this.host = instance.host;
+			this.ip = instance.ip;
+			this.port = instance.port;
+			this.name = instance.name;
+			this.type = instance.type;
+			this.active = instance.active;
+			this.poolSize = instance.poolSize;
+			this.queue = instance.queue;
+			this.queueSize = instance.queueSize;
+			this.rejected = instance.rejected;
+			this.largest = instance.largest;
+			this.completed = instance.completed;
+			this.core = instance.core;
+			this.max = instance.max;
+			this.size = instance.size;
+			this.keepAlive = instance.keepAlive;
+
+		}
 		/**
 		 * The node name.
 		 * <p>
@@ -758,6 +783,12 @@ public class ThreadPoolRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

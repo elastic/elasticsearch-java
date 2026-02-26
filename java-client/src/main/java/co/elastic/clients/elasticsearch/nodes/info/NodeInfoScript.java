@@ -131,6 +131,13 @@ public class NodeInfoScript implements JsonpSerializable {
 		@Nullable
 		private String disableMaxCompilationsRate;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoScript instance) {
+			this.allowedTypes = instance.allowedTypes;
+			this.disableMaxCompilationsRate = instance.disableMaxCompilationsRate;
+
+		}
 		/**
 		 * Required - API name: {@code allowed_types}
 		 */
@@ -165,6 +172,12 @@ public class NodeInfoScript implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

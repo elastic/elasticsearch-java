@@ -129,6 +129,13 @@ public class MasterIsStableIndicatorExceptionFetchingHistory implements JsonpSer
 
 		private String stackTrace;
 
+		public Builder() {
+		}
+		private Builder(MasterIsStableIndicatorExceptionFetchingHistory instance) {
+			this.message = instance.message;
+			this.stackTrace = instance.stackTrace;
+
+		}
 		/**
 		 * Required - API name: {@code message}
 		 */
@@ -163,6 +170,12 @@ public class MasterIsStableIndicatorExceptionFetchingHistory implements JsonpSer
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

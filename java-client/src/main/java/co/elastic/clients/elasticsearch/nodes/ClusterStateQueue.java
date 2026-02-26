@@ -161,6 +161,14 @@ public class ClusterStateQueue implements JsonpSerializable {
 		@Nullable
 		private Long committed;
 
+		public Builder() {
+		}
+		private Builder(ClusterStateQueue instance) {
+			this.total = instance.total;
+			this.pending = instance.pending;
+			this.committed = instance.committed;
+
+		}
 		/**
 		 * Total number of cluster states in queue.
 		 * <p>
@@ -209,6 +217,12 @@ public class ClusterStateQueue implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

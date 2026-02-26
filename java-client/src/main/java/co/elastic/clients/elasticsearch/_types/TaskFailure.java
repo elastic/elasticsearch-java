@@ -156,6 +156,15 @@ public class TaskFailure implements JsonpSerializable {
 
 		private ErrorCause reason;
 
+		public Builder() {
+		}
+		private Builder(TaskFailure instance) {
+			this.taskId = instance.taskId;
+			this.nodeId = instance.nodeId;
+			this.status = instance.status;
+			this.reason = instance.reason;
+
+		}
 		/**
 		 * Required - API name: {@code task_id}
 		 */
@@ -213,6 +222,12 @@ public class TaskFailure implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

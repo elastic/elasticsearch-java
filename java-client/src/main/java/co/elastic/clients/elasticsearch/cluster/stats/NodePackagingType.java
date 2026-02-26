@@ -151,6 +151,14 @@ public class NodePackagingType implements JsonpSerializable {
 
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(NodePackagingType instance) {
+			this.count = instance.count;
+			this.flavor = instance.flavor;
+			this.type = instance.type;
+
+		}
 		/**
 		 * Required - Number of selected nodes using the distribution flavor and file
 		 * type.
@@ -202,6 +210,12 @@ public class NodePackagingType implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

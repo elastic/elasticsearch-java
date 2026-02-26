@@ -218,6 +218,17 @@ public class EnrichPolicy implements JsonpSerializable {
 		@Nullable
 		private String elasticsearchVersion;
 
+		public Builder() {
+		}
+		private Builder(EnrichPolicy instance) {
+			this.enrichFields = instance.enrichFields;
+			this.indices = instance.indices;
+			this.matchField = instance.matchField;
+			this.query = instance.query;
+			this.name = instance.name;
+			this.elasticsearchVersion = instance.elasticsearchVersion;
+
+		}
 		/**
 		 * Required - API name: {@code enrich_fields}
 		 * <p>
@@ -323,6 +334,12 @@ public class EnrichPolicy implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

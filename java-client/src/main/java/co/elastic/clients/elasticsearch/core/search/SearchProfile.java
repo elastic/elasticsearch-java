@@ -156,6 +156,14 @@ public class SearchProfile implements JsonpSerializable {
 
 		private Long rewriteTime;
 
+		public Builder() {
+		}
+		private Builder(SearchProfile instance) {
+			this.collector = instance.collector;
+			this.query = instance.query;
+			this.rewriteTime = instance.rewriteTime;
+
+		}
 		/**
 		 * Required - API name: {@code collector}
 		 * <p>
@@ -240,6 +248,12 @@ public class SearchProfile implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

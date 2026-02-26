@@ -118,6 +118,13 @@ public class GetScriptRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		public Builder() {
+		}
+		private Builder(GetScriptRequest instance) {
+			this.id = instance.id;
+			this.masterTimeout = instance.masterTimeout;
+
+		}
 		/**
 		 * Required - The identifier for the stored script or search template.
 		 * <p>
@@ -171,6 +178,12 @@ public class GetScriptRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

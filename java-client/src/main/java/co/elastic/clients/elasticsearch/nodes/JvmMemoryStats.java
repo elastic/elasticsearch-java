@@ -278,6 +278,19 @@ public class JvmMemoryStats implements JsonpSerializable {
 		@Nullable
 		private Map<String, Pool> pools;
 
+		public Builder() {
+		}
+		private Builder(JvmMemoryStats instance) {
+			this.heapUsedInBytes = instance.heapUsedInBytes;
+			this.heapUsedPercent = instance.heapUsedPercent;
+			this.heapCommittedInBytes = instance.heapCommittedInBytes;
+			this.heapMaxInBytes = instance.heapMaxInBytes;
+			this.heapMax = instance.heapMax;
+			this.nonHeapUsedInBytes = instance.nonHeapUsedInBytes;
+			this.nonHeapCommittedInBytes = instance.nonHeapCommittedInBytes;
+			this.pools = instance.pools;
+
+		}
 		/**
 		 * Memory, in bytes, currently in use by the heap.
 		 * <p>
@@ -401,6 +414,12 @@ public class JvmMemoryStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

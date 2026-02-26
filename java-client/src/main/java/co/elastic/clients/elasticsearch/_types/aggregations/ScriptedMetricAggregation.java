@@ -218,6 +218,16 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		@Nullable
 		private Script reduceScript;
 
+		public Builder() {
+		}
+		private Builder(ScriptedMetricAggregation instance) {
+			this.combineScript = instance.combineScript;
+			this.initScript = instance.initScript;
+			this.mapScript = instance.mapScript;
+			this.params = instance.params;
+			this.reduceScript = instance.reduceScript;
+
+		}
 		/**
 		 * Runs once on each shard after document collection is complete. Allows the
 		 * aggregation to consolidate the state returned from each shard.
@@ -354,6 +364,12 @@ public class ScriptedMetricAggregation extends MetricAggregationBase implements 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

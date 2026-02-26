@@ -293,6 +293,22 @@ public class WatchRecord implements JsonpSerializable {
 		@Nullable
 		private WatchStatus status;
 
+		public Builder() {
+		}
+		private Builder(WatchRecord instance) {
+			this.condition = instance.condition;
+			this.input = instance.input;
+			this.messages = instance.messages;
+			this.metadata = instance.metadata;
+			this.node = instance.node;
+			this.result = instance.result;
+			this.state = instance.state;
+			this.triggerEvent = instance.triggerEvent;
+			this.user = instance.user;
+			this.watchId = instance.watchId;
+			this.status = instance.status;
+
+		}
 		/**
 		 * Required - API name: {@code condition}
 		 */
@@ -474,6 +490,12 @@ public class WatchRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

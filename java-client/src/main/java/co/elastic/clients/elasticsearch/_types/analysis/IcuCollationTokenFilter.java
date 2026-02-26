@@ -329,6 +329,23 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 		@Nullable
 		private String variant;
 
+		public Builder() {
+		}
+		private Builder(IcuCollationTokenFilter instance) {
+			this.alternate = instance.alternate;
+			this.casefirst = instance.casefirst;
+			this.caselevel = instance.caselevel;
+			this.country = instance.country;
+			this.decomposition = instance.decomposition;
+			this.hiraganaquaternarymode = instance.hiraganaquaternarymode;
+			this.language = instance.language;
+			this.numeric = instance.numeric;
+			this.rules = instance.rules;
+			this.strength = instance.strength;
+			this.variabletop = instance.variabletop;
+			this.variant = instance.variant;
+
+		}
 		/**
 		 * API name: {@code alternate}
 		 */
@@ -443,6 +460,12 @@ public class IcuCollationTokenFilter extends TokenFilterBase implements TokenFil
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

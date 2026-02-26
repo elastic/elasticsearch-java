@@ -137,6 +137,12 @@ public class DataframeAnalysisFeatureProcessorMultiEncoding
 				ObjectBuilder<DataframeAnalysisFeatureProcessorMultiEncoding> {
 		private List<Integer> processors;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalysisFeatureProcessorMultiEncoding instance) {
+			this.processors = instance.processors;
+
+		}
 		/**
 		 * Required - The ordered array of custom processors to execute. Must be more
 		 * than 1.
@@ -181,6 +187,12 @@ public class DataframeAnalysisFeatureProcessorMultiEncoding
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

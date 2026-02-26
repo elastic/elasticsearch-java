@@ -311,6 +311,22 @@ public class BucketSummary implements JsonpSerializable {
 		@Nullable
 		private DateTime timestampString;
 
+		public Builder() {
+		}
+		private Builder(BucketSummary instance) {
+			this.anomalyScore = instance.anomalyScore;
+			this.bucketInfluencers = instance.bucketInfluencers;
+			this.bucketSpan = instance.bucketSpan;
+			this.eventCount = instance.eventCount;
+			this.initialAnomalyScore = instance.initialAnomalyScore;
+			this.isInterim = instance.isInterim;
+			this.jobId = instance.jobId;
+			this.processingTimeMs = instance.processingTimeMs;
+			this.resultType = instance.resultType;
+			this.timestamp = instance.timestamp;
+			this.timestampString = instance.timestampString;
+
+		}
 		/**
 		 * Required - The maximum anomaly score, between 0-100, for any of the bucket
 		 * influencers. This is an overall, rate-limited score for the job. All the
@@ -470,6 +486,12 @@ public class BucketSummary implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

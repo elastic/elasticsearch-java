@@ -141,6 +141,14 @@ public class CountRequest extends CatRequestBase {
 		@Nullable
 		private List<String> s;
 
+		public Builder() {
+		}
+		private Builder(CountRequest instance) {
+			this.h = instance.h;
+			this.index = instance.index;
+			this.s = instance.s;
+
+		}
 		/**
 		 * A comma-separated list of columns names to display. It supports simple
 		 * wildcards.
@@ -257,6 +265,12 @@ public class CountRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -218,6 +218,16 @@ public class FillMaskInferenceOptions implements InferenceConfigCreateVariant, J
 
 		private Vocabulary vocabulary;
 
+		public Builder() {
+		}
+		private Builder(FillMaskInferenceOptions instance) {
+			this.maskToken = instance.maskToken;
+			this.numTopClasses = instance.numTopClasses;
+			this.tokenization = instance.tokenization;
+			this.resultsField = instance.resultsField;
+			this.vocabulary = instance.vocabulary;
+
+		}
 		/**
 		 * The string/token which will be removed from incoming documents and replaced
 		 * with the inference prediction(s). In a response, this field contains the mask
@@ -317,6 +327,12 @@ public class FillMaskInferenceOptions implements InferenceConfigCreateVariant, J
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

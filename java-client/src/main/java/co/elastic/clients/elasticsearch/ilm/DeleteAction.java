@@ -115,6 +115,12 @@ public class DeleteAction implements JsonpSerializable {
 		@Nullable
 		private Boolean deleteSearchableSnapshot;
 
+		public Builder() {
+		}
+		private Builder(DeleteAction instance) {
+			this.deleteSearchableSnapshot = instance.deleteSearchableSnapshot;
+
+		}
 		/**
 		 * API name: {@code delete_searchable_snapshot}
 		 */
@@ -141,6 +147,12 @@ public class DeleteAction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

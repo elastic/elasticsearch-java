@@ -167,6 +167,14 @@ public class DataframeEvaluationRegression implements DataframeEvaluationVariant
 		@Nullable
 		private DataframeEvaluationRegressionMetrics metrics;
 
+		public Builder() {
+		}
+		private Builder(DataframeEvaluationRegression instance) {
+			this.actualField = instance.actualField;
+			this.predictedField = instance.predictedField;
+			this.metrics = instance.metrics;
+
+		}
 		/**
 		 * Required - The field of the index which contains the ground truth. The data
 		 * type of this field must be numerical.
@@ -231,6 +239,12 @@ public class DataframeEvaluationRegression implements DataframeEvaluationVariant
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

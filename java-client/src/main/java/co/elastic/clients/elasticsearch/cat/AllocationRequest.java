@@ -197,6 +197,17 @@ public class AllocationRequest extends CatRequestBase {
 		@Nullable
 		private List<String> s;
 
+		public Builder() {
+		}
+		private Builder(AllocationRequest instance) {
+			this.bytes = instance.bytes;
+			this.h = instance.h;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.nodeId = instance.nodeId;
+			this.s = instance.s;
+
+		}
 		/**
 		 * The unit used to display byte values.
 		 * <p>
@@ -352,6 +363,12 @@ public class AllocationRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -133,6 +133,13 @@ public class CleanupRepositoryResults implements JsonpSerializable {
 
 		private Long deletedBytes;
 
+		public Builder() {
+		}
+		private Builder(CleanupRepositoryResults instance) {
+			this.deletedBlobs = instance.deletedBlobs;
+			this.deletedBytes = instance.deletedBytes;
+
+		}
 		/**
 		 * Required - The number of binary large objects (blobs) removed from the
 		 * snapshot repository during cleanup operations. A non-zero value indicates
@@ -173,6 +180,12 @@ public class CleanupRepositoryResults implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

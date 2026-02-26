@@ -141,6 +141,13 @@ public class WordDelimiterGraphTokenFilter extends WordDelimiterTokenFilterBase
 		@Nullable
 		private Boolean ignoreKeywords;
 
+		public Builder() {
+		}
+		private Builder(WordDelimiterGraphTokenFilter instance) {
+			this.adjustOffsets = instance.adjustOffsets;
+			this.ignoreKeywords = instance.ignoreKeywords;
+
+		}
 		/**
 		 * If <code>true</code>, the filter adjusts the offsets of split or catenated
 		 * tokens to better reflect their actual position in the token stream. Defaults
@@ -182,6 +189,12 @@ public class WordDelimiterGraphTokenFilter extends WordDelimiterTokenFilterBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

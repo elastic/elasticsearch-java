@@ -164,6 +164,14 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(SearchInput instance) {
+			this.extract = instance.extract;
+			this.request = instance.request;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * API name: {@code extract}
 		 * <p>
@@ -233,6 +241,12 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

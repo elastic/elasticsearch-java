@@ -192,6 +192,17 @@ public class ShardsRequest extends CatRequestBase {
 		@Nullable
 		private TimeUnit time;
 
+		public Builder() {
+		}
+		private Builder(ShardsRequest instance) {
+			this.bytes = instance.bytes;
+			this.h = instance.h;
+			this.index = instance.index;
+			this.masterTimeout = instance.masterTimeout;
+			this.s = instance.s;
+			this.time = instance.time;
+
+		}
 		/**
 		 * The unit used to display byte values.
 		 * <p>
@@ -342,6 +353,12 @@ public class ShardsRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

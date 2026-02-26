@@ -129,6 +129,12 @@ public class IndexSegment implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndexSegment> {
 		private Map<String, List<ShardsSegment>> shards;
 
+		public Builder() {
+		}
+		private Builder(IndexSegment instance) {
+			this.shards = instance.shards;
+
+		}
 		/**
 		 * Required - API name: {@code shards}
 		 * <p>
@@ -167,6 +173,12 @@ public class IndexSegment implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

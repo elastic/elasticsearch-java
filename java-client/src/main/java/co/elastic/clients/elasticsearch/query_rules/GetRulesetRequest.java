@@ -97,6 +97,12 @@ public class GetRulesetRequest extends RequestBase {
 				ObjectBuilder<GetRulesetRequest> {
 		private String rulesetId;
 
+		public Builder() {
+		}
+		private Builder(GetRulesetRequest instance) {
+			this.rulesetId = instance.rulesetId;
+
+		}
 		/**
 		 * Required - The unique identifier of the query ruleset
 		 * <p>
@@ -125,6 +131,12 @@ public class GetRulesetRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

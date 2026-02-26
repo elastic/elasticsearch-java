@@ -161,6 +161,13 @@ public class AnalysisLimits implements JsonpSerializable {
 		@Nullable
 		private String modelMemoryLimit;
 
+		public Builder() {
+		}
+		private Builder(AnalysisLimits instance) {
+			this.categorizationExamplesLimit = instance.categorizationExamplesLimit;
+			this.modelMemoryLimit = instance.modelMemoryLimit;
+
+		}
 		/**
 		 * The maximum number of examples stored per category in memory and in the
 		 * results data store. If you increase this value, more examples are available,
@@ -220,6 +227,12 @@ public class AnalysisLimits implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

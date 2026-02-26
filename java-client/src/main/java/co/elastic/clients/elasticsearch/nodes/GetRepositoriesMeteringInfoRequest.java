@@ -107,6 +107,12 @@ public class GetRepositoriesMeteringInfoRequest extends RequestBase {
 				ObjectBuilder<GetRepositoriesMeteringInfoRequest> {
 		private List<String> nodeId;
 
+		public Builder() {
+		}
+		private Builder(GetRepositoriesMeteringInfoRequest instance) {
+			this.nodeId = instance.nodeId;
+
+		}
 		/**
 		 * Required - Comma-separated list of node IDs or names used to limit returned
 		 * information.
@@ -151,6 +157,12 @@ public class GetRepositoriesMeteringInfoRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

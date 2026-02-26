@@ -121,6 +121,13 @@ public class Slm extends Base {
 		@Nullable
 		private Statistics policyStats;
 
+		public Builder() {
+		}
+		private Builder(Slm instance) {
+			this.policyCount = instance.policyCount;
+			this.policyStats = instance.policyStats;
+
+		}
 		/**
 		 * API name: {@code policy_count}
 		 */
@@ -162,6 +169,12 @@ public class Slm extends Base {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

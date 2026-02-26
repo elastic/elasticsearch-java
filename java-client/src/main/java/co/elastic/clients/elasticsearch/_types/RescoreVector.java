@@ -112,6 +112,12 @@ public class RescoreVector implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RescoreVector> {
 		private Float oversample;
 
+		public Builder() {
+		}
+		private Builder(RescoreVector instance) {
+			this.oversample = instance.oversample;
+
+		}
 		/**
 		 * Required - Applies the specified oversample factor to k on the approximate
 		 * kNN search
@@ -141,6 +147,12 @@ public class RescoreVector implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

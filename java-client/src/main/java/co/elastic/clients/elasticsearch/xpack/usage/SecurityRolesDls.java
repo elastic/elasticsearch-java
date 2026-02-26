@@ -109,6 +109,12 @@ public class SecurityRolesDls implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SecurityRolesDls> {
 		private SecurityRolesDlsBitSetCache bitSetCache;
 
+		public Builder() {
+		}
+		private Builder(SecurityRolesDls instance) {
+			this.bitSetCache = instance.bitSetCache;
+
+		}
 		/**
 		 * Required - API name: {@code bit_set_cache}
 		 */
@@ -143,6 +149,12 @@ public class SecurityRolesDls implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

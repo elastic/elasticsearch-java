@@ -157,6 +157,15 @@ public class GetDataLifecycleRequest extends RequestBase {
 
 		private List<String> name;
 
+		public Builder() {
+		}
+		private Builder(GetDataLifecycleRequest instance) {
+			this.expandWildcards = instance.expandWildcards;
+			this.includeDefaults = instance.includeDefaults;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Type of data stream that wildcard patterns can match. Supports
 		 * comma-separated values, such as <code>open,hidden</code>.
@@ -260,6 +269,12 @@ public class GetDataLifecycleRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

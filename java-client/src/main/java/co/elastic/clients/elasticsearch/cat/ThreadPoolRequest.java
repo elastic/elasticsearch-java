@@ -196,6 +196,17 @@ public class ThreadPoolRequest extends CatRequestBase {
 		@Nullable
 		private TimeUnit time;
 
+		public Builder() {
+		}
+		private Builder(ThreadPoolRequest instance) {
+			this.h = instance.h;
+			this.local = instance.local;
+			this.masterTimeout = instance.masterTimeout;
+			this.s = instance.s;
+			this.threadPoolPatterns = instance.threadPoolPatterns;
+			this.time = instance.time;
+
+		}
 		/**
 		 * List of columns to appear in the response. Supports simple wildcards.
 		 * <p>
@@ -348,6 +359,12 @@ public class ThreadPoolRequest extends CatRequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

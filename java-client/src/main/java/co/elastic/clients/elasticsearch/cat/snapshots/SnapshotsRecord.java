@@ -392,6 +392,24 @@ public class SnapshotsRecord implements JsonpSerializable {
 		@Nullable
 		private String reason;
 
+		public Builder() {
+		}
+		private Builder(SnapshotsRecord instance) {
+			this.id = instance.id;
+			this.repository = instance.repository;
+			this.status = instance.status;
+			this.startEpoch = instance.startEpoch;
+			this.startTime = instance.startTime;
+			this.endEpoch = instance.endEpoch;
+			this.endTime = instance.endTime;
+			this.duration = instance.duration;
+			this.indices = instance.indices;
+			this.successfulShards = instance.successfulShards;
+			this.failedShards = instance.failedShards;
+			this.totalShards = instance.totalShards;
+			this.reason = instance.reason;
+
+		}
 		/**
 		 * The unique identifier for the snapshot.
 		 * <p>
@@ -565,6 +583,12 @@ public class SnapshotsRecord implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -114,6 +114,11 @@ public class MatchAllQuery extends QueryBase
 	 */
 
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MatchAllQuery> {
+		public Builder() {
+		}
+		private Builder(MatchAllQuery instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -132,6 +137,12 @@ public class MatchAllQuery extends QueryBase
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

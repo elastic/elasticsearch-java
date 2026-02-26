@@ -442,6 +442,23 @@ public class FindMessageStructureRequest extends RequestBase implements JsonpSer
 		@Nullable
 		private String timestampFormat;
 
+		public Builder() {
+		}
+		private Builder(FindMessageStructureRequest instance) {
+			this.columnNames = instance.columnNames;
+			this.delimiter = instance.delimiter;
+			this.ecsCompatibility = instance.ecsCompatibility;
+			this.explain = instance.explain;
+			this.format = instance.format;
+			this.grokPattern = instance.grokPattern;
+			this.messages = instance.messages;
+			this.quote = instance.quote;
+			this.shouldTrimFields = instance.shouldTrimFields;
+			this.timeout = instance.timeout;
+			this.timestampField = instance.timestampField;
+			this.timestampFormat = instance.timestampFormat;
+
+		}
 		/**
 		 * If the format is <code>delimited</code>, you can specify the column names in
 		 * a comma-separated list. If this parameter is not specified, the structure
@@ -705,6 +722,12 @@ public class FindMessageStructureRequest extends RequestBase implements JsonpSer
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

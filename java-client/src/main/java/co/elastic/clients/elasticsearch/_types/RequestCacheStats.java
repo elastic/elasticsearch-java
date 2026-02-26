@@ -176,6 +176,16 @@ public class RequestCacheStats implements JsonpSerializable {
 
 		private Long missCount;
 
+		public Builder() {
+		}
+		private Builder(RequestCacheStats instance) {
+			this.evictions = instance.evictions;
+			this.hitCount = instance.hitCount;
+			this.memorySize = instance.memorySize;
+			this.memorySizeInBytes = instance.memorySizeInBytes;
+			this.missCount = instance.missCount;
+
+		}
 		/**
 		 * Required - API name: {@code evictions}
 		 */
@@ -234,6 +244,12 @@ public class RequestCacheStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

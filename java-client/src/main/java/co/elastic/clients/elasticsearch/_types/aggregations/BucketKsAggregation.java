@@ -192,6 +192,14 @@ public class BucketKsAggregation extends BucketPathAggregation implements Aggreg
 		@Nullable
 		private String samplingMethod;
 
+		public Builder() {
+		}
+		private Builder(BucketKsAggregation instance) {
+			this.alternative = instance.alternative;
+			this.fractions = instance.fractions;
+			this.samplingMethod = instance.samplingMethod;
+
+		}
 		/**
 		 * A list of string values indicating which K-S test alternative to calculate.
 		 * The valid values are: &quot;greater&quot;, &quot;less&quot;,
@@ -293,6 +301,12 @@ public class BucketKsAggregation extends BucketPathAggregation implements Aggreg
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

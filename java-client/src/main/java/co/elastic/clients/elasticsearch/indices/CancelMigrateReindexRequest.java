@@ -102,6 +102,12 @@ public class CancelMigrateReindexRequest extends RequestBase {
 				ObjectBuilder<CancelMigrateReindexRequest> {
 		private List<String> index;
 
+		public Builder() {
+		}
+		private Builder(CancelMigrateReindexRequest instance) {
+			this.index = instance.index;
+
+		}
 		/**
 		 * Required - The index or data stream name
 		 * <p>
@@ -144,6 +150,12 @@ public class CancelMigrateReindexRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

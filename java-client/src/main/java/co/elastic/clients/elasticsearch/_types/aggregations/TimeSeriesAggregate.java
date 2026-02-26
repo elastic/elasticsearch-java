@@ -81,6 +81,11 @@ public class TimeSeriesAggregate extends MultiBucketAggregateBase<TimeSeriesBuck
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<TimeSeriesBucket, Builder>
 			implements
 				ObjectBuilder<TimeSeriesAggregate> {
+		public Builder() {
+		}
+		private Builder(TimeSeriesAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -100,6 +105,12 @@ public class TimeSeriesAggregate extends MultiBucketAggregateBase<TimeSeriesBuck
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

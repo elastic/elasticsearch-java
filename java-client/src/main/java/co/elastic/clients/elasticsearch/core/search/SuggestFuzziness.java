@@ -211,6 +211,16 @@ public class SuggestFuzziness implements JsonpSerializable {
 		@Nullable
 		private Boolean unicodeAware;
 
+		public Builder() {
+		}
+		private Builder(SuggestFuzziness instance) {
+			this.fuzziness = instance.fuzziness;
+			this.minLength = instance.minLength;
+			this.prefixLength = instance.prefixLength;
+			this.transpositions = instance.transpositions;
+			this.unicodeAware = instance.unicodeAware;
+
+		}
 		/**
 		 * The fuzziness factor.
 		 * <p>
@@ -282,6 +292,12 @@ public class SuggestFuzziness implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

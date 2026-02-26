@@ -131,6 +131,13 @@ public class FieldSizeUsage implements JsonpSerializable {
 
 		private Long sizeInBytes;
 
+		public Builder() {
+		}
+		private Builder(FieldSizeUsage instance) {
+			this.size = instance.size;
+			this.sizeInBytes = instance.sizeInBytes;
+
+		}
 		/**
 		 * API name: {@code size}
 		 */
@@ -165,6 +172,12 @@ public class FieldSizeUsage implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

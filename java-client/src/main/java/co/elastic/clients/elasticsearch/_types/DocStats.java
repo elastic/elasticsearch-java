@@ -182,6 +182,15 @@ public class DocStats implements JsonpSerializable {
 		@Nullable
 		private String totalSize;
 
+		public Builder() {
+		}
+		private Builder(DocStats instance) {
+			this.count = instance.count;
+			this.deleted = instance.deleted;
+			this.totalSizeInBytes = instance.totalSizeInBytes;
+			this.totalSize = instance.totalSize;
+
+		}
 		/**
 		 * Required - Total number of non-deleted documents across all primary shards
 		 * assigned to selected nodes. This number is based on documents in Lucene
@@ -247,6 +256,12 @@ public class DocStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

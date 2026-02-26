@@ -166,6 +166,14 @@ public class CustomCategorizeTextAnalyzer implements JsonpSerializable {
 		@Nullable
 		private List<String> filter;
 
+		public Builder() {
+		}
+		private Builder(CustomCategorizeTextAnalyzer instance) {
+			this.charFilter = instance.charFilter;
+			this.tokenizer = instance.tokenizer;
+			this.filter = instance.filter;
+
+		}
 		/**
 		 * API name: {@code char_filter}
 		 * <p>
@@ -232,6 +240,12 @@ public class CustomCategorizeTextAnalyzer implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

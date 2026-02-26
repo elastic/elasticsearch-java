@@ -204,6 +204,15 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 
 		private DenseVectorIndexOptionsType type;
 
+		public Builder() {
+		}
+		private Builder(DenseVectorIndexOptions instance) {
+			this.confidenceInterval = instance.confidenceInterval;
+			this.efConstruction = instance.efConstruction;
+			this.m = instance.m;
+			this.type = instance.type;
+
+		}
 		/**
 		 * The confidence interval to use when quantizing the vectors. Can be any value
 		 * between and including <code>0.90</code> and <code>1.0</code> or exactly
@@ -284,6 +293,12 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

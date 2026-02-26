@@ -399,6 +399,31 @@ public class QueryBreakdown implements JsonpSerializable {
 
 		private Long setMinCompetitiveScoreCount;
 
+		public Builder() {
+		}
+		private Builder(QueryBreakdown instance) {
+			this.advance = instance.advance;
+			this.advanceCount = instance.advanceCount;
+			this.buildScorer = instance.buildScorer;
+			this.buildScorerCount = instance.buildScorerCount;
+			this.createWeight = instance.createWeight;
+			this.createWeightCount = instance.createWeightCount;
+			this.match = instance.match;
+			this.matchCount = instance.matchCount;
+			this.shallowAdvance = instance.shallowAdvance;
+			this.shallowAdvanceCount = instance.shallowAdvanceCount;
+			this.nextDoc = instance.nextDoc;
+			this.nextDocCount = instance.nextDocCount;
+			this.score = instance.score;
+			this.scoreCount = instance.scoreCount;
+			this.computeMaxScore = instance.computeMaxScore;
+			this.computeMaxScoreCount = instance.computeMaxScoreCount;
+			this.countWeight = instance.countWeight;
+			this.countWeightCount = instance.countWeightCount;
+			this.setMinCompetitiveScore = instance.setMinCompetitiveScore;
+			this.setMinCompetitiveScoreCount = instance.setMinCompetitiveScoreCount;
+
+		}
 		/**
 		 * Required - API name: {@code advance}
 		 */
@@ -577,6 +602,12 @@ public class QueryBreakdown implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

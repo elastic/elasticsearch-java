@@ -198,6 +198,15 @@ public class Http implements JsonpSerializable {
 		@Nullable
 		private Map<String, HttpRoute> routes;
 
+		public Builder() {
+		}
+		private Builder(Http instance) {
+			this.currentOpen = instance.currentOpen;
+			this.totalOpened = instance.totalOpened;
+			this.clients = instance.clients;
+			this.routes = instance.routes;
+
+		}
 		/**
 		 * Current number of open HTTP connections for the node.
 		 * <p>
@@ -315,6 +324,12 @@ public class Http implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -142,6 +142,14 @@ public class AllocationDecision implements JsonpSerializable {
 
 		private String explanation;
 
+		public Builder() {
+		}
+		private Builder(AllocationDecision instance) {
+			this.decider = instance.decider;
+			this.decision = instance.decision;
+			this.explanation = instance.explanation;
+
+		}
 		/**
 		 * Required - API name: {@code decider}
 		 */
@@ -184,6 +192,12 @@ public class AllocationDecision implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

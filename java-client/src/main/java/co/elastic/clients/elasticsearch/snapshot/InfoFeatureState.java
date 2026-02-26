@@ -135,6 +135,13 @@ public class InfoFeatureState implements JsonpSerializable {
 
 		private List<String> indices;
 
+		public Builder() {
+		}
+		private Builder(InfoFeatureState instance) {
+			this.featureName = instance.featureName;
+			this.indices = instance.indices;
+
+		}
 		/**
 		 * Required - API name: {@code feature_name}
 		 */
@@ -181,6 +188,12 @@ public class InfoFeatureState implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

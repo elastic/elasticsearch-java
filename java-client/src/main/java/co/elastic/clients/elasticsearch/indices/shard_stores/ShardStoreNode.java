@@ -213,6 +213,17 @@ public class ShardStoreNode implements JsonpSerializable {
 
 		private String transportAddress;
 
+		public Builder() {
+		}
+		private Builder(ShardStoreNode instance) {
+			this.attributes = instance.attributes;
+			this.ephemeralId = instance.ephemeralId;
+			this.externalId = instance.externalId;
+			this.name = instance.name;
+			this.roles = instance.roles;
+			this.transportAddress = instance.transportAddress;
+
+		}
 		/**
 		 * Required - API name: {@code attributes}
 		 * <p>
@@ -303,6 +314,12 @@ public class ShardStoreNode implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

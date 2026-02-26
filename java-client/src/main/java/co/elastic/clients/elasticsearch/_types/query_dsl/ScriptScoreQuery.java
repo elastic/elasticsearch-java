@@ -149,6 +149,14 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 
 		private Script script;
 
+		public Builder() {
+		}
+		private Builder(ScriptScoreQuery instance) {
+			this.minScore = instance.minScore;
+			this.query = instance.query;
+			this.script = instance.script;
+
+		}
 		/**
 		 * Documents with a score lower than this floating point number are excluded
 		 * from the search results.
@@ -230,6 +238,12 @@ public class ScriptScoreQuery extends QueryBase implements QueryVariant {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

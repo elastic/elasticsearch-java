@@ -128,6 +128,13 @@ public class LatLonGeoLocation implements JsonpSerializable {
 
 		private Double lon;
 
+		public Builder() {
+		}
+		private Builder(LatLonGeoLocation instance) {
+			this.lat = instance.lat;
+			this.lon = instance.lon;
+
+		}
 		/**
 		 * Required - Latitude
 		 * <p>
@@ -166,6 +173,12 @@ public class LatLonGeoLocation implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

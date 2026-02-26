@@ -105,6 +105,12 @@ public class DeprecationsRequest extends RequestBase {
 		@Nullable
 		private String index;
 
+		public Builder() {
+		}
+		private Builder(DeprecationsRequest instance) {
+			this.index = instance.index;
+
+		}
 		/**
 		 * Comma-separate list of data streams or indices to check. Wildcard (*)
 		 * expressions are supported.
@@ -134,6 +140,12 @@ public class DeprecationsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

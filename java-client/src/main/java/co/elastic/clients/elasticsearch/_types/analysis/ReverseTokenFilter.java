@@ -89,6 +89,11 @@ public class ReverseTokenFilter extends TokenFilterBase implements TokenFilterDe
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ReverseTokenFilter> {
+		public Builder() {
+		}
+		private Builder(ReverseTokenFilter instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class ReverseTokenFilter extends TokenFilterBase implements TokenFilterDe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

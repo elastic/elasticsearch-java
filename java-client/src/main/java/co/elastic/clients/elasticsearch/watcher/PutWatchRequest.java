@@ -394,6 +394,24 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Long version;
 
+		public Builder() {
+		}
+		private Builder(PutWatchRequest instance) {
+			this.actions = instance.actions;
+			this.active = instance.active;
+			this.condition = instance.condition;
+			this.id = instance.id;
+			this.ifPrimaryTerm = instance.ifPrimaryTerm;
+			this.ifSeqNo = instance.ifSeqNo;
+			this.input = instance.input;
+			this.metadata = instance.metadata;
+			this.throttlePeriod = instance.throttlePeriod;
+			this.throttlePeriodInMillis = instance.throttlePeriodInMillis;
+			this.transform = instance.transform;
+			this.trigger = instance.trigger;
+			this.version = instance.version;
+
+		}
 		/**
 		 * The list of actions that will be run if the condition matches.
 		 * <p>
@@ -682,6 +700,12 @@ public class PutWatchRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

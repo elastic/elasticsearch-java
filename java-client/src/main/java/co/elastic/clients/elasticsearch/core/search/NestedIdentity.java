@@ -148,6 +148,14 @@ public class NestedIdentity implements JsonpSerializable {
 		@Nullable
 		private NestedIdentity nested;
 
+		public Builder() {
+		}
+		private Builder(NestedIdentity instance) {
+			this.field = instance.field;
+			this.offset = instance.offset;
+			this.nested = instance.nested;
+
+		}
 		/**
 		 * Required - API name: {@code field}
 		 */
@@ -197,6 +205,12 @@ public class NestedIdentity implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

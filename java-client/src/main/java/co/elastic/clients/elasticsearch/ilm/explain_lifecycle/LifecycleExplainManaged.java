@@ -634,6 +634,37 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		@Nullable
 		private Time timeSinceIndexCreation;
 
+		public Builder() {
+		}
+		private Builder(LifecycleExplainManaged instance) {
+			this.action = instance.action;
+			this.actionTime = instance.actionTime;
+			this.actionTimeMillis = instance.actionTimeMillis;
+			this.age = instance.age;
+			this.failedStep = instance.failedStep;
+			this.failedStepRetryCount = instance.failedStepRetryCount;
+			this.index = instance.index;
+			this.indexCreationDate = instance.indexCreationDate;
+			this.indexCreationDateMillis = instance.indexCreationDateMillis;
+			this.isAutoRetryableError = instance.isAutoRetryableError;
+			this.lifecycleDate = instance.lifecycleDate;
+			this.lifecycleDateMillis = instance.lifecycleDateMillis;
+			this.phase = instance.phase;
+			this.phaseTime = instance.phaseTime;
+			this.phaseTimeMillis = instance.phaseTimeMillis;
+			this.policy = instance.policy;
+			this.previousStepInfo = instance.previousStepInfo;
+			this.repositoryName = instance.repositoryName;
+			this.snapshotName = instance.snapshotName;
+			this.shrinkIndexName = instance.shrinkIndexName;
+			this.step = instance.step;
+			this.stepInfo = instance.stepInfo;
+			this.stepTime = instance.stepTime;
+			this.stepTimeMillis = instance.stepTimeMillis;
+			this.phaseExecution = instance.phaseExecution;
+			this.timeSinceIndexCreation = instance.timeSinceIndexCreation;
+
+		}
 		/**
 		 * API name: {@code action}
 		 */
@@ -906,6 +937,12 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

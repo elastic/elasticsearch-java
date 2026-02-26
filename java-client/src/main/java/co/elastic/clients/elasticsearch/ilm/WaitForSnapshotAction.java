@@ -113,6 +113,12 @@ public class WaitForSnapshotAction implements JsonpSerializable {
 				ObjectBuilder<WaitForSnapshotAction> {
 		private String policy;
 
+		public Builder() {
+		}
+		private Builder(WaitForSnapshotAction instance) {
+			this.policy = instance.policy;
+
+		}
 		/**
 		 * Required - API name: {@code policy}
 		 */
@@ -139,6 +145,12 @@ public class WaitForSnapshotAction implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

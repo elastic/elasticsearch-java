@@ -166,6 +166,14 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		@Nullable
 		private List<SortOptions> sort;
 
+		public Builder() {
+		}
+		private Builder(TopMetricsAggregation instance) {
+			this.metrics = instance.metrics;
+			this.size = instance.size;
+			this.sort = instance.sort;
+
+		}
 		/**
 		 * The fields of the top document to return.
 		 * <p>
@@ -264,6 +272,12 @@ public class TopMetricsAggregation extends MetricAggregationBase implements Aggr
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -148,6 +148,14 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
 		@Nullable
 		private String replacement;
 
+		public Builder() {
+		}
+		private Builder(PatternReplaceCharFilter instance) {
+			this.flags = instance.flags;
+			this.pattern = instance.pattern;
+			this.replacement = instance.replacement;
+
+		}
 		/**
 		 * API name: {@code flags}
 		 */
@@ -190,6 +198,12 @@ public class PatternReplaceCharFilter extends CharFilterBase implements CharFilt
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

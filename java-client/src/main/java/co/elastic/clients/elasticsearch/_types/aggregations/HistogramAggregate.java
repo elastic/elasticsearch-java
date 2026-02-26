@@ -81,6 +81,11 @@ public class HistogramAggregate extends MultiBucketAggregateBase<HistogramBucket
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<HistogramBucket, Builder>
 			implements
 				ObjectBuilder<HistogramAggregate> {
+		public Builder() {
+		}
+		private Builder(HistogramAggregate instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -100,6 +105,12 @@ public class HistogramAggregate extends MultiBucketAggregateBase<HistogramBucket
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

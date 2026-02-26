@@ -224,6 +224,16 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private List<SortOptions> sort;
 
+		public Builder() {
+		}
+		private Builder(QueryWatchesRequest instance) {
+			this.from = instance.from;
+			this.query = instance.query;
+			this.searchAfter = instance.searchAfter;
+			this.size = instance.size;
+			this.sort = instance.sort;
+
+		}
 		/**
 		 * The offset from the first result to fetch. It must be non-negative.
 		 * <p>
@@ -428,6 +438,12 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -125,6 +125,13 @@ public class NativeCode implements JsonpSerializable {
 
 		private String version;
 
+		public Builder() {
+		}
+		private Builder(NativeCode instance) {
+			this.buildHash = instance.buildHash;
+			this.version = instance.version;
+
+		}
 		/**
 		 * Required - API name: {@code build_hash}
 		 */
@@ -159,6 +166,12 @@ public class NativeCode implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -175,6 +175,14 @@ public class ElserServiceSettings implements JsonpSerializable {
 
 		private Integer numThreads;
 
+		public Builder() {
+		}
+		private Builder(ElserServiceSettings instance) {
+			this.adaptiveAllocations = instance.adaptiveAllocations;
+			this.numAllocations = instance.numAllocations;
+			this.numThreads = instance.numThreads;
+
+		}
 		/**
 		 * Adaptive allocations configuration details. If <code>enabled</code> is true,
 		 * the number of allocations of the model is set based on the current load the
@@ -261,6 +269,12 @@ public class ElserServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

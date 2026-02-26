@@ -222,6 +222,17 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 		@Nullable
 		private String reason;
 
+		public Builder() {
+		}
+		private Builder(DataframeAnalyticsFieldSelection instance) {
+			this.isIncluded = instance.isIncluded;
+			this.isRequired = instance.isRequired;
+			this.featureType = instance.featureType;
+			this.mappingTypes = instance.mappingTypes;
+			this.name = instance.name;
+			this.reason = instance.reason;
+
+		}
 		/**
 		 * Required - Whether the field is selected to be included in the analysis.
 		 * <p>
@@ -315,6 +326,12 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

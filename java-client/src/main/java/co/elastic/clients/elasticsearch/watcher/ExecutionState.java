@@ -147,6 +147,14 @@ public class ExecutionState implements JsonpSerializable {
 		@Nullable
 		private String reason;
 
+		public Builder() {
+		}
+		private Builder(ExecutionState instance) {
+			this.successful = instance.successful;
+			this.timestamp = instance.timestamp;
+			this.reason = instance.reason;
+
+		}
 		/**
 		 * Required - API name: {@code successful}
 		 */
@@ -189,6 +197,12 @@ public class ExecutionState implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

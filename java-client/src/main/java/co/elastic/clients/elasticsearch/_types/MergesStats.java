@@ -370,6 +370,27 @@ public class MergesStats implements JsonpSerializable {
 
 		private Long totalTimeInMillis;
 
+		public Builder() {
+		}
+		private Builder(MergesStats instance) {
+			this.current = instance.current;
+			this.currentDocs = instance.currentDocs;
+			this.currentSize = instance.currentSize;
+			this.currentSizeInBytes = instance.currentSizeInBytes;
+			this.total = instance.total;
+			this.totalAutoThrottle = instance.totalAutoThrottle;
+			this.totalAutoThrottleInBytes = instance.totalAutoThrottleInBytes;
+			this.totalDocs = instance.totalDocs;
+			this.totalSize = instance.totalSize;
+			this.totalSizeInBytes = instance.totalSizeInBytes;
+			this.totalStoppedTime = instance.totalStoppedTime;
+			this.totalStoppedTimeInMillis = instance.totalStoppedTimeInMillis;
+			this.totalThrottledTime = instance.totalThrottledTime;
+			this.totalThrottledTimeInMillis = instance.totalThrottledTimeInMillis;
+			this.totalTime = instance.totalTime;
+			this.totalTimeInMillis = instance.totalTimeInMillis;
+
+		}
 		/**
 		 * Required - API name: {@code current}
 		 */
@@ -537,6 +558,12 @@ public class MergesStats implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

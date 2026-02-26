@@ -127,6 +127,13 @@ public class TopLeftBottomRightGeoBounds implements JsonpSerializable {
 
 		private GeoLocation bottomRight;
 
+		public Builder() {
+		}
+		private Builder(TopLeftBottomRightGeoBounds instance) {
+			this.topLeft = instance.topLeft;
+			this.bottomRight = instance.bottomRight;
+
+		}
 		/**
 		 * Required - API name: {@code top_left}
 		 */
@@ -175,6 +182,12 @@ public class TopLeftBottomRightGeoBounds implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

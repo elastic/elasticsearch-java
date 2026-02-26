@@ -122,6 +122,12 @@ public class IndexAliases implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndexAliases> {
 		private Map<String, AliasDefinition> aliases;
 
+		public Builder() {
+		}
+		private Builder(IndexAliases instance) {
+			this.aliases = instance.aliases;
+
+		}
 		/**
 		 * Required - API name: {@code aliases}
 		 * <p>
@@ -169,6 +175,12 @@ public class IndexAliases implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

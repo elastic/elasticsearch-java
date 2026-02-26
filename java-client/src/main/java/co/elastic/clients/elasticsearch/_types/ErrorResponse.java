@@ -127,6 +127,13 @@ public class ErrorResponse implements JsonpSerializable {
 
 		private Integer status;
 
+		public Builder() {
+		}
+		private Builder(ErrorResponse instance) {
+			this.error = instance.error;
+			this.status = instance.status;
+
+		}
 		/**
 		 * Required - API name: {@code error}
 		 */
@@ -168,6 +175,12 @@ public class ErrorResponse implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

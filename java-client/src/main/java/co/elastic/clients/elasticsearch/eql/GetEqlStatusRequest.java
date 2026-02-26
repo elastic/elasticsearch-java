@@ -98,6 +98,12 @@ public class GetEqlStatusRequest extends RequestBase {
 				ObjectBuilder<GetEqlStatusRequest> {
 		private String id;
 
+		public Builder() {
+		}
+		private Builder(GetEqlStatusRequest instance) {
+			this.id = instance.id;
+
+		}
 		/**
 		 * Required - Identifier for the search.
 		 * <p>
@@ -126,6 +132,12 @@ public class GetEqlStatusRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

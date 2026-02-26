@@ -119,6 +119,13 @@ public class DateHistogramBucket extends MultiBucketBase {
 
 		private Long key;
 
+		public Builder() {
+		}
+		private Builder(DateHistogramBucket instance) {
+			this.keyAsString = instance.keyAsString;
+			this.key = instance.key;
+
+		}
 		/**
 		 * API name: {@code key_as_string}
 		 */
@@ -153,6 +160,12 @@ public class DateHistogramBucket extends MultiBucketBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

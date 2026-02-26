@@ -99,6 +99,12 @@ public class ChangePointBucket extends MultiBucketBase {
 				ObjectBuilder<ChangePointBucket> {
 		private FieldValue key;
 
+		public Builder() {
+		}
+		private Builder(ChangePointBucket instance) {
+			this.key = instance.key;
+
+		}
 		/**
 		 * Required - API name: {@code key}
 		 */
@@ -164,6 +170,12 @@ public class ChangePointBucket extends MultiBucketBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

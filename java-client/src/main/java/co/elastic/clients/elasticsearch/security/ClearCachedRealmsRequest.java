@@ -125,6 +125,13 @@ public class ClearCachedRealmsRequest extends RequestBase {
 		@Nullable
 		private List<String> usernames;
 
+		public Builder() {
+		}
+		private Builder(ClearCachedRealmsRequest instance) {
+			this.realms = instance.realms;
+			this.usernames = instance.usernames;
+
+		}
 		/**
 		 * Required - A comma-separated list of realms. To clear all realms, use an
 		 * asterisk (<code>*</code>). It does not support other wildcard patterns.
@@ -195,6 +202,12 @@ public class ClearCachedRealmsRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

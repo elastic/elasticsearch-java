@@ -158,6 +158,14 @@ public class NodeInfoTransport implements JsonpSerializable {
 
 		private Map<String, String> profiles;
 
+		public Builder() {
+		}
+		private Builder(NodeInfoTransport instance) {
+			this.boundAddress = instance.boundAddress;
+			this.publishAddress = instance.publishAddress;
+			this.profiles = instance.profiles;
+
+		}
 		/**
 		 * Required - API name: {@code bound_address}
 		 * <p>
@@ -224,6 +232,12 @@ public class NodeInfoTransport implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

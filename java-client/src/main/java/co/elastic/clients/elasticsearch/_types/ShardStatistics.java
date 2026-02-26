@@ -192,6 +192,16 @@ public class ShardStatistics implements JsonpSerializable {
 		@Nullable
 		private Number skipped;
 
+		public Builder() {
+		}
+		private Builder(ShardStatistics instance) {
+			this.failed = instance.failed;
+			this.successful = instance.successful;
+			this.total = instance.total;
+			this.failures = instance.failures;
+			this.skipped = instance.skipped;
+
+		}
 		/**
 		 * Required - The number of shards the operation or search attempted to run on
 		 * but failed.
@@ -278,6 +288,12 @@ public class ShardStatistics implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

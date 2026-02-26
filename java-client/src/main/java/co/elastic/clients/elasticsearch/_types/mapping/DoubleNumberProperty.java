@@ -112,6 +112,12 @@ public class DoubleNumberProperty extends NumberPropertyBase implements Property
 		@Nullable
 		private Double nullValue;
 
+		public Builder() {
+		}
+		private Builder(DoubleNumberProperty instance) {
+			this.nullValue = instance.nullValue;
+
+		}
 		/**
 		 * API name: {@code null_value}
 		 */
@@ -138,6 +144,12 @@ public class DoubleNumberProperty extends NumberPropertyBase implements Property
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

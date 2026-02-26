@@ -148,6 +148,14 @@ public class RollupJob implements JsonpSerializable {
 
 		private RollupJobStatus status;
 
+		public Builder() {
+		}
+		private Builder(RollupJob instance) {
+			this.config = instance.config;
+			this.stats = instance.stats;
+			this.status = instance.status;
+
+		}
 		/**
 		 * Required - The rollup job configuration.
 		 * <p>
@@ -230,6 +238,12 @@ public class RollupJob implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -141,6 +141,14 @@ public class MultiGetError implements JsonpSerializable {
 
 		private String index;
 
+		public Builder() {
+		}
+		private Builder(MultiGetError instance) {
+			this.error = instance.error;
+			this.id = instance.id;
+			this.index = instance.index;
+
+		}
 		/**
 		 * Required - API name: {@code error}
 		 */
@@ -190,6 +198,12 @@ public class MultiGetError implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

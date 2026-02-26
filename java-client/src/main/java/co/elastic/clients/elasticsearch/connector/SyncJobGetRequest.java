@@ -97,6 +97,12 @@ public class SyncJobGetRequest extends RequestBase {
 				ObjectBuilder<SyncJobGetRequest> {
 		private String connectorSyncJobId;
 
+		public Builder() {
+		}
+		private Builder(SyncJobGetRequest instance) {
+			this.connectorSyncJobId = instance.connectorSyncJobId;
+
+		}
 		/**
 		 * Required - The unique identifier of the connector sync job
 		 * <p>
@@ -125,6 +131,12 @@ public class SyncJobGetRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

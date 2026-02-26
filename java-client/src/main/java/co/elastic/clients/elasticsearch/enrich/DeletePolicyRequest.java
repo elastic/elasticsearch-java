@@ -115,6 +115,13 @@ public class DeletePolicyRequest extends RequestBase {
 
 		private String name;
 
+		public Builder() {
+		}
+		private Builder(DeletePolicyRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node.
 		 * <p>
@@ -162,6 +169,12 @@ public class DeletePolicyRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

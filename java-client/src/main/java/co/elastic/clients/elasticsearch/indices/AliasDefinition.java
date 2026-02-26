@@ -233,6 +233,17 @@ public class AliasDefinition implements JsonpSerializable {
 		@Nullable
 		private Boolean isHidden;
 
+		public Builder() {
+		}
+		private Builder(AliasDefinition instance) {
+			this.filter = instance.filter;
+			this.indexRouting = instance.indexRouting;
+			this.isWriteIndex = instance.isWriteIndex;
+			this.routing = instance.routing;
+			this.searchRouting = instance.searchRouting;
+			this.isHidden = instance.isHidden;
+
+		}
 		/**
 		 * Query used to limit documents the alias can access.
 		 * <p>
@@ -333,6 +344,12 @@ public class AliasDefinition implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

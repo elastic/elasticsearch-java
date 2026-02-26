@@ -106,6 +106,12 @@ public class SamlServiceProviderMetadataRequest extends RequestBase {
 				ObjectBuilder<SamlServiceProviderMetadataRequest> {
 		private String realmName;
 
+		public Builder() {
+		}
+		private Builder(SamlServiceProviderMetadataRequest instance) {
+			this.realmName = instance.realmName;
+
+		}
 		/**
 		 * Required - The name of the SAML realm in Elasticsearch.
 		 * <p>
@@ -134,6 +140,12 @@ public class SamlServiceProviderMetadataRequest extends RequestBase {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

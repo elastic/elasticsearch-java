@@ -125,6 +125,13 @@ public class TextIndexPrefixes implements JsonpSerializable {
 
 		private Integer minChars;
 
+		public Builder() {
+		}
+		private Builder(TextIndexPrefixes instance) {
+			this.maxChars = instance.maxChars;
+			this.minChars = instance.minChars;
+
+		}
 		/**
 		 * Required - API name: {@code max_chars}
 		 */
@@ -159,6 +166,12 @@ public class TextIndexPrefixes implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -267,6 +267,21 @@ public class ReindexTask implements JsonpSerializable {
 
 		private Map<String, List<String>> headers;
 
+		public Builder() {
+		}
+		private Builder(ReindexTask instance) {
+			this.action = instance.action;
+			this.cancellable = instance.cancellable;
+			this.description = instance.description;
+			this.id = instance.id;
+			this.node = instance.node;
+			this.runningTimeInNanos = instance.runningTimeInNanos;
+			this.startTimeInMillis = instance.startTimeInMillis;
+			this.status = instance.status;
+			this.type = instance.type;
+			this.headers = instance.headers;
+
+		}
 		/**
 		 * Required - API name: {@code action}
 		 */
@@ -384,6 +399,12 @@ public class ReindexTask implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

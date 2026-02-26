@@ -89,6 +89,11 @@ public class PercolatorProperty extends PropertyBase implements PropertyVariant 
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PercolatorProperty> {
+		public Builder() {
+		}
+		private Builder(PercolatorProperty instance) {
+
+		}
 		@Override
 		protected Builder self() {
 			return this;
@@ -107,6 +112,12 @@ public class PercolatorProperty extends PropertyBase implements PropertyVariant 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

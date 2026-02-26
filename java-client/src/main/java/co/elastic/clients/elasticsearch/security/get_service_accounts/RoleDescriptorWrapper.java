@@ -113,6 +113,12 @@ public class RoleDescriptorWrapper implements JsonpSerializable {
 				ObjectBuilder<RoleDescriptorWrapper> {
 		private RoleDescriptorRead roleDescriptor;
 
+		public Builder() {
+		}
+		private Builder(RoleDescriptorWrapper instance) {
+			this.roleDescriptor = instance.roleDescriptor;
+
+		}
 		/**
 		 * Required - API name: {@code role_descriptor}
 		 */
@@ -147,6 +153,12 @@ public class RoleDescriptorWrapper implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

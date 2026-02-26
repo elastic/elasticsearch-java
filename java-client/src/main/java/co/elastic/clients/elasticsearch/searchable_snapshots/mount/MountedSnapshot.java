@@ -150,6 +150,14 @@ public class MountedSnapshot implements JsonpSerializable {
 
 		private ShardStatistics shards;
 
+		public Builder() {
+		}
+		private Builder(MountedSnapshot instance) {
+			this.snapshot = instance.snapshot;
+			this.indices = instance.indices;
+			this.shards = instance.shards;
+
+		}
 		/**
 		 * Required - API name: {@code snapshot}
 		 */
@@ -211,6 +219,12 @@ public class MountedSnapshot implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

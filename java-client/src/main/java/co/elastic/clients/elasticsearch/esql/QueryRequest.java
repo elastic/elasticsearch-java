@@ -363,6 +363,22 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Map<String, Map<String, TableValues>> tables;
 
+		public Builder() {
+		}
+		private Builder(QueryRequest instance) {
+			this.columnar = instance.columnar;
+			this.delimiter = instance.delimiter;
+			this.dropNullColumns = instance.dropNullColumns;
+			this.filter = instance.filter;
+			this.format = instance.format;
+			this.includeCcsMetadata = instance.includeCcsMetadata;
+			this.locale = instance.locale;
+			this.params = instance.params;
+			this.profile = instance.profile;
+			this.query = instance.query;
+			this.tables = instance.tables;
+
+		}
 		/**
 		 * By default, ES|QL returns results as rows. For example, FROM returns each
 		 * individual document as one row. For the JSON, YAML, CBOR and smile formats,
@@ -645,6 +661,12 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

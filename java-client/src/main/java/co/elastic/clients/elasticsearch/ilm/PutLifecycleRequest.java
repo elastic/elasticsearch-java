@@ -173,6 +173,15 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private Time timeout;
 
+		public Builder() {
+		}
+		private Builder(PutLifecycleRequest instance) {
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.policy = instance.policy;
+			this.timeout = instance.timeout;
+
+		}
 		/**
 		 * Period to wait for a connection to the master node. If no response is
 		 * received before the timeout expires, the request fails and returns an error.
@@ -258,6 +267,12 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

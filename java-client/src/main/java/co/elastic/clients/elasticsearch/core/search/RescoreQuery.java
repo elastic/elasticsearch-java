@@ -191,6 +191,15 @@ public class RescoreQuery implements RescoreVariant, JsonpSerializable {
 		@Nullable
 		private ScoreMode scoreMode;
 
+		public Builder() {
+		}
+		private Builder(RescoreQuery instance) {
+			this.query = instance.query;
+			this.queryWeight = instance.queryWeight;
+			this.rescoreQueryWeight = instance.rescoreQueryWeight;
+			this.scoreMode = instance.scoreMode;
+
+		}
 		/**
 		 * Required - The query to use for rescoring. This query is only run on the
 		 * Top-K results returned by the <code>query</code> and <code>post_filter</code>
@@ -274,6 +283,12 @@ public class RescoreQuery implements RescoreVariant, JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

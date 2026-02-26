@@ -245,6 +245,17 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 		@Nullable
 		private IntervalsFilter filter;
 
+		public Builder() {
+		}
+		private Builder(IntervalsMatch instance) {
+			this.analyzer = instance.analyzer;
+			this.maxGaps = instance.maxGaps;
+			this.ordered = instance.ordered;
+			this.query = instance.query;
+			this.useField = instance.useField;
+			this.filter = instance.filter;
+
+		}
 		/**
 		 * Analyzer used to analyze terms in the query.
 		 * <p>
@@ -345,6 +356,12 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

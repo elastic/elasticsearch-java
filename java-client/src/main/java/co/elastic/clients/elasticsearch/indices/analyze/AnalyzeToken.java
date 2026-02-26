@@ -191,6 +191,17 @@ public class AnalyzeToken implements JsonpSerializable {
 
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(AnalyzeToken instance) {
+			this.endOffset = instance.endOffset;
+			this.position = instance.position;
+			this.positionlength = instance.positionlength;
+			this.startOffset = instance.startOffset;
+			this.token = instance.token;
+			this.type = instance.type;
+
+		}
 		/**
 		 * Required - API name: {@code end_offset}
 		 */
@@ -257,6 +268,12 @@ public class AnalyzeToken implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

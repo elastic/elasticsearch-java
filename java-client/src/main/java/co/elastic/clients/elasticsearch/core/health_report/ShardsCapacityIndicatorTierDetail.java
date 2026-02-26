@@ -136,6 +136,13 @@ public class ShardsCapacityIndicatorTierDetail implements JsonpSerializable {
 		@Nullable
 		private Integer currentUsedShards;
 
+		public Builder() {
+		}
+		private Builder(ShardsCapacityIndicatorTierDetail instance) {
+			this.maxShardsInCluster = instance.maxShardsInCluster;
+			this.currentUsedShards = instance.currentUsedShards;
+
+		}
 		/**
 		 * Required - API name: {@code max_shards_in_cluster}
 		 */
@@ -170,6 +177,12 @@ public class ShardsCapacityIndicatorTierDetail implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

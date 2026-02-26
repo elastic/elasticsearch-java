@@ -164,6 +164,14 @@ public class IpRangeAggregationRange implements JsonpSerializable {
 		@Nullable
 		private String to;
 
+		public Builder() {
+		}
+		private Builder(IpRangeAggregationRange instance) {
+			this.from = instance.from;
+			this.mask = instance.mask;
+			this.to = instance.to;
+
+		}
 		/**
 		 * Start of the range.
 		 * <p>
@@ -212,6 +220,12 @@ public class IpRangeAggregationRange implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

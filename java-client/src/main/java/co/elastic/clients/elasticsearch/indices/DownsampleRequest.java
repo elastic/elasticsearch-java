@@ -144,6 +144,14 @@ public class DownsampleRequest extends RequestBase implements JsonpSerializable 
 
 		private DownsampleConfig config;
 
+		public Builder() {
+		}
+		private Builder(DownsampleRequest instance) {
+			this.index = instance.index;
+			this.targetIndex = instance.targetIndex;
+			this.config = instance.config;
+
+		}
 		/**
 		 * Required - Name of the time series index to downsample.
 		 * <p>
@@ -205,6 +213,12 @@ public class DownsampleRequest extends RequestBase implements JsonpSerializable 
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	public static final JsonpDeserializer<DownsampleRequest> _DESERIALIZER = createDownsampleRequestDeserializer();
 	protected static JsonpDeserializer<DownsampleRequest> createDownsampleRequestDeserializer() {
 

@@ -158,6 +158,14 @@ public class GoogleAiStudioServiceSettings implements JsonpSerializable {
 		@Nullable
 		private RateLimitSetting rateLimit;
 
+		public Builder() {
+		}
+		private Builder(GoogleAiStudioServiceSettings instance) {
+			this.apiKey = instance.apiKey;
+			this.modelId = instance.modelId;
+			this.rateLimit = instance.rateLimit;
+
+		}
 		/**
 		 * Required - A valid API key of your Google Gemini account.
 		 * <p>
@@ -220,6 +228,12 @@ public class GoogleAiStudioServiceSettings implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

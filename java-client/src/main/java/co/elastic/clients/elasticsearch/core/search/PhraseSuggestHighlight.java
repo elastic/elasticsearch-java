@@ -134,6 +134,13 @@ public class PhraseSuggestHighlight implements JsonpSerializable {
 
 		private String preTag;
 
+		public Builder() {
+		}
+		private Builder(PhraseSuggestHighlight instance) {
+			this.postTag = instance.postTag;
+			this.preTag = instance.preTag;
+
+		}
 		/**
 		 * Required - Use in conjunction with <code>pre_tag</code> to define the HTML
 		 * tags to use for the highlighted text.
@@ -174,6 +181,12 @@ public class PhraseSuggestHighlight implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

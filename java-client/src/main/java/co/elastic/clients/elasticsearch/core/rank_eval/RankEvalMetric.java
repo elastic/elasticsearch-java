@@ -195,6 +195,16 @@ public class RankEvalMetric implements JsonpSerializable {
 		@Nullable
 		private RankEvalMetricExpectedReciprocalRank expectedReciprocalRank;
 
+		public Builder() {
+		}
+		private Builder(RankEvalMetric instance) {
+			this.precision = instance.precision;
+			this.recall = instance.recall;
+			this.meanReciprocalRank = instance.meanReciprocalRank;
+			this.dcg = instance.dcg;
+			this.expectedReciprocalRank = instance.expectedReciprocalRank;
+
+		}
 		/**
 		 * API name: {@code precision}
 		 */
@@ -292,6 +302,12 @@ public class RankEvalMetric implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**

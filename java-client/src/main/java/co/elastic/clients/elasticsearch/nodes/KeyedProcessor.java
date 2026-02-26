@@ -135,6 +135,13 @@ public class KeyedProcessor implements JsonpSerializable {
 		@Nullable
 		private String type;
 
+		public Builder() {
+		}
+		private Builder(KeyedProcessor instance) {
+			this.stats = instance.stats;
+			this.type = instance.type;
+
+		}
 		/**
 		 * API name: {@code stats}
 		 */
@@ -176,6 +183,12 @@ public class KeyedProcessor implements JsonpSerializable {
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
