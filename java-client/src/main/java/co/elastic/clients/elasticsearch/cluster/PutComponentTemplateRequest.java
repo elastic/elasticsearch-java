@@ -22,7 +22,7 @@ package co.elastic.clients.elasticsearch.cluster;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
-import co.elastic.clients.elasticsearch.indices.put_index_template.IndexTemplateMapping;
+import co.elastic.clients.elasticsearch.indices.IndexState;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -112,7 +112,7 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 
 	private final String name;
 
-	private final IndexTemplateMapping template;
+	private final IndexState template;
 
 	@Nullable
 	private final Long version;
@@ -218,7 +218,7 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 	 * <p>
 	 * API name: {@code template}
 	 */
-	public final IndexTemplateMapping template() {
+	public final IndexState template() {
 		return this.template;
 	}
 
@@ -298,7 +298,7 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 
 		private String name;
 
-		private IndexTemplateMapping template;
+		private IndexState template;
 
 		@Nullable
 		private Long version;
@@ -428,7 +428,7 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code template}
 		 */
-		public final Builder template(IndexTemplateMapping value) {
+		public final Builder template(IndexState value) {
 			this.template = value;
 			return this;
 		}
@@ -439,8 +439,8 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code template}
 		 */
-		public final Builder template(Function<IndexTemplateMapping.Builder, ObjectBuilder<IndexTemplateMapping>> fn) {
-			return this.template(fn.apply(new IndexTemplateMapping.Builder()).build());
+		public final Builder template(Function<IndexState.Builder, ObjectBuilder<IndexState>> fn) {
+			return this.template(fn.apply(new IndexState.Builder()).build());
 		}
 
 		/**
@@ -492,7 +492,7 @@ public class PutComponentTemplateRequest extends RequestBase implements JsonpSer
 
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::deprecated, JsonpDeserializer.booleanDeserializer(), "deprecated");
-		op.add(Builder::template, IndexTemplateMapping._DESERIALIZER, "template");
+		op.add(Builder::template, IndexState._DESERIALIZER, "template");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 
 	}
