@@ -74,6 +74,7 @@ public class CreateFromRequest extends RequestBase implements JsonpSerializable 
 
 	private final String source;
 
+	@Nullable
 	private final CreateFrom createFrom;
 
 	// ---------------------------------------------------------------------------------------------
@@ -82,7 +83,7 @@ public class CreateFromRequest extends RequestBase implements JsonpSerializable 
 
 		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
 		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
-		this.createFrom = ApiTypeHelper.requireNonNull(builder.createFrom, this, "createFrom");
+		this.createFrom = builder.createFrom;
 
 	}
 
@@ -109,8 +110,9 @@ public class CreateFromRequest extends RequestBase implements JsonpSerializable 
 	}
 
 	/**
-	 * Required - Request body.
+	 * Request body.
 	 */
+	@Nullable
 	public final CreateFrom createFrom() {
 		return this.createFrom;
 	}
@@ -136,6 +138,7 @@ public class CreateFromRequest extends RequestBase implements JsonpSerializable 
 
 		private String source;
 
+		@Nullable
 		private CreateFrom createFrom;
 
 		public Builder() {
@@ -167,15 +170,15 @@ public class CreateFromRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Required - Request body.
+		 * Request body.
 		 */
-		public final Builder createFrom(CreateFrom value) {
+		public final Builder createFrom(@Nullable CreateFrom value) {
 			this.createFrom = value;
 			return this;
 		}
 
 		/**
-		 * Required - Request body.
+		 * Request body.
 		 */
 		public final Builder createFrom(Function<CreateFrom.Builder, ObjectBuilder<CreateFrom>> fn) {
 			return this.createFrom(fn.apply(new CreateFrom.Builder()).build());
