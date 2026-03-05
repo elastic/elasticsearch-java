@@ -83,6 +83,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 
 	private final String name;
 
+	@Nullable
 	private final IndexTemplate indexTemplate;
 
 	// ---------------------------------------------------------------------------------------------
@@ -94,7 +95,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		this.includeDefaults = builder.includeDefaults;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.indexTemplate = ApiTypeHelper.requireNonNull(builder.indexTemplate, this, "indexTemplate");
+		this.indexTemplate = builder.indexTemplate;
 
 	}
 
@@ -155,8 +156,9 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 	}
 
 	/**
-	 * Required - Request body.
+	 * Request body.
 	 */
+	@Nullable
 	public final IndexTemplate indexTemplate() {
 		return this.indexTemplate;
 	}
@@ -192,6 +194,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 
 		private String name;
 
+		@Nullable
 		private IndexTemplate indexTemplate;
 
 		public Builder() {
@@ -269,15 +272,15 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
-		 * Required - Request body.
+		 * Request body.
 		 */
-		public final Builder indexTemplate(IndexTemplate value) {
+		public final Builder indexTemplate(@Nullable IndexTemplate value) {
 			this.indexTemplate = value;
 			return this;
 		}
 
 		/**
-		 * Required - Request body.
+		 * Request body.
 		 */
 		public final Builder indexTemplate(Function<IndexTemplate.Builder, ObjectBuilder<IndexTemplate>> fn) {
 			return this.indexTemplate(fn.apply(new IndexTemplate.Builder()).build());
