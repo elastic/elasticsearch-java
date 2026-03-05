@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.project_routing;
+package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,9 +31,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
-import java.lang.String;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -53,55 +50,41 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: project_routing.get_many.Response
+// typedef: inference.embedding.Response
 
 /**
  *
- * @see <a href=
- *      "../doc-files/api-spec.html#project_routing.get_many.Response">API
+ * @see <a href="../doc-files/api-spec.html#inference.embedding.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class GetManyResponse implements JsonpSerializable {
-	private final Map<String, ProjectRoutingExpression> result;
+public class EmbeddingResponse implements JsonpSerializable {
+	private final EmbeddingInferenceResult inferenceResult;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private GetManyResponse(Builder builder) {
+	private EmbeddingResponse(Builder builder) {
 
-		this.result = ApiTypeHelper.unmodifiableRequired(builder.result, this, "result");
+		this.inferenceResult = ApiTypeHelper.requireNonNull(builder.inferenceResult, this, "inferenceResult");
 
 	}
 
-	public static GetManyResponse of(Function<Builder, ObjectBuilder<GetManyResponse>> fn) {
+	public static EmbeddingResponse of(Function<Builder, ObjectBuilder<EmbeddingResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - Response value.
 	 */
-	public final Map<String, ProjectRoutingExpression> result() {
-		return this.result;
-	}
-
-	/**
-	 * Get an element of {@code result}.
-	 */
-	public final @Nullable ProjectRoutingExpression get(String key) {
-		return this.result.get(key);
+	public final EmbeddingInferenceResult inferenceResult() {
+		return this.inferenceResult;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		for (Map.Entry<String, ProjectRoutingExpression> item0 : this.result.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
-
-		}
-		generator.writeEnd();
+		this.inferenceResult.serialize(generator, mapper);
 
 	}
 
@@ -113,49 +96,43 @@ public class GetManyResponse implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetManyResponse}.
+	 * Builder for {@link EmbeddingResponse}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GetManyResponse> {
-		private Map<String, ProjectRoutingExpression> result = new HashMap<>();
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<EmbeddingResponse> {
+		private EmbeddingInferenceResult inferenceResult;
 
 		/**
 		 * Required - Response value.
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>result</code>.
 		 */
-		public final Builder result(Map<String, ProjectRoutingExpression> map) {
-			this.result = _mapPutAll(this.result, map);
+		public final Builder inferenceResult(EmbeddingInferenceResult value) {
+			this.inferenceResult = value;
 			return this;
 		}
 
 		/**
 		 * Required - Response value.
-		 * <p>
-		 * Adds an entry to <code>result</code>.
 		 */
-		public final Builder result(String key, ProjectRoutingExpression value) {
-			this.result = _mapPut(this.result, key, value);
-			return this;
+		public final Builder inferenceResult(
+				Function<EmbeddingInferenceResult.Builder, ObjectBuilder<EmbeddingInferenceResult>> fn) {
+			return this.inferenceResult(fn.apply(new EmbeddingInferenceResult.Builder()).build());
 		}
 
 		/**
 		 * Required - Response value.
-		 * <p>
-		 * Adds an entry to <code>result</code> using a builder lambda.
 		 */
-		public final Builder result(String key,
-				Function<ProjectRoutingExpression.Builder, ObjectBuilder<ProjectRoutingExpression>> fn) {
-			return result(key, fn.apply(new ProjectRoutingExpression.Builder()).build());
+		public final Builder inferenceResult(EmbeddingInferenceResultVariant value) {
+			this.inferenceResult = value._toEmbeddingInferenceResult();
+			return this;
 		}
 
 		@Override
 		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
 
 			@SuppressWarnings("unchecked")
-			Map<String, ProjectRoutingExpression> value = (Map<String, ProjectRoutingExpression>) JsonpDeserializer
-					.stringMapDeserializer(ProjectRoutingExpression._DESERIALIZER).deserialize(parser, mapper);
-			return this.result(value);
+			EmbeddingInferenceResult value = (EmbeddingInferenceResult) EmbeddingInferenceResult._DESERIALIZER
+					.deserialize(parser, mapper);
+			return this.inferenceResult(value);
 		}
 
 		@Override
@@ -164,26 +141,25 @@ public class GetManyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link GetManyResponse}.
+		 * Builds a {@link EmbeddingResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GetManyResponse build() {
+		public EmbeddingResponse build() {
 			_checkSingleUse();
 
-			return new GetManyResponse(this);
+			return new EmbeddingResponse(this);
 		}
 	}
 
-	public static final JsonpDeserializer<GetManyResponse> _DESERIALIZER = createGetManyResponseDeserializer();
-	protected static JsonpDeserializer<GetManyResponse> createGetManyResponseDeserializer() {
+	public static final JsonpDeserializer<EmbeddingResponse> _DESERIALIZER = createEmbeddingResponseDeserializer();
+	protected static JsonpDeserializer<EmbeddingResponse> createEmbeddingResponseDeserializer() {
 
-		JsonpDeserializer<Map<String, ProjectRoutingExpression>> valueDeserializer = JsonpDeserializer
-				.stringMapDeserializer(ProjectRoutingExpression._DESERIALIZER);
+		JsonpDeserializer<EmbeddingInferenceResult> valueDeserializer = EmbeddingInferenceResult._DESERIALIZER;
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.result(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.inferenceResult(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

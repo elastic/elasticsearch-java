@@ -81,6 +81,7 @@ public class RateLimitSetting implements JsonpSerializable {
 	 * allowed per minute is set by each service as follows:
 	 * <ul>
 	 * <li><code>alibabacloud-ai-search</code> service: <code>1000</code></li>
+	 * <li><code>amazonbedrock</code> service: <code>240</code></li>
 	 * <li><code>anthropic</code> service: <code>50</code></li>
 	 * <li><code>azureaistudio</code> service: <code>240</code></li>
 	 * <li><code>azureopenai</code> service and task type
@@ -158,6 +159,7 @@ public class RateLimitSetting implements JsonpSerializable {
 		 * allowed per minute is set by each service as follows:
 		 * <ul>
 		 * <li><code>alibabacloud-ai-search</code> service: <code>1000</code></li>
+		 * <li><code>amazonbedrock</code> service: <code>240</code></li>
 		 * <li><code>anthropic</code> service: <code>50</code></li>
 		 * <li><code>azureaistudio</code> service: <code>240</code></li>
 		 * <li><code>azureopenai</code> service and task type

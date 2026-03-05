@@ -65,7 +65,8 @@ import javax.annotation.Nullable;
  * <p>
  * To review the available <code>rerank</code> models, refer to
  * <a href="https://jina.ai/reranker">https://jina.ai/reranker</a>. To review
- * the available <code>text_embedding</code> models, refer to the
+ * the available <code>embedding</code> and <code>text_embedding</code> models,
+ * refer to
  * <a href="https://jina.ai/embeddings/">https://jina.ai/embeddings/</a>.
  * 
  * @see <a href="../doc-files/api-spec.html#inference.put_jinaai.Request">API
@@ -109,9 +110,9 @@ public class PutJinaaiRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The chunking configuration object. Applies only to the
-	 * <code>text_embedding</code> task type. Not applicable to the
-	 * <code>rerank</code> task type.
+	 * The chunking configuration object. Applies only to the <code>embedding</code>
+	 * and text_embedding<code>task types. Not applicable to the</code>rerank` task
+	 * type.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -248,9 +249,9 @@ public class PutJinaaiRequest extends RequestBase implements JsonpSerializable {
 
 		}
 		/**
-		 * The chunking configuration object. Applies only to the
-		 * <code>text_embedding</code> task type. Not applicable to the
-		 * <code>rerank</code> task type.
+		 * The chunking configuration object. Applies only to the <code>embedding</code>
+		 * and text_embedding<code>task types. Not applicable to the</code>rerank` task
+		 * type.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -260,9 +261,9 @@ public class PutJinaaiRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The chunking configuration object. Applies only to the
-		 * <code>text_embedding</code> task type. Not applicable to the
-		 * <code>rerank</code> task type.
+		 * The chunking configuration object. Applies only to the <code>embedding</code>
+		 * and text_embedding<code>task types. Not applicable to the</code>rerank` task
+		 * type.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */

@@ -23,7 +23,9 @@ import co.elastic.clients.ApiClient;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.TextResponse;
 import co.elastic.clients.util.ObjectBuilder;
@@ -279,6 +281,10 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * IMPORTANT: CAT APIs are only intended for human consumption using the command
 	 * line or Kibana console. They are not intended for use by applications. For
 	 * application consumption, use the count API.
+	 * <p>
+	 * NOTE: Starting in Elasticsearch 9.3.0, this endpoint also supports the
+	 * <code>POST</code> method. This is primarily intended for project routing in
+	 * serverless environments.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-count">Documentation
@@ -302,6 +308,10 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * IMPORTANT: CAT APIs are only intended for human consumption using the command
 	 * line or Kibana console. They are not intended for use by applications. For
 	 * application consumption, use the count API.
+	 * <p>
+	 * NOTE: Starting in Elasticsearch 9.3.0, this endpoint also supports the
+	 * <code>POST</code> method. This is primarily intended for project routing in
+	 * serverless environments.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -326,6 +336,10 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 	 * IMPORTANT: CAT APIs are only intended for human consumption using the command
 	 * line or Kibana console. They are not intended for use by applications. For
 	 * application consumption, use the count API.
+	 * <p>
+	 * NOTE: Starting in Elasticsearch 9.3.0, this endpoint also supports the
+	 * <code>POST</code> method. This is primarily intended for project routing in
+	 * serverless environments.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cat-count">Documentation

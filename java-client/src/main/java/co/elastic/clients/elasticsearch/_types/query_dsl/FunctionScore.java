@@ -35,6 +35,7 @@ import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Object;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -123,6 +124,9 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 	@Nullable
 	private final Double weight;
 
+	@Nullable
+	private final String name;
+
 	public FunctionScore(@Nullable FunctionScoreVariant value) {
 
 		if (value != null) {
@@ -136,6 +140,7 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 
 		this.filter = null;
 		this.weight = null;
+		this.name = null;
 
 	}
 
@@ -152,6 +157,7 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 
 		this.filter = builder.filter;
 		this.weight = builder.weight;
+		this.name = builder.name;
 
 	}
 
@@ -173,6 +179,16 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 	@Nullable
 	public final Double weight() {
 		return this.weight;
+	}
+
+	/**
+	 * A name to identify which function matched and influenced the score.
+	 * <p>
+	 * API name: {@code _name}
+	 */
+	@Nullable
+	public final String name() {
+		return this.name;
 	}
 
 	/**
@@ -294,6 +310,11 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 			generator.write(this.weight);
 
 		}
+		if (this.name != null) {
+			generator.writeKey("_name");
+			generator.write(this.name);
+
+		}
 
 		if (this._value != null) {
 			generator.writeKey(_kind.jsonValue());
@@ -321,6 +342,9 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 
 		@Nullable
 		private Double weight;
+
+		@Nullable
+		private String name;
 
 		/**
 		 * API name: {@code filter}
@@ -350,6 +374,16 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 		 */
 		public final Builder weight(@Nullable Double value) {
 			this.weight = value;
+			return this;
+		}
+
+		/**
+		 * A name to identify which function matched and influenced the score.
+		 * <p>
+		 * API name: {@code _name}
+		 */
+		public final Builder name(@Nullable String value) {
+			this.name = value;
 			return this;
 		}
 
@@ -458,6 +492,16 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 				return this;
 			}
 
+			/**
+			 * A name to identify which function matched and influenced the score.
+			 * <p>
+			 * API name: {@code _name}
+			 */
+			public final ContainerBuilder name(@Nullable String value) {
+				Builder.this.name = value;
+				return this;
+			}
+
 			public FunctionScore build() {
 				return Builder.this.build();
 			}
@@ -474,6 +518,7 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 		op.add(Builder::scriptScore, ScriptScoreFunction._DESERIALIZER, "script_score");
 		op.add(Builder::filter, Query._DESERIALIZER, "filter");
 		op.add(Builder::weight, JsonpDeserializer.doubleDeserializer(), "weight");
+		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "_name");
 
 	}
 

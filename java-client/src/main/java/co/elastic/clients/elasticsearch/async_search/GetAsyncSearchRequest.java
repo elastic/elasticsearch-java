@@ -31,6 +31,7 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -74,6 +75,9 @@ public class GetAsyncSearchRequest extends RequestBase {
 	private final Time keepAlive;
 
 	@Nullable
+	private final Boolean returnIntermediateResults;
+
+	@Nullable
 	private final Time waitForCompletionTimeout;
 
 	// ---------------------------------------------------------------------------------------------
@@ -82,6 +86,7 @@ public class GetAsyncSearchRequest extends RequestBase {
 
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.keepAlive = builder.keepAlive;
+		this.returnIntermediateResults = builder.returnIntermediateResults;
 		this.waitForCompletionTimeout = builder.waitForCompletionTimeout;
 
 	}
@@ -115,6 +120,23 @@ public class GetAsyncSearchRequest extends RequestBase {
 	}
 
 	/**
+	 * Specifies whether the response should contain intermediate results if the
+	 * query is still running when the wait_for_completion_timeout expires or if no
+	 * wait_for_completion_timeout is specified. If true and the search is still
+	 * running, the search response will include any hits and partial aggregations
+	 * that are available. If false and the search is still running, the search
+	 * response will not include any hits (but possibly include total hits) nor will
+	 * include any partial aggregations. When not specified, the intermediate
+	 * results are returned for running queries.
+	 * <p>
+	 * API name: {@code return_intermediate_results}
+	 */
+	@Nullable
+	public final Boolean returnIntermediateResults() {
+		return this.returnIntermediateResults;
+	}
+
+	/**
 	 * Specifies to wait for the search to be completed up until the provided
 	 * timeout. Final results will be returned if available before the timeout
 	 * expires, otherwise the currently available results will be returned once the
@@ -143,6 +165,9 @@ public class GetAsyncSearchRequest extends RequestBase {
 		private Time keepAlive;
 
 		@Nullable
+		private Boolean returnIntermediateResults;
+
+		@Nullable
 		private Time waitForCompletionTimeout;
 
 		public Builder() {
@@ -150,6 +175,7 @@ public class GetAsyncSearchRequest extends RequestBase {
 		private Builder(GetAsyncSearchRequest instance) {
 			this.id = instance.id;
 			this.keepAlive = instance.keepAlive;
+			this.returnIntermediateResults = instance.returnIntermediateResults;
 			this.waitForCompletionTimeout = instance.waitForCompletionTimeout;
 
 		}
@@ -190,6 +216,23 @@ public class GetAsyncSearchRequest extends RequestBase {
 		 */
 		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.keepAlive(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Specifies whether the response should contain intermediate results if the
+		 * query is still running when the wait_for_completion_timeout expires or if no
+		 * wait_for_completion_timeout is specified. If true and the search is still
+		 * running, the search response will include any hits and partial aggregations
+		 * that are available. If false and the search is still running, the search
+		 * response will not include any hits (but possibly include total hits) nor will
+		 * include any partial aggregations. When not specified, the intermediate
+		 * results are returned for running queries.
+		 * <p>
+		 * API name: {@code return_intermediate_results}
+		 */
+		public final Builder returnIntermediateResults(@Nullable Boolean value) {
+			this.returnIntermediateResults = value;
+			return this;
 		}
 
 		/**
@@ -294,6 +337,9 @@ public class GetAsyncSearchRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("typed_keys", "true");
+				if (request.returnIntermediateResults != null) {
+					params.put("return_intermediate_results", String.valueOf(request.returnIntermediateResults));
+				}
 				if (request.keepAlive != null) {
 					params.put("keep_alive", request.keepAlive._toJsonString());
 				}

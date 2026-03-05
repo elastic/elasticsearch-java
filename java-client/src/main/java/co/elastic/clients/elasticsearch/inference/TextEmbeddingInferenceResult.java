@@ -144,7 +144,7 @@ public class TextEmbeddingInferenceResult
 	 *             if the current variant is not of the {@code text_embedding_bytes}
 	 *             kind.
 	 */
-	public List<TextEmbeddingByteResult> textEmbeddingBytes() {
+	public List<DenseEmbeddingByteResult> textEmbeddingBytes() {
 		return TaggedUnionUtils.get(this, Kind.TextEmbeddingBytes);
 	}
 
@@ -162,7 +162,7 @@ public class TextEmbeddingInferenceResult
 	 *             if the current variant is not of the {@code text_embedding_bits}
 	 *             kind.
 	 */
-	public List<TextEmbeddingByteResult> textEmbeddingBits() {
+	public List<DenseEmbeddingByteResult> textEmbeddingBits() {
 		return TaggedUnionUtils.get(this, Kind.TextEmbeddingBits);
 	}
 
@@ -179,7 +179,7 @@ public class TextEmbeddingInferenceResult
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code text_embedding} kind.
 	 */
-	public List<TextEmbeddingResult> textEmbedding() {
+	public List<DenseEmbeddingResult> textEmbedding() {
 		return TaggedUnionUtils.get(this, Kind.TextEmbedding);
 	}
 
@@ -196,7 +196,7 @@ public class TextEmbeddingInferenceResult
 			switch (_kind) {
 				case TextEmbeddingBytes :
 					generator.writeStartArray();
-					for (TextEmbeddingByteResult item0 : ((List<TextEmbeddingByteResult>) this._value)) {
+					for (DenseEmbeddingByteResult item0 : ((List<DenseEmbeddingByteResult>) this._value)) {
 						item0.serialize(generator, mapper);
 
 					}
@@ -205,7 +205,7 @@ public class TextEmbeddingInferenceResult
 					break;
 				case TextEmbeddingBits :
 					generator.writeStartArray();
-					for (TextEmbeddingByteResult item0 : ((List<TextEmbeddingByteResult>) this._value)) {
+					for (DenseEmbeddingByteResult item0 : ((List<DenseEmbeddingByteResult>) this._value)) {
 						item0.serialize(generator, mapper);
 
 					}
@@ -214,7 +214,7 @@ public class TextEmbeddingInferenceResult
 					break;
 				case TextEmbedding :
 					generator.writeStartArray();
-					for (TextEmbeddingResult item0 : ((List<TextEmbeddingResult>) this._value)) {
+					for (DenseEmbeddingResult item0 : ((List<DenseEmbeddingResult>) this._value)) {
 						item0.serialize(generator, mapper);
 
 					}
@@ -243,19 +243,19 @@ public class TextEmbeddingInferenceResult
 		protected Builder self() {
 			return this;
 		}
-		public ObjectBuilder<TextEmbeddingInferenceResult> textEmbeddingBytes(List<TextEmbeddingByteResult> v) {
+		public ObjectBuilder<TextEmbeddingInferenceResult> textEmbeddingBytes(List<DenseEmbeddingByteResult> v) {
 			this._kind = Kind.TextEmbeddingBytes;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<TextEmbeddingInferenceResult> textEmbeddingBits(List<TextEmbeddingByteResult> v) {
+		public ObjectBuilder<TextEmbeddingInferenceResult> textEmbeddingBits(List<DenseEmbeddingByteResult> v) {
 			this._kind = Kind.TextEmbeddingBits;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<TextEmbeddingInferenceResult> textEmbedding(List<TextEmbeddingResult> v) {
+		public ObjectBuilder<TextEmbeddingInferenceResult> textEmbedding(List<DenseEmbeddingResult> v) {
 			this._kind = Kind.TextEmbedding;
 			this._value = v;
 			return this;
@@ -270,11 +270,11 @@ public class TextEmbeddingInferenceResult
 
 	protected static void setupTextEmbeddingInferenceResultDeserializer(ObjectDeserializer<Builder> op) {
 
-		op.add(Builder::textEmbeddingBytes, JsonpDeserializer.arrayDeserializer(TextEmbeddingByteResult._DESERIALIZER),
+		op.add(Builder::textEmbeddingBytes, JsonpDeserializer.arrayDeserializer(DenseEmbeddingByteResult._DESERIALIZER),
 				"text_embedding_bytes");
-		op.add(Builder::textEmbeddingBits, JsonpDeserializer.arrayDeserializer(TextEmbeddingByteResult._DESERIALIZER),
+		op.add(Builder::textEmbeddingBits, JsonpDeserializer.arrayDeserializer(DenseEmbeddingByteResult._DESERIALIZER),
 				"text_embedding_bits");
-		op.add(Builder::textEmbedding, JsonpDeserializer.arrayDeserializer(TextEmbeddingResult._DESERIALIZER),
+		op.add(Builder::textEmbedding, JsonpDeserializer.arrayDeserializer(DenseEmbeddingResult._DESERIALIZER),
 				"text_embedding");
 
 	}

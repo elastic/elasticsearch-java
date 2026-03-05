@@ -25,6 +25,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.TextResponse;
 import co.elastic.clients.util.ObjectBuilder;

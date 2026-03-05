@@ -75,6 +75,12 @@ public class InferenceResult implements TaggedUnion<InferenceResult.Kind, Object
 	 */
 
 	public enum Kind implements JsonEnum {
+		EmbeddingsBytes("embeddings_bytes"),
+
+		EmbeddingsBits("embeddings_bits"),
+
+		Embeddings("embeddings"),
+
 		TextEmbeddingBytes("text_embedding_bytes"),
 
 		TextEmbeddingBits("text_embedding_bits"),
@@ -133,6 +139,59 @@ public class InferenceResult implements TaggedUnion<InferenceResult.Kind, Object
 	}
 
 	/**
+	 * Is this variant instance of kind {@code embeddings_bytes}?
+	 */
+	public boolean isEmbeddingsBytes() {
+		return _kind == Kind.EmbeddingsBytes;
+	}
+
+	/**
+	 * Get the {@code embeddings_bytes} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code embeddings_bytes}
+	 *             kind.
+	 */
+	public List<DenseEmbeddingByteResult> embeddingsBytes() {
+		return TaggedUnionUtils.get(this, Kind.EmbeddingsBytes);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code embeddings_bits}?
+	 */
+	public boolean isEmbeddingsBits() {
+		return _kind == Kind.EmbeddingsBits;
+	}
+
+	/**
+	 * Get the {@code embeddings_bits} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code embeddings_bits}
+	 *             kind.
+	 */
+	public List<DenseEmbeddingByteResult> embeddingsBits() {
+		return TaggedUnionUtils.get(this, Kind.EmbeddingsBits);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code embeddings}?
+	 */
+	public boolean isEmbeddings() {
+		return _kind == Kind.Embeddings;
+	}
+
+	/**
+	 * Get the {@code embeddings} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code embeddings} kind.
+	 */
+	public List<DenseEmbeddingResult> embeddings() {
+		return TaggedUnionUtils.get(this, Kind.Embeddings);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code text_embedding_bytes}?
 	 */
 	public boolean isTextEmbeddingBytes() {
@@ -146,7 +205,7 @@ public class InferenceResult implements TaggedUnion<InferenceResult.Kind, Object
 	 *             if the current variant is not of the {@code text_embedding_bytes}
 	 *             kind.
 	 */
-	public List<TextEmbeddingByteResult> textEmbeddingBytes() {
+	public List<DenseEmbeddingByteResult> textEmbeddingBytes() {
 		return TaggedUnionUtils.get(this, Kind.TextEmbeddingBytes);
 	}
 
@@ -164,7 +223,7 @@ public class InferenceResult implements TaggedUnion<InferenceResult.Kind, Object
 	 *             if the current variant is not of the {@code text_embedding_bits}
 	 *             kind.
 	 */
-	public List<TextEmbeddingByteResult> textEmbeddingBits() {
+	public List<DenseEmbeddingByteResult> textEmbeddingBits() {
 		return TaggedUnionUtils.get(this, Kind.TextEmbeddingBits);
 	}
 
@@ -181,7 +240,7 @@ public class InferenceResult implements TaggedUnion<InferenceResult.Kind, Object
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code text_embedding} kind.
 	 */
-	public List<TextEmbeddingResult> textEmbedding() {
+	public List<DenseEmbeddingResult> textEmbedding() {
 		return TaggedUnionUtils.get(this, Kind.TextEmbedding);
 	}
 
@@ -248,9 +307,36 @@ public class InferenceResult implements TaggedUnion<InferenceResult.Kind, Object
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
 			switch (_kind) {
+				case EmbeddingsBytes :
+					generator.writeStartArray();
+					for (DenseEmbeddingByteResult item0 : ((List<DenseEmbeddingByteResult>) this._value)) {
+						item0.serialize(generator, mapper);
+
+					}
+					generator.writeEnd();
+
+					break;
+				case EmbeddingsBits :
+					generator.writeStartArray();
+					for (DenseEmbeddingByteResult item0 : ((List<DenseEmbeddingByteResult>) this._value)) {
+						item0.serialize(generator, mapper);
+
+					}
+					generator.writeEnd();
+
+					break;
+				case Embeddings :
+					generator.writeStartArray();
+					for (DenseEmbeddingResult item0 : ((List<DenseEmbeddingResult>) this._value)) {
+						item0.serialize(generator, mapper);
+
+					}
+					generator.writeEnd();
+
+					break;
 				case TextEmbeddingBytes :
 					generator.writeStartArray();
-					for (TextEmbeddingByteResult item0 : ((List<TextEmbeddingByteResult>) this._value)) {
+					for (DenseEmbeddingByteResult item0 : ((List<DenseEmbeddingByteResult>) this._value)) {
 						item0.serialize(generator, mapper);
 
 					}
@@ -259,7 +345,7 @@ public class InferenceResult implements TaggedUnion<InferenceResult.Kind, Object
 					break;
 				case TextEmbeddingBits :
 					generator.writeStartArray();
-					for (TextEmbeddingByteResult item0 : ((List<TextEmbeddingByteResult>) this._value)) {
+					for (DenseEmbeddingByteResult item0 : ((List<DenseEmbeddingByteResult>) this._value)) {
 						item0.serialize(generator, mapper);
 
 					}
@@ -268,7 +354,7 @@ public class InferenceResult implements TaggedUnion<InferenceResult.Kind, Object
 					break;
 				case TextEmbedding :
 					generator.writeStartArray();
-					for (TextEmbeddingResult item0 : ((List<TextEmbeddingResult>) this._value)) {
+					for (DenseEmbeddingResult item0 : ((List<DenseEmbeddingResult>) this._value)) {
 						item0.serialize(generator, mapper);
 
 					}
@@ -322,19 +408,37 @@ public class InferenceResult implements TaggedUnion<InferenceResult.Kind, Object
 		protected Builder self() {
 			return this;
 		}
-		public ObjectBuilder<InferenceResult> textEmbeddingBytes(List<TextEmbeddingByteResult> v) {
+		public ObjectBuilder<InferenceResult> embeddingsBytes(List<DenseEmbeddingByteResult> v) {
+			this._kind = Kind.EmbeddingsBytes;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<InferenceResult> embeddingsBits(List<DenseEmbeddingByteResult> v) {
+			this._kind = Kind.EmbeddingsBits;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<InferenceResult> embeddings(List<DenseEmbeddingResult> v) {
+			this._kind = Kind.Embeddings;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<InferenceResult> textEmbeddingBytes(List<DenseEmbeddingByteResult> v) {
 			this._kind = Kind.TextEmbeddingBytes;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<InferenceResult> textEmbeddingBits(List<TextEmbeddingByteResult> v) {
+		public ObjectBuilder<InferenceResult> textEmbeddingBits(List<DenseEmbeddingByteResult> v) {
 			this._kind = Kind.TextEmbeddingBits;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<InferenceResult> textEmbedding(List<TextEmbeddingResult> v) {
+		public ObjectBuilder<InferenceResult> textEmbedding(List<DenseEmbeddingResult> v) {
 			this._kind = Kind.TextEmbedding;
 			this._value = v;
 			return this;
@@ -367,11 +471,17 @@ public class InferenceResult implements TaggedUnion<InferenceResult.Kind, Object
 
 	protected static void setupInferenceResultDeserializer(ObjectDeserializer<Builder> op) {
 
-		op.add(Builder::textEmbeddingBytes, JsonpDeserializer.arrayDeserializer(TextEmbeddingByteResult._DESERIALIZER),
+		op.add(Builder::embeddingsBytes, JsonpDeserializer.arrayDeserializer(DenseEmbeddingByteResult._DESERIALIZER),
+				"embeddings_bytes");
+		op.add(Builder::embeddingsBits, JsonpDeserializer.arrayDeserializer(DenseEmbeddingByteResult._DESERIALIZER),
+				"embeddings_bits");
+		op.add(Builder::embeddings, JsonpDeserializer.arrayDeserializer(DenseEmbeddingResult._DESERIALIZER),
+				"embeddings");
+		op.add(Builder::textEmbeddingBytes, JsonpDeserializer.arrayDeserializer(DenseEmbeddingByteResult._DESERIALIZER),
 				"text_embedding_bytes");
-		op.add(Builder::textEmbeddingBits, JsonpDeserializer.arrayDeserializer(TextEmbeddingByteResult._DESERIALIZER),
+		op.add(Builder::textEmbeddingBits, JsonpDeserializer.arrayDeserializer(DenseEmbeddingByteResult._DESERIALIZER),
 				"text_embedding_bits");
-		op.add(Builder::textEmbedding, JsonpDeserializer.arrayDeserializer(TextEmbeddingResult._DESERIALIZER),
+		op.add(Builder::textEmbedding, JsonpDeserializer.arrayDeserializer(DenseEmbeddingResult._DESERIALIZER),
 				"text_embedding");
 		op.add(Builder::sparseEmbedding, JsonpDeserializer.arrayDeserializer(SparseEmbeddingResult._DESERIALIZER),
 				"sparse_embedding");

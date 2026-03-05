@@ -30,8 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Float;
-import java.util.List;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -51,36 +50,67 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: inference._types.TextEmbeddingResult
+// typedef: inference._types.EmbeddingContentObjectContents
 
 /**
- * The text embedding result object
+ * An object containing the input data for the model to embed.
  * 
  * @see <a href=
- *      "../doc-files/api-spec.html#inference._types.TextEmbeddingResult">API
+ *      "../doc-files/api-spec.html#inference._types.EmbeddingContentObjectContents">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TextEmbeddingResult implements JsonpSerializable {
-	private final List<Float> embedding;
+public class EmbeddingContentObjectContents implements JsonpSerializable {
+	private final EmbeddingContentType type;
+
+	@Nullable
+	private final EmbeddingContentFormat format;
+
+	private final String value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TextEmbeddingResult(Builder builder) {
+	private EmbeddingContentObjectContents(Builder builder) {
 
-		this.embedding = ApiTypeHelper.unmodifiableRequired(builder.embedding, this, "embedding");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.format = builder.format;
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public static TextEmbeddingResult of(Function<Builder, ObjectBuilder<TextEmbeddingResult>> fn) {
+	public static EmbeddingContentObjectContents of(
+			Function<Builder, ObjectBuilder<EmbeddingContentObjectContents>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code embedding}
+	 * Required - The type of input to embed.
+	 * <p>
+	 * API name: {@code type}
 	 */
-	public final List<Float> embedding() {
-		return this.embedding;
+	public final EmbeddingContentType type() {
+		return this.type;
+	}
+
+	/**
+	 * The format of the input. For the <code>text</code> type this defaults to
+	 * <code>text</code>. For the <code>image</code> type, this defaults to
+	 * <code>base64</code>.
+	 * <p>
+	 * API name: {@code format}
+	 */
+	@Nullable
+	public final EmbeddingContentFormat format() {
+		return this.format;
+	}
+
+	/**
+	 * Required - The value of the input to embed.
+	 * <p>
+	 * API name: {@code value}
+	 */
+	public final String value() {
+		return this.value;
 	}
 
 	/**
@@ -94,16 +124,14 @@ public class TextEmbeddingResult implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.embedding)) {
-			generator.writeKey("embedding");
-			generator.writeStartArray();
-			for (Float item0 : this.embedding) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
+		generator.writeKey("type");
+		this.type.serialize(generator, mapper);
+		if (this.format != null) {
+			generator.writeKey("format");
+			this.format.serialize(generator, mapper);
 		}
+		generator.writeKey("value");
+		generator.write(this.value);
 
 	}
 
@@ -115,37 +143,56 @@ public class TextEmbeddingResult implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TextEmbeddingResult}.
+	 * Builder for {@link EmbeddingContentObjectContents}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<TextEmbeddingResult> {
-		private List<Float> embedding;
+				ObjectBuilder<EmbeddingContentObjectContents> {
+		private EmbeddingContentType type;
+
+		@Nullable
+		private EmbeddingContentFormat format;
+
+		private String value;
 
 		public Builder() {
 		}
-		private Builder(TextEmbeddingResult instance) {
-			this.embedding = instance.embedding;
+		private Builder(EmbeddingContentObjectContents instance) {
+			this.type = instance.type;
+			this.format = instance.format;
+			this.value = instance.value;
 
 		}
 		/**
-		 * Required - API name: {@code embedding}
+		 * Required - The type of input to embed.
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>embedding</code>.
+		 * API name: {@code type}
 		 */
-		public final Builder embedding(List<Float> list) {
-			this.embedding = _listAddAll(this.embedding, list);
+		public final Builder type(EmbeddingContentType value) {
+			this.type = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code embedding}
+		 * The format of the input. For the <code>text</code> type this defaults to
+		 * <code>text</code>. For the <code>image</code> type, this defaults to
+		 * <code>base64</code>.
 		 * <p>
-		 * Adds one or more values to <code>embedding</code>.
+		 * API name: {@code format}
 		 */
-		public final Builder embedding(Float value, Float... values) {
-			this.embedding = _listAdd(this.embedding, value, values);
+		public final Builder format(@Nullable EmbeddingContentFormat value) {
+			this.format = value;
+			return this;
+		}
+
+		/**
+		 * Required - The value of the input to embed.
+		 * <p>
+		 * API name: {@code value}
+		 */
+		public final Builder value(String value) {
+			this.value = value;
 			return this;
 		}
 
@@ -155,15 +202,15 @@ public class TextEmbeddingResult implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link TextEmbeddingResult}.
+		 * Builds a {@link EmbeddingContentObjectContents}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TextEmbeddingResult build() {
+		public EmbeddingContentObjectContents build() {
 			_checkSingleUse();
 
-			return new TextEmbeddingResult(this);
+			return new EmbeddingContentObjectContents(this);
 		}
 	}
 
@@ -176,15 +223,17 @@ public class TextEmbeddingResult implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TextEmbeddingResult}
+	 * Json deserializer for {@link EmbeddingContentObjectContents}
 	 */
-	public static final JsonpDeserializer<TextEmbeddingResult> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TextEmbeddingResult::setupTextEmbeddingResultDeserializer);
+	public static final JsonpDeserializer<EmbeddingContentObjectContents> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, EmbeddingContentObjectContents::setupEmbeddingContentObjectContentsDeserializer);
 
-	protected static void setupTextEmbeddingResultDeserializer(ObjectDeserializer<TextEmbeddingResult.Builder> op) {
+	protected static void setupEmbeddingContentObjectContentsDeserializer(
+			ObjectDeserializer<EmbeddingContentObjectContents.Builder> op) {
 
-		op.add(Builder::embedding, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.floatDeserializer()),
-				"embedding");
+		op.add(Builder::type, EmbeddingContentType._DESERIALIZER, "type");
+		op.add(Builder::format, EmbeddingContentFormat._DESERIALIZER, "format");
+		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
 
 	}
 

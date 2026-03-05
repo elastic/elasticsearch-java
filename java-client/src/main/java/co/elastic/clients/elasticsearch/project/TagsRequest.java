@@ -23,6 +23,8 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -31,8 +33,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -62,8 +62,8 @@ import javax.annotation.Nullable;
  * @see <a href="../doc-files/api-spec.html#project.tags.Request">API
  *      specification</a>
  */
-
-public class TagsRequest extends RequestBase {
+@JsonpDeserializable
+public class TagsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String projectRouting;
 
@@ -88,6 +88,25 @@ public class TagsRequest extends RequestBase {
 	@Nullable
 	public final String projectRouting() {
 		return this.projectRouting;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -144,6 +163,20 @@ public class TagsRequest extends RequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
+	 * Json deserializer for {@link TagsRequest}
+	 */
+	public static final JsonpDeserializer<TagsRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			TagsRequest::setupTagsRequestDeserializer);
+
+	protected static void setupTagsRequestDeserializer(ObjectDeserializer<TagsRequest.Builder> op) {
+
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
 	 * Endpoint "{@code project.tags}".
 	 */
 	public static final Endpoint<TagsRequest, TagsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
@@ -168,11 +201,7 @@ public class TagsRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.projectRouting != null) {
-					params.put("project_routing", request.projectRouting);
-				}
-				return params;
+				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, TagsResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, TagsResponse._DESERIALIZER);
 }

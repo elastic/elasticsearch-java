@@ -77,7 +77,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<String> index;
 
-	private final List<String> indexRouting;
+	@Nullable
+	private final String indexRouting;
 
 	@Nullable
 	private final Boolean isWriteIndex;
@@ -87,9 +88,11 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 
 	private final String name;
 
-	private final List<String> routing;
+	@Nullable
+	private final String routing;
 
-	private final List<String> searchRouting;
+	@Nullable
+	private final String searchRouting;
 
 	@Nullable
 	private final Time timeout;
@@ -100,12 +103,12 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 
 		this.filter = builder.filter;
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
-		this.indexRouting = ApiTypeHelper.unmodifiable(builder.indexRouting);
+		this.indexRouting = builder.indexRouting;
 		this.isWriteIndex = builder.isWriteIndex;
 		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
-		this.searchRouting = ApiTypeHelper.unmodifiable(builder.searchRouting);
+		this.routing = builder.routing;
+		this.searchRouting = builder.searchRouting;
 		this.timeout = builder.timeout;
 
 	}
@@ -142,7 +145,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code index_routing}
 	 */
-	public final List<String> indexRouting() {
+	@Nullable
+	public final String indexRouting() {
 		return this.indexRouting;
 	}
 
@@ -189,7 +193,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code routing}
 	 */
-	public final List<String> routing() {
+	@Nullable
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -200,7 +205,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code search_routing}
 	 */
-	public final List<String> searchRouting() {
+	@Nullable
+	public final String searchRouting() {
 		return this.searchRouting;
 	}
 
@@ -231,14 +237,9 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 			this.filter.serialize(generator, mapper);
 
 		}
-		if (ApiTypeHelper.isDefined(this.indexRouting)) {
+		if (this.indexRouting != null) {
 			generator.writeKey("index_routing");
-			generator.writeStartArray();
-			for (String item0 : this.indexRouting) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			generator.write(this.indexRouting);
 
 		}
 		if (this.isWriteIndex != null) {
@@ -246,24 +247,14 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.isWriteIndex);
 
 		}
-		if (ApiTypeHelper.isDefined(this.routing)) {
+		if (this.routing != null) {
 			generator.writeKey("routing");
-			generator.writeStartArray();
-			for (String item0 : this.routing) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			generator.write(this.routing);
 
 		}
-		if (ApiTypeHelper.isDefined(this.searchRouting)) {
+		if (this.searchRouting != null) {
 			generator.writeKey("search_routing");
-			generator.writeStartArray();
-			for (String item0 : this.searchRouting) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			generator.write(this.searchRouting);
 
 		}
 
@@ -282,7 +273,7 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		private List<String> index;
 
 		@Nullable
-		private List<String> indexRouting;
+		private String indexRouting;
 
 		@Nullable
 		private Boolean isWriteIndex;
@@ -293,10 +284,10 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		private String name;
 
 		@Nullable
-		private List<String> routing;
+		private String routing;
 
 		@Nullable
-		private List<String> searchRouting;
+		private String searchRouting;
 
 		@Nullable
 		private Time timeout;
@@ -378,25 +369,9 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		 * stream aliases don’t support this parameter.
 		 * <p>
 		 * API name: {@code index_routing}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>indexRouting</code>.
 		 */
-		public final Builder indexRouting(List<String> list) {
-			this.indexRouting = _listAddAll(this.indexRouting, list);
-			return this;
-		}
-
-		/**
-		 * Value used to route indexing operations to a specific shard. If specified,
-		 * this overwrites the <code>routing</code> value for indexing operations. Data
-		 * stream aliases don’t support this parameter.
-		 * <p>
-		 * API name: {@code index_routing}
-		 * <p>
-		 * Adds one or more values to <code>indexRouting</code>.
-		 */
-		public final Builder indexRouting(String value, String... values) {
-			this.indexRouting = _listAdd(this.indexRouting, value, values);
+		public final Builder indexRouting(@Nullable String value) {
+			this.indexRouting = value;
 			return this;
 		}
 
@@ -453,24 +428,9 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		 * stream aliases don’t support this parameter.
 		 * <p>
 		 * API name: {@code routing}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder routing(List<String> list) {
-			this.routing = _listAddAll(this.routing, list);
-			return this;
-		}
-
-		/**
-		 * Value used to route indexing and search operations to a specific shard. Data
-		 * stream aliases don’t support this parameter.
-		 * <p>
-		 * API name: {@code routing}
-		 * <p>
-		 * Adds one or more values to <code>routing</code>.
-		 */
-		public final Builder routing(String value, String... values) {
-			this.routing = _listAdd(this.routing, value, values);
+		public final Builder routing(@Nullable String value) {
+			this.routing = value;
 			return this;
 		}
 
@@ -480,25 +440,9 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 		 * aliases don’t support this parameter.
 		 * <p>
 		 * API name: {@code search_routing}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>searchRouting</code>.
 		 */
-		public final Builder searchRouting(List<String> list) {
-			this.searchRouting = _listAddAll(this.searchRouting, list);
-			return this;
-		}
-
-		/**
-		 * Value used to route search operations to a specific shard. If specified, this
-		 * overwrites the <code>routing</code> value for search operations. Data stream
-		 * aliases don’t support this parameter.
-		 * <p>
-		 * API name: {@code search_routing}
-		 * <p>
-		 * Adds one or more values to <code>searchRouting</code>.
-		 */
-		public final Builder searchRouting(String value, String... values) {
-			this.searchRouting = _listAdd(this.searchRouting, value, values);
+		public final Builder searchRouting(@Nullable String value) {
+			this.searchRouting = value;
 			return this;
 		}
 
@@ -558,13 +502,10 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 	protected static void setupPutAliasRequestDeserializer(ObjectDeserializer<PutAliasRequest.Builder> op) {
 
 		op.add(Builder::filter, Query._DESERIALIZER, "filter");
-		op.add(Builder::indexRouting, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"index_routing");
+		op.add(Builder::indexRouting, JsonpDeserializer.stringDeserializer(), "index_routing");
 		op.add(Builder::isWriteIndex, JsonpDeserializer.booleanDeserializer(), "is_write_index");
-		op.add(Builder::routing, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"routing");
-		op.add(Builder::searchRouting, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"search_routing");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(Builder::searchRouting, JsonpDeserializer.stringDeserializer(), "search_routing");
 
 	}
 

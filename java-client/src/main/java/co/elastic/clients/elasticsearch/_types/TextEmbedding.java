@@ -97,7 +97,9 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 	}
 
 	/**
-	 * Required - API name: {@code model_text}
+	 * Required - The text to be converted into a vector by the specified model
+	 * <p>
+	 * API name: {@code model_text}
 	 */
 	public final String modelText() {
 		return this.modelText;
@@ -160,7 +162,9 @@ public class TextEmbedding implements QueryVectorBuilderVariant, JsonpSerializab
 		}
 
 		/**
-		 * Required - API name: {@code model_text}
+		 * Required - The text to be converted into a vector by the specified model
+		 * <p>
+		 * API name: {@code model_text}
 		 */
 		public final Builder modelText(String value) {
 			this.modelText = value;

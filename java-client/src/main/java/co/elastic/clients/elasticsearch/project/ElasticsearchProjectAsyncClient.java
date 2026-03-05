@@ -67,6 +67,145 @@ public class ElasticsearchProjectAsyncClient
 		return new ElasticsearchProjectAsyncClient(this.transport, transportOptions);
 	}
 
+	// ----- Endpoint: project.create_many_routing
+
+	/**
+	 * Create or update project routing expressions.
+	 * 
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public CompletableFuture<CreateManyRoutingResponse> createManyRouting(CreateManyRoutingRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CreateManyRoutingRequest, CreateManyRoutingResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateManyRoutingRequest, CreateManyRoutingResponse, ErrorResponse>) CreateManyRoutingRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create or update project routing expressions.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link CreateManyRoutingRequest}
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public final CompletableFuture<CreateManyRoutingResponse> createManyRouting(
+			Function<CreateManyRoutingRequest.Builder, ObjectBuilder<CreateManyRoutingRequest>> fn) {
+		return createManyRouting(fn.apply(new CreateManyRoutingRequest.Builder()).build());
+	}
+
+	/**
+	 * Create or update project routing expressions.
+	 * 
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public CompletableFuture<CreateManyRoutingResponse> createManyRouting() {
+		return this.transport.performRequestAsync(new CreateManyRoutingRequest.Builder().build(),
+				CreateManyRoutingRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: project.create_routing
+
+	/**
+	 * Create or update a project routing expression.
+	 * 
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public CompletableFuture<CreateRoutingResponse> createRouting(CreateRoutingRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CreateRoutingRequest, CreateRoutingResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateRoutingRequest, CreateRoutingResponse, ErrorResponse>) CreateRoutingRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create or update a project routing expression.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link CreateRoutingRequest}
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public final CompletableFuture<CreateRoutingResponse> createRouting(
+			Function<CreateRoutingRequest.Builder, ObjectBuilder<CreateRoutingRequest>> fn) {
+		return createRouting(fn.apply(new CreateRoutingRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: project.delete_routing
+
+	/**
+	 * Delete a project routing expression.
+	 * 
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public CompletableFuture<DeleteRoutingResponse> deleteRouting(DeleteRoutingRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteRoutingRequest, DeleteRoutingResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteRoutingRequest, DeleteRoutingResponse, ErrorResponse>) DeleteRoutingRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Delete a project routing expression.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteRoutingRequest}
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public final CompletableFuture<DeleteRoutingResponse> deleteRouting(
+			Function<DeleteRoutingRequest.Builder, ObjectBuilder<DeleteRoutingRequest>> fn) {
+		return deleteRouting(fn.apply(new DeleteRoutingRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: project.get_many_routing
+
+	/**
+	 * Get project routing expressions.
+	 * 
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+	public CompletableFuture<GetManyRoutingResponse> getManyRouting() {
+		return this.transport.performRequestAsync(GetManyRoutingRequest._INSTANCE, GetManyRoutingRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
+	// ----- Endpoint: project.get_routing
+
+	/**
+	 * Get a project routing expression.
+	 * 
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetRoutingResponse> getRouting(GetRoutingRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetRoutingRequest, GetRoutingResponse, ErrorResponse> endpoint = (JsonEndpoint<GetRoutingRequest, GetRoutingResponse, ErrorResponse>) GetRoutingRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get a project routing expression.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetRoutingRequest}
+	 * @see <a href="https://www.elastic.co">Documentation on elastic.co</a>
+	 */
+
+	public final CompletableFuture<GetRoutingResponse> getRouting(
+			Function<GetRoutingRequest.Builder, ObjectBuilder<GetRoutingRequest>> fn) {
+		return getRouting(fn.apply(new GetRoutingRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: project.tags
 
 	/**

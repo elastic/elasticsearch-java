@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.project_routing;
+package co.elastic.clients.elasticsearch.streams.status;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -30,10 +30,9 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
+import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -50,36 +49,36 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: project_routing._types.ProjectRoutingExpression
+// typedef: streams.status.StreamStatus
 
 /**
  *
- * @see <a href=
- *      "../doc-files/api-spec.html#project_routing._types.ProjectRoutingExpression">API
+ * @see <a href="../../doc-files/api-spec.html#streams.status.StreamStatus">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ProjectRoutingExpression implements JsonpSerializable {
-	private final String expression;
+public class StreamStatus implements JsonpSerializable {
+	private final boolean enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	protected ProjectRoutingExpression(AbstractBuilder<?> builder) {
+	private StreamStatus(Builder builder) {
 
-		this.expression = ApiTypeHelper.requireNonNull(builder.expression, this, "expression");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
 
 	}
 
-	public static ProjectRoutingExpression projectRoutingExpressionOf(
-			Function<Builder, ObjectBuilder<ProjectRoutingExpression>> fn) {
+	public static StreamStatus of(Function<Builder, ObjectBuilder<StreamStatus>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code expression}
+	 * Required - If true, the stream feature is enabled.
+	 * <p>
+	 * API name: {@code enabled}
 	 */
-	public final String expression() {
-		return this.expression;
+	public final boolean enabled() {
+		return this.enabled;
 	}
 
 	/**
@@ -93,8 +92,8 @@ public class ProjectRoutingExpression implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("expression");
-		generator.write(this.expression);
+		generator.writeKey("enabled");
+		generator.write(this.enabled);
 
 	}
 
@@ -106,59 +105,63 @@ public class ProjectRoutingExpression implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ProjectRoutingExpression}.
+	 * Builder for {@link StreamStatus}.
 	 */
 
-	public static class Builder extends ProjectRoutingExpression.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ProjectRoutingExpression> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<StreamStatus> {
+		private Boolean enabled;
+
+		public Builder() {
+		}
+		private Builder(StreamStatus instance) {
+			this.enabled = instance.enabled;
+
+		}
+		/**
+		 * Required - If true, the stream feature is enabled.
+		 * <p>
+		 * API name: {@code enabled}
+		 */
+		public final Builder enabled(boolean value) {
+			this.enabled = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link ProjectRoutingExpression}.
+		 * Builds a {@link StreamStatus}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ProjectRoutingExpression build() {
+		public StreamStatus build() {
 			_checkSingleUse();
 
-			return new ProjectRoutingExpression(this);
+			return new StreamStatus(this);
 		}
 	}
 
-	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				WithJsonObjectBuilderBase<BuilderT> {
-		private String expression;
-
-		/**
-		 * Required - API name: {@code expression}
-		 */
-		public final BuilderT expression(String value) {
-			this.expression = value;
-			return self();
-		}
-
-		protected abstract BuilderT self();
-
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
 	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link ProjectRoutingExpression}
+	 * Json deserializer for {@link StreamStatus}
 	 */
-	public static final JsonpDeserializer<ProjectRoutingExpression> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ProjectRoutingExpression::setupProjectRoutingExpressionDeserializer);
+	public static final JsonpDeserializer<StreamStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			StreamStatus::setupStreamStatusDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupProjectRoutingExpressionDeserializer(
-			ObjectDeserializer<BuilderT> op) {
+	protected static void setupStreamStatusDeserializer(ObjectDeserializer<StreamStatus.Builder> op) {
 
-		op.add(AbstractBuilder::expression, JsonpDeserializer.stringDeserializer(), "expression");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
 	}
 

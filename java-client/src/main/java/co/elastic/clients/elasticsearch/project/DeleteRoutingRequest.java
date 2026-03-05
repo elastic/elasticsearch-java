@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.project_routing;
+package co.elastic.clients.elasticsearch.project;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
@@ -53,29 +53,27 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: project_routing.get.Request
+// typedef: project.delete_routing.Request
 
 /**
- * Get named project routing expressions.
- * <p>
- * Get named project routing expressions.
+ * Delete a project routing expression.
  * 
- * @see <a href="../doc-files/api-spec.html#project_routing.get.Request">API
+ * @see <a href="../doc-files/api-spec.html#project.delete_routing.Request">API
  *      specification</a>
  */
 
-public class GetProjectRoutingRequest extends RequestBase {
+public class DeleteRoutingRequest extends RequestBase {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private GetProjectRoutingRequest(Builder builder) {
+	private DeleteRoutingRequest(Builder builder) {
 
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public static GetProjectRoutingRequest of(Function<Builder, ObjectBuilder<GetProjectRoutingRequest>> fn) {
+	public static DeleteRoutingRequest of(Function<Builder, ObjectBuilder<DeleteRoutingRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -91,17 +89,17 @@ public class GetProjectRoutingRequest extends RequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetProjectRoutingRequest}.
+	 * Builder for {@link DeleteRoutingRequest}.
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<GetProjectRoutingRequest> {
+				ObjectBuilder<DeleteRoutingRequest> {
 		private String name;
 
 		public Builder() {
 		}
-		private Builder(GetProjectRoutingRequest instance) {
+		private Builder(DeleteRoutingRequest instance) {
 			this.name = instance.name;
 
 		}
@@ -121,15 +119,15 @@ public class GetProjectRoutingRequest extends RequestBase {
 		}
 
 		/**
-		 * Builds a {@link GetProjectRoutingRequest}.
+		 * Builds a {@link DeleteRoutingRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GetProjectRoutingRequest build() {
+		public DeleteRoutingRequest build() {
 			_checkSingleUse();
 
-			return new GetProjectRoutingRequest(this);
+			return new DeleteRoutingRequest(this);
 		}
 	}
 
@@ -142,14 +140,14 @@ public class GetProjectRoutingRequest extends RequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code project_routing.get}".
+	 * Endpoint "{@code project.delete_routing}".
 	 */
-	public static final Endpoint<GetProjectRoutingRequest, GetProjectRoutingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/project_routing.get",
+	public static final Endpoint<DeleteRoutingRequest, DeleteRoutingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/project.delete_routing",
 
 			// Request method
 			request -> {
-				return "GET";
+				return "DELETE";
 
 			},
 
@@ -191,5 +189,5 @@ public class GetProjectRoutingRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, GetProjectRoutingResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), false, DeleteRoutingResponse._DESERIALIZER);
 }

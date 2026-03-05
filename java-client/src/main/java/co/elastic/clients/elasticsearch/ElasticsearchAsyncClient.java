@@ -127,7 +127,6 @@ import co.elastic.clients.elasticsearch.ml.ElasticsearchMlAsyncClient;
 import co.elastic.clients.elasticsearch.monitoring.ElasticsearchMonitoringAsyncClient;
 import co.elastic.clients.elasticsearch.nodes.ElasticsearchNodesAsyncClient;
 import co.elastic.clients.elasticsearch.project.ElasticsearchProjectAsyncClient;
-import co.elastic.clients.elasticsearch.project_routing.ElasticsearchProjectRoutingAsyncClient;
 import co.elastic.clients.elasticsearch.query_rules.ElasticsearchQueryRulesAsyncClient;
 import co.elastic.clients.elasticsearch.rollup.ElasticsearchRollupAsyncClient;
 import co.elastic.clients.elasticsearch.search_application.ElasticsearchSearchApplicationAsyncClient;
@@ -307,10 +306,6 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 
 	public ElasticsearchProjectAsyncClient project() {
 		return new ElasticsearchProjectAsyncClient(this.transport, this.transportOptions);
-	}
-
-	public ElasticsearchProjectRoutingAsyncClient projectRouting() {
-		return new ElasticsearchProjectRoutingAsyncClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchQueryRulesAsyncClient queryRules() {

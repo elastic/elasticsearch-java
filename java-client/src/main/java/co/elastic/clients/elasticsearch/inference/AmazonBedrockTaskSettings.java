@@ -88,8 +88,8 @@ public class AmazonBedrockTaskSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For a <code>completion</code> task, it sets the maximum number for the output
-	 * tokens to be generated.
+	 * For <code>chat_completion</code> and <code>completion</code> tasks, it sets
+	 * the maximum number for the output tokens to be generated.
 	 * <p>
 	 * API name: {@code max_new_tokens}
 	 */
@@ -99,10 +99,11 @@ public class AmazonBedrockTaskSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For a <code>completion</code> task, it is a number between 0.0 and 1.0 that
-	 * controls the apparent creativity of the results. At temperature 0.0 the model
-	 * is most deterministic, at temperature 1.0 most random. It should not be used
-	 * if <code>top_p</code> or <code>top_k</code> is specified.
+	 * For <code>chat_completion</code> and <code>completion</code> tasks, it is a
+	 * number between 0.0 and 1.0 that controls the apparent creativity of the
+	 * results. At temperature 0.0 the model is most deterministic, at temperature
+	 * 1.0 most random. It should not be used if <code>top_p</code> or
+	 * <code>top_k</code> is specified.
 	 * <p>
 	 * API name: {@code temperature}
 	 */
@@ -112,11 +113,11 @@ public class AmazonBedrockTaskSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For a <code>completion</code> task, it limits samples to the top-K most
-	 * likely words, balancing coherence and variability. It is only available for
-	 * anthropic, cohere, and mistral providers. It is an alternative to
-	 * <code>temperature</code>; it should not be used if <code>temperature</code>
-	 * is specified.
+	 * For <code>chat_completion</code> and <code>completion</code> tasks, it limits
+	 * samples to the top-K most likely words, balancing coherence and variability.
+	 * It is only available for anthropic, cohere, and mistral providers. It is an
+	 * alternative to <code>temperature</code>; it should not be used if
+	 * <code>temperature</code> is specified.
 	 * <p>
 	 * API name: {@code top_k}
 	 */
@@ -126,12 +127,12 @@ public class AmazonBedrockTaskSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For a <code>completion</code> task, it is a number in the range of 0.0 to
-	 * 1.0, to eliminate low-probability tokens. Top-p uses nucleus sampling to
-	 * select top tokens whose sum of likelihoods does not exceed a certain value,
-	 * ensuring both variety and coherence. It is an alternative to
-	 * <code>temperature</code>; it should not be used if <code>temperature</code>
-	 * is specified.
+	 * For <code>chat_completion</code> and <code>completion</code> tasks, it is a
+	 * number in the range of 0.0 to 1.0, to eliminate low-probability tokens. Top-p
+	 * uses nucleus sampling to select top tokens whose sum of likelihoods does not
+	 * exceed a certain value, ensuring both variety and coherence. It is an
+	 * alternative to <code>temperature</code>; it should not be used if
+	 * <code>temperature</code> is specified.
 	 * <p>
 	 * API name: {@code top_p}
 	 */
@@ -210,8 +211,8 @@ public class AmazonBedrockTaskSettings implements JsonpSerializable {
 
 		}
 		/**
-		 * For a <code>completion</code> task, it sets the maximum number for the output
-		 * tokens to be generated.
+		 * For <code>chat_completion</code> and <code>completion</code> tasks, it sets
+		 * the maximum number for the output tokens to be generated.
 		 * <p>
 		 * API name: {@code max_new_tokens}
 		 */
@@ -221,10 +222,11 @@ public class AmazonBedrockTaskSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * For a <code>completion</code> task, it is a number between 0.0 and 1.0 that
-		 * controls the apparent creativity of the results. At temperature 0.0 the model
-		 * is most deterministic, at temperature 1.0 most random. It should not be used
-		 * if <code>top_p</code> or <code>top_k</code> is specified.
+		 * For <code>chat_completion</code> and <code>completion</code> tasks, it is a
+		 * number between 0.0 and 1.0 that controls the apparent creativity of the
+		 * results. At temperature 0.0 the model is most deterministic, at temperature
+		 * 1.0 most random. It should not be used if <code>top_p</code> or
+		 * <code>top_k</code> is specified.
 		 * <p>
 		 * API name: {@code temperature}
 		 */
@@ -234,11 +236,11 @@ public class AmazonBedrockTaskSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * For a <code>completion</code> task, it limits samples to the top-K most
-		 * likely words, balancing coherence and variability. It is only available for
-		 * anthropic, cohere, and mistral providers. It is an alternative to
-		 * <code>temperature</code>; it should not be used if <code>temperature</code>
-		 * is specified.
+		 * For <code>chat_completion</code> and <code>completion</code> tasks, it limits
+		 * samples to the top-K most likely words, balancing coherence and variability.
+		 * It is only available for anthropic, cohere, and mistral providers. It is an
+		 * alternative to <code>temperature</code>; it should not be used if
+		 * <code>temperature</code> is specified.
 		 * <p>
 		 * API name: {@code top_k}
 		 */
@@ -248,12 +250,12 @@ public class AmazonBedrockTaskSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * For a <code>completion</code> task, it is a number in the range of 0.0 to
-		 * 1.0, to eliminate low-probability tokens. Top-p uses nucleus sampling to
-		 * select top tokens whose sum of likelihoods does not exceed a certain value,
-		 * ensuring both variety and coherence. It is an alternative to
-		 * <code>temperature</code>; it should not be used if <code>temperature</code>
-		 * is specified.
+		 * For <code>chat_completion</code> and <code>completion</code> tasks, it is a
+		 * number in the range of 0.0 to 1.0, to eliminate low-probability tokens. Top-p
+		 * uses nucleus sampling to select top tokens whose sum of likelihoods does not
+		 * exceed a certain value, ensuring both variety and coherence. It is an
+		 * alternative to <code>temperature</code>; it should not be used if
+		 * <code>temperature</code> is specified.
 		 * <p>
 		 * API name: {@code top_p}
 		 */

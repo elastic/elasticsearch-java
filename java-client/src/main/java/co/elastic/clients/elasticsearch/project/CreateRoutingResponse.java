@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.project_routing;
+package co.elastic.clients.elasticsearch.project;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -44,63 +44,62 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: project_routing.create_many.Response
+// typedef: project.create_routing.Response
 
 /**
  *
- * @see <a href=
- *      "../doc-files/api-spec.html#project_routing.create_many.Response">API
+ * @see <a href="../doc-files/api-spec.html#project.create_routing.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class CreateManyResponse extends AcknowledgedResponseBase {
+public class CreateRoutingResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	private CreateManyResponse(Builder builder) {
+	private CreateRoutingResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public static CreateManyResponse of(Function<Builder, ObjectBuilder<CreateManyResponse>> fn) {
+	public static CreateRoutingResponse of(Function<Builder, ObjectBuilder<CreateRoutingResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link CreateManyResponse}.
+	 * Builder for {@link CreateRoutingResponse}.
 	 */
 
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<CreateManyResponse> {
+				ObjectBuilder<CreateRoutingResponse> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link CreateManyResponse}.
+		 * Builds a {@link CreateRoutingResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public CreateManyResponse build() {
+		public CreateRoutingResponse build() {
 			_checkSingleUse();
 
-			return new CreateManyResponse(this);
+			return new CreateRoutingResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link CreateManyResponse}
+	 * Json deserializer for {@link CreateRoutingResponse}
 	 */
-	public static final JsonpDeserializer<CreateManyResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CreateManyResponse::setupCreateManyResponseDeserializer);
+	public static final JsonpDeserializer<CreateRoutingResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CreateRoutingResponse::setupCreateRoutingResponseDeserializer);
 
-	protected static void setupCreateManyResponseDeserializer(ObjectDeserializer<CreateManyResponse.Builder> op) {
+	protected static void setupCreateRoutingResponseDeserializer(ObjectDeserializer<CreateRoutingResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

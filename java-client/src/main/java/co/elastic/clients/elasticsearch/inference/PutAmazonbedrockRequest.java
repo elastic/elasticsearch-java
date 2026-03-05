@@ -126,7 +126,7 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * The chunking configuration object. Applies only to the
 	 * <code>text_embedding</code> task type. Not applicable to the
-	 * <code>completion</code> task type.
+	 * <code>chat_completion</code> and <code>completion</code> task types.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -266,7 +266,7 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * The chunking configuration object. Applies only to the
 		 * <code>text_embedding</code> task type. Not applicable to the
-		 * <code>completion</code> task type.
+		 * <code>chat_completion</code> and <code>completion</code> task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -278,7 +278,7 @@ public class PutAmazonbedrockRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * The chunking configuration object. Applies only to the
 		 * <code>text_embedding</code> task type. Not applicable to the
-		 * <code>completion</code> task type.
+		 * <code>chat_completion</code> and <code>completion</code> task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */

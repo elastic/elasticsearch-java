@@ -45,6 +45,8 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum TaskTypeJinaAi implements JsonEnum {
+	Embedding("embedding"),
+
 	TextEmbedding("text_embedding"),
 
 	Rerank("rerank"),

@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.searchable_snapshots;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch.searchable_snapshots.mount.StorageOption;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -90,7 +91,7 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 	private final String snapshot;
 
 	@Nullable
-	private final String storage;
+	private final StorageOption storage;
 
 	@Nullable
 	private final Boolean waitForCompletion;
@@ -187,12 +188,15 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The mount option for the searchable snapshot index.
+	 * The mount option for the searchable snapshot index. For further information
+	 * on mount options, refer to: <a href=
+	 * "https://www.elastic.co/docs/deploy-manage/tools/snapshot-and-restore/searchable-snapshots#searchable-snapshot-mount-storage-options">Mount
+	 * options</a>
 	 * <p>
 	 * API name: {@code storage}
 	 */
 	@Nullable
-	public final String storage() {
+	public final StorageOption storage() {
 		return this.storage;
 	}
 
@@ -275,7 +279,7 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 		private String snapshot;
 
 		@Nullable
-		private String storage;
+		private StorageOption storage;
 
 		@Nullable
 		private Boolean waitForCompletion;
@@ -411,11 +415,14 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The mount option for the searchable snapshot index.
+		 * The mount option for the searchable snapshot index. For further information
+		 * on mount options, refer to: <a href=
+		 * "https://www.elastic.co/docs/deploy-manage/tools/snapshot-and-restore/searchable-snapshots#searchable-snapshot-mount-storage-options">Mount
+		 * options</a>
 		 * <p>
 		 * API name: {@code storage}
 		 */
-		public final Builder storage(@Nullable String value) {
+		public final Builder storage(@Nullable StorageOption value) {
 			this.storage = value;
 			return this;
 		}
@@ -536,7 +543,7 @@ public class MountRequest extends RequestBase implements JsonpSerializable {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.storage != null) {
-					params.put("storage", request.storage);
+					params.put("storage", request.storage.jsonValue());
 				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));

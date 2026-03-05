@@ -64,7 +64,7 @@ public class JinaAITaskSettings implements JsonpSerializable {
 	private final Boolean returnDocuments;
 
 	@Nullable
-	private final JinaAITextEmbeddingTask task;
+	private final JinaAITextEmbeddingTask inputType;
 
 	@Nullable
 	private final Boolean lateChunking;
@@ -77,7 +77,7 @@ public class JinaAITaskSettings implements JsonpSerializable {
 	private JinaAITaskSettings(Builder builder) {
 
 		this.returnDocuments = builder.returnDocuments;
-		this.task = builder.task;
+		this.inputType = builder.inputType;
 		this.lateChunking = builder.lateChunking;
 		this.topN = builder.topN;
 
@@ -98,10 +98,10 @@ public class JinaAITaskSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For a <code>text_embedding</code> task, the task passed to the model. Valid
-	 * values are:
+	 * For an <code>embedding</code> or <code>text_embedding</code> task, the task
+	 * passed to the model. Valid values are:
 	 * <ul>
-	 * <li><code>classification</code>: Use it for embeddings passed through a text
+	 * <li><code>classification</code>: Use it for embeddings passed through a
 	 * classifier.</li>
 	 * <li><code>clustering</code>: Use it for the embeddings run through a
 	 * clustering algorithm.</li>
@@ -111,24 +111,25 @@ public class JinaAITaskSettings implements JsonpSerializable {
 	 * against a vector database to find relevant documents.</li>
 	 * </ul>
 	 * <p>
-	 * API name: {@code task}
+	 * API name: {@code input_type}
 	 */
 	@Nullable
-	public final JinaAITextEmbeddingTask task() {
-		return this.task;
+	public final JinaAITextEmbeddingTask inputType() {
+		return this.inputType;
 	}
 
 	/**
-	 * For a <code>text_embedding</code> task, controls when text is split into
-	 * chunks. When set to <code>true</code>, a request from Elasticsearch contains
-	 * only chunks related to a single document. Instead of batching chunks across
-	 * documents, Elasticsearch sends them in separate requests. This ensures that
-	 * chunk embeddings retain context from the entire document, improving semantic
-	 * quality.
+	 * For an <code>embedding</code> or <code>text_embedding</code> task, controls
+	 * when text is split into chunks. When set to <code>true</code>, a request from
+	 * Elasticsearch contains only chunks related to a single document. Instead of
+	 * batching chunks across documents, Elasticsearch sends them in separate
+	 * requests. This ensures that chunk embeddings retain context from the entire
+	 * document, improving semantic quality.
 	 * <p>
-	 * If a document exceeds the model's context limits, late chunking is
-	 * automatically disabled for that document only and standard chunking is used
-	 * instead.
+	 * If a document exceeds the model's context limits, or if the document contains
+	 * non-text inputs (relevant when using the multimodal <code>embedding</code>
+	 * task), late chunking is automatically disabled for that document only and
+	 * standard chunking is used instead.
 	 * <p>
 	 * If not specified, defaults to <code>false</code>.
 	 * <p>
@@ -169,9 +170,9 @@ public class JinaAITaskSettings implements JsonpSerializable {
 			generator.write(this.returnDocuments);
 
 		}
-		if (this.task != null) {
-			generator.writeKey("task");
-			this.task.serialize(generator, mapper);
+		if (this.inputType != null) {
+			generator.writeKey("input_type");
+			this.inputType.serialize(generator, mapper);
 		}
 		if (this.lateChunking != null) {
 			generator.writeKey("late_chunking");
@@ -204,7 +205,7 @@ public class JinaAITaskSettings implements JsonpSerializable {
 		private Boolean returnDocuments;
 
 		@Nullable
-		private JinaAITextEmbeddingTask task;
+		private JinaAITextEmbeddingTask inputType;
 
 		@Nullable
 		private Boolean lateChunking;
@@ -216,7 +217,7 @@ public class JinaAITaskSettings implements JsonpSerializable {
 		}
 		private Builder(JinaAITaskSettings instance) {
 			this.returnDocuments = instance.returnDocuments;
-			this.task = instance.task;
+			this.inputType = instance.inputType;
 			this.lateChunking = instance.lateChunking;
 			this.topN = instance.topN;
 
@@ -232,10 +233,10 @@ public class JinaAITaskSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * For a <code>text_embedding</code> task, the task passed to the model. Valid
-		 * values are:
+		 * For an <code>embedding</code> or <code>text_embedding</code> task, the task
+		 * passed to the model. Valid values are:
 		 * <ul>
-		 * <li><code>classification</code>: Use it for embeddings passed through a text
+		 * <li><code>classification</code>: Use it for embeddings passed through a
 		 * classifier.</li>
 		 * <li><code>clustering</code>: Use it for the embeddings run through a
 		 * clustering algorithm.</li>
@@ -245,24 +246,25 @@ public class JinaAITaskSettings implements JsonpSerializable {
 		 * against a vector database to find relevant documents.</li>
 		 * </ul>
 		 * <p>
-		 * API name: {@code task}
+		 * API name: {@code input_type}
 		 */
-		public final Builder task(@Nullable JinaAITextEmbeddingTask value) {
-			this.task = value;
+		public final Builder inputType(@Nullable JinaAITextEmbeddingTask value) {
+			this.inputType = value;
 			return this;
 		}
 
 		/**
-		 * For a <code>text_embedding</code> task, controls when text is split into
-		 * chunks. When set to <code>true</code>, a request from Elasticsearch contains
-		 * only chunks related to a single document. Instead of batching chunks across
-		 * documents, Elasticsearch sends them in separate requests. This ensures that
-		 * chunk embeddings retain context from the entire document, improving semantic
-		 * quality.
+		 * For an <code>embedding</code> or <code>text_embedding</code> task, controls
+		 * when text is split into chunks. When set to <code>true</code>, a request from
+		 * Elasticsearch contains only chunks related to a single document. Instead of
+		 * batching chunks across documents, Elasticsearch sends them in separate
+		 * requests. This ensures that chunk embeddings retain context from the entire
+		 * document, improving semantic quality.
 		 * <p>
-		 * If a document exceeds the model's context limits, late chunking is
-		 * automatically disabled for that document only and standard chunking is used
-		 * instead.
+		 * If a document exceeds the model's context limits, or if the document contains
+		 * non-text inputs (relevant when using the multimodal <code>embedding</code>
+		 * task), late chunking is automatically disabled for that document only and
+		 * standard chunking is used instead.
 		 * <p>
 		 * If not specified, defaults to <code>false</code>.
 		 * <p>
@@ -322,7 +324,7 @@ public class JinaAITaskSettings implements JsonpSerializable {
 	protected static void setupJinaAITaskSettingsDeserializer(ObjectDeserializer<JinaAITaskSettings.Builder> op) {
 
 		op.add(Builder::returnDocuments, JsonpDeserializer.booleanDeserializer(), "return_documents");
-		op.add(Builder::task, JinaAITextEmbeddingTask._DESERIALIZER, "task");
+		op.add(Builder::inputType, JinaAITextEmbeddingTask._DESERIALIZER, "input_type");
 		op.add(Builder::lateChunking, JsonpDeserializer.booleanDeserializer(), "late_chunking");
 		op.add(Builder::topN, JsonpDeserializer.integerDeserializer(), "top_n");
 

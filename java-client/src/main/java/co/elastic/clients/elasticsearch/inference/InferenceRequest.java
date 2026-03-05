@@ -150,9 +150,10 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies the input data type for the text embedding model. The
+	 * Specifies the input data type for the embedding model. The
 	 * <code>input_type</code> parameter only applies to Inference Endpoints with
-	 * the <code>text_embedding</code> task type. Possible values include:
+	 * the <code>embedding</code> or <code>text_embedding</code> task type. Possible
+	 * values include:
 	 * <ul>
 	 * <li><code>SEARCH</code></li>
 	 * <li><code>INGEST</code></li>
@@ -346,9 +347,10 @@ public class InferenceRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies the input data type for the text embedding model. The
+		 * Specifies the input data type for the embedding model. The
 		 * <code>input_type</code> parameter only applies to Inference Endpoints with
-		 * the <code>text_embedding</code> task type. Possible values include:
+		 * the <code>embedding</code> or <code>text_embedding</code> task type. Possible
+		 * values include:
 		 * <ul>
 		 * <li><code>SEARCH</code></li>
 		 * <li><code>INGEST</code></li>

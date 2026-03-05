@@ -19,7 +19,7 @@
 
 package co.elastic.clients.elasticsearch.streams;
 
-import co.elastic.clients.elasticsearch.streams.status.LogsStatus;
+import co.elastic.clients.elasticsearch.streams.status.StreamStatus;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -59,13 +59,19 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class StreamsStatusResponse implements JsonpSerializable {
-	private final LogsStatus logs;
+	private final StreamStatus logs;
+
+	private final StreamStatus logsOtel;
+
+	private final StreamStatus logsEcs;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private StreamsStatusResponse(Builder builder) {
 
 		this.logs = ApiTypeHelper.requireNonNull(builder.logs, this, "logs");
+		this.logsOtel = ApiTypeHelper.requireNonNull(builder.logsOtel, this, "logsOtel");
+		this.logsEcs = ApiTypeHelper.requireNonNull(builder.logsEcs, this, "logsEcs");
 
 	}
 
@@ -76,8 +82,22 @@ public class StreamsStatusResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code logs}
 	 */
-	public final LogsStatus logs() {
+	public final StreamStatus logs() {
 		return this.logs;
+	}
+
+	/**
+	 * Required - API name: {@code logs.otel}
+	 */
+	public final StreamStatus logsOtel() {
+		return this.logsOtel;
+	}
+
+	/**
+	 * Required - API name: {@code logs.ecs}
+	 */
+	public final StreamStatus logsEcs() {
+		return this.logsEcs;
 	}
 
 	/**
@@ -93,6 +113,12 @@ public class StreamsStatusResponse implements JsonpSerializable {
 
 		generator.writeKey("logs");
 		this.logs.serialize(generator, mapper);
+
+		generator.writeKey("logs.otel");
+		this.logsOtel.serialize(generator, mapper);
+
+		generator.writeKey("logs.ecs");
+		this.logsEcs.serialize(generator, mapper);
 
 	}
 
@@ -110,12 +136,16 @@ public class StreamsStatusResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<StreamsStatusResponse> {
-		private LogsStatus logs;
+		private StreamStatus logs;
+
+		private StreamStatus logsOtel;
+
+		private StreamStatus logsEcs;
 
 		/**
 		 * Required - API name: {@code logs}
 		 */
-		public final Builder logs(LogsStatus value) {
+		public final Builder logs(StreamStatus value) {
 			this.logs = value;
 			return this;
 		}
@@ -123,8 +153,38 @@ public class StreamsStatusResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code logs}
 		 */
-		public final Builder logs(Function<LogsStatus.Builder, ObjectBuilder<LogsStatus>> fn) {
-			return this.logs(fn.apply(new LogsStatus.Builder()).build());
+		public final Builder logs(Function<StreamStatus.Builder, ObjectBuilder<StreamStatus>> fn) {
+			return this.logs(fn.apply(new StreamStatus.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code logs.otel}
+		 */
+		public final Builder logsOtel(StreamStatus value) {
+			this.logsOtel = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code logs.otel}
+		 */
+		public final Builder logsOtel(Function<StreamStatus.Builder, ObjectBuilder<StreamStatus>> fn) {
+			return this.logsOtel(fn.apply(new StreamStatus.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code logs.ecs}
+		 */
+		public final Builder logsEcs(StreamStatus value) {
+			this.logsEcs = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code logs.ecs}
+		 */
+		public final Builder logsEcs(Function<StreamStatus.Builder, ObjectBuilder<StreamStatus>> fn) {
+			return this.logsEcs(fn.apply(new StreamStatus.Builder()).build());
 		}
 
 		@Override
@@ -155,7 +215,9 @@ public class StreamsStatusResponse implements JsonpSerializable {
 
 	protected static void setupStreamsStatusResponseDeserializer(ObjectDeserializer<StreamsStatusResponse.Builder> op) {
 
-		op.add(Builder::logs, LogsStatus._DESERIALIZER, "logs");
+		op.add(Builder::logs, StreamStatus._DESERIALIZER, "logs");
+		op.add(Builder::logsOtel, StreamStatus._DESERIALIZER, "logs.otel");
+		op.add(Builder::logsEcs, StreamStatus._DESERIALIZER, "logs.ecs");
 
 	}
 

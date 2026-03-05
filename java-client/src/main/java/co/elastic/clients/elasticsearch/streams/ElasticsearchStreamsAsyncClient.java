@@ -70,9 +70,9 @@ public class ElasticsearchStreamsAsyncClient
 	// ----- Endpoint: streams.logs_disable
 
 	/**
-	 * Disable logs stream.
+	 * Disable a named stream.
 	 * <p>
-	 * Turn off the logs stream feature for this cluster.
+	 * Turn off the named stream feature for this cluster.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
@@ -87,9 +87,9 @@ public class ElasticsearchStreamsAsyncClient
 	}
 
 	/**
-	 * Disable logs stream.
+	 * Disable a named stream.
 	 * <p>
-	 * Turn off the logs stream feature for this cluster.
+	 * Turn off the named stream feature for this cluster.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -104,32 +104,18 @@ public class ElasticsearchStreamsAsyncClient
 		return logsDisable(fn.apply(new LogsDisableRequest.Builder()).build());
 	}
 
-	/**
-	 * Disable logs stream.
-	 * <p>
-	 * Turn off the logs stream feature for this cluster.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<LogsDisableResponse> logsDisable() {
-		return this.transport.performRequestAsync(new LogsDisableRequest.Builder().build(),
-				LogsDisableRequest._ENDPOINT, this.transportOptions);
-	}
-
 	// ----- Endpoint: streams.logs_enable
 
 	/**
-	 * Enable logs stream.
+	 * Enable a named stream.
 	 * <p>
-	 * Turn on the logs stream feature for this cluster.
+	 * Turn on the named stream feature for this cluster.
 	 * <p>
 	 * NOTE: To protect existing data, this feature can be turned on only if the
 	 * cluster does not have existing indices or data streams that match the pattern
-	 * <code>logs|logs.*</code>. If those indices or data streams exist, a
-	 * <code>409 - Conflict</code> response and error is returned.
+	 * <code>&lt;name&gt;|&lt;name&gt;.*</code> for the enabled stream type name. If
+	 * those indices or data streams exist, a <code>409 - Conflict</code> response
+	 * and error is returned.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
@@ -144,14 +130,15 @@ public class ElasticsearchStreamsAsyncClient
 	}
 
 	/**
-	 * Enable logs stream.
+	 * Enable a named stream.
 	 * <p>
-	 * Turn on the logs stream feature for this cluster.
+	 * Turn on the named stream feature for this cluster.
 	 * <p>
 	 * NOTE: To protect existing data, this feature can be turned on only if the
 	 * cluster does not have existing indices or data streams that match the pattern
-	 * <code>logs|logs.*</code>. If those indices or data streams exist, a
-	 * <code>409 - Conflict</code> response and error is returned.
+	 * <code>&lt;name&gt;|&lt;name&gt;.*</code> for the enabled stream type name. If
+	 * those indices or data streams exist, a <code>409 - Conflict</code> response
+	 * and error is returned.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -164,26 +151,6 @@ public class ElasticsearchStreamsAsyncClient
 	public final CompletableFuture<LogsEnableResponse> logsEnable(
 			Function<LogsEnableRequest.Builder, ObjectBuilder<LogsEnableRequest>> fn) {
 		return logsEnable(fn.apply(new LogsEnableRequest.Builder()).build());
-	}
-
-	/**
-	 * Enable logs stream.
-	 * <p>
-	 * Turn on the logs stream feature for this cluster.
-	 * <p>
-	 * NOTE: To protect existing data, this feature can be turned on only if the
-	 * cluster does not have existing indices or data streams that match the pattern
-	 * <code>logs|logs.*</code>. If those indices or data streams exist, a
-	 * <code>409 - Conflict</code> response and error is returned.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<LogsEnableResponse> logsEnable() {
-		return this.transport.performRequestAsync(new LogsEnableRequest.Builder().build(), LogsEnableRequest._ENDPOINT,
-				this.transportOptions);
 	}
 
 	// ----- Endpoint: streams.status

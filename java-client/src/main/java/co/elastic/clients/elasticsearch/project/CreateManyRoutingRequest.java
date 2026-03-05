@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.project_routing;
+package co.elastic.clients.elasticsearch.project;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
@@ -56,30 +56,28 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: project_routing.create_many.Request
+// typedef: project.create_many_routing.Request
 
 /**
- * Create of update named project routing expressions.
- * <p>
- * Create or update named project routing expressions.
+ * Create or update project routing expressions.
  * 
  * @see <a href=
- *      "../doc-files/api-spec.html#project_routing.create_many.Request">API
+ *      "../doc-files/api-spec.html#project.create_many_routing.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class CreateManyRequest extends RequestBase implements JsonpSerializable {
+public class CreateManyRoutingRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, ProjectRoutingExpression> expressions;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private CreateManyRequest(Builder builder) {
+	private CreateManyRoutingRequest(Builder builder) {
 
 		this.expressions = ApiTypeHelper.unmodifiableRequired(builder.expressions, this, "expressions");
 
 	}
 
-	public static CreateManyRequest of(Function<Builder, ObjectBuilder<CreateManyRequest>> fn) {
+	public static CreateManyRoutingRequest of(Function<Builder, ObjectBuilder<CreateManyRoutingRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -114,17 +112,17 @@ public class CreateManyRequest extends RequestBase implements JsonpSerializable 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link CreateManyRequest}.
+	 * Builder for {@link CreateManyRoutingRequest}.
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<CreateManyRequest> {
+				ObjectBuilder<CreateManyRoutingRequest> {
 		private Map<String, ProjectRoutingExpression> expressions = new HashMap<>();
 
 		public Builder() {
 		}
-		private Builder(CreateManyRequest instance) {
+		private Builder(CreateManyRoutingRequest instance) {
 			this.expressions = instance.expressions;
 
 		}
@@ -173,15 +171,15 @@ public class CreateManyRequest extends RequestBase implements JsonpSerializable 
 		}
 
 		/**
-		 * Builds a {@link CreateManyRequest}.
+		 * Builds a {@link CreateManyRoutingRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public CreateManyRequest build() {
+		public CreateManyRoutingRequest build() {
 			_checkSingleUse();
 
-			return new CreateManyRequest(this);
+			return new CreateManyRoutingRequest(this);
 		}
 	}
 
@@ -191,8 +189,8 @@ public class CreateManyRequest extends RequestBase implements JsonpSerializable 
 	public Builder rebuild() {
 		return new Builder(this);
 	}
-	public static final JsonpDeserializer<CreateManyRequest> _DESERIALIZER = createCreateManyRequestDeserializer();
-	protected static JsonpDeserializer<CreateManyRequest> createCreateManyRequestDeserializer() {
+	public static final JsonpDeserializer<CreateManyRoutingRequest> _DESERIALIZER = createCreateManyRoutingRequestDeserializer();
+	protected static JsonpDeserializer<CreateManyRoutingRequest> createCreateManyRoutingRequestDeserializer() {
 
 		JsonpDeserializer<Map<String, ProjectRoutingExpression>> valueDeserializer = JsonpDeserializer
 				.stringMapDeserializer(ProjectRoutingExpression._DESERIALIZER);
@@ -204,10 +202,10 @@ public class CreateManyRequest extends RequestBase implements JsonpSerializable 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code project_routing.create_many}".
+	 * Endpoint "{@code project.create_many_routing}".
 	 */
-	public static final Endpoint<CreateManyRequest, CreateManyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/project_routing.create_many",
+	public static final Endpoint<CreateManyRoutingRequest, CreateManyRoutingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/project.create_many_routing",
 
 			// Request method
 			request -> {
@@ -230,5 +228,5 @@ public class CreateManyRequest extends RequestBase implements JsonpSerializable 
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, CreateManyResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CreateManyRoutingResponse._DESERIALIZER);
 }

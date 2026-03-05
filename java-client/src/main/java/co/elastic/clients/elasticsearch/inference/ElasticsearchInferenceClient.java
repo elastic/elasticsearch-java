@@ -232,6 +232,39 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 		return delete(fn.apply(new DeleteInferenceRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: inference.embedding
+
+	/**
+	 * Perform dense embedding inference on the service.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public EmbeddingResponse embedding(EmbeddingRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<EmbeddingRequest, EmbeddingResponse, ErrorResponse> endpoint = (JsonEndpoint<EmbeddingRequest, EmbeddingResponse, ErrorResponse>) EmbeddingRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Perform dense embedding inference on the service.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link EmbeddingRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-inference">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final EmbeddingResponse embedding(Function<EmbeddingRequest.Builder, ObjectBuilder<EmbeddingRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return embedding(fn.apply(new EmbeddingRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: inference.get
 
 	/**
@@ -385,7 +418,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * <li>AI21 (<code>chat_completion</code>, <code>completion</code>)</li>
 	 * <li>AlibabaCloud AI Search (<code>completion</code>, <code>rerank</code>,
 	 * <code>sparse_embedding</code>, <code>text_embedding</code>)</li>
-	 * <li>Amazon Bedrock (<code>completion</code>,
+	 * <li>Amazon Bedrock (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>Amazon SageMaker (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>rerank</code>, <code>sparse_embedding</code>,
@@ -409,7 +442,8 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * <li>Groq (<code>chat_completion</code>)</li>
 	 * <li>Hugging Face (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>rerank</code>, <code>text_embedding</code>)</li>
-	 * <li>JinaAI (<code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>JinaAI (<code>embedding</code>, <code>rerank</code>,
+	 * <code>text_embedding</code>)</li>
 	 * <li>Llama (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>Mistral (<code>chat_completion</code>, <code>completion</code>,
@@ -421,7 +455,8 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * <li>OpenShift AI (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>rerank</code>, <code>text_embedding</code>)</li>
 	 * <li>VoyageAI (<code>rerank</code>, <code>text_embedding</code>)</li>
-	 * <li>Watsonx inference integration (<code>text_embedding</code>)</li>
+	 * <li>Watsonx (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>rerank</code>, <code>text_embedding</code>)</li>
 	 * </ul>
 	 *
 	 * @see <a href=
@@ -454,7 +489,7 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * <li>AI21 (<code>chat_completion</code>, <code>completion</code>)</li>
 	 * <li>AlibabaCloud AI Search (<code>completion</code>, <code>rerank</code>,
 	 * <code>sparse_embedding</code>, <code>text_embedding</code>)</li>
-	 * <li>Amazon Bedrock (<code>completion</code>,
+	 * <li>Amazon Bedrock (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>Amazon SageMaker (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>rerank</code>, <code>sparse_embedding</code>,
@@ -478,7 +513,8 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * <li>Groq (<code>chat_completion</code>)</li>
 	 * <li>Hugging Face (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>rerank</code>, <code>text_embedding</code>)</li>
-	 * <li>JinaAI (<code>rerank</code>, <code>text_embedding</code>)</li>
+	 * <li>JinaAI (<code>embedding</code>, <code>rerank</code>,
+	 * <code>text_embedding</code>)</li>
 	 * <li>Llama (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>Mistral (<code>chat_completion</code>, <code>completion</code>,
@@ -490,7 +526,8 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * <li>OpenShift AI (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>rerank</code>, <code>text_embedding</code>)</li>
 	 * <li>VoyageAI (<code>rerank</code>, <code>text_embedding</code>)</li>
-	 * <li>Watsonx inference integration (<code>text_embedding</code>)</li>
+	 * <li>Watsonx (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>rerank</code>, <code>text_embedding</code>)</li>
 	 * </ul>
 	 *
 	 * @param fn
@@ -1573,7 +1610,8 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * <p>
 	 * To review the available <code>rerank</code> models, refer to
 	 * <a href="https://jina.ai/reranker">https://jina.ai/reranker</a>. To review
-	 * the available <code>text_embedding</code> models, refer to the
+	 * the available <code>embedding</code> and <code>text_embedding</code> models,
+	 * refer to
 	 * <a href="https://jina.ai/embeddings/">https://jina.ai/embeddings/</a>.
 	 * 
 	 * @see <a href=
@@ -1596,7 +1634,8 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * <p>
 	 * To review the available <code>rerank</code> models, refer to
 	 * <a href="https://jina.ai/reranker">https://jina.ai/reranker</a>. To review
-	 * the available <code>text_embedding</code> models, refer to the
+	 * the available <code>embedding</code> and <code>text_embedding</code> models,
+	 * refer to
 	 * <a href="https://jina.ai/embeddings/">https://jina.ai/embeddings/</a>.
 	 * 
 	 * @param fn

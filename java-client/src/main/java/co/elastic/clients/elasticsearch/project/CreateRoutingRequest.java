@@ -17,12 +17,14 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.project_routing;
+package co.elastic.clients.elasticsearch.project;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
@@ -30,6 +32,7 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
@@ -53,29 +56,30 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: project_routing.delete.Request
+// typedef: project.create_routing.Request
 
 /**
- * Delete named project routing expressions.
- * <p>
- * Delete named project routing expressions.
+ * Create or update a project routing expression.
  * 
- * @see <a href="../doc-files/api-spec.html#project_routing.delete.Request">API
+ * @see <a href="../doc-files/api-spec.html#project.create_routing.Request">API
  *      specification</a>
  */
-
-public class DeleteProjectRoutingRequest extends RequestBase {
+@JsonpDeserializable
+public class CreateRoutingRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
+
+	private final ProjectRoutingExpression expressions;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private DeleteProjectRoutingRequest(Builder builder) {
+	private CreateRoutingRequest(Builder builder) {
 
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.expressions = ApiTypeHelper.requireNonNull(builder.expressions, this, "expressions");
 
 	}
 
-	public static DeleteProjectRoutingRequest of(Function<Builder, ObjectBuilder<DeleteProjectRoutingRequest>> fn) {
+	public static CreateRoutingRequest of(Function<Builder, ObjectBuilder<CreateRoutingRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -88,21 +92,39 @@ public class DeleteProjectRoutingRequest extends RequestBase {
 		return this.name;
 	}
 
+	/**
+	 * Required - Request body.
+	 */
+	public final ProjectRoutingExpression expressions() {
+		return this.expressions;
+	}
+
+	/**
+	 * Serialize this value to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		this.expressions.serialize(generator, mapper);
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link DeleteProjectRoutingRequest}.
+	 * Builder for {@link CreateRoutingRequest}.
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<DeleteProjectRoutingRequest> {
+				ObjectBuilder<CreateRoutingRequest> {
 		private String name;
+
+		private ProjectRoutingExpression expressions;
 
 		public Builder() {
 		}
-		private Builder(DeleteProjectRoutingRequest instance) {
+		private Builder(CreateRoutingRequest instance) {
 			this.name = instance.name;
+			this.expressions = instance.expressions;
 
 		}
 		/**
@@ -115,21 +137,46 @@ public class DeleteProjectRoutingRequest extends RequestBase {
 			return this;
 		}
 
+		/**
+		 * Required - Request body.
+		 */
+		public final Builder expressions(ProjectRoutingExpression value) {
+			this.expressions = value;
+			return this;
+		}
+
+		/**
+		 * Required - Request body.
+		 */
+		public final Builder expressions(
+				Function<ProjectRoutingExpression.Builder, ObjectBuilder<ProjectRoutingExpression>> fn) {
+			return this.expressions(fn.apply(new ProjectRoutingExpression.Builder()).build());
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			ProjectRoutingExpression value = (ProjectRoutingExpression) ProjectRoutingExpression._DESERIALIZER
+					.deserialize(parser, mapper);
+			return this.expressions(value);
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link DeleteProjectRoutingRequest}.
+		 * Builds a {@link CreateRoutingRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public DeleteProjectRoutingRequest build() {
+		public CreateRoutingRequest build() {
 			_checkSingleUse();
 
-			return new DeleteProjectRoutingRequest(this);
+			return new CreateRoutingRequest(this);
 		}
 	}
 
@@ -139,17 +186,26 @@ public class DeleteProjectRoutingRequest extends RequestBase {
 	public Builder rebuild() {
 		return new Builder(this);
 	}
+	public static final JsonpDeserializer<CreateRoutingRequest> _DESERIALIZER = createCreateRoutingRequestDeserializer();
+	protected static JsonpDeserializer<CreateRoutingRequest> createCreateRoutingRequestDeserializer() {
+
+		JsonpDeserializer<ProjectRoutingExpression> valueDeserializer = ProjectRoutingExpression._DESERIALIZER;
+
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.expressions(valueDeserializer.deserialize(parser, mapper, event)).build());
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code project_routing.delete}".
+	 * Endpoint "{@code project.create_routing}".
 	 */
-	public static final Endpoint<DeleteProjectRoutingRequest, DeleteProjectRoutingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/project_routing.delete",
+	public static final Endpoint<CreateRoutingRequest, CreateRoutingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/project.create_routing",
 
 			// Request method
 			request -> {
-				return "DELETE";
+				return "PUT";
 
 			},
 
@@ -191,5 +247,5 @@ public class DeleteProjectRoutingRequest extends RequestBase {
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, DeleteProjectRoutingResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CreateRoutingResponse._DESERIALIZER);
 }

@@ -17,10 +17,11 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.project_routing;
+package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,7 +35,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -56,112 +56,145 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: project_routing.create.Request
+// typedef: inference.embedding.Request
 
 /**
- * Create of update a single named project routing expression.
- * <p>
- * Create of update a single named project routing expression.
+ * Perform dense embedding inference on the service.
  * 
- * @see <a href="../doc-files/api-spec.html#project_routing.create.Request">API
+ * @see <a href="../doc-files/api-spec.html#inference.embedding.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class CreateProjectRoutingRequest extends RequestBase implements JsonpSerializable {
-	private final String name;
+public class EmbeddingRequest extends RequestBase implements JsonpSerializable {
+	private final String inferenceId;
 
-	private final ProjectRoutingExpression expressions;
+	@Nullable
+	private final Time timeout;
+
+	private final RequestEmbedding embedding;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private CreateProjectRoutingRequest(Builder builder) {
+	private EmbeddingRequest(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.expressions = ApiTypeHelper.requireNonNull(builder.expressions, this, "expressions");
+		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
+		this.timeout = builder.timeout;
+		this.embedding = ApiTypeHelper.requireNonNull(builder.embedding, this, "embedding");
 
 	}
 
-	public static CreateProjectRoutingRequest of(Function<Builder, ObjectBuilder<CreateProjectRoutingRequest>> fn) {
+	public static EmbeddingRequest of(Function<Builder, ObjectBuilder<EmbeddingRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The name of project routing expression
+	 * Required - The inference Id
 	 * <p>
-	 * API name: {@code name}
+	 * API name: {@code inference_id}
 	 */
-	public final String name() {
-		return this.name;
+	public final String inferenceId() {
+		return this.inferenceId;
+	}
+
+	/**
+	 * Specifies the amount of time to wait for the inference request to complete.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
 	}
 
 	/**
 	 * Required - Request body.
 	 */
-	public final ProjectRoutingExpression expressions() {
-		return this.expressions;
+	public final RequestEmbedding embedding() {
+		return this.embedding;
 	}
 
 	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		this.expressions.serialize(generator, mapper);
+		this.embedding.serialize(generator, mapper);
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link CreateProjectRoutingRequest}.
+	 * Builder for {@link EmbeddingRequest}.
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<CreateProjectRoutingRequest> {
-		private String name;
+				ObjectBuilder<EmbeddingRequest> {
+		private String inferenceId;
 
-		private ProjectRoutingExpression expressions;
+		@Nullable
+		private Time timeout;
+
+		private RequestEmbedding embedding;
 
 		public Builder() {
 		}
-		private Builder(CreateProjectRoutingRequest instance) {
-			this.name = instance.name;
-			this.expressions = instance.expressions;
+		private Builder(EmbeddingRequest instance) {
+			this.inferenceId = instance.inferenceId;
+			this.timeout = instance.timeout;
+			this.embedding = instance.embedding;
 
 		}
 		/**
-		 * Required - The name of project routing expression
+		 * Required - The inference Id
 		 * <p>
-		 * API name: {@code name}
+		 * API name: {@code inference_id}
 		 */
-		public final Builder name(String value) {
-			this.name = value;
+		public final Builder inferenceId(String value) {
+			this.inferenceId = value;
+			return this;
+		}
+
+		/**
+		 * Specifies the amount of time to wait for the inference request to complete.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Specifies the amount of time to wait for the inference request to complete.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - Request body.
+		 */
+		public final Builder embedding(RequestEmbedding value) {
+			this.embedding = value;
 			return this;
 		}
 
 		/**
 		 * Required - Request body.
 		 */
-		public final Builder expressions(ProjectRoutingExpression value) {
-			this.expressions = value;
-			return this;
-		}
-
-		/**
-		 * Required - Request body.
-		 */
-		public final Builder expressions(
-				Function<ProjectRoutingExpression.Builder, ObjectBuilder<ProjectRoutingExpression>> fn) {
-			return this.expressions(fn.apply(new ProjectRoutingExpression.Builder()).build());
+		public final Builder embedding(Function<RequestEmbedding.Builder, ObjectBuilder<RequestEmbedding>> fn) {
+			return this.embedding(fn.apply(new RequestEmbedding.Builder()).build());
 		}
 
 		@Override
 		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
 
 			@SuppressWarnings("unchecked")
-			ProjectRoutingExpression value = (ProjectRoutingExpression) ProjectRoutingExpression._DESERIALIZER
-					.deserialize(parser, mapper);
-			return this.expressions(value);
+			RequestEmbedding value = (RequestEmbedding) RequestEmbedding._DESERIALIZER.deserialize(parser, mapper);
+			return this.embedding(value);
 		}
 
 		@Override
@@ -170,15 +203,15 @@ public class CreateProjectRoutingRequest extends RequestBase implements JsonpSer
 		}
 
 		/**
-		 * Builds a {@link CreateProjectRoutingRequest}.
+		 * Builds a {@link EmbeddingRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public CreateProjectRoutingRequest build() {
+		public EmbeddingRequest build() {
 			_checkSingleUse();
 
-			return new CreateProjectRoutingRequest(this);
+			return new EmbeddingRequest(this);
 		}
 	}
 
@@ -188,42 +221,43 @@ public class CreateProjectRoutingRequest extends RequestBase implements JsonpSer
 	public Builder rebuild() {
 		return new Builder(this);
 	}
-	public static final JsonpDeserializer<CreateProjectRoutingRequest> _DESERIALIZER = createCreateProjectRoutingRequestDeserializer();
-	protected static JsonpDeserializer<CreateProjectRoutingRequest> createCreateProjectRoutingRequestDeserializer() {
+	public static final JsonpDeserializer<EmbeddingRequest> _DESERIALIZER = createEmbeddingRequestDeserializer();
+	protected static JsonpDeserializer<EmbeddingRequest> createEmbeddingRequestDeserializer() {
 
-		JsonpDeserializer<ProjectRoutingExpression> valueDeserializer = ProjectRoutingExpression._DESERIALIZER;
+		JsonpDeserializer<RequestEmbedding> valueDeserializer = RequestEmbedding._DESERIALIZER;
 
 		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.expressions(valueDeserializer.deserialize(parser, mapper, event)).build());
+				.embedding(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code project_routing.create}".
+	 * Endpoint "{@code inference.embedding}".
 	 */
-	public static final Endpoint<CreateProjectRoutingRequest, CreateProjectRoutingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/project_routing.create",
+	public static final Endpoint<EmbeddingRequest, EmbeddingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/inference.embedding",
 
 			// Request method
 			request -> {
-				return "PUT";
+				return "POST";
 
 			},
 
 			// Request path
 			request -> {
-				final int _name = 1 << 0;
+				final int _inferenceId = 1 << 0;
 
 				int propsSet = 0;
 
-				propsSet |= _name;
+				propsSet |= _inferenceId;
 
-				if (propsSet == (_name)) {
+				if (propsSet == (_inferenceId)) {
 					StringBuilder buf = new StringBuilder();
-					buf.append("/_project_routing");
+					buf.append("/_inference");
+					buf.append("/embedding");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name, buf);
+					SimpleEndpoint.pathEncode(request.inferenceId, buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -233,21 +267,25 @@ public class CreateProjectRoutingRequest extends RequestBase implements JsonpSer
 			// Path parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				final int _name = 1 << 0;
+				final int _inferenceId = 1 << 0;
 
 				int propsSet = 0;
 
-				propsSet |= _name;
+				propsSet |= _inferenceId;
 
-				if (propsSet == (_name)) {
-					params.put("name", request.name);
+				if (propsSet == (_inferenceId)) {
+					params.put("inferenceId", request.inferenceId);
 				}
 				return params;
 			},
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
+				}
+				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, CreateProjectRoutingResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, EmbeddingResponse._DESERIALIZER);
 }

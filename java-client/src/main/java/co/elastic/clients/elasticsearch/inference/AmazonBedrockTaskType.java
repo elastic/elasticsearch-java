@@ -46,6 +46,8 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum AmazonBedrockTaskType implements JsonEnum {
+	ChatCompletion("chat_completion"),
+
 	Completion("completion"),
 
 	TextEmbedding("text_embedding"),

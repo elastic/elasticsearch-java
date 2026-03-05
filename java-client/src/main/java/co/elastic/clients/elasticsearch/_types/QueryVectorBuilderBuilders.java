@@ -62,4 +62,23 @@ public class QueryVectorBuilderBuilders {
 		return builder.build();
 	}
 
+	/**
+	 * Creates a builder for the {@link LookupQueryVectorBuilder lookup}
+	 * {@code QueryVectorBuilder} variant.
+	 */
+	public static LookupQueryVectorBuilder.Builder lookup() {
+		return new LookupQueryVectorBuilder.Builder();
+	}
+
+	/**
+	 * Creates a QueryVectorBuilder of the {@link LookupQueryVectorBuilder lookup}
+	 * {@code QueryVectorBuilder} variant.
+	 */
+	public static QueryVectorBuilder lookup(
+			Function<LookupQueryVectorBuilder.Builder, ObjectBuilder<LookupQueryVectorBuilder>> fn) {
+		QueryVectorBuilder.Builder builder = new QueryVectorBuilder.Builder();
+		builder.lookup(fn.apply(new LookupQueryVectorBuilder.Builder()).build());
+		return builder.build();
+	}
+
 }

@@ -119,16 +119,16 @@ public class AmazonBedrockServiceSettings implements JsonpSerializable {
 	 * <ul>
 	 * <li><code>amazontitan</code> - available for <code>text_embedding</code> and
 	 * <code>completion</code> task types</li>
-	 * <li><code>anthropic</code> - available for <code>completion</code> task type
-	 * only</li>
-	 * <li><code>ai21labs</code> - available for <code>completion</code> task type
-	 * only</li>
-	 * <li><code>cohere</code> - available for <code>text_embedding</code> and
+	 * <li><code>anthropic</code> - available for <code>chat_completion</code> and
 	 * <code>completion</code> task types</li>
-	 * <li><code>meta</code> - available for <code>completion</code> task type
-	 * only</li>
-	 * <li><code>mistral</code> - available for <code>completion</code> task type
-	 * only</li>
+	 * <li><code>ai21labs</code> - available for <code>chat_completion</code> and
+	 * <code>completion</code> task types</li>
+	 * <li><code>cohere</code> - available for <code>chat_completion</code>,
+	 * <code>completion</code> and <code>text_embedding</code> task types</li>
+	 * <li><code>meta</code> - available for <code>chat_completion</code> and
+	 * <code>completion</code> task types</li>
+	 * <li><code>mistral</code> - available for <code>chat_completion</code> and
+	 * <code>completion</code> task types</li>
 	 * </ul>
 	 * <p>
 	 * API name: {@code provider}
@@ -150,8 +150,8 @@ public class AmazonBedrockServiceSettings implements JsonpSerializable {
 
 	/**
 	 * This setting helps to minimize the number of rate limit errors returned from
-	 * Watsonx. By default, the <code>watsonxai</code> service sets the number of
-	 * requests allowed per minute to 120.
+	 * Amazon Bedrock. By default, the <code>amazonbedrock</code> service sets the
+	 * number of requests allowed per minute to 240.
 	 * <p>
 	 * API name: {@code rate_limit}
 	 */
@@ -275,16 +275,16 @@ public class AmazonBedrockServiceSettings implements JsonpSerializable {
 		 * <ul>
 		 * <li><code>amazontitan</code> - available for <code>text_embedding</code> and
 		 * <code>completion</code> task types</li>
-		 * <li><code>anthropic</code> - available for <code>completion</code> task type
-		 * only</li>
-		 * <li><code>ai21labs</code> - available for <code>completion</code> task type
-		 * only</li>
-		 * <li><code>cohere</code> - available for <code>text_embedding</code> and
+		 * <li><code>anthropic</code> - available for <code>chat_completion</code> and
 		 * <code>completion</code> task types</li>
-		 * <li><code>meta</code> - available for <code>completion</code> task type
-		 * only</li>
-		 * <li><code>mistral</code> - available for <code>completion</code> task type
-		 * only</li>
+		 * <li><code>ai21labs</code> - available for <code>chat_completion</code> and
+		 * <code>completion</code> task types</li>
+		 * <li><code>cohere</code> - available for <code>chat_completion</code>,
+		 * <code>completion</code> and <code>text_embedding</code> task types</li>
+		 * <li><code>meta</code> - available for <code>chat_completion</code> and
+		 * <code>completion</code> task types</li>
+		 * <li><code>mistral</code> - available for <code>chat_completion</code> and
+		 * <code>completion</code> task types</li>
 		 * </ul>
 		 * <p>
 		 * API name: {@code provider}
@@ -307,8 +307,8 @@ public class AmazonBedrockServiceSettings implements JsonpSerializable {
 
 		/**
 		 * This setting helps to minimize the number of rate limit errors returned from
-		 * Watsonx. By default, the <code>watsonxai</code> service sets the number of
-		 * requests allowed per minute to 120.
+		 * Amazon Bedrock. By default, the <code>amazonbedrock</code> service sets the
+		 * number of requests allowed per minute to 240.
 		 * <p>
 		 * API name: {@code rate_limit}
 		 */
@@ -319,8 +319,8 @@ public class AmazonBedrockServiceSettings implements JsonpSerializable {
 
 		/**
 		 * This setting helps to minimize the number of rate limit errors returned from
-		 * Watsonx. By default, the <code>watsonxai</code> service sets the number of
-		 * requests allowed per minute to 120.
+		 * Amazon Bedrock. By default, the <code>amazonbedrock</code> service sets the
+		 * number of requests allowed per minute to 240.
 		 * <p>
 		 * API name: {@code rate_limit}
 		 */

@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.project_routing;
+package co.elastic.clients.elasticsearch.project;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -44,63 +44,62 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: project_routing.create.Response
+// typedef: project.delete_routing.Response
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#project_routing.create.Response">API
+ * @see <a href="../doc-files/api-spec.html#project.delete_routing.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class CreateProjectRoutingResponse extends AcknowledgedResponseBase {
+public class DeleteRoutingResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	private CreateProjectRoutingResponse(Builder builder) {
+	private DeleteRoutingResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public static CreateProjectRoutingResponse of(Function<Builder, ObjectBuilder<CreateProjectRoutingResponse>> fn) {
+	public static DeleteRoutingResponse of(Function<Builder, ObjectBuilder<DeleteRoutingResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link CreateProjectRoutingResponse}.
+	 * Builder for {@link DeleteRoutingResponse}.
 	 */
 
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<CreateProjectRoutingResponse> {
+				ObjectBuilder<DeleteRoutingResponse> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link CreateProjectRoutingResponse}.
+		 * Builds a {@link DeleteRoutingResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public CreateProjectRoutingResponse build() {
+		public DeleteRoutingResponse build() {
 			_checkSingleUse();
 
-			return new CreateProjectRoutingResponse(this);
+			return new DeleteRoutingResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link CreateProjectRoutingResponse}
+	 * Json deserializer for {@link DeleteRoutingResponse}
 	 */
-	public static final JsonpDeserializer<CreateProjectRoutingResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CreateProjectRoutingResponse::setupCreateProjectRoutingResponseDeserializer);
+	public static final JsonpDeserializer<DeleteRoutingResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteRoutingResponse::setupDeleteRoutingResponseDeserializer);
 
-	protected static void setupCreateProjectRoutingResponseDeserializer(
-			ObjectDeserializer<CreateProjectRoutingResponse.Builder> op) {
+	protected static void setupDeleteRoutingResponseDeserializer(ObjectDeserializer<DeleteRoutingResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

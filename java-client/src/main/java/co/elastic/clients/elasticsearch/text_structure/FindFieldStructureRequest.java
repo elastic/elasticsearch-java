@@ -124,6 +124,9 @@ public class FindFieldStructureRequest extends RequestBase {
 	private final String quote;
 
 	@Nullable
+	private final Boolean shouldParseRecursively;
+
+	@Nullable
 	private final Boolean shouldTrimFields;
 
 	@Nullable
@@ -149,6 +152,7 @@ public class FindFieldStructureRequest extends RequestBase {
 		this.grokPattern = builder.grokPattern;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.quote = builder.quote;
+		this.shouldParseRecursively = builder.shouldParseRecursively;
 		this.shouldTrimFields = builder.shouldTrimFields;
 		this.timeout = builder.timeout;
 		this.timestampField = builder.timestampField;
@@ -296,6 +300,20 @@ public class FindFieldStructureRequest extends RequestBase {
 	}
 
 	/**
+	 * If the format is <code>ndjson</code>, you can specify whether to parse nested
+	 * JSON objects recursively. The nested objects are parsed to a maximum depth
+	 * equal to the default value of the <code>index.mapping.depth.limit</code>
+	 * setting. Anything beyond that depth is parsed as an <code>object</code> type
+	 * field. For formats other than <code>ndjson</code>, this parameter is ignored.
+	 * <p>
+	 * API name: {@code should_parse_recursively}
+	 */
+	@Nullable
+	public final Boolean shouldParseRecursively() {
+		return this.shouldParseRecursively;
+	}
+
+	/**
 	 * If the format is <code>delimited</code>, you can specify whether values
 	 * between delimiters should have whitespace trimmed from them. If this
 	 * parameter is not specified and the delimiter is pipe (<code>|</code>), the
@@ -437,6 +455,9 @@ public class FindFieldStructureRequest extends RequestBase {
 		private String quote;
 
 		@Nullable
+		private Boolean shouldParseRecursively;
+
+		@Nullable
 		private Boolean shouldTrimFields;
 
 		@Nullable
@@ -461,6 +482,7 @@ public class FindFieldStructureRequest extends RequestBase {
 			this.grokPattern = instance.grokPattern;
 			this.index = instance.index;
 			this.quote = instance.quote;
+			this.shouldParseRecursively = instance.shouldParseRecursively;
 			this.shouldTrimFields = instance.shouldTrimFields;
 			this.timeout = instance.timeout;
 			this.timestampField = instance.timestampField;
@@ -620,6 +642,20 @@ public class FindFieldStructureRequest extends RequestBase {
 		 */
 		public final Builder quote(@Nullable String value) {
 			this.quote = value;
+			return this;
+		}
+
+		/**
+		 * If the format is <code>ndjson</code>, you can specify whether to parse nested
+		 * JSON objects recursively. The nested objects are parsed to a maximum depth
+		 * equal to the default value of the <code>index.mapping.depth.limit</code>
+		 * setting. Anything beyond that depth is parsed as an <code>object</code> type
+		 * field. For formats other than <code>ndjson</code>, this parameter is ignored.
+		 * <p>
+		 * API name: {@code should_parse_recursively}
+		 */
+		public final Builder shouldParseRecursively(@Nullable Boolean value) {
+			this.shouldParseRecursively = value;
 			return this;
 		}
 
@@ -810,6 +846,9 @@ public class FindFieldStructureRequest extends RequestBase {
 				}
 				if (request.shouldTrimFields != null) {
 					params.put("should_trim_fields", String.valueOf(request.shouldTrimFields));
+				}
+				if (request.shouldParseRecursively != null) {
+					params.put("should_parse_recursively", String.valueOf(request.shouldParseRecursively));
 				}
 				params.put("field", request.field);
 				if (request.grokPattern != null) {

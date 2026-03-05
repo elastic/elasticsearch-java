@@ -28,9 +28,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -55,9 +55,9 @@ import javax.annotation.Nullable;
 // typedef: streams.logs_disable.Request
 
 /**
- * Disable logs stream.
+ * Disable a named stream.
  * <p>
- * Turn off the logs stream feature for this cluster.
+ * Turn off the named stream feature for this cluster.
  * 
  * @see <a href="../doc-files/api-spec.html#streams.logs_disable.Request">API
  *      specification</a>
@@ -67,6 +67,8 @@ public class LogsDisableRequest extends RequestBase {
 	@Nullable
 	private final Time masterTimeout;
 
+	private final StreamType name;
+
 	@Nullable
 	private final Time timeout;
 
@@ -75,6 +77,7 @@ public class LogsDisableRequest extends RequestBase {
 	private LogsDisableRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.timeout = builder.timeout;
 
 	}
@@ -92,6 +95,15 @@ public class LogsDisableRequest extends RequestBase {
 	@Nullable
 	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Required - The stream type to disable.
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public final StreamType name() {
+		return this.name;
 	}
 
 	/**
@@ -117,6 +129,8 @@ public class LogsDisableRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		private StreamType name;
+
 		@Nullable
 		private Time timeout;
 
@@ -124,6 +138,7 @@ public class LogsDisableRequest extends RequestBase {
 		}
 		private Builder(LogsDisableRequest instance) {
 			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
 			this.timeout = instance.timeout;
 
 		}
@@ -146,6 +161,16 @@ public class LogsDisableRequest extends RequestBase {
 		 */
 		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - The stream type to disable.
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public final Builder name(StreamType value) {
+			this.name = value;
+			return this;
 		}
 
 		/**
@@ -209,13 +234,37 @@ public class LogsDisableRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				return "/_streams/logs/_disable";
+				final int _name = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _name;
+
+				if (propsSet == (_name)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_streams");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.name.jsonValue(), buf);
+					buf.append("/_disable");
+					return buf.toString();
+				}
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
 			// Path parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				final int _name = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _name;
+
+				if (propsSet == (_name)) {
+					params.put("name", request.name.jsonValue());
+				}
+				return params;
 			},
 
 			// Request parameters

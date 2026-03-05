@@ -55,6 +55,8 @@ public enum TaskType implements JsonEnum {
 
 	ChatCompletion("chat_completion"),
 
+	Embedding("embedding"),
+
 	;
 
 	private final String jsonValue;

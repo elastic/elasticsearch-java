@@ -81,7 +81,8 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 	@Nullable
 	private final String index;
 
-	private final List<String> routing;
+	@Nullable
+	private final String routing;
 
 	@Nullable
 	private final Double score;
@@ -103,7 +104,7 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.id = builder.id;
 		this.index = builder.index;
-		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
+		this.routing = builder.routing;
 		this.score = builder.score;
 		this.source = builder.source;
 		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
@@ -157,7 +158,8 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 	/**
 	 * API name: {@code _routing}
 	 */
-	public final List<String> routing() {
+	@Nullable
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -239,14 +241,9 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 			generator.write(this.index);
 
 		}
-		if (ApiTypeHelper.isDefined(this.routing)) {
+		if (this.routing != null) {
 			generator.writeKey("_routing");
-			generator.writeStartArray();
-			for (String item0 : this.routing) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			generator.write(this.routing);
 
 		}
 		if (this.score != null) {
@@ -294,7 +291,7 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		private String index;
 
 		@Nullable
-		private List<String> routing;
+		private String routing;
 
 		@Nullable
 		private Double score;
@@ -387,21 +384,9 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 
 		/**
 		 * API name: {@code _routing}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>routing</code>.
 		 */
-		public final Builder<TDocument> routing(List<String> list) {
-			this.routing = _listAddAll(this.routing, list);
-			return this;
-		}
-
-		/**
-		 * API name: {@code _routing}
-		 * <p>
-		 * Adds one or more values to <code>routing</code>.
-		 */
-		public final Builder<TDocument> routing(String value, String... values) {
-			this.routing = _listAdd(this.routing, value, values);
+		public final Builder<TDocument> routing(@Nullable String value) {
+			this.routing = value;
 			return this;
 		}
 
@@ -492,8 +477,7 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "fields");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::routing, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"_routing");
+		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
 		op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "_score", "score");
 		op.add(Builder::source, tDocumentDeserializer, "_source");
 		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");

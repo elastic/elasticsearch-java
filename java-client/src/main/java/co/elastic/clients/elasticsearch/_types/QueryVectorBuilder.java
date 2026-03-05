@@ -73,6 +73,8 @@ public class QueryVectorBuilder implements TaggedUnion<QueryVectorBuilder.Kind, 
 	public enum Kind implements JsonEnum {
 		TextEmbedding("text_embedding"),
 
+		Lookup("lookup"),
+
 		;
 
 		private final String jsonValue;
@@ -135,6 +137,23 @@ public class QueryVectorBuilder implements TaggedUnion<QueryVectorBuilder.Kind, 
 		return TaggedUnionUtils.get(this, Kind.TextEmbedding);
 	}
 
+	/**
+	 * Is this variant instance of kind {@code lookup}?
+	 */
+	public boolean isLookup() {
+		return _kind == Kind.Lookup;
+	}
+
+	/**
+	 * Get the {@code lookup} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code lookup} kind.
+	 */
+	public LookupQueryVectorBuilder lookup() {
+		return TaggedUnionUtils.get(this, Kind.Lookup);
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -176,6 +195,17 @@ public class QueryVectorBuilder implements TaggedUnion<QueryVectorBuilder.Kind, 
 			return this.textEmbedding(fn.apply(new TextEmbedding.Builder()).build());
 		}
 
+		public ObjectBuilder<QueryVectorBuilder> lookup(LookupQueryVectorBuilder v) {
+			this._kind = Kind.Lookup;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<QueryVectorBuilder> lookup(
+				Function<LookupQueryVectorBuilder.Builder, ObjectBuilder<LookupQueryVectorBuilder>> fn) {
+			return this.lookup(fn.apply(new LookupQueryVectorBuilder.Builder()).build());
+		}
+
 		public QueryVectorBuilder build() {
 			_checkSingleUse();
 			return new QueryVectorBuilder(this);
@@ -186,6 +216,7 @@ public class QueryVectorBuilder implements TaggedUnion<QueryVectorBuilder.Kind, 
 	protected static void setupQueryVectorBuilderDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::textEmbedding, TextEmbedding._DESERIALIZER, "text_embedding");
+		op.add(Builder::lookup, LookupQueryVectorBuilder._DESERIALIZER, "lookup");
 
 	}
 

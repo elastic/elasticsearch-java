@@ -27,6 +27,7 @@ import co.elastic.clients.elasticsearch.xpack.usage.DataStreams;
 import co.elastic.clients.elasticsearch.xpack.usage.DataTiers;
 import co.elastic.clients.elasticsearch.xpack.usage.Eql;
 import co.elastic.clients.elasticsearch.xpack.usage.Flattened;
+import co.elastic.clients.elasticsearch.xpack.usage.GpuVectorIndexing;
 import co.elastic.clients.elasticsearch.xpack.usage.HealthStatistics;
 import co.elastic.clients.elasticsearch.xpack.usage.Ilm;
 import co.elastic.clients.elasticsearch.xpack.usage.MachineLearning;
@@ -109,6 +110,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 	private final Base graph;
 
 	@Nullable
+	private final GpuVectorIndexing gpuVectorIndexing;
+
+	@Nullable
 	private final HealthStatistics healthApi;
 
 	private final Ilm ilm;
@@ -158,6 +162,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 		this.eql = ApiTypeHelper.requireNonNull(builder.eql, this, "eql");
 		this.flattened = builder.flattened;
 		this.graph = ApiTypeHelper.requireNonNull(builder.graph, this, "graph");
+		this.gpuVectorIndexing = builder.gpuVectorIndexing;
 		this.healthApi = builder.healthApi;
 		this.ilm = ApiTypeHelper.requireNonNull(builder.ilm, this, "ilm");
 		this.logstash = ApiTypeHelper.requireNonNull(builder.logstash, this, "logstash");
@@ -275,6 +280,14 @@ public class XpackUsageResponse implements JsonpSerializable {
 	 */
 	public final Base graph() {
 		return this.graph;
+	}
+
+	/**
+	 * API name: {@code gpu_vector_indexing}
+	 */
+	@Nullable
+	public final GpuVectorIndexing gpuVectorIndexing() {
+		return this.gpuVectorIndexing;
 	}
 
 	/**
@@ -445,6 +458,11 @@ public class XpackUsageResponse implements JsonpSerializable {
 		generator.writeKey("graph");
 		this.graph.serialize(generator, mapper);
 
+		if (this.gpuVectorIndexing != null) {
+			generator.writeKey("gpu_vector_indexing");
+			this.gpuVectorIndexing.serialize(generator, mapper);
+
+		}
 		if (this.healthApi != null) {
 			generator.writeKey("health_api");
 			this.healthApi.serialize(generator, mapper);
@@ -542,6 +560,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 		private Flattened flattened;
 
 		private Base graph;
+
+		@Nullable
+		private GpuVectorIndexing gpuVectorIndexing;
 
 		@Nullable
 		private HealthStatistics healthApi;
@@ -769,6 +790,22 @@ public class XpackUsageResponse implements JsonpSerializable {
 		 */
 		public final Builder graph(Function<Base.Builder, ObjectBuilder<Base>> fn) {
 			return this.graph(fn.apply(new Base.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code gpu_vector_indexing}
+		 */
+		public final Builder gpuVectorIndexing(@Nullable GpuVectorIndexing value) {
+			this.gpuVectorIndexing = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code gpu_vector_indexing}
+		 */
+		public final Builder gpuVectorIndexing(
+				Function<GpuVectorIndexing.Builder, ObjectBuilder<GpuVectorIndexing>> fn) {
+			return this.gpuVectorIndexing(fn.apply(new GpuVectorIndexing.Builder()).build());
 		}
 
 		/**
@@ -1038,6 +1075,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 		op.add(Builder::eql, Eql._DESERIALIZER, "eql");
 		op.add(Builder::flattened, Flattened._DESERIALIZER, "flattened");
 		op.add(Builder::graph, Base._DESERIALIZER, "graph");
+		op.add(Builder::gpuVectorIndexing, GpuVectorIndexing._DESERIALIZER, "gpu_vector_indexing");
 		op.add(Builder::healthApi, HealthStatistics._DESERIALIZER, "health_api");
 		op.add(Builder::ilm, Ilm._DESERIALIZER, "ilm");
 		op.add(Builder::logstash, Base._DESERIALIZER, "logstash");

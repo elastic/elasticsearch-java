@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.inference;
+package co.elastic.clients.elasticsearch.project;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -30,8 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Number;
-import java.util.List;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -51,36 +50,36 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: inference._types.TextEmbeddingByteResult
+// typedef: project._types.ProjectRoutingExpression
 
 /**
- * The text embedding result object for byte representation
- * 
+ *
  * @see <a href=
- *      "../doc-files/api-spec.html#inference._types.TextEmbeddingByteResult">API
+ *      "../doc-files/api-spec.html#project._types.ProjectRoutingExpression">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TextEmbeddingByteResult implements JsonpSerializable {
-	private final List<Number> embedding;
+public class ProjectRoutingExpression implements JsonpSerializable {
+	private final String expression;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TextEmbeddingByteResult(Builder builder) {
+	protected ProjectRoutingExpression(AbstractBuilder<?> builder) {
 
-		this.embedding = ApiTypeHelper.unmodifiableRequired(builder.embedding, this, "embedding");
+		this.expression = ApiTypeHelper.requireNonNull(builder.expression, this, "expression");
 
 	}
 
-	public static TextEmbeddingByteResult of(Function<Builder, ObjectBuilder<TextEmbeddingByteResult>> fn) {
+	public static ProjectRoutingExpression projectRoutingExpressionOf(
+			Function<Builder, ObjectBuilder<ProjectRoutingExpression>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code embedding}
+	 * Required - API name: {@code expression}
 	 */
-	public final List<Number> embedding() {
-		return this.embedding;
+	public final String expression() {
+		return this.expression;
 	}
 
 	/**
@@ -94,16 +93,8 @@ public class TextEmbeddingByteResult implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.embedding)) {
-			generator.writeKey("embedding");
-			generator.writeStartArray();
-			for (Number item0 : this.embedding) {
-				generator.write(item0.doubleValue());
-
-			}
-			generator.writeEnd();
-
-		}
+		generator.writeKey("expression");
+		generator.write(this.expression);
 
 	}
 
@@ -115,77 +106,59 @@ public class TextEmbeddingByteResult implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TextEmbeddingByteResult}.
+	 * Builder for {@link ProjectRoutingExpression}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+	public static class Builder extends ProjectRoutingExpression.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<TextEmbeddingByteResult> {
-		private List<Number> embedding;
-
-		public Builder() {
-		}
-		private Builder(TextEmbeddingByteResult instance) {
-			this.embedding = instance.embedding;
-
-		}
-		/**
-		 * Required - API name: {@code embedding}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>embedding</code>.
-		 */
-		public final Builder embedding(List<Number> list) {
-			this.embedding = _listAddAll(this.embedding, list);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code embedding}
-		 * <p>
-		 * Adds one or more values to <code>embedding</code>.
-		 */
-		public final Builder embedding(Number value, Number... values) {
-			this.embedding = _listAdd(this.embedding, value, values);
-			return this;
-		}
-
+				ObjectBuilder<ProjectRoutingExpression> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link TextEmbeddingByteResult}.
+		 * Builds a {@link ProjectRoutingExpression}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TextEmbeddingByteResult build() {
+		public ProjectRoutingExpression build() {
 			_checkSingleUse();
 
-			return new TextEmbeddingByteResult(this);
+			return new ProjectRoutingExpression(this);
 		}
 	}
 
-	/**
-	 * @return New {@link Builder} initialized with field values of this instance
-	 */
-	public Builder rebuild() {
-		return new Builder(this);
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				WithJsonObjectBuilderBase<BuilderT> {
+		private String expression;
+
+		/**
+		 * Required - API name: {@code expression}
+		 */
+		public final BuilderT expression(String value) {
+			this.expression = value;
+			return self();
+		}
+
+		protected abstract BuilderT self();
+
 	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TextEmbeddingByteResult}
+	 * Json deserializer for {@link ProjectRoutingExpression}
 	 */
-	public static final JsonpDeserializer<TextEmbeddingByteResult> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TextEmbeddingByteResult::setupTextEmbeddingByteResultDeserializer);
+	public static final JsonpDeserializer<ProjectRoutingExpression> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ProjectRoutingExpression::setupProjectRoutingExpressionDeserializer);
 
-	protected static void setupTextEmbeddingByteResultDeserializer(
-			ObjectDeserializer<TextEmbeddingByteResult.Builder> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupProjectRoutingExpressionDeserializer(
+			ObjectDeserializer<BuilderT> op) {
 
-		op.add(Builder::embedding, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.numberDeserializer()),
-				"embedding");
+		op.add(AbstractBuilder::expression, JsonpDeserializer.stringDeserializer(), "expression");
 
 	}
 

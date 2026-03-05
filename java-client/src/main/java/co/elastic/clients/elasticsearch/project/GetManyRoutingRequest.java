@@ -17,16 +17,20 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.project_routing;
+package co.elastic.clients.elasticsearch.project;
 
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -43,65 +47,53 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: project_routing.get.Response
+// typedef: project.get_many_routing.Request
 
 /**
- *
- * @see <a href="../doc-files/api-spec.html#project_routing.get.Response">API
+ * Get project routing expressions.
+ * 
+ * @see <a href=
+ *      "../doc-files/api-spec.html#project.get_many_routing.Request">API
  *      specification</a>
  */
-@JsonpDeserializable
-public class GetProjectRoutingResponse extends ProjectRoutingExpression {
-	// ---------------------------------------------------------------------------------------------
 
-	private GetProjectRoutingResponse(Builder builder) {
-		super(builder);
-
+public class GetManyRoutingRequest extends RequestBase {
+	public GetManyRoutingRequest() {
 	}
 
-	public static GetProjectRoutingResponse of(Function<Builder, ObjectBuilder<GetProjectRoutingResponse>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+	/**
+	 * Singleton instance for {@link GetManyRoutingRequest}.
+	 */
+	public static final GetManyRoutingRequest _INSTANCE = new GetManyRoutingRequest();
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetProjectRoutingResponse}.
+	 * Endpoint "{@code project.get_many_routing}".
 	 */
+	public static final Endpoint<GetManyRoutingRequest, GetManyRoutingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/project.get_many_routing",
 
-	public static class Builder extends ProjectRoutingExpression.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<GetProjectRoutingResponse> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
+			// Request method
+			request -> {
+				return "GET";
 
-		/**
-		 * Builds a {@link GetProjectRoutingResponse}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetProjectRoutingResponse build() {
-			_checkSingleUse();
+			},
 
-			return new GetProjectRoutingResponse(this);
-		}
-	}
+			// Request path
+			request -> {
+				return "/_project_routing";
 
-	// ---------------------------------------------------------------------------------------------
+			},
 
-	/**
-	 * Json deserializer for {@link GetProjectRoutingResponse}
-	 */
-	public static final JsonpDeserializer<GetProjectRoutingResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetProjectRoutingResponse::setupGetProjectRoutingResponseDeserializer);
+			// Path parameters
+			request -> {
+				return Collections.emptyMap();
+			},
 
-	protected static void setupGetProjectRoutingResponseDeserializer(
-			ObjectDeserializer<GetProjectRoutingResponse.Builder> op) {
-		ProjectRoutingExpression.setupProjectRoutingExpressionDeserializer(op);
+			// Request parameters
+			request -> {
+				return Collections.emptyMap();
 
-	}
-
+			}, SimpleEndpoint.emptyMap(), false, GetManyRoutingResponse._DESERIALIZER);
 }

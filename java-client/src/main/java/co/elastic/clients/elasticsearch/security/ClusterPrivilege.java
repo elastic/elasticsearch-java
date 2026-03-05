@@ -168,6 +168,10 @@ public enum ClusterPrivilege implements JsonEnum {
 
 	WriteFleetSecrets("write_fleet_secrets"),
 
+	ReadProjectRouting("read_project_routing"),
+
+	ManageProjectRouting("manage_project_routing"),
+
 	;
 
 	private final String jsonValue;

@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.streams.status;
+package co.elastic.clients.elasticsearch.inference;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -30,9 +30,9 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -49,36 +49,39 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: streams.status.LogsStatus
+// typedef: inference._types.EmbeddingContentObject
 
 /**
- *
- * @see <a href="../../doc-files/api-spec.html#streams.status.LogsStatus">API
+ * A wrapper object which contains the fields required to specify multimodal
+ * inputs
+ * 
+ * @see <a href=
+ *      "../doc-files/api-spec.html#inference._types.EmbeddingContentObject">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class LogsStatus implements JsonpSerializable {
-	private final boolean enabled;
+public class EmbeddingContentObject implements JsonpSerializable {
+	private final EmbeddingContentObjectContents content;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private LogsStatus(Builder builder) {
+	private EmbeddingContentObject(Builder builder) {
 
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled", false);
+		this.content = ApiTypeHelper.requireNonNull(builder.content, this, "content");
 
 	}
 
-	public static LogsStatus of(Function<Builder, ObjectBuilder<LogsStatus>> fn) {
+	public static EmbeddingContentObject of(Function<Builder, ObjectBuilder<EmbeddingContentObject>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - If true, the logs stream feature is enabled.
+	 * Required - An object containing the input data for the model to embed
 	 * <p>
-	 * API name: {@code enabled}
+	 * API name: {@code content}
 	 */
-	public final boolean enabled() {
-		return this.enabled;
+	public final EmbeddingContentObjectContents content() {
+		return this.content;
 	}
 
 	/**
@@ -92,8 +95,8 @@ public class LogsStatus implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("enabled");
-		generator.write(this.enabled);
+		generator.writeKey("content");
+		this.content.serialize(generator, mapper);
 
 	}
 
@@ -105,26 +108,38 @@ public class LogsStatus implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link LogsStatus}.
+	 * Builder for {@link EmbeddingContentObject}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<LogsStatus> {
-		private Boolean enabled;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<EmbeddingContentObject> {
+		private EmbeddingContentObjectContents content;
 
 		public Builder() {
 		}
-		private Builder(LogsStatus instance) {
-			this.enabled = instance.enabled;
+		private Builder(EmbeddingContentObject instance) {
+			this.content = instance.content;
 
 		}
 		/**
-		 * Required - If true, the logs stream feature is enabled.
+		 * Required - An object containing the input data for the model to embed
 		 * <p>
-		 * API name: {@code enabled}
+		 * API name: {@code content}
 		 */
-		public final Builder enabled(boolean value) {
-			this.enabled = value;
+		public final Builder content(EmbeddingContentObjectContents value) {
+			this.content = value;
 			return this;
+		}
+
+		/**
+		 * Required - An object containing the input data for the model to embed
+		 * <p>
+		 * API name: {@code content}
+		 */
+		public final Builder content(
+				Function<EmbeddingContentObjectContents.Builder, ObjectBuilder<EmbeddingContentObjectContents>> fn) {
+			return this.content(fn.apply(new EmbeddingContentObjectContents.Builder()).build());
 		}
 
 		@Override
@@ -133,15 +148,15 @@ public class LogsStatus implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link LogsStatus}.
+		 * Builds a {@link EmbeddingContentObject}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public LogsStatus build() {
+		public EmbeddingContentObject build() {
 			_checkSingleUse();
 
-			return new LogsStatus(this);
+			return new EmbeddingContentObject(this);
 		}
 	}
 
@@ -154,14 +169,15 @@ public class LogsStatus implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link LogsStatus}
+	 * Json deserializer for {@link EmbeddingContentObject}
 	 */
-	public static final JsonpDeserializer<LogsStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			LogsStatus::setupLogsStatusDeserializer);
+	public static final JsonpDeserializer<EmbeddingContentObject> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, EmbeddingContentObject::setupEmbeddingContentObjectDeserializer);
 
-	protected static void setupLogsStatusDeserializer(ObjectDeserializer<LogsStatus.Builder> op) {
+	protected static void setupEmbeddingContentObjectDeserializer(
+			ObjectDeserializer<EmbeddingContentObject.Builder> op) {
 
-		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(Builder::content, EmbeddingContentObjectContents._DESERIALIZER, "content");
 
 	}
 

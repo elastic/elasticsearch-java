@@ -76,7 +76,7 @@ import javax.annotation.Nullable;
  * <li>AI21 (<code>chat_completion</code>, <code>completion</code>)</li>
  * <li>AlibabaCloud AI Search (<code>completion</code>, <code>rerank</code>,
  * <code>sparse_embedding</code>, <code>text_embedding</code>)</li>
- * <li>Amazon Bedrock (<code>completion</code>,
+ * <li>Amazon Bedrock (<code>chat_completion</code>, <code>completion</code>,
  * <code>text_embedding</code>)</li>
  * <li>Amazon SageMaker (<code>chat_completion</code>, <code>completion</code>,
  * <code>rerank</code>, <code>sparse_embedding</code>,
@@ -100,7 +100,8 @@ import javax.annotation.Nullable;
  * <li>Groq (<code>chat_completion</code>)</li>
  * <li>Hugging Face (<code>chat_completion</code>, <code>completion</code>,
  * <code>rerank</code>, <code>text_embedding</code>)</li>
- * <li>JinaAI (<code>rerank</code>, <code>text_embedding</code>)</li>
+ * <li>JinaAI (<code>embedding</code>, <code>rerank</code>,
+ * <code>text_embedding</code>)</li>
  * <li>Llama (<code>chat_completion</code>, <code>completion</code>,
  * <code>text_embedding</code>)</li>
  * <li>Mistral (<code>chat_completion</code>, <code>completion</code>,
