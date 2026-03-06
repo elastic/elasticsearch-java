@@ -80,6 +80,7 @@ public final class Rest5ClientBuilder {
     private Consumer<RequestConfig.Builder> requestConfigCallback;
     private Consumer<ConnectionConfig.Builder> connectionConfigCallback;
     private Consumer<PoolingAsyncClientConnectionManagerBuilder> connectionManagerCallback;
+    private Consumer<PoolingAsyncClientConnectionManager> connectionManagerMonitor;
     private Header[] defaultHeaders = EMPTY_HEADERS;
     private Rest5Client.FailureListener failureListener;
     private SSLContext sslContext;
@@ -369,11 +370,18 @@ public final class Rest5ClientBuilder {
      * and used by the {@link CloseableHttpAsyncClient}.
      * Commonly used to customize {@link PoolingAsyncClientConnectionManager} without losing any other useful default
      * value that the {@link Rest5ClientBuilder} internally sets.
-     * @throws NullPointerException if {@code connectionManagerCallback} is {@code null}.
      */
     public Rest5ClientBuilder setConnectionManagerCallback(Consumer<PoolingAsyncClientConnectionManagerBuilder> connectionManagerCallback) {
-        Objects.requireNonNull(connectionManagerCallback, "connectionManagerCallback must not be null");
         this.connectionManagerCallback = connectionManagerCallback;
+        return this;
+    }
+
+    /**
+     * Allows to monitor the {@link PoolingAsyncClientConnectionManager} after it has been created.
+     * This can be used to add custom monitoring or alerting for connection pool usage.
+     */
+    public Rest5ClientBuilder setConnectionManagerMonitor(Consumer<PoolingAsyncClientConnectionManager> connectionManagerMonitor) {
+        this.connectionManagerMonitor = connectionManagerMonitor;
         return this;
     }
 
@@ -446,20 +454,29 @@ public final class Rest5ClientBuilder {
                 connectionConfigCallback.accept(connectionConfigBuilder);
             }
 
-            PoolingAsyncClientConnectionManagerBuilder connectionManagerBuilder =
+            PoolingAsyncClientConnectionManagerBuilder connectionManagerBuilder = 
                 PoolingAsyncClientConnectionManagerBuilder.create()
                     .setDefaultConnectionConfig(connectionConfigBuilder.build())
                     .setMaxConnPerRoute(DEFAULT_MAX_CONN_PER_ROUTE)
                     .setMaxConnTotal(DEFAULT_MAX_CONN_TOTAL)
-                    .setTlsStrategy(new DefaultClientTlsStrategy(sslContext));
+                    .setTlsStrategy(new DefaultClientTlsStrategy(sslContext))
+                    // 配置连接池定期清理机制
+                    .setValidateAfterInactivity(Timeout.of(5, TimeUnit.SECONDS))
+                    // 配置连接存活时间
+                    .setConnectionTimeToLive(Timeout.of(30, TimeUnit.MINUTES));
 
             if (connectionManagerCallback != null) {
                 connectionManagerCallback.accept(connectionManagerBuilder);
             }
+            PoolingAsyncClientConnectionManager connectionManager = connectionManagerBuilder.build();
+            // 调用连接池监控回调
+            if (connectionManagerMonitor != null) {
+                connectionManagerMonitor.accept(connectionManager);
+            }
 
             HttpAsyncClientBuilder httpClientBuilder = HttpAsyncClientBuilder.create()
                 .setDefaultRequestConfig(requestConfigBuilder.build())
-                .setConnectionManager(connectionManagerBuilder.build())
+                .setConnectionManager(connectionManager)
                 .setUserAgent(USER_AGENT_HEADER_VALUE)
                 .setTargetAuthenticationStrategy(new DefaultAuthenticationStrategy())
                 .setThreadFactory(new RestClientThreadFactory());
