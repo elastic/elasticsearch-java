@@ -252,7 +252,7 @@ public final class ElasticsearchNodesSniffer implements NodesSniffer {
             realAttributes.put(entry.getKey(), singletonList(entry.getValue()));
         }
 
-        if (version.startsWith("2.")) {
+        if (version != null && version.startsWith("2.")) {
             /*
              * 2.x doesn't send roles, instead we try to read them from
              * attributes.

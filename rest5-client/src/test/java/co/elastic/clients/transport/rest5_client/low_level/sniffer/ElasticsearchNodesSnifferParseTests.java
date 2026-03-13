@@ -133,6 +133,14 @@ public class ElasticsearchNodesSnifferParseTests extends RestClientTestCase {
     }
 
     @Test
+    public void testNoVersion() throws IOException {
+        checkFile(
+            "no_version_nodes_http.json",
+            node(9200, "m1", null, "master", "ingest")
+        );
+    }
+
+    @Test
     public void testParsingPublishAddressWithPreES7Format() throws IOException {
         InputStream in = this.getClass().getResourceAsStream("es6_nodes_publication_address_format.json");
 
