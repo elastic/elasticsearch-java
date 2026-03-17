@@ -105,7 +105,8 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * The chunking configuration object. Applies only to the
 	 * <code>text_embedding</code> task type. Not applicable to the
-	 * <code>completion</code> or <code>chat_completion</code> task types.
+	 * <code>rerank</code>, <code>completion</code> or <code>chat_completion</code>
+	 * task types.
 	 * <p>
 	 * API name: {@code chunking_settings}
 	 */
@@ -223,7 +224,8 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 		/**
 		 * The chunking configuration object. Applies only to the
 		 * <code>text_embedding</code> task type. Not applicable to the
-		 * <code>completion</code> or <code>chat_completion</code> task types.
+		 * <code>rerank</code>, <code>completion</code> or <code>chat_completion</code>
+		 * task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */
@@ -235,7 +237,8 @@ public class PutWatsonxRequest extends RequestBase implements JsonpSerializable 
 		/**
 		 * The chunking configuration object. Applies only to the
 		 * <code>text_embedding</code> task type. Not applicable to the
-		 * <code>completion</code> or <code>chat_completion</code> task types.
+		 * <code>rerank</code>, <code>completion</code> or <code>chat_completion</code>
+		 * task types.
 		 * <p>
 		 * API name: {@code chunking_settings}
 		 */

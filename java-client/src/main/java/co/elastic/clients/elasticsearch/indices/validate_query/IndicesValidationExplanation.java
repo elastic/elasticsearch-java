@@ -31,6 +31,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -67,7 +68,11 @@ public class IndicesValidationExplanation implements JsonpSerializable {
 	@Nullable
 	private final String explanation;
 
+	@Nullable
 	private final String index;
+
+	@Nullable
+	private final Integer shard;
 
 	private final boolean valid;
 
@@ -77,7 +82,8 @@ public class IndicesValidationExplanation implements JsonpSerializable {
 
 		this.error = builder.error;
 		this.explanation = builder.explanation;
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = builder.index;
+		this.shard = builder.shard;
 		this.valid = ApiTypeHelper.requireNonNull(builder.valid, this, "valid", false);
 
 	}
@@ -103,10 +109,19 @@ public class IndicesValidationExplanation implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code index}
+	 * API name: {@code index}
 	 */
+	@Nullable
 	public final String index() {
 		return this.index;
+	}
+
+	/**
+	 * API name: {@code shard}
+	 */
+	@Nullable
+	public final Integer shard() {
+		return this.shard;
 	}
 
 	/**
@@ -137,9 +152,16 @@ public class IndicesValidationExplanation implements JsonpSerializable {
 			generator.write(this.explanation);
 
 		}
-		generator.writeKey("index");
-		generator.write(this.index);
+		if (this.index != null) {
+			generator.writeKey("index");
+			generator.write(this.index);
 
+		}
+		if (this.shard != null) {
+			generator.writeKey("shard");
+			generator.write(this.shard);
+
+		}
 		generator.writeKey("valid");
 		generator.write(this.valid);
 
@@ -165,7 +187,11 @@ public class IndicesValidationExplanation implements JsonpSerializable {
 		@Nullable
 		private String explanation;
 
+		@Nullable
 		private String index;
+
+		@Nullable
+		private Integer shard;
 
 		private Boolean valid;
 
@@ -175,6 +201,7 @@ public class IndicesValidationExplanation implements JsonpSerializable {
 			this.error = instance.error;
 			this.explanation = instance.explanation;
 			this.index = instance.index;
+			this.shard = instance.shard;
 			this.valid = instance.valid;
 
 		}
@@ -195,10 +222,18 @@ public class IndicesValidationExplanation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code index}
+		 * API name: {@code index}
 		 */
-		public final Builder index(String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code shard}
+		 */
+		public final Builder shard(@Nullable Integer value) {
+			this.shard = value;
 			return this;
 		}
 
@@ -248,6 +283,7 @@ public class IndicesValidationExplanation implements JsonpSerializable {
 		op.add(Builder::error, JsonpDeserializer.stringDeserializer(), "error");
 		op.add(Builder::explanation, JsonpDeserializer.stringDeserializer(), "explanation");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
 		op.add(Builder::valid, JsonpDeserializer.booleanDeserializer(), "valid");
 
 	}
