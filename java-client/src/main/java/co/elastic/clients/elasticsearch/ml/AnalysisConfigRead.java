@@ -64,6 +64,10 @@ import javax.annotation.Nullable;
 public class AnalysisConfigRead implements JsonpSerializable {
 	private final Time bucketSpan;
 
+	private final List<DetectorRead> detectors;
+
+	private final List<String> influencers;
+
 	@Nullable
 	private final CategorizationAnalyzer categorizationAnalyzer;
 
@@ -72,15 +76,11 @@ public class AnalysisConfigRead implements JsonpSerializable {
 
 	private final List<String> categorizationFilters;
 
-	private final List<DetectorRead> detectors;
-
-	private final List<String> influencers;
+	@Nullable
+	private final Time latency;
 
 	@Nullable
 	private final Time modelPruneWindow;
-
-	@Nullable
-	private final Time latency;
 
 	@Nullable
 	private final Boolean multivariateByFields;
@@ -96,13 +96,13 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	private AnalysisConfigRead(Builder builder) {
 
 		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
+		this.detectors = ApiTypeHelper.unmodifiableRequired(builder.detectors, this, "detectors");
+		this.influencers = ApiTypeHelper.unmodifiableRequired(builder.influencers, this, "influencers");
 		this.categorizationAnalyzer = builder.categorizationAnalyzer;
 		this.categorizationFieldName = builder.categorizationFieldName;
 		this.categorizationFilters = ApiTypeHelper.unmodifiable(builder.categorizationFilters);
-		this.detectors = ApiTypeHelper.unmodifiableRequired(builder.detectors, this, "detectors");
-		this.influencers = ApiTypeHelper.unmodifiableRequired(builder.influencers, this, "influencers");
-		this.modelPruneWindow = builder.modelPruneWindow;
 		this.latency = builder.latency;
+		this.modelPruneWindow = builder.modelPruneWindow;
 		this.multivariateByFields = builder.multivariateByFields;
 		this.perPartitionCategorization = builder.perPartitionCategorization;
 		this.summaryCountFieldName = builder.summaryCountFieldName;
@@ -115,7 +115,11 @@ public class AnalysisConfigRead implements JsonpSerializable {
 
 	/**
 	 * Required - The size of the interval that the analysis is aggregated into,
-	 * typically between <code>5m</code> and <code>1h</code>.
+	 * typically between <code>5m</code> and <code>1h</code>. This value should be
+	 * either a whole number of days or equate to a whole number of buckets in one
+	 * day. If the anomaly detection job uses a datafeed with aggregations, this
+	 * value must also be divisible by the interval of the date histogram
+	 * aggregation.
 	 * <p>
 	 * API name: {@code bucket_span}
 	 */
@@ -124,12 +128,40 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - Detector configuration objects specify which data fields a job
+	 * analyzes. They also specify which analytical functions are used. You can
+	 * specify multiple detectors for a job. If the detectors array does not contain
+	 * at least one detector, no analysis can occur and an error is returned.
+	 * <p>
+	 * API name: {@code detectors}
+	 */
+	public final List<DetectorRead> detectors() {
+		return this.detectors;
+	}
+
+	/**
+	 * Required - A comma separated list of influencer field names. Typically these
+	 * can be the by, over, or partition fields that are used in the detector
+	 * configuration. You might also want to use a field name that is not
+	 * specifically named in a detector, but is available as part of the input data.
+	 * When you use multiple detectors, the use of influencers is recommended as it
+	 * aggregates results for each influencer entity.
+	 * <p>
+	 * API name: {@code influencers}
+	 */
+	public final List<String> influencers() {
+		return this.influencers;
+	}
+
+	/**
 	 * If <code>categorization_field_name</code> is specified, you can also define
 	 * the analyzer that is used to interpret the categorization field. This
 	 * property cannot be used at the same time as
 	 * <code>categorization_filters</code>. The categorization analyzer specifies
 	 * how the <code>categorization_field</code> is interpreted by the
-	 * categorization process.
+	 * categorization process. The <code>categorization_analyzer</code> field can be
+	 * specified either as a string or as an object. If it is a string, it must
+	 * refer to a built-in analyzer or one added by another plugin.
 	 * <p>
 	 * API name: {@code categorization_analyzer}
 	 */
@@ -155,7 +187,16 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	 * If <code>categorization_field_name</code> is specified, you can also define
 	 * optional filters. This property expects an array of regular expressions. The
 	 * expressions are used to filter out matching sequences from the categorization
-	 * field values.
+	 * field values. You can use this functionality to fine tune the categorization
+	 * by excluding sequences from consideration when categories are defined. For
+	 * example, you can exclude SQL statements that appear in your log files. This
+	 * property cannot be used at the same time as
+	 * <code>categorization_analyzer</code>. If you only want to define simple
+	 * regular expression filters that are applied prior to tokenization, setting
+	 * this property is the easiest method. If you also want to customize the
+	 * tokenizer or post-tokenization filtering, use the
+	 * <code>categorization_analyzer</code> property instead and include the filters
+	 * as pattern_replace character filters. The effect is exactly the same.
 	 * <p>
 	 * API name: {@code categorization_filters}
 	 */
@@ -164,37 +205,23 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - An array of detector configuration objects. Detector configuration
-	 * objects specify which data fields a job analyzes. They also specify which
-	 * analytical functions are used. You can specify multiple detectors for a job.
+	 * The size of the window in which to expect data that is out of time order. If
+	 * you specify a non-zero value, it must be greater than or equal to one second.
+	 * NOTE: Latency is applicable only when you send data by using the post data
+	 * API.
 	 * <p>
-	 * API name: {@code detectors}
+	 * API name: {@code latency}
 	 */
-	public final List<DetectorRead> detectors() {
-		return this.detectors;
-	}
-
-	/**
-	 * Required - A comma separated list of influencer field names. Typically these
-	 * can be the by, over, or partition fields that are used in the detector
-	 * configuration. You might also want to use a field name that is not
-	 * specifically named in a detector, but is available as part of the input data.
-	 * When you use multiple detectors, the use of influencers is recommended as it
-	 * aggregates results for each influencer entity.
-	 * <p>
-	 * API name: {@code influencers}
-	 */
-	public final List<String> influencers() {
-		return this.influencers;
+	@Nullable
+	public final Time latency() {
+		return this.latency;
 	}
 
 	/**
 	 * Advanced configuration option. Affects the pruning of models that have not
 	 * been updated for the given time duration. The value must be set to a multiple
 	 * of the <code>bucket_span</code>. If set too low, important information may be
-	 * removed from the model. Typically, set to <code>30d</code> or longer. If not
-	 * set, model pruning only occurs if the model memory status reaches the soft
-	 * limit or the hard limit. For jobs created in 8.1 and later, the default value
+	 * removed from the model. For jobs created in 8.1 and later, the default value
 	 * is the greater of <code>30d</code> or 20 times <code>bucket_span</code>.
 	 * <p>
 	 * API name: {@code model_prune_window}
@@ -205,23 +232,19 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	}
 
 	/**
-	 * The size of the window in which to expect data that is out of time order.
-	 * Defaults to no latency. If you specify a non-zero value, it must be greater
-	 * than or equal to one second.
-	 * <p>
-	 * API name: {@code latency}
-	 */
-	@Nullable
-	public final Time latency() {
-		return this.latency;
-	}
-
-	/**
 	 * This functionality is reserved for internal use. It is not supported for use
 	 * in customer environments and is not subject to the support SLA of official GA
 	 * features. If set to <code>true</code>, the analysis will automatically find
 	 * correlations between metrics for a given by field value and report anomalies
-	 * when those correlations cease to hold.
+	 * when those correlations cease to hold. For example, suppose CPU and memory
+	 * usage on host A is usually highly correlated with the same metrics on host B.
+	 * Perhaps this correlation occurs because they are running a load-balanced
+	 * application. If you enable this property, anomalies will be reported when,
+	 * for example, CPU usage on host A is high and the value of CPU usage on host B
+	 * is low. That is to say, you’ll see an anomaly when the CPU of host A is
+	 * unusual given the CPU of host B. To use the
+	 * <code>multivariate_by_fields</code> property, you must also specify
+	 * <code>by_field_name</code> in your detector.
 	 * <p>
 	 * API name: {@code multivariate_by_fields}
 	 */
@@ -245,6 +268,8 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	 * be pre-summarized. This property value is the name of the field that contains
 	 * the count of raw data points that have been summarized. The same
 	 * <code>summary_count_field_name</code> applies to all detectors in the job.
+	 * NOTE: The <code>summary_count_field_name</code> property cannot be used with
+	 * the <code>metric</code> function.
 	 * <p>
 	 * API name: {@code summary_count_field_name}
 	 */
@@ -267,26 +292,6 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		generator.writeKey("bucket_span");
 		this.bucketSpan.serialize(generator, mapper);
 
-		if (this.categorizationAnalyzer != null) {
-			generator.writeKey("categorization_analyzer");
-			this.categorizationAnalyzer.serialize(generator, mapper);
-
-		}
-		if (this.categorizationFieldName != null) {
-			generator.writeKey("categorization_field_name");
-			generator.write(this.categorizationFieldName);
-
-		}
-		if (ApiTypeHelper.isDefined(this.categorizationFilters)) {
-			generator.writeKey("categorization_filters");
-			generator.writeStartArray();
-			for (String item0 : this.categorizationFilters) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
 		if (ApiTypeHelper.isDefined(this.detectors)) {
 			generator.writeKey("detectors");
 			generator.writeStartArray();
@@ -307,14 +312,34 @@ public class AnalysisConfigRead implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.modelPruneWindow != null) {
-			generator.writeKey("model_prune_window");
-			this.modelPruneWindow.serialize(generator, mapper);
+		if (this.categorizationAnalyzer != null) {
+			generator.writeKey("categorization_analyzer");
+			this.categorizationAnalyzer.serialize(generator, mapper);
+
+		}
+		if (this.categorizationFieldName != null) {
+			generator.writeKey("categorization_field_name");
+			generator.write(this.categorizationFieldName);
+
+		}
+		if (ApiTypeHelper.isDefined(this.categorizationFilters)) {
+			generator.writeKey("categorization_filters");
+			generator.writeStartArray();
+			for (String item0 : this.categorizationFilters) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.latency != null) {
 			generator.writeKey("latency");
 			this.latency.serialize(generator, mapper);
+
+		}
+		if (this.modelPruneWindow != null) {
+			generator.writeKey("model_prune_window");
+			this.modelPruneWindow.serialize(generator, mapper);
 
 		}
 		if (this.multivariateByFields != null) {
@@ -351,6 +376,10 @@ public class AnalysisConfigRead implements JsonpSerializable {
 				ObjectBuilder<AnalysisConfigRead> {
 		private Time bucketSpan;
 
+		private List<DetectorRead> detectors;
+
+		private List<String> influencers;
+
 		@Nullable
 		private CategorizationAnalyzer categorizationAnalyzer;
 
@@ -360,15 +389,11 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		@Nullable
 		private List<String> categorizationFilters;
 
-		private List<DetectorRead> detectors;
-
-		private List<String> influencers;
+		@Nullable
+		private Time latency;
 
 		@Nullable
 		private Time modelPruneWindow;
-
-		@Nullable
-		private Time latency;
 
 		@Nullable
 		private Boolean multivariateByFields;
@@ -383,13 +408,13 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		}
 		private Builder(AnalysisConfigRead instance) {
 			this.bucketSpan = instance.bucketSpan;
+			this.detectors = instance.detectors;
+			this.influencers = instance.influencers;
 			this.categorizationAnalyzer = instance.categorizationAnalyzer;
 			this.categorizationFieldName = instance.categorizationFieldName;
 			this.categorizationFilters = instance.categorizationFilters;
-			this.detectors = instance.detectors;
-			this.influencers = instance.influencers;
-			this.modelPruneWindow = instance.modelPruneWindow;
 			this.latency = instance.latency;
+			this.modelPruneWindow = instance.modelPruneWindow;
 			this.multivariateByFields = instance.multivariateByFields;
 			this.perPartitionCategorization = instance.perPartitionCategorization;
 			this.summaryCountFieldName = instance.summaryCountFieldName;
@@ -397,7 +422,11 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		}
 		/**
 		 * Required - The size of the interval that the analysis is aggregated into,
-		 * typically between <code>5m</code> and <code>1h</code>.
+		 * typically between <code>5m</code> and <code>1h</code>. This value should be
+		 * either a whole number of days or equate to a whole number of buckets in one
+		 * day. If the anomaly detection job uses a datafeed with aggregations, this
+		 * value must also be divisible by the interval of the date histogram
+		 * aggregation.
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
@@ -408,7 +437,11 @@ public class AnalysisConfigRead implements JsonpSerializable {
 
 		/**
 		 * Required - The size of the interval that the analysis is aggregated into,
-		 * typically between <code>5m</code> and <code>1h</code>.
+		 * typically between <code>5m</code> and <code>1h</code>. This value should be
+		 * either a whole number of days or equate to a whole number of buckets in one
+		 * day. If the anomaly detection job uses a datafeed with aggregations, this
+		 * value must also be divisible by the interval of the date histogram
+		 * aggregation.
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
@@ -417,82 +450,10 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		}
 
 		/**
-		 * If <code>categorization_field_name</code> is specified, you can also define
-		 * the analyzer that is used to interpret the categorization field. This
-		 * property cannot be used at the same time as
-		 * <code>categorization_filters</code>. The categorization analyzer specifies
-		 * how the <code>categorization_field</code> is interpreted by the
-		 * categorization process.
-		 * <p>
-		 * API name: {@code categorization_analyzer}
-		 */
-		public final Builder categorizationAnalyzer(@Nullable CategorizationAnalyzer value) {
-			this.categorizationAnalyzer = value;
-			return this;
-		}
-
-		/**
-		 * If <code>categorization_field_name</code> is specified, you can also define
-		 * the analyzer that is used to interpret the categorization field. This
-		 * property cannot be used at the same time as
-		 * <code>categorization_filters</code>. The categorization analyzer specifies
-		 * how the <code>categorization_field</code> is interpreted by the
-		 * categorization process.
-		 * <p>
-		 * API name: {@code categorization_analyzer}
-		 */
-		public final Builder categorizationAnalyzer(
-				Function<CategorizationAnalyzer.Builder, ObjectBuilder<CategorizationAnalyzer>> fn) {
-			return this.categorizationAnalyzer(fn.apply(new CategorizationAnalyzer.Builder()).build());
-		}
-
-		/**
-		 * If this property is specified, the values of the specified field will be
-		 * categorized. The resulting categories must be used in a detector by setting
-		 * <code>by_field_name</code>, <code>over_field_name</code>, or
-		 * <code>partition_field_name</code> to the keyword <code>mlcategory</code>.
-		 * <p>
-		 * API name: {@code categorization_field_name}
-		 */
-		public final Builder categorizationFieldName(@Nullable String value) {
-			this.categorizationFieldName = value;
-			return this;
-		}
-
-		/**
-		 * If <code>categorization_field_name</code> is specified, you can also define
-		 * optional filters. This property expects an array of regular expressions. The
-		 * expressions are used to filter out matching sequences from the categorization
-		 * field values.
-		 * <p>
-		 * API name: {@code categorization_filters}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>categorizationFilters</code>.
-		 */
-		public final Builder categorizationFilters(List<String> list) {
-			this.categorizationFilters = _listAddAll(this.categorizationFilters, list);
-			return this;
-		}
-
-		/**
-		 * If <code>categorization_field_name</code> is specified, you can also define
-		 * optional filters. This property expects an array of regular expressions. The
-		 * expressions are used to filter out matching sequences from the categorization
-		 * field values.
-		 * <p>
-		 * API name: {@code categorization_filters}
-		 * <p>
-		 * Adds one or more values to <code>categorizationFilters</code>.
-		 */
-		public final Builder categorizationFilters(String value, String... values) {
-			this.categorizationFilters = _listAdd(this.categorizationFilters, value, values);
-			return this;
-		}
-
-		/**
-		 * Required - An array of detector configuration objects. Detector configuration
-		 * objects specify which data fields a job analyzes. They also specify which
-		 * analytical functions are used. You can specify multiple detectors for a job.
+		 * Required - Detector configuration objects specify which data fields a job
+		 * analyzes. They also specify which analytical functions are used. You can
+		 * specify multiple detectors for a job. If the detectors array does not contain
+		 * at least one detector, no analysis can occur and an error is returned.
 		 * <p>
 		 * API name: {@code detectors}
 		 * <p>
@@ -504,9 +465,10 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - An array of detector configuration objects. Detector configuration
-		 * objects specify which data fields a job analyzes. They also specify which
-		 * analytical functions are used. You can specify multiple detectors for a job.
+		 * Required - Detector configuration objects specify which data fields a job
+		 * analyzes. They also specify which analytical functions are used. You can
+		 * specify multiple detectors for a job. If the detectors array does not contain
+		 * at least one detector, no analysis can occur and an error is returned.
 		 * <p>
 		 * API name: {@code detectors}
 		 * <p>
@@ -518,9 +480,10 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - An array of detector configuration objects. Detector configuration
-		 * objects specify which data fields a job analyzes. They also specify which
-		 * analytical functions are used. You can specify multiple detectors for a job.
+		 * Required - Detector configuration objects specify which data fields a job
+		 * analyzes. They also specify which analytical functions are used. You can
+		 * specify multiple detectors for a job. If the detectors array does not contain
+		 * at least one detector, no analysis can occur and an error is returned.
 		 * <p>
 		 * API name: {@code detectors}
 		 * <p>
@@ -565,12 +528,130 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>categorization_field_name</code> is specified, you can also define
+		 * the analyzer that is used to interpret the categorization field. This
+		 * property cannot be used at the same time as
+		 * <code>categorization_filters</code>. The categorization analyzer specifies
+		 * how the <code>categorization_field</code> is interpreted by the
+		 * categorization process. The <code>categorization_analyzer</code> field can be
+		 * specified either as a string or as an object. If it is a string, it must
+		 * refer to a built-in analyzer or one added by another plugin.
+		 * <p>
+		 * API name: {@code categorization_analyzer}
+		 */
+		public final Builder categorizationAnalyzer(@Nullable CategorizationAnalyzer value) {
+			this.categorizationAnalyzer = value;
+			return this;
+		}
+
+		/**
+		 * If <code>categorization_field_name</code> is specified, you can also define
+		 * the analyzer that is used to interpret the categorization field. This
+		 * property cannot be used at the same time as
+		 * <code>categorization_filters</code>. The categorization analyzer specifies
+		 * how the <code>categorization_field</code> is interpreted by the
+		 * categorization process. The <code>categorization_analyzer</code> field can be
+		 * specified either as a string or as an object. If it is a string, it must
+		 * refer to a built-in analyzer or one added by another plugin.
+		 * <p>
+		 * API name: {@code categorization_analyzer}
+		 */
+		public final Builder categorizationAnalyzer(
+				Function<CategorizationAnalyzer.Builder, ObjectBuilder<CategorizationAnalyzer>> fn) {
+			return this.categorizationAnalyzer(fn.apply(new CategorizationAnalyzer.Builder()).build());
+		}
+
+		/**
+		 * If this property is specified, the values of the specified field will be
+		 * categorized. The resulting categories must be used in a detector by setting
+		 * <code>by_field_name</code>, <code>over_field_name</code>, or
+		 * <code>partition_field_name</code> to the keyword <code>mlcategory</code>.
+		 * <p>
+		 * API name: {@code categorization_field_name}
+		 */
+		public final Builder categorizationFieldName(@Nullable String value) {
+			this.categorizationFieldName = value;
+			return this;
+		}
+
+		/**
+		 * If <code>categorization_field_name</code> is specified, you can also define
+		 * optional filters. This property expects an array of regular expressions. The
+		 * expressions are used to filter out matching sequences from the categorization
+		 * field values. You can use this functionality to fine tune the categorization
+		 * by excluding sequences from consideration when categories are defined. For
+		 * example, you can exclude SQL statements that appear in your log files. This
+		 * property cannot be used at the same time as
+		 * <code>categorization_analyzer</code>. If you only want to define simple
+		 * regular expression filters that are applied prior to tokenization, setting
+		 * this property is the easiest method. If you also want to customize the
+		 * tokenizer or post-tokenization filtering, use the
+		 * <code>categorization_analyzer</code> property instead and include the filters
+		 * as pattern_replace character filters. The effect is exactly the same.
+		 * <p>
+		 * API name: {@code categorization_filters}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>categorizationFilters</code>.
+		 */
+		public final Builder categorizationFilters(List<String> list) {
+			this.categorizationFilters = _listAddAll(this.categorizationFilters, list);
+			return this;
+		}
+
+		/**
+		 * If <code>categorization_field_name</code> is specified, you can also define
+		 * optional filters. This property expects an array of regular expressions. The
+		 * expressions are used to filter out matching sequences from the categorization
+		 * field values. You can use this functionality to fine tune the categorization
+		 * by excluding sequences from consideration when categories are defined. For
+		 * example, you can exclude SQL statements that appear in your log files. This
+		 * property cannot be used at the same time as
+		 * <code>categorization_analyzer</code>. If you only want to define simple
+		 * regular expression filters that are applied prior to tokenization, setting
+		 * this property is the easiest method. If you also want to customize the
+		 * tokenizer or post-tokenization filtering, use the
+		 * <code>categorization_analyzer</code> property instead and include the filters
+		 * as pattern_replace character filters. The effect is exactly the same.
+		 * <p>
+		 * API name: {@code categorization_filters}
+		 * <p>
+		 * Adds one or more values to <code>categorizationFilters</code>.
+		 */
+		public final Builder categorizationFilters(String value, String... values) {
+			this.categorizationFilters = _listAdd(this.categorizationFilters, value, values);
+			return this;
+		}
+
+		/**
+		 * The size of the window in which to expect data that is out of time order. If
+		 * you specify a non-zero value, it must be greater than or equal to one second.
+		 * NOTE: Latency is applicable only when you send data by using the post data
+		 * API.
+		 * <p>
+		 * API name: {@code latency}
+		 */
+		public final Builder latency(@Nullable Time value) {
+			this.latency = value;
+			return this;
+		}
+
+		/**
+		 * The size of the window in which to expect data that is out of time order. If
+		 * you specify a non-zero value, it must be greater than or equal to one second.
+		 * NOTE: Latency is applicable only when you send data by using the post data
+		 * API.
+		 * <p>
+		 * API name: {@code latency}
+		 */
+		public final Builder latency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.latency(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Advanced configuration option. Affects the pruning of models that have not
 		 * been updated for the given time duration. The value must be set to a multiple
 		 * of the <code>bucket_span</code>. If set too low, important information may be
-		 * removed from the model. Typically, set to <code>30d</code> or longer. If not
-		 * set, model pruning only occurs if the model memory status reaches the soft
-		 * limit or the hard limit. For jobs created in 8.1 and later, the default value
+		 * removed from the model. For jobs created in 8.1 and later, the default value
 		 * is the greater of <code>30d</code> or 20 times <code>bucket_span</code>.
 		 * <p>
 		 * API name: {@code model_prune_window}
@@ -584,9 +665,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * Advanced configuration option. Affects the pruning of models that have not
 		 * been updated for the given time duration. The value must be set to a multiple
 		 * of the <code>bucket_span</code>. If set too low, important information may be
-		 * removed from the model. Typically, set to <code>30d</code> or longer. If not
-		 * set, model pruning only occurs if the model memory status reaches the soft
-		 * limit or the hard limit. For jobs created in 8.1 and later, the default value
+		 * removed from the model. For jobs created in 8.1 and later, the default value
 		 * is the greater of <code>30d</code> or 20 times <code>bucket_span</code>.
 		 * <p>
 		 * API name: {@code model_prune_window}
@@ -596,34 +675,19 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		}
 
 		/**
-		 * The size of the window in which to expect data that is out of time order.
-		 * Defaults to no latency. If you specify a non-zero value, it must be greater
-		 * than or equal to one second.
-		 * <p>
-		 * API name: {@code latency}
-		 */
-		public final Builder latency(@Nullable Time value) {
-			this.latency = value;
-			return this;
-		}
-
-		/**
-		 * The size of the window in which to expect data that is out of time order.
-		 * Defaults to no latency. If you specify a non-zero value, it must be greater
-		 * than or equal to one second.
-		 * <p>
-		 * API name: {@code latency}
-		 */
-		public final Builder latency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.latency(fn.apply(new Time.Builder()).build());
-		}
-
-		/**
 		 * This functionality is reserved for internal use. It is not supported for use
 		 * in customer environments and is not subject to the support SLA of official GA
 		 * features. If set to <code>true</code>, the analysis will automatically find
 		 * correlations between metrics for a given by field value and report anomalies
-		 * when those correlations cease to hold.
+		 * when those correlations cease to hold. For example, suppose CPU and memory
+		 * usage on host A is usually highly correlated with the same metrics on host B.
+		 * Perhaps this correlation occurs because they are running a load-balanced
+		 * application. If you enable this property, anomalies will be reported when,
+		 * for example, CPU usage on host A is high and the value of CPU usage on host B
+		 * is low. That is to say, you’ll see an anomaly when the CPU of host A is
+		 * unusual given the CPU of host B. To use the
+		 * <code>multivariate_by_fields</code> property, you must also specify
+		 * <code>by_field_name</code> in your detector.
 		 * <p>
 		 * API name: {@code multivariate_by_fields}
 		 */
@@ -657,6 +721,8 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * be pre-summarized. This property value is the name of the field that contains
 		 * the count of raw data points that have been summarized. The same
 		 * <code>summary_count_field_name</code> applies to all detectors in the job.
+		 * NOTE: The <code>summary_count_field_name</code> property cannot be used with
+		 * the <code>metric</code> function.
 		 * <p>
 		 * API name: {@code summary_count_field_name}
 		 */
@@ -700,15 +766,15 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	protected static void setupAnalysisConfigReadDeserializer(ObjectDeserializer<AnalysisConfigRead.Builder> op) {
 
 		op.add(Builder::bucketSpan, Time._DESERIALIZER, "bucket_span");
+		op.add(Builder::detectors, JsonpDeserializer.arrayDeserializer(DetectorRead._DESERIALIZER), "detectors");
+		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"influencers");
 		op.add(Builder::categorizationAnalyzer, CategorizationAnalyzer._DESERIALIZER, "categorization_analyzer");
 		op.add(Builder::categorizationFieldName, JsonpDeserializer.stringDeserializer(), "categorization_field_name");
 		op.add(Builder::categorizationFilters,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "categorization_filters");
-		op.add(Builder::detectors, JsonpDeserializer.arrayDeserializer(DetectorRead._DESERIALIZER), "detectors");
-		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"influencers");
-		op.add(Builder::modelPruneWindow, Time._DESERIALIZER, "model_prune_window");
 		op.add(Builder::latency, Time._DESERIALIZER, "latency");
+		op.add(Builder::modelPruneWindow, Time._DESERIALIZER, "model_prune_window");
 		op.add(Builder::multivariateByFields, JsonpDeserializer.booleanDeserializer(), "multivariate_by_fields");
 		op.add(Builder::perPartitionCategorization, PerPartitionCategorization._DESERIALIZER,
 				"per_partition_categorization");

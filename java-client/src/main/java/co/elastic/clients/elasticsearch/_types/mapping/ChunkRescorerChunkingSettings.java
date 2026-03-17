@@ -62,14 +62,6 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ChunkRescorerChunkingSettings implements JsonpSerializable {
-	@Nullable
-	private final String strategy;
-
-	@Nullable
-	private final String separatorGroup;
-
-	private final List<String> separators;
-
 	private final int maxChunkSize;
 
 	@Nullable
@@ -78,16 +70,24 @@ public class ChunkRescorerChunkingSettings implements JsonpSerializable {
 	@Nullable
 	private final Integer sentenceOverlap;
 
+	@Nullable
+	private final String separatorGroup;
+
+	private final List<String> separators;
+
+	@Nullable
+	private final String strategy;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ChunkRescorerChunkingSettings(Builder builder) {
 
-		this.strategy = builder.strategy;
-		this.separatorGroup = builder.separatorGroup;
-		this.separators = ApiTypeHelper.unmodifiable(builder.separators);
 		this.maxChunkSize = ApiTypeHelper.requireNonNull(builder.maxChunkSize, this, "maxChunkSize", 0);
 		this.overlap = builder.overlap;
 		this.sentenceOverlap = builder.sentenceOverlap;
+		this.separatorGroup = builder.separatorGroup;
+		this.separators = ApiTypeHelper.unmodifiable(builder.separators);
+		this.strategy = builder.strategy;
 
 	}
 
@@ -96,24 +96,39 @@ public class ChunkRescorerChunkingSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * The chunking strategy: <code>sentence</code>, <code>word</code>,
-	 * <code>none</code> or <code>recursive</code>.
-	 * <ul>
-	 * <li>If <code>strategy</code> is set to <code>recursive</code>, you must also
-	 * specify:</li>
-	 * </ul>
-	 * <ul>
-	 * <li><code>max_chunk_size</code></li>
-	 * <li>either <code>separators</code> or<code>separator_group</code></li>
-	 * </ul>
+	 * Required - The maximum size of a chunk in words. This value cannot be lower
+	 * than <code>20</code> (for <code>sentence</code> strategy) or <code>10</code>
+	 * (for <code>word</code> strategy). This value should not exceed the window
+	 * size for the associated model.
 	 * <p>
-	 * Learn more about different chunking strategies in the linked documentation.
+	 * API name: {@code max_chunk_size}
+	 */
+	public final int maxChunkSize() {
+		return this.maxChunkSize;
+	}
+
+	/**
+	 * The number of overlapping words for chunks. It is applicable only to a
+	 * <code>word</code> chunking strategy. This value cannot be higher than half
+	 * the <code>max_chunk_size</code> value.
 	 * <p>
-	 * API name: {@code strategy}
+	 * API name: {@code overlap}
 	 */
 	@Nullable
-	public final String strategy() {
-		return this.strategy;
+	public final Integer overlap() {
+		return this.overlap;
+	}
+
+	/**
+	 * The number of overlapping sentences for chunks. It is applicable only for a
+	 * <code>sentence</code> chunking strategy. It can be either <code>1</code> or
+	 * <code>0</code>.
+	 * <p>
+	 * API name: {@code sentence_overlap}
+	 */
+	@Nullable
+	public final Integer sentenceOverlap() {
+		return this.sentenceOverlap;
 	}
 
 	/**
@@ -155,39 +170,24 @@ public class ChunkRescorerChunkingSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The maximum size of a chunk in words. This value cannot be lower
-	 * than <code>20</code> (for <code>sentence</code> strategy) or <code>10</code>
-	 * (for <code>word</code> strategy). This value should not exceed the window
-	 * size for the associated model.
+	 * The chunking strategy: <code>sentence</code>, <code>word</code>,
+	 * <code>none</code> or <code>recursive</code>.
+	 * <ul>
+	 * <li>If <code>strategy</code> is set to <code>recursive</code>, you must also
+	 * specify:</li>
+	 * </ul>
+	 * <ul>
+	 * <li><code>max_chunk_size</code></li>
+	 * <li>either <code>separators</code> or<code>separator_group</code></li>
+	 * </ul>
 	 * <p>
-	 * API name: {@code max_chunk_size}
-	 */
-	public final int maxChunkSize() {
-		return this.maxChunkSize;
-	}
-
-	/**
-	 * The number of overlapping words for chunks. It is applicable only to a
-	 * <code>word</code> chunking strategy. This value cannot be higher than half
-	 * the <code>max_chunk_size</code> value.
+	 * Learn more about different chunking strategies in the linked documentation.
 	 * <p>
-	 * API name: {@code overlap}
+	 * API name: {@code strategy}
 	 */
 	@Nullable
-	public final Integer overlap() {
-		return this.overlap;
-	}
-
-	/**
-	 * The number of overlapping sentences for chunks. It is applicable only for a
-	 * <code>sentence</code> chunking strategy. It can be either <code>1</code> or
-	 * <code>0</code>.
-	 * <p>
-	 * API name: {@code sentence_overlap}
-	 */
-	@Nullable
-	public final Integer sentenceOverlap() {
-		return this.sentenceOverlap;
+	public final String strategy() {
+		return this.strategy;
 	}
 
 	/**
@@ -201,9 +201,17 @@ public class ChunkRescorerChunkingSettings implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.strategy != null) {
-			generator.writeKey("strategy");
-			generator.write(this.strategy);
+		generator.writeKey("max_chunk_size");
+		generator.write(this.maxChunkSize);
+
+		if (this.overlap != null) {
+			generator.writeKey("overlap");
+			generator.write(this.overlap);
+
+		}
+		if (this.sentenceOverlap != null) {
+			generator.writeKey("sentence_overlap");
+			generator.write(this.sentenceOverlap);
 
 		}
 		if (this.separatorGroup != null) {
@@ -221,17 +229,9 @@ public class ChunkRescorerChunkingSettings implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("max_chunk_size");
-		generator.write(this.maxChunkSize);
-
-		if (this.overlap != null) {
-			generator.writeKey("overlap");
-			generator.write(this.overlap);
-
-		}
-		if (this.sentenceOverlap != null) {
-			generator.writeKey("sentence_overlap");
-			generator.write(this.sentenceOverlap);
+		if (this.strategy != null) {
+			generator.writeKey("strategy");
+			generator.write(this.strategy);
 
 		}
 
@@ -251,15 +251,6 @@ public class ChunkRescorerChunkingSettings implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<ChunkRescorerChunkingSettings> {
-		@Nullable
-		private String strategy;
-
-		@Nullable
-		private String separatorGroup;
-
-		@Nullable
-		private List<String> separators;
-
 		private Integer maxChunkSize;
 
 		@Nullable
@@ -268,35 +259,60 @@ public class ChunkRescorerChunkingSettings implements JsonpSerializable {
 		@Nullable
 		private Integer sentenceOverlap;
 
+		@Nullable
+		private String separatorGroup;
+
+		@Nullable
+		private List<String> separators;
+
+		@Nullable
+		private String strategy;
+
 		public Builder() {
 		}
 		private Builder(ChunkRescorerChunkingSettings instance) {
-			this.strategy = instance.strategy;
-			this.separatorGroup = instance.separatorGroup;
-			this.separators = instance.separators;
 			this.maxChunkSize = instance.maxChunkSize;
 			this.overlap = instance.overlap;
 			this.sentenceOverlap = instance.sentenceOverlap;
+			this.separatorGroup = instance.separatorGroup;
+			this.separators = instance.separators;
+			this.strategy = instance.strategy;
 
 		}
 		/**
-		 * The chunking strategy: <code>sentence</code>, <code>word</code>,
-		 * <code>none</code> or <code>recursive</code>.
-		 * <ul>
-		 * <li>If <code>strategy</code> is set to <code>recursive</code>, you must also
-		 * specify:</li>
-		 * </ul>
-		 * <ul>
-		 * <li><code>max_chunk_size</code></li>
-		 * <li>either <code>separators</code> or<code>separator_group</code></li>
-		 * </ul>
+		 * Required - The maximum size of a chunk in words. This value cannot be lower
+		 * than <code>20</code> (for <code>sentence</code> strategy) or <code>10</code>
+		 * (for <code>word</code> strategy). This value should not exceed the window
+		 * size for the associated model.
 		 * <p>
-		 * Learn more about different chunking strategies in the linked documentation.
-		 * <p>
-		 * API name: {@code strategy}
+		 * API name: {@code max_chunk_size}
 		 */
-		public final Builder strategy(@Nullable String value) {
-			this.strategy = value;
+		public final Builder maxChunkSize(int value) {
+			this.maxChunkSize = value;
+			return this;
+		}
+
+		/**
+		 * The number of overlapping words for chunks. It is applicable only to a
+		 * <code>word</code> chunking strategy. This value cannot be higher than half
+		 * the <code>max_chunk_size</code> value.
+		 * <p>
+		 * API name: {@code overlap}
+		 */
+		public final Builder overlap(@Nullable Integer value) {
+			this.overlap = value;
+			return this;
+		}
+
+		/**
+		 * The number of overlapping sentences for chunks. It is applicable only for a
+		 * <code>sentence</code> chunking strategy. It can be either <code>1</code> or
+		 * <code>0</code>.
+		 * <p>
+		 * API name: {@code sentence_overlap}
+		 */
+		public final Builder sentenceOverlap(@Nullable Integer value) {
+			this.sentenceOverlap = value;
 			return this;
 		}
 
@@ -365,39 +381,23 @@ public class ChunkRescorerChunkingSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The maximum size of a chunk in words. This value cannot be lower
-		 * than <code>20</code> (for <code>sentence</code> strategy) or <code>10</code>
-		 * (for <code>word</code> strategy). This value should not exceed the window
-		 * size for the associated model.
+		 * The chunking strategy: <code>sentence</code>, <code>word</code>,
+		 * <code>none</code> or <code>recursive</code>.
+		 * <ul>
+		 * <li>If <code>strategy</code> is set to <code>recursive</code>, you must also
+		 * specify:</li>
+		 * </ul>
+		 * <ul>
+		 * <li><code>max_chunk_size</code></li>
+		 * <li>either <code>separators</code> or<code>separator_group</code></li>
+		 * </ul>
 		 * <p>
-		 * API name: {@code max_chunk_size}
-		 */
-		public final Builder maxChunkSize(int value) {
-			this.maxChunkSize = value;
-			return this;
-		}
-
-		/**
-		 * The number of overlapping words for chunks. It is applicable only to a
-		 * <code>word</code> chunking strategy. This value cannot be higher than half
-		 * the <code>max_chunk_size</code> value.
+		 * Learn more about different chunking strategies in the linked documentation.
 		 * <p>
-		 * API name: {@code overlap}
+		 * API name: {@code strategy}
 		 */
-		public final Builder overlap(@Nullable Integer value) {
-			this.overlap = value;
-			return this;
-		}
-
-		/**
-		 * The number of overlapping sentences for chunks. It is applicable only for a
-		 * <code>sentence</code> chunking strategy. It can be either <code>1</code> or
-		 * <code>0</code>.
-		 * <p>
-		 * API name: {@code sentence_overlap}
-		 */
-		public final Builder sentenceOverlap(@Nullable Integer value) {
-			this.sentenceOverlap = value;
+		public final Builder strategy(@Nullable String value) {
+			this.strategy = value;
 			return this;
 		}
 
@@ -436,13 +436,13 @@ public class ChunkRescorerChunkingSettings implements JsonpSerializable {
 	protected static void setupChunkRescorerChunkingSettingsDeserializer(
 			ObjectDeserializer<ChunkRescorerChunkingSettings.Builder> op) {
 
-		op.add(Builder::strategy, JsonpDeserializer.stringDeserializer(), "strategy");
-		op.add(Builder::separatorGroup, JsonpDeserializer.stringDeserializer(), "separator_group");
-		op.add(Builder::separators, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"separators");
 		op.add(Builder::maxChunkSize, JsonpDeserializer.integerDeserializer(), "max_chunk_size");
 		op.add(Builder::overlap, JsonpDeserializer.integerDeserializer(), "overlap");
 		op.add(Builder::sentenceOverlap, JsonpDeserializer.integerDeserializer(), "sentence_overlap");
+		op.add(Builder::separatorGroup, JsonpDeserializer.stringDeserializer(), "separator_group");
+		op.add(Builder::separators, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"separators");
+		op.add(Builder::strategy, JsonpDeserializer.stringDeserializer(), "strategy");
 
 	}
 

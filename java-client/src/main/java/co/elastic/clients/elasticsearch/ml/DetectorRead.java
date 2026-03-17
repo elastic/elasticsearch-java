@@ -62,6 +62,8 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class DetectorRead implements JsonpSerializable {
+	private final String function;
+
 	@Nullable
 	private final String byFieldName;
 
@@ -79,8 +81,6 @@ public class DetectorRead implements JsonpSerializable {
 	@Nullable
 	private final String fieldName;
 
-	private final String function;
-
 	@Nullable
 	private final String overFieldName;
 
@@ -94,13 +94,13 @@ public class DetectorRead implements JsonpSerializable {
 
 	private DetectorRead(Builder builder) {
 
+		this.function = ApiTypeHelper.requireNonNull(builder.function, this, "function");
 		this.byFieldName = builder.byFieldName;
 		this.customRules = ApiTypeHelper.unmodifiable(builder.customRules);
 		this.detectorDescription = builder.detectorDescription;
 		this.detectorIndex = builder.detectorIndex;
 		this.excludeFrequent = builder.excludeFrequent;
 		this.fieldName = builder.fieldName;
-		this.function = ApiTypeHelper.requireNonNull(builder.function, this, "function");
 		this.overFieldName = builder.overFieldName;
 		this.partitionFieldName = builder.partitionFieldName;
 		this.useNull = builder.useNull;
@@ -109,6 +109,17 @@ public class DetectorRead implements JsonpSerializable {
 
 	public static DetectorRead of(Function<Builder, ObjectBuilder<DetectorRead>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - The analysis function that is used. For example,
+	 * <code>count</code>, <code>rare</code>, <code>mean</code>, <code>min</code>,
+	 * <code>max</code>, or <code>sum</code>.
+	 * <p>
+	 * API name: {@code function}
+	 */
+	public final String function() {
+		return this.function;
 	}
 
 	/**
@@ -124,10 +135,9 @@ public class DetectorRead implements JsonpSerializable {
 	}
 
 	/**
-	 * An array of custom rule objects, which enable you to customize the way
-	 * detectors operate. For example, a rule may dictate to the detector conditions
-	 * under which results should be skipped. Kibana refers to custom rules as job
-	 * rules.
+	 * Custom rules enable you to customize the way detectors operate. For example,
+	 * a rule may dictate conditions under which results should be skipped. Kibana
+	 * refers to custom rules as job rules.
 	 * <p>
 	 * API name: {@code custom_rules}
 	 */
@@ -147,7 +157,8 @@ public class DetectorRead implements JsonpSerializable {
 
 	/**
 	 * A unique identifier for the detector. This identifier is based on the order
-	 * of the detectors in the <code>analysis_config</code>, starting at zero.
+	 * of the detectors in the <code>analysis_config</code>, starting at zero. If
+	 * you specify a value for this property, it is ignored.
 	 * <p>
 	 * API name: {@code detector_index}
 	 */
@@ -157,12 +168,11 @@ public class DetectorRead implements JsonpSerializable {
 	}
 
 	/**
-	 * Contains one of the following values: <code>all</code>, <code>none</code>,
-	 * <code>by</code>, or <code>over</code>. If set, frequent entities are excluded
-	 * from influencing the anomaly results. Entities can be considered frequent
-	 * over time or frequent in a population. If you are working with both over and
-	 * by fields, then you can set <code>exclude_frequent</code> to all for both
-	 * fields, or to <code>by</code> or <code>over</code> for those specific fields.
+	 * If set, frequent entities are excluded from influencing the anomaly results.
+	 * Entities can be considered frequent over time or frequent in a population. If
+	 * you are working with both over and by fields, you can set
+	 * <code>exclude_frequent</code> to <code>all</code> for both fields, or to
+	 * <code>by</code> or <code>over</code> for those specific fields.
 	 * <p>
 	 * API name: {@code exclude_frequent}
 	 */
@@ -173,25 +183,14 @@ public class DetectorRead implements JsonpSerializable {
 
 	/**
 	 * The field that the detector uses in the function. If you use an event rate
-	 * function such as <code>count</code> or <code>rare</code>, do not specify this
-	 * field.
+	 * function such as count or rare, do not specify this field. The
+	 * <code>field_name</code> cannot contain double quotes or backslashes.
 	 * <p>
 	 * API name: {@code field_name}
 	 */
 	@Nullable
 	public final String fieldName() {
 		return this.fieldName;
-	}
-
-	/**
-	 * Required - The analysis function that is used. For example,
-	 * <code>count</code>, <code>rare</code>, <code>mean</code>, <code>min</code>,
-	 * <code>max</code>, and <code>sum</code>.
-	 * <p>
-	 * API name: {@code function}
-	 */
-	public final String function() {
-		return this.function;
 	}
 
 	/**
@@ -239,6 +238,9 @@ public class DetectorRead implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		generator.writeKey("function");
+		generator.write(this.function);
+
 		if (this.byFieldName != null) {
 			generator.writeKey("by_field_name");
 			generator.write(this.byFieldName);
@@ -273,9 +275,6 @@ public class DetectorRead implements JsonpSerializable {
 			generator.write(this.fieldName);
 
 		}
-		generator.writeKey("function");
-		generator.write(this.function);
-
 		if (this.overFieldName != null) {
 			generator.writeKey("over_field_name");
 			generator.write(this.overFieldName);
@@ -306,6 +305,8 @@ public class DetectorRead implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DetectorRead> {
+		private String function;
+
 		@Nullable
 		private String byFieldName;
 
@@ -324,8 +325,6 @@ public class DetectorRead implements JsonpSerializable {
 		@Nullable
 		private String fieldName;
 
-		private String function;
-
 		@Nullable
 		private String overFieldName;
 
@@ -338,18 +337,30 @@ public class DetectorRead implements JsonpSerializable {
 		public Builder() {
 		}
 		private Builder(DetectorRead instance) {
+			this.function = instance.function;
 			this.byFieldName = instance.byFieldName;
 			this.customRules = instance.customRules;
 			this.detectorDescription = instance.detectorDescription;
 			this.detectorIndex = instance.detectorIndex;
 			this.excludeFrequent = instance.excludeFrequent;
 			this.fieldName = instance.fieldName;
-			this.function = instance.function;
 			this.overFieldName = instance.overFieldName;
 			this.partitionFieldName = instance.partitionFieldName;
 			this.useNull = instance.useNull;
 
 		}
+		/**
+		 * Required - The analysis function that is used. For example,
+		 * <code>count</code>, <code>rare</code>, <code>mean</code>, <code>min</code>,
+		 * <code>max</code>, or <code>sum</code>.
+		 * <p>
+		 * API name: {@code function}
+		 */
+		public final Builder function(String value) {
+			this.function = value;
+			return this;
+		}
+
 		/**
 		 * The field used to split the data. In particular, this property is used for
 		 * analyzing the splits with respect to their own history. It is used for
@@ -363,10 +374,9 @@ public class DetectorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of custom rule objects, which enable you to customize the way
-		 * detectors operate. For example, a rule may dictate to the detector conditions
-		 * under which results should be skipped. Kibana refers to custom rules as job
-		 * rules.
+		 * Custom rules enable you to customize the way detectors operate. For example,
+		 * a rule may dictate conditions under which results should be skipped. Kibana
+		 * refers to custom rules as job rules.
 		 * <p>
 		 * API name: {@code custom_rules}
 		 * <p>
@@ -378,10 +388,9 @@ public class DetectorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of custom rule objects, which enable you to customize the way
-		 * detectors operate. For example, a rule may dictate to the detector conditions
-		 * under which results should be skipped. Kibana refers to custom rules as job
-		 * rules.
+		 * Custom rules enable you to customize the way detectors operate. For example,
+		 * a rule may dictate conditions under which results should be skipped. Kibana
+		 * refers to custom rules as job rules.
 		 * <p>
 		 * API name: {@code custom_rules}
 		 * <p>
@@ -393,10 +402,9 @@ public class DetectorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * An array of custom rule objects, which enable you to customize the way
-		 * detectors operate. For example, a rule may dictate to the detector conditions
-		 * under which results should be skipped. Kibana refers to custom rules as job
-		 * rules.
+		 * Custom rules enable you to customize the way detectors operate. For example,
+		 * a rule may dictate conditions under which results should be skipped. Kibana
+		 * refers to custom rules as job rules.
 		 * <p>
 		 * API name: {@code custom_rules}
 		 * <p>
@@ -418,7 +426,8 @@ public class DetectorRead implements JsonpSerializable {
 
 		/**
 		 * A unique identifier for the detector. This identifier is based on the order
-		 * of the detectors in the <code>analysis_config</code>, starting at zero.
+		 * of the detectors in the <code>analysis_config</code>, starting at zero. If
+		 * you specify a value for this property, it is ignored.
 		 * <p>
 		 * API name: {@code detector_index}
 		 */
@@ -428,12 +437,11 @@ public class DetectorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * Contains one of the following values: <code>all</code>, <code>none</code>,
-		 * <code>by</code>, or <code>over</code>. If set, frequent entities are excluded
-		 * from influencing the anomaly results. Entities can be considered frequent
-		 * over time or frequent in a population. If you are working with both over and
-		 * by fields, then you can set <code>exclude_frequent</code> to all for both
-		 * fields, or to <code>by</code> or <code>over</code> for those specific fields.
+		 * If set, frequent entities are excluded from influencing the anomaly results.
+		 * Entities can be considered frequent over time or frequent in a population. If
+		 * you are working with both over and by fields, you can set
+		 * <code>exclude_frequent</code> to <code>all</code> for both fields, or to
+		 * <code>by</code> or <code>over</code> for those specific fields.
 		 * <p>
 		 * API name: {@code exclude_frequent}
 		 */
@@ -444,25 +452,13 @@ public class DetectorRead implements JsonpSerializable {
 
 		/**
 		 * The field that the detector uses in the function. If you use an event rate
-		 * function such as <code>count</code> or <code>rare</code>, do not specify this
-		 * field.
+		 * function such as count or rare, do not specify this field. The
+		 * <code>field_name</code> cannot contain double quotes or backslashes.
 		 * <p>
 		 * API name: {@code field_name}
 		 */
 		public final Builder fieldName(@Nullable String value) {
 			this.fieldName = value;
-			return this;
-		}
-
-		/**
-		 * Required - The analysis function that is used. For example,
-		 * <code>count</code>, <code>rare</code>, <code>mean</code>, <code>min</code>,
-		 * <code>max</code>, and <code>sum</code>.
-		 * <p>
-		 * API name: {@code function}
-		 */
-		public final Builder function(String value) {
-			this.function = value;
 			return this;
 		}
 
@@ -534,13 +530,13 @@ public class DetectorRead implements JsonpSerializable {
 
 	protected static void setupDetectorReadDeserializer(ObjectDeserializer<DetectorRead.Builder> op) {
 
+		op.add(Builder::function, JsonpDeserializer.stringDeserializer(), "function");
 		op.add(Builder::byFieldName, JsonpDeserializer.stringDeserializer(), "by_field_name");
 		op.add(Builder::customRules, JsonpDeserializer.arrayDeserializer(DetectionRule._DESERIALIZER), "custom_rules");
 		op.add(Builder::detectorDescription, JsonpDeserializer.stringDeserializer(), "detector_description");
 		op.add(Builder::detectorIndex, JsonpDeserializer.integerDeserializer(), "detector_index");
 		op.add(Builder::excludeFrequent, ExcludeFrequent._DESERIALIZER, "exclude_frequent");
 		op.add(Builder::fieldName, JsonpDeserializer.stringDeserializer(), "field_name");
-		op.add(Builder::function, JsonpDeserializer.stringDeserializer(), "function");
 		op.add(Builder::overFieldName, JsonpDeserializer.stringDeserializer(), "over_field_name");
 		op.add(Builder::partitionFieldName, JsonpDeserializer.stringDeserializer(), "partition_field_name");
 		op.add(Builder::useNull, JsonpDeserializer.booleanDeserializer(), "use_null");

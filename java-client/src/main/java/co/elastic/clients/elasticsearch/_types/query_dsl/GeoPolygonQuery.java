@@ -55,9 +55,7 @@ import javax.annotation.Nullable;
  * @see <a href=
  *      "../../doc-files/api-spec.html#_types.query_dsl.GeoPolygonQuery">API
  *      specification</a>
- * @deprecated 7.12.0 Use geo-shape instead.
  */
-@Deprecated
 @JsonpDeserializable
 public class GeoPolygonQuery extends QueryBase implements QueryVariant {
 	private final String field;
@@ -146,7 +144,7 @@ public class GeoPolygonQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link GeoPolygonQuery}.
 	 */
-	@Deprecated
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<GeoPolygonQuery> {
 		private String field;
 
