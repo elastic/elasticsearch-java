@@ -261,7 +261,7 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * The maximum number of snapshots to return. The default is 0, which means to
+	 * The maximum number of snapshots to return. The default is -1, which means to
 	 * return all that match the request without limit.
 	 * <p>
 	 * API name: {@code size}
@@ -537,7 +537,7 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * The maximum number of snapshots to return. The default is 0, which means to
+		 * The maximum number of snapshots to return. The default is -1, which means to
 		 * return all that match the request without limit.
 		 * <p>
 		 * API name: {@code size}

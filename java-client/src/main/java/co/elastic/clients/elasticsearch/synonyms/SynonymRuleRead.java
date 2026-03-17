@@ -77,7 +77,9 @@ public class SynonymRuleRead implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Synonym Rule identifier
+	 * Required - The identifier for the synonym rule. If you do not specify a
+	 * synonym rule ID when you create a rule, an identifier is created
+	 * automatically by Elasticsearch.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -86,9 +88,7 @@ public class SynonymRuleRead implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Synonyms, in Solr format, that conform the synonym rule. See
-	 * <a href=
-	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-synonym-graph-tokenfilter.html#_solr_synonyms_2">https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-synonym-graph-tokenfilter.html#_solr_synonyms_2</a>
+	 * Required - The synonyms that conform the synonym rule in Solr format.
 	 * <p>
 	 * API name: {@code synonyms}
 	 */
@@ -155,7 +155,9 @@ public class SynonymRuleRead implements JsonpSerializable {
 		private String synonyms;
 
 		/**
-		 * Required - Synonym Rule identifier
+		 * Required - The identifier for the synonym rule. If you do not specify a
+		 * synonym rule ID when you create a rule, an identifier is created
+		 * automatically by Elasticsearch.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -165,9 +167,7 @@ public class SynonymRuleRead implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Synonyms, in Solr format, that conform the synonym rule. See
-		 * <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-synonym-graph-tokenfilter.html#_solr_synonyms_2">https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-synonym-graph-tokenfilter.html#_solr_synonyms_2</a>
+		 * Required - The synonyms that conform the synonym rule in Solr format.
 		 * <p>
 		 * API name: {@code synonyms}
 		 */
