@@ -3478,9 +3478,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	/**
 	 * Validate an anomaly detection job.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/">Documentation on
-	 *      elastic.co</a>
+	 * @see <a href="null">Documentation on elastic.co</a>
 	 */
 
 	public CompletableFuture<ValidateDetectorResponse> validateDetector(ValidateDetectorRequest request) {
@@ -3496,9 +3494,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link ValidateDetectorRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/">Documentation on
-	 *      elastic.co</a>
+	 * @see <a href="null">Documentation on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ValidateDetectorResponse> validateDetector(
@@ -3509,9 +3505,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	/**
 	 * Validate an anomaly detection job.
 	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/">Documentation on
-	 *      elastic.co</a>
+	 * @see <a href="null">Documentation on elastic.co</a>
 	 */
 
 	public CompletableFuture<ValidateDetectorResponse> validateDetector() {

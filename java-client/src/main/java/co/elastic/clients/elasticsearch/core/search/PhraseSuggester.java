@@ -94,9 +94,6 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 	private final SmoothingModel smoothing;
 
 	@Nullable
-	private final String text;
-
-	@Nullable
 	private final Integer tokenLimit;
 
 	// ---------------------------------------------------------------------------------------------
@@ -115,7 +112,6 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		this.separator = builder.separator;
 		this.shardSize = builder.shardSize;
 		this.smoothing = builder.smoothing;
-		this.text = builder.text;
 		this.tokenLimit = builder.tokenLimit;
 
 	}
@@ -256,16 +252,6 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 	}
 
 	/**
-	 * The text/query to provide suggestions for.
-	 * <p>
-	 * API name: {@code text}
-	 */
-	@Nullable
-	public final String text() {
-		return this.text;
-	}
-
-	/**
 	 * API name: {@code token_limit}
 	 */
 	@Nullable
@@ -336,11 +322,6 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 			this.smoothing.serialize(generator, mapper);
 
 		}
-		if (this.text != null) {
-			generator.writeKey("text");
-			generator.write(this.text);
-
-		}
 		if (this.tokenLimit != null) {
 			generator.writeKey("token_limit");
 			generator.write(this.tokenLimit);
@@ -392,9 +373,6 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		private SmoothingModel smoothing;
 
 		@Nullable
-		private String text;
-
-		@Nullable
 		private Integer tokenLimit;
 
 		public Builder() {
@@ -411,7 +389,6 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 			this.separator = instance.separator;
 			this.shardSize = instance.shardSize;
 			this.smoothing = instance.smoothing;
-			this.text = instance.text;
 			this.tokenLimit = instance.tokenLimit;
 
 		}
@@ -611,16 +588,6 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		}
 
 		/**
-		 * The text/query to provide suggestions for.
-		 * <p>
-		 * API name: {@code text}
-		 */
-		public final Builder text(@Nullable String value) {
-			this.text = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code token_limit}
 		 */
 		public final Builder tokenLimit(@Nullable Integer value) {
@@ -674,7 +641,6 @@ public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVari
 		op.add(Builder::separator, JsonpDeserializer.stringDeserializer(), "separator");
 		op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
 		op.add(Builder::smoothing, SmoothingModel._DESERIALIZER, "smoothing");
-		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
 		op.add(Builder::tokenLimit, JsonpDeserializer.integerDeserializer(), "token_limit");
 
 	}

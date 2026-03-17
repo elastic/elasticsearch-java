@@ -21,7 +21,6 @@ package co.elastic.clients.elasticsearch.searchable_snapshots;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -32,6 +31,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,30 +68,18 @@ import javax.annotation.Nullable;
  */
 
 public class CacheStatsRequest extends RequestBase {
-	@Nullable
-	private final Time masterTimeout;
-
 	private final List<String> nodeId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private CacheStatsRequest(Builder builder) {
 
-		this.masterTimeout = builder.masterTimeout;
 		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 
 	}
 
 	public static CacheStatsRequest of(Function<Builder, ObjectBuilder<CacheStatsRequest>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public final Time masterTimeout() {
-		return this.masterTimeout;
 	}
 
 	/**
@@ -113,33 +101,14 @@ public class CacheStatsRequest extends RequestBase {
 			implements
 				ObjectBuilder<CacheStatsRequest> {
 		@Nullable
-		private Time masterTimeout;
-
-		@Nullable
 		private List<String> nodeId;
 
 		public Builder() {
 		}
 		private Builder(CacheStatsRequest instance) {
-			this.masterTimeout = instance.masterTimeout;
 			this.nodeId = instance.nodeId;
 
 		}
-		/**
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(@Nullable Time value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code master_timeout}
-		 */
-		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.masterTimeout(fn.apply(new Time.Builder()).build());
-		}
-
 		/**
 		 * The names of the nodes in the cluster to target.
 		 * <p>
@@ -252,11 +221,7 @@ public class CacheStatsRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				return params;
+				return Collections.emptyMap();
 
 			}, SimpleEndpoint.emptyMap(), false, CacheStatsResponse._DESERIALIZER);
 }

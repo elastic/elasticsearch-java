@@ -179,7 +179,10 @@ public class RoleDescriptorRead implements JsonpSerializable {
 	}
 
 	/**
-	 * A list of users that the API keys can impersonate.
+	 * A list of users that the API keys can impersonate. NOTE: In Elastic Cloud
+	 * Serverless, the run-as feature is disabled. For API compatibility, you can
+	 * still specify an empty <code>run_as</code> field, but a non-empty list will
+	 * be rejected.
 	 * <p>
 	 * API name: {@code run_as}
 	 */
@@ -188,7 +191,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 	}
 
 	/**
-	 * An optional description of the role descriptor.
+	 * Optional description of the role descriptor
 	 * <p>
 	 * API name: {@code description}
 	 */
@@ -198,7 +201,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 	}
 
 	/**
-	 * A restriction for when the role descriptor is allowed to be effective.
+	 * Restriction for when the role descriptor is allowed to be effective.
 	 * <p>
 	 * API name: {@code restriction}
 	 */
@@ -645,7 +648,10 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of users that the API keys can impersonate.
+		 * A list of users that the API keys can impersonate. NOTE: In Elastic Cloud
+		 * Serverless, the run-as feature is disabled. For API compatibility, you can
+		 * still specify an empty <code>run_as</code> field, but a non-empty list will
+		 * be rejected.
 		 * <p>
 		 * API name: {@code run_as}
 		 * <p>
@@ -657,7 +663,10 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of users that the API keys can impersonate.
+		 * A list of users that the API keys can impersonate. NOTE: In Elastic Cloud
+		 * Serverless, the run-as feature is disabled. For API compatibility, you can
+		 * still specify an empty <code>run_as</code> field, but a non-empty list will
+		 * be rejected.
 		 * <p>
 		 * API name: {@code run_as}
 		 * <p>
@@ -669,7 +678,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * An optional description of the role descriptor.
+		 * Optional description of the role descriptor
 		 * <p>
 		 * API name: {@code description}
 		 */
@@ -679,7 +688,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * A restriction for when the role descriptor is allowed to be effective.
+		 * Restriction for when the role descriptor is allowed to be effective.
 		 * <p>
 		 * API name: {@code restriction}
 		 */
@@ -689,7 +698,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 		}
 
 		/**
-		 * A restriction for when the role descriptor is allowed to be effective.
+		 * Restriction for when the role descriptor is allowed to be effective.
 		 * <p>
 		 * API name: {@code restriction}
 		 */

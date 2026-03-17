@@ -30,7 +30,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Float;
 import java.lang.Integer;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -93,9 +92,6 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 	@Nullable
 	private final SuggestMode suggestMode;
 
-	@Nullable
-	private final String text;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private TermSuggester(Builder builder) {
@@ -112,7 +108,6 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 		this.sort = builder.sort;
 		this.stringDistance = builder.stringDistance;
 		this.suggestMode = builder.suggestMode;
-		this.text = builder.text;
 
 	}
 
@@ -252,16 +247,6 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 		return this.suggestMode;
 	}
 
-	/**
-	 * The suggest text. Needs to be set globally or per suggestion.
-	 * <p>
-	 * API name: {@code text}
-	 */
-	@Nullable
-	public final String text() {
-		return this.text;
-	}
-
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -317,11 +302,6 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 			generator.writeKey("suggest_mode");
 			this.suggestMode.serialize(generator, mapper);
 		}
-		if (this.text != null) {
-			generator.writeKey("text");
-			generator.write(this.text);
-
-		}
 
 	}
 
@@ -365,9 +345,6 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 		@Nullable
 		private SuggestMode suggestMode;
 
-		@Nullable
-		private String text;
-
 		public Builder() {
 		}
 		private Builder(TermSuggester instance) {
@@ -382,7 +359,6 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 			this.sort = instance.sort;
 			this.stringDistance = instance.stringDistance;
 			this.suggestMode = instance.suggestMode;
-			this.text = instance.text;
 
 		}
 		/**
@@ -509,16 +485,6 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 			return this;
 		}
 
-		/**
-		 * The suggest text. Needs to be set globally or per suggestion.
-		 * <p>
-		 * API name: {@code text}
-		 */
-		public final Builder text(@Nullable String value) {
-			this.text = value;
-			return this;
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
@@ -564,7 +530,6 @@ public class TermSuggester extends SuggesterBase implements FieldSuggesterVarian
 		op.add(Builder::sort, SuggestSort._DESERIALIZER, "sort");
 		op.add(Builder::stringDistance, StringDistance._DESERIALIZER, "string_distance");
 		op.add(Builder::suggestMode, SuggestMode._DESERIALIZER, "suggest_mode");
-		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
 
 	}
 

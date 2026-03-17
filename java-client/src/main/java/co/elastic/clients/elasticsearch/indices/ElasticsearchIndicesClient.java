@@ -4833,6 +4833,10 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * Before shrinking, a (primary or replica) copy of every shard in the index
 	 * must be present on the same node.
 	 * <p>
+	 * IMPORTANT: If the source index already has one primary shard, configuring the
+	 * shrink operation with 'index.number_of_shards: 1' will cause the request to
+	 * fail. An index with one primary shard cannot be shrunk further.
+	 * <p>
 	 * The current write index on a data stream cannot be shrunk. In order to shrink
 	 * the current write index, the data stream must first be rolled over so that a
 	 * new write index is created and then the previous write index can be shrunk.
@@ -4903,6 +4907,10 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * the index is a prime number it can only be shrunk into a single primary shard
 	 * Before shrinking, a (primary or replica) copy of every shard in the index
 	 * must be present on the same node.
+	 * <p>
+	 * IMPORTANT: If the source index already has one primary shard, configuring the
+	 * shrink operation with 'index.number_of_shards: 1' will cause the request to
+	 * fail. An index with one primary shard cannot be shrunk further.
 	 * <p>
 	 * The current write index on a data stream cannot be shrunk. In order to shrink
 	 * the current write index, the data stream must first be rolled over so that a
