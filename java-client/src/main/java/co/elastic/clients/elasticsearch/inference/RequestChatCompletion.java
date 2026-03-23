@@ -71,6 +71,9 @@ public class RequestChatCompletion implements JsonpSerializable {
 	@Nullable
 	private final Long maxCompletionTokens;
 
+	@Nullable
+	private final Reasoning reasoning;
+
 	private final List<String> stop;
 
 	@Nullable
@@ -91,6 +94,7 @@ public class RequestChatCompletion implements JsonpSerializable {
 		this.messages = ApiTypeHelper.unmodifiableRequired(builder.messages, this, "messages");
 		this.model = builder.model;
 		this.maxCompletionTokens = builder.maxCompletionTokens;
+		this.reasoning = builder.reasoning;
 		this.stop = ApiTypeHelper.unmodifiable(builder.stop);
 		this.temperature = builder.temperature;
 		this.toolChoice = builder.toolChoice;
@@ -137,6 +141,59 @@ public class RequestChatCompletion implements JsonpSerializable {
 	@Nullable
 	public final Long maxCompletionTokens() {
 		return this.maxCompletionTokens;
+	}
+
+	/**
+	 * The reasoning configuration for the completion request. This controls the
+	 * model's reasoning process in one of two ways:
+	 * <ul>
+	 * <li>By specifying the model’s reasoning effort level with the
+	 * <code>effort</code> field.</li>
+	 * <li>By enabling reasoning with default settings by setting
+	 * <code>enabled</code> field to <code>true</code>.</li>
+	 * </ul>
+	 * <p>
+	 * It also includes optional settings to control:
+	 * <ul>
+	 * <li>The level of detail in the summary returned in the response with the
+	 * <code>summary</code> field.</li>
+	 * <li>Whether reasoning details are included in the response at all with the
+	 * <code>exclude</code> field.</li>
+	 * </ul>
+	 * <p>
+	 * Example (effort):
+	 * 
+	 * <pre>
+	 * <code>{
+	 *    &quot;reasoning&quot;: {
+	 *        &quot;effort&quot;: &quot;high&quot;,
+	 *        &quot;summary&quot;: &quot;concise&quot;,
+	 *        &quot;exclude&quot;: false
+	 *    }
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Example (enabled):
+	 * 
+	 * <pre>
+	 * <code>{
+	 *    &quot;reasoning&quot;: {
+	 *        &quot;enabled&quot;: true,
+	 *        &quot;summary&quot;: &quot;concise&quot;,
+	 *        &quot;exclude&quot;: false
+	 *    }
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Currently supported only for <code>elastic</code> provider.
+	 * <p>
+	 * API name: {@code reasoning}
+	 */
+	@Nullable
+	public final Reasoning reasoning() {
+		return this.reasoning;
 	}
 
 	/**
@@ -262,6 +319,11 @@ public class RequestChatCompletion implements JsonpSerializable {
 			generator.write(this.maxCompletionTokens);
 
 		}
+		if (this.reasoning != null) {
+			generator.writeKey("reasoning");
+			this.reasoning.serialize(generator, mapper);
+
+		}
 		if (ApiTypeHelper.isDefined(this.stop)) {
 			generator.writeKey("stop");
 			generator.writeStartArray();
@@ -323,6 +385,9 @@ public class RequestChatCompletion implements JsonpSerializable {
 		private Long maxCompletionTokens;
 
 		@Nullable
+		private Reasoning reasoning;
+
+		@Nullable
 		private List<String> stop;
 
 		@Nullable
@@ -343,6 +408,7 @@ public class RequestChatCompletion implements JsonpSerializable {
 			this.messages = instance.messages;
 			this.model = instance.model;
 			this.maxCompletionTokens = instance.maxCompletionTokens;
+			this.reasoning = instance.reasoning;
 			this.stop = instance.stop;
 			this.temperature = instance.temperature;
 			this.toolChoice = instance.toolChoice;
@@ -420,6 +486,111 @@ public class RequestChatCompletion implements JsonpSerializable {
 		public final Builder maxCompletionTokens(@Nullable Long value) {
 			this.maxCompletionTokens = value;
 			return this;
+		}
+
+		/**
+		 * The reasoning configuration for the completion request. This controls the
+		 * model's reasoning process in one of two ways:
+		 * <ul>
+		 * <li>By specifying the model’s reasoning effort level with the
+		 * <code>effort</code> field.</li>
+		 * <li>By enabling reasoning with default settings by setting
+		 * <code>enabled</code> field to <code>true</code>.</li>
+		 * </ul>
+		 * <p>
+		 * It also includes optional settings to control:
+		 * <ul>
+		 * <li>The level of detail in the summary returned in the response with the
+		 * <code>summary</code> field.</li>
+		 * <li>Whether reasoning details are included in the response at all with the
+		 * <code>exclude</code> field.</li>
+		 * </ul>
+		 * <p>
+		 * Example (effort):
+		 * 
+		 * <pre>
+		 * <code>{
+		 *    &quot;reasoning&quot;: {
+		 *        &quot;effort&quot;: &quot;high&quot;,
+		 *        &quot;summary&quot;: &quot;concise&quot;,
+		 *        &quot;exclude&quot;: false
+		 *    }
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * Example (enabled):
+		 * 
+		 * <pre>
+		 * <code>{
+		 *    &quot;reasoning&quot;: {
+		 *        &quot;enabled&quot;: true,
+		 *        &quot;summary&quot;: &quot;concise&quot;,
+		 *        &quot;exclude&quot;: false
+		 *    }
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * Currently supported only for <code>elastic</code> provider.
+		 * <p>
+		 * API name: {@code reasoning}
+		 */
+		public final Builder reasoning(@Nullable Reasoning value) {
+			this.reasoning = value;
+			return this;
+		}
+
+		/**
+		 * The reasoning configuration for the completion request. This controls the
+		 * model's reasoning process in one of two ways:
+		 * <ul>
+		 * <li>By specifying the model’s reasoning effort level with the
+		 * <code>effort</code> field.</li>
+		 * <li>By enabling reasoning with default settings by setting
+		 * <code>enabled</code> field to <code>true</code>.</li>
+		 * </ul>
+		 * <p>
+		 * It also includes optional settings to control:
+		 * <ul>
+		 * <li>The level of detail in the summary returned in the response with the
+		 * <code>summary</code> field.</li>
+		 * <li>Whether reasoning details are included in the response at all with the
+		 * <code>exclude</code> field.</li>
+		 * </ul>
+		 * <p>
+		 * Example (effort):
+		 * 
+		 * <pre>
+		 * <code>{
+		 *    &quot;reasoning&quot;: {
+		 *        &quot;effort&quot;: &quot;high&quot;,
+		 *        &quot;summary&quot;: &quot;concise&quot;,
+		 *        &quot;exclude&quot;: false
+		 *    }
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * Example (enabled):
+		 * 
+		 * <pre>
+		 * <code>{
+		 *    &quot;reasoning&quot;: {
+		 *        &quot;enabled&quot;: true,
+		 *        &quot;summary&quot;: &quot;concise&quot;,
+		 *        &quot;exclude&quot;: false
+		 *    }
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * Currently supported only for <code>elastic</code> provider.
+		 * <p>
+		 * API name: {@code reasoning}
+		 */
+		public final Builder reasoning(Function<Reasoning.Builder, ObjectBuilder<Reasoning>> fn) {
+			return this.reasoning(fn.apply(new Reasoning.Builder()).build());
 		}
 
 		/**
@@ -671,6 +842,7 @@ public class RequestChatCompletion implements JsonpSerializable {
 		op.add(Builder::messages, JsonpDeserializer.arrayDeserializer(Message._DESERIALIZER), "messages");
 		op.add(Builder::model, JsonpDeserializer.stringDeserializer(), "model");
 		op.add(Builder::maxCompletionTokens, JsonpDeserializer.longDeserializer(), "max_completion_tokens");
+		op.add(Builder::reasoning, Reasoning._DESERIALIZER, "reasoning");
 		op.add(Builder::stop, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stop");
 		op.add(Builder::temperature, JsonpDeserializer.floatDeserializer(), "temperature");
 		op.add(Builder::toolChoice, CompletionToolType._DESERIALIZER, "tool_choice");

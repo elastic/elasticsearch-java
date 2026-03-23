@@ -1,0 +1,388 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+package co.elastic.clients.elasticsearch.indices;
+
+import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
+// typedef: indices._types.IndexTemplateSummaryWithRollover
+
+/**
+ *
+ * @see <a href=
+ *      "../doc-files/api-spec.html#indices._types.IndexTemplateSummaryWithRollover">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class IndexTemplateSummaryWithRollover implements JsonpSerializable {
+	@Nullable
+	private final DataStreamLifecycleWithRollover lifecycle;
+
+	private final Map<String, Alias> aliases;
+
+	@Nullable
+	private final TypeMapping mappings;
+
+	@Nullable
+	private final IndexSettings settings;
+
+	@Nullable
+	private final DataStreamOptions dataStreamOptions;
+
+	// ---------------------------------------------------------------------------------------------
+
+	private IndexTemplateSummaryWithRollover(Builder builder) {
+
+		this.lifecycle = builder.lifecycle;
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
+		this.mappings = builder.mappings;
+		this.settings = builder.settings;
+		this.dataStreamOptions = builder.dataStreamOptions;
+
+	}
+
+	public static IndexTemplateSummaryWithRollover of(
+			Function<Builder, ObjectBuilder<IndexTemplateSummaryWithRollover>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code lifecycle}
+	 */
+	@Nullable
+	public final DataStreamLifecycleWithRollover lifecycle() {
+		return this.lifecycle;
+	}
+
+	/**
+	 * Aliases to add. If the index template includes a <code>data_stream</code>
+	 * object, these are data stream aliases. Otherwise, these are index aliases.
+	 * Data stream aliases ignore the <code>index_routing</code>,
+	 * <code>routing</code>, and <code>search_routing</code> options.
+	 * <p>
+	 * API name: {@code aliases}
+	 */
+	public final Map<String, Alias> aliases() {
+		return this.aliases;
+	}
+
+	/**
+	 * Mapping for fields in the index. If specified, this mapping can include field
+	 * names, field data types, and mapping parameters.
+	 * <p>
+	 * API name: {@code mappings}
+	 */
+	@Nullable
+	public final TypeMapping mappings() {
+		return this.mappings;
+	}
+
+	/**
+	 * Configuration options for the index.
+	 * <p>
+	 * API name: {@code settings}
+	 */
+	@Nullable
+	public final IndexSettings settings() {
+		return this.settings;
+	}
+
+	/**
+	 * API name: {@code data_stream_options}
+	 */
+	@Nullable
+	public final DataStreamOptions dataStreamOptions() {
+		return this.dataStreamOptions;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.lifecycle != null) {
+			generator.writeKey("lifecycle");
+			this.lifecycle.serialize(generator, mapper);
+
+		}
+		if (ApiTypeHelper.isDefined(this.aliases)) {
+			generator.writeKey("aliases");
+			generator.writeStartObject();
+			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.mappings != null) {
+			generator.writeKey("mappings");
+			this.mappings.serialize(generator, mapper);
+
+		}
+		if (this.settings != null) {
+			generator.writeKey("settings");
+			this.settings.serialize(generator, mapper);
+
+		}
+		if (this.dataStreamOptions != null) {
+			generator.writeKey("data_stream_options");
+			this.dataStreamOptions.serialize(generator, mapper);
+
+		}
+
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link IndexTemplateSummaryWithRollover}.
+	 */
+
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<IndexTemplateSummaryWithRollover> {
+		@Nullable
+		private DataStreamLifecycleWithRollover lifecycle;
+
+		@Nullable
+		private Map<String, Alias> aliases;
+
+		@Nullable
+		private TypeMapping mappings;
+
+		@Nullable
+		private IndexSettings settings;
+
+		@Nullable
+		private DataStreamOptions dataStreamOptions;
+
+		public Builder() {
+		}
+		private Builder(IndexTemplateSummaryWithRollover instance) {
+			this.lifecycle = instance.lifecycle;
+			this.aliases = instance.aliases;
+			this.mappings = instance.mappings;
+			this.settings = instance.settings;
+			this.dataStreamOptions = instance.dataStreamOptions;
+
+		}
+		/**
+		 * API name: {@code lifecycle}
+		 */
+		public final Builder lifecycle(@Nullable DataStreamLifecycleWithRollover value) {
+			this.lifecycle = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code lifecycle}
+		 */
+		public final Builder lifecycle(
+				Function<DataStreamLifecycleWithRollover.Builder, ObjectBuilder<DataStreamLifecycleWithRollover>> fn) {
+			return this.lifecycle(fn.apply(new DataStreamLifecycleWithRollover.Builder()).build());
+		}
+
+		/**
+		 * Aliases to add. If the index template includes a <code>data_stream</code>
+		 * object, these are data stream aliases. Otherwise, these are index aliases.
+		 * Data stream aliases ignore the <code>index_routing</code>,
+		 * <code>routing</code>, and <code>search_routing</code> options.
+		 * <p>
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aliases</code>.
+		 */
+		public final Builder aliases(Map<String, Alias> map) {
+			this.aliases = _mapPutAll(this.aliases, map);
+			return this;
+		}
+
+		/**
+		 * Aliases to add. If the index template includes a <code>data_stream</code>
+		 * object, these are data stream aliases. Otherwise, these are index aliases.
+		 * Data stream aliases ignore the <code>index_routing</code>,
+		 * <code>routing</code>, and <code>search_routing</code> options.
+		 * <p>
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code>.
+		 */
+		public final Builder aliases(String key, Alias value) {
+			this.aliases = _mapPut(this.aliases, key, value);
+			return this;
+		}
+
+		/**
+		 * Aliases to add. If the index template includes a <code>data_stream</code>
+		 * object, these are data stream aliases. Otherwise, these are index aliases.
+		 * Data stream aliases ignore the <code>index_routing</code>,
+		 * <code>routing</code>, and <code>search_routing</code> options.
+		 * <p>
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code> using a builder lambda.
+		 */
+		public final Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
+			return aliases(key, fn.apply(new Alias.Builder()).build());
+		}
+
+		/**
+		 * Mapping for fields in the index. If specified, this mapping can include field
+		 * names, field data types, and mapping parameters.
+		 * <p>
+		 * API name: {@code mappings}
+		 */
+		public final Builder mappings(@Nullable TypeMapping value) {
+			this.mappings = value;
+			return this;
+		}
+
+		/**
+		 * Mapping for fields in the index. If specified, this mapping can include field
+		 * names, field data types, and mapping parameters.
+		 * <p>
+		 * API name: {@code mappings}
+		 */
+		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
+		}
+
+		/**
+		 * Configuration options for the index.
+		 * <p>
+		 * API name: {@code settings}
+		 */
+		public final Builder settings(@Nullable IndexSettings value) {
+			this.settings = value;
+			return this;
+		}
+
+		/**
+		 * Configuration options for the index.
+		 * <p>
+		 * API name: {@code settings}
+		 */
+		public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
+			return this.settings(fn.apply(new IndexSettings.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code data_stream_options}
+		 */
+		public final Builder dataStreamOptions(@Nullable DataStreamOptions value) {
+			this.dataStreamOptions = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code data_stream_options}
+		 */
+		public final Builder dataStreamOptions(
+				Function<DataStreamOptions.Builder, ObjectBuilder<DataStreamOptions>> fn) {
+			return this.dataStreamOptions(fn.apply(new DataStreamOptions.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link IndexTemplateSummaryWithRollover}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public IndexTemplateSummaryWithRollover build() {
+			_checkSingleUse();
+
+			return new IndexTemplateSummaryWithRollover(this);
+		}
+	}
+
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for {@link IndexTemplateSummaryWithRollover}
+	 */
+	public static final JsonpDeserializer<IndexTemplateSummaryWithRollover> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndexTemplateSummaryWithRollover::setupIndexTemplateSummaryWithRolloverDeserializer);
+
+	protected static void setupIndexTemplateSummaryWithRolloverDeserializer(
+			ObjectDeserializer<IndexTemplateSummaryWithRollover.Builder> op) {
+
+		op.add(Builder::lifecycle, DataStreamLifecycleWithRollover._DESERIALIZER, "lifecycle");
+		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
+		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
+		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
+		op.add(Builder::dataStreamOptions, DataStreamOptions._DESERIALIZER, "data_stream_options");
+
+	}
+
+}

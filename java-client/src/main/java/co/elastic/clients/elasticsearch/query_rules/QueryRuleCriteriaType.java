@@ -50,8 +50,6 @@ public enum QueryRuleCriteriaType implements JsonEnum {
 
 	Exact("exact"),
 
-	ExactFuzzy("exact_fuzzy"),
-
 	Fuzzy("fuzzy"),
 
 	Prefix("prefix"),

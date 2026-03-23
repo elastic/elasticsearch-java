@@ -71,6 +71,9 @@ public class Source implements JsonpSerializable {
 
 	private final Map<String, RuntimeField> runtimeMappings;
 
+	@Nullable
+	private final String projectRouting;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private Source(Builder builder) {
@@ -78,6 +81,7 @@ public class Source implements JsonpSerializable {
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.query = builder.query;
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.projectRouting = builder.projectRouting;
 
 	}
 
@@ -125,6 +129,19 @@ public class Source implements JsonpSerializable {
 	}
 
 	/**
+	 * Specifies a subset of projects to target using project metadata tags in a
+	 * subset of Lucene query syntax. Allowed Lucene queries: the _alias tag and a
+	 * single value (possibly wildcarded). Examples: _alias:my-project
+	 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -161,6 +178,11 @@ public class Source implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
 
 	}
 
@@ -184,12 +206,16 @@ public class Source implements JsonpSerializable {
 		@Nullable
 		private Map<String, RuntimeField> runtimeMappings;
 
+		@Nullable
+		private String projectRouting;
+
 		public Builder() {
 		}
 		private Builder(Source instance) {
 			this.index = instance.index;
 			this.query = instance.query;
 			this.runtimeMappings = instance.runtimeMappings;
+			this.projectRouting = instance.projectRouting;
 
 		}
 		/**
@@ -305,6 +331,19 @@ public class Source implements JsonpSerializable {
 			return runtimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
+		/**
+		 * Specifies a subset of projects to target using project metadata tags in a
+		 * subset of Lucene query syntax. Allowed Lucene queries: the _alias tag and a
+		 * single value (possibly wildcarded). Examples: _alias:my-project
+		 * _alias:_origin _alias:<em>pr</em> Supported in serverless only.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -343,6 +382,7 @@ public class Source implements JsonpSerializable {
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 
 	}
 

@@ -17,9 +17,8 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch.inference;
 
-import co.elastic.clients.elasticsearch.indices.get_all_sample_configuration.IndexSamplingConfiguration;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,7 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.List;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -51,36 +50,50 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: indices.get_all_sample_configuration.Response
+// typedef: inference._types.ImageUrl
 
 /**
  *
- * @see <a href=
- *      "../doc-files/api-spec.html#indices.get_all_sample_configuration.Response">API
+ * @see <a href="../doc-files/api-spec.html#inference._types.ImageUrl">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class GetAllSampleConfigurationResponse implements JsonpSerializable {
-	private final List<IndexSamplingConfiguration> configurations;
+public class ImageUrl implements JsonpSerializable {
+	private final String url;
+
+	@Nullable
+	private final ImageUrlDetail detail;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private GetAllSampleConfigurationResponse(Builder builder) {
+	private ImageUrl(Builder builder) {
 
-		this.configurations = ApiTypeHelper.unmodifiableRequired(builder.configurations, this, "configurations");
+		this.url = ApiTypeHelper.requireNonNull(builder.url, this, "url");
+		this.detail = builder.detail;
 
 	}
 
-	public static GetAllSampleConfigurationResponse of(
-			Function<Builder, ObjectBuilder<GetAllSampleConfigurationResponse>> fn) {
+	public static ImageUrl of(Function<Builder, ObjectBuilder<ImageUrl>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code configurations}
+	 * Required - The base64 encoded image data as a data URI
+	 * <p>
+	 * API name: {@code url}
 	 */
-	public final List<IndexSamplingConfiguration> configurations() {
-		return this.configurations;
+	public final String url() {
+		return this.url;
+	}
+
+	/**
+	 * Specifies the detail level of the image
+	 * <p>
+	 * API name: {@code detail}
+	 */
+	@Nullable
+	public final ImageUrlDetail detail() {
+		return this.detail;
 	}
 
 	/**
@@ -94,15 +107,12 @@ public class GetAllSampleConfigurationResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.configurations)) {
-			generator.writeKey("configurations");
-			generator.writeStartArray();
-			for (IndexSamplingConfiguration item0 : this.configurations) {
-				item0.serialize(generator, mapper);
+		generator.writeKey("url");
+		generator.write(this.url);
 
-			}
-			generator.writeEnd();
-
+		if (this.detail != null) {
+			generator.writeKey("detail");
+			this.detail.serialize(generator, mapper);
 		}
 
 	}
@@ -115,42 +125,40 @@ public class GetAllSampleConfigurationResponse implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetAllSampleConfigurationResponse}.
+	 * Builder for {@link ImageUrl}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
-			implements
-				ObjectBuilder<GetAllSampleConfigurationResponse> {
-		private List<IndexSamplingConfiguration> configurations;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ImageUrl> {
+		private String url;
 
+		@Nullable
+		private ImageUrlDetail detail;
+
+		public Builder() {
+		}
+		private Builder(ImageUrl instance) {
+			this.url = instance.url;
+			this.detail = instance.detail;
+
+		}
 		/**
-		 * Required - API name: {@code configurations}
+		 * Required - The base64 encoded image data as a data URI
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>configurations</code>.
+		 * API name: {@code url}
 		 */
-		public final Builder configurations(List<IndexSamplingConfiguration> list) {
-			this.configurations = _listAddAll(this.configurations, list);
+		public final Builder url(String value) {
+			this.url = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code configurations}
+		 * Specifies the detail level of the image
 		 * <p>
-		 * Adds one or more values to <code>configurations</code>.
+		 * API name: {@code detail}
 		 */
-		public final Builder configurations(IndexSamplingConfiguration value, IndexSamplingConfiguration... values) {
-			this.configurations = _listAdd(this.configurations, value, values);
+		public final Builder detail(@Nullable ImageUrlDetail value) {
+			this.detail = value;
 			return this;
-		}
-
-		/**
-		 * Required - API name: {@code configurations}
-		 * <p>
-		 * Adds a value to <code>configurations</code> using a builder lambda.
-		 */
-		public final Builder configurations(
-				Function<IndexSamplingConfiguration.Builder, ObjectBuilder<IndexSamplingConfiguration>> fn) {
-			return configurations(fn.apply(new IndexSamplingConfiguration.Builder()).build());
 		}
 
 		@Override
@@ -159,31 +167,36 @@ public class GetAllSampleConfigurationResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link GetAllSampleConfigurationResponse}.
+		 * Builds a {@link ImageUrl}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GetAllSampleConfigurationResponse build() {
+		public ImageUrl build() {
 			_checkSingleUse();
 
-			return new GetAllSampleConfigurationResponse(this);
+			return new ImageUrl(this);
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link GetAllSampleConfigurationResponse}
+	 * Json deserializer for {@link ImageUrl}
 	 */
-	public static final JsonpDeserializer<GetAllSampleConfigurationResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetAllSampleConfigurationResponse::setupGetAllSampleConfigurationResponseDeserializer);
+	public static final JsonpDeserializer<ImageUrl> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ImageUrl::setupImageUrlDeserializer);
 
-	protected static void setupGetAllSampleConfigurationResponseDeserializer(
-			ObjectDeserializer<GetAllSampleConfigurationResponse.Builder> op) {
+	protected static void setupImageUrlDeserializer(ObjectDeserializer<ImageUrl.Builder> op) {
 
-		op.add(Builder::configurations, JsonpDeserializer.arrayDeserializer(IndexSamplingConfiguration._DESERIALIZER),
-				"configurations");
+		op.add(Builder::url, JsonpDeserializer.stringDeserializer(), "url");
+		op.add(Builder::detail, ImageUrlDetail._DESERIALIZER, "detail");
 
 	}
 

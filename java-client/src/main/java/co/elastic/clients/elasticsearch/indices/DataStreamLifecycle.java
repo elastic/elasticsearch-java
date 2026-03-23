@@ -75,6 +75,9 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	@Nullable
 	private final Boolean enabled;
 
+	@Nullable
+	private final Time frozenAfter;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected DataStreamLifecycle(AbstractBuilder<?> builder) {
@@ -83,6 +86,7 @@ public class DataStreamLifecycle implements JsonpSerializable {
 		this.downsampling = ApiTypeHelper.unmodifiable(builder.downsampling);
 		this.downsamplingMethod = builder.downsamplingMethod;
 		this.enabled = builder.enabled;
+		this.frozenAfter = builder.frozenAfter;
 
 	}
 
@@ -139,6 +143,16 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	}
 
 	/**
+	 * Only available with feature flag dlm_searchable_snapshots.
+	 * <p>
+	 * API name: {@code frozen_after}
+	 */
+	@Nullable
+	public final Time frozenAfter() {
+		return this.frozenAfter;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -171,6 +185,11 @@ public class DataStreamLifecycle implements JsonpSerializable {
 		if (this.enabled != null) {
 			generator.writeKey("enabled");
 			generator.write(this.enabled);
+
+		}
+		if (this.frozenAfter != null) {
+			generator.writeKey("frozen_after");
+			this.frozenAfter.serialize(generator, mapper);
 
 		}
 
@@ -222,6 +241,9 @@ public class DataStreamLifecycle implements JsonpSerializable {
 
 		@Nullable
 		private Boolean enabled;
+
+		@Nullable
+		private Time frozenAfter;
 
 		/**
 		 * If defined, every document added to this data stream will be stored at least
@@ -311,6 +333,25 @@ public class DataStreamLifecycle implements JsonpSerializable {
 			return self();
 		}
 
+		/**
+		 * Only available with feature flag dlm_searchable_snapshots.
+		 * <p>
+		 * API name: {@code frozen_after}
+		 */
+		public final BuilderT frozenAfter(@Nullable Time value) {
+			this.frozenAfter = value;
+			return self();
+		}
+
+		/**
+		 * Only available with feature flag dlm_searchable_snapshots.
+		 * <p>
+		 * API name: {@code frozen_after}
+		 */
+		public final BuilderT frozenAfter(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.frozenAfter(fn.apply(new Time.Builder()).build());
+		}
+
 		protected abstract BuilderT self();
 
 	}
@@ -331,6 +372,7 @@ public class DataStreamLifecycle implements JsonpSerializable {
 				"downsampling");
 		op.add(AbstractBuilder::downsamplingMethod, SamplingMethod._DESERIALIZER, "downsampling_method");
 		op.add(AbstractBuilder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(AbstractBuilder::frozenAfter, Time._DESERIALIZER, "frozen_after");
 
 	}
 

@@ -77,6 +77,9 @@ public class Source implements JsonpSerializable {
 	private final RemoteSource remote;
 
 	@Nullable
+	private final String projectRouting;
+
+	@Nullable
 	private final Integer size;
 
 	@Nullable
@@ -96,6 +99,7 @@ public class Source implements JsonpSerializable {
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.query = builder.query;
 		this.remote = builder.remote;
+		this.projectRouting = builder.projectRouting;
 		this.size = builder.size;
 		this.slice = builder.slice;
 		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
@@ -136,6 +140,20 @@ public class Source implements JsonpSerializable {
 	@Nullable
 	public final RemoteSource remote() {
 		return this.remote;
+	}
+
+	/**
+	 * Specifies a subset of projects to target for the search using project
+	 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
+	 * _alias tag and a single value (possibly wildcarded). Examples:
+	 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+	 * only.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
 	}
 
 	/**
@@ -230,6 +248,11 @@ public class Source implements JsonpSerializable {
 			this.remote.serialize(generator, mapper);
 
 		}
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
 		if (this.size != null) {
 			generator.writeKey("size");
 			generator.write(this.size);
@@ -290,6 +313,9 @@ public class Source implements JsonpSerializable {
 		private RemoteSource remote;
 
 		@Nullable
+		private String projectRouting;
+
+		@Nullable
 		private Integer size;
 
 		@Nullable
@@ -310,6 +336,7 @@ public class Source implements JsonpSerializable {
 			this.index = instance.index;
 			this.query = instance.query;
 			this.remote = instance.remote;
+			this.projectRouting = instance.projectRouting;
 			this.size = instance.size;
 			this.slice = instance.slice;
 			this.sort = instance.sort;
@@ -389,6 +416,20 @@ public class Source implements JsonpSerializable {
 		 */
 		public final Builder remote(Function<RemoteSource.Builder, ObjectBuilder<RemoteSource>> fn) {
 			return this.remote(fn.apply(new RemoteSource.Builder()).build());
+		}
+
+		/**
+		 * Specifies a subset of projects to target for the search using project
+		 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
+		 * _alias tag and a single value (possibly wildcarded). Examples:
+		 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+		 * only.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
+			return this;
 		}
 
 		/**
@@ -580,6 +621,7 @@ public class Source implements JsonpSerializable {
 		op.add(Builder::index, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "index");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::remote, RemoteSource._DESERIALIZER, "remote");
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");

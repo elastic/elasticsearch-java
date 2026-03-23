@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
 public class ComponentTemplate implements JsonpSerializable {
 	private final String name;
 
-	private final ComponentTemplateNode componentTemplate;
+	private final ComponentTemplateNodeWithRollover componentTemplate;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -87,7 +87,7 @@ public class ComponentTemplate implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code component_template}
 	 */
-	public final ComponentTemplateNode componentTemplate() {
+	public final ComponentTemplateNodeWithRollover componentTemplate() {
 		return this.componentTemplate;
 	}
 
@@ -124,7 +124,7 @@ public class ComponentTemplate implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ComponentTemplate> {
 		private String name;
 
-		private ComponentTemplateNode componentTemplate;
+		private ComponentTemplateNodeWithRollover componentTemplate;
 
 		public Builder() {
 		}
@@ -144,7 +144,7 @@ public class ComponentTemplate implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code component_template}
 		 */
-		public final Builder componentTemplate(ComponentTemplateNode value) {
+		public final Builder componentTemplate(ComponentTemplateNodeWithRollover value) {
 			this.componentTemplate = value;
 			return this;
 		}
@@ -153,8 +153,8 @@ public class ComponentTemplate implements JsonpSerializable {
 		 * Required - API name: {@code component_template}
 		 */
 		public final Builder componentTemplate(
-				Function<ComponentTemplateNode.Builder, ObjectBuilder<ComponentTemplateNode>> fn) {
-			return this.componentTemplate(fn.apply(new ComponentTemplateNode.Builder()).build());
+				Function<ComponentTemplateNodeWithRollover.Builder, ObjectBuilder<ComponentTemplateNodeWithRollover>> fn) {
+			return this.componentTemplate(fn.apply(new ComponentTemplateNodeWithRollover.Builder()).build());
 		}
 
 		@Override
@@ -192,7 +192,7 @@ public class ComponentTemplate implements JsonpSerializable {
 	protected static void setupComponentTemplateDeserializer(ObjectDeserializer<ComponentTemplate.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::componentTemplate, ComponentTemplateNode._DESERIALIZER, "component_template");
+		op.add(Builder::componentTemplate, ComponentTemplateNodeWithRollover._DESERIALIZER, "component_template");
 
 	}
 

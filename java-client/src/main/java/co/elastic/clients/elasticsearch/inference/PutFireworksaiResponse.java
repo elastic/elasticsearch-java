@@ -17,9 +17,8 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch.inference;
 
-import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -44,66 +43,65 @@ import java.util.function.Function;
 //
 //----------------------------------------------------------------
 
-// typedef: indices.put_sample_configuration.Response
+// typedef: inference.put_fireworksai.Response
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#indices.put_sample_configuration.Response">API
+ *      "../doc-files/api-spec.html#inference.put_fireworksai.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class PutSampleConfigurationResponse extends AcknowledgedResponseBase {
+public class PutFireworksaiResponse extends InferenceEndpointInfoFireworksAI {
 	// ---------------------------------------------------------------------------------------------
 
-	private PutSampleConfigurationResponse(Builder builder) {
+	private PutFireworksaiResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public static PutSampleConfigurationResponse of(
-			Function<Builder, ObjectBuilder<PutSampleConfigurationResponse>> fn) {
+	public static PutFireworksaiResponse of(Function<Builder, ObjectBuilder<PutFireworksaiResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link PutSampleConfigurationResponse}.
+	 * Builder for {@link PutFireworksaiResponse}.
 	 */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+	public static class Builder extends InferenceEndpointInfoFireworksAI.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<PutSampleConfigurationResponse> {
+				ObjectBuilder<PutFireworksaiResponse> {
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link PutSampleConfigurationResponse}.
+		 * Builds a {@link PutFireworksaiResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public PutSampleConfigurationResponse build() {
+		public PutFireworksaiResponse build() {
 			_checkSingleUse();
 
-			return new PutSampleConfigurationResponse(this);
+			return new PutFireworksaiResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link PutSampleConfigurationResponse}
+	 * Json deserializer for {@link PutFireworksaiResponse}
 	 */
-	public static final JsonpDeserializer<PutSampleConfigurationResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutSampleConfigurationResponse::setupPutSampleConfigurationResponseDeserializer);
+	public static final JsonpDeserializer<PutFireworksaiResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutFireworksaiResponse::setupPutFireworksaiResponseDeserializer);
 
-	protected static void setupPutSampleConfigurationResponseDeserializer(
-			ObjectDeserializer<PutSampleConfigurationResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+	protected static void setupPutFireworksaiResponseDeserializer(
+			ObjectDeserializer<PutFireworksaiResponse.Builder> op) {
+		InferenceEndpointInfoFireworksAI.setupInferenceEndpointInfoFireworksAIDeserializer(op);
 
 	}
 

@@ -17,9 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.indices.get_all_sample_configuration;
+package co.elastic.clients.elasticsearch.inference;
 
-import co.elastic.clients.elasticsearch.indices.SamplingConfiguration;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -27,7 +27,6 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -51,45 +50,64 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: indices.get_all_sample_configuration._types.IndexSamplingConfiguration
+// typedef: inference._types.FireworksAITaskSettings
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#indices.get_all_sample_configuration._types.IndexSamplingConfiguration">API
+ *      "../doc-files/api-spec.html#inference._types.FireworksAITaskSettings">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class IndexSamplingConfiguration implements JsonpSerializable {
-	private final String index;
+public class FireworksAITaskSettings implements JsonpSerializable {
+	@Nullable
+	private final String user;
 
-	private final SamplingConfiguration configuration;
+	@Nullable
+	private final JsonData headers;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private IndexSamplingConfiguration(Builder builder) {
+	private FireworksAITaskSettings(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.configuration = ApiTypeHelper.requireNonNull(builder.configuration, this, "configuration");
+		this.user = builder.user;
+		this.headers = builder.headers;
 
 	}
 
-	public static IndexSamplingConfiguration of(Function<Builder, ObjectBuilder<IndexSamplingConfiguration>> fn) {
+	public static FireworksAITaskSettings of(Function<Builder, ObjectBuilder<FireworksAITaskSettings>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code index}
+	 * For a <code>completion</code> or<code>chat_completion</code> task, specify
+	 * the user issuing the request. This information can be used for abuse
+	 * detection.
+	 * <p>
+	 * API name: {@code user}
 	 */
-	public final String index() {
-		return this.index;
+	@Nullable
+	public final String user() {
+		return this.user;
 	}
 
 	/**
-	 * Required - API name: {@code configuration}
+	 * For a <code>completion</code> or<code>chat_completion</code> task. Specifies
+	 * custom HTTP header parameters. For example:
+	 * 
+	 * <pre>
+	 * <code>&quot;headers&quot;:{
+	 *   &quot;Custom-Header&quot;: &quot;Some-Value&quot;,
+	 *   &quot;Another-Custom-Header&quot;: &quot;Another-Value&quot;
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * API name: {@code headers}
 	 */
-	public final SamplingConfiguration configuration() {
-		return this.configuration;
+	@Nullable
+	public final JsonData headers() {
+		return this.headers;
 	}
 
 	/**
@@ -103,11 +121,16 @@ public class IndexSamplingConfiguration implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("index");
-		generator.write(this.index);
+		if (this.user != null) {
+			generator.writeKey("user");
+			generator.write(this.user);
 
-		generator.writeKey("configuration");
-		this.configuration.serialize(generator, mapper);
+		}
+		if (this.headers != null) {
+			generator.writeKey("headers");
+			this.headers.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -119,45 +142,54 @@ public class IndexSamplingConfiguration implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link IndexSamplingConfiguration}.
+	 * Builder for {@link FireworksAITaskSettings}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<IndexSamplingConfiguration> {
-		private String index;
+				ObjectBuilder<FireworksAITaskSettings> {
+		@Nullable
+		private String user;
 
-		private SamplingConfiguration configuration;
+		@Nullable
+		private JsonData headers;
 
 		public Builder() {
 		}
-		private Builder(IndexSamplingConfiguration instance) {
-			this.index = instance.index;
-			this.configuration = instance.configuration;
+		private Builder(FireworksAITaskSettings instance) {
+			this.user = instance.user;
+			this.headers = instance.headers;
 
 		}
 		/**
-		 * Required - API name: {@code index}
+		 * For a <code>completion</code> or<code>chat_completion</code> task, specify
+		 * the user issuing the request. This information can be used for abuse
+		 * detection.
+		 * <p>
+		 * API name: {@code user}
 		 */
-		public final Builder index(String value) {
-			this.index = value;
+		public final Builder user(@Nullable String value) {
+			this.user = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code configuration}
+		 * For a <code>completion</code> or<code>chat_completion</code> task. Specifies
+		 * custom HTTP header parameters. For example:
+		 * 
+		 * <pre>
+		 * <code>&quot;headers&quot;:{
+		 *   &quot;Custom-Header&quot;: &quot;Some-Value&quot;,
+		 *   &quot;Another-Custom-Header&quot;: &quot;Another-Value&quot;
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * API name: {@code headers}
 		 */
-		public final Builder configuration(SamplingConfiguration value) {
-			this.configuration = value;
+		public final Builder headers(@Nullable JsonData value) {
+			this.headers = value;
 			return this;
-		}
-
-		/**
-		 * Required - API name: {@code configuration}
-		 */
-		public final Builder configuration(
-				Function<SamplingConfiguration.Builder, ObjectBuilder<SamplingConfiguration>> fn) {
-			return this.configuration(fn.apply(new SamplingConfiguration.Builder()).build());
 		}
 
 		@Override
@@ -166,15 +198,15 @@ public class IndexSamplingConfiguration implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link IndexSamplingConfiguration}.
+		 * Builds a {@link FireworksAITaskSettings}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public IndexSamplingConfiguration build() {
+		public FireworksAITaskSettings build() {
 			_checkSingleUse();
 
-			return new IndexSamplingConfiguration(this);
+			return new FireworksAITaskSettings(this);
 		}
 	}
 
@@ -187,16 +219,16 @@ public class IndexSamplingConfiguration implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link IndexSamplingConfiguration}
+	 * Json deserializer for {@link FireworksAITaskSettings}
 	 */
-	public static final JsonpDeserializer<IndexSamplingConfiguration> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexSamplingConfiguration::setupIndexSamplingConfigurationDeserializer);
+	public static final JsonpDeserializer<FireworksAITaskSettings> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FireworksAITaskSettings::setupFireworksAITaskSettingsDeserializer);
 
-	protected static void setupIndexSamplingConfigurationDeserializer(
-			ObjectDeserializer<IndexSamplingConfiguration.Builder> op) {
+	protected static void setupFireworksAITaskSettingsDeserializer(
+			ObjectDeserializer<FireworksAITaskSettings.Builder> op) {
 
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::configuration, SamplingConfiguration._DESERIALIZER, "configuration");
+		op.add(Builder::user, JsonpDeserializer.stringDeserializer(), "user");
+		op.add(Builder::headers, JsonData._DESERIALIZER, "headers");
 
 	}
 

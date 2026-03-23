@@ -63,6 +63,8 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class RemoteUserIndicesPrivileges implements JsonpSerializable {
+	private final List<String> clusters;
+
 	private final List<FieldSecurity> fieldSecurity;
 
 	private final List<String> names;
@@ -73,24 +75,29 @@ public class RemoteUserIndicesPrivileges implements JsonpSerializable {
 
 	private final boolean allowRestrictedIndices;
 
-	private final List<String> clusters;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private RemoteUserIndicesPrivileges(Builder builder) {
 
+		this.clusters = ApiTypeHelper.unmodifiableRequired(builder.clusters, this, "clusters");
 		this.fieldSecurity = ApiTypeHelper.unmodifiable(builder.fieldSecurity);
 		this.names = ApiTypeHelper.unmodifiableRequired(builder.names, this, "names");
 		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
 		this.query = ApiTypeHelper.unmodifiable(builder.query);
 		this.allowRestrictedIndices = ApiTypeHelper.requireNonNull(builder.allowRestrictedIndices, this,
 				"allowRestrictedIndices", false);
-		this.clusters = ApiTypeHelper.unmodifiableRequired(builder.clusters, this, "clusters");
 
 	}
 
 	public static RemoteUserIndicesPrivileges of(Function<Builder, ObjectBuilder<RemoteUserIndicesPrivileges>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - API name: {@code clusters}
+	 */
+	public final List<String> clusters() {
+		return this.clusters;
 	}
 
 	/**
@@ -148,13 +155,6 @@ public class RemoteUserIndicesPrivileges implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code clusters}
-	 */
-	public final List<String> clusters() {
-		return this.clusters;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -165,6 +165,16 @@ public class RemoteUserIndicesPrivileges implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (ApiTypeHelper.isDefined(this.clusters)) {
+			generator.writeKey("clusters");
+			generator.writeStartArray();
+			for (String item0 : this.clusters) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (ApiTypeHelper.isDefined(this.fieldSecurity)) {
 			generator.writeKey("field_security");
 			generator.writeStartArray();
@@ -208,17 +218,6 @@ public class RemoteUserIndicesPrivileges implements JsonpSerializable {
 		generator.writeKey("allow_restricted_indices");
 		generator.write(this.allowRestrictedIndices);
 
-		if (ApiTypeHelper.isDefined(this.clusters)) {
-			generator.writeKey("clusters");
-			generator.writeStartArray();
-			for (String item0 : this.clusters) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
-
 	}
 
 	@Override
@@ -235,6 +234,8 @@ public class RemoteUserIndicesPrivileges implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<RemoteUserIndicesPrivileges> {
+		private List<String> clusters;
+
 		@Nullable
 		private List<FieldSecurity> fieldSecurity;
 
@@ -247,19 +248,37 @@ public class RemoteUserIndicesPrivileges implements JsonpSerializable {
 
 		private Boolean allowRestrictedIndices;
 
-		private List<String> clusters;
-
 		public Builder() {
 		}
 		private Builder(RemoteUserIndicesPrivileges instance) {
+			this.clusters = instance.clusters;
 			this.fieldSecurity = instance.fieldSecurity;
 			this.names = instance.names;
 			this.privileges = instance.privileges;
 			this.query = instance.query;
 			this.allowRestrictedIndices = instance.allowRestrictedIndices;
-			this.clusters = instance.clusters;
 
 		}
+		/**
+		 * Required - API name: {@code clusters}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>clusters</code>.
+		 */
+		public final Builder clusters(List<String> list) {
+			this.clusters = _listAddAll(this.clusters, list);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code clusters}
+		 * <p>
+		 * Adds one or more values to <code>clusters</code>.
+		 */
+		public final Builder clusters(String value, String... values) {
+			this.clusters = _listAdd(this.clusters, value, values);
+			return this;
+		}
+
 		/**
 		 * The document fields that the owners of the role have read access to.
 		 * <p>
@@ -417,26 +436,6 @@ public class RemoteUserIndicesPrivileges implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Required - API name: {@code clusters}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>clusters</code>.
-		 */
-		public final Builder clusters(List<String> list) {
-			this.clusters = _listAddAll(this.clusters, list);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code clusters}
-		 * <p>
-		 * Adds one or more values to <code>clusters</code>.
-		 */
-		public final Builder clusters(String value, String... values) {
-			this.clusters = _listAdd(this.clusters, value, values);
-			return this;
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
@@ -472,6 +471,8 @@ public class RemoteUserIndicesPrivileges implements JsonpSerializable {
 	protected static void setupRemoteUserIndicesPrivilegesDeserializer(
 			ObjectDeserializer<RemoteUserIndicesPrivileges.Builder> op) {
 
+		op.add(Builder::clusters, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"clusters");
 		op.add(Builder::fieldSecurity, JsonpDeserializer.arrayDeserializer(FieldSecurity._DESERIALIZER),
 				"field_security");
 		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
@@ -479,8 +480,6 @@ public class RemoteUserIndicesPrivileges implements JsonpSerializable {
 				"privileges");
 		op.add(Builder::query, JsonpDeserializer.arrayDeserializer(IndicesPrivilegesQuery._DESERIALIZER), "query");
 		op.add(Builder::allowRestrictedIndices, JsonpDeserializer.booleanDeserializer(), "allow_restricted_indices");
-		op.add(Builder::clusters, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"clusters");
 
 	}
 

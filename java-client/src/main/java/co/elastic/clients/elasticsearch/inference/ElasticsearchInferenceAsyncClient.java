@@ -434,6 +434,8 @@ public class ElasticsearchInferenceAsyncClient
 	 * <code>text_embedding</code> - this service is for built-in models and models
 	 * uploaded through Eland)</li>
 	 * <li>ELSER (<code>sparse_embedding</code>)</li>
+	 * <li>Fireworks AI (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>)</li>
 	 * <li>Google AI Studio (<code>completion</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>Google Vertex AI (<code>chat_completion</code>, <code>completion</code>,
@@ -505,6 +507,8 @@ public class ElasticsearchInferenceAsyncClient
 	 * <code>text_embedding</code> - this service is for built-in models and models
 	 * uploaded through Eland)</li>
 	 * <li>ELSER (<code>sparse_embedding</code>)</li>
+	 * <li>Fireworks AI (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>)</li>
 	 * <li>Google AI Studio (<code>completion</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>Google Vertex AI (<code>chat_completion</code>, <code>completion</code>,
@@ -1324,6 +1328,45 @@ public class ElasticsearchInferenceAsyncClient
 	public final CompletableFuture<PutElserResponse> putElser(
 			Function<PutElserRequest.Builder, ObjectBuilder<PutElserRequest>> fn) {
 		return putElser(fn.apply(new PutElserRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_fireworksai
+
+	/**
+	 * Create a Fireworks AI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>fireworksai</code> service.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-fireworksai">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutFireworksaiResponse> putFireworksai(PutFireworksaiRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutFireworksaiRequest, PutFireworksaiResponse, ErrorResponse> endpoint = (JsonEndpoint<PutFireworksaiRequest, PutFireworksaiResponse, ErrorResponse>) PutFireworksaiRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create a Fireworks AI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>fireworksai</code> service.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutFireworksaiRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-fireworksai">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PutFireworksaiResponse> putFireworksai(
+			Function<PutFireworksaiRequest.Builder, ObjectBuilder<PutFireworksaiRequest>> fn) {
+		return putFireworksai(fn.apply(new PutFireworksaiRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: inference.put_googleaistudio

@@ -435,6 +435,8 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * <code>text_embedding</code> - this service is for built-in models and models
 	 * uploaded through Eland)</li>
 	 * <li>ELSER (<code>sparse_embedding</code>)</li>
+	 * <li>Fireworks AI (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>)</li>
 	 * <li>Google AI Studio (<code>completion</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>Google Vertex AI (<code>chat_completion</code>, <code>completion</code>,
@@ -506,6 +508,8 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	 * <code>text_embedding</code> - this service is for built-in models and models
 	 * uploaded through Eland)</li>
 	 * <li>ELSER (<code>sparse_embedding</code>)</li>
+	 * <li>Fireworks AI (<code>chat_completion</code>, <code>completion</code>,
+	 * <code>text_embedding</code>)</li>
 	 * <li>Google AI Studio (<code>completion</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>Google Vertex AI (<code>chat_completion</code>, <code>completion</code>,
@@ -1342,6 +1346,47 @@ public class ElasticsearchInferenceClient extends ApiClient<ElasticsearchTranspo
 	public final PutElserResponse putElser(Function<PutElserRequest.Builder, ObjectBuilder<PutElserRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return putElser(fn.apply(new PutElserRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_fireworksai
+
+	/**
+	 * Create a Fireworks AI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>fireworksai</code> service.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-fireworksai">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutFireworksaiResponse putFireworksai(PutFireworksaiRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutFireworksaiRequest, PutFireworksaiResponse, ErrorResponse> endpoint = (JsonEndpoint<PutFireworksaiRequest, PutFireworksaiResponse, ErrorResponse>) PutFireworksaiRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create a Fireworks AI inference endpoint.
+	 * <p>
+	 * Create an inference endpoint to perform an inference task with the
+	 * <code>fireworksai</code> service.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutFireworksaiRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-fireworksai">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutFireworksaiResponse putFireworksai(
+			Function<PutFireworksaiRequest.Builder, ObjectBuilder<PutFireworksaiRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putFireworksai(fn.apply(new PutFireworksaiRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: inference.put_googleaistudio

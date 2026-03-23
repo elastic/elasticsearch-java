@@ -159,8 +159,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * If <code>true</code>, network round-trips are minimized for cross-cluster
-	 * search requests.
+	 * Indicates whether network round-trips should be minimized as part of
+	 * cross-cluster search requests execution.
 	 * <p>
 	 * API name: {@code ccs_minimize_roundtrips}
 	 */
@@ -470,8 +470,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * If <code>true</code>, network round-trips are minimized for cross-cluster
-		 * search requests.
+		 * Indicates whether network round-trips should be minimized as part of
+		 * cross-cluster search requests execution.
 		 * <p>
 		 * API name: {@code ccs_minimize_roundtrips}
 		 */

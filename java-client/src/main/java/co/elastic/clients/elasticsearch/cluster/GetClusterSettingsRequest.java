@@ -103,14 +103,15 @@ public class GetClusterSettingsRequest extends RequestBase {
 	}
 
 	/**
-	 * If <code>true</code>, also returns default values for all other cluster
-	 * settings, reflecting the values in the <code>elasticsearch.yml</code> file of
-	 * one of the nodes in the cluster. If the nodes in your cluster do not all have
-	 * the same values in their <code>elasticsearch.yml</code> config files then the
-	 * values returned by this API may vary from invocation to invocation and may
-	 * not reflect the values that Elasticsearch uses in all situations. Use the
-	 * <code>GET _nodes/settings</code> API to fetch the settings for each
-	 * individual node in your cluster.
+	 * If <code>true</code>, also returns the values of all other cluster settings
+	 * set in the <code>elasticsearch.yml</code> file on one of the nodes in your
+	 * cluster, together with the default values of all other cluster settings on
+	 * that node. The default value of each setting may depend on the values of
+	 * other settings on that node. If the nodes in your cluster do not all have the
+	 * same configuration then the values returned by this API may vary from
+	 * invocation to invocation and may not reflect the values that Elasticsearch
+	 * uses in all situations. Use the <code>GET _nodes/settings</code> API to fetch
+	 * the settings for each individual node in your cluster.
 	 * <p>
 	 * API name: {@code include_defaults}
 	 */
@@ -182,14 +183,15 @@ public class GetClusterSettingsRequest extends RequestBase {
 		}
 
 		/**
-		 * If <code>true</code>, also returns default values for all other cluster
-		 * settings, reflecting the values in the <code>elasticsearch.yml</code> file of
-		 * one of the nodes in the cluster. If the nodes in your cluster do not all have
-		 * the same values in their <code>elasticsearch.yml</code> config files then the
-		 * values returned by this API may vary from invocation to invocation and may
-		 * not reflect the values that Elasticsearch uses in all situations. Use the
-		 * <code>GET _nodes/settings</code> API to fetch the settings for each
-		 * individual node in your cluster.
+		 * If <code>true</code>, also returns the values of all other cluster settings
+		 * set in the <code>elasticsearch.yml</code> file on one of the nodes in your
+		 * cluster, together with the default values of all other cluster settings on
+		 * that node. The default value of each setting may depend on the values of
+		 * other settings on that node. If the nodes in your cluster do not all have the
+		 * same configuration then the values returned by this API may vary from
+		 * invocation to invocation and may not reflect the values that Elasticsearch
+		 * uses in all situations. Use the <code>GET _nodes/settings</code> API to fetch
+		 * the settings for each individual node in your cluster.
 		 * <p>
 		 * API name: {@code include_defaults}
 		 */

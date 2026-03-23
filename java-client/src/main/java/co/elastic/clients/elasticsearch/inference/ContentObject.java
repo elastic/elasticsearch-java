@@ -60,16 +60,22 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ContentObject implements JsonpSerializable {
+	private final ContentType type;
+
 	private final String text;
 
-	private final String type;
+	private final ImageUrl imageUrl;
+
+	private final FileContent file;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ContentObject(Builder builder) {
 
-		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
+		this.imageUrl = ApiTypeHelper.requireNonNull(builder.imageUrl, this, "imageUrl");
+		this.file = ApiTypeHelper.requireNonNull(builder.file, this, "file");
 
 	}
 
@@ -78,7 +84,18 @@ public class ContentObject implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The text content.
+	 * Required - The type of content. Must be one of <code>text</code>,
+	 * <code>image_url</code> or <code>file</code>. Not all services/models support
+	 * content types other than &quot;text&quot;
+	 * <p>
+	 * API name: {@code type}
+	 */
+	public final ContentType type() {
+		return this.type;
+	}
+
+	/**
+	 * Required - The text content. Only applicable for the <code>text</code> type
 	 * <p>
 	 * API name: {@code text}
 	 */
@@ -87,12 +104,22 @@ public class ContentObject implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The type of content.
+	 * Required - The image content. Only applicable for the <code>image_url</code>
+	 * type
 	 * <p>
-	 * API name: {@code type}
+	 * API name: {@code image_url}
 	 */
-	public final String type() {
-		return this.type;
+	public final ImageUrl imageUrl() {
+		return this.imageUrl;
+	}
+
+	/**
+	 * Required - The file content. Only applicable for the <code>file</code> type
+	 * <p>
+	 * API name: {@code file}
+	 */
+	public final FileContent file() {
+		return this.file;
 	}
 
 	/**
@@ -106,11 +133,16 @@ public class ContentObject implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		generator.writeKey("type");
+		this.type.serialize(generator, mapper);
 		generator.writeKey("text");
 		generator.write(this.text);
 
-		generator.writeKey("type");
-		generator.write(this.type);
+		generator.writeKey("image_url");
+		this.imageUrl.serialize(generator, mapper);
+
+		generator.writeKey("file");
+		this.file.serialize(generator, mapper);
 
 	}
 
@@ -126,19 +158,37 @@ public class ContentObject implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ContentObject> {
+		private ContentType type;
+
 		private String text;
 
-		private String type;
+		private ImageUrl imageUrl;
+
+		private FileContent file;
 
 		public Builder() {
 		}
 		private Builder(ContentObject instance) {
-			this.text = instance.text;
 			this.type = instance.type;
+			this.text = instance.text;
+			this.imageUrl = instance.imageUrl;
+			this.file = instance.file;
 
 		}
 		/**
-		 * Required - The text content.
+		 * Required - The type of content. Must be one of <code>text</code>,
+		 * <code>image_url</code> or <code>file</code>. Not all services/models support
+		 * content types other than &quot;text&quot;
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public final Builder type(ContentType value) {
+			this.type = value;
+			return this;
+		}
+
+		/**
+		 * Required - The text content. Only applicable for the <code>text</code> type
 		 * <p>
 		 * API name: {@code text}
 		 */
@@ -148,13 +198,43 @@ public class ContentObject implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The type of content.
+		 * Required - The image content. Only applicable for the <code>image_url</code>
+		 * type
 		 * <p>
-		 * API name: {@code type}
+		 * API name: {@code image_url}
 		 */
-		public final Builder type(String value) {
-			this.type = value;
+		public final Builder imageUrl(ImageUrl value) {
+			this.imageUrl = value;
 			return this;
+		}
+
+		/**
+		 * Required - The image content. Only applicable for the <code>image_url</code>
+		 * type
+		 * <p>
+		 * API name: {@code image_url}
+		 */
+		public final Builder imageUrl(Function<ImageUrl.Builder, ObjectBuilder<ImageUrl>> fn) {
+			return this.imageUrl(fn.apply(new ImageUrl.Builder()).build());
+		}
+
+		/**
+		 * Required - The file content. Only applicable for the <code>file</code> type
+		 * <p>
+		 * API name: {@code file}
+		 */
+		public final Builder file(FileContent value) {
+			this.file = value;
+			return this;
+		}
+
+		/**
+		 * Required - The file content. Only applicable for the <code>file</code> type
+		 * <p>
+		 * API name: {@code file}
+		 */
+		public final Builder file(Function<FileContent.Builder, ObjectBuilder<FileContent>> fn) {
+			return this.file(fn.apply(new FileContent.Builder()).build());
 		}
 
 		@Override
@@ -191,8 +271,10 @@ public class ContentObject implements JsonpSerializable {
 
 	protected static void setupContentObjectDeserializer(ObjectDeserializer<ContentObject.Builder> op) {
 
+		op.add(Builder::type, ContentType._DESERIALIZER, "type");
 		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::imageUrl, ImageUrl._DESERIALIZER, "image_url");
+		op.add(Builder::file, FileContent._DESERIALIZER, "file");
 
 	}
 

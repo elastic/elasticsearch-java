@@ -1015,44 +1015,6 @@ public class ElasticsearchIndicesAsyncClient
 		return deleteIndexTemplate(fn.apply(new DeleteIndexTemplateRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: indices.delete_sample_configuration
-
-	/**
-	 * Delete sampling configuration.
-	 * <p>
-	 * Delete the sampling configuration for the specified index.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<DeleteSampleConfigurationResponse> deleteSampleConfiguration(
-			DeleteSampleConfigurationRequest request) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeleteSampleConfigurationRequest, DeleteSampleConfigurationResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteSampleConfigurationRequest, DeleteSampleConfigurationResponse, ErrorResponse>) DeleteSampleConfigurationRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Delete sampling configuration.
-	 * <p>
-	 * Delete the sampling configuration for the specified index.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link DeleteSampleConfigurationRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<DeleteSampleConfigurationResponse> deleteSampleConfiguration(
-			Function<DeleteSampleConfigurationRequest.Builder, ObjectBuilder<DeleteSampleConfigurationRequest>> fn) {
-		return deleteSampleConfiguration(fn.apply(new DeleteSampleConfigurationRequest.Builder()).build());
-	}
-
 	// ----- Endpoint: indices.delete_template
 
 	/**
@@ -1956,59 +1918,6 @@ public class ElasticsearchIndicesAsyncClient
 				this.transportOptions);
 	}
 
-	// ----- Endpoint: indices.get_all_sample_configuration
-
-	/**
-	 * Get all sampling configurations.
-	 * <p>
-	 * Get the sampling configurations for all indices.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<GetAllSampleConfigurationResponse> getAllSampleConfiguration(
-			GetAllSampleConfigurationRequest request) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetAllSampleConfigurationRequest, GetAllSampleConfigurationResponse, ErrorResponse> endpoint = (JsonEndpoint<GetAllSampleConfigurationRequest, GetAllSampleConfigurationResponse, ErrorResponse>) GetAllSampleConfigurationRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Get all sampling configurations.
-	 * <p>
-	 * Get the sampling configurations for all indices.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link GetAllSampleConfigurationRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<GetAllSampleConfigurationResponse> getAllSampleConfiguration(
-			Function<GetAllSampleConfigurationRequest.Builder, ObjectBuilder<GetAllSampleConfigurationRequest>> fn) {
-		return getAllSampleConfiguration(fn.apply(new GetAllSampleConfigurationRequest.Builder()).build());
-	}
-
-	/**
-	 * Get all sampling configurations.
-	 * <p>
-	 * Get the sampling configurations for all indices.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<GetAllSampleConfigurationResponse> getAllSampleConfiguration() {
-		return this.transport.performRequestAsync(new GetAllSampleConfigurationRequest.Builder().build(),
-				GetAllSampleConfigurationRequest._ENDPOINT, this.transportOptions);
-	}
-
 	// ----- Endpoint: indices.get_data_lifecycle
 
 	/**
@@ -2416,114 +2325,6 @@ public class ElasticsearchIndicesAsyncClient
 	public final CompletableFuture<GetMigrateReindexStatusResponse> getMigrateReindexStatus(
 			Function<GetMigrateReindexStatusRequest.Builder, ObjectBuilder<GetMigrateReindexStatusRequest>> fn) {
 		return getMigrateReindexStatus(fn.apply(new GetMigrateReindexStatusRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.get_sample
-
-	/**
-	 * Request for a random sample of raw documents ingested into the given index or
-	 * data stream.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<GetSampleResponse> getSample(GetSampleRequest request) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetSampleRequest, GetSampleResponse, ErrorResponse> endpoint = (JsonEndpoint<GetSampleRequest, GetSampleResponse, ErrorResponse>) GetSampleRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Request for a random sample of raw documents ingested into the given index or
-	 * data stream.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link GetSampleRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<GetSampleResponse> getSample(
-			Function<GetSampleRequest.Builder, ObjectBuilder<GetSampleRequest>> fn) {
-		return getSample(fn.apply(new GetSampleRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.get_sample_configuration
-
-	/**
-	 * Get sampling configuration.
-	 * <p>
-	 * Get the sampling configuration for the specified index.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<GetSampleConfigurationResponse> getSampleConfiguration(
-			GetSampleConfigurationRequest request) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetSampleConfigurationRequest, GetSampleConfigurationResponse, ErrorResponse> endpoint = (JsonEndpoint<GetSampleConfigurationRequest, GetSampleConfigurationResponse, ErrorResponse>) GetSampleConfigurationRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Get sampling configuration.
-	 * <p>
-	 * Get the sampling configuration for the specified index.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link GetSampleConfigurationRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<GetSampleConfigurationResponse> getSampleConfiguration(
-			Function<GetSampleConfigurationRequest.Builder, ObjectBuilder<GetSampleConfigurationRequest>> fn) {
-		return getSampleConfiguration(fn.apply(new GetSampleConfigurationRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.get_sample_stats
-
-	/**
-	 * Request stats for a random sample of raw documents ingested into the given
-	 * index or data stream.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<GetSampleStatsResponse> getSampleStats(GetSampleStatsRequest request) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetSampleStatsRequest, GetSampleStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetSampleStatsRequest, GetSampleStatsResponse, ErrorResponse>) GetSampleStatsRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Request stats for a random sample of raw documents ingested into the given
-	 * index or data stream.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link GetSampleStatsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<GetSampleStatsResponse> getSampleStats(
-			Function<GetSampleStatsRequest.Builder, ObjectBuilder<GetSampleStatsRequest>> fn) {
-		return getSampleStats(fn.apply(new GetSampleStatsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.get_settings
@@ -3351,44 +3152,6 @@ public class ElasticsearchIndicesAsyncClient
 	public final CompletableFuture<PutMappingResponse> putMapping(
 			Function<PutMappingRequest.Builder, ObjectBuilder<PutMappingRequest>> fn) {
 		return putMapping(fn.apply(new PutMappingRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.put_sample_configuration
-
-	/**
-	 * Create or update sampling configuration.
-	 * <p>
-	 * Create or update the sampling configuration for the specified index.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<PutSampleConfigurationResponse> putSampleConfiguration(
-			PutSampleConfigurationRequest request) {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<PutSampleConfigurationRequest, PutSampleConfigurationResponse, ErrorResponse> endpoint = (JsonEndpoint<PutSampleConfigurationRequest, PutSampleConfigurationResponse, ErrorResponse>) PutSampleConfigurationRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Create or update sampling configuration.
-	 * <p>
-	 * Create or update the sampling configuration for the specified index.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link PutSampleConfigurationRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<PutSampleConfigurationResponse> putSampleConfiguration(
-			Function<PutSampleConfigurationRequest.Builder, ObjectBuilder<PutSampleConfigurationRequest>> fn) {
-		return putSampleConfiguration(fn.apply(new PutSampleConfigurationRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.put_settings

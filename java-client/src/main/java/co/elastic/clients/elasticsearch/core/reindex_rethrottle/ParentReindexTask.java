@@ -17,19 +17,15 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch.core.reindex_rethrottle;
 
-import co.elastic.clients.elasticsearch.indices.get_sample.RawDocument;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -51,51 +47,45 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: indices.get_sample.Response
+// typedef: _global.reindex_rethrottle.ParentReindexTask
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#indices.get_sample.Response">API
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#_global.reindex_rethrottle.ParentReindexTask">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class GetSampleResponse implements JsonpSerializable {
-	private final List<RawDocument> sample;
+public class ParentReindexTask extends ReindexTask {
+	private final List<ReindexTask> children;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private GetSampleResponse(Builder builder) {
+	private ParentReindexTask(Builder builder) {
+		super(builder);
 
-		this.sample = ApiTypeHelper.unmodifiableRequired(builder.sample, this, "sample");
+		this.children = ApiTypeHelper.unmodifiable(builder.children);
 
 	}
 
-	public static GetSampleResponse of(Function<Builder, ObjectBuilder<GetSampleResponse>> fn) {
+	public static ParentReindexTask of(Function<Builder, ObjectBuilder<ParentReindexTask>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code sample}
+	 * API name: {@code children}
 	 */
-	public final List<RawDocument> sample() {
-		return this.sample;
-	}
-
-	/**
-	 * Serialize this object to JSON.
-	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
+	public final List<ReindexTask> children() {
+		return this.children;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.sample)) {
-			generator.writeKey("sample");
+		super.serializeInternal(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.children)) {
+			generator.writeKey("children");
 			generator.writeStartArray();
-			for (RawDocument item0 : this.sample) {
+			for (ReindexTask item0 : this.children) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -105,47 +95,51 @@ public class GetSampleResponse implements JsonpSerializable {
 
 	}
 
-	@Override
-	public String toString() {
-		return JsonpUtils.toString(this);
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link GetSampleResponse}.
+	 * Builder for {@link ParentReindexTask}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GetSampleResponse> {
-		private List<RawDocument> sample;
+	public static class Builder extends ReindexTask.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<ParentReindexTask> {
+		@Nullable
+		private List<ReindexTask> children;
 
+		public Builder() {
+		}
+		private Builder(ParentReindexTask instance) {
+			this.children = instance.children;
+
+		}
 		/**
-		 * Required - API name: {@code sample}
+		 * API name: {@code children}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sample</code>.
+		 * Adds all elements of <code>list</code> to <code>children</code>.
 		 */
-		public final Builder sample(List<RawDocument> list) {
-			this.sample = _listAddAll(this.sample, list);
+		public final Builder children(List<ReindexTask> list) {
+			this.children = _listAddAll(this.children, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code sample}
+		 * API name: {@code children}
 		 * <p>
-		 * Adds one or more values to <code>sample</code>.
+		 * Adds one or more values to <code>children</code>.
 		 */
-		public final Builder sample(RawDocument value, RawDocument... values) {
-			this.sample = _listAdd(this.sample, value, values);
+		public final Builder children(ReindexTask value, ReindexTask... values) {
+			this.children = _listAdd(this.children, value, values);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code sample}
+		 * API name: {@code children}
 		 * <p>
-		 * Adds a value to <code>sample</code> using a builder lambda.
+		 * Adds a value to <code>children</code> using a builder lambda.
 		 */
-		public final Builder sample(Function<RawDocument.Builder, ObjectBuilder<RawDocument>> fn) {
-			return sample(fn.apply(new RawDocument.Builder()).build());
+		public final Builder children(Function<ReindexTask.Builder, ObjectBuilder<ReindexTask>> fn) {
+			return children(fn.apply(new ReindexTask.Builder()).build());
 		}
 
 		@Override
@@ -154,29 +148,35 @@ public class GetSampleResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link GetSampleResponse}.
+		 * Builds a {@link ParentReindexTask}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public GetSampleResponse build() {
+		public ParentReindexTask build() {
 			_checkSingleUse();
 
-			return new GetSampleResponse(this);
+			return new ParentReindexTask(this);
 		}
 	}
 
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link GetSampleResponse}
+	 * Json deserializer for {@link ParentReindexTask}
 	 */
-	public static final JsonpDeserializer<GetSampleResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetSampleResponse::setupGetSampleResponseDeserializer);
+	public static final JsonpDeserializer<ParentReindexTask> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ParentReindexTask::setupParentReindexTaskDeserializer);
 
-	protected static void setupGetSampleResponseDeserializer(ObjectDeserializer<GetSampleResponse.Builder> op) {
-
-		op.add(Builder::sample, JsonpDeserializer.arrayDeserializer(RawDocument._DESERIALIZER), "sample");
+	protected static void setupParentReindexTaskDeserializer(ObjectDeserializer<ParentReindexTask.Builder> op) {
+		ReindexTask.setupReindexTaskDeserializer(op);
+		op.add(Builder::children, JsonpDeserializer.arrayDeserializer(ReindexTask._DESERIALIZER), "children");
 
 	}
 

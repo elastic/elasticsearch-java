@@ -65,12 +65,16 @@ public class DataStreamVisibility implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowCustomRouting;
 
+	@Nullable
+	private final Boolean failureStore;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DataStreamVisibility(Builder builder) {
 
 		this.hidden = builder.hidden;
 		this.allowCustomRouting = builder.allowCustomRouting;
+		this.failureStore = builder.failureStore;
 
 	}
 
@@ -95,6 +99,14 @@ public class DataStreamVisibility implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code failure_store}
+	 */
+	@Nullable
+	public final Boolean failureStore() {
+		return this.failureStore;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -113,6 +125,11 @@ public class DataStreamVisibility implements JsonpSerializable {
 		if (this.allowCustomRouting != null) {
 			generator.writeKey("allow_custom_routing");
 			generator.write(this.allowCustomRouting);
+
+		}
+		if (this.failureStore != null) {
+			generator.writeKey("failure_store");
+			generator.write(this.failureStore);
 
 		}
 
@@ -138,11 +155,15 @@ public class DataStreamVisibility implements JsonpSerializable {
 		@Nullable
 		private Boolean allowCustomRouting;
 
+		@Nullable
+		private Boolean failureStore;
+
 		public Builder() {
 		}
 		private Builder(DataStreamVisibility instance) {
 			this.hidden = instance.hidden;
 			this.allowCustomRouting = instance.allowCustomRouting;
+			this.failureStore = instance.failureStore;
 
 		}
 		/**
@@ -158,6 +179,14 @@ public class DataStreamVisibility implements JsonpSerializable {
 		 */
 		public final Builder allowCustomRouting(@Nullable Boolean value) {
 			this.allowCustomRouting = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code failure_store}
+		 */
+		public final Builder failureStore(@Nullable Boolean value) {
+			this.failureStore = value;
 			return this;
 		}
 
@@ -197,6 +226,7 @@ public class DataStreamVisibility implements JsonpSerializable {
 
 		op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden");
 		op.add(Builder::allowCustomRouting, JsonpDeserializer.booleanDeserializer(), "allow_custom_routing");
+		op.add(Builder::failureStore, JsonpDeserializer.booleanDeserializer(), "failure_store");
 
 	}
 

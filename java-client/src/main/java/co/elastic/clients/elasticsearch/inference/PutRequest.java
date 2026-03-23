@@ -93,6 +93,8 @@ import javax.annotation.Nullable;
  * <code>text_embedding</code> - this service is for built-in models and models
  * uploaded through Eland)</li>
  * <li>ELSER (<code>sparse_embedding</code>)</li>
+ * <li>Fireworks AI (<code>chat_completion</code>, <code>completion</code>,
+ * <code>text_embedding</code>)</li>
  * <li>Google AI Studio (<code>completion</code>,
  * <code>text_embedding</code>)</li>
  * <li>Google Vertex AI (<code>chat_completion</code>, <code>completion</code>,

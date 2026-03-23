@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch.tasks.GroupBy;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -76,6 +77,9 @@ import javax.annotation.Nullable;
  */
 
 public class ReindexRethrottleRequest extends RequestBase {
+	@Nullable
+	private final GroupBy groupBy;
+
 	private final float requestsPerSecond;
 
 	private final String taskId;
@@ -84,6 +88,7 @@ public class ReindexRethrottleRequest extends RequestBase {
 
 	private ReindexRethrottleRequest(Builder builder) {
 
+		this.groupBy = builder.groupBy;
 		this.requestsPerSecond = ApiTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond", 0);
 		this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
 
@@ -91,6 +96,14 @@ public class ReindexRethrottleRequest extends RequestBase {
 
 	public static ReindexRethrottleRequest of(Function<Builder, ObjectBuilder<ReindexRethrottleRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code group_by}
+	 */
+	@Nullable
+	public final GroupBy groupBy() {
+		return this.groupBy;
 	}
 
 	/**
@@ -122,6 +135,9 @@ public class ReindexRethrottleRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ReindexRethrottleRequest> {
+		@Nullable
+		private GroupBy groupBy;
+
 		private Float requestsPerSecond;
 
 		private String taskId;
@@ -129,10 +145,19 @@ public class ReindexRethrottleRequest extends RequestBase {
 		public Builder() {
 		}
 		private Builder(ReindexRethrottleRequest instance) {
+			this.groupBy = instance.groupBy;
 			this.requestsPerSecond = instance.requestsPerSecond;
 			this.taskId = instance.taskId;
 
 		}
+		/**
+		 * API name: {@code group_by}
+		 */
+		public final Builder groupBy(@Nullable GroupBy value) {
+			this.groupBy = value;
+			return this;
+		}
+
 		/**
 		 * Required - The throttle for this request in sub-requests per second. It can
 		 * be either <code>-1</code> to turn off throttling or any decimal number like
@@ -232,6 +257,9 @@ public class ReindexRethrottleRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("requests_per_second", String.valueOf(request.requestsPerSecond));
+				if (request.groupBy != null) {
+					params.put("group_by", request.groupBy.jsonValue());
+				}
 				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, ReindexRethrottleResponse._DESERIALIZER);

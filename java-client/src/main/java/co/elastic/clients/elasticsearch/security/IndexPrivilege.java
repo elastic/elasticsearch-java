@@ -55,6 +55,8 @@ public enum IndexPrivilege implements JsonEnum {
 
 	CreateIndex("create_index"),
 
+	CreateView("create_view"),
+
 	CrossClusterReplication("cross_cluster_replication"),
 
 	CrossClusterReplicationInternal("cross_cluster_replication_internal"),
@@ -62,6 +64,8 @@ public enum IndexPrivilege implements JsonEnum {
 	Delete("delete"),
 
 	DeleteIndex("delete_index"),
+
+	DeleteView("delete_view"),
 
 	Index("index"),
 
@@ -77,6 +81,8 @@ public enum IndexPrivilege implements JsonEnum {
 
 	ManageLeaderIndex("manage_leader_index"),
 
+	ManageView("manage_view"),
+
 	Monitor("monitor"),
 
 	None("none"),
@@ -84,6 +90,8 @@ public enum IndexPrivilege implements JsonEnum {
 	Read("read"),
 
 	ReadCrossCluster("read_cross_cluster"),
+
+	ReadViewMetadata("read_view_metadata"),
 
 	ViewIndexMetadata("view_index_metadata"),
 

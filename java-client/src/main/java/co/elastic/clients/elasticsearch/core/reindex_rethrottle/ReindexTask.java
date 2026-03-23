@@ -89,7 +89,7 @@ public class ReindexTask implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	private ReindexTask(Builder builder) {
+	protected ReindexTask(AbstractBuilder<?> builder) {
 
 		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
 		this.cancellable = ApiTypeHelper.requireNonNull(builder.cancellable, this, "cancellable", false);
@@ -106,7 +106,7 @@ public class ReindexTask implements JsonpSerializable {
 
 	}
 
-	public static ReindexTask of(Function<Builder, ObjectBuilder<ReindexTask>> fn) {
+	public static ReindexTask reindexTaskOf(Function<Builder, ObjectBuilder<ReindexTask>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -260,7 +260,28 @@ public class ReindexTask implements JsonpSerializable {
 	 * Builder for {@link ReindexTask}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ReindexTask> {
+	public static class Builder extends ReindexTask.AbstractBuilder<Builder> implements ObjectBuilder<ReindexTask> {
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link ReindexTask}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public ReindexTask build() {
+			_checkSingleUse();
+
+			return new ReindexTask(this);
+		}
+	}
+
+	public abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				WithJsonObjectBuilderBase<BuilderT> {
 		private String action;
 
 		private Boolean cancellable;
@@ -283,107 +304,91 @@ public class ReindexTask implements JsonpSerializable {
 
 		private Map<String, List<String>> headers;
 
-		public Builder() {
-		}
-		private Builder(ReindexTask instance) {
-			this.action = instance.action;
-			this.cancellable = instance.cancellable;
-			this.cancelled = instance.cancelled;
-			this.description = instance.description;
-			this.id = instance.id;
-			this.node = instance.node;
-			this.runningTimeInNanos = instance.runningTimeInNanos;
-			this.startTimeInMillis = instance.startTimeInMillis;
-			this.status = instance.status;
-			this.type = instance.type;
-			this.headers = instance.headers;
-
-		}
 		/**
 		 * Required - API name: {@code action}
 		 */
-		public final Builder action(String value) {
+		public final BuilderT action(String value) {
 			this.action = value;
-			return this;
+			return self();
 		}
 
 		/**
 		 * Required - API name: {@code cancellable}
 		 */
-		public final Builder cancellable(boolean value) {
+		public final BuilderT cancellable(boolean value) {
 			this.cancellable = value;
-			return this;
+			return self();
 		}
 
 		/**
 		 * Required - API name: {@code cancelled}
 		 */
-		public final Builder cancelled(boolean value) {
+		public final BuilderT cancelled(boolean value) {
 			this.cancelled = value;
-			return this;
+			return self();
 		}
 
 		/**
 		 * Required - API name: {@code description}
 		 */
-		public final Builder description(String value) {
+		public final BuilderT description(String value) {
 			this.description = value;
-			return this;
+			return self();
 		}
 
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public final Builder id(long value) {
+		public final BuilderT id(long value) {
 			this.id = value;
-			return this;
+			return self();
 		}
 
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public final Builder node(String value) {
+		public final BuilderT node(String value) {
 			this.node = value;
-			return this;
+			return self();
 		}
 
 		/**
 		 * Required - API name: {@code running_time_in_nanos}
 		 */
-		public final Builder runningTimeInNanos(long value) {
+		public final BuilderT runningTimeInNanos(long value) {
 			this.runningTimeInNanos = value;
-			return this;
+			return self();
 		}
 
 		/**
 		 * Required - API name: {@code start_time_in_millis}
 		 */
-		public final Builder startTimeInMillis(long value) {
+		public final BuilderT startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
-			return this;
+			return self();
 		}
 
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public final Builder status(ReindexStatus value) {
+		public final BuilderT status(ReindexStatus value) {
 			this.status = value;
-			return this;
+			return self();
 		}
 
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public final Builder status(Function<ReindexStatus.Builder, ObjectBuilder<ReindexStatus>> fn) {
+		public final BuilderT status(Function<ReindexStatus.Builder, ObjectBuilder<ReindexStatus>> fn) {
 			return this.status(fn.apply(new ReindexStatus.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public final Builder type(String value) {
+		public final BuilderT type(String value) {
 			this.type = value;
-			return this;
+			return self();
 		}
 
 		/**
@@ -391,9 +396,9 @@ public class ReindexTask implements JsonpSerializable {
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>headers</code>.
 		 */
-		public final Builder headers(Map<String, List<String>> map) {
+		public final BuilderT headers(Map<String, List<String>> map) {
 			this.headers = _mapPutAll(this.headers, map);
-			return this;
+			return self();
 		}
 
 		/**
@@ -401,35 +406,15 @@ public class ReindexTask implements JsonpSerializable {
 		 * <p>
 		 * Adds an entry to <code>headers</code>.
 		 */
-		public final Builder headers(String key, List<String> value) {
+		public final BuilderT headers(String key, List<String> value) {
 			this.headers = _mapPut(this.headers, key, value);
-			return this;
+			return self();
 		}
 
-		@Override
-		protected Builder self() {
-			return this;
-		}
+		protected abstract BuilderT self();
 
-		/**
-		 * Builds a {@link ReindexTask}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public ReindexTask build() {
-			_checkSingleUse();
-
-			return new ReindexTask(this);
-		}
 	}
 
-	/**
-	 * @return New {@link Builder} initialized with field values of this instance
-	 */
-	public Builder rebuild() {
-		return new Builder(this);
-	}
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -438,19 +423,20 @@ public class ReindexTask implements JsonpSerializable {
 	public static final JsonpDeserializer<ReindexTask> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			ReindexTask::setupReindexTaskDeserializer);
 
-	protected static void setupReindexTaskDeserializer(ObjectDeserializer<ReindexTask.Builder> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupReindexTaskDeserializer(
+			ObjectDeserializer<BuilderT> op) {
 
-		op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action");
-		op.add(Builder::cancellable, JsonpDeserializer.booleanDeserializer(), "cancellable");
-		op.add(Builder::cancelled, JsonpDeserializer.booleanDeserializer(), "cancelled");
-		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::id, JsonpDeserializer.longDeserializer(), "id");
-		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
-		op.add(Builder::runningTimeInNanos, JsonpDeserializer.longDeserializer(), "running_time_in_nanos");
-		op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
-		op.add(Builder::status, ReindexStatus._DESERIALIZER, "status");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
-		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(
+		op.add(AbstractBuilder::action, JsonpDeserializer.stringDeserializer(), "action");
+		op.add(AbstractBuilder::cancellable, JsonpDeserializer.booleanDeserializer(), "cancellable");
+		op.add(AbstractBuilder::cancelled, JsonpDeserializer.booleanDeserializer(), "cancelled");
+		op.add(AbstractBuilder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(AbstractBuilder::id, JsonpDeserializer.longDeserializer(), "id");
+		op.add(AbstractBuilder::node, JsonpDeserializer.stringDeserializer(), "node");
+		op.add(AbstractBuilder::runningTimeInNanos, JsonpDeserializer.longDeserializer(), "running_time_in_nanos");
+		op.add(AbstractBuilder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
+		op.add(AbstractBuilder::status, ReindexStatus._DESERIALIZER, "status");
+		op.add(AbstractBuilder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(AbstractBuilder::headers, JsonpDeserializer.stringMapDeserializer(
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "headers");
 
 	}

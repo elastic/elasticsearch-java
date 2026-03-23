@@ -19,7 +19,7 @@
 
 package co.elastic.clients.elasticsearch.indices.get_index_template;
 
-import co.elastic.clients.elasticsearch.indices.IndexTemplate;
+import co.elastic.clients.elasticsearch.indices.IndexTemplateWithRollover;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -63,7 +63,7 @@ import javax.annotation.Nullable;
 public class IndexTemplateItem implements JsonpSerializable {
 	private final String name;
 
-	private final IndexTemplate indexTemplate;
+	private final IndexTemplateWithRollover indexTemplate;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -88,7 +88,7 @@ public class IndexTemplateItem implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code index_template}
 	 */
-	public final IndexTemplate indexTemplate() {
+	public final IndexTemplateWithRollover indexTemplate() {
 		return this.indexTemplate;
 	}
 
@@ -125,7 +125,7 @@ public class IndexTemplateItem implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndexTemplateItem> {
 		private String name;
 
-		private IndexTemplate indexTemplate;
+		private IndexTemplateWithRollover indexTemplate;
 
 		public Builder() {
 		}
@@ -145,7 +145,7 @@ public class IndexTemplateItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_template}
 		 */
-		public final Builder indexTemplate(IndexTemplate value) {
+		public final Builder indexTemplate(IndexTemplateWithRollover value) {
 			this.indexTemplate = value;
 			return this;
 		}
@@ -153,8 +153,9 @@ public class IndexTemplateItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_template}
 		 */
-		public final Builder indexTemplate(Function<IndexTemplate.Builder, ObjectBuilder<IndexTemplate>> fn) {
-			return this.indexTemplate(fn.apply(new IndexTemplate.Builder()).build());
+		public final Builder indexTemplate(
+				Function<IndexTemplateWithRollover.Builder, ObjectBuilder<IndexTemplateWithRollover>> fn) {
+			return this.indexTemplate(fn.apply(new IndexTemplateWithRollover.Builder()).build());
 		}
 
 		@Override
@@ -192,7 +193,7 @@ public class IndexTemplateItem implements JsonpSerializable {
 	protected static void setupIndexTemplateItemDeserializer(ObjectDeserializer<IndexTemplateItem.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::indexTemplate, IndexTemplate._DESERIALIZER, "index_template");
+		op.add(Builder::indexTemplate, IndexTemplateWithRollover._DESERIALIZER, "index_template");
 
 	}
 

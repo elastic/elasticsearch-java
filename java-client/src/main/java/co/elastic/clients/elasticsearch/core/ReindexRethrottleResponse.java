@@ -19,7 +19,10 @@
 
 package co.elastic.clients.elasticsearch.core;
 
+import co.elastic.clients.elasticsearch._types.ErrorCause;
+import co.elastic.clients.elasticsearch._types.TaskFailure;
 import co.elastic.clients.elasticsearch.core.reindex_rethrottle.ReindexNode;
+import co.elastic.clients.elasticsearch.core.reindex_rethrottle.ReindexTasks;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -32,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -62,13 +66,23 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ReindexRethrottleResponse implements JsonpSerializable {
+	private final List<ErrorCause> nodeFailures;
+
+	private final List<TaskFailure> taskFailures;
+
 	private final Map<String, ReindexNode> nodes;
+
+	@Nullable
+	private final ReindexTasks tasks;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ReindexRethrottleResponse(Builder builder) {
 
-		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+		this.nodeFailures = ApiTypeHelper.unmodifiable(builder.nodeFailures);
+		this.taskFailures = ApiTypeHelper.unmodifiable(builder.taskFailures);
+		this.nodes = ApiTypeHelper.unmodifiable(builder.nodes);
+		this.tasks = builder.tasks;
 
 	}
 
@@ -77,10 +91,32 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code nodes}
+	 * API name: {@code node_failures}
+	 */
+	public final List<ErrorCause> nodeFailures() {
+		return this.nodeFailures;
+	}
+
+	/**
+	 * API name: {@code task_failures}
+	 */
+	public final List<TaskFailure> taskFailures() {
+		return this.taskFailures;
+	}
+
+	/**
+	 * API name: {@code nodes}
 	 */
 	public final Map<String, ReindexNode> nodes() {
 		return this.nodes;
+	}
+
+	/**
+	 * API name: {@code tasks}
+	 */
+	@Nullable
+	public final ReindexTasks tasks() {
+		return this.tasks;
 	}
 
 	/**
@@ -94,6 +130,26 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (ApiTypeHelper.isDefined(this.nodeFailures)) {
+			generator.writeKey("node_failures");
+			generator.writeStartArray();
+			for (ErrorCause item0 : this.nodeFailures) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.taskFailures)) {
+			generator.writeKey("task_failures");
+			generator.writeStartArray();
+			for (TaskFailure item0 : this.taskFailures) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (ApiTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartObject();
@@ -103,6 +159,11 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 
 			}
 			generator.writeEnd();
+
+		}
+		if (this.tasks != null) {
+			generator.writeKey("tasks");
+			this.tasks.serialize(generator, mapper);
 
 		}
 
@@ -122,10 +183,78 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<ReindexRethrottleResponse> {
+		@Nullable
+		private List<ErrorCause> nodeFailures;
+
+		@Nullable
+		private List<TaskFailure> taskFailures;
+
+		@Nullable
 		private Map<String, ReindexNode> nodes;
 
+		@Nullable
+		private ReindexTasks tasks;
+
 		/**
-		 * Required - API name: {@code nodes}
+		 * API name: {@code node_failures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeFailures</code>.
+		 */
+		public final Builder nodeFailures(List<ErrorCause> list) {
+			this.nodeFailures = _listAddAll(this.nodeFailures, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code node_failures}
+		 * <p>
+		 * Adds one or more values to <code>nodeFailures</code>.
+		 */
+		public final Builder nodeFailures(ErrorCause value, ErrorCause... values) {
+			this.nodeFailures = _listAdd(this.nodeFailures, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code node_failures}
+		 * <p>
+		 * Adds a value to <code>nodeFailures</code> using a builder lambda.
+		 */
+		public final Builder nodeFailures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return nodeFailures(fn.apply(new ErrorCause.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code task_failures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>taskFailures</code>.
+		 */
+		public final Builder taskFailures(List<TaskFailure> list) {
+			this.taskFailures = _listAddAll(this.taskFailures, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code task_failures}
+		 * <p>
+		 * Adds one or more values to <code>taskFailures</code>.
+		 */
+		public final Builder taskFailures(TaskFailure value, TaskFailure... values) {
+			this.taskFailures = _listAdd(this.taskFailures, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code task_failures}
+		 * <p>
+		 * Adds a value to <code>taskFailures</code> using a builder lambda.
+		 */
+		public final Builder taskFailures(Function<TaskFailure.Builder, ObjectBuilder<TaskFailure>> fn) {
+			return taskFailures(fn.apply(new TaskFailure.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code nodes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 */
@@ -135,7 +264,7 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code nodes}
+		 * API name: {@code nodes}
 		 * <p>
 		 * Adds an entry to <code>nodes</code>.
 		 */
@@ -145,12 +274,27 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code nodes}
+		 * API name: {@code nodes}
 		 * <p>
 		 * Adds an entry to <code>nodes</code> using a builder lambda.
 		 */
 		public final Builder nodes(String key, Function<ReindexNode.Builder, ObjectBuilder<ReindexNode>> fn) {
 			return nodes(key, fn.apply(new ReindexNode.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code tasks}
+		 */
+		public final Builder tasks(@Nullable ReindexTasks value) {
+			this.tasks = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code tasks}
+		 */
+		public final Builder tasks(Function<ReindexTasks.Builder, ObjectBuilder<ReindexTasks>> fn) {
+			return this.tasks(fn.apply(new ReindexTasks.Builder()).build());
 		}
 
 		@Override
@@ -182,7 +326,10 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 	protected static void setupReindexRethrottleResponseDeserializer(
 			ObjectDeserializer<ReindexRethrottleResponse.Builder> op) {
 
+		op.add(Builder::nodeFailures, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER), "node_failures");
+		op.add(Builder::taskFailures, JsonpDeserializer.arrayDeserializer(TaskFailure._DESERIALIZER), "task_failures");
 		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(ReindexNode._DESERIALIZER), "nodes");
+		op.add(Builder::tasks, ReindexTasks._DESERIALIZER, "tasks");
 
 	}
 

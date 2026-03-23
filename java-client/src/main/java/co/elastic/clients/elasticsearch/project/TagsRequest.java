@@ -81,7 +81,8 @@ public class TagsRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * A Lucene query using project metadata tags used to filter which projects are
-	 * returned in the response, such as _alias:_origin or _alias:<em>pr</em>.
+	 * returned in the response. Examples: _alias:my-project _alias:_origin
+	 * _alias:<em>pr</em> Supported in serverless only.
 	 * <p>
 	 * API name: {@code project_routing}
 	 */
@@ -127,7 +128,8 @@ public class TagsRequest extends RequestBase implements JsonpSerializable {
 		}
 		/**
 		 * A Lucene query using project metadata tags used to filter which projects are
-		 * returned in the response, such as _alias:_origin or _alias:<em>pr</em>.
+		 * returned in the response. Examples: _alias:my-project _alias:_origin
+		 * _alias:<em>pr</em> Supported in serverless only.
 		 * <p>
 		 * API name: {@code project_routing}
 		 */

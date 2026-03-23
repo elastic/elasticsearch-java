@@ -17,9 +17,8 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.indices.get_sample;
+package co.elastic.clients.elasticsearch.inference;
 
-import co.elastic.clients.elasticsearch._types.mapping.Property;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -32,7 +31,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -52,49 +50,48 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: indices.get_sample._types.RawDocument
+// typedef: inference._types.FileContent
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#indices.get_sample._types.RawDocument">API
+ * @see <a href="../doc-files/api-spec.html#inference._types.FileContent">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class RawDocument implements JsonpSerializable {
-	private final String index;
+public class FileContent implements JsonpSerializable {
+	private final String fileData;
 
-	private final Map<String, Property> source;
+	private final String filename;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private RawDocument(Builder builder) {
+	private FileContent(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.source = ApiTypeHelper.unmodifiableRequired(builder.source, this, "source");
+		this.fileData = ApiTypeHelper.requireNonNull(builder.fileData, this, "fileData");
+		this.filename = ApiTypeHelper.requireNonNull(builder.filename, this, "filename");
 
 	}
 
-	public static RawDocument of(Function<Builder, ObjectBuilder<RawDocument>> fn) {
+	public static FileContent of(Function<Builder, ObjectBuilder<FileContent>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - Name of the index for this raw document.
+	 * Required - The base64 encoded file data
 	 * <p>
-	 * API name: {@code index}
+	 * API name: {@code file_data}
 	 */
-	public final String index() {
-		return this.index;
+	public final String fileData() {
+		return this.fileData;
 	}
 
 	/**
-	 * Required - The original raw source.
+	 * Required - The name of the file
 	 * <p>
-	 * API name: {@code source}
+	 * API name: {@code filename}
 	 */
-	public final Map<String, Property> source() {
-		return this.source;
+	public final String filename() {
+		return this.filename;
 	}
 
 	/**
@@ -108,20 +105,11 @@ public class RawDocument implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("index");
-		generator.write(this.index);
+		generator.writeKey("file_data");
+		generator.write(this.fileData);
 
-		if (ApiTypeHelper.isDefined(this.source)) {
-			generator.writeKey("source");
-			generator.writeStartObject();
-			for (Map.Entry<String, Property> item0 : this.source.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
+		generator.writeKey("filename");
+		generator.write(this.filename);
 
 	}
 
@@ -133,64 +121,39 @@ public class RawDocument implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link RawDocument}.
+	 * Builder for {@link FileContent}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RawDocument> {
-		private String index;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FileContent> {
+		private String fileData;
 
-		private Map<String, Property> source;
+		private String filename;
 
 		public Builder() {
 		}
-		private Builder(RawDocument instance) {
-			this.index = instance.index;
-			this.source = instance.source;
+		private Builder(FileContent instance) {
+			this.fileData = instance.fileData;
+			this.filename = instance.filename;
 
 		}
 		/**
-		 * Required - Name of the index for this raw document.
+		 * Required - The base64 encoded file data
 		 * <p>
-		 * API name: {@code index}
+		 * API name: {@code file_data}
 		 */
-		public final Builder index(String value) {
-			this.index = value;
+		public final Builder fileData(String value) {
+			this.fileData = value;
 			return this;
 		}
 
 		/**
-		 * Required - The original raw source.
+		 * Required - The name of the file
 		 * <p>
-		 * API name: {@code source}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>source</code>.
+		 * API name: {@code filename}
 		 */
-		public final Builder source(Map<String, Property> map) {
-			this.source = _mapPutAll(this.source, map);
+		public final Builder filename(String value) {
+			this.filename = value;
 			return this;
-		}
-
-		/**
-		 * Required - The original raw source.
-		 * <p>
-		 * API name: {@code source}
-		 * <p>
-		 * Adds an entry to <code>source</code>.
-		 */
-		public final Builder source(String key, Property value) {
-			this.source = _mapPut(this.source, key, value);
-			return this;
-		}
-
-		/**
-		 * Required - The original raw source.
-		 * <p>
-		 * API name: {@code source}
-		 * <p>
-		 * Adds an entry to <code>source</code> using a builder lambda.
-		 */
-		public final Builder source(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
-			return source(key, fn.apply(new Property.Builder()).build());
 		}
 
 		@Override
@@ -199,15 +162,15 @@ public class RawDocument implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link RawDocument}.
+		 * Builds a {@link FileContent}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public RawDocument build() {
+		public FileContent build() {
 			_checkSingleUse();
 
-			return new RawDocument(this);
+			return new FileContent(this);
 		}
 	}
 
@@ -220,15 +183,15 @@ public class RawDocument implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link RawDocument}
+	 * Json deserializer for {@link FileContent}
 	 */
-	public static final JsonpDeserializer<RawDocument> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RawDocument::setupRawDocumentDeserializer);
+	public static final JsonpDeserializer<FileContent> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FileContent::setupFileContentDeserializer);
 
-	protected static void setupRawDocumentDeserializer(ObjectDeserializer<RawDocument.Builder> op) {
+	protected static void setupFileContentDeserializer(ObjectDeserializer<FileContent.Builder> op) {
 
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::source, JsonpDeserializer.stringMapDeserializer(Property._DESERIALIZER), "source");
+		op.add(Builder::fileData, JsonpDeserializer.stringDeserializer(), "file_data");
+		op.add(Builder::filename, JsonpDeserializer.stringDeserializer(), "filename");
 
 	}
 

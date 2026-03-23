@@ -1,0 +1,432 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+package co.elastic.clients.elasticsearch.cluster;
+
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
+import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.Long;
+import java.lang.String;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
+// typedef: cluster._types.ComponentTemplateNodeWithRollover
+
+/**
+ *
+ * @see <a href=
+ *      "../doc-files/api-spec.html#cluster._types.ComponentTemplateNodeWithRollover">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class ComponentTemplateNodeWithRollover implements JsonpSerializable {
+	private final ComponentTemplateSummaryRes template;
+
+	@Nullable
+	private final Long version;
+
+	private final Map<String, JsonData> meta;
+
+	@Nullable
+	private final Boolean deprecated;
+
+	@Nullable
+	private final DateTime createdDate;
+
+	@Nullable
+	private final Long createdDateMillis;
+
+	@Nullable
+	private final DateTime modifiedDate;
+
+	@Nullable
+	private final Long modifiedDateMillis;
+
+	// ---------------------------------------------------------------------------------------------
+
+	private ComponentTemplateNodeWithRollover(Builder builder) {
+
+		this.template = ApiTypeHelper.requireNonNull(builder.template, this, "template");
+		this.version = builder.version;
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
+		this.deprecated = builder.deprecated;
+		this.createdDate = builder.createdDate;
+		this.createdDateMillis = builder.createdDateMillis;
+		this.modifiedDate = builder.modifiedDate;
+		this.modifiedDateMillis = builder.modifiedDateMillis;
+
+	}
+
+	public static ComponentTemplateNodeWithRollover of(
+			Function<Builder, ObjectBuilder<ComponentTemplateNodeWithRollover>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - API name: {@code template}
+	 */
+	public final ComponentTemplateSummaryRes template() {
+		return this.template;
+	}
+
+	/**
+	 * API name: {@code version}
+	 */
+	@Nullable
+	public final Long version() {
+		return this.version;
+	}
+
+	/**
+	 * API name: {@code _meta}
+	 */
+	public final Map<String, JsonData> meta() {
+		return this.meta;
+	}
+
+	/**
+	 * API name: {@code deprecated}
+	 */
+	@Nullable
+	public final Boolean deprecated() {
+		return this.deprecated;
+	}
+
+	/**
+	 * Date and time when the component template was created. Only returned if the
+	 * <code>human</code> query parameter is <code>true</code>.
+	 * <p>
+	 * API name: {@code created_date}
+	 */
+	@Nullable
+	public final DateTime createdDate() {
+		return this.createdDate;
+	}
+
+	/**
+	 * Date and time when the component template was created, in milliseconds since
+	 * the epoch.
+	 * <p>
+	 * API name: {@code created_date_millis}
+	 */
+	@Nullable
+	public final Long createdDateMillis() {
+		return this.createdDateMillis;
+	}
+
+	/**
+	 * Date and time when the component template was last modified. Only returned if
+	 * the <code>human</code> query parameter is <code>true</code>.
+	 * <p>
+	 * API name: {@code modified_date}
+	 */
+	@Nullable
+	public final DateTime modifiedDate() {
+		return this.modifiedDate;
+	}
+
+	/**
+	 * Date and time when the component template was last modified, in milliseconds
+	 * since the epoch.
+	 * <p>
+	 * API name: {@code modified_date_millis}
+	 */
+	@Nullable
+	public final Long modifiedDateMillis() {
+		return this.modifiedDateMillis;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("template");
+		this.template.serialize(generator, mapper);
+
+		if (this.version != null) {
+			generator.writeKey("version");
+			generator.write(this.version);
+
+		}
+		if (ApiTypeHelper.isDefined(this.meta)) {
+			generator.writeKey("_meta");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.deprecated != null) {
+			generator.writeKey("deprecated");
+			generator.write(this.deprecated);
+
+		}
+		if (this.createdDate != null) {
+			generator.writeKey("created_date");
+			this.createdDate.serialize(generator, mapper);
+		}
+		if (this.createdDateMillis != null) {
+			generator.writeKey("created_date_millis");
+			generator.write(this.createdDateMillis);
+
+		}
+		if (this.modifiedDate != null) {
+			generator.writeKey("modified_date");
+			this.modifiedDate.serialize(generator, mapper);
+		}
+		if (this.modifiedDateMillis != null) {
+			generator.writeKey("modified_date_millis");
+			generator.write(this.modifiedDateMillis);
+
+		}
+
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link ComponentTemplateNodeWithRollover}.
+	 */
+
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ComponentTemplateNodeWithRollover> {
+		private ComponentTemplateSummaryRes template;
+
+		@Nullable
+		private Long version;
+
+		@Nullable
+		private Map<String, JsonData> meta;
+
+		@Nullable
+		private Boolean deprecated;
+
+		@Nullable
+		private DateTime createdDate;
+
+		@Nullable
+		private Long createdDateMillis;
+
+		@Nullable
+		private DateTime modifiedDate;
+
+		@Nullable
+		private Long modifiedDateMillis;
+
+		public Builder() {
+		}
+		private Builder(ComponentTemplateNodeWithRollover instance) {
+			this.template = instance.template;
+			this.version = instance.version;
+			this.meta = instance.meta;
+			this.deprecated = instance.deprecated;
+			this.createdDate = instance.createdDate;
+			this.createdDateMillis = instance.createdDateMillis;
+			this.modifiedDate = instance.modifiedDate;
+			this.modifiedDateMillis = instance.modifiedDateMillis;
+
+		}
+		/**
+		 * Required - API name: {@code template}
+		 */
+		public final Builder template(ComponentTemplateSummaryRes value) {
+			this.template = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code template}
+		 */
+		public final Builder template(
+				Function<ComponentTemplateSummaryRes.Builder, ObjectBuilder<ComponentTemplateSummaryRes>> fn) {
+			return this.template(fn.apply(new ComponentTemplateSummaryRes.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code version}
+		 */
+		public final Builder version(@Nullable Long value) {
+			this.version = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
+		 */
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code deprecated}
+		 */
+		public final Builder deprecated(@Nullable Boolean value) {
+			this.deprecated = value;
+			return this;
+		}
+
+		/**
+		 * Date and time when the component template was created. Only returned if the
+		 * <code>human</code> query parameter is <code>true</code>.
+		 * <p>
+		 * API name: {@code created_date}
+		 */
+		public final Builder createdDate(@Nullable DateTime value) {
+			this.createdDate = value;
+			return this;
+		}
+
+		/**
+		 * Date and time when the component template was created, in milliseconds since
+		 * the epoch.
+		 * <p>
+		 * API name: {@code created_date_millis}
+		 */
+		public final Builder createdDateMillis(@Nullable Long value) {
+			this.createdDateMillis = value;
+			return this;
+		}
+
+		/**
+		 * Date and time when the component template was last modified. Only returned if
+		 * the <code>human</code> query parameter is <code>true</code>.
+		 * <p>
+		 * API name: {@code modified_date}
+		 */
+		public final Builder modifiedDate(@Nullable DateTime value) {
+			this.modifiedDate = value;
+			return this;
+		}
+
+		/**
+		 * Date and time when the component template was last modified, in milliseconds
+		 * since the epoch.
+		 * <p>
+		 * API name: {@code modified_date_millis}
+		 */
+		public final Builder modifiedDateMillis(@Nullable Long value) {
+			this.modifiedDateMillis = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link ComponentTemplateNodeWithRollover}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public ComponentTemplateNodeWithRollover build() {
+			_checkSingleUse();
+
+			return new ComponentTemplateNodeWithRollover(this);
+		}
+	}
+
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for {@link ComponentTemplateNodeWithRollover}
+	 */
+	public static final JsonpDeserializer<ComponentTemplateNodeWithRollover> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ComponentTemplateNodeWithRollover::setupComponentTemplateNodeWithRolloverDeserializer);
+
+	protected static void setupComponentTemplateNodeWithRolloverDeserializer(
+			ObjectDeserializer<ComponentTemplateNodeWithRollover.Builder> op) {
+
+		op.add(Builder::template, ComponentTemplateSummaryRes._DESERIALIZER, "template");
+		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
+		op.add(Builder::deprecated, JsonpDeserializer.booleanDeserializer(), "deprecated");
+		op.add(Builder::createdDate, DateTime._DESERIALIZER, "created_date");
+		op.add(Builder::createdDateMillis, JsonpDeserializer.longDeserializer(), "created_date_millis");
+		op.add(Builder::modifiedDate, DateTime._DESERIALIZER, "modified_date");
+		op.add(Builder::modifiedDateMillis, JsonpDeserializer.longDeserializer(), "modified_date_millis");
+
+	}
+
+}

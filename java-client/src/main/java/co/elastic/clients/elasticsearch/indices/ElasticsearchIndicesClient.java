@@ -1027,45 +1027,6 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 		return deleteIndexTemplate(fn.apply(new DeleteIndexTemplateRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: indices.delete_sample_configuration
-
-	/**
-	 * Delete sampling configuration.
-	 * <p>
-	 * Delete the sampling configuration for the specified index.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public DeleteSampleConfigurationResponse deleteSampleConfiguration(DeleteSampleConfigurationRequest request)
-			throws IOException, ElasticsearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<DeleteSampleConfigurationRequest, DeleteSampleConfigurationResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteSampleConfigurationRequest, DeleteSampleConfigurationResponse, ErrorResponse>) DeleteSampleConfigurationRequest._ENDPOINT;
-
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Delete sampling configuration.
-	 * <p>
-	 * Delete the sampling configuration for the specified index.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link DeleteSampleConfigurationRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final DeleteSampleConfigurationResponse deleteSampleConfiguration(
-			Function<DeleteSampleConfigurationRequest.Builder, ObjectBuilder<DeleteSampleConfigurationRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return deleteSampleConfiguration(fn.apply(new DeleteSampleConfigurationRequest.Builder()).build());
-	}
-
 	// ----- Endpoint: indices.delete_template
 
 	/**
@@ -1978,60 +1939,6 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 				this.transportOptions);
 	}
 
-	// ----- Endpoint: indices.get_all_sample_configuration
-
-	/**
-	 * Get all sampling configurations.
-	 * <p>
-	 * Get the sampling configurations for all indices.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public GetAllSampleConfigurationResponse getAllSampleConfiguration(GetAllSampleConfigurationRequest request)
-			throws IOException, ElasticsearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetAllSampleConfigurationRequest, GetAllSampleConfigurationResponse, ErrorResponse> endpoint = (JsonEndpoint<GetAllSampleConfigurationRequest, GetAllSampleConfigurationResponse, ErrorResponse>) GetAllSampleConfigurationRequest._ENDPOINT;
-
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Get all sampling configurations.
-	 * <p>
-	 * Get the sampling configurations for all indices.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link GetAllSampleConfigurationRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final GetAllSampleConfigurationResponse getAllSampleConfiguration(
-			Function<GetAllSampleConfigurationRequest.Builder, ObjectBuilder<GetAllSampleConfigurationRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return getAllSampleConfiguration(fn.apply(new GetAllSampleConfigurationRequest.Builder()).build());
-	}
-
-	/**
-	 * Get all sampling configurations.
-	 * <p>
-	 * Get the sampling configurations for all indices.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public GetAllSampleConfigurationResponse getAllSampleConfiguration() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new GetAllSampleConfigurationRequest.Builder().build(),
-				GetAllSampleConfigurationRequest._ENDPOINT, this.transportOptions);
-	}
-
 	// ----- Endpoint: indices.get_data_lifecycle
 
 	/**
@@ -2452,117 +2359,6 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 			Function<GetMigrateReindexStatusRequest.Builder, ObjectBuilder<GetMigrateReindexStatusRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return getMigrateReindexStatus(fn.apply(new GetMigrateReindexStatusRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.get_sample
-
-	/**
-	 * Request for a random sample of raw documents ingested into the given index or
-	 * data stream.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public GetSampleResponse getSample(GetSampleRequest request) throws IOException, ElasticsearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetSampleRequest, GetSampleResponse, ErrorResponse> endpoint = (JsonEndpoint<GetSampleRequest, GetSampleResponse, ErrorResponse>) GetSampleRequest._ENDPOINT;
-
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Request for a random sample of raw documents ingested into the given index or
-	 * data stream.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link GetSampleRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final GetSampleResponse getSample(Function<GetSampleRequest.Builder, ObjectBuilder<GetSampleRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return getSample(fn.apply(new GetSampleRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.get_sample_configuration
-
-	/**
-	 * Get sampling configuration.
-	 * <p>
-	 * Get the sampling configuration for the specified index.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public GetSampleConfigurationResponse getSampleConfiguration(GetSampleConfigurationRequest request)
-			throws IOException, ElasticsearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetSampleConfigurationRequest, GetSampleConfigurationResponse, ErrorResponse> endpoint = (JsonEndpoint<GetSampleConfigurationRequest, GetSampleConfigurationResponse, ErrorResponse>) GetSampleConfigurationRequest._ENDPOINT;
-
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Get sampling configuration.
-	 * <p>
-	 * Get the sampling configuration for the specified index.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link GetSampleConfigurationRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final GetSampleConfigurationResponse getSampleConfiguration(
-			Function<GetSampleConfigurationRequest.Builder, ObjectBuilder<GetSampleConfigurationRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return getSampleConfiguration(fn.apply(new GetSampleConfigurationRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.get_sample_stats
-
-	/**
-	 * Request stats for a random sample of raw documents ingested into the given
-	 * index or data stream.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public GetSampleStatsResponse getSampleStats(GetSampleStatsRequest request)
-			throws IOException, ElasticsearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<GetSampleStatsRequest, GetSampleStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetSampleStatsRequest, GetSampleStatsResponse, ErrorResponse>) GetSampleStatsRequest._ENDPOINT;
-
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Request stats for a random sample of raw documents ingested into the given
-	 * index or data stream.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link GetSampleStatsRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final GetSampleStatsResponse getSampleStats(
-			Function<GetSampleStatsRequest.Builder, ObjectBuilder<GetSampleStatsRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return getSampleStats(fn.apply(new GetSampleStatsRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.get_settings
@@ -3410,45 +3206,6 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	public final PutMappingResponse putMapping(Function<PutMappingRequest.Builder, ObjectBuilder<PutMappingRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return putMapping(fn.apply(new PutMappingRequest.Builder()).build());
-	}
-
-	// ----- Endpoint: indices.put_sample_configuration
-
-	/**
-	 * Create or update sampling configuration.
-	 * <p>
-	 * Create or update the sampling configuration for the specified index.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public PutSampleConfigurationResponse putSampleConfiguration(PutSampleConfigurationRequest request)
-			throws IOException, ElasticsearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<PutSampleConfigurationRequest, PutSampleConfigurationResponse, ErrorResponse> endpoint = (JsonEndpoint<PutSampleConfigurationRequest, PutSampleConfigurationResponse, ErrorResponse>) PutSampleConfigurationRequest._ENDPOINT;
-
-		return this.transport.performRequest(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Create or update sampling configuration.
-	 * <p>
-	 * Create or update the sampling configuration for the specified index.
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link PutSampleConfigurationRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final PutSampleConfigurationResponse putSampleConfiguration(
-			Function<PutSampleConfigurationRequest.Builder, ObjectBuilder<PutSampleConfigurationRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return putSampleConfiguration(fn.apply(new PutSampleConfigurationRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.put_settings
