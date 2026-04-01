@@ -62,6 +62,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public abstract class ElasticsearchTransportBase implements ElasticsearchTransport {
 
@@ -150,7 +151,21 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
                 TransportHttpClient.Request req = prepareTransportRequest(request, endpoint);
                 ctx.beforeSendingHttpRequest(req, options);
 
-                TransportHttpClient.Response resp = httpClient.performRequest(endpoint.id(), null, req, opts);
+                CompletableFuture<TransportHttpClient.Response> future =
+                    httpClient.performRequestAsync(endpoint.id(), null, req, opts);
+                TransportHttpClient.Response resp;
+                try {
+                    resp = future.get();
+                } catch (InterruptedException e) {
+                    future.cancel(true);
+                    Thread.currentThread().interrupt();
+                    throw new IOException("request was interrupted", e);
+                } catch (ExecutionException e) {
+                    Throwable cause = e.getCause();
+                    if (cause instanceof IOException ioe) throw ioe;
+                    if (cause instanceof RuntimeException re) throw re;
+                    throw new IOException(cause);
+                }
                 ctx.afterReceivingHttpResponse(resp);
 
                 ResponseT apiResponse = getApiResponse(resp, endpoint);
