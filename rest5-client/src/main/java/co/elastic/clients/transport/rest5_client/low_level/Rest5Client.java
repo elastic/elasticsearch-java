@@ -298,11 +298,12 @@ public class Rest5Client implements Closeable {
         throws IOException {
         RequestContext context = request.createContextForNextAttempt(nodes.next());
         ClassicHttpResponse httpResponse;
+        Future<ClassicHttpResponse> future =
+            client.execute(context.requestProducer, context.asyncResponseConsumer, context.context, null);
         try {
-            httpResponse = client.execute(context.requestProducer,
-                context.asyncResponseConsumer,
-                context.context, null).get();
+            httpResponse = future.get();
         } catch (Exception e) {
+            future.cancel(true);
             RequestLogger.logFailedRequest(logger, request.httpRequest, context.node, e);
             onFailure(context.node);
             Exception cause = extractAndWrapCause(e);
