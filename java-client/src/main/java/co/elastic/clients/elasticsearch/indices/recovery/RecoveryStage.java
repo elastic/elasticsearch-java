@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.cluster.state;
+package co.elastic.clients.elasticsearch.indices.recovery;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -41,66 +41,46 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#cluster.state.ClusterStateMetric">API
+ *      "../../doc-files/api-spec.html#indices.recovery.RecoveryStage">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum ClusterStateMetric implements JsonEnum {
+public enum RecoveryStage implements JsonEnum {
 	/**
-	 * Shows all metrics.
+	 * Recovery has not started.
 	 */
-	All("_all"),
+	Init("INIT"),
 
 	/**
-	 * Shows the cluster state version.
+	 * Reading index metadata and copying bytes from source to destination.
 	 */
-	Version("version"),
+	Index("INDEX"),
 
 	/**
-	 * Shows the elected <code>master_node</code> part of the response.
+	 * Verifying the integrity of the index.
 	 */
-	MasterNode("master_node"),
+	VerifyIndex("VERIFY_INDEX"),
 
 	/**
-	 * Shows the <code>blocks</code> part of the response.
+	 * Replaying the transaction log.
 	 */
-	Blocks("blocks"),
+	Translog("TRANSLOG"),
 
 	/**
-	 * Shows the <code>nodes</code> part of the response.
+	 * Cleanup.
 	 */
-	Nodes("nodes"),
+	Finalize("FINALIZE"),
 
 	/**
-	 * Shows the <code>metadata</code> part of the response. If you supply a
-	 * comma-separated list of indices, the returned output will only contain
-	 * metadata for these indices.
+	 * Complete.
 	 */
-	Metadata("metadata"),
-
-	/**
-	 * Shows the <code>routing_table</code> part of the response. If you supply a
-	 * comma-separated list of indices, the returned output will only contain the
-	 * routing table for these indices.
-	 */
-	RoutingTable("routing_table"),
-
-	/**
-	 * Shows the <code>routing_nodes</code> part of the response.
-	 */
-	RoutingNodes("routing_nodes"),
-
-	/**
-	 * Shows the <code>customs</code> part of the response, which includes custom
-	 * cluster state information.
-	 */
-	Customs("customs"),
+	Done("DONE"),
 
 	;
 
 	private final String jsonValue;
 
-	ClusterStateMetric(String jsonValue) {
+	RecoveryStage(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -108,6 +88,6 @@ public enum ClusterStateMetric implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<ClusterStateMetric> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ClusterStateMetric.values());
+	public static final JsonEnum.Deserializer<RecoveryStage> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			RecoveryStage.values());
 }

@@ -83,6 +83,17 @@ import javax.annotation.Nullable;
  * include hidden nested documents. To get an accurate count of Elasticsearch
  * documents, use the cat count or count APIs.
  * <p>
+ * NOTE: Storage metrics reported by this API reflect the post-compression size
+ * of the indices on disk. Because these values are calculated after
+ * Elasticsearch compresses the data and processes deletions, they are typically
+ * significantly smaller than the raw, uncompressed data volume ingested.
+ * <p>
+ * IMPORTANT: For Elastic Cloud Serverless, ingest billing is based on the raw,
+ * uncompressed data volume, not the post-compression metrics reported here. To
+ * learn more, refer to <a href=
+ * "https://www.elastic.co/docs/deploy-manage/cloud-organization/billing/elasticsearch-billing-dimensions">Elasticsearch
+ * billing dimensions</a>.
+ * <p>
  * CAT APIs are only intended for human consumption using the command line or
  * Kibana console. They are not intended for use by applications. For
  * application consumption, use an index endpoint.

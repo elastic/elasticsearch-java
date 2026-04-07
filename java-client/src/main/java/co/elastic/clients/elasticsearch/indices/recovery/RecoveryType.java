@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.cluster.state;
+package co.elastic.clients.elasticsearch.indices.recovery;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -41,66 +41,45 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#cluster.state.ClusterStateMetric">API
+ *      "../../doc-files/api-spec.html#indices.recovery.RecoveryType">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum ClusterStateMetric implements JsonEnum {
+public enum RecoveryType implements JsonEnum {
 	/**
-	 * Shows all metrics.
+	 * An empty store. Indicates a new primary shard or the forced allocation of an
+	 * empty primary shard using the cluster reroute API.
 	 */
-	All("_all"),
+	EmptyStore("EMPTY_STORE"),
 
 	/**
-	 * Shows the cluster state version.
+	 * The store of an existing primary shard. Indicates recovery is related to node
+	 * startup or the allocation of an existing primary shard.
 	 */
-	Version("version"),
+	ExistingStore("EXISTING_STORE"),
 
 	/**
-	 * Shows the elected <code>master_node</code> part of the response.
+	 * Shards of another index on the same node. Indicates recovery is related to a
+	 * clone, shrink, or split operation.
 	 */
-	MasterNode("master_node"),
+	LocalShards("LOCAL_SHARDS"),
 
 	/**
-	 * Shows the <code>blocks</code> part of the response.
+	 * A primary shard on another node. Indicates recovery is related to shard
+	 * replication.
 	 */
-	Blocks("blocks"),
+	Peer("PEER"),
 
 	/**
-	 * Shows the <code>nodes</code> part of the response.
+	 * A snapshot. Indicates recovery is related to a snapshot restore operation.
 	 */
-	Nodes("nodes"),
-
-	/**
-	 * Shows the <code>metadata</code> part of the response. If you supply a
-	 * comma-separated list of indices, the returned output will only contain
-	 * metadata for these indices.
-	 */
-	Metadata("metadata"),
-
-	/**
-	 * Shows the <code>routing_table</code> part of the response. If you supply a
-	 * comma-separated list of indices, the returned output will only contain the
-	 * routing table for these indices.
-	 */
-	RoutingTable("routing_table"),
-
-	/**
-	 * Shows the <code>routing_nodes</code> part of the response.
-	 */
-	RoutingNodes("routing_nodes"),
-
-	/**
-	 * Shows the <code>customs</code> part of the response, which includes custom
-	 * cluster state information.
-	 */
-	Customs("customs"),
+	Snapshot("SNAPSHOT"),
 
 	;
 
 	private final String jsonValue;
 
-	ClusterStateMetric(String jsonValue) {
+	RecoveryType(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -108,6 +87,6 @@ public enum ClusterStateMetric implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<ClusterStateMetric> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ClusterStateMetric.values());
+	public static final JsonEnum.Deserializer<RecoveryType> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			RecoveryType.values());
 }

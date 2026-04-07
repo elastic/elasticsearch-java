@@ -70,6 +70,10 @@ import javax.annotation.Nullable;
  * IMPORTANT: CAT APIs are only intended for human consumption using the command
  * line or Kibana console. They are not intended for use by applications. For
  * application consumption, use the count API.
+ * <p>
+ * NOTE: Starting in Elasticsearch 9.3.0, this endpoint also supports the
+ * <code>POST</code> method. This is primarily intended for project routing in
+ * serverless environments.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.count.Request">API
  *      specification</a>

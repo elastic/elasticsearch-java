@@ -46,10 +46,19 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum ShardStoreAllocation implements JsonEnum {
+	/**
+	 * The store copy is used as a primary shard.
+	 */
 	Primary("primary"),
 
+	/**
+	 * The store copy is used as a replica shard.
+	 */
 	Replica("replica"),
 
+	/**
+	 * The store copy is not used.
+	 */
 	Unused("unused"),
 
 	;
