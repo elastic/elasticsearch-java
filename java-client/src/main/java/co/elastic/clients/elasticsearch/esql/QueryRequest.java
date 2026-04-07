@@ -20,7 +20,6 @@
 package co.elastic.clients.elasticsearch.esql;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
@@ -42,7 +41,6 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -98,7 +96,8 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String locale;
 
-	private final List<FieldValue> params;
+	@Nullable
+	private final ESQLParams params;
 
 	@Nullable
 	private final Boolean profile;
@@ -119,7 +118,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		this.format = builder.format;
 		this.includeCcsMetadata = builder.includeCcsMetadata;
 		this.locale = builder.locale;
-		this.params = ApiTypeHelper.unmodifiable(builder.params);
+		this.params = builder.params;
 		this.profile = builder.profile;
 		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.tables = ApiTypeHelper.unmodifiable(builder.tables);
@@ -237,7 +236,8 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code params}
 	 */
-	public final List<FieldValue> params() {
+	@Nullable
+	public final ESQLParams params() {
 		return this.params;
 	}
 
@@ -305,14 +305,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.locale);
 
 		}
-		if (ApiTypeHelper.isDefined(this.params)) {
+		if (this.params != null) {
 			generator.writeKey("params");
-			generator.writeStartArray();
-			for (FieldValue item0 : this.params) {
-				item0.serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
+			this.params.serialize(generator, mapper);
 
 		}
 		if (this.profile != null) {
@@ -377,7 +372,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		private String locale;
 
 		@Nullable
-		private List<FieldValue> params;
+		private ESQLParams params;
 
 		@Nullable
 		private Boolean profile;
@@ -531,11 +526,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * string for each of the parameters.
 		 * <p>
 		 * API name: {@code params}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>params</code>.
 		 */
-		public final Builder params(List<FieldValue> list) {
-			this.params = _listAddAll(this.params, list);
+		public final Builder params(@Nullable ESQLParams value) {
+			this.params = value;
 			return this;
 		}
 
@@ -545,93 +538,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * string for each of the parameters.
 		 * <p>
 		 * API name: {@code params}
-		 * <p>
-		 * Adds one or more values to <code>params</code>.
 		 */
-		public final Builder params(FieldValue value, FieldValue... values) {
-			this.params = _listAdd(this.params, value, values);
-			return this;
-		}
-
-		/**
-		 * To avoid any attempts of hacking or code injection, extract the values in a
-		 * separate list of parameters. Use question mark placeholders (?) in the query
-		 * string for each of the parameters.
-		 * <p>
-		 * API name: {@code params}
-		 * <p>
-		 * Adds one or more values to <code>params</code>.
-		 */
-		public final Builder params(String value, String... values) {
-			this.params = _listAdd(this.params, FieldValue.of(value));
-			for (String v : values) {
-				_listAdd(this.params, FieldValue.of(v));
-			}
-			return this;
-		}
-
-		/**
-		 * To avoid any attempts of hacking or code injection, extract the values in a
-		 * separate list of parameters. Use question mark placeholders (?) in the query
-		 * string for each of the parameters.
-		 * <p>
-		 * API name: {@code params}
-		 * <p>
-		 * Adds one or more values to <code>params</code>.
-		 */
-		public final Builder params(long value, long... values) {
-			this.params = _listAdd(this.params, FieldValue.of(value));
-			for (long v : values) {
-				_listAdd(this.params, FieldValue.of(v));
-			}
-			return this;
-		}
-
-		/**
-		 * To avoid any attempts of hacking or code injection, extract the values in a
-		 * separate list of parameters. Use question mark placeholders (?) in the query
-		 * string for each of the parameters.
-		 * <p>
-		 * API name: {@code params}
-		 * <p>
-		 * Adds one or more values to <code>params</code>.
-		 */
-		public final Builder params(double value, double... values) {
-			this.params = _listAdd(this.params, FieldValue.of(value));
-			for (double v : values) {
-				_listAdd(this.params, FieldValue.of(v));
-			}
-			return this;
-		}
-
-		/**
-		 * To avoid any attempts of hacking or code injection, extract the values in a
-		 * separate list of parameters. Use question mark placeholders (?) in the query
-		 * string for each of the parameters.
-		 * <p>
-		 * API name: {@code params}
-		 * <p>
-		 * Adds one or more values to <code>params</code>.
-		 */
-		public final Builder params(boolean value, boolean... values) {
-			this.params = _listAdd(this.params, FieldValue.of(value));
-			for (boolean v : values) {
-				_listAdd(this.params, FieldValue.of(v));
-			}
-			return this;
-		}
-
-		/**
-		 * To avoid any attempts of hacking or code injection, extract the values in a
-		 * separate list of parameters. Use question mark placeholders (?) in the query
-		 * string for each of the parameters.
-		 * <p>
-		 * API name: {@code params}
-		 * <p>
-		 * Adds a value to <code>params</code> using a builder lambda.
-		 */
-		public final Builder params(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
-			return params(fn.apply(new FieldValue.Builder()).build());
+		public final Builder params(Function<ESQLParams.Builder, ObjectBuilder<ESQLParams>> fn) {
+			return this.params(fn.apply(new ESQLParams.Builder()).build());
 		}
 
 		/**
@@ -722,7 +631,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::filter, Query._DESERIALIZER, "filter");
 		op.add(Builder::includeCcsMetadata, JsonpDeserializer.booleanDeserializer(), "include_ccs_metadata");
 		op.add(Builder::locale, JsonpDeserializer.stringDeserializer(), "locale");
-		op.add(Builder::params, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER), "params");
+		op.add(Builder::params, ESQLParams._DESERIALIZER, "params");
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::tables, JsonpDeserializer
