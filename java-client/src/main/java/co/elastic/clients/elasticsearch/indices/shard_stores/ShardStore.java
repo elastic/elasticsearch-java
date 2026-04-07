@@ -104,13 +104,18 @@ public class ShardStore implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code allocation}
+	 * Required - The status of the store copy, whether it is used as a primary,
+	 * replica, or not used at all.
+	 * <p>
+	 * API name: {@code allocation}
 	 */
 	public final ShardStoreAllocation allocation() {
 		return this.allocation;
 	}
 
 	/**
+	 * The allocation ID of the store copy.
+	 * <p>
 	 * API name: {@code allocation_id}
 	 */
 	@Nullable
@@ -119,6 +124,9 @@ public class ShardStore implements JsonpSerializable {
 	}
 
 	/**
+	 * Any exception encountered while opening the shard index or from an earlier
+	 * engine failure.
+	 * <p>
 	 * API name: {@code store_exception}
 	 */
 	@Nullable
@@ -210,7 +218,10 @@ public class ShardStore implements JsonpSerializable {
 
 		}
 		/**
-		 * Required - API name: {@code allocation}
+		 * Required - The status of the store copy, whether it is used as a primary,
+		 * replica, or not used at all.
+		 * <p>
+		 * API name: {@code allocation}
 		 */
 		public final Builder allocation(ShardStoreAllocation value) {
 			this.allocation = value;
@@ -218,6 +229,8 @@ public class ShardStore implements JsonpSerializable {
 		}
 
 		/**
+		 * The allocation ID of the store copy.
+		 * <p>
 		 * API name: {@code allocation_id}
 		 */
 		public final Builder allocationId(@Nullable String value) {
@@ -226,6 +239,9 @@ public class ShardStore implements JsonpSerializable {
 		}
 
 		/**
+		 * Any exception encountered while opening the shard index or from an earlier
+		 * engine failure.
+		 * <p>
 		 * API name: {@code store_exception}
 		 */
 		public final Builder storeException(@Nullable ShardStoreException value) {
@@ -234,6 +250,9 @@ public class ShardStore implements JsonpSerializable {
 		}
 
 		/**
+		 * Any exception encountered while opening the shard index or from an earlier
+		 * engine failure.
+		 * <p>
 		 * API name: {@code store_exception}
 		 */
 		public final Builder storeException(

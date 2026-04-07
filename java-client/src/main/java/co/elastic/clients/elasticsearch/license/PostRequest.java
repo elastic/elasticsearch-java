@@ -109,7 +109,9 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies whether you acknowledge the license changes.
+	 * To update a license, you must accept the acknowledge messages and set this
+	 * parameter to <code>true</code>. In particular, if you are upgrading or
+	 * downgrading a license, you must acknowlege the feature changes.
 	 * <p>
 	 * API name: {@code acknowledge}
 	 */
@@ -218,7 +220,9 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 
 		}
 		/**
-		 * Specifies whether you acknowledge the license changes.
+		 * To update a license, you must accept the acknowledge messages and set this
+		 * parameter to <code>true</code>. In particular, if you are upgrading or
+		 * downgrading a license, you must acknowlege the feature changes.
 		 * <p>
 		 * API name: {@code acknowledge}
 		 */

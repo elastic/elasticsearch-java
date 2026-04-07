@@ -103,63 +103,98 @@ public class Segment implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code attributes}
+	 * Required - Contains information about whether high compression was enabled
+	 * and per-field vector formats.
+	 * <p>
+	 * API name: {@code attributes}
 	 */
 	public final Map<String, String> attributes() {
 		return this.attributes;
 	}
 
 	/**
-	 * Required - API name: {@code committed}
+	 * Required - If <code>true</code>, the segment is synced to disk. Segments that
+	 * are synced can survive a hard reboot. If <code>false</code>, the data from
+	 * uncommitted segments is also stored in the transaction log so that
+	 * Elasticsearch is able to replay changes on the next start.
+	 * <p>
+	 * API name: {@code committed}
 	 */
 	public final boolean committed() {
 		return this.committed;
 	}
 
 	/**
-	 * Required - API name: {@code compound}
+	 * Required - If <code>true</code>, Lucene merged all files from the segment
+	 * into a single file to save file descriptors.
+	 * <p>
+	 * API name: {@code compound}
 	 */
 	public final boolean compound() {
 		return this.compound;
 	}
 
 	/**
-	 * Required - API name: {@code deleted_docs}
+	 * Required - The number of deleted documents as reported by Lucene, which may
+	 * be higher or lower than the number of delete operations you have performed.
+	 * This number excludes deletes that were performed recently and do not yet
+	 * belong to a segment. Deleted documents are cleaned up by the automatic merge
+	 * process if it makes sense to do so. Also, Elasticsearch creates extra deleted
+	 * documents to internally track the recent history of operations on a shard.
+	 * <p>
+	 * API name: {@code deleted_docs}
 	 */
 	public final long deletedDocs() {
 		return this.deletedDocs;
 	}
 
 	/**
-	 * Required - API name: {@code generation}
+	 * Required - Generation number, such as <code>0</code>. Elasticsearch
+	 * increments this generation number for each segment written then uses this
+	 * number to derive the segment name.
+	 * <p>
+	 * API name: {@code generation}
 	 */
 	public final int generation() {
 		return this.generation;
 	}
 
 	/**
-	 * Required - API name: {@code search}
+	 * Required - If <code>true</code>, the segment is searchable. If
+	 * <code>false</code>, the segment has most likely been written to disk but
+	 * needs a refresh to be searchable.
+	 * <p>
+	 * API name: {@code search}
 	 */
 	public final boolean search() {
 		return this.search;
 	}
 
 	/**
-	 * Required - API name: {@code size_in_bytes}
+	 * Required - Disk space used by the segment, in bytes.
+	 * <p>
+	 * API name: {@code size_in_bytes}
 	 */
 	public final double sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
 	/**
-	 * Required - API name: {@code num_docs}
+	 * Required - The number of documents as reported by Lucene. This excludes
+	 * deleted documents and counts any nested documents separately from their
+	 * parents. It also excludes documents which were indexed recently and do not
+	 * yet belong to a segment.
+	 * <p>
+	 * API name: {@code num_docs}
 	 */
 	public final long numDocs() {
 		return this.numDocs;
 	}
 
 	/**
-	 * Required - API name: {@code version}
+	 * Required - Version of Lucene used to write the segment.
+	 * <p>
+	 * API name: {@code version}
 	 */
 	public final String version() {
 		return this.version;
@@ -258,7 +293,10 @@ public class Segment implements JsonpSerializable {
 
 		}
 		/**
-		 * Required - API name: {@code attributes}
+		 * Required - Contains information about whether high compression was enabled
+		 * and per-field vector formats.
+		 * <p>
+		 * API name: {@code attributes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>attributes</code>.
 		 */
@@ -268,7 +306,10 @@ public class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code attributes}
+		 * Required - Contains information about whether high compression was enabled
+		 * and per-field vector formats.
+		 * <p>
+		 * API name: {@code attributes}
 		 * <p>
 		 * Adds an entry to <code>attributes</code>.
 		 */
@@ -278,7 +319,12 @@ public class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code committed}
+		 * Required - If <code>true</code>, the segment is synced to disk. Segments that
+		 * are synced can survive a hard reboot. If <code>false</code>, the data from
+		 * uncommitted segments is also stored in the transaction log so that
+		 * Elasticsearch is able to replay changes on the next start.
+		 * <p>
+		 * API name: {@code committed}
 		 */
 		public final Builder committed(boolean value) {
 			this.committed = value;
@@ -286,7 +332,10 @@ public class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code compound}
+		 * Required - If <code>true</code>, Lucene merged all files from the segment
+		 * into a single file to save file descriptors.
+		 * <p>
+		 * API name: {@code compound}
 		 */
 		public final Builder compound(boolean value) {
 			this.compound = value;
@@ -294,7 +343,14 @@ public class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code deleted_docs}
+		 * Required - The number of deleted documents as reported by Lucene, which may
+		 * be higher or lower than the number of delete operations you have performed.
+		 * This number excludes deletes that were performed recently and do not yet
+		 * belong to a segment. Deleted documents are cleaned up by the automatic merge
+		 * process if it makes sense to do so. Also, Elasticsearch creates extra deleted
+		 * documents to internally track the recent history of operations on a shard.
+		 * <p>
+		 * API name: {@code deleted_docs}
 		 */
 		public final Builder deletedDocs(long value) {
 			this.deletedDocs = value;
@@ -302,7 +358,11 @@ public class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code generation}
+		 * Required - Generation number, such as <code>0</code>. Elasticsearch
+		 * increments this generation number for each segment written then uses this
+		 * number to derive the segment name.
+		 * <p>
+		 * API name: {@code generation}
 		 */
 		public final Builder generation(int value) {
 			this.generation = value;
@@ -310,7 +370,11 @@ public class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code search}
+		 * Required - If <code>true</code>, the segment is searchable. If
+		 * <code>false</code>, the segment has most likely been written to disk but
+		 * needs a refresh to be searchable.
+		 * <p>
+		 * API name: {@code search}
 		 */
 		public final Builder search(boolean value) {
 			this.search = value;
@@ -318,7 +382,9 @@ public class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code size_in_bytes}
+		 * Required - Disk space used by the segment, in bytes.
+		 * <p>
+		 * API name: {@code size_in_bytes}
 		 */
 		public final Builder sizeInBytes(double value) {
 			this.sizeInBytes = value;
@@ -326,7 +392,12 @@ public class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code num_docs}
+		 * Required - The number of documents as reported by Lucene. This excludes
+		 * deleted documents and counts any nested documents separately from their
+		 * parents. It also excludes documents which were indexed recently and do not
+		 * yet belong to a segment.
+		 * <p>
+		 * API name: {@code num_docs}
 		 */
 		public final Builder numDocs(long value) {
 			this.numDocs = value;
@@ -334,7 +405,9 @@ public class Segment implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code version}
+		 * Required - Version of Lucene used to write the segment.
+		 * <p>
+		 * API name: {@code version}
 		 */
 		public final Builder version(String value) {
 			this.version = value;

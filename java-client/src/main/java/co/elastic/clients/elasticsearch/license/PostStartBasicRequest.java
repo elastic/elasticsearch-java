@@ -101,7 +101,8 @@ public class PostStartBasicRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether the user has acknowledged acknowledge messages
+	 * To start a basic license, you must accept the acknowledge messages and set
+	 * this parameter to <code>true</code>.
 	 * <p>
 	 * API name: {@code acknowledge}
 	 */
@@ -158,7 +159,8 @@ public class PostStartBasicRequest extends RequestBase {
 
 		}
 		/**
-		 * Whether the user has acknowledged acknowledge messages
+		 * To start a basic license, you must accept the acknowledge messages and set
+		 * this parameter to <code>true</code>.
 		 * <p>
 		 * API name: {@code acknowledge}
 		 */

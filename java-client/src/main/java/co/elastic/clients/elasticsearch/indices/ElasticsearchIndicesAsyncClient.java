@@ -2388,7 +2388,7 @@ public class ElasticsearchIndicesAsyncClient
 	 * Get the status of a migration reindex attempt for a data stream or index.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-migration">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-migration">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2409,7 +2409,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link GetMigrateReindexStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/group/endpoint-migration">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-migration">Documentation
 	 *      on elastic.co</a>
 	 */
 

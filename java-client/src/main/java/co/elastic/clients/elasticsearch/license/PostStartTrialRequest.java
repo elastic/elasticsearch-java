@@ -99,7 +99,8 @@ public class PostStartTrialRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether the user has acknowledged acknowledge messages
+	 * To start a trial, you must accept the acknowledge messages and set this
+	 * parameter to <code>true</code>.
 	 * <p>
 	 * API name: {@code acknowledge}
 	 */
@@ -155,7 +156,8 @@ public class PostStartTrialRequest extends RequestBase {
 
 		}
 		/**
-		 * Whether the user has acknowledged acknowledge messages
+		 * To start a trial, you must accept the acknowledge messages and set this
+		 * parameter to <code>true</code>.
 		 * <p>
 		 * API name: {@code acknowledge}
 		 */

@@ -197,8 +197,9 @@ public class BulkResponseItem implements JsonpSerializable {
 	}
 
 	/**
-	 * The result of the operation. Successful values are <code>created</code>,
-	 * <code>deleted</code>, and <code>updated</code>.
+	 * The result of the operation. Possible values are <code>created</code>,
+	 * <code>updated</code>, <code>deleted</code>, <code>noop</code>, and
+	 * <code>not_found</code>.
 	 * <p>
 	 * API name: {@code result}
 	 */
@@ -475,8 +476,9 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
-		 * The result of the operation. Successful values are <code>created</code>,
-		 * <code>deleted</code>, and <code>updated</code>.
+		 * The result of the operation. Possible values are <code>created</code>,
+		 * <code>updated</code>, <code>deleted</code>, <code>noop</code>, and
+		 * <code>not_found</code>.
 		 * <p>
 		 * API name: {@code result}
 		 */

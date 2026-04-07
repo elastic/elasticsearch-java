@@ -117,6 +117,8 @@ public class LicenseInformation implements JsonpSerializable {
 	}
 
 	/**
+	 * The date and time the license expires in ISO 8601 format.
+	 * <p>
 	 * API name: {@code expiry_date}
 	 */
 	@Nullable
@@ -125,6 +127,8 @@ public class LicenseInformation implements JsonpSerializable {
 	}
 
 	/**
+	 * The date and time the license expires in milliseconds since the Unix epoch.
+	 * <p>
 	 * API name: {@code expiry_date_in_millis}
 	 */
 	@Nullable
@@ -133,34 +137,46 @@ public class LicenseInformation implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code issue_date}
+	 * Required - The date and time the license was issued in ISO 8601 format.
+	 * <p>
+	 * API name: {@code issue_date}
 	 */
 	public final DateTime issueDate() {
 		return this.issueDate;
 	}
 
 	/**
-	 * Required - API name: {@code issue_date_in_millis}
+	 * Required - The date and time the license was issued in milliseconds since the
+	 * Unix epoch.
+	 * <p>
+	 * API name: {@code issue_date_in_millis}
 	 */
 	public final long issueDateInMillis() {
 		return this.issueDateInMillis;
 	}
 
 	/**
-	 * Required - API name: {@code issued_to}
+	 * Required - The name of the customer or organization that received the
+	 * license.
+	 * <p>
+	 * API name: {@code issued_to}
 	 */
 	public final String issuedTo() {
 		return this.issuedTo;
 	}
 
 	/**
-	 * Required - API name: {@code issuer}
+	 * Required - The name of the organization that issued the license.
+	 * <p>
+	 * API name: {@code issuer}
 	 */
 	public final String issuer() {
 		return this.issuer;
 	}
 
 	/**
+	 * The maximum number of nodes the license allows.
+	 * <p>
 	 * API name: {@code max_nodes}
 	 */
 	@Nullable
@@ -169,6 +185,9 @@ public class LicenseInformation implements JsonpSerializable {
 	}
 
 	/**
+	 * The maximum number of resource units the license allows (for enterprise
+	 * licenses only).
+	 * <p>
 	 * API name: {@code max_resource_units}
 	 */
 	@Nullable
@@ -177,28 +196,39 @@ public class LicenseInformation implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code status}
+	 * Required - The status of the license. For example,active, valid, invalid, or
+	 * expired.
+	 * <p>
+	 * API name: {@code status}
 	 */
 	public final LicenseStatus status() {
 		return this.status;
 	}
 
 	/**
-	 * Required - API name: {@code type}
+	 * Required - The type of the license. For example, trial, basic, gold,
+	 * platinum, or enterprise.
+	 * <p>
+	 * API name: {@code type}
 	 */
 	public final LicenseType type() {
 		return this.type;
 	}
 
 	/**
-	 * Required - API name: {@code uid}
+	 * Required - The unique identifier of the license.
+	 * <p>
+	 * API name: {@code uid}
 	 */
 	public final String uid() {
 		return this.uid;
 	}
 
 	/**
-	 * Required - API name: {@code start_date_in_millis}
+	 * Required - The date and time the license was started in milliseconds since
+	 * the Unix epoch.
+	 * <p>
+	 * API name: {@code start_date_in_millis}
 	 */
 	public final long startDateInMillis() {
 		return this.startDateInMillis;
@@ -317,6 +347,8 @@ public class LicenseInformation implements JsonpSerializable {
 
 		}
 		/**
+		 * The date and time the license expires in ISO 8601 format.
+		 * <p>
 		 * API name: {@code expiry_date}
 		 */
 		public final Builder expiryDate(@Nullable DateTime value) {
@@ -325,6 +357,8 @@ public class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
+		 * The date and time the license expires in milliseconds since the Unix epoch.
+		 * <p>
 		 * API name: {@code expiry_date_in_millis}
 		 */
 		public final Builder expiryDateInMillis(@Nullable Long value) {
@@ -333,7 +367,9 @@ public class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code issue_date}
+		 * Required - The date and time the license was issued in ISO 8601 format.
+		 * <p>
+		 * API name: {@code issue_date}
 		 */
 		public final Builder issueDate(DateTime value) {
 			this.issueDate = value;
@@ -341,7 +377,10 @@ public class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code issue_date_in_millis}
+		 * Required - The date and time the license was issued in milliseconds since the
+		 * Unix epoch.
+		 * <p>
+		 * API name: {@code issue_date_in_millis}
 		 */
 		public final Builder issueDateInMillis(long value) {
 			this.issueDateInMillis = value;
@@ -349,7 +388,10 @@ public class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code issued_to}
+		 * Required - The name of the customer or organization that received the
+		 * license.
+		 * <p>
+		 * API name: {@code issued_to}
 		 */
 		public final Builder issuedTo(String value) {
 			this.issuedTo = value;
@@ -357,7 +399,9 @@ public class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code issuer}
+		 * Required - The name of the organization that issued the license.
+		 * <p>
+		 * API name: {@code issuer}
 		 */
 		public final Builder issuer(String value) {
 			this.issuer = value;
@@ -365,6 +409,8 @@ public class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
+		 * The maximum number of nodes the license allows.
+		 * <p>
 		 * API name: {@code max_nodes}
 		 */
 		public final Builder maxNodes(@Nullable Long value) {
@@ -373,6 +419,9 @@ public class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
+		 * The maximum number of resource units the license allows (for enterprise
+		 * licenses only).
+		 * <p>
 		 * API name: {@code max_resource_units}
 		 */
 		public final Builder maxResourceUnits(@Nullable Integer value) {
@@ -381,7 +430,10 @@ public class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code status}
+		 * Required - The status of the license. For example,active, valid, invalid, or
+		 * expired.
+		 * <p>
+		 * API name: {@code status}
 		 */
 		public final Builder status(LicenseStatus value) {
 			this.status = value;
@@ -389,7 +441,10 @@ public class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code type}
+		 * Required - The type of the license. For example, trial, basic, gold,
+		 * platinum, or enterprise.
+		 * <p>
+		 * API name: {@code type}
 		 */
 		public final Builder type(LicenseType value) {
 			this.type = value;
@@ -397,7 +452,9 @@ public class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code uid}
+		 * Required - The unique identifier of the license.
+		 * <p>
+		 * API name: {@code uid}
 		 */
 		public final Builder uid(String value) {
 			this.uid = value;
@@ -405,7 +462,10 @@ public class LicenseInformation implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code start_date_in_millis}
+		 * Required - The date and time the license was started in milliseconds since
+		 * the Unix epoch.
+		 * <p>
+		 * API name: {@code start_date_in_millis}
 		 */
 		public final Builder startDateInMillis(long value) {
 			this.startDateInMillis = value;
