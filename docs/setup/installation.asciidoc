@@ -9,6 +9,7 @@ Requirements:
   support for https://github.com/FasterXML/jackson[Jackson] or a
   https://github.com/eclipse-ee4j/jsonb-api[JSON-B] library like
   https://github.com/eclipse-ee4j/yasson[Eclipse Yasson].
+  Jackson 3 is also supported, but to use it, Java 17 or later is needed.
 
 
 Releases are hosted on 
