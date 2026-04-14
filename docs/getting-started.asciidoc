@@ -12,6 +12,7 @@ operations with it.
 * A JSON object mapping library to allow seamless integration of
 your application classes with the Elasticsearch API. The examples below
 show usage with Jackson.
+Jackson 3 is also supported, but to use it, Java 17 or later is needed.
 
 [discrete]
 === Installation 
