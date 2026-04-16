@@ -211,6 +211,7 @@ final class TypeConverter {
             case BOOLEAN:
             case TEXT:
             case KEYWORD:
+            case DENSE_VECTOR:
                 return v; // These types are already represented correctly in JSON
             case BYTE:
                 return ((Number) v).byteValue(); // Parser might return it as integer or long - need to update to the correct type
