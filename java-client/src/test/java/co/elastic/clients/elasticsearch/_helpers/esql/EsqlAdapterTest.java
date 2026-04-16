@@ -22,17 +22,17 @@ package co.elastic.clients.elasticsearch._helpers.esql;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._helpers.esql.jdbc.ResultSetEsqlAdapter;
 import co.elastic.clients.elasticsearch._helpers.esql.objects.ObjectsEsqlAdapter;
-import co.elastic.clients.elasticsearch.esql.query.EsqlFormat;
 import co.elastic.clients.json.JsonpMappingException;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.testkit.MockHttpClient;
-import co.elastic.clients.transport.endpoints.BinaryResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 public class EsqlAdapterTest extends Assertions {
 
@@ -118,11 +118,6 @@ public class EsqlAdapterTest extends Assertions {
     @Test
     public void testObjectDeserializer() throws IOException {
 
-        BinaryResponse response = esClient.esql().query(q -> q
-            .query("FROM foo")
-            .format(EsqlFormat.Json)
-        );
-
         Iterable<Data> data = esClient.esql().query(
             new ObjectsEsqlAdapter<>(Data.class),
             "FROM employees | STATS avg_salary = AVG(salary) by country"
@@ -147,6 +142,56 @@ public class EsqlAdapterTest extends Assertions {
 
         while (resultSet.next()) {
             System.out.println(resultSet.getDouble("avg_salary") + " " + resultSet.getString(2));
+        }
+    }
+
+    @Test
+    public void testDenseVector() throws IOException, SQLException {
+
+        String jsonEmbeddings = "{\n" +
+                                "  \"took\": 8,\n" +
+                                "  \"is_partial\": false,\n" +
+                                "  \"completion_time_in_millis\": 1776348683193,\n" +
+                                "  \"documents_found\": 1,\n" +
+                                "  \"values_loaded\": 252725,\n" +
+                                "  \"start_time_in_millis\": 1776348683185,\n" +
+                                "  \"expiration_time_in_millis\": 1776780683134,\n" +
+                                "  \"columns\": [\n" +
+                                "    {\n" +
+                                "      \"name\": \"content\",\n" +
+                                "      \"type\": \"text\"\n" +
+                                "    },\n" +
+                                "    {\n" +
+                                "      \"name\": \"content.keyword\",\n" +
+                                "      \"type\": \"keyword\"\n" +
+                                "    },\n" +
+                                "    {\n" +
+                                "      \"name\": \"embedding\",\n" +
+                                "      \"type\": \"dense_vector\"\n" +
+                                "    }\n" +
+                                "    ],\n" +
+                                "  \"values\": [\n" +
+                                "[\"some text\",\"id\",[0.1,0.2,0.3]]\n" +
+                                "]\n" +
+                                "}";
+
+        ElasticsearchClient esClient = new MockHttpClient()
+            .add("/_query", "application/json", jsonEmbeddings)
+            .client(new JacksonJsonpMapper());
+
+        ResultSet resultSet = esClient.esql().query(
+                ResultSetEsqlAdapter.INSTANCE,
+                "FROM embeddings");
+
+        assertEquals(3, resultSet.getMetaData().getColumnCount());
+        assertEquals(Types.VARCHAR, resultSet.getMetaData().getColumnType(1));
+        assertEquals(Types.VARCHAR, resultSet.getMetaData().getColumnType(2));
+        assertEquals(Types.ARRAY, resultSet.getMetaData().getColumnType(3));
+
+        while (resultSet.next()) {
+            List vec = resultSet.getObject("embedding", List.class);
+            assertEquals(3,vec.size());
+            System.out.println(resultSet.getString("embedding"));
         }
     }
 }
