@@ -31,6 +31,7 @@ import java.util.Collections;
 import java.util.EnumSet;
 import java.util.GregorianCalendar;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -117,6 +118,7 @@ final class TypeUtils {
         types.put(EsType.GEO_POINT, String.class);
         types.put(EsType.GEO_SHAPE, String.class);
         types.put(EsType.SHAPE, String.class);
+        types.put(EsType.DENSE_VECTOR, List.class);
 
         TYPE_TO_CLASS = unmodifiableMap(types);
 
