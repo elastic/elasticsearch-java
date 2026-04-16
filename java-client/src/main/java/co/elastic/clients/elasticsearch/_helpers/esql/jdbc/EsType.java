@@ -61,7 +61,8 @@ enum EsType implements SQLType {
     GEO_SHAPE(ExtraTypes.GEOMETRY),
     SHAPE(ExtraTypes.GEOMETRY),
     UNSIGNED_LONG(Types.NUMERIC),
-    VERSION(Types.VARCHAR);
+    VERSION(Types.VARCHAR),
+    DENSE_VECTOR(Types.ARRAY);
 
     private final Integer type;
 
