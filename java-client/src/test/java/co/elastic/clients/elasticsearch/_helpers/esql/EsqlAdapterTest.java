@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 
 public class EsqlAdapterTest extends Assertions {
 
@@ -190,6 +191,8 @@ public class EsqlAdapterTest extends Assertions {
         assertEquals(Types.ARRAY, resultSet.getMetaData().getColumnType(3));
 
         while (resultSet.next()) {
+            List vec = resultSet.getObject("embedding", List.class);
+            assertEquals(3,vec.size());
             System.out.println(resultSet.getString("embedding"));
         }
     }
