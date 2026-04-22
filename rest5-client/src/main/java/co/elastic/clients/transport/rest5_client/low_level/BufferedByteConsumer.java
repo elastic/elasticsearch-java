@@ -75,7 +75,7 @@ public class BufferedByteConsumer extends AbstractBinDataConsumer implements Asy
 
     @Override
     protected final void completed() throws IOException {
-        result = new ByteArrayEntity(buffer.toByteArray(), contentType, contentEncoding);
+        result = new ByteArrayEntity(buffer.array(), 0, buffer.length(), contentType, contentEncoding);
         if (resultCallback != null) {
             resultCallback.completed(result);
         }

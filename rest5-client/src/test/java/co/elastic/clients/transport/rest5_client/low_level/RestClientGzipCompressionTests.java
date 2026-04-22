@@ -59,7 +59,7 @@ public class RestClientGzipCompressionTests extends RestClientTestCase {
     }
 
     @AfterAll
-    public static void stopHttpServers() throws IOException {
+    public static void stopHttpServers() {
         httpServer.stop(0);
         httpServer = null;
     }
@@ -227,6 +227,31 @@ public class RestClientGzipCompressionTests extends RestClientTestCase {
         // Server should report it had a compressed request and sent back a compressed response
         Assert.assertTrue(response.getEntity().getContentLength() < 0);
         checkResponse("gzip#gzip#compressing client", response);
+
+        restClient.close();
+    }
+
+    /**
+     * Verifies that when HC5's built-in auto-decompression is active (the default since 5.6),
+     * response headers are reconciled with the already-decompressed entity, meaning the content encoding is
+     * not gzip.
+     */
+    @Test
+    public void testAutoDecompressionAsync() throws Exception {
+        InetSocketAddress address = httpServer.getAddress();
+        Rest5Client restClient = Rest5Client.builder(new HttpHost("http", address.getHostString(),
+                address.getPort()))
+            .setCompressionEnabled(true)
+            .build();
+
+        Request request = new Request("POST", "/");
+        request.setEntity(new StringEntity("auto-decompress client", ContentType.TEXT_PLAIN));
+
+        FutureResponse futureResponse = new FutureResponse();
+        restClient.performRequestAsync(request, futureResponse);
+        Response response = futureResponse.get();
+
+        checkResponse("gzip#gzip#auto-decompress client", response);
 
         restClient.close();
     }
