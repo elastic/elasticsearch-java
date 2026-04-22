@@ -344,6 +344,15 @@ public class Rest5Client implements Closeable {
                 httpResponse.setEntity(new GzipDecompressingEntity(entity));
                 httpResponse.removeHeaders(CONTENT_ENCODING);
                 httpResponse.removeHeaders(CONTENT_LENGTH);
+            } else if ("gzip".equals(httpResponse.getFirstHeader(CONTENT_ENCODING) != null
+                ? httpResponse.getFirstHeader(CONTENT_ENCODING).getValue() : null)) {
+                // HC5 5.6+ auto-decompressed the entity, but left the headers as they were,
+                // meaning content encoding will still be gzip, fixing that.
+                httpResponse.removeHeaders(CONTENT_ENCODING);
+                httpResponse.removeHeaders(CONTENT_LENGTH);
+                if (entity.getContentLength() >= 0) {
+                    httpResponse.setHeader(CONTENT_LENGTH, Long.toString(entity.getContentLength()));
+                }
             }
         }
 
