@@ -108,7 +108,7 @@ public class RequestEmbedding implements JsonpSerializable {
 	 *     &quot;content&quot;: {
 	 *       &quot;type&quot;: &quot;image&quot;,
 	 *       &quot;format&quot;: &quot;base64&quot;,
-	 *       &quot;value&quot;: &quot;data:image/jpg;base64,...&quot;
+	 *       &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
 	 *     }
 	 *   }
 	 * </code>
@@ -129,7 +129,7 @@ public class RequestEmbedding implements JsonpSerializable {
 	 *     &quot;content&quot;: {
 	 *       &quot;type&quot;: &quot;image&quot;,
 	 *       &quot;format&quot;: &quot;base64&quot;,
-	 *       &quot;value&quot;: &quot;data:image/jpg;base64,...&quot;
+	 *       &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
 	 *     }
 	 *   }
 	 * ]
@@ -261,7 +261,7 @@ public class RequestEmbedding implements JsonpSerializable {
 		 *     &quot;content&quot;: {
 		 *       &quot;type&quot;: &quot;image&quot;,
 		 *       &quot;format&quot;: &quot;base64&quot;,
-		 *       &quot;value&quot;: &quot;data:image/jpg;base64,...&quot;
+		 *       &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
 		 *     }
 		 *   }
 		 * </code>
@@ -282,7 +282,7 @@ public class RequestEmbedding implements JsonpSerializable {
 		 *     &quot;content&quot;: {
 		 *       &quot;type&quot;: &quot;image&quot;,
 		 *       &quot;format&quot;: &quot;base64&quot;,
-		 *       &quot;value&quot;: &quot;data:image/jpg;base64,...&quot;
+		 *       &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
 		 *     }
 		 *   }
 		 * ]
@@ -321,7 +321,7 @@ public class RequestEmbedding implements JsonpSerializable {
 		 *     &quot;content&quot;: {
 		 *       &quot;type&quot;: &quot;image&quot;,
 		 *       &quot;format&quot;: &quot;base64&quot;,
-		 *       &quot;value&quot;: &quot;data:image/jpg;base64,...&quot;
+		 *       &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
 		 *     }
 		 *   }
 		 * </code>
@@ -342,7 +342,7 @@ public class RequestEmbedding implements JsonpSerializable {
 		 *     &quot;content&quot;: {
 		 *       &quot;type&quot;: &quot;image&quot;,
 		 *       &quot;format&quot;: &quot;base64&quot;,
-		 *       &quot;value&quot;: &quot;data:image/jpg;base64,...&quot;
+		 *       &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
 		 *     }
 		 *   }
 		 * ]

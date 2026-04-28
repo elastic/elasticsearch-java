@@ -31,6 +31,7 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -71,6 +72,9 @@ import javax.annotation.Nullable;
 
 public class ScheduleNowTransformRequest extends RequestBase {
 	@Nullable
+	private final Boolean defer;
+
+	@Nullable
 	private final Time timeout;
 
 	private final String transformId;
@@ -79,6 +83,7 @@ public class ScheduleNowTransformRequest extends RequestBase {
 
 	private ScheduleNowTransformRequest(Builder builder) {
 
+		this.defer = builder.defer;
 		this.timeout = builder.timeout;
 		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
@@ -86,6 +91,18 @@ public class ScheduleNowTransformRequest extends RequestBase {
 
 	public static ScheduleNowTransformRequest of(Function<Builder, ObjectBuilder<ScheduleNowTransformRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * When true, defers the scheduling by the transform's configured sync delay
+	 * instead of triggering immediately. The transform will process new data after
+	 * the delay elapses rather than right away.
+	 * <p>
+	 * API name: {@code defer}
+	 */
+	@Nullable
+	public final Boolean defer() {
+		return this.defer;
 	}
 
 	/**
@@ -117,6 +134,9 @@ public class ScheduleNowTransformRequest extends RequestBase {
 			implements
 				ObjectBuilder<ScheduleNowTransformRequest> {
 		@Nullable
+		private Boolean defer;
+
+		@Nullable
 		private Time timeout;
 
 		private String transformId;
@@ -124,10 +144,23 @@ public class ScheduleNowTransformRequest extends RequestBase {
 		public Builder() {
 		}
 		private Builder(ScheduleNowTransformRequest instance) {
+			this.defer = instance.defer;
 			this.timeout = instance.timeout;
 			this.transformId = instance.transformId;
 
 		}
+		/**
+		 * When true, defers the scheduling by the transform's configured sync delay
+		 * instead of triggering immediately. The transform will process new data after
+		 * the delay elapses rather than right away.
+		 * <p>
+		 * API name: {@code defer}
+		 */
+		public final Builder defer(@Nullable Boolean value) {
+			this.defer = value;
+			return this;
+		}
+
 		/**
 		 * Controls the time to wait for the scheduling to take place
 		 * <p>
@@ -233,6 +266,9 @@ public class ScheduleNowTransformRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.defer != null) {
+					params.put("defer", String.valueOf(request.defer));
+				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());
 				}

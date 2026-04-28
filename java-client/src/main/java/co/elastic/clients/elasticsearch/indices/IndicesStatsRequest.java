@@ -237,7 +237,7 @@ public class IndicesStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Limit the information returned the specific metrics
+	 * Comma-separated list of metrics used to limit the request.
 	 * <p>
 	 * API name: {@code metric}
 	 */
@@ -505,7 +505,7 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Limit the information returned the specific metrics
+		 * Comma-separated list of metrics used to limit the request.
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>
@@ -517,7 +517,7 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Limit the information returned the specific metrics
+		 * Comma-separated list of metrics used to limit the request.
 		 * <p>
 		 * API name: {@code metric}
 		 * <p>

@@ -61,6 +61,8 @@ public enum FieldType implements JsonEnum {
 
 	SearchAsYouType("search_as_you_type"),
 
+	Wildcard("wildcard"),
+
 	Date("date"),
 
 	DateNanos("date_nanos"),

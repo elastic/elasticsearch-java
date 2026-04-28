@@ -126,7 +126,7 @@ public class Message implements JsonpSerializable {
 	 *   &quot;content&quot;: [
 	 *       {
 	 *        &quot;image_url&quot;: {
-	 *          &quot;url&quot;: &quot;data:image/jpg;base64,...&quot;
+	 *          &quot;url&quot;: &quot;data:image/jpeg;base64,...&quot;
 	 *        },
 	 *        &quot;type&quot;: &quot;image_url&quot;
 	 *       }
@@ -356,7 +356,7 @@ public class Message implements JsonpSerializable {
 		 *   &quot;content&quot;: [
 		 *       {
 		 *        &quot;image_url&quot;: {
-		 *          &quot;url&quot;: &quot;data:image/jpg;base64,...&quot;
+		 *          &quot;url&quot;: &quot;data:image/jpeg;base64,...&quot;
 		 *        },
 		 *        &quot;type&quot;: &quot;image_url&quot;
 		 *       }
@@ -422,7 +422,7 @@ public class Message implements JsonpSerializable {
 		 *   &quot;content&quot;: [
 		 *       {
 		 *        &quot;image_url&quot;: {
-		 *          &quot;url&quot;: &quot;data:image/jpg;base64,...&quot;
+		 *          &quot;url&quot;: &quot;data:image/jpeg;base64,...&quot;
 		 *        },
 		 *        &quot;type&quot;: &quot;image_url&quot;
 		 *       }

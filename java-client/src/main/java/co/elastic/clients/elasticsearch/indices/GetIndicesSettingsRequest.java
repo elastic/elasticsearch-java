@@ -115,11 +115,13 @@ public class GetIndicesSettingsRequest extends RequestBase {
 	}
 
 	/**
-	 * If <code>false</code>, the request returns an error if any wildcard
-	 * expression, index alias, or <code>_all</code> value targets only missing or
-	 * closed indices. This behavior applies even if the request targets other open
-	 * indices. For example, a request targeting <code>foo*,bar*</code> returns an
-	 * error if an index starts with foo but no index starts with <code>bar</code>.
+	 * A setting that does two separate checks on the index expression. If
+	 * <code>false</code>, the request returns an error (1) if any wildcard
+	 * expression (including <code>_all</code> and <code>*</code>) resolves to zero
+	 * matching indices or (2) if the complete set of resolved indices, aliases or
+	 * data streams is empty after all expressions are evaluated. If
+	 * <code>true</code>, index expressions that resolve to no indices are allowed
+	 * and the request returns an empty result.
 	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
@@ -151,8 +153,10 @@ public class GetIndicesSettingsRequest extends RequestBase {
 	}
 
 	/**
-	 * If <code>false</code>, the request returns an error if it targets a missing
-	 * or closed index.
+	 * If <code>false</code>, the request returns an error if it targets a concrete
+	 * (non-wildcarded) index, alias, or data stream that is missing, closed, or
+	 * otherwise unavailable. If <code>true</code>, unavailable concrete targets are
+	 * silently ignored.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -268,11 +272,13 @@ public class GetIndicesSettingsRequest extends RequestBase {
 
 		}
 		/**
-		 * If <code>false</code>, the request returns an error if any wildcard
-		 * expression, index alias, or <code>_all</code> value targets only missing or
-		 * closed indices. This behavior applies even if the request targets other open
-		 * indices. For example, a request targeting <code>foo*,bar*</code> returns an
-		 * error if an index starts with foo but no index starts with <code>bar</code>.
+		 * A setting that does two separate checks on the index expression. If
+		 * <code>false</code>, the request returns an error (1) if any wildcard
+		 * expression (including <code>_all</code> and <code>*</code>) resolves to zero
+		 * matching indices or (2) if the complete set of resolved indices, aliases or
+		 * data streams is empty after all expressions are evaluated. If
+		 * <code>true</code>, index expressions that resolve to no indices are allowed
+		 * and the request returns an empty result.
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
@@ -322,8 +328,10 @@ public class GetIndicesSettingsRequest extends RequestBase {
 		}
 
 		/**
-		 * If <code>false</code>, the request returns an error if it targets a missing
-		 * or closed index.
+		 * If <code>false</code>, the request returns an error if it targets a concrete
+		 * (non-wildcarded) index, alias, or data stream that is missing, closed, or
+		 * otherwise unavailable. If <code>true</code>, unavailable concrete targets are
+		 * silently ignored.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */

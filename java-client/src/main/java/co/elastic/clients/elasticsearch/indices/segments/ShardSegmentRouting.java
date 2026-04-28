@@ -82,21 +82,28 @@ public class ShardSegmentRouting implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code node}
+	 * Required - The node ID of the node that holds the shard.
+	 * <p>
+	 * API name: {@code node}
 	 */
 	public final String node() {
 		return this.node;
 	}
 
 	/**
-	 * Required - API name: {@code primary}
+	 * Required - If <code>true</code>, the shard is a primary shard.
+	 * <p>
+	 * API name: {@code primary}
 	 */
 	public final boolean primary() {
 		return this.primary;
 	}
 
 	/**
-	 * Required - API name: {@code state}
+	 * Required - The state of the shard, such as <code>STARTED</code> or
+	 * <code>RELOCATING</code>.
+	 * <p>
+	 * API name: {@code state}
 	 */
 	public final String state() {
 		return this.state;
@@ -153,7 +160,9 @@ public class ShardSegmentRouting implements JsonpSerializable {
 
 		}
 		/**
-		 * Required - API name: {@code node}
+		 * Required - The node ID of the node that holds the shard.
+		 * <p>
+		 * API name: {@code node}
 		 */
 		public final Builder node(String value) {
 			this.node = value;
@@ -161,7 +170,9 @@ public class ShardSegmentRouting implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code primary}
+		 * Required - If <code>true</code>, the shard is a primary shard.
+		 * <p>
+		 * API name: {@code primary}
 		 */
 		public final Builder primary(boolean value) {
 			this.primary = value;
@@ -169,7 +180,10 @@ public class ShardSegmentRouting implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code state}
+		 * Required - The state of the shard, such as <code>STARTED</code> or
+		 * <code>RELOCATING</code>.
+		 * <p>
+		 * API name: {@code state}
 		 */
 		public final Builder state(String value) {
 			this.state = value;

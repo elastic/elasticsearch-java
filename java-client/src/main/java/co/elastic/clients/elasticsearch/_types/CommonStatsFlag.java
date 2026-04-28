@@ -45,48 +45,123 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum CommonStatsFlag implements JsonEnum {
+	/**
+	 * Return all statistics.
+	 */
 	All("_all"),
 
+	/**
+	 * Size of the index in byte units.
+	 */
 	Store("store"),
 
+	/**
+	 * Indexing statistics.
+	 */
 	Indexing("indexing"),
 
+	/**
+	 * Get statistics, including missing stats.
+	 */
 	Get("get"),
 
+	/**
+	 * Search statistics including suggest statistics. You can include statistics
+	 * for custom groups by adding an extra <code>groups</code> parameter (search
+	 * operations can be associated with one or more groups). The
+	 * <code>groups</code> parameter accepts a comma-separated list of group names.
+	 * Use <code>_all</code> to return statistics for all groups.
+	 */
 	Search("search"),
 
+	/**
+	 * Merge statistics.
+	 */
 	Merge("merge"),
 
+	/**
+	 * Flush statistics.
+	 */
 	Flush("flush"),
 
+	/**
+	 * Refresh statistics.
+	 */
 	Refresh("refresh"),
 
+	/**
+	 * Query cache statistics.
+	 */
 	QueryCache("query_cache"),
 
+	/**
+	 * Fielddata statistics.
+	 */
 	Fielddata("fielddata"),
 
+	/**
+	 * Number of documents and deleted docs not yet merged out. Index refreshes can
+	 * affect this statistic.
+	 */
 	Docs("docs"),
 
+	/**
+	 * Index warming statistics.
+	 */
 	Warmer("warmer"),
 
+	/**
+	 * Completion suggester statistics.
+	 */
 	Completion("completion"),
 
+	/**
+	 * Memory use of all open segments. If the
+	 * <code>include_segment_file_sizes</code> parameter is <code>true</code>, this
+	 * metric includes the aggregated disk usage of each Lucene index file.
+	 */
 	Segments("segments"),
 
+	/**
+	 * Translog statistics.
+	 */
 	Translog("translog"),
 
+	/**
+	 * Shard request cache statistics.
+	 */
 	RequestCache("request_cache"),
 
+	/**
+	 * Recovery statistics.
+	 */
 	Recovery("recovery"),
 
+	/**
+	 * Bulk operations statistics.
+	 */
 	Bulk("bulk"),
 
+	/**
+	 * Shard statistics, including the total number of shards.
+	 */
 	ShardStats("shard_stats"),
 
+	/**
+	 * Mapping statistics, including the total count and estimated overhead.
+	 */
 	Mappings("mappings"),
 
+	/**
+	 * Total number of dense vectors indexed. Index refreshes can affect this
+	 * statistic.
+	 */
 	DenseVector("dense_vector"),
 
+	/**
+	 * Total number of sparse vectors indexed. Index refreshes can affect this
+	 * statistic.
+	 */
 	SparseVector("sparse_vector"),
 
 	;

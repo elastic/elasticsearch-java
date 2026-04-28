@@ -52,9 +52,13 @@ import java.util.Objects;
 /**
  * Get cluster info.
  * <p>
- * Get basic build, version, and cluster information. ::: In Serverless, this
- * API is retained for backward compatibility only. Some response fields, such
- * as the version number, should be ignored.
+ * Get basic build, version, and cluster information. ::: In Serverless,
+ * <code>version.number</code> always reports the next target Elasticsearch
+ * release version at the time of the request. Serverless does not track to a
+ * traditional release versioning model; it is continuously updated. The version
+ * number is provided to maintain compatibility with existing clients, but it is
+ * not meaningful for assessing feature availability. Clients should detect a
+ * Serverless environment by checking for <code>build_flavor: serverless</code>.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.info.Request">API
  *      specification</a>

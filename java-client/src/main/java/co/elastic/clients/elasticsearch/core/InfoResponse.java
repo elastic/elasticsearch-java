@@ -119,7 +119,12 @@ public class InfoResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The running version of Elasticsearch.
+	 * Required - Version information for the Elasticsearch cluster. In Serverless,
+	 * <code>version.number</code> always reports the next target Elasticsearch
+	 * release version at the time of the request, not an actual deployed version.
+	 * The version number is provided to maintain client compatibility but is not
+	 * meaningful for assessing feature availability. Use
+	 * <code>build_flavor: serverless</code> to detect a Serverless environment.
 	 * <p>
 	 * API name: {@code version}
 	 */
@@ -214,7 +219,12 @@ public class InfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The running version of Elasticsearch.
+		 * Required - Version information for the Elasticsearch cluster. In Serverless,
+		 * <code>version.number</code> always reports the next target Elasticsearch
+		 * release version at the time of the request, not an actual deployed version.
+		 * The version number is provided to maintain client compatibility but is not
+		 * meaningful for assessing feature availability. Use
+		 * <code>build_flavor: serverless</code> to detect a Serverless environment.
 		 * <p>
 		 * API name: {@code version}
 		 */
@@ -224,7 +234,12 @@ public class InfoResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The running version of Elasticsearch.
+		 * Required - Version information for the Elasticsearch cluster. In Serverless,
+		 * <code>version.number</code> always reports the next target Elasticsearch
+		 * release version at the time of the request, not an actual deployed version.
+		 * The version number is provided to maintain client compatibility but is not
+		 * meaningful for assessing feature availability. Use
+		 * <code>build_flavor: serverless</code> to detect a Serverless environment.
 		 * <p>
 		 * API name: {@code version}
 		 */

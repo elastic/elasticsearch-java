@@ -72,6 +72,9 @@ import javax.annotation.Nullable;
  */
 
 public class GetTasksRequest extends RequestBase {
+	@Nullable
+	private final Boolean followRelocations;
+
 	private final String taskId;
 
 	@Nullable
@@ -84,6 +87,7 @@ public class GetTasksRequest extends RequestBase {
 
 	private GetTasksRequest(Builder builder) {
 
+		this.followRelocations = builder.followRelocations;
 		this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
 		this.timeout = builder.timeout;
 		this.waitForCompletion = builder.waitForCompletion;
@@ -92,6 +96,16 @@ public class GetTasksRequest extends RequestBase {
 
 	public static GetTasksRequest of(Function<Builder, ObjectBuilder<GetTasksRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Internal use only
+	 * <p>
+	 * API name: {@code follow_relocations}
+	 */
+	@Nullable
+	public final Boolean followRelocations() {
+		return this.followRelocations;
 	}
 
 	/**
@@ -131,6 +145,9 @@ public class GetTasksRequest extends RequestBase {
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<GetTasksRequest> {
+		@Nullable
+		private Boolean followRelocations;
+
 		private String taskId;
 
 		@Nullable
@@ -142,11 +159,22 @@ public class GetTasksRequest extends RequestBase {
 		public Builder() {
 		}
 		private Builder(GetTasksRequest instance) {
+			this.followRelocations = instance.followRelocations;
 			this.taskId = instance.taskId;
 			this.timeout = instance.timeout;
 			this.waitForCompletion = instance.waitForCompletion;
 
 		}
+		/**
+		 * Internal use only
+		 * <p>
+		 * API name: {@code follow_relocations}
+		 */
+		public final Builder followRelocations(@Nullable Boolean value) {
+			this.followRelocations = value;
+			return this;
+		}
+
 		/**
 		 * Required - The task identifier.
 		 * <p>
@@ -263,6 +291,9 @@ public class GetTasksRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.followRelocations != null) {
+					params.put("follow_relocations", String.valueOf(request.followRelocations));
+				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
 				}
