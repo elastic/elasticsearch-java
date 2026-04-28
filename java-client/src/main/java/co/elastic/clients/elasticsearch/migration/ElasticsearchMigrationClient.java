@@ -89,7 +89,7 @@ public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchTranspo
 	 * </blockquote>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-migration-deprecations">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-migration-deprecations">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -125,7 +125,7 @@ public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchTranspo
 	 *            a function that initializes a builder to create the
 	 *            {@link DeprecationsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-migration-deprecations">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-migration-deprecations">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -157,7 +157,7 @@ public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchTranspo
 	 * </blockquote>
 	 *
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-migration-deprecations">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-migration-deprecations">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -179,7 +179,7 @@ public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchTranspo
 	 * strongly recommended to use the Upgrade Assistant.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-migration-get-feature-upgrade-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-migration-get-feature-upgrade-status">Documentation
 	 *      on elastic.co</a>
 	 */
 	public GetFeatureUpgradeStatusResponse getFeatureUpgradeStatus() throws IOException, ElasticsearchException {
@@ -203,7 +203,7 @@ public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchTranspo
 	 * strongly recommend you use the Upgrade Assistant.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-migration-get-feature-upgrade-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-migration-get-feature-upgrade-status">Documentation
 	 *      on elastic.co</a>
 	 */
 	public PostFeatureUpgradeResponse postFeatureUpgrade() throws IOException, ElasticsearchException {

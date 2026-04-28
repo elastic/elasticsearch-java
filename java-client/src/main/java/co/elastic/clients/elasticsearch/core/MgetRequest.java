@@ -721,14 +721,15 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.routing)) {
-					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.realtime != null) {
 					params.put("realtime", String.valueOf(request.realtime));
 				}
 				if (ApiTypeHelper.isDefined(request.storedFields)) {
-					params.put("stored_fields",
-							request.storedFields.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("stored_fields", request.storedFields.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);
@@ -740,15 +741,15 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 					params.put("_source", request.source._toJsonString());
 				}
 				if (ApiTypeHelper.isDefined(request.sourceExcludes)) {
-					params.put("_source_excludes",
-							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("_source_excludes", request.sourceExcludes.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.forceSyntheticSource != null) {
 					params.put("force_synthetic_source", String.valueOf(request.forceSyntheticSource));
 				}
 				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
-					params.put("_source_includes",
-							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("_source_includes", request.sourceIncludes.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 

@@ -213,7 +213,8 @@ public class DeleteCalendarJobRequest extends RequestBase {
 					SimpleEndpoint.pathEncode(request.calendarId, buf);
 					buf.append("/jobs");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.jobId.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.jobId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -233,7 +234,8 @@ public class DeleteCalendarJobRequest extends RequestBase {
 
 				if (propsSet == (_calendarId | _jobId)) {
 					params.put("calendarId", request.calendarId);
-					params.put("jobId", request.jobId.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("jobId", request.jobId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

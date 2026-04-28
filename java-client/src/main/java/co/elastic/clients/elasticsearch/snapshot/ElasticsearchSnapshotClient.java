@@ -74,7 +74,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * stale data not referenced by existing snapshots.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-cleanup-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-cleanup-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -96,7 +96,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link CleanupRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-cleanup-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-cleanup-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -114,7 +114,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * Clone part of all of a snapshot into another snapshot in the same repository.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-clone">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-clone">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -134,7 +134,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link CloneSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-clone">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-clone">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -152,7 +152,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * Take a snapshot of a cluster or of data streams and indices.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-create">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-create">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -172,7 +172,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-create">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-create">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -200,7 +200,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * parameter is used.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-create-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-create-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -231,7 +231,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link CreateRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-create-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-create-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -247,7 +247,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * Delete snapshots.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -265,7 +265,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-delete">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-delete">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -285,7 +285,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * themselves are left untouched and in place.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-delete-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-delete-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -308,7 +308,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-delete-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-delete-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -331,7 +331,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * concurrently created may be seen during an iteration.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -356,7 +356,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetSnapshotRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-get">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-get">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -371,7 +371,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * Get snapshot repository information.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-get-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-get-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -390,7 +390,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link GetRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-get-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-get-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -404,7 +404,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * Get snapshot repository information.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-get-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-get-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -471,6 +471,17 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * implementation of the same storage protocol. You will need to work with the
 	 * supplier of your storage system to address the incompatibilities that
 	 * Elasticsearch detects.
+	 * <p>
+	 * The analysis may also report a failure if your repository experienced a
+	 * service disruption while the analysis was running. In practice, occasional
+	 * service disruptions are inevitable, but the analysis cannot itself
+	 * distinguish such disruptions from incorrect behavior so must report all
+	 * deviations from the expected behavior as failures. If you are certain that
+	 * you can ascribe an analysis failure to such a service disruption, wait for
+	 * your service provider to resolve the disruption and then re-run the analysis.
+	 * Elasticsearch will be unable to create or restore snapshots during repository
+	 * service disruptions, so you must ensure that these events occur only very
+	 * rarely.
 	 * <p>
 	 * If the analysis is successful, the API returns details of the testing
 	 * process, optionally including how long each operation took. You can use this
@@ -596,7 +607,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * also verify the behavior on small blobs with sizes other than 8 bytes.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-repository-analyze">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-repository-analyze">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -664,6 +675,17 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * implementation of the same storage protocol. You will need to work with the
 	 * supplier of your storage system to address the incompatibilities that
 	 * Elasticsearch detects.
+	 * <p>
+	 * The analysis may also report a failure if your repository experienced a
+	 * service disruption while the analysis was running. In practice, occasional
+	 * service disruptions are inevitable, but the analysis cannot itself
+	 * distinguish such disruptions from incorrect behavior so must report all
+	 * deviations from the expected behavior as failures. If you are certain that
+	 * you can ascribe an analysis failure to such a service disruption, wait for
+	 * your service provider to resolve the disruption and then re-run the analysis.
+	 * Elasticsearch will be unable to create or restore snapshots during repository
+	 * service disruptions, so you must ensure that these events occur only very
+	 * rarely.
 	 * <p>
 	 * If the analysis is successful, the API returns details of the testing
 	 * process, optionally including how long each operation took. You can use this
@@ -792,7 +814,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link RepositoryAnalyzeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-repository-analyze">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-repository-analyze">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -872,7 +894,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * stable and may be different in newer versions.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-repository-verify-integrity">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-repository-verify-integrity">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -955,7 +977,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link RepositoryVerifyIntegrityRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-repository-verify-integrity">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-repository-verify-integrity">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -997,7 +1019,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * restore the Enterprise Search encryption key before you restore the snapshot.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-restore">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-restore">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1041,7 +1063,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link RestoreRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-restore">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-restore">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1090,7 +1112,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * and, when using cloud storage, incur high processing costs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-status">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1142,7 +1164,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link SnapshotStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-status">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1190,7 +1212,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * and, when using cloud storage, incur high processing costs.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-status">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-status">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1207,7 +1229,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 * Check for common misconfigurations in a snapshot repository.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-verify-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-verify-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1228,7 +1250,7 @@ public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link VerifyRepositoryRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-snapshot-verify-repository">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-snapshot-verify-repository">Documentation
 	 *      on elastic.co</a>
 	 */
 

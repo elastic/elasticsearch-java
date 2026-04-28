@@ -291,8 +291,8 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/trained_models");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.modelId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.modelId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_stats");
 					return buf.toString();
 				}
@@ -318,7 +318,8 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 					propsSet |= _modelId;
 
 				if (propsSet == (_modelId)) {
-					params.put("modelId", request.modelId.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("modelId", request.modelId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (propsSet == 0) {
 				}

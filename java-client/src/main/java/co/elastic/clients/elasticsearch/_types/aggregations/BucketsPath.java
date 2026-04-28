@@ -96,7 +96,7 @@ public class BucketsPath implements TaggedUnion<BucketsPath.Kind, Object>, Jsonp
 	public String _toJsonString() {
 		switch (_kind) {
 			case Array :
-				return this.array().stream().map(v -> v).collect(Collectors.joining(","));
+				return this.array().stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(","));
 			case Dict :
 				return this.dict().entrySet().stream().map(e -> e.getKey() + ":" + e.getValue())
 						.collect(Collectors.joining(","));

@@ -191,8 +191,8 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/privilege");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.application.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.application.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_clear_cache");
 					return buf.toString();
 				}
@@ -210,8 +210,8 @@ public class ClearCachedPrivilegesRequest extends RequestBase {
 				propsSet |= _application;
 
 				if (propsSet == (_application)) {
-					params.put("application",
-							request.application.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("application", request.application.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

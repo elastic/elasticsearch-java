@@ -283,8 +283,8 @@ public class NodesUsageRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/usage");
 					return buf.toString();
 				}
@@ -293,20 +293,20 @@ public class NodesUsageRequest extends RequestBase {
 					buf.append("/_nodes");
 					buf.append("/usage");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == (_nodeId | _metric)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/usage");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -329,16 +329,18 @@ public class NodesUsageRequest extends RequestBase {
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_nodeId)) {
-					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("nodeId", request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_metric)) {
-					params.put("metric",
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("metric", request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_nodeId | _metric)) {
-					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
-					params.put("metric",
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("nodeId", request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+					params.put("metric", request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

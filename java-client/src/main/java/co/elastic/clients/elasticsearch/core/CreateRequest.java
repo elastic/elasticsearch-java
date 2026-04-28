@@ -818,7 +818,8 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 					params.put("pipeline", request.pipeline);
 				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
-					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.includeSourceOnError != null) {
 					params.put("include_source_on_error", String.valueOf(request.includeSourceOnError));

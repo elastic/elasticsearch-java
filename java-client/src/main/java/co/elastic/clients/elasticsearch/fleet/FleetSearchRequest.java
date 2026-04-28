@@ -324,6 +324,14 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * A setting that does two separate checks on the index expression. If
+	 * <code>false</code>, the request returns an error (1) if any wildcard
+	 * expression (including <code>_all</code> and <code>*</code>) resolves to zero
+	 * matching indices or (2) if the complete set of resolved indices, aliases or
+	 * data streams is empty after all expressions are evaluated. If
+	 * <code>true</code>, index expressions that resolve to no indices are allowed
+	 * and the request returns an empty result.
+	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
@@ -476,6 +484,11 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * If <code>false</code>, the request returns an error if it targets a concrete
+	 * (non-wildcarded) index, alias, or data stream that is missing, closed, or
+	 * otherwise unavailable. If <code>true</code>, unavailable concrete targets are
+	 * silently ignored.
+	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
@@ -1323,6 +1336,14 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * A setting that does two separate checks on the index expression. If
+		 * <code>false</code>, the request returns an error (1) if any wildcard
+		 * expression (including <code>_all</code> and <code>*</code>) resolves to zero
+		 * matching indices or (2) if the complete set of resolved indices, aliases or
+		 * data streams is empty after all expressions are evaluated. If
+		 * <code>true</code>, index expressions that resolve to no indices are allowed
+		 * and the request returns an empty result.
+		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
 		public final Builder allowNoIndices(@Nullable Boolean value) {
@@ -1573,6 +1594,11 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * If <code>false</code>, the request returns an error if it targets a concrete
+		 * (non-wildcarded) index, alias, or data stream that is missing, closed, or
+		 * otherwise unavailable. If <code>true</code>, unavailable concrete targets are
+		 * silently ignored.
+		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
 		public final Builder ignoreUnavailable(@Nullable Boolean value) {
@@ -2373,7 +2399,8 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 					params.put("lenient", String.valueOf(request.lenient));
 				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
-					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
@@ -2394,8 +2421,8 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 					params.put("allow_partial_search_results", String.valueOf(request.allowPartialSearchResults));
 				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);
@@ -2423,7 +2450,7 @@ public class FleetSearchRequest extends RequestBase implements JsonpSerializable
 				}
 				if (ApiTypeHelper.isDefined(request.waitForCheckpoints)) {
 					params.put("wait_for_checkpoints", request.waitForCheckpoints.stream().map(v -> String.valueOf(v))
-							.collect(Collectors.joining(",")));
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.batchedReduceSize != null) {
 					params.put("batched_reduce_size", String.valueOf(request.batchedReduceSize));

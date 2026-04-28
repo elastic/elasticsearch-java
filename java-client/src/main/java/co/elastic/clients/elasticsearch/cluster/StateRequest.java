@@ -148,9 +148,13 @@ public class StateRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to ignore if a wildcard indices expression resolves into no concrete
-	 * indices. (This includes <code>_all</code> string or when no indices have been
-	 * specified)
+	 * A setting that does two separate checks on the index expression. If
+	 * <code>false</code>, the request returns an error (1) if any wildcard
+	 * expression (including <code>_all</code> and <code>*</code>) resolves to zero
+	 * matching indices or (2) if the complete set of resolved indices, aliases or
+	 * data streams is empty after all expressions are evaluated. If
+	 * <code>true</code>, index expressions that resolve to no indices are allowed
+	 * and the request returns an empty result.
 	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
@@ -180,8 +184,10 @@ public class StateRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether specified concrete indices should be ignored when unavailable
-	 * (missing or closed)
+	 * If <code>false</code>, the request returns an error if it targets a concrete
+	 * (non-wildcarded) index, alias, or data stream that is missing, closed, or
+	 * otherwise unavailable. If <code>true</code>, unavailable concrete targets are
+	 * silently ignored.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -307,9 +313,13 @@ public class StateRequest extends RequestBase {
 
 		}
 		/**
-		 * Whether to ignore if a wildcard indices expression resolves into no concrete
-		 * indices. (This includes <code>_all</code> string or when no indices have been
-		 * specified)
+		 * A setting that does two separate checks on the index expression. If
+		 * <code>false</code>, the request returns an error (1) if any wildcard
+		 * expression (including <code>_all</code> and <code>*</code>) resolves to zero
+		 * matching indices or (2) if the complete set of resolved indices, aliases or
+		 * data streams is empty after all expressions are evaluated. If
+		 * <code>true</code>, index expressions that resolve to no indices are allowed
+		 * and the request returns an empty result.
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
@@ -355,8 +365,10 @@ public class StateRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether specified concrete indices should be ignored when unavailable
-		 * (missing or closed)
+		 * If <code>false</code>, the request returns an error if it targets a concrete
+		 * (non-wildcarded) index, alias, or data stream that is missing, closed, or
+		 * otherwise unavailable. If <code>true</code>, unavailable concrete targets are
+		 * silently ignored.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
@@ -539,8 +551,8 @@ public class StateRequest extends RequestBase {
 					buf.append("/_cluster");
 					buf.append("/state");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == (_metric | _index)) {
@@ -548,10 +560,11 @@ public class StateRequest extends RequestBase {
 					buf.append("/_cluster");
 					buf.append("/state");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -574,13 +587,14 @@ public class StateRequest extends RequestBase {
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_metric)) {
-					params.put("metric",
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("metric", request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_metric | _index)) {
-					params.put("metric",
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("metric", request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -595,8 +609,8 @@ public class StateRequest extends RequestBase {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

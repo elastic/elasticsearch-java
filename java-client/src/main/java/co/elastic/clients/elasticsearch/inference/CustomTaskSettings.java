@@ -19,7 +19,7 @@
 
 package co.elastic.clients.elasticsearch.inference;
 
-import co.elastic.clients.json.JsonData;
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -27,9 +27,12 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -59,14 +62,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class CustomTaskSettings implements JsonpSerializable {
-	@Nullable
-	private final JsonData parameters;
+	private final Map<String, FieldValue> parameters;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private CustomTaskSettings(Builder builder) {
 
-		this.parameters = builder.parameters;
+		this.parameters = ApiTypeHelper.unmodifiable(builder.parameters);
 
 	}
 
@@ -90,8 +92,7 @@ public class CustomTaskSettings implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code parameters}
 	 */
-	@Nullable
-	public final JsonData parameters() {
+	public final Map<String, FieldValue> parameters() {
 		return this.parameters;
 	}
 
@@ -106,9 +107,15 @@ public class CustomTaskSettings implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.parameters != null) {
+		if (ApiTypeHelper.isDefined(this.parameters)) {
 			generator.writeKey("parameters");
-			this.parameters.serialize(generator, mapper);
+			generator.writeStartObject();
+			for (Map.Entry<String, FieldValue> item0 : this.parameters.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 
@@ -129,7 +136,7 @@ public class CustomTaskSettings implements JsonpSerializable {
 			implements
 				ObjectBuilder<CustomTaskSettings> {
 		@Nullable
-		private JsonData parameters;
+		private Map<String, FieldValue> parameters;
 
 		public Builder() {
 		}
@@ -152,10 +159,57 @@ public class CustomTaskSettings implements JsonpSerializable {
 		 * </pre>
 		 * <p>
 		 * API name: {@code parameters}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>parameters</code>.
 		 */
-		public final Builder parameters(@Nullable JsonData value) {
-			this.parameters = value;
+		public final Builder parameters(Map<String, FieldValue> map) {
+			this.parameters = _mapPutAll(this.parameters, map);
 			return this;
+		}
+
+		/**
+		 * Specifies parameters that are required to run the custom service. The
+		 * parameters depend on the model your custom service uses. For example:
+		 * 
+		 * <pre>
+		 * <code>&quot;task_settings&quot;:{
+		 *   &quot;parameters&quot;:{
+		 *     &quot;input_type&quot;:&quot;query&quot;,
+		 *     &quot;return_token&quot;:true
+		 *   }
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * API name: {@code parameters}
+		 * <p>
+		 * Adds an entry to <code>parameters</code>.
+		 */
+		public final Builder parameters(String key, FieldValue value) {
+			this.parameters = _mapPut(this.parameters, key, value);
+			return this;
+		}
+
+		/**
+		 * Specifies parameters that are required to run the custom service. The
+		 * parameters depend on the model your custom service uses. For example:
+		 * 
+		 * <pre>
+		 * <code>&quot;task_settings&quot;:{
+		 *   &quot;parameters&quot;:{
+		 *     &quot;input_type&quot;:&quot;query&quot;,
+		 *     &quot;return_token&quot;:true
+		 *   }
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * API name: {@code parameters}
+		 * <p>
+		 * Adds an entry to <code>parameters</code> using a builder lambda.
+		 */
+		public final Builder parameters(String key, Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return parameters(key, fn.apply(new FieldValue.Builder()).build());
 		}
 
 		@Override
@@ -192,7 +246,7 @@ public class CustomTaskSettings implements JsonpSerializable {
 
 	protected static void setupCustomTaskSettingsDeserializer(ObjectDeserializer<CustomTaskSettings.Builder> op) {
 
-		op.add(Builder::parameters, JsonData._DESERIALIZER, "parameters");
+		op.add(Builder::parameters, JsonpDeserializer.stringMapDeserializer(FieldValue._DESERIALIZER), "parameters");
 
 	}
 

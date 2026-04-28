@@ -274,7 +274,8 @@ public class GetJobsRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/anomaly_detectors");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.jobId.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.jobId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -298,7 +299,8 @@ public class GetJobsRequest extends RequestBase {
 					propsSet |= _jobId;
 
 				if (propsSet == (_jobId)) {
-					params.put("jobId", request.jobId.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("jobId", request.jobId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (propsSet == 0) {
 				}

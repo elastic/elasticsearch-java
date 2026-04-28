@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.inference;
 
-import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -27,10 +26,12 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -63,15 +64,14 @@ public class FireworksAITaskSettings implements JsonpSerializable {
 	@Nullable
 	private final String user;
 
-	@Nullable
-	private final JsonData headers;
+	private final Map<String, String> headers;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private FireworksAITaskSettings(Builder builder) {
 
 		this.user = builder.user;
-		this.headers = builder.headers;
+		this.headers = ApiTypeHelper.unmodifiable(builder.headers);
 
 	}
 
@@ -96,7 +96,7 @@ public class FireworksAITaskSettings implements JsonpSerializable {
 	 * custom HTTP header parameters. For example:
 	 * 
 	 * <pre>
-	 * <code>&quot;headers&quot;:{
+	 * <code>&quot;headers&quot;: {
 	 *   &quot;Custom-Header&quot;: &quot;Some-Value&quot;,
 	 *   &quot;Another-Custom-Header&quot;: &quot;Another-Value&quot;
 	 * }
@@ -105,8 +105,7 @@ public class FireworksAITaskSettings implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code headers}
 	 */
-	@Nullable
-	public final JsonData headers() {
+	public final Map<String, String> headers() {
 		return this.headers;
 	}
 
@@ -126,9 +125,15 @@ public class FireworksAITaskSettings implements JsonpSerializable {
 			generator.write(this.user);
 
 		}
-		if (this.headers != null) {
+		if (ApiTypeHelper.isDefined(this.headers)) {
 			generator.writeKey("headers");
-			this.headers.serialize(generator, mapper);
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.headers.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
 
@@ -152,7 +157,7 @@ public class FireworksAITaskSettings implements JsonpSerializable {
 		private String user;
 
 		@Nullable
-		private JsonData headers;
+		private Map<String, String> headers;
 
 		public Builder() {
 		}
@@ -178,7 +183,7 @@ public class FireworksAITaskSettings implements JsonpSerializable {
 		 * custom HTTP header parameters. For example:
 		 * 
 		 * <pre>
-		 * <code>&quot;headers&quot;:{
+		 * <code>&quot;headers&quot;: {
 		 *   &quot;Custom-Header&quot;: &quot;Some-Value&quot;,
 		 *   &quot;Another-Custom-Header&quot;: &quot;Another-Value&quot;
 		 * }
@@ -186,9 +191,32 @@ public class FireworksAITaskSettings implements JsonpSerializable {
 		 * </pre>
 		 * <p>
 		 * API name: {@code headers}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>headers</code>.
 		 */
-		public final Builder headers(@Nullable JsonData value) {
-			this.headers = value;
+		public final Builder headers(Map<String, String> map) {
+			this.headers = _mapPutAll(this.headers, map);
+			return this;
+		}
+
+		/**
+		 * For a <code>completion</code> or<code>chat_completion</code> task. Specifies
+		 * custom HTTP header parameters. For example:
+		 * 
+		 * <pre>
+		 * <code>&quot;headers&quot;: {
+		 *   &quot;Custom-Header&quot;: &quot;Some-Value&quot;,
+		 *   &quot;Another-Custom-Header&quot;: &quot;Another-Value&quot;
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * API name: {@code headers}
+		 * <p>
+		 * Adds an entry to <code>headers</code>.
+		 */
+		public final Builder headers(String key, String value) {
+			this.headers = _mapPut(this.headers, key, value);
 			return this;
 		}
 
@@ -228,7 +256,8 @@ public class FireworksAITaskSettings implements JsonpSerializable {
 			ObjectDeserializer<FireworksAITaskSettings.Builder> op) {
 
 		op.add(Builder::user, JsonpDeserializer.stringDeserializer(), "user");
-		op.add(Builder::headers, JsonData._DESERIALIZER, "headers");
+		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"headers");
 
 	}
 

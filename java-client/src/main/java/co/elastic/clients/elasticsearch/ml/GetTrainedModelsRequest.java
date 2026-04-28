@@ -428,8 +428,8 @@ public class GetTrainedModelsRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/trained_models");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.modelId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.modelId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -453,7 +453,8 @@ public class GetTrainedModelsRequest extends RequestBase {
 					propsSet |= _modelId;
 
 				if (propsSet == (_modelId)) {
-					params.put("modelId", request.modelId.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("modelId", request.modelId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (propsSet == 0) {
 				}
@@ -482,7 +483,8 @@ public class GetTrainedModelsRequest extends RequestBase {
 					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				if (ApiTypeHelper.isDefined(request.tags)) {
-					params.put("tags", request.tags.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("tags", request.tags.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 

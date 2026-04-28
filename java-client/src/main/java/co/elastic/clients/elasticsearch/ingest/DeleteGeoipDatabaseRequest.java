@@ -264,7 +264,9 @@ public class DeleteGeoipDatabaseRequest extends RequestBase {
 					buf.append("/geoip");
 					buf.append("/database");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.id.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(
+							request.id.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -281,7 +283,8 @@ public class DeleteGeoipDatabaseRequest extends RequestBase {
 				propsSet |= _id;
 
 				if (propsSet == (_id)) {
-					params.put("id", request.id.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("id",
+							request.id.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				return params;
 			},

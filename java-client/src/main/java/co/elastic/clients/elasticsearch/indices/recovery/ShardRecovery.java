@@ -34,7 +34,6 @@ import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -72,7 +71,7 @@ public class ShardRecovery implements JsonpSerializable {
 
 	private final RecoveryOrigin source;
 
-	private final String stage;
+	private final RecoveryStage stage;
 
 	@Nullable
 	private final RecoveryStartStatus start;
@@ -97,7 +96,7 @@ public class ShardRecovery implements JsonpSerializable {
 
 	private final TranslogStatus translog;
 
-	private final String type;
+	private final RecoveryType type;
 
 	private final VerifyIndex verifyIndex;
 
@@ -157,9 +156,11 @@ public class ShardRecovery implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code stage}
+	 * Required - The recovery stage.
+	 * <p>
+	 * API name: {@code stage}
 	 */
-	public final String stage() {
+	public final RecoveryStage stage() {
 		return this.stage;
 	}
 
@@ -232,9 +233,11 @@ public class ShardRecovery implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code type}
+	 * Required - The recovery source type.
+	 * <p>
+	 * API name: {@code type}
 	 */
-	public final String type() {
+	public final RecoveryType type() {
 		return this.type;
 	}
 
@@ -269,8 +272,7 @@ public class ShardRecovery implements JsonpSerializable {
 		this.source.serialize(generator, mapper);
 
 		generator.writeKey("stage");
-		generator.write(this.stage);
-
+		this.stage.serialize(generator, mapper);
 		if (this.start != null) {
 			generator.writeKey("start");
 			this.start.serialize(generator, mapper);
@@ -307,8 +309,7 @@ public class ShardRecovery implements JsonpSerializable {
 		this.translog.serialize(generator, mapper);
 
 		generator.writeKey("type");
-		generator.write(this.type);
-
+		this.type.serialize(generator, mapper);
 		generator.writeKey("verify_index");
 		this.verifyIndex.serialize(generator, mapper);
 
@@ -334,7 +335,7 @@ public class ShardRecovery implements JsonpSerializable {
 
 		private RecoveryOrigin source;
 
-		private String stage;
+		private RecoveryStage stage;
 
 		@Nullable
 		private RecoveryStartStatus start;
@@ -359,7 +360,7 @@ public class ShardRecovery implements JsonpSerializable {
 
 		private TranslogStatus translog;
 
-		private String type;
+		private RecoveryType type;
 
 		private VerifyIndex verifyIndex;
 
@@ -431,9 +432,11 @@ public class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code stage}
+		 * Required - The recovery stage.
+		 * <p>
+		 * API name: {@code stage}
 		 */
-		public final Builder stage(String value) {
+		public final Builder stage(RecoveryStage value) {
 			this.stage = value;
 			return this;
 		}
@@ -539,9 +542,11 @@ public class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code type}
+		 * Required - The recovery source type.
+		 * <p>
+		 * API name: {@code type}
 		 */
-		public final Builder type(String value) {
+		public final Builder type(RecoveryType value) {
 			this.type = value;
 			return this;
 		}
@@ -599,7 +604,7 @@ public class ShardRecovery implements JsonpSerializable {
 		op.add(Builder::index, RecoveryIndexStatus._DESERIALIZER, "index");
 		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
 		op.add(Builder::source, RecoveryOrigin._DESERIALIZER, "source");
-		op.add(Builder::stage, JsonpDeserializer.stringDeserializer(), "stage");
+		op.add(Builder::stage, RecoveryStage._DESERIALIZER, "stage");
 		op.add(Builder::start, RecoveryStartStatus._DESERIALIZER, "start");
 		op.add(Builder::startTime, DateTime._DESERIALIZER, "start_time");
 		op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
@@ -609,7 +614,7 @@ public class ShardRecovery implements JsonpSerializable {
 		op.add(Builder::totalTime, Time._DESERIALIZER, "total_time");
 		op.add(Builder::totalTimeInMillis, JsonpDeserializer.longDeserializer(), "total_time_in_millis");
 		op.add(Builder::translog, TranslogStatus._DESERIALIZER, "translog");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::type, RecoveryType._DESERIALIZER, "type");
 		op.add(Builder::verifyIndex, VerifyIndex._DESERIALIZER, "verify_index");
 
 	}

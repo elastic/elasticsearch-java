@@ -202,8 +202,10 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * If <code>false</code>, the request returns an error if it targets a missing
-	 * or closed index.
+	 * If <code>false</code>, the request returns an error if it targets a concrete
+	 * (non-wildcarded) index, alias, or data stream that is missing, closed, or
+	 * otherwise unavailable. If <code>true</code>, unavailable concrete targets are
+	 * silently ignored.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -408,8 +410,10 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * If <code>false</code>, the request returns an error if it targets a missing
-		 * or closed index.
+		 * If <code>false</code>, the request returns an error if it targets a concrete
+		 * (non-wildcarded) index, alias, or data stream that is missing, closed, or
+		 * otherwise unavailable. If <code>true</code>, unavailable concrete targets are
+		 * silently ignored.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
@@ -620,7 +624,8 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_pit");
 					return buf.toString();
 				}
@@ -638,7 +643,8 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 				propsSet |= _index;
 
 				if (propsSet == (_index)) {
-					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -647,7 +653,8 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.routing)) {
-					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.maxConcurrentShardRequests != null) {
 					params.put("max_concurrent_shard_requests", String.valueOf(request.maxConcurrentShardRequests));
@@ -659,8 +666,8 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);

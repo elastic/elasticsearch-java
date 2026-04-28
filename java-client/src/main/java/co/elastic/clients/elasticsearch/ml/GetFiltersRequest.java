@@ -246,8 +246,8 @@ public class GetFiltersRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/filters");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.filterId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.filterId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -267,7 +267,8 @@ public class GetFiltersRequest extends RequestBase {
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_filterId)) {
-					params.put("filterId", request.filterId.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("filterId", request.filterId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

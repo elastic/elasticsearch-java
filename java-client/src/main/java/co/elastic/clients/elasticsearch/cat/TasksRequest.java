@@ -544,13 +544,15 @@ public class TasksRequest extends CatRequestBase {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
 				if (ApiTypeHelper.isDefined(request.nodes)) {
-					params.put("nodes", request.nodes.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("nodes", request.nodes.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.parentTaskId != null) {
 					params.put("parent_task_id", request.parentTaskId);
 				}
 				if (ApiTypeHelper.isDefined(request.s)) {
-					params.put("s", request.s.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("s",
+							request.s.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.detailed != null) {
 					params.put("detailed", String.valueOf(request.detailed));
@@ -559,13 +561,15 @@ public class TasksRequest extends CatRequestBase {
 					params.put("bytes", request.bytes.jsonValue());
 				}
 				if (ApiTypeHelper.isDefined(request.h)) {
-					params.put("h", request.h.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("h",
+							request.h.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.time != null) {
 					params.put("time", request.time.jsonValue());
 				}
 				if (ApiTypeHelper.isDefined(request.actions)) {
-					params.put("actions", request.actions.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("actions", request.actions.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));

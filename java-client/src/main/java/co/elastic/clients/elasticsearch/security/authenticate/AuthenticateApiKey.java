@@ -19,7 +19,7 @@
 
 package co.elastic.clients.elasticsearch.security.authenticate;
 
-import co.elastic.clients.elasticsearch.security.ApiKeyManagedBy;
+import co.elastic.clients.elasticsearch.security.CredentialManagedBy;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -67,7 +67,7 @@ public class AuthenticateApiKey implements JsonpSerializable {
 	@Nullable
 	private final String name;
 
-	private final ApiKeyManagedBy managedBy;
+	private final CredentialManagedBy managedBy;
 
 	@Nullable
 	private final Boolean internal;
@@ -105,7 +105,7 @@ public class AuthenticateApiKey implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code managed_by}
 	 */
-	public final ApiKeyManagedBy managedBy() {
+	public final CredentialManagedBy managedBy() {
 		return this.managedBy;
 	}
 
@@ -165,7 +165,7 @@ public class AuthenticateApiKey implements JsonpSerializable {
 		@Nullable
 		private String name;
 
-		private ApiKeyManagedBy managedBy;
+		private CredentialManagedBy managedBy;
 
 		@Nullable
 		private Boolean internal;
@@ -198,7 +198,7 @@ public class AuthenticateApiKey implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code managed_by}
 		 */
-		public final Builder managedBy(ApiKeyManagedBy value) {
+		public final Builder managedBy(CredentialManagedBy value) {
 			this.managedBy = value;
 			return this;
 		}
@@ -247,7 +247,7 @@ public class AuthenticateApiKey implements JsonpSerializable {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::managedBy, ApiKeyManagedBy._DESERIALIZER, "managed_by");
+		op.add(Builder::managedBy, CredentialManagedBy._DESERIALIZER, "managed_by");
 		op.add(Builder::internal, JsonpDeserializer.booleanDeserializer(), "internal");
 
 	}

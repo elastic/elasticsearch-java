@@ -32,7 +32,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Double;
+import java.lang.Long;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Objects;
@@ -143,7 +143,7 @@ public class FieldDateMath implements TaggedUnion<FieldDateMath.Kind, Object>, J
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code value} kind.
 	 */
-	public Double value() {
+	public Long value() {
 		return TaggedUnionUtils.get(this, Kind.Value);
 	}
 
@@ -158,7 +158,7 @@ public class FieldDateMath implements TaggedUnion<FieldDateMath.Kind, Object>, J
 
 					break;
 				case Value :
-					generator.write(((Double) this._value));
+					generator.write(((Long) this._value));
 
 					break;
 			}
@@ -181,7 +181,7 @@ public class FieldDateMath implements TaggedUnion<FieldDateMath.Kind, Object>, J
 			return this;
 		}
 
-		public ObjectBuilder<FieldDateMath> value(Double v) {
+		public ObjectBuilder<FieldDateMath> value(Long v) {
 			this._kind = Kind.Value;
 			this._value = v;
 			return this;
@@ -197,7 +197,7 @@ public class FieldDateMath implements TaggedUnion<FieldDateMath.Kind, Object>, J
 	private static JsonpDeserializer<FieldDateMath> buildFieldDateMathDeserializer() {
 		return new UnionDeserializer.Builder<FieldDateMath, Kind, Object>(FieldDateMath::new, false)
 				.addMember(Kind.Expr, JsonpDeserializer.stringDeserializer())
-				.addMember(Kind.Value, JsonpDeserializer.doubleDeserializer()).build();
+				.addMember(Kind.Value, JsonpDeserializer.longDeserializer()).build();
 	}
 
 	public static final JsonpDeserializer<FieldDateMath> _DESERIALIZER = JsonpDeserializer

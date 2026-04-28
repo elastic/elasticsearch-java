@@ -106,12 +106,13 @@ public class FieldUsageStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * If <code>false</code>, the request returns an error if any wildcard
-	 * expression, index alias, or <code>_all</code> value targets only missing or
-	 * closed indices. This behavior applies even if the request targets other open
-	 * indices. For example, a request targeting <code>foo*,bar*</code> returns an
-	 * error if an index starts with <code>foo</code> but no index starts with
-	 * <code>bar</code>.
+	 * A setting that does two separate checks on the index expression. If
+	 * <code>false</code>, the request returns an error (1) if any wildcard
+	 * expression (including <code>_all</code> and <code>*</code>) resolves to zero
+	 * matching indices or (2) if the complete set of resolved indices, aliases or
+	 * data streams is empty after all expressions are evaluated. If
+	 * <code>true</code>, index expressions that resolve to no indices are allowed
+	 * and the request returns an empty result.
 	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
@@ -143,8 +144,10 @@ public class FieldUsageStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * If <code>true</code>, missing or closed indices are not included in the
-	 * response.
+	 * If <code>false</code>, the request returns an error if it targets a concrete
+	 * (non-wildcarded) index, alias, or data stream that is missing, closed, or
+	 * otherwise unavailable. If <code>true</code>, unavailable concrete targets are
+	 * silently ignored.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -197,12 +200,13 @@ public class FieldUsageStatsRequest extends RequestBase {
 
 		}
 		/**
-		 * If <code>false</code>, the request returns an error if any wildcard
-		 * expression, index alias, or <code>_all</code> value targets only missing or
-		 * closed indices. This behavior applies even if the request targets other open
-		 * indices. For example, a request targeting <code>foo*,bar*</code> returns an
-		 * error if an index starts with <code>foo</code> but no index starts with
-		 * <code>bar</code>.
+		 * A setting that does two separate checks on the index expression. If
+		 * <code>false</code>, the request returns an error (1) if any wildcard
+		 * expression (including <code>_all</code> and <code>*</code>) resolves to zero
+		 * matching indices or (2) if the complete set of resolved indices, aliases or
+		 * data streams is empty after all expressions are evaluated. If
+		 * <code>true</code>, index expressions that resolve to no indices are allowed
+		 * and the request returns an empty result.
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
@@ -268,8 +272,10 @@ public class FieldUsageStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * If <code>true</code>, missing or closed indices are not included in the
-		 * response.
+		 * If <code>false</code>, the request returns an error if it targets a concrete
+		 * (non-wildcarded) index, alias, or data stream that is missing, closed, or
+		 * otherwise unavailable. If <code>true</code>, unavailable concrete targets are
+		 * silently ignored.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
@@ -353,7 +359,8 @@ public class FieldUsageStatsRequest extends RequestBase {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_field_usage_stats");
 					return buf.toString();
 				}
@@ -371,7 +378,8 @@ public class FieldUsageStatsRequest extends RequestBase {
 				propsSet |= _index;
 
 				if (propsSet == (_index)) {
-					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -380,8 +388,8 @@ public class FieldUsageStatsRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
@@ -390,7 +398,8 @@ public class FieldUsageStatsRequest extends RequestBase {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (ApiTypeHelper.isDefined(request.fields)) {
-					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("fields", request.fields.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 
