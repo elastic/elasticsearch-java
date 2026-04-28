@@ -299,8 +299,8 @@ public class SyncJobListRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.jobType)) {
-					params.put("job_type",
-							request.jobType.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("job_type", request.jobType.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.size != null) {
 					params.put("size", String.valueOf(request.size));

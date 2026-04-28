@@ -268,7 +268,9 @@ public class DeleteIndexTemplateRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_index_template");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(
+							request.name.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -285,7 +287,8 @@ public class DeleteIndexTemplateRequest extends RequestBase {
 				propsSet |= _name;
 
 				if (propsSet == (_name)) {
-					params.put("name", request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("name", request.name.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

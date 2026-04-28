@@ -254,7 +254,9 @@ public class DeletePrivilegesRequest extends RequestBase {
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.application, buf);
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(
+							request.name.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -274,7 +276,8 @@ public class DeletePrivilegesRequest extends RequestBase {
 
 				if (propsSet == (_application | _name)) {
 					params.put("application", request.application);
-					params.put("name", request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("name", request.name.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

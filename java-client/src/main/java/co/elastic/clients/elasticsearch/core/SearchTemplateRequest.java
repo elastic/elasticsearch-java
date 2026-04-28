@@ -803,7 +803,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_search");
 					buf.append("/template");
 					return buf.toString();
@@ -825,7 +826,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_index)) {
-					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -835,8 +837,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 				Map<String, String> params = new HashMap<>();
 				params.put("typed_keys", "true");
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);
@@ -851,7 +853,8 @@ public class SearchTemplateRequest extends RequestBase implements JsonpSerializa
 					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
 				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
-					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

@@ -551,8 +551,8 @@ public class StateRequest extends RequestBase {
 					buf.append("/_cluster");
 					buf.append("/state");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == (_metric | _index)) {
@@ -560,10 +560,11 @@ public class StateRequest extends RequestBase {
 					buf.append("/_cluster");
 					buf.append("/state");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -586,13 +587,14 @@ public class StateRequest extends RequestBase {
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_metric)) {
-					params.put("metric",
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("metric", request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_metric | _index)) {
-					params.put("metric",
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("metric", request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -607,8 +609,8 @@ public class StateRequest extends RequestBase {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));

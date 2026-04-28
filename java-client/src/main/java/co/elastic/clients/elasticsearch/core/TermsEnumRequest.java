@@ -522,7 +522,8 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_terms_enum");
 					return buf.toString();
 				}
@@ -540,7 +541,8 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 				propsSet |= _index;
 
 				if (propsSet == (_index)) {
-					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

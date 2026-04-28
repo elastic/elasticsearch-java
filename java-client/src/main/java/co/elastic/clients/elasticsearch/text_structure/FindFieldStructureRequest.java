@@ -858,8 +858,8 @@ public class FindFieldStructureRequest extends RequestBase {
 					params.put("delimiter", request.delimiter);
 				}
 				if (ApiTypeHelper.isDefined(request.columnNames)) {
-					params.put("column_names",
-							request.columnNames.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("column_names", request.columnNames.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.documentsToSample != null) {
 					params.put("documents_to_sample", request.documentsToSample.toString());

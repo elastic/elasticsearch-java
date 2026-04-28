@@ -240,7 +240,9 @@ public class GetUserProfileRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/profile");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.uid.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(
+							request.uid.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -257,7 +259,8 @@ public class GetUserProfileRequest extends RequestBase {
 				propsSet |= _uid;
 
 				if (propsSet == (_uid)) {
-					params.put("uid", request.uid.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("uid",
+							request.uid.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -266,7 +269,8 @@ public class GetUserProfileRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.data)) {
-					params.put("data", request.data.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("data", request.data.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 

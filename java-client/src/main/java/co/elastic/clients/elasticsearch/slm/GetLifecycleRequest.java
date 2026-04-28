@@ -265,8 +265,8 @@ public class GetLifecycleRequest extends RequestBase {
 					buf.append("/_slm");
 					buf.append("/policy");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.policyId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.policyId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -290,7 +290,8 @@ public class GetLifecycleRequest extends RequestBase {
 					propsSet |= _policyId;
 
 				if (propsSet == (_policyId)) {
-					params.put("policyId", request.policyId.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("policyId", request.policyId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (propsSet == 0) {
 				}

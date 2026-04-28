@@ -259,9 +259,6 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 	private final Integer blobCount;
 
 	@Nullable
-	private final Boolean checkOverwriteProtection;
-
-	@Nullable
 	private final Integer concurrency;
 
 	@Nullable
@@ -301,7 +298,6 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 	private RepositoryAnalyzeRequest(Builder builder) {
 
 		this.blobCount = builder.blobCount;
-		this.checkOverwriteProtection = builder.checkOverwriteProtection;
 		this.concurrency = builder.concurrency;
 		this.detailed = builder.detailed;
 		this.earlyReadNodeCount = builder.earlyReadNodeCount;
@@ -330,17 +326,6 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 	@Nullable
 	public final Integer blobCount() {
 		return this.blobCount;
-	}
-
-	/**
-	 * Whether to run the overwrite protection check. For realistic experiments,
-	 * leave this parameter unset.
-	 * <p>
-	 * API name: {@code check_overwrite_protection}
-	 */
-	@Nullable
-	public final Boolean checkOverwriteProtection() {
-		return this.checkOverwriteProtection;
 	}
 
 	/**
@@ -494,9 +479,6 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 		private Integer blobCount;
 
 		@Nullable
-		private Boolean checkOverwriteProtection;
-
-		@Nullable
 		private Integer concurrency;
 
 		@Nullable
@@ -535,7 +517,6 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 		}
 		private Builder(RepositoryAnalyzeRequest instance) {
 			this.blobCount = instance.blobCount;
-			this.checkOverwriteProtection = instance.checkOverwriteProtection;
 			this.concurrency = instance.concurrency;
 			this.detailed = instance.detailed;
 			this.earlyReadNodeCount = instance.earlyReadNodeCount;
@@ -558,17 +539,6 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 		 */
 		public final Builder blobCount(@Nullable Integer value) {
 			this.blobCount = value;
-			return this;
-		}
-
-		/**
-		 * Whether to run the overwrite protection check. For realistic experiments,
-		 * leave this parameter unset.
-		 * <p>
-		 * API name: {@code check_overwrite_protection}
-		 */
-		public final Builder checkOverwriteProtection(@Nullable Boolean value) {
-			this.checkOverwriteProtection = value;
 			return this;
 		}
 
@@ -799,29 +769,11 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.seed != null) {
-					params.put("seed", String.valueOf(request.seed));
-				}
-				if (request.blobCount != null) {
-					params.put("blob_count", String.valueOf(request.blobCount));
-				}
-				if (request.checkOverwriteProtection != null) {
-					params.put("check_overwrite_protection", String.valueOf(request.checkOverwriteProtection));
-				}
-				if (request.maxTotalDataSize != null) {
-					params.put("max_total_data_size", request.maxTotalDataSize);
-				}
-				if (request.registerOperationCount != null) {
-					params.put("register_operation_count", String.valueOf(request.registerOperationCount));
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
-				}
-				if (request.concurrency != null) {
-					params.put("concurrency", String.valueOf(request.concurrency));
-				}
 				if (request.rareActionProbability != null) {
 					params.put("rare_action_probability", String.valueOf(request.rareActionProbability));
+				}
+				if (request.seed != null) {
+					params.put("seed", String.valueOf(request.seed));
 				}
 				if (request.detailed != null) {
 					params.put("detailed", String.valueOf(request.detailed));
@@ -832,11 +784,26 @@ public class RepositoryAnalyzeRequest extends RequestBase {
 				if (request.earlyReadNodeCount != null) {
 					params.put("early_read_node_count", String.valueOf(request.earlyReadNodeCount));
 				}
+				if (request.blobCount != null) {
+					params.put("blob_count", String.valueOf(request.blobCount));
+				}
 				if (request.rarelyAbortWrites != null) {
 					params.put("rarely_abort_writes", String.valueOf(request.rarelyAbortWrites));
 				}
+				if (request.maxTotalDataSize != null) {
+					params.put("max_total_data_size", request.maxTotalDataSize);
+				}
 				if (request.readNodeCount != null) {
 					params.put("read_node_count", String.valueOf(request.readNodeCount));
+				}
+				if (request.registerOperationCount != null) {
+					params.put("register_operation_count", String.valueOf(request.registerOperationCount));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
+				}
+				if (request.concurrency != null) {
+					params.put("concurrency", String.valueOf(request.concurrency));
 				}
 				return params;
 

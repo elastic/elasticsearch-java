@@ -360,7 +360,9 @@ public class PutDataStreamSettingsRequest extends RequestBase implements JsonpSe
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_data_stream");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(
+							request.name.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/_settings");
 					return buf.toString();
 				}
@@ -378,7 +380,8 @@ public class PutDataStreamSettingsRequest extends RequestBase implements JsonpSe
 				propsSet |= _name;
 
 				if (propsSet == (_name)) {
-					params.put("name", request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("name", request.name.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

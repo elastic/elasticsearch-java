@@ -587,25 +587,27 @@ public class IndicesStatsRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_stats");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_stats");
 					return buf.toString();
 				}
 				if (propsSet == (_index | _metric)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_stats");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -628,16 +630,18 @@ public class IndicesStatsRequest extends RequestBase {
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_metric)) {
-					params.put("metric",
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("metric", request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_index)) {
-					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_index | _metric)) {
-					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
-					params.put("metric",
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+					params.put("metric", request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -646,28 +650,30 @@ public class IndicesStatsRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.level != null) {
 					params.put("level", request.level.jsonValue());
 				}
 				if (ApiTypeHelper.isDefined(request.completionFields)) {
-					params.put("completion_fields",
-							request.completionFields.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("completion_fields", request.completionFields.stream().map(v -> v)
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (ApiTypeHelper.isDefined(request.fielddataFields)) {
-					params.put("fielddata_fields",
-							request.fielddataFields.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("fielddata_fields", request.fielddataFields.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (ApiTypeHelper.isDefined(request.groups)) {
-					params.put("groups", request.groups.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("groups", request.groups.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.includeUnloadedSegments != null) {
 					params.put("include_unloaded_segments", String.valueOf(request.includeUnloadedSegments));
 				}
 				if (ApiTypeHelper.isDefined(request.fields)) {
-					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("fields", request.fields.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.forbidClosedIndices != null) {
 					params.put("forbid_closed_indices", String.valueOf(request.forbidClosedIndices));

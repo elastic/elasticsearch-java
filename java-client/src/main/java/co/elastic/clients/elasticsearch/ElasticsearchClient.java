@@ -4398,8 +4398,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * cluster. If reindexing from a remote cluster into an Elastic Cloud Serverless
 	 * project, only remote hosts from <a href=
 	 * "https://cloud.elastic.co/registration?page=docs&amp;placement=docs-body">Elastic
-	 * Cloud Hosted and Elastic Cloud Serverless</a> are allowed. Automatic data
-	 * stream creation requires a matching index template with data stream enabled.
+	 * Cloud Hosted</a> are allowed. Automatic data stream creation requires a
+	 * matching index template with data stream enabled.
 	 * <p>
 	 * The <code>dest</code> element can be configured like the index API to control
 	 * optimistic concurrency control. Omitting <code>version_type</code> or setting
@@ -4495,8 +4495,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * cluster. If reindexing from a remote cluster into an Elastic Cloud Serverless
 	 * project, only remote hosts from <a href=
 	 * "https://cloud.elastic.co/registration?page=docs&amp;placement=docs-body">Elastic
-	 * Cloud Hosted and Elastic Cloud Serverless</a> are allowed. Automatic data
-	 * stream creation requires a matching index template with data stream enabled.
+	 * Cloud Hosted</a> are allowed. Automatic data stream creation requires a
+	 * matching index template with data stream enabled.
 	 * <p>
 	 * The <code>dest</code> element can be configured like the index API to control
 	 * optimistic concurrency control. Omitting <code>version_type</code> or setting

@@ -92,7 +92,7 @@ public class TermsExclude implements TaggedUnion<TermsExclude.Kind, Object>, Jso
 	public String _toJsonString() {
 		switch (_kind) {
 			case Terms :
-				return this.terms().stream().map(v -> v).collect(Collectors.joining(","));
+				return this.terms().stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(","));
 			case Regexp :
 				return this.regexp();
 

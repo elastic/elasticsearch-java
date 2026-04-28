@@ -549,7 +549,8 @@ public class ExistsSourceRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.routing)) {
-					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.realtime != null) {
 					params.put("realtime", String.valueOf(request.realtime));
@@ -567,12 +568,12 @@ public class ExistsSourceRequest extends RequestBase {
 					params.put("_source", request.source._toJsonString());
 				}
 				if (ApiTypeHelper.isDefined(request.sourceExcludes)) {
-					params.put("_source_excludes",
-							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("_source_excludes", request.sourceExcludes.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
-					params.put("_source_includes",
-							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("_source_includes", request.sourceIncludes.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));

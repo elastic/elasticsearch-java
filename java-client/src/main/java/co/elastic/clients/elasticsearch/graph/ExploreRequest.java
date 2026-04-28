@@ -511,7 +511,8 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_graph");
 					buf.append("/explore");
 					return buf.toString();
@@ -530,7 +531,8 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 				propsSet |= _index;
 
 				if (propsSet == (_index)) {
-					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -539,7 +541,8 @@ public class ExploreRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.routing)) {
-					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());

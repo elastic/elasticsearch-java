@@ -387,8 +387,8 @@ public class ListRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.serviceType)) {
-					params.put("service_type",
-							request.serviceType.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("service_type", request.serviceType.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.size != null) {
 					params.put("size", String.valueOf(request.size));
@@ -403,11 +403,12 @@ public class ListRequest extends RequestBase {
 					params.put("include_deleted", String.valueOf(request.includeDeleted));
 				}
 				if (ApiTypeHelper.isDefined(request.connectorName)) {
-					params.put("connector_name",
-							request.connectorName.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("connector_name", request.connectorName.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (ApiTypeHelper.isDefined(request.indexName)) {
-					params.put("index_name", request.indexName.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("index_name", request.indexName.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 

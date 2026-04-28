@@ -309,7 +309,9 @@ public class GetTemplateRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_template");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(
+							request.name.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -329,7 +331,8 @@ public class GetTemplateRequest extends RequestBase {
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_name)) {
-					params.put("name", request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("name", request.name.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

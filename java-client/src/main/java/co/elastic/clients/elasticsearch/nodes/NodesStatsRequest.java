@@ -610,8 +610,8 @@ public class NodesStatsRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/stats");
 					return buf.toString();
 				}
@@ -620,20 +620,20 @@ public class NodesStatsRequest extends RequestBase {
 					buf.append("/_nodes");
 					buf.append("/stats");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == (_nodeId | _metric)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/stats");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == (_metric | _indexMetric)) {
@@ -641,26 +641,26 @@ public class NodesStatsRequest extends RequestBase {
 					buf.append("/_nodes");
 					buf.append("/stats");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/");
-					SimpleEndpoint.pathEncode(
-							request.indexMetric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.indexMetric.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == (_nodeId | _metric | _indexMetric)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/stats");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/");
-					SimpleEndpoint.pathEncode(
-							request.indexMetric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.indexMetric.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -686,29 +686,32 @@ public class NodesStatsRequest extends RequestBase {
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_nodeId)) {
-					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("nodeId", request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_metric)) {
-					params.put("metric",
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("metric", request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_nodeId | _metric)) {
-					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
-					params.put("metric",
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("nodeId", request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+					params.put("metric", request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_metric | _indexMetric)) {
-					params.put("metric",
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-					params.put("indexMetric",
-							request.indexMetric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("metric", request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+					params.put("indexMetric", request.indexMetric.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (propsSet == (_nodeId | _metric | _indexMetric)) {
-					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
-					params.put("metric",
-							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-					params.put("indexMetric",
-							request.indexMetric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("nodeId", request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+					params.put("metric", request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+					params.put("indexMetric", request.indexMetric.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -717,18 +720,19 @@ public class NodesStatsRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.types)) {
-					params.put("types", request.types.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("types", request.types.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.level != null) {
 					params.put("level", request.level.jsonValue());
 				}
 				if (ApiTypeHelper.isDefined(request.completionFields)) {
-					params.put("completion_fields",
-							request.completionFields.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("completion_fields", request.completionFields.stream().map(v -> v)
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (ApiTypeHelper.isDefined(request.fielddataFields)) {
-					params.put("fielddata_fields",
-							request.fielddataFields.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("fielddata_fields", request.fielddataFields.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.groups != null) {
 					params.put("groups", String.valueOf(request.groups));
@@ -737,7 +741,8 @@ public class NodesStatsRequest extends RequestBase {
 					params.put("include_unloaded_segments", String.valueOf(request.includeUnloadedSegments));
 				}
 				if (ApiTypeHelper.isDefined(request.fields)) {
-					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("fields", request.fields.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.includeSegmentFileSizes != null) {
 					params.put("include_segment_file_sizes", String.valueOf(request.includeSegmentFileSizes));

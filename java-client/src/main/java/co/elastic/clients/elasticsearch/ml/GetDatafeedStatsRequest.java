@@ -248,8 +248,8 @@ public class GetDatafeedStatsRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/datafeeds");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.datafeedId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.datafeedId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_stats");
 					return buf.toString();
 				}
@@ -275,7 +275,8 @@ public class GetDatafeedStatsRequest extends RequestBase {
 					propsSet |= _datafeedId;
 
 				if (propsSet == (_datafeedId)) {
-					params.put("datafeedId", request.datafeedId.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("datafeedId", request.datafeedId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (propsSet == 0) {
 				}

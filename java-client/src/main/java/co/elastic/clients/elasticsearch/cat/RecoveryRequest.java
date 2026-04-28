@@ -450,7 +450,8 @@ public class RecoveryRequest extends CatRequestBase {
 					buf.append("/_cat");
 					buf.append("/recovery");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -470,7 +471,8 @@ public class RecoveryRequest extends CatRequestBase {
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_index)) {
-					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -480,7 +482,8 @@ public class RecoveryRequest extends CatRequestBase {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
 				if (ApiTypeHelper.isDefined(request.s)) {
-					params.put("s", request.s.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("s",
+							request.s.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.detailed != null) {
 					params.put("detailed", String.valueOf(request.detailed));
@@ -492,7 +495,8 @@ public class RecoveryRequest extends CatRequestBase {
 					params.put("bytes", request.bytes.jsonValue());
 				}
 				if (ApiTypeHelper.isDefined(request.h)) {
-					params.put("h", request.h.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("h",
+							request.h.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.time != null) {
 					params.put("time", request.time.jsonValue());

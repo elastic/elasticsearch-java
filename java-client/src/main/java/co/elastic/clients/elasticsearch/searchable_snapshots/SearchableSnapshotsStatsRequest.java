@@ -218,7 +218,8 @@ public class SearchableSnapshotsStatsRequest extends RequestBase {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_searchable_snapshots");
 					buf.append("/stats");
 					return buf.toString();
@@ -240,7 +241,8 @@ public class SearchableSnapshotsStatsRequest extends RequestBase {
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_index)) {
-					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},
