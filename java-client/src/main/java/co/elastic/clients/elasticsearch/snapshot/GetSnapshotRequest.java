@@ -732,8 +732,8 @@ public class GetSnapshotRequest extends RequestBase {
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.repository, buf);
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.snapshot.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.snapshot.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -753,7 +753,8 @@ public class GetSnapshotRequest extends RequestBase {
 
 				if (propsSet == (_repository | _snapshot)) {
 					params.put("repository", request.repository);
-					params.put("snapshot", request.snapshot.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("snapshot", request.snapshot.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -795,8 +796,8 @@ public class GetSnapshotRequest extends RequestBase {
 					params.put("after", request.after);
 				}
 				if (ApiTypeHelper.isDefined(request.state)) {
-					params.put("state",
-							request.state.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("state", request.state.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.slmPolicyFilter != null) {
 					params.put("slm_policy_filter", request.slmPolicyFilter);

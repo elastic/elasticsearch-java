@@ -467,7 +467,8 @@ public class ListRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.nodes)) {
-					params.put("nodes", request.nodes.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("nodes", request.nodes.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.parentTaskId != null) {
 					params.put("parent_task_id", request.parentTaskId);
@@ -479,7 +480,8 @@ public class ListRequest extends RequestBase {
 					params.put("group_by", request.groupBy.jsonValue());
 				}
 				if (ApiTypeHelper.isDefined(request.actions)) {
-					params.put("actions", request.actions.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("actions", request.actions.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));

@@ -96,7 +96,7 @@ public class SourceConfigParam implements TaggedUnion<SourceConfigParam.Kind, Ob
 	public String _toJsonString() {
 		switch (_kind) {
 			case Fields :
-				return this.fields().stream().map(v -> v).collect(Collectors.joining(","));
+				return this.fields().stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(","));
 			case Fetch :
 				return String.valueOf(this.fetch());
 

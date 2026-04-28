@@ -235,8 +235,8 @@ public class ClearCachedRealmsRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/realm");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.realms.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.realms.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_clear_cache");
 					return buf.toString();
 				}
@@ -254,7 +254,8 @@ public class ClearCachedRealmsRequest extends RequestBase {
 				propsSet |= _realms;
 
 				if (propsSet == (_realms)) {
-					params.put("realms", request.realms.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("realms", request.realms.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -263,7 +264,8 @@ public class ClearCachedRealmsRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.usernames)) {
-					params.put("usernames", request.usernames.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("usernames", request.usernames.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 

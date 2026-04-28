@@ -363,7 +363,8 @@ public class ShardStoresRequest extends RequestBase {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_shard_stores");
 					return buf.toString();
 				}
@@ -384,7 +385,8 @@ public class ShardStoresRequest extends RequestBase {
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_index)) {
-					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -393,8 +395,8 @@ public class ShardStoresRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
@@ -403,8 +405,8 @@ public class ShardStoresRequest extends RequestBase {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (ApiTypeHelper.isDefined(request.status)) {
-					params.put("status",
-							request.status.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("status", request.status.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 

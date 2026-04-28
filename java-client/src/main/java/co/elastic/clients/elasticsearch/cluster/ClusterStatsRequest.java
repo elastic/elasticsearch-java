@@ -271,8 +271,8 @@ public class ClusterStatsRequest extends RequestBase {
 					buf.append("/stats");
 					buf.append("/nodes");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -292,7 +292,8 @@ public class ClusterStatsRequest extends RequestBase {
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_nodeId)) {
-					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("nodeId", request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

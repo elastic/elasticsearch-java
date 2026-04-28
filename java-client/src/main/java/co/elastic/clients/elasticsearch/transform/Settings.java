@@ -158,9 +158,7 @@ public class Settings implements JsonpSerializable {
 	 * Defines the initial page size to use for the composite aggregation for each
 	 * checkpoint. If circuit breaker exceptions occur, the page size is dynamically
 	 * adjusted to a lower value. The minimum value is <code>10</code> and the
-	 * maximum is <code>65,536</code>. The default value is <code>500</code> for
-	 * <code>pivot</code> transforms and <code>5000</code> for <code>latest</code>
-	 * transforms.
+	 * maximum is <code>65,536</code>.
 	 * <p>
 	 * API name: {@code max_page_search_size}
 	 */
@@ -372,9 +370,7 @@ public class Settings implements JsonpSerializable {
 		 * Defines the initial page size to use for the composite aggregation for each
 		 * checkpoint. If circuit breaker exceptions occur, the page size is dynamically
 		 * adjusted to a lower value. The minimum value is <code>10</code> and the
-		 * maximum is <code>65,536</code>. The default value is <code>500</code> for
-		 * <code>pivot</code> transforms and <code>5000</code> for <code>latest</code>
-		 * transforms.
+		 * maximum is <code>65,536</code>.
 		 * <p>
 		 * API name: {@code max_page_search_size}
 		 */

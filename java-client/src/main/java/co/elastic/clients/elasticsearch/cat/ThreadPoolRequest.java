@@ -456,8 +456,8 @@ public class ThreadPoolRequest extends CatRequestBase {
 					buf.append("/_cat");
 					buf.append("/thread_pool");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(
-							request.threadPoolPatterns.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.threadPoolPatterns.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -477,8 +477,8 @@ public class ThreadPoolRequest extends CatRequestBase {
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_threadPoolPatterns)) {
-					params.put("threadPoolPatterns",
-							request.threadPoolPatterns.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("threadPoolPatterns", request.threadPoolPatterns.stream().map(v -> v)
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -491,13 +491,15 @@ public class ThreadPoolRequest extends CatRequestBase {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (ApiTypeHelper.isDefined(request.s)) {
-					params.put("s", request.s.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("s",
+							request.s.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.bytes != null) {
 					params.put("bytes", request.bytes.jsonValue());
 				}
 				if (ApiTypeHelper.isDefined(request.h)) {
-					params.put("h", request.h.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("h",
+							request.h.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.time != null) {
 					params.put("time", request.time.jsonValue());

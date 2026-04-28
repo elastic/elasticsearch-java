@@ -1509,7 +1509,8 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 				if (propsSet == (_index | _field | _zoom | _x | _y)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_mvt");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.field, buf);
@@ -1543,7 +1544,8 @@ public class SearchMvtRequest extends RequestBase implements JsonpSerializable {
 				propsSet |= _zoom;
 
 				if (propsSet == (_index | _field | _zoom | _x | _y)) {
-					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 					params.put("field", request.field);
 					params.put("zoom", String.valueOf(request.zoom));
 					params.put("x", String.valueOf(request.x));

@@ -754,7 +754,8 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_field_caps");
 					return buf.toString();
 				}
@@ -775,7 +776,8 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_index)) {
-					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -784,11 +786,12 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.types)) {
-					params.put("types", request.types.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("types", request.types.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
@@ -800,7 +803,8 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 					params.put("include_empty_fields", String.valueOf(request.includeEmptyFields));
 				}
 				if (ApiTypeHelper.isDefined(request.filters)) {
-					params.put("filters", request.filters.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("filters", request.filters.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.includeUnmapped != null) {
 					params.put("include_unmapped", String.valueOf(request.includeUnmapped));

@@ -476,7 +476,8 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
 				if (ApiTypeHelper.isDefined(request.s)) {
-					params.put("s", request.s.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("s", request.s.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.size != null) {
 					params.put("size", String.valueOf(request.size));
@@ -485,7 +486,8 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 					params.put("bytes", request.bytes.jsonValue());
 				}
 				if (ApiTypeHelper.isDefined(request.h)) {
-					params.put("h", request.h.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("h", request.h.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));

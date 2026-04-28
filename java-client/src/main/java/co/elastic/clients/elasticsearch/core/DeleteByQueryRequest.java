@@ -1488,7 +1488,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_delete_by_query");
 					return buf.toString();
 				}
@@ -1506,7 +1507,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 				propsSet |= _index;
 
 				if (propsSet == (_index)) {
-					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -1533,7 +1535,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 					params.put("timeout", request.timeout._toJsonString());
 				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
-					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.requestsPerSecond != null) {
 					params.put("requests_per_second", String.valueOf(request.requestsPerSecond));
@@ -1542,7 +1545,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
 				if (ApiTypeHelper.isDefined(request.stats)) {
-					params.put("stats", request.stats.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("stats", request.stats.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
@@ -1557,8 +1561,8 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 					params.put("from", String.valueOf(request.from));
 				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);

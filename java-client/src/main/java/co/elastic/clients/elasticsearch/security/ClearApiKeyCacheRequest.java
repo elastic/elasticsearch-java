@@ -190,7 +190,9 @@ public class ClearApiKeyCacheRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/api_key");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.ids.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(
+							request.ids.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/_clear_cache");
 					return buf.toString();
 				}
@@ -208,7 +210,8 @@ public class ClearApiKeyCacheRequest extends RequestBase {
 				propsSet |= _ids;
 
 				if (propsSet == (_ids)) {
-					params.put("ids", request.ids.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("ids",
+							request.ids.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				return params;
 			},

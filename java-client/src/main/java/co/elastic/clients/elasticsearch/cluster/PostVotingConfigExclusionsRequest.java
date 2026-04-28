@@ -356,10 +356,12 @@ public class PostVotingConfigExclusionsRequest extends RequestBase {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (ApiTypeHelper.isDefined(request.nodeNames)) {
-					params.put("node_names", request.nodeNames.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("node_names", request.nodeNames.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (ApiTypeHelper.isDefined(request.nodeIds)) {
-					params.put("node_ids", request.nodeIds.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("node_ids", request.nodeIds.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());

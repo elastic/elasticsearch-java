@@ -72,12 +72,6 @@ public class AmazonSageMakerServiceSettings implements JsonpSerializable {
 	private final String secretKey;
 
 	@Nullable
-	private final AmazonSageMakerSimilarity similarity;
-
-	@Nullable
-	private final AmazonSageMakerElementType elementType;
-
-	@Nullable
 	private final String targetModel;
 
 	@Nullable
@@ -101,8 +95,6 @@ public class AmazonSageMakerServiceSettings implements JsonpSerializable {
 		this.api = ApiTypeHelper.requireNonNull(builder.api, this, "api");
 		this.region = ApiTypeHelper.requireNonNull(builder.region, this, "region");
 		this.secretKey = ApiTypeHelper.requireNonNull(builder.secretKey, this, "secretKey");
-		this.similarity = builder.similarity;
-		this.elementType = builder.elementType;
 		this.targetModel = builder.targetModel;
 		this.targetContainerHostname = builder.targetContainerHostname;
 		this.inferenceComponentName = builder.inferenceComponentName;
@@ -166,31 +158,6 @@ public class AmazonSageMakerServiceSettings implements JsonpSerializable {
 	 */
 	public final String secretKey() {
 		return this.secretKey;
-	}
-
-	/**
-	 * Required when <code>api</code> is <code>elastic</code> and task type is
-	 * <code>text_embedding</code>. The similarity measure used when invoking the
-	 * <code>text_embedding</code> task type.
-	 * <p>
-	 * API name: {@code similarity}
-	 */
-	@Nullable
-	public final AmazonSageMakerSimilarity similarity() {
-		return this.similarity;
-	}
-
-	/**
-	 * Required when <code>api</code> is <code>elastic</code> and task type is
-	 * <code>text_embedding</code>. The data type returned by the text embedding
-	 * model. This value is used when parsing the response back to Elasticsearch
-	 * data structures.
-	 * <p>
-	 * API name: {@code element_type}
-	 */
-	@Nullable
-	public final AmazonSageMakerElementType elementType() {
-		return this.elementType;
 	}
 
 	/**
@@ -273,14 +240,6 @@ public class AmazonSageMakerServiceSettings implements JsonpSerializable {
 		generator.writeKey("secret_key");
 		generator.write(this.secretKey);
 
-		if (this.similarity != null) {
-			generator.writeKey("similarity");
-			this.similarity.serialize(generator, mapper);
-		}
-		if (this.elementType != null) {
-			generator.writeKey("element_type");
-			this.elementType.serialize(generator, mapper);
-		}
 		if (this.targetModel != null) {
 			generator.writeKey("target_model");
 			generator.write(this.targetModel);
@@ -334,12 +293,6 @@ public class AmazonSageMakerServiceSettings implements JsonpSerializable {
 		private String secretKey;
 
 		@Nullable
-		private AmazonSageMakerSimilarity similarity;
-
-		@Nullable
-		private AmazonSageMakerElementType elementType;
-
-		@Nullable
 		private String targetModel;
 
 		@Nullable
@@ -362,8 +315,6 @@ public class AmazonSageMakerServiceSettings implements JsonpSerializable {
 			this.api = instance.api;
 			this.region = instance.region;
 			this.secretKey = instance.secretKey;
-			this.similarity = instance.similarity;
-			this.elementType = instance.elementType;
 			this.targetModel = instance.targetModel;
 			this.targetContainerHostname = instance.targetContainerHostname;
 			this.inferenceComponentName = instance.inferenceComponentName;
@@ -425,31 +376,6 @@ public class AmazonSageMakerServiceSettings implements JsonpSerializable {
 		 */
 		public final Builder secretKey(String value) {
 			this.secretKey = value;
-			return this;
-		}
-
-		/**
-		 * Required when <code>api</code> is <code>elastic</code> and task type is
-		 * <code>text_embedding</code>. The similarity measure used when invoking the
-		 * <code>text_embedding</code> task type.
-		 * <p>
-		 * API name: {@code similarity}
-		 */
-		public final Builder similarity(@Nullable AmazonSageMakerSimilarity value) {
-			this.similarity = value;
-			return this;
-		}
-
-		/**
-		 * Required when <code>api</code> is <code>elastic</code> and task type is
-		 * <code>text_embedding</code>. The data type returned by the text embedding
-		 * model. This value is used when parsing the response back to Elasticsearch
-		 * data structures.
-		 * <p>
-		 * API name: {@code element_type}
-		 */
-		public final Builder elementType(@Nullable AmazonSageMakerElementType value) {
-			this.elementType = value;
 			return this;
 		}
 
@@ -548,8 +474,6 @@ public class AmazonSageMakerServiceSettings implements JsonpSerializable {
 		op.add(Builder::api, AmazonSageMakerApi._DESERIALIZER, "api");
 		op.add(Builder::region, JsonpDeserializer.stringDeserializer(), "region");
 		op.add(Builder::secretKey, JsonpDeserializer.stringDeserializer(), "secret_key");
-		op.add(Builder::similarity, AmazonSageMakerSimilarity._DESERIALIZER, "similarity");
-		op.add(Builder::elementType, AmazonSageMakerElementType._DESERIALIZER, "element_type");
 		op.add(Builder::targetModel, JsonpDeserializer.stringDeserializer(), "target_model");
 		op.add(Builder::targetContainerHostname, JsonpDeserializer.stringDeserializer(), "target_container_hostname");
 		op.add(Builder::inferenceComponentName, JsonpDeserializer.stringDeserializer(), "inference_component_name");
