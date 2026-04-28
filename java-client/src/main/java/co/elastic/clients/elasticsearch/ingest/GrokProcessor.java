@@ -74,6 +74,9 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 	@Nullable
 	private final Boolean traceMatch;
 
+	@Nullable
+	private final Boolean validateOnly;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GrokProcessor(Builder builder) {
@@ -85,6 +88,7 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		this.patternDefinitions = ApiTypeHelper.unmodifiable(builder.patternDefinitions);
 		this.patterns = ApiTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
 		this.traceMatch = builder.traceMatch;
+		this.validateOnly = builder.validateOnly;
 
 	}
 
@@ -165,6 +169,17 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		return this.traceMatch;
 	}
 
+	/**
+	 * When <code>true</code>, the processor does matching but does not extract
+	 * structured fields
+	 * <p>
+	 * API name: {@code validate_only}
+	 */
+	@Nullable
+	public final Boolean validateOnly() {
+		return this.validateOnly;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -207,6 +222,11 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 			generator.write(this.traceMatch);
 
 		}
+		if (this.validateOnly != null) {
+			generator.writeKey("validate_only");
+			generator.write(this.validateOnly);
+
+		}
 
 	}
 
@@ -233,6 +253,9 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		@Nullable
 		private Boolean traceMatch;
 
+		@Nullable
+		private Boolean validateOnly;
+
 		public Builder() {
 		}
 		private Builder(GrokProcessor instance) {
@@ -242,6 +265,7 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 			this.patternDefinitions = instance.patternDefinitions;
 			this.patterns = instance.patterns;
 			this.traceMatch = instance.traceMatch;
+			this.validateOnly = instance.validateOnly;
 
 		}
 		/**
@@ -343,6 +367,17 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 			return this;
 		}
 
+		/**
+		 * When <code>true</code>, the processor does matching but does not extract
+		 * structured fields
+		 * <p>
+		 * API name: {@code validate_only}
+		 */
+		public final Builder validateOnly(@Nullable Boolean value) {
+			this.validateOnly = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -385,6 +420,7 @@ public class GrokProcessor extends ProcessorBase implements ProcessorVariant {
 		op.add(Builder::patterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"patterns");
 		op.add(Builder::traceMatch, JsonpDeserializer.booleanDeserializer(), "trace_match");
+		op.add(Builder::validateOnly, JsonpDeserializer.booleanDeserializer(), "validate_only");
 
 	}
 

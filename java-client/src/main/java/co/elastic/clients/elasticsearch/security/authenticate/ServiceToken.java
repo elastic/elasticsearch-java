@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.security.authenticate;
 
+import co.elastic.clients.elasticsearch.security.CredentialManagedBy;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -26,7 +27,6 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -59,17 +59,22 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ServiceToken implements JsonpSerializable {
+	@Nullable
 	private final String name;
 
 	@Nullable
 	private final String type;
 
+	@Nullable
+	private final CredentialManagedBy managedBy;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ServiceToken(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = builder.name;
 		this.type = builder.type;
+		this.managedBy = builder.managedBy;
 
 	}
 
@@ -78,8 +83,9 @@ public class ServiceToken implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code name}
+	 * API name: {@code name}
 	 */
+	@Nullable
 	public final String name() {
 		return this.name;
 	}
@@ -93,6 +99,14 @@ public class ServiceToken implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code managed_by}
+	 */
+	@Nullable
+	public final CredentialManagedBy managedBy() {
+		return this.managedBy;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -103,13 +117,19 @@ public class ServiceToken implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
+		if (this.name != null) {
+			generator.writeKey("name");
+			generator.write(this.name);
 
+		}
 		if (this.type != null) {
 			generator.writeKey("type");
 			generator.write(this.type);
 
+		}
+		if (this.managedBy != null) {
+			generator.writeKey("managed_by");
+			this.managedBy.serialize(generator, mapper);
 		}
 
 	}
@@ -126,22 +146,27 @@ public class ServiceToken implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ServiceToken> {
+		@Nullable
 		private String name;
 
 		@Nullable
 		private String type;
+
+		@Nullable
+		private CredentialManagedBy managedBy;
 
 		public Builder() {
 		}
 		private Builder(ServiceToken instance) {
 			this.name = instance.name;
 			this.type = instance.type;
+			this.managedBy = instance.managedBy;
 
 		}
 		/**
-		 * Required - API name: {@code name}
+		 * API name: {@code name}
 		 */
-		public final Builder name(String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -151,6 +176,14 @@ public class ServiceToken implements JsonpSerializable {
 		 */
 		public final Builder type(@Nullable String value) {
 			this.type = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code managed_by}
+		 */
+		public final Builder managedBy(@Nullable CredentialManagedBy value) {
+			this.managedBy = value;
 			return this;
 		}
 
@@ -190,6 +223,7 @@ public class ServiceToken implements JsonpSerializable {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::managedBy, CredentialManagedBy._DESERIALIZER, "managed_by");
 
 	}
 

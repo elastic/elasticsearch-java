@@ -614,6 +614,51 @@ public class ElasticsearchSecurityAsyncClient
 		return clearCachedServiceTokens(fn.apply(new ClearCachedServiceTokensRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: security.clone_api_key
+
+	/**
+	 * Clone an API key.
+	 * <p>
+	 * Create a copy of an existing API key with a new ID. The cloned key inherits
+	 * the role descriptors of the source key. This is intended for applications
+	 * (such as Kibana) that need to create API keys on behalf of a user using an
+	 * existing API key credential, since derived API keys (API keys created by API
+	 * keys) are not otherwise supported.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<CloneApiKeyResponse> cloneApiKey(CloneApiKeyRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CloneApiKeyRequest, CloneApiKeyResponse, ErrorResponse> endpoint = (JsonEndpoint<CloneApiKeyRequest, CloneApiKeyResponse, ErrorResponse>) CloneApiKeyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Clone an API key.
+	 * <p>
+	 * Create a copy of an existing API key with a new ID. The cloned key inherits
+	 * the role descriptors of the source key. This is intended for applications
+	 * (such as Kibana) that need to create API keys on behalf of a user using an
+	 * existing API key credential, since derived API keys (API keys created by API
+	 * keys) are not otherwise supported.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link CloneApiKeyRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<CloneApiKeyResponse> cloneApiKey(
+			Function<CloneApiKeyRequest.Builder, ObjectBuilder<CloneApiKeyRequest>> fn) {
+		return cloneApiKey(fn.apply(new CloneApiKeyRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: security.create_api_key
 
 	/**

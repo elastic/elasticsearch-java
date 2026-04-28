@@ -30,6 +30,8 @@ import co.elastic.clients.elasticsearch.cluster.ElasticsearchClusterClient;
 import co.elastic.clients.elasticsearch.connector.ElasticsearchConnectorClient;
 import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
+import co.elastic.clients.elasticsearch.core.CancelReindexRequest;
+import co.elastic.clients.elasticsearch.core.CancelReindexResponse;
 import co.elastic.clients.elasticsearch.core.ClearScrollRequest;
 import co.elastic.clients.elasticsearch.core.ClearScrollResponse;
 import co.elastic.clients.elasticsearch.core.ClosePointInTimeRequest;
@@ -52,6 +54,8 @@ import co.elastic.clients.elasticsearch.core.ExplainRequest;
 import co.elastic.clients.elasticsearch.core.ExplainResponse;
 import co.elastic.clients.elasticsearch.core.FieldCapsRequest;
 import co.elastic.clients.elasticsearch.core.FieldCapsResponse;
+import co.elastic.clients.elasticsearch.core.GetReindexRequest;
+import co.elastic.clients.elasticsearch.core.GetReindexResponse;
 import co.elastic.clients.elasticsearch.core.GetRequest;
 import co.elastic.clients.elasticsearch.core.GetResponse;
 import co.elastic.clients.elasticsearch.core.GetScriptContextRequest;
@@ -68,6 +72,8 @@ import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 import co.elastic.clients.elasticsearch.core.InfoRequest;
 import co.elastic.clients.elasticsearch.core.InfoResponse;
+import co.elastic.clients.elasticsearch.core.ListReindexRequest;
+import co.elastic.clients.elasticsearch.core.ListReindexResponse;
 import co.elastic.clients.elasticsearch.core.MgetRequest;
 import co.elastic.clients.elasticsearch.core.MgetResponse;
 import co.elastic.clients.elasticsearch.core.MsearchRequest;
@@ -925,6 +931,53 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public BulkResponse bulk() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new BulkRequest.Builder().build(), BulkRequest._ENDPOINT,
 				this.transportOptions);
+	}
+
+	// ----- Endpoint: cancel_reindex
+
+	/**
+	 * Cancel a reindex task.
+	 * <p>
+	 * Cancel an ongoing reindex task. If <code>wait_for_completion</code> is
+	 * <code>true</code> (the default), the response contains the final task state
+	 * after cancellation. If <code>wait_for_completion</code> is
+	 * <code>false</code>, the response contains only
+	 * <code>acknowledged: true</code>.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CancelReindexResponse cancelReindex(CancelReindexRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CancelReindexRequest, CancelReindexResponse, ErrorResponse> endpoint = (JsonEndpoint<CancelReindexRequest, CancelReindexResponse, ErrorResponse>) CancelReindexRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Cancel a reindex task.
+	 * <p>
+	 * Cancel an ongoing reindex task. If <code>wait_for_completion</code> is
+	 * <code>true</code> (the default), the response contains the final task state
+	 * after cancellation. If <code>wait_for_completion</code> is
+	 * <code>false</code>, the response contains only
+	 * <code>acknowledged: true</code>.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link CancelReindexRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CancelReindexResponse cancelReindex(
+			Function<CancelReindexRequest.Builder, ObjectBuilder<CancelReindexRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return cancelReindex(fn.apply(new CancelReindexRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: clear_scroll
@@ -2581,6 +2634,43 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 		return get(fn.apply(new GetRequest.Builder()).build(), tDocumentType);
 	}
 
+	// ----- Endpoint: get_reindex
+
+	/**
+	 * Get a reindex task.
+	 * <p>
+	 * Get the status and progress of a specific reindex task.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetReindexResponse getReindex(GetReindexRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetReindexRequest, GetReindexResponse, ErrorResponse> endpoint = (JsonEndpoint<GetReindexRequest, GetReindexResponse, ErrorResponse>) GetReindexRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get a reindex task.
+	 * <p>
+	 * Get the status and progress of a specific reindex task.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetReindexRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetReindexResponse getReindex(Function<GetReindexRequest.Builder, ObjectBuilder<GetReindexRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getReindex(fn.apply(new GetReindexRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: get_script
 
 	/**
@@ -3364,9 +3454,13 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	/**
 	 * Get cluster info.
 	 * <p>
-	 * Get basic build, version, and cluster information. ::: In Serverless, this
-	 * API is retained for backward compatibility only. Some response fields, such
-	 * as the version number, should be ignored.
+	 * Get basic build, version, and cluster information. ::: In Serverless,
+	 * <code>version.number</code> always reports the next target Elasticsearch
+	 * release version at the time of the request. Serverless does not track to a
+	 * traditional release versioning model; it is continuously updated. The version
+	 * number is provided to maintain compatibility with existing clients, but it is
+	 * not meaningful for assessing feature availability. Clients should detect a
+	 * Serverless environment by checking for <code>build_flavor: serverless</code>.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-info">Documentation
@@ -3374,6 +3468,59 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 */
 	public InfoResponse info() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: list_reindex
+
+	/**
+	 * List active reindex tasks.
+	 * <p>
+	 * Get information about all currently running reindex tasks.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ListReindexResponse listReindex(ListReindexRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ListReindexRequest, ListReindexResponse, ErrorResponse> endpoint = (JsonEndpoint<ListReindexRequest, ListReindexResponse, ErrorResponse>) ListReindexRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * List active reindex tasks.
+	 * <p>
+	 * Get information about all currently running reindex tasks.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ListReindexRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final ListReindexResponse listReindex(
+			Function<ListReindexRequest.Builder, ObjectBuilder<ListReindexRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return listReindex(fn.apply(new ListReindexRequest.Builder()).build());
+	}
+
+	/**
+	 * List active reindex tasks.
+	 * <p>
+	 * Get information about all currently running reindex tasks.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ListReindexResponse listReindex() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new ListReindexRequest.Builder().build(), ListReindexRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: mget
@@ -4249,9 +4396,10 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * must explicitly allow the remote host using the
 	 * <code>reindex.remote.whitelist</code> node setting on the destination
 	 * cluster. If reindexing from a remote cluster into an Elastic Cloud Serverless
-	 * project, only remote hosts from Elastic Cloud Hosted are allowed. Automatic
-	 * data stream creation requires a matching index template with data stream
-	 * enabled.
+	 * project, only remote hosts from <a href=
+	 * "https://cloud.elastic.co/registration?page=docs&amp;placement=docs-body">Elastic
+	 * Cloud Hosted and Elastic Cloud Serverless</a> are allowed. Automatic data
+	 * stream creation requires a matching index template with data stream enabled.
 	 * <p>
 	 * The <code>dest</code> element can be configured like the index API to control
 	 * optimistic concurrency control. Omitting <code>version_type</code> or setting
@@ -4345,9 +4493,10 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * must explicitly allow the remote host using the
 	 * <code>reindex.remote.whitelist</code> node setting on the destination
 	 * cluster. If reindexing from a remote cluster into an Elastic Cloud Serverless
-	 * project, only remote hosts from Elastic Cloud Hosted are allowed. Automatic
-	 * data stream creation requires a matching index template with data stream
-	 * enabled.
+	 * project, only remote hosts from <a href=
+	 * "https://cloud.elastic.co/registration?page=docs&amp;placement=docs-body">Elastic
+	 * Cloud Hosted and Elastic Cloud Serverless</a> are allowed. Automatic data
+	 * stream creation requires a matching index template with data stream enabled.
 	 * <p>
 	 * The <code>dest</code> element can be configured like the index API to control
 	 * optimistic concurrency control. Omitting <code>version_type</code> or setting

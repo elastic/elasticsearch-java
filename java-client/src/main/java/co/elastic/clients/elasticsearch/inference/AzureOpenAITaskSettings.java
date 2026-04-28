@@ -26,10 +26,12 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -62,11 +64,14 @@ public class AzureOpenAITaskSettings implements JsonpSerializable {
 	@Nullable
 	private final String user;
 
+	private final Map<String, String> headers;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private AzureOpenAITaskSettings(Builder builder) {
 
 		this.user = builder.user;
+		this.headers = ApiTypeHelper.unmodifiable(builder.headers);
 
 	}
 
@@ -75,15 +80,31 @@ public class AzureOpenAITaskSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For a <code>completion</code>, <code>chat_completion</code> or
-	 * <code>text_embedding</code> task, specify the user issuing the request. This
-	 * information can be used for abuse detection.
+	 * Specifies the user issuing the request. This information can be used for
+	 * abuse detection.
 	 * <p>
 	 * API name: {@code user}
 	 */
 	@Nullable
 	public final String user() {
 		return this.user;
+	}
+
+	/**
+	 * Specifies custom HTTP header parameters. For example:
+	 * 
+	 * <pre>
+	 * <code>&quot;headers&quot;: {
+	 *   &quot;Custom-Header&quot;: &quot;Some-Value&quot;,
+	 *   &quot;Another-Custom-Header&quot;: &quot;Another-Value&quot;
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * API name: {@code headers}
+	 */
+	public final Map<String, String> headers() {
+		return this.headers;
 	}
 
 	/**
@@ -100,6 +121,17 @@ public class AzureOpenAITaskSettings implements JsonpSerializable {
 		if (this.user != null) {
 			generator.writeKey("user");
 			generator.write(this.user);
+
+		}
+		if (ApiTypeHelper.isDefined(this.headers)) {
+			generator.writeKey("headers");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.headers.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
 
@@ -122,21 +154,64 @@ public class AzureOpenAITaskSettings implements JsonpSerializable {
 		@Nullable
 		private String user;
 
+		@Nullable
+		private Map<String, String> headers;
+
 		public Builder() {
 		}
 		private Builder(AzureOpenAITaskSettings instance) {
 			this.user = instance.user;
+			this.headers = instance.headers;
 
 		}
 		/**
-		 * For a <code>completion</code>, <code>chat_completion</code> or
-		 * <code>text_embedding</code> task, specify the user issuing the request. This
-		 * information can be used for abuse detection.
+		 * Specifies the user issuing the request. This information can be used for
+		 * abuse detection.
 		 * <p>
 		 * API name: {@code user}
 		 */
 		public final Builder user(@Nullable String value) {
 			this.user = value;
+			return this;
+		}
+
+		/**
+		 * Specifies custom HTTP header parameters. For example:
+		 * 
+		 * <pre>
+		 * <code>&quot;headers&quot;: {
+		 *   &quot;Custom-Header&quot;: &quot;Some-Value&quot;,
+		 *   &quot;Another-Custom-Header&quot;: &quot;Another-Value&quot;
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * API name: {@code headers}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>headers</code>.
+		 */
+		public final Builder headers(Map<String, String> map) {
+			this.headers = _mapPutAll(this.headers, map);
+			return this;
+		}
+
+		/**
+		 * Specifies custom HTTP header parameters. For example:
+		 * 
+		 * <pre>
+		 * <code>&quot;headers&quot;: {
+		 *   &quot;Custom-Header&quot;: &quot;Some-Value&quot;,
+		 *   &quot;Another-Custom-Header&quot;: &quot;Another-Value&quot;
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * API name: {@code headers}
+		 * <p>
+		 * Adds an entry to <code>headers</code>.
+		 */
+		public final Builder headers(String key, String value) {
+			this.headers = _mapPut(this.headers, key, value);
 			return this;
 		}
 
@@ -176,6 +251,8 @@ public class AzureOpenAITaskSettings implements JsonpSerializable {
 			ObjectDeserializer<AzureOpenAITaskSettings.Builder> op) {
 
 		op.add(Builder::user, JsonpDeserializer.stringDeserializer(), "user");
+		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"headers");
 
 	}
 

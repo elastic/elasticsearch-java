@@ -31,6 +31,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -65,6 +66,12 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 
 	private final String apiVersion;
 
+	@Nullable
+	private final String clientId;
+
+	@Nullable
+	private final String clientSecret;
+
 	private final String deploymentId;
 
 	@Nullable
@@ -75,16 +82,25 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 
 	private final String resourceName;
 
+	private final List<String> scopes;
+
+	@Nullable
+	private final String tenantId;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private AzureOpenAIServiceSettings(Builder builder) {
 
 		this.apiKey = builder.apiKey;
 		this.apiVersion = ApiTypeHelper.requireNonNull(builder.apiVersion, this, "apiVersion");
+		this.clientId = builder.clientId;
+		this.clientSecret = builder.clientSecret;
 		this.deploymentId = ApiTypeHelper.requireNonNull(builder.deploymentId, this, "deploymentId");
 		this.entraId = builder.entraId;
 		this.rateLimit = builder.rateLimit;
 		this.resourceName = ApiTypeHelper.requireNonNull(builder.resourceName, this, "resourceName");
+		this.scopes = ApiTypeHelper.unmodifiable(builder.scopes);
+		this.tenantId = builder.tenantId;
 
 	}
 
@@ -93,14 +109,12 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * A valid API key for your Azure OpenAI account. You must specify either
-	 * <code>api_key</code> or <code>entra_id</code>. If you do not provide either
-	 * or you provide both, you will receive an error when you try to create your
-	 * model.
+	 * A valid API key for your Azure OpenAI account.
 	 * <p>
-	 * IMPORTANT: You need to provide the API key only once, during the inference
-	 * model creation. The get inference endpoint API does not retrieve your API
-	 * key.
+	 * IMPORTANT: You must specify either <code>api_key</code>,
+	 * <code>entra_id</code>, or <code>client_secret</code>. If you do not provide
+	 * one or you provide more than one of them, you will receive an error when you
+	 * try to create your endpoint.
 	 * <p>
 	 * API name: {@code api_key}
 	 */
@@ -120,6 +134,42 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * For OAuth 2.0 authentication using the client credentials grant flow. The
+	 * application ID that's assigned to your app.
+	 * <p>
+	 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
+	 * tenant_id, and client_secret together. If one of the fields is missing, you
+	 * will receive an error when you try to create your endpoint.
+	 * <p>
+	 * API name: {@code client_id}
+	 */
+	@Nullable
+	public final String clientId() {
+		return this.clientId;
+	}
+
+	/**
+	 * For OAuth 2.0 authentication using the client credentials grant flow. The
+	 * application secret that you created in the Microsoft app registration portal
+	 * for your app.
+	 * <p>
+	 * IMPORTANT: You must specify either <code>api_key</code>,
+	 * <code>entra_id</code>, or <code>client_secret</code>. If you do not provide
+	 * one or you provide more than one of them, you will receive an error when you
+	 * try to create your endpoint.
+	 * <p>
+	 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
+	 * tenant_id, and client_secret together. If one of the fields is missing, you
+	 * will receive an error when you try to create your endpoint.
+	 * <p>
+	 * API name: {@code client_secret}
+	 */
+	@Nullable
+	public final String clientSecret() {
+		return this.clientSecret;
+	}
+
+	/**
 	 * Required - The deployment name of your deployed models. Your Azure OpenAI
 	 * deployments can be found though the Azure OpenAI Studio portal that is linked
 	 * to your subscription.
@@ -131,9 +181,12 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * A valid Microsoft Entra token. You must specify either <code>api_key</code>
-	 * or <code>entra_id</code>. If you do not provide either or you provide both,
-	 * you will receive an error when you try to create your model.
+	 * A valid Microsoft Entra token.
+	 * <p>
+	 * IMPORTANT: You must specify either <code>api_key</code>,
+	 * <code>entra_id</code>, or <code>client_secret</code>. If you do not provide
+	 * one or you provide more than one of them, you will receive an error when you
+	 * try to create your endpoint.
 	 * <p>
 	 * API name: {@code entra_id}
 	 */
@@ -168,6 +221,43 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * For OAuth 2.0 authentication using the client credentials grant flow. The
+	 * resource identifier (application ID URI) of the resource you want, suffixed
+	 * with .default For example:
+	 * 
+	 * <pre>
+	 * <code>&quot;scopes&quot;: [
+	 *   &quot;https://cognitiveservices.azure.com/.default&quot;
+	 * ]
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
+	 * tenant_id, and client_secret together. If one of the fields is missing, you
+	 * will receive an error when you try to create your endpoint.
+	 * <p>
+	 * API name: {@code scopes}
+	 */
+	public final List<String> scopes() {
+		return this.scopes;
+	}
+
+	/**
+	 * For OAuth 2.0 authentication using the client credentials grant flow. The
+	 * directory tenant the application plans to operate against.
+	 * <p>
+	 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
+	 * tenant_id, and client_secret together. If one of the fields is missing, you
+	 * will receive an error when you try to create your endpoint.
+	 * <p>
+	 * API name: {@code tenant_id}
+	 */
+	@Nullable
+	public final String tenantId() {
+		return this.tenantId;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -186,6 +276,16 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		generator.writeKey("api_version");
 		generator.write(this.apiVersion);
 
+		if (this.clientId != null) {
+			generator.writeKey("client_id");
+			generator.write(this.clientId);
+
+		}
+		if (this.clientSecret != null) {
+			generator.writeKey("client_secret");
+			generator.write(this.clientSecret);
+
+		}
 		generator.writeKey("deployment_id");
 		generator.write(this.deploymentId);
 
@@ -201,6 +301,22 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		}
 		generator.writeKey("resource_name");
 		generator.write(this.resourceName);
+
+		if (ApiTypeHelper.isDefined(this.scopes)) {
+			generator.writeKey("scopes");
+			generator.writeStartArray();
+			for (String item0 : this.scopes) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.tenantId != null) {
+			generator.writeKey("tenant_id");
+			generator.write(this.tenantId);
+
+		}
 
 	}
 
@@ -223,6 +339,12 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 
 		private String apiVersion;
 
+		@Nullable
+		private String clientId;
+
+		@Nullable
+		private String clientSecret;
+
 		private String deploymentId;
 
 		@Nullable
@@ -233,26 +355,34 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 
 		private String resourceName;
 
+		@Nullable
+		private List<String> scopes;
+
+		@Nullable
+		private String tenantId;
+
 		public Builder() {
 		}
 		private Builder(AzureOpenAIServiceSettings instance) {
 			this.apiKey = instance.apiKey;
 			this.apiVersion = instance.apiVersion;
+			this.clientId = instance.clientId;
+			this.clientSecret = instance.clientSecret;
 			this.deploymentId = instance.deploymentId;
 			this.entraId = instance.entraId;
 			this.rateLimit = instance.rateLimit;
 			this.resourceName = instance.resourceName;
+			this.scopes = instance.scopes;
+			this.tenantId = instance.tenantId;
 
 		}
 		/**
-		 * A valid API key for your Azure OpenAI account. You must specify either
-		 * <code>api_key</code> or <code>entra_id</code>. If you do not provide either
-		 * or you provide both, you will receive an error when you try to create your
-		 * model.
+		 * A valid API key for your Azure OpenAI account.
 		 * <p>
-		 * IMPORTANT: You need to provide the API key only once, during the inference
-		 * model creation. The get inference endpoint API does not retrieve your API
-		 * key.
+		 * IMPORTANT: You must specify either <code>api_key</code>,
+		 * <code>entra_id</code>, or <code>client_secret</code>. If you do not provide
+		 * one or you provide more than one of them, you will receive an error when you
+		 * try to create your endpoint.
 		 * <p>
 		 * API name: {@code api_key}
 		 */
@@ -273,6 +403,42 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		}
 
 		/**
+		 * For OAuth 2.0 authentication using the client credentials grant flow. The
+		 * application ID that's assigned to your app.
+		 * <p>
+		 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
+		 * tenant_id, and client_secret together. If one of the fields is missing, you
+		 * will receive an error when you try to create your endpoint.
+		 * <p>
+		 * API name: {@code client_id}
+		 */
+		public final Builder clientId(@Nullable String value) {
+			this.clientId = value;
+			return this;
+		}
+
+		/**
+		 * For OAuth 2.0 authentication using the client credentials grant flow. The
+		 * application secret that you created in the Microsoft app registration portal
+		 * for your app.
+		 * <p>
+		 * IMPORTANT: You must specify either <code>api_key</code>,
+		 * <code>entra_id</code>, or <code>client_secret</code>. If you do not provide
+		 * one or you provide more than one of them, you will receive an error when you
+		 * try to create your endpoint.
+		 * <p>
+		 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
+		 * tenant_id, and client_secret together. If one of the fields is missing, you
+		 * will receive an error when you try to create your endpoint.
+		 * <p>
+		 * API name: {@code client_secret}
+		 */
+		public final Builder clientSecret(@Nullable String value) {
+			this.clientSecret = value;
+			return this;
+		}
+
+		/**
 		 * Required - The deployment name of your deployed models. Your Azure OpenAI
 		 * deployments can be found though the Azure OpenAI Studio portal that is linked
 		 * to your subscription.
@@ -285,9 +451,12 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * A valid Microsoft Entra token. You must specify either <code>api_key</code>
-		 * or <code>entra_id</code>. If you do not provide either or you provide both,
-		 * you will receive an error when you try to create your model.
+		 * A valid Microsoft Entra token.
+		 * <p>
+		 * IMPORTANT: You must specify either <code>api_key</code>,
+		 * <code>entra_id</code>, or <code>client_secret</code>. If you do not provide
+		 * one or you provide more than one of them, you will receive an error when you
+		 * try to create your endpoint.
 		 * <p>
 		 * API name: {@code entra_id}
 		 */
@@ -336,6 +505,71 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * For OAuth 2.0 authentication using the client credentials grant flow. The
+		 * resource identifier (application ID URI) of the resource you want, suffixed
+		 * with .default For example:
+		 * 
+		 * <pre>
+		 * <code>&quot;scopes&quot;: [
+		 *   &quot;https://cognitiveservices.azure.com/.default&quot;
+		 * ]
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
+		 * tenant_id, and client_secret together. If one of the fields is missing, you
+		 * will receive an error when you try to create your endpoint.
+		 * <p>
+		 * API name: {@code scopes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>scopes</code>.
+		 */
+		public final Builder scopes(List<String> list) {
+			this.scopes = _listAddAll(this.scopes, list);
+			return this;
+		}
+
+		/**
+		 * For OAuth 2.0 authentication using the client credentials grant flow. The
+		 * resource identifier (application ID URI) of the resource you want, suffixed
+		 * with .default For example:
+		 * 
+		 * <pre>
+		 * <code>&quot;scopes&quot;: [
+		 *   &quot;https://cognitiveservices.azure.com/.default&quot;
+		 * ]
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
+		 * tenant_id, and client_secret together. If one of the fields is missing, you
+		 * will receive an error when you try to create your endpoint.
+		 * <p>
+		 * API name: {@code scopes}
+		 * <p>
+		 * Adds one or more values to <code>scopes</code>.
+		 */
+		public final Builder scopes(String value, String... values) {
+			this.scopes = _listAdd(this.scopes, value, values);
+			return this;
+		}
+
+		/**
+		 * For OAuth 2.0 authentication using the client credentials grant flow. The
+		 * directory tenant the application plans to operate against.
+		 * <p>
+		 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
+		 * tenant_id, and client_secret together. If one of the fields is missing, you
+		 * will receive an error when you try to create your endpoint.
+		 * <p>
+		 * API name: {@code tenant_id}
+		 */
+		public final Builder tenantId(@Nullable String value) {
+			this.tenantId = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -373,10 +607,14 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 
 		op.add(Builder::apiKey, JsonpDeserializer.stringDeserializer(), "api_key");
 		op.add(Builder::apiVersion, JsonpDeserializer.stringDeserializer(), "api_version");
+		op.add(Builder::clientId, JsonpDeserializer.stringDeserializer(), "client_id");
+		op.add(Builder::clientSecret, JsonpDeserializer.stringDeserializer(), "client_secret");
 		op.add(Builder::deploymentId, JsonpDeserializer.stringDeserializer(), "deployment_id");
 		op.add(Builder::entraId, JsonpDeserializer.stringDeserializer(), "entra_id");
 		op.add(Builder::rateLimit, RateLimitSetting._DESERIALIZER, "rate_limit");
 		op.add(Builder::resourceName, JsonpDeserializer.stringDeserializer(), "resource_name");
+		op.add(Builder::scopes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "scopes");
+		op.add(Builder::tenantId, JsonpDeserializer.stringDeserializer(), "tenant_id");
 
 	}
 

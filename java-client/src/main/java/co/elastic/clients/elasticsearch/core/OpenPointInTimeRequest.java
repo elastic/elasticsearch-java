@@ -202,8 +202,10 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * If <code>false</code>, the request returns an error if it targets a missing
-	 * or closed index.
+	 * If <code>false</code>, the request returns an error if it targets a concrete
+	 * (non-wildcarded) index, alias, or data stream that is missing, closed, or
+	 * otherwise unavailable. If <code>true</code>, unavailable concrete targets are
+	 * silently ignored.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -408,8 +410,10 @@ public class OpenPointInTimeRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * If <code>false</code>, the request returns an error if it targets a missing
-		 * or closed index.
+		 * If <code>false</code>, the request returns an error if it targets a concrete
+		 * (non-wildcarded) index, alias, or data stream that is missing, closed, or
+		 * otherwise unavailable. If <code>true</code>, unavailable concrete targets are
+		 * silently ignored.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */

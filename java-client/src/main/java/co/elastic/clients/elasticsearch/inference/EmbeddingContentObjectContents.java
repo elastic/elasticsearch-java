@@ -93,9 +93,11 @@ public class EmbeddingContentObjectContents implements JsonpSerializable {
 	}
 
 	/**
-	 * The format of the input. For the <code>text</code> type this defaults to
-	 * <code>text</code>. For the <code>image</code> type, this defaults to
-	 * <code>base64</code>.
+	 * The format of the input. For the <code>text</code> type this must be
+	 * <code>text</code>. For the <code>image</code> type, this must be
+	 * <code>base64</code>. If not specified, this will default to <code>text</code>
+	 * for the <code>text</code> type and <code>base64</code> for the
+	 * <code>image</code> type.
 	 * <p>
 	 * API name: {@code format}
 	 */
@@ -105,7 +107,8 @@ public class EmbeddingContentObjectContents implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The value of the input to embed.
+	 * Required - The value of the input to embed. For images, this must be a
+	 * base64-encoded data URI, i.e. &quot;data:content/type;base64,...&quot;
 	 * <p>
 	 * API name: {@code value}
 	 */
@@ -175,9 +178,11 @@ public class EmbeddingContentObjectContents implements JsonpSerializable {
 		}
 
 		/**
-		 * The format of the input. For the <code>text</code> type this defaults to
-		 * <code>text</code>. For the <code>image</code> type, this defaults to
-		 * <code>base64</code>.
+		 * The format of the input. For the <code>text</code> type this must be
+		 * <code>text</code>. For the <code>image</code> type, this must be
+		 * <code>base64</code>. If not specified, this will default to <code>text</code>
+		 * for the <code>text</code> type and <code>base64</code> for the
+		 * <code>image</code> type.
 		 * <p>
 		 * API name: {@code format}
 		 */
@@ -187,7 +192,8 @@ public class EmbeddingContentObjectContents implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The value of the input to embed.
+		 * Required - The value of the input to embed. For images, this must be a
+		 * base64-encoded data URI, i.e. &quot;data:content/type;base64,...&quot;
 		 * <p>
 		 * API name: {@code value}
 		 */

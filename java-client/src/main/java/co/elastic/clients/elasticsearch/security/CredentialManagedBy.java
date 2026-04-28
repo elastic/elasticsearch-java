@@ -40,11 +40,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#security._types.ApiKeyManagedBy">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#security._types.CredentialManagedBy">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum ApiKeyManagedBy implements JsonEnum {
+public enum CredentialManagedBy implements JsonEnum {
 	Cloud("cloud"),
 
 	Elasticsearch("elasticsearch"),
@@ -53,7 +54,7 @@ public enum ApiKeyManagedBy implements JsonEnum {
 
 	private final String jsonValue;
 
-	ApiKeyManagedBy(String jsonValue) {
+	CredentialManagedBy(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -61,6 +62,6 @@ public enum ApiKeyManagedBy implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<ApiKeyManagedBy> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			ApiKeyManagedBy.values());
+	public static final JsonEnum.Deserializer<CredentialManagedBy> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			CredentialManagedBy.values());
 }
