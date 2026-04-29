@@ -236,8 +236,8 @@ public class GetNodeRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/shutdown");
 					return buf.toString();
 				}
@@ -258,7 +258,8 @@ public class GetNodeRequest extends RequestBase {
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_nodeId)) {
-					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("nodeId", request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

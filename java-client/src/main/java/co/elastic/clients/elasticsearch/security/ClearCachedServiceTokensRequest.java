@@ -264,7 +264,9 @@ public class ClearCachedServiceTokensRequest extends RequestBase {
 					buf.append("/credential");
 					buf.append("/token");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(
+							request.name.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/_clear_cache");
 					return buf.toString();
 				}
@@ -288,7 +290,8 @@ public class ClearCachedServiceTokensRequest extends RequestBase {
 				if (propsSet == (_namespace | _service | _name)) {
 					params.put("namespace", request.namespace);
 					params.put("service", request.service);
-					params.put("name", request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("name", request.name.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

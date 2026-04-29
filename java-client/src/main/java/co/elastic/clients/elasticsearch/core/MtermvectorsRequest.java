@@ -709,7 +709,8 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.routing)) {
-					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.realtime != null) {
 					params.put("realtime", String.valueOf(request.realtime));
@@ -736,7 +737,8 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 					params.put("field_statistics", String.valueOf(request.fieldStatistics));
 				}
 				if (ApiTypeHelper.isDefined(request.fields)) {
-					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("fields", request.fields.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));

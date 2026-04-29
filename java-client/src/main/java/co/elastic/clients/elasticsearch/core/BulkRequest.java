@@ -921,7 +921,8 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 					params.put("pipeline", request.pipeline);
 				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
-					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.includeSourceOnError != null) {
 					params.put("include_source_on_error", String.valueOf(request.includeSourceOnError));
@@ -939,12 +940,12 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 					params.put("_source", request.source._toJsonString());
 				}
 				if (ApiTypeHelper.isDefined(request.sourceExcludes)) {
-					params.put("_source_excludes",
-							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("_source_excludes", request.sourceExcludes.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
-					params.put("_source_includes",
-							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("_source_includes", request.sourceIncludes.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.requireDataStream != null) {
 					params.put("require_data_stream", String.valueOf(request.requireDataStream));

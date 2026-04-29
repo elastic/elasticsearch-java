@@ -309,8 +309,8 @@ public class HealthReportRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_health_report");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.feature.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.feature.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -330,7 +330,8 @@ public class HealthReportRequest extends RequestBase {
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_feature)) {
-					params.put("feature", request.feature.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("feature", request.feature.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

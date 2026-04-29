@@ -239,8 +239,8 @@ public class AckWatchRequest extends RequestBase {
 					SimpleEndpoint.pathEncode(request.watchId, buf);
 					buf.append("/_ack");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.actionId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.actionId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -264,7 +264,8 @@ public class AckWatchRequest extends RequestBase {
 				}
 				if (propsSet == (_watchId | _actionId)) {
 					params.put("watchId", request.watchId);
-					params.put("actionId", request.actionId.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("actionId", request.actionId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

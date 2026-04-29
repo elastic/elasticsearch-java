@@ -374,12 +374,13 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * If <code>false</code>, the request returns an error if any wildcard
-	 * expression, index alias, or <code>_all</code> value targets only missing or
-	 * closed indices. This behavior applies even if the request targets other open
-	 * indices. For example, a request targeting <code>foo*,bar*</code> returns an
-	 * error if an index starts with <code>foo</code> but no index starts with
-	 * <code>bar</code>.
+	 * A setting that does two separate checks on the index expression. If
+	 * <code>false</code>, the request returns an error (1) if any wildcard
+	 * expression (including <code>_all</code> and <code>*</code>) resolves to zero
+	 * matching indices or (2) if the complete set of resolved indices, aliases or
+	 * data streams is empty after all expressions are evaluated. If
+	 * <code>true</code>, index expressions that resolve to no indices are allowed
+	 * and the request returns an empty result.
 	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
@@ -469,8 +470,10 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * If <code>false</code>, the request returns an error if it targets a missing
-	 * or closed index.
+	 * If <code>false</code>, the request returns an error if it targets a concrete
+	 * (non-wildcarded) index, alias, or data stream that is missing, closed, or
+	 * otherwise unavailable. If <code>true</code>, unavailable concrete targets are
+	 * silently ignored.
 	 * <p>
 	 * API name: {@code ignore_unavailable}
 	 */
@@ -963,12 +966,13 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 
 		}
 		/**
-		 * If <code>false</code>, the request returns an error if any wildcard
-		 * expression, index alias, or <code>_all</code> value targets only missing or
-		 * closed indices. This behavior applies even if the request targets other open
-		 * indices. For example, a request targeting <code>foo*,bar*</code> returns an
-		 * error if an index starts with <code>foo</code> but no index starts with
-		 * <code>bar</code>.
+		 * A setting that does two separate checks on the index expression. If
+		 * <code>false</code>, the request returns an error (1) if any wildcard
+		 * expression (including <code>_all</code> and <code>*</code>) resolves to zero
+		 * matching indices or (2) if the complete set of resolved indices, aliases or
+		 * data streams is empty after all expressions are evaluated. If
+		 * <code>true</code>, index expressions that resolve to no indices are allowed
+		 * and the request returns an empty result.
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
@@ -1076,8 +1080,10 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * If <code>false</code>, the request returns an error if it targets a missing
-		 * or closed index.
+		 * If <code>false</code>, the request returns an error if it targets a concrete
+		 * (non-wildcarded) index, alias, or data stream that is missing, closed, or
+		 * otherwise unavailable. If <code>true</code>, unavailable concrete targets are
+		 * silently ignored.
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
@@ -1600,7 +1606,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_update_by_query");
 					return buf.toString();
 				}
@@ -1618,7 +1625,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 				propsSet |= _index;
 
 				if (propsSet == (_index)) {
-					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -1645,7 +1653,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 					params.put("timeout", request.timeout._toJsonString());
 				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
-					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.requestsPerSecond != null) {
 					params.put("requests_per_second", String.valueOf(request.requestsPerSecond));
@@ -1654,7 +1663,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
 				if (ApiTypeHelper.isDefined(request.stats)) {
-					params.put("stats", request.stats.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("stats", request.stats.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
@@ -1666,8 +1676,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 					params.put("from", String.valueOf(request.from));
 				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.versionType != null) {
 					params.put("version_type", String.valueOf(request.versionType));
@@ -1691,7 +1701,8 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 					params.put("refresh", String.valueOf(request.refresh));
 				}
 				if (ApiTypeHelper.isDefined(request.sort)) {
-					params.put("sort", request.sort.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("sort", request.sort.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.jsonValue());

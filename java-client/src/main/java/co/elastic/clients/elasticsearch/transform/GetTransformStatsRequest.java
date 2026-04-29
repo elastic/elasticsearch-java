@@ -335,8 +335,8 @@ public class GetTransformStatsRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_transform");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.transformId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.transformId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_stats");
 					return buf.toString();
 				}
@@ -354,8 +354,8 @@ public class GetTransformStatsRequest extends RequestBase {
 				propsSet |= _transformId;
 
 				if (propsSet == (_transformId)) {
-					params.put("transformId",
-							request.transformId.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("transformId", request.transformId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

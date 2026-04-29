@@ -45,14 +45,29 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum ThreadType implements JsonEnum {
+	/**
+	 * Threads that consume the most CPU time.
+	 */
 	Cpu("cpu"),
 
+	/**
+	 * Threads that have been in a waiting state the longest.
+	 */
 	Wait("wait"),
 
+	/**
+	 * Threads that have been blocked the longest.
+	 */
 	Block("block"),
 
+	/**
+	 * Threads that consume the most GPU time.
+	 */
 	Gpu("gpu"),
 
+	/**
+	 * Threads that allocate the most memory.
+	 */
 	Mem("mem"),
 
 	;

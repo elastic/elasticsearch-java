@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.inference;
 
-import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,6 +32,8 @@ import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -65,20 +66,17 @@ public class CustomServiceSettings implements JsonpSerializable {
 	@Nullable
 	private final Integer batchSize;
 
-	@Nullable
-	private final JsonData headers;
+	private final Map<String, String> headers;
 
-	@Nullable
-	private final JsonData inputType;
+	private final Map<CustomServiceInputType, String> inputType;
 
-	@Nullable
-	private final JsonData queryParameters;
+	private final List<List<String>> queryParameters;
 
 	private final CustomRequestParams request;
 
 	private final CustomResponseParams response;
 
-	private final JsonData secretParameters;
+	private final Map<String, String> secretParameters;
 
 	@Nullable
 	private final String url;
@@ -88,12 +86,12 @@ public class CustomServiceSettings implements JsonpSerializable {
 	private CustomServiceSettings(Builder builder) {
 
 		this.batchSize = builder.batchSize;
-		this.headers = builder.headers;
-		this.inputType = builder.inputType;
-		this.queryParameters = builder.queryParameters;
+		this.headers = ApiTypeHelper.unmodifiable(builder.headers);
+		this.inputType = ApiTypeHelper.unmodifiable(builder.inputType);
+		this.queryParameters = ApiTypeHelper.unmodifiable(builder.queryParameters);
 		this.request = ApiTypeHelper.requireNonNull(builder.request, this, "request");
 		this.response = ApiTypeHelper.requireNonNull(builder.response, this, "response");
-		this.secretParameters = ApiTypeHelper.requireNonNull(builder.secretParameters, this, "secretParameters");
+		this.secretParameters = ApiTypeHelper.unmodifiableRequired(builder.secretParameters, this, "secretParameters");
 		this.url = builder.url;
 
 	}
@@ -122,7 +120,7 @@ public class CustomServiceSettings implements JsonpSerializable {
 	 * For example:
 	 * 
 	 * <pre>
-	 * <code>&quot;headers&quot;:{
+	 * <code>&quot;headers&quot;: {
 	 *   &quot;Authorization&quot;: &quot;Bearer ${api_key}&quot;,
 	 *   &quot;Content-Type&quot;: &quot;application/json;charset=utf-8&quot;
 	 * }
@@ -131,8 +129,7 @@ public class CustomServiceSettings implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code headers}
 	 */
-	@Nullable
-	public final JsonData headers() {
+	public final Map<String, String> headers() {
 		return this.headers;
 	}
 
@@ -166,8 +163,7 @@ public class CustomServiceSettings implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code input_type}
 	 */
-	@Nullable
-	public final JsonData inputType() {
+	public final Map<CustomServiceInputType, String> inputType() {
 		return this.inputType;
 	}
 
@@ -190,8 +186,7 @@ public class CustomServiceSettings implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code query_parameters}
 	 */
-	@Nullable
-	public final JsonData queryParameters() {
+	public final List<List<String>> queryParameters() {
 		return this.queryParameters;
 	}
 
@@ -227,7 +222,7 @@ public class CustomServiceSettings implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code secret_parameters}
 	 */
-	public final JsonData secretParameters() {
+	public final Map<String, String> secretParameters() {
 		return this.secretParameters;
 	}
 
@@ -257,19 +252,43 @@ public class CustomServiceSettings implements JsonpSerializable {
 			generator.write(this.batchSize);
 
 		}
-		if (this.headers != null) {
+		if (ApiTypeHelper.isDefined(this.headers)) {
 			generator.writeKey("headers");
-			this.headers.serialize(generator, mapper);
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.headers.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		if (this.inputType != null) {
+		if (ApiTypeHelper.isDefined(this.inputType)) {
 			generator.writeKey("input_type");
-			this.inputType.serialize(generator, mapper);
+			generator.writeStartObject();
+			for (Map.Entry<CustomServiceInputType, String> item0 : this.inputType.entrySet()) {
+				generator.writeKey(item0.getKey().jsonValue());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		if (this.queryParameters != null) {
+		if (ApiTypeHelper.isDefined(this.queryParameters)) {
 			generator.writeKey("query_parameters");
-			this.queryParameters.serialize(generator, mapper);
+			generator.writeStartArray();
+			for (List<String> item0 : this.queryParameters) {
+				generator.writeStartArray();
+				if (item0 != null) {
+					for (String item1 : item0) {
+						generator.write(item1);
+
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
 
 		}
 		generator.writeKey("request");
@@ -278,9 +297,17 @@ public class CustomServiceSettings implements JsonpSerializable {
 		generator.writeKey("response");
 		this.response.serialize(generator, mapper);
 
-		generator.writeKey("secret_parameters");
-		this.secretParameters.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.secretParameters)) {
+			generator.writeKey("secret_parameters");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.secretParameters.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
 
+			}
+			generator.writeEnd();
+
+		}
 		if (this.url != null) {
 			generator.writeKey("url");
 			generator.write(this.url);
@@ -307,19 +334,19 @@ public class CustomServiceSettings implements JsonpSerializable {
 		private Integer batchSize;
 
 		@Nullable
-		private JsonData headers;
+		private Map<String, String> headers;
 
 		@Nullable
-		private JsonData inputType;
+		private Map<CustomServiceInputType, String> inputType;
 
 		@Nullable
-		private JsonData queryParameters;
+		private List<List<String>> queryParameters;
 
 		private CustomRequestParams request;
 
 		private CustomResponseParams response;
 
-		private JsonData secretParameters;
+		private Map<String, String> secretParameters;
 
 		@Nullable
 		private String url;
@@ -357,7 +384,7 @@ public class CustomServiceSettings implements JsonpSerializable {
 		 * For example:
 		 * 
 		 * <pre>
-		 * <code>&quot;headers&quot;:{
+		 * <code>&quot;headers&quot;: {
 		 *   &quot;Authorization&quot;: &quot;Bearer ${api_key}&quot;,
 		 *   &quot;Content-Type&quot;: &quot;application/json;charset=utf-8&quot;
 		 * }
@@ -365,9 +392,33 @@ public class CustomServiceSettings implements JsonpSerializable {
 		 * </pre>
 		 * <p>
 		 * API name: {@code headers}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>headers</code>.
 		 */
-		public final Builder headers(@Nullable JsonData value) {
-			this.headers = value;
+		public final Builder headers(Map<String, String> map) {
+			this.headers = _mapPutAll(this.headers, map);
+			return this;
+		}
+
+		/**
+		 * Specifies the HTTP header parameters – such as <code>Authentication</code> or
+		 * <code>Content-Type</code> – that are required to access the custom service.
+		 * For example:
+		 * 
+		 * <pre>
+		 * <code>&quot;headers&quot;: {
+		 *   &quot;Authorization&quot;: &quot;Bearer ${api_key}&quot;,
+		 *   &quot;Content-Type&quot;: &quot;application/json;charset=utf-8&quot;
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * API name: {@code headers}
+		 * <p>
+		 * Adds an entry to <code>headers</code>.
+		 */
+		public final Builder headers(String key, String value) {
+			this.headers = _mapPut(this.headers, key, value);
 			return this;
 		}
 
@@ -400,9 +451,48 @@ public class CustomServiceSettings implements JsonpSerializable {
 		 * </ul>
 		 * <p>
 		 * API name: {@code input_type}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>inputType</code>.
 		 */
-		public final Builder inputType(@Nullable JsonData value) {
-			this.inputType = value;
+		public final Builder inputType(Map<CustomServiceInputType, String> map) {
+			this.inputType = _mapPutAll(this.inputType, map);
+			return this;
+		}
+
+		/**
+		 * Specifies the input type translation values that are used to replace the
+		 * <code>${input_type}</code> template in the request body. For example:
+		 * 
+		 * <pre>
+		 * <code>&quot;input_type&quot;: {
+		 *   &quot;translation&quot;: {
+		 *     &quot;ingest&quot;: &quot;do_ingest&quot;,
+		 *     &quot;search&quot;: &quot;do_search&quot;
+		 *   },
+		 *   &quot;default&quot;: &quot;a_default&quot;
+		 * },
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * If the subsequent inference requests come from a search context, the
+		 * <code>search</code> key will be used and the template will be replaced with
+		 * <code>do_search</code>. If it comes from the ingest context
+		 * <code>do_ingest</code> is used. If it's a different context that is not
+		 * specified, the default value will be used. If no default is specified an
+		 * empty string is used. <code>translation</code> can be:
+		 * <ul>
+		 * <li><code>classification</code></li>
+		 * <li><code>clustering</code></li>
+		 * <li><code>ingest</code></li>
+		 * <li><code>search</code></li>
+		 * </ul>
+		 * <p>
+		 * API name: {@code input_type}
+		 * <p>
+		 * Adds an entry to <code>inputType</code>.
+		 */
+		public final Builder inputType(CustomServiceInputType key, String value) {
+			this.inputType = _mapPut(this.inputType, key, value);
 			return this;
 		}
 
@@ -424,9 +514,37 @@ public class CustomServiceSettings implements JsonpSerializable {
 		 * <code>https://www.elastic.co?param_key=some_value&amp;param_key=another_value&amp;other_key=other_value</code>.
 		 * <p>
 		 * API name: {@code query_parameters}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>queryParameters</code>.
 		 */
-		public final Builder queryParameters(@Nullable JsonData value) {
-			this.queryParameters = value;
+		public final Builder queryParameters(List<List<String>> list) {
+			this.queryParameters = _listAddAll(this.queryParameters, list);
+			return this;
+		}
+
+		/**
+		 * Specifies the query parameters as a list of tuples. The arrays inside the
+		 * <code>query_parameters</code> must have two items, a key and a value. For
+		 * example:
+		 * 
+		 * <pre>
+		 * <code>&quot;query_parameters&quot;:[
+		 *   [&quot;param_key&quot;, &quot;some_value&quot;],
+		 *   [&quot;param_key&quot;, &quot;another_value&quot;],
+		 *   [&quot;other_key&quot;, &quot;other_value&quot;]
+		 * ]
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * If the base url is <code>https://www.elastic.co</code> it results in:
+		 * <code>https://www.elastic.co?param_key=some_value&amp;param_key=another_value&amp;other_key=other_value</code>.
+		 * <p>
+		 * API name: {@code query_parameters}
+		 * <p>
+		 * Adds one or more values to <code>queryParameters</code>.
+		 */
+		public final Builder queryParameters(List<String> value, List<String>... values) {
+			this.queryParameters = _listAdd(this.queryParameters, value, values);
 			return this;
 		}
 
@@ -481,9 +599,32 @@ public class CustomServiceSettings implements JsonpSerializable {
 		 * </pre>
 		 * <p>
 		 * API name: {@code secret_parameters}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>secretParameters</code>.
 		 */
-		public final Builder secretParameters(JsonData value) {
-			this.secretParameters = value;
+		public final Builder secretParameters(Map<String, String> map) {
+			this.secretParameters = _mapPutAll(this.secretParameters, map);
+			return this;
+		}
+
+		/**
+		 * Required - Specifies secret parameters, like <code>api_key</code> or
+		 * <code>api_token</code>, that are required to access the custom service. For
+		 * example:
+		 * 
+		 * <pre>
+		 * <code>&quot;secret_parameters&quot;:{
+		 *   &quot;api_key&quot;:&quot;&lt;api_key&gt;&quot;
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * API name: {@code secret_parameters}
+		 * <p>
+		 * Adds an entry to <code>secretParameters</code>.
+		 */
+		public final Builder secretParameters(String key, String value) {
+			this.secretParameters = _mapPut(this.secretParameters, key, value);
 			return this;
 		}
 
@@ -532,12 +673,18 @@ public class CustomServiceSettings implements JsonpSerializable {
 	protected static void setupCustomServiceSettingsDeserializer(ObjectDeserializer<CustomServiceSettings.Builder> op) {
 
 		op.add(Builder::batchSize, JsonpDeserializer.integerDeserializer(), "batch_size");
-		op.add(Builder::headers, JsonData._DESERIALIZER, "headers");
-		op.add(Builder::inputType, JsonData._DESERIALIZER, "input_type");
-		op.add(Builder::queryParameters, JsonData._DESERIALIZER, "query_parameters");
+		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"headers");
+		op.add(Builder::inputType, JsonpDeserializer.enumMapDeserializer(CustomServiceInputType._DESERIALIZER,
+				JsonpDeserializer.stringDeserializer()), "input_type");
+		op.add(Builder::queryParameters,
+				JsonpDeserializer
+						.arrayDeserializer(JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())),
+				"query_parameters");
 		op.add(Builder::request, CustomRequestParams._DESERIALIZER, "request");
 		op.add(Builder::response, CustomResponseParams._DESERIALIZER, "response");
-		op.add(Builder::secretParameters, JsonData._DESERIALIZER, "secret_parameters");
+		op.add(Builder::secretParameters,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "secret_parameters");
 		op.add(Builder::url, JsonpDeserializer.stringDeserializer(), "url");
 
 	}

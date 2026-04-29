@@ -345,8 +345,8 @@ public class SnapshotStatusRequest extends RequestBase {
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.repository, buf);
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.snapshot.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.snapshot.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_status");
 					return buf.toString();
 				}
@@ -374,7 +374,8 @@ public class SnapshotStatusRequest extends RequestBase {
 				}
 				if (propsSet == (_repository | _snapshot)) {
 					params.put("repository", request.repository);
-					params.put("snapshot", request.snapshot.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("snapshot", request.snapshot.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

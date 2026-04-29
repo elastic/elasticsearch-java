@@ -392,8 +392,8 @@ public class GetComponentTemplateRequest extends RequestBase {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
 				if (ApiTypeHelper.isDefined(request.settingsFilter)) {
-					params.put("settings_filter",
-							request.settingsFilter.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("settings_filter", request.settingsFilter.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.includeDefaults != null) {
 					params.put("include_defaults", String.valueOf(request.includeDefaults));

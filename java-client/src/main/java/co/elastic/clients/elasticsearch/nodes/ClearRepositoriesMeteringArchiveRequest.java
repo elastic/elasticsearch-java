@@ -216,8 +216,8 @@ public class ClearRepositoriesMeteringArchiveRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_nodes");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_repositories_metering");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(String.valueOf(request.maxArchiveVersion), buf);
@@ -239,7 +239,8 @@ public class ClearRepositoriesMeteringArchiveRequest extends RequestBase {
 				propsSet |= _nodeId;
 
 				if (propsSet == (_nodeId | _maxArchiveVersion)) {
-					params.put("nodeId", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("nodeId", request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 					params.put("maxArchiveVersion", String.valueOf(request.maxArchiveVersion));
 				}
 				return params;

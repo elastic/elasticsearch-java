@@ -46,22 +46,54 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum ClusterStateMetric implements JsonEnum {
+	/**
+	 * Shows all metrics.
+	 */
 	All("_all"),
 
+	/**
+	 * Shows the cluster state version.
+	 */
 	Version("version"),
 
+	/**
+	 * Shows the elected <code>master_node</code> part of the response.
+	 */
 	MasterNode("master_node"),
 
+	/**
+	 * Shows the <code>blocks</code> part of the response.
+	 */
 	Blocks("blocks"),
 
+	/**
+	 * Shows the <code>nodes</code> part of the response.
+	 */
 	Nodes("nodes"),
 
+	/**
+	 * Shows the <code>metadata</code> part of the response. If you supply a
+	 * comma-separated list of indices, the returned output will only contain
+	 * metadata for these indices.
+	 */
 	Metadata("metadata"),
 
+	/**
+	 * Shows the <code>routing_table</code> part of the response. If you supply a
+	 * comma-separated list of indices, the returned output will only contain the
+	 * routing table for these indices.
+	 */
 	RoutingTable("routing_table"),
 
+	/**
+	 * Shows the <code>routing_nodes</code> part of the response.
+	 */
 	RoutingNodes("routing_nodes"),
 
+	/**
+	 * Shows the <code>customs</code> part of the response, which includes custom
+	 * cluster state information.
+	 */
 	Customs("customs"),
 
 	;

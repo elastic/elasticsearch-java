@@ -80,6 +80,9 @@ public class Settings implements JsonpSerializable {
 	private final Boolean usePointInTime;
 
 	@Nullable
+	private final Integer numFailureRetries;
+
+	@Nullable
 	private final Boolean unattended;
 
 	// ---------------------------------------------------------------------------------------------
@@ -92,6 +95,7 @@ public class Settings implements JsonpSerializable {
 		this.docsPerSecond = builder.docsPerSecond;
 		this.maxPageSearchSize = builder.maxPageSearchSize;
 		this.usePointInTime = builder.usePointInTime;
+		this.numFailureRetries = builder.numFailureRetries;
 		this.unattended = builder.unattended;
 
 	}
@@ -154,7 +158,9 @@ public class Settings implements JsonpSerializable {
 	 * Defines the initial page size to use for the composite aggregation for each
 	 * checkpoint. If circuit breaker exceptions occur, the page size is dynamically
 	 * adjusted to a lower value. The minimum value is <code>10</code> and the
-	 * maximum is <code>65,536</code>.
+	 * maximum is <code>65,536</code>. The default value is <code>500</code> for
+	 * <code>pivot</code> transforms and <code>5000</code> for <code>latest</code>
+	 * transforms.
 	 * <p>
 	 * API name: {@code max_page_search_size}
 	 */
@@ -177,6 +183,23 @@ public class Settings implements JsonpSerializable {
 	@Nullable
 	public final Boolean usePointInTime() {
 		return this.usePointInTime;
+	}
+
+	/**
+	 * Defines the number of retries on a recoverable failure before the transform
+	 * task is marked as <code>failed</code>. The minimum value is <code>0</code>
+	 * and the maximum is <code>100</code>, where <code>-1</code> indicates that the
+	 * transform retries indefinitely. If unset, the cluster-level setting
+	 * <code>num_transform_failure_retries</code> is used.
+	 * <p>
+	 * This setting cannot be specified when <code>unattended</code> is
+	 * <code>true</code>, because unattended transforms always retry indefinitely.
+	 * <p>
+	 * API name: {@code num_failure_retries}
+	 */
+	@Nullable
+	public final Integer numFailureRetries() {
+		return this.numFailureRetries;
 	}
 
 	/**
@@ -233,6 +256,11 @@ public class Settings implements JsonpSerializable {
 			generator.write(this.usePointInTime);
 
 		}
+		if (this.numFailureRetries != null) {
+			generator.writeKey("num_failure_retries");
+			generator.write(this.numFailureRetries);
+
+		}
 		if (this.unattended != null) {
 			generator.writeKey("unattended");
 			generator.write(this.unattended);
@@ -272,6 +300,9 @@ public class Settings implements JsonpSerializable {
 		private Boolean usePointInTime;
 
 		@Nullable
+		private Integer numFailureRetries;
+
+		@Nullable
 		private Boolean unattended;
 
 		public Builder() {
@@ -283,6 +314,7 @@ public class Settings implements JsonpSerializable {
 			this.docsPerSecond = instance.docsPerSecond;
 			this.maxPageSearchSize = instance.maxPageSearchSize;
 			this.usePointInTime = instance.usePointInTime;
+			this.numFailureRetries = instance.numFailureRetries;
 			this.unattended = instance.unattended;
 
 		}
@@ -340,7 +372,9 @@ public class Settings implements JsonpSerializable {
 		 * Defines the initial page size to use for the composite aggregation for each
 		 * checkpoint. If circuit breaker exceptions occur, the page size is dynamically
 		 * adjusted to a lower value. The minimum value is <code>10</code> and the
-		 * maximum is <code>65,536</code>.
+		 * maximum is <code>65,536</code>. The default value is <code>500</code> for
+		 * <code>pivot</code> transforms and <code>5000</code> for <code>latest</code>
+		 * transforms.
 		 * <p>
 		 * API name: {@code max_page_search_size}
 		 */
@@ -362,6 +396,23 @@ public class Settings implements JsonpSerializable {
 		 */
 		public final Builder usePointInTime(@Nullable Boolean value) {
 			this.usePointInTime = value;
+			return this;
+		}
+
+		/**
+		 * Defines the number of retries on a recoverable failure before the transform
+		 * task is marked as <code>failed</code>. The minimum value is <code>0</code>
+		 * and the maximum is <code>100</code>, where <code>-1</code> indicates that the
+		 * transform retries indefinitely. If unset, the cluster-level setting
+		 * <code>num_transform_failure_retries</code> is used.
+		 * <p>
+		 * This setting cannot be specified when <code>unattended</code> is
+		 * <code>true</code>, because unattended transforms always retry indefinitely.
+		 * <p>
+		 * API name: {@code num_failure_retries}
+		 */
+		public final Builder numFailureRetries(@Nullable Integer value) {
+			this.numFailureRetries = value;
 			return this;
 		}
 
@@ -418,6 +469,7 @@ public class Settings implements JsonpSerializable {
 		op.add(Builder::docsPerSecond, JsonpDeserializer.floatDeserializer(), "docs_per_second");
 		op.add(Builder::maxPageSearchSize, JsonpDeserializer.integerDeserializer(), "max_page_search_size");
 		op.add(Builder::usePointInTime, JsonpDeserializer.booleanDeserializer(), "use_point_in_time");
+		op.add(Builder::numFailureRetries, JsonpDeserializer.integerDeserializer(), "num_failure_retries");
 		op.add(Builder::unattended, JsonpDeserializer.booleanDeserializer(), "unattended");
 
 	}

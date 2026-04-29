@@ -386,8 +386,8 @@ public class FielddataRequest extends CatRequestBase {
 					buf.append("/_cat");
 					buf.append("/fielddata");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.fields.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.fields.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -407,7 +407,8 @@ public class FielddataRequest extends CatRequestBase {
 				if (propsSet == 0) {
 				}
 				if (propsSet == (_fields)) {
-					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("fields", request.fields.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -417,13 +418,15 @@ public class FielddataRequest extends CatRequestBase {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
 				if (ApiTypeHelper.isDefined(request.s)) {
-					params.put("s", request.s.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("s",
+							request.s.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.bytes != null) {
 					params.put("bytes", request.bytes.jsonValue());
 				}
 				if (ApiTypeHelper.isDefined(request.h)) {
-					params.put("h", request.h.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("h",
+							request.h.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.time != null) {
 					params.put("time", request.time.jsonValue());

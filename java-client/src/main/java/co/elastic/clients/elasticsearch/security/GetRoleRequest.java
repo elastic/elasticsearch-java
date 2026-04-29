@@ -190,7 +190,9 @@ public class GetRoleRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/role");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(
+							request.name.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -214,7 +216,8 @@ public class GetRoleRequest extends RequestBase {
 					propsSet |= _name;
 
 				if (propsSet == (_name)) {
-					params.put("name", request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("name", request.name.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (propsSet == 0) {
 				}

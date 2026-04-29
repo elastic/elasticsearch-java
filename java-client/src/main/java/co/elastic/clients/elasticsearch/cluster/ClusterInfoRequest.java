@@ -184,8 +184,8 @@ public class ClusterInfoRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_info");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(
-							request.target.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.target.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -202,8 +202,8 @@ public class ClusterInfoRequest extends RequestBase {
 				propsSet |= _target;
 
 				if (propsSet == (_target)) {
-					params.put("target",
-							request.target.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("target", request.target.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

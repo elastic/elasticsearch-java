@@ -495,7 +495,8 @@ public class RerouteRequest extends RequestBase implements JsonpSerializable {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (ApiTypeHelper.isDefined(request.metric)) {
-					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("metric", request.metric.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.dryRun != null) {
 					params.put("dry_run", String.valueOf(request.dryRun));

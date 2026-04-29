@@ -389,7 +389,9 @@ public class PutDataStreamOptionsRequest extends RequestBase implements JsonpSer
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_data_stream");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(
+							request.name.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/_options");
 					return buf.toString();
 				}
@@ -407,7 +409,8 @@ public class PutDataStreamOptionsRequest extends RequestBase implements JsonpSer
 				propsSet |= _name;
 
 				if (propsSet == (_name)) {
-					params.put("name", request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("name", request.name.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},
@@ -419,8 +422,8 @@ public class PutDataStreamOptionsRequest extends RequestBase implements JsonpSer
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());

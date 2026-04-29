@@ -259,8 +259,8 @@ public class XpackInfoRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.categories)) {
-					params.put("categories",
-							request.categories.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+					params.put("categories", request.categories.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
 				}
 				if (request.human != null) {
 					params.put("human", String.valueOf(request.human));

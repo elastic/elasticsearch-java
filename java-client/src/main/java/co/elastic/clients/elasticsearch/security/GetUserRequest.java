@@ -218,8 +218,8 @@ public class GetUserRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/user");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.username.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.username.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {
@@ -243,7 +243,8 @@ public class GetUserRequest extends RequestBase {
 					propsSet |= _username;
 
 				if (propsSet == (_username)) {
-					params.put("username", request.username.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("username", request.username.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (propsSet == 0) {
 				}

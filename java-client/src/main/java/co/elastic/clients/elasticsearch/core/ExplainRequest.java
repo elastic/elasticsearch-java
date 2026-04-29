@@ -748,7 +748,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.routing)) {
-					params.put("routing", request.routing.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.q != null) {
 					params.put("q", request.q);
@@ -763,8 +764,8 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 					params.put("analyzer", request.analyzer);
 				}
 				if (ApiTypeHelper.isDefined(request.storedFields)) {
-					params.put("stored_fields",
-							request.storedFields.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("stored_fields", request.storedFields.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);
@@ -776,12 +777,12 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 					params.put("_source", request.source._toJsonString());
 				}
 				if (ApiTypeHelper.isDefined(request.sourceExcludes)) {
-					params.put("_source_excludes",
-							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("_source_excludes", request.sourceExcludes.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
-					params.put("_source_includes",
-							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("_source_includes", request.sourceIncludes.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.lenient != null) {
 					params.put("lenient", String.valueOf(request.lenient));

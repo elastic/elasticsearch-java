@@ -536,7 +536,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 				if (propsSet == (_index | _name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_alias");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.name, buf);
@@ -545,7 +546,8 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 				if (propsSet == (_index | _name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
 					buf.append("/_aliases");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.name, buf);
@@ -567,11 +569,13 @@ public class PutAliasRequest extends RequestBase implements JsonpSerializable {
 				propsSet |= _index;
 
 				if (propsSet == (_index | _name)) {
-					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 					params.put("name", request.name);
 				}
 				if (propsSet == (_index | _name)) {
-					params.put("index", request.index.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 					params.put("name", request.name);
 				}
 				return params;

@@ -851,8 +851,8 @@ public class FindMessageStructureRequest extends RequestBase implements JsonpSer
 					params.put("format", request.format.jsonValue());
 				}
 				if (ApiTypeHelper.isDefined(request.columnNames)) {
-					params.put("column_names",
-							request.columnNames.stream().map(v -> v).collect(Collectors.joining(",")));
+					params.put("column_names", request.columnNames.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.timestampField != null) {
 					params.put("timestamp_field", request.timestampField);
