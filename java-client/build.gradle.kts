@@ -244,8 +244,8 @@ dependencies {
 
     // MIT
     // https://www.testcontainers.org/
-    testImplementation("org.testcontainers", "testcontainers", "1.17.3")
-    testImplementation("org.testcontainers", "elasticsearch", "1.17.3")
+    testImplementation("org.testcontainers", "testcontainers", "1.21.4")
+    testImplementation("org.testcontainers", "elasticsearch", "1.21.4")
     // updating transitive dependency from testcontainers
     testImplementation("org.apache.commons","commons-compress","1.26.1")
 
