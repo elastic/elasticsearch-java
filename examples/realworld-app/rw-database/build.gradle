@@ -1,0 +1,48 @@
+plugins {
+  id 'java'
+  id 'org.springframework.boot' version '3.2.1'
+  id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'realworldapp'
+version = '0.0.1-SNAPSHOT'
+
+java {
+  sourceCompatibility = '21'
+}
+
+repositories {
+  mavenCentral()
+}
+
+
+dependencies {
+  // Spring
+  implementation('org.springframework.boot:spring-boot-starter:3.2.0')
+  implementation('org.springframework.boot:spring-boot-starter-validation:3.2.0')
+
+  // Elastic
+  implementation('co.elastic.clients:elasticsearch-java:8.11.4')
+  implementation('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.16.0')
+
+  // JWT creation + parsing
+  implementation('javax.xml.bind:jaxb-api:2.3.1')
+  implementation('io.jsonwebtoken:jjwt:0.9.1')
+
+  // Slug
+  implementation('com.github.slugify:slugify:3.0.6')
+
+  // MIT
+  // https://www.testcontainers.org/
+  testImplementation('org.testcontainers:testcontainers:1.17.3')
+  testImplementation('org.testcontainers:elasticsearch:1.17.3')
+  // updating transitive dependency from testcontainers
+  testImplementation("org.apache.commons:commons-compress:1.26.1")
+
+
+  testImplementation('org.springframework.boot:spring-boot-starter-test:3.2.0')
+}
+
+tasks.named('test') {
+  useJUnitPlatform()
+}

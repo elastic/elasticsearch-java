@@ -1,0 +1,224 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+package co.elastic.clients.elasticsearch.security;
+
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
+// typedef: security.clear_cached_privileges.Request
+
+/**
+ * Clear the privileges cache.
+ * <p>
+ * Evict privileges from the native application privilege cache. The cache is
+ * also automatically cleared for applications that have their privileges
+ * updated.
+ * 
+ * @see <a href=
+ *      "../doc-files/api-spec.html#security.clear_cached_privileges.Request">API
+ *      specification</a>
+ */
+
+public class ClearCachedPrivilegesRequest extends RequestBase {
+	private final List<String> application;
+
+	// ---------------------------------------------------------------------------------------------
+
+	private ClearCachedPrivilegesRequest(Builder builder) {
+
+		this.application = ApiTypeHelper.unmodifiableRequired(builder.application, this, "application");
+
+	}
+
+	public static ClearCachedPrivilegesRequest of(Function<Builder, ObjectBuilder<ClearCachedPrivilegesRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - A comma-separated list of applications. To clear all applications,
+	 * use an asterism (<code>*</code>). It does not support other wildcard
+	 * patterns.
+	 * <p>
+	 * API name: {@code application}
+	 */
+	public final List<String> application() {
+		return this.application;
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link ClearCachedPrivilegesRequest}.
+	 */
+
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<ClearCachedPrivilegesRequest> {
+		private List<String> application;
+
+		public Builder() {
+		}
+		private Builder(ClearCachedPrivilegesRequest instance) {
+			this.application = instance.application;
+
+		}
+		/**
+		 * Required - A comma-separated list of applications. To clear all applications,
+		 * use an asterism (<code>*</code>). It does not support other wildcard
+		 * patterns.
+		 * <p>
+		 * API name: {@code application}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>application</code>.
+		 */
+		public final Builder application(List<String> list) {
+			this.application = _listAddAll(this.application, list);
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of applications. To clear all applications,
+		 * use an asterism (<code>*</code>). It does not support other wildcard
+		 * patterns.
+		 * <p>
+		 * API name: {@code application}
+		 * <p>
+		 * Adds one or more values to <code>application</code>.
+		 */
+		public final Builder application(String value, String... values) {
+			this.application = _listAdd(this.application, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link ClearCachedPrivilegesRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public ClearCachedPrivilegesRequest build() {
+			_checkSingleUse();
+
+			return new ClearCachedPrivilegesRequest(this);
+		}
+	}
+
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code security.clear_cached_privileges}".
+	 */
+	public static final Endpoint<ClearCachedPrivilegesRequest, ClearCachedPrivilegesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.clear_cached_privileges",
+
+			// Request method
+			request -> {
+				return "POST";
+
+			},
+
+			// Request path
+			request -> {
+				final int _application = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _application;
+
+				if (propsSet == (_application)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_security");
+					buf.append("/privilege");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.application.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
+					buf.append("/_clear_cache");
+					return buf.toString();
+				}
+				throw SimpleEndpoint.noPathTemplateFound("path");
+
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _application = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _application;
+
+				if (propsSet == (_application)) {
+					params.put("application",
+							request.application.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
+			},
+
+			// Request parameters
+			request -> {
+				return Collections.emptyMap();
+
+			}, SimpleEndpoint.emptyMap(), false, ClearCachedPrivilegesResponse._DESERIALIZER);
+}

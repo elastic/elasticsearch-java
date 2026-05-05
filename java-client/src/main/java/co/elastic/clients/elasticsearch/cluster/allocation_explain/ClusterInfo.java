@@ -1,0 +1,393 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+package co.elastic.clients.elasticsearch.cluster.allocation_explain;
+
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
+import java.lang.String;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
+// typedef: cluster.allocation_explain.ClusterInfo
+
+/**
+ *
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#cluster.allocation_explain.ClusterInfo">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class ClusterInfo implements JsonpSerializable {
+	private final Map<String, NodeDiskUsage> nodes;
+
+	private final Map<String, Long> shardSizes;
+
+	private final Map<String, String> shardDataSetSizes;
+
+	private final Map<String, String> shardPaths;
+
+	private final List<ReservedSize> reservedSizes;
+
+	// ---------------------------------------------------------------------------------------------
+
+	private ClusterInfo(Builder builder) {
+
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+		this.shardSizes = ApiTypeHelper.unmodifiableRequired(builder.shardSizes, this, "shardSizes");
+		this.shardDataSetSizes = ApiTypeHelper.unmodifiable(builder.shardDataSetSizes);
+		this.shardPaths = ApiTypeHelper.unmodifiableRequired(builder.shardPaths, this, "shardPaths");
+		this.reservedSizes = ApiTypeHelper.unmodifiableRequired(builder.reservedSizes, this, "reservedSizes");
+
+	}
+
+	public static ClusterInfo of(Function<Builder, ObjectBuilder<ClusterInfo>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - API name: {@code nodes}
+	 */
+	public final Map<String, NodeDiskUsage> nodes() {
+		return this.nodes;
+	}
+
+	/**
+	 * Required - API name: {@code shard_sizes}
+	 */
+	public final Map<String, Long> shardSizes() {
+		return this.shardSizes;
+	}
+
+	/**
+	 * API name: {@code shard_data_set_sizes}
+	 */
+	public final Map<String, String> shardDataSetSizes() {
+		return this.shardDataSetSizes;
+	}
+
+	/**
+	 * Required - API name: {@code shard_paths}
+	 */
+	public final Map<String, String> shardPaths() {
+		return this.shardPaths;
+	}
+
+	/**
+	 * Required - API name: {@code reserved_sizes}
+	 */
+	public final List<ReservedSize> reservedSizes() {
+		return this.reservedSizes;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (ApiTypeHelper.isDefined(this.nodes)) {
+			generator.writeKey("nodes");
+			generator.writeStartObject();
+			for (Map.Entry<String, NodeDiskUsage> item0 : this.nodes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.shardSizes)) {
+			generator.writeKey("shard_sizes");
+			generator.writeStartObject();
+			for (Map.Entry<String, Long> item0 : this.shardSizes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.shardDataSetSizes)) {
+			generator.writeKey("shard_data_set_sizes");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.shardDataSetSizes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.shardPaths)) {
+			generator.writeKey("shard_paths");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.shardPaths.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.reservedSizes)) {
+			generator.writeKey("reserved_sizes");
+			generator.writeStartArray();
+			for (ReservedSize item0 : this.reservedSizes) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link ClusterInfo}.
+	 */
+
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ClusterInfo> {
+		private Map<String, NodeDiskUsage> nodes;
+
+		private Map<String, Long> shardSizes;
+
+		@Nullable
+		private Map<String, String> shardDataSetSizes;
+
+		private Map<String, String> shardPaths;
+
+		private List<ReservedSize> reservedSizes;
+
+		public Builder() {
+		}
+		private Builder(ClusterInfo instance) {
+			this.nodes = instance.nodes;
+			this.shardSizes = instance.shardSizes;
+			this.shardDataSetSizes = instance.shardDataSetSizes;
+			this.shardPaths = instance.shardPaths;
+			this.reservedSizes = instance.reservedSizes;
+
+		}
+		/**
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>nodes</code>.
+		 */
+		public final Builder nodes(Map<String, NodeDiskUsage> map) {
+			this.nodes = _mapPutAll(this.nodes, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code>.
+		 */
+		public final Builder nodes(String key, NodeDiskUsage value) {
+			this.nodes = _mapPut(this.nodes, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code> using a builder lambda.
+		 */
+		public final Builder nodes(String key, Function<NodeDiskUsage.Builder, ObjectBuilder<NodeDiskUsage>> fn) {
+			return nodes(key, fn.apply(new NodeDiskUsage.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code shard_sizes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>shardSizes</code>.
+		 */
+		public final Builder shardSizes(Map<String, Long> map) {
+			this.shardSizes = _mapPutAll(this.shardSizes, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code shard_sizes}
+		 * <p>
+		 * Adds an entry to <code>shardSizes</code>.
+		 */
+		public final Builder shardSizes(String key, Long value) {
+			this.shardSizes = _mapPut(this.shardSizes, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code shard_data_set_sizes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>shardDataSetSizes</code>.
+		 */
+		public final Builder shardDataSetSizes(Map<String, String> map) {
+			this.shardDataSetSizes = _mapPutAll(this.shardDataSetSizes, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code shard_data_set_sizes}
+		 * <p>
+		 * Adds an entry to <code>shardDataSetSizes</code>.
+		 */
+		public final Builder shardDataSetSizes(String key, String value) {
+			this.shardDataSetSizes = _mapPut(this.shardDataSetSizes, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code shard_paths}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>shardPaths</code>.
+		 */
+		public final Builder shardPaths(Map<String, String> map) {
+			this.shardPaths = _mapPutAll(this.shardPaths, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code shard_paths}
+		 * <p>
+		 * Adds an entry to <code>shardPaths</code>.
+		 */
+		public final Builder shardPaths(String key, String value) {
+			this.shardPaths = _mapPut(this.shardPaths, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code reserved_sizes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>reservedSizes</code>.
+		 */
+		public final Builder reservedSizes(List<ReservedSize> list) {
+			this.reservedSizes = _listAddAll(this.reservedSizes, list);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code reserved_sizes}
+		 * <p>
+		 * Adds one or more values to <code>reservedSizes</code>.
+		 */
+		public final Builder reservedSizes(ReservedSize value, ReservedSize... values) {
+			this.reservedSizes = _listAdd(this.reservedSizes, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code reserved_sizes}
+		 * <p>
+		 * Adds a value to <code>reservedSizes</code> using a builder lambda.
+		 */
+		public final Builder reservedSizes(Function<ReservedSize.Builder, ObjectBuilder<ReservedSize>> fn) {
+			return reservedSizes(fn.apply(new ReservedSize.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link ClusterInfo}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public ClusterInfo build() {
+			_checkSingleUse();
+
+			return new ClusterInfo(this);
+		}
+	}
+
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for {@link ClusterInfo}
+	 */
+	public static final JsonpDeserializer<ClusterInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			ClusterInfo::setupClusterInfoDeserializer);
+
+	protected static void setupClusterInfoDeserializer(ObjectDeserializer<ClusterInfo.Builder> op) {
+
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeDiskUsage._DESERIALIZER), "nodes");
+		op.add(Builder::shardSizes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.longDeserializer()),
+				"shard_sizes");
+		op.add(Builder::shardDataSetSizes,
+				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"shard_data_set_sizes");
+		op.add(Builder::shardPaths, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"shard_paths");
+		op.add(Builder::reservedSizes, JsonpDeserializer.arrayDeserializer(ReservedSize._DESERIALIZER),
+				"reserved_sizes");
+
+	}
+
+}

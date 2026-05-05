@@ -1,0 +1,14 @@
+{
+  "size": 9999,
+  "query": {
+    "match_all": {}
+  },
+  "sort": [
+    {
+      "modify_time": {
+        "order": "desc"
+      }
+    }
+  ],
+  "track_total_hits": 2147483647
+}

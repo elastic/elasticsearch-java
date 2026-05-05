@@ -1,0 +1,52 @@
+{
+  "took" : 1,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 5,
+      "relation" : "eq"
+    },
+    "max_score" : null,
+    "hits" : [ ]
+  },
+  "aggregations": {
+    "date_range#date_ranges": {
+      "buckets": [
+        {
+          "key": "2Wk",
+          "from": 1.6408224E12,
+          "from_as_string": "2021-12-30T00:00:00.000Z",
+          "to": 1.642032E12,
+          "to_as_string": "2022-01-06T00:00:00.000Z",
+          "doc_count": 0,
+          "avg#avgCost": {
+            "value": null
+          },
+          "cardinality#uniqueUsers": {
+            "value": 0
+          }
+        },
+        {
+          "key": "1Wk",
+          "from": 1.6414272E12,
+          "from_as_string": "2022-01-06T00:00:00.000Z",
+          "to": 1.642032E12,
+          "to_as_string": "2022-01-13T00:00:00.000Z",
+          "doc_count": 0,
+          "avg#avgCost": {
+            "value": null
+          },
+          "cardinality#uniqueUsers": {
+            "value": 0
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,5 @@
+rootProject.name = "realworld-app"
+includeBuild("rw-server")
+includeBuild("rw-database")
+includeBuild("rw-rest")
+

@@ -1,0 +1,46 @@
+name: Bug
+description: "Report a bug."
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Github is reserved for bug reports and feature requests. If you have a question or
+        an unconfirmed bug, please visit the [forums](https://discuss.elastic.co/tag/language-clients).
+
+        Please fill in the following details to help us reproduce the bug:
+
+  - type: input
+    id: client_version
+    attributes:
+      label: Java API client version
+      description: The version of Java API client
+    validations:
+      required: true
+
+  - type: input
+    id: java_version
+    attributes:
+      label: Java version
+      description: The Java version used with the Java API client
+    validations:
+      required: true
+
+  - type: input
+    id: es_version
+    attributes:
+      label: Elasticsearch Version
+      description: The version of Elasticsearch you are using with the Java API client
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem description
+      description: |
+        A description of the problem including expected versus actual behavior. Providing JSON snippets of the expected behavior from the
+        Kibana dev tools console will help diagnosing the issue.
+    validations:
+      required: true
+

@@ -1,0 +1,291 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+package co.elastic.clients.elasticsearch.indices.validate_query;
+
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.Integer;
+import java.lang.String;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
+// typedef: indices.validate_query.IndicesValidationExplanation
+
+/**
+ *
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#indices.validate_query.IndicesValidationExplanation">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class IndicesValidationExplanation implements JsonpSerializable {
+	@Nullable
+	private final String error;
+
+	@Nullable
+	private final String explanation;
+
+	@Nullable
+	private final String index;
+
+	@Nullable
+	private final Integer shard;
+
+	private final boolean valid;
+
+	// ---------------------------------------------------------------------------------------------
+
+	private IndicesValidationExplanation(Builder builder) {
+
+		this.error = builder.error;
+		this.explanation = builder.explanation;
+		this.index = builder.index;
+		this.shard = builder.shard;
+		this.valid = ApiTypeHelper.requireNonNull(builder.valid, this, "valid", false);
+
+	}
+
+	public static IndicesValidationExplanation of(Function<Builder, ObjectBuilder<IndicesValidationExplanation>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code error}
+	 */
+	@Nullable
+	public final String error() {
+		return this.error;
+	}
+
+	/**
+	 * API name: {@code explanation}
+	 */
+	@Nullable
+	public final String explanation() {
+		return this.explanation;
+	}
+
+	/**
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public final String index() {
+		return this.index;
+	}
+
+	/**
+	 * API name: {@code shard}
+	 */
+	@Nullable
+	public final Integer shard() {
+		return this.shard;
+	}
+
+	/**
+	 * Required - API name: {@code valid}
+	 */
+	public final boolean valid() {
+		return this.valid;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.error != null) {
+			generator.writeKey("error");
+			generator.write(this.error);
+
+		}
+		if (this.explanation != null) {
+			generator.writeKey("explanation");
+			generator.write(this.explanation);
+
+		}
+		if (this.index != null) {
+			generator.writeKey("index");
+			generator.write(this.index);
+
+		}
+		if (this.shard != null) {
+			generator.writeKey("shard");
+			generator.write(this.shard);
+
+		}
+		generator.writeKey("valid");
+		generator.write(this.valid);
+
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link IndicesValidationExplanation}.
+	 */
+
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<IndicesValidationExplanation> {
+		@Nullable
+		private String error;
+
+		@Nullable
+		private String explanation;
+
+		@Nullable
+		private String index;
+
+		@Nullable
+		private Integer shard;
+
+		private Boolean valid;
+
+		public Builder() {
+		}
+		private Builder(IndicesValidationExplanation instance) {
+			this.error = instance.error;
+			this.explanation = instance.explanation;
+			this.index = instance.index;
+			this.shard = instance.shard;
+			this.valid = instance.valid;
+
+		}
+		/**
+		 * API name: {@code error}
+		 */
+		public final Builder error(@Nullable String value) {
+			this.error = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code explanation}
+		 */
+		public final Builder explanation(@Nullable String value) {
+			this.explanation = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code index}
+		 */
+		public final Builder index(@Nullable String value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code shard}
+		 */
+		public final Builder shard(@Nullable Integer value) {
+			this.shard = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code valid}
+		 */
+		public final Builder valid(boolean value) {
+			this.valid = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link IndicesValidationExplanation}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public IndicesValidationExplanation build() {
+			_checkSingleUse();
+
+			return new IndicesValidationExplanation(this);
+		}
+	}
+
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for {@link IndicesValidationExplanation}
+	 */
+	public static final JsonpDeserializer<IndicesValidationExplanation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndicesValidationExplanation::setupIndicesValidationExplanationDeserializer);
+
+	protected static void setupIndicesValidationExplanationDeserializer(
+			ObjectDeserializer<IndicesValidationExplanation.Builder> op) {
+
+		op.add(Builder::error, JsonpDeserializer.stringDeserializer(), "error");
+		op.add(Builder::explanation, JsonpDeserializer.stringDeserializer(), "explanation");
+		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
+		op.add(Builder::valid, JsonpDeserializer.booleanDeserializer(), "valid");
+
+	}
+
+}

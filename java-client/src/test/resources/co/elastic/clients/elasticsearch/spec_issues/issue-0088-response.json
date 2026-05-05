@@ -1,0 +1,209 @@
+{
+  "_nodes": {
+    "total": 2,
+    "successful": 2,
+    "failed": 0
+  },
+  "cluster_name": "testCluster",
+  "cluster_uuid": "mFsnsmy6R4mIEyAcxOdRGg",
+  "timestamp": 1640886234666,
+  "status": "green",
+  "indices": {
+    "count": 0,
+    "shards": {},
+    "docs": {
+      "count": 0,
+      "deleted": 0
+    },
+    "store": {
+      "size_in_bytes": 0,
+      "total_data_set_size_in_bytes": 0,
+      "reserved_in_bytes": 0
+    },
+    "fielddata": {
+      "memory_size_in_bytes": 0,
+      "evictions": 0
+    },
+    "query_cache": {
+      "memory_size_in_bytes": 0,
+      "total_count": 0,
+      "hit_count": 0,
+      "miss_count": 0,
+      "cache_size": 0,
+      "cache_count": 0,
+      "evictions": 0
+    },
+    "completion": {
+      "size_in_bytes": 0
+    },
+    "segments": {
+      "count": 0,
+      "memory_in_bytes": 0,
+      "terms_memory_in_bytes": 0,
+      "stored_fields_memory_in_bytes": 0,
+      "term_vectors_memory_in_bytes": 0,
+      "norms_memory_in_bytes": 0,
+      "points_memory_in_bytes": 0,
+      "doc_values_memory_in_bytes": 0,
+      "index_writer_memory_in_bytes": 0,
+      "version_map_memory_in_bytes": 0,
+      "fixed_bit_set_memory_in_bytes": 0,
+      "max_unsafe_auto_id_timestamp": -9223372036854775808,
+      "file_sizes": {}
+    },
+    "mappings": {
+      "field_types": [],
+      "runtime_field_types": []
+    },
+    "analysis": {
+      "char_filter_types": [],
+      "tokenizer_types": [],
+      "filter_types": [],
+      "analyzer_types": [],
+      "built_in_char_filters": [],
+      "built_in_tokenizers": [],
+      "built_in_filters": [],
+      "built_in_analyzers": []
+    },
+    "versions": []
+  },
+  "nodes": {
+    "count": {
+      "total": 2,
+      "coordinating_only": 0,
+      "data": 2,
+      "data_cold": 2,
+      "data_content": 2,
+      "data_frozen": 2,
+      "data_hot": 2,
+      "data_warm": 2,
+      "ingest": 2,
+      "master": 2,
+      "ml": 0,
+      "remote_cluster_client": 2,
+      "transform": 2,
+      "voting_only": 0
+    },
+    "versions": [
+      "7.16.1"
+    ],
+    "os": {
+      "available_processors": 16,
+      "allocated_processors": 16,
+      "names": [
+        {
+          "name": "Mac OS X",
+          "count": 2
+        }
+      ],
+      "pretty_names": [
+        {
+          "pretty_name": "Mac OS X",
+          "count": 2
+        }
+      ],
+      "architectures": [
+        {
+          "arch": "aarch64",
+          "count": 2
+        }
+      ],
+      "mem": {
+        "total_in_bytes": 34359738368,
+        "free_in_bytes": 118784000,
+        "used_in_bytes": 34240954368,
+        "free_percent": 0,
+        "used_percent": 100
+      }
+    },
+    "process": {
+      "cpu": {
+        "percent": 0
+      },
+      "open_file_descriptors": {
+        "min": 337,
+        "max": 338,
+        "avg": 337
+      }
+    },
+    "jvm": {
+      "max_uptime_in_millis": 51439,
+      "versions": [
+        {
+          "version": "17.0.1",
+          "vm_name": "OpenJDK 64-Bit Server VM",
+          "vm_version": "17.0.1+12",
+          "vm_vendor": "Eclipse Adoptium",
+          "bundled_jdk": true,
+          "using_bundled_jdk": true,
+          "count": 2
+        }
+      ],
+      "mem": {
+        "heap_used_in_bytes": 824238880,
+        "heap_max_in_bytes": 17179869184
+      },
+      "threads": 72
+    },
+    "fs": {
+      "total_in_bytes": 994662584320,
+      "free_in_bytes": 722047512576,
+      "available_in_bytes": 722047512576
+    },
+    "plugins": [],
+    "network_types": {
+      "transport_types": {
+        "netty4": 2
+      },
+      "http_types": {
+        "netty4": 2
+      }
+    },
+    "discovery_types": {
+      "zen": 2
+    },
+    "packaging_types": [
+      {
+        "flavor": "default",
+        "type": "tar",
+        "count": 2
+      }
+    ],
+    "ingest": {
+      "number_of_pipelines": 2,
+      "processor_stats": {
+        "gsub": {
+          "count": 0,
+          "failed": 0,
+          "current": 0,
+          "time_in_millis": 0
+        },
+        "script": {
+          "count": 0,
+          "failed": 0,
+          "current": 0,
+          "time_in_millis": 0
+        }
+      }
+    },
+    "indexing_pressure": {
+      "memory": {
+        "limit_in_bytes": 0,
+        "current": {
+          "all_in_bytes": 0,
+          "combined_coordinating_and_primary_in_bytes": 0,
+          "coordinating_in_bytes": 0,
+          "primary_in_bytes": 0,
+          "replica_in_bytes": 0
+        },
+        "total": {
+          "all_in_bytes": 0,
+          "combined_coordinating_and_primary_in_bytes": 0,
+          "coordinating_in_bytes": 0,
+          "primary_in_bytes": 0,
+          "replica_in_bytes": 0
+        }
+      }
+    }
+  }
+}

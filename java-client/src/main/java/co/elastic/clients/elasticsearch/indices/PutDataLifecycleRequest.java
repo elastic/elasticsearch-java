@@ -1,0 +1,581 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+package co.elastic.clients.elasticsearch.indices;
+
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
+import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.String;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
+// typedef: indices.put_data_lifecycle.Request
+
+/**
+ * Update data stream lifecycles.
+ * <p>
+ * Update the data stream lifecycle of the specified data streams.
+ * 
+ * @see <a href=
+ *      "../doc-files/api-spec.html#indices.put_data_lifecycle.Request">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class PutDataLifecycleRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final Time dataRetention;
+
+	private final List<DownsamplingRound> downsampling;
+
+	@Nullable
+	private final SamplingMethod downsamplingMethod;
+
+	@Nullable
+	private final Boolean enabled;
+
+	private final List<ExpandWildcard> expandWildcards;
+
+	@Nullable
+	private final Time masterTimeout;
+
+	private final List<String> name;
+
+	@Nullable
+	private final Time timeout;
+
+	// ---------------------------------------------------------------------------------------------
+
+	private PutDataLifecycleRequest(Builder builder) {
+
+		this.dataRetention = builder.dataRetention;
+		this.downsampling = ApiTypeHelper.unmodifiable(builder.downsampling);
+		this.downsamplingMethod = builder.downsamplingMethod;
+		this.enabled = builder.enabled;
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.masterTimeout = builder.masterTimeout;
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
+		this.timeout = builder.timeout;
+
+	}
+
+	public static PutDataLifecycleRequest of(Function<Builder, ObjectBuilder<PutDataLifecycleRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * If defined, every document added to this data stream will be stored at least
+	 * for this time frame. Any time after this duration the document could be
+	 * deleted. When empty, every document in this data stream will be stored
+	 * indefinitely.
+	 * <p>
+	 * API name: {@code data_retention}
+	 */
+	@Nullable
+	public final Time dataRetention() {
+		return this.dataRetention;
+	}
+
+	/**
+	 * The downsampling configuration to execute for the managed backing index after
+	 * rollover.
+	 * <p>
+	 * API name: {@code downsampling}
+	 */
+	public final List<DownsamplingRound> downsampling() {
+		return this.downsampling;
+	}
+
+	/**
+	 * The method used to downsample the data. There are two options
+	 * <code>aggregate</code> and <code>last_value</code>. It requires
+	 * <code>downsampling</code> to be defined. Defaults to <code>aggregate</code>.
+	 * <p>
+	 * API name: {@code downsampling_method}
+	 */
+	@Nullable
+	public final SamplingMethod downsamplingMethod() {
+		return this.downsamplingMethod;
+	}
+
+	/**
+	 * If defined, it turns data stream lifecycle on/off
+	 * (<code>true</code>/<code>false</code>) for this data stream. A data stream
+	 * lifecycle that's disabled (enabled: <code>false</code>) will have no effect
+	 * on the data stream.
+	 * <p>
+	 * API name: {@code enabled}
+	 */
+	@Nullable
+	public final Boolean enabled() {
+		return this.enabled;
+	}
+
+	/**
+	 * Type of data stream that wildcard patterns can match. Supports
+	 * comma-separated values, such as <code>open,hidden</code>.
+	 * <p>
+	 * API name: {@code expand_wildcards}
+	 */
+	public final List<ExpandWildcard> expandWildcards() {
+		return this.expandWildcards;
+	}
+
+	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
+	 * Required - Comma-separated list of data streams used to limit the request.
+	 * Supports wildcards (<code>*</code>). To target all data streams use
+	 * <code>*</code> or <code>_all</code>.
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public final List<String> name() {
+		return this.name;
+	}
+
+	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.dataRetention != null) {
+			generator.writeKey("data_retention");
+			this.dataRetention.serialize(generator, mapper);
+
+		}
+		if (ApiTypeHelper.isDefined(this.downsampling)) {
+			generator.writeKey("downsampling");
+			generator.writeStartArray();
+			for (DownsamplingRound item0 : this.downsampling) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.downsamplingMethod != null) {
+			generator.writeKey("downsampling_method");
+			this.downsamplingMethod.serialize(generator, mapper);
+		}
+		if (this.enabled != null) {
+			generator.writeKey("enabled");
+			generator.write(this.enabled);
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link PutDataLifecycleRequest}.
+	 */
+
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<PutDataLifecycleRequest> {
+		@Nullable
+		private Time dataRetention;
+
+		@Nullable
+		private List<DownsamplingRound> downsampling;
+
+		@Nullable
+		private SamplingMethod downsamplingMethod;
+
+		@Nullable
+		private Boolean enabled;
+
+		@Nullable
+		private List<ExpandWildcard> expandWildcards;
+
+		@Nullable
+		private Time masterTimeout;
+
+		private List<String> name;
+
+		@Nullable
+		private Time timeout;
+
+		public Builder() {
+		}
+		private Builder(PutDataLifecycleRequest instance) {
+			this.dataRetention = instance.dataRetention;
+			this.downsampling = instance.downsampling;
+			this.downsamplingMethod = instance.downsamplingMethod;
+			this.enabled = instance.enabled;
+			this.expandWildcards = instance.expandWildcards;
+			this.masterTimeout = instance.masterTimeout;
+			this.name = instance.name;
+			this.timeout = instance.timeout;
+
+		}
+		/**
+		 * If defined, every document added to this data stream will be stored at least
+		 * for this time frame. Any time after this duration the document could be
+		 * deleted. When empty, every document in this data stream will be stored
+		 * indefinitely.
+		 * <p>
+		 * API name: {@code data_retention}
+		 */
+		public final Builder dataRetention(@Nullable Time value) {
+			this.dataRetention = value;
+			return this;
+		}
+
+		/**
+		 * If defined, every document added to this data stream will be stored at least
+		 * for this time frame. Any time after this duration the document could be
+		 * deleted. When empty, every document in this data stream will be stored
+		 * indefinitely.
+		 * <p>
+		 * API name: {@code data_retention}
+		 */
+		public final Builder dataRetention(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.dataRetention(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * The downsampling configuration to execute for the managed backing index after
+		 * rollover.
+		 * <p>
+		 * API name: {@code downsampling}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>downsampling</code>.
+		 */
+		public final Builder downsampling(List<DownsamplingRound> list) {
+			this.downsampling = _listAddAll(this.downsampling, list);
+			return this;
+		}
+
+		/**
+		 * The downsampling configuration to execute for the managed backing index after
+		 * rollover.
+		 * <p>
+		 * API name: {@code downsampling}
+		 * <p>
+		 * Adds one or more values to <code>downsampling</code>.
+		 */
+		public final Builder downsampling(DownsamplingRound value, DownsamplingRound... values) {
+			this.downsampling = _listAdd(this.downsampling, value, values);
+			return this;
+		}
+
+		/**
+		 * The downsampling configuration to execute for the managed backing index after
+		 * rollover.
+		 * <p>
+		 * API name: {@code downsampling}
+		 * <p>
+		 * Adds a value to <code>downsampling</code> using a builder lambda.
+		 */
+		public final Builder downsampling(Function<DownsamplingRound.Builder, ObjectBuilder<DownsamplingRound>> fn) {
+			return downsampling(fn.apply(new DownsamplingRound.Builder()).build());
+		}
+
+		/**
+		 * The method used to downsample the data. There are two options
+		 * <code>aggregate</code> and <code>last_value</code>. It requires
+		 * <code>downsampling</code> to be defined. Defaults to <code>aggregate</code>.
+		 * <p>
+		 * API name: {@code downsampling_method}
+		 */
+		public final Builder downsamplingMethod(@Nullable SamplingMethod value) {
+			this.downsamplingMethod = value;
+			return this;
+		}
+
+		/**
+		 * If defined, it turns data stream lifecycle on/off
+		 * (<code>true</code>/<code>false</code>) for this data stream. A data stream
+		 * lifecycle that's disabled (enabled: <code>false</code>) will have no effect
+		 * on the data stream.
+		 * <p>
+		 * API name: {@code enabled}
+		 */
+		public final Builder enabled(@Nullable Boolean value) {
+			this.enabled = value;
+			return this;
+		}
+
+		/**
+		 * Type of data stream that wildcard patterns can match. Supports
+		 * comma-separated values, such as <code>open,hidden</code>.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
+			return this;
+		}
+
+		/**
+		 * Type of data stream that wildcard patterns can match. Supports
+		 * comma-separated values, such as <code>open,hidden</code>.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - Comma-separated list of data streams used to limit the request.
+		 * Supports wildcards (<code>*</code>). To target all data streams use
+		 * <code>*</code> or <code>_all</code>.
+		 * <p>
+		 * API name: {@code name}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>.
+		 */
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
+			return this;
+		}
+
+		/**
+		 * Required - Comma-separated list of data streams used to limit the request.
+		 * Supports wildcards (<code>*</code>). To target all data streams use
+		 * <code>*</code> or <code>_all</code>.
+		 * <p>
+		 * API name: {@code name}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
+		 */
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link PutDataLifecycleRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public PutDataLifecycleRequest build() {
+			_checkSingleUse();
+
+			return new PutDataLifecycleRequest(this);
+		}
+	}
+
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for {@link PutDataLifecycleRequest}
+	 */
+	public static final JsonpDeserializer<PutDataLifecycleRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutDataLifecycleRequest::setupPutDataLifecycleRequestDeserializer);
+
+	protected static void setupPutDataLifecycleRequestDeserializer(
+			ObjectDeserializer<PutDataLifecycleRequest.Builder> op) {
+
+		op.add(Builder::dataRetention, Time._DESERIALIZER, "data_retention");
+		op.add(Builder::downsampling, JsonpDeserializer.arrayDeserializer(DownsamplingRound._DESERIALIZER),
+				"downsampling");
+		op.add(Builder::downsamplingMethod, SamplingMethod._DESERIALIZER, "downsampling_method");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code indices.put_data_lifecycle}".
+	 */
+	public static final Endpoint<PutDataLifecycleRequest, PutDataLifecycleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.put_data_lifecycle",
+
+			// Request method
+			request -> {
+				return "PUT";
+
+			},
+
+			// Request path
+			request -> {
+				final int _name = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _name;
+
+				if (propsSet == (_name)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_data_stream");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
+					buf.append("/_lifecycle");
+					return buf.toString();
+				}
+				throw SimpleEndpoint.noPathTemplateFound("path");
+
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _name = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _name;
+
+				if (propsSet == (_name)) {
+					params.put("name", request.name.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				return params;
+			},
+
+			// Request parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
+				}
+				return params;
+
+			}, SimpleEndpoint.emptyMap(), true, PutDataLifecycleResponse._DESERIALIZER);
+}

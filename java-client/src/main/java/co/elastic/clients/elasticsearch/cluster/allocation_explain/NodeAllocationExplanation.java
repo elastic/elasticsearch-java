@@ -1,0 +1,458 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+package co.elastic.clients.elasticsearch.cluster.allocation_explain;
+
+import co.elastic.clients.elasticsearch._types.NodeRole;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
+import java.lang.String;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
+// typedef: cluster.allocation_explain.NodeAllocationExplanation
+
+/**
+ *
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#cluster.allocation_explain.NodeAllocationExplanation">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class NodeAllocationExplanation implements JsonpSerializable {
+	private final List<AllocationDecision> deciders;
+
+	private final Map<String, String> nodeAttributes;
+
+	private final Decision nodeDecision;
+
+	private final String nodeId;
+
+	private final String nodeName;
+
+	private final List<NodeRole> roles;
+
+	@Nullable
+	private final AllocationStore store;
+
+	private final String transportAddress;
+
+	@Nullable
+	private final Integer weightRanking;
+
+	// ---------------------------------------------------------------------------------------------
+
+	private NodeAllocationExplanation(Builder builder) {
+
+		this.deciders = ApiTypeHelper.unmodifiable(builder.deciders);
+		this.nodeAttributes = ApiTypeHelper.unmodifiableRequired(builder.nodeAttributes, this, "nodeAttributes");
+		this.nodeDecision = ApiTypeHelper.requireNonNull(builder.nodeDecision, this, "nodeDecision");
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.nodeName = ApiTypeHelper.requireNonNull(builder.nodeName, this, "nodeName");
+		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
+		this.store = builder.store;
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+		this.weightRanking = builder.weightRanking;
+
+	}
+
+	public static NodeAllocationExplanation of(Function<Builder, ObjectBuilder<NodeAllocationExplanation>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code deciders}
+	 */
+	public final List<AllocationDecision> deciders() {
+		return this.deciders;
+	}
+
+	/**
+	 * Required - API name: {@code node_attributes}
+	 */
+	public final Map<String, String> nodeAttributes() {
+		return this.nodeAttributes;
+	}
+
+	/**
+	 * Required - API name: {@code node_decision}
+	 */
+	public final Decision nodeDecision() {
+		return this.nodeDecision;
+	}
+
+	/**
+	 * Required - API name: {@code node_id}
+	 */
+	public final String nodeId() {
+		return this.nodeId;
+	}
+
+	/**
+	 * Required - API name: {@code node_name}
+	 */
+	public final String nodeName() {
+		return this.nodeName;
+	}
+
+	/**
+	 * Required - API name: {@code roles}
+	 */
+	public final List<NodeRole> roles() {
+		return this.roles;
+	}
+
+	/**
+	 * API name: {@code store}
+	 */
+	@Nullable
+	public final AllocationStore store() {
+		return this.store;
+	}
+
+	/**
+	 * Required - API name: {@code transport_address}
+	 */
+	public final String transportAddress() {
+		return this.transportAddress;
+	}
+
+	/**
+	 * API name: {@code weight_ranking}
+	 */
+	@Nullable
+	public final Integer weightRanking() {
+		return this.weightRanking;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (ApiTypeHelper.isDefined(this.deciders)) {
+			generator.writeKey("deciders");
+			generator.writeStartArray();
+			for (AllocationDecision item0 : this.deciders) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.nodeAttributes)) {
+			generator.writeKey("node_attributes");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.nodeAttributes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
+
+		}
+		generator.writeKey("node_decision");
+		this.nodeDecision.serialize(generator, mapper);
+		generator.writeKey("node_id");
+		generator.write(this.nodeId);
+
+		generator.writeKey("node_name");
+		generator.write(this.nodeName);
+
+		if (ApiTypeHelper.isDefined(this.roles)) {
+			generator.writeKey("roles");
+			generator.writeStartArray();
+			for (NodeRole item0 : this.roles) {
+				item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
+
+		}
+		if (this.store != null) {
+			generator.writeKey("store");
+			this.store.serialize(generator, mapper);
+
+		}
+		generator.writeKey("transport_address");
+		generator.write(this.transportAddress);
+
+		if (this.weightRanking != null) {
+			generator.writeKey("weight_ranking");
+			generator.write(this.weightRanking);
+
+		}
+
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link NodeAllocationExplanation}.
+	 */
+
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<NodeAllocationExplanation> {
+		@Nullable
+		private List<AllocationDecision> deciders;
+
+		private Map<String, String> nodeAttributes;
+
+		private Decision nodeDecision;
+
+		private String nodeId;
+
+		private String nodeName;
+
+		private List<NodeRole> roles;
+
+		@Nullable
+		private AllocationStore store;
+
+		private String transportAddress;
+
+		@Nullable
+		private Integer weightRanking;
+
+		public Builder() {
+		}
+		private Builder(NodeAllocationExplanation instance) {
+			this.deciders = instance.deciders;
+			this.nodeAttributes = instance.nodeAttributes;
+			this.nodeDecision = instance.nodeDecision;
+			this.nodeId = instance.nodeId;
+			this.nodeName = instance.nodeName;
+			this.roles = instance.roles;
+			this.store = instance.store;
+			this.transportAddress = instance.transportAddress;
+			this.weightRanking = instance.weightRanking;
+
+		}
+		/**
+		 * API name: {@code deciders}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>deciders</code>.
+		 */
+		public final Builder deciders(List<AllocationDecision> list) {
+			this.deciders = _listAddAll(this.deciders, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code deciders}
+		 * <p>
+		 * Adds one or more values to <code>deciders</code>.
+		 */
+		public final Builder deciders(AllocationDecision value, AllocationDecision... values) {
+			this.deciders = _listAdd(this.deciders, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code deciders}
+		 * <p>
+		 * Adds a value to <code>deciders</code> using a builder lambda.
+		 */
+		public final Builder deciders(Function<AllocationDecision.Builder, ObjectBuilder<AllocationDecision>> fn) {
+			return deciders(fn.apply(new AllocationDecision.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code node_attributes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>nodeAttributes</code>.
+		 */
+		public final Builder nodeAttributes(Map<String, String> map) {
+			this.nodeAttributes = _mapPutAll(this.nodeAttributes, map);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code node_attributes}
+		 * <p>
+		 * Adds an entry to <code>nodeAttributes</code>.
+		 */
+		public final Builder nodeAttributes(String key, String value) {
+			this.nodeAttributes = _mapPut(this.nodeAttributes, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code node_decision}
+		 */
+		public final Builder nodeDecision(Decision value) {
+			this.nodeDecision = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code node_id}
+		 */
+		public final Builder nodeId(String value) {
+			this.nodeId = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code node_name}
+		 */
+		public final Builder nodeName(String value) {
+			this.nodeName = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
+		 */
+		public final Builder roles(List<NodeRole> list) {
+			this.roles = _listAddAll(this.roles, list);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds one or more values to <code>roles</code>.
+		 */
+		public final Builder roles(NodeRole value, NodeRole... values) {
+			this.roles = _listAdd(this.roles, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code store}
+		 */
+		public final Builder store(@Nullable AllocationStore value) {
+			this.store = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code store}
+		 */
+		public final Builder store(Function<AllocationStore.Builder, ObjectBuilder<AllocationStore>> fn) {
+			return this.store(fn.apply(new AllocationStore.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code transport_address}
+		 */
+		public final Builder transportAddress(String value) {
+			this.transportAddress = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code weight_ranking}
+		 */
+		public final Builder weightRanking(@Nullable Integer value) {
+			this.weightRanking = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link NodeAllocationExplanation}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public NodeAllocationExplanation build() {
+			_checkSingleUse();
+
+			return new NodeAllocationExplanation(this);
+		}
+	}
+
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for {@link NodeAllocationExplanation}
+	 */
+	public static final JsonpDeserializer<NodeAllocationExplanation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeAllocationExplanation::setupNodeAllocationExplanationDeserializer);
+
+	protected static void setupNodeAllocationExplanationDeserializer(
+			ObjectDeserializer<NodeAllocationExplanation.Builder> op) {
+
+		op.add(Builder::deciders, JsonpDeserializer.arrayDeserializer(AllocationDecision._DESERIALIZER), "deciders");
+		op.add(Builder::nodeAttributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"node_attributes");
+		op.add(Builder::nodeDecision, Decision._DESERIALIZER, "node_decision");
+		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
+		op.add(Builder::nodeName, JsonpDeserializer.stringDeserializer(), "node_name");
+		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(NodeRole._DESERIALIZER), "roles");
+		op.add(Builder::store, AllocationStore._DESERIALIZER, "store");
+		op.add(Builder::transportAddress, JsonpDeserializer.stringDeserializer(), "transport_address");
+		op.add(Builder::weightRanking, JsonpDeserializer.integerDeserializer(), "weight_ranking");
+
+	}
+
+}

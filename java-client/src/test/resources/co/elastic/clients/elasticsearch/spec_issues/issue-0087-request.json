@@ -1,0 +1,153 @@
+{
+  "_source": {
+    "excludes": [
+      "attachmentContents.*"
+    ],
+    "includes": [
+      "*"
+    ]
+  },
+  "aggregations": {
+    "count": {
+      "value_count": {
+        "field": "messageStorageId.messageId"
+      }
+    },
+    "login_filter": {
+      "aggregations": {
+        "date": {
+          "terms": {
+            "field": "year",
+            "order": [
+              {
+                "_key": "desc"
+              }
+            ]
+          }
+        },
+        "to_domain": {
+          "terms": {
+            "exclude": [
+              "unknown"
+            ],
+            "field": "to.domain"
+          }
+        },
+        "file_ext": {
+          "terms": {
+            "exclude": [
+              ""
+            ],
+            "field": "attachments.fileExt"
+          }
+        },
+        "has_att": {
+          "terms": {
+            "field": "hasAttachments"
+          }
+        },
+        "from": {
+          "terms": {
+            "exclude": [
+              "unknown"
+            ],
+            "field": "sender.name"
+          }
+        },
+        "from_domain": {
+          "terms": {
+            "exclude": [
+              "unknown"
+            ],
+            "field": "sender.domain"
+          }
+        },
+        "to": {
+          "terms": {
+            "exclude": [
+              "unknown"
+            ],
+            "field": "to.name"
+          }
+        }
+      },
+      "filter": {
+        "bool": {
+          "must": [
+            {
+              "bool": {
+                "minimum_should_match": "1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "from": 0,
+  "highlight": {
+    "fields": {
+      "body": {
+        "fragment_size": 0,
+        "number_of_fragments": 0
+      },
+      "attachments.fileName": {
+        "fragment_size": 0,
+        "number_of_fragments": 0
+      },
+      "attachmentContents.*": {
+        "fragment_size": 200,
+        "number_of_fragments": 2
+      },
+      "subject": {
+        "fragment_size": 0,
+        "number_of_fragments": 0
+      }
+    },
+    "post_tags": [
+      "</span>"
+    ],
+    "pre_tags": [
+      "<span class=\"blue-hilite\">"
+    ]
+  },
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "bool": {
+            "must": [
+              {
+                "query_string": {
+                  "default_operator": "and",
+                  "query": "Tsang"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "bool": {
+            "minimum_should_match": "1",
+            "should": [
+              {
+                "match_all": {}
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "size": 10,
+  "sort": [
+    {
+      "messageDate": {
+        "order": "asc"
+      }
+    }
+  ],
+  "stored_fields": [
+    "_source"
+  ]
+}

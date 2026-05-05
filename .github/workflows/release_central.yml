@@ -1,0 +1,114 @@
+name: "Release to Maven Central"
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch or tag ref to run the workflow on"
+        required: true
+      version:
+        description: "The version to release. Must start with the one in config/version.txt"
+        required: true
+      prev_version:
+          description: "The previous version, used in the release git diff."
+          required: true
+      dry_run:
+        description: Used to test other workflow steps, does not publish to Maven Central.
+        type: boolean
+        required: true
+        default: false
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
+
+env:
+  BRANCH: ${{ inputs.branch }}
+  VERSION: ${{ inputs.version }}
+  PREV_VERSION: ${{ inputs.prev_version }}
+  DRY_RUN: ${{ inputs.dry_run }}
+
+jobs:
+  validate-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        with:
+          ref: ${{ inputs.branch }}
+          fetch-depth: '1'
+      - name: Validate version
+        shell: bash
+        run: |
+          repo_version="$(cat config/version.txt)"
+          if [[ ! "$VERSION" = $repo_version* ]]; then
+            echo "Workflow version ($VERSION) and config/version.txt ($repo_version) do not match."
+            exit 1
+          fi
+
+  maven-central-deploy:
+    name: "Deploy to Maven Central (Buildkite)"
+    runs-on: ubuntu-latest
+    needs:
+      - validate-version
+    steps:
+      - name: Start buildkite run
+        id: buildkite-run
+        uses: elastic/oblt-actions/buildkite/run@v1
+        with:
+          pipeline: "elasticsearch-java-release"
+          wait-for: true
+          token: ${{ secrets.BUILDKITE_TOKEN }}
+          branch: ${{ inputs.branch }}
+          env-vars: |
+            DRY_RUN=${{ inputs.dry_run }}
+            VERSION=${{ inputs.version }}
+
+  tag-bump-and-gh-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install git
+        run: |
+          apt-get update
+          apt-get install -y git 
+          
+      - name: Fetch ephemeral GitHub token
+        id: fetch-ephemeral-token
+        uses: elastic/ci-gh-actions/fetch-github-token@v1.0.0
+        with:
+          vault-instance: "ci-prod"
+
+      - name: Tag branch ${{ inputs.branch }} with release ${{ inputs.version }}, bump version with new release ${{ inputs.version }}
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        with:
+          repository: elastic/elasticsearch-java
+          token: ${{ steps.fetch-ephemeral-token.outputs.token }}
+          ref: ${{ inputs.branch }}
+          path: elasticsearch-java
+
+      - run: |
+            git tag v${{ inputs.version }}
+            git push origin v${{ inputs.version }}
+            echo ${{ inputs.version }} > config/version.txt
+            sed -i '/static final String VERSION/s/".*"/"${{ inputs.version }}"/' java-client/src/main-flavored/java/co/elastic/clients/transport/VersionInfo.java
+            git commit -m "bump version" -a
+            git push origin ${{ inputs.branch }}
+
+      - name: Creates new github release with version ${{ inputs.version }}
+        uses: softprops/action-gh-release@v2
+        with:
+          repository: elastic/elasticsearch-java
+          token: ${{ steps.fetch-ephemeral-token.outputs.token }}
+          tag_name: v${{ inputs.version }}
+          name: v${{ inputs.version }}
+          draft: true
+          prerelease: false
+          target_commitish: ${{ inputs.branch }}
+          body: |
+            ## What's Changed
+            
+            **Full Changelog**: https://github.com/elastic/elasticsearch-java/compare/v${{inputs.prev_version}}...v${{ inputs.version }}
+
+
