@@ -63,6 +63,25 @@ public class RangeQueryBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link LongNumberRangeQuery long_number}
+	 * {@code RangeQuery} variant.
+	 */
+	public static LongNumberRangeQuery.Builder longNumber() {
+		return new LongNumberRangeQuery.Builder();
+	}
+
+	/**
+	 * Creates a RangeQuery of the {@link LongNumberRangeQuery long_number}
+	 * {@code RangeQuery} variant.
+	 */
+	public static RangeQuery longNumber(
+			Function<LongNumberRangeQuery.Builder, ObjectBuilder<LongNumberRangeQuery>> fn) {
+		RangeQuery.Builder builder = new RangeQuery.Builder();
+		builder.longNumber(fn.apply(new LongNumberRangeQuery.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link NumberRangeQuery number} {@code RangeQuery}
 	 * variant.
 	 */

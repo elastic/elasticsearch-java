@@ -85,6 +85,8 @@ public class RangeQuery
 	public enum Kind implements JsonEnum {
 		Date("date"),
 
+		LongNumber("long_number"),
+
 		Number("number"),
 
 		Term("term"),
@@ -191,6 +193,23 @@ public class RangeQuery
 	}
 
 	/**
+	 * Is this variant instance of kind {@code long_number}?
+	 */
+	public boolean isLongNumber() {
+		return _kind == Kind.LongNumber;
+	}
+
+	/**
+	 * Get the {@code long_number} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code long_number} kind.
+	 */
+	public LongNumberRangeQuery longNumber() {
+		return TaggedUnionUtils.get(this, Kind.LongNumber);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code number}?
 	 */
 	public boolean isNumber() {
@@ -265,6 +284,17 @@ public class RangeQuery
 
 		public ObjectBuilder<RangeQuery> date(Function<DateRangeQuery.Builder, ObjectBuilder<DateRangeQuery>> fn) {
 			return this.date(fn.apply(new DateRangeQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<RangeQuery> longNumber(LongNumberRangeQuery v) {
+			this._kind = Kind.LongNumber;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<RangeQuery> longNumber(
+				Function<LongNumberRangeQuery.Builder, ObjectBuilder<LongNumberRangeQuery>> fn) {
+			return this.longNumber(fn.apply(new LongNumberRangeQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<RangeQuery> number(NumberRangeQuery v) {

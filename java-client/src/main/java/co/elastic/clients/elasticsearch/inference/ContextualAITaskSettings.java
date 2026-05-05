@@ -29,7 +29,6 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -65,9 +64,6 @@ public class ContextualAITaskSettings implements JsonpSerializable {
 	private final String instruction;
 
 	@Nullable
-	private final Boolean returnDocuments;
-
-	@Nullable
 	private final Integer topK;
 
 	// ---------------------------------------------------------------------------------------------
@@ -75,7 +71,6 @@ public class ContextualAITaskSettings implements JsonpSerializable {
 	private ContextualAITaskSettings(Builder builder) {
 
 		this.instruction = builder.instruction;
-		this.returnDocuments = builder.returnDocuments;
 		this.topK = builder.topK;
 
 	}
@@ -94,17 +89,6 @@ public class ContextualAITaskSettings implements JsonpSerializable {
 	@Nullable
 	public final String instruction() {
 		return this.instruction;
-	}
-
-	/**
-	 * Whether to return the source documents in the response. Only for the
-	 * <code>rerank</code> task type.
-	 * <p>
-	 * API name: {@code return_documents}
-	 */
-	@Nullable
-	public final Boolean returnDocuments() {
-		return this.returnDocuments;
 	}
 
 	/**
@@ -135,11 +119,6 @@ public class ContextualAITaskSettings implements JsonpSerializable {
 			generator.write(this.instruction);
 
 		}
-		if (this.returnDocuments != null) {
-			generator.writeKey("return_documents");
-			generator.write(this.returnDocuments);
-
-		}
 		if (this.topK != null) {
 			generator.writeKey("top_k");
 			generator.write(this.topK);
@@ -166,16 +145,12 @@ public class ContextualAITaskSettings implements JsonpSerializable {
 		private String instruction;
 
 		@Nullable
-		private Boolean returnDocuments;
-
-		@Nullable
 		private Integer topK;
 
 		public Builder() {
 		}
 		private Builder(ContextualAITaskSettings instance) {
 			this.instruction = instance.instruction;
-			this.returnDocuments = instance.returnDocuments;
 			this.topK = instance.topK;
 
 		}
@@ -188,17 +163,6 @@ public class ContextualAITaskSettings implements JsonpSerializable {
 		 */
 		public final Builder instruction(@Nullable String value) {
 			this.instruction = value;
-			return this;
-		}
-
-		/**
-		 * Whether to return the source documents in the response. Only for the
-		 * <code>rerank</code> task type.
-		 * <p>
-		 * API name: {@code return_documents}
-		 */
-		public final Builder returnDocuments(@Nullable Boolean value) {
-			this.returnDocuments = value;
 			return this;
 		}
 
@@ -250,7 +214,6 @@ public class ContextualAITaskSettings implements JsonpSerializable {
 			ObjectDeserializer<ContextualAITaskSettings.Builder> op) {
 
 		op.add(Builder::instruction, JsonpDeserializer.stringDeserializer(), "instruction");
-		op.add(Builder::returnDocuments, JsonpDeserializer.booleanDeserializer(), "return_documents");
 		op.add(Builder::topK, JsonpDeserializer.integerDeserializer(), "top_k");
 
 	}
