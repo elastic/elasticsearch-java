@@ -1,0 +1,111 @@
+# Note: source code snippets in all the docs are pulled from test source files, do ensure their correctness.
+# To update these snippets, run `./gradlew :tools:expand-includes` from the main elasticsearch-java directory.
+
+toc:
+  - file: index.md
+  - file: getting-started.md
+
+  - folder: setup
+    children:
+      - file: index.md
+      - file: installation.md
+      - file: connecting.md
+      - file: opentelemetry.md
+
+  - folder: api-conventions
+    children:
+      - file: index.md
+      - file: package-structure.md
+      - file: method-naming.md
+      - file: blocking-async.md
+      - file: building-objects.md
+      - file: lists-maps.md
+      - file: variant-types.md
+      - file: object-lifecycles.md
+      - file: loading-json.md
+      - file: exception-conventions.md
+
+  - folder: usage
+    children:
+      - file: index.md
+      - file: indexing.md
+      - file: indexing-bulk.md
+      - file: reading.md
+      - file: searching.md
+      - file: aggregations.md
+      - file: esql.md
+
+  - folder: troubleshooting
+    children:
+      - file: index.md
+      - file: missing-required-property.md
+      - file: no-such-method-request-options.md
+      - file: io-reactor-errors.md
+      - file: serialize-without-typed-keys.md
+      - file: could-not-resolve-dependencies.md
+      - file: no-class-def-found-error.md
+
+  - folder: transport
+    children:
+      - file: index.md
+
+      - folder: rest5-client
+        children:
+          - file: index.md
+          - folder: usage
+            children:
+              - file: index.md
+              - file: initialization.md
+              - file: requests.md
+              - file: responses.md
+              - file: logging.md
+          - folder: config
+            children:
+              - file: index.md
+              - file: timeouts.md
+              - file: number_of_threads.md
+              - file: basic_authentication.md
+              - file: other_authentication_methods.md
+              - file: encrypted_communication.md
+              - file: others.md
+              - file: node_selector.md
+          - folder: sniffer
+            children:
+              - file: index.md
+
+      - folder: rest-client
+        children:
+          - file: index.md
+          - folder: usage
+            children:
+              - file: index.md
+              - file: javadoc.md
+              - file: maven.md
+              - file: dependencies.md
+              - file: shading.md
+              - file: initialization.md
+              - file: requests.md
+              - file: responses.md
+              - file: logging.md
+          - folder: config
+            children:
+              - file: index.md
+              - file: timeouts.md
+              - file: number_of_threads.md
+              - file: basic_authentication.md
+              - file: other_authentication_methods.md
+              - file: encrypted_communication.md
+              - file: others.md
+              - file: node_selector.md
+          - folder: sniffer
+            children:
+              - file: index.md
+              - file: javadoc.md
+              - file: maven_repository.md
+              - file: usage.md
+
+  - file: javadoc-source-code.md
+  - file: external-resources.md
+  - file: breaking-changes-policy.md
+  - file: release-highlights.md
+  - file: license.md

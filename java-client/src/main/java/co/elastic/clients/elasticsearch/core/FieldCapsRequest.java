@@ -1,0 +1,815 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+package co.elastic.clients.elasticsearch.core;
+
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
+import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.String;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
+// typedef: _global.field_caps.Request
+
+/**
+ * Get the field capabilities.
+ * <p>
+ * Get information about the capabilities of fields among multiple indices.
+ * <p>
+ * For data streams, the API returns field capabilities among the stream’s
+ * backing indices. It returns runtime fields like any other field. For example,
+ * a runtime field with a type of keyword is returned the same as any other
+ * field that belongs to the <code>keyword</code> family.
+ * 
+ * @see <a href="../doc-files/api-spec.html#_global.field_caps.Request">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final Boolean allowNoIndices;
+
+	private final List<ExpandWildcard> expandWildcards;
+
+	private final List<String> fields;
+
+	private final List<String> filters;
+
+	@Nullable
+	private final Boolean ignoreUnavailable;
+
+	@Nullable
+	private final Boolean includeEmptyFields;
+
+	@Nullable
+	private final Boolean includeUnmapped;
+
+	private final List<String> index;
+
+	@Nullable
+	private final Query indexFilter;
+
+	@Nullable
+	private final String projectRouting;
+
+	private final Map<String, RuntimeField> runtimeMappings;
+
+	private final List<String> types;
+
+	// ---------------------------------------------------------------------------------------------
+
+	private FieldCapsRequest(Builder builder) {
+
+		this.allowNoIndices = builder.allowNoIndices;
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.filters = ApiTypeHelper.unmodifiable(builder.filters);
+		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.includeEmptyFields = builder.includeEmptyFields;
+		this.includeUnmapped = builder.includeUnmapped;
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
+		this.indexFilter = builder.indexFilter;
+		this.projectRouting = builder.projectRouting;
+		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.types = ApiTypeHelper.unmodifiable(builder.types);
+
+	}
+
+	public static FieldCapsRequest of(Function<Builder, ObjectBuilder<FieldCapsRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * A setting that does two separate checks on the index expression. If
+	 * <code>false</code>, the request returns an error (1) if any wildcard
+	 * expression (including <code>_all</code> and <code>*</code>) resolves to zero
+	 * matching indices or (2) if the complete set of resolved indices, aliases or
+	 * data streams is empty after all expressions are evaluated. If
+	 * <code>true</code>, index expressions that resolve to no indices are allowed
+	 * and the request returns an empty result.
+	 * <p>
+	 * API name: {@code allow_no_indices}
+	 */
+	@Nullable
+	public final Boolean allowNoIndices() {
+		return this.allowNoIndices;
+	}
+
+	/**
+	 * The type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as
+	 * <code>open,hidden</code>.
+	 * <p>
+	 * API name: {@code expand_wildcards}
+	 */
+	public final List<ExpandWildcard> expandWildcards() {
+		return this.expandWildcards;
+	}
+
+	/**
+	 * A list of fields to retrieve capabilities for. Wildcard (<code>*</code>)
+	 * expressions are supported.
+	 * <p>
+	 * API name: {@code fields}
+	 */
+	public final List<String> fields() {
+		return this.fields;
+	}
+
+	/**
+	 * A comma-separated list of filters to apply to the response.
+	 * <p>
+	 * API name: {@code filters}
+	 */
+	public final List<String> filters() {
+		return this.filters;
+	}
+
+	/**
+	 * If <code>false</code>, the request returns an error if it targets a concrete
+	 * (non-wildcarded) index, alias, or data stream that is missing, closed, or
+	 * otherwise unavailable. If <code>true</code>, unavailable concrete targets are
+	 * silently ignored.
+	 * <p>
+	 * API name: {@code ignore_unavailable}
+	 */
+	@Nullable
+	public final Boolean ignoreUnavailable() {
+		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * If false, empty fields are not included in the response.
+	 * <p>
+	 * API name: {@code include_empty_fields}
+	 */
+	@Nullable
+	public final Boolean includeEmptyFields() {
+		return this.includeEmptyFields;
+	}
+
+	/**
+	 * If true, unmapped fields are included in the response.
+	 * <p>
+	 * API name: {@code include_unmapped}
+	 */
+	@Nullable
+	public final Boolean includeUnmapped() {
+		return this.includeUnmapped;
+	}
+
+	/**
+	 * A comma-separated list of data streams, indices, and aliases used to limit
+	 * the request. Supports wildcards (*). To target all data streams and indices,
+	 * omit this parameter or use * or _all.
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public final List<String> index() {
+		return this.index;
+	}
+
+	/**
+	 * Filter indices if the provided query rewrites to <code>match_none</code> on
+	 * every shard.
+	 * <p>
+	 * IMPORTANT: The filtering is done on a best-effort basis, it uses index
+	 * statistics and mappings to rewrite queries to <code>match_none</code> instead
+	 * of fully running the request. For instance a range query over a date field
+	 * can rewrite to <code>match_none</code> if all documents within a shard
+	 * (including deleted documents) are outside of the provided range. However, not
+	 * all queries can rewrite to <code>match_none</code> so this API may return an
+	 * index even if the provided filter matches no document.
+	 * <p>
+	 * API name: {@code index_filter}
+	 */
+	@Nullable
+	public final Query indexFilter() {
+		return this.indexFilter;
+	}
+
+	/**
+	 * Specifies a subset of projects to target for the field-caps query using
+	 * project metadata tags in a subset of Lucene query syntax. Allowed Lucene
+	 * queries: the _alias tag and a single value (possibly wildcarded). Examples:
+	 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+	 * only.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
+	}
+
+	/**
+	 * Define ad-hoc runtime fields in the request similar to the way it is done in
+	 * search requests. These fields exist only as part of the query and take
+	 * precedence over fields defined with the same name in the index mappings.
+	 * <p>
+	 * API name: {@code runtime_mappings}
+	 */
+	public final Map<String, RuntimeField> runtimeMappings() {
+		return this.runtimeMappings;
+	}
+
+	/**
+	 * A comma-separated list of field types to include. Any fields that do not
+	 * match one of these types will be excluded from the results. It defaults to
+	 * empty, meaning that all field types are returned.
+	 * <p>
+	 * API name: {@code types}
+	 */
+	public final List<String> types() {
+		return this.types;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (ApiTypeHelper.isDefined(this.fields)) {
+			generator.writeKey("fields");
+			generator.writeStartArray();
+			for (String item0 : this.fields) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.indexFilter != null) {
+			generator.writeKey("index_filter");
+			this.indexFilter.serialize(generator, mapper);
+
+		}
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
+		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
+			generator.writeKey("runtime_mappings");
+			generator.writeStartObject();
+			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link FieldCapsRequest}.
+	 */
+
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<FieldCapsRequest> {
+		@Nullable
+		private Boolean allowNoIndices;
+
+		@Nullable
+		private List<ExpandWildcard> expandWildcards;
+
+		@Nullable
+		private List<String> fields;
+
+		@Nullable
+		private List<String> filters;
+
+		@Nullable
+		private Boolean ignoreUnavailable;
+
+		@Nullable
+		private Boolean includeEmptyFields;
+
+		@Nullable
+		private Boolean includeUnmapped;
+
+		@Nullable
+		private List<String> index;
+
+		@Nullable
+		private Query indexFilter;
+
+		@Nullable
+		private String projectRouting;
+
+		@Nullable
+		private Map<String, RuntimeField> runtimeMappings;
+
+		@Nullable
+		private List<String> types;
+
+		public Builder() {
+		}
+		private Builder(FieldCapsRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.fields = instance.fields;
+			this.filters = instance.filters;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.includeEmptyFields = instance.includeEmptyFields;
+			this.includeUnmapped = instance.includeUnmapped;
+			this.index = instance.index;
+			this.indexFilter = instance.indexFilter;
+			this.projectRouting = instance.projectRouting;
+			this.runtimeMappings = instance.runtimeMappings;
+			this.types = instance.types;
+
+		}
+		/**
+		 * A setting that does two separate checks on the index expression. If
+		 * <code>false</code>, the request returns an error (1) if any wildcard
+		 * expression (including <code>_all</code> and <code>*</code>) resolves to zero
+		 * matching indices or (2) if the complete set of resolved indices, aliases or
+		 * data streams is empty after all expressions are evaluated. If
+		 * <code>true</code>, index expressions that resolve to no indices are allowed
+		 * and the request returns an empty result.
+		 * <p>
+		 * API name: {@code allow_no_indices}
+		 */
+		public final Builder allowNoIndices(@Nullable Boolean value) {
+			this.allowNoIndices = value;
+			return this;
+		}
+
+		/**
+		 * The type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
+			return this;
+		}
+
+		/**
+		 * The type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+			return this;
+		}
+
+		/**
+		 * A list of fields to retrieve capabilities for. Wildcard (<code>*</code>)
+		 * expressions are supported.
+		 * <p>
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
+		 */
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
+			return this;
+		}
+
+		/**
+		 * A list of fields to retrieve capabilities for. Wildcard (<code>*</code>)
+		 * expressions are supported.
+		 * <p>
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
+		 */
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of filters to apply to the response.
+		 * <p>
+		 * API name: {@code filters}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filters</code>.
+		 */
+		public final Builder filters(List<String> list) {
+			this.filters = _listAddAll(this.filters, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of filters to apply to the response.
+		 * <p>
+		 * API name: {@code filters}
+		 * <p>
+		 * Adds one or more values to <code>filters</code>.
+		 */
+		public final Builder filters(String value, String... values) {
+			this.filters = _listAdd(this.filters, value, values);
+			return this;
+		}
+
+		/**
+		 * If <code>false</code>, the request returns an error if it targets a concrete
+		 * (non-wildcarded) index, alias, or data stream that is missing, closed, or
+		 * otherwise unavailable. If <code>true</code>, unavailable concrete targets are
+		 * silently ignored.
+		 * <p>
+		 * API name: {@code ignore_unavailable}
+		 */
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
+			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * If false, empty fields are not included in the response.
+		 * <p>
+		 * API name: {@code include_empty_fields}
+		 */
+		public final Builder includeEmptyFields(@Nullable Boolean value) {
+			this.includeEmptyFields = value;
+			return this;
+		}
+
+		/**
+		 * If true, unmapped fields are included in the response.
+		 * <p>
+		 * API name: {@code include_unmapped}
+		 */
+		public final Builder includeUnmapped(@Nullable Boolean value) {
+			this.includeUnmapped = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of data streams, indices, and aliases used to limit
+		 * the request. Supports wildcards (*). To target all data streams and indices,
+		 * omit this parameter or use * or _all.
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
+		 */
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of data streams, indices, and aliases used to limit
+		 * the request. Supports wildcards (*). To target all data streams and indices,
+		 * omit this parameter or use * or _all.
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
+		 */
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
+			return this;
+		}
+
+		/**
+		 * Filter indices if the provided query rewrites to <code>match_none</code> on
+		 * every shard.
+		 * <p>
+		 * IMPORTANT: The filtering is done on a best-effort basis, it uses index
+		 * statistics and mappings to rewrite queries to <code>match_none</code> instead
+		 * of fully running the request. For instance a range query over a date field
+		 * can rewrite to <code>match_none</code> if all documents within a shard
+		 * (including deleted documents) are outside of the provided range. However, not
+		 * all queries can rewrite to <code>match_none</code> so this API may return an
+		 * index even if the provided filter matches no document.
+		 * <p>
+		 * API name: {@code index_filter}
+		 */
+		public final Builder indexFilter(@Nullable Query value) {
+			this.indexFilter = value;
+			return this;
+		}
+
+		/**
+		 * Filter indices if the provided query rewrites to <code>match_none</code> on
+		 * every shard.
+		 * <p>
+		 * IMPORTANT: The filtering is done on a best-effort basis, it uses index
+		 * statistics and mappings to rewrite queries to <code>match_none</code> instead
+		 * of fully running the request. For instance a range query over a date field
+		 * can rewrite to <code>match_none</code> if all documents within a shard
+		 * (including deleted documents) are outside of the provided range. However, not
+		 * all queries can rewrite to <code>match_none</code> so this API may return an
+		 * index even if the provided filter matches no document.
+		 * <p>
+		 * API name: {@code index_filter}
+		 */
+		public final Builder indexFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.indexFilter(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * Filter indices if the provided query rewrites to <code>match_none</code> on
+		 * every shard.
+		 * <p>
+		 * IMPORTANT: The filtering is done on a best-effort basis, it uses index
+		 * statistics and mappings to rewrite queries to <code>match_none</code> instead
+		 * of fully running the request. For instance a range query over a date field
+		 * can rewrite to <code>match_none</code> if all documents within a shard
+		 * (including deleted documents) are outside of the provided range. However, not
+		 * all queries can rewrite to <code>match_none</code> so this API may return an
+		 * index even if the provided filter matches no document.
+		 * <p>
+		 * API name: {@code index_filter}
+		 */
+		public final Builder indexFilter(QueryVariant value) {
+			this.indexFilter = value._toQuery();
+			return this;
+		}
+
+		/**
+		 * Specifies a subset of projects to target for the field-caps query using
+		 * project metadata tags in a subset of Lucene query syntax. Allowed Lucene
+		 * queries: the _alias tag and a single value (possibly wildcarded). Examples:
+		 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+		 * only.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
+			return this;
+		}
+
+		/**
+		 * Define ad-hoc runtime fields in the request similar to the way it is done in
+		 * search requests. These fields exist only as part of the query and take
+		 * precedence over fields defined with the same name in the index mappings.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
+		 */
+		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
+			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
+			return this;
+		}
+
+		/**
+		 * Define ad-hoc runtime fields in the request similar to the way it is done in
+		 * search requests. These fields exist only as part of the query and take
+		 * precedence over fields defined with the same name in the index mappings.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code>.
+		 */
+		public final Builder runtimeMappings(String key, RuntimeField value) {
+			this.runtimeMappings = _mapPut(this.runtimeMappings, key, value);
+			return this;
+		}
+
+		/**
+		 * Define ad-hoc runtime fields in the request similar to the way it is done in
+		 * search requests. These fields exist only as part of the query and take
+		 * precedence over fields defined with the same name in the index mappings.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code> using a builder lambda.
+		 */
+		public final Builder runtimeMappings(String key,
+				Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return runtimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
+		}
+
+		/**
+		 * A comma-separated list of field types to include. Any fields that do not
+		 * match one of these types will be excluded from the results. It defaults to
+		 * empty, meaning that all field types are returned.
+		 * <p>
+		 * API name: {@code types}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>types</code>.
+		 */
+		public final Builder types(List<String> list) {
+			this.types = _listAddAll(this.types, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of field types to include. Any fields that do not
+		 * match one of these types will be excluded from the results. It defaults to
+		 * empty, meaning that all field types are returned.
+		 * <p>
+		 * API name: {@code types}
+		 * <p>
+		 * Adds one or more values to <code>types</code>.
+		 */
+		public final Builder types(String value, String... values) {
+			this.types = _listAdd(this.types, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link FieldCapsRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public FieldCapsRequest build() {
+			_checkSingleUse();
+
+			return new FieldCapsRequest(this);
+		}
+	}
+
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Json deserializer for {@link FieldCapsRequest}
+	 */
+	public static final JsonpDeserializer<FieldCapsRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			FieldCapsRequest::setupFieldCapsRequestDeserializer);
+
+	protected static void setupFieldCapsRequestDeserializer(ObjectDeserializer<FieldCapsRequest.Builder> op) {
+
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
+		op.add(Builder::indexFilter, Query._DESERIALIZER, "index_filter");
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
+				"runtime_mappings");
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code field_caps}".
+	 */
+	public static final Endpoint<FieldCapsRequest, FieldCapsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/field_caps",
+
+			// Request method
+			request -> {
+				return "POST";
+
+			},
+
+			// Request path
+			request -> {
+				final int _index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.index()))
+					propsSet |= _index;
+
+				if (propsSet == 0) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_field_caps");
+					return buf.toString();
+				}
+				if (propsSet == (_index)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
+					buf.append("/_field_caps");
+					return buf.toString();
+				}
+				throw SimpleEndpoint.noPathTemplateFound("path");
+
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _index = 1 << 0;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.index()))
+					propsSet |= _index;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_index)) {
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
+				return params;
+			},
+
+			// Request parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				if (ApiTypeHelper.isDefined(request.types)) {
+					params.put("types", request.types.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
+				}
+				if (request.ignoreUnavailable != null) {
+					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.includeEmptyFields != null) {
+					params.put("include_empty_fields", String.valueOf(request.includeEmptyFields));
+				}
+				if (ApiTypeHelper.isDefined(request.filters)) {
+					params.put("filters", request.filters.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
+				if (request.includeUnmapped != null) {
+					params.put("include_unmapped", String.valueOf(request.includeUnmapped));
+				}
+				return params;
+
+			}, SimpleEndpoint.emptyMap(), true, FieldCapsResponse._DESERIALIZER);
+}

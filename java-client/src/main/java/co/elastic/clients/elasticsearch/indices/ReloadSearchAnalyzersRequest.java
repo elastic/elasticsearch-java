@@ -1,0 +1,394 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+package co.elastic.clients.elasticsearch.indices;
+
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
+import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.String;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
+// typedef: indices.reload_search_analyzers.Request
+
+/**
+ * Reload search analyzers.
+ * <p>
+ * Reload an index's search analyzers and their resources. For data streams, the
+ * API reloads search analyzers and resources for the stream's backing indices.
+ * <p>
+ * IMPORTANT: After reloading the search analyzers you should clear the request
+ * cache to make sure it doesn't contain responses derived from the previous
+ * versions of the analyzer.
+ * <p>
+ * You can use the reload search analyzers API to pick up changes to synonym
+ * files used in the <code>synonym_graph</code> or <code>synonym</code> token
+ * filter of a search analyzer. To be eligible, the token filter must have an
+ * <code>updateable</code> flag of <code>true</code> and only be used in search
+ * analyzers.
+ * <p>
+ * NOTE: This API does not perform a reload for each shard of an index. Instead,
+ * it performs a reload for each node containing index shards. As a result, the
+ * total shard count returned by the API can differ from the number of index
+ * shards. Because reloading affects every node with an index shard, it is
+ * important to update the synonym file on every data node in the
+ * cluster--including nodes that don't contain a shard replica--before using
+ * this API. This ensures the synonym file is updated everywhere in the cluster
+ * in case shards are relocated in the future.
+ * 
+ * @see <a href=
+ *      "../doc-files/api-spec.html#indices.reload_search_analyzers.Request">API
+ *      specification</a>
+ */
+
+public class ReloadSearchAnalyzersRequest extends RequestBase {
+	@Nullable
+	private final Boolean allowNoIndices;
+
+	private final List<ExpandWildcard> expandWildcards;
+
+	@Nullable
+	private final Boolean ignoreUnavailable;
+
+	private final List<String> index;
+
+	@Nullable
+	private final String resource;
+
+	// ---------------------------------------------------------------------------------------------
+
+	private ReloadSearchAnalyzersRequest(Builder builder) {
+
+		this.allowNoIndices = builder.allowNoIndices;
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.resource = builder.resource;
+
+	}
+
+	public static ReloadSearchAnalyzersRequest of(Function<Builder, ObjectBuilder<ReloadSearchAnalyzersRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * A setting that does two separate checks on the index expression. If
+	 * <code>false</code>, the request returns an error (1) if any wildcard
+	 * expression (including <code>_all</code> and <code>*</code>) resolves to zero
+	 * matching indices or (2) if the complete set of resolved indices, aliases or
+	 * data streams is empty after all expressions are evaluated. If
+	 * <code>true</code>, index expressions that resolve to no indices are allowed
+	 * and the request returns an empty result.
+	 * <p>
+	 * API name: {@code allow_no_indices}
+	 */
+	@Nullable
+	public final Boolean allowNoIndices() {
+		return this.allowNoIndices;
+	}
+
+	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
+	 * API name: {@code expand_wildcards}
+	 */
+	public final List<ExpandWildcard> expandWildcards() {
+		return this.expandWildcards;
+	}
+
+	/**
+	 * If <code>false</code>, the request returns an error if it targets a concrete
+	 * (non-wildcarded) index, alias, or data stream that is missing, closed, or
+	 * otherwise unavailable. If <code>true</code>, unavailable concrete targets are
+	 * silently ignored.
+	 * <p>
+	 * API name: {@code ignore_unavailable}
+	 */
+	@Nullable
+	public final Boolean ignoreUnavailable() {
+		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * Required - A comma-separated list of index names to reload analyzers for
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public final List<String> index() {
+		return this.index;
+	}
+
+	/**
+	 * Changed resource to reload analyzers from if applicable
+	 * <p>
+	 * API name: {@code resource}
+	 */
+	@Nullable
+	public final String resource() {
+		return this.resource;
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link ReloadSearchAnalyzersRequest}.
+	 */
+
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<ReloadSearchAnalyzersRequest> {
+		@Nullable
+		private Boolean allowNoIndices;
+
+		@Nullable
+		private List<ExpandWildcard> expandWildcards;
+
+		@Nullable
+		private Boolean ignoreUnavailable;
+
+		private List<String> index;
+
+		@Nullable
+		private String resource;
+
+		public Builder() {
+		}
+		private Builder(ReloadSearchAnalyzersRequest instance) {
+			this.allowNoIndices = instance.allowNoIndices;
+			this.expandWildcards = instance.expandWildcards;
+			this.ignoreUnavailable = instance.ignoreUnavailable;
+			this.index = instance.index;
+			this.resource = instance.resource;
+
+		}
+		/**
+		 * A setting that does two separate checks on the index expression. If
+		 * <code>false</code>, the request returns an error (1) if any wildcard
+		 * expression (including <code>_all</code> and <code>*</code>) resolves to zero
+		 * matching indices or (2) if the complete set of resolved indices, aliases or
+		 * data streams is empty after all expressions are evaluated. If
+		 * <code>true</code>, index expressions that resolve to no indices are allowed
+		 * and the request returns an empty result.
+		 * <p>
+		 * API name: {@code allow_no_indices}
+		 */
+		public final Builder allowNoIndices(@Nullable Boolean value) {
+			this.allowNoIndices = value;
+			return this;
+		}
+
+		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
+			return this;
+		}
+
+		/**
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+			return this;
+		}
+
+		/**
+		 * If <code>false</code>, the request returns an error if it targets a concrete
+		 * (non-wildcarded) index, alias, or data stream that is missing, closed, or
+		 * otherwise unavailable. If <code>true</code>, unavailable concrete targets are
+		 * silently ignored.
+		 * <p>
+		 * API name: {@code ignore_unavailable}
+		 */
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
+			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of index names to reload analyzers for
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
+		 */
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of index names to reload analyzers for
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
+		 */
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
+			return this;
+		}
+
+		/**
+		 * Changed resource to reload analyzers from if applicable
+		 * <p>
+		 * API name: {@code resource}
+		 */
+		public final Builder resource(@Nullable String value) {
+			this.resource = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link ReloadSearchAnalyzersRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public ReloadSearchAnalyzersRequest build() {
+			_checkSingleUse();
+
+			return new ReloadSearchAnalyzersRequest(this);
+		}
+	}
+
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code indices.reload_search_analyzers}".
+	 */
+	public static final Endpoint<ReloadSearchAnalyzersRequest, ReloadSearchAnalyzersResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.reload_search_analyzers",
+
+			// Request method
+			request -> {
+				return "POST";
+
+			},
+
+			// Request path
+			request -> {
+				final int _index = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _index;
+
+				if (propsSet == (_index)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
+					buf.append("/_reload_search_analyzers");
+					return buf.toString();
+				}
+				throw SimpleEndpoint.noPathTemplateFound("path");
+
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _index = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _index;
+
+				if (propsSet == (_index)) {
+					params.put("index", request.index.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
+				return params;
+			},
+
+			// Request parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
+				}
+				if (request.ignoreUnavailable != null) {
+					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.resource != null) {
+					params.put("resource", request.resource);
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				return params;
+
+			}, SimpleEndpoint.emptyMap(), false, ReloadSearchAnalyzersResponse._DESERIALIZER);
+}

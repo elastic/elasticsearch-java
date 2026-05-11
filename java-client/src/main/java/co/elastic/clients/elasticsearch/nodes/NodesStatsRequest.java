@@ -1,0 +1,756 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+package co.elastic.clients.elasticsearch.nodes;
+
+import co.elastic.clients.elasticsearch._types.CommonStatsFlag;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.NodeStatsLevel;
+import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch.nodes.stats.NodeStatsMetric;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.String;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import javax.annotation.Nullable;
+
+//----------------------------------------------------------------
+//       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
+//----------------------------------------------------------------
+//
+// This code is generated from the Elasticsearch API specification
+// at https://github.com/elastic/elasticsearch-specification
+//
+// Manual updates to this file will be lost when the code is
+// re-generated.
+//
+// If you find a property that is missing or wrongly typed, please
+// open an issue or a PR on the API specification repository.
+//
+//----------------------------------------------------------------
+
+// typedef: nodes.stats.Request
+
+/**
+ * Get node statistics.
+ * <p>
+ * Get statistics for nodes in a cluster. By default, all stats are returned.
+ * You can limit the returned information by using metrics.
+ * 
+ * @see <a href="../doc-files/api-spec.html#nodes.stats.Request">API
+ *      specification</a>
+ */
+
+public class NodesStatsRequest extends RequestBase {
+	private final List<String> completionFields;
+
+	private final List<String> fielddataFields;
+
+	private final List<String> fields;
+
+	@Nullable
+	private final Boolean groups;
+
+	@Nullable
+	private final Boolean includeSegmentFileSizes;
+
+	@Nullable
+	private final Boolean includeUnloadedSegments;
+
+	private final List<CommonStatsFlag> indexMetric;
+
+	@Nullable
+	private final NodeStatsLevel level;
+
+	private final List<NodeStatsMetric> metric;
+
+	private final List<String> nodeId;
+
+	@Nullable
+	private final Time timeout;
+
+	private final List<String> types;
+
+	// ---------------------------------------------------------------------------------------------
+
+	private NodesStatsRequest(Builder builder) {
+
+		this.completionFields = ApiTypeHelper.unmodifiable(builder.completionFields);
+		this.fielddataFields = ApiTypeHelper.unmodifiable(builder.fielddataFields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.groups = builder.groups;
+		this.includeSegmentFileSizes = builder.includeSegmentFileSizes;
+		this.includeUnloadedSegments = builder.includeUnloadedSegments;
+		this.indexMetric = ApiTypeHelper.unmodifiable(builder.indexMetric);
+		this.level = builder.level;
+		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
+		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
+		this.timeout = builder.timeout;
+		this.types = ApiTypeHelper.unmodifiable(builder.types);
+
+	}
+
+	public static NodesStatsRequest of(Function<Builder, ObjectBuilder<NodesStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Comma-separated list or wildcard expressions of fields to include in
+	 * fielddata and suggest statistics.
+	 * <p>
+	 * API name: {@code completion_fields}
+	 */
+	public final List<String> completionFields() {
+		return this.completionFields;
+	}
+
+	/**
+	 * Comma-separated list or wildcard expressions of fields to include in
+	 * fielddata statistics.
+	 * <p>
+	 * API name: {@code fielddata_fields}
+	 */
+	public final List<String> fielddataFields() {
+		return this.fielddataFields;
+	}
+
+	/**
+	 * Comma-separated list or wildcard expressions of fields to include in the
+	 * statistics.
+	 * <p>
+	 * API name: {@code fields}
+	 */
+	public final List<String> fields() {
+		return this.fields;
+	}
+
+	/**
+	 * Comma-separated list of search groups to include in the search statistics.
+	 * <p>
+	 * API name: {@code groups}
+	 */
+	@Nullable
+	public final Boolean groups() {
+		return this.groups;
+	}
+
+	/**
+	 * If true, the call reports the aggregated disk usage of each one of the Lucene
+	 * index files (only applies if segment stats are requested).
+	 * <p>
+	 * API name: {@code include_segment_file_sizes}
+	 */
+	@Nullable
+	public final Boolean includeSegmentFileSizes() {
+		return this.includeSegmentFileSizes;
+	}
+
+	/**
+	 * If <code>true</code>, the response includes information from segments that
+	 * are not loaded into memory.
+	 * <p>
+	 * API name: {@code include_unloaded_segments}
+	 */
+	@Nullable
+	public final Boolean includeUnloadedSegments() {
+		return this.includeUnloadedSegments;
+	}
+
+	/**
+	 * Limit the information returned for indices metric to the specific index
+	 * metrics. It can be used only if indices (or all) metric is specified.
+	 * <p>
+	 * API name: {@code index_metric}
+	 */
+	public final List<CommonStatsFlag> indexMetric() {
+		return this.indexMetric;
+	}
+
+	/**
+	 * Indicates whether statistics are aggregated at the node, indices, or shards
+	 * level.
+	 * <p>
+	 * API name: {@code level}
+	 */
+	@Nullable
+	public final NodeStatsLevel level() {
+		return this.level;
+	}
+
+	/**
+	 * Limits the information returned to the specific metrics.
+	 * <p>
+	 * API name: {@code metric}
+	 */
+	public final List<NodeStatsMetric> metric() {
+		return this.metric;
+	}
+
+	/**
+	 * Comma-separated list of node IDs or names used to limit returned information.
+	 * <p>
+	 * API name: {@code node_id}
+	 */
+	public final List<String> nodeId() {
+		return this.nodeId;
+	}
+
+	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
+	}
+
+	/**
+	 * A comma-separated list of document types for the indexing index metric.
+	 * <p>
+	 * API name: {@code types}
+	 */
+	public final List<String> types() {
+		return this.types;
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Builder for {@link NodesStatsRequest}.
+	 */
+
+	public static class Builder extends RequestBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<NodesStatsRequest> {
+		@Nullable
+		private List<String> completionFields;
+
+		@Nullable
+		private List<String> fielddataFields;
+
+		@Nullable
+		private List<String> fields;
+
+		@Nullable
+		private Boolean groups;
+
+		@Nullable
+		private Boolean includeSegmentFileSizes;
+
+		@Nullable
+		private Boolean includeUnloadedSegments;
+
+		@Nullable
+		private List<CommonStatsFlag> indexMetric;
+
+		@Nullable
+		private NodeStatsLevel level;
+
+		@Nullable
+		private List<NodeStatsMetric> metric;
+
+		@Nullable
+		private List<String> nodeId;
+
+		@Nullable
+		private Time timeout;
+
+		@Nullable
+		private List<String> types;
+
+		public Builder() {
+		}
+		private Builder(NodesStatsRequest instance) {
+			this.completionFields = instance.completionFields;
+			this.fielddataFields = instance.fielddataFields;
+			this.fields = instance.fields;
+			this.groups = instance.groups;
+			this.includeSegmentFileSizes = instance.includeSegmentFileSizes;
+			this.includeUnloadedSegments = instance.includeUnloadedSegments;
+			this.indexMetric = instance.indexMetric;
+			this.level = instance.level;
+			this.metric = instance.metric;
+			this.nodeId = instance.nodeId;
+			this.timeout = instance.timeout;
+			this.types = instance.types;
+
+		}
+		/**
+		 * Comma-separated list or wildcard expressions of fields to include in
+		 * fielddata and suggest statistics.
+		 * <p>
+		 * API name: {@code completion_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>completionFields</code>.
+		 */
+		public final Builder completionFields(List<String> list) {
+			this.completionFields = _listAddAll(this.completionFields, list);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list or wildcard expressions of fields to include in
+		 * fielddata and suggest statistics.
+		 * <p>
+		 * API name: {@code completion_fields}
+		 * <p>
+		 * Adds one or more values to <code>completionFields</code>.
+		 */
+		public final Builder completionFields(String value, String... values) {
+			this.completionFields = _listAdd(this.completionFields, value, values);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list or wildcard expressions of fields to include in
+		 * fielddata statistics.
+		 * <p>
+		 * API name: {@code fielddata_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fielddataFields</code>.
+		 */
+		public final Builder fielddataFields(List<String> list) {
+			this.fielddataFields = _listAddAll(this.fielddataFields, list);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list or wildcard expressions of fields to include in
+		 * fielddata statistics.
+		 * <p>
+		 * API name: {@code fielddata_fields}
+		 * <p>
+		 * Adds one or more values to <code>fielddataFields</code>.
+		 */
+		public final Builder fielddataFields(String value, String... values) {
+			this.fielddataFields = _listAdd(this.fielddataFields, value, values);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list or wildcard expressions of fields to include in the
+		 * statistics.
+		 * <p>
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
+		 */
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list or wildcard expressions of fields to include in the
+		 * statistics.
+		 * <p>
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
+		 */
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of search groups to include in the search statistics.
+		 * <p>
+		 * API name: {@code groups}
+		 */
+		public final Builder groups(@Nullable Boolean value) {
+			this.groups = value;
+			return this;
+		}
+
+		/**
+		 * If true, the call reports the aggregated disk usage of each one of the Lucene
+		 * index files (only applies if segment stats are requested).
+		 * <p>
+		 * API name: {@code include_segment_file_sizes}
+		 */
+		public final Builder includeSegmentFileSizes(@Nullable Boolean value) {
+			this.includeSegmentFileSizes = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the response includes information from segments that
+		 * are not loaded into memory.
+		 * <p>
+		 * API name: {@code include_unloaded_segments}
+		 */
+		public final Builder includeUnloadedSegments(@Nullable Boolean value) {
+			this.includeUnloadedSegments = value;
+			return this;
+		}
+
+		/**
+		 * Limit the information returned for indices metric to the specific index
+		 * metrics. It can be used only if indices (or all) metric is specified.
+		 * <p>
+		 * API name: {@code index_metric}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indexMetric</code>.
+		 */
+		public final Builder indexMetric(List<CommonStatsFlag> list) {
+			this.indexMetric = _listAddAll(this.indexMetric, list);
+			return this;
+		}
+
+		/**
+		 * Limit the information returned for indices metric to the specific index
+		 * metrics. It can be used only if indices (or all) metric is specified.
+		 * <p>
+		 * API name: {@code index_metric}
+		 * <p>
+		 * Adds one or more values to <code>indexMetric</code>.
+		 */
+		public final Builder indexMetric(CommonStatsFlag value, CommonStatsFlag... values) {
+			this.indexMetric = _listAdd(this.indexMetric, value, values);
+			return this;
+		}
+
+		/**
+		 * Indicates whether statistics are aggregated at the node, indices, or shards
+		 * level.
+		 * <p>
+		 * API name: {@code level}
+		 */
+		public final Builder level(@Nullable NodeStatsLevel value) {
+			this.level = value;
+			return this;
+		}
+
+		/**
+		 * Limits the information returned to the specific metrics.
+		 * <p>
+		 * API name: {@code metric}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metric</code>.
+		 */
+		public final Builder metric(List<NodeStatsMetric> list) {
+			this.metric = _listAddAll(this.metric, list);
+			return this;
+		}
+
+		/**
+		 * Limits the information returned to the specific metrics.
+		 * <p>
+		 * API name: {@code metric}
+		 * <p>
+		 * Adds one or more values to <code>metric</code>.
+		 */
+		public final Builder metric(NodeStatsMetric value, NodeStatsMetric... values) {
+			this.metric = _listAdd(this.metric, value, values);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of node IDs or names used to limit returned information.
+		 * <p>
+		 * API name: {@code node_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
+		 */
+		public final Builder nodeId(List<String> list) {
+			this.nodeId = _listAddAll(this.nodeId, list);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of node IDs or names used to limit returned information.
+		 * <p>
+		 * API name: {@code node_id}
+		 * <p>
+		 * Adds one or more values to <code>nodeId</code>.
+		 */
+		public final Builder nodeId(String value, String... values) {
+			this.nodeId = _listAdd(this.nodeId, value, values);
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * A comma-separated list of document types for the indexing index metric.
+		 * <p>
+		 * API name: {@code types}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>types</code>.
+		 */
+		public final Builder types(List<String> list) {
+			this.types = _listAddAll(this.types, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of document types for the indexing index metric.
+		 * <p>
+		 * API name: {@code types}
+		 * <p>
+		 * Adds one or more values to <code>types</code>.
+		 */
+		public final Builder types(String value, String... values) {
+			this.types = _listAdd(this.types, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link NodesStatsRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public NodesStatsRequest build() {
+			_checkSingleUse();
+
+			return new NodesStatsRequest(this);
+		}
+	}
+
+	/**
+	 * @return New {@link Builder} initialized with field values of this instance
+	 */
+	public Builder rebuild() {
+		return new Builder(this);
+	}
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Endpoint "{@code nodes.stats}".
+	 */
+	public static final Endpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/nodes.stats",
+
+			// Request method
+			request -> {
+				return "GET";
+
+			},
+
+			// Request path
+			request -> {
+				final int _metric = 1 << 0;
+				final int _indexMetric = 1 << 1;
+				final int _nodeId = 1 << 2;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.metric()))
+					propsSet |= _metric;
+				if (ApiTypeHelper.isDefined(request.indexMetric()))
+					propsSet |= _indexMetric;
+				if (ApiTypeHelper.isDefined(request.nodeId()))
+					propsSet |= _nodeId;
+
+				if (propsSet == 0) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
+					buf.append("/stats");
+					return buf.toString();
+				}
+				if (propsSet == (_nodeId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
+					buf.append("/stats");
+					return buf.toString();
+				}
+				if (propsSet == (_metric)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
+					buf.append("/stats");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
+					return buf.toString();
+				}
+				if (propsSet == (_nodeId | _metric)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
+					buf.append("/stats");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
+					return buf.toString();
+				}
+				if (propsSet == (_metric | _indexMetric)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
+					buf.append("/stats");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.indexMetric.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")), buf);
+					return buf.toString();
+				}
+				if (propsSet == (_nodeId | _metric | _indexMetric)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_nodes");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
+					buf.append("/stats");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")), buf);
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.indexMetric.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")), buf);
+					return buf.toString();
+				}
+				throw SimpleEndpoint.noPathTemplateFound("path");
+
+			},
+
+			// Path parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				final int _metric = 1 << 0;
+				final int _indexMetric = 1 << 1;
+				final int _nodeId = 1 << 2;
+
+				int propsSet = 0;
+
+				if (ApiTypeHelper.isDefined(request.metric()))
+					propsSet |= _metric;
+				if (ApiTypeHelper.isDefined(request.indexMetric()))
+					propsSet |= _indexMetric;
+				if (ApiTypeHelper.isDefined(request.nodeId()))
+					propsSet |= _nodeId;
+
+				if (propsSet == 0) {
+				}
+				if (propsSet == (_nodeId)) {
+					params.put("nodeId", request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
+				if (propsSet == (_metric)) {
+					params.put("metric", request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
+				if (propsSet == (_nodeId | _metric)) {
+					params.put("nodeId", request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+					params.put("metric", request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
+				if (propsSet == (_metric | _indexMetric)) {
+					params.put("metric", request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+					params.put("indexMetric", request.indexMetric.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
+				}
+				if (propsSet == (_nodeId | _metric | _indexMetric)) {
+					params.put("nodeId", request.nodeId.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+					params.put("metric", request.metric.stream().map(v -> v.jsonValue()).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+					params.put("indexMetric", request.indexMetric.stream().map(v -> v.jsonValue())
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
+				}
+				return params;
+			},
+
+			// Request parameters
+			request -> {
+				Map<String, String> params = new HashMap<>();
+				if (ApiTypeHelper.isDefined(request.types)) {
+					params.put("types", request.types.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
+				if (request.level != null) {
+					params.put("level", request.level.jsonValue());
+				}
+				if (ApiTypeHelper.isDefined(request.completionFields)) {
+					params.put("completion_fields", request.completionFields.stream().map(v -> v)
+							.filter(Objects::nonNull).collect(Collectors.joining(",")));
+				}
+				if (ApiTypeHelper.isDefined(request.fielddataFields)) {
+					params.put("fielddata_fields", request.fielddataFields.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
+				if (request.groups != null) {
+					params.put("groups", String.valueOf(request.groups));
+				}
+				if (request.includeUnloadedSegments != null) {
+					params.put("include_unloaded_segments", String.valueOf(request.includeUnloadedSegments));
+				}
+				if (ApiTypeHelper.isDefined(request.fields)) {
+					params.put("fields", request.fields.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
+				if (request.includeSegmentFileSizes != null) {
+					params.put("include_segment_file_sizes", String.valueOf(request.includeSegmentFileSizes));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
+				}
+				return params;
+
+			}, SimpleEndpoint.emptyMap(), false, NodesStatsResponse._DESERIALIZER);
+}
