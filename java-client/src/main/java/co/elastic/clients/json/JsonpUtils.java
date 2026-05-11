@@ -21,6 +21,7 @@ package co.elastic.clients.json;
 
 import co.elastic.clients.json.jackson.JacksonJsonProvider;
 import co.elastic.clients.util.AllowForbiddenApis;
+import co.elastic.clients.util.ApiTypeHelper;
 import jakarta.json.JsonException;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonString;
@@ -498,7 +499,12 @@ public class JsonpUtils {
             }
         };
 
-        try(JsonGenerator generator = mapper.jsonProvider().createGenerator(writer)) {
+        try(JsonGenerator rawGenerator = mapper.jsonProvider().createGenerator(writer)) {
+            // When the missing-properties workaround is active, wrap the generator so that null
+            // reference values are serialized as JSON null instead of throwing NPE. See #557.
+            JsonGenerator generator = ApiTypeHelper.requiredPropertiesCheckDisabled()
+                ? new NullSafeJsonGenerator(rawGenerator)
+                : rawGenerator;
             value.serialize(generator, mapper);
         } catch (ToStringTooLongException e) {
             // Ignore
@@ -508,7 +514,12 @@ public class JsonpUtils {
 
     public static String toJsonString(Object value, JsonpMapper mapper) {
         StringWriter writer = new StringWriter();
-        JsonGenerator generator = mapper.jsonProvider().createGenerator(writer);
+        JsonGenerator rawGenerator = mapper.jsonProvider().createGenerator(writer);
+        // When the missing-properties workaround is active, wrap the generator so that null
+        // reference values are serialized as JSON null instead of throwing NPE. See #557.
+        JsonGenerator generator = ApiTypeHelper.requiredPropertiesCheckDisabled()
+            ? new NullSafeJsonGenerator(rawGenerator)
+            : rawGenerator;
         mapper.serialize(value, generator);
         generator.close();
         return writer.toString();

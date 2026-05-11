@@ -468,4 +468,38 @@ public class BehaviorsTest extends ModelTestCase {
             assertTrue(healthResponse.toString()!=null);
         }
     }
+
+    @Test
+    public void testDangerousDisablePropertyCheckReferenceSerialization() {
+        // Repro for #557: with the workaround enabled, a null required reference
+        // field (here: clusterName, a required String) causes an NPE during
+        // re-serialization because HealthResponseBody#serializeInternal calls
+        // generator.write((String) null).
+        try (ApiTypeHelper.DisabledChecksHandle h =
+                 ApiTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(true)) {
+            HealthResponse healthResponse = HealthResponse.of(hr -> hr.withJson(new StringReader("{\n" +
+                // cluster_name (required) intentionally omitted
+                "  \"status\" : \"green\",\n" +
+                "  \"timed_out\" : false,\n" +
+                "  \"number_of_nodes\" : 3,\n" +
+                "  \"number_of_data_nodes\" : 2,\n" +
+                "  \"active_primary_shards\" : 88,\n" +
+                "  \"active_shards\" : 176,\n" +
+                "  \"relocating_shards\" : 0,\n" +
+                "  \"initializing_shards\" : 0,\n" +
+                "  \"unassigned_shards\" : 0,\n" +
+                "  \"delayed_unassigned_shards\" : 0,\n" +
+                "  \"number_of_pending_tasks\" : 0,\n" +
+                "  \"number_of_in_flight_fetch\" : 0,\n" +
+                "  \"task_max_waiting_in_queue_millis\" : 0,\n" +
+                "  \"active_shards_percent_as_number\" : 100.0\n" +
+                "}")));
+
+            // deserialization succeeds — clusterName is null because the workaround is active
+            assertTrue(healthResponse.clusterName() == null);
+
+            // round-trip currently fails with NullPointerException — this is bug #557
+            assertTrue(healthResponse.toString() != null);
+        }
+    }
 }
