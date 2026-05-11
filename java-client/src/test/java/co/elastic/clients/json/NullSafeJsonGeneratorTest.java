@@ -19,11 +19,11 @@
 
 package co.elastic.clients.json;
 
-import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.testkit.ModelTestCase;
 import co.elastic.clients.util.ApiTypeHelper;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 
 import java.io.StringWriter;
@@ -106,7 +106,8 @@ public class NullSafeJsonGeneratorTest extends ModelTestCase {
 
     @Test
     public void testToJsonStringWithMapWhileWorkaroundActive() {
-        JacksonJsonpMapper mapper = new JacksonJsonpMapper();
+        // SimpleJsonpMapper only serializes types registered in the Java client and doesn't support arbitrary Maps.
+        Assumptions.assumeFalse(jsonImpl == JsonImpl.Simple, "SimpleJsonpMapper does not support arbitrary Map serialization");
         Map<String, Object> map = new LinkedHashMap<>();
         map.put("a", 1);
         map.put("b", "two");
@@ -119,7 +120,7 @@ public class NullSafeJsonGeneratorTest extends ModelTestCase {
 
     @Test
     public void testToJsonStringWithPojoWhileWorkaroundActive() {
-        JacksonJsonpMapper mapper = new JacksonJsonpMapper();
+        Assumptions.assumeFalse(jsonImpl == JsonImpl.Simple, "SimpleJsonpMapper does not support POJO serialization");
         SomePojo pojo = new SomePojo();
         pojo.name = "test";
         pojo.value = 42;
