@@ -19,26 +19,25 @@
 
 package co.elastic.clients.json;
 
-import co.elastic.clients.json.jackson.JacksonJsonProvider;
+import co.elastic.clients.json.jackson.JacksonJsonpMapper;
+import co.elastic.clients.testkit.ModelTestCase;
+import co.elastic.clients.util.ApiTypeHelper;
 import jakarta.json.JsonValue;
-import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class NullSafeJsonGeneratorTest {
-
-    private final JsonProvider provider = new JacksonJsonProvider();
+public class NullSafeJsonGeneratorTest extends ModelTestCase {
 
     @Test
     public void testNullReferencesAreWrittenAsJsonNull() {
         StringWriter writer = new StringWriter();
-        try (JsonGenerator generator = new NullSafeJsonGenerator(provider.createGenerator(writer))) {
+        try (JsonGenerator generator = new NullSafeJsonGenerator(mapper.jsonProvider().createGenerator(writer))) {
             generator.writeStartObject();
 
             // writeKey + write(value) overloads with null reference values
@@ -51,7 +50,8 @@ public class NullSafeJsonGeneratorTest {
             generator.writeKey("json_value_field");
             generator.write((JsonValue) null);
 
-            // name+value overloads with null reference values
+            // name+value overloads with null reference values — DelegatingJsonGenerator splits these into
+            // writeKey(name) + write(value), so they reach the overrides above via virtual dispatch.
             generator.write("named_string", (String) null);
             generator.write("named_decimal", (BigDecimal) null);
             generator.write("named_integer", (BigInteger) null);
@@ -78,7 +78,7 @@ public class NullSafeJsonGeneratorTest {
     @Test
     public void testNonNullValuesPassThrough() {
         StringWriter writer = new StringWriter();
-        try (JsonGenerator generator = new NullSafeJsonGenerator(provider.createGenerator(writer))) {
+        try (JsonGenerator generator = new NullSafeJsonGenerator(mapper.jsonProvider().createGenerator(writer))) {
             generator.writeStartObject();
             generator.write("string_field", "hello");
             generator.write("int_field", 42);
@@ -102,5 +102,38 @@ public class NullSafeJsonGeneratorTest {
             "}",
             writer.toString()
         );
+    }
+
+    @Test
+    public void testToJsonStringWithMapWhileWorkaroundActive() {
+        JacksonJsonpMapper mapper = new JacksonJsonpMapper();
+        Map<String, Object> map = new LinkedHashMap<>();
+        map.put("a", 1);
+        map.put("b", "two");
+
+        try (ApiTypeHelper.DisabledChecksHandle h =
+                 ApiTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(true)) {
+            assertEquals("{\"a\":1,\"b\":\"two\"}", JsonpUtils.toJsonString(map, mapper));
+        }
+    }
+
+    @Test
+    public void testToJsonStringWithPojoWhileWorkaroundActive() {
+        JacksonJsonpMapper mapper = new JacksonJsonpMapper();
+        SomePojo pojo = new SomePojo();
+        pojo.name = "test";
+        pojo.value = 42;
+
+        try (ApiTypeHelper.DisabledChecksHandle h =
+                 ApiTypeHelper.DANGEROUS_disableRequiredPropertiesCheck(true)) {
+            String json = JsonpUtils.toJsonString(pojo, mapper);
+            assertTrue(json.contains("\"name\":\"test\""), "Expected name field, got: " + json);
+            assertTrue(json.contains("\"value\":42"), "Expected value field, got: " + json);
+        }
+    }
+
+    public static class SomePojo {
+        public String name;
+        public int value;
     }
 }
