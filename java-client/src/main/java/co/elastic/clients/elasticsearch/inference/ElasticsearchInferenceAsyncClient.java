@@ -2044,7 +2044,7 @@ public class ElasticsearchInferenceAsyncClient
 	 * grant this privilege). You must use a client that supports streaming.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-inference-stream-inference">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-stream-completion">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2079,7 +2079,7 @@ public class ElasticsearchInferenceAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link StreamCompletionRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation-inference-stream-inference">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/v9/operation/operation-inference-stream-completion">Documentation
 	 *      on elastic.co</a>
 	 */
 

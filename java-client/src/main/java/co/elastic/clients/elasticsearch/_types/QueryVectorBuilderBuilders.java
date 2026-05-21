@@ -45,6 +45,24 @@ public class QueryVectorBuilderBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link Embedding embedding}
+	 * {@code QueryVectorBuilder} variant.
+	 */
+	public static Embedding.Builder embedding() {
+		return new Embedding.Builder();
+	}
+
+	/**
+	 * Creates a QueryVectorBuilder of the {@link Embedding embedding}
+	 * {@code QueryVectorBuilder} variant.
+	 */
+	public static QueryVectorBuilder embedding(Function<Embedding.Builder, ObjectBuilder<Embedding>> fn) {
+		QueryVectorBuilder.Builder builder = new QueryVectorBuilder.Builder();
+		builder.embedding(fn.apply(new Embedding.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link TextEmbedding text_embedding}
 	 * {@code QueryVectorBuilder} variant.
 	 */
