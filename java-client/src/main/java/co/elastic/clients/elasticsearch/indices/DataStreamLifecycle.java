@@ -67,6 +67,12 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	@Nullable
 	private final Time dataRetention;
 
+	@Nullable
+	private final Time effectiveRetention;
+
+	@Nullable
+	private final RetentionSource retentionDeterminedBy;
+
 	private final List<DownsamplingRound> downsampling;
 
 	@Nullable
@@ -83,6 +89,8 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	protected DataStreamLifecycle(AbstractBuilder<?> builder) {
 
 		this.dataRetention = builder.dataRetention;
+		this.effectiveRetention = builder.effectiveRetention;
+		this.retentionDeterminedBy = builder.retentionDeterminedBy;
 		this.downsampling = ApiTypeHelper.unmodifiable(builder.downsampling);
 		this.downsamplingMethod = builder.downsamplingMethod;
 		this.enabled = builder.enabled;
@@ -105,6 +113,26 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	@Nullable
 	public final Time dataRetention() {
 		return this.dataRetention;
+	}
+
+	/**
+	 * The least amount of time data should be kept by elasticsearch.
+	 * <p>
+	 * API name: {@code effective_retention}
+	 */
+	@Nullable
+	public final Time effectiveRetention() {
+		return this.effectiveRetention;
+	}
+
+	/**
+	 * Configuration source that can influence the retention of a data stream.
+	 * <p>
+	 * API name: {@code retention_determined_by}
+	 */
+	@Nullable
+	public final RetentionSource retentionDeterminedBy() {
+		return this.retentionDeterminedBy;
 	}
 
 	/**
@@ -167,6 +195,15 @@ public class DataStreamLifecycle implements JsonpSerializable {
 			generator.writeKey("data_retention");
 			this.dataRetention.serialize(generator, mapper);
 
+		}
+		if (this.effectiveRetention != null) {
+			generator.writeKey("effective_retention");
+			this.effectiveRetention.serialize(generator, mapper);
+
+		}
+		if (this.retentionDeterminedBy != null) {
+			generator.writeKey("retention_determined_by");
+			this.retentionDeterminedBy.serialize(generator, mapper);
 		}
 		if (ApiTypeHelper.isDefined(this.downsampling)) {
 			generator.writeKey("downsampling");
@@ -234,6 +271,12 @@ public class DataStreamLifecycle implements JsonpSerializable {
 		private Time dataRetention;
 
 		@Nullable
+		private Time effectiveRetention;
+
+		@Nullable
+		private RetentionSource retentionDeterminedBy;
+
+		@Nullable
 		private List<DownsamplingRound> downsampling;
 
 		@Nullable
@@ -268,6 +311,35 @@ public class DataStreamLifecycle implements JsonpSerializable {
 		 */
 		public final BuilderT dataRetention(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.dataRetention(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * The least amount of time data should be kept by elasticsearch.
+		 * <p>
+		 * API name: {@code effective_retention}
+		 */
+		public final BuilderT effectiveRetention(@Nullable Time value) {
+			this.effectiveRetention = value;
+			return self();
+		}
+
+		/**
+		 * The least amount of time data should be kept by elasticsearch.
+		 * <p>
+		 * API name: {@code effective_retention}
+		 */
+		public final BuilderT effectiveRetention(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.effectiveRetention(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Configuration source that can influence the retention of a data stream.
+		 * <p>
+		 * API name: {@code retention_determined_by}
+		 */
+		public final BuilderT retentionDeterminedBy(@Nullable RetentionSource value) {
+			this.retentionDeterminedBy = value;
+			return self();
 		}
 
 		/**
@@ -368,6 +440,8 @@ public class DataStreamLifecycle implements JsonpSerializable {
 			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::dataRetention, Time._DESERIALIZER, "data_retention");
+		op.add(AbstractBuilder::effectiveRetention, Time._DESERIALIZER, "effective_retention");
+		op.add(AbstractBuilder::retentionDeterminedBy, RetentionSource._DESERIALIZER, "retention_determined_by");
 		op.add(AbstractBuilder::downsampling, JsonpDeserializer.arrayDeserializer(DownsamplingRound._DESERIALIZER),
 				"downsampling");
 		op.add(AbstractBuilder::downsamplingMethod, SamplingMethod._DESERIALIZER, "downsampling_method");

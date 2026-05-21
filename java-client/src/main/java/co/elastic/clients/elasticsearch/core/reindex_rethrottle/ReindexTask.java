@@ -19,7 +19,6 @@
 
 package co.elastic.clients.elasticsearch.core.reindex_rethrottle;
 
-import co.elastic.clients.elasticsearch._types.ReindexStatus;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -81,7 +80,7 @@ public class ReindexTask implements JsonpSerializable {
 
 	private final long startTimeInMillis;
 
-	private final ReindexStatus status;
+	private final ParentReindexStatus status;
 
 	private final String type;
 
@@ -169,7 +168,7 @@ public class ReindexTask implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public final ReindexStatus status() {
+	public final ParentReindexStatus status() {
 		return this.status;
 	}
 
@@ -298,7 +297,7 @@ public class ReindexTask implements JsonpSerializable {
 
 		private Long startTimeInMillis;
 
-		private ReindexStatus status;
+		private ParentReindexStatus status;
 
 		private String type;
 
@@ -371,7 +370,7 @@ public class ReindexTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public final BuilderT status(ReindexStatus value) {
+		public final BuilderT status(ParentReindexStatus value) {
 			this.status = value;
 			return self();
 		}
@@ -379,8 +378,8 @@ public class ReindexTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public final BuilderT status(Function<ReindexStatus.Builder, ObjectBuilder<ReindexStatus>> fn) {
-			return this.status(fn.apply(new ReindexStatus.Builder()).build());
+		public final BuilderT status(Function<ParentReindexStatus.Builder, ObjectBuilder<ParentReindexStatus>> fn) {
+			return this.status(fn.apply(new ParentReindexStatus.Builder()).build());
 		}
 
 		/**
@@ -434,7 +433,7 @@ public class ReindexTask implements JsonpSerializable {
 		op.add(AbstractBuilder::node, JsonpDeserializer.stringDeserializer(), "node");
 		op.add(AbstractBuilder::runningTimeInNanos, JsonpDeserializer.longDeserializer(), "running_time_in_nanos");
 		op.add(AbstractBuilder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
-		op.add(AbstractBuilder::status, ReindexStatus._DESERIALIZER, "status");
+		op.add(AbstractBuilder::status, ParentReindexStatus._DESERIALIZER, "status");
 		op.add(AbstractBuilder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(AbstractBuilder::headers, JsonpDeserializer.stringMapDeserializer(
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "headers");

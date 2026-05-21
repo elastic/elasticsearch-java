@@ -71,6 +71,8 @@ public class QueryVectorBuilder implements TaggedUnion<QueryVectorBuilder.Kind, 
 	 */
 
 	public enum Kind implements JsonEnum {
+		Embedding("embedding"),
+
 		TextEmbedding("text_embedding"),
 
 		Lookup("lookup"),
@@ -118,6 +120,23 @@ public class QueryVectorBuilder implements TaggedUnion<QueryVectorBuilder.Kind, 
 
 	public static QueryVectorBuilder of(Function<Builder, ObjectBuilder<QueryVectorBuilder>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code embedding}?
+	 */
+	public boolean isEmbedding() {
+		return _kind == Kind.Embedding;
+	}
+
+	/**
+	 * Get the {@code embedding} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code embedding} kind.
+	 */
+	public Embedding embedding() {
+		return TaggedUnionUtils.get(this, Kind.Embedding);
 	}
 
 	/**
@@ -184,6 +203,16 @@ public class QueryVectorBuilder implements TaggedUnion<QueryVectorBuilder.Kind, 
 		protected Builder self() {
 			return this;
 		}
+		public ObjectBuilder<QueryVectorBuilder> embedding(Embedding v) {
+			this._kind = Kind.Embedding;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<QueryVectorBuilder> embedding(Function<Embedding.Builder, ObjectBuilder<Embedding>> fn) {
+			return this.embedding(fn.apply(new Embedding.Builder()).build());
+		}
+
 		public ObjectBuilder<QueryVectorBuilder> textEmbedding(TextEmbedding v) {
 			this._kind = Kind.TextEmbedding;
 			this._value = v;
@@ -215,6 +244,7 @@ public class QueryVectorBuilder implements TaggedUnion<QueryVectorBuilder.Kind, 
 
 	protected static void setupQueryVectorBuilderDeserializer(ObjectDeserializer<Builder> op) {
 
+		op.add(Builder::embedding, Embedding._DESERIALIZER, "embedding");
 		op.add(Builder::textEmbedding, TextEmbedding._DESERIALIZER, "text_embedding");
 		op.add(Builder::lookup, LookupQueryVectorBuilder._DESERIALIZER, "lookup");
 
