@@ -185,7 +185,7 @@
 '_global.search._types.HighlighterType': '_global/search/_types/highlighting.ts#L177-L192',
 '_global.search._types.Hit': '_global/search/_types/hits.ts#L40-L69',
 '_global.search._types.HitsMetadata': '_global/search/_types/hits.ts#L71-L81',
-'_global.search._types.InnerHits': '_global/search/_types/hits.ts#L115-L149',
+'_global.search._types.InnerHits': '_global/search/_types/hits.ts#L115-L152',
 '_global.search._types.InnerHitsResult': '_global/search/_types/hits.ts#L93-L95',
 '_global.search._types.KnnCollectorResult': '_global/search/_types/profile.ts#L222-L228',
 '_global.search._types.KnnQueryProfileBreakdown': '_global/search/_types/profile.ts#L199-L220',
@@ -229,7 +229,7 @@
 '_global.search._types.TermSuggester': '_global/search/_types/suggester.ts#L497-L554',
 '_global.search._types.TotalHits': '_global/search/_types/hits.ts#L103-L106',
 '_global.search._types.TotalHitsRelation': '_global/search/_types/hits.ts#L108-L113',
-'_global.search._types.TrackHits': '_global/search/_types/hits.ts#L151-L159',
+'_global.search._types.TrackHits': '_global/search/_types/hits.ts#L154-L162',
 '_global.search_mvt.Request': '_global/search_mvt/SearchMvtRequest.ts#L39-L356',
 '_global.search_mvt.Response': '_global/search_mvt/SearchMvtResponse.ts#L22-L25',
 '_global.search_mvt._types.GridAggregationType': '_global/search_mvt/_types/GridType.ts#L30-L33',
@@ -1555,9 +1555,9 @@
 'indices._types.DataStreamFailureStore': 'indices/_types/DataStreamFailureStore.ts#L22-L37',
 'indices._types.DataStreamFailureStoreTemplate': 'indices/_types/DataStreamFailureStore.ts#L39-L54',
 'indices._types.DataStreamIndex': 'indices/_types/DataStream.ts#L160-L185',
-'indices._types.DataStreamLifecycle': 'indices/_types/DataStreamLifecycle.ts#L26-L51',
-'indices._types.DataStreamLifecycleRolloverConditions': 'indices/_types/DataStreamLifecycle.ts#L66-L78',
-'indices._types.DataStreamLifecycleWithRollover': 'indices/_types/DataStreamLifecycle.ts#L53-L64',
+'indices._types.DataStreamLifecycle': 'indices/_types/DataStreamLifecycle.ts#L26-L61',
+'indices._types.DataStreamLifecycleRolloverConditions': 'indices/_types/DataStreamLifecycle.ts#L83-L95',
+'indices._types.DataStreamLifecycleWithRollover': 'indices/_types/DataStreamLifecycle.ts#L70-L81',
 'indices._types.DataStreamOptions': 'indices/_types/DataStreamOptions.ts#L25-L34',
 'indices._types.DataStreamOptionsTemplate': 'indices/_types/DataStreamOptions.ts#L36-L41',
 'indices._types.DataStreamTimestampField': 'indices/_types/DataStream.ts#L153-L158',
@@ -1610,6 +1610,7 @@
 'indices._types.NumericFielddataFormat': 'indices/_types/NumericFielddataFormat.ts#L20-L23',
 'indices._types.Queries': 'indices/_types/IndexSettings.ts#L437-L439',
 'indices._types.RetentionLease': 'indices/_types/IndexSettings.ts#L66-L68',
+'indices._types.RetentionSource': 'indices/_types/DataStreamLifecycle.ts#L63-L68',
 'indices._types.SamplingConfiguration': 'indices/_types/SampleConfiguration.ts#L24-L64',
 'indices._types.SamplingMethod': 'indices/_types/Downsample.ts#L33-L36',
 'indices._types.SearchIdle': 'indices/_types/IndexSettings.ts#L261-L264',
@@ -1721,9 +1722,10 @@
 'indices.get_all_sample_configuration.Request': 'indices/get_all_sample_configuration/IndicesGetAllSampleConfigurationRequest.ts#L24-L50',
 'indices.get_all_sample_configuration.Response': 'indices/get_all_sample_configuration/IndicesGetAllSampleConfigurationResponse.ts#L22-L26',
 'indices.get_all_sample_configuration._types.IndexSamplingConfiguration': 'indices/get_all_sample_configuration/_types/IndexSamplingConfiguration.ts#L23-L26',
-'indices.get_data_lifecycle.DataStreamWithLifecycle': 'indices/get_data_lifecycle/IndicesGetDataLifecycleResponse.ts#L27-L30',
+'indices.get_data_lifecycle.DataStreamWithLifecycle': 'indices/get_data_lifecycle/IndicesGetDataLifecycleResponse.ts#L31-L34',
 'indices.get_data_lifecycle.Request': 'indices/get_data_lifecycle/IndicesGetDataLifecycleRequest.ts#L24-L69',
-'indices.get_data_lifecycle.Response': 'indices/get_data_lifecycle/IndicesGetDataLifecycleResponse.ts#L23-L25',
+'indices.get_data_lifecycle.Response': 'indices/get_data_lifecycle/IndicesGetDataLifecycleResponse.ts#L24-L29',
+'indices.get_data_lifecycle._types.GlobalRetention': 'indices/get_data_lifecycle/_types/response.ts#L22-L25',
 'indices.get_data_lifecycle_stats.DataStreamStats': 'indices/get_data_lifecycle_stats/IndicesGetDataLifecycleStatsResponse.ts#L46-L59',
 'indices.get_data_lifecycle_stats.Request': 'indices/get_data_lifecycle_stats/IndicesGetDataLifecycleStatsRequest.ts#L23-L42',
 'indices.get_data_lifecycle_stats.Response': 'indices/get_data_lifecycle_stats/IndicesGetDataLifecycleStatsResponse.ts#L24-L44',
@@ -1859,7 +1861,7 @@
 'indices.simulate_template.Request': 'indices/simulate_template/IndicesSimulateTemplateRequest.ts#L33-L145',
 'indices.simulate_template.Response': 'indices/simulate_template/IndicesSimulateTemplateResponse.ts#L26-L31',
 'indices.simulate_template.Template': 'indices/simulate_template/IndicesSimulateTemplateResponse.ts#L33-L37',
-'indices.split.Request': 'indices/split/IndicesSplitRequest.ts#L27-L116',
+'indices.split.Request': 'indices/split/IndicesSplitRequest.ts#L27-L117',
 'indices.split.Response': 'indices/split/IndicesSplitResponse.ts#L22-L28',
 'indices.stats.IndexMetadataState': 'indices/stats/types.ts#L225-L228',
 'indices.stats.IndexStats': 'indices/stats/types.ts#L52-L93',
@@ -3088,7 +3090,7 @@
 'shutdown.get_node.ShardMigrationStatus': 'shutdown/get_node/ShutdownGetNodeResponse.ts#L52-L54',
 'shutdown.get_node.ShutdownStatus': 'shutdown/get_node/ShutdownGetNodeResponse.ts#L45-L50',
 'shutdown.get_node.ShutdownType': 'shutdown/get_node/ShutdownGetNodeResponse.ts#L40-L43',
-'shutdown.put_node.Request': 'shutdown/put_node/ShutdownPutNodeRequest.ts#L25-L110',
+'shutdown.put_node.Request': 'shutdown/put_node/ShutdownPutNodeRequest.ts#L25-L112',
 'shutdown.put_node.Response': 'shutdown/put_node/ShutdownPutNodeResponse.ts#L22-L25',
 'simulate.ingest.IngestDocumentSimulation': 'simulate/ingest/SimulateIngestResponse.ts#L36-L80',
 'simulate.ingest.MergeType': 'simulate/ingest/SimulateIngestRequest.ts#L113-L116',
@@ -3507,10 +3509,10 @@
         if (hash.length > 1) {
             hash = hash.substring(1);
         }
-        window.location = "https://github.com/elastic/elasticsearch-specification/tree/928c63cb55207b6063e98c17f7f98de72ddda161/specification/" + (paths[hash] || "");
+        window.location = "https://github.com/elastic/elasticsearch-specification/tree/5ee1f7c137b141a3057b1800333cd6d4b1fc9dce/specification/" + (paths[hash] || "");
     </script>
 </head>
 <body>
-    Please see the <a href="https://github.com/elastic/elasticsearch-specification/tree/928c63cb55207b6063e98c17f7f98de72ddda161/specification/">Elasticsearch API specification</a>.
+    Please see the <a href="https://github.com/elastic/elasticsearch-specification/tree/5ee1f7c137b141a3057b1800333cd6d4b1fc9dce/specification/">Elasticsearch API specification</a>.
 </body>
 </html>
