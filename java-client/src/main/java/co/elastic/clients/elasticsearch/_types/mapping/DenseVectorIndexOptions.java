@@ -79,6 +79,9 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	@Nullable
 	private final Boolean onDiskRescore;
 
+	@Nullable
+	private final Integer flatIndexThreshold;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DenseVectorIndexOptions(Builder builder) {
@@ -89,6 +92,7 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.rescoreVector = builder.rescoreVector;
 		this.onDiskRescore = builder.onDiskRescore;
+		this.flatIndexThreshold = builder.flatIndexThreshold;
 
 	}
 
@@ -184,6 +188,24 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	}
 
 	/**
+	 * The segment document count threshold below which HNSW graph construction is
+	 * skipped in favor of brute-force flat search. <code>-1</code> (default) defers
+	 * to format defaults: <code>300</code> for <code>bbq_hnsw</code>,
+	 * <code>150</code> for <code>hnsw</code>, <code>int8_hnsw</code>, and
+	 * <code>int4_hnsw</code>. <code>0</code> always builds the graph. A positive
+	 * value overrides the format default.
+	 * <p>
+	 * Only applicable to <code>hnsw</code>, <code>int8_hnsw</code>,
+	 * <code>int4_hnsw</code>, and <code>bbq_hnsw</code> index types.
+	 * <p>
+	 * API name: {@code flat_index_threshold}
+	 */
+	@Nullable
+	public final Integer flatIndexThreshold() {
+		return this.flatIndexThreshold;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -221,6 +243,11 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 			generator.write(this.onDiskRescore);
 
 		}
+		if (this.flatIndexThreshold != null) {
+			generator.writeKey("flat_index_threshold");
+			generator.write(this.flatIndexThreshold);
+
+		}
 
 	}
 
@@ -255,6 +282,9 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		@Nullable
 		private Boolean onDiskRescore;
 
+		@Nullable
+		private Integer flatIndexThreshold;
+
 		public Builder() {
 		}
 		private Builder(DenseVectorIndexOptions instance) {
@@ -264,6 +294,7 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 			this.type = instance.type;
 			this.rescoreVector = instance.rescoreVector;
 			this.onDiskRescore = instance.onDiskRescore;
+			this.flatIndexThreshold = instance.flatIndexThreshold;
 
 		}
 		/**
@@ -367,6 +398,24 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * The segment document count threshold below which HNSW graph construction is
+		 * skipped in favor of brute-force flat search. <code>-1</code> (default) defers
+		 * to format defaults: <code>300</code> for <code>bbq_hnsw</code>,
+		 * <code>150</code> for <code>hnsw</code>, <code>int8_hnsw</code>, and
+		 * <code>int4_hnsw</code>. <code>0</code> always builds the graph. A positive
+		 * value overrides the format default.
+		 * <p>
+		 * Only applicable to <code>hnsw</code>, <code>int8_hnsw</code>,
+		 * <code>int4_hnsw</code>, and <code>bbq_hnsw</code> index types.
+		 * <p>
+		 * API name: {@code flat_index_threshold}
+		 */
+		public final Builder flatIndexThreshold(@Nullable Integer value) {
+			this.flatIndexThreshold = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -408,6 +457,7 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		op.add(Builder::type, DenseVectorIndexOptionsType._DESERIALIZER, "type");
 		op.add(Builder::rescoreVector, DenseVectorIndexOptionsRescoreVector._DESERIALIZER, "rescore_vector");
 		op.add(Builder::onDiskRescore, JsonpDeserializer.booleanDeserializer(), "on_disk_rescore");
+		op.add(Builder::flatIndexThreshold, JsonpDeserializer.integerDeserializer(), "flat_index_threshold");
 
 	}
 
