@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch.indices.get_data_lifecycle.DataStreamWithLifecycle;
+import co.elastic.clients.elasticsearch.indices.get_data_lifecycle.GlobalRetention;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -63,11 +64,14 @@ import javax.annotation.Nullable;
 public class GetDataLifecycleResponse implements JsonpSerializable {
 	private final List<DataStreamWithLifecycle> dataStreams;
 
+	private final GlobalRetention globalRetention;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GetDataLifecycleResponse(Builder builder) {
 
 		this.dataStreams = ApiTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
+		this.globalRetention = ApiTypeHelper.requireNonNull(builder.globalRetention, this, "globalRetention");
 
 	}
 
@@ -80,6 +84,13 @@ public class GetDataLifecycleResponse implements JsonpSerializable {
 	 */
 	public final List<DataStreamWithLifecycle> dataStreams() {
 		return this.dataStreams;
+	}
+
+	/**
+	 * Required - API name: {@code global_retention}
+	 */
+	public final GlobalRetention globalRetention() {
+		return this.globalRetention;
 	}
 
 	/**
@@ -103,6 +114,8 @@ public class GetDataLifecycleResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		generator.writeKey("global_retention");
+		this.globalRetention.serialize(generator, mapper);
 
 	}
 
@@ -121,6 +134,8 @@ public class GetDataLifecycleResponse implements JsonpSerializable {
 			implements
 				ObjectBuilder<GetDataLifecycleResponse> {
 		private List<DataStreamWithLifecycle> dataStreams;
+
+		private GlobalRetention globalRetention;
 
 		/**
 		 * Required - API name: {@code data_streams}
@@ -150,6 +165,21 @@ public class GetDataLifecycleResponse implements JsonpSerializable {
 		public final Builder dataStreams(
 				Function<DataStreamWithLifecycle.Builder, ObjectBuilder<DataStreamWithLifecycle>> fn) {
 			return dataStreams(fn.apply(new DataStreamWithLifecycle.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code global_retention}
+		 */
+		public final Builder globalRetention(GlobalRetention value) {
+			this.globalRetention = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code global_retention}
+		 */
+		public final Builder globalRetention(Function<GlobalRetention.Builder, ObjectBuilder<GlobalRetention>> fn) {
+			return this.globalRetention(fn.apply(new GlobalRetention.Builder()).build());
 		}
 
 		@Override
@@ -183,6 +213,7 @@ public class GetDataLifecycleResponse implements JsonpSerializable {
 
 		op.add(Builder::dataStreams, JsonpDeserializer.arrayDeserializer(DataStreamWithLifecycle._DESERIALIZER),
 				"data_streams");
+		op.add(Builder::globalRetention, GlobalRetention._DESERIALIZER, "global_retention");
 
 	}
 
