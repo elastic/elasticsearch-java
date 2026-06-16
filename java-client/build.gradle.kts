@@ -182,7 +182,7 @@ dependencies {
     val elasticsearchVersion = "9.2.0"
     val jacksonVersion = "2.21.2"
     val jackson3Version = "3.1.0"
-    val openTelemetryVersion = "1.37.0"
+    val openTelemetryVersion = "1.63.0"
 
     api(project(":rest5-client"))
 
@@ -212,7 +212,7 @@ dependencies {
     // Apache 2.0
     // https://github.com/open-telemetry/opentelemetry-java
     implementation("io.opentelemetry", "opentelemetry-api", openTelemetryVersion)
-    implementation("io.opentelemetry.semconv","opentelemetry-semconv", openTelemetryVersion)
+    implementation("io.opentelemetry.semconv","opentelemetry-semconv", "1.41.1")
     testImplementation("io.opentelemetry", "opentelemetry-sdk", openTelemetryVersion)
 
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
