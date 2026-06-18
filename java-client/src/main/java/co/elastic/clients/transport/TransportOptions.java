@@ -47,6 +47,14 @@ public interface TransportOptions {
      */
     boolean keepResponseBodyOnException();
 
+    /**
+     * Configuration for transport-level retries (I/O exceptions and configurable HTTP status codes).
+     * Defaults to {@link RetryConfig#disabled()}, i.e. no retries.
+     */
+    default RetryConfig retryConfig() {
+        return RetryConfig.disabled();
+    }
+
     Builder toBuilder();
 
     default TransportOptions with(Consumer<Builder> fn) {
@@ -75,5 +83,19 @@ public interface TransportOptions {
          * streamed by the http library.
          */
         Builder keepResponseBodyOnException(boolean value);
+
+        /**
+         * Set the configuration for transport-level retries.
+         */
+        default Builder retryConfig(RetryConfig config) {
+            throw new UnsupportedOperationException("This implementation does not support setting a retry configuration");
+        }
+
+        /**
+         * Convenience overload to configure transport-level retries with a builder lambda.
+         */
+        default Builder retryConfig(Consumer<RetryConfig.Builder> fn) {
+            return retryConfig(RetryConfig.of(fn));
+        }
     }
 }
