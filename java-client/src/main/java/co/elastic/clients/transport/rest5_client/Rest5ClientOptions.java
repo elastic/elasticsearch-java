@@ -19,6 +19,7 @@
 
 package co.elastic.clients.transport.rest5_client;
 
+import co.elastic.clients.transport.RetryConfig;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.http.HeaderMap;
@@ -30,11 +31,7 @@ import org.apache.hc.client5.http.impl.async.HttpAsyncClientBuilder;
 import org.apache.hc.core5.util.VersionInfo;
 
 import javax.annotation.Nullable;
-import java.util.AbstractMap;
-import java.util.Collection;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -43,6 +40,8 @@ public class Rest5ClientOptions implements TransportOptions {
     private final RequestOptions options;
 
     boolean keepResponseBodyOnException;
+
+    private final RetryConfig retryConfig;
 
     @VisibleForTesting
     static final String CLIENT_META_VALUE = getClientMeta();
@@ -55,18 +54,26 @@ public class Rest5ClientOptions implements TransportOptions {
         }
 
         if (options instanceof Rest5ClientOptions) {
-            return (Rest5ClientOptions)options;
+            return (Rest5ClientOptions) options;
         }
 
         final Builder builder = new Builder(RequestOptions.DEFAULT.toBuilder());
         options.headers().forEach(h -> builder.addHeader(h.getKey(), h.getValue()));
         options.queryParameters().forEach(builder::setParameter);
         builder.onWarnings(options.onWarnings());
+        builder.keepResponseBodyOnException(options.keepResponseBodyOnException());
+        builder.retryConfig(options.retryConfig());
         return builder.build();
     }
 
     public Rest5ClientOptions(RequestOptions options, boolean keepResponseBodyOnException) {
+        this(options, keepResponseBodyOnException, RetryConfig.disabled());
+    }
+
+    public Rest5ClientOptions(RequestOptions options, boolean keepResponseBodyOnException,
+                              RetryConfig retryConfig) {
         this.keepResponseBodyOnException = keepResponseBodyOnException;
+        this.retryConfig = retryConfig == null ? RetryConfig.disabled() : retryConfig;
         this.options = addBuiltinHeaders(options.toBuilder()).build();
     }
 
@@ -113,8 +120,16 @@ public class Rest5ClientOptions implements TransportOptions {
     }
 
     @Override
+    public RetryConfig retryConfig() {
+        return retryConfig;
+    }
+
+    @Override
     public Builder toBuilder() {
-        return new Builder(options.toBuilder());
+        Builder b = new Builder(options.toBuilder());
+        b.keepResponseBodyOnException(keepResponseBodyOnException);
+        b.retryConfig(retryConfig);
+        return b;
     }
 
     public static class Builder implements TransportOptions.Builder {
@@ -122,6 +137,8 @@ public class Rest5ClientOptions implements TransportOptions {
         private RequestOptions.Builder builder;
 
         private boolean keepResponseBodyOnException;
+
+        private RetryConfig retryConfig = RetryConfig.disabled();
 
         public Builder(RequestOptions.Builder builder) {
             this.builder = builder;
@@ -141,7 +158,8 @@ public class Rest5ClientOptions implements TransportOptions {
                 return this;
             }
             if (name.equalsIgnoreCase(HeaderMap.USER_AGENT)) {
-                // We must remove our own user-agent from the options, or we'll end up with multiple values for the header
+                // We must remove our own user-agent from the options, or we'll end up with multiple values
+                // for the header
                 builder.removeHeader(HeaderMap.USER_AGENT);
             }
             builder.addHeader(name, value);
@@ -173,7 +191,8 @@ public class Rest5ClientOptions implements TransportOptions {
 
         @Override
         public TransportOptions.Builder removeParameter(String name) {
-            throw new UnsupportedOperationException("This implementation does not support removing parameters");
+            throw new UnsupportedOperationException("This implementation does not support removing " +
+                "parameters");
         }
 
         /**
@@ -203,8 +222,15 @@ public class Rest5ClientOptions implements TransportOptions {
         }
 
         @Override
+        public TransportOptions.Builder retryConfig(RetryConfig config) {
+            this.retryConfig = config == null ? RetryConfig.disabled() : config;
+            return this;
+        }
+
+        @Override
         public Rest5ClientOptions build() {
-            return new Rest5ClientOptions(addBuiltinHeaders(builder).build(), keepResponseBodyOnException);
+            return new Rest5ClientOptions(addBuiltinHeaders(builder).build(), keepResponseBodyOnException,
+                retryConfig);
         }
     }
 
