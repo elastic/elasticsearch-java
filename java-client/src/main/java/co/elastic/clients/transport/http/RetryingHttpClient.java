@@ -25,7 +25,6 @@ import co.elastic.clients.transport.TransportOptions;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
-import java.io.InterruptedIOException;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
@@ -74,7 +73,7 @@ public final class RetryingHttpClient implements TransportHttpClient {
     }
 
     /**
-     * Build a retrying client using a user-provided scheduler. The scheduler won't be shut down
+     * Build a retrying client using a user-provided scheduler. The external scheduler won't be shut down
      * by {@link #close()}.
      */
     public RetryingHttpClient(TransportHttpClient delegate, RetryConfig retryConfig, ScheduledExecutorService scheduler) {
@@ -103,9 +102,7 @@ public final class RetryingHttpClient implements TransportHttpClient {
             return performRequestAsync(endpointId, node, request, options).get();
         } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
-            InterruptedIOException io = new InterruptedIOException("Retry was interrupted");
-            io.initCause(ie);
-            throw io;
+            throw new RuntimeException("thread waiting for the response was interrupted", ie);
         } catch (ExecutionException ee) {
             Throwable cause = ee.getCause();
             if (cause instanceof IOException) {
@@ -135,16 +132,11 @@ public final class RetryingHttpClient implements TransportHttpClient {
             return;
         }
 
-        CompletableFuture<Response> attempt;
-        try {
-            attempt = delegate.performRequestAsync(endpointId, node, request, options);
-        } catch (Throwable t) {
-            attempt = new CompletableFuture<>();
-            attempt.completeExceptionally(t);
-        }
+        CompletableFuture<Response> attempt = delegate.performRequestAsync(endpointId, node, request, options);
         result.setInFlight(attempt);
 
         attempt.whenComplete((resp, err) -> {
+            // Early return if request was cancelled
             if (result.isCancelled()) {
                 if (resp != null) {
                     closeQuietly(resp);
@@ -153,31 +145,33 @@ public final class RetryingHttpClient implements TransportHttpClient {
             }
             result.clearInFlight();
 
-            Throwable cause = unwrap(err);
+            // Early return if there's no more retries
+            if (!backoffIter.hasNext()) {
+                if (err != null) {
+                    result.completeExceptionally(unwrap(err));
+                } else {
+                    result.complete(resp);
+                }
+                return;
+            }
 
-            long delayMs;
+            // Checking if exception/status is retryable
+            Throwable cause = null;
             if (err != null) {
-                if (!isRetryable(cause) || !backoffIter.hasNext()) {
+                cause = unwrap(err);
+                if (!isRetryableException(cause)) {
                     result.completeExceptionally(cause);
                     return;
                 }
-                delayMs = backoffIter.next();
-            } else if (isRetryable(resp)) {
-                if (!backoffIter.hasNext()) {
-                    result.complete(resp);
-                    return;
-                }
-                delayMs = backoffIter.next();
+            } else if (isRetryableStatus(resp)) {
+                // Need to close existing response before triggering a retry
                 closeQuietly(resp);
             } else {
                 result.complete(resp);
                 return;
             }
 
-            if (delayMs <= 0) {
-                attemptAsync(endpointId, node, request, options, backoffIter, result);
-                return;
-            }
+            long delayMs = backoffIter.next();
             try {
                 ScheduledFuture<?> scheduled = retryScheduler.schedule(
                     () -> attemptAsync(endpointId, node, request, options, backoffIter, result),
@@ -201,18 +195,11 @@ public final class RetryingHttpClient implements TransportHttpClient {
         }
     }
 
-    static boolean isRetryable(Throwable err) {
-        Throwable t = err;
-        while (t != null) {
-            if (t instanceof IOException) {
-                return true;
-            }
-            t = t.getCause() == t ? null : t.getCause();
-        }
-        return false;
+    static boolean isRetryableException(Throwable err) {
+        return err instanceof IOException || err.getCause() instanceof IOException;
     }
 
-    boolean isRetryable(Response resp) {
+    boolean isRetryableStatus(Response resp) {
         return retryableStatuses.contains(resp.statusCode());
     }
 
@@ -227,7 +214,7 @@ public final class RetryingHttpClient implements TransportHttpClient {
         try {
             resp.close();
         } catch (IOException ignored) {
-            // best effort
+            // ignored
         }
     }
 
@@ -248,10 +235,10 @@ public final class RetryingHttpClient implements TransportHttpClient {
         private volatile CompletableFuture<Response> inFlight;
         private volatile ScheduledFuture<?> scheduledRetry;
 
-        void setInFlight(CompletableFuture<Response> f) {
-            this.inFlight = f;
+        void setInFlight(CompletableFuture<Response> future) {
+            this.inFlight = future;
             if (isCancelled()) {
-                f.cancel(true);
+                future.cancel(true);
             }
         }
 
@@ -259,10 +246,10 @@ public final class RetryingHttpClient implements TransportHttpClient {
             this.inFlight = null;
         }
 
-        void setScheduledRetry(ScheduledFuture<?> sf) {
-            this.scheduledRetry = sf;
+        void setScheduledRetry(ScheduledFuture<?> scheduledFuture) {
+            this.scheduledRetry = scheduledFuture;
             if (isCancelled()) {
-                sf.cancel(false);
+                scheduledFuture.cancel(false);
             }
         }
 
@@ -270,13 +257,13 @@ public final class RetryingHttpClient implements TransportHttpClient {
         public boolean cancel(boolean mayInterruptIfRunning) {
             boolean cancelled = super.cancel(mayInterruptIfRunning);
             if (cancelled) {
-                CompletableFuture<Response> f = inFlight;
-                if (f != null) {
-                    f.cancel(mayInterruptIfRunning);
+                CompletableFuture<Response> future = inFlight;
+                if (future != null) {
+                    future.cancel(mayInterruptIfRunning);
                 }
-                ScheduledFuture<?> sf = scheduledRetry;
-                if (sf != null) {
-                    sf.cancel(false);
+                ScheduledFuture<?> scheduledFuture = scheduledRetry;
+                if (scheduledFuture != null) {
+                    scheduledFuture.cancel(false);
                 }
             }
             return cancelled;
