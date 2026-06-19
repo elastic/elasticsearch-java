@@ -53,6 +53,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  * <ul>
  *   <li>Retries assume the underlying request is safe to repeat. Most Elasticsearch APIs are idempotent at the user level,
  *       but users using custom non-idempotent operations should think twice before enabling retries.</li>
+ *   <li>Retries reissue the same logical request to the {@code delegate}. Node selection (and any node-rotation /
+ *       dead-node tracking) is the delegate's responsibility: this wrapper does not influence which node a retried
+ *       request is sent to.</li>
  *   <li>The async path uses a {@link ScheduledExecutorService} to defer retries without blocking the calling thread pool.
  *       A single-thread daemon scheduler is created by default and is shut down by {@link #close()}; users can supply
  *       their own scheduler via {@link #RetryingHttpClient(TransportHttpClient, RetryConfig, ScheduledExecutorService)}

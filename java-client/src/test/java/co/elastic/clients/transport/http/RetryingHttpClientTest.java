@@ -193,7 +193,7 @@ class RetryingHttpClientTest extends Assertions {
 
     @Test
     void customRetryableStatusesOnly() throws IOException {
-        // Configure to retry only on 418 — a 503 should pass through
+        // Configure to retry only on 418 - a 503 should pass through
         RetryConfig cfg = RetryConfig.of(r -> r
             .backoffPolicy(fixed(1L, 3))
             .retryableStatuses(418));
@@ -207,7 +207,7 @@ class RetryingHttpClientTest extends Assertions {
 
     @Test
     void customRetryableStatusesIncludingNonStandard() throws IOException {
-        // Configure to retry on 408 (Request Timeout) — not in the default set
+        // Configure to retry on 408 (Request Timeout) - not in the default set
         RetryConfig cfg = RetryConfig.of(r -> r
             .backoffPolicy(fixed(1L, 3))
             .retryableStatuses(408, 503));
@@ -221,7 +221,7 @@ class RetryingHttpClientTest extends Assertions {
 
     @Test
     void customRetryableExceptionsOnly() throws IOException {
-        // Narrow exception retries to SocketTimeoutException — a plain SocketException must not retry
+        // Narrow exception retries to SocketTimeoutException - a plain SocketException must not retry
         RetryConfig cfg = RetryConfig.of(r -> r
             .backoffPolicy(fixed(1L, 3))
             .retryableExceptions(java.net.SocketTimeoutException.class));
@@ -235,7 +235,7 @@ class RetryingHttpClientTest extends Assertions {
 
     @Test
     void emptyRetryableStatusesDisablesStatusRetries() throws IOException {
-        // Exception-based retries only — a 503 response should NOT trigger a retry
+        // Exception-based retries only - a 503 response should NOT trigger a retry
         RetryConfig cfg = RetryConfig.of(r -> r
             .backoffPolicy(fixed(1L, 3))
             .retryableStatuses(new HashSet<>()));
@@ -249,7 +249,7 @@ class RetryingHttpClientTest extends Assertions {
 
     @Test
     void emptyRetryableExceptionsDisablesExceptionRetries() {
-        // Status-based retries only — a SocketException should NOT trigger a retry
+        // Status-based retries only - a SocketException should NOT trigger a retry
         RetryConfig cfg = RetryConfig.of(r -> r
             .backoffPolicy(fixed(1L, 3))
             .retryableExceptions(new HashSet<>()));

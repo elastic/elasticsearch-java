@@ -33,6 +33,11 @@ import java.util.function.Consumer;
  * Either set may be empty to disable that retry route.
  * <p>
  * Delays and the maximum number of attempts are controlled by {@link #backoffPolicy()}.
+ * <p>
+ * <b>Scope:</b> retries reissue the same logical request to the underlying transport. Node selection is delegated
+ * to that transport (e.g. {@code Rest5Client}, {@code RestClient}), which manages its own node-rotation and
+ * dead-node tracking independently. Configuring retries here does not control which node a retried
+ * request is sent to.
  */
 public final class RetryConfig {
 
@@ -66,7 +71,7 @@ public final class RetryConfig {
     }
 
     /**
-     * Disabled retry configuration — equivalent to {@link BackoffPolicy#noBackoff()} with the default status set.
+     * Disabled retry configuration, equivalent to {@link BackoffPolicy#noBackoff()} with the default status set.
      * No retries will happen.
      */
     public static RetryConfig disabled() {
