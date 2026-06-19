@@ -405,25 +405,25 @@ class RetryingHttpClientTest extends Assertions {
 
     @Test
     void throwableClassifier() {
-        assertTrue(RetryingHttpClient.isRetryable(new SocketException("io")));
-        assertTrue(RetryingHttpClient.isRetryable(new RuntimeException(new IOException("wrapped"))));
-        assertFalse(RetryingHttpClient.isRetryable(new IllegalArgumentException("bad")));
-        assertFalse(RetryingHttpClient.isRetryable(new NullPointerException()));
+        assertTrue(RetryingHttpClient.isRetryableException(new SocketException("io")));
+        assertTrue(RetryingHttpClient.isRetryableException(new RuntimeException(new IOException("wrapped"))));
+        assertFalse(RetryingHttpClient.isRetryableException(new IllegalArgumentException("bad")));
+        assertFalse(RetryingHttpClient.isRetryableException(new NullPointerException()));
     }
 
     @Test
     void responseClassifierUsesConfiguredStatuses() {
         RetryingHttpClient defaultClient = wrap(new ScriptedClient(), RetryConfig.of(r -> r.backoffPolicy(fixed(1L, 1))));
-        assertTrue(defaultClient.isRetryable(new FakeResponse(500, Collections.emptyMap())));
-        assertTrue(defaultClient.isRetryable(new FakeResponse(429, Collections.emptyMap())));
-        assertTrue(defaultClient.isRetryable(new FakeResponse(503, Collections.emptyMap())));
-        assertFalse(defaultClient.isRetryable(new FakeResponse(501, Collections.emptyMap())));
-        assertFalse(defaultClient.isRetryable(new FakeResponse(404, Collections.emptyMap())));
-        assertFalse(defaultClient.isRetryable(new FakeResponse(200, Collections.emptyMap())));
+        assertTrue(defaultClient.isRetryableStatus(new FakeResponse(500, Collections.emptyMap())));
+        assertTrue(defaultClient.isRetryableStatus(new FakeResponse(429, Collections.emptyMap())));
+        assertTrue(defaultClient.isRetryableStatus(new FakeResponse(503, Collections.emptyMap())));
+        assertFalse(defaultClient.isRetryableStatus(new FakeResponse(501, Collections.emptyMap())));
+        assertFalse(defaultClient.isRetryableStatus(new FakeResponse(404, Collections.emptyMap())));
+        assertFalse(defaultClient.isRetryableStatus(new FakeResponse(200, Collections.emptyMap())));
 
         RetryingHttpClient custom = wrap(new ScriptedClient(),
             RetryConfig.of(r -> r.backoffPolicy(fixed(1L, 1)).retryableStatuses(418)));
-        assertTrue(custom.isRetryable(new FakeResponse(418, Collections.emptyMap())));
-        assertFalse(custom.isRetryable(new FakeResponse(503, Collections.emptyMap())));
+        assertTrue(custom.isRetryableStatus(new FakeResponse(418, Collections.emptyMap())));
+        assertFalse(custom.isRetryableStatus(new FakeResponse(503, Collections.emptyMap())));
     }
 }
