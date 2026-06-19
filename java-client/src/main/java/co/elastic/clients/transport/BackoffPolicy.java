@@ -55,7 +55,7 @@ public abstract class BackoffPolicy implements Iterable<Long> {
     }
 
     /**
-     * Creates an new constant backoff policy with the provided configuration.
+     * Creates a new constant backoff policy with the provided configuration.
      *
      * @param delay              The delay defines how long to wait between retry attempts. Must not be null.
      *                           Must be &lt;= <code>Integer.MAX_VALUE</code> ms.
@@ -68,7 +68,7 @@ public abstract class BackoffPolicy implements Iterable<Long> {
     }
 
     /**
-     * Creates an new exponential backoff policy with a default configuration of 50 ms initial wait period and 8 retries taking
+     * Creates a new exponential backoff policy with a default configuration of 50 ms initial wait period and 8 retries taking
      * roughly 5.1 seconds in total.
      *
      * @return A backoff policy with an exponential increase in wait time for retries. The returned instance is thread safe but each
@@ -79,7 +79,7 @@ public abstract class BackoffPolicy implements Iterable<Long> {
     }
 
     /**
-     * Creates an new exponential backoff policy with the provided configuration.
+     * Creates a new exponential backoff policy with the provided configuration.
      *
      * @param initialDelay       The initial delay defines how long to wait for the first retry attempt. Must not be null.
      *                           Must be &lt;= <code>Integer.MAX_VALUE</code> ms.
