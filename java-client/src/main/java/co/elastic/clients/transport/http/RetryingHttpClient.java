@@ -22,6 +22,8 @@ package co.elastic.clients.transport.http;
 import co.elastic.clients.transport.BackoffPolicy;
 import co.elastic.clients.transport.RetryConfig;
 import co.elastic.clients.transport.TransportOptions;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
@@ -58,6 +60,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * </ul>
  */
 public final class RetryingHttpClient implements TransportHttpClient {
+
+    private static final Log logger = LogFactory.getLog(RetryingHttpClient.class);
 
     // Instance counter, to name the retry thread
     private static final AtomicInteger idCounter = new AtomicInteger();
@@ -147,6 +151,7 @@ public final class RetryingHttpClient implements TransportHttpClient {
 
             // Early return if there's no more retries
             if (!backoffIter.hasNext()) {
+                logger.warn("Retries exhausted for [" + endpointId + "]");
                 if (err != null) {
                     result.completeExceptionally(unwrap(err));
                 } else {
@@ -172,6 +177,8 @@ public final class RetryingHttpClient implements TransportHttpClient {
             }
 
             long delayMs = backoffIter.next();
+            logger.warn("Retrying [" + endpointId + "] in " + delayMs + " ms");
+
             try {
                 ScheduledFuture<?> scheduled = retryScheduler.schedule(
                     () -> attemptAsync(endpointId, node, request, options, backoffIter, result),
