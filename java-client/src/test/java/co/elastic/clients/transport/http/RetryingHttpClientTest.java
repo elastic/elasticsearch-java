@@ -220,9 +220,43 @@ class RetryingHttpClientTest extends Assertions {
     }
 
     @Test
-    void retryConfigBuilderRejectsEmptyStatuses() {
-        assertThrows(IllegalArgumentException.class,
-            () -> RetryConfig.of(r -> r.retryableStatuses(new HashSet<>())));
+    void customRetryableExceptionsOnly() throws IOException {
+        // Narrow exception retries to SocketTimeoutException — a plain SocketException must not retry
+        RetryConfig cfg = RetryConfig.of(r -> r
+            .backoffPolicy(fixed(1L, 3))
+            .retryableExceptions(java.net.SocketTimeoutException.class));
+
+        MockedClient client = new MockedClient().andThrow(new SocketException("not a timeout")).andRespond(200);
+        IOException thrown = assertThrows(IOException.class,
+            () -> wrap(client, cfg).performRequest("ep", null, REQ, OPTS));
+        assertEquals("not a timeout", thrown.getMessage());
+        assertEquals(1, client.calls.get());
+    }
+
+    @Test
+    void emptyRetryableStatusesDisablesStatusRetries() throws IOException {
+        // Exception-based retries only — a 503 response should NOT trigger a retry
+        RetryConfig cfg = RetryConfig.of(r -> r
+            .backoffPolicy(fixed(1L, 3))
+            .retryableStatuses(new HashSet<>()));
+
+        MockedClient client = new MockedClient().andRespond(503).andRespond(200);
+        TransportHttpClient.Response resp = wrap(client, cfg).performRequest("ep", null, REQ, OPTS);
+
+        assertEquals(503, resp.statusCode());
+        assertEquals(1, client.calls.get());
+    }
+
+    @Test
+    void emptyRetryableExceptionsDisablesExceptionRetries() {
+        // Status-based retries only — a SocketException should NOT trigger a retry
+        RetryConfig cfg = RetryConfig.of(r -> r
+            .backoffPolicy(fixed(1L, 3))
+            .retryableExceptions(new HashSet<>()));
+
+        MockedClient client = new MockedClient().andThrow(new SocketException("io")).andRespond(200);
+        assertThrows(IOException.class, () -> wrap(client, cfg).performRequest("ep", null, REQ, OPTS));
+        assertEquals(1, client.calls.get());
     }
 
     @Test
@@ -398,11 +432,19 @@ class RetryingHttpClientTest extends Assertions {
     // ---------- retryability classifiers ----------
 
     @Test
-    void throwableClassifier() {
-        assertTrue(RetryingHttpClient.isRetryableException(new SocketException("io")));
-        assertTrue(RetryingHttpClient.isRetryableException(new RuntimeException(new IOException("wrapped"))));
-        assertFalse(RetryingHttpClient.isRetryableException(new IllegalArgumentException("bad")));
-        assertFalse(RetryingHttpClient.isRetryableException(new NullPointerException()));
+    void exceptionClassifierUsesConfiguredTypes() {
+        // Default behaviour: any IOException (and its subclasses) is retryable
+        RetryingHttpClient defaultClient = wrap(new MockedClient(), RetryConfig.of(r -> r.backoffPolicy(fixed(1L, 1))));
+        assertTrue(defaultClient.isRetryableException(new SocketException("io")));
+        assertTrue(defaultClient.isRetryableException(new RuntimeException(new IOException("wrapped"))));
+        assertFalse(defaultClient.isRetryableException(new IllegalArgumentException("bad")));
+        assertFalse(defaultClient.isRetryableException(new NullPointerException()));
+
+        // Narrowed to a specific subclass: only that subclass is retryable
+        RetryingHttpClient narrow = wrap(new MockedClient(),
+            RetryConfig.of(r -> r.backoffPolicy(fixed(1L, 1)).retryableExceptions(SocketException.class)));
+        assertTrue(narrow.isRetryableException(new SocketException("io")));
+        assertFalse(narrow.isRetryableException(new IOException("plain io")));
     }
 
     @Test
