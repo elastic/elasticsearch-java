@@ -45,7 +45,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * <p>
  * A request is retried when:
  * <ul>
- *   <li>the delegate throws (or completes its future exceptionally with) an {@link IOException}, or</li>
+ *   <li>the delegate fails with an exception matching {@link RetryConfig#retryableExceptions()}, or</li>
  *   <li>the delegate returns a response whose status code is in {@link RetryConfig#retryableStatuses()}.</li>
  * </ul>
  * <p>
@@ -69,6 +69,7 @@ public final class RetryingHttpClient implements TransportHttpClient {
     private final TransportHttpClient delegate;
     private final BackoffPolicy backoffPolicy;
     private final Set<Integer> retryableStatuses;
+    private final Set<Class<? extends Throwable>> retryableExceptions;
     private final ScheduledExecutorService retryScheduler;
     private final boolean isExternalScheduler;
 
@@ -90,6 +91,7 @@ public final class RetryingHttpClient implements TransportHttpClient {
         RetryConfig cfg = retryConfig == null ? RetryConfig.disabled() : retryConfig;
         this.backoffPolicy = cfg.backoffPolicy();
         this.retryableStatuses = cfg.retryableStatuses();
+        this.retryableExceptions = cfg.retryableExceptions();
         this.retryScheduler = Objects.requireNonNull(scheduler, "scheduler");
         this.isExternalScheduler = isExternalScheduler;
     }
@@ -202,8 +204,20 @@ public final class RetryingHttpClient implements TransportHttpClient {
         }
     }
 
-    static boolean isRetryableException(Throwable err) {
-        return err instanceof IOException || err.getCause() instanceof IOException;
+    boolean isRetryableException(Throwable err) {
+        return matchesRetryable(err) || matchesRetryable(err.getCause());
+    }
+
+    private boolean matchesRetryable(@Nullable Throwable t) {
+        if (t == null) {
+            return false;
+        }
+        for (Class<? extends Throwable> ex : retryableExceptions) {
+            if (ex.isInstance(t)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     boolean isRetryableStatus(Response resp) {
