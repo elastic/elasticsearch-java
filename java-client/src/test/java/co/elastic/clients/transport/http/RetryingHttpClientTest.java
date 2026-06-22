@@ -44,7 +44,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Function;
+import java.util.function.Supplier;
 
 class RetryingHttpClientTest extends Assertions {
 
@@ -83,17 +83,17 @@ class RetryingHttpClientTest extends Assertions {
 
     // A mock transport instance that returns the next scripted outcome on each call.
     static class MockedClient implements TransportHttpClient {
-        final List<Function<Boolean, ?>> script = new ArrayList<>();
+        final List<Supplier<?>> script = new ArrayList<>();
         final AtomicInteger calls = new AtomicInteger();
 
         // Add a response outcome.
         MockedClient andRespond(int statusCode) {
-            script.add(b -> new FakeResponse(statusCode, Collections.emptyMap()));
+            script.add(() -> new FakeResponse(statusCode, Collections.emptyMap()));
             return this;
         }
 
         MockedClient andThrow(Throwable t) {
-            script.add(b -> { throw new FakeException(t); });
+            script.add(() -> { throw new FakeException(t); });
             return this;
         }
 
@@ -101,9 +101,9 @@ class RetryingHttpClientTest extends Assertions {
         public Response performRequest(String endpointId, @Nullable Node node, Request request,
                                        TransportOptions options) throws IOException {
             int i = calls.getAndIncrement();
-            Function<Boolean, ?> step = script.get(Math.min(i, script.size() - 1));
+            Supplier<?> step = script.get(Math.min(i, script.size() - 1));
             try {
-                Object out = step.apply(true);
+                Object out = step.get();
                 return (Response) out;
             } catch (FakeException se) {
                 if (se.cause instanceof IOException) throw (IOException) se.cause;
@@ -116,10 +116,10 @@ class RetryingHttpClientTest extends Assertions {
         public CompletableFuture<Response> performRequestAsync(String endpointId, @Nullable Node node, Request request,
                                                                TransportOptions options) {
             int i = calls.getAndIncrement();
-            Function<Boolean, ?> step = script.get(Math.min(i, script.size() - 1));
+            Supplier<?> step = script.get(Math.min(i, script.size() - 1));
             CompletableFuture<Response> f = new CompletableFuture<>();
             try {
-                Object out = step.apply(true);
+                Object out = step.get();
                 f.complete((Response) out);
             } catch (FakeException se) {
                 f.completeExceptionally(se.cause);
