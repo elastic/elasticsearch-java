@@ -59,8 +59,9 @@ import javax.annotation.Nullable;
 /**
  * Throttle a reindex operation.
  * <p>
- * Change the number of requests per second for a particular reindex operation.
- * For example:
+ * Change the maximum number of documents to index per second for a particular
+ * reindex operation. For example, to unthrottle to unlimited documents per
+ * second:
  * 
  * <pre>
  * <code>POST _reindex/r1A2WoRbTwKZ516z6NEs5A:36619/_rethrottle?requests_per_second=-1
@@ -68,8 +69,22 @@ import javax.annotation.Nullable;
  * </pre>
  * <p>
  * Rethrottling that speeds up the query takes effect immediately. Rethrottling
- * that slows down the query will take effect after completing the current
- * batch. This behavior prevents scroll timeouts.
+ * that slows down the query will take effect after completing the current batch
+ * of documents. This behavior prevents scroll timeouts.
+ * <p>
+ * This API follows reindex tasks across node-shutdown relocations, so callers
+ * can keep using the original task ID throughout the lifetime of the operation.
+ * The relocated task ID is also accepted and is followed transparently. In
+ * either case, returned task IDs and timings reflect the original task, not its
+ * relocated successor.
+ * <p>
+ * The rethrottle may not have been applied to any tasks if either
+ * <code>node_failures</code> or <code>task_failures</code> are non-empty, or if
+ * the response contains no successfully rethrottled tasks — that is, no entries
+ * under <code>nodes</code> (returned with the default
+ * <code>group_by=nodes</code> in stack) or under <code>tasks</code> (returned
+ * in serverless, or in stack with <code>group_by=none</code> or
+ * <code>group_by=parents</code>).
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#_global.reindex_rethrottle.Request">API
@@ -99,6 +114,9 @@ public class ReindexRethrottleRequest extends RequestBase {
 	}
 
 	/**
+	 * The way to group the tasks in the response. We recommend setting this to
+	 * <code>none</code>, which provides the cleanest response format.
+	 * <p>
 	 * API name: {@code group_by}
 	 */
 	@Nullable
@@ -107,9 +125,10 @@ public class ReindexRethrottleRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The throttle for this request in sub-requests per second. It can
-	 * be either <code>-1</code> to turn off throttling or any decimal number like
-	 * <code>1.7</code> or <code>12</code> to throttle to that level.
+	 * Required - The maximum number of documents to index per second, across the
+	 * entire reindex operation (including slices). It can be either <code>-1</code>
+	 * to turn off throttling or any decimal number like <code>1.7</code> or
+	 * <code>12</code> to throttle to that level.
 	 * <p>
 	 * API name: {@code requests_per_second}
 	 */
@@ -118,7 +137,10 @@ public class ReindexRethrottleRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The task identifier, which can be found by using the tasks API.
+	 * Required - The task identifier, returned when creating a reindex task, or by
+	 * listing tasks via <code>GET /_reindex</code> or <code>GET /_tasks</code>. In
+	 * stack, can be either the original task ID or the task ID of the relocated
+	 * task.
 	 * <p>
 	 * API name: {@code task_id}
 	 */
@@ -151,6 +173,9 @@ public class ReindexRethrottleRequest extends RequestBase {
 
 		}
 		/**
+		 * The way to group the tasks in the response. We recommend setting this to
+		 * <code>none</code>, which provides the cleanest response format.
+		 * <p>
 		 * API name: {@code group_by}
 		 */
 		public final Builder groupBy(@Nullable GroupBy value) {
@@ -159,9 +184,10 @@ public class ReindexRethrottleRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The throttle for this request in sub-requests per second. It can
-		 * be either <code>-1</code> to turn off throttling or any decimal number like
-		 * <code>1.7</code> or <code>12</code> to throttle to that level.
+		 * Required - The maximum number of documents to index per second, across the
+		 * entire reindex operation (including slices). It can be either <code>-1</code>
+		 * to turn off throttling or any decimal number like <code>1.7</code> or
+		 * <code>12</code> to throttle to that level.
 		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
@@ -171,7 +197,10 @@ public class ReindexRethrottleRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The task identifier, which can be found by using the tasks API.
+		 * Required - The task identifier, returned when creating a reindex task, or by
+		 * listing tasks via <code>GET /_reindex</code> or <code>GET /_tasks</code>. In
+		 * stack, can be either the original task ID or the task ID of the relocated
+		 * task.
 		 * <p>
 		 * API name: {@code task_id}
 		 */

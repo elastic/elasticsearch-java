@@ -56,14 +56,49 @@ import javax.annotation.Nullable;
 // typedef: _global.cancel_reindex.Request
 
 /**
- * Cancel a reindex task.
+ * Cancel an ongoing reindex task.
  * <p>
- * Cancel an ongoing reindex task. If <code>wait_for_completion</code> is
- * <code>true</code> (the default), the response contains the final task state
- * after cancellation. If <code>wait_for_completion</code> is
- * <code>false</code>, the response contains only
- * <code>acknowledged: true</code>.
+ * If <code>wait_for_completion</code> is <code>true</code> (the default), the
+ * response contains the final task state after cancellation. If
+ * <code>wait_for_completion</code> is <code>false</code>, the response contains
+ * only <code>acknowledged: true</code>.
+ * <p>
+ * This API follows reindex tasks across node-shutdown relocations, so callers
+ * can keep using the original task ID throughout the lifetime of the operation.
+ * Returned task IDs and timings reflect the original task, not its relocated
+ * successor. Relocated task IDs are also supported. They are followed
+ * transparently and return the task ID and timings of the original task.
+ * <p>
+ * When the task ID cannot be cancelled (unknown ID, non-reindex task, sliced
+ * child, finished task, or node left with no stored result), the API returns
+ * the following response with a 404 status code:
  * 
+ * <pre>
+ * <code>{
+ *   &quot;error&quot;: {
+ *     &quot;type&quot;: &quot;resource_not_found_exception&quot;,
+ *     &quot;reason&quot;: &quot;reindex task [r1A2WoRbTwKZ516z6NEs5A:36619] either not found or completed&quot;
+ *   },
+ *   &quot;status&quot;: 404
+ * }
+ * </code>
+ * </pre>
+ * <p>
+ * During a brief handoff window of a node-shutdown relocation, you may receive
+ * the response below with a 503 status code. Retry with the same task ID; the
+ * retry follows the relocated task transparently.
+ * 
+ * <pre>
+ * <code>{
+ *   &quot;error&quot;: {
+ *     &quot;type&quot;: &quot;status_exception&quot;,
+ *     &quot;reason&quot;: &quot;cannot cancel task [36619] because it is being relocated&quot;
+ *   },
+ *   &quot;status&quot;: 503
+ * }
+ * </code>
+ * </pre>
+ *
  * @see <a href="../doc-files/api-spec.html#_global.cancel_reindex.Request">API
  *      specification</a>
  */

@@ -50,17 +50,17 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: inference._types.EmbeddingContentObjectContents
+// typedef: inference._types.EmbeddingContentObjectItem
 
 /**
- * An object containing the input data for the model to embed.
+ * An object containing the input data for a single item for the model to embed.
  * 
  * @see <a href=
- *      "../doc-files/api-spec.html#inference._types.EmbeddingContentObjectContents">API
+ *      "../doc-files/api-spec.html#inference._types.EmbeddingContentObjectItem">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class EmbeddingContentObjectContents implements JsonpSerializable {
+public class EmbeddingContentObjectItem implements JsonpSerializable {
 	private final EmbeddingContentType type;
 
 	@Nullable
@@ -70,7 +70,7 @@ public class EmbeddingContentObjectContents implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	private EmbeddingContentObjectContents(Builder builder) {
+	private EmbeddingContentObjectItem(Builder builder) {
 
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.format = builder.format;
@@ -78,13 +78,13 @@ public class EmbeddingContentObjectContents implements JsonpSerializable {
 
 	}
 
-	public static EmbeddingContentObjectContents of(
-			Function<Builder, ObjectBuilder<EmbeddingContentObjectContents>> fn) {
+	public static EmbeddingContentObjectItem of(Function<Builder, ObjectBuilder<EmbeddingContentObjectItem>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The type of input to embed.
+	 * Required - The type of input to embed. Not all models support all input
+	 * types.
 	 * <p>
 	 * API name: {@code type}
 	 */
@@ -94,10 +94,9 @@ public class EmbeddingContentObjectContents implements JsonpSerializable {
 
 	/**
 	 * The format of the input. For the <code>text</code> type this must be
-	 * <code>text</code>. For the <code>image</code> type, this must be
-	 * <code>base64</code>. If not specified, this will default to <code>text</code>
-	 * for the <code>text</code> type and <code>base64</code> for the
-	 * <code>image</code> type.
+	 * <code>text</code>. For all other types, this must be <code>base64</code>. If
+	 * not specified, this will default to <code>text</code> for the
+	 * <code>text</code> type and <code>base64</code> for all other types.
 	 * <p>
 	 * API name: {@code format}
 	 */
@@ -146,12 +145,12 @@ public class EmbeddingContentObjectContents implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link EmbeddingContentObjectContents}.
+	 * Builder for {@link EmbeddingContentObjectItem}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<EmbeddingContentObjectContents> {
+				ObjectBuilder<EmbeddingContentObjectItem> {
 		private EmbeddingContentType type;
 
 		@Nullable
@@ -161,14 +160,15 @@ public class EmbeddingContentObjectContents implements JsonpSerializable {
 
 		public Builder() {
 		}
-		private Builder(EmbeddingContentObjectContents instance) {
+		private Builder(EmbeddingContentObjectItem instance) {
 			this.type = instance.type;
 			this.format = instance.format;
 			this.value = instance.value;
 
 		}
 		/**
-		 * Required - The type of input to embed.
+		 * Required - The type of input to embed. Not all models support all input
+		 * types.
 		 * <p>
 		 * API name: {@code type}
 		 */
@@ -179,10 +179,9 @@ public class EmbeddingContentObjectContents implements JsonpSerializable {
 
 		/**
 		 * The format of the input. For the <code>text</code> type this must be
-		 * <code>text</code>. For the <code>image</code> type, this must be
-		 * <code>base64</code>. If not specified, this will default to <code>text</code>
-		 * for the <code>text</code> type and <code>base64</code> for the
-		 * <code>image</code> type.
+		 * <code>text</code>. For all other types, this must be <code>base64</code>. If
+		 * not specified, this will default to <code>text</code> for the
+		 * <code>text</code> type and <code>base64</code> for all other types.
 		 * <p>
 		 * API name: {@code format}
 		 */
@@ -208,15 +207,15 @@ public class EmbeddingContentObjectContents implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link EmbeddingContentObjectContents}.
+		 * Builds a {@link EmbeddingContentObjectItem}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public EmbeddingContentObjectContents build() {
+		public EmbeddingContentObjectItem build() {
 			_checkSingleUse();
 
-			return new EmbeddingContentObjectContents(this);
+			return new EmbeddingContentObjectItem(this);
 		}
 	}
 
@@ -229,13 +228,13 @@ public class EmbeddingContentObjectContents implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link EmbeddingContentObjectContents}
+	 * Json deserializer for {@link EmbeddingContentObjectItem}
 	 */
-	public static final JsonpDeserializer<EmbeddingContentObjectContents> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, EmbeddingContentObjectContents::setupEmbeddingContentObjectContentsDeserializer);
+	public static final JsonpDeserializer<EmbeddingContentObjectItem> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, EmbeddingContentObjectItem::setupEmbeddingContentObjectItemDeserializer);
 
-	protected static void setupEmbeddingContentObjectContentsDeserializer(
-			ObjectDeserializer<EmbeddingContentObjectContents.Builder> op) {
+	protected static void setupEmbeddingContentObjectItemDeserializer(
+			ObjectDeserializer<EmbeddingContentObjectItem.Builder> op) {
 
 		op.add(Builder::type, EmbeddingContentType._DESERIALIZER, "type");
 		op.add(Builder::format, EmbeddingContentFormat._DESERIALIZER, "format");

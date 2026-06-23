@@ -95,7 +95,9 @@ public class InnerHits implements JsonpSerializable {
 	@Nullable
 	private final Boolean seqNoPrimaryTerm;
 
-	private final List<String> fields;
+	private final List<String> field;
+
+	private final List<FieldAndFormat> fields;
 
 	private final List<SortOptions> sort;
 
@@ -124,6 +126,7 @@ public class InnerHits implements JsonpSerializable {
 		this.ignoreUnmapped = builder.ignoreUnmapped;
 		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
 		this.seqNoPrimaryTerm = builder.seqNoPrimaryTerm;
+		this.field = ApiTypeHelper.unmodifiable(builder.field);
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 		this.source = builder.source;
@@ -223,9 +226,16 @@ public class InnerHits implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code field}
+	 */
+	public final List<String> field() {
+		return this.field;
+	}
+
+	/**
 	 * API name: {@code fields}
 	 */
-	public final List<String> fields() {
+	public final List<FieldAndFormat> fields() {
 		return this.fields;
 	}
 
@@ -342,11 +352,21 @@ public class InnerHits implements JsonpSerializable {
 			generator.write(this.seqNoPrimaryTerm);
 
 		}
+		if (ApiTypeHelper.isDefined(this.field)) {
+			generator.writeKey("field");
+			generator.writeStartArray();
+			for (String item0 : this.field) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
-			for (String item0 : this.fields) {
-				generator.write(item0);
+			for (FieldAndFormat item0 : this.fields) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -433,7 +453,10 @@ public class InnerHits implements JsonpSerializable {
 		private Boolean seqNoPrimaryTerm;
 
 		@Nullable
-		private List<String> fields;
+		private List<String> field;
+
+		@Nullable
+		private List<FieldAndFormat> fields;
 
 		@Nullable
 		private List<SortOptions> sort;
@@ -463,6 +486,7 @@ public class InnerHits implements JsonpSerializable {
 			this.ignoreUnmapped = instance.ignoreUnmapped;
 			this.scriptFields = instance.scriptFields;
 			this.seqNoPrimaryTerm = instance.seqNoPrimaryTerm;
+			this.field = instance.field;
 			this.fields = instance.fields;
 			this.sort = instance.sort;
 			this.source = instance.source;
@@ -615,11 +639,31 @@ public class InnerHits implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code field}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>field</code>.
+		 */
+		public final Builder field(List<String> list) {
+			this.field = _listAddAll(this.field, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code field}
+		 * <p>
+		 * Adds one or more values to <code>field</code>.
+		 */
+		public final Builder field(String value, String... values) {
+			this.field = _listAdd(this.field, value, values);
+			return this;
+		}
+
+		/**
 		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public final Builder fields(List<String> list) {
+		public final Builder fields(List<FieldAndFormat> list) {
 			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
@@ -629,9 +673,18 @@ public class InnerHits implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(String value, String... values) {
+		public final Builder fields(FieldAndFormat value, FieldAndFormat... values) {
 			this.fields = _listAdd(this.fields, value, values);
 			return this;
+		}
+
+		/**
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds a value to <code>fields</code> using a builder lambda.
+		 */
+		public final Builder fields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
+			return fields(fn.apply(new FieldAndFormat.Builder()).build());
 		}
 
 		/**
@@ -769,7 +822,8 @@ public class InnerHits implements JsonpSerializable {
 		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
 				"script_fields");
 		op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
-		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
+		op.add(Builder::field, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "field");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "fields");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
 		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
 		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

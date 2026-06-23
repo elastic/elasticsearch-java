@@ -73,8 +73,7 @@ public abstract class SynonymTokenFilterBase extends TokenFilterBase {
 	@Nullable
 	private final String synonymsPath;
 
-	@Nullable
-	private final String synonymsSet;
+	private final List<String> synonymsSet;
 
 	@Nullable
 	private final String tokenizer;
@@ -92,7 +91,7 @@ public abstract class SynonymTokenFilterBase extends TokenFilterBase {
 		this.lenient = builder.lenient;
 		this.synonyms = ApiTypeHelper.unmodifiable(builder.synonyms);
 		this.synonymsPath = builder.synonymsPath;
-		this.synonymsSet = builder.synonymsSet;
+		this.synonymsSet = ApiTypeHelper.unmodifiable(builder.synonymsSet);
 		this.tokenizer = builder.tokenizer;
 		this.updateable = builder.updateable;
 
@@ -152,12 +151,12 @@ public abstract class SynonymTokenFilterBase extends TokenFilterBase {
 	}
 
 	/**
-	 * Provide a synonym set created via Synonyms Management APIs.
+	 * Provide one or more synonym sets created through the Synonyms Management
+	 * APIs. Maximum 100 sets per filter.
 	 * <p>
 	 * API name: {@code synonyms_set}
 	 */
-	@Nullable
-	public final String synonymsSet() {
+	public final List<String> synonymsSet() {
 		return this.synonymsSet;
 	}
 
@@ -219,9 +218,14 @@ public abstract class SynonymTokenFilterBase extends TokenFilterBase {
 			generator.write(this.synonymsPath);
 
 		}
-		if (this.synonymsSet != null) {
+		if (ApiTypeHelper.isDefined(this.synonymsSet)) {
 			generator.writeKey("synonyms_set");
-			generator.write(this.synonymsSet);
+			generator.writeStartArray();
+			for (String item0 : this.synonymsSet) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.tokenizer != null) {
@@ -256,7 +260,7 @@ public abstract class SynonymTokenFilterBase extends TokenFilterBase {
 		private String synonymsPath;
 
 		@Nullable
-		private String synonymsSet;
+		private List<String> synonymsSet;
 
 		@Nullable
 		private String tokenizer;
@@ -333,12 +337,28 @@ public abstract class SynonymTokenFilterBase extends TokenFilterBase {
 		}
 
 		/**
-		 * Provide a synonym set created via Synonyms Management APIs.
+		 * Provide one or more synonym sets created through the Synonyms Management
+		 * APIs. Maximum 100 sets per filter.
 		 * <p>
 		 * API name: {@code synonyms_set}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>synonymsSet</code>.
 		 */
-		public final BuilderT synonymsSet(@Nullable String value) {
-			this.synonymsSet = value;
+		public final BuilderT synonymsSet(List<String> list) {
+			this.synonymsSet = _listAddAll(this.synonymsSet, list);
+			return self();
+		}
+
+		/**
+		 * Provide one or more synonym sets created through the Synonyms Management
+		 * APIs. Maximum 100 sets per filter.
+		 * <p>
+		 * API name: {@code synonyms_set}
+		 * <p>
+		 * Adds one or more values to <code>synonymsSet</code>.
+		 */
+		public final BuilderT synonymsSet(String value, String... values) {
+			this.synonymsSet = _listAdd(this.synonymsSet, value, values);
 			return self();
 		}
 
@@ -380,7 +400,8 @@ public abstract class SynonymTokenFilterBase extends TokenFilterBase {
 		op.add(AbstractBuilder::synonyms, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"synonyms");
 		op.add(AbstractBuilder::synonymsPath, JsonpDeserializer.stringDeserializer(), "synonyms_path");
-		op.add(AbstractBuilder::synonymsSet, JsonpDeserializer.stringDeserializer(), "synonyms_set");
+		op.add(AbstractBuilder::synonymsSet,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "synonyms_set");
 		op.add(AbstractBuilder::tokenizer, JsonpDeserializer.stringDeserializer(), "tokenizer");
 		op.add(AbstractBuilder::updateable, JsonpDeserializer.booleanDeserializer(), "updateable");
 

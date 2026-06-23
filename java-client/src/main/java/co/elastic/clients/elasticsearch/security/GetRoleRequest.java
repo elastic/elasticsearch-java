@@ -30,8 +30,8 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,18 +69,35 @@ import javax.annotation.Nullable;
  */
 
 public class GetRoleRequest extends RequestBase {
+	@Nullable
+	private final Boolean includeImplicit;
+
 	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetRoleRequest(Builder builder) {
 
+		this.includeImplicit = builder.includeImplicit;
 		this.name = ApiTypeHelper.unmodifiable(builder.name);
 
 	}
 
 	public static GetRoleRequest of(Function<Builder, ObjectBuilder<GetRoleRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * If <code>true</code>, include privileges that are implicitly granted by
+	 * registered <code>ImplicitPrivilegesProviders</code> alongside the explicitly
+	 * configured privileges. Each implicit entry in the response is annotated with
+	 * <code>implicitly_granted: true</code>.
+	 * <p>
+	 * API name: {@code include_implicit}
+	 */
+	@Nullable
+	public final Boolean includeImplicit() {
+		return this.includeImplicit;
 	}
 
 	/**
@@ -102,14 +119,31 @@ public class GetRoleRequest extends RequestBase {
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<GetRoleRequest> {
 		@Nullable
+		private Boolean includeImplicit;
+
+		@Nullable
 		private List<String> name;
 
 		public Builder() {
 		}
 		private Builder(GetRoleRequest instance) {
+			this.includeImplicit = instance.includeImplicit;
 			this.name = instance.name;
 
 		}
+		/**
+		 * If <code>true</code>, include privileges that are implicitly granted by
+		 * registered <code>ImplicitPrivilegesProviders</code> alongside the explicitly
+		 * configured privileges. Each implicit entry in the response is annotated with
+		 * <code>implicitly_granted: true</code>.
+		 * <p>
+		 * API name: {@code include_implicit}
+		 */
+		public final Builder includeImplicit(@Nullable Boolean value) {
+			this.includeImplicit = value;
+			return this;
+		}
+
 		/**
 		 * The name of the role. You can specify multiple roles as a comma-separated
 		 * list. If you do not specify this parameter, the API returns information about
@@ -226,7 +260,11 @@ public class GetRoleRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.includeImplicit != null) {
+					params.put("include_implicit", String.valueOf(request.includeImplicit));
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, GetRoleResponse._DESERIALIZER);
 }

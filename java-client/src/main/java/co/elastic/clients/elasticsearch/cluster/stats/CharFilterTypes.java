@@ -74,6 +74,9 @@ public class CharFilterTypes implements JsonpSerializable {
 
 	private final List<FieldTypes> charFilterTypes;
 
+	@Nullable
+	private final MultipleSynonymGraphFilter multipleSynonymGraphFilters;
+
 	private final List<FieldTypes> filterTypes;
 
 	private final List<FieldTypes> tokenizerTypes;
@@ -92,6 +95,7 @@ public class CharFilterTypes implements JsonpSerializable {
 		this.builtInTokenizers = ApiTypeHelper.unmodifiableRequired(builder.builtInTokenizers, this,
 				"builtInTokenizers");
 		this.charFilterTypes = ApiTypeHelper.unmodifiableRequired(builder.charFilterTypes, this, "charFilterTypes");
+		this.multipleSynonymGraphFilters = builder.multipleSynonymGraphFilters;
 		this.filterTypes = ApiTypeHelper.unmodifiableRequired(builder.filterTypes, this, "filterTypes");
 		this.tokenizerTypes = ApiTypeHelper.unmodifiableRequired(builder.tokenizerTypes, this, "tokenizerTypes");
 		this.synonyms = ApiTypeHelper.unmodifiableRequired(builder.synonyms, this, "synonyms");
@@ -159,6 +163,14 @@ public class CharFilterTypes implements JsonpSerializable {
 	 */
 	public final List<FieldTypes> charFilterTypes() {
 		return this.charFilterTypes;
+	}
+
+	/**
+	 * API name: {@code multiple_synonym_graph_filters}
+	 */
+	@Nullable
+	public final MultipleSynonymGraphFilter multipleSynonymGraphFilters() {
+		return this.multipleSynonymGraphFilters;
 	}
 
 	/**
@@ -260,6 +272,11 @@ public class CharFilterTypes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.multipleSynonymGraphFilters != null) {
+			generator.writeKey("multiple_synonym_graph_filters");
+			this.multipleSynonymGraphFilters.serialize(generator, mapper);
+
+		}
 		if (ApiTypeHelper.isDefined(this.filterTypes)) {
 			generator.writeKey("filter_types");
 			generator.writeStartArray();
@@ -318,6 +335,9 @@ public class CharFilterTypes implements JsonpSerializable {
 
 		private List<FieldTypes> charFilterTypes;
 
+		@Nullable
+		private MultipleSynonymGraphFilter multipleSynonymGraphFilters;
+
 		private List<FieldTypes> filterTypes;
 
 		private List<FieldTypes> tokenizerTypes;
@@ -333,6 +353,7 @@ public class CharFilterTypes implements JsonpSerializable {
 			this.builtInFilters = instance.builtInFilters;
 			this.builtInTokenizers = instance.builtInTokenizers;
 			this.charFilterTypes = instance.charFilterTypes;
+			this.multipleSynonymGraphFilters = instance.multipleSynonymGraphFilters;
 			this.filterTypes = instance.filterTypes;
 			this.tokenizerTypes = instance.tokenizerTypes;
 			this.synonyms = instance.synonyms;
@@ -564,6 +585,22 @@ public class CharFilterTypes implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code multiple_synonym_graph_filters}
+		 */
+		public final Builder multipleSynonymGraphFilters(@Nullable MultipleSynonymGraphFilter value) {
+			this.multipleSynonymGraphFilters = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code multiple_synonym_graph_filters}
+		 */
+		public final Builder multipleSynonymGraphFilters(
+				Function<MultipleSynonymGraphFilter.Builder, ObjectBuilder<MultipleSynonymGraphFilter>> fn) {
+			return this.multipleSynonymGraphFilters(fn.apply(new MultipleSynonymGraphFilter.Builder()).build());
+		}
+
+		/**
 		 * Required - Contains statistics about token filter types used in selected
 		 * nodes.
 		 * <p>
@@ -716,6 +753,8 @@ public class CharFilterTypes implements JsonpSerializable {
 				"built_in_tokenizers");
 		op.add(Builder::charFilterTypes, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER),
 				"char_filter_types");
+		op.add(Builder::multipleSynonymGraphFilters, MultipleSynonymGraphFilter._DESERIALIZER,
+				"multiple_synonym_graph_filters");
 		op.add(Builder::filterTypes, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER), "filter_types");
 		op.add(Builder::tokenizerTypes, JsonpDeserializer.arrayDeserializer(FieldTypes._DESERIALIZER),
 				"tokenizer_types");

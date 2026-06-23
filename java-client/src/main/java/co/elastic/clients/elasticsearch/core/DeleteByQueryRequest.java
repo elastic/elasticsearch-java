@@ -542,7 +542,10 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * The throttle for this request in sub-requests per second.
+	 * The maximum number of documents to delete per second, across the entire
+	 * delete-by-query operation (including slices). It can be either
+	 * <code>-1</code> to turn off throttling or any decimal number like
+	 * <code>1.7</code> or <code>12</code> to throttle to that level.
 	 * <p>
 	 * API name: {@code requests_per_second}
 	 */
@@ -1140,7 +1143,10 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * The throttle for this request in sub-requests per second.
+		 * The maximum number of documents to delete per second, across the entire
+		 * delete-by-query operation (including slices). It can be either
+		 * <code>-1</code> to turn off throttling or any decimal number like
+		 * <code>1.7</code> or <code>12</code> to throttle to that level.
 		 * <p>
 		 * API name: {@code requests_per_second}
 		 */

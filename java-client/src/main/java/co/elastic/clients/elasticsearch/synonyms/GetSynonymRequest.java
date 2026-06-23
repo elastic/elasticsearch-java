@@ -69,6 +69,9 @@ public class GetSynonymRequest extends RequestBase {
 	private final String id;
 
 	@Nullable
+	private final String searchAfter;
+
+	@Nullable
 	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
@@ -77,6 +80,7 @@ public class GetSynonymRequest extends RequestBase {
 
 		this.from = builder.from;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.searchAfter = builder.searchAfter;
 		this.size = builder.size;
 
 	}
@@ -86,7 +90,7 @@ public class GetSynonymRequest extends RequestBase {
 	}
 
 	/**
-	 * The starting offset for query rules to retrieve.
+	 * The starting offset for synonym rules to retrieve.
 	 * <p>
 	 * API name: {@code from}
 	 */
@@ -105,7 +109,19 @@ public class GetSynonymRequest extends RequestBase {
 	}
 
 	/**
-	 * The max number of query rules to retrieve.
+	 * The synonym rule ID to use as a cursor for pagination. The next page of
+	 * results will start after this rule ID. This parameter cannot be used with
+	 * <code>from</code>.
+	 * <p>
+	 * API name: {@code search_after}
+	 */
+	@Nullable
+	public final String searchAfter() {
+		return this.searchAfter;
+	}
+
+	/**
+	 * The max number of synonym rules to retrieve.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -129,6 +145,9 @@ public class GetSynonymRequest extends RequestBase {
 		private String id;
 
 		@Nullable
+		private String searchAfter;
+
+		@Nullable
 		private Integer size;
 
 		public Builder() {
@@ -136,11 +155,12 @@ public class GetSynonymRequest extends RequestBase {
 		private Builder(GetSynonymRequest instance) {
 			this.from = instance.from;
 			this.id = instance.id;
+			this.searchAfter = instance.searchAfter;
 			this.size = instance.size;
 
 		}
 		/**
-		 * The starting offset for query rules to retrieve.
+		 * The starting offset for synonym rules to retrieve.
 		 * <p>
 		 * API name: {@code from}
 		 */
@@ -160,7 +180,19 @@ public class GetSynonymRequest extends RequestBase {
 		}
 
 		/**
-		 * The max number of query rules to retrieve.
+		 * The synonym rule ID to use as a cursor for pagination. The next page of
+		 * results will start after this rule ID. This parameter cannot be used with
+		 * <code>from</code>.
+		 * <p>
+		 * API name: {@code search_after}
+		 */
+		public final Builder searchAfter(@Nullable String value) {
+			this.searchAfter = value;
+			return this;
+		}
+
+		/**
+		 * The max number of synonym rules to retrieve.
 		 * <p>
 		 * API name: {@code size}
 		 */
@@ -244,6 +276,9 @@ public class GetSynonymRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.searchAfter != null) {
+					params.put("search_after", request.searchAfter);
+				}
 				if (request.size != null) {
 					params.put("size", String.valueOf(request.size));
 				}

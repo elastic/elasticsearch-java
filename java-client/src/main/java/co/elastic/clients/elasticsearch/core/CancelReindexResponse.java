@@ -145,7 +145,8 @@ public class CancelReindexResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * The ID of the reindex task, in <code>nodeId:taskNum</code> format. Present
+	 * The ID of the reindex task. The value is the ID assigned when the task was
+	 * first created and remains stable across node-shutdown relocations. Present
 	 * when <code>wait_for_completion=true</code>.
 	 * <p>
 	 * API name: {@code id}
@@ -395,7 +396,8 @@ public class CancelReindexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * The ID of the reindex task, in <code>nodeId:taskNum</code> format. Present
+		 * The ID of the reindex task. The value is the ID assigned when the task was
+		 * first created and remains stable across node-shutdown relocations. Present
 		 * when <code>wait_for_completion=true</code>.
 		 * <p>
 		 * API name: {@code id}

@@ -62,11 +62,15 @@ import javax.annotation.Nullable;
 public class Profile implements JsonpSerializable {
 	private final List<ShardProfile> shards;
 
+	@Nullable
+	private final SearchRequestCoordinatorMetadata request;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private Profile(Builder builder) {
 
 		this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
+		this.request = builder.request;
 
 	}
 
@@ -79,6 +83,17 @@ public class Profile implements JsonpSerializable {
 	 */
 	public final List<ShardProfile> shards() {
 		return this.shards;
+	}
+
+	/**
+	 * When profiling is enabled, the original query source and target indices from
+	 * the coordinating request.
+	 * <p>
+	 * API name: {@code request}
+	 */
+	@Nullable
+	public final SearchRequestCoordinatorMetadata request() {
+		return this.request;
 	}
 
 	/**
@@ -102,6 +117,11 @@ public class Profile implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.request != null) {
+			generator.writeKey("request");
+			this.request.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -119,10 +139,14 @@ public class Profile implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Profile> {
 		private List<ShardProfile> shards;
 
+		@Nullable
+		private SearchRequestCoordinatorMetadata request;
+
 		public Builder() {
 		}
 		private Builder(Profile instance) {
 			this.shards = instance.shards;
+			this.request = instance.request;
 
 		}
 		/**
@@ -152,6 +176,28 @@ public class Profile implements JsonpSerializable {
 		 */
 		public final Builder shards(Function<ShardProfile.Builder, ObjectBuilder<ShardProfile>> fn) {
 			return shards(fn.apply(new ShardProfile.Builder()).build());
+		}
+
+		/**
+		 * When profiling is enabled, the original query source and target indices from
+		 * the coordinating request.
+		 * <p>
+		 * API name: {@code request}
+		 */
+		public final Builder request(@Nullable SearchRequestCoordinatorMetadata value) {
+			this.request = value;
+			return this;
+		}
+
+		/**
+		 * When profiling is enabled, the original query source and target indices from
+		 * the coordinating request.
+		 * <p>
+		 * API name: {@code request}
+		 */
+		public final Builder request(
+				Function<SearchRequestCoordinatorMetadata.Builder, ObjectBuilder<SearchRequestCoordinatorMetadata>> fn) {
+			return this.request(fn.apply(new SearchRequestCoordinatorMetadata.Builder()).build());
 		}
 
 		@Override
@@ -189,6 +235,7 @@ public class Profile implements JsonpSerializable {
 	protected static void setupProfileDeserializer(ObjectDeserializer<Profile.Builder> op) {
 
 		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(ShardProfile._DESERIALIZER), "shards");
+		op.add(Builder::request, SearchRequestCoordinatorMetadata._DESERIALIZER, "request");
 
 	}
 

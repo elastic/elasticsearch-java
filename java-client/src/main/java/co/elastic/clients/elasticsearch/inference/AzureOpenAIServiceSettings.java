@@ -134,12 +134,13 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For OAuth 2.0 authentication using the client credentials grant flow. The
+	 * For OAuth 2.0 authorization using the client credentials grant flow. The
 	 * application ID that's assigned to your app.
 	 * <p>
-	 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
-	 * tenant_id, and client_secret together. If one of the fields is missing, you
-	 * will receive an error when you try to create your endpoint.
+	 * IMPORTANT: To configure OAuth 2.0, you must specify <code>client_id</code>,
+	 * <code>scopes</code>, <code>tenant_id</code>, and <code>client_secret</code>
+	 * together. If one of the fields is missing, you will receive an error when you
+	 * try to create your endpoint.
 	 * <p>
 	 * API name: {@code client_id}
 	 */
@@ -149,7 +150,7 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For OAuth 2.0 authentication using the client credentials grant flow. The
+	 * For OAuth 2.0 authorization using the client credentials grant flow. The
 	 * application secret that you created in the Microsoft app registration portal
 	 * for your app.
 	 * <p>
@@ -158,9 +159,10 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 	 * one or you provide more than one of them, you will receive an error when you
 	 * try to create your endpoint.
 	 * <p>
-	 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
-	 * tenant_id, and client_secret together. If one of the fields is missing, you
-	 * will receive an error when you try to create your endpoint.
+	 * IMPORTANT: To configure OAuth 2.0, you must specify <code>client_id</code>,
+	 * <code>scopes</code>, <code>tenant_id</code>, and <code>client_secret</code>
+	 * together. If one of the fields is missing, you will receive an error when you
+	 * try to create your endpoint.
 	 * <p>
 	 * API name: {@code client_secret}
 	 */
@@ -221,7 +223,7 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For OAuth 2.0 authentication using the client credentials grant flow. The
+	 * For OAuth 2.0 authorization using the client credentials grant flow. The
 	 * resource identifier (application ID URI) of the resource you want, suffixed
 	 * with .default For example:
 	 * 
@@ -232,9 +234,10 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 	 * </code>
 	 * </pre>
 	 * <p>
-	 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
-	 * tenant_id, and client_secret together. If one of the fields is missing, you
-	 * will receive an error when you try to create your endpoint.
+	 * IMPORTANT: To configure OAuth 2.0, you must specify <code>client_id</code>,
+	 * <code>scopes</code>, <code>tenant_id</code>, and <code>client_secret</code>
+	 * together. If one of the fields is missing, you will receive an error when you
+	 * try to create your endpoint.
 	 * <p>
 	 * API name: {@code scopes}
 	 */
@@ -243,12 +246,13 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For OAuth 2.0 authentication using the client credentials grant flow. The
+	 * For OAuth 2.0 authorization using the client credentials grant flow. The
 	 * directory tenant the application plans to operate against.
 	 * <p>
-	 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
-	 * tenant_id, and client_secret together. If one of the fields is missing, you
-	 * will receive an error when you try to create your endpoint.
+	 * IMPORTANT: To configure OAuth 2.0, you must specify <code>client_id</code>,
+	 * <code>scopes</code>, <code>tenant_id</code>, and <code>client_secret</code>
+	 * together. If one of the fields is missing, you will receive an error when you
+	 * try to create your endpoint.
 	 * <p>
 	 * API name: {@code tenant_id}
 	 */
@@ -403,12 +407,13 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * For OAuth 2.0 authentication using the client credentials grant flow. The
+		 * For OAuth 2.0 authorization using the client credentials grant flow. The
 		 * application ID that's assigned to your app.
 		 * <p>
-		 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
-		 * tenant_id, and client_secret together. If one of the fields is missing, you
-		 * will receive an error when you try to create your endpoint.
+		 * IMPORTANT: To configure OAuth 2.0, you must specify <code>client_id</code>,
+		 * <code>scopes</code>, <code>tenant_id</code>, and <code>client_secret</code>
+		 * together. If one of the fields is missing, you will receive an error when you
+		 * try to create your endpoint.
 		 * <p>
 		 * API name: {@code client_id}
 		 */
@@ -418,7 +423,7 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * For OAuth 2.0 authentication using the client credentials grant flow. The
+		 * For OAuth 2.0 authorization using the client credentials grant flow. The
 		 * application secret that you created in the Microsoft app registration portal
 		 * for your app.
 		 * <p>
@@ -427,9 +432,10 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		 * one or you provide more than one of them, you will receive an error when you
 		 * try to create your endpoint.
 		 * <p>
-		 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
-		 * tenant_id, and client_secret together. If one of the fields is missing, you
-		 * will receive an error when you try to create your endpoint.
+		 * IMPORTANT: To configure OAuth 2.0, you must specify <code>client_id</code>,
+		 * <code>scopes</code>, <code>tenant_id</code>, and <code>client_secret</code>
+		 * together. If one of the fields is missing, you will receive an error when you
+		 * try to create your endpoint.
 		 * <p>
 		 * API name: {@code client_secret}
 		 */
@@ -506,7 +512,7 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * For OAuth 2.0 authentication using the client credentials grant flow. The
+		 * For OAuth 2.0 authorization using the client credentials grant flow. The
 		 * resource identifier (application ID URI) of the resource you want, suffixed
 		 * with .default For example:
 		 * 
@@ -517,9 +523,10 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		 * </code>
 		 * </pre>
 		 * <p>
-		 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
-		 * tenant_id, and client_secret together. If one of the fields is missing, you
-		 * will receive an error when you try to create your endpoint.
+		 * IMPORTANT: To configure OAuth 2.0, you must specify <code>client_id</code>,
+		 * <code>scopes</code>, <code>tenant_id</code>, and <code>client_secret</code>
+		 * together. If one of the fields is missing, you will receive an error when you
+		 * try to create your endpoint.
 		 * <p>
 		 * API name: {@code scopes}
 		 * <p>
@@ -531,7 +538,7 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * For OAuth 2.0 authentication using the client credentials grant flow. The
+		 * For OAuth 2.0 authorization using the client credentials grant flow. The
 		 * resource identifier (application ID URI) of the resource you want, suffixed
 		 * with .default For example:
 		 * 
@@ -542,9 +549,10 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		 * </code>
 		 * </pre>
 		 * <p>
-		 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
-		 * tenant_id, and client_secret together. If one of the fields is missing, you
-		 * will receive an error when you try to create your endpoint.
+		 * IMPORTANT: To configure OAuth 2.0, you must specify <code>client_id</code>,
+		 * <code>scopes</code>, <code>tenant_id</code>, and <code>client_secret</code>
+		 * together. If one of the fields is missing, you will receive an error when you
+		 * try to create your endpoint.
 		 * <p>
 		 * API name: {@code scopes}
 		 * <p>
@@ -556,12 +564,13 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * For OAuth 2.0 authentication using the client credentials grant flow. The
+		 * For OAuth 2.0 authorization using the client credentials grant flow. The
 		 * directory tenant the application plans to operate against.
 		 * <p>
-		 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
-		 * tenant_id, and client_secret together. If one of the fields is missing, you
-		 * will receive an error when you try to create your endpoint.
+		 * IMPORTANT: To configure OAuth 2.0, you must specify <code>client_id</code>,
+		 * <code>scopes</code>, <code>tenant_id</code>, and <code>client_secret</code>
+		 * together. If one of the fields is missing, you will receive an error when you
+		 * try to create your endpoint.
 		 * <p>
 		 * API name: {@code tenant_id}
 		 */

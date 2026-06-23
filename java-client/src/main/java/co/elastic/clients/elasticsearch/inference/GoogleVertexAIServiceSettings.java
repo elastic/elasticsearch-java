@@ -187,11 +187,17 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 	/**
 	 * The name of the location to use for the inference task for the Google Vertex
 	 * AI inference task. For Google Vertex AI, when <code>provider</code> is
-	 * omitted or <code>google</code> <code>location</code> is mandatory. For Google
-	 * Model Garden's <code>completion</code> and <code>chat_completion</code>
-	 * tasks, when <code>provider</code> is a supported non-<code>google</code>
-	 * value - <code>location</code> is ignored. Refer to the Google documentation
-	 * for the list of supported locations.
+	 * omitted or <code>google</code>, <code>location</code> is optional. When
+	 * <code>location</code> is omitted, the request targets the Google Vertex AI
+	 * global endpoint (<code>https://aiplatform.googleapis.com</code>); when it is
+	 * provided, the corresponding regional endpoint
+	 * (<code>https://&lt;location&gt;-aiplatform.googleapis.com</code>) is used.
+	 * The field must be omitted to select the global endpoint; an empty string is
+	 * not a valid <code>location</code>. For Google Model Garden's
+	 * <code>completion</code> and <code>chat_completion</code> tasks, when
+	 * <code>provider</code> is a supported non-<code>google</code> value -
+	 * <code>location</code> is ignored. Refer to the Google documentation for the
+	 * list of supported locations.
 	 * <p>
 	 * API name: {@code location}
 	 */
@@ -490,11 +496,17 @@ public class GoogleVertexAIServiceSettings implements JsonpSerializable {
 		/**
 		 * The name of the location to use for the inference task for the Google Vertex
 		 * AI inference task. For Google Vertex AI, when <code>provider</code> is
-		 * omitted or <code>google</code> <code>location</code> is mandatory. For Google
-		 * Model Garden's <code>completion</code> and <code>chat_completion</code>
-		 * tasks, when <code>provider</code> is a supported non-<code>google</code>
-		 * value - <code>location</code> is ignored. Refer to the Google documentation
-		 * for the list of supported locations.
+		 * omitted or <code>google</code>, <code>location</code> is optional. When
+		 * <code>location</code> is omitted, the request targets the Google Vertex AI
+		 * global endpoint (<code>https://aiplatform.googleapis.com</code>); when it is
+		 * provided, the corresponding regional endpoint
+		 * (<code>https://&lt;location&gt;-aiplatform.googleapis.com</code>) is used.
+		 * The field must be omitted to select the global endpoint; an empty string is
+		 * not a valid <code>location</code>. For Google Model Garden's
+		 * <code>completion</code> and <code>chat_completion</code> tasks, when
+		 * <code>provider</code> is a supported non-<code>google</code> value -
+		 * <code>location</code> is ignored. Refer to the Google documentation for the
+		 * list of supported locations.
 		 * <p>
 		 * API name: {@code location}
 		 */

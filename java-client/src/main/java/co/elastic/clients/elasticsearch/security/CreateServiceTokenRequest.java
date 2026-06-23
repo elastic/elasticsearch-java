@@ -63,6 +63,11 @@ import javax.annotation.Nullable;
  * <p>
  * NOTE: Service account tokens never expire. You must actively delete them if
  * they are no longer needed.
+ * <p>
+ * IMPORTANT: On Serverless, non-operator users can create tokens for only
+ * <code>elastic/fleet-server</code> and
+ * <code>elastic/fleet-server-remote</code>. Creating tokens for any other
+ * service account requires operator privileges.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.create_service_token.Request">API

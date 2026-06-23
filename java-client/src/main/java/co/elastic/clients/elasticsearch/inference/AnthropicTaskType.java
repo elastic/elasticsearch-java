@@ -48,6 +48,8 @@ import co.elastic.clients.json.JsonpDeserializer;
 public enum AnthropicTaskType implements JsonEnum {
 	Completion("completion"),
 
+	ChatCompletion("chat_completion"),
+
 	;
 
 	private final String jsonValue;

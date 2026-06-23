@@ -115,7 +115,7 @@ public class CustomServiceSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies the HTTP header parameters – such as <code>Authentication</code> or
+	 * Specifies the HTTP header parameters – such as <code>Authorization</code> or
 	 * <code>Content-Type</code> – that are required to access the custom service.
 	 * For example:
 	 * 
@@ -379,7 +379,7 @@ public class CustomServiceSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies the HTTP header parameters – such as <code>Authentication</code> or
+		 * Specifies the HTTP header parameters – such as <code>Authorization</code> or
 		 * <code>Content-Type</code> – that are required to access the custom service.
 		 * For example:
 		 * 
@@ -401,7 +401,7 @@ public class CustomServiceSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies the HTTP header parameters – such as <code>Authentication</code> or
+		 * Specifies the HTTP header parameters – such as <code>Authorization</code> or
 		 * <code>Content-Type</code> – that are required to access the custom service.
 		 * For example:
 		 * 

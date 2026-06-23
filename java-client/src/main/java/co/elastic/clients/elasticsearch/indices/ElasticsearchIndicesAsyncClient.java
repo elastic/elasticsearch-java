@@ -4818,6 +4818,8 @@ public class ElasticsearchIndicesAsyncClient
 	 * index.</li>
 	 * <li>The number of primary shards in the target index must be a multiple of
 	 * the number of primary shards in the source index.</li>
+	 * <li>The number of primary shards in the target index must be a divisor of the
+	 * source index's <code>index.number_of_routing_shards</code>.</li>
 	 * <li>The node handling the split process must have sufficient free disk space
 	 * to accommodate a second copy of the existing index.</li>
 	 * </ul>
@@ -4897,6 +4899,8 @@ public class ElasticsearchIndicesAsyncClient
 	 * index.</li>
 	 * <li>The number of primary shards in the target index must be a multiple of
 	 * the number of primary shards in the source index.</li>
+	 * <li>The number of primary shards in the target index must be a divisor of the
+	 * source index's <code>index.number_of_routing_shards</code>.</li>
 	 * <li>The node handling the split process must have sufficient free disk space
 	 * to accommodate a second copy of the existing index.</li>
 	 * </ul>

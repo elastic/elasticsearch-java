@@ -77,6 +77,9 @@ import javax.annotation.Nullable;
 
 public class SearchShardsRequest extends RequestBase {
 	@Nullable
+	private final String slice;
+
+	@Nullable
 	private final Boolean allowNoIndices;
 
 	private final List<ExpandWildcard> expandWildcards;
@@ -101,6 +104,7 @@ public class SearchShardsRequest extends RequestBase {
 
 	private SearchShardsRequest(Builder builder) {
 
+		this.slice = builder.slice;
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
@@ -114,6 +118,21 @@ public class SearchShardsRequest extends RequestBase {
 
 	public static SearchShardsRequest of(Function<Builder, ObjectBuilder<SearchShardsRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * The slice identifier for routing the search to a specific slice. When
+	 * provided, the request is limited to shards that match the given slice value.
+	 * Use the special value <code>_all</code> to query all slices without
+	 * restricting to a routing value. Required when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * not allowed when <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String slice() {
+		return this.slice;
 	}
 
 	/**
@@ -204,7 +223,9 @@ public class SearchShardsRequest extends RequestBase {
 	}
 
 	/**
-	 * A custom value used to route operations to a specific shard.
+	 * A custom value used to route operations to a specific shard. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -221,6 +242,9 @@ public class SearchShardsRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SearchShardsRequest> {
+		@Nullable
+		private String slice;
+
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -248,6 +272,7 @@ public class SearchShardsRequest extends RequestBase {
 		public Builder() {
 		}
 		private Builder(SearchShardsRequest instance) {
+			this.slice = instance.slice;
 			this.allowNoIndices = instance.allowNoIndices;
 			this.expandWildcards = instance.expandWildcards;
 			this.ignoreUnavailable = instance.ignoreUnavailable;
@@ -258,6 +283,21 @@ public class SearchShardsRequest extends RequestBase {
 			this.routing = instance.routing;
 
 		}
+		/**
+		 * The slice identifier for routing the search to a specific slice. When
+		 * provided, the request is limited to shards that match the given slice value.
+		 * Use the special value <code>_all</code> to query all slices without
+		 * restricting to a routing value. Required when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * not allowed when <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder slice(@Nullable String value) {
+			this.slice = value;
+			return this;
+		}
+
 		/**
 		 * A setting that does two separate checks on the index expression. If
 		 * <code>false</code>, the request returns an error (1) if any wildcard
@@ -393,7 +433,9 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -405,7 +447,9 @@ public class SearchShardsRequest extends RequestBase {
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -504,6 +548,9 @@ public class SearchShardsRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.slice != null) {
+					params.put("_slice", request.slice);
 				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
 					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)

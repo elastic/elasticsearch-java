@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -61,13 +62,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class EmbeddingContentObject implements JsonpSerializable {
-	private final EmbeddingContentObjectContents content;
+	private final List<EmbeddingContentObjectItem> content;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private EmbeddingContentObject(Builder builder) {
 
-		this.content = ApiTypeHelper.requireNonNull(builder.content, this, "content");
+		this.content = ApiTypeHelper.unmodifiableRequired(builder.content, this, "content");
 
 	}
 
@@ -76,11 +77,12 @@ public class EmbeddingContentObject implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - An object containing the input data for the model to embed
+	 * Required - An object or an array of objects containing the input data for the
+	 * model to embed
 	 * <p>
 	 * API name: {@code content}
 	 */
-	public final EmbeddingContentObjectContents content() {
+	public final List<EmbeddingContentObjectItem> content() {
 		return this.content;
 	}
 
@@ -95,8 +97,16 @@ public class EmbeddingContentObject implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("content");
-		this.content.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.content)) {
+			generator.writeKey("content");
+			generator.writeStartArray();
+			for (EmbeddingContentObjectItem item0 : this.content) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -114,7 +124,7 @@ public class EmbeddingContentObject implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<EmbeddingContentObject> {
-		private EmbeddingContentObjectContents content;
+		private List<EmbeddingContentObjectItem> content;
 
 		public Builder() {
 		}
@@ -123,23 +133,42 @@ public class EmbeddingContentObject implements JsonpSerializable {
 
 		}
 		/**
-		 * Required - An object containing the input data for the model to embed
+		 * Required - An object or an array of objects containing the input data for the
+		 * model to embed
 		 * <p>
 		 * API name: {@code content}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>content</code>.
 		 */
-		public final Builder content(EmbeddingContentObjectContents value) {
-			this.content = value;
+		public final Builder content(List<EmbeddingContentObjectItem> list) {
+			this.content = _listAddAll(this.content, list);
 			return this;
 		}
 
 		/**
-		 * Required - An object containing the input data for the model to embed
+		 * Required - An object or an array of objects containing the input data for the
+		 * model to embed
 		 * <p>
 		 * API name: {@code content}
+		 * <p>
+		 * Adds one or more values to <code>content</code>.
+		 */
+		public final Builder content(EmbeddingContentObjectItem value, EmbeddingContentObjectItem... values) {
+			this.content = _listAdd(this.content, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - An object or an array of objects containing the input data for the
+		 * model to embed
+		 * <p>
+		 * API name: {@code content}
+		 * <p>
+		 * Adds a value to <code>content</code> using a builder lambda.
 		 */
 		public final Builder content(
-				Function<EmbeddingContentObjectContents.Builder, ObjectBuilder<EmbeddingContentObjectContents>> fn) {
-			return this.content(fn.apply(new EmbeddingContentObjectContents.Builder()).build());
+				Function<EmbeddingContentObjectItem.Builder, ObjectBuilder<EmbeddingContentObjectItem>> fn) {
+			return content(fn.apply(new EmbeddingContentObjectItem.Builder()).build());
 		}
 
 		@Override
@@ -177,7 +206,8 @@ public class EmbeddingContentObject implements JsonpSerializable {
 	protected static void setupEmbeddingContentObjectDeserializer(
 			ObjectDeserializer<EmbeddingContentObject.Builder> op) {
 
-		op.add(Builder::content, EmbeddingContentObjectContents._DESERIALIZER, "content");
+		op.add(Builder::content, JsonpDeserializer.arrayDeserializer(EmbeddingContentObjectItem._DESERIALIZER),
+				"content");
 
 	}
 

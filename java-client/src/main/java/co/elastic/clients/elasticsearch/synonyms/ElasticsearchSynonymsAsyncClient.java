@@ -306,7 +306,9 @@ public class ElasticsearchSynonymsAsyncClient
 	/**
 	 * Create or update a synonym set.
 	 * <p>
-	 * Synonyms sets are limited to a maximum of 10,000 synonym rules per set.
+	 * Synonym sets are limited to a maximum of 100,000 synonym rules per set by
+	 * default. This limit is configurable using the
+	 * <code>synonyms.max_synonym_rules</code> cluster setting.
 	 * <p>
 	 * When an existing synonyms set is updated, the search analyzers that use the
 	 * synonyms set are reloaded automatically for all indices. This is equivalent
@@ -331,7 +333,9 @@ public class ElasticsearchSynonymsAsyncClient
 	/**
 	 * Create or update a synonym set.
 	 * <p>
-	 * Synonyms sets are limited to a maximum of 10,000 synonym rules per set.
+	 * Synonym sets are limited to a maximum of 100,000 synonym rules per set by
+	 * default. This limit is configurable using the
+	 * <code>synonyms.max_synonym_rules</code> cluster setting.
 	 * <p>
 	 * When an existing synonyms set is updated, the search analyzers that use the
 	 * synonyms set are reloaded automatically for all indices. This is equivalent

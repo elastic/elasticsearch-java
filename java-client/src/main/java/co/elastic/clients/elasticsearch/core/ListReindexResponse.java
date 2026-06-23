@@ -92,7 +92,8 @@ public class ListReindexResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Task-level failures that occurred while listing reindex tasks.
+	 * Per-task failures encountered while listing reindex tasks. Tasks that failed
+	 * are not included in the <code>reindex</code> array.
 	 * <p>
 	 * API name: {@code task_failures}
 	 */
@@ -101,7 +102,10 @@ public class ListReindexResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Node-level failures that occurred while listing reindex tasks.
+	 * Node-level failures encountered while listing reindex tasks. Typically
+	 * populated when a node disconnects or stops responding mid-request, reindex
+	 * tasks running on such nodes will be missing from the <code>reindex</code>
+	 * array for the duration of the disruption.
 	 * <p>
 	 * API name: {@code node_failures}
 	 */
@@ -211,7 +215,8 @@ public class ListReindexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Task-level failures that occurred while listing reindex tasks.
+		 * Per-task failures encountered while listing reindex tasks. Tasks that failed
+		 * are not included in the <code>reindex</code> array.
 		 * <p>
 		 * API name: {@code task_failures}
 		 * <p>
@@ -223,7 +228,8 @@ public class ListReindexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Task-level failures that occurred while listing reindex tasks.
+		 * Per-task failures encountered while listing reindex tasks. Tasks that failed
+		 * are not included in the <code>reindex</code> array.
 		 * <p>
 		 * API name: {@code task_failures}
 		 * <p>
@@ -235,7 +241,8 @@ public class ListReindexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Task-level failures that occurred while listing reindex tasks.
+		 * Per-task failures encountered while listing reindex tasks. Tasks that failed
+		 * are not included in the <code>reindex</code> array.
 		 * <p>
 		 * API name: {@code task_failures}
 		 * <p>
@@ -246,7 +253,10 @@ public class ListReindexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Node-level failures that occurred while listing reindex tasks.
+		 * Node-level failures encountered while listing reindex tasks. Typically
+		 * populated when a node disconnects or stops responding mid-request, reindex
+		 * tasks running on such nodes will be missing from the <code>reindex</code>
+		 * array for the duration of the disruption.
 		 * <p>
 		 * API name: {@code node_failures}
 		 * <p>
@@ -258,7 +268,10 @@ public class ListReindexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Node-level failures that occurred while listing reindex tasks.
+		 * Node-level failures encountered while listing reindex tasks. Typically
+		 * populated when a node disconnects or stops responding mid-request, reindex
+		 * tasks running on such nodes will be missing from the <code>reindex</code>
+		 * array for the duration of the disruption.
 		 * <p>
 		 * API name: {@code node_failures}
 		 * <p>
@@ -270,7 +283,10 @@ public class ListReindexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Node-level failures that occurred while listing reindex tasks.
+		 * Node-level failures encountered while listing reindex tasks. Typically
+		 * populated when a node disconnects or stops responding mid-request, reindex
+		 * tasks running on such nodes will be missing from the <code>reindex</code>
+		 * array for the duration of the disruption.
 		 * <p>
 		 * API name: {@code node_failures}
 		 * <p>

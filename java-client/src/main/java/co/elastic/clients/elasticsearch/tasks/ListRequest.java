@@ -68,6 +68,12 @@ import javax.annotation.Nullable;
  * WARNING: The task management API is new and should still be considered a beta
  * feature. The API may change in ways that are not backwards compatible.
  * <p>
+ * For relocatable tasks, this API transparently follows the task across
+ * graceful shutdown relocations, so callers can keep using the original task
+ * ID. The returned task reports its <code>original_task_id</code> and
+ * <code>original_start_time_in_millis</code> if it is continuing work from an
+ * earlier task.
+ * <p>
  * <strong>Identifying running tasks</strong>
  * <p>
  * The <code>X-Opaque-Id header</code>, when provided on the HTTP request

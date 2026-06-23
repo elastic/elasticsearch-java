@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
 // typedef: _types.ReindexTaskInfo
 
 /**
- * Information about a single reindex task, as returned by the reindex
+ * Information about a single parent reindex task, as returned by the reindex
  * management APIs.
  * 
  * @see <a href="../doc-files/api-spec.html#_types.ReindexTaskInfo">API
@@ -104,7 +104,8 @@ public class ReindexTaskInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The ID of the reindex task, in <code>nodeId:taskNum</code> format.
+	 * Required - The ID of the reindex task. The ID is assigned when the task was
+	 * first created and remains the same across graceful shutdown relocations.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -125,7 +126,7 @@ public class ReindexTaskInfo implements JsonpSerializable {
 
 	/**
 	 * Required - The time at which the reindex task started, in milliseconds since
-	 * the Unix epoch.
+	 * the Unix epoch. Remains the same across graceful shutdown relocations.
 	 * <p>
 	 * API name: {@code start_time_in_millis}
 	 */
@@ -134,9 +135,9 @@ public class ReindexTaskInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * The time at which the reindex task started, as an ISO 8601 formatted string.
-	 * Only present when the request includes the <code>?human=true</code> query
-	 * parameter.
+	 * The time at which the reindex task started, as an ISO-8601 formatted string.
+	 * Remains the same across graceful shutdown relocations. Only present when the
+	 * request includes the <code>?human=true</code> query parameter.
 	 * <p>
 	 * API name: {@code start_time}
 	 */
@@ -146,9 +147,9 @@ public class ReindexTaskInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * The elapsed running time of the reindex task, in a human-readable format.
-	 * Only present when the request includes the <code>?human=true</code> query
-	 * parameter.
+	 * The elapsed running time of the reindex task, including relocations, in a
+	 * human-readable format. Only present when the request includes the
+	 * <code>?human=true</code> query parameter.
 	 * <p>
 	 * API name: {@code running_time}
 	 */
@@ -158,7 +159,8 @@ public class ReindexTaskInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The elapsed running time of the reindex task, in nanoseconds.
+	 * Required - The elapsed running time of the reindex task, including
+	 * relocations, in nanoseconds.
 	 * <p>
 	 * API name: {@code running_time_in_nanos}
 	 */
@@ -277,7 +279,8 @@ public class ReindexTaskInfo implements JsonpSerializable {
 
 		}
 		/**
-		 * Required - The ID of the reindex task, in <code>nodeId:taskNum</code> format.
+		 * Required - The ID of the reindex task. The ID is assigned when the task was
+		 * first created and remains the same across graceful shutdown relocations.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -299,7 +302,7 @@ public class ReindexTaskInfo implements JsonpSerializable {
 
 		/**
 		 * Required - The time at which the reindex task started, in milliseconds since
-		 * the Unix epoch.
+		 * the Unix epoch. Remains the same across graceful shutdown relocations.
 		 * <p>
 		 * API name: {@code start_time_in_millis}
 		 */
@@ -309,9 +312,9 @@ public class ReindexTaskInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * The time at which the reindex task started, as an ISO 8601 formatted string.
-		 * Only present when the request includes the <code>?human=true</code> query
-		 * parameter.
+		 * The time at which the reindex task started, as an ISO-8601 formatted string.
+		 * Remains the same across graceful shutdown relocations. Only present when the
+		 * request includes the <code>?human=true</code> query parameter.
 		 * <p>
 		 * API name: {@code start_time}
 		 */
@@ -321,9 +324,9 @@ public class ReindexTaskInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * The elapsed running time of the reindex task, in a human-readable format.
-		 * Only present when the request includes the <code>?human=true</code> query
-		 * parameter.
+		 * The elapsed running time of the reindex task, including relocations, in a
+		 * human-readable format. Only present when the request includes the
+		 * <code>?human=true</code> query parameter.
 		 * <p>
 		 * API name: {@code running_time}
 		 */
@@ -333,9 +336,9 @@ public class ReindexTaskInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * The elapsed running time of the reindex task, in a human-readable format.
-		 * Only present when the request includes the <code>?human=true</code> query
-		 * parameter.
+		 * The elapsed running time of the reindex task, including relocations, in a
+		 * human-readable format. Only present when the request includes the
+		 * <code>?human=true</code> query parameter.
 		 * <p>
 		 * API name: {@code running_time}
 		 */
@@ -344,7 +347,8 @@ public class ReindexTaskInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The elapsed running time of the reindex task, in nanoseconds.
+		 * Required - The elapsed running time of the reindex task, including
+		 * relocations, in nanoseconds.
 		 * <p>
 		 * API name: {@code running_time_in_nanos}
 		 */

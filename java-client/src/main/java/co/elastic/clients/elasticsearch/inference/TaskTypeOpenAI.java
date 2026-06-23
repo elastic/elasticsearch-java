@@ -51,6 +51,8 @@ public enum TaskTypeOpenAI implements JsonEnum {
 
 	Completion("completion"),
 
+	Embedding("embedding"),
+
 	;
 
 	private final String jsonValue;

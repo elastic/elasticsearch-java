@@ -76,6 +76,12 @@ import javax.annotation.Nullable;
  * the other tasks the system is running. You can also use the node hot threads
  * API to obtain detailed information about the work the system is doing instead
  * of completing the cancelled task.
+ * <p>
+ * For relocatable tasks, this API transparently follows the task across
+ * graceful shutdown relocations, so callers can keep using the original task
+ * ID. The returned task reports its <code>original_task_id</code> and
+ * <code>original_start_time_in_millis</code> if it is continuing work from an
+ * earlier task.
  * 
  * @see <a href="../doc-files/api-spec.html#tasks.cancel.Request">API
  *      specification</a>

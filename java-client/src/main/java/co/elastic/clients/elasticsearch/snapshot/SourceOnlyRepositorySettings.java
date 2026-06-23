@@ -19,16 +19,20 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.Integer;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -51,30 +55,76 @@ import javax.annotation.Nullable;
 // typedef: snapshot._types.SourceOnlyRepositorySettings
 
 /**
- *
+ * The delegated repository type. Source repositories can use
+ * <code>settings</code> properties for its delegated repository type.
+ * 
  * @see <a href=
  *      "../doc-files/api-spec.html#snapshot._types.SourceOnlyRepositorySettings">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class SourceOnlyRepositorySettings extends RepositorySettingsBase {
-	@Nullable
-	private final String delegateType;
+public class SourceOnlyRepositorySettings
+		implements
+			TaggedUnion<SourceOnlyRepositorySettings.Kind, SourceOnlyRepositorySettingsVariant>,
+			JsonpSerializable {
 
-	@Nullable
-	private final Integer maxNumberOfSnapshots;
+	/**
+	 * {@link SourceOnlyRepositorySettings} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../doc-files/api-spec.html#snapshot._types.SourceOnlyRepositorySettings">API
+	 *      specification</a>
+	 */
 
-	@Nullable
-	private final Boolean readOnly;
+	public enum Kind implements JsonEnum {
+		Azure("azure"),
 
-	// ---------------------------------------------------------------------------------------------
+		Gcs("gcs"),
+
+		Url("url"),
+
+		S3("s3"),
+
+		Fs("fs"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
+	private final SourceOnlyRepositorySettingsVariant _value;
+
+	@Override
+	public final Kind _kind() {
+		return _kind;
+	}
+
+	@Override
+	public final SourceOnlyRepositorySettingsVariant _get() {
+		return _value;
+	}
+
+	public SourceOnlyRepositorySettings(SourceOnlyRepositorySettingsVariant value) {
+
+		this._kind = ApiTypeHelper.requireNonNull(value._sourceOnlyRepositorySettingsKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+
+	}
 
 	private SourceOnlyRepositorySettings(Builder builder) {
-		super(builder);
 
-		this.delegateType = builder.delegateType;
-		this.maxNumberOfSnapshots = builder.maxNumberOfSnapshots;
-		this.readOnly = builder.readOnly;
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
@@ -83,185 +133,186 @@ public class SourceOnlyRepositorySettings extends RepositorySettingsBase {
 	}
 
 	/**
-	 * The delegated repository type. For valid values, refer to the
-	 * <code>type</code> parameter. Source repositories can use
-	 * <code>settings</code> properties for its delegated repository type.
-	 * <p>
-	 * API name: {@code delegate_type}
+	 * Is this variant instance of kind {@code azure}?
 	 */
-	@Nullable
-	public final String delegateType() {
-		return this.delegateType;
+	public boolean isAzure() {
+		return _kind == Kind.Azure;
 	}
 
 	/**
-	 * The maximum number of snapshots the repository can contain. The default is
-	 * <code>Integer.MAX_VALUE</code>, which is 2^31-1 or <code>2147483647</code>.
-	 * <p>
-	 * API name: {@code max_number_of_snapshots}
+	 * Get the {@code azure} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code azure} kind.
 	 */
-	@Nullable
-	public final Integer maxNumberOfSnapshots() {
-		return this.maxNumberOfSnapshots;
+	public SourceOnlyRepositorySettingsForAzure azure() {
+		return TaggedUnionUtils.get(this, Kind.Azure);
 	}
 
 	/**
-	 * If <code>true</code>, the repository is read-only. The cluster can retrieve
-	 * and restore snapshots from the repository but not write to the repository or
-	 * create snapshots in it.
-	 * <p>
-	 * Only a cluster with write access can create snapshots in the repository. All
-	 * other clusters connected to the repository should have the
-	 * <code>readonly</code> parameter set to <code>true</code>.
-	 * <p>
-	 * If <code>false</code>, the cluster can write to the repository and create
-	 * snapshots in it.
-	 * <p>
-	 * IMPORTANT: If you register the same snapshot repository with multiple
-	 * clusters, only one cluster should have write access to the repository. Having
-	 * multiple clusters write to the repository at the same time risks corrupting
-	 * the contents of the repository.
-	 * <p>
-	 * API name: {@code read_only}
+	 * Is this variant instance of kind {@code gcs}?
 	 */
-	@Nullable
-	public final Boolean readOnly() {
-		return this.readOnly;
+	public boolean isGcs() {
+		return _kind == Kind.Gcs;
 	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		super.serializeInternal(generator, mapper);
-		if (this.delegateType != null) {
-			generator.writeKey("delegate_type");
-			generator.write(this.delegateType);
-
-		}
-		if (this.maxNumberOfSnapshots != null) {
-			generator.writeKey("max_number_of_snapshots");
-			generator.write(this.maxNumberOfSnapshots);
-
-		}
-		if (this.readOnly != null) {
-			generator.writeKey("read_only");
-			generator.write(this.readOnly);
-
-		}
-
-	}
-
-	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link SourceOnlyRepositorySettings}.
+	 * Get the {@code gcs} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code gcs} kind.
 	 */
+	public SourceOnlyRepositorySettingsForGcs gcs() {
+		return TaggedUnionUtils.get(this, Kind.Gcs);
+	}
 
-	public static class Builder extends RepositorySettingsBase.AbstractBuilder<Builder>
+	/**
+	 * Is this variant instance of kind {@code url}?
+	 */
+	public boolean isUrl() {
+		return _kind == Kind.Url;
+	}
+
+	/**
+	 * Get the {@code url} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code url} kind.
+	 */
+	public SourceOnlyRepositorySettingsForReadOnlyUrl url() {
+		return TaggedUnionUtils.get(this, Kind.Url);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code s3}?
+	 */
+	public boolean isS3() {
+		return _kind == Kind.S3;
+	}
+
+	/**
+	 * Get the {@code s3} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code s3} kind.
+	 */
+	public SourceOnlyRepositorySettingsForS3 s3() {
+		return TaggedUnionUtils.get(this, Kind.S3);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code fs}?
+	 */
+	public boolean isFs() {
+		return _kind == Kind.Fs;
+	}
+
+	/**
+	 * Get the {@code fs} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code fs} kind.
+	 */
+	public SourceOnlyRepositorySettingsForSharedFileSystem fs() {
+		return TaggedUnionUtils.get(this, Kind.Fs);
+	}
+
+	@Override
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
+		mapper.serialize(_value, generator);
+
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<SourceOnlyRepositorySettings> {
-		@Nullable
-		private String delegateType;
-
-		@Nullable
-		private Integer maxNumberOfSnapshots;
-
-		@Nullable
-		private Boolean readOnly;
-
-		public Builder() {
-		}
-		private Builder(SourceOnlyRepositorySettings instance) {
-			this.delegateType = instance.delegateType;
-			this.maxNumberOfSnapshots = instance.maxNumberOfSnapshots;
-			this.readOnly = instance.readOnly;
-
-		}
-		/**
-		 * The delegated repository type. For valid values, refer to the
-		 * <code>type</code> parameter. Source repositories can use
-		 * <code>settings</code> properties for its delegated repository type.
-		 * <p>
-		 * API name: {@code delegate_type}
-		 */
-		public final Builder delegateType(@Nullable String value) {
-			this.delegateType = value;
-			return this;
-		}
-
-		/**
-		 * The maximum number of snapshots the repository can contain. The default is
-		 * <code>Integer.MAX_VALUE</code>, which is 2^31-1 or <code>2147483647</code>.
-		 * <p>
-		 * API name: {@code max_number_of_snapshots}
-		 */
-		public final Builder maxNumberOfSnapshots(@Nullable Integer value) {
-			this.maxNumberOfSnapshots = value;
-			return this;
-		}
-
-		/**
-		 * If <code>true</code>, the repository is read-only. The cluster can retrieve
-		 * and restore snapshots from the repository but not write to the repository or
-		 * create snapshots in it.
-		 * <p>
-		 * Only a cluster with write access can create snapshots in the repository. All
-		 * other clusters connected to the repository should have the
-		 * <code>readonly</code> parameter set to <code>true</code>.
-		 * <p>
-		 * If <code>false</code>, the cluster can write to the repository and create
-		 * snapshots in it.
-		 * <p>
-		 * IMPORTANT: If you register the same snapshot repository with multiple
-		 * clusters, only one cluster should have write access to the repository. Having
-		 * multiple clusters write to the repository at the same time risks corrupting
-		 * the contents of the repository.
-		 * <p>
-		 * API name: {@code read_only}
-		 */
-		public final Builder readOnly(@Nullable Boolean value) {
-			this.readOnly = value;
-			return this;
-		}
+		private Kind _kind;
+		private SourceOnlyRepositorySettingsVariant _value;
 
 		@Override
 		protected Builder self() {
 			return this;
 		}
+		public ObjectBuilder<SourceOnlyRepositorySettings> azure(SourceOnlyRepositorySettingsForAzure v) {
+			this._kind = Kind.Azure;
+			this._value = v;
+			return this;
+		}
 
-		/**
-		 * Builds a {@link SourceOnlyRepositorySettings}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
+		public ObjectBuilder<SourceOnlyRepositorySettings> azure(
+				Function<SourceOnlyRepositorySettingsForAzure.Builder, ObjectBuilder<SourceOnlyRepositorySettingsForAzure>> fn) {
+			return this.azure(fn.apply(new SourceOnlyRepositorySettingsForAzure.Builder()).build());
+		}
+
+		public ObjectBuilder<SourceOnlyRepositorySettings> gcs(SourceOnlyRepositorySettingsForGcs v) {
+			this._kind = Kind.Gcs;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<SourceOnlyRepositorySettings> gcs(
+				Function<SourceOnlyRepositorySettingsForGcs.Builder, ObjectBuilder<SourceOnlyRepositorySettingsForGcs>> fn) {
+			return this.gcs(fn.apply(new SourceOnlyRepositorySettingsForGcs.Builder()).build());
+		}
+
+		public ObjectBuilder<SourceOnlyRepositorySettings> url(SourceOnlyRepositorySettingsForReadOnlyUrl v) {
+			this._kind = Kind.Url;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<SourceOnlyRepositorySettings> url(
+				Function<SourceOnlyRepositorySettingsForReadOnlyUrl.Builder, ObjectBuilder<SourceOnlyRepositorySettingsForReadOnlyUrl>> fn) {
+			return this.url(fn.apply(new SourceOnlyRepositorySettingsForReadOnlyUrl.Builder()).build());
+		}
+
+		public ObjectBuilder<SourceOnlyRepositorySettings> s3(SourceOnlyRepositorySettingsForS3 v) {
+			this._kind = Kind.S3;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<SourceOnlyRepositorySettings> s3(
+				Function<SourceOnlyRepositorySettingsForS3.Builder, ObjectBuilder<SourceOnlyRepositorySettingsForS3>> fn) {
+			return this.s3(fn.apply(new SourceOnlyRepositorySettingsForS3.Builder()).build());
+		}
+
+		public ObjectBuilder<SourceOnlyRepositorySettings> fs(SourceOnlyRepositorySettingsForSharedFileSystem v) {
+			this._kind = Kind.Fs;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<SourceOnlyRepositorySettings> fs(
+				Function<SourceOnlyRepositorySettingsForSharedFileSystem.Builder, ObjectBuilder<SourceOnlyRepositorySettingsForSharedFileSystem>> fn) {
+			return this.fs(fn.apply(new SourceOnlyRepositorySettingsForSharedFileSystem.Builder()).build());
+		}
+
 		public SourceOnlyRepositorySettings build() {
 			_checkSingleUse();
-
 			return new SourceOnlyRepositorySettings(this);
 		}
-	}
-
-	/**
-	 * @return New {@link Builder} initialized with field values of this instance
-	 */
-	public Builder rebuild() {
-		return new Builder(this);
-	}
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for {@link SourceOnlyRepositorySettings}
-	 */
-	public static final JsonpDeserializer<SourceOnlyRepositorySettings> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SourceOnlyRepositorySettings::setupSourceOnlyRepositorySettingsDeserializer);
-
-	protected static void setupSourceOnlyRepositorySettingsDeserializer(
-			ObjectDeserializer<SourceOnlyRepositorySettings.Builder> op) {
-		RepositorySettingsBase.setupRepositorySettingsBaseDeserializer(op);
-		op.add(Builder::delegateType, JsonpDeserializer.stringDeserializer(), "delegate_type");
-		op.add(Builder::maxNumberOfSnapshots, JsonpDeserializer.integerDeserializer(), "max_number_of_snapshots");
-		op.add(Builder::readOnly, JsonpDeserializer.booleanDeserializer(), "read_only", "readonly");
 
 	}
 
+	protected static void setupSourceOnlyRepositorySettingsDeserializer(ObjectDeserializer<Builder> op) {
+
+		op.add(Builder::azure, SourceOnlyRepositorySettingsForAzure._DESERIALIZER, "azure");
+		op.add(Builder::gcs, SourceOnlyRepositorySettingsForGcs._DESERIALIZER, "gcs");
+		op.add(Builder::url, SourceOnlyRepositorySettingsForReadOnlyUrl._DESERIALIZER, "url");
+		op.add(Builder::s3, SourceOnlyRepositorySettingsForS3._DESERIALIZER, "s3");
+		op.add(Builder::fs, SourceOnlyRepositorySettingsForSharedFileSystem._DESERIALIZER, "fs");
+
+		op.setTypeProperty("delegate_type", null);
+
+	}
+
+	public static final JsonpDeserializer<SourceOnlyRepositorySettings> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
+			Builder::new, SourceOnlyRepositorySettings::setupSourceOnlyRepositorySettingsDeserializer, Builder::build);
 }

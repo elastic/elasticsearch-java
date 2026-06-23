@@ -186,6 +186,12 @@ public enum CatTransformColumn implements JsonEnum {
 	ProcessingTime("processing_time", "pt"),
 
 	/**
+	 * The project routing filter for cross-project search from the source
+	 * configuration.
+	 */
+	ProjectRouting("project_routing", "pr", "projectRouting"),
+
+	/**
 	 * If a transform has a <code>failed</code> state, this property provides
 	 * details about the reason for the failure.
 	 */
