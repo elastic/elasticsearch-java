@@ -33,9 +33,11 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
@@ -65,13 +67,13 @@ import javax.annotation.Nullable;
  */
 
 public class DeleteViewRequest extends RequestBase {
-	private final String name;
+	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private DeleteViewRequest(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 
 	}
 
@@ -84,7 +86,7 @@ public class DeleteViewRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public final String name() {
+	public final List<String> name() {
 		return this.name;
 	}
 
@@ -97,7 +99,7 @@ public class DeleteViewRequest extends RequestBase {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteViewRequest> {
-		private String name;
+		private List<String> name;
 
 		public Builder() {
 		}
@@ -109,9 +111,23 @@ public class DeleteViewRequest extends RequestBase {
 		 * Required - The view name to remove.
 		 * <p>
 		 * API name: {@code name}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 */
-		public final Builder name(String value) {
-			this.name = value;
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
+			return this;
+		}
+
+		/**
+		 * Required - The view name to remove.
+		 * <p>
+		 * API name: {@code name}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
+		 */
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
 			return this;
 		}
 
@@ -166,7 +182,9 @@ public class DeleteViewRequest extends RequestBase {
 					buf.append("/_query");
 					buf.append("/view");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name, buf);
+					SimpleEndpoint.pathEncode(
+							request.name.stream().map(v -> v).filter(Objects::nonNull).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -183,7 +201,8 @@ public class DeleteViewRequest extends RequestBase {
 				propsSet |= _name;
 
 				if (propsSet == (_name)) {
-					params.put("name", request.name);
+					params.put("name", request.name.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				return params;
 			},

@@ -55,9 +55,16 @@ import javax.annotation.Nullable;
 // typedef: _global.list_reindex.Request
 
 /**
- * List active reindex tasks.
- * <p>
  * Get information about all currently running reindex tasks.
+ * <p>
+ * Reindex tasks that are mid-relocation between nodes are reported once, under
+ * their original task ID, so callers do not see duplicates across the
+ * relocation chain.
+ * <p>
+ * If the API returns a HTTP status of <code>200 OK</code>, but
+ * <code>node_failures</code> or <code>task_failures</code> are non-empty in the
+ * body, the listing is not a complete authoritative listing and may be missing
+ * tasks.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.list_reindex.Request">API
  *      specification</a>

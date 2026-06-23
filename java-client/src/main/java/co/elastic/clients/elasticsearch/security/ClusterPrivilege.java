@@ -96,6 +96,8 @@ public enum ClusterPrivilege implements JsonEnum {
 
 	ManagePipeline("manage_pipeline"),
 
+	ManageReindex("manage_reindex"),
+
 	ManageRollup("manage_rollup"),
 
 	ManageSaml("manage_saml"),
@@ -133,6 +135,8 @@ public enum ClusterPrivilege implements JsonEnum {
 	MonitorInference("monitor_inference"),
 
 	MonitorMl("monitor_ml"),
+
+	MonitorReindex("monitor_reindex"),
 
 	MonitorRollup("monitor_rollup"),
 

@@ -126,7 +126,8 @@ public class GetReindexResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The ID of the reindex task, in <code>nodeId:taskNum</code> format.
+	 * Required - The ID of the reindex task. The value is the ID assigned when the
+	 * task was first created and remains stable across node-shutdown relocations.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -340,7 +341,8 @@ public class GetReindexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The ID of the reindex task, in <code>nodeId:taskNum</code> format.
+		 * Required - The ID of the reindex task. The value is the ID assigned when the
+		 * task was first created and remains stable across node-shutdown relocations.
 		 * <p>
 		 * API name: {@code id}
 		 */

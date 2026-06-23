@@ -71,6 +71,9 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 	@Nullable
 	private final String indexedCharsField;
 
+	@Nullable
+	private final String maxFieldBytes;
+
 	private final List<String> properties;
 
 	@Nullable
@@ -91,6 +94,7 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		this.ignoreMissing = builder.ignoreMissing;
 		this.indexedChars = builder.indexedChars;
 		this.indexedCharsField = builder.indexedCharsField;
+		this.maxFieldBytes = builder.maxFieldBytes;
 		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
 		this.targetField = builder.targetField;
 		this.removeBinary = builder.removeBinary;
@@ -150,6 +154,20 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 	@Nullable
 	public final String indexedCharsField() {
 		return this.indexedCharsField;
+	}
+
+	/**
+	 * Maximum allowed size of the attachment <code>field</code> value in bytes:
+	 * length of a string (if base64 in JSON, checked before base64 decoding) or
+	 * byte array length for binary (for example, CBOR). If set to <code>-1</code>,
+	 * there is no per-processor limit. The node setting
+	 * <code>ingest.attachment.max_field_size</code> also applies.
+	 * <p>
+	 * API name: {@code max_field_bytes}
+	 */
+	@Nullable
+	public final String maxFieldBytes() {
+		return this.maxFieldBytes;
 	}
 
 	/**
@@ -217,6 +235,11 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 			generator.write(this.indexedCharsField);
 
 		}
+		if (this.maxFieldBytes != null) {
+			generator.writeKey("max_field_bytes");
+			generator.write(this.maxFieldBytes);
+
+		}
 		if (ApiTypeHelper.isDefined(this.properties)) {
 			generator.writeKey("properties");
 			generator.writeStartArray();
@@ -266,6 +289,9 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		private String indexedCharsField;
 
 		@Nullable
+		private String maxFieldBytes;
+
+		@Nullable
 		private List<String> properties;
 
 		@Nullable
@@ -284,6 +310,7 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 			this.ignoreMissing = instance.ignoreMissing;
 			this.indexedChars = instance.indexedChars;
 			this.indexedCharsField = instance.indexedCharsField;
+			this.maxFieldBytes = instance.maxFieldBytes;
 			this.properties = instance.properties;
 			this.targetField = instance.targetField;
 			this.removeBinary = instance.removeBinary;
@@ -330,6 +357,20 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		 */
 		public final Builder indexedCharsField(@Nullable String value) {
 			this.indexedCharsField = value;
+			return this;
+		}
+
+		/**
+		 * Maximum allowed size of the attachment <code>field</code> value in bytes:
+		 * length of a string (if base64 in JSON, checked before base64 decoding) or
+		 * byte array length for binary (for example, CBOR). If set to <code>-1</code>,
+		 * there is no per-processor limit. The node setting
+		 * <code>ingest.attachment.max_field_size</code> also applies.
+		 * <p>
+		 * API name: {@code max_field_bytes}
+		 */
+		public final Builder maxFieldBytes(@Nullable String value) {
+			this.maxFieldBytes = value;
 			return this;
 		}
 
@@ -433,6 +474,7 @@ public class AttachmentProcessor extends ProcessorBase implements ProcessorVaria
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");
 		op.add(Builder::indexedChars, JsonpDeserializer.longDeserializer(), "indexed_chars");
 		op.add(Builder::indexedCharsField, JsonpDeserializer.stringDeserializer(), "indexed_chars_field");
+		op.add(Builder::maxFieldBytes, JsonpDeserializer.stringDeserializer(), "max_field_bytes");
 		op.add(Builder::properties, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"properties");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");

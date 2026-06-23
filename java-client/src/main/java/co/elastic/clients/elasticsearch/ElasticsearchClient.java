@@ -936,14 +936,49 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: cancel_reindex
 
 	/**
-	 * Cancel a reindex task.
+	 * Cancel an ongoing reindex task.
 	 * <p>
-	 * Cancel an ongoing reindex task. If <code>wait_for_completion</code> is
-	 * <code>true</code> (the default), the response contains the final task state
-	 * after cancellation. If <code>wait_for_completion</code> is
-	 * <code>false</code>, the response contains only
-	 * <code>acknowledged: true</code>.
+	 * If <code>wait_for_completion</code> is <code>true</code> (the default), the
+	 * response contains the final task state after cancellation. If
+	 * <code>wait_for_completion</code> is <code>false</code>, the response contains
+	 * only <code>acknowledged: true</code>.
+	 * <p>
+	 * This API follows reindex tasks across node-shutdown relocations, so callers
+	 * can keep using the original task ID throughout the lifetime of the operation.
+	 * Returned task IDs and timings reflect the original task, not its relocated
+	 * successor. Relocated task IDs are also supported. They are followed
+	 * transparently and return the task ID and timings of the original task.
+	 * <p>
+	 * When the task ID cannot be cancelled (unknown ID, non-reindex task, sliced
+	 * child, finished task, or node left with no stored result), the API returns
+	 * the following response with a 404 status code:
 	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;error&quot;: {
+	 *     &quot;type&quot;: &quot;resource_not_found_exception&quot;,
+	 *     &quot;reason&quot;: &quot;reindex task [r1A2WoRbTwKZ516z6NEs5A:36619] either not found or completed&quot;
+	 *   },
+	 *   &quot;status&quot;: 404
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * During a brief handoff window of a node-shutdown relocation, you may receive
+	 * the response below with a 503 status code. Retry with the same task ID; the
+	 * retry follows the relocated task transparently.
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;error&quot;: {
+	 *     &quot;type&quot;: &quot;status_exception&quot;,
+	 *     &quot;reason&quot;: &quot;cannot cancel task [36619] because it is being relocated&quot;
+	 *   },
+	 *   &quot;status&quot;: 503
+	 * }
+	 * </code>
+	 * </pre>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
 	 *      on elastic.co</a>
@@ -958,14 +993,49 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Cancel a reindex task.
+	 * Cancel an ongoing reindex task.
 	 * <p>
-	 * Cancel an ongoing reindex task. If <code>wait_for_completion</code> is
-	 * <code>true</code> (the default), the response contains the final task state
-	 * after cancellation. If <code>wait_for_completion</code> is
-	 * <code>false</code>, the response contains only
-	 * <code>acknowledged: true</code>.
+	 * If <code>wait_for_completion</code> is <code>true</code> (the default), the
+	 * response contains the final task state after cancellation. If
+	 * <code>wait_for_completion</code> is <code>false</code>, the response contains
+	 * only <code>acknowledged: true</code>.
+	 * <p>
+	 * This API follows reindex tasks across node-shutdown relocations, so callers
+	 * can keep using the original task ID throughout the lifetime of the operation.
+	 * Returned task IDs and timings reflect the original task, not its relocated
+	 * successor. Relocated task IDs are also supported. They are followed
+	 * transparently and return the task ID and timings of the original task.
+	 * <p>
+	 * When the task ID cannot be cancelled (unknown ID, non-reindex task, sliced
+	 * child, finished task, or node left with no stored result), the API returns
+	 * the following response with a 404 status code:
 	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;error&quot;: {
+	 *     &quot;type&quot;: &quot;resource_not_found_exception&quot;,
+	 *     &quot;reason&quot;: &quot;reindex task [r1A2WoRbTwKZ516z6NEs5A:36619] either not found or completed&quot;
+	 *   },
+	 *   &quot;status&quot;: 404
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * During a brief handoff window of a node-shutdown relocation, you may receive
+	 * the response below with a 503 status code. Retry with the same task ID; the
+	 * retry follows the relocated task transparently.
+	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;error&quot;: {
+	 *     &quot;type&quot;: &quot;status_exception&quot;,
+	 *     &quot;reason&quot;: &quot;cannot cancel task [36619] because it is being relocated&quot;
+	 *   },
+	 *   &quot;status&quot;: 503
+	 * }
+	 * </code>
+	 * </pre>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link CancelReindexRequest}
@@ -2637,10 +2707,31 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: get_reindex
 
 	/**
-	 * Get a reindex task.
-	 * <p>
 	 * Get the status and progress of a specific reindex task.
+	 * <p>
+	 * This API follows reindex tasks across node-shutdown relocations, so callers
+	 * can keep using the original task ID throughout the lifetime of the operation.
+	 * Returned task IDs and timings reflect the original task, not its relocated
+	 * successor. Relocated task IDs are also supported. They are followed
+	 * transparently and return the task ID and timings of the original task.
+	 * <p>
+	 * When the task ID cannot be resolved, the API returns the response below with
+	 * a 404 status code. This response is used whether the ID is unknown, refers to
+	 * a non-reindex task, refers to a sliced child subtask, or refers to a task
+	 * whose node left the cluster with no stored result (e.g. a non-graceful
+	 * shutdown).
 	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;error&quot;: {
+	 *     &quot;type&quot;: &quot;resource_not_found_exception&quot;,
+	 *     &quot;reason&quot;: &quot;Reindex operation [r1A2WoRbTwKZ516z6NEs5A:36619] not found&quot;
+	 *   },
+	 *   &quot;status&quot;: 404
+	 * }
+	 * </code>
+	 * </pre>
+	 *
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
 	 *      on elastic.co</a>
@@ -2654,10 +2745,31 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * Get a reindex task.
-	 * <p>
 	 * Get the status and progress of a specific reindex task.
+	 * <p>
+	 * This API follows reindex tasks across node-shutdown relocations, so callers
+	 * can keep using the original task ID throughout the lifetime of the operation.
+	 * Returned task IDs and timings reflect the original task, not its relocated
+	 * successor. Relocated task IDs are also supported. They are followed
+	 * transparently and return the task ID and timings of the original task.
+	 * <p>
+	 * When the task ID cannot be resolved, the API returns the response below with
+	 * a 404 status code. This response is used whether the ID is unknown, refers to
+	 * a non-reindex task, refers to a sliced child subtask, or refers to a task
+	 * whose node left the cluster with no stored result (e.g. a non-graceful
+	 * shutdown).
 	 * 
+	 * <pre>
+	 * <code>{
+	 *   &quot;error&quot;: {
+	 *     &quot;type&quot;: &quot;resource_not_found_exception&quot;,
+	 *     &quot;reason&quot;: &quot;Reindex operation [r1A2WoRbTwKZ516z6NEs5A:36619] not found&quot;
+	 *   },
+	 *   &quot;status&quot;: 404
+	 * }
+	 * </code>
+	 * </pre>
+	 *
 	 * @param fn
 	 *            a function that initializes a builder to create the
 	 *            {@link GetReindexRequest}
@@ -3473,9 +3585,16 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	// ----- Endpoint: list_reindex
 
 	/**
-	 * List active reindex tasks.
-	 * <p>
 	 * Get information about all currently running reindex tasks.
+	 * <p>
+	 * Reindex tasks that are mid-relocation between nodes are reported once, under
+	 * their original task ID, so callers do not see duplicates across the
+	 * relocation chain.
+	 * <p>
+	 * If the API returns a HTTP status of <code>200 OK</code>, but
+	 * <code>node_failures</code> or <code>task_failures</code> are non-empty in the
+	 * body, the listing is not a complete authoritative listing and may be missing
+	 * tasks.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
@@ -3490,9 +3609,16 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * List active reindex tasks.
-	 * <p>
 	 * Get information about all currently running reindex tasks.
+	 * <p>
+	 * Reindex tasks that are mid-relocation between nodes are reported once, under
+	 * their original task ID, so callers do not see duplicates across the
+	 * relocation chain.
+	 * <p>
+	 * If the API returns a HTTP status of <code>200 OK</code>, but
+	 * <code>node_failures</code> or <code>task_failures</code> are non-empty in the
+	 * body, the listing is not a complete authoritative listing and may be missing
+	 * tasks.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -3509,9 +3635,16 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	}
 
 	/**
-	 * List active reindex tasks.
-	 * <p>
 	 * Get information about all currently running reindex tasks.
+	 * <p>
+	 * Reindex tasks that are mid-relocation between nodes are reported once, under
+	 * their original task ID, so callers do not see duplicates across the
+	 * relocation chain.
+	 * <p>
+	 * If the API returns a HTTP status of <code>200 OK</code>, but
+	 * <code>node_failures</code> or <code>task_failures</code> are non-empty in the
+	 * body, the listing is not a complete authoritative listing and may be missing
+	 * tasks.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
@@ -4398,8 +4531,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * cluster. If reindexing from a remote cluster into an Elastic Cloud Serverless
 	 * project, only remote hosts from <a href=
 	 * "https://cloud.elastic.co/registration?page=docs&amp;placement=docs-body">Elastic
-	 * Cloud Hosted</a> are allowed. Automatic data stream creation requires a
-	 * matching index template with data stream enabled.
+	 * Cloud Hosted and Elastic Cloud Serverless</a> are allowed. Automatic data
+	 * stream creation requires a matching index template with data stream enabled.
 	 * <p>
 	 * The <code>dest</code> element can be configured like the index API to control
 	 * optimistic concurrency control. Omitting <code>version_type</code> or setting
@@ -4495,8 +4628,8 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * cluster. If reindexing from a remote cluster into an Elastic Cloud Serverless
 	 * project, only remote hosts from <a href=
 	 * "https://cloud.elastic.co/registration?page=docs&amp;placement=docs-body">Elastic
-	 * Cloud Hosted</a> are allowed. Automatic data stream creation requires a
-	 * matching index template with data stream enabled.
+	 * Cloud Hosted and Elastic Cloud Serverless</a> are allowed. Automatic data
+	 * stream creation requires a matching index template with data stream enabled.
 	 * <p>
 	 * The <code>dest</code> element can be configured like the index API to control
 	 * optimistic concurrency control. Omitting <code>version_type</code> or setting
@@ -4561,8 +4694,9 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	/**
 	 * Throttle a reindex operation.
 	 * <p>
-	 * Change the number of requests per second for a particular reindex operation.
-	 * For example:
+	 * Change the maximum number of documents to index per second for a particular
+	 * reindex operation. For example, to unthrottle to unlimited documents per
+	 * second:
 	 * 
 	 * <pre>
 	 * <code>POST _reindex/r1A2WoRbTwKZ516z6NEs5A:36619/_rethrottle?requests_per_second=-1
@@ -4570,8 +4704,22 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * </pre>
 	 * <p>
 	 * Rethrottling that speeds up the query takes effect immediately. Rethrottling
-	 * that slows down the query will take effect after completing the current
-	 * batch. This behavior prevents scroll timeouts.
+	 * that slows down the query will take effect after completing the current batch
+	 * of documents. This behavior prevents scroll timeouts.
+	 * <p>
+	 * This API follows reindex tasks across node-shutdown relocations, so callers
+	 * can keep using the original task ID throughout the lifetime of the operation.
+	 * The relocated task ID is also accepted and is followed transparently. In
+	 * either case, returned task IDs and timings reflect the original task, not its
+	 * relocated successor.
+	 * <p>
+	 * The rethrottle may not have been applied to any tasks if either
+	 * <code>node_failures</code> or <code>task_failures</code> are non-empty, or if
+	 * the response contains no successfully rethrottled tasks — that is, no entries
+	 * under <code>nodes</code> (returned with the default
+	 * <code>group_by=nodes</code> in stack) or under <code>tasks</code> (returned
+	 * in serverless, or in stack with <code>group_by=none</code> or
+	 * <code>group_by=parents</code>).
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-reindex">Documentation
@@ -4589,8 +4737,9 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	/**
 	 * Throttle a reindex operation.
 	 * <p>
-	 * Change the number of requests per second for a particular reindex operation.
-	 * For example:
+	 * Change the maximum number of documents to index per second for a particular
+	 * reindex operation. For example, to unthrottle to unlimited documents per
+	 * second:
 	 * 
 	 * <pre>
 	 * <code>POST _reindex/r1A2WoRbTwKZ516z6NEs5A:36619/_rethrottle?requests_per_second=-1
@@ -4598,8 +4747,22 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * </pre>
 	 * <p>
 	 * Rethrottling that speeds up the query takes effect immediately. Rethrottling
-	 * that slows down the query will take effect after completing the current
-	 * batch. This behavior prevents scroll timeouts.
+	 * that slows down the query will take effect after completing the current batch
+	 * of documents. This behavior prevents scroll timeouts.
+	 * <p>
+	 * This API follows reindex tasks across node-shutdown relocations, so callers
+	 * can keep using the original task ID throughout the lifetime of the operation.
+	 * The relocated task ID is also accepted and is followed transparently. In
+	 * either case, returned task IDs and timings reflect the original task, not its
+	 * relocated successor.
+	 * <p>
+	 * The rethrottle may not have been applied to any tasks if either
+	 * <code>node_failures</code> or <code>task_failures</code> are non-empty, or if
+	 * the response contains no successfully rethrottled tasks — that is, no entries
+	 * under <code>nodes</code> (returned with the default
+	 * <code>group_by=nodes</code> in stack) or under <code>tasks</code> (returned
+	 * in serverless, or in stack with <code>group_by=none</code> or
+	 * <code>group_by=parents</code>).
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

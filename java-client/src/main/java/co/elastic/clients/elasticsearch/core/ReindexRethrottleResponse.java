@@ -91,6 +91,18 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * Node-level failures encountered while applying the rethrottle request. Will
+	 * return a <code>failed_node_exception</code> wrapping a
+	 * <code>no_such_node_exception</code>, if a node handling the task either never
+	 * existed, or has left the cluster, and one of the following is true:
+	 * <ol>
+	 * <li>The task has completed.</li>
+	 * <li>The task cannot be found.</li>
+	 * </ol>
+	 * <p>
+	 * Note: Rethrottle handles relocations, so it should succeed if the task can be
+	 * found and has not completed.
+	 * <p>
 	 * API name: {@code node_failures}
 	 */
 	public final List<ErrorCause> nodeFailures() {
@@ -98,6 +110,11 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * Per-task failures encountered while applying the rethrottle. If a rethrottle
+	 * is attempted during a relocation handoff, the failure object reports
+	 * <code>status: SERVICE_UNAVAILABLE</code> (the HTTP response itself is still
+	 * <code>200 OK</code>). In this case, the request can be retried until success.
+	 * <p>
 	 * API name: {@code task_failures}
 	 */
 	public final List<TaskFailure> taskFailures() {
@@ -105,6 +122,9 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * Tasks grouped by node, returned only when <code>group_by=nodes</code> (the
+	 * default).
+	 * <p>
 	 * API name: {@code nodes}
 	 */
 	public final Map<String, ReindexNode> nodes() {
@@ -112,6 +132,10 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The tasks that were successfully rethrottled. Always returned in serverless.
+	 * Returned with <code>group_by=none</code> or <code>group_by=parents</code> in
+	 * stack.
+	 * <p>
 	 * API name: {@code tasks}
 	 */
 	@Nullable
@@ -196,6 +220,18 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 		private ReindexTasks tasks;
 
 		/**
+		 * Node-level failures encountered while applying the rethrottle request. Will
+		 * return a <code>failed_node_exception</code> wrapping a
+		 * <code>no_such_node_exception</code>, if a node handling the task either never
+		 * existed, or has left the cluster, and one of the following is true:
+		 * <ol>
+		 * <li>The task has completed.</li>
+		 * <li>The task cannot be found.</li>
+		 * </ol>
+		 * <p>
+		 * Note: Rethrottle handles relocations, so it should succeed if the task can be
+		 * found and has not completed.
+		 * <p>
 		 * API name: {@code node_failures}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>nodeFailures</code>.
@@ -206,6 +242,18 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Node-level failures encountered while applying the rethrottle request. Will
+		 * return a <code>failed_node_exception</code> wrapping a
+		 * <code>no_such_node_exception</code>, if a node handling the task either never
+		 * existed, or has left the cluster, and one of the following is true:
+		 * <ol>
+		 * <li>The task has completed.</li>
+		 * <li>The task cannot be found.</li>
+		 * </ol>
+		 * <p>
+		 * Note: Rethrottle handles relocations, so it should succeed if the task can be
+		 * found and has not completed.
+		 * <p>
 		 * API name: {@code node_failures}
 		 * <p>
 		 * Adds one or more values to <code>nodeFailures</code>.
@@ -216,6 +264,18 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Node-level failures encountered while applying the rethrottle request. Will
+		 * return a <code>failed_node_exception</code> wrapping a
+		 * <code>no_such_node_exception</code>, if a node handling the task either never
+		 * existed, or has left the cluster, and one of the following is true:
+		 * <ol>
+		 * <li>The task has completed.</li>
+		 * <li>The task cannot be found.</li>
+		 * </ol>
+		 * <p>
+		 * Note: Rethrottle handles relocations, so it should succeed if the task can be
+		 * found and has not completed.
+		 * <p>
 		 * API name: {@code node_failures}
 		 * <p>
 		 * Adds a value to <code>nodeFailures</code> using a builder lambda.
@@ -225,6 +285,11 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Per-task failures encountered while applying the rethrottle. If a rethrottle
+		 * is attempted during a relocation handoff, the failure object reports
+		 * <code>status: SERVICE_UNAVAILABLE</code> (the HTTP response itself is still
+		 * <code>200 OK</code>). In this case, the request can be retried until success.
+		 * <p>
 		 * API name: {@code task_failures}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>taskFailures</code>.
@@ -235,6 +300,11 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Per-task failures encountered while applying the rethrottle. If a rethrottle
+		 * is attempted during a relocation handoff, the failure object reports
+		 * <code>status: SERVICE_UNAVAILABLE</code> (the HTTP response itself is still
+		 * <code>200 OK</code>). In this case, the request can be retried until success.
+		 * <p>
 		 * API name: {@code task_failures}
 		 * <p>
 		 * Adds one or more values to <code>taskFailures</code>.
@@ -245,6 +315,11 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Per-task failures encountered while applying the rethrottle. If a rethrottle
+		 * is attempted during a relocation handoff, the failure object reports
+		 * <code>status: SERVICE_UNAVAILABLE</code> (the HTTP response itself is still
+		 * <code>200 OK</code>). In this case, the request can be retried until success.
+		 * <p>
 		 * API name: {@code task_failures}
 		 * <p>
 		 * Adds a value to <code>taskFailures</code> using a builder lambda.
@@ -254,6 +329,9 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Tasks grouped by node, returned only when <code>group_by=nodes</code> (the
+		 * default).
+		 * <p>
 		 * API name: {@code nodes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>nodes</code>.
@@ -264,6 +342,9 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Tasks grouped by node, returned only when <code>group_by=nodes</code> (the
+		 * default).
+		 * <p>
 		 * API name: {@code nodes}
 		 * <p>
 		 * Adds an entry to <code>nodes</code>.
@@ -274,6 +355,9 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Tasks grouped by node, returned only when <code>group_by=nodes</code> (the
+		 * default).
+		 * <p>
 		 * API name: {@code nodes}
 		 * <p>
 		 * Adds an entry to <code>nodes</code> using a builder lambda.
@@ -283,6 +367,10 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The tasks that were successfully rethrottled. Always returned in serverless.
+		 * Returned with <code>group_by=none</code> or <code>group_by=parents</code> in
+		 * stack.
+		 * <p>
 		 * API name: {@code tasks}
 		 */
 		public final Builder tasks(@Nullable ReindexTasks value) {
@@ -291,6 +379,10 @@ public class ReindexRethrottleResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The tasks that were successfully rethrottled. Always returned in serverless.
+		 * Returned with <code>group_by=none</code> or <code>group_by=parents</code> in
+		 * stack.
+		 * <p>
 		 * API name: {@code tasks}
 		 */
 		public final Builder tasks(Function<ReindexTasks.Builder, ObjectBuilder<ReindexTasks>> fn) {

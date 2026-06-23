@@ -61,7 +61,9 @@ import javax.annotation.Nullable;
 /**
  * Create or update a synonym set.
  * <p>
- * Synonyms sets are limited to a maximum of 10,000 synonym rules per set.
+ * Synonym sets are limited to a maximum of 100,000 synonym rules per set by
+ * default. This limit is configurable using the
+ * <code>synonyms.max_synonym_rules</code> cluster setting.
  * <p>
  * When an existing synonyms set is updated, the search analyzers that use the
  * synonyms set are reloaded automatically for all indices. This is equivalent
@@ -76,6 +78,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class PutSynonymRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final Boolean append;
+
 	private final String id;
 
 	@Nullable
@@ -87,6 +92,7 @@ public class PutSynonymRequest extends RequestBase implements JsonpSerializable 
 
 	private PutSynonymRequest(Builder builder) {
 
+		this.append = builder.append;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.refresh = builder.refresh;
 		this.synonymsSet = ApiTypeHelper.unmodifiableRequired(builder.synonymsSet, this, "synonymsSet");
@@ -95,6 +101,18 @@ public class PutSynonymRequest extends RequestBase implements JsonpSerializable 
 
 	public static PutSynonymRequest of(Function<Builder, ObjectBuilder<PutSynonymRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * If <code>true</code>, the provided synonym rules are appended to the existing
+	 * set, with matching IDs overwriting existing rules. If <code>false</code>, the
+	 * entire synonyms set is replaced with the new synonym rules definitions.
+	 * <p>
+	 * API name: {@code append}
+	 */
+	@Nullable
+	public final Boolean append() {
+		return this.append;
 	}
 
 	/**
@@ -161,6 +179,9 @@ public class PutSynonymRequest extends RequestBase implements JsonpSerializable 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutSynonymRequest> {
+		@Nullable
+		private Boolean append;
+
 		private String id;
 
 		@Nullable
@@ -171,11 +192,24 @@ public class PutSynonymRequest extends RequestBase implements JsonpSerializable 
 		public Builder() {
 		}
 		private Builder(PutSynonymRequest instance) {
+			this.append = instance.append;
 			this.id = instance.id;
 			this.refresh = instance.refresh;
 			this.synonymsSet = instance.synonymsSet;
 
 		}
+		/**
+		 * If <code>true</code>, the provided synonym rules are appended to the existing
+		 * set, with matching IDs overwriting existing rules. If <code>false</code>, the
+		 * entire synonyms set is replaced with the new synonym rules definitions.
+		 * <p>
+		 * API name: {@code append}
+		 */
+		public final Builder append(@Nullable Boolean value) {
+			this.append = value;
+			return this;
+		}
+
 		/**
 		 * Required - The ID of the synonyms set to be created or updated.
 		 * <p>
@@ -325,6 +359,9 @@ public class PutSynonymRequest extends RequestBase implements JsonpSerializable 
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
 					params.put("refresh", String.valueOf(request.refresh));
+				}
+				if (request.append != null) {
+					params.put("append", String.valueOf(request.append));
 				}
 				return params;
 

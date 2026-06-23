@@ -422,7 +422,7 @@ public class ElasticsearchInferenceAsyncClient
 	 * <li>Amazon SageMaker (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>rerank</code>, <code>sparse_embedding</code>,
 	 * <code>text_embedding</code>)</li>
-	 * <li>Anthropic (<code>completion</code>)</li>
+	 * <li>Anthropic (<code>chat_completion</code>, <code>completion</code>)</li>
 	 * <li>Azure AI Studio (<code>completion</code>, <code>rerank</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>Azure OpenAI (<code>chat_completion</code>, <code>completion</code>,
@@ -495,7 +495,7 @@ public class ElasticsearchInferenceAsyncClient
 	 * <li>Amazon SageMaker (<code>chat_completion</code>, <code>completion</code>,
 	 * <code>rerank</code>, <code>sparse_embedding</code>,
 	 * <code>text_embedding</code>)</li>
-	 * <li>Anthropic (<code>completion</code>)</li>
+	 * <li>Anthropic (<code>chat_completion</code>, <code>completion</code>)</li>
 	 * <li>Azure AI Studio (<code>completion</code>, <code>rerank</code>,
 	 * <code>text_embedding</code>)</li>
 	 * <li>Azure OpenAI (<code>chat_completion</code>, <code>completion</code>,
@@ -2044,7 +2044,7 @@ public class ElasticsearchInferenceAsyncClient
 	 * grant this privilege). You must use a client that supports streaming.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-stream-inference">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-stream-completion">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -2079,7 +2079,7 @@ public class ElasticsearchInferenceAsyncClient
 	 *            a function that initializes a builder to create the
 	 *            {@link StreamCompletionRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-stream-inference">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-stream-completion">Documentation
 	 *      on elastic.co</a>
 	 */
 

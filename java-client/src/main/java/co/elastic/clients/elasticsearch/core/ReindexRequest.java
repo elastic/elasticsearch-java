@@ -103,8 +103,8 @@ import javax.annotation.Nullable;
  * cluster. If reindexing from a remote cluster into an Elastic Cloud Serverless
  * project, only remote hosts from <a href=
  * "https://cloud.elastic.co/registration?page=docs&amp;placement=docs-body">Elastic
- * Cloud Hosted</a> are allowed. Automatic data stream creation requires a
- * matching index template with data stream enabled.
+ * Cloud Hosted and Elastic Cloud Serverless</a> are allowed. Automatic data
+ * stream creation requires a matching index template with data stream enabled.
  * <p>
  * The <code>dest</code> element can be configured like the index API to control
  * optimistic concurrency control. Omitting <code>version_type</code> or setting
@@ -266,8 +266,10 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The throttle for this request in sub-requests per second. By default, there
-	 * is no throttle.
+	 * The maximum number of documents to index per second, across the entire
+	 * reindex operation (including slices). It can be either <code>-1</code> to
+	 * turn off throttling or any decimal number like <code>1.7</code> or
+	 * <code>12</code> to throttle to that level.
 	 * <p>
 	 * API name: {@code requests_per_second}
 	 */
@@ -298,7 +300,11 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * The period of time that a consistent view of the index should be maintained
-	 * for scrolled search.
+	 * for scrolled search. In serverless, and stack versions &gt;= v9.5.0, we use
+	 * PIT rather than scroll for pagination. We only use scroll for reindexing from
+	 * remote clusters that are older than v7.10.0. Therefore, this parameter is
+	 * ignored unless you are reindexing from a remote cluster that is older than
+	 * v7.10.0.
 	 * <p>
 	 * API name: {@code scroll}
 	 */
@@ -530,8 +536,10 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The throttle for this request in sub-requests per second. By default, there
-		 * is no throttle.
+		 * The maximum number of documents to index per second, across the entire
+		 * reindex operation (including slices). It can be either <code>-1</code> to
+		 * turn off throttling or any decimal number like <code>1.7</code> or
+		 * <code>12</code> to throttle to that level.
 		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
@@ -571,7 +579,11 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * The period of time that a consistent view of the index should be maintained
-		 * for scrolled search.
+		 * for scrolled search. In serverless, and stack versions &gt;= v9.5.0, we use
+		 * PIT rather than scroll for pagination. We only use scroll for reindexing from
+		 * remote clusters that are older than v7.10.0. Therefore, this parameter is
+		 * ignored unless you are reindexing from a remote cluster that is older than
+		 * v7.10.0.
 		 * <p>
 		 * API name: {@code scroll}
 		 */
@@ -582,7 +594,11 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * The period of time that a consistent view of the index should be maintained
-		 * for scrolled search.
+		 * for scrolled search. In serverless, and stack versions &gt;= v9.5.0, we use
+		 * PIT rather than scroll for pagination. We only use scroll for reindexing from
+		 * remote clusters that are older than v7.10.0. Therefore, this parameter is
+		 * ignored unless you are reindexing from a remote cluster that is older than
+		 * v7.10.0.
 		 * <p>
 		 * API name: {@code scroll}
 		 */

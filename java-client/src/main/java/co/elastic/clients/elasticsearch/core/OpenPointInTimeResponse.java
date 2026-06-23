@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.core;
 
+import co.elastic.clients.elasticsearch._types.ClusterStatistics;
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -65,12 +66,16 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 
 	private final String id;
 
+	@Nullable
+	private final ClusterStatistics clusters;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private OpenPointInTimeResponse(Builder builder) {
 
 		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.clusters = builder.clusters;
 
 	}
 
@@ -95,6 +100,17 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * Metadata about the clusters involved in the request, returned when the
+	 * request targets one or more remote clusters.
+	 * <p>
+	 * API name: {@code _clusters}
+	 */
+	@Nullable
+	public final ClusterStatistics clusters() {
+		return this.clusters;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -110,6 +126,12 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 
 		generator.writeKey("id");
 		generator.write(this.id);
+
+		if (this.clusters != null) {
+			generator.writeKey("_clusters");
+			this.clusters.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -130,6 +152,9 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 		private ShardStatistics shards;
 
 		private String id;
+
+		@Nullable
+		private ClusterStatistics clusters;
 
 		/**
 		 * Required - Shards used to create the PIT
@@ -156,6 +181,27 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 		public final Builder id(String value) {
 			this.id = value;
 			return this;
+		}
+
+		/**
+		 * Metadata about the clusters involved in the request, returned when the
+		 * request targets one or more remote clusters.
+		 * <p>
+		 * API name: {@code _clusters}
+		 */
+		public final Builder clusters(@Nullable ClusterStatistics value) {
+			this.clusters = value;
+			return this;
+		}
+
+		/**
+		 * Metadata about the clusters involved in the request, returned when the
+		 * request targets one or more remote clusters.
+		 * <p>
+		 * API name: {@code _clusters}
+		 */
+		public final Builder clusters(Function<ClusterStatistics.Builder, ObjectBuilder<ClusterStatistics>> fn) {
+			return this.clusters(fn.apply(new ClusterStatistics.Builder()).build());
 		}
 
 		@Override
@@ -189,6 +235,7 @@ public class OpenPointInTimeResponse implements JsonpSerializable {
 
 		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::clusters, ClusterStatistics._DESERIALIZER, "_clusters");
 
 	}
 

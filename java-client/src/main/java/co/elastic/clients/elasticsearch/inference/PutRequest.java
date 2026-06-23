@@ -81,7 +81,7 @@ import javax.annotation.Nullable;
  * <li>Amazon SageMaker (<code>chat_completion</code>, <code>completion</code>,
  * <code>rerank</code>, <code>sparse_embedding</code>,
  * <code>text_embedding</code>)</li>
- * <li>Anthropic (<code>completion</code>)</li>
+ * <li>Anthropic (<code>chat_completion</code>, <code>completion</code>)</li>
  * <li>Azure AI Studio (<code>completion</code>, <code>rerank</code>,
  * <code>text_embedding</code>)</li>
  * <li>Azure OpenAI (<code>chat_completion</code>, <code>completion</code>,

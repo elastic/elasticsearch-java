@@ -95,6 +95,15 @@ public class TaskInfo implements JsonpSerializable {
 	@Nullable
 	private final String parentTaskId;
 
+	@Nullable
+	private final String originalTaskId;
+
+	@Nullable
+	private final Long originalStartTimeInMillis;
+
+	@Nullable
+	private final String originalStartTime;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected TaskInfo(AbstractBuilder<?> builder) {
@@ -113,6 +122,9 @@ public class TaskInfo implements JsonpSerializable {
 		this.status = builder.status;
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.parentTaskId = builder.parentTaskId;
+		this.originalTaskId = builder.originalTaskId;
+		this.originalStartTimeInMillis = builder.originalStartTimeInMillis;
+		this.originalStartTime = builder.originalStartTime;
 
 	}
 
@@ -233,6 +245,42 @@ public class TaskInfo implements JsonpSerializable {
 	}
 
 	/**
+	 * The task ID of the original task. Only present when the task is continuing
+	 * the work of an earlier task that was running on a node which has since shut
+	 * down (i.e. a relocatable task). For tasks that have not been relocated this
+	 * is always equal to the task's own ID and is omitted from the response.
+	 * <p>
+	 * API name: {@code original_task_id}
+	 */
+	@Nullable
+	public final String originalTaskId() {
+		return this.originalTaskId;
+	}
+
+	/**
+	 * The time at which the original task started, in milliseconds since the Unix
+	 * epoch. Only present together with <code>original_task_id</code>.
+	 * <p>
+	 * API name: {@code original_start_time_in_millis}
+	 */
+	@Nullable
+	public final Long originalStartTimeInMillis() {
+		return this.originalStartTimeInMillis;
+	}
+
+	/**
+	 * The time at which the original task started, as an ISO 8601 formatted string.
+	 * Only present together with <code>original_task_id</code> and when the request
+	 * includes the <code>?human=true</code> query parameter.
+	 * <p>
+	 * API name: {@code original_start_time}
+	 */
+	@Nullable
+	public final String originalStartTime() {
+		return this.originalStartTime;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -298,6 +346,21 @@ public class TaskInfo implements JsonpSerializable {
 		if (this.parentTaskId != null) {
 			generator.writeKey("parent_task_id");
 			generator.write(this.parentTaskId);
+
+		}
+		if (this.originalTaskId != null) {
+			generator.writeKey("original_task_id");
+			generator.write(this.originalTaskId);
+
+		}
+		if (this.originalStartTimeInMillis != null) {
+			generator.writeKey("original_start_time_in_millis");
+			generator.write(this.originalStartTimeInMillis);
+
+		}
+		if (this.originalStartTime != null) {
+			generator.writeKey("original_start_time");
+			generator.write(this.originalStartTime);
 
 		}
 
@@ -366,6 +429,15 @@ public class TaskInfo implements JsonpSerializable {
 
 		@Nullable
 		private String parentTaskId;
+
+		@Nullable
+		private String originalTaskId;
+
+		@Nullable
+		private Long originalStartTimeInMillis;
+
+		@Nullable
+		private String originalStartTime;
 
 		/**
 		 * Required - API name: {@code action}
@@ -506,6 +578,42 @@ public class TaskInfo implements JsonpSerializable {
 			return self();
 		}
 
+		/**
+		 * The task ID of the original task. Only present when the task is continuing
+		 * the work of an earlier task that was running on a node which has since shut
+		 * down (i.e. a relocatable task). For tasks that have not been relocated this
+		 * is always equal to the task's own ID and is omitted from the response.
+		 * <p>
+		 * API name: {@code original_task_id}
+		 */
+		public final BuilderT originalTaskId(@Nullable String value) {
+			this.originalTaskId = value;
+			return self();
+		}
+
+		/**
+		 * The time at which the original task started, in milliseconds since the Unix
+		 * epoch. Only present together with <code>original_task_id</code>.
+		 * <p>
+		 * API name: {@code original_start_time_in_millis}
+		 */
+		public final BuilderT originalStartTimeInMillis(@Nullable Long value) {
+			this.originalStartTimeInMillis = value;
+			return self();
+		}
+
+		/**
+		 * The time at which the original task started, as an ISO 8601 formatted string.
+		 * Only present together with <code>original_task_id</code> and when the request
+		 * includes the <code>?human=true</code> query parameter.
+		 * <p>
+		 * API name: {@code original_start_time}
+		 */
+		public final BuilderT originalStartTime(@Nullable String value) {
+			this.originalStartTime = value;
+			return self();
+		}
+
 		protected abstract BuilderT self();
 
 	}
@@ -535,6 +643,10 @@ public class TaskInfo implements JsonpSerializable {
 		op.add(AbstractBuilder::status, JsonData._DESERIALIZER, "status");
 		op.add(AbstractBuilder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(AbstractBuilder::parentTaskId, JsonpDeserializer.stringDeserializer(), "parent_task_id");
+		op.add(AbstractBuilder::originalTaskId, JsonpDeserializer.stringDeserializer(), "original_task_id");
+		op.add(AbstractBuilder::originalStartTimeInMillis, JsonpDeserializer.longDeserializer(),
+				"original_start_time_in_millis");
+		op.add(AbstractBuilder::originalStartTime, JsonpDeserializer.stringDeserializer(), "original_start_time");
 
 	}
 

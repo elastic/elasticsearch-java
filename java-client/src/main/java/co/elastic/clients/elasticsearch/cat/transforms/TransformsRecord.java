@@ -96,6 +96,9 @@ public class TransformsRecord implements JsonpSerializable {
 	private final String pipeline;
 
 	@Nullable
+	private final String projectRouting;
+
+	@Nullable
 	private final String description;
 
 	@Nullable
@@ -174,6 +177,7 @@ public class TransformsRecord implements JsonpSerializable {
 		this.sourceIndex = builder.sourceIndex;
 		this.destIndex = builder.destIndex;
 		this.pipeline = builder.pipeline;
+		this.projectRouting = builder.projectRouting;
 		this.description = builder.description;
 		this.transformType = builder.transformType;
 		this.frequency = builder.frequency;
@@ -326,6 +330,17 @@ public class TransformsRecord implements JsonpSerializable {
 	@Nullable
 	public final String pipeline() {
 		return this.pipeline;
+	}
+
+	/**
+	 * The project routing filter for cross-project search from the source
+	 * configuration.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
 	}
 
 	/**
@@ -621,6 +636,11 @@ public class TransformsRecord implements JsonpSerializable {
 			generator.write(this.pipeline);
 
 		}
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
 		if (this.description != null) {
 			generator.writeKey("description");
 			generator.write(this.description);
@@ -778,6 +798,9 @@ public class TransformsRecord implements JsonpSerializable {
 		private String pipeline;
 
 		@Nullable
+		private String projectRouting;
+
+		@Nullable
 		private String description;
 
 		@Nullable
@@ -855,6 +878,7 @@ public class TransformsRecord implements JsonpSerializable {
 			this.sourceIndex = instance.sourceIndex;
 			this.destIndex = instance.destIndex;
 			this.pipeline = instance.pipeline;
+			this.projectRouting = instance.projectRouting;
 			this.description = instance.description;
 			this.transformType = instance.transformType;
 			this.frequency = instance.frequency;
@@ -1001,6 +1025,17 @@ public class TransformsRecord implements JsonpSerializable {
 		 */
 		public final Builder pipeline(@Nullable String value) {
 			this.pipeline = value;
+			return this;
+		}
+
+		/**
+		 * The project routing filter for cross-project search from the source
+		 * configuration.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
 			return this;
 		}
 
@@ -1276,6 +1311,8 @@ public class TransformsRecord implements JsonpSerializable {
 		op.add(Builder::sourceIndex, JsonpDeserializer.stringDeserializer(), "source_index", "si", "sourceIndex");
 		op.add(Builder::destIndex, JsonpDeserializer.stringDeserializer(), "dest_index", "di", "destIndex");
 		op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline", "p");
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing", "pr",
+				"projectRouting");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description", "d");
 		op.add(Builder::transformType, JsonpDeserializer.stringDeserializer(), "transform_type", "tt");
 		op.add(Builder::frequency, JsonpDeserializer.stringDeserializer(), "frequency", "f");

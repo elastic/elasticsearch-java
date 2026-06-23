@@ -86,6 +86,12 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 * the other tasks the system is running. You can also use the node hot threads
 	 * API to obtain detailed information about the work the system is doing instead
 	 * of completing the cancelled task.
+	 * <p>
+	 * For relocatable tasks, this API transparently follows the task across
+	 * graceful shutdown relocations, so callers can keep using the original task
+	 * ID. The returned task reports its <code>original_task_id</code> and
+	 * <code>original_start_time_in_millis</code> if it is continuing work from an
+	 * earlier task.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-tasks">Documentation
@@ -118,6 +124,12 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 * the other tasks the system is running. You can also use the node hot threads
 	 * API to obtain detailed information about the work the system is doing instead
 	 * of completing the cancelled task.
+	 * <p>
+	 * For relocatable tasks, this API transparently follows the task across
+	 * graceful shutdown relocations, so callers can keep using the original task
+	 * ID. The returned task reports its <code>original_task_id</code> and
+	 * <code>original_start_time_in_millis</code> if it is continuing work from an
+	 * earlier task.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -151,6 +163,12 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 * the other tasks the system is running. You can also use the node hot threads
 	 * API to obtain detailed information about the work the system is doing instead
 	 * of completing the cancelled task.
+	 * <p>
+	 * For relocatable tasks, this API transparently follows the task across
+	 * graceful shutdown relocations, so callers can keep using the original task
+	 * ID. The returned task reports its <code>original_task_id</code> and
+	 * <code>original_start_time_in_millis</code> if it is continuing work from an
+	 * earlier task.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-tasks">Documentation
@@ -174,6 +192,12 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 * <p>
 	 * If the task identifier is not found, a 404 response code indicates that there
 	 * are no resources that match the request.
+	 * <p>
+	 * For relocatable tasks, this API transparently follows the task across
+	 * graceful shutdown relocations, so callers can keep using the original task
+	 * ID. The returned task reports its <code>original_task_id</code> and
+	 * <code>original_start_time_in_millis</code> if it is continuing work from an
+	 * earlier task.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-tasks">Documentation
@@ -197,6 +221,12 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 * <p>
 	 * If the task identifier is not found, a 404 response code indicates that there
 	 * are no resources that match the request.
+	 * <p>
+	 * For relocatable tasks, this API transparently follows the task across
+	 * graceful shutdown relocations, so callers can keep using the original task
+	 * ID. The returned task reports its <code>original_task_id</code> and
+	 * <code>original_start_time_in_millis</code> if it is continuing work from an
+	 * earlier task.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -221,6 +251,12 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 * <p>
 	 * WARNING: The task management API is new and should still be considered a beta
 	 * feature. The API may change in ways that are not backwards compatible.
+	 * <p>
+	 * For relocatable tasks, this API transparently follows the task across
+	 * graceful shutdown relocations, so callers can keep using the original task
+	 * ID. The returned task reports its <code>original_task_id</code> and
+	 * <code>original_start_time_in_millis</code> if it is continuing work from an
+	 * earlier task.
 	 * <p>
 	 * <strong>Identifying running tasks</strong>
 	 * <p>
@@ -304,6 +340,12 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 * WARNING: The task management API is new and should still be considered a beta
 	 * feature. The API may change in ways that are not backwards compatible.
 	 * <p>
+	 * For relocatable tasks, this API transparently follows the task across
+	 * graceful shutdown relocations, so callers can keep using the original task
+	 * ID. The returned task reports its <code>original_task_id</code> and
+	 * <code>original_start_time_in_millis</code> if it is continuing work from an
+	 * earlier task.
+	 * <p>
 	 * <strong>Identifying running tasks</strong>
 	 * <p>
 	 * The <code>X-Opaque-Id header</code>, when provided on the HTTP request
@@ -385,6 +427,12 @@ public class ElasticsearchTasksAsyncClient extends ApiClient<ElasticsearchTransp
 	 * <p>
 	 * WARNING: The task management API is new and should still be considered a beta
 	 * feature. The API may change in ways that are not backwards compatible.
+	 * <p>
+	 * For relocatable tasks, this API transparently follows the task across
+	 * graceful shutdown relocations, so callers can keep using the original task
+	 * ID. The returned task reports its <code>original_task_id</code> and
+	 * <code>original_start_time_in_millis</code> if it is continuing work from an
+	 * earlier task.
 	 * <p>
 	 * <strong>Identifying running tasks</strong>
 	 * <p>

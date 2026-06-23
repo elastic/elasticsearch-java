@@ -50,6 +50,12 @@ public enum EmbeddingContentType implements JsonEnum {
 
 	Image("image"),
 
+	Audio("audio"),
+
+	Video("video"),
+
+	Pdf("pdf"),
+
 	;
 
 	private final String jsonValue;

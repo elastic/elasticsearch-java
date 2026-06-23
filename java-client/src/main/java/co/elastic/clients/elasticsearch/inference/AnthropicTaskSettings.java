@@ -88,8 +88,8 @@ public class AnthropicTaskSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - For a <code>completion</code> task, it is the maximum number of
-	 * tokens to generate before stopping.
+	 * Required - For a <code>completion</code> or <code>chat_completion</code>
+	 * task, it is the maximum number of tokens to generate before stopping.
 	 * <p>
 	 * API name: {@code max_tokens}
 	 */
@@ -98,9 +98,9 @@ public class AnthropicTaskSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For a <code>completion</code> task, it is the amount of randomness injected
-	 * into the response. For more details about the supported range, refer to
-	 * Anthropic documentation.
+	 * For a <code>completion</code> or <code>chat_completion</code> task, it is the
+	 * amount of randomness injected into the response. For more details about the
+	 * supported range, refer to Anthropic documentation.
 	 * <p>
 	 * API name: {@code temperature}
 	 */
@@ -110,9 +110,10 @@ public class AnthropicTaskSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For a <code>completion</code> task, it specifies to only sample from the top
-	 * K options for each subsequent token. It is recommended for advanced use cases
-	 * only. You usually only need to use <code>temperature</code>.
+	 * For a <code>completion</code> or <code>chat_completion</code> task, it
+	 * specifies to only sample from the top K options for each subsequent token. It
+	 * is recommended for advanced use cases only. You usually only need to use
+	 * <code>temperature</code>.
 	 * <p>
 	 * API name: {@code top_k}
 	 */
@@ -122,13 +123,13 @@ public class AnthropicTaskSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For a <code>completion</code> task, it specifies to use Anthropic's nucleus
-	 * sampling. In nucleus sampling, Anthropic computes the cumulative distribution
-	 * over all the options for each subsequent token in decreasing probability
-	 * order and cuts it off once it reaches the specified probability. You should
-	 * either alter <code>temperature</code> or <code>top_p</code>, but not both. It
-	 * is recommended for advanced use cases only. You usually only need to use
-	 * <code>temperature</code>.
+	 * For a <code>completion</code> or <code>chat_completion</code> task, it
+	 * specifies to use Anthropic's nucleus sampling. In nucleus sampling, Anthropic
+	 * computes the cumulative distribution over all the options for each subsequent
+	 * token in decreasing probability order and cuts it off once it reaches the
+	 * specified probability. You should either alter <code>temperature</code> or
+	 * <code>top_p</code>, but not both. It is recommended for advanced use cases
+	 * only. You usually only need to use <code>temperature</code>.
 	 * <p>
 	 * API name: {@code top_p}
 	 */
@@ -204,8 +205,8 @@ public class AnthropicTaskSettings implements JsonpSerializable {
 
 		}
 		/**
-		 * Required - For a <code>completion</code> task, it is the maximum number of
-		 * tokens to generate before stopping.
+		 * Required - For a <code>completion</code> or <code>chat_completion</code>
+		 * task, it is the maximum number of tokens to generate before stopping.
 		 * <p>
 		 * API name: {@code max_tokens}
 		 */
@@ -215,9 +216,9 @@ public class AnthropicTaskSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * For a <code>completion</code> task, it is the amount of randomness injected
-		 * into the response. For more details about the supported range, refer to
-		 * Anthropic documentation.
+		 * For a <code>completion</code> or <code>chat_completion</code> task, it is the
+		 * amount of randomness injected into the response. For more details about the
+		 * supported range, refer to Anthropic documentation.
 		 * <p>
 		 * API name: {@code temperature}
 		 */
@@ -227,9 +228,10 @@ public class AnthropicTaskSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * For a <code>completion</code> task, it specifies to only sample from the top
-		 * K options for each subsequent token. It is recommended for advanced use cases
-		 * only. You usually only need to use <code>temperature</code>.
+		 * For a <code>completion</code> or <code>chat_completion</code> task, it
+		 * specifies to only sample from the top K options for each subsequent token. It
+		 * is recommended for advanced use cases only. You usually only need to use
+		 * <code>temperature</code>.
 		 * <p>
 		 * API name: {@code top_k}
 		 */
@@ -239,13 +241,13 @@ public class AnthropicTaskSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * For a <code>completion</code> task, it specifies to use Anthropic's nucleus
-		 * sampling. In nucleus sampling, Anthropic computes the cumulative distribution
-		 * over all the options for each subsequent token in decreasing probability
-		 * order and cuts it off once it reaches the specified probability. You should
-		 * either alter <code>temperature</code> or <code>top_p</code>, but not both. It
-		 * is recommended for advanced use cases only. You usually only need to use
-		 * <code>temperature</code>.
+		 * For a <code>completion</code> or <code>chat_completion</code> task, it
+		 * specifies to use Anthropic's nucleus sampling. In nucleus sampling, Anthropic
+		 * computes the cumulative distribution over all the options for each subsequent
+		 * token in decreasing probability order and cuts it off once it reaches the
+		 * specified probability. You should either alter <code>temperature</code> or
+		 * <code>top_p</code>, but not both. It is recommended for advanced use cases
+		 * only. You usually only need to use <code>temperature</code>.
 		 * <p>
 		 * API name: {@code top_p}
 		 */

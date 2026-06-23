@@ -99,6 +99,9 @@ public class MultisearchHeader implements JsonpSerializable {
 	@Nullable
 	private final Boolean ignoreThrottled;
 
+	@Nullable
+	private final String slice;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private MultisearchHeader(Builder builder) {
@@ -115,6 +118,7 @@ public class MultisearchHeader implements JsonpSerializable {
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
 		this.allowPartialSearchResults = builder.allowPartialSearchResults;
 		this.ignoreThrottled = builder.ignoreThrottled;
+		this.slice = builder.slice;
 
 	}
 
@@ -190,6 +194,10 @@ public class MultisearchHeader implements JsonpSerializable {
 	}
 
 	/**
+	 * A custom value used to route operations to a specific shard. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * use <code>_slice</code> instead.
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	public final List<String> routing() {
@@ -226,6 +234,20 @@ public class MultisearchHeader implements JsonpSerializable {
 	@Nullable
 	public final Boolean ignoreThrottled() {
 		return this.ignoreThrottled;
+	}
+
+	/**
+	 * The slice identifier for routing the search to a specific slice. Use the
+	 * special value <code>_all</code> to query all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String slice() {
+		return this.slice;
 	}
 
 	/**
@@ -312,6 +334,11 @@ public class MultisearchHeader implements JsonpSerializable {
 			generator.write(this.ignoreThrottled);
 
 		}
+		if (this.slice != null) {
+			generator.writeKey("_slice");
+			generator.write(this.slice);
+
+		}
 
 	}
 
@@ -363,6 +390,9 @@ public class MultisearchHeader implements JsonpSerializable {
 		@Nullable
 		private Boolean ignoreThrottled;
 
+		@Nullable
+		private String slice;
+
 		public Builder() {
 		}
 		private Builder(MultisearchHeader instance) {
@@ -378,6 +408,7 @@ public class MultisearchHeader implements JsonpSerializable {
 			this.ccsMinimizeRoundtrips = instance.ccsMinimizeRoundtrips;
 			this.allowPartialSearchResults = instance.allowPartialSearchResults;
 			this.ignoreThrottled = instance.ignoreThrottled;
+			this.slice = instance.slice;
 
 		}
 		/**
@@ -474,6 +505,10 @@ public class MultisearchHeader implements JsonpSerializable {
 		}
 
 		/**
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
+		 * <p>
 		 * API name: {@code routing}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>routing</code>.
@@ -484,6 +519,10 @@ public class MultisearchHeader implements JsonpSerializable {
 		}
 
 		/**
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
+		 * <p>
 		 * API name: {@code routing}
 		 * <p>
 		 * Adds one or more values to <code>routing</code>.
@@ -522,6 +561,20 @@ public class MultisearchHeader implements JsonpSerializable {
 		 */
 		public final Builder ignoreThrottled(@Nullable Boolean value) {
 			this.ignoreThrottled = value;
+			return this;
+		}
+
+		/**
+		 * The slice identifier for routing the search to a specific slice. Use the
+		 * special value <code>_all</code> to query all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder slice(@Nullable String value) {
+			this.slice = value;
 			return this;
 		}
 
@@ -574,6 +627,7 @@ public class MultisearchHeader implements JsonpSerializable {
 		op.add(Builder::allowPartialSearchResults, JsonpDeserializer.booleanDeserializer(),
 				"allow_partial_search_results");
 		op.add(Builder::ignoreThrottled, JsonpDeserializer.booleanDeserializer(), "ignore_throttled");
+		op.add(Builder::slice, JsonpDeserializer.stringDeserializer(), "_slice");
 
 	}
 

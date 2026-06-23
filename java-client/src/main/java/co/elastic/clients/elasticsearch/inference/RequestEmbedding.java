@@ -86,6 +86,10 @@ public class RequestEmbedding implements JsonpSerializable {
 	/**
 	 * Required - Inference input. Either a string, an array of strings, a
 	 * <code>content</code> object, or an array of <code>content</code> objects.
+	 * <code>content</code> objects may contain a single item or an array of items.
+	 * Models that support multiple items per <code>content</code> object will
+	 * return a single embedding for each <code>content</code> object, regardless of
+	 * how many items it contains.
 	 * <p>
 	 * string example:
 	 * 
@@ -131,6 +135,27 @@ public class RequestEmbedding implements JsonpSerializable {
 	 *       &quot;format&quot;: &quot;base64&quot;,
 	 *       &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
 	 *     }
+	 *   }
+	 * ]
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * Multiple items in one <code>content</code> object example:
+	 * 
+	 * <pre>
+	 * <code>&quot;input&quot;: [
+	 *   {
+	 *     &quot;content&quot;: [
+	 *       {
+	 *         &quot;type&quot;: &quot;image&quot;,
+	 *         &quot;format&quot;: &quot;base64&quot;,
+	 *         &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
+	 *       },
+	 *       {
+	 *         &quot;type&quot;: &quot;text&quot;,
+	 *         &quot;value&quot;: &quot;Some text to create an embedding&quot;
+	 *       }
+	 *     ]
 	 *   }
 	 * ]
 	 * </code>
@@ -239,6 +264,10 @@ public class RequestEmbedding implements JsonpSerializable {
 		/**
 		 * Required - Inference input. Either a string, an array of strings, a
 		 * <code>content</code> object, or an array of <code>content</code> objects.
+		 * <code>content</code> objects may contain a single item or an array of items.
+		 * Models that support multiple items per <code>content</code> object will
+		 * return a single embedding for each <code>content</code> object, regardless of
+		 * how many items it contains.
 		 * <p>
 		 * string example:
 		 * 
@@ -289,6 +318,27 @@ public class RequestEmbedding implements JsonpSerializable {
 		 * </code>
 		 * </pre>
 		 * <p>
+		 * Multiple items in one <code>content</code> object example:
+		 * 
+		 * <pre>
+		 * <code>&quot;input&quot;: [
+		 *   {
+		 *     &quot;content&quot;: [
+		 *       {
+		 *         &quot;type&quot;: &quot;image&quot;,
+		 *         &quot;format&quot;: &quot;base64&quot;,
+		 *         &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
+		 *       },
+		 *       {
+		 *         &quot;type&quot;: &quot;text&quot;,
+		 *         &quot;value&quot;: &quot;Some text to create an embedding&quot;
+		 *       }
+		 *     ]
+		 *   }
+		 * ]
+		 * </code>
+		 * </pre>
+		 * <p>
 		 * API name: {@code input}
 		 */
 		public final Builder input(EmbeddingInput value) {
@@ -299,6 +349,10 @@ public class RequestEmbedding implements JsonpSerializable {
 		/**
 		 * Required - Inference input. Either a string, an array of strings, a
 		 * <code>content</code> object, or an array of <code>content</code> objects.
+		 * <code>content</code> objects may contain a single item or an array of items.
+		 * Models that support multiple items per <code>content</code> object will
+		 * return a single embedding for each <code>content</code> object, regardless of
+		 * how many items it contains.
 		 * <p>
 		 * string example:
 		 * 
@@ -344,6 +398,27 @@ public class RequestEmbedding implements JsonpSerializable {
 		 *       &quot;format&quot;: &quot;base64&quot;,
 		 *       &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
 		 *     }
+		 *   }
+		 * ]
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * Multiple items in one <code>content</code> object example:
+		 * 
+		 * <pre>
+		 * <code>&quot;input&quot;: [
+		 *   {
+		 *     &quot;content&quot;: [
+		 *       {
+		 *         &quot;type&quot;: &quot;image&quot;,
+		 *         &quot;format&quot;: &quot;base64&quot;,
+		 *         &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
+		 *       },
+		 *       {
+		 *         &quot;type&quot;: &quot;text&quot;,
+		 *         &quot;value&quot;: &quot;Some text to create an embedding&quot;
+		 *       }
+		 *     ]
 		 *   }
 		 * ]
 		 * </code>

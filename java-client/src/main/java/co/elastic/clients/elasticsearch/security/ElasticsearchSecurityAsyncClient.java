@@ -852,6 +852,11 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * NOTE: Service account tokens never expire. You must actively delete them if
 	 * they are no longer needed.
+	 * <p>
+	 * IMPORTANT: On Serverless, non-operator users can create tokens for only
+	 * <code>elastic/fleet-server</code> and
+	 * <code>elastic/fleet-server-remote</code>. Creating tokens for any other
+	 * service account requires operator privileges.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-create-service-token">Documentation
@@ -873,6 +878,11 @@ public class ElasticsearchSecurityAsyncClient
 	 * <p>
 	 * NOTE: Service account tokens never expire. You must actively delete them if
 	 * they are no longer needed.
+	 * <p>
+	 * IMPORTANT: On Serverless, non-operator users can create tokens for only
+	 * <code>elastic/fleet-server</code> and
+	 * <code>elastic/fleet-server-remote</code>. Creating tokens for any other
+	 * service account requires operator privileges.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -1095,6 +1105,11 @@ public class ElasticsearchSecurityAsyncClient
 	 * Delete service account tokens.
 	 * <p>
 	 * Delete service account tokens for a service in a specified namespace.
+	 * <p>
+	 * IMPORTANT: On Serverless, non-operator users can delete tokens for only
+	 * <code>elastic/fleet-server</code> and
+	 * <code>elastic/fleet-server-remote</code>. Deleting tokens for any other
+	 * service account requires operator privileges.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-delete-service-token">Documentation
@@ -1112,6 +1127,11 @@ public class ElasticsearchSecurityAsyncClient
 	 * Delete service account tokens.
 	 * <p>
 	 * Delete service account tokens for a service in a specified namespace.
+	 * <p>
+	 * IMPORTANT: On Serverless, non-operator users can delete tokens for only
+	 * <code>elastic/fleet-server</code> and
+	 * <code>elastic/fleet-server-remote</code>. Deleting tokens for any other
+	 * service account requires operator privileges.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

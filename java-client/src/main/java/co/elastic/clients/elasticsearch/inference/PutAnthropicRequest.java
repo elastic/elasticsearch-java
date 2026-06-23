@@ -141,8 +141,10 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Required - The task type. The only valid task type for the model to perform
-	 * is <code>completion</code>.
+	 * Required - The task type. The valid task types for the model to perform are
+	 * <code>completion</code> and <code>chat_completion</code>. NOTE: The
+	 * <code>chat_completion</code> task type only supports streaming and only
+	 * through the _stream API.
 	 * <p>
 	 * API name: {@code task_type}
 	 */
@@ -285,8 +287,10 @@ public class PutAnthropicRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Required - The task type. The only valid task type for the model to perform
-		 * is <code>completion</code>.
+		 * Required - The task type. The valid task types for the model to perform are
+		 * <code>completion</code> and <code>chat_completion</code>. NOTE: The
+		 * <code>chat_completion</code> task type only supports streaming and only
+		 * through the _stream API.
 		 * <p>
 		 * API name: {@code task_type}
 		 */

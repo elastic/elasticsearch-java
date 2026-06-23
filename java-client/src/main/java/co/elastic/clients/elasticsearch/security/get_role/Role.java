@@ -21,7 +21,6 @@ package co.elastic.clients.elasticsearch.security.get_role;
 
 import co.elastic.clients.elasticsearch.security.ApplicationPrivileges;
 import co.elastic.clients.elasticsearch.security.ClusterPrivilege;
-import co.elastic.clients.elasticsearch.security.IndicesPrivileges;
 import co.elastic.clients.elasticsearch.security.RemoteClusterPrivileges;
 import co.elastic.clients.elasticsearch.security.RemoteIndicesPrivileges;
 import co.elastic.clients.elasticsearch.security.RoleTemplate;
@@ -71,7 +70,7 @@ import javax.annotation.Nullable;
 public class Role implements JsonpSerializable {
 	private final List<String> cluster;
 
-	private final List<IndicesPrivileges> indices;
+	private final List<IndicesPrivilegesRead> indices;
 
 	private final List<RemoteIndicesPrivileges> remoteIndices;
 
@@ -124,7 +123,7 @@ public class Role implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public final List<IndicesPrivileges> indices() {
+	public final List<IndicesPrivilegesRead> indices() {
 		return this.indices;
 	}
 
@@ -216,7 +215,7 @@ public class Role implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
-			for (IndicesPrivileges item0 : this.indices) {
+			for (IndicesPrivilegesRead item0 : this.indices) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -351,7 +350,7 @@ public class Role implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Role> {
 		private List<String> cluster;
 
-		private List<IndicesPrivileges> indices;
+		private List<IndicesPrivilegesRead> indices;
 
 		@Nullable
 		private List<RemoteIndicesPrivileges> remoteIndices;
@@ -430,7 +429,7 @@ public class Role implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public final Builder indices(List<IndicesPrivileges> list) {
+		public final Builder indices(List<IndicesPrivilegesRead> list) {
 			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
@@ -440,7 +439,7 @@ public class Role implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>indices</code>.
 		 */
-		public final Builder indices(IndicesPrivileges value, IndicesPrivileges... values) {
+		public final Builder indices(IndicesPrivilegesRead value, IndicesPrivilegesRead... values) {
 			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
@@ -450,8 +449,8 @@ public class Role implements JsonpSerializable {
 		 * <p>
 		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */
-		public final Builder indices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
-			return indices(fn.apply(new IndicesPrivileges.Builder()).build());
+		public final Builder indices(Function<IndicesPrivilegesRead.Builder, ObjectBuilder<IndicesPrivilegesRead>> fn) {
+			return indices(fn.apply(new IndicesPrivilegesRead.Builder()).build());
 		}
 
 		/**
@@ -697,7 +696,7 @@ public class Role implements JsonpSerializable {
 
 		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");
-		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges._DESERIALIZER), "indices");
+		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivilegesRead._DESERIALIZER), "indices");
 		op.add(Builder::remoteIndices, JsonpDeserializer.arrayDeserializer(RemoteIndicesPrivileges._DESERIALIZER),
 				"remote_indices");
 		op.add(Builder::remoteCluster, JsonpDeserializer.arrayDeserializer(RemoteClusterPrivileges._DESERIALIZER),

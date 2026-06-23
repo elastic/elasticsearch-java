@@ -59,6 +59,11 @@ import javax.annotation.Nullable;
  * Delete service account tokens.
  * <p>
  * Delete service account tokens for a service in a specified namespace.
+ * <p>
+ * IMPORTANT: On Serverless, non-operator users can delete tokens for only
+ * <code>elastic/fleet-server</code> and
+ * <code>elastic/fleet-server-remote</code>. Deleting tokens for any other
+ * service account requires operator privileges.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#security.delete_service_token.Request">API
