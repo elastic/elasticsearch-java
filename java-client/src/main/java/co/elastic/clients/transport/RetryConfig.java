@@ -96,6 +96,10 @@ public final class RetryConfig {
         return backoffPolicy;
     }
 
+    public boolean isEnabled() {
+        return backoffPolicy != BackoffPolicy.noBackoff();
+    }
+
     /**
      * The HTTP status codes that should trigger a retry. Defaults to {@link #DEFAULT_RETRYABLE_STATUSES}.
      */
@@ -104,8 +108,7 @@ public final class RetryConfig {
     }
 
     /**
-     * The exception types that should trigger a retry. Matched by {@code instanceof}, walking the immediate cause
-     * so wrapped exceptions (e.g. {@code RuntimeException(IOException)}) are also caught.
+     * The exception types that should trigger a retry. Wrapped exceptions are also considered.
      * Defaults to {@link #DEFAULT_RETRYABLE_EXCEPTIONS}.
      */
     public Set<Class<? extends Throwable>> retryableExceptions() {

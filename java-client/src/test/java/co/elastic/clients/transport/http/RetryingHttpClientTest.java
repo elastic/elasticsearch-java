@@ -44,7 +44,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 class RetryingHttpClientTest extends Assertions {
 
@@ -64,17 +64,21 @@ class RetryingHttpClientTest extends Assertions {
         scheduler.shutdownNow();
     }
 
-    private static final TransportOptions OPTS = DefaultTransportOptions.EMPTY;
     private static final TransportHttpClient.Request REQ = new TransportHttpClient.Request(
         "GET", "/", Collections.emptyMap(), Collections.emptyMap(), null
     );
 
-    private RetryingHttpClient wrap(TransportHttpClient delegate, RetryConfig config) {
-        return new RetryingHttpClient(delegate, config, scheduler);
+    private RetryingHttpClient wrap(TransportHttpClient delegate) {
+        return new RetryingHttpClient(delegate, scheduler);
     }
 
-    private RetryingHttpClient wrap(TransportHttpClient delegate, BackoffPolicy policy) {
-        return wrap(delegate, RetryConfig.of(r -> r.backoffPolicy(policy)));
+    // The retry configuration is now read from each request's TransportOptions, so tests inject it there.
+    private static TransportOptions opts(RetryConfig config) {
+        return new DefaultTransportOptions.Builder().retryConfig(config).build();
+    }
+
+    private static TransportOptions opts(BackoffPolicy policy) {
+        return opts(RetryConfig.of(r -> r.backoffPolicy(policy)));
     }
 
     private static BackoffPolicy fixed(long ms, int retries) {
@@ -83,17 +87,17 @@ class RetryingHttpClientTest extends Assertions {
 
     // A mock transport instance that returns the next scripted outcome on each call.
     static class MockedClient implements TransportHttpClient {
-        final List<Supplier<?>> script = new ArrayList<>();
+        final List<Function<Boolean, ?>> script = new ArrayList<>();
         final AtomicInteger calls = new AtomicInteger();
 
         // Add a response outcome.
         MockedClient andRespond(int statusCode) {
-            script.add(() -> new FakeResponse(statusCode, Collections.emptyMap()));
+            script.add(b -> new FakeResponse(statusCode, Collections.emptyMap()));
             return this;
         }
 
         MockedClient andThrow(Throwable t) {
-            script.add(() -> { throw new FakeException(t); });
+            script.add(b -> { throw new FakeException(t); });
             return this;
         }
 
@@ -101,9 +105,9 @@ class RetryingHttpClientTest extends Assertions {
         public Response performRequest(String endpointId, @Nullable Node node, Request request,
                                        TransportOptions options) throws IOException {
             int i = calls.getAndIncrement();
-            Supplier<?> step = script.get(Math.min(i, script.size() - 1));
+            Function<Boolean, ?> step = script.get(Math.min(i, script.size() - 1));
             try {
-                Object out = step.get();
+                Object out = step.apply(true);
                 return (Response) out;
             } catch (FakeException se) {
                 if (se.cause instanceof IOException) throw (IOException) se.cause;
@@ -116,10 +120,10 @@ class RetryingHttpClientTest extends Assertions {
         public CompletableFuture<Response> performRequestAsync(String endpointId, @Nullable Node node, Request request,
                                                                TransportOptions options) {
             int i = calls.getAndIncrement();
-            Supplier<?> step = script.get(Math.min(i, script.size() - 1));
+            Function<Boolean, ?> step = script.get(Math.min(i, script.size() - 1));
             CompletableFuture<Response> f = new CompletableFuture<>();
             try {
-                Object out = step.get();
+                Object out = step.apply(true);
                 f.complete((Response) out);
             } catch (FakeException se) {
                 f.completeExceptionally(se.cause);
@@ -161,9 +165,8 @@ class RetryingHttpClientTest extends Assertions {
     void syncRetriesOn5xxThenSucceeds() throws IOException {
         MockedClient client = new MockedClient()
             .andRespond(503).andRespond(502).andRespond(500).andRespond(200);
-        RetryingHttpClient retry = wrap(client, fixed(1L, 5));
 
-        TransportHttpClient.Response resp = retry.performRequest("ep", null, REQ, OPTS);
+        TransportHttpClient.Response resp = wrap(client).performRequest("ep", null, REQ, opts(fixed(1L, 5)));
 
         assertEquals(200, resp.statusCode());
         assertEquals(4, client.calls.get());
@@ -172,9 +175,8 @@ class RetryingHttpClientTest extends Assertions {
     @Test
     void syncRetriesOn429() throws IOException {
         MockedClient client = new MockedClient().andRespond(429).andRespond(200);
-        RetryingHttpClient retry = wrap(client, fixed(1L, 3));
 
-        TransportHttpClient.Response resp = retry.performRequest("ep", null, REQ, OPTS);
+        TransportHttpClient.Response resp = wrap(client).performRequest("ep", null, REQ, opts(fixed(1L, 3)));
 
         assertEquals(200, resp.statusCode());
         assertEquals(2, client.calls.get());
@@ -183,9 +185,8 @@ class RetryingHttpClientTest extends Assertions {
     @Test
     void syncDoesNotRetryOn501() throws IOException {
         MockedClient client = new MockedClient().andRespond(501).andRespond(200);
-        RetryingHttpClient retry = wrap(client, fixed(1L, 3));
 
-        TransportHttpClient.Response resp = retry.performRequest("ep", null, REQ, OPTS);
+        TransportHttpClient.Response resp = wrap(client).performRequest("ep", null, REQ, opts(fixed(1L, 3)));
 
         assertEquals(501, resp.statusCode());
         assertEquals(1, client.calls.get());
@@ -199,7 +200,7 @@ class RetryingHttpClientTest extends Assertions {
             .retryableStatuses(418));
 
         MockedClient client = new MockedClient().andRespond(503).andRespond(200);
-        TransportHttpClient.Response resp = wrap(client, cfg).performRequest("ep", null, REQ, OPTS);
+        TransportHttpClient.Response resp = wrap(client).performRequest("ep", null, REQ, opts(cfg));
 
         assertEquals(503, resp.statusCode());
         assertEquals(1, client.calls.get());
@@ -213,7 +214,7 @@ class RetryingHttpClientTest extends Assertions {
             .retryableStatuses(408, 503));
 
         MockedClient client = new MockedClient().andRespond(408).andRespond(200);
-        TransportHttpClient.Response resp = wrap(client, cfg).performRequest("ep", null, REQ, OPTS);
+        TransportHttpClient.Response resp = wrap(client).performRequest("ep", null, REQ, opts(cfg));
 
         assertEquals(200, resp.statusCode());
         assertEquals(2, client.calls.get());
@@ -228,7 +229,7 @@ class RetryingHttpClientTest extends Assertions {
 
         MockedClient client = new MockedClient().andThrow(new SocketException("not a timeout")).andRespond(200);
         IOException thrown = assertThrows(IOException.class,
-            () -> wrap(client, cfg).performRequest("ep", null, REQ, OPTS));
+            () -> wrap(client).performRequest("ep", null, REQ, opts(cfg)));
         assertEquals("not a timeout", thrown.getMessage());
         assertEquals(1, client.calls.get());
     }
@@ -241,7 +242,7 @@ class RetryingHttpClientTest extends Assertions {
             .retryableStatuses(new HashSet<>()));
 
         MockedClient client = new MockedClient().andRespond(503).andRespond(200);
-        TransportHttpClient.Response resp = wrap(client, cfg).performRequest("ep", null, REQ, OPTS);
+        TransportHttpClient.Response resp = wrap(client).performRequest("ep", null, REQ, opts(cfg));
 
         assertEquals(503, resp.statusCode());
         assertEquals(1, client.calls.get());
@@ -255,7 +256,7 @@ class RetryingHttpClientTest extends Assertions {
             .retryableExceptions(new HashSet<>()));
 
         MockedClient client = new MockedClient().andThrow(new SocketException("io")).andRespond(200);
-        assertThrows(IOException.class, () -> wrap(client, cfg).performRequest("ep", null, REQ, OPTS));
+        assertThrows(IOException.class, () -> wrap(client).performRequest("ep", null, REQ, opts(cfg)));
         assertEquals(1, client.calls.get());
     }
 
@@ -278,9 +279,8 @@ class RetryingHttpClientTest extends Assertions {
     @Test
     void syncDoesNotRetryOn4xx() throws IOException {
         MockedClient client = new MockedClient().andRespond(404).andRespond(200);
-        RetryingHttpClient retry = wrap(client, fixed(1L, 3));
 
-        TransportHttpClient.Response resp = retry.performRequest("ep", null, REQ, OPTS);
+        TransportHttpClient.Response resp = wrap(client).performRequest("ep", null, REQ, opts(fixed(1L, 3)));
 
         assertEquals(404, resp.statusCode());
         assertEquals(1, client.calls.get());
@@ -291,7 +291,7 @@ class RetryingHttpClientTest extends Assertions {
         MockedClient client1 = new MockedClient()
             .andThrow(new SocketException("boom")).andRespond(200);
         try {
-            TransportHttpClient.Response r = wrap(client1, fixed(1L, 3)).performRequest("ep", null, REQ, OPTS);
+            TransportHttpClient.Response r = wrap(client1).performRequest("ep", null, REQ, opts(fixed(1L, 3)));
             assertEquals(200, r.statusCode());
             assertEquals(2, client1.calls.get());
         } catch (IOException e) {
@@ -301,7 +301,7 @@ class RetryingHttpClientTest extends Assertions {
         MockedClient client2 = new MockedClient()
             .andThrow(new IllegalStateException("bad")).andRespond(200);
         assertThrows(IllegalStateException.class,
-            () -> wrap(client2, fixed(1L, 3)).performRequest("ep", null, REQ, OPTS));
+            () -> wrap(client2).performRequest("ep", null, REQ, opts(fixed(1L, 3))));
         assertEquals(1, client2.calls.get());
     }
 
@@ -309,9 +309,8 @@ class RetryingHttpClientTest extends Assertions {
     void syncReturnsLastResponseWhenRetriesExhausted() throws IOException {
         MockedClient client = new MockedClient()
             .andRespond(503).andRespond(503).andRespond(503);
-        RetryingHttpClient retry = wrap(client, fixed(1L, 2));
 
-        TransportHttpClient.Response resp = retry.performRequest("ep", null, REQ, OPTS);
+        TransportHttpClient.Response resp = wrap(client).performRequest("ep", null, REQ, opts(fixed(1L, 2)));
 
         assertEquals(503, resp.statusCode());
         assertEquals(3, client.calls.get());
@@ -323,10 +322,9 @@ class RetryingHttpClientTest extends Assertions {
             .andThrow(new SocketException("first"))
             .andThrow(new SocketException("second"))
             .andThrow(new SocketException("third"));
-        RetryingHttpClient retry = wrap(client, fixed(1L, 2));
 
         IOException e = assertThrows(IOException.class,
-            () -> retry.performRequest("ep", null, REQ, OPTS));
+            () -> wrap(client).performRequest("ep", null, REQ, opts(fixed(1L, 2))));
         assertEquals("third", e.getMessage());
         assertEquals(3, client.calls.get());
     }
@@ -335,9 +333,8 @@ class RetryingHttpClientTest extends Assertions {
     void asyncRetriesOn5xxThenSucceeds() throws Exception {
         MockedClient client = new MockedClient()
             .andRespond(503).andRespond(502).andRespond(200);
-        RetryingHttpClient retry = wrap(client, fixed(1L, 5));
 
-        TransportHttpClient.Response resp = retry.performRequestAsync("ep", null, REQ, OPTS)
+        TransportHttpClient.Response resp = wrap(client).performRequestAsync("ep", null, REQ, opts(fixed(1L, 5)))
             .get(5, TimeUnit.SECONDS);
 
         assertEquals(200, resp.statusCode());
@@ -348,9 +345,8 @@ class RetryingHttpClientTest extends Assertions {
     void asyncRetriesOnIOExceptionThenSucceeds() throws Exception {
         MockedClient client = new MockedClient()
             .andThrow(new SocketException("nope")).andRespond(200);
-        RetryingHttpClient retry = wrap(client, fixed(1L, 3));
 
-        TransportHttpClient.Response resp = retry.performRequestAsync("ep", null, REQ, OPTS)
+        TransportHttpClient.Response resp = wrap(client).performRequestAsync("ep", null, REQ, opts(fixed(1L, 3)))
             .get(5, TimeUnit.SECONDS);
 
         assertEquals(200, resp.statusCode());
@@ -361,9 +357,9 @@ class RetryingHttpClientTest extends Assertions {
     void asyncDoesNotRetryOnRuntimeException() {
         MockedClient client = new MockedClient()
             .andThrow(new IllegalArgumentException("nope")).andRespond(200);
-        RetryingHttpClient retry = wrap(client, fixed(1L, 3));
 
-        CompletableFuture<TransportHttpClient.Response> f = retry.performRequestAsync("ep", null, REQ, OPTS);
+        CompletableFuture<TransportHttpClient.Response> f =
+            wrap(client).performRequestAsync("ep", null, REQ, opts(fixed(1L, 3)));
         CompletionException ex = assertThrows(CompletionException.class, f::join);
         assertTrue(ex.getCause() instanceof IllegalArgumentException);
         assertEquals(1, client.calls.get());
@@ -373,13 +369,24 @@ class RetryingHttpClientTest extends Assertions {
     void asyncReturnsLastResponseWhenRetriesExhausted() throws Exception {
         MockedClient client = new MockedClient()
             .andRespond(503).andRespond(503).andRespond(503);
-        RetryingHttpClient retry = wrap(client, fixed(1L, 2));
 
-        TransportHttpClient.Response resp = retry.performRequestAsync("ep", null, REQ, OPTS)
+        TransportHttpClient.Response resp = wrap(client).performRequestAsync("ep", null, REQ, opts(fixed(1L, 2)))
             .get(5, TimeUnit.SECONDS);
 
         assertEquals(503, resp.statusCode());
         assertEquals(3, client.calls.get());
+    }
+
+    @Test
+    void disabledRetryConfigForwardsToDelegate() throws IOException {
+        // A disabled RetryConfig must not retry: a 503 is returned as-is on the first attempt.
+        MockedClient client = new MockedClient().andRespond(503).andRespond(200);
+
+        TransportHttpClient.Response resp = wrap(client)
+            .performRequest("ep", null, REQ, opts(RetryConfig.disabled()));
+
+        assertEquals(503, resp.statusCode());
+        assertEquals(1, client.calls.get());
     }
 
     /**
@@ -409,9 +416,11 @@ class RetryingHttpClientTest extends Assertions {
             @Override public void close() {}
         };
 
-        RetryingHttpClient retry = wrap(delegate, BackoffPolicy.constantBackoff(3_600_000L, 5)); // 1h delay
+        RetryingHttpClient retry = wrap(delegate);
 
-        CompletableFuture<TransportHttpClient.Response> result = retry.performRequestAsync("ep", null, REQ, OPTS);
+        // 1h delay so the retry stays pending until we cancel
+        CompletableFuture<TransportHttpClient.Response> result = retry.performRequestAsync(
+            "ep", null, REQ, opts(BackoffPolicy.constantBackoff(3_600_000L, 5)));
 
         // Wait for the first attempt to complete (we know it returned 503, so a retry is scheduled)
         assertTrue(firstCallReturned.await(5, TimeUnit.SECONDS));
@@ -433,33 +442,35 @@ class RetryingHttpClientTest extends Assertions {
 
     @Test
     void exceptionClassifierUsesConfiguredTypes() {
+        RetryingHttpClient client = wrap(new MockedClient());
+
         // Default behaviour: any IOException (and its subclasses) is retryable
-        RetryingHttpClient defaultClient = wrap(new MockedClient(), RetryConfig.of(r -> r.backoffPolicy(fixed(1L, 1))));
-        assertTrue(defaultClient.isRetryableException(new SocketException("io")));
-        assertTrue(defaultClient.isRetryableException(new RuntimeException(new IOException("wrapped"))));
-        assertFalse(defaultClient.isRetryableException(new IllegalArgumentException("bad")));
-        assertFalse(defaultClient.isRetryableException(new NullPointerException()));
+        RetryConfig defaultCfg = RetryConfig.of(r -> r.backoffPolicy(fixed(1L, 1)));
+        assertTrue(client.isRetryableException(defaultCfg, new SocketException("io")));
+        assertTrue(client.isRetryableException(defaultCfg, new RuntimeException(new IOException("wrapped"))));
+        assertFalse(client.isRetryableException(defaultCfg, new IllegalArgumentException("bad")));
+        assertFalse(client.isRetryableException(defaultCfg, new NullPointerException()));
 
         // Narrowed to a specific subclass: only that subclass is retryable
-        RetryingHttpClient narrow = wrap(new MockedClient(),
-            RetryConfig.of(r -> r.backoffPolicy(fixed(1L, 1)).retryableExceptions(SocketException.class)));
-        assertTrue(narrow.isRetryableException(new SocketException("io")));
-        assertFalse(narrow.isRetryableException(new IOException("plain io")));
+        RetryConfig narrowCfg = RetryConfig.of(r -> r.backoffPolicy(fixed(1L, 1)).retryableExceptions(SocketException.class));
+        assertTrue(client.isRetryableException(narrowCfg, new SocketException("io")));
+        assertFalse(client.isRetryableException(narrowCfg, new IOException("plain io")));
     }
 
     @Test
     void responseClassifierUsesConfiguredStatuses() {
-        RetryingHttpClient defaultClient = wrap(new MockedClient(), RetryConfig.of(r -> r.backoffPolicy(fixed(1L, 1))));
-        assertTrue(defaultClient.isRetryableStatus(new FakeResponse(500, Collections.emptyMap())));
-        assertTrue(defaultClient.isRetryableStatus(new FakeResponse(429, Collections.emptyMap())));
-        assertTrue(defaultClient.isRetryableStatus(new FakeResponse(503, Collections.emptyMap())));
-        assertFalse(defaultClient.isRetryableStatus(new FakeResponse(501, Collections.emptyMap())));
-        assertFalse(defaultClient.isRetryableStatus(new FakeResponse(404, Collections.emptyMap())));
-        assertFalse(defaultClient.isRetryableStatus(new FakeResponse(200, Collections.emptyMap())));
+        RetryingHttpClient client = wrap(new MockedClient());
 
-        RetryingHttpClient custom = wrap(new MockedClient(),
-            RetryConfig.of(r -> r.backoffPolicy(fixed(1L, 1)).retryableStatuses(418)));
-        assertTrue(custom.isRetryableStatus(new FakeResponse(418, Collections.emptyMap())));
-        assertFalse(custom.isRetryableStatus(new FakeResponse(503, Collections.emptyMap())));
+        RetryConfig defaultCfg = RetryConfig.of(r -> r.backoffPolicy(fixed(1L, 1)));
+        assertTrue(client.isRetryableStatus(defaultCfg, new FakeResponse(500, Collections.emptyMap())));
+        assertTrue(client.isRetryableStatus(defaultCfg, new FakeResponse(429, Collections.emptyMap())));
+        assertTrue(client.isRetryableStatus(defaultCfg, new FakeResponse(503, Collections.emptyMap())));
+        assertFalse(client.isRetryableStatus(defaultCfg, new FakeResponse(501, Collections.emptyMap())));
+        assertFalse(client.isRetryableStatus(defaultCfg, new FakeResponse(404, Collections.emptyMap())));
+        assertFalse(client.isRetryableStatus(defaultCfg, new FakeResponse(200, Collections.emptyMap())));
+
+        RetryConfig customCfg = RetryConfig.of(r -> r.backoffPolicy(fixed(1L, 1)).retryableStatuses(418));
+        assertTrue(client.isRetryableStatus(customCfg, new FakeResponse(418, Collections.emptyMap())));
+        assertFalse(client.isRetryableStatus(customCfg, new FakeResponse(503, Collections.emptyMap())));
     }
 }
