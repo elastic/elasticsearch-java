@@ -81,9 +81,11 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
     }
 
     protected final TransportHttpClient httpClient;
-    // Same as httpClient if no retry policy, will be an instance of RetryingHttpClient in case
-    // a retry policy has been configured
-    private final TransportHttpClient wrappingHttpClient;
+    // Single retry wrapper, shared by every request that uses retries (whether configured on the client or per
+    // request) and reading the effective RetryConfig from each call's TransportOptions. Created lazily on first
+    // use, so clients that never use retries keep the exact same object graph as before and never allocate a
+    // retry scheduler. Guarded by `this` for creation.
+    private volatile RetryingHttpClient retryingHttpClient;
     protected final Instrumentation instrumentation;
     protected final JsonpMapper mapper;
     protected final TransportOptions transportOptions;
@@ -102,13 +104,6 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         this.mapper = jsonpMapper;
         this.httpClient = httpClient;
         this.transportOptions = httpClient.createOptions(options);
-
-        RetryConfig retryConfig = this.transportOptions.retryConfig();
-        if (retryConfig != null && retryConfig.backoffPolicy() != BackoffPolicy.noBackoff()) {
-            this.wrappingHttpClient = new RetryingHttpClient(httpClient, retryConfig);
-        } else {
-            this.wrappingHttpClient = httpClient;
-        }
 
         // If no instrumentation is provided, fallback to OpenTelemetry and ultimately noop
         if (instrumentation == null) {
@@ -131,7 +126,14 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
 
     @Override
     public void close() throws IOException {
-        wrappingHttpClient.close();
+        // The retry wrapper, if it was ever created, owns the delegate and the retry scheduler, so closing it
+        // also closes httpClient and shuts down the scheduler. Otherwise close httpClient directly.
+        RetryingHttpClient retrying = retryingHttpClient;
+        if (retrying != null) {
+            retrying.close();
+        } else {
+            httpClient.close();
+        }
     }
 
     @Override
@@ -148,6 +150,30 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         return httpClient;
     }
 
+    // Returns the shared retry wrapper when this request uses retries, the bare http client otherwise. The
+    // wrapper is created lazily on first use, so clients that never retry keep the non-retry path untouched.
+    private TransportHttpClient httpClientFor(TransportOptions options) {
+        RetryConfig retryConfig = options.retryConfig();
+        if (retryConfig == null || !retryConfig.isEnabled()) {
+            return httpClient;
+        }
+        return retryingHttpClient();
+    }
+
+    private RetryingHttpClient retryingHttpClient() {
+        RetryingHttpClient client = retryingHttpClient;
+        if (client == null) {
+            synchronized (this) {
+                client = retryingHttpClient;
+                if (client == null) {
+                    client = new RetryingHttpClient(httpClient);
+                    retryingHttpClient = client;
+                }
+            }
+        }
+        return client;
+    }
+
     @Override
     public final <RequestT, ResponseT, ErrorT> ResponseT performRequest(
         RequestT request,
@@ -161,7 +187,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
                 TransportHttpClient.Request req = prepareTransportRequest(request, endpoint);
                 ctx.beforeSendingHttpRequest(req, options);
 
-                TransportHttpClient.Response resp = wrappingHttpClient.performRequest(endpoint.id(), null, req, opts);
+                TransportHttpClient.Response resp = httpClientFor(opts).performRequest(endpoint.id(), null, req, opts);
                 ctx.afterReceivingHttpResponse(resp);
 
                 ResponseT apiResponse = getApiResponse(resp, endpoint);
@@ -200,7 +226,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         // Propagate required property checks to the thread that will decode the response
         boolean disableRequiredChecks = ApiTypeHelper.requiredPropertiesCheckDisabled();
 
-        CompletableFuture<TransportHttpClient.Response> clientFuture = wrappingHttpClient.performRequestAsync(
+        CompletableFuture<TransportHttpClient.Response> clientFuture = httpClientFor(opts).performRequestAsync(
             endpoint.id(), null, clientReq, opts
         );
 
