@@ -24,19 +24,17 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.UnionDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.Object;
-import java.util.Objects;
+import jakarta.json.stream.JsonParser;
+
+import java.util.EnumSet;
+import java.util.List;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -58,135 +56,146 @@ import javax.annotation.Nullable;
 /**
  * Defines how to fetch a source. Fetching can be disabled entirely, or the
  * source can be filtered.
- * 
+ *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_global.search._types.SourceConfig">API
- *      specification</a>
+ * "../../doc-files/api-spec.html#_global.search._types.SourceConfig">API
+ * specification</a>
  */
 @JsonpDeserializable
 public class SourceConfig implements TaggedUnion<SourceConfig.Kind, Object>, JsonpSerializable {
 
-	public enum Kind {
-		Filter, Fetch
+    public enum Kind {
+        Filter, Fetch
 
-	}
+    }
 
-	private final Kind _kind;
-	private final Object _value;
+    private final Kind _kind;
+    private final Object _value;
 
-	@Override
-	public final Kind _kind() {
-		return _kind;
-	}
+    @Override
+    public final Kind _kind() {
+        return _kind;
+    }
 
-	@Override
-	public final Object _get() {
-		return _value;
-	}
+    @Override
+    public final Object _get() {
+        return _value;
+    }
 
-	private SourceConfig(Kind kind, Object value) {
-		this._kind = kind;
-		this._value = value;
-	}
+    private SourceConfig(Kind kind, Object value) {
+        this._kind = kind;
+        this._value = value;
+    }
 
-	private SourceConfig(Builder builder) {
+    private SourceConfig(Builder builder) {
 
-		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
-		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+        this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+        this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-	}
+    }
 
-	public static SourceConfig of(Function<Builder, ObjectBuilder<SourceConfig>> fn) {
-		return fn.apply(new Builder()).build();
-	}
+    public static SourceConfig of(Function<Builder, ObjectBuilder<SourceConfig>> fn) {
+        return fn.apply(new Builder()).build();
+    }
 
-	/**
-	 * Is this variant instance of kind {@code filter}?
-	 */
-	public boolean isFilter() {
-		return _kind == Kind.Filter;
-	}
+    /**
+     * Is this variant instance of kind {@code filter}?
+     */
+    public boolean isFilter() {
+        return _kind == Kind.Filter;
+    }
 
-	/**
-	 * Get the {@code filter} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code filter} kind.
-	 */
-	public SourceFilter filter() {
-		return TaggedUnionUtils.get(this, Kind.Filter);
-	}
+    /**
+     * Get the {@code filter} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not of the {@code filter} kind.
+     */
+    public SourceFilter filter() {
+        return TaggedUnionUtils.get(this, Kind.Filter);
+    }
 
-	/**
-	 * Is this variant instance of kind {@code fetch}?
-	 */
-	public boolean isFetch() {
-		return _kind == Kind.Fetch;
-	}
+    /**
+     * Is this variant instance of kind {@code fetch}?
+     */
+    public boolean isFetch() {
+        return _kind == Kind.Fetch;
+    }
 
-	/**
-	 * Get the {@code fetch} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code fetch} kind.
-	 */
-	public Boolean fetch() {
-		return TaggedUnionUtils.get(this, Kind.Fetch);
-	}
+    /**
+     * Get the {@code fetch} variant value.
+     *
+     * @throws IllegalStateException if the current variant is not of the {@code fetch} kind.
+     */
+    public Boolean fetch() {
+        return TaggedUnionUtils.get(this, Kind.Fetch);
+    }
 
-	@Override
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		if (_value instanceof JsonpSerializable) {
-			((JsonpSerializable) _value).serialize(generator, mapper);
-		} else {
-			switch (_kind) {
-				case Fetch :
-					generator.write(((Boolean) this._value));
+    @Override
+    public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+        if (_value instanceof JsonpSerializable) {
+            ((JsonpSerializable) _value).serialize(generator, mapper);
+        } else {
+            switch (_kind) {
+                case Fetch:
+                    generator.write(((Boolean) this._value));
 
-					break;
-			}
-		}
+                    break;
+            }
+        }
 
-	}
+    }
 
-	@Override
-	public String toString() {
-		return JsonpUtils.toString(this);
-	}
+    @Override
+    public String toString() {
+        return JsonpUtils.toString(this);
+    }
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SourceConfig> {
-		private Kind _kind;
-		private Object _value;
+    public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SourceConfig> {
+        private Kind _kind;
+        private Object _value;
 
-		public ObjectBuilder<SourceConfig> filter(SourceFilter v) {
-			this._kind = Kind.Filter;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<SourceConfig> filter(SourceFilter v) {
+            this._kind = Kind.Filter;
+            this._value = v;
+            return this;
+        }
 
-		public ObjectBuilder<SourceConfig> filter(Function<SourceFilter.Builder, ObjectBuilder<SourceFilter>> fn) {
-			return this.filter(fn.apply(new SourceFilter.Builder()).build());
-		}
+        public ObjectBuilder<SourceConfig> filter(Function<SourceFilter.Builder,
+			ObjectBuilder<SourceFilter>> fn) {
+            return this.filter(fn.apply(new SourceFilter.Builder()).build());
+        }
 
-		public ObjectBuilder<SourceConfig> fetch(Boolean v) {
-			this._kind = Kind.Fetch;
-			this._value = v;
-			return this;
-		}
+        public ObjectBuilder<SourceConfig> fetch(Boolean v) {
+            this._kind = Kind.Fetch;
+            this._value = v;
+            return this;
+        }
 
-		public SourceConfig build() {
-			_checkSingleUse();
-			return new SourceConfig(this);
-		}
+        public SourceConfig build() {
+            _checkSingleUse();
+            return new SourceConfig(this);
+        }
 
-	}
+    }
 
-	private static JsonpDeserializer<SourceConfig> buildSourceConfigDeserializer() {
-		return new UnionDeserializer.Builder<SourceConfig, Kind, Object>(SourceConfig::new, false)
-				.addMember(Kind.Filter, SourceFilter._DESERIALIZER)
-				.addMember(Kind.Fetch, JsonpDeserializer.booleanDeserializer()).build();
-	}
-
-	public static final JsonpDeserializer<SourceConfig> _DESERIALIZER = JsonpDeserializer
-			.lazy(SourceConfig::buildSourceConfigDeserializer);
+    public static final JsonpDeserializer<SourceConfig> _DESERIALIZER = JsonpDeserializer
+        .lazy(() -> JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT,
+			JsonParser.Event.START_ARRAY,
+            JsonParser.Event.VALUE_TRUE, JsonParser.Event.VALUE_FALSE), (parser, mapper, event) -> {
+            return switch (event) {
+                case VALUE_TRUE -> SourceConfig.of(b -> b.fetch(true));
+                case VALUE_FALSE -> SourceConfig.of(b -> b.fetch(false));
+                case START_ARRAY -> {
+                    List<String> includes = JsonpDeserializer
+                        .arrayDeserializer(JsonpDeserializer.stringDeserializer())
+                        .deserialize(parser, mapper, event);
+                    yield SourceConfig.of(b -> b.filter(f -> f.includes(includes)));
+                }
+                case START_OBJECT -> {
+                    SourceFilter filter = SourceFilter._DESERIALIZER.deserialize(parser, mapper, event);
+                    yield SourceConfig.of(b -> b.filter(filter));
+                }
+                default -> null;
+            };
+        }));
 }
