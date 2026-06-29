@@ -46,6 +46,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 import java.io.StringReader;
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * Test issues related to the API specifications.
@@ -53,6 +55,28 @@ import java.io.StringReader;
  * Depending on the feedback provided, this may involve either loading a JSON file or sending requests to an ES server.
  */
 public class SpecIssuesTest extends ModelTestCase {
+
+    @Test
+    public void i1245_sourceAsArray() {
+        // "_source" also accepts an array of field names as a shortcut for SourceFilter.includes
+        SearchRequest array = fromJson("{\"_source\":[\"date\",\"distributor\"]}", SearchRequest.class);
+        assertTrue(array.source().isFilter());
+        assertEquals(Arrays.asList("date", "distributor"), array.source().filter().includes());
+
+        // The object form still works, with all SourceFilter fields set
+        SearchRequest object = fromJson(
+            "{\"_source\":{\"includes\":[\"date\",\"distributor\"],\"excludes\":[\"secret\"],\"exclude_vectors\":true}}",
+            SearchRequest.class);
+        assertTrue(object.source().isFilter());
+        assertEquals(Arrays.asList("date", "distributor"), object.source().filter().includes());
+        assertEquals(Collections.singletonList("secret"), object.source().filter().excludes());
+        assertTrue(object.source().filter().excludeVectors());
+
+        // The boolean form still works
+        SearchRequest bool = fromJson("{\"_source\":false}", SearchRequest.class);
+        assertTrue(bool.source().isFetch());
+        assertFalse(bool.source().fetch());
+    }
 
     @Test
     public void i0328_charFilter() throws Exception {
