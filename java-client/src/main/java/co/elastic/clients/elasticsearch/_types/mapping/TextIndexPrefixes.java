@@ -26,13 +26,13 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -59,16 +59,18 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class TextIndexPrefixes implements JsonpSerializable {
-	private final int maxChars;
+	@Nullable
+	private final Integer maxChars;
 
-	private final int minChars;
+	@Nullable
+	private final Integer minChars;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private TextIndexPrefixes(Builder builder) {
 
-		this.maxChars = ApiTypeHelper.requireNonNull(builder.maxChars, this, "maxChars", 0);
-		this.minChars = ApiTypeHelper.requireNonNull(builder.minChars, this, "minChars", 0);
+		this.maxChars = builder.maxChars;
+		this.minChars = builder.minChars;
 
 	}
 
@@ -77,16 +79,18 @@ public class TextIndexPrefixes implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code max_chars}
+	 * API name: {@code max_chars}
 	 */
-	public final int maxChars() {
+	@Nullable
+	public final Integer maxChars() {
 		return this.maxChars;
 	}
 
 	/**
-	 * Required - API name: {@code min_chars}
+	 * API name: {@code min_chars}
 	 */
-	public final int minChars() {
+	@Nullable
+	public final Integer minChars() {
 		return this.minChars;
 	}
 
@@ -101,11 +105,16 @@ public class TextIndexPrefixes implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("max_chars");
-		generator.write(this.maxChars);
+		if (this.maxChars != null) {
+			generator.writeKey("max_chars");
+			generator.write(this.maxChars);
 
-		generator.writeKey("min_chars");
-		generator.write(this.minChars);
+		}
+		if (this.minChars != null) {
+			generator.writeKey("min_chars");
+			generator.write(this.minChars);
+
+		}
 
 	}
 
@@ -121,8 +130,10 @@ public class TextIndexPrefixes implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TextIndexPrefixes> {
+		@Nullable
 		private Integer maxChars;
 
+		@Nullable
 		private Integer minChars;
 
 		public Builder() {
@@ -133,17 +144,17 @@ public class TextIndexPrefixes implements JsonpSerializable {
 
 		}
 		/**
-		 * Required - API name: {@code max_chars}
+		 * API name: {@code max_chars}
 		 */
-		public final Builder maxChars(int value) {
+		public final Builder maxChars(@Nullable Integer value) {
 			this.maxChars = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code min_chars}
+		 * API name: {@code min_chars}
 		 */
-		public final Builder minChars(int value) {
+		public final Builder minChars(@Nullable Integer value) {
 			this.minChars = value;
 			return this;
 		}
