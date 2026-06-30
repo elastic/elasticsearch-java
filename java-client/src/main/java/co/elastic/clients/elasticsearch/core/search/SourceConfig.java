@@ -186,20 +186,23 @@ public class SourceConfig implements TaggedUnion<SourceConfig.Kind, Object>, Jso
 	public static final JsonpDeserializer<SourceConfig> _DESERIALIZER = JsonpDeserializer
 			.lazy(() -> JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT, JsonParser.Event.START_ARRAY,
 					JsonParser.Event.VALUE_TRUE, JsonParser.Event.VALUE_FALSE), (parser, mapper, event) -> {
-						return switch (event) {
-							case VALUE_TRUE -> SourceConfig.of(b -> b.fetch(true));
-							case VALUE_FALSE -> SourceConfig.of(b -> b.fetch(false));
-							case START_ARRAY -> {
-								List<String> includes = JsonpDeserializer
-										.arrayDeserializer(JsonpDeserializer.stringDeserializer())
-										.deserialize(parser, mapper, event);
-								yield SourceConfig.of(b -> b.filter(f -> f.includes(includes)));
-							}
-							case START_OBJECT -> {
-								SourceFilter filter = SourceFilter._DESERIALIZER.deserialize(parser, mapper, event);
-								yield SourceConfig.of(b -> b.filter(filter));
-							}
-							default -> null;
-						};
-					}));
+				switch (event) {
+					case VALUE_TRUE :
+						return SourceConfig.of(b -> b.fetch(true));
+					case VALUE_FALSE :
+						return SourceConfig.of(b -> b.fetch(false));
+					case START_ARRAY : {
+						List<String> includes = JsonpDeserializer
+							.arrayDeserializer(JsonpDeserializer.stringDeserializer())
+							.deserialize(parser, mapper, event);
+						return SourceConfig.of(b -> b.filter(f -> f.includes(includes)));
+					}
+					case START_OBJECT : {
+						SourceFilter filter = SourceFilter._DESERIALIZER.deserialize(parser, mapper, event);
+						return SourceConfig.of(b -> b.filter(filter));
+					}
+					default :
+						return null;
+				}
+			}));
 }
