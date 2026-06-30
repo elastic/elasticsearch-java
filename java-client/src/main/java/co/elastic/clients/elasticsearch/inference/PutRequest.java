@@ -171,7 +171,9 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * Specifies the amount of time to wait for the inference endpoint to be
-	 * created.
+	 * created. The default depends on the task type: 120s for
+	 * <code>completion</code> and <code>chat_completion</code>, and 30s for all
+	 * other task types.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -244,7 +246,9 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * Specifies the amount of time to wait for the inference endpoint to be
-		 * created.
+		 * created. The default depends on the task type: 120s for
+		 * <code>completion</code> and <code>chat_completion</code>, and 30s for all
+		 * other task types.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -255,7 +259,9 @@ public class PutRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * Specifies the amount of time to wait for the inference endpoint to be
-		 * created.
+		 * created. The default depends on the task type: 120s for
+		 * <code>completion</code> and <code>chat_completion</code>, and 30s for all
+		 * other task types.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
