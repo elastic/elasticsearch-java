@@ -134,7 +134,7 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For OAuth 2.0 authentication using the client credentials grant flow. The
+	 * For OAuth 2.0 authorization using the client credentials grant flow. The
 	 * application ID that's assigned to your app.
 	 * <p>
 	 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
@@ -149,7 +149,7 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For OAuth 2.0 authentication using the client credentials grant flow. The
+	 * For OAuth 2.0 authorization using the client credentials grant flow. The
 	 * application secret that you created in the Microsoft app registration portal
 	 * for your app.
 	 * <p>
@@ -221,7 +221,7 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For OAuth 2.0 authentication using the client credentials grant flow. The
+	 * For OAuth 2.0 authorization using the client credentials grant flow. The
 	 * resource identifier (application ID URI) of the resource you want, suffixed
 	 * with .default For example:
 	 * 
@@ -243,7 +243,7 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * For OAuth 2.0 authentication using the client credentials grant flow. The
+	 * For OAuth 2.0 authorization using the client credentials grant flow. The
 	 * directory tenant the application plans to operate against.
 	 * <p>
 	 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
@@ -403,7 +403,7 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * For OAuth 2.0 authentication using the client credentials grant flow. The
+		 * For OAuth 2.0 authorization using the client credentials grant flow. The
 		 * application ID that's assigned to your app.
 		 * <p>
 		 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
@@ -418,7 +418,7 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * For OAuth 2.0 authentication using the client credentials grant flow. The
+		 * For OAuth 2.0 authorization using the client credentials grant flow. The
 		 * application secret that you created in the Microsoft app registration portal
 		 * for your app.
 		 * <p>
@@ -506,7 +506,7 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * For OAuth 2.0 authentication using the client credentials grant flow. The
+		 * For OAuth 2.0 authorization using the client credentials grant flow. The
 		 * resource identifier (application ID URI) of the resource you want, suffixed
 		 * with .default For example:
 		 * 
@@ -531,7 +531,7 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * For OAuth 2.0 authentication using the client credentials grant flow. The
+		 * For OAuth 2.0 authorization using the client credentials grant flow. The
 		 * resource identifier (application ID URI) of the resource you want, suffixed
 		 * with .default For example:
 		 * 
@@ -556,7 +556,7 @@ public class AzureOpenAIServiceSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * For OAuth 2.0 authentication using the client credentials grant flow. The
+		 * For OAuth 2.0 authorization using the client credentials grant flow. The
 		 * directory tenant the application plans to operate against.
 		 * <p>
 		 * IMPORTANT: To configure OAuth 2.0, you must specify client_id, scopes,
