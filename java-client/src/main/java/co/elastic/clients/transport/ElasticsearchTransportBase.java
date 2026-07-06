@@ -32,6 +32,7 @@ import co.elastic.clients.transport.endpoints.TextResponse;
 import co.elastic.clients.transport.endpoints.TextEndpoint;
 import co.elastic.clients.transport.http.HeaderMap;
 import co.elastic.clients.transport.http.RepeatableBodyResponse;
+import co.elastic.clients.transport.http.RetryingHttpClient;
 import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.transport.instrumentation.Instrumentation;
 import co.elastic.clients.transport.instrumentation.NoopInstrumentation;
@@ -80,6 +81,9 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
     }
 
     protected final TransportHttpClient httpClient;
+    // Same as httpClient if no retry policy, will be an instance of RetryingHttpClient in case
+    // a retry policy has been configured
+    private final TransportHttpClient wrappingHttpClient;
     protected final Instrumentation instrumentation;
     protected final JsonpMapper mapper;
     protected final TransportOptions transportOptions;
@@ -98,6 +102,13 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         this.mapper = jsonpMapper;
         this.httpClient = httpClient;
         this.transportOptions = httpClient.createOptions(options);
+
+        RetryConfig retryConfig = this.transportOptions.retryConfig();
+        if (retryConfig != null && retryConfig.backoffPolicy() != BackoffPolicy.noBackoff()) {
+            this.wrappingHttpClient = new RetryingHttpClient(httpClient, retryConfig);
+        } else {
+            this.wrappingHttpClient = httpClient;
+        }
 
         // If no instrumentation is provided, fallback to OpenTelemetry and ultimately noop
         if (instrumentation == null) {
@@ -120,7 +131,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
 
     @Override
     public void close() throws IOException {
-        httpClient.close();
+        wrappingHttpClient.close();
     }
 
     @Override
@@ -150,7 +161,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
                 TransportHttpClient.Request req = prepareTransportRequest(request, endpoint);
                 ctx.beforeSendingHttpRequest(req, options);
 
-                TransportHttpClient.Response resp = httpClient.performRequest(endpoint.id(), null, req, opts);
+                TransportHttpClient.Response resp = wrappingHttpClient.performRequest(endpoint.id(), null, req, opts);
                 ctx.afterReceivingHttpResponse(resp);
 
                 ResponseT apiResponse = getApiResponse(resp, endpoint);
@@ -189,7 +200,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         // Propagate required property checks to the thread that will decode the response
         boolean disableRequiredChecks = ApiTypeHelper.requiredPropertiesCheckDisabled();
 
-        CompletableFuture<TransportHttpClient.Response> clientFuture = httpClient.performRequestAsync(
+        CompletableFuture<TransportHttpClient.Response> clientFuture = wrappingHttpClient.performRequestAsync(
             endpoint.id(), null, clientReq, opts
         );
 

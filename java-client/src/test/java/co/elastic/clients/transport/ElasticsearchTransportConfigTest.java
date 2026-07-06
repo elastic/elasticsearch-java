@@ -131,6 +131,35 @@ public class ElasticsearchTransportConfigTest extends Assertions {
     }
 
     @Test
+    public void retryConfigShortcut() {
+        // Top-level shortcut on the main builder
+        ElasticsearchClient client = ElasticsearchClient.of(b -> b
+            .host("http://example.com")
+            .retryConfig(r -> r
+                .backoffPolicy(BackoffPolicy.constantBackoff(50L, 3))
+                .retryableStatuses(429, 503))
+        );
+
+        RetryConfig cfg = client._transportOptions().retryConfig();
+        assertNotEquals(BackoffPolicy.noBackoff(), cfg.backoffPolicy());
+        assertEquals(BackoffPolicy.constantBackoff(50L, 3).toString(), cfg.backoffPolicy().toString());
+        assertEquals(java.util.Set.of(429, 503), cfg.retryableStatuses());
+    }
+
+    @Test
+    public void retryConfigShortcutComposesWithTransportOptions() {
+        // Mix the top-level shortcut with other transportOptions calls
+        ElasticsearchClient client = ElasticsearchClient.of(b -> b
+            .host("http://example.com")
+            .transportOptions(o -> o.keepResponseBodyOnException(true))
+            .retryConfig(r -> r.backoffPolicy(BackoffPolicy.constantBackoff(10L, 2)))
+        );
+
+        assertTrue(client._transportOptions().keepResponseBodyOnException());
+        assertNotEquals(BackoffPolicy.noBackoff(), client._transportOptions().retryConfig().backoffPolicy());
+    }
+
+    @Test
     public void checkDefaultConfig() throws Exception {
         ElasticsearchTransportConfig.Default config = new ElasticsearchTransportConfig.Builder()
             .host("http://example.com")

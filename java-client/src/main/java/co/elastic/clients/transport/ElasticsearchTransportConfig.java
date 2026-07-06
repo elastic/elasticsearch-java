@@ -30,6 +30,7 @@ import javax.net.ssl.SSLContext;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 public abstract class ElasticsearchTransportConfig {
@@ -324,6 +325,20 @@ public abstract class ElasticsearchTransportConfig {
             var builder = config.transportOptions == null ? new DefaultTransportOptions.Builder() : config.transportOptions.toBuilder();
             config.transportOptions = fn.apply(builder).build();
             return self();
+        }
+
+        /**
+         * Configure transport-level retries.
+         */
+        public BuilderT retryConfig(RetryConfig retryConfig) {
+            return transportOptions(o -> o.retryConfig(retryConfig));
+        }
+
+        /**
+         * Configure transport-level retries with a builder lambda.
+         */
+        public BuilderT retryConfig(Consumer<RetryConfig.Builder> fn) {
+            return transportOptions(o -> o.retryConfig(fn));
         }
 
         protected void checkNull(Object value, String name, String other) {
