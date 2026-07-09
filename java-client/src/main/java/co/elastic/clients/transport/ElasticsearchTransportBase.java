@@ -84,8 +84,11 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
     // Single retry wrapper, shared by every request that uses retries (whether configured on the client or per
     // request) and reading the effective RetryConfig from each call's TransportOptions. Created lazily on first
     // use, so clients that never use retries keep the exact same object graph as before and never allocate a
-    // retry scheduler. Guarded by `this` for creation.
+    // retry scheduler. Creation and close() are serialized on `this` so a wrapper can't be created after close
+    // and leak its scheduler.
     private volatile RetryingHttpClient retryingHttpClient;
+    // Guarded by `this`
+    private boolean closed;
     protected final Instrumentation instrumentation;
     protected final JsonpMapper mapper;
     protected final TransportOptions transportOptions;
@@ -128,7 +131,11 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
     public void close() throws IOException {
         // The retry wrapper, if it was ever created, owns the delegate and the retry scheduler, so closing it
         // also closes httpClient and shuts down the scheduler. Otherwise close httpClient directly.
-        RetryingHttpClient retrying = retryingHttpClient;
+        RetryingHttpClient retrying;
+        synchronized (this) {
+            closed = true;
+            retrying = retryingHttpClient;
+        }
         if (retrying != null) {
             retrying.close();
         } else {
@@ -157,6 +164,11 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         if (retryConfig == null || !retryConfig.isEnabled()) {
             return httpClient;
         }
+        // If the user supplied a client that already retries, don't wrap it a second time: both layers would
+        // read the same RetryConfig and multiply attempts.
+        if (httpClient instanceof RetryingHttpClient) {
+            return httpClient;
+        }
         return retryingHttpClient();
     }
 
@@ -164,6 +176,9 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         RetryingHttpClient client = retryingHttpClient;
         if (client == null) {
             synchronized (this) {
+                if (closed) {
+                    throw new IllegalStateException("Transport has been closed");
+                }
                 client = retryingHttpClient;
                 if (client == null) {
                     client = new RetryingHttpClient(httpClient);
