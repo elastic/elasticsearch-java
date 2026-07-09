@@ -144,6 +144,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         @Nullable TransportOptions options
     ) throws IOException {
         try (Instrumentation.Context ctx = instrumentation.newContext(request, endpoint)) {
+            // HTTP client span is parented to the logical Elasticsearch request span
             try (Instrumentation.ThreadScope ts = ctx.makeCurrent()) {
 
                 TransportOptions opts = options == null ? transportOptions : options;
@@ -173,10 +174,18 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         Instrumentation.Context ctx = instrumentation.newContext(request, endpoint);
 
         TransportOptions opts = options == null ? transportOptions : options;
-        TransportHttpClient.Request clientReq;
-        try (Instrumentation.ThreadScope ss = ctx.makeCurrent()) {
-            clientReq = prepareTransportRequest(request, endpoint);
+        // Propagate required property checks to the thread that will decode the response
+        boolean disableRequiredChecks = ApiTypeHelper.requiredPropertiesCheckDisabled();
+
+        CompletableFuture<TransportHttpClient.Response> clientFuture;
+        // HTTP client span is parented to the logical Elasticsearch request span
+        try (Instrumentation.ThreadScope ts = ctx.makeCurrent()) {
+            TransportHttpClient.Request clientReq = prepareTransportRequest(request, endpoint);
             ctx.beforeSendingHttpRequest(clientReq, options);
+
+            clientFuture = httpClient.performRequestAsync(
+                endpoint.id(), null, clientReq, opts
+            );
         } catch (Exception e) {
             // Terminate early
             ctx.recordException(e);
@@ -185,13 +194,6 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
             future.completeExceptionally(e);
             return future;
         }
-
-        // Propagate required property checks to the thread that will decode the response
-        boolean disableRequiredChecks = ApiTypeHelper.requiredPropertiesCheckDisabled();
-
-        CompletableFuture<TransportHttpClient.Response> clientFuture = httpClient.performRequestAsync(
-            endpoint.id(), null, clientReq, opts
-        );
 
         // Cancelling the result will cancel the upstream future created by the http client, allowing to
         // stop in-flight requests
