@@ -23,6 +23,7 @@ import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.http.HeaderMap;
 import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.transport.rest5_client.low_level.Cancellable;
+import co.elastic.clients.transport.rest5_client.low_level.ResponseException;
 import co.elastic.clients.transport.rest5_client.low_level.ResponseListener;
 import co.elastic.clients.transport.rest5_client.low_level.Rest5Client;
 import co.elastic.clients.util.BinaryData;
@@ -83,6 +84,15 @@ public class Rest5ClientHttpClient implements TransportHttpClient {
     @Override
     public Rest5ClientOptions createOptions(@Nullable TransportOptions options) {
         return Rest5ClientOptions.of(options);
+    }
+
+    @Nullable
+    @Override
+    public Integer responseStatusCode(Throwable exception) {
+        if (exception instanceof ResponseException) {
+            return ((ResponseException) exception).getResponse().getStatusCode();
+        }
+        return null;
     }
 
     @Override

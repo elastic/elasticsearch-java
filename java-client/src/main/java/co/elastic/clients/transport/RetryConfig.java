@@ -19,6 +19,7 @@
 
 package co.elastic.clients.transport;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Set;
@@ -27,17 +28,30 @@ import java.util.function.Consumer;
 /**
  * Configuration for transport-level retries. A request is retried when:
  * <ul>
- *   <li>it fails with an exception that matches one of {@link #retryableExceptions()}, or</li>
- *   <li>it returns a response whose status code is in {@link #retryableStatuses()}.</li>
+ *   <li>it results in a response — even one carried by an exception, such as the low-level clients'
+ *       {@code ResponseException} — whose status code is in {@link #retryableStatuses()}, or</li>
+ *   <li>it fails with an exception that matches one of {@link #retryableExceptions()}.</li>
  * </ul>
  * Either set may be empty to disable that retry route.
  * <p>
- * Delays and the maximum number of attempts are controlled by {@link #backoffPolicy()}.
+ * Delays and the maximum number of attempts are controlled by {@link #backoffPolicy()}, which must be set for
+ * retries to happen: retries are always opt-in.
  * <p>
  * <b>Scope:</b> retries reissue the same logical request to the underlying transport. Node selection is delegated
  * to that transport (e.g. {@code Rest5Client}, {@code RestClient}), which manages its own node-rotation and
  * dead-node tracking independently. Configuring retries here does not control which node a retried
- * request is sent to.
+ * request is sent to. Note that for some failures (e.g. 502/503/504 responses and connection errors) the
+ * underlying client already tries every configured node before reporting the failure, so the total number of
+ * attempts on the cluster can be up to {@code nodes × (retries + 1)}.
+ * <p>
+ * <b>Idempotency:</b> a retried request may have already been received and processed by the server (e.g. when the
+ * connection drops after the request was sent), giving at-least-once semantics. Most Elasticsearch APIs are
+ * idempotent, but retrying operations that are not (e.g. bulk indexing without user-provided document ids) can
+ * duplicate their effects. Choose {@link #retryableExceptions()} accordingly.
+ * <p>
+ * <b>Memory:</b> the request body stays referenced for the whole retry sequence, including backoff waits. With
+ * large requests (e.g. big bulks) and long backoffs, this pins the corresponding buffers in memory until the
+ * request completes or fails definitively.
  */
 public final class RetryConfig {
 
@@ -124,11 +138,19 @@ public final class RetryConfig {
     }
 
     public static final class Builder {
-        private BackoffPolicy backoffPolicy = BackoffPolicy.noBackoff();
+        // Null means "not set", which build() rejects: enabling retries requires an explicit backoff policy,
+        // and a config accidentally built without one must fail fast rather than silently never retry.
+        @Nullable
+        private BackoffPolicy backoffPolicy;
         private Set<Integer> retryableStatuses = DEFAULT_RETRYABLE_STATUSES;
         private Set<Class<? extends Throwable>> retryableExceptions = DEFAULT_RETRYABLE_EXCEPTIONS;
 
-        public Builder backoffPolicy(BackoffPolicy policy) {
+        /**
+         * Sets the backoff policy controlling delays and the maximum number of retry attempts. Required.
+         * Passing {@link BackoffPolicy#noBackoff()} (or {@code null}) explicitly disables retries, like
+         * {@link RetryConfig#disabled()}.
+         */
+        public Builder backoffPolicy(@Nullable BackoffPolicy policy) {
             this.backoffPolicy = policy == null ? BackoffPolicy.noBackoff() : policy;
             return this;
         }
@@ -159,6 +181,13 @@ public final class RetryConfig {
         }
 
         public RetryConfig build() {
+            if (backoffPolicy == null) {
+                throw new IllegalStateException(
+                    "A backoff policy is required to enable retries: set RetryConfig.Builder#backoffPolicy," +
+                        " e.g. BackoffPolicy.exponentialBackoff(). To explicitly disable retries, use" +
+                        " RetryConfig.disabled() or BackoffPolicy.noBackoff()."
+                );
+            }
             return new RetryConfig(this);
         }
     }

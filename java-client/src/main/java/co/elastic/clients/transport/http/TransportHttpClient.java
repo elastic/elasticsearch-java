@@ -51,6 +51,20 @@ public interface TransportHttpClient {
     }
 
     /**
+     * If the given exception carries an http response — like the low-level clients' {@code ResponseException},
+     * which reports non-2xx statuses as an exception rather than as a response — returns that response's status
+     * code, otherwise {@code null}.
+     * <p>
+     * This allows implementation-agnostic wrappers (e.g. {@link RetryingHttpClient}) to classify such failures
+     * by status code without knowing the underlying http library. Implementations should override this for
+     * their own response-carrying exception types.
+     */
+    @Nullable
+    default Integer responseStatusCode(Throwable exception) {
+        return null;
+    }
+
+    /**
      * Perform a blocking request.
      *
      * @param endpointId the endpoint identifier. Can be used to have specific strategies depending on the endpoint.

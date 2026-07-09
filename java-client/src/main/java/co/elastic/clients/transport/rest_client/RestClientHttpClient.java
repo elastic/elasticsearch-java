@@ -30,6 +30,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.util.EntityUtils;
 import org.elasticsearch.client.Cancellable;
+import org.elasticsearch.client.ResponseException;
 import org.elasticsearch.client.ResponseListener;
 import org.elasticsearch.client.RestClient;
 
@@ -82,6 +83,15 @@ public class RestClientHttpClient implements TransportHttpClient {
     @Override
     public RestClientOptions createOptions(@Nullable TransportOptions options) {
         return RestClientOptions.of(options);
+    }
+
+    @Nullable
+    @Override
+    public Integer responseStatusCode(Throwable exception) {
+        if (exception instanceof ResponseException) {
+            return ((ResponseException) exception).getResponse().getStatusLine().getStatusCode();
+        }
+        return null;
     }
 
     @Override

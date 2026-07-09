@@ -265,7 +265,7 @@ class RetryingHttpClientTest extends Assertions {
         HashSet<Integer> mutable = new HashSet<>();
         mutable.add(429);
         mutable.add(503);
-        RetryConfig cfg = RetryConfig.of(r -> r.retryableStatuses(mutable));
+        RetryConfig cfg = RetryConfig.of(r -> r.backoffPolicy(fixed(1L, 1)).retryableStatuses(mutable));
 
         // Mutating the original set after building must not affect the config.
         mutable.add(418);
@@ -274,6 +274,20 @@ class RetryingHttpClientTest extends Assertions {
         // The returned set itself must be immutable.
         assertThrows(UnsupportedOperationException.class,
             () -> cfg.retryableStatuses().add(999));
+    }
+
+    @Test
+    void retryConfigRequiresABackoffPolicy() {
+        // Customizing retry conditions without choosing a backoff policy must fail fast instead of silently
+        // building a config that never retries.
+        assertThrows(IllegalStateException.class,
+            () -> RetryConfig.of(r -> r.retryableStatuses(429, 503)));
+        assertThrows(IllegalStateException.class, () -> RetryConfig.builder().build());
+
+        // Explicitly choosing no backoff remains a valid way to build a disabled config (per-request opt-out).
+        RetryConfig disabled = RetryConfig.of(r -> r.backoffPolicy(BackoffPolicy.noBackoff()));
+        assertFalse(disabled.isEnabled());
+        assertFalse(RetryConfig.disabled().isEnabled());
     }
 
     @Test
@@ -455,6 +469,62 @@ class RetryingHttpClientTest extends Assertions {
         RetryConfig narrowCfg = RetryConfig.of(r -> r.backoffPolicy(fixed(1L, 1)).retryableExceptions(SocketException.class));
         assertTrue(client.isRetryableException(narrowCfg, new SocketException("io")));
         assertFalse(client.isRetryableException(narrowCfg, new IOException("plain io")));
+    }
+
+    /** An exception carrying an http status, like the low-level clients' ResponseException. */
+    static final class StatusException extends IOException {
+        final int status;
+        StatusException(int status) {
+            super("status " + status);
+            this.status = status;
+        }
+    }
+
+    /** A delegate that recognizes StatusException, like the real adapters recognize ResponseException. */
+    static class StatusAwareClient extends MockedClient {
+        @Override
+        public Integer responseStatusCode(Throwable exception) {
+            return exception instanceof StatusException ? ((StatusException) exception).status : null;
+        }
+    }
+
+    @Test
+    void failureClassifierUsesDelegateProvidedStatusOverExceptionType() {
+        RetryingHttpClient client = wrap(new StatusAwareClient());
+        RetryConfig cfg = RetryConfig.of(r -> r
+            .backoffPolicy(fixed(1L, 1))
+            .retryableStatuses(429, 503));
+
+        // Exceptions recognized by the delegate as carrying a response are classified by status code only:
+        // even though StatusException is an IOException (the default retryable exception), a non-retryable
+        // status must not be retried.
+        assertTrue(client.isRetryableFailure(cfg, new StatusException(503)));
+        assertFalse(client.isRetryableFailure(cfg, new StatusException(501)));
+        // Also when the status-carrying exception is wrapped
+        assertFalse(client.isRetryableFailure(cfg, new RuntimeException(new StatusException(501))));
+
+        // Ordinary exceptions don't carry a status code and are classified by type.
+        assertTrue(client.isRetryableFailure(cfg, new SocketException("io")));
+        assertFalse(client.isRetryableFailure(cfg, new IllegalArgumentException("bad")));
+    }
+
+    @Test
+    void asyncRetriesOnStatusCarryingException() throws Exception {
+        // End-to-end: a 503 surfacing as an exception is retried, then the request succeeds. Exception-based
+        // retries are disabled, so only the status extracted from the exception can trigger the retry.
+        MockedClient client = new StatusAwareClient();
+        client.andThrow(new StatusException(503)).andRespond(200);
+
+        RetryConfig cfg = RetryConfig.of(r -> r
+            .backoffPolicy(fixed(1L, 3))
+            .retryableExceptions(new HashSet<>()));
+
+        TransportHttpClient.Response resp = wrap(client)
+            .performRequestAsync("ep", null, REQ, opts(cfg))
+            .get(5, TimeUnit.SECONDS);
+
+        assertEquals(200, resp.statusCode());
+        assertEquals(2, client.calls.get());
     }
 
     @Test

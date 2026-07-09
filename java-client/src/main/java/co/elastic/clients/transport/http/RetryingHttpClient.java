@@ -50,8 +50,11 @@ import java.util.concurrent.atomic.AtomicInteger;
  * <p>
  * A request is retried when:
  * <ul>
- *   <li>the delegate fails with an exception matching {@link RetryConfig#retryableExceptions()}, or</li>
- *   <li>the delegate returns a response whose status code is in {@link RetryConfig#retryableStatuses()}.</li>
+ *   <li>the delegate returns a response — or fails with an exception that the delegate recognizes as carrying
+ *       a response, see {@link TransportHttpClient#responseStatusCode(Throwable)} — whose status code is in
+ *       {@link RetryConfig#retryableStatuses()}, or</li>
+ *   <li>the delegate fails with an exception matching {@link RetryConfig#retryableExceptions()}. Exceptions
+ *       carrying a response are always classified by their status code, never by exception type.</li>
  * </ul>
  * <p>
  * Notes:
@@ -61,13 +64,13 @@ import java.util.concurrent.atomic.AtomicInteger;
  *   <li>Retries reissue the same logical request to the {@code delegate}. Node selection (and any node-rotation /
  *       dead-node tracking) is the delegate's responsibility: this wrapper does not influence which node a retried
  *       request is sent to.</li>
- *   <li>The async path uses a {@link ScheduledExecutorService} to defer retries without blocking the calling thread
- *       pool. A single-thread daemon scheduler is created with this client and shut down by {@link #close()}. Its
- *       worker thread is started on the first actual retry and reaped once it has been idle longer than the largest
- *       backoff delay seen so far (then recreated on demand), so a client that isn't actively retrying holds no retry
- *       thread, while an in-progress retry sequence never reaps its worker between attempts. Users can supply their
- *       own scheduler via {@link #RetryingHttpClient(TransportHttpClient, ScheduledExecutorService)}, in which case
- *       its lifecycle (and idle behavior) is the user's responsibility.</li>
+ *   <li>When retries are enabled, blocking requests are executed through the delegate's asynchronous path, so
+ *       exception stack traces reflect the async machinery rather than the calling thread.</li>
+ *   <li>Backoff delays are scheduled on a {@link ScheduledExecutorService}. A single daemon-thread
+ *       scheduler is created with this client and shut down by {@link #close()}; its thread is started lazily on
+ *       the first retry and stopped while idle. A scheduler can also be supplied via
+ *       {@link #RetryingHttpClient(TransportHttpClient, ScheduledExecutorService)}, in which case its lifecycle is
+ *       the caller's responsibility.</li>
  * </ul>
  */
 public final class RetryingHttpClient implements TransportHttpClient {
@@ -77,19 +80,18 @@ public final class RetryingHttpClient implements TransportHttpClient {
     // Instance counter, to name the retry thread
     private static final AtomicInteger idCounter = new AtomicInteger();
 
-    // Margin added on top of a retry's backoff delay when sizing the worker's idle keep-alive, so the worker
-    // comfortably outlives the wait between two attempts. It also acts as the minimum idle window (for very short
-    // backoffs) and as the initial keep-alive before any retry is scheduled. See keepWorkerAliveFor.
-    private static final long IDLE_KEEP_ALIVE_MARGIN_MS = 1000L;
+    // Idle time (ms) after which the retry worker thread is stopped. During waits longer than this the worker
+    // wakes up once per interval, which is cheap; there is no need to track the backoff delays in use.
+    private static final long RETRY_SCHEDULER_KEEP_ALIVE_MS = 10_000L;
 
     private final TransportHttpClient delegate;
 
     // The scheduler used to defer retries. Its (single, daemon) worker thread is only started on the first
-    // scheduled retry and is reaped while idle (see defaultRetryScheduler / keepWorkerAliveFor), so a client
-    // that isn't actively retrying holds no retry thread.
+    // scheduled retry and is stopped while idle (see defaultRetryScheduler), so a client that isn't actively
+    // retrying holds no retry thread.
     private final ScheduledExecutorService retryScheduler;
-    // Same instance as retryScheduler when we created it ourselves, null for a user-supplied scheduler. Used to
-    // shut down and tune the idle keep-alive of a scheduler we own; we never reconfigure one we don't.
+    // Same instance as retryScheduler when we created it ourselves, null for a user-supplied scheduler, whose
+    // lifecycle is the caller's responsibility. Used to shut down a scheduler we own on close().
     @Nullable
     private final ScheduledThreadPoolExecutor managedScheduler;
 
@@ -115,6 +117,12 @@ public final class RetryingHttpClient implements TransportHttpClient {
         return delegate.createOptions(options);
     }
 
+    @Nullable
+    @Override
+    public Integer responseStatusCode(Throwable exception) {
+        return delegate.responseStatusCode(exception);
+    }
+
     @Override
     public Response performRequest(String endpointId, @Nullable Node node, Request request,
                                    TransportOptions options) throws IOException {
@@ -122,9 +130,13 @@ public final class RetryingHttpClient implements TransportHttpClient {
         if (!configOf(options).isEnabled()) {
             return delegate.performRequest(endpointId, node, request, options);
         }
+        CompletableFuture<Response> future = performRequestAsync(endpointId, node, request, options);
         try {
-            return performRequestAsync(endpointId, node, request, options).get();
+            return future.get();
         } catch (InterruptedException ie) {
+            // The caller has given up: stop the in-flight attempt and any pending retries, so they don't
+            // keep running (and holding the request body and a connection) with nobody waiting.
+            future.cancel(true);
             Thread.currentThread().interrupt();
             throw new RuntimeException("thread waiting for the response was interrupted", ie);
         } catch (ExecutionException ee) {
@@ -176,7 +188,7 @@ public final class RetryingHttpClient implements TransportHttpClient {
             // Classify the outcome
             Throwable cause = err != null ? unwrap(err) : null;
             boolean retryable = cause != null
-                ? isRetryableException(config, cause)
+                ? isRetryableFailure(config, cause)
                 : isRetryableStatus(config, resp);
 
             // Not retryable, or no retries left: complete with whatever we got
@@ -204,8 +216,6 @@ public final class RetryingHttpClient implements TransportHttpClient {
             }
 
             try {
-                // Make sure the worker survives this wait so the sequence doesn't churn its thread.
-                keepWorkerAliveFor(delayMs);
                 ScheduledFuture<?> scheduled = retryScheduler.schedule(
                     () -> attemptAsync(endpointId, node, request, options, config, backoffIter, result),
                     delayMs, TimeUnit.MILLISECONDS
@@ -227,6 +237,23 @@ public final class RetryingHttpClient implements TransportHttpClient {
                 managedScheduler.shutdownNow();
             }
         }
+    }
+
+    /**
+     * Decides whether a failed attempt is retryable. Failures that the delegate recognizes as carrying an http
+     * response (see {@link TransportHttpClient#responseStatusCode(Throwable)}) are classified by their status
+     * code only: the server did answer, so the exception type must not make an otherwise non-retryable status
+     * retryable. Other failures are classified by exception type.
+     */
+    boolean isRetryableFailure(RetryConfig config, Throwable err) {
+        Integer status = delegate.responseStatusCode(err);
+        if (status == null && err.getCause() != null) {
+            status = delegate.responseStatusCode(err.getCause());
+        }
+        if (status != null) {
+            return config.retryableStatuses().contains(status);
+        }
+        return isRetryableException(config, err);
     }
 
     boolean isRetryableException(RetryConfig config, Throwable err) {
@@ -278,32 +305,15 @@ public final class RetryingHttpClient implements TransportHttpClient {
             return t;
         });
         // Don't keep an idle worker parked between (potentially infrequent) retry sequences: the thread is started
-        // on the first scheduled retry, reaped once it sits idle, and recreated on demand. The idle window starts
-        // at the margin below and is grown to track the backoff in use (see keepWorkerAliveFor) so an active
-        // sequence never reaps its worker between attempts.
-        scheduler.setKeepAliveTime(IDLE_KEEP_ALIVE_MARGIN_MS, TimeUnit.MILLISECONDS);
+        // on the first scheduled retry, stopped once it has been idle for the keep-alive window, and recreated on
+        // demand. A pending scheduled retry always keeps the worker alive (the pool never stops its last worker
+        // while the queue is non-empty), so an in-progress sequence is never affected.
+        scheduler.setKeepAliveTime(RETRY_SCHEDULER_KEEP_ALIVE_MS, TimeUnit.MILLISECONDS);
         scheduler.allowCoreThreadTimeOut(true);
         // Cancelled retries (e.g. after request cancellation) are removed from the queue immediately so they
-        // don't keep the worker alive or delay its reaping.
+        // don't keep the worker alive or delay it being stopped.
         scheduler.setRemoveOnCancelPolicy(true);
         return scheduler;
-    }
-
-    /**
-     * Grows the managed scheduler's idle keep-alive so its single worker outlives the wait before the next attempt
-     * ({@code delayMs} plus a margin) and isn't reaped/recreated mid-sequence. We only ever increase it, so it ends
-     * up tracking the largest backoff delay seen; an idle scheduler then reaps its worker after that window. No-op
-     * for a user-supplied scheduler, which we never reconfigure.
-     */
-    private void keepWorkerAliveFor(long delayMs) {
-        ScheduledThreadPoolExecutor scheduler = managedScheduler;
-        if (scheduler == null || delayMs <= 0) {
-            return;
-        }
-        long desiredMs = delayMs + IDLE_KEEP_ALIVE_MARGIN_MS;
-        if (desiredMs > 0 && scheduler.getKeepAliveTime(TimeUnit.MILLISECONDS) < desiredMs) {
-            scheduler.setKeepAliveTime(desiredMs, TimeUnit.MILLISECONDS);
-        }
     }
 
     /**

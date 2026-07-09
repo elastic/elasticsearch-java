@@ -23,6 +23,7 @@ import co.elastic.clients.elasticsearch.core.CountRequest;
 import co.elastic.clients.elasticsearch.core.CountResponse;
 import co.elastic.clients.testkit.MockHttpClient;
 import co.elastic.clients.testkit.ModelTestCase;
+import co.elastic.clients.transport.http.RetryingHttpClient;
 import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.util.BinaryData;
 import org.junit.jupiter.api.Test;
@@ -172,6 +173,22 @@ public class ElasticsearchTransportRetryTest extends ModelTestCase {
         // No further attempts after cancellation.
         Thread.sleep(100);
         assertEquals(1, calls.get(), "delegate must not be called again after cancellation");
+    }
+
+    @Test
+    public void alreadyRetryingHttpClientIsNotWrappedAgain() throws IOException {
+        // If the http client handed to the transport already retries, the transport must not add a second
+        // retry layer: both layers would read the same RetryConfig and multiply attempts.
+        ScriptedHttpClient http = scriptedClient(100);
+        ElasticsearchTransportBase transport =
+            new ElasticsearchTransportBase(new RetryingHttpClient(http), retryOptions(), mapper) {};
+
+        assertThrows(TransportException.class,
+            () -> transport.performRequest(CountRequest.of(c -> c), CountRequest._ENDPOINT, null));
+
+        // FAST allows 3 retries: 4 attempts with a single retry layer, 16 with an accidental double layer.
+        assertEquals(4, http.calls.get());
+        transport.close();
     }
 
     @Test
