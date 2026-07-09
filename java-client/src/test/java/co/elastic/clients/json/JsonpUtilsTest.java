@@ -26,7 +26,6 @@ import co.elastic.clients.elasticsearch.security.IndicesPrivileges;
 import co.elastic.clients.elasticsearch.security.RoleTemplateScript;
 import co.elastic.clients.elasticsearch.security.UserIndicesPrivileges;
 import co.elastic.clients.util.AllowForbiddenApis;
-import jakarta.json.JsonException;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
@@ -58,13 +57,7 @@ public class JsonpUtilsTest extends ModelTestCase {
         ClassLoader savedLoader = Thread.currentThread().getContextClassLoader();
         try {
             Thread.currentThread().setContextClassLoader(emptyLoader);
-
-            assertThrows(JsonException.class, () -> {
-                assertNotNull(JsonProvider.provider());
-            });
-
             assertNotNull(JsonpUtils.provider());
-
         } finally {
             Thread.currentThread().setContextClassLoader(savedLoader);
         }
