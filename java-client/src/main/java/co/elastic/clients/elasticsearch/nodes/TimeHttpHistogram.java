@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -62,7 +63,13 @@ public class TimeHttpHistogram implements JsonpSerializable {
 	private final long count;
 
 	@Nullable
+	private final Time ge;
+
+	@Nullable
 	private final Long geMillis;
+
+	@Nullable
+	private final Time lt;
 
 	@Nullable
 	private final Long ltMillis;
@@ -72,7 +79,9 @@ public class TimeHttpHistogram implements JsonpSerializable {
 	private TimeHttpHistogram(Builder builder) {
 
 		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
+		this.ge = builder.ge;
 		this.geMillis = builder.geMillis;
+		this.lt = builder.lt;
 		this.ltMillis = builder.ltMillis;
 
 	}
@@ -89,11 +98,27 @@ public class TimeHttpHistogram implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code ge}
+	 */
+	@Nullable
+	public final Time ge() {
+		return this.ge;
+	}
+
+	/**
 	 * API name: {@code ge_millis}
 	 */
 	@Nullable
 	public final Long geMillis() {
 		return this.geMillis;
+	}
+
+	/**
+	 * API name: {@code lt}
+	 */
+	@Nullable
+	public final Time lt() {
+		return this.lt;
 	}
 
 	/**
@@ -118,9 +143,19 @@ public class TimeHttpHistogram implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
+		if (this.ge != null) {
+			generator.writeKey("ge");
+			this.ge.serialize(generator, mapper);
+
+		}
 		if (this.geMillis != null) {
 			generator.writeKey("ge_millis");
 			generator.write(this.geMillis);
+
+		}
+		if (this.lt != null) {
+			generator.writeKey("lt");
+			this.lt.serialize(generator, mapper);
 
 		}
 		if (this.ltMillis != null) {
@@ -146,7 +181,13 @@ public class TimeHttpHistogram implements JsonpSerializable {
 		private Long count;
 
 		@Nullable
+		private Time ge;
+
+		@Nullable
 		private Long geMillis;
+
+		@Nullable
+		private Time lt;
 
 		@Nullable
 		private Long ltMillis;
@@ -155,7 +196,9 @@ public class TimeHttpHistogram implements JsonpSerializable {
 		}
 		private Builder(TimeHttpHistogram instance) {
 			this.count = instance.count;
+			this.ge = instance.ge;
 			this.geMillis = instance.geMillis;
+			this.lt = instance.lt;
 			this.ltMillis = instance.ltMillis;
 
 		}
@@ -168,11 +211,41 @@ public class TimeHttpHistogram implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code ge}
+		 */
+		public final Builder ge(@Nullable Time value) {
+			this.ge = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code ge}
+		 */
+		public final Builder ge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.ge(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code ge_millis}
 		 */
 		public final Builder geMillis(@Nullable Long value) {
 			this.geMillis = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code lt}
+		 */
+		public final Builder lt(@Nullable Time value) {
+			this.lt = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code lt}
+		 */
+		public final Builder lt(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.lt(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -218,7 +291,9 @@ public class TimeHttpHistogram implements JsonpSerializable {
 	protected static void setupTimeHttpHistogramDeserializer(ObjectDeserializer<TimeHttpHistogram.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::ge, Time._DESERIALIZER, "ge");
 		op.add(Builder::geMillis, JsonpDeserializer.longDeserializer(), "ge_millis");
+		op.add(Builder::lt, Time._DESERIALIZER, "lt");
 		op.add(Builder::ltMillis, JsonpDeserializer.longDeserializer(), "lt_millis");
 
 	}

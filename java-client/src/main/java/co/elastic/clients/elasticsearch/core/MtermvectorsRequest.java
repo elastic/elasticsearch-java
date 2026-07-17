@@ -82,6 +82,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class MtermvectorsRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final String slice;
+
 	private final List<MultiTermVectorsOperation> docs;
 
 	@Nullable
@@ -124,6 +127,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 
 	private MtermvectorsRequest(Builder builder) {
 
+		this.slice = builder.slice;
 		this.docs = ApiTypeHelper.unmodifiable(builder.docs);
 		this.fieldStatistics = builder.fieldStatistics;
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
@@ -143,6 +147,20 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 
 	public static MtermvectorsRequest of(Function<Builder, ObjectBuilder<MtermvectorsRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String slice() {
+		return this.slice;
 	}
 
 	/**
@@ -249,7 +267,9 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * A custom value used to route operations to a specific shard.
+	 * A custom value used to route operations to a specific shard. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -331,6 +351,9 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 			implements
 				ObjectBuilder<MtermvectorsRequest> {
 		@Nullable
+		private String slice;
+
+		@Nullable
 		private List<MultiTermVectorsOperation> docs;
 
 		@Nullable
@@ -375,6 +398,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		public Builder() {
 		}
 		private Builder(MtermvectorsRequest instance) {
+			this.slice = instance.slice;
 			this.docs = instance.docs;
 			this.fieldStatistics = instance.fieldStatistics;
 			this.fields = instance.fields;
@@ -391,6 +415,20 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 			this.versionType = instance.versionType;
 
 		}
+		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder slice(@Nullable String value) {
+			this.slice = value;
+			return this;
+		}
+
 		/**
 		 * An array of existing or artificial documents.
 		 * <p>
@@ -556,7 +594,9 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -568,7 +608,9 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -708,18 +750,8 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (ApiTypeHelper.isDefined(request.routing)) {
-					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
-							.collect(Collectors.joining(",")));
-				}
 				if (request.realtime != null) {
 					params.put("realtime", String.valueOf(request.realtime));
-				}
-				if (request.termStatistics != null) {
-					params.put("term_statistics", String.valueOf(request.termStatistics));
-				}
-				if (request.offsets != null) {
-					params.put("offsets", String.valueOf(request.offsets));
 				}
 				if (request.payloads != null) {
 					params.put("payloads", String.valueOf(request.payloads));
@@ -736,12 +768,25 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 				if (request.fieldStatistics != null) {
 					params.put("field_statistics", String.valueOf(request.fieldStatistics));
 				}
+				if (request.version != null) {
+					params.put("version", String.valueOf(request.version));
+				}
+				if (request.slice != null) {
+					params.put("_slice", request.slice);
+				}
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
+				if (request.termStatistics != null) {
+					params.put("term_statistics", String.valueOf(request.termStatistics));
+				}
+				if (request.offsets != null) {
+					params.put("offsets", String.valueOf(request.offsets));
+				}
 				if (ApiTypeHelper.isDefined(request.fields)) {
 					params.put("fields", request.fields.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
-				}
-				if (request.version != null) {
-					params.put("version", String.valueOf(request.version));
 				}
 				return params;
 

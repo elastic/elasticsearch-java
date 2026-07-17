@@ -66,6 +66,9 @@ import javax.annotation.Nullable;
 public class Stats implements JsonpSerializable {
 	private final Map<String, AdaptiveSelection> adaptiveSelection;
 
+	@Nullable
+	private final Allocations allocations;
+
 	private final Map<String, Breaker> breakers;
 
 	@Nullable
@@ -123,11 +126,14 @@ public class Stats implements JsonpSerializable {
 	@Nullable
 	private final ShardStats indices;
 
+	private final Map<String, RepositorySnapshotStats> repositories;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private Stats(Builder builder) {
 
 		this.adaptiveSelection = ApiTypeHelper.unmodifiable(builder.adaptiveSelection);
+		this.allocations = builder.allocations;
 		this.breakers = ApiTypeHelper.unmodifiable(builder.breakers);
 		this.fs = builder.fs;
 		this.host = builder.host;
@@ -149,6 +155,7 @@ public class Stats implements JsonpSerializable {
 		this.discovery = builder.discovery;
 		this.indexingPressure = builder.indexingPressure;
 		this.indices = builder.indices;
+		this.repositories = ApiTypeHelper.unmodifiable(builder.repositories);
 
 	}
 
@@ -163,6 +170,16 @@ public class Stats implements JsonpSerializable {
 	 */
 	public final Map<String, AdaptiveSelection> adaptiveSelection() {
 		return this.adaptiveSelection;
+	}
+
+	/**
+	 * Statistics about shard allocations on the node.
+	 * <p>
+	 * API name: {@code allocations}
+	 */
+	@Nullable
+	public final Allocations allocations() {
+		return this.allocations;
 	}
 
 	/**
@@ -370,6 +387,16 @@ public class Stats implements JsonpSerializable {
 	}
 
 	/**
+	 * Statistics about snapshot activity for the node's registered repositories,
+	 * keyed by repository name.
+	 * <p>
+	 * API name: {@code repositories}
+	 */
+	public final Map<String, RepositorySnapshotStats> repositories() {
+		return this.repositories;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -389,6 +416,11 @@ public class Stats implements JsonpSerializable {
 
 			}
 			generator.writeEnd();
+
+		}
+		if (this.allocations != null) {
+			generator.writeKey("allocations");
+			this.allocations.serialize(generator, mapper);
 
 		}
 		if (ApiTypeHelper.isDefined(this.breakers)) {
@@ -536,6 +568,17 @@ public class Stats implements JsonpSerializable {
 			this.indices.serialize(generator, mapper);
 
 		}
+		if (ApiTypeHelper.isDefined(this.repositories)) {
+			generator.writeKey("repositories");
+			generator.writeStartObject();
+			for (Map.Entry<String, RepositorySnapshotStats> item0 : this.repositories.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -553,6 +596,9 @@ public class Stats implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Stats> {
 		@Nullable
 		private Map<String, AdaptiveSelection> adaptiveSelection;
+
+		@Nullable
+		private Allocations allocations;
 
 		@Nullable
 		private Map<String, Breaker> breakers;
@@ -617,10 +663,14 @@ public class Stats implements JsonpSerializable {
 		@Nullable
 		private ShardStats indices;
 
+		@Nullable
+		private Map<String, RepositorySnapshotStats> repositories;
+
 		public Builder() {
 		}
 		private Builder(Stats instance) {
 			this.adaptiveSelection = instance.adaptiveSelection;
+			this.allocations = instance.allocations;
 			this.breakers = instance.breakers;
 			this.fs = instance.fs;
 			this.host = instance.host;
@@ -642,6 +692,7 @@ public class Stats implements JsonpSerializable {
 			this.discovery = instance.discovery;
 			this.indexingPressure = instance.indexingPressure;
 			this.indices = instance.indices;
+			this.repositories = instance.repositories;
 
 		}
 		/**
@@ -678,6 +729,25 @@ public class Stats implements JsonpSerializable {
 		public final Builder adaptiveSelection(String key,
 				Function<AdaptiveSelection.Builder, ObjectBuilder<AdaptiveSelection>> fn) {
 			return adaptiveSelection(key, fn.apply(new AdaptiveSelection.Builder()).build());
+		}
+
+		/**
+		 * Statistics about shard allocations on the node.
+		 * <p>
+		 * API name: {@code allocations}
+		 */
+		public final Builder allocations(@Nullable Allocations value) {
+			this.allocations = value;
+			return this;
+		}
+
+		/**
+		 * Statistics about shard allocations on the node.
+		 * <p>
+		 * API name: {@code allocations}
+		 */
+		public final Builder allocations(Function<Allocations.Builder, ObjectBuilder<Allocations>> fn) {
+			return this.allocations(fn.apply(new Allocations.Builder()).build());
 		}
 
 		/**
@@ -1097,6 +1167,45 @@ public class Stats implements JsonpSerializable {
 			return this.indices(fn.apply(new ShardStats.Builder()).build());
 		}
 
+		/**
+		 * Statistics about snapshot activity for the node's registered repositories,
+		 * keyed by repository name.
+		 * <p>
+		 * API name: {@code repositories}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>repositories</code>.
+		 */
+		public final Builder repositories(Map<String, RepositorySnapshotStats> map) {
+			this.repositories = _mapPutAll(this.repositories, map);
+			return this;
+		}
+
+		/**
+		 * Statistics about snapshot activity for the node's registered repositories,
+		 * keyed by repository name.
+		 * <p>
+		 * API name: {@code repositories}
+		 * <p>
+		 * Adds an entry to <code>repositories</code>.
+		 */
+		public final Builder repositories(String key, RepositorySnapshotStats value) {
+			this.repositories = _mapPut(this.repositories, key, value);
+			return this;
+		}
+
+		/**
+		 * Statistics about snapshot activity for the node's registered repositories,
+		 * keyed by repository name.
+		 * <p>
+		 * API name: {@code repositories}
+		 * <p>
+		 * Adds an entry to <code>repositories</code> using a builder lambda.
+		 */
+		public final Builder repositories(String key,
+				Function<RepositorySnapshotStats.Builder, ObjectBuilder<RepositorySnapshotStats>> fn) {
+			return repositories(key, fn.apply(new RepositorySnapshotStats.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -1133,6 +1242,7 @@ public class Stats implements JsonpSerializable {
 
 		op.add(Builder::adaptiveSelection, JsonpDeserializer.stringMapDeserializer(AdaptiveSelection._DESERIALIZER),
 				"adaptive_selection");
+		op.add(Builder::allocations, Allocations._DESERIALIZER, "allocations");
 		op.add(Builder::breakers, JsonpDeserializer.stringMapDeserializer(Breaker._DESERIALIZER), "breakers");
 		op.add(Builder::fs, FileSystem._DESERIALIZER, "fs");
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
@@ -1157,6 +1267,8 @@ public class Stats implements JsonpSerializable {
 		op.add(Builder::discovery, Discovery._DESERIALIZER, "discovery");
 		op.add(Builder::indexingPressure, IndexingPressure._DESERIALIZER, "indexing_pressure");
 		op.add(Builder::indices, ShardStats._DESERIALIZER, "indices");
+		op.add(Builder::repositories, JsonpDeserializer.stringMapDeserializer(RepositorySnapshotStats._DESERIALIZER),
+				"repositories");
 
 	}
 

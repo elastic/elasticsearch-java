@@ -92,6 +92,8 @@ public class IndexingStats implements JsonpSerializable {
 
 	private final long indexFailed;
 
+	private final long indexFailedDueToVersionConflict;
+
 	private final Map<String, IndexingStats> types;
 
 	@Nullable
@@ -122,6 +124,8 @@ public class IndexingStats implements JsonpSerializable {
 		this.indexTimeInMillis = ApiTypeHelper.requireNonNull(builder.indexTimeInMillis, this, "indexTimeInMillis", 0);
 		this.indexTotal = ApiTypeHelper.requireNonNull(builder.indexTotal, this, "indexTotal", 0);
 		this.indexFailed = ApiTypeHelper.requireNonNull(builder.indexFailed, this, "indexFailed", 0);
+		this.indexFailedDueToVersionConflict = ApiTypeHelper.requireNonNull(builder.indexFailedDueToVersionConflict,
+				this, "indexFailedDueToVersionConflict", 0);
 		this.types = ApiTypeHelper.unmodifiable(builder.types);
 		this.writeLoad = builder.writeLoad;
 		this.recentWriteLoad = builder.recentWriteLoad;
@@ -228,6 +232,13 @@ public class IndexingStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code index_failed_due_to_version_conflict}
+	 */
+	public final long indexFailedDueToVersionConflict() {
+		return this.indexFailedDueToVersionConflict;
+	}
+
+	/**
 	 * API name: {@code types}
 	 */
 	public final Map<String, IndexingStats> types() {
@@ -314,6 +325,9 @@ public class IndexingStats implements JsonpSerializable {
 		generator.writeKey("index_failed");
 		generator.write(this.indexFailed);
 
+		generator.writeKey("index_failed_due_to_version_conflict");
+		generator.write(this.indexFailedDueToVersionConflict);
+
 		if (ApiTypeHelper.isDefined(this.types)) {
 			generator.writeKey("types");
 			generator.writeStartObject();
@@ -384,6 +398,8 @@ public class IndexingStats implements JsonpSerializable {
 
 		private Long indexFailed;
 
+		private Long indexFailedDueToVersionConflict;
+
 		@Nullable
 		private Map<String, IndexingStats> types;
 
@@ -412,6 +428,7 @@ public class IndexingStats implements JsonpSerializable {
 			this.indexTimeInMillis = instance.indexTimeInMillis;
 			this.indexTotal = instance.indexTotal;
 			this.indexFailed = instance.indexFailed;
+			this.indexFailedDueToVersionConflict = instance.indexFailedDueToVersionConflict;
 			this.types = instance.types;
 			this.writeLoad = instance.writeLoad;
 			this.recentWriteLoad = instance.recentWriteLoad;
@@ -544,6 +561,14 @@ public class IndexingStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - API name: {@code index_failed_due_to_version_conflict}
+		 */
+		public final Builder indexFailedDueToVersionConflict(long value) {
+			this.indexFailedDueToVersionConflict = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code types}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>types</code>.
@@ -643,6 +668,8 @@ public class IndexingStats implements JsonpSerializable {
 		op.add(Builder::indexTimeInMillis, JsonpDeserializer.longDeserializer(), "index_time_in_millis");
 		op.add(Builder::indexTotal, JsonpDeserializer.longDeserializer(), "index_total");
 		op.add(Builder::indexFailed, JsonpDeserializer.longDeserializer(), "index_failed");
+		op.add(Builder::indexFailedDueToVersionConflict, JsonpDeserializer.longDeserializer(),
+				"index_failed_due_to_version_conflict");
 		op.add(Builder::types, JsonpDeserializer.stringMapDeserializer(IndexingStats._DESERIALIZER), "types");
 		op.add(Builder::writeLoad, JsonpDeserializer.doubleDeserializer(), "write_load");
 		op.add(Builder::recentWriteLoad, JsonpDeserializer.doubleDeserializer(), "recent_write_load");

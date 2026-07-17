@@ -88,6 +88,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class CountRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
+	private final String slice;
+
+	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -132,6 +135,8 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<String> routing;
 
+	private final List<String> stats;
+
 	@Nullable
 	private final Long terminateAfter;
 
@@ -139,6 +144,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 
 	private CountRequest(Builder builder) {
 
+		this.slice = builder.slice;
 		this.allowNoIndices = builder.allowNoIndices;
 		this.analyzeWildcard = builder.analyzeWildcard;
 		this.analyzer = builder.analyzer;
@@ -155,12 +161,27 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		this.q = builder.q;
 		this.query = builder.query;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
+		this.stats = ApiTypeHelper.unmodifiable(builder.stats);
 		this.terminateAfter = builder.terminateAfter;
 
 	}
 
 	public static CountRequest of(Function<Builder, ObjectBuilder<CountRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String slice() {
+		return this.slice;
 	}
 
 	/**
@@ -346,12 +367,24 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A custom value used to route operations to a specific shard.
+	 * A custom value used to route operations to a specific shard. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
 	public final List<String> routing() {
 		return this.routing;
+	}
+
+	/**
+	 * Specific <code>tag</code> of the request for logging and statistical
+	 * purposes.
+	 * <p>
+	 * API name: {@code stats}
+	 */
+	public final List<String> stats() {
+		return this.stats;
 	}
 
 	/**
@@ -403,6 +436,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<CountRequest> {
 		@Nullable
+		private String slice;
+
+		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -451,11 +487,15 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		private List<String> routing;
 
 		@Nullable
+		private List<String> stats;
+
+		@Nullable
 		private Long terminateAfter;
 
 		public Builder() {
 		}
 		private Builder(CountRequest instance) {
+			this.slice = instance.slice;
 			this.allowNoIndices = instance.allowNoIndices;
 			this.analyzeWildcard = instance.analyzeWildcard;
 			this.analyzer = instance.analyzer;
@@ -472,9 +512,24 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 			this.q = instance.q;
 			this.query = instance.query;
 			this.routing = instance.routing;
+			this.stats = instance.stats;
 			this.terminateAfter = instance.terminateAfter;
 
 		}
+		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder slice(@Nullable String value) {
+			this.slice = value;
+			return this;
+		}
+
 		/**
 		 * A setting that does two separate checks on the index expression. If
 		 * <code>false</code>, the request returns an error (1) if any wildcard
@@ -714,7 +769,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -726,7 +783,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -734,6 +793,32 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder routing(String value, String... values) {
 			this.routing = _listAdd(this.routing, value, values);
+			return this;
+		}
+
+		/**
+		 * Specific <code>tag</code> of the request for logging and statistical
+		 * purposes.
+		 * <p>
+		 * API name: {@code stats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stats</code>.
+		 */
+		public final Builder stats(List<String> list) {
+			this.stats = _listAddAll(this.stats, list);
+			return this;
+		}
+
+		/**
+		 * Specific <code>tag</code> of the request for logging and statistical
+		 * purposes.
+		 * <p>
+		 * API name: {@code stats}
+		 * <p>
+		 * Adds one or more values to <code>stats</code>.
+		 */
+		public final Builder stats(String value, String... values) {
+			this.stats = _listAdd(this.stats, value, values);
 			return this;
 		}
 
@@ -877,6 +962,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 				if (request.minScore != null) {
 					params.put("min_score", String.valueOf(request.minScore));
 				}
+				if (request.slice != null) {
+					params.put("_slice", request.slice);
+				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
 					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
@@ -889,6 +977,10 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (ApiTypeHelper.isDefined(request.stats)) {
+					params.put("stats", request.stats.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));

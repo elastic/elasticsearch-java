@@ -140,6 +140,9 @@ import javax.annotation.Nullable;
 
 public class GetRequest extends RequestBase {
 	@Nullable
+	private final String slice;
+
+	@Nullable
 	private final SourceConfigParam source;
 
 	@Nullable
@@ -179,6 +182,7 @@ public class GetRequest extends RequestBase {
 
 	private GetRequest(Builder builder) {
 
+		this.slice = builder.slice;
 		this.source = builder.source;
 		this.sourceExcludeVectors = builder.sourceExcludeVectors;
 		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
@@ -198,6 +202,20 @@ public class GetRequest extends RequestBase {
 
 	public static GetRequest of(Function<Builder, ObjectBuilder<GetRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String slice() {
+		return this.slice;
 	}
 
 	/**
@@ -319,7 +337,9 @@ public class GetRequest extends RequestBase {
 	}
 
 	/**
-	 * A custom value used to route operations to a specific shard.
+	 * A custom value used to route operations to a specific shard. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -370,6 +390,9 @@ public class GetRequest extends RequestBase {
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<GetRequest> {
 		@Nullable
+		private String slice;
+
+		@Nullable
 		private SourceConfigParam source;
 
 		@Nullable
@@ -412,6 +435,7 @@ public class GetRequest extends RequestBase {
 		public Builder() {
 		}
 		private Builder(GetRequest instance) {
+			this.slice = instance.slice;
 			this.source = instance.source;
 			this.sourceExcludeVectors = instance.sourceExcludeVectors;
 			this.sourceExcludes = instance.sourceExcludes;
@@ -428,6 +452,20 @@ public class GetRequest extends RequestBase {
 			this.versionType = instance.versionType;
 
 		}
+		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder slice(@Nullable String value) {
+			this.slice = value;
+			return this;
+		}
+
 		/**
 		 * Indicates whether to return the <code>_source</code> field (<code>true</code>
 		 * or <code>false</code>) or lists the fields to return.
@@ -596,7 +634,9 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -608,7 +648,9 @@ public class GetRequest extends RequestBase {
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -755,10 +797,6 @@ public class GetRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (ApiTypeHelper.isDefined(request.routing)) {
-					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
-							.collect(Collectors.joining(",")));
-				}
 				if (request.realtime != null) {
 					params.put("realtime", String.valueOf(request.realtime));
 				}
@@ -768,15 +806,28 @@ public class GetRequest extends RequestBase {
 				if (request.sourceExcludeVectors != null) {
 					params.put("_source_exclude_vectors", String.valueOf(request.sourceExcludeVectors));
 				}
-				if (ApiTypeHelper.isDefined(request.storedFields)) {
-					params.put("stored_fields", request.storedFields.stream().map(v -> v).filter(Objects::nonNull)
-							.collect(Collectors.joining(",")));
-				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);
 				}
 				if (request.refresh != null) {
 					params.put("refresh", String.valueOf(request.refresh));
+				}
+				if (request.forceSyntheticSource != null) {
+					params.put("force_synthetic_source", String.valueOf(request.forceSyntheticSource));
+				}
+				if (request.version != null) {
+					params.put("version", String.valueOf(request.version));
+				}
+				if (request.slice != null) {
+					params.put("_slice", request.slice);
+				}
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
+				if (ApiTypeHelper.isDefined(request.storedFields)) {
+					params.put("stored_fields", request.storedFields.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.source != null) {
 					params.put("_source", request.source._toJsonString());
@@ -785,15 +836,9 @@ public class GetRequest extends RequestBase {
 					params.put("_source_excludes", request.sourceExcludes.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
 				}
-				if (request.forceSyntheticSource != null) {
-					params.put("force_synthetic_source", String.valueOf(request.forceSyntheticSource));
-				}
 				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes", request.sourceIncludes.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
-				}
-				if (request.version != null) {
-					params.put("version", String.valueOf(request.version));
 				}
 				return params;
 

@@ -74,6 +74,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class ValidateQueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
+	private final String slice;
+
+	@Nullable
 	private final Boolean allShards;
 
 	@Nullable
@@ -113,10 +116,13 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final Boolean rewrite;
 
+	private final List<String> routing;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ValidateQueryRequest(Builder builder) {
 
+		this.slice = builder.slice;
 		this.allShards = builder.allShards;
 		this.allowNoIndices = builder.allowNoIndices;
 		this.analyzeWildcard = builder.analyzeWildcard;
@@ -131,11 +137,26 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		this.q = builder.q;
 		this.query = builder.query;
 		this.rewrite = builder.rewrite;
+		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 
 	}
 
 	public static ValidateQueryRequest of(Function<Builder, ObjectBuilder<ValidateQueryRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String slice() {
+		return this.slice;
 	}
 
 	/**
@@ -299,6 +320,17 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
+	 * A custom value used to route operations to a specific shard. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * use <code>_slice</code> instead.
+	 * <p>
+	 * API name: {@code routing}
+	 */
+	public final List<String> routing() {
+		return this.routing;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -326,6 +358,9 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ValidateQueryRequest> {
+		@Nullable
+		private String slice;
+
 		@Nullable
 		private Boolean allShards;
 
@@ -368,9 +403,13 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private Boolean rewrite;
 
+		@Nullable
+		private List<String> routing;
+
 		public Builder() {
 		}
 		private Builder(ValidateQueryRequest instance) {
+			this.slice = instance.slice;
 			this.allShards = instance.allShards;
 			this.allowNoIndices = instance.allowNoIndices;
 			this.analyzeWildcard = instance.analyzeWildcard;
@@ -385,8 +424,23 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 			this.q = instance.q;
 			this.query = instance.query;
 			this.rewrite = instance.rewrite;
+			this.routing = instance.routing;
 
 		}
+		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder slice(@Nullable String value) {
+			this.slice = value;
+			return this;
+		}
+
 		/**
 		 * If <code>true</code>, the validation is executed on all shards instead of one
 		 * random shard per index.
@@ -601,6 +655,34 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 			return this;
 		}
 
+		/**
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>routing</code>.
+		 */
+		public final Builder routing(List<String> list) {
+			this.routing = _listAddAll(this.routing, list);
+			return this;
+		}
+
+		/**
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
+		 * <p>
+		 * API name: {@code routing}
+		 * <p>
+		 * Adds one or more values to <code>routing</code>.
+		 */
+		public final Builder routing(String value, String... values) {
+			this.routing = _listAdd(this.routing, value, values);
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -706,30 +788,12 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 				if (request.explain != null) {
 					params.put("explain", String.valueOf(request.explain));
 				}
-				if (request.q != null) {
-					params.put("q", request.q);
-				}
 				if (request.df != null) {
 					params.put("df", request.df);
-				}
-				if (request.defaultOperator != null) {
-					params.put("default_operator", request.defaultOperator.jsonValue());
-				}
-				if (request.allShards != null) {
-					params.put("all_shards", String.valueOf(request.allShards));
 				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards", request.expandWildcards.stream().map(v -> v.jsonValue())
 							.filter(Objects::nonNull).collect(Collectors.joining(",")));
-				}
-				if (request.ignoreUnavailable != null) {
-					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-				}
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
-				if (request.analyzer != null) {
-					params.put("analyzer", request.analyzer);
 				}
 				if (request.analyzeWildcard != null) {
 					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
@@ -739,6 +803,31 @@ public class ValidateQueryRequest extends RequestBase implements JsonpSerializab
 				}
 				if (request.rewrite != null) {
 					params.put("rewrite", String.valueOf(request.rewrite));
+				}
+				if (request.slice != null) {
+					params.put("_slice", request.slice);
+				}
+				if (request.q != null) {
+					params.put("q", request.q);
+				}
+				if (ApiTypeHelper.isDefined(request.routing)) {
+					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
+				}
+				if (request.defaultOperator != null) {
+					params.put("default_operator", request.defaultOperator.jsonValue());
+				}
+				if (request.allShards != null) {
+					params.put("all_shards", String.valueOf(request.allShards));
+				}
+				if (request.ignoreUnavailable != null) {
+					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.analyzer != null) {
+					params.put("analyzer", request.analyzer);
 				}
 				return params;
 

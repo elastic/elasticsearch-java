@@ -68,6 +68,82 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 		return new ElasticsearchEsqlClient(this.transport, transportOptions);
 	}
 
+	// ----- Endpoint: esql.delete_data_source
+
+	/**
+	 * Delete one or more ES|QL data sources.
+	 * <p>
+	 * Fails with <code>409</code> if any dataset references one of the named data
+	 * sources; delete the dependent datasets first.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DeleteDataSourceResponse deleteDataSource(DeleteDataSourceRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteDataSourceRequest, DeleteDataSourceResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteDataSourceRequest, DeleteDataSourceResponse, ErrorResponse>) DeleteDataSourceRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Delete one or more ES|QL data sources.
+	 * <p>
+	 * Fails with <code>409</code> if any dataset references one of the named data
+	 * sources; delete the dependent datasets first.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteDataSourceRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DeleteDataSourceResponse deleteDataSource(
+			Function<DeleteDataSourceRequest.Builder, ObjectBuilder<DeleteDataSourceRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteDataSource(fn.apply(new DeleteDataSourceRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: esql.delete_dataset
+
+	/**
+	 * Delete one or more ES|QL datasets.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DeleteDatasetResponse deleteDataset(DeleteDatasetRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteDatasetRequest, DeleteDatasetResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteDatasetRequest, DeleteDatasetResponse, ErrorResponse>) DeleteDatasetRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Delete one or more ES|QL datasets.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteDatasetRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DeleteDatasetResponse deleteDataset(
+			Function<DeleteDatasetRequest.Builder, ObjectBuilder<DeleteDatasetRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteDataset(fn.apply(new DeleteDatasetRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: esql.delete_view
 
 	/**
@@ -103,6 +179,124 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	public final DeleteViewResponse deleteView(Function<DeleteViewRequest.Builder, ObjectBuilder<DeleteViewRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return deleteView(fn.apply(new DeleteViewRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: esql.get_data_source
+
+	/**
+	 * Get one or more ES|QL data sources.
+	 * <p>
+	 * Returns the requested data sources. A concrete-name miss returns
+	 * <code>404</code>; a wildcard pattern or list-all with no match returns
+	 * <code>200</code> with an empty array.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetDataSourceResponse getDataSource(GetDataSourceRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetDataSourceRequest, GetDataSourceResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDataSourceRequest, GetDataSourceResponse, ErrorResponse>) GetDataSourceRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get one or more ES|QL data sources.
+	 * <p>
+	 * Returns the requested data sources. A concrete-name miss returns
+	 * <code>404</code>; a wildcard pattern or list-all with no match returns
+	 * <code>200</code> with an empty array.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetDataSourceRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetDataSourceResponse getDataSource(
+			Function<GetDataSourceRequest.Builder, ObjectBuilder<GetDataSourceRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getDataSource(fn.apply(new GetDataSourceRequest.Builder()).build());
+	}
+
+	/**
+	 * Get one or more ES|QL data sources.
+	 * <p>
+	 * Returns the requested data sources. A concrete-name miss returns
+	 * <code>404</code>; a wildcard pattern or list-all with no match returns
+	 * <code>200</code> with an empty array.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetDataSourceResponse getDataSource() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new GetDataSourceRequest.Builder().build(), GetDataSourceRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
+	// ----- Endpoint: esql.get_dataset
+
+	/**
+	 * Get one or more ES|QL datasets.
+	 * <p>
+	 * Returns the requested datasets. A concrete-name miss returns
+	 * <code>404</code>; a wildcard pattern or list-all with no match returns
+	 * <code>200</code> with an empty array.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetDatasetResponse getDataset(GetDatasetRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetDatasetRequest, GetDatasetResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDatasetRequest, GetDatasetResponse, ErrorResponse>) GetDatasetRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get one or more ES|QL datasets.
+	 * <p>
+	 * Returns the requested datasets. A concrete-name miss returns
+	 * <code>404</code>; a wildcard pattern or list-all with no match returns
+	 * <code>200</code> with an empty array.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetDatasetRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetDatasetResponse getDataset(Function<GetDatasetRequest.Builder, ObjectBuilder<GetDatasetRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getDataset(fn.apply(new GetDatasetRequest.Builder()).build());
+	}
+
+	/**
+	 * Get one or more ES|QL datasets.
+	 * <p>
+	 * Returns the requested datasets. A concrete-name miss returns
+	 * <code>404</code>; a wildcard pattern or list-all with no match returns
+	 * <code>200</code> with an empty array.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetDatasetResponse getDataset() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new GetDatasetRequest.Builder().build(), GetDatasetRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: esql.get_query
@@ -209,6 +403,90 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	public ListQueriesResponse listQueries() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(ListQueriesRequest._INSTANCE, ListQueriesRequest._ENDPOINT,
 				this.transportOptions);
+	}
+
+	// ----- Endpoint: esql.put_data_source
+
+	/**
+	 * Create or update an ES|QL data source.
+	 * <p>
+	 * Creates or replaces a named, type-specific data source configuration that
+	 * datasets reference to access external data. Names must be lowercase and
+	 * follow index/alias naming rules.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutDataSourceResponse putDataSource(PutDataSourceRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutDataSourceRequest, PutDataSourceResponse, ErrorResponse> endpoint = (JsonEndpoint<PutDataSourceRequest, PutDataSourceResponse, ErrorResponse>) PutDataSourceRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create or update an ES|QL data source.
+	 * <p>
+	 * Creates or replaces a named, type-specific data source configuration that
+	 * datasets reference to access external data. Names must be lowercase and
+	 * follow index/alias naming rules.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutDataSourceRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutDataSourceResponse putDataSource(
+			Function<PutDataSourceRequest.Builder, ObjectBuilder<PutDataSourceRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putDataSource(fn.apply(new PutDataSourceRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: esql.put_dataset
+
+	/**
+	 * Create or replace an ES|QL dataset.
+	 * <p>
+	 * Creates or replaces a dataset that references a data source. Dataset names
+	 * participate in the index namespace and must follow index/alias naming rules.
+	 * Returns <code>404</code> if the referenced data source does not exist.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public PutDatasetResponse putDataset(PutDatasetRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutDatasetRequest, PutDatasetResponse, ErrorResponse> endpoint = (JsonEndpoint<PutDatasetRequest, PutDatasetResponse, ErrorResponse>) PutDatasetRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create or replace an ES|QL dataset.
+	 * <p>
+	 * Creates or replaces a dataset that references a data source. Dataset names
+	 * participate in the index namespace and must follow index/alias naming rules.
+	 * Returns <code>404</code> if the referenced data source does not exist.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutDatasetRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation#TODO">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final PutDatasetResponse putDataset(Function<PutDatasetRequest.Builder, ObjectBuilder<PutDatasetRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return putDataset(fn.apply(new PutDatasetRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: esql.put_view

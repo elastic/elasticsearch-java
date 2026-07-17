@@ -19,6 +19,8 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.elasticsearch.watcher.Input;
+import co.elastic.clients.elasticsearch.watcher.InputVariant;
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -62,7 +64,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSerializable {
+public class Transform implements TaggedUnion<Transform.Kind, Object>, InputVariant, JsonpSerializable {
 
 	/**
 	 * {@link Transform} variant kinds.
@@ -90,6 +92,14 @@ public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSeri
 			return this.jsonValue;
 		}
 
+	}
+
+	/**
+	 * Input variant kind.
+	 */
+	@Override
+	public Input.Kind _inputKind() {
+		return Input.Kind.Transform;
 	}
 
 	private final Kind _kind;

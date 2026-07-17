@@ -119,6 +119,9 @@ import javax.annotation.Nullable;
  */
 
 public class DeleteRequest extends RequestBase {
+	@Nullable
+	private final String slice;
+
 	private final String id;
 
 	@Nullable
@@ -150,6 +153,7 @@ public class DeleteRequest extends RequestBase {
 
 	private DeleteRequest(Builder builder) {
 
+		this.slice = builder.slice;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
@@ -165,6 +169,20 @@ public class DeleteRequest extends RequestBase {
 
 	public static DeleteRequest of(Function<Builder, ObjectBuilder<DeleteRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String slice() {
+		return this.slice;
 	}
 
 	/**
@@ -219,7 +237,9 @@ public class DeleteRequest extends RequestBase {
 	}
 
 	/**
-	 * A custom value used to route operations to a specific shard.
+	 * A custom value used to route operations to a specific shard. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -286,6 +306,9 @@ public class DeleteRequest extends RequestBase {
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteRequest> {
+		@Nullable
+		private String slice;
+
 		private String id;
 
 		@Nullable
@@ -317,6 +340,7 @@ public class DeleteRequest extends RequestBase {
 		public Builder() {
 		}
 		private Builder(DeleteRequest instance) {
+			this.slice = instance.slice;
 			this.id = instance.id;
 			this.ifPrimaryTerm = instance.ifPrimaryTerm;
 			this.ifSeqNo = instance.ifSeqNo;
@@ -329,6 +353,20 @@ public class DeleteRequest extends RequestBase {
 			this.waitForActiveShards = instance.waitForActiveShards;
 
 		}
+		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder slice(@Nullable String value) {
+			this.slice = value;
+			return this;
+		}
+
 		/**
 		 * Required - A unique identifier for the document.
 		 * <p>
@@ -383,7 +421,9 @@ public class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -395,7 +435,9 @@ public class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -570,6 +612,9 @@ public class DeleteRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.slice != null) {
+					params.put("_slice", request.slice);
+				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
 					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));

@@ -106,6 +106,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase implements JsonpSerializable {
 	@Nullable
+	private final String slice;
+
+	@Nullable
 	private final SourceConfig source;
 
 	@Nullable
@@ -169,6 +172,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 
 	private UpdateRequest(Builder<TDocument, TPartialDocument> builder) {
 
+		this.slice = builder.slice;
 		this.source = builder.source;
 		this.detectNoop = builder.detectNoop;
 		this.doc = builder.doc;
@@ -196,6 +200,20 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	public static <TDocument, TPartialDocument> UpdateRequest<TDocument, TPartialDocument> of(
 			Function<Builder<TDocument, TPartialDocument>, ObjectBuilder<UpdateRequest<TDocument, TPartialDocument>>> fn) {
 		return fn.apply(new Builder<>()).build();
+	}
+
+	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String slice() {
+		return this.slice;
 	}
 
 	/**
@@ -336,7 +354,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	/**
-	 * A custom value used to route operations to a specific shard.
+	 * A custom value used to route operations to a specific shard. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -462,6 +482,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 			implements
 				ObjectBuilder<UpdateRequest<TDocument, TPartialDocument>> {
 		@Nullable
+		private String slice;
+
+		@Nullable
 		private SourceConfig source;
 
 		@Nullable
@@ -525,6 +548,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		public Builder() {
 		}
 		private Builder(UpdateRequest<TDocument, TPartialDocument> instance) {
+			this.slice = instance.slice;
 			this.source = instance.source;
 			this.detectNoop = instance.detectNoop;
 			this.doc = instance.doc;
@@ -546,6 +570,20 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 			this.waitForActiveShards = instance.waitForActiveShards;
 
 		}
+		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder<TDocument, TPartialDocument> slice(@Nullable String value) {
+			this.slice = value;
+			return this;
+		}
+
 		/**
 		 * If <code>false</code>, turn off source retrieval. You can also specify a
 		 * comma-separated list of the fields you want to retrieve.
@@ -697,7 +735,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -709,7 +749,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -958,6 +1000,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());
+				}
+				if (request.slice != null) {
+					params.put("_slice", request.slice);
 				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
 					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)

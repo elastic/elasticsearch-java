@@ -77,6 +77,8 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
 
 		RemoveBackingIndex("remove_backing_index"),
 
+		DeleteBackingIndex("delete_backing_index"),
+
 		;
 
 		private final String jsonValue;
@@ -158,6 +160,24 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
 		return TaggedUnionUtils.get(this, Kind.RemoveBackingIndex);
 	}
 
+	/**
+	 * Is this variant instance of kind {@code delete_backing_index}?
+	 */
+	public boolean isDeleteBackingIndex() {
+		return _kind == Kind.DeleteBackingIndex;
+	}
+
+	/**
+	 * Get the {@code delete_backing_index} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code delete_backing_index}
+	 *             kind.
+	 */
+	public IndexAndDataStreamAction deleteBackingIndex() {
+		return TaggedUnionUtils.get(this, Kind.DeleteBackingIndex);
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -208,6 +228,17 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
 			return this.removeBackingIndex(fn.apply(new IndexAndDataStreamAction.Builder()).build());
 		}
 
+		public ObjectBuilder<Action> deleteBackingIndex(IndexAndDataStreamAction v) {
+			this._kind = Kind.DeleteBackingIndex;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Action> deleteBackingIndex(
+				Function<IndexAndDataStreamAction.Builder, ObjectBuilder<IndexAndDataStreamAction>> fn) {
+			return this.deleteBackingIndex(fn.apply(new IndexAndDataStreamAction.Builder()).build());
+		}
+
 		public Action build() {
 			_checkSingleUse();
 			return new Action(this);
@@ -219,6 +250,7 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
 
 		op.add(Builder::addBackingIndex, IndexAndDataStreamAction._DESERIALIZER, "add_backing_index");
 		op.add(Builder::removeBackingIndex, IndexAndDataStreamAction._DESERIALIZER, "remove_backing_index");
+		op.add(Builder::deleteBackingIndex, IndexAndDataStreamAction._DESERIALIZER, "delete_backing_index");
 
 	}
 

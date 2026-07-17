@@ -128,19 +128,6 @@ import javax.annotation.Nullable;
  * you can use to cancel or get the status of the task. Elasticsearch creates a
  * record of this task as a document at <code>.tasks/task/${taskId}</code>.
  * <p>
- * <strong>Waiting for active shards</strong>
- * <p>
- * <code>wait_for_active_shards</code> controls how many copies of a shard must
- * be active before proceeding with the request. See <a href=
- * "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-create#operation-create-wait_for_active_shards"><code>wait_for_active_shards</code></a>
- * for details. <code>timeout</code> controls how long each write request waits
- * for unavailable shards to become available. Both work exactly the way they
- * work in the <a href=
- * "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-bulk">Bulk
- * API</a>. Update by query uses scrolled searches, so you can also specify the
- * <code>scroll</code> parameter to control how long it keeps the search context
- * alive, for example <code>?scroll=10m</code>. The default is 5 minutes.
- * <p>
  * <strong>Throttling update requests</strong>
  * <p>
  * To control the rate at which update by query issues batches of update
@@ -227,6 +214,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class UpdateByQueryRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final String slice;
+
 	@Nullable
 	private final Boolean allowNoIndices;
 
@@ -331,6 +321,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 
 	private UpdateByQueryRequest(Builder builder) {
 
+		this.slice = builder.slice;
 		this.allowNoIndices = builder.allowNoIndices;
 		this.analyzeWildcard = builder.analyzeWildcard;
 		this.analyzer = builder.analyzer;
@@ -371,6 +362,20 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 
 	public static UpdateByQueryRequest of(Function<Builder, ObjectBuilder<UpdateByQueryRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String slice() {
+		return this.slice;
 	}
 
 	/**
@@ -598,7 +603,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * A custom value used to route operations to a specific shard.
+	 * A custom value used to route operations to a specific shard. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -754,7 +761,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	 * number of shards in the index (<code>number_of_replicas+1</code>). The
 	 * <code>timeout</code> parameter controls how long each write request waits for
 	 * unavailable shards to become available. Both work exactly the way they work
-	 * in the bulk API.
+	 * in the bulk API. Update by query uses scrolled searches, so you can also
+	 * specify the <code>scroll</code> parameter to control how long it keeps the
+	 * search context alive, for example <code>?scroll=10m</code>.
 	 * <p>
 	 * API name: {@code wait_for_active_shards}
 	 */
@@ -824,6 +833,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	public static class Builder extends RequestBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UpdateByQueryRequest> {
+		@Nullable
+		private String slice;
+
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -931,6 +943,7 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		public Builder() {
 		}
 		private Builder(UpdateByQueryRequest instance) {
+			this.slice = instance.slice;
 			this.allowNoIndices = instance.allowNoIndices;
 			this.analyzeWildcard = instance.analyzeWildcard;
 			this.analyzer = instance.analyzer;
@@ -968,6 +981,20 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 			this.waitForCompletion = instance.waitForCompletion;
 
 		}
+		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder slice(@Nullable String value) {
+			this.slice = value;
+			return this;
+		}
+
 		/**
 		 * A setting that does two separate checks on the index expression. If
 		 * <code>false</code>, the request returns an error (1) if any wildcard
@@ -1247,7 +1274,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -1259,7 +1288,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -1507,7 +1538,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * number of shards in the index (<code>number_of_replicas+1</code>). The
 		 * <code>timeout</code> parameter controls how long each write request waits for
 		 * unavailable shards to become available. Both work exactly the way they work
-		 * in the bulk API.
+		 * in the bulk API. Update by query uses scrolled searches, so you can also
+		 * specify the <code>scroll</code> parameter to control how long it keeps the
+		 * search context alive, for example <code>?scroll=10m</code>.
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -1522,7 +1555,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 * number of shards in the index (<code>number_of_replicas+1</code>). The
 		 * <code>timeout</code> parameter controls how long each write request waits for
 		 * unavailable shards to become available. Both work exactly the way they work
-		 * in the bulk API.
+		 * in the bulk API. Update by query uses scrolled searches, so you can also
+		 * specify the <code>scroll</code> parameter to control how long it keeps the
+		 * search context alive, for example <code>?scroll=10m</code>.
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
@@ -1718,6 +1753,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 				}
 				if (request.pipeline != null) {
 					params.put("pipeline", request.pipeline);
+				}
+				if (request.slice != null) {
+					params.put("_slice", request.slice);
 				}
 				if (request.q != null) {
 					params.put("q", request.q);

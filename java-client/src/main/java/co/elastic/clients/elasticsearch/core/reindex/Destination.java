@@ -73,6 +73,9 @@ public class Destination implements JsonpSerializable {
 	private final String routing;
 
 	@Nullable
+	private final String slice;
+
+	@Nullable
 	private final VersionType versionType;
 
 	// ---------------------------------------------------------------------------------------------
@@ -83,6 +86,7 @@ public class Destination implements JsonpSerializable {
 		this.opType = builder.opType;
 		this.pipeline = builder.pipeline;
 		this.routing = builder.routing;
+		this.slice = builder.slice;
 		this.versionType = builder.versionType;
 
 	}
@@ -132,13 +136,29 @@ public class Destination implements JsonpSerializable {
 	 * the routing on the bulk request sent for each match is set to
 	 * <code>null</code>. If it is <code>=value</code>, the routing on the bulk
 	 * request sent for each match is set to all value specified after the equals
-	 * sign (<code>=</code>).
+	 * sign (<code>=</code>). Not allowed when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the destination index; use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
 	public final String routing() {
 		return this.routing;
+	}
+
+	/**
+	 * The slice identifier used to route the reindexed documents to a specific
+	 * slice of the destination index. Use the special value <code>_all</code> to
+	 * target all slices without restricting to a routing value. Required when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the destination
+	 * index; not allowed when <code>index.slice.enabled</code> is
+	 * <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String slice() {
+		return this.slice;
 	}
 
 	/**
@@ -179,6 +199,11 @@ public class Destination implements JsonpSerializable {
 			generator.write(this.routing);
 
 		}
+		if (this.slice != null) {
+			generator.writeKey("_slice");
+			generator.write(this.slice);
+
+		}
 		if (this.versionType != null) {
 			generator.writeKey("version_type");
 			this.versionType.serialize(generator, mapper);
@@ -210,6 +235,9 @@ public class Destination implements JsonpSerializable {
 		private String routing;
 
 		@Nullable
+		private String slice;
+
+		@Nullable
 		private VersionType versionType;
 
 		public Builder() {
@@ -219,6 +247,7 @@ public class Destination implements JsonpSerializable {
 			this.opType = instance.opType;
 			this.pipeline = instance.pipeline;
 			this.routing = instance.routing;
+			this.slice = instance.slice;
 			this.versionType = instance.versionType;
 
 		}
@@ -264,12 +293,28 @@ public class Destination implements JsonpSerializable {
 		 * the routing on the bulk request sent for each match is set to
 		 * <code>null</code>. If it is <code>=value</code>, the routing on the bulk
 		 * request sent for each match is set to all value specified after the equals
-		 * sign (<code>=</code>).
+		 * sign (<code>=</code>). Not allowed when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the destination index; use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 */
 		public final Builder routing(@Nullable String value) {
 			this.routing = value;
+			return this;
+		}
+
+		/**
+		 * The slice identifier used to route the reindexed documents to a specific
+		 * slice of the destination index. Use the special value <code>_all</code> to
+		 * target all slices without restricting to a routing value. Required when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the destination
+		 * index; not allowed when <code>index.slice.enabled</code> is
+		 * <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder slice(@Nullable String value) {
+			this.slice = value;
 			return this;
 		}
 
@@ -321,6 +366,7 @@ public class Destination implements JsonpSerializable {
 		op.add(Builder::opType, OpType._DESERIALIZER, "op_type");
 		op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
+		op.add(Builder::slice, JsonpDeserializer.stringDeserializer(), "_slice");
 		op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");
 
 	}

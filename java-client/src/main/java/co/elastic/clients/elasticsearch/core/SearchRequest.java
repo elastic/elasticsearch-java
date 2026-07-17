@@ -126,6 +126,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class SearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
+	private final String slice;
+
+	@Nullable
 	private final SourceConfig source;
 
 	private final Map<String, Aggregation> aggregations;
@@ -287,6 +290,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 	private SearchRequest(Builder builder) {
 
+		this.slice = builder.slice;
 		this.source = builder.source;
 		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.allowNoIndices = builder.allowNoIndices;
@@ -350,6 +354,20 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 	public static SearchRequest of(Function<Builder, ObjectBuilder<SearchRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String slice() {
+		return this.slice;
 	}
 
 	/**
@@ -865,7 +883,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A custom value that is used to route operations to a specific shard.
+	 * A custom value that is used to route operations to a specific shard. Not
+	 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
+	 * target index; use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -1346,6 +1366,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<SearchRequest> {
 		@Nullable
+		private String slice;
+
+		@Nullable
 		private SourceConfig source;
 
 		@Nullable
@@ -1522,6 +1545,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		public Builder() {
 		}
 		private Builder(SearchRequest instance) {
+			this.slice = instance.slice;
 			this.source = instance.source;
 			this.aggregations = instance.aggregations;
 			this.allowNoIndices = instance.allowNoIndices;
@@ -1582,6 +1606,20 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			this.version = instance.version;
 
 		}
+		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder slice(@Nullable String value) {
+			this.slice = value;
+			return this;
+		}
+
 		/**
 		 * The source fields that are returned for matching documents. These fields are
 		 * returned in the <code>hits._source</code> property of the search response. If
@@ -2461,7 +2499,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A custom value that is used to route operations to a specific shard.
+		 * A custom value that is used to route operations to a specific shard. Not
+		 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
+		 * target index; use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -2473,7 +2513,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A custom value that is used to route operations to a specific shard.
+		 * A custom value that is used to route operations to a specific shard. Not
+		 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
+		 * target index; use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -3128,6 +3170,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.ccsMinimizeRoundtrips != null) {
 					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
+				}
+				if (request.slice != null) {
+					params.put("_slice", request.slice);
 				}
 				if (request.q != null) {
 					params.put("q", request.q);

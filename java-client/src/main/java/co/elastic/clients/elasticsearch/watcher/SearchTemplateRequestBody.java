@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.elasticsearch._types.ScriptLanguage;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -69,6 +70,9 @@ public class SearchTemplateRequestBody implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
+	@Nullable
+	private final String lang;
+
 	private final Map<String, JsonData> params;
 
 	@Nullable
@@ -83,6 +87,7 @@ public class SearchTemplateRequestBody implements JsonpSerializable {
 
 		this.explain = builder.explain;
 		this.id = builder.id;
+		this.lang = builder.lang;
 		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.profile = builder.profile;
 		this.source = builder.source;
@@ -110,6 +115,17 @@ public class SearchTemplateRequestBody implements JsonpSerializable {
 	@Nullable
 	public final String id() {
 		return this.id;
+	}
+
+	/**
+	 * The language the template is written in. It is reported in the resolved
+	 * search input of a watch record.
+	 * <p>
+	 * API name: {@code lang}
+	 */
+	@Nullable
+	public final String lang() {
+		return this.lang;
 	}
 
 	/**
@@ -160,6 +176,11 @@ public class SearchTemplateRequestBody implements JsonpSerializable {
 			generator.write(this.id);
 
 		}
+		if (this.lang != null) {
+			generator.writeKey("lang");
+			generator.write(this.lang);
+
+		}
 		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
@@ -205,6 +226,9 @@ public class SearchTemplateRequestBody implements JsonpSerializable {
 		private String id;
 
 		@Nullable
+		private String lang;
+
+		@Nullable
 		private Map<String, JsonData> params;
 
 		@Nullable
@@ -218,6 +242,7 @@ public class SearchTemplateRequestBody implements JsonpSerializable {
 		private Builder(SearchTemplateRequestBody instance) {
 			this.explain = instance.explain;
 			this.id = instance.id;
+			this.lang = instance.lang;
 			this.params = instance.params;
 			this.profile = instance.profile;
 			this.source = instance.source;
@@ -239,6 +264,28 @@ public class SearchTemplateRequestBody implements JsonpSerializable {
 		 */
 		public final Builder id(@Nullable String value) {
 			this.id = value;
+			return this;
+		}
+
+		/**
+		 * The language the template is written in. It is reported in the resolved
+		 * search input of a watch record.
+		 * <p>
+		 * API name: {@code lang}
+		 */
+		public final Builder lang(@Nullable String value) {
+			this.lang = value;
+			return this;
+		}
+
+		/**
+		 * The language the template is written in. It is reported in the resolved
+		 * search input of a watch record.
+		 * <p>
+		 * API name: {@code lang}
+		 */
+		public final Builder lang(@Nullable ScriptLanguage value) {
+			this.lang = value == null ? null : value.jsonValue();
 			return this;
 		}
 
@@ -319,6 +366,7 @@ public class SearchTemplateRequestBody implements JsonpSerializable {
 
 		op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
 		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
 		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");

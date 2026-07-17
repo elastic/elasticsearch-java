@@ -31,6 +31,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
+import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -62,6 +63,9 @@ import javax.annotation.Nullable;
 public class HttpRouteResponses implements JsonpSerializable {
 	private final long count;
 
+	@Nullable
+	private final String totalSize;
+
 	private final long totalSizeInBytes;
 
 	private final List<TimeHttpHistogram> handlingTimeHistogram;
@@ -73,6 +77,7 @@ public class HttpRouteResponses implements JsonpSerializable {
 	private HttpRouteResponses(Builder builder) {
 
 		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
+		this.totalSize = builder.totalSize;
 		this.totalSizeInBytes = ApiTypeHelper.requireNonNull(builder.totalSizeInBytes, this, "totalSizeInBytes", 0);
 		this.handlingTimeHistogram = ApiTypeHelper.unmodifiableRequired(builder.handlingTimeHistogram, this,
 				"handlingTimeHistogram");
@@ -89,6 +94,14 @@ public class HttpRouteResponses implements JsonpSerializable {
 	 */
 	public final long count() {
 		return this.count;
+	}
+
+	/**
+	 * API name: {@code total_size}
+	 */
+	@Nullable
+	public final String totalSize() {
+		return this.totalSize;
 	}
 
 	/**
@@ -126,6 +139,11 @@ public class HttpRouteResponses implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
+		if (this.totalSize != null) {
+			generator.writeKey("total_size");
+			generator.write(this.totalSize);
+
+		}
 		generator.writeKey("total_size_in_bytes");
 		generator.write(this.totalSizeInBytes);
 
@@ -168,6 +186,9 @@ public class HttpRouteResponses implements JsonpSerializable {
 				ObjectBuilder<HttpRouteResponses> {
 		private Long count;
 
+		@Nullable
+		private String totalSize;
+
 		private Long totalSizeInBytes;
 
 		private List<TimeHttpHistogram> handlingTimeHistogram;
@@ -178,6 +199,7 @@ public class HttpRouteResponses implements JsonpSerializable {
 		}
 		private Builder(HttpRouteResponses instance) {
 			this.count = instance.count;
+			this.totalSize = instance.totalSize;
 			this.totalSizeInBytes = instance.totalSizeInBytes;
 			this.handlingTimeHistogram = instance.handlingTimeHistogram;
 			this.sizeHistogram = instance.sizeHistogram;
@@ -188,6 +210,14 @@ public class HttpRouteResponses implements JsonpSerializable {
 		 */
 		public final Builder count(long value) {
 			this.count = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total_size}
+		 */
+		public final Builder totalSize(@Nullable String value) {
+			this.totalSize = value;
 			return this;
 		}
 
@@ -293,6 +323,7 @@ public class HttpRouteResponses implements JsonpSerializable {
 	protected static void setupHttpRouteResponsesDeserializer(ObjectDeserializer<HttpRouteResponses.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::totalSize, JsonpDeserializer.stringDeserializer(), "total_size");
 		op.add(Builder::totalSizeInBytes, JsonpDeserializer.longDeserializer(), "total_size_in_bytes");
 		op.add(Builder::handlingTimeHistogram, JsonpDeserializer.arrayDeserializer(TimeHttpHistogram._DESERIALIZER),
 				"handling_time_histogram");

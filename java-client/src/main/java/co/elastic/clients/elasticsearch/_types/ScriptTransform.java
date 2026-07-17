@@ -289,6 +289,8 @@ public class ScriptTransform implements TransformVariant, JsonpSerializable {
 		op.add(Builder::source, ScriptSource._DESERIALIZER, "source");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 
+		op.shortcutProperty("source", true);
+
 	}
 
 }

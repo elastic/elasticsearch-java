@@ -71,6 +71,8 @@ public class SearchStats implements JsonpSerializable {
 
 	private final long fetchTotal;
 
+	private final long fetchFailure;
+
 	@Nullable
 	private final Long openContexts;
 
@@ -82,6 +84,8 @@ public class SearchStats implements JsonpSerializable {
 	private final long queryTimeInMillis;
 
 	private final long queryTotal;
+
+	private final long queryFailure;
 
 	private final long scrollCurrent;
 
@@ -114,11 +118,13 @@ public class SearchStats implements JsonpSerializable {
 		this.fetchTime = builder.fetchTime;
 		this.fetchTimeInMillis = ApiTypeHelper.requireNonNull(builder.fetchTimeInMillis, this, "fetchTimeInMillis", 0);
 		this.fetchTotal = ApiTypeHelper.requireNonNull(builder.fetchTotal, this, "fetchTotal", 0);
+		this.fetchFailure = ApiTypeHelper.requireNonNull(builder.fetchFailure, this, "fetchFailure", 0);
 		this.openContexts = builder.openContexts;
 		this.queryCurrent = ApiTypeHelper.requireNonNull(builder.queryCurrent, this, "queryCurrent", 0);
 		this.queryTime = builder.queryTime;
 		this.queryTimeInMillis = ApiTypeHelper.requireNonNull(builder.queryTimeInMillis, this, "queryTimeInMillis", 0);
 		this.queryTotal = ApiTypeHelper.requireNonNull(builder.queryTotal, this, "queryTotal", 0);
+		this.queryFailure = ApiTypeHelper.requireNonNull(builder.queryFailure, this, "queryFailure", 0);
 		this.scrollCurrent = ApiTypeHelper.requireNonNull(builder.scrollCurrent, this, "scrollCurrent", 0);
 		this.scrollTime = builder.scrollTime;
 		this.scrollTimeInMillis = ApiTypeHelper.requireNonNull(builder.scrollTimeInMillis, this, "scrollTimeInMillis",
@@ -168,6 +174,13 @@ public class SearchStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code fetch_failure}
+	 */
+	public final long fetchFailure() {
+		return this.fetchFailure;
+	}
+
+	/**
 	 * API name: {@code open_contexts}
 	 */
 	@Nullable
@@ -202,6 +215,13 @@ public class SearchStats implements JsonpSerializable {
 	 */
 	public final long queryTotal() {
 		return this.queryTotal;
+	}
+
+	/**
+	 * Required - API name: {@code query_failure}
+	 */
+	public final long queryFailure() {
+		return this.queryFailure;
 	}
 
 	/**
@@ -302,6 +322,9 @@ public class SearchStats implements JsonpSerializable {
 		generator.writeKey("fetch_total");
 		generator.write(this.fetchTotal);
 
+		generator.writeKey("fetch_failure");
+		generator.write(this.fetchFailure);
+
 		if (this.openContexts != null) {
 			generator.writeKey("open_contexts");
 			generator.write(this.openContexts);
@@ -320,6 +343,9 @@ public class SearchStats implements JsonpSerializable {
 
 		generator.writeKey("query_total");
 		generator.write(this.queryTotal);
+
+		generator.writeKey("query_failure");
+		generator.write(this.queryFailure);
 
 		generator.writeKey("scroll_current");
 		generator.write(this.scrollCurrent);
@@ -389,6 +415,8 @@ public class SearchStats implements JsonpSerializable {
 
 		private Long fetchTotal;
 
+		private Long fetchFailure;
+
 		@Nullable
 		private Long openContexts;
 
@@ -400,6 +428,8 @@ public class SearchStats implements JsonpSerializable {
 		private Long queryTimeInMillis;
 
 		private Long queryTotal;
+
+		private Long queryFailure;
 
 		private Long scrollCurrent;
 
@@ -432,11 +462,13 @@ public class SearchStats implements JsonpSerializable {
 			this.fetchTime = instance.fetchTime;
 			this.fetchTimeInMillis = instance.fetchTimeInMillis;
 			this.fetchTotal = instance.fetchTotal;
+			this.fetchFailure = instance.fetchFailure;
 			this.openContexts = instance.openContexts;
 			this.queryCurrent = instance.queryCurrent;
 			this.queryTime = instance.queryTime;
 			this.queryTimeInMillis = instance.queryTimeInMillis;
 			this.queryTotal = instance.queryTotal;
+			this.queryFailure = instance.queryFailure;
 			this.scrollCurrent = instance.scrollCurrent;
 			this.scrollTime = instance.scrollTime;
 			this.scrollTimeInMillis = instance.scrollTimeInMillis;
@@ -489,6 +521,14 @@ public class SearchStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - API name: {@code fetch_failure}
+		 */
+		public final Builder fetchFailure(long value) {
+			this.fetchFailure = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code open_contexts}
 		 */
 		public final Builder openContexts(@Nullable Long value) {
@@ -532,6 +572,14 @@ public class SearchStats implements JsonpSerializable {
 		 */
 		public final Builder queryTotal(long value) {
 			this.queryTotal = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code query_failure}
+		 */
+		public final Builder queryFailure(long value) {
+			this.queryFailure = value;
 			return this;
 		}
 
@@ -688,11 +736,13 @@ public class SearchStats implements JsonpSerializable {
 		op.add(Builder::fetchTime, Time._DESERIALIZER, "fetch_time");
 		op.add(Builder::fetchTimeInMillis, JsonpDeserializer.longDeserializer(), "fetch_time_in_millis");
 		op.add(Builder::fetchTotal, JsonpDeserializer.longDeserializer(), "fetch_total");
+		op.add(Builder::fetchFailure, JsonpDeserializer.longDeserializer(), "fetch_failure");
 		op.add(Builder::openContexts, JsonpDeserializer.longDeserializer(), "open_contexts");
 		op.add(Builder::queryCurrent, JsonpDeserializer.longDeserializer(), "query_current");
 		op.add(Builder::queryTime, Time._DESERIALIZER, "query_time");
 		op.add(Builder::queryTimeInMillis, JsonpDeserializer.longDeserializer(), "query_time_in_millis");
 		op.add(Builder::queryTotal, JsonpDeserializer.longDeserializer(), "query_total");
+		op.add(Builder::queryFailure, JsonpDeserializer.longDeserializer(), "query_failure");
 		op.add(Builder::scrollCurrent, JsonpDeserializer.longDeserializer(), "scroll_current");
 		op.add(Builder::scrollTime, Time._DESERIALIZER, "scroll_time");
 		op.add(Builder::scrollTimeInMillis, JsonpDeserializer.longDeserializer(), "scroll_time_in_millis");

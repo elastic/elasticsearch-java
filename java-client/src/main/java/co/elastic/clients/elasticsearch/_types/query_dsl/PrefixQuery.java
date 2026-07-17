@@ -155,10 +155,9 @@ public class PrefixQuery extends QueryBase
 	}
 
 	/**
-	 * Allows ASCII case insensitive matching of the value with the indexed field
-	 * values when set to <code>true</code>. Default is <code>false</code> which
-	 * means the case sensitivity of matching depends on the underlying field’s
-	 * mapping.
+	 * Allows case insensitive matching of the value with the indexed field values
+	 * when set to <code>true</code>. Default is <code>false</code> which means the
+	 * case sensitivity of matching depends on the underlying field’s mapping.
 	 * <p>
 	 * API name: {@code case_insensitive}
 	 */
@@ -244,10 +243,9 @@ public class PrefixQuery extends QueryBase
 		}
 
 		/**
-		 * Allows ASCII case insensitive matching of the value with the indexed field
-		 * values when set to <code>true</code>. Default is <code>false</code> which
-		 * means the case sensitivity of matching depends on the underlying field’s
-		 * mapping.
+		 * Allows case insensitive matching of the value with the indexed field values
+		 * when set to <code>true</code>. Default is <code>false</code> which means the
+		 * case sensitivity of matching depends on the underlying field’s mapping.
 		 * <p>
 		 * API name: {@code case_insensitive}
 		 */

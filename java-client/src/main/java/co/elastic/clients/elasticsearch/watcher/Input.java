@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.elasticsearch._types.Transform;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -81,6 +82,8 @@ public class Input implements TaggedUnion<Input.Kind, Object>, JsonpSerializable
 		Search("search"),
 
 		Simple("simple"),
+
+		Transform("transform"),
 
 		;
 
@@ -195,6 +198,23 @@ public class Input implements TaggedUnion<Input.Kind, Object>, JsonpSerializable
 		return TaggedUnionUtils.get(this, Kind.Simple);
 	}
 
+	/**
+	 * Is this variant instance of kind {@code transform}?
+	 */
+	public boolean isTransform() {
+		return _kind == Kind.Transform;
+	}
+
+	/**
+	 * Get the {@code transform} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code transform} kind.
+	 */
+	public Transform transform() {
+		return TaggedUnionUtils.get(this, Kind.Transform);
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -272,6 +292,16 @@ public class Input implements TaggedUnion<Input.Kind, Object>, JsonpSerializable
 			return this;
 		}
 
+		public ObjectBuilder<Input> transform(Transform v) {
+			this._kind = Kind.Transform;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Input> transform(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
+			return this.transform(fn.apply(new Transform.Builder()).build());
+		}
+
 		public Input build() {
 			_checkSingleUse();
 			return new Input(this);
@@ -285,6 +315,7 @@ public class Input implements TaggedUnion<Input.Kind, Object>, JsonpSerializable
 		op.add(Builder::http, HttpInput._DESERIALIZER, "http");
 		op.add(Builder::search, SearchInput._DESERIALIZER, "search");
 		op.add(Builder::simple, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "simple");
+		op.add(Builder::transform, Transform._DESERIALIZER, "transform");
 
 	}
 

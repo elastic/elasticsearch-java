@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -28,8 +29,12 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -52,19 +57,66 @@ import javax.annotation.Nullable;
 // typedef: watcher._types.IndexResult
 
 /**
- *
+ * The result of an index action. It is a container that holds either the
+ * <code>response</code> of an executed index operation, or the
+ * <code>request</code> that would have run when the action is simulated.
+ * 
  * @see <a href="../doc-files/api-spec.html#watcher._types.IndexResult">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class IndexResult implements JsonpSerializable {
-	private final IndexResultSummary response;
+public class IndexResult implements TaggedUnion<IndexResult.Kind, Object>, JsonpSerializable {
 
-	// ---------------------------------------------------------------------------------------------
+	/**
+	 * {@link IndexResult} variant kinds.
+	 * 
+	 * @see <a href="../doc-files/api-spec.html#watcher._types.IndexResult">API
+	 *      specification</a>
+	 */
+
+	public enum Kind implements JsonEnum {
+		Response("response"),
+
+		Request("request"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
+	private final Object _value;
+
+	@Override
+	public final Kind _kind() {
+		return _kind;
+	}
+
+	@Override
+	public final Object _get() {
+		return _value;
+	}
+
+	public IndexResult(IndexResultVariant value) {
+
+		this._kind = ApiTypeHelper.requireNonNull(value._indexResultKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+
+	}
 
 	private IndexResult(Builder builder) {
 
-		this.response = ApiTypeHelper.requireNonNull(builder.response, this, "response");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
@@ -73,25 +125,63 @@ public class IndexResult implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code response}
+	 * Is this variant instance of kind {@code response}?
 	 */
-	public final IndexResultSummary response() {
-		return this.response;
+	public boolean isResponse() {
+		return _kind == Kind.Response;
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Get the {@code response} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code response} kind.
 	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
+	public List<IndexResultSummary> response() {
+		return TaggedUnionUtils.get(this, Kind.Response);
 	}
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+	/**
+	 * Is this variant instance of kind {@code request}?
+	 */
+	public boolean isRequest() {
+		return _kind == Kind.Request;
+	}
 
-		generator.writeKey("response");
-		this.response.serialize(generator, mapper);
+	/**
+	 * Get the {@code request} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code request} kind.
+	 */
+	public IndexResultRequestSummary request() {
+		return TaggedUnionUtils.get(this, Kind.Request);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeStartObject();
+
+		generator.writeKey(_kind.jsonValue());
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
+		} else {
+			switch (_kind) {
+				case Response :
+					generator.writeStartArray();
+					for (IndexResultSummary item0 : ((List<IndexResultSummary>) this._value)) {
+						item0.serialize(generator, mapper);
+
+					}
+					generator.writeEnd();
+
+					break;
+			}
+		}
+
+		generator.writeEnd();
 
 	}
 
@@ -100,72 +190,45 @@ public class IndexResult implements JsonpSerializable {
 		return JsonpUtils.toString(this);
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link IndexResult}.
-	 */
-
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndexResult> {
-		private IndexResultSummary response;
-
-		public Builder() {
-		}
-		private Builder(IndexResult instance) {
-			this.response = instance.response;
-
-		}
-		/**
-		 * Required - API name: {@code response}
-		 */
-		public final Builder response(IndexResultSummary value) {
-			this.response = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code response}
-		 */
-		public final Builder response(Function<IndexResultSummary.Builder, ObjectBuilder<IndexResultSummary>> fn) {
-			return this.response(fn.apply(new IndexResultSummary.Builder()).build());
-		}
+		private Kind _kind;
+		private Object _value;
 
 		@Override
 		protected Builder self() {
 			return this;
 		}
+		public ObjectBuilder<IndexResult> response(List<IndexResultSummary> v) {
+			this._kind = Kind.Response;
+			this._value = v;
+			return this;
+		}
 
-		/**
-		 * Builds a {@link IndexResult}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
+		public ObjectBuilder<IndexResult> request(IndexResultRequestSummary v) {
+			this._kind = Kind.Request;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<IndexResult> request(
+				Function<IndexResultRequestSummary.Builder, ObjectBuilder<IndexResultRequestSummary>> fn) {
+			return this.request(fn.apply(new IndexResultRequestSummary.Builder()).build());
+		}
+
 		public IndexResult build() {
 			_checkSingleUse();
-
 			return new IndexResult(this);
 		}
+
 	}
 
-	/**
-	 * @return New {@link Builder} initialized with field values of this instance
-	 */
-	public Builder rebuild() {
-		return new Builder(this);
-	}
-	// ---------------------------------------------------------------------------------------------
+	protected static void setupIndexResultDeserializer(ObjectDeserializer<Builder> op) {
 
-	/**
-	 * Json deserializer for {@link IndexResult}
-	 */
+		op.add(Builder::response, JsonpDeserializer.arrayDeserializer(IndexResultSummary._DESERIALIZER), "response");
+		op.add(Builder::request, IndexResultRequestSummary._DESERIALIZER, "request");
+
+	}
+
 	public static final JsonpDeserializer<IndexResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexResult::setupIndexResultDeserializer);
-
-	protected static void setupIndexResultDeserializer(ObjectDeserializer<IndexResult.Builder> op) {
-
-		op.add(Builder::response, IndexResultSummary._DESERIALIZER, "response");
-
-	}
-
+			IndexResult::setupIndexResultDeserializer, Builder::build);
 }

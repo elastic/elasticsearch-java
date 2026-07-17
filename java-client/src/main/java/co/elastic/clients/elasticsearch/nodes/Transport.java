@@ -34,6 +34,7 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -90,6 +91,8 @@ public class Transport implements JsonpSerializable {
 	@Nullable
 	private final Long totalOutboundConnections;
 
+	private final Map<String, TransportActionStats> actions;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private Transport(Builder builder) {
@@ -104,6 +107,7 @@ public class Transport implements JsonpSerializable {
 		this.txSize = builder.txSize;
 		this.txSizeInBytes = builder.txSizeInBytes;
 		this.totalOutboundConnections = builder.totalOutboundConnections;
+		this.actions = ApiTypeHelper.unmodifiable(builder.actions);
 
 	}
 
@@ -222,6 +226,16 @@ public class Transport implements JsonpSerializable {
 	}
 
 	/**
+	 * Statistics about the transport messages sent and received by the node, broken
+	 * down by action name.
+	 * <p>
+	 * API name: {@code actions}
+	 */
+	public final Map<String, TransportActionStats> actions() {
+		return this.actions;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -292,6 +306,17 @@ public class Transport implements JsonpSerializable {
 			generator.write(this.totalOutboundConnections);
 
 		}
+		if (ApiTypeHelper.isDefined(this.actions)) {
+			generator.writeKey("actions");
+			generator.writeStartObject();
+			for (Map.Entry<String, TransportActionStats> item0 : this.actions.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -337,6 +362,9 @@ public class Transport implements JsonpSerializable {
 		@Nullable
 		private Long totalOutboundConnections;
 
+		@Nullable
+		private Map<String, TransportActionStats> actions;
+
 		public Builder() {
 		}
 		private Builder(Transport instance) {
@@ -350,6 +378,7 @@ public class Transport implements JsonpSerializable {
 			this.txSize = instance.txSize;
 			this.txSizeInBytes = instance.txSizeInBytes;
 			this.totalOutboundConnections = instance.totalOutboundConnections;
+			this.actions = instance.actions;
 
 		}
 		/**
@@ -524,6 +553,45 @@ public class Transport implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * Statistics about the transport messages sent and received by the node, broken
+		 * down by action name.
+		 * <p>
+		 * API name: {@code actions}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>actions</code>.
+		 */
+		public final Builder actions(Map<String, TransportActionStats> map) {
+			this.actions = _mapPutAll(this.actions, map);
+			return this;
+		}
+
+		/**
+		 * Statistics about the transport messages sent and received by the node, broken
+		 * down by action name.
+		 * <p>
+		 * API name: {@code actions}
+		 * <p>
+		 * Adds an entry to <code>actions</code>.
+		 */
+		public final Builder actions(String key, TransportActionStats value) {
+			this.actions = _mapPut(this.actions, key, value);
+			return this;
+		}
+
+		/**
+		 * Statistics about the transport messages sent and received by the node, broken
+		 * down by action name.
+		 * <p>
+		 * API name: {@code actions}
+		 * <p>
+		 * Adds an entry to <code>actions</code> using a builder lambda.
+		 */
+		public final Builder actions(String key,
+				Function<TransportActionStats.Builder, ObjectBuilder<TransportActionStats>> fn) {
+			return actions(key, fn.apply(new TransportActionStats.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -572,6 +640,8 @@ public class Transport implements JsonpSerializable {
 		op.add(Builder::txSize, JsonpDeserializer.stringDeserializer(), "tx_size");
 		op.add(Builder::txSizeInBytes, JsonpDeserializer.longDeserializer(), "tx_size_in_bytes");
 		op.add(Builder::totalOutboundConnections, JsonpDeserializer.longDeserializer(), "total_outbound_connections");
+		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(TransportActionStats._DESERIALIZER),
+				"actions");
 
 	}
 

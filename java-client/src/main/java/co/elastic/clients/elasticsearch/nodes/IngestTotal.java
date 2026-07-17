@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,6 +34,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -64,6 +66,9 @@ public class IngestTotal implements JsonpSerializable {
 
 	private final long failed;
 
+	@Nullable
+	private final Time time;
+
 	private final long timeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
@@ -73,6 +78,7 @@ public class IngestTotal implements JsonpSerializable {
 		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
 		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current", 0);
 		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed", 0);
+		this.time = builder.time;
 		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis", 0);
 
 	}
@@ -111,6 +117,17 @@ public class IngestTotal implements JsonpSerializable {
 	}
 
 	/**
+	 * Total time spent preprocessing ingest documents during the lifetime of this
+	 * node.
+	 * <p>
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public final Time time() {
+		return this.time;
+	}
+
+	/**
 	 * Required - Total time, in milliseconds, spent preprocessing ingest documents
 	 * during the lifetime of this node.
 	 * <p>
@@ -140,6 +157,11 @@ public class IngestTotal implements JsonpSerializable {
 		generator.writeKey("failed");
 		generator.write(this.failed);
 
+		if (this.time != null) {
+			generator.writeKey("time");
+			this.time.serialize(generator, mapper);
+
+		}
 		generator.writeKey("time_in_millis");
 		generator.write(this.timeInMillis);
 
@@ -163,6 +185,9 @@ public class IngestTotal implements JsonpSerializable {
 
 		private Long failed;
 
+		@Nullable
+		private Time time;
+
 		private Long timeInMillis;
 
 		public Builder() {
@@ -171,6 +196,7 @@ public class IngestTotal implements JsonpSerializable {
 			this.count = instance.count;
 			this.current = instance.current;
 			this.failed = instance.failed;
+			this.time = instance.time;
 			this.timeInMillis = instance.timeInMillis;
 
 		}
@@ -204,6 +230,27 @@ public class IngestTotal implements JsonpSerializable {
 		public final Builder failed(long value) {
 			this.failed = value;
 			return this;
+		}
+
+		/**
+		 * Total time spent preprocessing ingest documents during the lifetime of this
+		 * node.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(@Nullable Time value) {
+			this.time = value;
+			return this;
+		}
+
+		/**
+		 * Total time spent preprocessing ingest documents during the lifetime of this
+		 * node.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.time(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -254,6 +301,7 @@ public class IngestTotal implements JsonpSerializable {
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::current, JsonpDeserializer.longDeserializer(), "current");
 		op.add(Builder::failed, JsonpDeserializer.longDeserializer(), "failed");
+		op.add(Builder::time, Time._DESERIALIZER, "time");
 		op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
 
 	}

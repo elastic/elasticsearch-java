@@ -128,6 +128,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpSerializable {
 	@Nullable
+	private final String slice;
+
+	@Nullable
 	private final TDocument doc;
 
 	@Nullable
@@ -178,6 +181,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 
 	private TermvectorsRequest(Builder<TDocument> builder) {
 
+		this.slice = builder.slice;
 		this.doc = builder.doc;
 		this.fieldStatistics = builder.fieldStatistics;
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
@@ -201,6 +205,20 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	public static <TDocument> TermvectorsRequest<TDocument> of(
 			Function<Builder<TDocument>, ObjectBuilder<TermvectorsRequest<TDocument>>> fn) {
 		return fn.apply(new Builder<>()).build();
+	}
+
+	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String slice() {
+		return this.slice;
 	}
 
 	/**
@@ -482,6 +500,9 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 			implements
 				ObjectBuilder<TermvectorsRequest<TDocument>> {
 		@Nullable
+		private String slice;
+
+		@Nullable
 		private TDocument doc;
 
 		@Nullable
@@ -534,6 +555,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		public Builder() {
 		}
 		private Builder(TermvectorsRequest<TDocument> instance) {
+			this.slice = instance.slice;
 			this.doc = instance.doc;
 			this.fieldStatistics = instance.fieldStatistics;
 			this.fields = instance.fields;
@@ -552,6 +574,20 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 			this.versionType = instance.versionType;
 
 		}
+		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder<TDocument> slice(@Nullable String value) {
+			this.slice = value;
+			return this;
+		}
+
 		/**
 		 * An artificial document (a document not present in the index) for which you
 		 * want to retrieve term vectors.
@@ -937,6 +973,9 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.slice != null) {
+					params.put("_slice", request.slice);
+				}
 				if (request.realtime != null) {
 					params.put("realtime", String.valueOf(request.realtime));
 				}

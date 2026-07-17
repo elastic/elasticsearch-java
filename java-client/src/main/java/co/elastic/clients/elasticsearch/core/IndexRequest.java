@@ -101,7 +101,8 @@ import javax.annotation.Nullable;
  * <p>
  * NOTE: Replica shards might not all be started when an indexing operation
  * returns successfully. By default, only the primary is required. Set
- * <code>wait_for_active_shards</code> to change this default behavior.
+ * <code>wait_for_active_shards</code> to change this default behavior (this
+ * parameter is not available in Elasticsearch Serverless).
  * <p>
  * <strong>Automatically create data streams and indices</strong>
  * <p>
@@ -177,7 +178,8 @@ import javax.annotation.Nullable;
  * <code>1</code>). This default can be overridden in the index settings
  * dynamically by setting <code>index.write.wait_for_active_shards</code>. To
  * alter this behavior per operation, use the
- * <code>wait_for_active_shards request</code> parameter.
+ * <code>wait_for_active_shards request</code> parameter (this parameter is not
+ * available in Elasticsearch Serverless).
  * <p>
  * Valid values are all or any positive integer up to the total number of
  * configured copies per shard in the index (which is
@@ -273,6 +275,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class IndexRequest<TDocument> extends RequestBase implements JsonpSerializable {
 	@Nullable
+	private final String slice;
+
+	@Nullable
 	private final String id;
 
 	@Nullable
@@ -324,6 +329,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 
 	private IndexRequest(Builder<TDocument> builder) {
 
+		this.slice = builder.slice;
 		this.id = builder.id;
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
@@ -347,6 +353,20 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	public static <TDocument> IndexRequest<TDocument> of(
 			Function<Builder<TDocument>, ObjectBuilder<IndexRequest<TDocument>>> fn) {
 		return fn.apply(new Builder<>()).build();
+	}
+
+	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String slice() {
+		return this.slice;
 	}
 
 	/**
@@ -471,7 +491,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * A custom value that is used to route operations to a specific shard.
+	 * A custom value that is used to route operations to a specific shard. Not
+	 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
+	 * target index; use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -558,6 +580,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 			implements
 				ObjectBuilder<IndexRequest<TDocument>> {
 		@Nullable
+		private String slice;
+
+		@Nullable
 		private String id;
 
 		@Nullable
@@ -609,6 +634,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		public Builder() {
 		}
 		private Builder(IndexRequest<TDocument> instance) {
+			this.slice = instance.slice;
 			this.id = instance.id;
 			this.ifPrimaryTerm = instance.ifPrimaryTerm;
 			this.ifSeqNo = instance.ifSeqNo;
@@ -627,6 +653,20 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 			this.document = instance.document;
 
 		}
+		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder<TDocument> slice(@Nullable String value) {
+			this.slice = value;
+			return this;
+		}
+
 		/**
 		 * A unique identifier for the document. To automatically generate a document
 		 * ID, use the <code>POST /&lt;target&gt;/_doc/</code> request format and omit
@@ -750,7 +790,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * A custom value that is used to route operations to a specific shard.
+		 * A custom value that is used to route operations to a specific shard. Not
+		 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
+		 * target index; use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -762,7 +804,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * A custom value that is used to route operations to a specific shard.
+		 * A custom value that is used to route operations to a specific shard. Not
+		 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
+		 * target index; use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -1029,6 +1073,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 				}
 				if (request.pipeline != null) {
 					params.put("pipeline", request.pipeline);
+				}
+				if (request.slice != null) {
+					params.put("_slice", request.slice);
 				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
 					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)

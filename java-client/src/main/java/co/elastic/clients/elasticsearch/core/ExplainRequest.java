@@ -75,6 +75,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
+	private final String slice;
+
+	@Nullable
 	private final SourceConfigParam source;
 
 	private final List<String> sourceExcludes;
@@ -117,6 +120,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 
 	private ExplainRequest(Builder builder) {
 
+		this.slice = builder.slice;
 		this.source = builder.source;
 		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
 		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
@@ -137,6 +141,20 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 
 	public static ExplainRequest of(Function<Builder, ObjectBuilder<ExplainRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String slice() {
+		return this.slice;
 	}
 
 	/**
@@ -285,7 +303,9 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A custom value used to route operations to a specific shard.
+	 * A custom value used to route operations to a specific shard. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -328,6 +348,9 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<ExplainRequest> {
+		@Nullable
+		private String slice;
+
 		@Nullable
 		private SourceConfigParam source;
 
@@ -374,6 +397,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		public Builder() {
 		}
 		private Builder(ExplainRequest instance) {
+			this.slice = instance.slice;
 			this.source = instance.source;
 			this.sourceExcludes = instance.sourceExcludes;
 			this.sourceIncludes = instance.sourceIncludes;
@@ -391,6 +415,20 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 			this.storedFields = instance.storedFields;
 
 		}
+		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder slice(@Nullable String value) {
+			this.slice = value;
+			return this;
+		}
+
 		/**
 		 * <code>True</code> or <code>false</code> to return the <code>_source</code>
 		 * field or not or a list of fields to return.
@@ -605,7 +643,9 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -617,7 +657,9 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -747,15 +789,27 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.df != null) {
+					params.put("df", request.df);
+				}
+				if (request.preference != null) {
+					params.put("preference", request.preference);
+				}
+				if (request.analyzeWildcard != null) {
+					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
+				}
+				if (request.lenient != null) {
+					params.put("lenient", String.valueOf(request.lenient));
+				}
+				if (request.slice != null) {
+					params.put("_slice", request.slice);
+				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
 					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
 				}
 				if (request.q != null) {
 					params.put("q", request.q);
-				}
-				if (request.df != null) {
-					params.put("df", request.df);
 				}
 				if (request.defaultOperator != null) {
 					params.put("default_operator", request.defaultOperator.jsonValue());
@@ -767,12 +821,6 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 					params.put("stored_fields", request.storedFields.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
 				}
-				if (request.preference != null) {
-					params.put("preference", request.preference);
-				}
-				if (request.analyzeWildcard != null) {
-					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
-				}
 				if (request.source != null) {
 					params.put("_source", request.source._toJsonString());
 				}
@@ -783,9 +831,6 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes", request.sourceIncludes.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
-				}
-				if (request.lenient != null) {
-					params.put("lenient", String.valueOf(request.lenient));
 				}
 				return params;
 

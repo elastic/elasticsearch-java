@@ -150,8 +150,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 
 	/**
 	 * An object defining global privileges. A global privilege is a form of cluster
-	 * privilege that is request-aware. Support for global privileges is currently
-	 * limited to the management of application privileges.
+	 * privilege that is request-aware.
 	 * <p>
 	 * API name: {@code global}
 	 */
@@ -546,8 +545,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 
 		/**
 		 * An object defining global privileges. A global privilege is a form of cluster
-		 * privilege that is request-aware. Support for global privileges is currently
-		 * limited to the management of application privileges.
+		 * privilege that is request-aware.
 		 * <p>
 		 * API name: {@code global}
 		 * <p>
@@ -560,8 +558,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 
 		/**
 		 * An object defining global privileges. A global privilege is a form of cluster
-		 * privilege that is request-aware. Support for global privileges is currently
-		 * limited to the management of application privileges.
+		 * privilege that is request-aware.
 		 * <p>
 		 * API name: {@code global}
 		 * <p>
@@ -574,8 +571,7 @@ public class RoleDescriptorRead implements JsonpSerializable {
 
 		/**
 		 * An object defining global privileges. A global privilege is a form of cluster
-		 * privilege that is request-aware. Support for global privileges is currently
-		 * limited to the management of application privileges.
+		 * privilege that is request-aware.
 		 * <p>
 		 * API name: {@code global}
 		 * <p>
