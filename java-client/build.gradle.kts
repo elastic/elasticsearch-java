@@ -178,7 +178,7 @@ dependencies {
     // Compile and test with the last 7.x version to make sure transition scenarios where
     // the Java API client coexists with a 7.x HLRC work fine
     val elasticsearchVersion = "8.19.18"
-    val jacksonVersion = "2.17.0"
+    val jacksonVersion = "2.18.8"
     val openTelemetryVersion = "1.29.0"
     val jackson3Version = "3.0.0"
 
