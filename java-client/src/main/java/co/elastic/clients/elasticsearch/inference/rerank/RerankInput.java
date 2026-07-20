@@ -198,7 +198,7 @@ public class RerankInput implements TaggedUnion<RerankInput.Kind, Object>, Jsonp
 	}
 
 	private static JsonpDeserializer<RerankInput> buildRerankInputDeserializer() {
-		return new UnionDeserializer.Builder<RerankInput, Kind, Object>(RerankInput::new, false)
+		return new UnionDeserializer.Builder<RerankInput, Kind, Object>(RerankInput::new, true)
 				.addMember(Kind.Object, JsonpDeserializer.arrayDeserializer(RerankInputObject._DESERIALIZER))
 				.addMember(Kind.String, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()))
 				.build();

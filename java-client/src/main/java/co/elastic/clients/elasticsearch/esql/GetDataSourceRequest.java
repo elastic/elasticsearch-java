@@ -58,11 +58,11 @@ import javax.annotation.Nullable;
 // typedef: esql.get_data_source.Request
 
 /**
- * Get one or more ES|QL data sources.
+ * Get ES|QL data sources.
  * <p>
- * Returns the requested data sources. A concrete-name miss returns
- * <code>404</code>; a wildcard pattern or list-all with no match returns
- * <code>200</code> with an empty array.
+ * Returns one or more data sources used in ES|QL data federation. A
+ * concrete-name miss returns <code>404</code>; a wildcard pattern or list-all
+ * request with no match returns <code>200</code> with an empty array.
  * 
  * @see <a href="../doc-files/api-spec.html#esql.get_data_source.Request">API
  *      specification</a>

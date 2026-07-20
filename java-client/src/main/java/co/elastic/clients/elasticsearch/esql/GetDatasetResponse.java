@@ -74,7 +74,9 @@ public class GetDatasetResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code datasets}
+	 * Required - The matching datasets.
+	 * <p>
+	 * API name: {@code datasets}
 	 */
 	public final List<ESQLDataset> datasets() {
 		return this.datasets;
@@ -121,7 +123,9 @@ public class GetDatasetResponse implements JsonpSerializable {
 		private List<ESQLDataset> datasets;
 
 		/**
-		 * Required - API name: {@code datasets}
+		 * Required - The matching datasets.
+		 * <p>
+		 * API name: {@code datasets}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>datasets</code>.
 		 */
@@ -131,7 +135,9 @@ public class GetDatasetResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code datasets}
+		 * Required - The matching datasets.
+		 * <p>
+		 * API name: {@code datasets}
 		 * <p>
 		 * Adds one or more values to <code>datasets</code>.
 		 */
@@ -141,7 +147,9 @@ public class GetDatasetResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code datasets}
+		 * Required - The matching datasets.
+		 * <p>
+		 * API name: {@code datasets}
 		 * <p>
 		 * Adds a value to <code>datasets</code> using a builder lambda.
 		 */

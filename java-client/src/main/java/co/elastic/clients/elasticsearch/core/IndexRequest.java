@@ -275,9 +275,6 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class IndexRequest<TDocument> extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String slice;
-
-	@Nullable
 	private final String id;
 
 	@Nullable
@@ -306,6 +303,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	@Nullable
 	private final Boolean requireDataStream;
 
+	@Nullable
+	private final String routeSlice;
+
 	private final List<String> routing;
 
 	@Nullable
@@ -329,7 +329,6 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 
 	private IndexRequest(Builder<TDocument> builder) {
 
-		this.slice = builder.slice;
 		this.id = builder.id;
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
@@ -340,6 +339,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		this.refresh = builder.refresh;
 		this.requireAlias = builder.requireAlias;
 		this.requireDataStream = builder.requireDataStream;
+		this.routeSlice = builder.routeSlice;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.timeout = builder.timeout;
 		this.version = builder.version;
@@ -353,20 +353,6 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	public static <TDocument> IndexRequest<TDocument> of(
 			Function<Builder<TDocument>, ObjectBuilder<IndexRequest<TDocument>>> fn) {
 		return fn.apply(new Builder<>()).build();
-	}
-
-	/**
-	 * The slice identifier used to route the operation to a specific slice. Use the
-	 * special value <code>_all</code> to target all slices without restricting to a
-	 * routing value. Required when <code>index.slice.enabled</code> is
-	 * <code>true</code> for the target index; not allowed when
-	 * <code>index.slice.enabled</code> is <code>false</code>.
-	 * <p>
-	 * API name: {@code _slice}
-	 */
-	@Nullable
-	public final String slice() {
-		return this.slice;
 	}
 
 	/**
@@ -491,6 +477,20 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	}
 
 	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
 	 * A custom value that is used to route operations to a specific shard. Not
 	 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
 	 * target index; use <code>_slice</code> instead.
@@ -580,9 +580,6 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 			implements
 				ObjectBuilder<IndexRequest<TDocument>> {
 		@Nullable
-		private String slice;
-
-		@Nullable
 		private String id;
 
 		@Nullable
@@ -612,6 +609,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		private Boolean requireDataStream;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private List<String> routing;
 
 		@Nullable
@@ -634,7 +634,6 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		public Builder() {
 		}
 		private Builder(IndexRequest<TDocument> instance) {
-			this.slice = instance.slice;
 			this.id = instance.id;
 			this.ifPrimaryTerm = instance.ifPrimaryTerm;
 			this.ifSeqNo = instance.ifSeqNo;
@@ -645,6 +644,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 			this.refresh = instance.refresh;
 			this.requireAlias = instance.requireAlias;
 			this.requireDataStream = instance.requireDataStream;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 			this.timeout = instance.timeout;
 			this.version = instance.version;
@@ -653,20 +653,6 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 			this.document = instance.document;
 
 		}
-		/**
-		 * The slice identifier used to route the operation to a specific slice. Use the
-		 * special value <code>_all</code> to target all slices without restricting to a
-		 * routing value. Required when <code>index.slice.enabled</code> is
-		 * <code>true</code> for the target index; not allowed when
-		 * <code>index.slice.enabled</code> is <code>false</code>.
-		 * <p>
-		 * API name: {@code _slice}
-		 */
-		public final Builder<TDocument> slice(@Nullable String value) {
-			this.slice = value;
-			return this;
-		}
-
 		/**
 		 * A unique identifier for the document. To automatically generate a document
 		 * ID, use the <code>POST /&lt;target&gt;/_doc/</code> request format and omit
@@ -786,6 +772,20 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		 */
 		public final Builder<TDocument> requireDataStream(@Nullable Boolean value) {
 			this.requireDataStream = value;
+			return this;
+		}
+
+		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder<TDocument> routeSlice(@Nullable String value) {
+			this.routeSlice = value;
 			return this;
 		}
 
@@ -1062,6 +1062,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 				if (request.refresh != null) {
 					params.put("refresh", request.refresh.jsonValue());
 				}
+				if (request.routeSlice != null) {
+					params.put("_slice", request.routeSlice);
+				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));
 				}
@@ -1073,9 +1076,6 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 				}
 				if (request.pipeline != null) {
 					params.put("pipeline", request.pipeline);
-				}
-				if (request.slice != null) {
-					params.put("_slice", request.slice);
 				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
 					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)

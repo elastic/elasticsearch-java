@@ -116,10 +116,9 @@ public class ESQLDataset implements JsonpSerializable {
 
 	/**
 	 * Required - The URI that identifies the data to read, resolved against the
-	 * referenced data source, rather than only a path. For S3, it can include glob
-	 * patterns, for example a recursive <code>/**</code> matching
-	 * <code>*.parquet</code> files under a prefix such as
-	 * <code>s3://bucket/logs</code>.
+	 * referenced data source. It can include glob patterns, for example a recursive
+	 * pattern that matches Parquet files under
+	 * <code>s3://logs-bucket/access</code>.
 	 * <p>
 	 * API name: {@code resource}
 	 */
@@ -139,8 +138,9 @@ public class ESQLDataset implements JsonpSerializable {
 
 	/**
 	 * Format- and parsing-specific settings that configure how the resource is
-	 * read. The accepted keys depend on the format reader; compression can be
-	 * inferred from the resource URI.
+	 * read. Common keys include <code>format</code> and
+	 * <code>partition_detection</code>. Additional keys depend on the format
+	 * reader; compression can be inferred from the resource URI.
 	 * <p>
 	 * API name: {@code settings}
 	 */
@@ -262,10 +262,9 @@ public class ESQLDataset implements JsonpSerializable {
 
 		/**
 		 * Required - The URI that identifies the data to read, resolved against the
-		 * referenced data source, rather than only a path. For S3, it can include glob
-		 * patterns, for example a recursive <code>/**</code> matching
-		 * <code>*.parquet</code> files under a prefix such as
-		 * <code>s3://bucket/logs</code>.
+		 * referenced data source. It can include glob patterns, for example a recursive
+		 * pattern that matches Parquet files under
+		 * <code>s3://logs-bucket/access</code>.
 		 * <p>
 		 * API name: {@code resource}
 		 */
@@ -286,8 +285,9 @@ public class ESQLDataset implements JsonpSerializable {
 
 		/**
 		 * Format- and parsing-specific settings that configure how the resource is
-		 * read. The accepted keys depend on the format reader; compression can be
-		 * inferred from the resource URI.
+		 * read. Common keys include <code>format</code> and
+		 * <code>partition_detection</code>. Additional keys depend on the format
+		 * reader; compression can be inferred from the resource URI.
 		 * <p>
 		 * API name: {@code settings}
 		 * <p>
@@ -300,8 +300,9 @@ public class ESQLDataset implements JsonpSerializable {
 
 		/**
 		 * Format- and parsing-specific settings that configure how the resource is
-		 * read. The accepted keys depend on the format reader; compression can be
-		 * inferred from the resource URI.
+		 * read. Common keys include <code>format</code> and
+		 * <code>partition_detection</code>. Additional keys depend on the format
+		 * reader; compression can be inferred from the resource URI.
 		 * <p>
 		 * API name: {@code settings}
 		 * <p>

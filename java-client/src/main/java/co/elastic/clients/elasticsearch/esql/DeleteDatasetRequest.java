@@ -58,7 +58,10 @@ import javax.annotation.Nullable;
 // typedef: esql.delete_dataset.Request
 
 /**
- * Delete one or more ES|QL datasets.
+ * Delete ES|QL datasets.
+ * <p>
+ * Deletes one or more datasets used in ES|QL data federation. If any specified
+ * dataset does not exist, the request fails and no datasets are deleted.
  * 
  * @see <a href="../doc-files/api-spec.html#esql.delete_dataset.Request">API
  *      specification</a>

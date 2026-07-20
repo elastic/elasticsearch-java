@@ -59,11 +59,12 @@ import javax.annotation.Nullable;
 // typedef: esql.put_dataset.Request
 
 /**
- * Create or replace an ES|QL dataset.
+ * Create or update an ES|QL dataset.
  * <p>
- * Creates or replaces a dataset that references a data source. Dataset names
- * participate in the index namespace and must follow index/alias naming rules.
- * Returns <code>404</code> if the referenced data source does not exist.
+ * Creates or replaces a dataset that references a data source in ES|QL data
+ * federation. Dataset names participate in the index namespace and must follow
+ * index or alias naming rules. Returns <code>404</code> if the referenced data
+ * source does not exist.
  * 
  * @see <a href="../doc-files/api-spec.html#esql.put_dataset.Request">API
  *      specification</a>
@@ -160,10 +161,9 @@ public class PutDatasetRequest extends RequestBase implements JsonpSerializable 
 
 	/**
 	 * Required - The URI that identifies the data to read, resolved against the
-	 * referenced data source, rather than only a path. For S3, it can include glob
-	 * patterns, for example a recursive <code>/**</code> matching
-	 * <code>*.parquet</code> files under a prefix such as
-	 * <code>s3://bucket/logs</code>.
+	 * referenced data source. It can include glob patterns. For example, a
+	 * recursive pattern can match all Parquet files under the
+	 * <code>s3://logs-bucket/access</code> prefix.
 	 * <p>
 	 * API name: {@code resource}
 	 */
@@ -173,8 +173,11 @@ public class PutDatasetRequest extends RequestBase implements JsonpSerializable 
 
 	/**
 	 * Format and parsing-specific settings that configure how the resource is read.
-	 * The accepted keys depend on the format reader; compression can be inferred
-	 * from the resource URI.
+	 * Common keys include <code>format</code>, which explicitly selects a
+	 * registered format, and <code>partition_detection</code>, which accepts
+	 * <code>auto</code>, <code>hive</code>, <code>template</code>, or
+	 * <code>none</code>. Additional keys depend on the format reader. Compression
+	 * can be inferred from the resource URI.
 	 * <p>
 	 * API name: {@code settings}
 	 */
@@ -347,10 +350,9 @@ public class PutDatasetRequest extends RequestBase implements JsonpSerializable 
 
 		/**
 		 * Required - The URI that identifies the data to read, resolved against the
-		 * referenced data source, rather than only a path. For S3, it can include glob
-		 * patterns, for example a recursive <code>/**</code> matching
-		 * <code>*.parquet</code> files under a prefix such as
-		 * <code>s3://bucket/logs</code>.
+		 * referenced data source. It can include glob patterns. For example, a
+		 * recursive pattern can match all Parquet files under the
+		 * <code>s3://logs-bucket/access</code> prefix.
 		 * <p>
 		 * API name: {@code resource}
 		 */
@@ -361,8 +363,11 @@ public class PutDatasetRequest extends RequestBase implements JsonpSerializable 
 
 		/**
 		 * Format and parsing-specific settings that configure how the resource is read.
-		 * The accepted keys depend on the format reader; compression can be inferred
-		 * from the resource URI.
+		 * Common keys include <code>format</code>, which explicitly selects a
+		 * registered format, and <code>partition_detection</code>, which accepts
+		 * <code>auto</code>, <code>hive</code>, <code>template</code>, or
+		 * <code>none</code>. Additional keys depend on the format reader. Compression
+		 * can be inferred from the resource URI.
 		 * <p>
 		 * API name: {@code settings}
 		 * <p>
@@ -375,8 +380,11 @@ public class PutDatasetRequest extends RequestBase implements JsonpSerializable 
 
 		/**
 		 * Format and parsing-specific settings that configure how the resource is read.
-		 * The accepted keys depend on the format reader; compression can be inferred
-		 * from the resource URI.
+		 * Common keys include <code>format</code>, which explicitly selects a
+		 * registered format, and <code>partition_detection</code>, which accepts
+		 * <code>auto</code>, <code>hive</code>, <code>template</code>, or
+		 * <code>none</code>. Additional keys depend on the format reader. Compression
+		 * can be inferred from the resource URI.
 		 * <p>
 		 * API name: {@code settings}
 		 * <p>

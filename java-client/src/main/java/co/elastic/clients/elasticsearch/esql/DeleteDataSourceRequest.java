@@ -58,10 +58,11 @@ import javax.annotation.Nullable;
 // typedef: esql.delete_data_source.Request
 
 /**
- * Delete one or more ES|QL data sources.
+ * Delete ES|QL data sources.
  * <p>
- * Fails with <code>409</code> if any dataset references one of the named data
- * sources; delete the dependent datasets first.
+ * Deletes one or more data sources used in ES|QL data federation. Fails with
+ * <code>409</code> if any dataset references one of the named data sources;
+ * delete the dependent datasets first.
  * 
  * @see <a href="../doc-files/api-spec.html#esql.delete_data_source.Request">API
  *      specification</a>

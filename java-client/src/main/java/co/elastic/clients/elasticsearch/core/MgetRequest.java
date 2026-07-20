@@ -93,9 +93,6 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class MgetRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String slice;
-
-	@Nullable
 	private final SourceConfigParam source;
 
 	private final List<String> sourceExcludes;
@@ -121,6 +118,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean refresh;
 
+	@Nullable
+	private final String routeSlice;
+
 	private final List<String> routing;
 
 	private final List<String> storedFields;
@@ -129,7 +129,6 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 
 	private MgetRequest(Builder builder) {
 
-		this.slice = builder.slice;
 		this.source = builder.source;
 		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
 		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
@@ -140,6 +139,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
 		this.refresh = builder.refresh;
+		this.routeSlice = builder.routeSlice;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 
@@ -147,20 +147,6 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 
 	public static MgetRequest of(Function<Builder, ObjectBuilder<MgetRequest>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * The slice identifier used to route the operation to a specific slice. Use the
-	 * special value <code>_all</code> to target all slices without restricting to a
-	 * routing value. Required when <code>index.slice.enabled</code> is
-	 * <code>true</code> for the target index; not allowed when
-	 * <code>index.slice.enabled</code> is <code>false</code>.
-	 * <p>
-	 * API name: {@code _slice}
-	 */
-	@Nullable
-	public final String slice() {
-		return this.slice;
 	}
 
 	/**
@@ -276,6 +262,20 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
 	 * Custom value used to route operations to a specific shard. Not allowed when
 	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
 	 * use <code>_slice</code> instead.
@@ -338,9 +338,6 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<MgetRequest> {
 		@Nullable
-		private String slice;
-
-		@Nullable
 		private SourceConfigParam source;
 
 		@Nullable
@@ -371,6 +368,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		private Boolean refresh;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private List<String> routing;
 
 		@Nullable
@@ -379,7 +379,6 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		public Builder() {
 		}
 		private Builder(MgetRequest instance) {
-			this.slice = instance.slice;
 			this.source = instance.source;
 			this.sourceExcludes = instance.sourceExcludes;
 			this.sourceIncludes = instance.sourceIncludes;
@@ -390,24 +389,11 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 			this.preference = instance.preference;
 			this.realtime = instance.realtime;
 			this.refresh = instance.refresh;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 			this.storedFields = instance.storedFields;
 
 		}
-		/**
-		 * The slice identifier used to route the operation to a specific slice. Use the
-		 * special value <code>_all</code> to target all slices without restricting to a
-		 * routing value. Required when <code>index.slice.enabled</code> is
-		 * <code>true</code> for the target index; not allowed when
-		 * <code>index.slice.enabled</code> is <code>false</code>.
-		 * <p>
-		 * API name: {@code _slice}
-		 */
-		public final Builder slice(@Nullable String value) {
-			this.slice = value;
-			return this;
-		}
-
 		/**
 		 * True or false to return the <code>_source</code> field or not, or a list of
 		 * fields to return.
@@ -611,6 +597,20 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
+			return this;
+		}
+
+		/**
 		 * Custom value used to route operations to a specific shard. Not allowed when
 		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
 		 * use <code>_slice</code> instead.
@@ -762,9 +762,6 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.slice != null) {
-					params.put("_slice", request.slice);
-				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
 					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
@@ -791,6 +788,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.forceSyntheticSource != null) {
 					params.put("force_synthetic_source", String.valueOf(request.forceSyntheticSource));
+				}
+				if (request.routeSlice != null) {
+					params.put("_slice", request.routeSlice);
 				}
 				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes", request.sourceIncludes.stream().map(v -> v).filter(Objects::nonNull)

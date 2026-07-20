@@ -73,7 +73,7 @@ public class Destination implements JsonpSerializable {
 	private final String routing;
 
 	@Nullable
-	private final String slice;
+	private final String routeSlice;
 
 	@Nullable
 	private final VersionType versionType;
@@ -86,7 +86,7 @@ public class Destination implements JsonpSerializable {
 		this.opType = builder.opType;
 		this.pipeline = builder.pipeline;
 		this.routing = builder.routing;
-		this.slice = builder.slice;
+		this.routeSlice = builder.routeSlice;
 		this.versionType = builder.versionType;
 
 	}
@@ -157,8 +157,8 @@ public class Destination implements JsonpSerializable {
 	 * API name: {@code _slice}
 	 */
 	@Nullable
-	public final String slice() {
-		return this.slice;
+	public final String routeSlice() {
+		return this.routeSlice;
 	}
 
 	/**
@@ -199,9 +199,9 @@ public class Destination implements JsonpSerializable {
 			generator.write(this.routing);
 
 		}
-		if (this.slice != null) {
+		if (this.routeSlice != null) {
 			generator.writeKey("_slice");
-			generator.write(this.slice);
+			generator.write(this.routeSlice);
 
 		}
 		if (this.versionType != null) {
@@ -235,7 +235,7 @@ public class Destination implements JsonpSerializable {
 		private String routing;
 
 		@Nullable
-		private String slice;
+		private String routeSlice;
 
 		@Nullable
 		private VersionType versionType;
@@ -247,7 +247,7 @@ public class Destination implements JsonpSerializable {
 			this.opType = instance.opType;
 			this.pipeline = instance.pipeline;
 			this.routing = instance.routing;
-			this.slice = instance.slice;
+			this.routeSlice = instance.routeSlice;
 			this.versionType = instance.versionType;
 
 		}
@@ -313,8 +313,8 @@ public class Destination implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _slice}
 		 */
-		public final Builder slice(@Nullable String value) {
-			this.slice = value;
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
 			return this;
 		}
 
@@ -366,7 +366,7 @@ public class Destination implements JsonpSerializable {
 		op.add(Builder::opType, OpType._DESERIALIZER, "op_type");
 		op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
-		op.add(Builder::slice, JsonpDeserializer.stringDeserializer(), "_slice");
+		op.add(Builder::routeSlice, JsonpDeserializer.stringDeserializer(), "_slice");
 		op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");
 
 	}

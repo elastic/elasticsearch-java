@@ -237,9 +237,6 @@ import javax.annotation.Nullable;
 
 public class BulkRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
 	@Nullable
-	private final String slice;
-
-	@Nullable
 	private final SourceConfigParam source;
 
 	private final List<String> sourceExcludes;
@@ -267,6 +264,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	@Nullable
 	private final Boolean requireDataStream;
 
+	@Nullable
+	private final String routeSlice;
+
 	private final List<String> routing;
 
 	@Nullable
@@ -281,7 +281,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 
 	private BulkRequest(Builder builder) {
 
-		this.slice = builder.slice;
 		this.source = builder.source;
 		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
 		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
@@ -292,6 +291,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		this.refresh = builder.refresh;
 		this.requireAlias = builder.requireAlias;
 		this.requireDataStream = builder.requireDataStream;
+		this.routeSlice = builder.routeSlice;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
@@ -307,20 +307,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	public Iterator<?> _serializables() {
 		return this.operations.iterator();
 	}
-	/**
-	 * The slice identifier used to route the operation to a specific slice. Use the
-	 * special value <code>_all</code> to target all slices without restricting to a
-	 * routing value. Required when <code>index.slice.enabled</code> is
-	 * <code>true</code> for the target index; not allowed when
-	 * <code>index.slice.enabled</code> is <code>false</code>.
-	 * <p>
-	 * API name: {@code _slice}
-	 */
-	@Nullable
-	public final String slice() {
-		return this.slice;
-	}
-
 	/**
 	 * Indicates whether to return the <code>_source</code> field (<code>true</code>
 	 * or <code>false</code>) or contains a list of fields to return.
@@ -440,6 +426,20 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	}
 
 	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
 	 * A custom value that is used to route operations to a specific shard. Not
 	 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
 	 * target index; use <code>_slice</code> instead.
@@ -505,9 +505,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<BulkRequest> {
 		@Nullable
-		private String slice;
-
-		@Nullable
 		private SourceConfigParam source;
 
 		@Nullable
@@ -538,6 +535,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		private Boolean requireDataStream;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private List<String> routing;
 
 		@Nullable
@@ -551,7 +551,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		public Builder() {
 		}
 		private Builder(BulkRequest instance) {
-			this.slice = instance.slice;
 			this.source = instance.source;
 			this.sourceExcludes = instance.sourceExcludes;
 			this.sourceIncludes = instance.sourceIncludes;
@@ -562,26 +561,13 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 			this.refresh = instance.refresh;
 			this.requireAlias = instance.requireAlias;
 			this.requireDataStream = instance.requireDataStream;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 			this.timeout = instance.timeout;
 			this.waitForActiveShards = instance.waitForActiveShards;
 			this.operations = instance.operations;
 
 		}
-		/**
-		 * The slice identifier used to route the operation to a specific slice. Use the
-		 * special value <code>_all</code> to target all slices without restricting to a
-		 * routing value. Required when <code>index.slice.enabled</code> is
-		 * <code>true</code> for the target index; not allowed when
-		 * <code>index.slice.enabled</code> is <code>false</code>.
-		 * <p>
-		 * API name: {@code _slice}
-		 */
-		public final Builder slice(@Nullable String value) {
-			this.slice = value;
-			return this;
-		}
-
 		/**
 		 * Indicates whether to return the <code>_source</code> field (<code>true</code>
 		 * or <code>false</code>) or contains a list of fields to return.
@@ -744,6 +730,20 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 */
 		public final Builder requireDataStream(@Nullable Boolean value) {
 			this.requireDataStream = value;
+			return this;
+		}
+
+		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
 			return this;
 		}
 
@@ -959,6 +959,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 				if (request.refresh != null) {
 					params.put("refresh", request.refresh.jsonValue());
 				}
+				if (request.routeSlice != null) {
+					params.put("_slice", request.routeSlice);
+				}
 				if (request.requireDataStream != null) {
 					params.put("require_data_stream", String.valueOf(request.requireDataStream));
 				}
@@ -970,9 +973,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 				}
 				if (request.pipeline != null) {
 					params.put("pipeline", request.pipeline);
-				}
-				if (request.slice != null) {
-					params.put("_slice", request.slice);
 				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
 					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)

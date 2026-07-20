@@ -70,10 +70,11 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: esql.delete_data_source
 
 	/**
-	 * Delete one or more ES|QL data sources.
+	 * Delete ES|QL data sources.
 	 * <p>
-	 * Fails with <code>409</code> if any dataset references one of the named data
-	 * sources; delete the dependent datasets first.
+	 * Deletes one or more data sources used in ES|QL data federation. Fails with
+	 * <code>409</code> if any dataset references one of the named data sources;
+	 * delete the dependent datasets first.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
@@ -88,10 +89,11 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Delete one or more ES|QL data sources.
+	 * Delete ES|QL data sources.
 	 * <p>
-	 * Fails with <code>409</code> if any dataset references one of the named data
-	 * sources; delete the dependent datasets first.
+	 * Deletes one or more data sources used in ES|QL data federation. Fails with
+	 * <code>409</code> if any dataset references one of the named data sources;
+	 * delete the dependent datasets first.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -109,7 +111,10 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: esql.delete_dataset
 
 	/**
-	 * Delete one or more ES|QL datasets.
+	 * Delete ES|QL datasets.
+	 * <p>
+	 * Deletes one or more datasets used in ES|QL data federation. If any specified
+	 * dataset does not exist, the request fails and no datasets are deleted.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
@@ -124,7 +129,10 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Delete one or more ES|QL datasets.
+	 * Delete ES|QL datasets.
+	 * <p>
+	 * Deletes one or more datasets used in ES|QL data federation. If any specified
+	 * dataset does not exist, the request fails and no datasets are deleted.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -179,11 +187,11 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: esql.get_data_source
 
 	/**
-	 * Get one or more ES|QL data sources.
+	 * Get ES|QL data sources.
 	 * <p>
-	 * Returns the requested data sources. A concrete-name miss returns
-	 * <code>404</code>; a wildcard pattern or list-all with no match returns
-	 * <code>200</code> with an empty array.
+	 * Returns one or more data sources used in ES|QL data federation. A
+	 * concrete-name miss returns <code>404</code>; a wildcard pattern or list-all
+	 * request with no match returns <code>200</code> with an empty array.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
@@ -198,11 +206,11 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Get one or more ES|QL data sources.
+	 * Get ES|QL data sources.
 	 * <p>
-	 * Returns the requested data sources. A concrete-name miss returns
-	 * <code>404</code>; a wildcard pattern or list-all with no match returns
-	 * <code>200</code> with an empty array.
+	 * Returns one or more data sources used in ES|QL data federation. A
+	 * concrete-name miss returns <code>404</code>; a wildcard pattern or list-all
+	 * request with no match returns <code>200</code> with an empty array.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -218,11 +226,11 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Get one or more ES|QL data sources.
+	 * Get ES|QL data sources.
 	 * <p>
-	 * Returns the requested data sources. A concrete-name miss returns
-	 * <code>404</code>; a wildcard pattern or list-all with no match returns
-	 * <code>200</code> with an empty array.
+	 * Returns one or more data sources used in ES|QL data federation. A
+	 * concrete-name miss returns <code>404</code>; a wildcard pattern or list-all
+	 * request with no match returns <code>200</code> with an empty array.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
@@ -237,11 +245,11 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: esql.get_dataset
 
 	/**
-	 * Get one or more ES|QL datasets.
+	 * Get ES|QL datasets.
 	 * <p>
-	 * Returns the requested datasets. A concrete-name miss returns
-	 * <code>404</code>; a wildcard pattern or list-all with no match returns
-	 * <code>200</code> with an empty array.
+	 * Returns one or more datasets used in ES|QL data federation. A concrete-name
+	 * miss returns <code>404</code>; a wildcard pattern or list-all request with no
+	 * match returns <code>200</code> with an empty array.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation#TODO">Documentation
@@ -256,11 +264,11 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Get one or more ES|QL datasets.
+	 * Get ES|QL datasets.
 	 * <p>
-	 * Returns the requested datasets. A concrete-name miss returns
-	 * <code>404</code>; a wildcard pattern or list-all with no match returns
-	 * <code>200</code> with an empty array.
+	 * Returns one or more datasets used in ES|QL data federation. A concrete-name
+	 * miss returns <code>404</code>; a wildcard pattern or list-all request with no
+	 * match returns <code>200</code> with an empty array.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -276,11 +284,11 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Get one or more ES|QL datasets.
+	 * Get ES|QL datasets.
 	 * <p>
-	 * Returns the requested datasets. A concrete-name miss returns
-	 * <code>404</code>; a wildcard pattern or list-all with no match returns
-	 * <code>200</code> with an empty array.
+	 * Returns one or more datasets used in ES|QL data federation. A concrete-name
+	 * miss returns <code>404</code>; a wildcard pattern or list-all request with no
+	 * match returns <code>200</code> with an empty array.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation#TODO">Documentation
@@ -403,9 +411,10 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	/**
 	 * Create or update an ES|QL data source.
 	 * <p>
-	 * Creates or replaces a named, type-specific data source configuration that
-	 * datasets reference to access external data. Names must be lowercase and
-	 * follow index/alias naming rules.
+	 * Creates or replaces a named, type-specific data source configuration for
+	 * ES|QL data federation. Datasets reference data source configurations to
+	 * access external data. Names must be lowercase and follow index or alias
+	 * naming rules.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
@@ -422,9 +431,10 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	/**
 	 * Create or update an ES|QL data source.
 	 * <p>
-	 * Creates or replaces a named, type-specific data source configuration that
-	 * datasets reference to access external data. Names must be lowercase and
-	 * follow index/alias naming rules.
+	 * Creates or replaces a named, type-specific data source configuration for
+	 * ES|QL data federation. Datasets reference data source configurations to
+	 * access external data. Names must be lowercase and follow index or alias
+	 * naming rules.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
@@ -442,11 +452,12 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	// ----- Endpoint: esql.put_dataset
 
 	/**
-	 * Create or replace an ES|QL dataset.
+	 * Create or update an ES|QL dataset.
 	 * <p>
-	 * Creates or replaces a dataset that references a data source. Dataset names
-	 * participate in the index namespace and must follow index/alias naming rules.
-	 * Returns <code>404</code> if the referenced data source does not exist.
+	 * Creates or replaces a dataset that references a data source in ES|QL data
+	 * federation. Dataset names participate in the index namespace and must follow
+	 * index or alias naming rules. Returns <code>404</code> if the referenced data
+	 * source does not exist.
 	 * 
 	 * @see <a href=
 	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation#TODO">Documentation
@@ -461,11 +472,12 @@ public class ElasticsearchEsqlAsyncClient extends ApiClient<ElasticsearchTranspo
 	}
 
 	/**
-	 * Create or replace an ES|QL dataset.
+	 * Create or update an ES|QL dataset.
 	 * <p>
-	 * Creates or replaces a dataset that references a data source. Dataset names
-	 * participate in the index namespace and must follow index/alias naming rules.
-	 * Returns <code>404</code> if the referenced data source does not exist.
+	 * Creates or replaces a dataset that references a data source in ES|QL data
+	 * federation. Dataset names participate in the index namespace and must follow
+	 * index or alias naming rules. Returns <code>404</code> if the referenced data
+	 * source does not exist.
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the

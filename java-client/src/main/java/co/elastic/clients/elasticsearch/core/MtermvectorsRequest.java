@@ -82,9 +82,6 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class MtermvectorsRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final String slice;
-
 	private final List<MultiTermVectorsOperation> docs;
 
 	@Nullable
@@ -112,6 +109,9 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	private final Boolean realtime;
 
+	@Nullable
+	private final String routeSlice;
+
 	private final List<String> routing;
 
 	@Nullable
@@ -127,7 +127,6 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 
 	private MtermvectorsRequest(Builder builder) {
 
-		this.slice = builder.slice;
 		this.docs = ApiTypeHelper.unmodifiable(builder.docs);
 		this.fieldStatistics = builder.fieldStatistics;
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
@@ -138,6 +137,7 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		this.positions = builder.positions;
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
+		this.routeSlice = builder.routeSlice;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.termStatistics = builder.termStatistics;
 		this.version = builder.version;
@@ -147,20 +147,6 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 
 	public static MtermvectorsRequest of(Function<Builder, ObjectBuilder<MtermvectorsRequest>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * The slice identifier used to route the operation to a specific slice. Use the
-	 * special value <code>_all</code> to target all slices without restricting to a
-	 * routing value. Required when <code>index.slice.enabled</code> is
-	 * <code>true</code> for the target index; not allowed when
-	 * <code>index.slice.enabled</code> is <code>false</code>.
-	 * <p>
-	 * API name: {@code _slice}
-	 */
-	@Nullable
-	public final String slice() {
-		return this.slice;
 	}
 
 	/**
@@ -267,6 +253,20 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
 	 * A custom value used to route operations to a specific shard. Not allowed when
 	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
 	 * use <code>_slice</code> instead.
@@ -351,9 +351,6 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 			implements
 				ObjectBuilder<MtermvectorsRequest> {
 		@Nullable
-		private String slice;
-
-		@Nullable
 		private List<MultiTermVectorsOperation> docs;
 
 		@Nullable
@@ -384,6 +381,9 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		private Boolean realtime;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private List<String> routing;
 
 		@Nullable
@@ -398,7 +398,6 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		public Builder() {
 		}
 		private Builder(MtermvectorsRequest instance) {
-			this.slice = instance.slice;
 			this.docs = instance.docs;
 			this.fieldStatistics = instance.fieldStatistics;
 			this.fields = instance.fields;
@@ -409,26 +408,13 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 			this.positions = instance.positions;
 			this.preference = instance.preference;
 			this.realtime = instance.realtime;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 			this.termStatistics = instance.termStatistics;
 			this.version = instance.version;
 			this.versionType = instance.versionType;
 
 		}
-		/**
-		 * The slice identifier used to route the operation to a specific slice. Use the
-		 * special value <code>_all</code> to target all slices without restricting to a
-		 * routing value. Required when <code>index.slice.enabled</code> is
-		 * <code>true</code> for the target index; not allowed when
-		 * <code>index.slice.enabled</code> is <code>false</code>.
-		 * <p>
-		 * API name: {@code _slice}
-		 */
-		public final Builder slice(@Nullable String value) {
-			this.slice = value;
-			return this;
-		}
-
 		/**
 		 * An array of existing or artificial documents.
 		 * <p>
@@ -590,6 +576,20 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 		 */
 		public final Builder realtime(@Nullable Boolean value) {
 			this.realtime = value;
+			return this;
+		}
+
+		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
 			return this;
 		}
 
@@ -768,11 +768,11 @@ public class MtermvectorsRequest extends RequestBase implements JsonpSerializabl
 				if (request.fieldStatistics != null) {
 					params.put("field_statistics", String.valueOf(request.fieldStatistics));
 				}
+				if (request.routeSlice != null) {
+					params.put("_slice", request.routeSlice);
+				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));
-				}
-				if (request.slice != null) {
-					params.put("_slice", request.slice);
 				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
 					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)

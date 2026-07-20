@@ -119,9 +119,6 @@ import javax.annotation.Nullable;
  */
 
 public class DeleteRequest extends RequestBase {
-	@Nullable
-	private final String slice;
-
 	private final String id;
 
 	@Nullable
@@ -134,6 +131,9 @@ public class DeleteRequest extends RequestBase {
 
 	@Nullable
 	private final Refresh refresh;
+
+	@Nullable
+	private final String routeSlice;
 
 	private final List<String> routing;
 
@@ -153,12 +153,12 @@ public class DeleteRequest extends RequestBase {
 
 	private DeleteRequest(Builder builder) {
 
-		this.slice = builder.slice;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.refresh = builder.refresh;
+		this.routeSlice = builder.routeSlice;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.timeout = builder.timeout;
 		this.version = builder.version;
@@ -169,20 +169,6 @@ public class DeleteRequest extends RequestBase {
 
 	public static DeleteRequest of(Function<Builder, ObjectBuilder<DeleteRequest>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * The slice identifier used to route the operation to a specific slice. Use the
-	 * special value <code>_all</code> to target all slices without restricting to a
-	 * routing value. Required when <code>index.slice.enabled</code> is
-	 * <code>true</code> for the target index; not allowed when
-	 * <code>index.slice.enabled</code> is <code>false</code>.
-	 * <p>
-	 * API name: {@code _slice}
-	 */
-	@Nullable
-	public final String slice() {
-		return this.slice;
 	}
 
 	/**
@@ -234,6 +220,20 @@ public class DeleteRequest extends RequestBase {
 	@Nullable
 	public final Refresh refresh() {
 		return this.refresh;
+	}
+
+	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
 	}
 
 	/**
@@ -306,9 +306,6 @@ public class DeleteRequest extends RequestBase {
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<DeleteRequest> {
-		@Nullable
-		private String slice;
-
 		private String id;
 
 		@Nullable
@@ -321,6 +318,9 @@ public class DeleteRequest extends RequestBase {
 
 		@Nullable
 		private Refresh refresh;
+
+		@Nullable
+		private String routeSlice;
 
 		@Nullable
 		private List<String> routing;
@@ -340,12 +340,12 @@ public class DeleteRequest extends RequestBase {
 		public Builder() {
 		}
 		private Builder(DeleteRequest instance) {
-			this.slice = instance.slice;
 			this.id = instance.id;
 			this.ifPrimaryTerm = instance.ifPrimaryTerm;
 			this.ifSeqNo = instance.ifSeqNo;
 			this.index = instance.index;
 			this.refresh = instance.refresh;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 			this.timeout = instance.timeout;
 			this.version = instance.version;
@@ -353,20 +353,6 @@ public class DeleteRequest extends RequestBase {
 			this.waitForActiveShards = instance.waitForActiveShards;
 
 		}
-		/**
-		 * The slice identifier used to route the operation to a specific slice. Use the
-		 * special value <code>_all</code> to target all slices without restricting to a
-		 * routing value. Required when <code>index.slice.enabled</code> is
-		 * <code>true</code> for the target index; not allowed when
-		 * <code>index.slice.enabled</code> is <code>false</code>.
-		 * <p>
-		 * API name: {@code _slice}
-		 */
-		public final Builder slice(@Nullable String value) {
-			this.slice = value;
-			return this;
-		}
-
 		/**
 		 * Required - A unique identifier for the document.
 		 * <p>
@@ -417,6 +403,20 @@ public class DeleteRequest extends RequestBase {
 		 */
 		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
+			return this;
+		}
+
+		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
 			return this;
 		}
 
@@ -612,9 +612,6 @@ public class DeleteRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.slice != null) {
-					params.put("_slice", request.slice);
-				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
 					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
@@ -633,6 +630,9 @@ public class DeleteRequest extends RequestBase {
 				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
+				}
+				if (request.routeSlice != null) {
+					params.put("_slice", request.routeSlice);
 				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));

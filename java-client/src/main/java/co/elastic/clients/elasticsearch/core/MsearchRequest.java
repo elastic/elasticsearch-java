@@ -95,9 +95,6 @@ import javax.annotation.Nullable;
 
 public class MsearchRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
 	@Nullable
-	private final String slice;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -128,6 +125,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	@Nullable
 	private final String projectRouting;
 
+	@Nullable
+	private final String routeSlice;
+
 	private final List<String> routing;
 
 	@Nullable
@@ -139,7 +139,6 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 
 	private MsearchRequest(Builder builder) {
 
-		this.slice = builder.slice;
 		this.allowNoIndices = builder.allowNoIndices;
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
@@ -151,6 +150,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.preFilterShardSize = builder.preFilterShardSize;
 		this.projectRouting = builder.projectRouting;
+		this.routeSlice = builder.routeSlice;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.searchType = builder.searchType;
 		this.searches = ApiTypeHelper.unmodifiableRequired(builder.searches, this, "searches");
@@ -165,23 +165,6 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	public Iterator<?> _serializables() {
 		return this.searches.iterator();
 	}
-	/**
-	 * The slice identifier for routing the search to a specific slice. When
-	 * provided at the top level, all sub-searches are routed to shards matching the
-	 * given slice value. Use the special value <code>_all</code> to query all
-	 * slices without restricting to a routing value. Required when
-	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
-	 * not allowed when <code>index.slice.enabled</code> is <code>false</code>.
-	 * Individual sub-search headers can also specify <code>_slice</code> to
-	 * override the top-level setting.
-	 * <p>
-	 * API name: {@code _slice}
-	 */
-	@Nullable
-	public final String slice() {
-		return this.slice;
-	}
-
 	/**
 	 * A setting that does two separate checks on the index expression. If
 	 * <code>false</code>, the request returns an error (1) if any wildcard
@@ -324,6 +307,23 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	}
 
 	/**
+	 * The slice identifier for routing the search to a specific slice. When
+	 * provided at the top level, all sub-searches are routed to shards matching the
+	 * given slice value. Use the special value <code>_all</code> to query all
+	 * slices without restricting to a routing value. Required when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * not allowed when <code>index.slice.enabled</code> is <code>false</code>.
+	 * Individual sub-search headers can also specify <code>_slice</code> to
+	 * override the top-level setting.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
 	 * Custom routing value used to route search operations to a specific shard. Not
 	 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
 	 * target index; use <code>_slice</code> instead.
@@ -373,9 +373,6 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<MsearchRequest> {
 		@Nullable
-		private String slice;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -409,6 +406,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		private String projectRouting;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private List<String> routing;
 
 		@Nullable
@@ -419,7 +419,6 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		public Builder() {
 		}
 		private Builder(MsearchRequest instance) {
-			this.slice = instance.slice;
 			this.allowNoIndices = instance.allowNoIndices;
 			this.ccsMinimizeRoundtrips = instance.ccsMinimizeRoundtrips;
 			this.expandWildcards = instance.expandWildcards;
@@ -431,28 +430,12 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 			this.maxConcurrentShardRequests = instance.maxConcurrentShardRequests;
 			this.preFilterShardSize = instance.preFilterShardSize;
 			this.projectRouting = instance.projectRouting;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 			this.searchType = instance.searchType;
 			this.searches = instance.searches;
 
 		}
-		/**
-		 * The slice identifier for routing the search to a specific slice. When
-		 * provided at the top level, all sub-searches are routed to shards matching the
-		 * given slice value. Use the special value <code>_all</code> to query all
-		 * slices without restricting to a routing value. Required when
-		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
-		 * not allowed when <code>index.slice.enabled</code> is <code>false</code>.
-		 * Individual sub-search headers can also specify <code>_slice</code> to
-		 * override the top-level setting.
-		 * <p>
-		 * API name: {@code _slice}
-		 */
-		public final Builder slice(@Nullable String value) {
-			this.slice = value;
-			return this;
-		}
-
 		/**
 		 * A setting that does two separate checks on the index expression. If
 		 * <code>false</code>, the request returns an error (1) if any wildcard
@@ -627,6 +610,23 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		}
 
 		/**
+		 * The slice identifier for routing the search to a specific slice. When
+		 * provided at the top level, all sub-searches are routed to shards matching the
+		 * given slice value. Use the special value <code>_all</code> to query all
+		 * slices without restricting to a routing value. Required when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * not allowed when <code>index.slice.enabled</code> is <code>false</code>.
+		 * Individual sub-search headers can also specify <code>_slice</code> to
+		 * override the top-level setting.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
+			return this;
+		}
+
+		/**
 		 * Custom routing value used to route search operations to a specific shard. Not
 		 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
 		 * target index; use <code>_slice</code> instead.
@@ -793,6 +793,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 				if (request.projectRouting != null) {
 					params.put("project_routing", request.projectRouting);
 				}
+				if (request.routeSlice != null) {
+					params.put("_slice", request.routeSlice);
+				}
 				if (request.includeNamedQueriesScore != null) {
 					params.put("include_named_queries_score", String.valueOf(request.includeNamedQueriesScore));
 				}
@@ -801,9 +804,6 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 				}
 				if (request.ccsMinimizeRoundtrips != null) {
 					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
-				}
-				if (request.slice != null) {
-					params.put("_slice", request.slice);
 				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
 					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)

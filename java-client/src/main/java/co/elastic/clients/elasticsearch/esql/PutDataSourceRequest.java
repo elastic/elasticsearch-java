@@ -61,9 +61,10 @@ import javax.annotation.Nullable;
 /**
  * Create or update an ES|QL data source.
  * <p>
- * Creates or replaces a named, type-specific data source configuration that
- * datasets reference to access external data. Names must be lowercase and
- * follow index/alias naming rules.
+ * Creates or replaces a named, type-specific data source configuration for
+ * ES|QL data federation. Datasets reference data source configurations to
+ * access external data. Names must be lowercase and follow index or alias
+ * naming rules.
  * 
  * @see <a href="../doc-files/api-spec.html#esql.put_data_source.Request">API
  *      specification</a>
@@ -132,8 +133,10 @@ public class PutDataSourceRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Type-specific settings. The accepted keys depend on the data source type's
-	 * validator.
+	 * Type-specific connection and authentication settings. For <code>s3</code>,
+	 * connection settings include <code>region</code> and <code>endpoint</code>.
+	 * Authentication settings include <code>auth</code> and the credentials
+	 * required by the selected authentication method.
 	 * <p>
 	 * API name: {@code settings}
 	 */
@@ -152,7 +155,8 @@ public class PutDataSourceRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * Required - The data source type. Must be lowercase and contain no whitespace.
+	 * Required - The data source type. Currently, <code>s3</code> is supported. The
+	 * value must be lowercase and contain no whitespace.
 	 * <p>
 	 * API name: {@code type}
 	 */
@@ -268,8 +272,10 @@ public class PutDataSourceRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Type-specific settings. The accepted keys depend on the data source type's
-		 * validator.
+		 * Type-specific connection and authentication settings. For <code>s3</code>,
+		 * connection settings include <code>region</code> and <code>endpoint</code>.
+		 * Authentication settings include <code>auth</code> and the credentials
+		 * required by the selected authentication method.
 		 * <p>
 		 * API name: {@code settings}
 		 * <p>
@@ -281,8 +287,10 @@ public class PutDataSourceRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Type-specific settings. The accepted keys depend on the data source type's
-		 * validator.
+		 * Type-specific connection and authentication settings. For <code>s3</code>,
+		 * connection settings include <code>region</code> and <code>endpoint</code>.
+		 * Authentication settings include <code>auth</code> and the credentials
+		 * required by the selected authentication method.
 		 * <p>
 		 * API name: {@code settings}
 		 * <p>
@@ -313,7 +321,8 @@ public class PutDataSourceRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
-		 * Required - The data source type. Must be lowercase and contain no whitespace.
+		 * Required - The data source type. Currently, <code>s3</code> is supported. The
+		 * value must be lowercase and contain no whitespace.
 		 * <p>
 		 * API name: {@code type}
 		 */

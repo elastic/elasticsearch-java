@@ -88,9 +88,6 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class CountRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String slice;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -133,6 +130,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Query query;
 
+	@Nullable
+	private final String routeSlice;
+
 	private final List<String> routing;
 
 	private final List<String> stats;
@@ -144,7 +144,6 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 
 	private CountRequest(Builder builder) {
 
-		this.slice = builder.slice;
 		this.allowNoIndices = builder.allowNoIndices;
 		this.analyzeWildcard = builder.analyzeWildcard;
 		this.analyzer = builder.analyzer;
@@ -160,6 +159,7 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		this.projectRouting = builder.projectRouting;
 		this.q = builder.q;
 		this.query = builder.query;
+		this.routeSlice = builder.routeSlice;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.stats = ApiTypeHelper.unmodifiable(builder.stats);
 		this.terminateAfter = builder.terminateAfter;
@@ -168,20 +168,6 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 
 	public static CountRequest of(Function<Builder, ObjectBuilder<CountRequest>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * The slice identifier used to route the operation to a specific slice. Use the
-	 * special value <code>_all</code> to target all slices without restricting to a
-	 * routing value. Required when <code>index.slice.enabled</code> is
-	 * <code>true</code> for the target index; not allowed when
-	 * <code>index.slice.enabled</code> is <code>false</code>.
-	 * <p>
-	 * API name: {@code _slice}
-	 */
-	@Nullable
-	public final String slice() {
-		return this.slice;
 	}
 
 	/**
@@ -367,6 +353,20 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
 	 * A custom value used to route operations to a specific shard. Not allowed when
 	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
 	 * use <code>_slice</code> instead.
@@ -436,9 +436,6 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<CountRequest> {
 		@Nullable
-		private String slice;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -484,6 +481,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		private Query query;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private List<String> routing;
 
 		@Nullable
@@ -495,7 +495,6 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		public Builder() {
 		}
 		private Builder(CountRequest instance) {
-			this.slice = instance.slice;
 			this.allowNoIndices = instance.allowNoIndices;
 			this.analyzeWildcard = instance.analyzeWildcard;
 			this.analyzer = instance.analyzer;
@@ -511,25 +510,12 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 			this.projectRouting = instance.projectRouting;
 			this.q = instance.q;
 			this.query = instance.query;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 			this.stats = instance.stats;
 			this.terminateAfter = instance.terminateAfter;
 
 		}
-		/**
-		 * The slice identifier used to route the operation to a specific slice. Use the
-		 * special value <code>_all</code> to target all slices without restricting to a
-		 * routing value. Required when <code>index.slice.enabled</code> is
-		 * <code>true</code> for the target index; not allowed when
-		 * <code>index.slice.enabled</code> is <code>false</code>.
-		 * <p>
-		 * API name: {@code _slice}
-		 */
-		public final Builder slice(@Nullable String value) {
-			this.slice = value;
-			return this;
-		}
-
 		/**
 		 * A setting that does two separate checks on the index expression. If
 		 * <code>false</code>, the request returns an error (1) if any wildcard
@@ -769,6 +755,20 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
+			return this;
+		}
+
+		/**
 		 * A custom value used to route operations to a specific shard. Not allowed when
 		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
 		 * use <code>_slice</code> instead.
@@ -956,14 +956,14 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 				if (request.terminateAfter != null) {
 					params.put("terminate_after", String.valueOf(request.terminateAfter));
 				}
+				if (request.routeSlice != null) {
+					params.put("_slice", request.routeSlice);
+				}
 				if (request.lenient != null) {
 					params.put("lenient", String.valueOf(request.lenient));
 				}
 				if (request.minScore != null) {
 					params.put("min_score", String.valueOf(request.minScore));
-				}
-				if (request.slice != null) {
-					params.put("_slice", request.slice);
 				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
 					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)

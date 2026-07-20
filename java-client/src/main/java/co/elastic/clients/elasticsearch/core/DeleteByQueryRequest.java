@@ -210,9 +210,6 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class DeleteByQueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String slice;
-
-	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
@@ -264,6 +261,9 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final Float requestsPerSecond;
 
+	@Nullable
+	private final String routeSlice;
+
 	private final List<String> routing;
 
 	@Nullable
@@ -307,7 +307,6 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 
 	private DeleteByQueryRequest(Builder builder) {
 
-		this.slice = builder.slice;
 		this.allowNoIndices = builder.allowNoIndices;
 		this.analyzeWildcard = builder.analyzeWildcard;
 		this.analyzer = builder.analyzer;
@@ -326,6 +325,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		this.refresh = builder.refresh;
 		this.requestCache = builder.requestCache;
 		this.requestsPerSecond = builder.requestsPerSecond;
+		this.routeSlice = builder.routeSlice;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.scroll = builder.scroll;
 		this.scrollSize = builder.scrollSize;
@@ -345,20 +345,6 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 
 	public static DeleteByQueryRequest of(Function<Builder, ObjectBuilder<DeleteByQueryRequest>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * The slice identifier used to route the operation to a specific slice. Use the
-	 * special value <code>_all</code> to target all slices without restricting to a
-	 * routing value. Required when <code>index.slice.enabled</code> is
-	 * <code>true</code> for the target index; not allowed when
-	 * <code>index.slice.enabled</code> is <code>false</code>.
-	 * <p>
-	 * API name: {@code _slice}
-	 */
-	@Nullable
-	public final String slice() {
-		return this.slice;
 	}
 
 	/**
@@ -573,6 +559,20 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
 	 * A custom value used to route operations to a specific shard. Not allowed when
 	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
 	 * use <code>_slice</code> instead.
@@ -779,9 +779,6 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 			implements
 				ObjectBuilder<DeleteByQueryRequest> {
 		@Nullable
-		private String slice;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -835,6 +832,9 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		private Float requestsPerSecond;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private List<String> routing;
 
 		@Nullable
@@ -879,7 +879,6 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		public Builder() {
 		}
 		private Builder(DeleteByQueryRequest instance) {
-			this.slice = instance.slice;
 			this.allowNoIndices = instance.allowNoIndices;
 			this.analyzeWildcard = instance.analyzeWildcard;
 			this.analyzer = instance.analyzer;
@@ -898,6 +897,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 			this.refresh = instance.refresh;
 			this.requestCache = instance.requestCache;
 			this.requestsPerSecond = instance.requestsPerSecond;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 			this.scroll = instance.scroll;
 			this.scrollSize = instance.scrollSize;
@@ -914,20 +914,6 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 			this.waitForCompletion = instance.waitForCompletion;
 
 		}
-		/**
-		 * The slice identifier used to route the operation to a specific slice. Use the
-		 * special value <code>_all</code> to target all slices without restricting to a
-		 * routing value. Required when <code>index.slice.enabled</code> is
-		 * <code>true</code> for the target index; not allowed when
-		 * <code>index.slice.enabled</code> is <code>false</code>.
-		 * <p>
-		 * API name: {@code _slice}
-		 */
-		public final Builder slice(@Nullable String value) {
-			this.slice = value;
-			return this;
-		}
-
 		/**
 		 * A setting that does two separate checks on the index expression. If
 		 * <code>false</code>, the request returns an error (1) if any wildcard
@@ -1190,6 +1176,20 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		 */
 		public final Builder requestsPerSecond(@Nullable Float value) {
 			this.requestsPerSecond = value;
+			return this;
+		}
+
+		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
 			return this;
 		}
 
@@ -1630,14 +1630,14 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 				if (request.refresh != null) {
 					params.put("refresh", String.valueOf(request.refresh));
 				}
+				if (request.routeSlice != null) {
+					params.put("_slice", request.routeSlice);
+				}
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.jsonValue());
 				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));
-				}
-				if (request.slice != null) {
-					params.put("_slice", request.slice);
 				}
 				if (request.q != null) {
 					params.put("q", request.q);

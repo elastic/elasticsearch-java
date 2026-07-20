@@ -98,7 +98,7 @@ public class ESQLDataSource implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The data source type.
+	 * Required - The data source type. Currently, <code>s3</code> is supported.
 	 * <p>
 	 * API name: {@code type}
 	 */
@@ -117,7 +117,7 @@ public class ESQLDataSource implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Type-specific settings.
+	 * Required - Type-specific connection and authentication settings.
 	 * <p>
 	 * API name: {@code settings}
 	 */
@@ -202,7 +202,7 @@ public class ESQLDataSource implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The data source type.
+		 * Required - The data source type. Currently, <code>s3</code> is supported.
 		 * <p>
 		 * API name: {@code type}
 		 */
@@ -222,7 +222,7 @@ public class ESQLDataSource implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Type-specific settings.
+		 * Required - Type-specific connection and authentication settings.
 		 * <p>
 		 * API name: {@code settings}
 		 * <p>
@@ -234,7 +234,7 @@ public class ESQLDataSource implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Type-specific settings.
+		 * Required - Type-specific connection and authentication settings.
 		 * <p>
 		 * API name: {@code settings}
 		 * <p>
