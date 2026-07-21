@@ -168,6 +168,9 @@ public class IndexSettings implements JsonpSerializable {
 	private final IndexRouting routing;
 
 	@Nullable
+	private final IndexSettingsUnassigned unassigned;
+
+	@Nullable
 	private final Time gcDeletes;
 
 	@Nullable
@@ -279,6 +282,7 @@ public class IndexSettings implements JsonpSerializable {
 		this.maxTermsCount = builder.maxTermsCount;
 		this.maxRegexLength = builder.maxRegexLength;
 		this.routing = builder.routing;
+		this.unassigned = builder.unassigned;
 		this.gcDeletes = builder.gcDeletes;
 		this.defaultPipeline = builder.defaultPipeline;
 		this.finalPipeline = builder.finalPipeline;
@@ -570,6 +574,14 @@ public class IndexSettings implements JsonpSerializable {
 	@Nullable
 	public final IndexRouting routing() {
 		return this.routing;
+	}
+
+	/**
+	 * API name: {@code unassigned}
+	 */
+	@Nullable
+	public final IndexSettingsUnassigned unassigned() {
+		return this.unassigned;
 	}
 
 	/**
@@ -963,6 +975,11 @@ public class IndexSettings implements JsonpSerializable {
 			this.routing.serialize(generator, mapper);
 
 		}
+		if (this.unassigned != null) {
+			generator.writeKey("unassigned");
+			this.unassigned.serialize(generator, mapper);
+
+		}
 		if (this.gcDeletes != null) {
 			generator.writeKey("gc_deletes");
 			this.gcDeletes.serialize(generator, mapper);
@@ -1233,6 +1250,9 @@ public class IndexSettings implements JsonpSerializable {
 		private IndexRouting routing;
 
 		@Nullable
+		private IndexSettingsUnassigned unassigned;
+
+		@Nullable
 		private Time gcDeletes;
 
 		@Nullable
@@ -1341,6 +1361,7 @@ public class IndexSettings implements JsonpSerializable {
 			this.maxTermsCount = instance.maxTermsCount;
 			this.maxRegexLength = instance.maxRegexLength;
 			this.routing = instance.routing;
+			this.unassigned = instance.unassigned;
 			this.gcDeletes = instance.gcDeletes;
 			this.defaultPipeline = instance.defaultPipeline;
 			this.finalPipeline = instance.finalPipeline;
@@ -1715,6 +1736,22 @@ public class IndexSettings implements JsonpSerializable {
 		 */
 		public final Builder routing(Function<IndexRouting.Builder, ObjectBuilder<IndexRouting>> fn) {
 			return this.routing(fn.apply(new IndexRouting.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code unassigned}
+		 */
+		public final Builder unassigned(@Nullable IndexSettingsUnassigned value) {
+			this.unassigned = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code unassigned}
+		 */
+		public final Builder unassigned(
+				Function<IndexSettingsUnassigned.Builder, ObjectBuilder<IndexSettingsUnassigned>> fn) {
+			return this.unassigned(fn.apply(new IndexSettingsUnassigned.Builder()).build());
 		}
 
 		/**
@@ -2124,6 +2161,7 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::maxTermsCount, JsonpDeserializer.integerDeserializer(), "max_terms_count");
 		op.add(Builder::maxRegexLength, JsonpDeserializer.integerDeserializer(), "max_regex_length");
 		op.add(Builder::routing, IndexRouting._DESERIALIZER, "routing");
+		op.add(Builder::unassigned, IndexSettingsUnassigned._DESERIALIZER, "unassigned");
 		op.add(Builder::gcDeletes, Time._DESERIALIZER, "gc_deletes");
 		op.add(Builder::defaultPipeline, JsonpDeserializer.stringDeserializer(), "default_pipeline");
 		op.add(Builder::finalPipeline, JsonpDeserializer.stringDeserializer(), "final_pipeline");

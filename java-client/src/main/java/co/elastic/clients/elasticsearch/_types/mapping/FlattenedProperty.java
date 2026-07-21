@@ -83,6 +83,9 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 	private final String nullValue;
 
 	@Nullable
+	private final PreserveLeafArrays preserveLeafArrays;
+
+	@Nullable
 	private final String similarity;
 
 	@Nullable
@@ -102,6 +105,7 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 		this.index = builder.index;
 		this.indexOptions = builder.indexOptions;
 		this.nullValue = builder.nullValue;
+		this.preserveLeafArrays = builder.preserveLeafArrays;
 		this.similarity = builder.similarity;
 		this.splitQueriesOnWhitespace = builder.splitQueriesOnWhitespace;
 		this.timeSeriesDimensions = ApiTypeHelper.unmodifiable(builder.timeSeriesDimensions);
@@ -177,6 +181,19 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 	}
 
 	/**
+	 * How leaf arrays are represented in synthetic source. When set to
+	 * <code>lossy</code>, leaf arrays are sorted, de-nulled, and deduplicated in
+	 * the returned synthetic source. When set to <code>exact</code>, leaf arrays
+	 * preserve order, nulls, and duplicates.
+	 * <p>
+	 * API name: {@code preserve_leaf_arrays}
+	 */
+	@Nullable
+	public final PreserveLeafArrays preserveLeafArrays() {
+		return this.preserveLeafArrays;
+	}
+
+	/**
 	 * API name: {@code similarity}
 	 */
 	@Nullable
@@ -237,6 +254,10 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 			generator.write(this.nullValue);
 
 		}
+		if (this.preserveLeafArrays != null) {
+			generator.writeKey("preserve_leaf_arrays");
+			this.preserveLeafArrays.serialize(generator, mapper);
+		}
 		if (this.similarity != null) {
 			generator.writeKey("similarity");
 			generator.write(this.similarity);
@@ -291,6 +312,9 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 		private String nullValue;
 
 		@Nullable
+		private PreserveLeafArrays preserveLeafArrays;
+
+		@Nullable
 		private String similarity;
 
 		@Nullable
@@ -309,6 +333,7 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 			this.index = instance.index;
 			this.indexOptions = instance.indexOptions;
 			this.nullValue = instance.nullValue;
+			this.preserveLeafArrays = instance.preserveLeafArrays;
 			this.similarity = instance.similarity;
 			this.splitQueriesOnWhitespace = instance.splitQueriesOnWhitespace;
 			this.timeSeriesDimensions = instance.timeSeriesDimensions;
@@ -367,6 +392,19 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 		 */
 		public final Builder nullValue(@Nullable String value) {
 			this.nullValue = value;
+			return this;
+		}
+
+		/**
+		 * How leaf arrays are represented in synthetic source. When set to
+		 * <code>lossy</code>, leaf arrays are sorted, de-nulled, and deduplicated in
+		 * the returned synthetic source. When set to <code>exact</code>, leaf arrays
+		 * preserve order, nulls, and duplicates.
+		 * <p>
+		 * API name: {@code preserve_leaf_arrays}
+		 */
+		public final Builder preserveLeafArrays(@Nullable PreserveLeafArrays value) {
+			this.preserveLeafArrays = value;
 			return this;
 		}
 
@@ -447,6 +485,7 @@ public class FlattenedProperty extends PropertyBase implements PropertyVariant {
 		op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");
 		op.add(Builder::indexOptions, IndexOptions._DESERIALIZER, "index_options");
 		op.add(Builder::nullValue, JsonpDeserializer.stringDeserializer(), "null_value");
+		op.add(Builder::preserveLeafArrays, PreserveLeafArrays._DESERIALIZER, "preserve_leaf_arrays");
 		op.add(Builder::similarity, JsonpDeserializer.stringDeserializer(), "similarity");
 		op.add(Builder::splitQueriesOnWhitespace, JsonpDeserializer.booleanDeserializer(),
 				"split_queries_on_whitespace");
