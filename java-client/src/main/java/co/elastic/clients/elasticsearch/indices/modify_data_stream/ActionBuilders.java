@@ -82,4 +82,23 @@ public class ActionBuilders {
 		return builder.build();
 	}
 
+	/**
+	 * Creates a builder for the {@link IndexAndDataStreamAction
+	 * delete_backing_index} {@code Action} variant.
+	 */
+	public static IndexAndDataStreamAction.Builder deleteBackingIndex() {
+		return new IndexAndDataStreamAction.Builder();
+	}
+
+	/**
+	 * Creates a Action of the {@link IndexAndDataStreamAction delete_backing_index}
+	 * {@code Action} variant.
+	 */
+	public static Action deleteBackingIndex(
+			Function<IndexAndDataStreamAction.Builder, ObjectBuilder<IndexAndDataStreamAction>> fn) {
+		Action.Builder builder = new Action.Builder();
+		builder.deleteBackingIndex(fn.apply(new IndexAndDataStreamAction.Builder()).build());
+		return builder.build();
+	}
+
 }

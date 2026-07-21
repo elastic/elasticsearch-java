@@ -65,6 +65,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class Cpu implements JsonpSerializable {
 	@Nullable
+	private final Integer availableProcessors;
+
+	@Nullable
 	private final Integer percent;
 
 	@Nullable
@@ -91,6 +94,7 @@ public class Cpu implements JsonpSerializable {
 
 	private Cpu(Builder builder) {
 
+		this.availableProcessors = builder.availableProcessors;
 		this.percent = builder.percent;
 		this.sys = builder.sys;
 		this.sysInMillis = builder.sysInMillis;
@@ -104,6 +108,16 @@ public class Cpu implements JsonpSerializable {
 
 	public static Cpu of(Function<Builder, ObjectBuilder<Cpu>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * The number of processors available to the Java virtual machine.
+	 * <p>
+	 * API name: {@code available_processors}
+	 */
+	@Nullable
+	public final Integer availableProcessors() {
+		return this.availableProcessors;
 	}
 
 	/**
@@ -180,6 +194,11 @@ public class Cpu implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.availableProcessors != null) {
+			generator.writeKey("available_processors");
+			generator.write(this.availableProcessors);
+
+		}
 		if (this.percent != null) {
 			generator.writeKey("percent");
 			generator.write(this.percent);
@@ -242,6 +261,9 @@ public class Cpu implements JsonpSerializable {
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Cpu> {
 		@Nullable
+		private Integer availableProcessors;
+
+		@Nullable
 		private Integer percent;
 
 		@Nullable
@@ -268,6 +290,7 @@ public class Cpu implements JsonpSerializable {
 		public Builder() {
 		}
 		private Builder(Cpu instance) {
+			this.availableProcessors = instance.availableProcessors;
 			this.percent = instance.percent;
 			this.sys = instance.sys;
 			this.sysInMillis = instance.sysInMillis;
@@ -278,6 +301,16 @@ public class Cpu implements JsonpSerializable {
 			this.loadAverage = instance.loadAverage;
 
 		}
+		/**
+		 * The number of processors available to the Java virtual machine.
+		 * <p>
+		 * API name: {@code available_processors}
+		 */
+		public final Builder availableProcessors(@Nullable Integer value) {
+			this.availableProcessors = value;
+			return this;
+		}
+
 		/**
 		 * API name: {@code percent}
 		 */
@@ -409,6 +442,7 @@ public class Cpu implements JsonpSerializable {
 
 	protected static void setupCpuDeserializer(ObjectDeserializer<Cpu.Builder> op) {
 
+		op.add(Builder::availableProcessors, JsonpDeserializer.integerDeserializer(), "available_processors");
 		op.add(Builder::percent, JsonpDeserializer.integerDeserializer(), "percent");
 		op.add(Builder::sys, Time._DESERIALIZER, "sys");
 		op.add(Builder::sysInMillis, JsonpDeserializer.longDeserializer(), "sys_in_millis");

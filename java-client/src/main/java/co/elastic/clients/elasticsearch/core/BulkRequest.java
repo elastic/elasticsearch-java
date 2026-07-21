@@ -216,12 +216,6 @@ import javax.annotation.Nullable;
  * NOTE: Data streams do not support custom routing unless they were created
  * with the <code>allow_custom_routing</code> setting enabled in the template.
  * <p>
- * <strong>Wait for active shards</strong>
- * <p>
- * When making bulk calls, you can set the <code>wait_for_active_shards</code>
- * parameter to require a minimum number of shard copies to be active before
- * starting to process the bulk request.
- * <p>
  * <strong>Refresh</strong>
  * <p>
  * Control when the changes made by this request are visible to search.
@@ -270,6 +264,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	@Nullable
 	private final Boolean requireDataStream;
 
+	@Nullable
+	private final String routeSlice;
+
 	private final List<String> routing;
 
 	@Nullable
@@ -294,6 +291,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		this.refresh = builder.refresh;
 		this.requireAlias = builder.requireAlias;
 		this.requireDataStream = builder.requireDataStream;
+		this.routeSlice = builder.routeSlice;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
@@ -428,7 +426,23 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	}
 
 	/**
-	 * A custom value that is used to route operations to a specific shard.
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
+	 * A custom value that is used to route operations to a specific shard. Not
+	 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
+	 * target index; use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -521,6 +535,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		private Boolean requireDataStream;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private List<String> routing;
 
 		@Nullable
@@ -544,6 +561,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 			this.refresh = instance.refresh;
 			this.requireAlias = instance.requireAlias;
 			this.requireDataStream = instance.requireDataStream;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 			this.timeout = instance.timeout;
 			this.waitForActiveShards = instance.waitForActiveShards;
@@ -716,7 +734,23 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
-		 * A custom value that is used to route operations to a specific shard.
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
+			return this;
+		}
+
+		/**
+		 * A custom value that is used to route operations to a specific shard. Not
+		 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
+		 * target index; use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -728,7 +762,9 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
-		 * A custom value that is used to route operations to a specific shard.
+		 * A custom value that is used to route operations to a specific shard. Not
+		 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
+		 * target index; use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -917,6 +953,24 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.includeSourceOnError != null) {
+					params.put("include_source_on_error", String.valueOf(request.includeSourceOnError));
+				}
+				if (request.refresh != null) {
+					params.put("refresh", request.refresh.jsonValue());
+				}
+				if (request.routeSlice != null) {
+					params.put("_slice", request.routeSlice);
+				}
+				if (request.requireDataStream != null) {
+					params.put("require_data_stream", String.valueOf(request.requireDataStream));
+				}
+				if (request.listExecutedPipelines != null) {
+					params.put("list_executed_pipelines", String.valueOf(request.listExecutedPipelines));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
+				}
 				if (request.pipeline != null) {
 					params.put("pipeline", request.pipeline);
 				}
@@ -924,14 +978,8 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
 				}
-				if (request.includeSourceOnError != null) {
-					params.put("include_source_on_error", String.valueOf(request.includeSourceOnError));
-				}
 				if (request.requireAlias != null) {
 					params.put("require_alias", String.valueOf(request.requireAlias));
-				}
-				if (request.refresh != null) {
-					params.put("refresh", request.refresh.jsonValue());
 				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
@@ -946,15 +994,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes", request.sourceIncludes.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
-				}
-				if (request.requireDataStream != null) {
-					params.put("require_data_stream", String.valueOf(request.requireDataStream));
-				}
-				if (request.listExecutedPipelines != null) {
-					params.put("list_executed_pipelines", String.valueOf(request.listExecutedPipelines));
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

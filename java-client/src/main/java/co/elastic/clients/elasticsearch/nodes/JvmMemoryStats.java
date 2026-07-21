@@ -62,10 +62,16 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class JvmMemoryStats implements JsonpSerializable {
 	@Nullable
+	private final String heapUsed;
+
+	@Nullable
 	private final Long heapUsedInBytes;
 
 	@Nullable
 	private final Long heapUsedPercent;
+
+	@Nullable
+	private final String heapCommitted;
 
 	@Nullable
 	private final Long heapCommittedInBytes;
@@ -77,7 +83,13 @@ public class JvmMemoryStats implements JsonpSerializable {
 	private final String heapMax;
 
 	@Nullable
+	private final String nonHeapUsed;
+
+	@Nullable
 	private final Long nonHeapUsedInBytes;
+
+	@Nullable
+	private final String nonHeapCommitted;
 
 	@Nullable
 	private final Long nonHeapCommittedInBytes;
@@ -88,12 +100,16 @@ public class JvmMemoryStats implements JsonpSerializable {
 
 	private JvmMemoryStats(Builder builder) {
 
+		this.heapUsed = builder.heapUsed;
 		this.heapUsedInBytes = builder.heapUsedInBytes;
 		this.heapUsedPercent = builder.heapUsedPercent;
+		this.heapCommitted = builder.heapCommitted;
 		this.heapCommittedInBytes = builder.heapCommittedInBytes;
 		this.heapMaxInBytes = builder.heapMaxInBytes;
 		this.heapMax = builder.heapMax;
+		this.nonHeapUsed = builder.nonHeapUsed;
 		this.nonHeapUsedInBytes = builder.nonHeapUsedInBytes;
+		this.nonHeapCommitted = builder.nonHeapCommitted;
 		this.nonHeapCommittedInBytes = builder.nonHeapCommittedInBytes;
 		this.pools = ApiTypeHelper.unmodifiable(builder.pools);
 
@@ -101,6 +117,16 @@ public class JvmMemoryStats implements JsonpSerializable {
 
 	public static JvmMemoryStats of(Function<Builder, ObjectBuilder<JvmMemoryStats>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Memory currently in use by the heap.
+	 * <p>
+	 * API name: {@code heap_used}
+	 */
+	@Nullable
+	public final String heapUsed() {
+		return this.heapUsed;
 	}
 
 	/**
@@ -121,6 +147,16 @@ public class JvmMemoryStats implements JsonpSerializable {
 	@Nullable
 	public final Long heapUsedPercent() {
 		return this.heapUsedPercent;
+	}
+
+	/**
+	 * Amount of memory available for use by the heap.
+	 * <p>
+	 * API name: {@code heap_committed}
+	 */
+	@Nullable
+	public final String heapCommitted() {
+		return this.heapCommitted;
 	}
 
 	/**
@@ -154,6 +190,16 @@ public class JvmMemoryStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Non-heap memory used.
+	 * <p>
+	 * API name: {@code non_heap_used}
+	 */
+	@Nullable
+	public final String nonHeapUsed() {
+		return this.nonHeapUsed;
+	}
+
+	/**
 	 * Non-heap memory used, in bytes.
 	 * <p>
 	 * API name: {@code non_heap_used_in_bytes}
@@ -161,6 +207,16 @@ public class JvmMemoryStats implements JsonpSerializable {
 	@Nullable
 	public final Long nonHeapUsedInBytes() {
 		return this.nonHeapUsedInBytes;
+	}
+
+	/**
+	 * Amount of non-heap memory available.
+	 * <p>
+	 * API name: {@code non_heap_committed}
+	 */
+	@Nullable
+	public final String nonHeapCommitted() {
+		return this.nonHeapCommitted;
 	}
 
 	/**
@@ -193,6 +249,11 @@ public class JvmMemoryStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.heapUsed != null) {
+			generator.writeKey("heap_used");
+			generator.write(this.heapUsed);
+
+		}
 		if (this.heapUsedInBytes != null) {
 			generator.writeKey("heap_used_in_bytes");
 			generator.write(this.heapUsedInBytes);
@@ -201,6 +262,11 @@ public class JvmMemoryStats implements JsonpSerializable {
 		if (this.heapUsedPercent != null) {
 			generator.writeKey("heap_used_percent");
 			generator.write(this.heapUsedPercent);
+
+		}
+		if (this.heapCommitted != null) {
+			generator.writeKey("heap_committed");
+			generator.write(this.heapCommitted);
 
 		}
 		if (this.heapCommittedInBytes != null) {
@@ -218,9 +284,19 @@ public class JvmMemoryStats implements JsonpSerializable {
 			generator.write(this.heapMax);
 
 		}
+		if (this.nonHeapUsed != null) {
+			generator.writeKey("non_heap_used");
+			generator.write(this.nonHeapUsed);
+
+		}
 		if (this.nonHeapUsedInBytes != null) {
 			generator.writeKey("non_heap_used_in_bytes");
 			generator.write(this.nonHeapUsedInBytes);
+
+		}
+		if (this.nonHeapCommitted != null) {
+			generator.writeKey("non_heap_committed");
+			generator.write(this.nonHeapCommitted);
 
 		}
 		if (this.nonHeapCommittedInBytes != null) {
@@ -255,10 +331,16 @@ public class JvmMemoryStats implements JsonpSerializable {
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<JvmMemoryStats> {
 		@Nullable
+		private String heapUsed;
+
+		@Nullable
 		private Long heapUsedInBytes;
 
 		@Nullable
 		private Long heapUsedPercent;
+
+		@Nullable
+		private String heapCommitted;
 
 		@Nullable
 		private Long heapCommittedInBytes;
@@ -270,7 +352,13 @@ public class JvmMemoryStats implements JsonpSerializable {
 		private String heapMax;
 
 		@Nullable
+		private String nonHeapUsed;
+
+		@Nullable
 		private Long nonHeapUsedInBytes;
+
+		@Nullable
+		private String nonHeapCommitted;
 
 		@Nullable
 		private Long nonHeapCommittedInBytes;
@@ -281,16 +369,30 @@ public class JvmMemoryStats implements JsonpSerializable {
 		public Builder() {
 		}
 		private Builder(JvmMemoryStats instance) {
+			this.heapUsed = instance.heapUsed;
 			this.heapUsedInBytes = instance.heapUsedInBytes;
 			this.heapUsedPercent = instance.heapUsedPercent;
+			this.heapCommitted = instance.heapCommitted;
 			this.heapCommittedInBytes = instance.heapCommittedInBytes;
 			this.heapMaxInBytes = instance.heapMaxInBytes;
 			this.heapMax = instance.heapMax;
+			this.nonHeapUsed = instance.nonHeapUsed;
 			this.nonHeapUsedInBytes = instance.nonHeapUsedInBytes;
+			this.nonHeapCommitted = instance.nonHeapCommitted;
 			this.nonHeapCommittedInBytes = instance.nonHeapCommittedInBytes;
 			this.pools = instance.pools;
 
 		}
+		/**
+		 * Memory currently in use by the heap.
+		 * <p>
+		 * API name: {@code heap_used}
+		 */
+		public final Builder heapUsed(@Nullable String value) {
+			this.heapUsed = value;
+			return this;
+		}
+
 		/**
 		 * Memory, in bytes, currently in use by the heap.
 		 * <p>
@@ -308,6 +410,16 @@ public class JvmMemoryStats implements JsonpSerializable {
 		 */
 		public final Builder heapUsedPercent(@Nullable Long value) {
 			this.heapUsedPercent = value;
+			return this;
+		}
+
+		/**
+		 * Amount of memory available for use by the heap.
+		 * <p>
+		 * API name: {@code heap_committed}
+		 */
+		public final Builder heapCommitted(@Nullable String value) {
+			this.heapCommitted = value;
 			return this;
 		}
 
@@ -342,12 +454,32 @@ public class JvmMemoryStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Non-heap memory used.
+		 * <p>
+		 * API name: {@code non_heap_used}
+		 */
+		public final Builder nonHeapUsed(@Nullable String value) {
+			this.nonHeapUsed = value;
+			return this;
+		}
+
+		/**
 		 * Non-heap memory used, in bytes.
 		 * <p>
 		 * API name: {@code non_heap_used_in_bytes}
 		 */
 		public final Builder nonHeapUsedInBytes(@Nullable Long value) {
 			this.nonHeapUsedInBytes = value;
+			return this;
+		}
+
+		/**
+		 * Amount of non-heap memory available.
+		 * <p>
+		 * API name: {@code non_heap_committed}
+		 */
+		public final Builder nonHeapCommitted(@Nullable String value) {
+			this.nonHeapCommitted = value;
 			return this;
 		}
 
@@ -430,12 +562,16 @@ public class JvmMemoryStats implements JsonpSerializable {
 
 	protected static void setupJvmMemoryStatsDeserializer(ObjectDeserializer<JvmMemoryStats.Builder> op) {
 
+		op.add(Builder::heapUsed, JsonpDeserializer.stringDeserializer(), "heap_used");
 		op.add(Builder::heapUsedInBytes, JsonpDeserializer.longDeserializer(), "heap_used_in_bytes");
 		op.add(Builder::heapUsedPercent, JsonpDeserializer.longDeserializer(), "heap_used_percent");
+		op.add(Builder::heapCommitted, JsonpDeserializer.stringDeserializer(), "heap_committed");
 		op.add(Builder::heapCommittedInBytes, JsonpDeserializer.longDeserializer(), "heap_committed_in_bytes");
 		op.add(Builder::heapMaxInBytes, JsonpDeserializer.longDeserializer(), "heap_max_in_bytes");
 		op.add(Builder::heapMax, JsonpDeserializer.stringDeserializer(), "heap_max");
+		op.add(Builder::nonHeapUsed, JsonpDeserializer.stringDeserializer(), "non_heap_used");
 		op.add(Builder::nonHeapUsedInBytes, JsonpDeserializer.longDeserializer(), "non_heap_used_in_bytes");
+		op.add(Builder::nonHeapCommitted, JsonpDeserializer.stringDeserializer(), "non_heap_committed");
 		op.add(Builder::nonHeapCommittedInBytes, JsonpDeserializer.longDeserializer(), "non_heap_committed_in_bytes");
 		op.add(Builder::pools, JsonpDeserializer.stringMapDeserializer(Pool._DESERIALIZER), "pools");
 

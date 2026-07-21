@@ -61,6 +61,7 @@ import javax.annotation.Nullable;
 public class SearchTransform implements TransformVariant, JsonpSerializable {
 	private final SearchInputRequestDefinition request;
 
+	@Nullable
 	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
@@ -68,7 +69,7 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 	private SearchTransform(Builder builder) {
 
 		this.request = ApiTypeHelper.requireNonNull(builder.request, this, "request");
-		this.timeout = ApiTypeHelper.requireNonNull(builder.timeout, this, "timeout");
+		this.timeout = builder.timeout;
 
 	}
 
@@ -92,8 +93,9 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code timeout}
+	 * API name: {@code timeout}
 	 */
+	@Nullable
 	public final Time timeout() {
 		return this.timeout;
 	}
@@ -112,8 +114,11 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 		generator.writeKey("request");
 		this.request.serialize(generator, mapper);
 
-		generator.writeKey("timeout");
-		this.timeout.serialize(generator, mapper);
+		if (this.timeout != null) {
+			generator.writeKey("timeout");
+			this.timeout.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -131,6 +136,7 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SearchTransform> {
 		private SearchInputRequestDefinition request;
 
+		@Nullable
 		private Time timeout;
 
 		public Builder() {
@@ -157,15 +163,15 @@ public class SearchTransform implements TransformVariant, JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code timeout}
+		 * API name: {@code timeout}
 		 */
-		public final Builder timeout(Time value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code timeout}
+		 * API name: {@code timeout}
 		 */
 		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.timeout(fn.apply(new Time.Builder()).build());

@@ -82,7 +82,7 @@ public class IndexAndDataStreamAction implements ActionVariant, JsonpSerializabl
 	 */
 	@Override
 	public Action.Kind _actionKind() {
-		return Action.Kind.RemoveBackingIndex;
+		return Action.Kind.DeleteBackingIndex;
 	}
 
 	/**

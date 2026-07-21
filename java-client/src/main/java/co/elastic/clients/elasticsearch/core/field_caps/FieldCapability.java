@@ -80,6 +80,11 @@ public class FieldCapability implements JsonpSerializable {
 	private final String type;
 
 	@Nullable
+	private final Boolean inference;
+
+	private final List<String> nonInferenceIndices;
+
+	@Nullable
 	private final Boolean metadataField;
 
 	@Nullable
@@ -103,6 +108,8 @@ public class FieldCapability implements JsonpSerializable {
 		this.nonSearchableIndices = ApiTypeHelper.unmodifiable(builder.nonSearchableIndices);
 		this.searchable = ApiTypeHelper.requireNonNull(builder.searchable, this, "searchable", false);
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.inference = builder.inference;
+		this.nonInferenceIndices = ApiTypeHelper.unmodifiable(builder.nonInferenceIndices);
 		this.metadataField = builder.metadataField;
 		this.timeSeriesDimension = builder.timeSeriesDimension;
 		this.timeSeriesMetric = builder.timeSeriesMetric;
@@ -180,6 +187,28 @@ public class FieldCapability implements JsonpSerializable {
 	 */
 	public final String type() {
 		return this.type;
+	}
+
+	/**
+	 * Whether this field is an inference field, meaning a field that automatically
+	 * performs inference (for example, <code>semantic_text</code> fields), on all
+	 * indices.
+	 * <p>
+	 * API name: {@code inference}
+	 */
+	@Nullable
+	public final Boolean inference() {
+		return this.inference;
+	}
+
+	/**
+	 * The list of indices where this field is not an inference field, or null if
+	 * all indices have the same definition for the field.
+	 * <p>
+	 * API name: {@code non_inference_indices}
+	 */
+	public final List<String> nonInferenceIndices() {
+		return this.nonInferenceIndices;
 	}
 
 	/**
@@ -294,6 +323,21 @@ public class FieldCapability implements JsonpSerializable {
 		generator.writeKey("type");
 		generator.write(this.type);
 
+		if (this.inference != null) {
+			generator.writeKey("inference");
+			generator.write(this.inference);
+
+		}
+		if (ApiTypeHelper.isDefined(this.nonInferenceIndices)) {
+			generator.writeKey("non_inference_indices");
+			generator.writeStartArray();
+			for (String item0 : this.nonInferenceIndices) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.metadataField != null) {
 			generator.writeKey("metadata_field");
 			generator.write(this.metadataField);
@@ -362,6 +406,12 @@ public class FieldCapability implements JsonpSerializable {
 		private String type;
 
 		@Nullable
+		private Boolean inference;
+
+		@Nullable
+		private List<String> nonInferenceIndices;
+
+		@Nullable
 		private Boolean metadataField;
 
 		@Nullable
@@ -386,6 +436,8 @@ public class FieldCapability implements JsonpSerializable {
 			this.nonSearchableIndices = instance.nonSearchableIndices;
 			this.searchable = instance.searchable;
 			this.type = instance.type;
+			this.inference = instance.inference;
+			this.nonInferenceIndices = instance.nonInferenceIndices;
 			this.metadataField = instance.metadataField;
 			this.timeSeriesDimension = instance.timeSeriesDimension;
 			this.timeSeriesMetric = instance.timeSeriesMetric;
@@ -531,6 +583,44 @@ public class FieldCapability implements JsonpSerializable {
 		}
 
 		/**
+		 * Whether this field is an inference field, meaning a field that automatically
+		 * performs inference (for example, <code>semantic_text</code> fields), on all
+		 * indices.
+		 * <p>
+		 * API name: {@code inference}
+		 */
+		public final Builder inference(@Nullable Boolean value) {
+			this.inference = value;
+			return this;
+		}
+
+		/**
+		 * The list of indices where this field is not an inference field, or null if
+		 * all indices have the same definition for the field.
+		 * <p>
+		 * API name: {@code non_inference_indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nonInferenceIndices</code>.
+		 */
+		public final Builder nonInferenceIndices(List<String> list) {
+			this.nonInferenceIndices = _listAddAll(this.nonInferenceIndices, list);
+			return this;
+		}
+
+		/**
+		 * The list of indices where this field is not an inference field, or null if
+		 * all indices have the same definition for the field.
+		 * <p>
+		 * API name: {@code non_inference_indices}
+		 * <p>
+		 * Adds one or more values to <code>nonInferenceIndices</code>.
+		 */
+		public final Builder nonInferenceIndices(String value, String... values) {
+			this.nonInferenceIndices = _listAdd(this.nonInferenceIndices, value, values);
+			return this;
+		}
+
+		/**
 		 * Whether this field is registered as a metadata field.
 		 * <p>
 		 * API name: {@code metadata_field}
@@ -659,6 +749,9 @@ public class FieldCapability implements JsonpSerializable {
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "non_searchable_indices");
 		op.add(Builder::searchable, JsonpDeserializer.booleanDeserializer(), "searchable");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::inference, JsonpDeserializer.booleanDeserializer(), "inference");
+		op.add(Builder::nonInferenceIndices,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "non_inference_indices");
 		op.add(Builder::metadataField, JsonpDeserializer.booleanDeserializer(), "metadata_field");
 		op.add(Builder::timeSeriesDimension, JsonpDeserializer.booleanDeserializer(), "time_series_dimension");
 		op.add(Builder::timeSeriesMetric, TimeSeriesMetricType._DESERIALIZER, "time_series_metric");

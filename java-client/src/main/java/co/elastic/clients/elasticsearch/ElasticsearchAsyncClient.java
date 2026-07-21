@@ -116,6 +116,7 @@ import co.elastic.clients.elasticsearch.core.UpdateByQueryRethrottleResponse;
 import co.elastic.clients.elasticsearch.core.UpdateRequest;
 import co.elastic.clients.elasticsearch.core.UpdateResponse;
 import co.elastic.clients.elasticsearch.dangling_indices.ElasticsearchDanglingIndicesAsyncClient;
+import co.elastic.clients.elasticsearch.encryption.ElasticsearchEncryptionAsyncClient;
 import co.elastic.clients.elasticsearch.enrich.ElasticsearchEnrichAsyncClient;
 import co.elastic.clients.elasticsearch.eql.ElasticsearchEqlAsyncClient;
 import co.elastic.clients.elasticsearch.esql.ElasticsearchEsqlAsyncClient;
@@ -244,6 +245,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 
 	public ElasticsearchDanglingIndicesAsyncClient danglingIndices() {
 		return new ElasticsearchDanglingIndicesAsyncClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchEncryptionAsyncClient encryption() {
+		return new ElasticsearchEncryptionAsyncClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchEnrichAsyncClient enrich() {
@@ -537,12 +542,6 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * NOTE: Data streams do not support custom routing unless they were created
 	 * with the <code>allow_custom_routing</code> setting enabled in the template.
 	 * <p>
-	 * <strong>Wait for active shards</strong>
-	 * <p>
-	 * When making bulk calls, you can set the <code>wait_for_active_shards</code>
-	 * parameter to require a minimum number of shard copies to be active before
-	 * starting to process the bulk request.
-	 * <p>
 	 * <strong>Refresh</strong>
 	 * <p>
 	 * Control when the changes made by this request are visible to search.
@@ -719,12 +718,6 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * NOTE: Data streams do not support custom routing unless they were created
 	 * with the <code>allow_custom_routing</code> setting enabled in the template.
 	 * <p>
-	 * <strong>Wait for active shards</strong>
-	 * <p>
-	 * When making bulk calls, you can set the <code>wait_for_active_shards</code>
-	 * parameter to require a minimum number of shard copies to be active before
-	 * starting to process the bulk request.
-	 * <p>
 	 * <strong>Refresh</strong>
 	 * <p>
 	 * Control when the changes made by this request are visible to search.
@@ -900,12 +893,6 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * <p>
 	 * NOTE: Data streams do not support custom routing unless they were created
 	 * with the <code>allow_custom_routing</code> setting enabled in the template.
-	 * <p>
-	 * <strong>Wait for active shards</strong>
-	 * <p>
-	 * When making bulk calls, you can set the <code>wait_for_active_shards</code>
-	 * parameter to require a minimum number of shard copies to be active before
-	 * starting to process the bulk request.
 	 * <p>
 	 * <strong>Refresh</strong>
 	 * <p>
@@ -3151,7 +3138,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * <p>
 	 * NOTE: Replica shards might not all be started when an indexing operation
 	 * returns successfully. By default, only the primary is required. Set
-	 * <code>wait_for_active_shards</code> to change this default behavior.
+	 * <code>wait_for_active_shards</code> to change this default behavior (this
+	 * parameter is not available in Elasticsearch Serverless).
 	 * <p>
 	 * <strong>Automatically create data streams and indices</strong>
 	 * <p>
@@ -3227,7 +3215,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * <code>1</code>). This default can be overridden in the index settings
 	 * dynamically by setting <code>index.write.wait_for_active_shards</code>. To
 	 * alter this behavior per operation, use the
-	 * <code>wait_for_active_shards request</code> parameter.
+	 * <code>wait_for_active_shards request</code> parameter (this parameter is not
+	 * available in Elasticsearch Serverless).
 	 * <p>
 	 * Valid values are all or any positive integer up to the total number of
 	 * configured copies per shard in the index (which is
@@ -3360,7 +3349,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * <p>
 	 * NOTE: Replica shards might not all be started when an indexing operation
 	 * returns successfully. By default, only the primary is required. Set
-	 * <code>wait_for_active_shards</code> to change this default behavior.
+	 * <code>wait_for_active_shards</code> to change this default behavior (this
+	 * parameter is not available in Elasticsearch Serverless).
 	 * <p>
 	 * <strong>Automatically create data streams and indices</strong>
 	 * <p>
@@ -3436,7 +3426,8 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * <code>1</code>). This default can be overridden in the index settings
 	 * dynamically by setting <code>index.write.wait_for_active_shards</code>. To
 	 * alter this behavior per operation, use the
-	 * <code>wait_for_active_shards request</code> parameter.
+	 * <code>wait_for_active_shards request</code> parameter (this parameter is not
+	 * available in Elasticsearch Serverless).
 	 * <p>
 	 * Valid values are all or any positive integer up to the total number of
 	 * configured copies per shard in the index (which is
@@ -6559,19 +6550,6 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * you can use to cancel or get the status of the task. Elasticsearch creates a
 	 * record of this task as a document at <code>.tasks/task/${taskId}</code>.
 	 * <p>
-	 * <strong>Waiting for active shards</strong>
-	 * <p>
-	 * <code>wait_for_active_shards</code> controls how many copies of a shard must
-	 * be active before proceeding with the request. See <a href=
-	 * "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-create#operation-create-wait_for_active_shards"><code>wait_for_active_shards</code></a>
-	 * for details. <code>timeout</code> controls how long each write request waits
-	 * for unavailable shards to become available. Both work exactly the way they
-	 * work in the <a href=
-	 * "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-bulk">Bulk
-	 * API</a>. Update by query uses scrolled searches, so you can also specify the
-	 * <code>scroll</code> parameter to control how long it keeps the search context
-	 * alive, for example <code>?scroll=10m</code>. The default is 5 minutes.
-	 * <p>
 	 * <strong>Throttling update requests</strong>
 	 * <p>
 	 * To control the rate at which update by query issues batches of update
@@ -6720,19 +6698,6 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 	 * "https://www.elastic.co/docs/api/doc/elasticsearch/group/endpoint-tasks">task</a>
 	 * you can use to cancel or get the status of the task. Elasticsearch creates a
 	 * record of this task as a document at <code>.tasks/task/${taskId}</code>.
-	 * <p>
-	 * <strong>Waiting for active shards</strong>
-	 * <p>
-	 * <code>wait_for_active_shards</code> controls how many copies of a shard must
-	 * be active before proceeding with the request. See <a href=
-	 * "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-create#operation-create-wait_for_active_shards"><code>wait_for_active_shards</code></a>
-	 * for details. <code>timeout</code> controls how long each write request waits
-	 * for unavailable shards to become available. Both work exactly the way they
-	 * work in the <a href=
-	 * "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-bulk">Bulk
-	 * API</a>. Update by query uses scrolled searches, so you can also specify the
-	 * <code>scroll</code> parameter to control how long it keeps the search context
-	 * alive, for example <code>?scroll=10m</code>. The default is 5 minutes.
 	 * <p>
 	 * <strong>Throttling update requests</strong>
 	 * <p>

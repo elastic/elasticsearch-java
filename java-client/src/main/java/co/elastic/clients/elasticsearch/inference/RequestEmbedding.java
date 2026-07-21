@@ -89,7 +89,8 @@ public class RequestEmbedding implements JsonpSerializable {
 	 * <code>content</code> objects may contain a single item or an array of items.
 	 * Models that support multiple items per <code>content</code> object will
 	 * return a single embedding for each <code>content</code> object, regardless of
-	 * how many items it contains.
+	 * how many items it contains. Support for multiple items in a single
+	 * <code>content</code> object is available in Elasticsearch 9.5.0 and later.
 	 * <p>
 	 * string example:
 	 * 
@@ -140,7 +141,8 @@ public class RequestEmbedding implements JsonpSerializable {
 	 * </code>
 	 * </pre>
 	 * <p>
-	 * Multiple items in one <code>content</code> object example:
+	 * Multiple items in one <code>content</code> object example (available in
+	 * Elasticsearch 9.5.0 and later):
 	 * 
 	 * <pre>
 	 * <code>&quot;input&quot;: [
@@ -267,7 +269,8 @@ public class RequestEmbedding implements JsonpSerializable {
 		 * <code>content</code> objects may contain a single item or an array of items.
 		 * Models that support multiple items per <code>content</code> object will
 		 * return a single embedding for each <code>content</code> object, regardless of
-		 * how many items it contains.
+		 * how many items it contains. Support for multiple items in a single
+		 * <code>content</code> object is available in Elasticsearch 9.5.0 and later.
 		 * <p>
 		 * string example:
 		 * 
@@ -318,7 +321,8 @@ public class RequestEmbedding implements JsonpSerializable {
 		 * </code>
 		 * </pre>
 		 * <p>
-		 * Multiple items in one <code>content</code> object example:
+		 * Multiple items in one <code>content</code> object example (available in
+		 * Elasticsearch 9.5.0 and later):
 		 * 
 		 * <pre>
 		 * <code>&quot;input&quot;: [
@@ -352,7 +356,8 @@ public class RequestEmbedding implements JsonpSerializable {
 		 * <code>content</code> objects may contain a single item or an array of items.
 		 * Models that support multiple items per <code>content</code> object will
 		 * return a single embedding for each <code>content</code> object, regardless of
-		 * how many items it contains.
+		 * how many items it contains. Support for multiple items in a single
+		 * <code>content</code> object is available in Elasticsearch 9.5.0 and later.
 		 * <p>
 		 * string example:
 		 * 
@@ -403,7 +408,8 @@ public class RequestEmbedding implements JsonpSerializable {
 		 * </code>
 		 * </pre>
 		 * <p>
-		 * Multiple items in one <code>content</code> object example:
+		 * Multiple items in one <code>content</code> object example (available in
+		 * Elasticsearch 9.5.0 and later):
 		 * 
 		 * <pre>
 		 * <code>&quot;input&quot;: [

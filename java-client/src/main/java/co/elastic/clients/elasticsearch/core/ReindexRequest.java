@@ -373,7 +373,12 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * If <code>true</code>, the request blocks until the operation is complete.
+	 * If <code>true</code>, the request blocks until the operation is complete. If
+	 * your requested reindex operation is complex or time-consuming, it might
+	 * timeout due to transport-layer limitations. While the reindex will continue
+	 * to be processed by the cluster, your client will not receive updates on
+	 * status automatically after timeout. Set this option <code>true</code> if you
+	 * anticipate a long-running reindex.
 	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
@@ -724,7 +729,12 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * If <code>true</code>, the request blocks until the operation is complete.
+		 * If <code>true</code>, the request blocks until the operation is complete. If
+		 * your requested reindex operation is complex or time-consuming, it might
+		 * timeout due to transport-layer limitations. While the reindex will continue
+		 * to be processed by the cluster, your client will not receive updates on
+		 * status automatically after timeout. Set this option <code>true</code> if you
+		 * anticipate a long-running reindex.
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */

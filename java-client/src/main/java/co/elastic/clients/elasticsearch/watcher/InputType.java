@@ -45,11 +45,17 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum InputType implements JsonEnum {
+	Chain("chain"),
+
 	Http("http"),
+
+	None("none"),
 
 	Search("search"),
 
 	Simple("simple"),
+
+	Transform("transform"),
 
 	;
 
