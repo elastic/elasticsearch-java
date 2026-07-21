@@ -216,12 +216,18 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
-	 * If <code>true</code>, it enables you to restore a partial snapshot of indices
-	 * with unavailable shards. Only shards that were successfully included in the
-	 * snapshot will be restored. All missing shards will be recreated as empty.
+	 * If <code>true</code>, allows the snapshot to proceed even if some of the
+	 * target shards are unavailable. In this case, the resulting snapshot will not
+	 * contain snapshots of the unavailable target shards, and will report its state
+	 * as <code>PARTIAL</code>. Additionally, if <code>true</code>, allows index
+	 * metadata operations such as deletions while the snapshot is in progress. This
+	 * is almost always preferable to failing the snapshot completely when a single
+	 * shard is unavailable, and blocking index metadata operations.
 	 * <p>
 	 * If <code>false</code>, the entire restore operation will fail if one or more
-	 * indices included in the snapshot do not have all primary shards available.
+	 * indices included in the snapshot do not have all primary shards available,
+	 * and index metadata operations such as deletions will be forbidden until the
+	 * snapshot completes.
 	 * <p>
 	 * API name: {@code partial}
 	 */
@@ -575,12 +581,18 @@ public class CreateSnapshotRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
-		 * If <code>true</code>, it enables you to restore a partial snapshot of indices
-		 * with unavailable shards. Only shards that were successfully included in the
-		 * snapshot will be restored. All missing shards will be recreated as empty.
+		 * If <code>true</code>, allows the snapshot to proceed even if some of the
+		 * target shards are unavailable. In this case, the resulting snapshot will not
+		 * contain snapshots of the unavailable target shards, and will report its state
+		 * as <code>PARTIAL</code>. Additionally, if <code>true</code>, allows index
+		 * metadata operations such as deletions while the snapshot is in progress. This
+		 * is almost always preferable to failing the snapshot completely when a single
+		 * shard is unavailable, and blocking index metadata operations.
 		 * <p>
 		 * If <code>false</code>, the entire restore operation will fail if one or more
-		 * indices included in the snapshot do not have all primary shards available.
+		 * indices included in the snapshot do not have all primary shards available,
+		 * and index metadata operations such as deletions will be forbidden until the
+		 * snapshot completes.
 		 * <p>
 		 * API name: {@code partial}
 		 */
