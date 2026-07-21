@@ -81,6 +81,9 @@ public class RuntimeField implements DynamicTemplateVariant, JsonpSerializable {
 	@Nullable
 	private final Script script;
 
+	@Nullable
+	private final OnScriptError onScriptError;
+
 	private final RuntimeFieldType type;
 
 	// ---------------------------------------------------------------------------------------------
@@ -94,6 +97,7 @@ public class RuntimeField implements DynamicTemplateVariant, JsonpSerializable {
 		this.targetField = builder.targetField;
 		this.targetIndex = builder.targetIndex;
 		this.script = builder.script;
+		this.onScriptError = builder.onScriptError;
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
@@ -179,6 +183,14 @@ public class RuntimeField implements DynamicTemplateVariant, JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code on_script_error}
+	 */
+	@Nullable
+	public final OnScriptError onScriptError() {
+		return this.onScriptError;
+	}
+
+	/**
 	 * Required - Field type, which can be: <code>boolean</code>,
 	 * <code>composite</code>, <code>date</code>, <code>double</code>,
 	 * <code>geo_point</code>, <code>ip</code>,<code>keyword</code>,
@@ -247,6 +259,10 @@ public class RuntimeField implements DynamicTemplateVariant, JsonpSerializable {
 			this.script.serialize(generator, mapper);
 
 		}
+		if (this.onScriptError != null) {
+			generator.writeKey("on_script_error");
+			this.onScriptError.serialize(generator, mapper);
+		}
 		generator.writeKey("type");
 		this.type.serialize(generator, mapper);
 
@@ -285,6 +301,9 @@ public class RuntimeField implements DynamicTemplateVariant, JsonpSerializable {
 		@Nullable
 		private Script script;
 
+		@Nullable
+		private OnScriptError onScriptError;
+
 		private RuntimeFieldType type;
 
 		public Builder() {
@@ -297,6 +316,7 @@ public class RuntimeField implements DynamicTemplateVariant, JsonpSerializable {
 			this.targetField = instance.targetField;
 			this.targetIndex = instance.targetIndex;
 			this.script = instance.script;
+			this.onScriptError = instance.onScriptError;
 			this.type = instance.type;
 
 		}
@@ -432,6 +452,14 @@ public class RuntimeField implements DynamicTemplateVariant, JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code on_script_error}
+		 */
+		public final Builder onScriptError(@Nullable OnScriptError value) {
+			this.onScriptError = value;
+			return this;
+		}
+
+		/**
 		 * Required - Field type, which can be: <code>boolean</code>,
 		 * <code>composite</code>, <code>date</code>, <code>double</code>,
 		 * <code>geo_point</code>, <code>ip</code>,<code>keyword</code>,
@@ -486,6 +514,7 @@ public class RuntimeField implements DynamicTemplateVariant, JsonpSerializable {
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");
 		op.add(Builder::targetIndex, JsonpDeserializer.stringDeserializer(), "target_index");
 		op.add(Builder::script, Script._DESERIALIZER, "script");
+		op.add(Builder::onScriptError, OnScriptError._DESERIALIZER, "on_script_error");
 		op.add(Builder::type, RuntimeFieldType._DESERIALIZER, "type");
 
 	}

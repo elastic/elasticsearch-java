@@ -66,6 +66,9 @@ import javax.annotation.Nullable;
 public class Stats implements JsonpSerializable {
 	private final Map<String, AdaptiveSelection> adaptiveSelection;
 
+	@Nullable
+	private final Allocations allocations;
+
 	private final Map<String, Breaker> breakers;
 
 	@Nullable
@@ -128,6 +131,7 @@ public class Stats implements JsonpSerializable {
 	private Stats(Builder builder) {
 
 		this.adaptiveSelection = ApiTypeHelper.unmodifiable(builder.adaptiveSelection);
+		this.allocations = builder.allocations;
 		this.breakers = ApiTypeHelper.unmodifiable(builder.breakers);
 		this.fs = builder.fs;
 		this.host = builder.host;
@@ -163,6 +167,16 @@ public class Stats implements JsonpSerializable {
 	 */
 	public final Map<String, AdaptiveSelection> adaptiveSelection() {
 		return this.adaptiveSelection;
+	}
+
+	/**
+	 * Statistics about shard allocations on the node.
+	 * <p>
+	 * API name: {@code allocations}
+	 */
+	@Nullable
+	public final Allocations allocations() {
+		return this.allocations;
 	}
 
 	/**
@@ -391,6 +405,11 @@ public class Stats implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.allocations != null) {
+			generator.writeKey("allocations");
+			this.allocations.serialize(generator, mapper);
+
+		}
 		if (ApiTypeHelper.isDefined(this.breakers)) {
 			generator.writeKey("breakers");
 			generator.writeStartObject();
@@ -555,6 +574,9 @@ public class Stats implements JsonpSerializable {
 		private Map<String, AdaptiveSelection> adaptiveSelection;
 
 		@Nullable
+		private Allocations allocations;
+
+		@Nullable
 		private Map<String, Breaker> breakers;
 
 		@Nullable
@@ -621,6 +643,7 @@ public class Stats implements JsonpSerializable {
 		}
 		private Builder(Stats instance) {
 			this.adaptiveSelection = instance.adaptiveSelection;
+			this.allocations = instance.allocations;
 			this.breakers = instance.breakers;
 			this.fs = instance.fs;
 			this.host = instance.host;
@@ -678,6 +701,25 @@ public class Stats implements JsonpSerializable {
 		public final Builder adaptiveSelection(String key,
 				Function<AdaptiveSelection.Builder, ObjectBuilder<AdaptiveSelection>> fn) {
 			return adaptiveSelection(key, fn.apply(new AdaptiveSelection.Builder()).build());
+		}
+
+		/**
+		 * Statistics about shard allocations on the node.
+		 * <p>
+		 * API name: {@code allocations}
+		 */
+		public final Builder allocations(@Nullable Allocations value) {
+			this.allocations = value;
+			return this;
+		}
+
+		/**
+		 * Statistics about shard allocations on the node.
+		 * <p>
+		 * API name: {@code allocations}
+		 */
+		public final Builder allocations(Function<Allocations.Builder, ObjectBuilder<Allocations>> fn) {
+			return this.allocations(fn.apply(new Allocations.Builder()).build());
 		}
 
 		/**
@@ -1133,6 +1175,7 @@ public class Stats implements JsonpSerializable {
 
 		op.add(Builder::adaptiveSelection, JsonpDeserializer.stringMapDeserializer(AdaptiveSelection._DESERIALIZER),
 				"adaptive_selection");
+		op.add(Builder::allocations, Allocations._DESERIALIZER, "allocations");
 		op.add(Builder::breakers, JsonpDeserializer.stringMapDeserializer(Breaker._DESERIALIZER), "breakers");
 		op.add(Builder::fs, FileSystem._DESERIALIZER, "fs");
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");

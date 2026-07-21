@@ -17,9 +17,8 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.inference;
+package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -49,58 +48,37 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: inference._types.CustomTaskSettings
+// typedef: indices._types.IndexSettingsUnassigned
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#inference._types.CustomTaskSettings">API
+ *      "../doc-files/api-spec.html#indices._types.IndexSettingsUnassigned">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class CustomTaskSettings implements JsonpSerializable {
+public class IndexSettingsUnassigned implements JsonpSerializable {
 	@Nullable
-	private final JsonData parameters;
+	private final IndexSettingsUnassignedNodeLeft nodeLeft;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private CustomTaskSettings(Builder builder) {
+	private IndexSettingsUnassigned(Builder builder) {
 
-		this.parameters = builder.parameters;
+		this.nodeLeft = builder.nodeLeft;
 
 	}
 
-	public static CustomTaskSettings of(Function<Builder, ObjectBuilder<CustomTaskSettings>> fn) {
+	public static IndexSettingsUnassigned of(Function<Builder, ObjectBuilder<IndexSettingsUnassigned>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Specifies parameters that are required to run the custom service. The
-	 * parameters depend on the model your custom service uses. For example:
-	 * 
-	 * <pre>
-	 * <code>&quot;task_settings&quot;:{
-	 *   &quot;parameters&quot;:{
-	 *     &quot;input_type&quot;:&quot;query&quot;,
-	 *     &quot;return_token&quot;:true
-	 *   }
-	 * }
-	 * </code>
-	 * </pre>
-	 * 
-	 * <blockquote>
-	 * <p>
-	 * warn The <code>task_settings.parameters</code> cannot contain the same keys
-	 * as <code>secret_parameters</code>. If they do, an error will be returned.
-	 * This applies to PUT requests and POST requests.
-	 * </p>
-	 * </blockquote>
-	 * <p>
-	 * API name: {@code parameters}
+	 * API name: {@code node_left}
 	 */
 	@Nullable
-	public final JsonData parameters() {
-		return this.parameters;
+	public final IndexSettingsUnassignedNodeLeft nodeLeft() {
+		return this.nodeLeft;
 	}
 
 	/**
@@ -114,9 +92,9 @@ public class CustomTaskSettings implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.parameters != null) {
-			generator.writeKey("parameters");
-			this.parameters.serialize(generator, mapper);
+		if (this.nodeLeft != null) {
+			generator.writeKey("node_left");
+			this.nodeLeft.serialize(generator, mapper);
 
 		}
 
@@ -130,48 +108,35 @@ public class CustomTaskSettings implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link CustomTaskSettings}.
+	 * Builder for {@link IndexSettingsUnassigned}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<CustomTaskSettings> {
+				ObjectBuilder<IndexSettingsUnassigned> {
 		@Nullable
-		private JsonData parameters;
+		private IndexSettingsUnassignedNodeLeft nodeLeft;
 
 		public Builder() {
 		}
-		private Builder(CustomTaskSettings instance) {
-			this.parameters = instance.parameters;
+		private Builder(IndexSettingsUnassigned instance) {
+			this.nodeLeft = instance.nodeLeft;
 
 		}
 		/**
-		 * Specifies parameters that are required to run the custom service. The
-		 * parameters depend on the model your custom service uses. For example:
-		 * 
-		 * <pre>
-		 * <code>&quot;task_settings&quot;:{
-		 *   &quot;parameters&quot;:{
-		 *     &quot;input_type&quot;:&quot;query&quot;,
-		 *     &quot;return_token&quot;:true
-		 *   }
-		 * }
-		 * </code>
-		 * </pre>
-		 * 
-		 * <blockquote>
-		 * <p>
-		 * warn The <code>task_settings.parameters</code> cannot contain the same keys
-		 * as <code>secret_parameters</code>. If they do, an error will be returned.
-		 * This applies to PUT requests and POST requests.
-		 * </p>
-		 * </blockquote>
-		 * <p>
-		 * API name: {@code parameters}
+		 * API name: {@code node_left}
 		 */
-		public final Builder parameters(@Nullable JsonData value) {
-			this.parameters = value;
+		public final Builder nodeLeft(@Nullable IndexSettingsUnassignedNodeLeft value) {
+			this.nodeLeft = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code node_left}
+		 */
+		public final Builder nodeLeft(
+				Function<IndexSettingsUnassignedNodeLeft.Builder, ObjectBuilder<IndexSettingsUnassignedNodeLeft>> fn) {
+			return this.nodeLeft(fn.apply(new IndexSettingsUnassignedNodeLeft.Builder()).build());
 		}
 
 		@Override
@@ -180,15 +145,15 @@ public class CustomTaskSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link CustomTaskSettings}.
+		 * Builds a {@link IndexSettingsUnassigned}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public CustomTaskSettings build() {
+		public IndexSettingsUnassigned build() {
 			_checkSingleUse();
 
-			return new CustomTaskSettings(this);
+			return new IndexSettingsUnassigned(this);
 		}
 	}
 
@@ -201,14 +166,15 @@ public class CustomTaskSettings implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link CustomTaskSettings}
+	 * Json deserializer for {@link IndexSettingsUnassigned}
 	 */
-	public static final JsonpDeserializer<CustomTaskSettings> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CustomTaskSettings::setupCustomTaskSettingsDeserializer);
+	public static final JsonpDeserializer<IndexSettingsUnassigned> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndexSettingsUnassigned::setupIndexSettingsUnassignedDeserializer);
 
-	protected static void setupCustomTaskSettingsDeserializer(ObjectDeserializer<CustomTaskSettings.Builder> op) {
+	protected static void setupIndexSettingsUnassignedDeserializer(
+			ObjectDeserializer<IndexSettingsUnassigned.Builder> op) {
 
-		op.add(Builder::parameters, JsonData._DESERIALIZER, "parameters");
+		op.add(Builder::nodeLeft, IndexSettingsUnassignedNodeLeft._DESERIALIZER, "node_left");
 
 	}
 
