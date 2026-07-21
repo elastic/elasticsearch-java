@@ -286,6 +286,10 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
             this.itemDeserializer = itemDeserializer;
         }
 
+        JsonpDeserializer<T> itemDeserializer() {
+            return itemDeserializer;
+        }
+
         @Override
         public EnumSet<Event> nativeEvents() {
             return nativeEvents;

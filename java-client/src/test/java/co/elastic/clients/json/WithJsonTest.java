@@ -29,6 +29,7 @@ import co.elastic.clients.elasticsearch.cluster.GetComponentTemplateResponse;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.indices.PutIndicesSettingsRequest;
+import co.elastic.clients.elasticsearch.inference.RerankRequest;
 import co.elastic.clients.elasticsearch.security.RoleTemplateScript;
 import co.elastic.clients.testkit.ModelTestCase;
 import org.junit.jupiter.api.Test;
@@ -249,6 +250,41 @@ public class WithJsonTest extends ModelTestCase {
 
         // Asserting that both gets deserialized in the same way
         assertEquals(respBool.toString(), respString.toString());
+    }
+
+    @Test
+    public void testArrayUnion() {
+
+        String stringForm = """
+              {
+                "input": ["luke", "like", "leia", "chewy","r2d2", "star", "wars"],
+                "query": "star wars main character"
+              }
+            """;
+
+        String objectForm = """
+              {
+                "input": [
+                  {
+                    "type": "text",
+                    "format": "text",
+                    "value": "some document text"
+                  },
+                  {
+                    "type": "image",
+                    "format": "base64",
+                    "value": "data:image/jpeg;base64,..."
+                  }
+                ],
+                "query": "star wars main character"
+              }
+            """;
+
+        RerankRequest r1 = RerankRequest.of(r -> r.inferenceId("cohere_rerank").withJson(new StringReader(stringForm)));
+        RerankRequest r2 = RerankRequest.of(r -> r.inferenceId("cohere_rerank").withJson(new StringReader(objectForm)));
+
+        assertTrue(r1.input().isString());
+        assertTrue(r2.input().isObject());
     }
 }
 
