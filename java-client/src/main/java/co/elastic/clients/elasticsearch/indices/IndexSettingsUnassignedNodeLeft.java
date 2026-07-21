@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -26,11 +27,9 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,65 +49,41 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: indices._types.IndexSettingsTimeSeries
+// typedef: indices._types.IndexSettingsUnassignedNodeLeft
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#indices._types.IndexSettingsTimeSeries">API
+ *      "../doc-files/api-spec.html#indices._types.IndexSettingsUnassignedNodeLeft">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class IndexSettingsTimeSeries implements JsonpSerializable {
+public class IndexSettingsUnassignedNodeLeft implements JsonpSerializable {
 	@Nullable
-	private final DateTime endTime;
-
-	@Nullable
-	private final DateTime startTime;
-
-	@Nullable
-	private final String temporalityField;
+	private final Time delayedTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private IndexSettingsTimeSeries(Builder builder) {
+	private IndexSettingsUnassignedNodeLeft(Builder builder) {
 
-		this.endTime = builder.endTime;
-		this.startTime = builder.startTime;
-		this.temporalityField = builder.temporalityField;
+		this.delayedTimeout = builder.delayedTimeout;
 
 	}
 
-	public static IndexSettingsTimeSeries of(Function<Builder, ObjectBuilder<IndexSettingsTimeSeries>> fn) {
+	public static IndexSettingsUnassignedNodeLeft of(
+			Function<Builder, ObjectBuilder<IndexSettingsUnassignedNodeLeft>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code end_time}
-	 */
-	@Nullable
-	public final DateTime endTime() {
-		return this.endTime;
-	}
-
-	/**
-	 * API name: {@code start_time}
-	 */
-	@Nullable
-	public final DateTime startTime() {
-		return this.startTime;
-	}
-
-	/**
-	 * The name of the field that stores the temporality of a metric. The referenced
-	 * field must be a <code>keyword</code> dimension field; if the setting is unset
-	 * or the field is missing or invalid, the metric temporality resolves to null.
+	 * The amount of time to wait for a node that has left before assuming its
+	 * shards are permanently missing and starting to allocate replacement replicas.
 	 * <p>
-	 * API name: {@code temporality_field}
+	 * API name: {@code delayed_timeout}
 	 */
 	@Nullable
-	public final String temporalityField() {
-		return this.temporalityField;
+	public final Time delayedTimeout() {
+		return this.delayedTimeout;
 	}
 
 	/**
@@ -122,17 +97,9 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.endTime != null) {
-			generator.writeKey("end_time");
-			this.endTime.serialize(generator, mapper);
-		}
-		if (this.startTime != null) {
-			generator.writeKey("start_time");
-			this.startTime.serialize(generator, mapper);
-		}
-		if (this.temporalityField != null) {
-			generator.writeKey("temporality_field");
-			generator.write(this.temporalityField);
+		if (this.delayedTimeout != null) {
+			generator.writeKey("delayed_timeout");
+			this.delayedTimeout.serialize(generator, mapper);
 
 		}
 
@@ -146,55 +113,40 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link IndexSettingsTimeSeries}.
+	 * Builder for {@link IndexSettingsUnassignedNodeLeft}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<IndexSettingsTimeSeries> {
+				ObjectBuilder<IndexSettingsUnassignedNodeLeft> {
 		@Nullable
-		private DateTime endTime;
-
-		@Nullable
-		private DateTime startTime;
-
-		@Nullable
-		private String temporalityField;
+		private Time delayedTimeout;
 
 		public Builder() {
 		}
-		private Builder(IndexSettingsTimeSeries instance) {
-			this.endTime = instance.endTime;
-			this.startTime = instance.startTime;
-			this.temporalityField = instance.temporalityField;
+		private Builder(IndexSettingsUnassignedNodeLeft instance) {
+			this.delayedTimeout = instance.delayedTimeout;
 
 		}
 		/**
-		 * API name: {@code end_time}
-		 */
-		public final Builder endTime(@Nullable DateTime value) {
-			this.endTime = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code start_time}
-		 */
-		public final Builder startTime(@Nullable DateTime value) {
-			this.startTime = value;
-			return this;
-		}
-
-		/**
-		 * The name of the field that stores the temporality of a metric. The referenced
-		 * field must be a <code>keyword</code> dimension field; if the setting is unset
-		 * or the field is missing or invalid, the metric temporality resolves to null.
+		 * The amount of time to wait for a node that has left before assuming its
+		 * shards are permanently missing and starting to allocate replacement replicas.
 		 * <p>
-		 * API name: {@code temporality_field}
+		 * API name: {@code delayed_timeout}
 		 */
-		public final Builder temporalityField(@Nullable String value) {
-			this.temporalityField = value;
+		public final Builder delayedTimeout(@Nullable Time value) {
+			this.delayedTimeout = value;
 			return this;
+		}
+
+		/**
+		 * The amount of time to wait for a node that has left before assuming its
+		 * shards are permanently missing and starting to allocate replacement replicas.
+		 * <p>
+		 * API name: {@code delayed_timeout}
+		 */
+		public final Builder delayedTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.delayedTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -203,15 +155,15 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link IndexSettingsTimeSeries}.
+		 * Builds a {@link IndexSettingsUnassignedNodeLeft}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public IndexSettingsTimeSeries build() {
+		public IndexSettingsUnassignedNodeLeft build() {
 			_checkSingleUse();
 
-			return new IndexSettingsTimeSeries(this);
+			return new IndexSettingsUnassignedNodeLeft(this);
 		}
 	}
 
@@ -224,17 +176,15 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link IndexSettingsTimeSeries}
+	 * Json deserializer for {@link IndexSettingsUnassignedNodeLeft}
 	 */
-	public static final JsonpDeserializer<IndexSettingsTimeSeries> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexSettingsTimeSeries::setupIndexSettingsTimeSeriesDeserializer);
+	public static final JsonpDeserializer<IndexSettingsUnassignedNodeLeft> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndexSettingsUnassignedNodeLeft::setupIndexSettingsUnassignedNodeLeftDeserializer);
 
-	protected static void setupIndexSettingsTimeSeriesDeserializer(
-			ObjectDeserializer<IndexSettingsTimeSeries.Builder> op) {
+	protected static void setupIndexSettingsUnassignedNodeLeftDeserializer(
+			ObjectDeserializer<IndexSettingsUnassignedNodeLeft.Builder> op) {
 
-		op.add(Builder::endTime, DateTime._DESERIALIZER, "end_time");
-		op.add(Builder::startTime, DateTime._DESERIALIZER, "start_time");
-		op.add(Builder::temporalityField, JsonpDeserializer.stringDeserializer(), "temporality_field");
+		op.add(Builder::delayedTimeout, Time._DESERIALIZER, "delayed_timeout");
 
 	}
 

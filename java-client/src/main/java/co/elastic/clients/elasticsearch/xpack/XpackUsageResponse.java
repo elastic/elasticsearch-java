@@ -30,6 +30,7 @@ import co.elastic.clients.elasticsearch.xpack.usage.Flattened;
 import co.elastic.clients.elasticsearch.xpack.usage.GpuVectorIndexing;
 import co.elastic.clients.elasticsearch.xpack.usage.HealthStatistics;
 import co.elastic.clients.elasticsearch.xpack.usage.Ilm;
+import co.elastic.clients.elasticsearch.xpack.usage.Logging;
 import co.elastic.clients.elasticsearch.xpack.usage.MachineLearning;
 import co.elastic.clients.elasticsearch.xpack.usage.Monitoring;
 import co.elastic.clients.elasticsearch.xpack.usage.RuntimeFieldTypes;
@@ -117,6 +118,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 
 	private final Ilm ilm;
 
+	@Nullable
+	private final Logging logging;
+
 	private final Base logstash;
 
 	private final MachineLearning ml;
@@ -165,6 +169,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 		this.gpuVectorIndexing = builder.gpuVectorIndexing;
 		this.healthApi = builder.healthApi;
 		this.ilm = ApiTypeHelper.requireNonNull(builder.ilm, this, "ilm");
+		this.logging = builder.logging;
 		this.logstash = ApiTypeHelper.requireNonNull(builder.logstash, this, "logstash");
 		this.ml = ApiTypeHelper.requireNonNull(builder.ml, this, "ml");
 		this.monitoring = ApiTypeHelper.requireNonNull(builder.monitoring, this, "monitoring");
@@ -303,6 +308,14 @@ public class XpackUsageResponse implements JsonpSerializable {
 	 */
 	public final Ilm ilm() {
 		return this.ilm;
+	}
+
+	/**
+	 * API name: {@code logging}
+	 */
+	@Nullable
+	public final Logging logging() {
+		return this.logging;
 	}
 
 	/**
@@ -471,6 +484,11 @@ public class XpackUsageResponse implements JsonpSerializable {
 		generator.writeKey("ilm");
 		this.ilm.serialize(generator, mapper);
 
+		if (this.logging != null) {
+			generator.writeKey("logging");
+			this.logging.serialize(generator, mapper);
+
+		}
 		generator.writeKey("logstash");
 		this.logstash.serialize(generator, mapper);
 
@@ -568,6 +586,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 		private HealthStatistics healthApi;
 
 		private Ilm ilm;
+
+		@Nullable
+		private Logging logging;
 
 		private Base logstash;
 
@@ -839,6 +860,21 @@ public class XpackUsageResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code logging}
+		 */
+		public final Builder logging(@Nullable Logging value) {
+			this.logging = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code logging}
+		 */
+		public final Builder logging(Function<Logging.Builder, ObjectBuilder<Logging>> fn) {
+			return this.logging(fn.apply(new Logging.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code logstash}
 		 */
 		public final Builder logstash(Base value) {
@@ -1078,6 +1114,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 		op.add(Builder::gpuVectorIndexing, GpuVectorIndexing._DESERIALIZER, "gpu_vector_indexing");
 		op.add(Builder::healthApi, HealthStatistics._DESERIALIZER, "health_api");
 		op.add(Builder::ilm, Ilm._DESERIALIZER, "ilm");
+		op.add(Builder::logging, Logging._DESERIALIZER, "logging");
 		op.add(Builder::logstash, Base._DESERIALIZER, "logstash");
 		op.add(Builder::ml, MachineLearning._DESERIALIZER, "ml");
 		op.add(Builder::monitoring, Monitoring._DESERIALIZER, "monitoring");
