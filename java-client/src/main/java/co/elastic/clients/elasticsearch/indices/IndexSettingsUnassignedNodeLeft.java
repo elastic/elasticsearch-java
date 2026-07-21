@@ -17,9 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.inference;
+package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.JsonData;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -49,58 +49,41 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: inference._types.CustomTaskSettings
+// typedef: indices._types.IndexSettingsUnassignedNodeLeft
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#inference._types.CustomTaskSettings">API
+ *      "../doc-files/api-spec.html#indices._types.IndexSettingsUnassignedNodeLeft">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class CustomTaskSettings implements JsonpSerializable {
+public class IndexSettingsUnassignedNodeLeft implements JsonpSerializable {
 	@Nullable
-	private final JsonData parameters;
+	private final Time delayedTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private CustomTaskSettings(Builder builder) {
+	private IndexSettingsUnassignedNodeLeft(Builder builder) {
 
-		this.parameters = builder.parameters;
+		this.delayedTimeout = builder.delayedTimeout;
 
 	}
 
-	public static CustomTaskSettings of(Function<Builder, ObjectBuilder<CustomTaskSettings>> fn) {
+	public static IndexSettingsUnassignedNodeLeft of(
+			Function<Builder, ObjectBuilder<IndexSettingsUnassignedNodeLeft>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Specifies parameters that are required to run the custom service. The
-	 * parameters depend on the model your custom service uses. For example:
-	 * 
-	 * <pre>
-	 * <code>&quot;task_settings&quot;:{
-	 *   &quot;parameters&quot;:{
-	 *     &quot;input_type&quot;:&quot;query&quot;,
-	 *     &quot;return_token&quot;:true
-	 *   }
-	 * }
-	 * </code>
-	 * </pre>
-	 * 
-	 * <blockquote>
+	 * The amount of time to wait for a node that has left before assuming its
+	 * shards are permanently missing and starting to allocate replacement replicas.
 	 * <p>
-	 * warn The <code>task_settings.parameters</code> cannot contain the same keys
-	 * as <code>secret_parameters</code>. If they do, an error will be returned.
-	 * This applies to PUT requests and POST requests.
-	 * </p>
-	 * </blockquote>
-	 * <p>
-	 * API name: {@code parameters}
+	 * API name: {@code delayed_timeout}
 	 */
 	@Nullable
-	public final JsonData parameters() {
-		return this.parameters;
+	public final Time delayedTimeout() {
+		return this.delayedTimeout;
 	}
 
 	/**
@@ -114,9 +97,9 @@ public class CustomTaskSettings implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.parameters != null) {
-			generator.writeKey("parameters");
-			this.parameters.serialize(generator, mapper);
+		if (this.delayedTimeout != null) {
+			generator.writeKey("delayed_timeout");
+			this.delayedTimeout.serialize(generator, mapper);
 
 		}
 
@@ -130,48 +113,40 @@ public class CustomTaskSettings implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link CustomTaskSettings}.
+	 * Builder for {@link IndexSettingsUnassignedNodeLeft}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<CustomTaskSettings> {
+				ObjectBuilder<IndexSettingsUnassignedNodeLeft> {
 		@Nullable
-		private JsonData parameters;
+		private Time delayedTimeout;
 
 		public Builder() {
 		}
-		private Builder(CustomTaskSettings instance) {
-			this.parameters = instance.parameters;
+		private Builder(IndexSettingsUnassignedNodeLeft instance) {
+			this.delayedTimeout = instance.delayedTimeout;
 
 		}
 		/**
-		 * Specifies parameters that are required to run the custom service. The
-		 * parameters depend on the model your custom service uses. For example:
-		 * 
-		 * <pre>
-		 * <code>&quot;task_settings&quot;:{
-		 *   &quot;parameters&quot;:{
-		 *     &quot;input_type&quot;:&quot;query&quot;,
-		 *     &quot;return_token&quot;:true
-		 *   }
-		 * }
-		 * </code>
-		 * </pre>
-		 * 
-		 * <blockquote>
+		 * The amount of time to wait for a node that has left before assuming its
+		 * shards are permanently missing and starting to allocate replacement replicas.
 		 * <p>
-		 * warn The <code>task_settings.parameters</code> cannot contain the same keys
-		 * as <code>secret_parameters</code>. If they do, an error will be returned.
-		 * This applies to PUT requests and POST requests.
-		 * </p>
-		 * </blockquote>
-		 * <p>
-		 * API name: {@code parameters}
+		 * API name: {@code delayed_timeout}
 		 */
-		public final Builder parameters(@Nullable JsonData value) {
-			this.parameters = value;
+		public final Builder delayedTimeout(@Nullable Time value) {
+			this.delayedTimeout = value;
 			return this;
+		}
+
+		/**
+		 * The amount of time to wait for a node that has left before assuming its
+		 * shards are permanently missing and starting to allocate replacement replicas.
+		 * <p>
+		 * API name: {@code delayed_timeout}
+		 */
+		public final Builder delayedTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.delayedTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -180,15 +155,15 @@ public class CustomTaskSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link CustomTaskSettings}.
+		 * Builds a {@link IndexSettingsUnassignedNodeLeft}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public CustomTaskSettings build() {
+		public IndexSettingsUnassignedNodeLeft build() {
 			_checkSingleUse();
 
-			return new CustomTaskSettings(this);
+			return new IndexSettingsUnassignedNodeLeft(this);
 		}
 	}
 
@@ -201,14 +176,15 @@ public class CustomTaskSettings implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link CustomTaskSettings}
+	 * Json deserializer for {@link IndexSettingsUnassignedNodeLeft}
 	 */
-	public static final JsonpDeserializer<CustomTaskSettings> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CustomTaskSettings::setupCustomTaskSettingsDeserializer);
+	public static final JsonpDeserializer<IndexSettingsUnassignedNodeLeft> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndexSettingsUnassignedNodeLeft::setupIndexSettingsUnassignedNodeLeftDeserializer);
 
-	protected static void setupCustomTaskSettingsDeserializer(ObjectDeserializer<CustomTaskSettings.Builder> op) {
+	protected static void setupIndexSettingsUnassignedNodeLeftDeserializer(
+			ObjectDeserializer<IndexSettingsUnassignedNodeLeft.Builder> op) {
 
-		op.add(Builder::parameters, JsonData._DESERIALIZER, "parameters");
+		op.add(Builder::delayedTimeout, Time._DESERIALIZER, "delayed_timeout");
 
 	}
 
