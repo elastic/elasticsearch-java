@@ -74,6 +74,9 @@ public class GetTransformStatsRequest extends RequestBase {
 	private final Boolean allowNoMatch;
 
 	@Nullable
+	private final Boolean basic;
+
+	@Nullable
 	private final Long from;
 
 	@Nullable
@@ -89,6 +92,7 @@ public class GetTransformStatsRequest extends RequestBase {
 	private GetTransformStatsRequest(Builder builder) {
 
 		this.allowNoMatch = builder.allowNoMatch;
+		this.basic = builder.basic;
 		this.from = builder.from;
 		this.size = builder.size;
 		this.timeout = builder.timeout;
@@ -117,6 +121,22 @@ public class GetTransformStatsRequest extends RequestBase {
 	@Nullable
 	public final Boolean allowNoMatch() {
 		return this.allowNoMatch;
+	}
+
+	/**
+	 * If true, the response includes <code>id</code>, <code>state</code>,
+	 * <code>node</code>, <code>stats</code>, <code>health</code>, and basic
+	 * <code>checkpointing</code> information (the last and next checkpoint numbers,
+	 * and the next checkpoint's <code>position</code> and <code>progress</code>).
+	 * Skips statistics that require heavy computations to calculate:
+	 * <code>operations_behind</code>, <code>changes_last_detected_at</code>,
+	 * <code>last_search_time</code>, and the checkpoint timestamps.
+	 * <p>
+	 * API name: {@code basic}
+	 */
+	@Nullable
+	public final Boolean basic() {
+		return this.basic;
 	}
 
 	/**
@@ -175,6 +195,9 @@ public class GetTransformStatsRequest extends RequestBase {
 		private Boolean allowNoMatch;
 
 		@Nullable
+		private Boolean basic;
+
+		@Nullable
 		private Long from;
 
 		@Nullable
@@ -189,6 +212,7 @@ public class GetTransformStatsRequest extends RequestBase {
 		}
 		private Builder(GetTransformStatsRequest instance) {
 			this.allowNoMatch = instance.allowNoMatch;
+			this.basic = instance.basic;
 			this.from = instance.from;
 			this.size = instance.size;
 			this.timeout = instance.timeout;
@@ -211,6 +235,22 @@ public class GetTransformStatsRequest extends RequestBase {
 		 */
 		public final Builder allowNoMatch(@Nullable Boolean value) {
 			this.allowNoMatch = value;
+			return this;
+		}
+
+		/**
+		 * If true, the response includes <code>id</code>, <code>state</code>,
+		 * <code>node</code>, <code>stats</code>, <code>health</code>, and basic
+		 * <code>checkpointing</code> information (the last and next checkpoint numbers,
+		 * and the next checkpoint's <code>position</code> and <code>progress</code>).
+		 * Skips statistics that require heavy computations to calculate:
+		 * <code>operations_behind</code>, <code>changes_last_detected_at</code>,
+		 * <code>last_search_time</code>, and the checkpoint timestamps.
+		 * <p>
+		 * API name: {@code basic}
+		 */
+		public final Builder basic(@Nullable Boolean value) {
+			this.basic = value;
 			return this;
 		}
 
@@ -368,6 +408,9 @@ public class GetTransformStatsRequest extends RequestBase {
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
+				}
+				if (request.basic != null) {
+					params.put("basic", String.valueOf(request.basic));
 				}
 				if (request.allowNoMatch != null) {
 					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
