@@ -20,6 +20,8 @@
 package co.elastic.clients.json;
 
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonLocation;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
@@ -117,11 +119,76 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
         }
     }
 
+    /**
+     * An event handler for arrays that disambiguates multiple array members by buffering the array and inspecting
+     * the JSON event of its first element.
+     */
+    private static class ArrayMemberHandler<Union, Kind, Member> extends EventHandler<Union, Kind, Member> {
+        // Element JSON event -> array member accepting that element type
+        private final Map<Event, SingleMemberHandler<Union, Kind, Member>> byElementEvent = new HashMap<>();
+        // Fallback for empty arrays or unrecognized element types: first declared member wins
+        private final SingleMemberHandler<Union, Kind, Member> defaultMember;
+
+        ArrayMemberHandler(List<SingleMemberHandler<Union, Kind, Member>> members) {
+            this.defaultMember = members.get(0);
+            for (SingleMemberHandler<Union, Kind, Member> m: members) {
+                JsonpDeserializer<?> unwrapped = DelegatingDeserializer.unwrap(m.deserializer);
+                JsonpDeserializer<?> item = ((JsonpDeserializerBase.ArrayDeserializer<?>) unwrapped).itemDeserializer();
+                // Key on the element's native events (its canonical output), first writer wins on conflict
+                for (Event e: item.nativeEvents()) {
+                    byElementEvent.putIfAbsent(e, m);
+                }
+            }
+        }
+
+        @Override
+        EnumSet<Event> nativeEvents() {
+            return EnumSet.of(Event.START_ARRAY);
+        }
+
+        @Override
+        Union deserialize(JsonParser parser, JsonpMapper mapper, Event event, BiFunction<Kind, Member, Union> buildFn) {
+            // event == START_ARRAY. Buffer the whole array so we can inspect it and then replay it.
+            JsonArray array = parser.getArray();
+
+            SingleMemberHandler<Union, Kind, Member> member = defaultMember;
+            // Find the first non-null element: leading nulls don't identify a variant
+            for (JsonValue element: array) {
+                if (element.getValueType() != JsonValue.ValueType.NULL) {
+                    SingleMemberHandler<Union, Kind, Member> found =
+                        byElementEvent.get(valueTypeToEvent(element.getValueType()));
+                    if (found != null) {
+                        member = found;
+                    }
+                    break;
+                }
+            }
+
+            // Replay the buffered array into the chosen member's array deserializer
+            JsonParser arrayParser = JsonpUtils.jsonValueParser(array, mapper);
+            return member.deserialize(arrayParser, mapper, arrayParser.next(), buildFn);
+        }
+    }
+
+    private static Event valueTypeToEvent(JsonValue.ValueType type) {
+        switch (type) {
+            case OBJECT: return Event.START_OBJECT;
+            case ARRAY: return Event.START_ARRAY;
+            case STRING: return Event.VALUE_STRING;
+            case NUMBER: return Event.VALUE_NUMBER;
+            case TRUE: return Event.VALUE_TRUE;
+            case FALSE: return Event.VALUE_FALSE;
+            case NULL: return Event.VALUE_NULL;
+            default: throw new IllegalArgumentException("Unknown JSON value type: " + type);
+        }
+    }
+
     public static class Builder<Union, Kind, Member> implements ObjectBuilder<JsonpDeserializer<Union>> {
 
         private final BiFunction<Kind, Member, Union> buildFn;
 
         private final List<SingleMemberHandler<Union, Kind, Member>> objectMembers = new ArrayList<>();
+        private final List<SingleMemberHandler<Union, Kind, Member>> arrayMembers = new ArrayList<>();
         private final Map<Event, EventHandler<Union, Kind, Member>> otherMembers = new HashMap<>();
         private final boolean allowAmbiguousPrimitive;
 
@@ -185,6 +252,10 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
                     // also add it as a string
                     addMember(Event.VALUE_STRING, tag, member);
                 }
+            } else if (unwrapped instanceof JsonpDeserializerBase.ArrayDeserializer) {
+                // All arrays produce START_ARRAY, so they can't be keyed directly in `otherMembers`.
+                // They are disambiguated later by the JSON event of their first element (see build()).
+                arrayMembers.add(new SingleMemberHandler<>(tag, deserializer));
             } else {
                 SingleMemberHandler<Union, Kind, Member> member = new SingleMemberHandler<>(tag, deserializer);
                 for (Event e: deserializer.nativeEvents()) {
@@ -204,14 +275,22 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
                 }
             }
 
+            if (arrayMembers.size() == 1) {
+                // A single array member can be keyed directly on START_ARRAY, no disambiguation needed
+                addMember(Event.START_ARRAY, arrayMembers.get(0).tag, arrayMembers.get(0));
+            } else if (arrayMembers.size() > 1) {
+                if (otherMembers.containsKey(Event.START_ARRAY)) {
+                    throw new AmbiguousUnionException(
+                        "Array member '" + arrayMembers.get(0).tag + "' conflicts with another START_ARRAY member");
+                }
+                // Multiple array members are disambiguated by looking ahead at their first element
+                otherMembers.put(Event.START_ARRAY, new ArrayMemberHandler<>(arrayMembers));
+            }
+
             if (objectMembers.size() == 1 && !otherMembers.containsKey(Event.START_OBJECT)) {
                 // A single deserializer handles objects: promote it to otherMembers as we don't need property-based disambiguation
                 otherMembers.put(Event.START_OBJECT, objectMembers.remove(0));
             }
-
-//            if (objectMembers.size() > 1) {
-//                System.out.println("multiple objects in " + buildFn);
-//            }
 
             return new UnionDeserializer<>(objectMembers, otherMembers, buildFn);
         }
