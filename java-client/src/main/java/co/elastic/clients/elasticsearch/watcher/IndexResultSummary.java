@@ -56,44 +56,52 @@ import javax.annotation.Nullable;
 // typedef: watcher._types.IndexResultSummary
 
 /**
- *
+ * A single item of an index action result. Successful items and failed items
+ * expose different fields; only <code>id</code> and <code>index</code> are
+ * present in both. Failed items appear when a bulk index action ends in
+ * <code>failure</code> or <code>partial_failure</code>.
+ * 
  * @see <a href=
  *      "../doc-files/api-spec.html#watcher._types.IndexResultSummary">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class IndexResultSummary implements JsonpSerializable {
-	private final boolean created;
-
 	private final String id;
 
 	private final String index;
 
+	@Nullable
+	private final Boolean created;
+
+	@Nullable
 	private final Result result;
 
-	private final long version;
+	@Nullable
+	private final Long version;
+
+	@Nullable
+	private final Boolean failed;
+
+	@Nullable
+	private final String message;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexResultSummary(Builder builder) {
 
-		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created", false);
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
-		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version", 0);
+		this.created = builder.created;
+		this.result = builder.result;
+		this.version = builder.version;
+		this.failed = builder.failed;
+		this.message = builder.message;
 
 	}
 
 	public static IndexResultSummary of(Function<Builder, ObjectBuilder<IndexResultSummary>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * Required - API name: {@code created}
-	 */
-	public final boolean created() {
-		return this.created;
 	}
 
 	/**
@@ -111,17 +119,47 @@ public class IndexResultSummary implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code result}
+	 * API name: {@code created}
 	 */
+	@Nullable
+	public final Boolean created() {
+		return this.created;
+	}
+
+	/**
+	 * API name: {@code result}
+	 */
+	@Nullable
 	public final Result result() {
 		return this.result;
 	}
 
 	/**
-	 * Required - API name: {@code version}
+	 * API name: {@code version}
 	 */
-	public final long version() {
+	@Nullable
+	public final Long version() {
 		return this.version;
+	}
+
+	/**
+	 * Only present for failed items
+	 * <p>
+	 * API name: {@code failed}
+	 */
+	@Nullable
+	public final Boolean failed() {
+		return this.failed;
+	}
+
+	/**
+	 * Only present for failed items
+	 * <p>
+	 * API name: {@code message}
+	 */
+	@Nullable
+	public final String message() {
+		return this.message;
 	}
 
 	/**
@@ -135,19 +173,36 @@ public class IndexResultSummary implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("created");
-		generator.write(this.created);
-
 		generator.writeKey("id");
 		generator.write(this.id);
 
 		generator.writeKey("index");
 		generator.write(this.index);
 
-		generator.writeKey("result");
-		this.result.serialize(generator, mapper);
-		generator.writeKey("version");
-		generator.write(this.version);
+		if (this.created != null) {
+			generator.writeKey("created");
+			generator.write(this.created);
+
+		}
+		if (this.result != null) {
+			generator.writeKey("result");
+			this.result.serialize(generator, mapper);
+		}
+		if (this.version != null) {
+			generator.writeKey("version");
+			generator.write(this.version);
+
+		}
+		if (this.failed != null) {
+			generator.writeKey("failed");
+			generator.write(this.failed);
+
+		}
+		if (this.message != null) {
+			generator.writeKey("message");
+			generator.write(this.message);
+
+		}
 
 	}
 
@@ -165,34 +220,37 @@ public class IndexResultSummary implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<IndexResultSummary> {
-		private Boolean created;
-
 		private String id;
 
 		private String index;
 
+		@Nullable
+		private Boolean created;
+
+		@Nullable
 		private Result result;
 
+		@Nullable
 		private Long version;
+
+		@Nullable
+		private Boolean failed;
+
+		@Nullable
+		private String message;
 
 		public Builder() {
 		}
 		private Builder(IndexResultSummary instance) {
-			this.created = instance.created;
 			this.id = instance.id;
 			this.index = instance.index;
+			this.created = instance.created;
 			this.result = instance.result;
 			this.version = instance.version;
+			this.failed = instance.failed;
+			this.message = instance.message;
 
 		}
-		/**
-		 * Required - API name: {@code created}
-		 */
-		public final Builder created(boolean value) {
-			this.created = value;
-			return this;
-		}
-
 		/**
 		 * Required - API name: {@code id}
 		 */
@@ -210,18 +268,46 @@ public class IndexResultSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code result}
+		 * API name: {@code created}
 		 */
-		public final Builder result(Result value) {
+		public final Builder created(@Nullable Boolean value) {
+			this.created = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code result}
+		 */
+		public final Builder result(@Nullable Result value) {
 			this.result = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code version}
+		 * API name: {@code version}
 		 */
-		public final Builder version(long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
+			return this;
+		}
+
+		/**
+		 * Only present for failed items
+		 * <p>
+		 * API name: {@code failed}
+		 */
+		public final Builder failed(@Nullable Boolean value) {
+			this.failed = value;
+			return this;
+		}
+
+		/**
+		 * Only present for failed items
+		 * <p>
+		 * API name: {@code message}
+		 */
+		public final Builder message(@Nullable String value) {
+			this.message = value;
 			return this;
 		}
 
@@ -259,11 +345,13 @@ public class IndexResultSummary implements JsonpSerializable {
 
 	protected static void setupIndexResultSummaryDeserializer(ObjectDeserializer<IndexResultSummary.Builder> op) {
 
-		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
 		op.add(Builder::result, Result._DESERIALIZER, "result");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
+		op.add(Builder::failed, JsonpDeserializer.booleanDeserializer(), "failed");
+		op.add(Builder::message, JsonpDeserializer.stringDeserializer(), "message");
 
 	}
 

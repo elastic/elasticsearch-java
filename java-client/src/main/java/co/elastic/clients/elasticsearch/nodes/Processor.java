@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -68,6 +69,9 @@ public class Processor implements JsonpSerializable {
 	private final Long failed;
 
 	@Nullable
+	private final Time time;
+
+	@Nullable
 	private final Long timeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
@@ -77,6 +81,7 @@ public class Processor implements JsonpSerializable {
 		this.count = builder.count;
 		this.current = builder.current;
 		this.failed = builder.failed;
+		this.time = builder.time;
 		this.timeInMillis = builder.timeInMillis;
 
 	}
@@ -116,6 +121,16 @@ public class Processor implements JsonpSerializable {
 	}
 
 	/**
+	 * Time spent by the processor transforming documents.
+	 * <p>
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public final Time time() {
+		return this.time;
+	}
+
+	/**
 	 * Time, in milliseconds, spent by the processor transforming documents.
 	 * <p>
 	 * API name: {@code time_in_millis}
@@ -151,6 +166,11 @@ public class Processor implements JsonpSerializable {
 			generator.write(this.failed);
 
 		}
+		if (this.time != null) {
+			generator.writeKey("time");
+			this.time.serialize(generator, mapper);
+
+		}
 		if (this.timeInMillis != null) {
 			generator.writeKey("time_in_millis");
 			generator.write(this.timeInMillis);
@@ -181,6 +201,9 @@ public class Processor implements JsonpSerializable {
 		private Long failed;
 
 		@Nullable
+		private Time time;
+
+		@Nullable
 		private Long timeInMillis;
 
 		public Builder() {
@@ -189,6 +212,7 @@ public class Processor implements JsonpSerializable {
 			this.count = instance.count;
 			this.current = instance.current;
 			this.failed = instance.failed;
+			this.time = instance.time;
 			this.timeInMillis = instance.timeInMillis;
 
 		}
@@ -220,6 +244,25 @@ public class Processor implements JsonpSerializable {
 		public final Builder failed(@Nullable Long value) {
 			this.failed = value;
 			return this;
+		}
+
+		/**
+		 * Time spent by the processor transforming documents.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(@Nullable Time value) {
+			this.time = value;
+			return this;
+		}
+
+		/**
+		 * Time spent by the processor transforming documents.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.time(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -269,6 +312,7 @@ public class Processor implements JsonpSerializable {
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::current, JsonpDeserializer.longDeserializer(), "current");
 		op.add(Builder::failed, JsonpDeserializer.longDeserializer(), "failed");
+		op.add(Builder::time, Time._DESERIALIZER, "time");
 		op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
 
 	}

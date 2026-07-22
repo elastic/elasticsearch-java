@@ -84,7 +84,8 @@ public class EmbeddingContentObjectItem implements JsonpSerializable {
 
 	/**
 	 * Required - The type of input to embed. Not all models support all input
-	 * types.
+	 * types. The <code>audio</code>, <code>video</code>, and <code>pdf</code> types
+	 * are available in Elasticsearch 9.5.0 and later.
 	 * <p>
 	 * API name: {@code type}
 	 */
@@ -168,7 +169,8 @@ public class EmbeddingContentObjectItem implements JsonpSerializable {
 		}
 		/**
 		 * Required - The type of input to embed. Not all models support all input
-		 * types.
+		 * types. The <code>audio</code>, <code>video</code>, and <code>pdf</code> types
+		 * are available in Elasticsearch 9.5.0 and later.
 		 * <p>
 		 * API name: {@code type}
 		 */

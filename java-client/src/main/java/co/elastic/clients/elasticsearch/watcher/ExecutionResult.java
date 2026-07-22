@@ -63,23 +63,29 @@ import javax.annotation.Nullable;
 public class ExecutionResult implements JsonpSerializable {
 	private final List<ExecutionResultAction> actions;
 
+	@Nullable
 	private final ExecutionResultCondition condition;
 
 	private final long executionDuration;
 
 	private final DateTime executionTime;
 
+	@Nullable
 	private final ExecutionResultInput input;
+
+	@Nullable
+	private final ExecutionResultTransform transform;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ExecutionResult(Builder builder) {
 
 		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
-		this.condition = ApiTypeHelper.requireNonNull(builder.condition, this, "condition");
+		this.condition = builder.condition;
 		this.executionDuration = ApiTypeHelper.requireNonNull(builder.executionDuration, this, "executionDuration", 0);
 		this.executionTime = ApiTypeHelper.requireNonNull(builder.executionTime, this, "executionTime");
-		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
+		this.input = builder.input;
+		this.transform = builder.transform;
 
 	}
 
@@ -95,8 +101,9 @@ public class ExecutionResult implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code condition}
+	 * API name: {@code condition}
 	 */
+	@Nullable
 	public final ExecutionResultCondition condition() {
 		return this.condition;
 	}
@@ -116,10 +123,19 @@ public class ExecutionResult implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code input}
+	 * API name: {@code input}
 	 */
+	@Nullable
 	public final ExecutionResultInput input() {
 		return this.input;
+	}
+
+	/**
+	 * API name: {@code transform}
+	 */
+	@Nullable
+	public final ExecutionResultTransform transform() {
+		return this.transform;
 	}
 
 	/**
@@ -143,16 +159,26 @@ public class ExecutionResult implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("condition");
-		this.condition.serialize(generator, mapper);
+		if (this.condition != null) {
+			generator.writeKey("condition");
+			this.condition.serialize(generator, mapper);
 
+		}
 		generator.writeKey("execution_duration");
 		generator.write(this.executionDuration);
 
 		generator.writeKey("execution_time");
 		this.executionTime.serialize(generator, mapper);
-		generator.writeKey("input");
-		this.input.serialize(generator, mapper);
+		if (this.input != null) {
+			generator.writeKey("input");
+			this.input.serialize(generator, mapper);
+
+		}
+		if (this.transform != null) {
+			generator.writeKey("transform");
+			this.transform.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -170,13 +196,18 @@ public class ExecutionResult implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ExecutionResult> {
 		private List<ExecutionResultAction> actions;
 
+		@Nullable
 		private ExecutionResultCondition condition;
 
 		private Long executionDuration;
 
 		private DateTime executionTime;
 
+		@Nullable
 		private ExecutionResultInput input;
+
+		@Nullable
+		private ExecutionResultTransform transform;
 
 		public Builder() {
 		}
@@ -186,6 +217,7 @@ public class ExecutionResult implements JsonpSerializable {
 			this.executionDuration = instance.executionDuration;
 			this.executionTime = instance.executionTime;
 			this.input = instance.input;
+			this.transform = instance.transform;
 
 		}
 		/**
@@ -218,15 +250,15 @@ public class ExecutionResult implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code condition}
+		 * API name: {@code condition}
 		 */
-		public final Builder condition(ExecutionResultCondition value) {
+		public final Builder condition(@Nullable ExecutionResultCondition value) {
 			this.condition = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code condition}
+		 * API name: {@code condition}
 		 */
 		public final Builder condition(
 				Function<ExecutionResultCondition.Builder, ObjectBuilder<ExecutionResultCondition>> fn) {
@@ -250,18 +282,34 @@ public class ExecutionResult implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code input}
+		 * API name: {@code input}
 		 */
-		public final Builder input(ExecutionResultInput value) {
+		public final Builder input(@Nullable ExecutionResultInput value) {
 			this.input = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code input}
+		 * API name: {@code input}
 		 */
 		public final Builder input(Function<ExecutionResultInput.Builder, ObjectBuilder<ExecutionResultInput>> fn) {
 			return this.input(fn.apply(new ExecutionResultInput.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code transform}
+		 */
+		public final Builder transform(@Nullable ExecutionResultTransform value) {
+			this.transform = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code transform}
+		 */
+		public final Builder transform(
+				Function<ExecutionResultTransform.Builder, ObjectBuilder<ExecutionResultTransform>> fn) {
+			return this.transform(fn.apply(new ExecutionResultTransform.Builder()).build());
 		}
 
 		@Override
@@ -303,6 +351,7 @@ public class ExecutionResult implements JsonpSerializable {
 		op.add(Builder::executionDuration, JsonpDeserializer.longDeserializer(), "execution_duration");
 		op.add(Builder::executionTime, DateTime._DESERIALIZER, "execution_time");
 		op.add(Builder::input, ExecutionResultInput._DESERIALIZER, "input");
+		op.add(Builder::transform, ExecutionResultTransform._DESERIALIZER, "transform");
 
 	}
 

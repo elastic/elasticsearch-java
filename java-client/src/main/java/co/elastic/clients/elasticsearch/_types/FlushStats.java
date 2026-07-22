@@ -68,6 +68,11 @@ public class FlushStats implements JsonpSerializable {
 
 	private final long totalTimeInMillis;
 
+	@Nullable
+	private final Time totalTimeExcludingWaiting;
+
+	private final long totalTimeExcludingWaitingOnLockInMillis;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private FlushStats(Builder builder) {
@@ -76,6 +81,9 @@ public class FlushStats implements JsonpSerializable {
 		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
 		this.totalTime = builder.totalTime;
 		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis", 0);
+		this.totalTimeExcludingWaiting = builder.totalTimeExcludingWaiting;
+		this.totalTimeExcludingWaitingOnLockInMillis = ApiTypeHelper.requireNonNull(
+				builder.totalTimeExcludingWaitingOnLockInMillis, this, "totalTimeExcludingWaitingOnLockInMillis", 0);
 
 	}
 
@@ -113,6 +121,21 @@ public class FlushStats implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code total_time_excluding_waiting}
+	 */
+	@Nullable
+	public final Time totalTimeExcludingWaiting() {
+		return this.totalTimeExcludingWaiting;
+	}
+
+	/**
+	 * Required - API name: {@code total_time_excluding_waiting_on_lock_in_millis}
+	 */
+	public final long totalTimeExcludingWaitingOnLockInMillis() {
+		return this.totalTimeExcludingWaitingOnLockInMillis;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -137,6 +160,14 @@ public class FlushStats implements JsonpSerializable {
 		generator.writeKey("total_time_in_millis");
 		generator.write(this.totalTimeInMillis);
 
+		if (this.totalTimeExcludingWaiting != null) {
+			generator.writeKey("total_time_excluding_waiting");
+			this.totalTimeExcludingWaiting.serialize(generator, mapper);
+
+		}
+		generator.writeKey("total_time_excluding_waiting_on_lock_in_millis");
+		generator.write(this.totalTimeExcludingWaitingOnLockInMillis);
+
 	}
 
 	@Override
@@ -160,6 +191,11 @@ public class FlushStats implements JsonpSerializable {
 
 		private Long totalTimeInMillis;
 
+		@Nullable
+		private Time totalTimeExcludingWaiting;
+
+		private Long totalTimeExcludingWaitingOnLockInMillis;
+
 		public Builder() {
 		}
 		private Builder(FlushStats instance) {
@@ -167,6 +203,8 @@ public class FlushStats implements JsonpSerializable {
 			this.total = instance.total;
 			this.totalTime = instance.totalTime;
 			this.totalTimeInMillis = instance.totalTimeInMillis;
+			this.totalTimeExcludingWaiting = instance.totalTimeExcludingWaiting;
+			this.totalTimeExcludingWaitingOnLockInMillis = instance.totalTimeExcludingWaitingOnLockInMillis;
 
 		}
 		/**
@@ -208,6 +246,29 @@ public class FlushStats implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code total_time_excluding_waiting}
+		 */
+		public final Builder totalTimeExcludingWaiting(@Nullable Time value) {
+			this.totalTimeExcludingWaiting = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total_time_excluding_waiting}
+		 */
+		public final Builder totalTimeExcludingWaiting(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.totalTimeExcludingWaiting(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code total_time_excluding_waiting_on_lock_in_millis}
+		 */
+		public final Builder totalTimeExcludingWaitingOnLockInMillis(long value) {
+			this.totalTimeExcludingWaitingOnLockInMillis = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -246,6 +307,9 @@ public class FlushStats implements JsonpSerializable {
 		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 		op.add(Builder::totalTime, Time._DESERIALIZER, "total_time");
 		op.add(Builder::totalTimeInMillis, JsonpDeserializer.longDeserializer(), "total_time_in_millis");
+		op.add(Builder::totalTimeExcludingWaiting, Time._DESERIALIZER, "total_time_excluding_waiting");
+		op.add(Builder::totalTimeExcludingWaitingOnLockInMillis, JsonpDeserializer.longDeserializer(),
+				"total_time_excluding_waiting_on_lock_in_millis");
 
 	}
 

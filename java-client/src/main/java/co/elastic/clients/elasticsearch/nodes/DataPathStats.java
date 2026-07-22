@@ -93,6 +93,30 @@ public class DataPathStats implements JsonpSerializable {
 	private final Long freeInBytes;
 
 	@Nullable
+	private final String lowWatermarkFreeSpace;
+
+	@Nullable
+	private final Long lowWatermarkFreeSpaceInBytes;
+
+	@Nullable
+	private final String highWatermarkFreeSpace;
+
+	@Nullable
+	private final Long highWatermarkFreeSpaceInBytes;
+
+	@Nullable
+	private final String floodStageFreeSpace;
+
+	@Nullable
+	private final Long floodStageFreeSpaceInBytes;
+
+	@Nullable
+	private final String frozenFloodStageFreeSpace;
+
+	@Nullable
+	private final Long frozenFloodStageFreeSpaceInBytes;
+
+	@Nullable
 	private final String mount;
 
 	@Nullable
@@ -122,6 +146,14 @@ public class DataPathStats implements JsonpSerializable {
 		this.diskWriteSizeInBytes = builder.diskWriteSizeInBytes;
 		this.free = builder.free;
 		this.freeInBytes = builder.freeInBytes;
+		this.lowWatermarkFreeSpace = builder.lowWatermarkFreeSpace;
+		this.lowWatermarkFreeSpaceInBytes = builder.lowWatermarkFreeSpaceInBytes;
+		this.highWatermarkFreeSpace = builder.highWatermarkFreeSpace;
+		this.highWatermarkFreeSpaceInBytes = builder.highWatermarkFreeSpaceInBytes;
+		this.floodStageFreeSpace = builder.floodStageFreeSpace;
+		this.floodStageFreeSpaceInBytes = builder.floodStageFreeSpaceInBytes;
+		this.frozenFloodStageFreeSpace = builder.frozenFloodStageFreeSpace;
+		this.frozenFloodStageFreeSpaceInBytes = builder.frozenFloodStageFreeSpaceInBytes;
 		this.mount = builder.mount;
 		this.path = builder.path;
 		this.total = builder.total;
@@ -230,6 +262,94 @@ public class DataPathStats implements JsonpSerializable {
 	@Nullable
 	public final Long freeInBytes() {
 		return this.freeInBytes;
+	}
+
+	/**
+	 * The amount of free disk space that, once reached, triggers the low disk
+	 * watermark.
+	 * <p>
+	 * API name: {@code low_watermark_free_space}
+	 */
+	@Nullable
+	public final String lowWatermarkFreeSpace() {
+		return this.lowWatermarkFreeSpace;
+	}
+
+	/**
+	 * The amount of free disk space, in bytes, that, once reached, triggers the low
+	 * disk watermark.
+	 * <p>
+	 * API name: {@code low_watermark_free_space_in_bytes}
+	 */
+	@Nullable
+	public final Long lowWatermarkFreeSpaceInBytes() {
+		return this.lowWatermarkFreeSpaceInBytes;
+	}
+
+	/**
+	 * The amount of free disk space that, once reached, triggers the high disk
+	 * watermark.
+	 * <p>
+	 * API name: {@code high_watermark_free_space}
+	 */
+	@Nullable
+	public final String highWatermarkFreeSpace() {
+		return this.highWatermarkFreeSpace;
+	}
+
+	/**
+	 * The amount of free disk space, in bytes, that, once reached, triggers the
+	 * high disk watermark.
+	 * <p>
+	 * API name: {@code high_watermark_free_space_in_bytes}
+	 */
+	@Nullable
+	public final Long highWatermarkFreeSpaceInBytes() {
+		return this.highWatermarkFreeSpaceInBytes;
+	}
+
+	/**
+	 * The amount of free disk space that, once reached, triggers the flood stage
+	 * disk watermark.
+	 * <p>
+	 * API name: {@code flood_stage_free_space}
+	 */
+	@Nullable
+	public final String floodStageFreeSpace() {
+		return this.floodStageFreeSpace;
+	}
+
+	/**
+	 * The amount of free disk space, in bytes, that, once reached, triggers the
+	 * flood stage disk watermark.
+	 * <p>
+	 * API name: {@code flood_stage_free_space_in_bytes}
+	 */
+	@Nullable
+	public final Long floodStageFreeSpaceInBytes() {
+		return this.floodStageFreeSpaceInBytes;
+	}
+
+	/**
+	 * The amount of free disk space that, once reached, triggers the frozen flood
+	 * stage disk watermark.
+	 * <p>
+	 * API name: {@code frozen_flood_stage_free_space}
+	 */
+	@Nullable
+	public final String frozenFloodStageFreeSpace() {
+		return this.frozenFloodStageFreeSpace;
+	}
+
+	/**
+	 * The amount of free disk space, in bytes, that, once reached, triggers the
+	 * frozen flood stage disk watermark.
+	 * <p>
+	 * API name: {@code frozen_flood_stage_free_space_in_bytes}
+	 */
+	@Nullable
+	public final Long frozenFloodStageFreeSpaceInBytes() {
+		return this.frozenFloodStageFreeSpaceInBytes;
 	}
 
 	/**
@@ -348,6 +468,46 @@ public class DataPathStats implements JsonpSerializable {
 			generator.write(this.freeInBytes);
 
 		}
+		if (this.lowWatermarkFreeSpace != null) {
+			generator.writeKey("low_watermark_free_space");
+			generator.write(this.lowWatermarkFreeSpace);
+
+		}
+		if (this.lowWatermarkFreeSpaceInBytes != null) {
+			generator.writeKey("low_watermark_free_space_in_bytes");
+			generator.write(this.lowWatermarkFreeSpaceInBytes);
+
+		}
+		if (this.highWatermarkFreeSpace != null) {
+			generator.writeKey("high_watermark_free_space");
+			generator.write(this.highWatermarkFreeSpace);
+
+		}
+		if (this.highWatermarkFreeSpaceInBytes != null) {
+			generator.writeKey("high_watermark_free_space_in_bytes");
+			generator.write(this.highWatermarkFreeSpaceInBytes);
+
+		}
+		if (this.floodStageFreeSpace != null) {
+			generator.writeKey("flood_stage_free_space");
+			generator.write(this.floodStageFreeSpace);
+
+		}
+		if (this.floodStageFreeSpaceInBytes != null) {
+			generator.writeKey("flood_stage_free_space_in_bytes");
+			generator.write(this.floodStageFreeSpaceInBytes);
+
+		}
+		if (this.frozenFloodStageFreeSpace != null) {
+			generator.writeKey("frozen_flood_stage_free_space");
+			generator.write(this.frozenFloodStageFreeSpace);
+
+		}
+		if (this.frozenFloodStageFreeSpaceInBytes != null) {
+			generator.writeKey("frozen_flood_stage_free_space_in_bytes");
+			generator.write(this.frozenFloodStageFreeSpaceInBytes);
+
+		}
 		if (this.mount != null) {
 			generator.writeKey("mount");
 			generator.write(this.mount);
@@ -422,6 +582,30 @@ public class DataPathStats implements JsonpSerializable {
 		private Long freeInBytes;
 
 		@Nullable
+		private String lowWatermarkFreeSpace;
+
+		@Nullable
+		private Long lowWatermarkFreeSpaceInBytes;
+
+		@Nullable
+		private String highWatermarkFreeSpace;
+
+		@Nullable
+		private Long highWatermarkFreeSpaceInBytes;
+
+		@Nullable
+		private String floodStageFreeSpace;
+
+		@Nullable
+		private Long floodStageFreeSpaceInBytes;
+
+		@Nullable
+		private String frozenFloodStageFreeSpace;
+
+		@Nullable
+		private Long frozenFloodStageFreeSpaceInBytes;
+
+		@Nullable
 		private String mount;
 
 		@Nullable
@@ -450,6 +634,14 @@ public class DataPathStats implements JsonpSerializable {
 			this.diskWriteSizeInBytes = instance.diskWriteSizeInBytes;
 			this.free = instance.free;
 			this.freeInBytes = instance.freeInBytes;
+			this.lowWatermarkFreeSpace = instance.lowWatermarkFreeSpace;
+			this.lowWatermarkFreeSpaceInBytes = instance.lowWatermarkFreeSpaceInBytes;
+			this.highWatermarkFreeSpace = instance.highWatermarkFreeSpace;
+			this.highWatermarkFreeSpaceInBytes = instance.highWatermarkFreeSpaceInBytes;
+			this.floodStageFreeSpace = instance.floodStageFreeSpace;
+			this.floodStageFreeSpaceInBytes = instance.floodStageFreeSpaceInBytes;
+			this.frozenFloodStageFreeSpace = instance.frozenFloodStageFreeSpace;
+			this.frozenFloodStageFreeSpaceInBytes = instance.frozenFloodStageFreeSpaceInBytes;
 			this.mount = instance.mount;
 			this.path = instance.path;
 			this.total = instance.total;
@@ -556,6 +748,94 @@ public class DataPathStats implements JsonpSerializable {
 		}
 
 		/**
+		 * The amount of free disk space that, once reached, triggers the low disk
+		 * watermark.
+		 * <p>
+		 * API name: {@code low_watermark_free_space}
+		 */
+		public final Builder lowWatermarkFreeSpace(@Nullable String value) {
+			this.lowWatermarkFreeSpace = value;
+			return this;
+		}
+
+		/**
+		 * The amount of free disk space, in bytes, that, once reached, triggers the low
+		 * disk watermark.
+		 * <p>
+		 * API name: {@code low_watermark_free_space_in_bytes}
+		 */
+		public final Builder lowWatermarkFreeSpaceInBytes(@Nullable Long value) {
+			this.lowWatermarkFreeSpaceInBytes = value;
+			return this;
+		}
+
+		/**
+		 * The amount of free disk space that, once reached, triggers the high disk
+		 * watermark.
+		 * <p>
+		 * API name: {@code high_watermark_free_space}
+		 */
+		public final Builder highWatermarkFreeSpace(@Nullable String value) {
+			this.highWatermarkFreeSpace = value;
+			return this;
+		}
+
+		/**
+		 * The amount of free disk space, in bytes, that, once reached, triggers the
+		 * high disk watermark.
+		 * <p>
+		 * API name: {@code high_watermark_free_space_in_bytes}
+		 */
+		public final Builder highWatermarkFreeSpaceInBytes(@Nullable Long value) {
+			this.highWatermarkFreeSpaceInBytes = value;
+			return this;
+		}
+
+		/**
+		 * The amount of free disk space that, once reached, triggers the flood stage
+		 * disk watermark.
+		 * <p>
+		 * API name: {@code flood_stage_free_space}
+		 */
+		public final Builder floodStageFreeSpace(@Nullable String value) {
+			this.floodStageFreeSpace = value;
+			return this;
+		}
+
+		/**
+		 * The amount of free disk space, in bytes, that, once reached, triggers the
+		 * flood stage disk watermark.
+		 * <p>
+		 * API name: {@code flood_stage_free_space_in_bytes}
+		 */
+		public final Builder floodStageFreeSpaceInBytes(@Nullable Long value) {
+			this.floodStageFreeSpaceInBytes = value;
+			return this;
+		}
+
+		/**
+		 * The amount of free disk space that, once reached, triggers the frozen flood
+		 * stage disk watermark.
+		 * <p>
+		 * API name: {@code frozen_flood_stage_free_space}
+		 */
+		public final Builder frozenFloodStageFreeSpace(@Nullable String value) {
+			this.frozenFloodStageFreeSpace = value;
+			return this;
+		}
+
+		/**
+		 * The amount of free disk space, in bytes, that, once reached, triggers the
+		 * frozen flood stage disk watermark.
+		 * <p>
+		 * API name: {@code frozen_flood_stage_free_space_in_bytes}
+		 */
+		public final Builder frozenFloodStageFreeSpaceInBytes(@Nullable Long value) {
+			this.frozenFloodStageFreeSpaceInBytes = value;
+			return this;
+		}
+
+		/**
 		 * Mount point of the file store (for example: <code>/dev/sda2</code>).
 		 * <p>
 		 * API name: {@code mount}
@@ -650,6 +930,19 @@ public class DataPathStats implements JsonpSerializable {
 		op.add(Builder::diskWriteSizeInBytes, JsonpDeserializer.longDeserializer(), "disk_write_size_in_bytes");
 		op.add(Builder::free, JsonpDeserializer.stringDeserializer(), "free");
 		op.add(Builder::freeInBytes, JsonpDeserializer.longDeserializer(), "free_in_bytes");
+		op.add(Builder::lowWatermarkFreeSpace, JsonpDeserializer.stringDeserializer(), "low_watermark_free_space");
+		op.add(Builder::lowWatermarkFreeSpaceInBytes, JsonpDeserializer.longDeserializer(),
+				"low_watermark_free_space_in_bytes");
+		op.add(Builder::highWatermarkFreeSpace, JsonpDeserializer.stringDeserializer(), "high_watermark_free_space");
+		op.add(Builder::highWatermarkFreeSpaceInBytes, JsonpDeserializer.longDeserializer(),
+				"high_watermark_free_space_in_bytes");
+		op.add(Builder::floodStageFreeSpace, JsonpDeserializer.stringDeserializer(), "flood_stage_free_space");
+		op.add(Builder::floodStageFreeSpaceInBytes, JsonpDeserializer.longDeserializer(),
+				"flood_stage_free_space_in_bytes");
+		op.add(Builder::frozenFloodStageFreeSpace, JsonpDeserializer.stringDeserializer(),
+				"frozen_flood_stage_free_space");
+		op.add(Builder::frozenFloodStageFreeSpaceInBytes, JsonpDeserializer.longDeserializer(),
+				"frozen_flood_stage_free_space_in_bytes");
 		op.add(Builder::mount, JsonpDeserializer.stringDeserializer(), "mount");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 		op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");

@@ -236,6 +236,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Retriever retriever;
 
+	@Nullable
+	private final String routeSlice;
+
 	private final List<String> routing;
 
 	private final Map<String, RuntimeField> runtimeMappings;
@@ -327,6 +330,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		this.requestCache = builder.requestCache;
 		this.rescore = ApiTypeHelper.unmodifiable(builder.rescore);
 		this.retriever = builder.retriever;
+		this.routeSlice = builder.routeSlice;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
@@ -865,7 +869,23 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A custom value that is used to route operations to a specific shard.
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
+	 * A custom value that is used to route operations to a specific shard. Not
+	 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
+	 * target index; use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -1466,6 +1486,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		private Retriever retriever;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private List<String> routing;
 
 		@Nullable
@@ -1562,6 +1585,7 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 			this.requestCache = instance.requestCache;
 			this.rescore = instance.rescore;
 			this.retriever = instance.retriever;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 			this.runtimeMappings = instance.runtimeMappings;
 			this.scriptFields = instance.scriptFields;
@@ -2461,7 +2485,23 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A custom value that is used to route operations to a specific shard.
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
+			return this;
+		}
+
+		/**
+		 * A custom value that is used to route operations to a specific shard. Not
+		 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
+		 * target index; use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -2473,7 +2513,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A custom value that is used to route operations to a specific shard.
+		 * A custom value that is used to route operations to a specific shard. Not
+		 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
+		 * target index; use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -3122,6 +3164,9 @@ public class SearchRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.scroll != null) {
 					params.put("scroll", request.scroll._toJsonString());
+				}
+				if (request.routeSlice != null) {
+					params.put("_slice", request.routeSlice);
 				}
 				if (request.searchType != null) {
 					params.put("search_type", request.searchType.jsonValue());

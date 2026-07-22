@@ -19,19 +19,17 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -60,65 +58,45 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class ExecutionResultAction implements JsonpSerializable {
-	@Nullable
-	private final EmailResult email;
-
+public class ExecutionResultAction extends ExecutionResultForeachAction {
 	private final String id;
-
-	@Nullable
-	private final IndexResult index;
-
-	@Nullable
-	private final LoggingResult logging;
-
-	@Nullable
-	private final PagerDutyResult pagerduty;
-
-	@Nullable
-	private final String reason;
-
-	@Nullable
-	private final SlackResult slack;
-
-	private final ActionStatusOptions status;
 
 	private final ActionType type;
 
-	@Nullable
-	private final WebhookResult webhook;
+	private final ActionStatusOptions status;
 
 	@Nullable
-	private final ErrorCause error;
+	private final ExecutionResultCondition condition;
+
+	@Nullable
+	private final ExecutionResultTransform transform;
+
+	private final List<ExecutionResultForeachAction> foreach;
+
+	@Nullable
+	private final Integer maxIterations;
+
+	@Nullable
+	private final Integer numberOfActionsExecuted;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ExecutionResultAction(Builder builder) {
+		super(builder);
 
-		this.email = builder.email;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = builder.index;
-		this.logging = builder.logging;
-		this.pagerduty = builder.pagerduty;
-		this.reason = builder.reason;
-		this.slack = builder.slack;
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
-		this.webhook = builder.webhook;
-		this.error = builder.error;
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.condition = builder.condition;
+		this.transform = builder.transform;
+		this.foreach = ApiTypeHelper.unmodifiable(builder.foreach);
+		this.maxIterations = builder.maxIterations;
+		this.numberOfActionsExecuted = builder.numberOfActionsExecuted;
 
 	}
 
 	public static ExecutionResultAction of(Function<Builder, ObjectBuilder<ExecutionResultAction>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * API name: {@code email}
-	 */
-	@Nullable
-	public final EmailResult email() {
-		return this.email;
 	}
 
 	/**
@@ -129,43 +107,10 @@ public class ExecutionResultAction implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code index}
+	 * Required - API name: {@code type}
 	 */
-	@Nullable
-	public final IndexResult index() {
-		return this.index;
-	}
-
-	/**
-	 * API name: {@code logging}
-	 */
-	@Nullable
-	public final LoggingResult logging() {
-		return this.logging;
-	}
-
-	/**
-	 * API name: {@code pagerduty}
-	 */
-	@Nullable
-	public final PagerDutyResult pagerduty() {
-		return this.pagerduty;
-	}
-
-	/**
-	 * API name: {@code reason}
-	 */
-	@Nullable
-	public final String reason() {
-		return this.reason;
-	}
-
-	/**
-	 * API name: {@code slack}
-	 */
-	@Nullable
-	public final SlackResult slack() {
-		return this.slack;
+	public final ActionType type() {
+		return this.type;
 	}
 
 	/**
@@ -176,92 +121,85 @@ public class ExecutionResultAction implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code type}
-	 */
-	public final ActionType type() {
-		return this.type;
-	}
-
-	/**
-	 * API name: {@code webhook}
+	 * API name: {@code condition}
 	 */
 	@Nullable
-	public final WebhookResult webhook() {
-		return this.webhook;
+	public final ExecutionResultCondition condition() {
+		return this.condition;
 	}
 
 	/**
-	 * API name: {@code error}
+	 * API name: {@code transform}
 	 */
 	@Nullable
-	public final ErrorCause error() {
-		return this.error;
+	public final ExecutionResultTransform transform() {
+		return this.transform;
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * API name: {@code foreach}
 	 */
-	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
+	public final List<ExecutionResultForeachAction> foreach() {
+		return this.foreach;
+	}
+
+	/**
+	 * API name: {@code max_iterations}
+	 */
+	@Nullable
+	public final Integer maxIterations() {
+		return this.maxIterations;
+	}
+
+	/**
+	 * API name: {@code number_of_actions_executed}
+	 */
+	@Nullable
+	public final Integer numberOfActionsExecuted() {
+		return this.numberOfActionsExecuted;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.email != null) {
-			generator.writeKey("email");
-			this.email.serialize(generator, mapper);
-
-		}
+		super.serializeInternal(generator, mapper);
 		generator.writeKey("id");
 		generator.write(this.id);
 
-		if (this.index != null) {
-			generator.writeKey("index");
-			this.index.serialize(generator, mapper);
-
-		}
-		if (this.logging != null) {
-			generator.writeKey("logging");
-			this.logging.serialize(generator, mapper);
-
-		}
-		if (this.pagerduty != null) {
-			generator.writeKey("pagerduty");
-			this.pagerduty.serialize(generator, mapper);
-
-		}
-		if (this.reason != null) {
-			generator.writeKey("reason");
-			generator.write(this.reason);
-
-		}
-		if (this.slack != null) {
-			generator.writeKey("slack");
-			this.slack.serialize(generator, mapper);
-
-		}
-		generator.writeKey("status");
-		this.status.serialize(generator, mapper);
 		generator.writeKey("type");
 		this.type.serialize(generator, mapper);
-		if (this.webhook != null) {
-			generator.writeKey("webhook");
-			this.webhook.serialize(generator, mapper);
+		generator.writeKey("status");
+		this.status.serialize(generator, mapper);
+		if (this.condition != null) {
+			generator.writeKey("condition");
+			this.condition.serialize(generator, mapper);
 
 		}
-		if (this.error != null) {
-			generator.writeKey("error");
-			this.error.serialize(generator, mapper);
+		if (this.transform != null) {
+			generator.writeKey("transform");
+			this.transform.serialize(generator, mapper);
+
+		}
+		if (ApiTypeHelper.isDefined(this.foreach)) {
+			generator.writeKey("foreach");
+			generator.writeStartArray();
+			for (ExecutionResultForeachAction item0 : this.foreach) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.maxIterations != null) {
+			generator.writeKey("max_iterations");
+			generator.write(this.maxIterations);
+
+		}
+		if (this.numberOfActionsExecuted != null) {
+			generator.writeKey("number_of_actions_executed");
+			generator.write(this.numberOfActionsExecuted);
 
 		}
 
-	}
-
-	@Override
-	public String toString() {
-		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -270,151 +208,48 @@ public class ExecutionResultAction implements JsonpSerializable {
 	 * Builder for {@link ExecutionResultAction}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+	public static class Builder extends ExecutionResultForeachAction.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ExecutionResultAction> {
-		@Nullable
-		private EmailResult email;
-
 		private String id;
-
-		@Nullable
-		private IndexResult index;
-
-		@Nullable
-		private LoggingResult logging;
-
-		@Nullable
-		private PagerDutyResult pagerduty;
-
-		@Nullable
-		private String reason;
-
-		@Nullable
-		private SlackResult slack;
-
-		private ActionStatusOptions status;
 
 		private ActionType type;
 
-		@Nullable
-		private WebhookResult webhook;
+		private ActionStatusOptions status;
 
 		@Nullable
-		private ErrorCause error;
+		private ExecutionResultCondition condition;
+
+		@Nullable
+		private ExecutionResultTransform transform;
+
+		@Nullable
+		private List<ExecutionResultForeachAction> foreach;
+
+		@Nullable
+		private Integer maxIterations;
+
+		@Nullable
+		private Integer numberOfActionsExecuted;
 
 		public Builder() {
 		}
 		private Builder(ExecutionResultAction instance) {
-			this.email = instance.email;
 			this.id = instance.id;
-			this.index = instance.index;
-			this.logging = instance.logging;
-			this.pagerduty = instance.pagerduty;
-			this.reason = instance.reason;
-			this.slack = instance.slack;
-			this.status = instance.status;
 			this.type = instance.type;
-			this.webhook = instance.webhook;
-			this.error = instance.error;
+			this.status = instance.status;
+			this.condition = instance.condition;
+			this.transform = instance.transform;
+			this.foreach = instance.foreach;
+			this.maxIterations = instance.maxIterations;
+			this.numberOfActionsExecuted = instance.numberOfActionsExecuted;
 
 		}
-		/**
-		 * API name: {@code email}
-		 */
-		public final Builder email(@Nullable EmailResult value) {
-			this.email = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code email}
-		 */
-		public final Builder email(Function<EmailResult.Builder, ObjectBuilder<EmailResult>> fn) {
-			return this.email(fn.apply(new EmailResult.Builder()).build());
-		}
-
 		/**
 		 * Required - API name: {@code id}
 		 */
 		public final Builder id(String value) {
 			this.id = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code index}
-		 */
-		public final Builder index(@Nullable IndexResult value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code index}
-		 */
-		public final Builder index(Function<IndexResult.Builder, ObjectBuilder<IndexResult>> fn) {
-			return this.index(fn.apply(new IndexResult.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code logging}
-		 */
-		public final Builder logging(@Nullable LoggingResult value) {
-			this.logging = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code logging}
-		 */
-		public final Builder logging(Function<LoggingResult.Builder, ObjectBuilder<LoggingResult>> fn) {
-			return this.logging(fn.apply(new LoggingResult.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code pagerduty}
-		 */
-		public final Builder pagerduty(@Nullable PagerDutyResult value) {
-			this.pagerduty = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code pagerduty}
-		 */
-		public final Builder pagerduty(Function<PagerDutyResult.Builder, ObjectBuilder<PagerDutyResult>> fn) {
-			return this.pagerduty(fn.apply(new PagerDutyResult.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code reason}
-		 */
-		public final Builder reason(@Nullable String value) {
-			this.reason = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code slack}
-		 */
-		public final Builder slack(@Nullable SlackResult value) {
-			this.slack = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code slack}
-		 */
-		public final Builder slack(Function<SlackResult.Builder, ObjectBuilder<SlackResult>> fn) {
-			return this.slack(fn.apply(new SlackResult.Builder()).build());
-		}
-
-		/**
-		 * Required - API name: {@code status}
-		 */
-		public final Builder status(ActionStatusOptions value) {
-			this.status = value;
 			return this;
 		}
 
@@ -427,33 +262,89 @@ public class ExecutionResultAction implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code webhook}
+		 * Required - API name: {@code status}
 		 */
-		public final Builder webhook(@Nullable WebhookResult value) {
-			this.webhook = value;
+		public final Builder status(ActionStatusOptions value) {
+			this.status = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code webhook}
+		 * API name: {@code condition}
 		 */
-		public final Builder webhook(Function<WebhookResult.Builder, ObjectBuilder<WebhookResult>> fn) {
-			return this.webhook(fn.apply(new WebhookResult.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code error}
-		 */
-		public final Builder error(@Nullable ErrorCause value) {
-			this.error = value;
+		public final Builder condition(@Nullable ExecutionResultCondition value) {
+			this.condition = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code error}
+		 * API name: {@code condition}
 		 */
-		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.error(fn.apply(new ErrorCause.Builder()).build());
+		public final Builder condition(
+				Function<ExecutionResultCondition.Builder, ObjectBuilder<ExecutionResultCondition>> fn) {
+			return this.condition(fn.apply(new ExecutionResultCondition.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code transform}
+		 */
+		public final Builder transform(@Nullable ExecutionResultTransform value) {
+			this.transform = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code transform}
+		 */
+		public final Builder transform(
+				Function<ExecutionResultTransform.Builder, ObjectBuilder<ExecutionResultTransform>> fn) {
+			return this.transform(fn.apply(new ExecutionResultTransform.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code foreach}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>foreach</code>.
+		 */
+		public final Builder foreach(List<ExecutionResultForeachAction> list) {
+			this.foreach = _listAddAll(this.foreach, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code foreach}
+		 * <p>
+		 * Adds one or more values to <code>foreach</code>.
+		 */
+		public final Builder foreach(ExecutionResultForeachAction value, ExecutionResultForeachAction... values) {
+			this.foreach = _listAdd(this.foreach, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code foreach}
+		 * <p>
+		 * Adds a value to <code>foreach</code> using a builder lambda.
+		 */
+		public final Builder foreach(
+				Function<ExecutionResultForeachAction.Builder, ObjectBuilder<ExecutionResultForeachAction>> fn) {
+			return foreach(fn.apply(new ExecutionResultForeachAction.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code max_iterations}
+		 */
+		public final Builder maxIterations(@Nullable Integer value) {
+			this.maxIterations = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code number_of_actions_executed}
+		 */
+		public final Builder numberOfActionsExecuted(@Nullable Integer value) {
+			this.numberOfActionsExecuted = value;
+			return this;
 		}
 
 		@Override
@@ -489,18 +380,16 @@ public class ExecutionResultAction implements JsonpSerializable {
 			.lazy(Builder::new, ExecutionResultAction::setupExecutionResultActionDeserializer);
 
 	protected static void setupExecutionResultActionDeserializer(ObjectDeserializer<ExecutionResultAction.Builder> op) {
-
-		op.add(Builder::email, EmailResult._DESERIALIZER, "email");
+		ExecutionResultForeachAction.setupExecutionResultForeachActionDeserializer(op);
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::index, IndexResult._DESERIALIZER, "index");
-		op.add(Builder::logging, LoggingResult._DESERIALIZER, "logging");
-		op.add(Builder::pagerduty, PagerDutyResult._DESERIALIZER, "pagerduty");
-		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
-		op.add(Builder::slack, SlackResult._DESERIALIZER, "slack");
-		op.add(Builder::status, ActionStatusOptions._DESERIALIZER, "status");
 		op.add(Builder::type, ActionType._DESERIALIZER, "type");
-		op.add(Builder::webhook, WebhookResult._DESERIALIZER, "webhook");
-		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
+		op.add(Builder::status, ActionStatusOptions._DESERIALIZER, "status");
+		op.add(Builder::condition, ExecutionResultCondition._DESERIALIZER, "condition");
+		op.add(Builder::transform, ExecutionResultTransform._DESERIALIZER, "transform");
+		op.add(Builder::foreach, JsonpDeserializer.arrayDeserializer(ExecutionResultForeachAction._DESERIALIZER),
+				"foreach");
+		op.add(Builder::maxIterations, JsonpDeserializer.integerDeserializer(), "max_iterations");
+		op.add(Builder::numberOfActionsExecuted, JsonpDeserializer.integerDeserializer(), "number_of_actions_executed");
 
 	}
 

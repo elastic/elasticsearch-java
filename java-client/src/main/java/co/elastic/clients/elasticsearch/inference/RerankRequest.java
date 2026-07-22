@@ -22,6 +22,8 @@ package co.elastic.clients.elasticsearch.inference;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch.inference.rerank.RerankInput;
+import co.elastic.clients.elasticsearch.inference.rerank.RerankQuery;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -38,7 +40,6 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -71,9 +72,9 @@ import javax.annotation.Nullable;
 public class RerankRequest extends RequestBase implements JsonpSerializable {
 	private final String inferenceId;
 
-	private final List<String> input;
+	private final RerankInput input;
 
-	private final String query;
+	private final RerankQuery query;
 
 	@Nullable
 	private final Boolean returnDocuments;
@@ -92,7 +93,7 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 	private RerankRequest(Builder builder) {
 
 		this.inferenceId = ApiTypeHelper.requireNonNull(builder.inferenceId, this, "inferenceId");
-		this.input = ApiTypeHelper.unmodifiableRequired(builder.input, this, "input");
+		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
 		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.returnDocuments = builder.returnDocuments;
 		this.taskSettings = builder.taskSettings;
@@ -115,20 +116,98 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The documents to rank.
+	 * Required - The documents to rank. The input can be specified as a single
+	 * string or an array of strings, or as an object or an array of objects. The
+	 * object form additionally allows specifying non-text inputs, such as images.
+	 * <blockquote>
+	 * <p>
+	 * info Only the <code>elastic</code> service currently supports non-text inputs
+	 * for the <code>rerank</code> task. For all other services, the input must be a
+	 * string or an array of strings.
+	 * </p>
+	 * </blockquote>
+	 * <p>
+	 * string example:
+	 * 
+	 * <pre>
+	 * <code>&quot;input&quot;: &quot;some document text&quot;
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * string array example:
+	 * 
+	 * <pre>
+	 * <code>&quot;input&quot;: [&quot;some document text&quot;, &quot;some more document text&quot;]
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * object example:
+	 * 
+	 * <pre>
+	 * <code>&quot;input&quot;: {
+	 *   &quot;type&quot;: &quot;image&quot;,
+	 *   &quot;format&quot;: &quot;base64&quot;,
+	 *   &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
+	 * }
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * object array example:
+	 * 
+	 * <pre>
+	 * <code>&quot;input&quot;: [
+	 *   {
+	 *     &quot;type&quot;: &quot;text&quot;,
+	 *     &quot;format&quot;: &quot;text&quot;,
+	 *     &quot;value&quot;: &quot;some document text&quot;
+	 *   },
+	 *   {
+	 *     &quot;type&quot;: &quot;image&quot;,
+	 *     &quot;format&quot;: &quot;base64&quot;,
+	 *     &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
+	 *   }
+	 * ]
+	 * </code>
+	 * </pre>
 	 * <p>
 	 * API name: {@code input}
 	 */
-	public final List<String> input() {
+	public final RerankInput input() {
 		return this.input;
 	}
 
 	/**
-	 * Required - Query input.
+	 * Required - Query input. The query can be specified as a single string, or as
+	 * an object. The object form additionally allows specifying non-text inputs,
+	 * such as images. <blockquote>
+	 * <p>
+	 * info Only the <code>elastic</code> service currently supports non-text
+	 * queries for the <code>rerank</code> task. For all other services, the query
+	 * must be a string.
+	 * </p>
+	 * </blockquote>
+	 * <p>
+	 * string example:
+	 * 
+	 * <pre>
+	 * <code>&quot;query&quot;: &quot;some query text&quot;
+	 * </code>
+	 * </pre>
+	 * <p>
+	 * object example:
+	 * 
+	 * <pre>
+	 * <code>&quot;query&quot;: {
+	 *   &quot;type&quot;: &quot;image&quot;,
+	 *   &quot;format&quot;: &quot;base64&quot;,
+	 *   &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
+	 * }
+	 * </code>
+	 * </pre>
 	 * <p>
 	 * API name: {@code query}
 	 */
-	public final String query() {
+	public final RerankQuery query() {
 		return this.query;
 	}
 
@@ -185,18 +264,11 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.input)) {
-			generator.writeKey("input");
-			generator.writeStartArray();
-			for (String item0 : this.input) {
-				generator.write(item0);
+		generator.writeKey("input");
+		this.input.serialize(generator, mapper);
 
-			}
-			generator.writeEnd();
-
-		}
 		generator.writeKey("query");
-		generator.write(this.query);
+		this.query.serialize(generator, mapper);
 
 		if (this.returnDocuments != null) {
 			generator.writeKey("return_documents");
@@ -225,9 +297,9 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<RerankRequest> {
 		private String inferenceId;
 
-		private List<String> input;
+		private RerankInput input;
 
-		private String query;
+		private RerankQuery query;
 
 		@Nullable
 		private Boolean returnDocuments;
@@ -264,37 +336,197 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The documents to rank.
+		 * Required - The documents to rank. The input can be specified as a single
+		 * string or an array of strings, or as an object or an array of objects. The
+		 * object form additionally allows specifying non-text inputs, such as images.
+		 * <blockquote>
+		 * <p>
+		 * info Only the <code>elastic</code> service currently supports non-text inputs
+		 * for the <code>rerank</code> task. For all other services, the input must be a
+		 * string or an array of strings.
+		 * </p>
+		 * </blockquote>
+		 * <p>
+		 * string example:
+		 * 
+		 * <pre>
+		 * <code>&quot;input&quot;: &quot;some document text&quot;
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * string array example:
+		 * 
+		 * <pre>
+		 * <code>&quot;input&quot;: [&quot;some document text&quot;, &quot;some more document text&quot;]
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * object example:
+		 * 
+		 * <pre>
+		 * <code>&quot;input&quot;: {
+		 *   &quot;type&quot;: &quot;image&quot;,
+		 *   &quot;format&quot;: &quot;base64&quot;,
+		 *   &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * object array example:
+		 * 
+		 * <pre>
+		 * <code>&quot;input&quot;: [
+		 *   {
+		 *     &quot;type&quot;: &quot;text&quot;,
+		 *     &quot;format&quot;: &quot;text&quot;,
+		 *     &quot;value&quot;: &quot;some document text&quot;
+		 *   },
+		 *   {
+		 *     &quot;type&quot;: &quot;image&quot;,
+		 *     &quot;format&quot;: &quot;base64&quot;,
+		 *     &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
+		 *   }
+		 * ]
+		 * </code>
+		 * </pre>
 		 * <p>
 		 * API name: {@code input}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>input</code>.
 		 */
-		public final Builder input(List<String> list) {
-			this.input = _listAddAll(this.input, list);
+		public final Builder input(RerankInput value) {
+			this.input = value;
 			return this;
 		}
 
 		/**
-		 * Required - The documents to rank.
+		 * Required - The documents to rank. The input can be specified as a single
+		 * string or an array of strings, or as an object or an array of objects. The
+		 * object form additionally allows specifying non-text inputs, such as images.
+		 * <blockquote>
+		 * <p>
+		 * info Only the <code>elastic</code> service currently supports non-text inputs
+		 * for the <code>rerank</code> task. For all other services, the input must be a
+		 * string or an array of strings.
+		 * </p>
+		 * </blockquote>
+		 * <p>
+		 * string example:
+		 * 
+		 * <pre>
+		 * <code>&quot;input&quot;: &quot;some document text&quot;
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * string array example:
+		 * 
+		 * <pre>
+		 * <code>&quot;input&quot;: [&quot;some document text&quot;, &quot;some more document text&quot;]
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * object example:
+		 * 
+		 * <pre>
+		 * <code>&quot;input&quot;: {
+		 *   &quot;type&quot;: &quot;image&quot;,
+		 *   &quot;format&quot;: &quot;base64&quot;,
+		 *   &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * object array example:
+		 * 
+		 * <pre>
+		 * <code>&quot;input&quot;: [
+		 *   {
+		 *     &quot;type&quot;: &quot;text&quot;,
+		 *     &quot;format&quot;: &quot;text&quot;,
+		 *     &quot;value&quot;: &quot;some document text&quot;
+		 *   },
+		 *   {
+		 *     &quot;type&quot;: &quot;image&quot;,
+		 *     &quot;format&quot;: &quot;base64&quot;,
+		 *     &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
+		 *   }
+		 * ]
+		 * </code>
+		 * </pre>
 		 * <p>
 		 * API name: {@code input}
-		 * <p>
-		 * Adds one or more values to <code>input</code>.
 		 */
-		public final Builder input(String value, String... values) {
-			this.input = _listAdd(this.input, value, values);
-			return this;
+		public final Builder input(Function<RerankInput.Builder, ObjectBuilder<RerankInput>> fn) {
+			return this.input(fn.apply(new RerankInput.Builder()).build());
 		}
 
 		/**
-		 * Required - Query input.
+		 * Required - Query input. The query can be specified as a single string, or as
+		 * an object. The object form additionally allows specifying non-text inputs,
+		 * such as images. <blockquote>
+		 * <p>
+		 * info Only the <code>elastic</code> service currently supports non-text
+		 * queries for the <code>rerank</code> task. For all other services, the query
+		 * must be a string.
+		 * </p>
+		 * </blockquote>
+		 * <p>
+		 * string example:
+		 * 
+		 * <pre>
+		 * <code>&quot;query&quot;: &quot;some query text&quot;
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * object example:
+		 * 
+		 * <pre>
+		 * <code>&quot;query&quot;: {
+		 *   &quot;type&quot;: &quot;image&quot;,
+		 *   &quot;format&quot;: &quot;base64&quot;,
+		 *   &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
+		 * }
+		 * </code>
+		 * </pre>
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public final Builder query(String value) {
+		public final Builder query(RerankQuery value) {
 			this.query = value;
 			return this;
+		}
+
+		/**
+		 * Required - Query input. The query can be specified as a single string, or as
+		 * an object. The object form additionally allows specifying non-text inputs,
+		 * such as images. <blockquote>
+		 * <p>
+		 * info Only the <code>elastic</code> service currently supports non-text
+		 * queries for the <code>rerank</code> task. For all other services, the query
+		 * must be a string.
+		 * </p>
+		 * </blockquote>
+		 * <p>
+		 * string example:
+		 * 
+		 * <pre>
+		 * <code>&quot;query&quot;: &quot;some query text&quot;
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * object example:
+		 * 
+		 * <pre>
+		 * <code>&quot;query&quot;: {
+		 *   &quot;type&quot;: &quot;image&quot;,
+		 *   &quot;format&quot;: &quot;base64&quot;,
+		 *   &quot;value&quot;: &quot;data:image/jpeg;base64,...&quot;
+		 * }
+		 * </code>
+		 * </pre>
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(Function<RerankQuery.Builder, ObjectBuilder<RerankQuery>> fn) {
+			return this.query(fn.apply(new RerankQuery.Builder()).build());
 		}
 
 		/**
@@ -382,8 +614,8 @@ public class RerankRequest extends RequestBase implements JsonpSerializable {
 
 	protected static void setupRerankRequestDeserializer(ObjectDeserializer<RerankRequest.Builder> op) {
 
-		op.add(Builder::input, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "input");
-		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
+		op.add(Builder::input, RerankInput._DESERIALIZER, "input");
+		op.add(Builder::query, RerankQuery._DESERIALIZER, "query");
 		op.add(Builder::returnDocuments, JsonpDeserializer.booleanDeserializer(), "return_documents");
 		op.add(Builder::taskSettings, JsonData._DESERIALIZER, "task_settings");
 		op.add(Builder::topN, JsonpDeserializer.integerDeserializer(), "top_n");

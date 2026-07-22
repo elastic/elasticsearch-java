@@ -62,12 +62,16 @@ public class Defaults implements JsonpSerializable {
 
 	private final Datafeeds datafeeds;
 
+	private final ModelPlatformVariant modelPlatformVariant;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private Defaults(Builder builder) {
 
 		this.anomalyDetectors = ApiTypeHelper.requireNonNull(builder.anomalyDetectors, this, "anomalyDetectors");
 		this.datafeeds = ApiTypeHelper.requireNonNull(builder.datafeeds, this, "datafeeds");
+		this.modelPlatformVariant = ApiTypeHelper.requireNonNull(builder.modelPlatformVariant, this,
+				"modelPlatformVariant");
 
 	}
 
@@ -90,6 +94,17 @@ public class Defaults implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - Returns <code>linux-x86_64</code> when all ML nodes are x86, or
+	 * when no ML nodes exist but the cluster is in Elastic Cloud. Returns
+	 * <code>platform_agnostic</code> otherwise.
+	 * <p>
+	 * API name: {@code model_platform_variant}
+	 */
+	public final ModelPlatformVariant modelPlatformVariant() {
+		return this.modelPlatformVariant;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -105,6 +120,9 @@ public class Defaults implements JsonpSerializable {
 
 		generator.writeKey("datafeeds");
 		this.datafeeds.serialize(generator, mapper);
+
+		generator.writeKey("model_platform_variant");
+		this.modelPlatformVariant.serialize(generator, mapper);
 
 	}
 
@@ -124,11 +142,14 @@ public class Defaults implements JsonpSerializable {
 
 		private Datafeeds datafeeds;
 
+		private ModelPlatformVariant modelPlatformVariant;
+
 		public Builder() {
 		}
 		private Builder(Defaults instance) {
 			this.anomalyDetectors = instance.anomalyDetectors;
 			this.datafeeds = instance.datafeeds;
+			this.modelPlatformVariant = instance.modelPlatformVariant;
 
 		}
 		/**
@@ -159,6 +180,18 @@ public class Defaults implements JsonpSerializable {
 		 */
 		public final Builder datafeeds(Function<Datafeeds.Builder, ObjectBuilder<Datafeeds>> fn) {
 			return this.datafeeds(fn.apply(new Datafeeds.Builder()).build());
+		}
+
+		/**
+		 * Required - Returns <code>linux-x86_64</code> when all ML nodes are x86, or
+		 * when no ML nodes exist but the cluster is in Elastic Cloud. Returns
+		 * <code>platform_agnostic</code> otherwise.
+		 * <p>
+		 * API name: {@code model_platform_variant}
+		 */
+		public final Builder modelPlatformVariant(ModelPlatformVariant value) {
+			this.modelPlatformVariant = value;
+			return this;
 		}
 
 		@Override
@@ -197,6 +230,7 @@ public class Defaults implements JsonpSerializable {
 
 		op.add(Builder::anomalyDetectors, AnomalyDetectors._DESERIALIZER, "anomaly_detectors");
 		op.add(Builder::datafeeds, Datafeeds._DESERIALIZER, "datafeeds");
+		op.add(Builder::modelPlatformVariant, ModelPlatformVariant._DESERIALIZER, "model_platform_variant");
 
 	}
 

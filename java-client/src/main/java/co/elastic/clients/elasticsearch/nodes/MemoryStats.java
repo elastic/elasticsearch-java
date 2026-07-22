@@ -60,6 +60,9 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class MemoryStats implements JsonpSerializable {
 	@Nullable
+	private final String adjustedTotal;
+
+	@Nullable
 	private final Long adjustedTotalInBytes;
 
 	@Nullable
@@ -81,10 +84,19 @@ public class MemoryStats implements JsonpSerializable {
 	private final Long totalVirtualInBytes;
 
 	@Nullable
+	private final String total;
+
+	@Nullable
 	private final Long totalInBytes;
 
 	@Nullable
+	private final String free;
+
+	@Nullable
 	private final Long freeInBytes;
+
+	@Nullable
+	private final String used;
 
 	@Nullable
 	private final Long usedInBytes;
@@ -93,6 +105,7 @@ public class MemoryStats implements JsonpSerializable {
 
 	protected MemoryStats(AbstractBuilder<?> builder) {
 
+		this.adjustedTotal = builder.adjustedTotal;
 		this.adjustedTotalInBytes = builder.adjustedTotalInBytes;
 		this.resident = builder.resident;
 		this.residentInBytes = builder.residentInBytes;
@@ -100,14 +113,30 @@ public class MemoryStats implements JsonpSerializable {
 		this.shareInBytes = builder.shareInBytes;
 		this.totalVirtual = builder.totalVirtual;
 		this.totalVirtualInBytes = builder.totalVirtualInBytes;
+		this.total = builder.total;
 		this.totalInBytes = builder.totalInBytes;
+		this.free = builder.free;
 		this.freeInBytes = builder.freeInBytes;
+		this.used = builder.used;
 		this.usedInBytes = builder.usedInBytes;
 
 	}
 
 	public static MemoryStats memoryStatsOf(Function<Builder, ObjectBuilder<MemoryStats>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * If the amount of physical memory has been overridden using the
+	 * <code>es</code>.<code>total_memory_bytes</code> system property then this
+	 * reports the overridden value. Otherwise it reports the same value as
+	 * <code>total</code>.
+	 * <p>
+	 * API name: {@code adjusted_total}
+	 */
+	@Nullable
+	public final String adjustedTotal() {
+		return this.adjustedTotal;
 	}
 
 	/**
@@ -172,6 +201,16 @@ public class MemoryStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Total amount of physical memory.
+	 * <p>
+	 * API name: {@code total}
+	 */
+	@Nullable
+	public final String total() {
+		return this.total;
+	}
+
+	/**
 	 * Total amount of physical memory in bytes.
 	 * <p>
 	 * API name: {@code total_in_bytes}
@@ -182,6 +221,16 @@ public class MemoryStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Amount of free physical memory.
+	 * <p>
+	 * API name: {@code free}
+	 */
+	@Nullable
+	public final String free() {
+		return this.free;
+	}
+
+	/**
 	 * Amount of free physical memory in bytes.
 	 * <p>
 	 * API name: {@code free_in_bytes}
@@ -189,6 +238,16 @@ public class MemoryStats implements JsonpSerializable {
 	@Nullable
 	public final Long freeInBytes() {
 		return this.freeInBytes;
+	}
+
+	/**
+	 * Amount of used physical memory.
+	 * <p>
+	 * API name: {@code used}
+	 */
+	@Nullable
+	public final String used() {
+		return this.used;
 	}
 
 	/**
@@ -212,6 +271,11 @@ public class MemoryStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.adjustedTotal != null) {
+			generator.writeKey("adjusted_total");
+			generator.write(this.adjustedTotal);
+
+		}
 		if (this.adjustedTotalInBytes != null) {
 			generator.writeKey("adjusted_total_in_bytes");
 			generator.write(this.adjustedTotalInBytes);
@@ -247,14 +311,29 @@ public class MemoryStats implements JsonpSerializable {
 			generator.write(this.totalVirtualInBytes);
 
 		}
+		if (this.total != null) {
+			generator.writeKey("total");
+			generator.write(this.total);
+
+		}
 		if (this.totalInBytes != null) {
 			generator.writeKey("total_in_bytes");
 			generator.write(this.totalInBytes);
 
 		}
+		if (this.free != null) {
+			generator.writeKey("free");
+			generator.write(this.free);
+
+		}
 		if (this.freeInBytes != null) {
 			generator.writeKey("free_in_bytes");
 			generator.write(this.freeInBytes);
+
+		}
+		if (this.used != null) {
+			generator.writeKey("used");
+			generator.write(this.used);
 
 		}
 		if (this.usedInBytes != null) {
@@ -299,6 +378,9 @@ public class MemoryStats implements JsonpSerializable {
 			extends
 				WithJsonObjectBuilderBase<BuilderT> {
 		@Nullable
+		private String adjustedTotal;
+
+		@Nullable
 		private Long adjustedTotalInBytes;
 
 		@Nullable
@@ -320,13 +402,35 @@ public class MemoryStats implements JsonpSerializable {
 		private Long totalVirtualInBytes;
 
 		@Nullable
+		private String total;
+
+		@Nullable
 		private Long totalInBytes;
+
+		@Nullable
+		private String free;
 
 		@Nullable
 		private Long freeInBytes;
 
 		@Nullable
+		private String used;
+
+		@Nullable
 		private Long usedInBytes;
+
+		/**
+		 * If the amount of physical memory has been overridden using the
+		 * <code>es</code>.<code>total_memory_bytes</code> system property then this
+		 * reports the overridden value. Otherwise it reports the same value as
+		 * <code>total</code>.
+		 * <p>
+		 * API name: {@code adjusted_total}
+		 */
+		public final BuilderT adjustedTotal(@Nullable String value) {
+			this.adjustedTotal = value;
+			return self();
+		}
 
 		/**
 		 * If the amount of physical memory has been overridden using the
@@ -390,6 +494,16 @@ public class MemoryStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Total amount of physical memory.
+		 * <p>
+		 * API name: {@code total}
+		 */
+		public final BuilderT total(@Nullable String value) {
+			this.total = value;
+			return self();
+		}
+
+		/**
 		 * Total amount of physical memory in bytes.
 		 * <p>
 		 * API name: {@code total_in_bytes}
@@ -400,12 +514,32 @@ public class MemoryStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Amount of free physical memory.
+		 * <p>
+		 * API name: {@code free}
+		 */
+		public final BuilderT free(@Nullable String value) {
+			this.free = value;
+			return self();
+		}
+
+		/**
 		 * Amount of free physical memory in bytes.
 		 * <p>
 		 * API name: {@code free_in_bytes}
 		 */
 		public final BuilderT freeInBytes(@Nullable Long value) {
 			this.freeInBytes = value;
+			return self();
+		}
+
+		/**
+		 * Amount of used physical memory.
+		 * <p>
+		 * API name: {@code used}
+		 */
+		public final BuilderT used(@Nullable String value) {
+			this.used = value;
 			return self();
 		}
 
@@ -434,6 +568,7 @@ public class MemoryStats implements JsonpSerializable {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupMemoryStatsDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 
+		op.add(AbstractBuilder::adjustedTotal, JsonpDeserializer.stringDeserializer(), "adjusted_total");
 		op.add(AbstractBuilder::adjustedTotalInBytes, JsonpDeserializer.longDeserializer(), "adjusted_total_in_bytes");
 		op.add(AbstractBuilder::resident, JsonpDeserializer.stringDeserializer(), "resident");
 		op.add(AbstractBuilder::residentInBytes, JsonpDeserializer.longDeserializer(), "resident_in_bytes");
@@ -441,8 +576,11 @@ public class MemoryStats implements JsonpSerializable {
 		op.add(AbstractBuilder::shareInBytes, JsonpDeserializer.longDeserializer(), "share_in_bytes");
 		op.add(AbstractBuilder::totalVirtual, JsonpDeserializer.stringDeserializer(), "total_virtual");
 		op.add(AbstractBuilder::totalVirtualInBytes, JsonpDeserializer.longDeserializer(), "total_virtual_in_bytes");
+		op.add(AbstractBuilder::total, JsonpDeserializer.stringDeserializer(), "total");
 		op.add(AbstractBuilder::totalInBytes, JsonpDeserializer.longDeserializer(), "total_in_bytes");
+		op.add(AbstractBuilder::free, JsonpDeserializer.stringDeserializer(), "free");
 		op.add(AbstractBuilder::freeInBytes, JsonpDeserializer.longDeserializer(), "free_in_bytes");
+		op.add(AbstractBuilder::used, JsonpDeserializer.stringDeserializer(), "used");
 		op.add(AbstractBuilder::usedInBytes, JsonpDeserializer.longDeserializer(), "used_in_bytes");
 
 	}

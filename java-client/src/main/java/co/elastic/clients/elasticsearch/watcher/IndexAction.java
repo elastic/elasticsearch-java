@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -62,6 +61,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class IndexAction implements JsonpSerializable {
+	@Nullable
 	private final String index;
 
 	@Nullable
@@ -83,7 +83,7 @@ public class IndexAction implements JsonpSerializable {
 
 	private IndexAction(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = builder.index;
 		this.docId = builder.docId;
 		this.refresh = builder.refresh;
 		this.opType = builder.opType;
@@ -97,8 +97,9 @@ public class IndexAction implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code index}
+	 * API name: {@code index}
 	 */
+	@Nullable
 	public final String index() {
 		return this.index;
 	}
@@ -154,9 +155,11 @@ public class IndexAction implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("index");
-		generator.write(this.index);
+		if (this.index != null) {
+			generator.writeKey("index");
+			generator.write(this.index);
 
+		}
 		if (this.docId != null) {
 			generator.writeKey("doc_id");
 			generator.write(this.docId);
@@ -195,6 +198,7 @@ public class IndexAction implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndexAction> {
+		@Nullable
 		private String index;
 
 		@Nullable
@@ -224,9 +228,9 @@ public class IndexAction implements JsonpSerializable {
 
 		}
 		/**
-		 * Required - API name: {@code index}
+		 * API name: {@code index}
 		 */
-		public final Builder index(String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}

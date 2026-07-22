@@ -132,6 +132,9 @@ public class DeleteRequest extends RequestBase {
 	@Nullable
 	private final Refresh refresh;
 
+	@Nullable
+	private final String routeSlice;
+
 	private final List<String> routing;
 
 	@Nullable
@@ -155,6 +158,7 @@ public class DeleteRequest extends RequestBase {
 		this.ifSeqNo = builder.ifSeqNo;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.refresh = builder.refresh;
+		this.routeSlice = builder.routeSlice;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.timeout = builder.timeout;
 		this.version = builder.version;
@@ -219,7 +223,23 @@ public class DeleteRequest extends RequestBase {
 	}
 
 	/**
-	 * A custom value used to route operations to a specific shard.
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
+	 * A custom value used to route operations to a specific shard. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -300,6 +320,9 @@ public class DeleteRequest extends RequestBase {
 		private Refresh refresh;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private List<String> routing;
 
 		@Nullable
@@ -322,6 +345,7 @@ public class DeleteRequest extends RequestBase {
 			this.ifSeqNo = instance.ifSeqNo;
 			this.index = instance.index;
 			this.refresh = instance.refresh;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 			this.timeout = instance.timeout;
 			this.version = instance.version;
@@ -383,7 +407,23 @@ public class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
+			return this;
+		}
+
+		/**
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -395,7 +435,9 @@ public class DeleteRequest extends RequestBase {
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -588,6 +630,9 @@ public class DeleteRequest extends RequestBase {
 				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
+				}
+				if (request.routeSlice != null) {
+					params.put("_slice", request.routeSlice);
 				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));

@@ -57,7 +57,10 @@ import javax.annotation.Nullable;
 // typedef: _global.bulk.UpdateAction
 
 /**
- *
+ * The source line that must follow an <code>update</code> action line. It
+ * specifies the partial document, script, or upsert options to apply, plus
+ * optional update settings.
+ * 
  * @see <a href="../../doc-files/api-spec.html#_global.bulk.UpdateAction">API
  *      specification</a>
  */

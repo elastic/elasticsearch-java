@@ -31,8 +31,10 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -67,6 +69,9 @@ public class ShardQueryCache implements JsonpSerializable {
 
 	private final long hitCount;
 
+	@Nullable
+	private final String memorySize;
+
 	private final long memorySizeInBytes;
 
 	private final long missCount;
@@ -81,6 +86,7 @@ public class ShardQueryCache implements JsonpSerializable {
 		this.cacheSize = ApiTypeHelper.requireNonNull(builder.cacheSize, this, "cacheSize", 0);
 		this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions", 0);
 		this.hitCount = ApiTypeHelper.requireNonNull(builder.hitCount, this, "hitCount", 0);
+		this.memorySize = builder.memorySize;
 		this.memorySizeInBytes = ApiTypeHelper.requireNonNull(builder.memorySizeInBytes, this, "memorySizeInBytes", 0);
 		this.missCount = ApiTypeHelper.requireNonNull(builder.missCount, this, "missCount", 0);
 		this.totalCount = ApiTypeHelper.requireNonNull(builder.totalCount, this, "totalCount", 0);
@@ -117,6 +123,14 @@ public class ShardQueryCache implements JsonpSerializable {
 	 */
 	public final long hitCount() {
 		return this.hitCount;
+	}
+
+	/**
+	 * API name: {@code memory_size}
+	 */
+	@Nullable
+	public final String memorySize() {
+		return this.memorySize;
 	}
 
 	/**
@@ -163,6 +177,11 @@ public class ShardQueryCache implements JsonpSerializable {
 		generator.writeKey("hit_count");
 		generator.write(this.hitCount);
 
+		if (this.memorySize != null) {
+			generator.writeKey("memory_size");
+			generator.write(this.memorySize);
+
+		}
 		generator.writeKey("memory_size_in_bytes");
 		generator.write(this.memorySizeInBytes);
 
@@ -194,6 +213,9 @@ public class ShardQueryCache implements JsonpSerializable {
 
 		private Long hitCount;
 
+		@Nullable
+		private String memorySize;
+
 		private Long memorySizeInBytes;
 
 		private Long missCount;
@@ -207,6 +229,7 @@ public class ShardQueryCache implements JsonpSerializable {
 			this.cacheSize = instance.cacheSize;
 			this.evictions = instance.evictions;
 			this.hitCount = instance.hitCount;
+			this.memorySize = instance.memorySize;
 			this.memorySizeInBytes = instance.memorySizeInBytes;
 			this.missCount = instance.missCount;
 			this.totalCount = instance.totalCount;
@@ -241,6 +264,14 @@ public class ShardQueryCache implements JsonpSerializable {
 		 */
 		public final Builder hitCount(long value) {
 			this.hitCount = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code memory_size}
+		 */
+		public final Builder memorySize(@Nullable String value) {
+			this.memorySize = value;
 			return this;
 		}
 
@@ -306,6 +337,7 @@ public class ShardQueryCache implements JsonpSerializable {
 		op.add(Builder::cacheSize, JsonpDeserializer.longDeserializer(), "cache_size");
 		op.add(Builder::evictions, JsonpDeserializer.longDeserializer(), "evictions");
 		op.add(Builder::hitCount, JsonpDeserializer.longDeserializer(), "hit_count");
+		op.add(Builder::memorySize, JsonpDeserializer.stringDeserializer(), "memory_size");
 		op.add(Builder::memorySizeInBytes, JsonpDeserializer.longDeserializer(), "memory_size_in_bytes");
 		op.add(Builder::missCount, JsonpDeserializer.longDeserializer(), "miss_count");
 		op.add(Builder::totalCount, JsonpDeserializer.longDeserializer(), "total_count");

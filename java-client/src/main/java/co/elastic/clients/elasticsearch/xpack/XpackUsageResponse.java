@@ -23,6 +23,7 @@ import co.elastic.clients.elasticsearch.xpack.usage.Analytics;
 import co.elastic.clients.elasticsearch.xpack.usage.Archive;
 import co.elastic.clients.elasticsearch.xpack.usage.Base;
 import co.elastic.clients.elasticsearch.xpack.usage.Ccr;
+import co.elastic.clients.elasticsearch.xpack.usage.DataStreamLifecycleUsage;
 import co.elastic.clients.elasticsearch.xpack.usage.DataStreams;
 import co.elastic.clients.elasticsearch.xpack.usage.DataTiers;
 import co.elastic.clients.elasticsearch.xpack.usage.Eql;
@@ -30,6 +31,7 @@ import co.elastic.clients.elasticsearch.xpack.usage.Flattened;
 import co.elastic.clients.elasticsearch.xpack.usage.GpuVectorIndexing;
 import co.elastic.clients.elasticsearch.xpack.usage.HealthStatistics;
 import co.elastic.clients.elasticsearch.xpack.usage.Ilm;
+import co.elastic.clients.elasticsearch.xpack.usage.Logging;
 import co.elastic.clients.elasticsearch.xpack.usage.MachineLearning;
 import co.elastic.clients.elasticsearch.xpack.usage.Monitoring;
 import co.elastic.clients.elasticsearch.xpack.usage.RuntimeFieldTypes;
@@ -38,6 +40,7 @@ import co.elastic.clients.elasticsearch.xpack.usage.Security;
 import co.elastic.clients.elasticsearch.xpack.usage.Slm;
 import co.elastic.clients.elasticsearch.xpack.usage.Sql;
 import co.elastic.clients.elasticsearch.xpack.usage.Vector;
+import co.elastic.clients.elasticsearch.xpack.usage.VectorDbDocument;
 import co.elastic.clients.elasticsearch.xpack.usage.Watcher;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -95,6 +98,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 	private final Base dataScience;
 
 	@Nullable
+	private final DataStreamLifecycleUsage dataLifecycle;
+
+	@Nullable
 	private final DataStreams dataStreams;
 
 	private final DataTiers dataTiers;
@@ -116,6 +122,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 	private final HealthStatistics healthApi;
 
 	private final Ilm ilm;
+
+	@Nullable
+	private final Logging logging;
 
 	private final Base logstash;
 
@@ -143,6 +152,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 	@Nullable
 	private final Vector vectors;
 
+	@Nullable
+	private final VectorDbDocument vectordbDocument;
+
 	private final Base votingOnly;
 
 	// ---------------------------------------------------------------------------------------------
@@ -156,6 +168,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 		this.ccr = ApiTypeHelper.requireNonNull(builder.ccr, this, "ccr");
 		this.dataFrame = builder.dataFrame;
 		this.dataScience = builder.dataScience;
+		this.dataLifecycle = builder.dataLifecycle;
 		this.dataStreams = builder.dataStreams;
 		this.dataTiers = ApiTypeHelper.requireNonNull(builder.dataTiers, this, "dataTiers");
 		this.enrich = builder.enrich;
@@ -165,6 +178,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 		this.gpuVectorIndexing = builder.gpuVectorIndexing;
 		this.healthApi = builder.healthApi;
 		this.ilm = ApiTypeHelper.requireNonNull(builder.ilm, this, "ilm");
+		this.logging = builder.logging;
 		this.logstash = ApiTypeHelper.requireNonNull(builder.logstash, this, "logstash");
 		this.ml = ApiTypeHelper.requireNonNull(builder.ml, this, "ml");
 		this.monitoring = ApiTypeHelper.requireNonNull(builder.monitoring, this, "monitoring");
@@ -178,6 +192,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 		this.sql = ApiTypeHelper.requireNonNull(builder.sql, this, "sql");
 		this.transform = ApiTypeHelper.requireNonNull(builder.transform, this, "transform");
 		this.vectors = builder.vectors;
+		this.vectordbDocument = builder.vectordbDocument;
 		this.votingOnly = ApiTypeHelper.requireNonNull(builder.votingOnly, this, "votingOnly");
 
 	}
@@ -235,6 +250,14 @@ public class XpackUsageResponse implements JsonpSerializable {
 	@Nullable
 	public final Base dataScience() {
 		return this.dataScience;
+	}
+
+	/**
+	 * API name: {@code data_lifecycle}
+	 */
+	@Nullable
+	public final DataStreamLifecycleUsage dataLifecycle() {
+		return this.dataLifecycle;
 	}
 
 	/**
@@ -303,6 +326,14 @@ public class XpackUsageResponse implements JsonpSerializable {
 	 */
 	public final Ilm ilm() {
 		return this.ilm;
+	}
+
+	/**
+	 * API name: {@code logging}
+	 */
+	@Nullable
+	public final Logging logging() {
+		return this.logging;
 	}
 
 	/**
@@ -392,6 +423,14 @@ public class XpackUsageResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code vectordb_document}
+	 */
+	@Nullable
+	public final VectorDbDocument vectordbDocument() {
+		return this.vectordbDocument;
+	}
+
+	/**
 	 * Required - API name: {@code voting_only}
 	 */
 	public final Base votingOnly() {
@@ -434,6 +473,11 @@ public class XpackUsageResponse implements JsonpSerializable {
 			this.dataScience.serialize(generator, mapper);
 
 		}
+		if (this.dataLifecycle != null) {
+			generator.writeKey("data_lifecycle");
+			this.dataLifecycle.serialize(generator, mapper);
+
+		}
 		if (this.dataStreams != null) {
 			generator.writeKey("data_streams");
 			this.dataStreams.serialize(generator, mapper);
@@ -471,6 +515,11 @@ public class XpackUsageResponse implements JsonpSerializable {
 		generator.writeKey("ilm");
 		this.ilm.serialize(generator, mapper);
 
+		if (this.logging != null) {
+			generator.writeKey("logging");
+			this.logging.serialize(generator, mapper);
+
+		}
 		generator.writeKey("logstash");
 		this.logstash.serialize(generator, mapper);
 
@@ -511,6 +560,11 @@ public class XpackUsageResponse implements JsonpSerializable {
 			this.vectors.serialize(generator, mapper);
 
 		}
+		if (this.vectordbDocument != null) {
+			generator.writeKey("vectordb_document");
+			this.vectordbDocument.serialize(generator, mapper);
+
+		}
 		generator.writeKey("voting_only");
 		this.votingOnly.serialize(generator, mapper);
 
@@ -547,6 +601,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 		private Base dataScience;
 
 		@Nullable
+		private DataStreamLifecycleUsage dataLifecycle;
+
+		@Nullable
 		private DataStreams dataStreams;
 
 		private DataTiers dataTiers;
@@ -568,6 +625,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 		private HealthStatistics healthApi;
 
 		private Ilm ilm;
+
+		@Nullable
+		private Logging logging;
 
 		private Base logstash;
 
@@ -594,6 +654,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 
 		@Nullable
 		private Vector vectors;
+
+		@Nullable
+		private VectorDbDocument vectordbDocument;
 
 		private Base votingOnly;
 
@@ -700,6 +763,22 @@ public class XpackUsageResponse implements JsonpSerializable {
 		 */
 		public final Builder dataScience(Function<Base.Builder, ObjectBuilder<Base>> fn) {
 			return this.dataScience(fn.apply(new Base.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code data_lifecycle}
+		 */
+		public final Builder dataLifecycle(@Nullable DataStreamLifecycleUsage value) {
+			this.dataLifecycle = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code data_lifecycle}
+		 */
+		public final Builder dataLifecycle(
+				Function<DataStreamLifecycleUsage.Builder, ObjectBuilder<DataStreamLifecycleUsage>> fn) {
+			return this.dataLifecycle(fn.apply(new DataStreamLifecycleUsage.Builder()).build());
 		}
 
 		/**
@@ -836,6 +915,21 @@ public class XpackUsageResponse implements JsonpSerializable {
 		 */
 		public final Builder ilm(Function<Ilm.Builder, ObjectBuilder<Ilm>> fn) {
 			return this.ilm(fn.apply(new Ilm.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code logging}
+		 */
+		public final Builder logging(@Nullable Logging value) {
+			this.logging = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code logging}
+		 */
+		public final Builder logging(Function<Logging.Builder, ObjectBuilder<Logging>> fn) {
+			return this.logging(fn.apply(new Logging.Builder()).build());
 		}
 
 		/**
@@ -1020,6 +1114,21 @@ public class XpackUsageResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code vectordb_document}
+		 */
+		public final Builder vectordbDocument(@Nullable VectorDbDocument value) {
+			this.vectordbDocument = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code vectordb_document}
+		 */
+		public final Builder vectordbDocument(Function<VectorDbDocument.Builder, ObjectBuilder<VectorDbDocument>> fn) {
+			return this.vectordbDocument(fn.apply(new VectorDbDocument.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code voting_only}
 		 */
 		public final Builder votingOnly(Base value) {
@@ -1069,6 +1178,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 		op.add(Builder::ccr, Ccr._DESERIALIZER, "ccr");
 		op.add(Builder::dataFrame, Base._DESERIALIZER, "data_frame");
 		op.add(Builder::dataScience, Base._DESERIALIZER, "data_science");
+		op.add(Builder::dataLifecycle, DataStreamLifecycleUsage._DESERIALIZER, "data_lifecycle");
 		op.add(Builder::dataStreams, DataStreams._DESERIALIZER, "data_streams");
 		op.add(Builder::dataTiers, DataTiers._DESERIALIZER, "data_tiers");
 		op.add(Builder::enrich, Base._DESERIALIZER, "enrich");
@@ -1078,6 +1188,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 		op.add(Builder::gpuVectorIndexing, GpuVectorIndexing._DESERIALIZER, "gpu_vector_indexing");
 		op.add(Builder::healthApi, HealthStatistics._DESERIALIZER, "health_api");
 		op.add(Builder::ilm, Ilm._DESERIALIZER, "ilm");
+		op.add(Builder::logging, Logging._DESERIALIZER, "logging");
 		op.add(Builder::logstash, Base._DESERIALIZER, "logstash");
 		op.add(Builder::ml, MachineLearning._DESERIALIZER, "ml");
 		op.add(Builder::monitoring, Monitoring._DESERIALIZER, "monitoring");
@@ -1090,6 +1201,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 		op.add(Builder::sql, Sql._DESERIALIZER, "sql");
 		op.add(Builder::transform, Base._DESERIALIZER, "transform");
 		op.add(Builder::vectors, Vector._DESERIALIZER, "vectors");
+		op.add(Builder::vectordbDocument, VectorDbDocument._DESERIALIZER, "vectordb_document");
 		op.add(Builder::votingOnly, Base._DESERIALIZER, "voting_only");
 
 	}

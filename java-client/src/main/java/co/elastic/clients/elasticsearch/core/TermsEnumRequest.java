@@ -93,6 +93,9 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	private final Query indexFilter;
 
 	@Nullable
+	private final String projectRouting;
+
+	@Nullable
 	private final String searchAfter;
 
 	@Nullable
@@ -112,6 +115,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.indexFilter = builder.indexFilter;
+		this.projectRouting = builder.projectRouting;
 		this.searchAfter = builder.searchAfter;
 		this.size = builder.size;
 		this.string = builder.string;
@@ -165,6 +169,20 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Query indexFilter() {
 		return this.indexFilter;
+	}
+
+	/**
+	 * Specifies a subset of projects to target for the search using project
+	 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
+	 * _alias tag and a single value (possibly wildcarded). Examples:
+	 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+	 * only.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
 	}
 
 	/**
@@ -241,6 +259,11 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 			this.indexFilter.serialize(generator, mapper);
 
 		}
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
 		if (this.searchAfter != null) {
 			generator.writeKey("search_after");
 			generator.write(this.searchAfter);
@@ -284,6 +307,9 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		private Query indexFilter;
 
 		@Nullable
+		private String projectRouting;
+
+		@Nullable
 		private String searchAfter;
 
 		@Nullable
@@ -302,6 +328,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 			this.field = instance.field;
 			this.index = instance.index;
 			this.indexFilter = instance.indexFilter;
+			this.projectRouting = instance.projectRouting;
 			this.searchAfter = instance.searchAfter;
 			this.size = instance.size;
 			this.string = instance.string;
@@ -389,6 +416,20 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder indexFilter(QueryVariant value) {
 			this.indexFilter = value._toQuery();
+			return this;
+		}
+
+		/**
+		 * Specifies a subset of projects to target for the search using project
+		 * metadata tags in a subset of Lucene query syntax. Allowed Lucene queries: the
+		 * _alias tag and a single value (possibly wildcarded). Examples:
+		 * _alias:my-project _alias:_origin _alias:<em>pr</em> Supported in serverless
+		 * only.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
 			return this;
 		}
 
@@ -490,6 +531,7 @@ public class TermsEnumRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::caseInsensitive, JsonpDeserializer.booleanDeserializer(), "case_insensitive");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::indexFilter, Query._DESERIALIZER, "index_filter");
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 		op.add(Builder::searchAfter, JsonpDeserializer.stringDeserializer(), "search_after");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::string, JsonpDeserializer.stringDeserializer(), "string");

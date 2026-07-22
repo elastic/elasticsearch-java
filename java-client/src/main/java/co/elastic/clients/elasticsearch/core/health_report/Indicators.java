@@ -85,6 +85,9 @@ public class Indicators implements JsonpSerializable {
 	@Nullable
 	private final FileSettingsIndicator fileSettings;
 
+	@Nullable
+	private final ProjectEncryptionKeyIndicator projectEncryptionKey;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private Indicators(Builder builder) {
@@ -98,6 +101,7 @@ public class Indicators implements JsonpSerializable {
 		this.slm = builder.slm;
 		this.shardsCapacity = builder.shardsCapacity;
 		this.fileSettings = builder.fileSettings;
+		this.projectEncryptionKey = builder.projectEncryptionKey;
 
 	}
 
@@ -178,6 +182,14 @@ public class Indicators implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code project_encryption_key}
+	 */
+	@Nullable
+	public final ProjectEncryptionKeyIndicator projectEncryptionKey() {
+		return this.projectEncryptionKey;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -233,6 +245,11 @@ public class Indicators implements JsonpSerializable {
 			this.fileSettings.serialize(generator, mapper);
 
 		}
+		if (this.projectEncryptionKey != null) {
+			generator.writeKey("project_encryption_key");
+			this.projectEncryptionKey.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -275,6 +292,9 @@ public class Indicators implements JsonpSerializable {
 		@Nullable
 		private FileSettingsIndicator fileSettings;
 
+		@Nullable
+		private ProjectEncryptionKeyIndicator projectEncryptionKey;
+
 		public Builder() {
 		}
 		private Builder(Indicators instance) {
@@ -287,6 +307,7 @@ public class Indicators implements JsonpSerializable {
 			this.slm = instance.slm;
 			this.shardsCapacity = instance.shardsCapacity;
 			this.fileSettings = instance.fileSettings;
+			this.projectEncryptionKey = instance.projectEncryptionKey;
 
 		}
 		/**
@@ -430,6 +451,22 @@ public class Indicators implements JsonpSerializable {
 			return this.fileSettings(fn.apply(new FileSettingsIndicator.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code project_encryption_key}
+		 */
+		public final Builder projectEncryptionKey(@Nullable ProjectEncryptionKeyIndicator value) {
+			this.projectEncryptionKey = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code project_encryption_key}
+		 */
+		public final Builder projectEncryptionKey(
+				Function<ProjectEncryptionKeyIndicator.Builder, ObjectBuilder<ProjectEncryptionKeyIndicator>> fn) {
+			return this.projectEncryptionKey(fn.apply(new ProjectEncryptionKeyIndicator.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -473,6 +510,7 @@ public class Indicators implements JsonpSerializable {
 		op.add(Builder::slm, SlmIndicator._DESERIALIZER, "slm");
 		op.add(Builder::shardsCapacity, ShardsCapacityIndicator._DESERIALIZER, "shards_capacity");
 		op.add(Builder::fileSettings, FileSettingsIndicator._DESERIALIZER, "file_settings");
+		op.add(Builder::projectEncryptionKey, ProjectEncryptionKeyIndicator._DESERIALIZER, "project_encryption_key");
 
 	}
 

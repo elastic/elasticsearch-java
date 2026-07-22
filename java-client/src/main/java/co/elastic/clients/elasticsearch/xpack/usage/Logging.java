@@ -17,10 +17,8 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.watcher;
+package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.elasticsearch._types.query_dsl.QueryVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -51,35 +49,50 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: watcher._types.SearchInputRequestBody
+// typedef: xpack.usage.Logging
 
 /**
- *
- * @see <a href=
- *      "../doc-files/api-spec.html#watcher._types.SearchInputRequestBody">API
+ * Usage statistics about logging configuration reported by
+ * <code>_xpack/usage</code>.
+ * 
+ * @see <a href="../../doc-files/api-spec.html#xpack.usage.Logging">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class SearchInputRequestBody implements JsonpSerializable {
-	private final Query query;
+public class Logging implements JsonpSerializable {
+	private final QueryLoggingConfig querylog;
+
+	private final EsqlLoggingConfig esql;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private SearchInputRequestBody(Builder builder) {
+	private Logging(Builder builder) {
 
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.querylog = ApiTypeHelper.requireNonNull(builder.querylog, this, "querylog");
+		this.esql = ApiTypeHelper.requireNonNull(builder.esql, this, "esql");
 
 	}
 
-	public static SearchInputRequestBody of(Function<Builder, ObjectBuilder<SearchInputRequestBody>> fn) {
+	public static Logging of(Function<Builder, ObjectBuilder<Logging>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code query}
+	 * Required - Search query log configuration.
+	 * <p>
+	 * API name: {@code querylog}
 	 */
-	public final Query query() {
-		return this.query;
+	public final QueryLoggingConfig querylog() {
+		return this.querylog;
+	}
+
+	/**
+	 * Required - ES|QL query log configuration.
+	 * <p>
+	 * API name: {@code esql}
+	 */
+	public final EsqlLoggingConfig esql() {
+		return this.esql;
 	}
 
 	/**
@@ -93,8 +106,11 @@ public class SearchInputRequestBody implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("query");
-		this.query.serialize(generator, mapper);
+		generator.writeKey("querylog");
+		this.querylog.serialize(generator, mapper);
+
+		generator.writeKey("esql");
+		this.esql.serialize(generator, mapper);
 
 	}
 
@@ -106,41 +122,57 @@ public class SearchInputRequestBody implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link SearchInputRequestBody}.
+	 * Builder for {@link Logging}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder>
-			implements
-				ObjectBuilder<SearchInputRequestBody> {
-		private Query query;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Logging> {
+		private QueryLoggingConfig querylog;
+
+		private EsqlLoggingConfig esql;
 
 		public Builder() {
 		}
-		private Builder(SearchInputRequestBody instance) {
-			this.query = instance.query;
+		private Builder(Logging instance) {
+			this.querylog = instance.querylog;
+			this.esql = instance.esql;
 
 		}
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Search query log configuration.
+		 * <p>
+		 * API name: {@code querylog}
 		 */
-		public final Builder query(Query value) {
-			this.query = value;
+		public final Builder querylog(QueryLoggingConfig value) {
+			this.querylog = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - Search query log configuration.
+		 * <p>
+		 * API name: {@code querylog}
 		 */
-		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
+		public final Builder querylog(Function<QueryLoggingConfig.Builder, ObjectBuilder<QueryLoggingConfig>> fn) {
+			return this.querylog(fn.apply(new QueryLoggingConfig.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code query}
+		 * Required - ES|QL query log configuration.
+		 * <p>
+		 * API name: {@code esql}
 		 */
-		public final Builder query(QueryVariant value) {
-			this.query = value._toQuery();
+		public final Builder esql(EsqlLoggingConfig value) {
+			this.esql = value;
 			return this;
+		}
+
+		/**
+		 * Required - ES|QL query log configuration.
+		 * <p>
+		 * API name: {@code esql}
+		 */
+		public final Builder esql(Function<EsqlLoggingConfig.Builder, ObjectBuilder<EsqlLoggingConfig>> fn) {
+			return this.esql(fn.apply(new EsqlLoggingConfig.Builder()).build());
 		}
 
 		@Override
@@ -149,15 +181,15 @@ public class SearchInputRequestBody implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link SearchInputRequestBody}.
+		 * Builds a {@link Logging}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public SearchInputRequestBody build() {
+		public Logging build() {
 			_checkSingleUse();
 
-			return new SearchInputRequestBody(this);
+			return new Logging(this);
 		}
 	}
 
@@ -170,15 +202,15 @@ public class SearchInputRequestBody implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link SearchInputRequestBody}
+	 * Json deserializer for {@link Logging}
 	 */
-	public static final JsonpDeserializer<SearchInputRequestBody> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SearchInputRequestBody::setupSearchInputRequestBodyDeserializer);
+	public static final JsonpDeserializer<Logging> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Logging::setupLoggingDeserializer);
 
-	protected static void setupSearchInputRequestBodyDeserializer(
-			ObjectDeserializer<SearchInputRequestBody.Builder> op) {
+	protected static void setupLoggingDeserializer(ObjectDeserializer<Logging.Builder> op) {
 
-		op.add(Builder::query, Query._DESERIALIZER, "query");
+		op.add(Builder::querylog, QueryLoggingConfig._DESERIALIZER, "querylog");
+		op.add(Builder::esql, EsqlLoggingConfig._DESERIALIZER, "esql");
 
 	}
 
