@@ -67,6 +67,7 @@ import javax.annotation.Nullable;
 public class Watch implements JsonpSerializable {
 	private final Map<String, Action> actions;
 
+	@Nullable
 	private final Condition condition;
 
 	private final Input input;
@@ -92,7 +93,7 @@ public class Watch implements JsonpSerializable {
 	private Watch(Builder builder) {
 
 		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
-		this.condition = ApiTypeHelper.requireNonNull(builder.condition, this, "condition");
+		this.condition = builder.condition;
 		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.status = builder.status;
@@ -115,8 +116,9 @@ public class Watch implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code condition}
+	 * API name: {@code condition}
 	 */
+	@Nullable
 	public final Condition condition() {
 		return this.condition;
 	}
@@ -196,9 +198,11 @@ public class Watch implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("condition");
-		this.condition.serialize(generator, mapper);
+		if (this.condition != null) {
+			generator.writeKey("condition");
+			this.condition.serialize(generator, mapper);
 
+		}
 		generator.writeKey("input");
 		this.input.serialize(generator, mapper);
 
@@ -252,6 +256,7 @@ public class Watch implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Watch> {
 		private Map<String, Action> actions;
 
+		@Nullable
 		private Condition condition;
 
 		private Input input;
@@ -317,22 +322,22 @@ public class Watch implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code condition}
+		 * API name: {@code condition}
 		 */
-		public final Builder condition(Condition value) {
+		public final Builder condition(@Nullable Condition value) {
 			this.condition = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code condition}
+		 * API name: {@code condition}
 		 */
 		public final Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
 			return this.condition(fn.apply(new Condition.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code condition}
+		 * API name: {@code condition}
 		 */
 		public final Builder condition(ConditionVariant value) {
 			this.condition = value._toCondition();

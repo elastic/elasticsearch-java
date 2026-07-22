@@ -160,6 +160,9 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	@Nullable
 	private final Boolean realtime;
 
+	@Nullable
+	private final String routeSlice;
+
 	private final List<String> routing;
 
 	@Nullable
@@ -190,6 +193,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		this.positions = builder.positions;
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
+		this.routeSlice = builder.routeSlice;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.termStatistics = builder.termStatistics;
 		this.version = builder.version;
@@ -334,6 +338,20 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	@Nullable
 	public final Boolean realtime() {
 		return this.realtime;
+	}
+
+	/**
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
 	}
 
 	/**
@@ -517,6 +535,9 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		private Boolean realtime;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private List<String> routing;
 
 		@Nullable
@@ -546,6 +567,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 			this.positions = instance.positions;
 			this.preference = instance.preference;
 			this.realtime = instance.realtime;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 			this.termStatistics = instance.termStatistics;
 			this.version = instance.version;
@@ -729,6 +751,20 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		 */
 		public final Builder<TDocument> realtime(@Nullable Boolean value) {
 			this.realtime = value;
+			return this;
+		}
+
+		/**
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder<TDocument> routeSlice(@Nullable String value) {
+			this.routeSlice = value;
 			return this;
 		}
 
@@ -942,6 +978,9 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);
+				}
+				if (request.routeSlice != null) {
+					params.put("_slice", request.routeSlice);
 				}
 				return params;
 

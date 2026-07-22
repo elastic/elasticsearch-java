@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -60,11 +61,14 @@ import javax.annotation.Nullable;
 public class GlobalPrivilege implements JsonpSerializable {
 	private final ApplicationGlobalUserPrivileges application;
 
+	private final List<DataSourcePrivileges> dataSource;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GlobalPrivilege(Builder builder) {
 
 		this.application = ApiTypeHelper.requireNonNull(builder.application, this, "application");
+		this.dataSource = ApiTypeHelper.unmodifiable(builder.dataSource);
 
 	}
 
@@ -80,6 +84,16 @@ public class GlobalPrivilege implements JsonpSerializable {
 	}
 
 	/**
+	 * A list of data source privilege entries, used to grant access to ES|QL data
+	 * sources.
+	 * <p>
+	 * API name: {@code data_source}
+	 */
+	public final List<DataSourcePrivileges> dataSource() {
+		return this.dataSource;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -92,6 +106,17 @@ public class GlobalPrivilege implements JsonpSerializable {
 
 		generator.writeKey("application");
 		this.application.serialize(generator, mapper);
+
+		if (ApiTypeHelper.isDefined(this.dataSource)) {
+			generator.writeKey("data_source");
+			generator.writeStartArray();
+			for (DataSourcePrivileges item0 : this.dataSource) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -109,10 +134,14 @@ public class GlobalPrivilege implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GlobalPrivilege> {
 		private ApplicationGlobalUserPrivileges application;
 
+		@Nullable
+		private List<DataSourcePrivileges> dataSource;
+
 		public Builder() {
 		}
 		private Builder(GlobalPrivilege instance) {
 			this.application = instance.application;
+			this.dataSource = instance.dataSource;
 
 		}
 		/**
@@ -129,6 +158,45 @@ public class GlobalPrivilege implements JsonpSerializable {
 		public final Builder application(
 				Function<ApplicationGlobalUserPrivileges.Builder, ObjectBuilder<ApplicationGlobalUserPrivileges>> fn) {
 			return this.application(fn.apply(new ApplicationGlobalUserPrivileges.Builder()).build());
+		}
+
+		/**
+		 * A list of data source privilege entries, used to grant access to ES|QL data
+		 * sources.
+		 * <p>
+		 * API name: {@code data_source}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>dataSource</code>.
+		 */
+		public final Builder dataSource(List<DataSourcePrivileges> list) {
+			this.dataSource = _listAddAll(this.dataSource, list);
+			return this;
+		}
+
+		/**
+		 * A list of data source privilege entries, used to grant access to ES|QL data
+		 * sources.
+		 * <p>
+		 * API name: {@code data_source}
+		 * <p>
+		 * Adds one or more values to <code>dataSource</code>.
+		 */
+		public final Builder dataSource(DataSourcePrivileges value, DataSourcePrivileges... values) {
+			this.dataSource = _listAdd(this.dataSource, value, values);
+			return this;
+		}
+
+		/**
+		 * A list of data source privilege entries, used to grant access to ES|QL data
+		 * sources.
+		 * <p>
+		 * API name: {@code data_source}
+		 * <p>
+		 * Adds a value to <code>dataSource</code> using a builder lambda.
+		 */
+		public final Builder dataSource(
+				Function<DataSourcePrivileges.Builder, ObjectBuilder<DataSourcePrivileges>> fn) {
+			return dataSource(fn.apply(new DataSourcePrivileges.Builder()).build());
 		}
 
 		@Override
@@ -166,6 +234,8 @@ public class GlobalPrivilege implements JsonpSerializable {
 	protected static void setupGlobalPrivilegeDeserializer(ObjectDeserializer<GlobalPrivilege.Builder> op) {
 
 		op.add(Builder::application, ApplicationGlobalUserPrivileges._DESERIALIZER, "application");
+		op.add(Builder::dataSource, JsonpDeserializer.arrayDeserializer(DataSourcePrivileges._DESERIALIZER),
+				"data_source");
 
 	}
 

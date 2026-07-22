@@ -67,6 +67,12 @@ public class MappingStats implements JsonpSerializable {
 
 	private final long totalEstimatedOverheadInBytes;
 
+	private final long totalSegments;
+
+	private final long totalSegmentFields;
+
+	private final long averageFieldsPerSegment;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private MappingStats(Builder builder) {
@@ -75,6 +81,11 @@ public class MappingStats implements JsonpSerializable {
 		this.totalEstimatedOverhead = builder.totalEstimatedOverhead;
 		this.totalEstimatedOverheadInBytes = ApiTypeHelper.requireNonNull(builder.totalEstimatedOverheadInBytes, this,
 				"totalEstimatedOverheadInBytes", 0);
+		this.totalSegments = ApiTypeHelper.requireNonNull(builder.totalSegments, this, "totalSegments", 0);
+		this.totalSegmentFields = ApiTypeHelper.requireNonNull(builder.totalSegmentFields, this, "totalSegmentFields",
+				0);
+		this.averageFieldsPerSegment = ApiTypeHelper.requireNonNull(builder.averageFieldsPerSegment, this,
+				"averageFieldsPerSegment", 0);
 
 	}
 
@@ -105,6 +116,27 @@ public class MappingStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code total_segments}
+	 */
+	public final long totalSegments() {
+		return this.totalSegments;
+	}
+
+	/**
+	 * Required - API name: {@code total_segment_fields}
+	 */
+	public final long totalSegmentFields() {
+		return this.totalSegmentFields;
+	}
+
+	/**
+	 * Required - API name: {@code average_fields_per_segment}
+	 */
+	public final long averageFieldsPerSegment() {
+		return this.averageFieldsPerSegment;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -125,6 +157,15 @@ public class MappingStats implements JsonpSerializable {
 		}
 		generator.writeKey("total_estimated_overhead_in_bytes");
 		generator.write(this.totalEstimatedOverheadInBytes);
+
+		generator.writeKey("total_segments");
+		generator.write(this.totalSegments);
+
+		generator.writeKey("total_segment_fields");
+		generator.write(this.totalSegmentFields);
+
+		generator.writeKey("average_fields_per_segment");
+		generator.write(this.averageFieldsPerSegment);
 
 	}
 
@@ -147,12 +188,21 @@ public class MappingStats implements JsonpSerializable {
 
 		private Long totalEstimatedOverheadInBytes;
 
+		private Long totalSegments;
+
+		private Long totalSegmentFields;
+
+		private Long averageFieldsPerSegment;
+
 		public Builder() {
 		}
 		private Builder(MappingStats instance) {
 			this.totalCount = instance.totalCount;
 			this.totalEstimatedOverhead = instance.totalEstimatedOverhead;
 			this.totalEstimatedOverheadInBytes = instance.totalEstimatedOverheadInBytes;
+			this.totalSegments = instance.totalSegments;
+			this.totalSegmentFields = instance.totalSegmentFields;
+			this.averageFieldsPerSegment = instance.averageFieldsPerSegment;
 
 		}
 		/**
@@ -176,6 +226,30 @@ public class MappingStats implements JsonpSerializable {
 		 */
 		public final Builder totalEstimatedOverheadInBytes(long value) {
 			this.totalEstimatedOverheadInBytes = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code total_segments}
+		 */
+		public final Builder totalSegments(long value) {
+			this.totalSegments = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code total_segment_fields}
+		 */
+		public final Builder totalSegmentFields(long value) {
+			this.totalSegmentFields = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code average_fields_per_segment}
+		 */
+		public final Builder averageFieldsPerSegment(long value) {
+			this.averageFieldsPerSegment = value;
 			return this;
 		}
 
@@ -217,6 +291,9 @@ public class MappingStats implements JsonpSerializable {
 		op.add(Builder::totalEstimatedOverhead, JsonpDeserializer.stringDeserializer(), "total_estimated_overhead");
 		op.add(Builder::totalEstimatedOverheadInBytes, JsonpDeserializer.longDeserializer(),
 				"total_estimated_overhead_in_bytes");
+		op.add(Builder::totalSegments, JsonpDeserializer.longDeserializer(), "total_segments");
+		op.add(Builder::totalSegmentFields, JsonpDeserializer.longDeserializer(), "total_segment_fields");
+		op.add(Builder::averageFieldsPerSegment, JsonpDeserializer.longDeserializer(), "average_fields_per_segment");
 
 	}
 

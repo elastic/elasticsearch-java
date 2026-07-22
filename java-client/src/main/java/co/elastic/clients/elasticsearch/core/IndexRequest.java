@@ -301,6 +301,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	@Nullable
 	private final Boolean requireDataStream;
 
+	@Nullable
+	private final String routeSlice;
+
 	private final List<String> routing;
 
 	@Nullable
@@ -334,6 +337,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		this.refresh = builder.refresh;
 		this.requireAlias = builder.requireAlias;
 		this.requireDataStream = builder.requireDataStream;
+		this.routeSlice = builder.routeSlice;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.timeout = builder.timeout;
 		this.version = builder.version;
@@ -471,7 +475,23 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	}
 
 	/**
-	 * A custom value that is used to route operations to a specific shard.
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
+	 * A custom value that is used to route operations to a specific shard. Not
+	 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
+	 * target index; use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -587,6 +607,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		private Boolean requireDataStream;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private List<String> routing;
 
 		@Nullable
@@ -619,6 +642,7 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 			this.refresh = instance.refresh;
 			this.requireAlias = instance.requireAlias;
 			this.requireDataStream = instance.requireDataStream;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 			this.timeout = instance.timeout;
 			this.version = instance.version;
@@ -750,7 +774,23 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * A custom value that is used to route operations to a specific shard.
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder<TDocument> routeSlice(@Nullable String value) {
+			this.routeSlice = value;
+			return this;
+		}
+
+		/**
+		 * A custom value that is used to route operations to a specific shard. Not
+		 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
+		 * target index; use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -762,7 +802,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 		}
 
 		/**
-		 * A custom value that is used to route operations to a specific shard.
+		 * A custom value that is used to route operations to a specific shard. Not
+		 * allowed when <code>index.slice.enabled</code> is <code>true</code> for the
+		 * target index; use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -1017,6 +1059,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 				}
 				if (request.refresh != null) {
 					params.put("refresh", request.refresh.jsonValue());
+				}
+				if (request.routeSlice != null) {
+					params.put("_slice", request.routeSlice);
 				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));

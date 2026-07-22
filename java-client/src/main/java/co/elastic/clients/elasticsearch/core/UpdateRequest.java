@@ -142,6 +142,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	@Nullable
 	private final Integer retryOnConflict;
 
+	@Nullable
+	private final String routeSlice;
+
 	private final List<String> routing;
 
 	@Nullable
@@ -182,6 +185,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		this.refresh = builder.refresh;
 		this.requireAlias = builder.requireAlias;
 		this.retryOnConflict = builder.retryOnConflict;
+		this.routeSlice = builder.routeSlice;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.script = builder.script;
 		this.scriptedUpsert = builder.scriptedUpsert;
@@ -336,7 +340,23 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 	}
 
 	/**
-	 * A custom value used to route operations to a specific shard.
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
+	 * A custom value used to route operations to a specific shard. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -499,6 +519,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		private Integer retryOnConflict;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private List<String> routing;
 
 		@Nullable
@@ -538,6 +561,7 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 			this.refresh = instance.refresh;
 			this.requireAlias = instance.requireAlias;
 			this.retryOnConflict = instance.retryOnConflict;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 			this.script = instance.script;
 			this.scriptedUpsert = instance.scriptedUpsert;
@@ -697,7 +721,23 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder<TDocument, TPartialDocument> routeSlice(@Nullable String value) {
+			this.routeSlice = value;
+			return this;
+		}
+
+		/**
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -709,7 +749,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -955,6 +997,9 @@ public class UpdateRequest<TDocument, TPartialDocument> extends RequestBase impl
 				}
 				if (request.refresh != null) {
 					params.put("refresh", request.refresh.jsonValue());
+				}
+				if (request.routeSlice != null) {
+					params.put("_slice", request.routeSlice);
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());

@@ -75,10 +75,19 @@ public class Client implements JsonpSerializable {
 	private final String lastUri;
 
 	@Nullable
+	private final String openedTime;
+
+	@Nullable
 	private final Long openedTimeMillis;
 
 	@Nullable
+	private final String closedTime;
+
+	@Nullable
 	private final Long closedTimeMillis;
+
+	@Nullable
+	private final String lastRequestTime;
 
 	@Nullable
 	private final Long lastRequestTimeMillis;
@@ -101,8 +110,11 @@ public class Client implements JsonpSerializable {
 		this.localAddress = builder.localAddress;
 		this.remoteAddress = builder.remoteAddress;
 		this.lastUri = builder.lastUri;
+		this.openedTime = builder.openedTime;
 		this.openedTimeMillis = builder.openedTimeMillis;
+		this.closedTime = builder.closedTime;
 		this.closedTimeMillis = builder.closedTimeMillis;
+		this.lastRequestTime = builder.lastRequestTime;
 		this.lastRequestTimeMillis = builder.lastRequestTimeMillis;
 		this.requestCount = builder.requestCount;
 		this.requestSizeBytes = builder.requestSizeBytes;
@@ -168,6 +180,16 @@ public class Client implements JsonpSerializable {
 	/**
 	 * Time at which the client opened the connection.
 	 * <p>
+	 * API name: {@code opened_time}
+	 */
+	@Nullable
+	public final String openedTime() {
+		return this.openedTime;
+	}
+
+	/**
+	 * Time at which the client opened the connection.
+	 * <p>
 	 * API name: {@code opened_time_millis}
 	 */
 	@Nullable
@@ -178,11 +200,31 @@ public class Client implements JsonpSerializable {
 	/**
 	 * Time at which the client closed the connection if the connection is closed.
 	 * <p>
+	 * API name: {@code closed_time}
+	 */
+	@Nullable
+	public final String closedTime() {
+		return this.closedTime;
+	}
+
+	/**
+	 * Time at which the client closed the connection if the connection is closed.
+	 * <p>
 	 * API name: {@code closed_time_millis}
 	 */
 	@Nullable
 	public final Long closedTimeMillis() {
 		return this.closedTimeMillis;
+	}
+
+	/**
+	 * Time of the most recent request from this client.
+	 * <p>
+	 * API name: {@code last_request_time}
+	 */
+	@Nullable
+	public final String lastRequestTime() {
+		return this.lastRequestTime;
 	}
 
 	/**
@@ -262,14 +304,29 @@ public class Client implements JsonpSerializable {
 			generator.write(this.lastUri);
 
 		}
+		if (this.openedTime != null) {
+			generator.writeKey("opened_time");
+			generator.write(this.openedTime);
+
+		}
 		if (this.openedTimeMillis != null) {
 			generator.writeKey("opened_time_millis");
 			generator.write(this.openedTimeMillis);
 
 		}
+		if (this.closedTime != null) {
+			generator.writeKey("closed_time");
+			generator.write(this.closedTime);
+
+		}
 		if (this.closedTimeMillis != null) {
 			generator.writeKey("closed_time_millis");
 			generator.write(this.closedTimeMillis);
+
+		}
+		if (this.lastRequestTime != null) {
+			generator.writeKey("last_request_time");
+			generator.write(this.lastRequestTime);
 
 		}
 		if (this.lastRequestTimeMillis != null) {
@@ -323,10 +380,19 @@ public class Client implements JsonpSerializable {
 		private String lastUri;
 
 		@Nullable
+		private String openedTime;
+
+		@Nullable
 		private Long openedTimeMillis;
 
 		@Nullable
+		private String closedTime;
+
+		@Nullable
 		private Long closedTimeMillis;
+
+		@Nullable
+		private String lastRequestTime;
 
 		@Nullable
 		private Long lastRequestTimeMillis;
@@ -348,8 +414,11 @@ public class Client implements JsonpSerializable {
 			this.localAddress = instance.localAddress;
 			this.remoteAddress = instance.remoteAddress;
 			this.lastUri = instance.lastUri;
+			this.openedTime = instance.openedTime;
 			this.openedTimeMillis = instance.openedTimeMillis;
+			this.closedTime = instance.closedTime;
 			this.closedTimeMillis = instance.closedTimeMillis;
+			this.lastRequestTime = instance.lastRequestTime;
 			this.lastRequestTimeMillis = instance.lastRequestTimeMillis;
 			this.requestCount = instance.requestCount;
 			this.requestSizeBytes = instance.requestSizeBytes;
@@ -410,6 +479,16 @@ public class Client implements JsonpSerializable {
 		/**
 		 * Time at which the client opened the connection.
 		 * <p>
+		 * API name: {@code opened_time}
+		 */
+		public final Builder openedTime(@Nullable String value) {
+			this.openedTime = value;
+			return this;
+		}
+
+		/**
+		 * Time at which the client opened the connection.
+		 * <p>
 		 * API name: {@code opened_time_millis}
 		 */
 		public final Builder openedTimeMillis(@Nullable Long value) {
@@ -420,10 +499,30 @@ public class Client implements JsonpSerializable {
 		/**
 		 * Time at which the client closed the connection if the connection is closed.
 		 * <p>
+		 * API name: {@code closed_time}
+		 */
+		public final Builder closedTime(@Nullable String value) {
+			this.closedTime = value;
+			return this;
+		}
+
+		/**
+		 * Time at which the client closed the connection if the connection is closed.
+		 * <p>
 		 * API name: {@code closed_time_millis}
 		 */
 		public final Builder closedTimeMillis(@Nullable Long value) {
 			this.closedTimeMillis = value;
+			return this;
+		}
+
+		/**
+		 * Time of the most recent request from this client.
+		 * <p>
+		 * API name: {@code last_request_time}
+		 */
+		public final Builder lastRequestTime(@Nullable String value) {
+			this.lastRequestTime = value;
 			return this;
 		}
 
@@ -507,8 +606,11 @@ public class Client implements JsonpSerializable {
 		op.add(Builder::localAddress, JsonpDeserializer.stringDeserializer(), "local_address");
 		op.add(Builder::remoteAddress, JsonpDeserializer.stringDeserializer(), "remote_address");
 		op.add(Builder::lastUri, JsonpDeserializer.stringDeserializer(), "last_uri");
+		op.add(Builder::openedTime, JsonpDeserializer.stringDeserializer(), "opened_time");
 		op.add(Builder::openedTimeMillis, JsonpDeserializer.longDeserializer(), "opened_time_millis");
+		op.add(Builder::closedTime, JsonpDeserializer.stringDeserializer(), "closed_time");
 		op.add(Builder::closedTimeMillis, JsonpDeserializer.longDeserializer(), "closed_time_millis");
+		op.add(Builder::lastRequestTime, JsonpDeserializer.stringDeserializer(), "last_request_time");
 		op.add(Builder::lastRequestTimeMillis, JsonpDeserializer.longDeserializer(), "last_request_time_millis");
 		op.add(Builder::requestCount, JsonpDeserializer.longDeserializer(), "request_count");
 		op.add(Builder::requestSizeBytes, JsonpDeserializer.longDeserializer(), "request_size_bytes");

@@ -50,9 +50,15 @@ public enum ActionStatusOptions implements JsonEnum {
 
 	Failure("failure"),
 
-	Simulated("simulated"),
+	PartialFailure("partial_failure"),
+
+	Acknowledged("acknowledged"),
 
 	Throttled("throttled"),
+
+	ConditionFailed("condition_failed"),
+
+	Simulated("simulated"),
 
 	;
 

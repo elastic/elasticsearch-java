@@ -21,6 +21,8 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.IndicesOptions;
 import co.elastic.clients.elasticsearch._types.SearchType;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
+import co.elastic.clients.elasticsearch.core.search.SearchRequestBody;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -65,7 +67,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class SearchInputRequestDefinition implements JsonpSerializable {
 	@Nullable
-	private final SearchInputRequestBody body;
+	private final SearchRequestBody body;
 
 	private final List<String> indices;
 
@@ -102,7 +104,7 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code body}
 	 */
 	@Nullable
-	public final SearchInputRequestBody body() {
+	public final SearchRequestBody body() {
 		return this.body;
 	}
 
@@ -208,7 +210,7 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 			implements
 				ObjectBuilder<SearchInputRequestDefinition> {
 		@Nullable
-		private SearchInputRequestBody body;
+		private SearchRequestBody body;
 
 		@Nullable
 		private List<String> indices;
@@ -239,7 +241,7 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code body}
 		 */
-		public final Builder body(@Nullable SearchInputRequestBody value) {
+		public final Builder body(@Nullable SearchRequestBody value) {
 			this.body = value;
 			return this;
 		}
@@ -247,8 +249,25 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code body}
 		 */
-		public final Builder body(Function<SearchInputRequestBody.Builder, ObjectBuilder<SearchInputRequestBody>> fn) {
-			return this.body(fn.apply(new SearchInputRequestBody.Builder()).build());
+		public final Builder body(Function<SearchRequestBody.Builder, ObjectBuilder<SearchRequestBody>> fn) {
+			return this.body(fn.apply(new SearchRequestBody.Builder()).build());
+		}
+
+		public final Builder body(@Nullable SearchRequest value) {
+			SearchRequestBody body = SearchRequestBody.of(srb -> srb.aggregations(value.aggregations())
+					.collapse(value.collapse()).explain(value.explain()).ext(value.ext()).from(value.from())
+					.highlight(value.highlight()).trackTotalHits(value.trackTotalHits())
+					.indicesBoost(value.indicesBoost()).docvalueFields(value.docvalueFields()).knn(value.knn())
+					.rank(value.rank()).minScore(value.minScore()).postFilter(value.postFilter())
+					.profile(value.profile()).query(value.query()).rescore(value.rescore()).retriever(value.retriever())
+					.scriptFields(value.scriptFields()).searchAfter(value.searchAfter()).size(value.size())
+					.slice(value.slice()).sort(value.sort()).source(value.source()).fields(value.fields())
+					.suggest(value.suggest()).terminateAfter(value.terminateAfter()).timeout(value.timeout())
+					.trackScores(value.trackScores()).version(value.version())
+					.seqNoPrimaryTerm(value.seqNoPrimaryTerm()).storedFields(value.storedFields()).pit(value.pit())
+					.runtimeMappings(value.runtimeMappings()).stats(value.stats()));
+			this.body = body;
+			return this;
 		}
 
 		/**
@@ -353,7 +372,7 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 	protected static void setupSearchInputRequestDefinitionDeserializer(
 			ObjectDeserializer<SearchInputRequestDefinition.Builder> op) {
 
-		op.add(Builder::body, SearchInputRequestBody._DESERIALIZER, "body");
+		op.add(Builder::body, SearchRequestBody._DESERIALIZER, "body");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
 		op.add(Builder::indicesOptions, IndicesOptions._DESERIALIZER, "indices_options");

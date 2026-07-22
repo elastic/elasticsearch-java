@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.elasticsearch._types.Transform;
 import co.elastic.clients.util.ObjectBuilder;
 import java.lang.String;
 import java.util.function.Function;
@@ -94,6 +95,22 @@ public class InputBuilders {
 	public static Input search(Function<SearchInput.Builder, ObjectBuilder<SearchInput>> fn) {
 		Input.Builder builder = new Input.Builder();
 		builder.search(fn.apply(new SearchInput.Builder()).build());
+		return builder.build();
+	}
+
+	/**
+	 * Creates a builder for the {@link Transform transform} {@code Input} variant.
+	 */
+	public static Transform.Builder transform() {
+		return new Transform.Builder();
+	}
+
+	/**
+	 * Creates a Input of the {@link Transform transform} {@code Input} variant.
+	 */
+	public static Input transform(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
+		Input.Builder builder = new Input.Builder();
+		builder.transform(fn.apply(new Transform.Builder()).build());
 		return builder.build();
 	}
 
