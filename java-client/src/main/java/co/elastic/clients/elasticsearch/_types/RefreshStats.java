@@ -61,6 +61,9 @@ import javax.annotation.Nullable;
 public class RefreshStats implements JsonpSerializable {
 	private final long externalTotal;
 
+	@Nullable
+	private final Time externalTotalTime;
+
 	private final long externalTotalTimeInMillis;
 
 	private final long listeners;
@@ -77,6 +80,7 @@ public class RefreshStats implements JsonpSerializable {
 	private RefreshStats(Builder builder) {
 
 		this.externalTotal = ApiTypeHelper.requireNonNull(builder.externalTotal, this, "externalTotal", 0);
+		this.externalTotalTime = builder.externalTotalTime;
 		this.externalTotalTimeInMillis = ApiTypeHelper.requireNonNull(builder.externalTotalTimeInMillis, this,
 				"externalTotalTimeInMillis", 0);
 		this.listeners = ApiTypeHelper.requireNonNull(builder.listeners, this, "listeners", 0);
@@ -95,6 +99,14 @@ public class RefreshStats implements JsonpSerializable {
 	 */
 	public final long externalTotal() {
 		return this.externalTotal;
+	}
+
+	/**
+	 * API name: {@code external_total_time}
+	 */
+	@Nullable
+	public final Time externalTotalTime() {
+		return this.externalTotalTime;
 	}
 
 	/**
@@ -147,6 +159,11 @@ public class RefreshStats implements JsonpSerializable {
 		generator.writeKey("external_total");
 		generator.write(this.externalTotal);
 
+		if (this.externalTotalTime != null) {
+			generator.writeKey("external_total_time");
+			this.externalTotalTime.serialize(generator, mapper);
+
+		}
 		generator.writeKey("external_total_time_in_millis");
 		generator.write(this.externalTotalTimeInMillis);
 
@@ -180,6 +197,9 @@ public class RefreshStats implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RefreshStats> {
 		private Long externalTotal;
 
+		@Nullable
+		private Time externalTotalTime;
+
 		private Long externalTotalTimeInMillis;
 
 		private Long listeners;
@@ -195,6 +215,7 @@ public class RefreshStats implements JsonpSerializable {
 		}
 		private Builder(RefreshStats instance) {
 			this.externalTotal = instance.externalTotal;
+			this.externalTotalTime = instance.externalTotalTime;
 			this.externalTotalTimeInMillis = instance.externalTotalTimeInMillis;
 			this.listeners = instance.listeners;
 			this.total = instance.total;
@@ -208,6 +229,21 @@ public class RefreshStats implements JsonpSerializable {
 		public final Builder externalTotal(long value) {
 			this.externalTotal = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code external_total_time}
+		 */
+		public final Builder externalTotalTime(@Nullable Time value) {
+			this.externalTotalTime = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code external_total_time}
+		 */
+		public final Builder externalTotalTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.externalTotalTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -292,6 +328,7 @@ public class RefreshStats implements JsonpSerializable {
 	protected static void setupRefreshStatsDeserializer(ObjectDeserializer<RefreshStats.Builder> op) {
 
 		op.add(Builder::externalTotal, JsonpDeserializer.longDeserializer(), "external_total");
+		op.add(Builder::externalTotalTime, Time._DESERIALIZER, "external_total_time");
 		op.add(Builder::externalTotalTimeInMillis, JsonpDeserializer.longDeserializer(),
 				"external_total_time_in_millis");
 		op.add(Builder::listeners, JsonpDeserializer.longDeserializer(), "listeners");

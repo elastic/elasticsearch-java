@@ -62,9 +62,15 @@ import javax.annotation.Nullable;
 public class ExecutionResultCondition implements JsonpSerializable {
 	private final boolean met;
 
-	private final ActionStatusOptions status;
+	private final ExecutionResultStatus status;
 
 	private final ConditionType type;
+
+	@Nullable
+	private final ExecutionResultConditionResolved compare;
+
+	@Nullable
+	private final ExecutionResultConditionResolved arrayCompare;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -73,6 +79,8 @@ public class ExecutionResultCondition implements JsonpSerializable {
 		this.met = ApiTypeHelper.requireNonNull(builder.met, this, "met", false);
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.compare = builder.compare;
+		this.arrayCompare = builder.arrayCompare;
 
 	}
 
@@ -90,7 +98,7 @@ public class ExecutionResultCondition implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public final ActionStatusOptions status() {
+	public final ExecutionResultStatus status() {
 		return this.status;
 	}
 
@@ -99,6 +107,22 @@ public class ExecutionResultCondition implements JsonpSerializable {
 	 */
 	public final ConditionType type() {
 		return this.type;
+	}
+
+	/**
+	 * API name: {@code compare}
+	 */
+	@Nullable
+	public final ExecutionResultConditionResolved compare() {
+		return this.compare;
+	}
+
+	/**
+	 * API name: {@code array_compare}
+	 */
+	@Nullable
+	public final ExecutionResultConditionResolved arrayCompare() {
+		return this.arrayCompare;
 	}
 
 	/**
@@ -119,6 +143,16 @@ public class ExecutionResultCondition implements JsonpSerializable {
 		this.status.serialize(generator, mapper);
 		generator.writeKey("type");
 		this.type.serialize(generator, mapper);
+		if (this.compare != null) {
+			generator.writeKey("compare");
+			this.compare.serialize(generator, mapper);
+
+		}
+		if (this.arrayCompare != null) {
+			generator.writeKey("array_compare");
+			this.arrayCompare.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -138,9 +172,15 @@ public class ExecutionResultCondition implements JsonpSerializable {
 				ObjectBuilder<ExecutionResultCondition> {
 		private Boolean met;
 
-		private ActionStatusOptions status;
+		private ExecutionResultStatus status;
 
 		private ConditionType type;
+
+		@Nullable
+		private ExecutionResultConditionResolved compare;
+
+		@Nullable
+		private ExecutionResultConditionResolved arrayCompare;
 
 		public Builder() {
 		}
@@ -148,6 +188,8 @@ public class ExecutionResultCondition implements JsonpSerializable {
 			this.met = instance.met;
 			this.status = instance.status;
 			this.type = instance.type;
+			this.compare = instance.compare;
+			this.arrayCompare = instance.arrayCompare;
 
 		}
 		/**
@@ -161,7 +203,7 @@ public class ExecutionResultCondition implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public final Builder status(ActionStatusOptions value) {
+		public final Builder status(ExecutionResultStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -172,6 +214,38 @@ public class ExecutionResultCondition implements JsonpSerializable {
 		public final Builder type(ConditionType value) {
 			this.type = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code compare}
+		 */
+		public final Builder compare(@Nullable ExecutionResultConditionResolved value) {
+			this.compare = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code compare}
+		 */
+		public final Builder compare(
+				Function<ExecutionResultConditionResolved.Builder, ObjectBuilder<ExecutionResultConditionResolved>> fn) {
+			return this.compare(fn.apply(new ExecutionResultConditionResolved.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code array_compare}
+		 */
+		public final Builder arrayCompare(@Nullable ExecutionResultConditionResolved value) {
+			this.arrayCompare = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code array_compare}
+		 */
+		public final Builder arrayCompare(
+				Function<ExecutionResultConditionResolved.Builder, ObjectBuilder<ExecutionResultConditionResolved>> fn) {
+			return this.arrayCompare(fn.apply(new ExecutionResultConditionResolved.Builder()).build());
 		}
 
 		@Override
@@ -210,8 +284,10 @@ public class ExecutionResultCondition implements JsonpSerializable {
 			ObjectDeserializer<ExecutionResultCondition.Builder> op) {
 
 		op.add(Builder::met, JsonpDeserializer.booleanDeserializer(), "met");
-		op.add(Builder::status, ActionStatusOptions._DESERIALIZER, "status");
+		op.add(Builder::status, ExecutionResultStatus._DESERIALIZER, "status");
 		op.add(Builder::type, ConditionType._DESERIALIZER, "type");
+		op.add(Builder::compare, ExecutionResultConditionResolved._DESERIALIZER, "compare");
+		op.add(Builder::arrayCompare, ExecutionResultConditionResolved._DESERIALIZER, "array_compare");
 
 	}
 

@@ -111,6 +111,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 	private final String query;
 
+	@Nullable
+	private final EsqlQuerySettings settings;
+
 	private final Map<String, Map<String, TableValues>> tables;
 
 	@Nullable
@@ -133,6 +136,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		this.profile = builder.profile;
 		this.projectRouting = builder.projectRouting;
 		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
+		this.settings = builder.settings;
 		this.tables = ApiTypeHelper.unmodifiable(builder.tables);
 		this.timeZone = builder.timeZone;
 
@@ -307,6 +311,18 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Per-query settings, the request-body equivalent of the in-query
+	 * <code>SET</code> command. For example, <code>time_zone</code> can be supplied
+	 * here instead of as a top-level field.
+	 * <p>
+	 * API name: {@code settings}
+	 */
+	@Nullable
+	public final EsqlQuerySettings settings() {
+		return this.settings;
+	}
+
+	/**
 	 * Tables to use with the LOOKUP operation. The top level key is the table name
 	 * and the next level key is the column name.
 	 * <p>
@@ -385,6 +401,11 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		generator.writeKey("query");
 		generator.write(this.query);
 
+		if (this.settings != null) {
+			generator.writeKey("settings");
+			this.settings.serialize(generator, mapper);
+
+		}
 		if (ApiTypeHelper.isDefined(this.tables)) {
 			generator.writeKey("tables");
 			generator.writeStartObject();
@@ -458,6 +479,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		private String query;
 
 		@Nullable
+		private EsqlQuerySettings settings;
+
+		@Nullable
 		private Map<String, Map<String, TableValues>> tables;
 
 		@Nullable
@@ -479,6 +503,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 			this.profile = instance.profile;
 			this.projectRouting = instance.projectRouting;
 			this.query = instance.query;
+			this.settings = instance.settings;
 			this.tables = instance.tables;
 			this.timeZone = instance.timeZone;
 
@@ -768,6 +793,29 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Per-query settings, the request-body equivalent of the in-query
+		 * <code>SET</code> command. For example, <code>time_zone</code> can be supplied
+		 * here instead of as a top-level field.
+		 * <p>
+		 * API name: {@code settings}
+		 */
+		public final Builder settings(@Nullable EsqlQuerySettings value) {
+			this.settings = value;
+			return this;
+		}
+
+		/**
+		 * Per-query settings, the request-body equivalent of the in-query
+		 * <code>SET</code> command. For example, <code>time_zone</code> can be supplied
+		 * here instead of as a top-level field.
+		 * <p>
+		 * API name: {@code settings}
+		 */
+		public final Builder settings(Function<EsqlQuerySettings.Builder, ObjectBuilder<EsqlQuerySettings>> fn) {
+			return this.settings(fn.apply(new EsqlQuerySettings.Builder()).build());
+		}
+
+		/**
 		 * Tables to use with the LOOKUP operation. The top level key is the table name
 		 * and the next level key is the column name.
 		 * <p>
@@ -847,6 +895,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
 		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
+		op.add(Builder::settings, EsqlQuerySettings._DESERIALIZER, "settings");
 		op.add(Builder::tables, JsonpDeserializer
 				.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(TableValues._DESERIALIZER)), "tables");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");

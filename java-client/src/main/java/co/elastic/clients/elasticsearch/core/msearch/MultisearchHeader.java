@@ -100,7 +100,7 @@ public class MultisearchHeader implements JsonpSerializable {
 	private final Boolean ignoreThrottled;
 
 	@Nullable
-	private final String slice;
+	private final String routeSlice;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -118,7 +118,7 @@ public class MultisearchHeader implements JsonpSerializable {
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
 		this.allowPartialSearchResults = builder.allowPartialSearchResults;
 		this.ignoreThrottled = builder.ignoreThrottled;
-		this.slice = builder.slice;
+		this.routeSlice = builder.routeSlice;
 
 	}
 
@@ -246,8 +246,8 @@ public class MultisearchHeader implements JsonpSerializable {
 	 * API name: {@code _slice}
 	 */
 	@Nullable
-	public final String slice() {
-		return this.slice;
+	public final String routeSlice() {
+		return this.routeSlice;
 	}
 
 	/**
@@ -334,9 +334,9 @@ public class MultisearchHeader implements JsonpSerializable {
 			generator.write(this.ignoreThrottled);
 
 		}
-		if (this.slice != null) {
+		if (this.routeSlice != null) {
 			generator.writeKey("_slice");
-			generator.write(this.slice);
+			generator.write(this.routeSlice);
 
 		}
 
@@ -391,7 +391,7 @@ public class MultisearchHeader implements JsonpSerializable {
 		private Boolean ignoreThrottled;
 
 		@Nullable
-		private String slice;
+		private String routeSlice;
 
 		public Builder() {
 		}
@@ -408,7 +408,7 @@ public class MultisearchHeader implements JsonpSerializable {
 			this.ccsMinimizeRoundtrips = instance.ccsMinimizeRoundtrips;
 			this.allowPartialSearchResults = instance.allowPartialSearchResults;
 			this.ignoreThrottled = instance.ignoreThrottled;
-			this.slice = instance.slice;
+			this.routeSlice = instance.routeSlice;
 
 		}
 		/**
@@ -573,8 +573,8 @@ public class MultisearchHeader implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _slice}
 		 */
-		public final Builder slice(@Nullable String value) {
-			this.slice = value;
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
 			return this;
 		}
 
@@ -627,7 +627,7 @@ public class MultisearchHeader implements JsonpSerializable {
 		op.add(Builder::allowPartialSearchResults, JsonpDeserializer.booleanDeserializer(),
 				"allow_partial_search_results");
 		op.add(Builder::ignoreThrottled, JsonpDeserializer.booleanDeserializer(), "ignore_throttled");
-		op.add(Builder::slice, JsonpDeserializer.stringDeserializer(), "_slice");
+		op.add(Builder::routeSlice, JsonpDeserializer.stringDeserializer(), "_slice");
 
 	}
 

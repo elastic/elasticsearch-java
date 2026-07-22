@@ -116,6 +116,7 @@ import co.elastic.clients.elasticsearch.core.UpdateByQueryRethrottleResponse;
 import co.elastic.clients.elasticsearch.core.UpdateRequest;
 import co.elastic.clients.elasticsearch.core.UpdateResponse;
 import co.elastic.clients.elasticsearch.dangling_indices.ElasticsearchDanglingIndicesAsyncClient;
+import co.elastic.clients.elasticsearch.encryption.ElasticsearchEncryptionAsyncClient;
 import co.elastic.clients.elasticsearch.enrich.ElasticsearchEnrichAsyncClient;
 import co.elastic.clients.elasticsearch.eql.ElasticsearchEqlAsyncClient;
 import co.elastic.clients.elasticsearch.esql.ElasticsearchEsqlAsyncClient;
@@ -244,6 +245,10 @@ public class ElasticsearchAsyncClient extends ApiClient<ElasticsearchTransport, 
 
 	public ElasticsearchDanglingIndicesAsyncClient danglingIndices() {
 		return new ElasticsearchDanglingIndicesAsyncClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchEncryptionAsyncClient encryption() {
+		return new ElasticsearchEncryptionAsyncClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchEnrichAsyncClient enrich() {

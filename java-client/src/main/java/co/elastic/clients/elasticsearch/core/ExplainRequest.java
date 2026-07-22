@@ -109,6 +109,9 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Query query;
 
+	@Nullable
+	private final String routeSlice;
+
 	private final List<String> routing;
 
 	private final List<String> storedFields;
@@ -130,6 +133,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		this.preference = builder.preference;
 		this.q = builder.q;
 		this.query = builder.query;
+		this.routeSlice = builder.routeSlice;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
 		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 
@@ -285,7 +289,23 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A custom value used to route operations to a specific shard.
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
+	 * A custom value used to route operations to a specific shard. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -366,6 +386,9 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		private Query query;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private List<String> routing;
 
 		@Nullable
@@ -387,6 +410,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 			this.preference = instance.preference;
 			this.q = instance.q;
 			this.query = instance.query;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
 			this.storedFields = instance.storedFields;
 
@@ -605,7 +629,23 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
+			return this;
+		}
+
+		/**
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -617,7 +657,9 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -747,15 +789,27 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.df != null) {
+					params.put("df", request.df);
+				}
+				if (request.preference != null) {
+					params.put("preference", request.preference);
+				}
+				if (request.analyzeWildcard != null) {
+					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
+				}
+				if (request.routeSlice != null) {
+					params.put("_slice", request.routeSlice);
+				}
+				if (request.lenient != null) {
+					params.put("lenient", String.valueOf(request.lenient));
+				}
 				if (ApiTypeHelper.isDefined(request.routing)) {
 					params.put("routing", request.routing.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
 				}
 				if (request.q != null) {
 					params.put("q", request.q);
-				}
-				if (request.df != null) {
-					params.put("df", request.df);
 				}
 				if (request.defaultOperator != null) {
 					params.put("default_operator", request.defaultOperator.jsonValue());
@@ -767,12 +821,6 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 					params.put("stored_fields", request.storedFields.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
 				}
-				if (request.preference != null) {
-					params.put("preference", request.preference);
-				}
-				if (request.analyzeWildcard != null) {
-					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
-				}
 				if (request.source != null) {
 					params.put("_source", request.source._toJsonString());
 				}
@@ -783,9 +831,6 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes", request.sourceIncludes.stream().map(v -> v).filter(Objects::nonNull)
 							.collect(Collectors.joining(",")));
-				}
-				if (request.lenient != null) {
-					params.put("lenient", String.valueOf(request.lenient));
 				}
 				return params;
 

@@ -76,7 +76,7 @@ public class GetStats implements JsonpSerializable {
 	private final long missingTotal;
 
 	@Nullable
-	private final Time time;
+	private final Time gettime;
 
 	private final long timeInMillis;
 
@@ -95,7 +95,7 @@ public class GetStats implements JsonpSerializable {
 		this.missingTimeInMillis = ApiTypeHelper.requireNonNull(builder.missingTimeInMillis, this,
 				"missingTimeInMillis", 0);
 		this.missingTotal = ApiTypeHelper.requireNonNull(builder.missingTotal, this, "missingTotal", 0);
-		this.time = builder.time;
+		this.gettime = builder.gettime;
 		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis", 0);
 		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total", 0);
 
@@ -157,11 +157,11 @@ public class GetStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code time}
+	 * API name: {@code getTime}
 	 */
 	@Nullable
-	public final Time time() {
-		return this.time;
+	public final Time gettime() {
+		return this.gettime;
 	}
 
 	/**
@@ -214,9 +214,9 @@ public class GetStats implements JsonpSerializable {
 		generator.writeKey("missing_total");
 		generator.write(this.missingTotal);
 
-		if (this.time != null) {
-			generator.writeKey("time");
-			this.time.serialize(generator, mapper);
+		if (this.gettime != null) {
+			generator.writeKey("getTime");
+			this.gettime.serialize(generator, mapper);
 
 		}
 		generator.writeKey("time_in_millis");
@@ -256,7 +256,7 @@ public class GetStats implements JsonpSerializable {
 		private Long missingTotal;
 
 		@Nullable
-		private Time time;
+		private Time gettime;
 
 		private Long timeInMillis;
 
@@ -272,7 +272,7 @@ public class GetStats implements JsonpSerializable {
 			this.missingTime = instance.missingTime;
 			this.missingTimeInMillis = instance.missingTimeInMillis;
 			this.missingTotal = instance.missingTotal;
-			this.time = instance.time;
+			this.gettime = instance.gettime;
 			this.timeInMillis = instance.timeInMillis;
 			this.total = instance.total;
 
@@ -348,18 +348,18 @@ public class GetStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code time}
+		 * API name: {@code getTime}
 		 */
-		public final Builder time(@Nullable Time value) {
-			this.time = value;
+		public final Builder gettime(@Nullable Time value) {
+			this.gettime = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code time}
+		 * API name: {@code getTime}
 		 */
-		public final Builder time(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.time(fn.apply(new Time.Builder()).build());
+		public final Builder gettime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.gettime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -419,7 +419,7 @@ public class GetStats implements JsonpSerializable {
 		op.add(Builder::missingTime, Time._DESERIALIZER, "missing_time");
 		op.add(Builder::missingTimeInMillis, JsonpDeserializer.longDeserializer(), "missing_time_in_millis");
 		op.add(Builder::missingTotal, JsonpDeserializer.longDeserializer(), "missing_total");
-		op.add(Builder::time, Time._DESERIALIZER, "time");
+		op.add(Builder::gettime, Time._DESERIALIZER, "getTime");
 		op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
 		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 

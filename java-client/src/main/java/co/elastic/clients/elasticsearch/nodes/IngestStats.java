@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -70,9 +71,18 @@ public class IngestStats implements JsonpSerializable {
 
 	private final List<Map<String, KeyedProcessor>> processors;
 
+	@Nullable
+	private final Time time;
+
 	private final long timeInMillis;
 
+	@Nullable
+	private final String ingestedAsFirstPipeline;
+
 	private final long ingestedAsFirstPipelineInBytes;
+
+	@Nullable
+	private final String producedAsFirstPipeline;
 
 	private final long producedAsFirstPipelineInBytes;
 
@@ -84,9 +94,12 @@ public class IngestStats implements JsonpSerializable {
 		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current", 0);
 		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed", 0);
 		this.processors = ApiTypeHelper.unmodifiableRequired(builder.processors, this, "processors");
+		this.time = builder.time;
 		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis", 0);
+		this.ingestedAsFirstPipeline = builder.ingestedAsFirstPipeline;
 		this.ingestedAsFirstPipelineInBytes = ApiTypeHelper.requireNonNull(builder.ingestedAsFirstPipelineInBytes, this,
 				"ingestedAsFirstPipelineInBytes", 0);
+		this.producedAsFirstPipeline = builder.producedAsFirstPipeline;
 		this.producedAsFirstPipelineInBytes = ApiTypeHelper.requireNonNull(builder.producedAsFirstPipelineInBytes, this,
 				"producedAsFirstPipelineInBytes", 0);
 
@@ -135,6 +148,17 @@ public class IngestStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Total time spent preprocessing ingest documents during the lifetime of this
+	 * node.
+	 * <p>
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public final Time time() {
+		return this.time;
+	}
+
+	/**
 	 * Required - Total time, in milliseconds, spent preprocessing ingest documents
 	 * during the lifetime of this node.
 	 * <p>
@@ -145,11 +169,24 @@ public class IngestStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Total number of bytes of all documents ingested by the pipeline.
-	 * This field is only present on pipelines which are the first to process a
-	 * document. Thus, it is not present on pipelines which only serve as a final
+	 * Total size of all documents ingested by the pipeline. The value counts
+	 * documents for which this pipeline was the first to process them; for
+	 * pipelines that are not the first to process a document (for example, a final
 	 * pipeline after a default pipeline, a pipeline run after a reroute processor,
-	 * or pipelines in pipeline processors.
+	 * or a pipeline invoked by a pipeline processor), the value is <code>0</code>.
+	 * <p>
+	 * API name: {@code ingested_as_first_pipeline}
+	 */
+	@Nullable
+	public final String ingestedAsFirstPipeline() {
+		return this.ingestedAsFirstPipeline;
+	}
+
+	/**
+	 * Required - Total number of bytes of all documents ingested by the pipeline.
+	 * The value counts documents for which this pipeline was the first to process
+	 * them; for pipelines that are not the first to process a document, the value
+	 * is <code>0</code>.
 	 * <p>
 	 * API name: {@code ingested_as_first_pipeline_in_bytes}
 	 */
@@ -158,13 +195,25 @@ public class IngestStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Total size of all documents produced by the pipeline. The value counts
+	 * documents for which this pipeline was the first to process them; for
+	 * pipelines that are not the first to process a document, the value is
+	 * <code>0</code>. In situations where there are subsequent pipelines, the value
+	 * represents the size of the document after all pipelines have run.
+	 * <p>
+	 * API name: {@code produced_as_first_pipeline}
+	 */
+	@Nullable
+	public final String producedAsFirstPipeline() {
+		return this.producedAsFirstPipeline;
+	}
+
+	/**
 	 * Required - Total number of bytes of all documents produced by the pipeline.
-	 * This field is only present on pipelines which are the first to process a
-	 * document. Thus, it is not present on pipelines which only serve as a final
-	 * pipeline after a default pipeline, a pipeline run after a reroute processor,
-	 * or pipelines in pipeline processors. In situations where there are subsequent
-	 * pipelines, the value represents the size of the document after all pipelines
-	 * have run.
+	 * The value counts documents for which this pipeline was the first to process
+	 * them; for pipelines that are not the first to process a document, the value
+	 * is <code>0</code>. In situations where there are subsequent pipelines, the
+	 * value represents the size of the document after all pipelines have run.
 	 * <p>
 	 * API name: {@code produced_as_first_pipeline_in_bytes}
 	 */
@@ -210,12 +259,27 @@ public class IngestStats implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.time != null) {
+			generator.writeKey("time");
+			this.time.serialize(generator, mapper);
+
+		}
 		generator.writeKey("time_in_millis");
 		generator.write(this.timeInMillis);
 
+		if (this.ingestedAsFirstPipeline != null) {
+			generator.writeKey("ingested_as_first_pipeline");
+			generator.write(this.ingestedAsFirstPipeline);
+
+		}
 		generator.writeKey("ingested_as_first_pipeline_in_bytes");
 		generator.write(this.ingestedAsFirstPipelineInBytes);
 
+		if (this.producedAsFirstPipeline != null) {
+			generator.writeKey("produced_as_first_pipeline");
+			generator.write(this.producedAsFirstPipeline);
+
+		}
 		generator.writeKey("produced_as_first_pipeline_in_bytes");
 		generator.write(this.producedAsFirstPipelineInBytes);
 
@@ -241,9 +305,18 @@ public class IngestStats implements JsonpSerializable {
 
 		private List<Map<String, KeyedProcessor>> processors;
 
+		@Nullable
+		private Time time;
+
 		private Long timeInMillis;
 
+		@Nullable
+		private String ingestedAsFirstPipeline;
+
 		private Long ingestedAsFirstPipelineInBytes;
+
+		@Nullable
+		private String producedAsFirstPipeline;
 
 		private Long producedAsFirstPipelineInBytes;
 
@@ -254,8 +327,11 @@ public class IngestStats implements JsonpSerializable {
 			this.current = instance.current;
 			this.failed = instance.failed;
 			this.processors = instance.processors;
+			this.time = instance.time;
 			this.timeInMillis = instance.timeInMillis;
+			this.ingestedAsFirstPipeline = instance.ingestedAsFirstPipeline;
 			this.ingestedAsFirstPipelineInBytes = instance.ingestedAsFirstPipelineInBytes;
+			this.producedAsFirstPipeline = instance.producedAsFirstPipeline;
 			this.producedAsFirstPipelineInBytes = instance.producedAsFirstPipelineInBytes;
 
 		}
@@ -316,6 +392,27 @@ public class IngestStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Total time spent preprocessing ingest documents during the lifetime of this
+		 * node.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(@Nullable Time value) {
+			this.time = value;
+			return this;
+		}
+
+		/**
+		 * Total time spent preprocessing ingest documents during the lifetime of this
+		 * node.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.time(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - Total time, in milliseconds, spent preprocessing ingest documents
 		 * during the lifetime of this node.
 		 * <p>
@@ -327,11 +424,24 @@ public class IngestStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Total number of bytes of all documents ingested by the pipeline.
-		 * This field is only present on pipelines which are the first to process a
-		 * document. Thus, it is not present on pipelines which only serve as a final
+		 * Total size of all documents ingested by the pipeline. The value counts
+		 * documents for which this pipeline was the first to process them; for
+		 * pipelines that are not the first to process a document (for example, a final
 		 * pipeline after a default pipeline, a pipeline run after a reroute processor,
-		 * or pipelines in pipeline processors.
+		 * or a pipeline invoked by a pipeline processor), the value is <code>0</code>.
+		 * <p>
+		 * API name: {@code ingested_as_first_pipeline}
+		 */
+		public final Builder ingestedAsFirstPipeline(@Nullable String value) {
+			this.ingestedAsFirstPipeline = value;
+			return this;
+		}
+
+		/**
+		 * Required - Total number of bytes of all documents ingested by the pipeline.
+		 * The value counts documents for which this pipeline was the first to process
+		 * them; for pipelines that are not the first to process a document, the value
+		 * is <code>0</code>.
 		 * <p>
 		 * API name: {@code ingested_as_first_pipeline_in_bytes}
 		 */
@@ -341,13 +451,25 @@ public class IngestStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Total size of all documents produced by the pipeline. The value counts
+		 * documents for which this pipeline was the first to process them; for
+		 * pipelines that are not the first to process a document, the value is
+		 * <code>0</code>. In situations where there are subsequent pipelines, the value
+		 * represents the size of the document after all pipelines have run.
+		 * <p>
+		 * API name: {@code produced_as_first_pipeline}
+		 */
+		public final Builder producedAsFirstPipeline(@Nullable String value) {
+			this.producedAsFirstPipeline = value;
+			return this;
+		}
+
+		/**
 		 * Required - Total number of bytes of all documents produced by the pipeline.
-		 * This field is only present on pipelines which are the first to process a
-		 * document. Thus, it is not present on pipelines which only serve as a final
-		 * pipeline after a default pipeline, a pipeline run after a reroute processor,
-		 * or pipelines in pipeline processors. In situations where there are subsequent
-		 * pipelines, the value represents the size of the document after all pipelines
-		 * have run.
+		 * The value counts documents for which this pipeline was the first to process
+		 * them; for pipelines that are not the first to process a document, the value
+		 * is <code>0</code>. In situations where there are subsequent pipelines, the
+		 * value represents the size of the document after all pipelines have run.
 		 * <p>
 		 * API name: {@code produced_as_first_pipeline_in_bytes}
 		 */
@@ -395,9 +517,12 @@ public class IngestStats implements JsonpSerializable {
 		op.add(Builder::failed, JsonpDeserializer.longDeserializer(), "failed");
 		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(
 				JsonpDeserializer.stringMapDeserializer(KeyedProcessor._DESERIALIZER)), "processors");
+		op.add(Builder::time, Time._DESERIALIZER, "time");
 		op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
+		op.add(Builder::ingestedAsFirstPipeline, JsonpDeserializer.stringDeserializer(), "ingested_as_first_pipeline");
 		op.add(Builder::ingestedAsFirstPipelineInBytes, JsonpDeserializer.longDeserializer(),
 				"ingested_as_first_pipeline_in_bytes");
+		op.add(Builder::producedAsFirstPipeline, JsonpDeserializer.stringDeserializer(), "produced_as_first_pipeline");
 		op.add(Builder::producedAsFirstPipelineInBytes, JsonpDeserializer.longDeserializer(),
 				"produced_as_first_pipeline_in_bytes");
 

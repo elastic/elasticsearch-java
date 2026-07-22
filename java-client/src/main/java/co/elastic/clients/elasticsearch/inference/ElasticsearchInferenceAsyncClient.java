@@ -231,6 +231,20 @@ public class ElasticsearchInferenceAsyncClient
 		return delete(fn.apply(new DeleteInferenceRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: inference.delete_region_policy
+
+	/**
+	 * Delete the inference region policy.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-delete-region-policy">Documentation
+	 *      on elastic.co</a>
+	 */
+	public CompletableFuture<DeleteRegionPolicyResponse> deleteRegionPolicy() {
+		return this.transport.performRequestAsync(DeleteRegionPolicyRequest._INSTANCE,
+				DeleteRegionPolicyRequest._ENDPOINT, this.transportOptions);
+	}
+
 	// ----- Endpoint: inference.embedding
 
 	/**
@@ -320,6 +334,20 @@ public class ElasticsearchInferenceAsyncClient
 	public CompletableFuture<GetInferenceResponse> get() {
 		return this.transport.performRequestAsync(new GetInferenceRequest.Builder().build(),
 				GetInferenceRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: inference.get_region_policy
+
+	/**
+	 * Get the inference region policy.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-get-region-policy">Documentation
+	 *      on elastic.co</a>
+	 */
+	public CompletableFuture<GetRegionPolicyResponse> getRegionPolicy() {
+		return this.transport.performRequestAsync(GetRegionPolicyRequest._INSTANCE, GetRegionPolicyRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: inference.inference
@@ -1863,6 +1891,45 @@ public class ElasticsearchInferenceAsyncClient
 	public final CompletableFuture<PutOpenshiftAiResponse> putOpenshiftAi(
 			Function<PutOpenshiftAiRequest.Builder, ObjectBuilder<PutOpenshiftAiRequest>> fn) {
 		return putOpenshiftAi(fn.apply(new PutOpenshiftAiRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: inference.put_region_policy
+
+	/**
+	 * Create or update the inference region policy.
+	 * <p>
+	 * The region policy restricts inference to a set of allowed geographic areas or
+	 * cloud service provider regions.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-region-policy">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<PutRegionPolicyResponse> putRegionPolicy(PutRegionPolicyRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutRegionPolicyRequest, PutRegionPolicyResponse, ErrorResponse> endpoint = (JsonEndpoint<PutRegionPolicyRequest, PutRegionPolicyResponse, ErrorResponse>) PutRegionPolicyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Create or update the inference region policy.
+	 * <p>
+	 * The region policy restricts inference to a set of allowed geographic areas or
+	 * cloud service provider regions.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link PutRegionPolicyRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put-region-policy">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<PutRegionPolicyResponse> putRegionPolicy(
+			Function<PutRegionPolicyRequest.Builder, ObjectBuilder<PutRegionPolicyRequest>> fn) {
+		return putRegionPolicy(fn.apply(new PutRegionPolicyRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: inference.put_voyageai

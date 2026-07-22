@@ -61,7 +61,19 @@ import javax.annotation.Nullable;
 public class RecoveryStats implements JsonpSerializable {
 	private final long currentAsSource;
 
+	@Nullable
+	private final Long currentAsSourceQueued;
+
 	private final long currentAsTarget;
+
+	@Nullable
+	private final Long currentAsTargetQueued;
+
+	@Nullable
+	private final Long currentFromStore;
+
+	@Nullable
+	private final Long currentFromStoreQueued;
 
 	@Nullable
 	private final Time throttleTime;
@@ -73,7 +85,11 @@ public class RecoveryStats implements JsonpSerializable {
 	private RecoveryStats(Builder builder) {
 
 		this.currentAsSource = ApiTypeHelper.requireNonNull(builder.currentAsSource, this, "currentAsSource", 0);
+		this.currentAsSourceQueued = builder.currentAsSourceQueued;
 		this.currentAsTarget = ApiTypeHelper.requireNonNull(builder.currentAsTarget, this, "currentAsTarget", 0);
+		this.currentAsTargetQueued = builder.currentAsTargetQueued;
+		this.currentFromStore = builder.currentFromStore;
+		this.currentFromStoreQueued = builder.currentFromStoreQueued;
 		this.throttleTime = builder.throttleTime;
 		this.throttleTimeInMillis = ApiTypeHelper.requireNonNull(builder.throttleTimeInMillis, this,
 				"throttleTimeInMillis", 0);
@@ -92,10 +108,42 @@ public class RecoveryStats implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code current_as_source_queued}
+	 */
+	@Nullable
+	public final Long currentAsSourceQueued() {
+		return this.currentAsSourceQueued;
+	}
+
+	/**
 	 * Required - API name: {@code current_as_target}
 	 */
 	public final long currentAsTarget() {
 		return this.currentAsTarget;
+	}
+
+	/**
+	 * API name: {@code current_as_target_queued}
+	 */
+	@Nullable
+	public final Long currentAsTargetQueued() {
+		return this.currentAsTargetQueued;
+	}
+
+	/**
+	 * API name: {@code current_from_store}
+	 */
+	@Nullable
+	public final Long currentFromStore() {
+		return this.currentFromStore;
+	}
+
+	/**
+	 * API name: {@code current_from_store_queued}
+	 */
+	@Nullable
+	public final Long currentFromStoreQueued() {
+		return this.currentFromStoreQueued;
 	}
 
 	/**
@@ -127,9 +175,29 @@ public class RecoveryStats implements JsonpSerializable {
 		generator.writeKey("current_as_source");
 		generator.write(this.currentAsSource);
 
+		if (this.currentAsSourceQueued != null) {
+			generator.writeKey("current_as_source_queued");
+			generator.write(this.currentAsSourceQueued);
+
+		}
 		generator.writeKey("current_as_target");
 		generator.write(this.currentAsTarget);
 
+		if (this.currentAsTargetQueued != null) {
+			generator.writeKey("current_as_target_queued");
+			generator.write(this.currentAsTargetQueued);
+
+		}
+		if (this.currentFromStore != null) {
+			generator.writeKey("current_from_store");
+			generator.write(this.currentFromStore);
+
+		}
+		if (this.currentFromStoreQueued != null) {
+			generator.writeKey("current_from_store_queued");
+			generator.write(this.currentFromStoreQueued);
+
+		}
 		if (this.throttleTime != null) {
 			generator.writeKey("throttle_time");
 			this.throttleTime.serialize(generator, mapper);
@@ -154,7 +222,19 @@ public class RecoveryStats implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RecoveryStats> {
 		private Long currentAsSource;
 
+		@Nullable
+		private Long currentAsSourceQueued;
+
 		private Long currentAsTarget;
+
+		@Nullable
+		private Long currentAsTargetQueued;
+
+		@Nullable
+		private Long currentFromStore;
+
+		@Nullable
+		private Long currentFromStoreQueued;
 
 		@Nullable
 		private Time throttleTime;
@@ -165,7 +245,11 @@ public class RecoveryStats implements JsonpSerializable {
 		}
 		private Builder(RecoveryStats instance) {
 			this.currentAsSource = instance.currentAsSource;
+			this.currentAsSourceQueued = instance.currentAsSourceQueued;
 			this.currentAsTarget = instance.currentAsTarget;
+			this.currentAsTargetQueued = instance.currentAsTargetQueued;
+			this.currentFromStore = instance.currentFromStore;
+			this.currentFromStoreQueued = instance.currentFromStoreQueued;
 			this.throttleTime = instance.throttleTime;
 			this.throttleTimeInMillis = instance.throttleTimeInMillis;
 
@@ -179,10 +263,42 @@ public class RecoveryStats implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code current_as_source_queued}
+		 */
+		public final Builder currentAsSourceQueued(@Nullable Long value) {
+			this.currentAsSourceQueued = value;
+			return this;
+		}
+
+		/**
 		 * Required - API name: {@code current_as_target}
 		 */
 		public final Builder currentAsTarget(long value) {
 			this.currentAsTarget = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code current_as_target_queued}
+		 */
+		public final Builder currentAsTargetQueued(@Nullable Long value) {
+			this.currentAsTargetQueued = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code current_from_store}
+		 */
+		public final Builder currentFromStore(@Nullable Long value) {
+			this.currentFromStore = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code current_from_store_queued}
+		 */
+		public final Builder currentFromStoreQueued(@Nullable Long value) {
+			this.currentFromStoreQueued = value;
 			return this;
 		}
 
@@ -244,7 +360,11 @@ public class RecoveryStats implements JsonpSerializable {
 	protected static void setupRecoveryStatsDeserializer(ObjectDeserializer<RecoveryStats.Builder> op) {
 
 		op.add(Builder::currentAsSource, JsonpDeserializer.longDeserializer(), "current_as_source");
+		op.add(Builder::currentAsSourceQueued, JsonpDeserializer.longDeserializer(), "current_as_source_queued");
 		op.add(Builder::currentAsTarget, JsonpDeserializer.longDeserializer(), "current_as_target");
+		op.add(Builder::currentAsTargetQueued, JsonpDeserializer.longDeserializer(), "current_as_target_queued");
+		op.add(Builder::currentFromStore, JsonpDeserializer.longDeserializer(), "current_from_store");
+		op.add(Builder::currentFromStoreQueued, JsonpDeserializer.longDeserializer(), "current_from_store_queued");
 		op.add(Builder::throttleTime, Time._DESERIALIZER, "throttle_time");
 		op.add(Builder::throttleTimeInMillis, JsonpDeserializer.longDeserializer(), "throttle_time_in_millis");
 

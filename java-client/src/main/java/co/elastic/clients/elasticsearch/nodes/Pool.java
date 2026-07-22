@@ -30,6 +30,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -59,13 +60,25 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class Pool implements JsonpSerializable {
 	@Nullable
+	private final String used;
+
+	@Nullable
 	private final Long usedInBytes;
+
+	@Nullable
+	private final String max;
 
 	@Nullable
 	private final Long maxInBytes;
 
 	@Nullable
+	private final String peakUsed;
+
+	@Nullable
 	private final Long peakUsedInBytes;
+
+	@Nullable
+	private final String peakMax;
 
 	@Nullable
 	private final Long peakMaxInBytes;
@@ -74,15 +87,29 @@ public class Pool implements JsonpSerializable {
 
 	private Pool(Builder builder) {
 
+		this.used = builder.used;
 		this.usedInBytes = builder.usedInBytes;
+		this.max = builder.max;
 		this.maxInBytes = builder.maxInBytes;
+		this.peakUsed = builder.peakUsed;
 		this.peakUsedInBytes = builder.peakUsedInBytes;
+		this.peakMax = builder.peakMax;
 		this.peakMaxInBytes = builder.peakMaxInBytes;
 
 	}
 
 	public static Pool of(Function<Builder, ObjectBuilder<Pool>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Memory used by the heap.
+	 * <p>
+	 * API name: {@code used}
+	 */
+	@Nullable
+	public final String used() {
+		return this.used;
 	}
 
 	/**
@@ -96,6 +123,16 @@ public class Pool implements JsonpSerializable {
 	}
 
 	/**
+	 * Maximum amount of memory available for use by the heap.
+	 * <p>
+	 * API name: {@code max}
+	 */
+	@Nullable
+	public final String max() {
+		return this.max;
+	}
+
+	/**
 	 * Maximum amount of memory, in bytes, available for use by the heap.
 	 * <p>
 	 * API name: {@code max_in_bytes}
@@ -106,6 +143,16 @@ public class Pool implements JsonpSerializable {
 	}
 
 	/**
+	 * Largest amount of memory historically used by the heap.
+	 * <p>
+	 * API name: {@code peak_used}
+	 */
+	@Nullable
+	public final String peakUsed() {
+		return this.peakUsed;
+	}
+
+	/**
 	 * Largest amount of memory, in bytes, historically used by the heap.
 	 * <p>
 	 * API name: {@code peak_used_in_bytes}
@@ -113,6 +160,16 @@ public class Pool implements JsonpSerializable {
 	@Nullable
 	public final Long peakUsedInBytes() {
 		return this.peakUsedInBytes;
+	}
+
+	/**
+	 * Largest amount of memory historically used by the heap.
+	 * <p>
+	 * API name: {@code peak_max}
+	 */
+	@Nullable
+	public final String peakMax() {
+		return this.peakMax;
 	}
 
 	/**
@@ -136,9 +193,19 @@ public class Pool implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.used != null) {
+			generator.writeKey("used");
+			generator.write(this.used);
+
+		}
 		if (this.usedInBytes != null) {
 			generator.writeKey("used_in_bytes");
 			generator.write(this.usedInBytes);
+
+		}
+		if (this.max != null) {
+			generator.writeKey("max");
+			generator.write(this.max);
 
 		}
 		if (this.maxInBytes != null) {
@@ -146,9 +213,19 @@ public class Pool implements JsonpSerializable {
 			generator.write(this.maxInBytes);
 
 		}
+		if (this.peakUsed != null) {
+			generator.writeKey("peak_used");
+			generator.write(this.peakUsed);
+
+		}
 		if (this.peakUsedInBytes != null) {
 			generator.writeKey("peak_used_in_bytes");
 			generator.write(this.peakUsedInBytes);
+
+		}
+		if (this.peakMax != null) {
+			generator.writeKey("peak_max");
+			generator.write(this.peakMax);
 
 		}
 		if (this.peakMaxInBytes != null) {
@@ -172,13 +249,25 @@ public class Pool implements JsonpSerializable {
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Pool> {
 		@Nullable
+		private String used;
+
+		@Nullable
 		private Long usedInBytes;
+
+		@Nullable
+		private String max;
 
 		@Nullable
 		private Long maxInBytes;
 
 		@Nullable
+		private String peakUsed;
+
+		@Nullable
 		private Long peakUsedInBytes;
+
+		@Nullable
+		private String peakMax;
 
 		@Nullable
 		private Long peakMaxInBytes;
@@ -186,12 +275,26 @@ public class Pool implements JsonpSerializable {
 		public Builder() {
 		}
 		private Builder(Pool instance) {
+			this.used = instance.used;
 			this.usedInBytes = instance.usedInBytes;
+			this.max = instance.max;
 			this.maxInBytes = instance.maxInBytes;
+			this.peakUsed = instance.peakUsed;
 			this.peakUsedInBytes = instance.peakUsedInBytes;
+			this.peakMax = instance.peakMax;
 			this.peakMaxInBytes = instance.peakMaxInBytes;
 
 		}
+		/**
+		 * Memory used by the heap.
+		 * <p>
+		 * API name: {@code used}
+		 */
+		public final Builder used(@Nullable String value) {
+			this.used = value;
+			return this;
+		}
+
 		/**
 		 * Memory, in bytes, used by the heap.
 		 * <p>
@@ -199,6 +302,16 @@ public class Pool implements JsonpSerializable {
 		 */
 		public final Builder usedInBytes(@Nullable Long value) {
 			this.usedInBytes = value;
+			return this;
+		}
+
+		/**
+		 * Maximum amount of memory available for use by the heap.
+		 * <p>
+		 * API name: {@code max}
+		 */
+		public final Builder max(@Nullable String value) {
+			this.max = value;
 			return this;
 		}
 
@@ -213,12 +326,32 @@ public class Pool implements JsonpSerializable {
 		}
 
 		/**
+		 * Largest amount of memory historically used by the heap.
+		 * <p>
+		 * API name: {@code peak_used}
+		 */
+		public final Builder peakUsed(@Nullable String value) {
+			this.peakUsed = value;
+			return this;
+		}
+
+		/**
 		 * Largest amount of memory, in bytes, historically used by the heap.
 		 * <p>
 		 * API name: {@code peak_used_in_bytes}
 		 */
 		public final Builder peakUsedInBytes(@Nullable Long value) {
 			this.peakUsedInBytes = value;
+			return this;
+		}
+
+		/**
+		 * Largest amount of memory historically used by the heap.
+		 * <p>
+		 * API name: {@code peak_max}
+		 */
+		public final Builder peakMax(@Nullable String value) {
+			this.peakMax = value;
 			return this;
 		}
 
@@ -266,9 +399,13 @@ public class Pool implements JsonpSerializable {
 
 	protected static void setupPoolDeserializer(ObjectDeserializer<Pool.Builder> op) {
 
+		op.add(Builder::used, JsonpDeserializer.stringDeserializer(), "used");
 		op.add(Builder::usedInBytes, JsonpDeserializer.longDeserializer(), "used_in_bytes");
+		op.add(Builder::max, JsonpDeserializer.stringDeserializer(), "max");
 		op.add(Builder::maxInBytes, JsonpDeserializer.longDeserializer(), "max_in_bytes");
+		op.add(Builder::peakUsed, JsonpDeserializer.stringDeserializer(), "peak_used");
 		op.add(Builder::peakUsedInBytes, JsonpDeserializer.longDeserializer(), "peak_used_in_bytes");
+		op.add(Builder::peakMax, JsonpDeserializer.stringDeserializer(), "peak_max");
 		op.add(Builder::peakMaxInBytes, JsonpDeserializer.longDeserializer(), "peak_max_in_bytes");
 
 	}

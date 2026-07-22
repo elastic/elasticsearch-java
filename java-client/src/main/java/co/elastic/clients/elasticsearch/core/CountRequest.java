@@ -130,7 +130,12 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Query query;
 
+	@Nullable
+	private final String routeSlice;
+
 	private final List<String> routing;
+
+	private final List<String> stats;
 
 	@Nullable
 	private final Long terminateAfter;
@@ -154,7 +159,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		this.projectRouting = builder.projectRouting;
 		this.q = builder.q;
 		this.query = builder.query;
+		this.routeSlice = builder.routeSlice;
 		this.routing = ApiTypeHelper.unmodifiable(builder.routing);
+		this.stats = ApiTypeHelper.unmodifiable(builder.stats);
 		this.terminateAfter = builder.terminateAfter;
 
 	}
@@ -346,12 +353,38 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A custom value used to route operations to a specific shard.
+	 * The slice identifier used to route the operation to a specific slice. Use the
+	 * special value <code>_all</code> to target all slices without restricting to a
+	 * routing value. Required when <code>index.slice.enabled</code> is
+	 * <code>true</code> for the target index; not allowed when
+	 * <code>index.slice.enabled</code> is <code>false</code>.
+	 * <p>
+	 * API name: {@code _slice}
+	 */
+	@Nullable
+	public final String routeSlice() {
+		return this.routeSlice;
+	}
+
+	/**
+	 * A custom value used to route operations to a specific shard. Not allowed when
+	 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+	 * use <code>_slice</code> instead.
 	 * <p>
 	 * API name: {@code routing}
 	 */
 	public final List<String> routing() {
 		return this.routing;
+	}
+
+	/**
+	 * Specific <code>tag</code> of the request for logging and statistical
+	 * purposes.
+	 * <p>
+	 * API name: {@code stats}
+	 */
+	public final List<String> stats() {
+		return this.stats;
 	}
 
 	/**
@@ -448,7 +481,13 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		private Query query;
 
 		@Nullable
+		private String routeSlice;
+
+		@Nullable
 		private List<String> routing;
+
+		@Nullable
+		private List<String> stats;
 
 		@Nullable
 		private Long terminateAfter;
@@ -471,7 +510,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 			this.projectRouting = instance.projectRouting;
 			this.q = instance.q;
 			this.query = instance.query;
+			this.routeSlice = instance.routeSlice;
 			this.routing = instance.routing;
+			this.stats = instance.stats;
 			this.terminateAfter = instance.terminateAfter;
 
 		}
@@ -714,7 +755,23 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * The slice identifier used to route the operation to a specific slice. Use the
+		 * special value <code>_all</code> to target all slices without restricting to a
+		 * routing value. Required when <code>index.slice.enabled</code> is
+		 * <code>true</code> for the target index; not allowed when
+		 * <code>index.slice.enabled</code> is <code>false</code>.
+		 * <p>
+		 * API name: {@code _slice}
+		 */
+		public final Builder routeSlice(@Nullable String value) {
+			this.routeSlice = value;
+			return this;
+		}
+
+		/**
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -726,7 +783,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A custom value used to route operations to a specific shard.
+		 * A custom value used to route operations to a specific shard. Not allowed when
+		 * <code>index.slice.enabled</code> is <code>true</code> for the target index;
+		 * use <code>_slice</code> instead.
 		 * <p>
 		 * API name: {@code routing}
 		 * <p>
@@ -734,6 +793,32 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder routing(String value, String... values) {
 			this.routing = _listAdd(this.routing, value, values);
+			return this;
+		}
+
+		/**
+		 * Specific <code>tag</code> of the request for logging and statistical
+		 * purposes.
+		 * <p>
+		 * API name: {@code stats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stats</code>.
+		 */
+		public final Builder stats(List<String> list) {
+			this.stats = _listAddAll(this.stats, list);
+			return this;
+		}
+
+		/**
+		 * Specific <code>tag</code> of the request for logging and statistical
+		 * purposes.
+		 * <p>
+		 * API name: {@code stats}
+		 * <p>
+		 * Adds one or more values to <code>stats</code>.
+		 */
+		public final Builder stats(String value, String... values) {
+			this.stats = _listAdd(this.stats, value, values);
 			return this;
 		}
 
@@ -871,6 +956,9 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 				if (request.terminateAfter != null) {
 					params.put("terminate_after", String.valueOf(request.terminateAfter));
 				}
+				if (request.routeSlice != null) {
+					params.put("_slice", request.routeSlice);
+				}
 				if (request.lenient != null) {
 					params.put("lenient", String.valueOf(request.lenient));
 				}
@@ -889,6 +977,10 @@ public class CountRequest extends RequestBase implements JsonpSerializable {
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (ApiTypeHelper.isDefined(request.stats)) {
+					params.put("stats", request.stats.stream().map(v -> v).filter(Objects::nonNull)
+							.collect(Collectors.joining(",")));
 				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));

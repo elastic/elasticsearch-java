@@ -35,6 +35,8 @@ import co.elastic.clients.elasticsearch._types.SegmentsStats;
 import co.elastic.clients.elasticsearch._types.StoreStats;
 import co.elastic.clients.elasticsearch._types.TranslogStats;
 import co.elastic.clients.elasticsearch._types.WarmerStats;
+import co.elastic.clients.elasticsearch.cluster.stats.DenseVectorStats;
+import co.elastic.clients.elasticsearch.cluster.stats.SparseVectorStats;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -82,6 +84,9 @@ public class ShardStats implements JsonpSerializable {
 
 	@Nullable
 	private final CompletionStats completion;
+
+	@Nullable
+	private final DenseVectorStats denseVector;
 
 	@Nullable
 	private final DocStats docs;
@@ -135,6 +140,9 @@ public class ShardStats implements JsonpSerializable {
 	private final ShardSequenceNumber seqNo;
 
 	@Nullable
+	private final SparseVectorStats sparseVector;
+
+	@Nullable
 	private final StoreStats store;
 
 	@Nullable
@@ -151,8 +159,7 @@ public class ShardStats implements JsonpSerializable {
 	@Nullable
 	private final ShardsTotalStats shardStats;
 
-	@Nullable
-	private final IndicesStats indices;
+	private final Map<String, ShardStats> indices;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -160,6 +167,7 @@ public class ShardStats implements JsonpSerializable {
 
 		this.commit = builder.commit;
 		this.completion = builder.completion;
+		this.denseVector = builder.denseVector;
 		this.docs = builder.docs;
 		this.fielddata = builder.fielddata;
 		this.flush = builder.flush;
@@ -177,13 +185,14 @@ public class ShardStats implements JsonpSerializable {
 		this.search = builder.search;
 		this.segments = builder.segments;
 		this.seqNo = builder.seqNo;
+		this.sparseVector = builder.sparseVector;
 		this.store = builder.store;
 		this.translog = builder.translog;
 		this.warmer = builder.warmer;
 		this.bulk = builder.bulk;
 		this.shards = ApiTypeHelper.unmodifiable(builder.shards);
 		this.shardStats = builder.shardStats;
-		this.indices = builder.indices;
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 
 	}
 
@@ -205,6 +214,14 @@ public class ShardStats implements JsonpSerializable {
 	@Nullable
 	public final CompletionStats completion() {
 		return this.completion;
+	}
+
+	/**
+	 * API name: {@code dense_vector}
+	 */
+	@Nullable
+	public final DenseVectorStats denseVector() {
+		return this.denseVector;
 	}
 
 	/**
@@ -344,6 +361,14 @@ public class ShardStats implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code sparse_vector}
+	 */
+	@Nullable
+	public final SparseVectorStats sparseVector() {
+		return this.sparseVector;
+	}
+
+	/**
 	 * API name: {@code store}
 	 */
 	@Nullable
@@ -393,8 +418,7 @@ public class ShardStats implements JsonpSerializable {
 	/**
 	 * API name: {@code indices}
 	 */
-	@Nullable
-	public final IndicesStats indices() {
+	public final Map<String, ShardStats> indices() {
 		return this.indices;
 	}
 
@@ -417,6 +441,11 @@ public class ShardStats implements JsonpSerializable {
 		if (this.completion != null) {
 			generator.writeKey("completion");
 			this.completion.serialize(generator, mapper);
+
+		}
+		if (this.denseVector != null) {
+			generator.writeKey("dense_vector");
+			this.denseVector.serialize(generator, mapper);
 
 		}
 		if (this.docs != null) {
@@ -504,6 +533,11 @@ public class ShardStats implements JsonpSerializable {
 			this.seqNo.serialize(generator, mapper);
 
 		}
+		if (this.sparseVector != null) {
+			generator.writeKey("sparse_vector");
+			this.sparseVector.serialize(generator, mapper);
+
+		}
 		if (this.store != null) {
 			generator.writeKey("store");
 			this.store.serialize(generator, mapper);
@@ -540,9 +574,15 @@ public class ShardStats implements JsonpSerializable {
 			this.shardStats.serialize(generator, mapper);
 
 		}
-		if (this.indices != null) {
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
-			this.indices.serialize(generator, mapper);
+			generator.writeStartObject();
+			for (Map.Entry<String, ShardStats> item0 : this.indices.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 
@@ -565,6 +605,9 @@ public class ShardStats implements JsonpSerializable {
 
 		@Nullable
 		private CompletionStats completion;
+
+		@Nullable
+		private DenseVectorStats denseVector;
 
 		@Nullable
 		private DocStats docs;
@@ -618,6 +661,9 @@ public class ShardStats implements JsonpSerializable {
 		private ShardSequenceNumber seqNo;
 
 		@Nullable
+		private SparseVectorStats sparseVector;
+
+		@Nullable
 		private StoreStats store;
 
 		@Nullable
@@ -636,13 +682,14 @@ public class ShardStats implements JsonpSerializable {
 		private ShardsTotalStats shardStats;
 
 		@Nullable
-		private IndicesStats indices;
+		private Map<String, ShardStats> indices;
 
 		public Builder() {
 		}
 		private Builder(ShardStats instance) {
 			this.commit = instance.commit;
 			this.completion = instance.completion;
+			this.denseVector = instance.denseVector;
 			this.docs = instance.docs;
 			this.fielddata = instance.fielddata;
 			this.flush = instance.flush;
@@ -660,6 +707,7 @@ public class ShardStats implements JsonpSerializable {
 			this.search = instance.search;
 			this.segments = instance.segments;
 			this.seqNo = instance.seqNo;
+			this.sparseVector = instance.sparseVector;
 			this.store = instance.store;
 			this.translog = instance.translog;
 			this.warmer = instance.warmer;
@@ -697,6 +745,21 @@ public class ShardStats implements JsonpSerializable {
 		 */
 		public final Builder completion(Function<CompletionStats.Builder, ObjectBuilder<CompletionStats>> fn) {
 			return this.completion(fn.apply(new CompletionStats.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code dense_vector}
+		 */
+		public final Builder denseVector(@Nullable DenseVectorStats value) {
+			this.denseVector = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code dense_vector}
+		 */
+		public final Builder denseVector(Function<DenseVectorStats.Builder, ObjectBuilder<DenseVectorStats>> fn) {
+			return this.denseVector(fn.apply(new DenseVectorStats.Builder()).build());
 		}
 
 		/**
@@ -956,6 +1019,21 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code sparse_vector}
+		 */
+		public final Builder sparseVector(@Nullable SparseVectorStats value) {
+			this.sparseVector = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code sparse_vector}
+		 */
+		public final Builder sparseVector(Function<SparseVectorStats.Builder, ObjectBuilder<SparseVectorStats>> fn) {
+			return this.sparseVector(fn.apply(new SparseVectorStats.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code store}
 		 */
 		public final Builder store(@Nullable StoreStats value) {
@@ -1052,17 +1130,31 @@ public class ShardStats implements JsonpSerializable {
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>indices</code>.
 		 */
-		public final Builder indices(@Nullable IndicesStats value) {
-			this.indices = value;
+		public final Builder indices(Map<String, ShardStats> map) {
+			this.indices = _mapPutAll(this.indices, map);
 			return this;
 		}
 
 		/**
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code>.
 		 */
-		public final Builder indices(Function<IndicesStats.Builder, ObjectBuilder<IndicesStats>> fn) {
-			return this.indices(fn.apply(new IndicesStats.Builder()).build());
+		public final Builder indices(String key, ShardStats value) {
+			this.indices = _mapPut(this.indices, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code> using a builder lambda.
+		 */
+		public final Builder indices(String key, Function<ShardStats.Builder, ObjectBuilder<ShardStats>> fn) {
+			return indices(key, fn.apply(new ShardStats.Builder()).build());
 		}
 
 		@Override
@@ -1101,6 +1193,7 @@ public class ShardStats implements JsonpSerializable {
 
 		op.add(Builder::commit, ShardCommit._DESERIALIZER, "commit");
 		op.add(Builder::completion, CompletionStats._DESERIALIZER, "completion");
+		op.add(Builder::denseVector, DenseVectorStats._DESERIALIZER, "dense_vector");
 		op.add(Builder::docs, DocStats._DESERIALIZER, "docs");
 		op.add(Builder::fielddata, FielddataStats._DESERIALIZER, "fielddata");
 		op.add(Builder::flush, FlushStats._DESERIALIZER, "flush");
@@ -1118,13 +1211,14 @@ public class ShardStats implements JsonpSerializable {
 		op.add(Builder::search, SearchStats._DESERIALIZER, "search");
 		op.add(Builder::segments, SegmentsStats._DESERIALIZER, "segments");
 		op.add(Builder::seqNo, ShardSequenceNumber._DESERIALIZER, "seq_no");
+		op.add(Builder::sparseVector, SparseVectorStats._DESERIALIZER, "sparse_vector");
 		op.add(Builder::store, StoreStats._DESERIALIZER, "store");
 		op.add(Builder::translog, TranslogStats._DESERIALIZER, "translog");
 		op.add(Builder::warmer, WarmerStats._DESERIALIZER, "warmer");
 		op.add(Builder::bulk, BulkStats._DESERIALIZER, "bulk");
 		op.add(Builder::shards, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "shards");
 		op.add(Builder::shardStats, ShardsTotalStats._DESERIALIZER, "shard_stats");
-		op.add(Builder::indices, IndicesStats._DESERIALIZER, "indices");
+		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(ShardStats._DESERIALIZER), "indices");
 
 	}
 

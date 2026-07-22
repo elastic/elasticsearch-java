@@ -57,7 +57,12 @@ import javax.annotation.Nullable;
 // typedef: _global.bulk.OperationContainer
 
 /**
- *
+ * An action line, which is the first line of each operation in a bulk request.
+ * It specifies the action to perform (<code>index</code>, <code>create</code>,
+ * <code>update</code>, or <code>delete</code>) and its metadata, such as the
+ * target index and document ID. All actions except <code>delete</code> expect a
+ * source line to follow.
+ * 
  * @see <a href=
  *      "../../doc-files/api-spec.html#_global.bulk.OperationContainer">API
  *      specification</a>

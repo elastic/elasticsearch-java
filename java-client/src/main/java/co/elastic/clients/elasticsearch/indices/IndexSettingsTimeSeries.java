@@ -30,6 +30,7 @@ import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -65,12 +66,16 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 	@Nullable
 	private final DateTime startTime;
 
+	@Nullable
+	private final String temporalityField;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexSettingsTimeSeries(Builder builder) {
 
 		this.endTime = builder.endTime;
 		this.startTime = builder.startTime;
+		this.temporalityField = builder.temporalityField;
 
 	}
 
@@ -95,6 +100,18 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 	}
 
 	/**
+	 * The name of the field that stores the temporality of a metric. The referenced
+	 * field must be a <code>keyword</code> dimension field; if the setting is unset
+	 * or the field is missing or invalid, the metric temporality resolves to null.
+	 * <p>
+	 * API name: {@code temporality_field}
+	 */
+	@Nullable
+	public final String temporalityField() {
+		return this.temporalityField;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -112,6 +129,11 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 		if (this.startTime != null) {
 			generator.writeKey("start_time");
 			this.startTime.serialize(generator, mapper);
+		}
+		if (this.temporalityField != null) {
+			generator.writeKey("temporality_field");
+			generator.write(this.temporalityField);
+
 		}
 
 	}
@@ -136,11 +158,15 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 		@Nullable
 		private DateTime startTime;
 
+		@Nullable
+		private String temporalityField;
+
 		public Builder() {
 		}
 		private Builder(IndexSettingsTimeSeries instance) {
 			this.endTime = instance.endTime;
 			this.startTime = instance.startTime;
+			this.temporalityField = instance.temporalityField;
 
 		}
 		/**
@@ -156,6 +182,18 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 		 */
 		public final Builder startTime(@Nullable DateTime value) {
 			this.startTime = value;
+			return this;
+		}
+
+		/**
+		 * The name of the field that stores the temporality of a metric. The referenced
+		 * field must be a <code>keyword</code> dimension field; if the setting is unset
+		 * or the field is missing or invalid, the metric temporality resolves to null.
+		 * <p>
+		 * API name: {@code temporality_field}
+		 */
+		public final Builder temporalityField(@Nullable String value) {
+			this.temporalityField = value;
 			return this;
 		}
 
@@ -196,6 +234,7 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 
 		op.add(Builder::endTime, DateTime._DESERIALIZER, "end_time");
 		op.add(Builder::startTime, DateTime._DESERIALIZER, "start_time");
+		op.add(Builder::temporalityField, JsonpDeserializer.stringDeserializer(), "temporality_field");
 
 	}
 

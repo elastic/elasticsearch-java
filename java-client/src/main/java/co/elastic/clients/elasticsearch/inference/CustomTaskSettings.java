@@ -89,6 +89,14 @@ public class CustomTaskSettings implements JsonpSerializable {
 	 * }
 	 * </code>
 	 * </pre>
+	 * 
+	 * <blockquote>
+	 * <p>
+	 * warn The <code>task_settings.parameters</code> cannot contain the same keys
+	 * as <code>secret_parameters</code>. If they do, an error will be returned.
+	 * This applies to PUT requests and POST requests.
+	 * </p>
+	 * </blockquote>
 	 * <p>
 	 * API name: {@code parameters}
 	 */
@@ -157,6 +165,14 @@ public class CustomTaskSettings implements JsonpSerializable {
 		 * }
 		 * </code>
 		 * </pre>
+		 * 
+		 * <blockquote>
+		 * <p>
+		 * warn The <code>task_settings.parameters</code> cannot contain the same keys
+		 * as <code>secret_parameters</code>. If they do, an error will be returned.
+		 * This applies to PUT requests and POST requests.
+		 * </p>
+		 * </blockquote>
 		 * <p>
 		 * API name: {@code parameters}
 		 * <p>
@@ -180,6 +196,14 @@ public class CustomTaskSettings implements JsonpSerializable {
 		 * }
 		 * </code>
 		 * </pre>
+		 * 
+		 * <blockquote>
+		 * <p>
+		 * warn The <code>task_settings.parameters</code> cannot contain the same keys
+		 * as <code>secret_parameters</code>. If they do, an error will be returned.
+		 * This applies to PUT requests and POST requests.
+		 * </p>
+		 * </blockquote>
 		 * <p>
 		 * API name: {@code parameters}
 		 * <p>
@@ -203,6 +227,14 @@ public class CustomTaskSettings implements JsonpSerializable {
 		 * }
 		 * </code>
 		 * </pre>
+		 * 
+		 * <blockquote>
+		 * <p>
+		 * warn The <code>task_settings.parameters</code> cannot contain the same keys
+		 * as <code>secret_parameters</code>. If they do, an error will be returned.
+		 * This applies to PUT requests and POST requests.
+		 * </p>
+		 * </blockquote>
 		 * <p>
 		 * API name: {@code parameters}
 		 * <p>

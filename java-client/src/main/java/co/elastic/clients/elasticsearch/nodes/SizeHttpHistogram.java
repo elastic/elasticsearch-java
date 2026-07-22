@@ -31,6 +31,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -62,7 +63,13 @@ public class SizeHttpHistogram implements JsonpSerializable {
 	private final long count;
 
 	@Nullable
+	private final String ge;
+
+	@Nullable
 	private final Long geBytes;
+
+	@Nullable
+	private final String lt;
 
 	@Nullable
 	private final Long ltBytes;
@@ -72,7 +79,9 @@ public class SizeHttpHistogram implements JsonpSerializable {
 	private SizeHttpHistogram(Builder builder) {
 
 		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count", 0);
+		this.ge = builder.ge;
 		this.geBytes = builder.geBytes;
+		this.lt = builder.lt;
 		this.ltBytes = builder.ltBytes;
 
 	}
@@ -89,11 +98,27 @@ public class SizeHttpHistogram implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code ge}
+	 */
+	@Nullable
+	public final String ge() {
+		return this.ge;
+	}
+
+	/**
 	 * API name: {@code ge_bytes}
 	 */
 	@Nullable
 	public final Long geBytes() {
 		return this.geBytes;
+	}
+
+	/**
+	 * API name: {@code lt}
+	 */
+	@Nullable
+	public final String lt() {
+		return this.lt;
 	}
 
 	/**
@@ -118,9 +143,19 @@ public class SizeHttpHistogram implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
+		if (this.ge != null) {
+			generator.writeKey("ge");
+			generator.write(this.ge);
+
+		}
 		if (this.geBytes != null) {
 			generator.writeKey("ge_bytes");
 			generator.write(this.geBytes);
+
+		}
+		if (this.lt != null) {
+			generator.writeKey("lt");
+			generator.write(this.lt);
 
 		}
 		if (this.ltBytes != null) {
@@ -146,7 +181,13 @@ public class SizeHttpHistogram implements JsonpSerializable {
 		private Long count;
 
 		@Nullable
+		private String ge;
+
+		@Nullable
 		private Long geBytes;
+
+		@Nullable
+		private String lt;
 
 		@Nullable
 		private Long ltBytes;
@@ -155,7 +196,9 @@ public class SizeHttpHistogram implements JsonpSerializable {
 		}
 		private Builder(SizeHttpHistogram instance) {
 			this.count = instance.count;
+			this.ge = instance.ge;
 			this.geBytes = instance.geBytes;
+			this.lt = instance.lt;
 			this.ltBytes = instance.ltBytes;
 
 		}
@@ -168,10 +211,26 @@ public class SizeHttpHistogram implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code ge}
+		 */
+		public final Builder ge(@Nullable String value) {
+			this.ge = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code ge_bytes}
 		 */
 		public final Builder geBytes(@Nullable Long value) {
 			this.geBytes = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code lt}
+		 */
+		public final Builder lt(@Nullable String value) {
+			this.lt = value;
 			return this;
 		}
 
@@ -218,7 +277,9 @@ public class SizeHttpHistogram implements JsonpSerializable {
 	protected static void setupSizeHttpHistogramDeserializer(ObjectDeserializer<SizeHttpHistogram.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::ge, JsonpDeserializer.stringDeserializer(), "ge");
 		op.add(Builder::geBytes, JsonpDeserializer.longDeserializer(), "ge_bytes");
+		op.add(Builder::lt, JsonpDeserializer.stringDeserializer(), "lt");
 		op.add(Builder::ltBytes, JsonpDeserializer.longDeserializer(), "lt_bytes");
 
 	}

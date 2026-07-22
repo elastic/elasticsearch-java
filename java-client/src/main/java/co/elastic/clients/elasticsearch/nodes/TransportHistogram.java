@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -62,7 +63,13 @@ public class TransportHistogram implements JsonpSerializable {
 	private final Long count;
 
 	@Nullable
+	private final Time lt;
+
+	@Nullable
 	private final Long ltMillis;
+
+	@Nullable
+	private final Time ge;
 
 	@Nullable
 	private final Long geMillis;
@@ -72,7 +79,9 @@ public class TransportHistogram implements JsonpSerializable {
 	private TransportHistogram(Builder builder) {
 
 		this.count = builder.count;
+		this.lt = builder.lt;
 		this.ltMillis = builder.ltMillis;
+		this.ge = builder.ge;
 		this.geMillis = builder.geMillis;
 
 	}
@@ -93,6 +102,17 @@ public class TransportHistogram implements JsonpSerializable {
 	}
 
 	/**
+	 * The exclusive upper bound of the bucket. May be omitted on the last bucket if
+	 * this bucket has no upper bound.
+	 * <p>
+	 * API name: {@code lt}
+	 */
+	@Nullable
+	public final Time lt() {
+		return this.lt;
+	}
+
+	/**
 	 * The exclusive upper bound of the bucket in milliseconds. May be omitted on
 	 * the last bucket if this bucket has no upper bound.
 	 * <p>
@@ -101,6 +121,17 @@ public class TransportHistogram implements JsonpSerializable {
 	@Nullable
 	public final Long ltMillis() {
 		return this.ltMillis;
+	}
+
+	/**
+	 * The inclusive lower bound of the bucket. May be omitted on the first bucket
+	 * if this bucket has no lower bound.
+	 * <p>
+	 * API name: {@code ge}
+	 */
+	@Nullable
+	public final Time ge() {
+		return this.ge;
 	}
 
 	/**
@@ -130,9 +161,19 @@ public class TransportHistogram implements JsonpSerializable {
 			generator.write(this.count);
 
 		}
+		if (this.lt != null) {
+			generator.writeKey("lt");
+			this.lt.serialize(generator, mapper);
+
+		}
 		if (this.ltMillis != null) {
 			generator.writeKey("lt_millis");
 			generator.write(this.ltMillis);
+
+		}
+		if (this.ge != null) {
+			generator.writeKey("ge");
+			this.ge.serialize(generator, mapper);
 
 		}
 		if (this.geMillis != null) {
@@ -161,7 +202,13 @@ public class TransportHistogram implements JsonpSerializable {
 		private Long count;
 
 		@Nullable
+		private Time lt;
+
+		@Nullable
 		private Long ltMillis;
+
+		@Nullable
+		private Time ge;
 
 		@Nullable
 		private Long geMillis;
@@ -170,7 +217,9 @@ public class TransportHistogram implements JsonpSerializable {
 		}
 		private Builder(TransportHistogram instance) {
 			this.count = instance.count;
+			this.lt = instance.lt;
 			this.ltMillis = instance.ltMillis;
+			this.ge = instance.ge;
 			this.geMillis = instance.geMillis;
 
 		}
@@ -186,6 +235,27 @@ public class TransportHistogram implements JsonpSerializable {
 		}
 
 		/**
+		 * The exclusive upper bound of the bucket. May be omitted on the last bucket if
+		 * this bucket has no upper bound.
+		 * <p>
+		 * API name: {@code lt}
+		 */
+		public final Builder lt(@Nullable Time value) {
+			this.lt = value;
+			return this;
+		}
+
+		/**
+		 * The exclusive upper bound of the bucket. May be omitted on the last bucket if
+		 * this bucket has no upper bound.
+		 * <p>
+		 * API name: {@code lt}
+		 */
+		public final Builder lt(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.lt(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * The exclusive upper bound of the bucket in milliseconds. May be omitted on
 		 * the last bucket if this bucket has no upper bound.
 		 * <p>
@@ -194,6 +264,27 @@ public class TransportHistogram implements JsonpSerializable {
 		public final Builder ltMillis(@Nullable Long value) {
 			this.ltMillis = value;
 			return this;
+		}
+
+		/**
+		 * The inclusive lower bound of the bucket. May be omitted on the first bucket
+		 * if this bucket has no lower bound.
+		 * <p>
+		 * API name: {@code ge}
+		 */
+		public final Builder ge(@Nullable Time value) {
+			this.ge = value;
+			return this;
+		}
+
+		/**
+		 * The inclusive lower bound of the bucket. May be omitted on the first bucket
+		 * if this bucket has no lower bound.
+		 * <p>
+		 * API name: {@code ge}
+		 */
+		public final Builder ge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.ge(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -242,7 +333,9 @@ public class TransportHistogram implements JsonpSerializable {
 	protected static void setupTransportHistogramDeserializer(ObjectDeserializer<TransportHistogram.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
+		op.add(Builder::lt, Time._DESERIALIZER, "lt");
 		op.add(Builder::ltMillis, JsonpDeserializer.longDeserializer(), "lt_millis");
+		op.add(Builder::ge, Time._DESERIALIZER, "ge");
 		op.add(Builder::geMillis, JsonpDeserializer.longDeserializer(), "ge_millis");
 
 	}
