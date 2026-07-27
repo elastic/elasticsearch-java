@@ -82,10 +82,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
 
     protected final TransportHttpClient httpClient;
     // Single retry wrapper, shared by every request that uses retries (whether configured on the client or per
-    // request) and reading the effective RetryConfig from each call's TransportOptions. Created lazily on first
-    // use, so clients that never use retries keep the exact same object graph as before and never allocate a
-    // retry scheduler. Creation and close() are serialized on `this` so a wrapper can't be created after close
-    // and leak its scheduler.
+    // request) and reading the effective RetryConfig from each call's TransportOptions.
     private volatile RetryingHttpClient retryingHttpClient;
     // Guarded by `this`
     private boolean closed;
