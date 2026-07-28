@@ -22,6 +22,13 @@ public class BulkVectorIngestion {
         try (ElasticsearchClient esClient = ElasticsearchClient.of(e -> e.host("host").apiKey("apikey"));
              BulkIngester<Void> ingester = BulkIngester.of(b -> b.client(esClient))) {
 
+            esClient.indices().create(c -> c
+                .index("vector-index")
+                .mappings(m -> m
+                    .properties("emb", p -> p.denseVector(t -> t))
+                )
+            );
+
             DOCS.forEach(doc -> ingester.add(op -> op
                 .index(idx -> idx
                     .index("vector-index")
