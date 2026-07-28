@@ -84,7 +84,6 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
     // Single retry wrapper, shared by every request that uses retries (whether configured on the client or per
     // request) and reading the effective RetryConfig from each call's TransportOptions.
     private volatile RetryingHttpClient retryingHttpClient;
-    // Guarded by `this`
     private boolean closed;
     protected final Instrumentation instrumentation;
     protected final JsonpMapper mapper;
@@ -154,15 +153,14 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         return httpClient;
     }
 
-    // Returns the shared retry wrapper when this request uses retries, the bare http client otherwise. The
-    // wrapper is created lazily on first use, so clients that never retry keep the non-retry path untouched.
+    // Returns the shared retry wrapper when a request uses retries, the bare http client otherwise.
+    // Clients that never retry will never walk the retry path.
     private TransportHttpClient httpClientFor(TransportOptions options) {
         RetryConfig retryConfig = options.retryConfig();
         if (retryConfig == null || !retryConfig.isEnabled()) {
             return httpClient;
         }
-        // If the user supplied a client that already retries, don't wrap it a second time: both layers would
-        // read the same RetryConfig and multiply attempts.
+        // If the user supplied a client that already retries, don't wrap it a second time.
         if (httpClient instanceof RetryingHttpClient) {
             return httpClient;
         }

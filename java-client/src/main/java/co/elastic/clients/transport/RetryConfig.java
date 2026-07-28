@@ -37,26 +37,11 @@ import java.util.function.Consumer;
  * Delays and the maximum number of attempts are controlled by {@link #backoffPolicy()}, which must be set for
  * retries to happen: retries are always opt-in.
  * <p>
- * <b>Scope:</b> retries reissue the same logical request to the underlying transport. Node selection is delegated
- * to that transport (e.g. {@code Rest5Client}, {@code RestClient}), which manages its own node-rotation and
- * dead-node tracking independently. Configuring retries here does not control which node a retried
- * request is sent to. Note that for some failures (e.g. 502/503/504 responses and connection errors) the
- * underlying client already tries every configured node before reporting the failure, so the total number of
- * attempts on the cluster can be up to {@code nodes × (retries + 1)}.
- * <p>
- * <b>Idempotency:</b> a retried request may have already been received and processed by the server (e.g. when the
- * connection drops after the request was sent), giving at-least-once semantics. Most Elasticsearch APIs are
- * idempotent, but retrying operations that are not (e.g. bulk indexing without user-provided document ids) can
- * duplicate their effects. Choose {@link #retryableExceptions()} accordingly.
- * <p>
- * <b>Memory:</b> the request body stays referenced for the whole retry sequence, including backoff waits. With
- * large requests (e.g. big bulks) and long backoffs, this pins the corresponding buffers in memory until the
- * request completes or fails definitively.
  */
 public final class RetryConfig {
 
     /**
-     * Default set of HTTP status codes that trigger a retry: {@code 429, 500, 502, 503, 504}.
+     * Default set of HTTP status codes that trigger a retry.
      */
     public static final Set<Integer> DEFAULT_RETRYABLE_STATUSES = Set.of(429, 500, 502, 503, 504);
 
