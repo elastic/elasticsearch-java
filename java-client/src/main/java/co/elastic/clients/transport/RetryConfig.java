@@ -123,15 +123,13 @@ public final class RetryConfig {
     }
 
     public static final class Builder {
-        // Null means "not set", which build() rejects: enabling retries requires an explicit backoff policy,
-        // and a config accidentally built without one must fail fast rather than silently never retry.
+        // If left as null, defaults to BackoffPolicy.noBackoff()
         @Nullable
         private BackoffPolicy backoffPolicy;
         private Set<Integer> retryableStatuses = DEFAULT_RETRYABLE_STATUSES;
         private Set<Class<? extends Throwable>> retryableExceptions = DEFAULT_RETRYABLE_EXCEPTIONS;
 
         /**
-         * Sets the backoff policy controlling delays and the maximum number of retry attempts. Required.
          * Passing {@link BackoffPolicy#noBackoff()} (or {@code null}) explicitly disables retries, like
          * {@link RetryConfig#disabled()}.
          */
