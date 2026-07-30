@@ -128,7 +128,8 @@ public final class RetryingHttpClient implements TransportHttpClient {
             // keep running (and holding the request body and a connection) with nobody waiting.
             future.cancel(true);
             Thread.currentThread().interrupt();
-            throw new RuntimeException("thread waiting for the response was interrupted", ie);
+            throw (IOException) new java.io.InterruptedIOException("thread waiting for the response was interrupted")
+                .initCause(ie);
         } catch (ExecutionException ee) {
             Throwable cause = ee.getCause();
             if (cause instanceof IOException) {

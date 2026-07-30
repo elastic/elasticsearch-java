@@ -123,7 +123,8 @@ public final class RetryConfig {
     }
 
     public static final class Builder {
-        // If left as null, defaults to BackoffPolicy.noBackoff()
+        // If explicitly passed as null, defaults to BackoffPolicy.noBackoff()
+        // if unset, build() throws exception
         @Nullable
         private BackoffPolicy backoffPolicy;
         private Set<Integer> retryableStatuses = DEFAULT_RETRYABLE_STATUSES;
