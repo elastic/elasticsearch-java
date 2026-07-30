@@ -230,9 +230,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
             TransportHttpClient.Request clientReq = prepareTransportRequest(request, endpoint);
             ctx.beforeSendingHttpRequest(clientReq, options);
 
-            clientFuture = httpClient.performRequestAsync(
-                endpoint.id(), null, clientReq, opts
-            );
+            clientFuture = httpClientFor(opts).performRequestAsync(endpoint.id(), null, clientReq, opts);
         } catch (Exception e) {
             // Terminate early
             ctx.recordException(e);
@@ -241,13 +239,6 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
             future.completeExceptionally(e);
             return future;
         }
-
-        // Propagate required property checks to the thread that will decode the response
-        boolean disableRequiredChecks = ApiTypeHelper.requiredPropertiesCheckDisabled();
-
-        CompletableFuture<TransportHttpClient.Response> clientFuture = httpClientFor(opts).performRequestAsync(
-            endpoint.id(), null, clientReq, opts
-        );
 
         // Cancelling the result will cancel the upstream future created by the http client, allowing to
         // stop in-flight requests
