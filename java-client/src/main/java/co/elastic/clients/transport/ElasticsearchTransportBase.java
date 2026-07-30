@@ -32,6 +32,7 @@ import co.elastic.clients.transport.endpoints.TextResponse;
 import co.elastic.clients.transport.endpoints.TextEndpoint;
 import co.elastic.clients.transport.http.HeaderMap;
 import co.elastic.clients.transport.http.RepeatableBodyResponse;
+import co.elastic.clients.transport.http.RetryingHttpClient;
 import co.elastic.clients.transport.http.TransportHttpClient;
 import co.elastic.clients.transport.instrumentation.Instrumentation;
 import co.elastic.clients.transport.instrumentation.NoopInstrumentation;
@@ -80,6 +81,10 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
     }
 
     protected final TransportHttpClient httpClient;
+    // Single retry wrapper, shared by every request that uses retries (whether configured on the client or per
+    // request) and reading the effective RetryConfig from each call's TransportOptions.
+    private volatile RetryingHttpClient retryingHttpClient;
+    private boolean closed;
     protected final Instrumentation instrumentation;
     protected final JsonpMapper mapper;
     protected final TransportOptions transportOptions;
@@ -120,7 +125,18 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
 
     @Override
     public void close() throws IOException {
-        httpClient.close();
+        // The retry wrapper, if it was ever created, owns the delegate and the retry scheduler, so closing it
+        // also closes httpClient and shuts down the scheduler. Otherwise close httpClient directly.
+        RetryingHttpClient retrying;
+        synchronized (this) {
+            closed = true;
+            retrying = retryingHttpClient;
+        }
+        if (retrying != null) {
+            retrying.close();
+        } else {
+            httpClient.close();
+        }
     }
 
     @Override
@@ -137,6 +153,37 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
         return httpClient;
     }
 
+    // Returns the shared retry wrapper when a request uses retries, the bare http client otherwise.
+    // Clients that never retry will never walk the retry path.
+    private TransportHttpClient httpClientFor(TransportOptions options) {
+        RetryConfig retryConfig = options.retryConfig();
+        if (retryConfig == null || !retryConfig.isEnabled()) {
+            return httpClient;
+        }
+        // If the user supplied a client that already retries, don't wrap it a second time.
+        if (httpClient instanceof RetryingHttpClient) {
+            return httpClient;
+        }
+        return retryingHttpClient();
+    }
+
+    private RetryingHttpClient retryingHttpClient() {
+        RetryingHttpClient client = retryingHttpClient;
+        if (client == null) {
+            synchronized (this) {
+                if (closed) {
+                    throw new IllegalStateException("Transport has been closed");
+                }
+                client = retryingHttpClient;
+                if (client == null) {
+                    client = new RetryingHttpClient(httpClient);
+                    retryingHttpClient = client;
+                }
+            }
+        }
+        return client;
+    }
+
     @Override
     public final <RequestT, ResponseT, ErrorT> ResponseT performRequest(
         RequestT request,
@@ -151,7 +198,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
                 TransportHttpClient.Request req = prepareTransportRequest(request, endpoint);
                 ctx.beforeSendingHttpRequest(req, options);
 
-                TransportHttpClient.Response resp = httpClient.performRequest(endpoint.id(), null, req, opts);
+                TransportHttpClient.Response resp = httpClientFor(opts).performRequest(endpoint.id(), null, req, opts);
                 ctx.afterReceivingHttpResponse(resp);
 
                 ResponseT apiResponse = getApiResponse(resp, endpoint);
@@ -183,9 +230,7 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
             TransportHttpClient.Request clientReq = prepareTransportRequest(request, endpoint);
             ctx.beforeSendingHttpRequest(clientReq, options);
 
-            clientFuture = httpClient.performRequestAsync(
-                endpoint.id(), null, clientReq, opts
-            );
+            clientFuture = httpClientFor(opts).performRequestAsync(endpoint.id(), null, clientReq, opts);
         } catch (Exception e) {
             // Terminate early
             ctx.recordException(e);
