@@ -38,6 +38,7 @@ public class DefaultTransportOptions implements TransportOptions {
     private final Map<String, String> parameters;
     private final Function<List<String>, Boolean> onWarnings;
     private boolean keepResponseBodyOnException;
+    private RetryConfig retryConfig;
 
     public static final DefaultTransportOptions EMPTY = new DefaultTransportOptions();
 
@@ -51,8 +52,19 @@ public class DefaultTransportOptions implements TransportOptions {
         @Nullable Function<List<String>, Boolean> onWarnings,
         boolean keepResponseBodyOnException
     ) {
-        this(headers,parameters,onWarnings);
+        this(headers, parameters, onWarnings, keepResponseBodyOnException, RetryConfig.disabled());
+    }
+
+    public DefaultTransportOptions(
+        @Nullable HeaderMap headers,
+        @Nullable Map<String, String> parameters,
+        @Nullable Function<List<String>, Boolean> onWarnings,
+        boolean keepResponseBodyOnException,
+        @Nullable RetryConfig retryConfig
+    ) {
+        this(headers, parameters, onWarnings);
         this.keepResponseBodyOnException = keepResponseBodyOnException;
+        this.retryConfig = retryConfig == null ? RetryConfig.disabled() : retryConfig;
     }
 
     public DefaultTransportOptions(
@@ -65,10 +77,11 @@ public class DefaultTransportOptions implements TransportOptions {
             Collections.emptyMap() : Collections.unmodifiableMap(parameters);
         this.onWarnings = onWarnings;
         this.keepResponseBodyOnException = false;
+        this.retryConfig = RetryConfig.disabled();
     }
 
     protected DefaultTransportOptions(AbstractBuilder<?> builder) {
-        this(builder.headers, builder.parameters, builder.onWarnings, builder.keepResponseBodyOnException);
+        this(builder.headers, builder.parameters, builder.onWarnings, builder.keepResponseBodyOnException, builder.retryConfig);
     }
 
     public static DefaultTransportOptions of(@Nullable TransportOptions options) {
@@ -112,6 +125,11 @@ public class DefaultTransportOptions implements TransportOptions {
     }
 
     @Override
+    public RetryConfig retryConfig() {
+        return retryConfig;
+    }
+
+    @Override
     public Builder toBuilder() {
         return new Builder(this);
     }
@@ -135,6 +153,7 @@ public class DefaultTransportOptions implements TransportOptions {
         private Map<String, String> parameters;
         private Function<List<String>, Boolean> onWarnings;
         private boolean keepResponseBodyOnException;
+        private RetryConfig retryConfig = RetryConfig.disabled();
 
         public AbstractBuilder() {
         }
@@ -144,6 +163,7 @@ public class DefaultTransportOptions implements TransportOptions {
             this.parameters = copyOrNull(options.parameters);
             this.onWarnings = options.onWarnings;
             this.keepResponseBodyOnException = options.keepResponseBodyOnException;
+            this.retryConfig = options.retryConfig == null ? RetryConfig.disabled() : options.retryConfig;
         }
 
         protected abstract BuilderT self();
@@ -151,6 +171,12 @@ public class DefaultTransportOptions implements TransportOptions {
         @Override
         public BuilderT keepResponseBodyOnException(boolean value) {
             this.keepResponseBodyOnException = value;
+            return self();
+        }
+
+        @Override
+        public BuilderT retryConfig(RetryConfig config) {
+            this.retryConfig = config == null ? RetryConfig.disabled() : config;
             return self();
         }
 

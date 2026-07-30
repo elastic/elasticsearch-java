@@ -19,6 +19,7 @@
 
 package co.elastic.clients.transport.rest_client;
 
+import co.elastic.clients.transport.RetryConfig;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.http.HeaderMap;
@@ -44,6 +45,8 @@ public class RestClientOptions implements TransportOptions {
 
     boolean keepResponseBodyOnException;
 
+    private final RetryConfig retryConfig;
+
     @VisibleForTesting
     static final String CLIENT_META_VALUE = getClientMeta();
     @VisibleForTesting
@@ -62,11 +65,18 @@ public class RestClientOptions implements TransportOptions {
         options.headers().forEach(h -> builder.addHeader(h.getKey(), h.getValue()));
         options.queryParameters().forEach(builder::setParameter);
         builder.onWarnings(options.onWarnings());
+        builder.keepResponseBodyOnException(options.keepResponseBodyOnException());
+        builder.retryConfig(options.retryConfig());
         return builder.build();
     }
 
     public RestClientOptions(RequestOptions options, boolean keepResponseBodyOnException) {
+        this(options, keepResponseBodyOnException, RetryConfig.disabled());
+    }
+
+    public RestClientOptions(RequestOptions options, boolean keepResponseBodyOnException, RetryConfig retryConfig) {
         this.keepResponseBodyOnException = keepResponseBodyOnException;
+        this.retryConfig = retryConfig == null ? RetryConfig.disabled() : retryConfig;
         this.options = addBuiltinHeaders(options.toBuilder()).build();
     }
 
@@ -113,8 +123,16 @@ public class RestClientOptions implements TransportOptions {
     }
 
     @Override
+    public RetryConfig retryConfig() {
+        return retryConfig;
+    }
+
+    @Override
     public Builder toBuilder() {
-        return new Builder(options.toBuilder());
+        Builder b = new Builder(options.toBuilder());
+        b.keepResponseBodyOnException(keepResponseBodyOnException);
+        b.retryConfig(retryConfig);
+        return b;
     }
 
     public static class Builder implements TransportOptions.Builder {
@@ -122,6 +140,8 @@ public class RestClientOptions implements TransportOptions {
         private RequestOptions.Builder builder;
 
         private boolean keepResponseBodyOnException;
+
+        private RetryConfig retryConfig = RetryConfig.disabled();
 
         public Builder(RequestOptions.Builder builder) {
             this.builder = builder;
@@ -203,8 +223,14 @@ public class RestClientOptions implements TransportOptions {
         }
 
         @Override
+        public TransportOptions.Builder retryConfig(RetryConfig config) {
+            this.retryConfig = config == null ? RetryConfig.disabled() : config;
+            return this;
+        }
+
+        @Override
         public RestClientOptions build() {
-            return new RestClientOptions(addBuiltinHeaders(builder).build(), keepResponseBodyOnException);
+            return new RestClientOptions(addBuiltinHeaders(builder).build(), keepResponseBodyOnException, retryConfig);
         }
     }
 
