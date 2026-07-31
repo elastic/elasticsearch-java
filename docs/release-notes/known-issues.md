@@ -9,9 +9,9 @@ For detailed issues, refer to the [Java client repo](https://github.com/elastic/
 
 ## 9.x (up to 9.4.4) [known-issues-9-x-up-to-9-4-4]
 
-Original report on [GitHub](https://github.com/elastic/elasticsearch-java/issues/1289).
+Original report on [GitHub](https://github.com/elastic/elasticsearch-java/issues/1289).  
 All 9.x versions of the client previous to, respectively, 9.2.9, 9.3.9 and 9.4.5 are affected by a bug in transitive library [httpcore5](https://mvnrepository.com/artifact/org.apache.httpcomponents.core5/httpcore5), which causes a performance regression for network latency.
-The bug only concerns the `Rest5Client`, not the legacy `RestClient`
+The bug only concerns the `Rest5Client`, not the legacy `RestClient`.  
 This problem was [fixed](https://github.com/elastic/elasticsearch-java/pull/1292) in 9.2.9, 9.3.9 and 9.4.5.
 Detailed version info:
 
