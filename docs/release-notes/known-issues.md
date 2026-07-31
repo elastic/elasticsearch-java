@@ -7,6 +7,23 @@ navigation_title: "Known issues"
 
 For detailed issues, refer to the [Java client repo](https://github.com/elastic/elasticsearch-java/issues).
 
+## 9.x (up to 9.4.4) [known-issues-9-x-up-to-9-4-4]
+
+Original report on [GitHub](https://github.com/elastic/elasticsearch-java/issues/1289).
+All 9.x versions of the client previous to, respectively, 9.2.9, 9.3.9 and 9.4.5 are affected by a bug in transitive library [httpcore5](https://mvnrepository.com/artifact/org.apache.httpcomponents.core5/httpcore5), which causes a performance regression for network latency.
+The bug only concerns the `Rest5Client`, not the legacy `RestClient`
+This problem was [fixed](https://github.com/elastic/elasticsearch-java/pull/1292) in 9.2.9, 9.3.9 and 9.4.5.
+Detailed version info:
+
+| Version | Affected Releases | Update to |
+  |---------|------------------|-----------|
+| 9.0     | 9.0.10, 9.0.11   | 9.2.9     |
+| 9.1     | 9.1.11, 9.1.12   | 9.2.9     |
+| 9.2     | 9.2.5 -> 9.2.8   | 9.2.9     |
+| 9.3     | 9.3.0 -> 9.3.8   | 9.3.9     |
+| 9.4     | 9.4.0 -> 9.4.4   | 9.4.5     |
+
+
 ## 9.3.0 [known-issues-9-3-0]
 
 Version 9.3.0 of the client introduced a long list of breaking changes to better represent the server's API, but some of the [changes](9-3-0.md) from `String` to `List<String>` were wrong and have been fixed with the 9.3.1 release.
@@ -61,7 +78,7 @@ Here's the list of the reverted changes:
 
 ::::
 
-## 9.x [known-issues-9-x]
+## 9.x (up to 9.2.4) [known-issues-9-x-up-to-9-2-4]
 
 All 9.x versions of the client previous to, respectively, 9.2.4, 9.1.10 and 9.0.9 are affected by a bug with the new Rest5Client where memory usage is substantially higher than necessary.
 This problem was [fixed](https://github.com/elastic/elasticsearch-java/pull/1122) in 9.2.4, 9.1.10 and 9.0.9.
