@@ -253,10 +253,9 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	 * processor architecture and OS combination, then this field specifies which.
 	 * The format of the string must match the platform identifiers used by
 	 * Elasticsearch, so one of, <code>linux-x86_64</code>,
-	 * <code>linux-aarch64</code>, <code>darwin-x86_64</code>,
-	 * <code>darwin-aarch64</code>, or <code>windows-x86_64</code>. For portable
-	 * models (those that work independent of processor architecture or OS
-	 * features), leave this field unset.
+	 * <code>linux-aarch64</code>, <code>darwin-aarch64</code>, or
+	 * <code>windows-x86_64</code>. For portable models (those that work independent
+	 * of processor architecture or OS features), leave this field unset.
 	 * <p>
 	 * API name: {@code platform_architecture}
 	 */
@@ -597,10 +596,9 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		 * processor architecture and OS combination, then this field specifies which.
 		 * The format of the string must match the platform identifiers used by
 		 * Elasticsearch, so one of, <code>linux-x86_64</code>,
-		 * <code>linux-aarch64</code>, <code>darwin-x86_64</code>,
-		 * <code>darwin-aarch64</code>, or <code>windows-x86_64</code>. For portable
-		 * models (those that work independent of processor architecture or OS
-		 * features), leave this field unset.
+		 * <code>linux-aarch64</code>, <code>darwin-aarch64</code>, or
+		 * <code>windows-x86_64</code>. For portable models (those that work independent
+		 * of processor architecture or OS features), leave this field unset.
 		 * <p>
 		 * API name: {@code platform_architecture}
 		 */

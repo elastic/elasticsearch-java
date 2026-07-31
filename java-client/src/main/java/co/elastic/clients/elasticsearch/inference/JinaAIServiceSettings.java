@@ -75,7 +75,7 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 	private final Integer dimensions;
 
 	@Nullable
-	private final JinaAIElementType elementType;
+	private final JinaAIElementType embeddingType;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -86,7 +86,7 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 		this.rateLimit = builder.rateLimit;
 		this.similarity = builder.similarity;
 		this.dimensions = builder.dimensions;
-		this.elementType = builder.elementType;
+		this.embeddingType = builder.embeddingType;
 
 	}
 
@@ -161,11 +161,11 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 	 * are encoded as bytes with signed int8 precision (this is a synonym of
 	 * <code>bit</code>). Use <code>float</code> for the default float embeddings.
 	 * <p>
-	 * API name: {@code element_type}
+	 * API name: {@code embedding_type}
 	 */
 	@Nullable
-	public final JinaAIElementType elementType() {
-		return this.elementType;
+	public final JinaAIElementType embeddingType() {
+		return this.embeddingType;
 	}
 
 	/**
@@ -199,9 +199,9 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 			generator.write(this.dimensions);
 
 		}
-		if (this.elementType != null) {
-			generator.writeKey("element_type");
-			this.elementType.serialize(generator, mapper);
+		if (this.embeddingType != null) {
+			generator.writeKey("embedding_type");
+			this.embeddingType.serialize(generator, mapper);
 		}
 
 	}
@@ -234,7 +234,7 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 		private Integer dimensions;
 
 		@Nullable
-		private JinaAIElementType elementType;
+		private JinaAIElementType embeddingType;
 
 		public Builder() {
 		}
@@ -244,7 +244,7 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 			this.rateLimit = instance.rateLimit;
 			this.similarity = instance.similarity;
 			this.dimensions = instance.dimensions;
-			this.elementType = instance.elementType;
+			this.embeddingType = instance.embeddingType;
 
 		}
 		/**
@@ -327,10 +327,10 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 		 * are encoded as bytes with signed int8 precision (this is a synonym of
 		 * <code>bit</code>). Use <code>float</code> for the default float embeddings.
 		 * <p>
-		 * API name: {@code element_type}
+		 * API name: {@code embedding_type}
 		 */
-		public final Builder elementType(@Nullable JinaAIElementType value) {
-			this.elementType = value;
+		public final Builder embeddingType(@Nullable JinaAIElementType value) {
+			this.embeddingType = value;
 			return this;
 		}
 
@@ -373,7 +373,7 @@ public class JinaAIServiceSettings implements JsonpSerializable {
 		op.add(Builder::rateLimit, RateLimitSetting._DESERIALIZER, "rate_limit");
 		op.add(Builder::similarity, JinaAISimilarityType._DESERIALIZER, "similarity");
 		op.add(Builder::dimensions, JsonpDeserializer.integerDeserializer(), "dimensions");
-		op.add(Builder::elementType, JinaAIElementType._DESERIALIZER, "element_type");
+		op.add(Builder::embeddingType, JinaAIElementType._DESERIALIZER, "embedding_type");
 
 	}
 
