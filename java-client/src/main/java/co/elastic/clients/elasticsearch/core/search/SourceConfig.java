@@ -25,15 +25,17 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.json.UnionDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.Boolean;
 import java.lang.Object;
+import java.util.EnumSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -181,12 +183,23 @@ public class SourceConfig implements TaggedUnion<SourceConfig.Kind, Object>, Jso
 
 	}
 
-	private static JsonpDeserializer<SourceConfig> buildSourceConfigDeserializer() {
-		return new UnionDeserializer.Builder<SourceConfig, Kind, Object>(SourceConfig::new, false)
-				.addMember(Kind.Filter, SourceFilter._DESERIALIZER)
-				.addMember(Kind.Fetch, JsonpDeserializer.booleanDeserializer()).build();
-	}
-
 	public static final JsonpDeserializer<SourceConfig> _DESERIALIZER = JsonpDeserializer
-			.lazy(SourceConfig::buildSourceConfigDeserializer);
+			.lazy(() -> JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT, JsonParser.Event.START_ARRAY,
+					JsonParser.Event.VALUE_TRUE, JsonParser.Event.VALUE_FALSE), (parser, mapper, event) -> {
+						return switch (event) {
+							case VALUE_TRUE -> SourceConfig.of(b -> b.fetch(true));
+							case VALUE_FALSE -> SourceConfig.of(b -> b.fetch(false));
+							case START_ARRAY -> {
+								List<String> includes = JsonpDeserializer
+										.arrayDeserializer(JsonpDeserializer.stringDeserializer())
+										.deserialize(parser, mapper, event);
+								yield SourceConfig.of(b -> b.filter(f -> f.includes(includes)));
+							}
+							case START_OBJECT -> {
+								SourceFilter filter = SourceFilter._DESERIALIZER.deserialize(parser, mapper, event);
+								yield SourceConfig.of(b -> b.filter(filter));
+							}
+							default -> null;
+						};
+					}));
 }
