@@ -171,7 +171,9 @@ public class DataStreamLifecycle implements JsonpSerializable {
 	}
 
 	/**
-	 * Only available with feature flag dlm_searchable_snapshots.
+	 * The period after which data stream backing indices are automatically
+	 * converted to partially mounted searchable snapshots. This field is valid only
+	 * on main data stream lifecycles and cannot be set on failure-store lifecycles.
 	 * <p>
 	 * API name: {@code frozen_after}
 	 */
@@ -406,7 +408,9 @@ public class DataStreamLifecycle implements JsonpSerializable {
 		}
 
 		/**
-		 * Only available with feature flag dlm_searchable_snapshots.
+		 * The period after which data stream backing indices are automatically
+		 * converted to partially mounted searchable snapshots. This field is valid only
+		 * on main data stream lifecycles and cannot be set on failure-store lifecycles.
 		 * <p>
 		 * API name: {@code frozen_after}
 		 */
@@ -416,7 +420,9 @@ public class DataStreamLifecycle implements JsonpSerializable {
 		}
 
 		/**
-		 * Only available with feature flag dlm_searchable_snapshots.
+		 * The period after which data stream backing indices are automatically
+		 * converted to partially mounted searchable snapshots. This field is valid only
+		 * on main data stream lifecycles and cannot be set on failure-store lifecycles.
 		 * <p>
 		 * API name: {@code frozen_after}
 		 */
