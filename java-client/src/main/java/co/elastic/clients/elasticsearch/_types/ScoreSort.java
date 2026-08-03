@@ -66,18 +66,23 @@ public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
 
 		this.order = builder.order;
 
+		this._sortOptionsKind = builder._sortOptionsKind;
+
 	}
 
 	public static ScoreSort of(Function<Builder, ObjectBuilder<ScoreSort>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
+	@Nullable
+	private SortOptions.Kind _sortOptionsKind;
+
 	/**
 	 * SortOptions variant kind.
 	 */
 	@Override
 	public SortOptions.Kind _sortOptionsKind() {
-		return SortOptions.Kind.Doc;
+		return _sortOptionsKind == null ? SortOptions.Kind.Doc : _sortOptionsKind;
 	}
 
 	/**
@@ -120,6 +125,14 @@ public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ScoreSort> {
 		@Nullable
 		private SortOrder order;
+
+		@Nullable
+		private SortOptions.Kind _sortOptionsKind;
+
+		Builder _sortOptionsKind(@Nullable SortOptions.Kind value) {
+			this._sortOptionsKind = value;
+			return this;
+		}
 
 		public Builder() {
 		}

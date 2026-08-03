@@ -49,7 +49,9 @@ public class TokenizationConfigBuilders {
 	 * {@code TokenizationConfig} variant.
 	 */
 	public static NlpBertTokenizationConfig.Builder bert() {
-		return new NlpBertTokenizationConfig.Builder();
+		NlpBertTokenizationConfig.Builder builder = new NlpBertTokenizationConfig.Builder();
+		builder._tokenizationConfigKind(TokenizationConfig.Kind.Bert);
+		return builder;
 	}
 
 	/**
@@ -68,7 +70,9 @@ public class TokenizationConfigBuilders {
 	 * {@code TokenizationConfig} variant.
 	 */
 	public static NlpBertTokenizationConfig.Builder bertJa() {
-		return new NlpBertTokenizationConfig.Builder();
+		NlpBertTokenizationConfig.Builder builder = new NlpBertTokenizationConfig.Builder();
+		builder._tokenizationConfigKind(TokenizationConfig.Kind.BertJa);
+		return builder;
 	}
 
 	/**
@@ -87,7 +91,9 @@ public class TokenizationConfigBuilders {
 	 * {@code TokenizationConfig} variant.
 	 */
 	public static NlpBertTokenizationConfig.Builder mpnet() {
-		return new NlpBertTokenizationConfig.Builder();
+		NlpBertTokenizationConfig.Builder builder = new NlpBertTokenizationConfig.Builder();
+		builder._tokenizationConfigKind(TokenizationConfig.Kind.Mpnet);
+		return builder;
 	}
 
 	/**

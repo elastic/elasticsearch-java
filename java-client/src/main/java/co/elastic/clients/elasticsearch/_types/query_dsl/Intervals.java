@@ -103,12 +103,15 @@ public class Intervals implements TaggedUnion<Intervals.Kind, Object>, Intervals
 
 	}
 
+	@Nullable
+	private IntervalsFilter.Kind _intervalsFilterKind;
+
 	/**
 	 * IntervalsFilter variant kind.
 	 */
 	@Override
 	public IntervalsFilter.Kind _intervalsFilterKind() {
-		return IntervalsFilter.Kind.Overlapping;
+		return _intervalsFilterKind == null ? IntervalsFilter.Kind.Overlapping : _intervalsFilterKind;
 	}
 
 	private final Kind _kind;
@@ -135,6 +138,8 @@ public class Intervals implements TaggedUnion<Intervals.Kind, Object>, Intervals
 
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+
+		this._intervalsFilterKind = builder._intervalsFilterKind;
 
 	}
 
@@ -301,6 +306,14 @@ public class Intervals implements TaggedUnion<Intervals.Kind, Object>, Intervals
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Intervals> {
 		private Kind _kind;
 		private Object _value;
+
+		@Nullable
+		private IntervalsFilter.Kind _intervalsFilterKind;
+
+		Builder _intervalsFilterKind(@Nullable IntervalsFilter.Kind value) {
+			this._intervalsFilterKind = value;
+			return this;
+		}
 
 		@Override
 		protected Builder self() {

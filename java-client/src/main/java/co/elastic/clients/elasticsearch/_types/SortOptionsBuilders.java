@@ -49,7 +49,9 @@ public class SortOptionsBuilders {
 	 * variant.
 	 */
 	public static ScoreSort.Builder score() {
-		return new ScoreSort.Builder();
+		ScoreSort.Builder builder = new ScoreSort.Builder();
+		builder._sortOptionsKind(SortOptions.Kind.Score);
+		return builder;
 	}
 
 	/**
@@ -66,7 +68,9 @@ public class SortOptionsBuilders {
 	 * Creates a builder for the {@link ScoreSort _doc} {@code SortOptions} variant.
 	 */
 	public static ScoreSort.Builder doc() {
-		return new ScoreSort.Builder();
+		ScoreSort.Builder builder = new ScoreSort.Builder();
+		builder._sortOptionsKind(SortOptions.Kind.Doc);
+		return builder;
 	}
 
 	/**
