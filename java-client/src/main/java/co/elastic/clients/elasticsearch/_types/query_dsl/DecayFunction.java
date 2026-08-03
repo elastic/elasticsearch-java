@@ -98,12 +98,15 @@ public class DecayFunction
 
 	}
 
+	@Nullable
+	private FunctionScore.Kind _functionScoreKind;
+
 	/**
 	 * FunctionScore variant kind.
 	 */
 	@Override
 	public FunctionScore.Kind _functionScoreKind() {
-		return FunctionScore.Kind.Linear;
+		return _functionScoreKind == null ? FunctionScore.Kind.Linear : _functionScoreKind;
 	}
 
 	private final Kind _kind;
@@ -135,6 +138,8 @@ public class DecayFunction
 
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+
+		this._functionScoreKind = builder._functionScoreKind;
 
 	}
 
@@ -225,6 +230,14 @@ public class DecayFunction
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DecayFunction> {
 		private Kind _kind;
 		private DecayFunctionVariant _value;
+
+		@Nullable
+		private FunctionScore.Kind _functionScoreKind;
+
+		Builder _functionScoreKind(@Nullable FunctionScore.Kind value) {
+			this._functionScoreKind = value;
+			return this;
+		}
 
 		public ObjectBuilder<DecayFunction> date(DateDecayFunction v) {
 			this._kind = Kind.Date;

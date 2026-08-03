@@ -49,7 +49,9 @@ public class FunctionScoreBuilders {
 	 * variant.
 	 */
 	public static DecayFunction.Builder exp() {
-		return new DecayFunction.Builder();
+		DecayFunction.Builder builder = new DecayFunction.Builder();
+		builder._functionScoreKind(FunctionScore.Kind.Exp);
+		return builder;
 	}
 
 	/**
@@ -67,7 +69,9 @@ public class FunctionScoreBuilders {
 	 * variant.
 	 */
 	public static DecayFunction.Builder gauss() {
-		return new DecayFunction.Builder();
+		DecayFunction.Builder builder = new DecayFunction.Builder();
+		builder._functionScoreKind(FunctionScore.Kind.Gauss);
+		return builder;
 	}
 
 	/**
@@ -85,7 +89,9 @@ public class FunctionScoreBuilders {
 	 * variant.
 	 */
 	public static DecayFunction.Builder linear() {
-		return new DecayFunction.Builder();
+		DecayFunction.Builder builder = new DecayFunction.Builder();
+		builder._functionScoreKind(FunctionScore.Kind.Linear);
+		return builder;
 	}
 
 	/**

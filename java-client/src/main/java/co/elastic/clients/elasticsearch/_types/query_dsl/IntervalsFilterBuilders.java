@@ -50,7 +50,9 @@ public class IntervalsFilterBuilders {
 	 * variant.
 	 */
 	public static Intervals.Builder after() {
-		return new Intervals.Builder();
+		Intervals.Builder builder = new Intervals.Builder();
+		builder._intervalsFilterKind(IntervalsFilter.Kind.After);
+		return builder;
 	}
 
 	/**
@@ -68,7 +70,9 @@ public class IntervalsFilterBuilders {
 	 * variant.
 	 */
 	public static Intervals.Builder before() {
-		return new Intervals.Builder();
+		Intervals.Builder builder = new Intervals.Builder();
+		builder._intervalsFilterKind(IntervalsFilter.Kind.Before);
+		return builder;
 	}
 
 	/**
@@ -86,7 +90,9 @@ public class IntervalsFilterBuilders {
 	 * {@code IntervalsFilter} variant.
 	 */
 	public static Intervals.Builder containedBy() {
-		return new Intervals.Builder();
+		Intervals.Builder builder = new Intervals.Builder();
+		builder._intervalsFilterKind(IntervalsFilter.Kind.ContainedBy);
+		return builder;
 	}
 
 	/**
@@ -104,7 +110,9 @@ public class IntervalsFilterBuilders {
 	 * {@code IntervalsFilter} variant.
 	 */
 	public static Intervals.Builder containing() {
-		return new Intervals.Builder();
+		Intervals.Builder builder = new Intervals.Builder();
+		builder._intervalsFilterKind(IntervalsFilter.Kind.Containing);
+		return builder;
 	}
 
 	/**
@@ -122,7 +130,9 @@ public class IntervalsFilterBuilders {
 	 * {@code IntervalsFilter} variant.
 	 */
 	public static Intervals.Builder notContainedBy() {
-		return new Intervals.Builder();
+		Intervals.Builder builder = new Intervals.Builder();
+		builder._intervalsFilterKind(IntervalsFilter.Kind.NotContainedBy);
+		return builder;
 	}
 
 	/**
@@ -140,7 +150,9 @@ public class IntervalsFilterBuilders {
 	 * {@code IntervalsFilter} variant.
 	 */
 	public static Intervals.Builder notContaining() {
-		return new Intervals.Builder();
+		Intervals.Builder builder = new Intervals.Builder();
+		builder._intervalsFilterKind(IntervalsFilter.Kind.NotContaining);
+		return builder;
 	}
 
 	/**
@@ -158,7 +170,9 @@ public class IntervalsFilterBuilders {
 	 * {@code IntervalsFilter} variant.
 	 */
 	public static Intervals.Builder notOverlapping() {
-		return new Intervals.Builder();
+		Intervals.Builder builder = new Intervals.Builder();
+		builder._intervalsFilterKind(IntervalsFilter.Kind.NotOverlapping);
+		return builder;
 	}
 
 	/**
@@ -176,7 +190,9 @@ public class IntervalsFilterBuilders {
 	 * {@code IntervalsFilter} variant.
 	 */
 	public static Intervals.Builder overlapping() {
-		return new Intervals.Builder();
+		Intervals.Builder builder = new Intervals.Builder();
+		builder._intervalsFilterKind(IntervalsFilter.Kind.Overlapping);
+		return builder;
 	}
 
 	/**

@@ -49,7 +49,9 @@ public class DataframeAnalyticsStatsBuilders {
 	 * classification_stats} {@code DataframeAnalyticsStats} variant.
 	 */
 	public static DataframeAnalyticsStatsHyperparameters.Builder classificationStats() {
-		return new DataframeAnalyticsStatsHyperparameters.Builder();
+		DataframeAnalyticsStatsHyperparameters.Builder builder = new DataframeAnalyticsStatsHyperparameters.Builder();
+		builder._dataframeAnalyticsStatsKind(DataframeAnalyticsStats.Kind.ClassificationStats);
+		return builder;
 	}
 
 	/**
@@ -89,7 +91,9 @@ public class DataframeAnalyticsStatsBuilders {
 	 * regression_stats} {@code DataframeAnalyticsStats} variant.
 	 */
 	public static DataframeAnalyticsStatsHyperparameters.Builder regressionStats() {
-		return new DataframeAnalyticsStatsHyperparameters.Builder();
+		DataframeAnalyticsStatsHyperparameters.Builder builder = new DataframeAnalyticsStatsHyperparameters.Builder();
+		builder._dataframeAnalyticsStatsKind(DataframeAnalyticsStats.Kind.RegressionStats);
+		return builder;
 	}
 
 	/**
