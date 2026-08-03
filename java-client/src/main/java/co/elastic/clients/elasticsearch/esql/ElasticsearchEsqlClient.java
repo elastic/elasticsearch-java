@@ -78,7 +78,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 * delete the dependent datasets first.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-delete-data-source">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -101,7 +101,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteDataSourceRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-delete-data-source">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -120,7 +120,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 * dataset does not exist, the request fails and no datasets are deleted.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-delete-dataset">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -142,7 +142,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteDatasetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-delete-dataset">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -199,7 +199,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 * request with no match returns <code>200</code> with an empty array.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-get-data-source">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -222,7 +222,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 *            a function that initializes a builder to create the
 	 *            {@link GetDataSourceRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-get-data-source">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -240,7 +240,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 * request with no match returns <code>200</code> with an empty array.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-get-data-source">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -259,7 +259,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 * match returns <code>200</code> with an empty array.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-get-dataset">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -281,7 +281,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 *            a function that initializes a builder to create the
 	 *            {@link GetDatasetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-get-dataset">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -298,7 +298,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 * match returns <code>200</code> with an empty array.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-get-dataset">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -424,7 +424,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 * naming rules.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-put-data-source">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -448,7 +448,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 *            a function that initializes a builder to create the
 	 *            {@link PutDataSourceRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-put-data-source">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -469,7 +469,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 * source does not exist.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-put-dataset">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -492,7 +492,7 @@ public class ElasticsearchEsqlClient extends ApiClient<ElasticsearchTransport, E
 	 *            a function that initializes a builder to create the
 	 *            {@link PutDatasetRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation#TODO">Documentation
+	 *      "https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-esql-put-dataset">Documentation
 	 *      on elastic.co</a>
 	 */
 
