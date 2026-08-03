@@ -1619,9 +1619,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * performs some preflight checks, launches the request, and returns a task you
 	 * can use to get the status of the task. However, you can not cancel this task
 	 * as the force merge task is not cancelable. Elasticsearch creates a record of
-	 * this task as a document at <code>_tasks/&lt;task_id&gt;</code>. When you are
-	 * done with a task, you should delete the task document so Elasticsearch can
-	 * reclaim the space.
+	 * this task as a document at <code>_tasks/&lt;task_id&gt;</code>.
 	 * <p>
 	 * <strong>Force merging multiple indices</strong>
 	 * <p>
@@ -1633,11 +1631,12 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * <li>All data streams and indices in a cluster</li>
 	 * </ul>
 	 * <p>
-	 * Each targeted shard is force-merged separately using the force_merge
-	 * threadpool. By default each node only has a single <code>force_merge</code>
-	 * thread which means that the shards on that node are force-merged one at a
-	 * time. If you expand the <code>force_merge</code> threadpool on a node then it
-	 * will force merge its shards in parallel
+	 * Each targeted shard is force-merged separately using the
+	 * <code>force_merge</code> threadpool. The <code>force_merge</code> threadpool
+	 * has a fixed size of <code>max(1, allocatedProcessors / 8)</code> per node,
+	 * which means multiple shards on a node may be force-merged in parallel. If you
+	 * expand the <code>force_merge</code> threadpool on a node then it will force
+	 * merge its shards with more parallelism.
 	 * <p>
 	 * Force merge makes the storage for the shard being merged temporarily
 	 * increase, as it may require free space up to triple its size in case
@@ -1708,9 +1707,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * performs some preflight checks, launches the request, and returns a task you
 	 * can use to get the status of the task. However, you can not cancel this task
 	 * as the force merge task is not cancelable. Elasticsearch creates a record of
-	 * this task as a document at <code>_tasks/&lt;task_id&gt;</code>. When you are
-	 * done with a task, you should delete the task document so Elasticsearch can
-	 * reclaim the space.
+	 * this task as a document at <code>_tasks/&lt;task_id&gt;</code>.
 	 * <p>
 	 * <strong>Force merging multiple indices</strong>
 	 * <p>
@@ -1722,11 +1719,12 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * <li>All data streams and indices in a cluster</li>
 	 * </ul>
 	 * <p>
-	 * Each targeted shard is force-merged separately using the force_merge
-	 * threadpool. By default each node only has a single <code>force_merge</code>
-	 * thread which means that the shards on that node are force-merged one at a
-	 * time. If you expand the <code>force_merge</code> threadpool on a node then it
-	 * will force merge its shards in parallel
+	 * Each targeted shard is force-merged separately using the
+	 * <code>force_merge</code> threadpool. The <code>force_merge</code> threadpool
+	 * has a fixed size of <code>max(1, allocatedProcessors / 8)</code> per node,
+	 * which means multiple shards on a node may be force-merged in parallel. If you
+	 * expand the <code>force_merge</code> threadpool on a node then it will force
+	 * merge its shards with more parallelism.
 	 * <p>
 	 * Force merge makes the storage for the shard being merged temporarily
 	 * increase, as it may require free space up to triple its size in case
@@ -1798,9 +1796,7 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * performs some preflight checks, launches the request, and returns a task you
 	 * can use to get the status of the task. However, you can not cancel this task
 	 * as the force merge task is not cancelable. Elasticsearch creates a record of
-	 * this task as a document at <code>_tasks/&lt;task_id&gt;</code>. When you are
-	 * done with a task, you should delete the task document so Elasticsearch can
-	 * reclaim the space.
+	 * this task as a document at <code>_tasks/&lt;task_id&gt;</code>.
 	 * <p>
 	 * <strong>Force merging multiple indices</strong>
 	 * <p>
@@ -1812,11 +1808,12 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 	 * <li>All data streams and indices in a cluster</li>
 	 * </ul>
 	 * <p>
-	 * Each targeted shard is force-merged separately using the force_merge
-	 * threadpool. By default each node only has a single <code>force_merge</code>
-	 * thread which means that the shards on that node are force-merged one at a
-	 * time. If you expand the <code>force_merge</code> threadpool on a node then it
-	 * will force merge its shards in parallel
+	 * Each targeted shard is force-merged separately using the
+	 * <code>force_merge</code> threadpool. The <code>force_merge</code> threadpool
+	 * has a fixed size of <code>max(1, allocatedProcessors / 8)</code> per node,
+	 * which means multiple shards on a node may be force-merged in parallel. If you
+	 * expand the <code>force_merge</code> threadpool on a node then it will force
+	 * merge its shards with more parallelism.
 	 * <p>
 	 * Force merge makes the storage for the shard being merged temporarily
 	 * increase, as it may require free space up to triple its size in case
