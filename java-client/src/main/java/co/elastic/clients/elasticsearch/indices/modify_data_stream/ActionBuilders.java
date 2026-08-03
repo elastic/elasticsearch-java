@@ -49,7 +49,9 @@ public class ActionBuilders {
 	 * {@code Action} variant.
 	 */
 	public static IndexAndDataStreamAction.Builder addBackingIndex() {
-		return new IndexAndDataStreamAction.Builder();
+		IndexAndDataStreamAction.Builder builder = new IndexAndDataStreamAction.Builder();
+		builder._actionKind(Action.Kind.AddBackingIndex);
+		return builder;
 	}
 
 	/**
@@ -68,7 +70,9 @@ public class ActionBuilders {
 	 * remove_backing_index} {@code Action} variant.
 	 */
 	public static IndexAndDataStreamAction.Builder removeBackingIndex() {
-		return new IndexAndDataStreamAction.Builder();
+		IndexAndDataStreamAction.Builder builder = new IndexAndDataStreamAction.Builder();
+		builder._actionKind(Action.Kind.RemoveBackingIndex);
+		return builder;
 	}
 
 	/**
@@ -87,7 +91,9 @@ public class ActionBuilders {
 	 * delete_backing_index} {@code Action} variant.
 	 */
 	public static IndexAndDataStreamAction.Builder deleteBackingIndex() {
-		return new IndexAndDataStreamAction.Builder();
+		IndexAndDataStreamAction.Builder builder = new IndexAndDataStreamAction.Builder();
+		builder._actionKind(Action.Kind.DeleteBackingIndex);
+		return builder;
 	}
 
 	/**
