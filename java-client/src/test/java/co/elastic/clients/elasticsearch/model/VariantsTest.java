@@ -349,4 +349,25 @@ public class VariantsTest extends ModelTestCase {
         assertTrue(respF.indices().get("test").isFalse());
         assertTrue(respF.indices().get("test")._get().getClass().equals(LifecycleExplainUnmanaged.class));
     }
+
+    // Related to https://github.com/elastic/elasticsearch-java/issues/279
+    // Calling the builder from FunctionScoreBuilders.gauss() should correctly
+    // select the gauss variant (and not "linear", which is just the last option)
+    @Test
+    public void testFunctionScoreBuilder() {
+        FunctionScore fs1 = FunctionScoreBuilders.gauss()
+            .geo(g -> g
+                .field("a")
+                .placement(p ->p.decay(2d))
+            )
+            .build()._toFunctionScore();
+
+        FunctionScore fs2 = FunctionScoreBuilders.gauss(g -> g
+            .geo(gg -> gg
+                .field("a")
+                .placement(p ->p.decay(2d))
+            ));
+
+        assertEquals(fs1.isGauss(), fs2.isGauss());
+    }
 }
