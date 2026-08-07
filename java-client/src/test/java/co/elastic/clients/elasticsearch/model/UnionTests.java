@@ -31,6 +31,8 @@ import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.RangeRelation;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermRangeQuery;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.CompletionSuggestOption;
+import co.elastic.clients.elasticsearch.core.search.Context;
 import co.elastic.clients.testkit.ModelTestCase;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
@@ -38,6 +40,7 @@ import jakarta.json.stream.JsonParser;
 import org.junit.jupiter.api.Test;
 
 import java.io.StringReader;
+import java.util.List;
 
 public class UnionTests extends ModelTestCase {
 
@@ -350,5 +353,39 @@ public class UnionTests extends ModelTestCase {
             funScoreQueryFromJson.functionScore().functions().get(0).gauss().untyped().multiValueMode());
 
 
+    }
+
+    /**
+     * Completion suggest category contexts are plain strings. They must deserialize as
+     * {@link Context.Kind#Category}, not as {@link GeoLocation} text (issue #691).
+     */
+    @Test
+    public void testCompletionContextCategoryString() {
+        Context category = fromJson("\"cafe\"", Context.class);
+        assertTrue(category.isCategory());
+        assertEquals("cafe", category.category());
+        assertFalse(category.isLocation());
+
+        // Structured geo forms still resolve to Location
+        Context latLon = fromJson("{\"lat\":41.12,\"lon\":-71.34}", Context.class);
+        assertTrue(latLon.isLocation());
+        assertTrue(latLon.location().isLatlon());
+        assertEquals(41.12, latLon.location().latlon().lat(), 0.0);
+        assertEquals(-71.34, latLon.location().latlon().lon(), 0.0);
+
+        Context coords = fromJson("[-71.34,41.12]", Context.class);
+        assertTrue(coords.isLocation());
+        assertTrue(coords.location().isCoords());
+
+        // Response-shaped payload from the issue report
+        String optionJson =
+            "{\"text\":\"timmy's\",\"_index\":\"place\",\"_id\":\"1\",\"_score\":1.0,"
+                + "\"contexts\":{\"place_type\":[\"cafe\"]}}";
+        @SuppressWarnings("unchecked")
+        CompletionSuggestOption<Object> option = fromJson(optionJson, CompletionSuggestOption.class);
+        List<Context> placeType = option.contexts().get("place_type");
+        assertEquals(1, placeType.size());
+        assertTrue(placeType.get(0).isCategory());
+        assertEquals("cafe", placeType.get(0).category());
     }
 }
