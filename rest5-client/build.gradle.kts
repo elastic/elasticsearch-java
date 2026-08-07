@@ -155,7 +155,7 @@ dependencies {
 
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
     // https://github.com/eclipse-ee4j/parsson
-    implementation("org.eclipse.parsson:parsson:1.1.7")
+    implementation("org.eclipse.parsson:parsson:1.1.9")
 
 //    // Apache-2.0
 //    testImplementation("commons-io:commons-io:2.17.0")
