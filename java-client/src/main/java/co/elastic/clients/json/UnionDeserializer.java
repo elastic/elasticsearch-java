@@ -131,8 +131,15 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
                 otherMembers.put(e, mmh);
             }
             mmh.handlers.add(new SingleMemberHandler<>(tag, deserializer));
-            // Sort handlers by number of accepted events, which gives their specificity
-            mmh.handlers.sort(Comparator.comparingInt(a -> a.deserializer.acceptedEvents().size()));
+            // Sort handlers by number of *native* events (canonical JSON shapes), which gives their
+            // specificity. Prefer members that only produce a single shape (e.g. plain string) over
+            // multi-shape unions (e.g. GeoLocation as object | array | string).
+            //
+            // Using acceptedEvents() is wrong for string deserializers: they are deliberately lenient
+            // and accept numbers/booleans for conversion, so their accepted set is large and they
+            // would sort as *least* specific. That made Context (string | GeoLocation) always pick
+            // Location for category strings such as "cafe" (issue #691).
+            mmh.handlers.sort(Comparator.comparingInt(a -> a.deserializer.nativeEvents().size()));
         }
 
         private void addMember(Event e, Kind tag, UnionDeserializer.SingleMemberHandler<Union, Kind, Member> member) {
