@@ -71,18 +71,23 @@ public class IndexAndDataStreamAction implements ActionVariant, JsonpSerializabl
 		this.dataStream = ApiTypeHelper.requireNonNull(builder.dataStream, this, "dataStream");
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
+		this._actionKind = builder._actionKind;
+
 	}
 
 	public static IndexAndDataStreamAction of(Function<Builder, ObjectBuilder<IndexAndDataStreamAction>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
+	@Nullable
+	private Action.Kind _actionKind;
+
 	/**
 	 * Action variant kind.
 	 */
 	@Override
 	public Action.Kind _actionKind() {
-		return Action.Kind.RemoveBackingIndex;
+		return _actionKind == null ? Action.Kind.RemoveBackingIndex : _actionKind;
 	}
 
 	/**
@@ -139,6 +144,14 @@ public class IndexAndDataStreamAction implements ActionVariant, JsonpSerializabl
 		private String dataStream;
 
 		private String index;
+
+		@Nullable
+		private Action.Kind _actionKind;
+
+		Builder _actionKind(@Nullable Action.Kind value) {
+			this._actionKind = value;
+			return this;
+		}
 
 		public Builder() {
 		}
