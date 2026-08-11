@@ -113,7 +113,12 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 	 * Inference endpoint that will be used to generate embeddings for the field.
 	 * This parameter cannot be updated. Use the Create inference API to create the
 	 * endpoint. If <code>search_inference_id</code> is specified, the inference
-	 * endpoint will only be used at index time.
+	 * endpoint will only be used at index time. If the <code>inference_id</code> is
+	 * not specified, it will default to <code>.jina-embeddings-v5-text-small</code>
+	 * if the cluster is authorized to use the Elastic Inference Service, otherwise
+	 * it will default to <code>.elser-2-elasticsearch</code>. The
+	 * <code>.elser-2-elasticsearch</code> inference endpoint relies on a local ML
+	 * node to run the ELSER model.
 	 * <p>
 	 * API name: {@code inference_id}
 	 */
@@ -296,7 +301,12 @@ public class SemanticTextProperty implements PropertyVariant, JsonpSerializable 
 		 * Inference endpoint that will be used to generate embeddings for the field.
 		 * This parameter cannot be updated. Use the Create inference API to create the
 		 * endpoint. If <code>search_inference_id</code> is specified, the inference
-		 * endpoint will only be used at index time.
+		 * endpoint will only be used at index time. If the <code>inference_id</code> is
+		 * not specified, it will default to <code>.jina-embeddings-v5-text-small</code>
+		 * if the cluster is authorized to use the Elastic Inference Service, otherwise
+		 * it will default to <code>.elser-2-elasticsearch</code>. The
+		 * <code>.elser-2-elasticsearch</code> inference endpoint relies on a local ML
+		 * node to run the ELSER model.
 		 * <p>
 		 * API name: {@code inference_id}
 		 */
