@@ -144,10 +144,11 @@ public class Status implements JsonpSerializable {
 	/**
 	 * Required - The current snapshot state:
 	 * <ul>
+	 * <li><code>STARTED</code>: The snapshot is currently running.</li>
+	 * <li><code>SUCCESS</code>: All shard snapshots have completed. The snapshot
+	 * may or may not have completed finalization.</li>
 	 * <li><code>FAILED</code>: The snapshot finished with an error and failed to
 	 * store any data.</li>
-	 * <li><code>STARTED</code>: The snapshot is currently running.</li>
-	 * <li><code>SUCCESS</code>: The snapshot completed.</li>
 	 * </ul>
 	 * <p>
 	 * API name: {@code state}
@@ -344,10 +345,11 @@ public class Status implements JsonpSerializable {
 		/**
 		 * Required - The current snapshot state:
 		 * <ul>
+		 * <li><code>STARTED</code>: The snapshot is currently running.</li>
+		 * <li><code>SUCCESS</code>: All shard snapshots have completed. The snapshot
+		 * may or may not have completed finalization.</li>
 		 * <li><code>FAILED</code>: The snapshot finished with an error and failed to
 		 * store any data.</li>
-		 * <li><code>STARTED</code>: The snapshot is currently running.</li>
-		 * <li><code>SUCCESS</code>: The snapshot completed.</li>
 		 * </ul>
 		 * <p>
 		 * API name: {@code state}

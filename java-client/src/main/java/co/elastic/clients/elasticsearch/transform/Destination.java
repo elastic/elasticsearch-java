@@ -26,10 +26,12 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -61,6 +63,8 @@ public class Destination implements JsonpSerializable {
 	@Nullable
 	private final String index;
 
+	private final List<DestinationAlias> aliases;
+
 	@Nullable
 	private final String pipeline;
 
@@ -69,6 +73,7 @@ public class Destination implements JsonpSerializable {
 	private Destination(Builder builder) {
 
 		this.index = builder.index;
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.pipeline = builder.pipeline;
 
 	}
@@ -88,6 +93,21 @@ public class Destination implements JsonpSerializable {
 	@Nullable
 	public final String index() {
 		return this.index;
+	}
+
+	/**
+	 * The aliases that the destination index for the transform should have. Aliases
+	 * are manipulated using the stored credentials of the transform, which means
+	 * the secondary credentials supplied at creation time (if both primary and
+	 * secondary credentials are specified).
+	 * <p>
+	 * The destination index is added to the aliases regardless of whether the
+	 * destination index was created by the transform or pre-created by the user.
+	 * <p>
+	 * API name: {@code aliases}
+	 */
+	public final List<DestinationAlias> aliases() {
+		return this.aliases;
 	}
 
 	/**
@@ -116,6 +136,16 @@ public class Destination implements JsonpSerializable {
 			generator.write(this.index);
 
 		}
+		if (ApiTypeHelper.isDefined(this.aliases)) {
+			generator.writeKey("aliases");
+			generator.writeStartArray();
+			for (DestinationAlias item0 : this.aliases) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.pipeline != null) {
 			generator.writeKey("pipeline");
 			generator.write(this.pipeline);
@@ -140,12 +170,16 @@ public class Destination implements JsonpSerializable {
 		private String index;
 
 		@Nullable
+		private List<DestinationAlias> aliases;
+
+		@Nullable
 		private String pipeline;
 
 		public Builder() {
 		}
 		private Builder(Destination instance) {
 			this.index = instance.index;
+			this.aliases = instance.aliases;
 			this.pipeline = instance.pipeline;
 
 		}
@@ -160,6 +194,59 @@ public class Destination implements JsonpSerializable {
 		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
+		}
+
+		/**
+		 * The aliases that the destination index for the transform should have. Aliases
+		 * are manipulated using the stored credentials of the transform, which means
+		 * the secondary credentials supplied at creation time (if both primary and
+		 * secondary credentials are specified).
+		 * <p>
+		 * The destination index is added to the aliases regardless of whether the
+		 * destination index was created by the transform or pre-created by the user.
+		 * <p>
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>aliases</code>.
+		 */
+		public final Builder aliases(List<DestinationAlias> list) {
+			this.aliases = _listAddAll(this.aliases, list);
+			return this;
+		}
+
+		/**
+		 * The aliases that the destination index for the transform should have. Aliases
+		 * are manipulated using the stored credentials of the transform, which means
+		 * the secondary credentials supplied at creation time (if both primary and
+		 * secondary credentials are specified).
+		 * <p>
+		 * The destination index is added to the aliases regardless of whether the
+		 * destination index was created by the transform or pre-created by the user.
+		 * <p>
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds one or more values to <code>aliases</code>.
+		 */
+		public final Builder aliases(DestinationAlias value, DestinationAlias... values) {
+			this.aliases = _listAdd(this.aliases, value, values);
+			return this;
+		}
+
+		/**
+		 * The aliases that the destination index for the transform should have. Aliases
+		 * are manipulated using the stored credentials of the transform, which means
+		 * the secondary credentials supplied at creation time (if both primary and
+		 * secondary credentials are specified).
+		 * <p>
+		 * The destination index is added to the aliases regardless of whether the
+		 * destination index was created by the transform or pre-created by the user.
+		 * <p>
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds a value to <code>aliases</code> using a builder lambda.
+		 */
+		public final Builder aliases(Function<DestinationAlias.Builder, ObjectBuilder<DestinationAlias>> fn) {
+			return aliases(fn.apply(new DestinationAlias.Builder()).build());
 		}
 
 		/**
@@ -207,6 +294,7 @@ public class Destination implements JsonpSerializable {
 	protected static void setupDestinationDeserializer(ObjectDeserializer<Destination.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
+		op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(DestinationAlias._DESERIALIZER), "aliases");
 		op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
 
 	}

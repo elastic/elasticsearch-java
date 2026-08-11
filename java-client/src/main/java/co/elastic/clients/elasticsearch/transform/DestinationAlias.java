@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types;
+package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -26,9 +26,12 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -48,49 +51,54 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: _types.ScoreSort
+// typedef: transform._types.DestinationAlias
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#_types.ScoreSort">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#transform._types.DestinationAlias">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
+public class DestinationAlias implements JsonpSerializable {
+	private final String alias;
+
 	@Nullable
-	private final SortOrder order;
+	private final Boolean moveOnCreation;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private ScoreSort(Builder builder) {
+	private DestinationAlias(Builder builder) {
 
-		this.order = builder.order;
-
-		this._sortOptionsKind = builder._sortOptionsKind;
+		this.alias = ApiTypeHelper.requireNonNull(builder.alias, this, "alias");
+		this.moveOnCreation = builder.moveOnCreation;
 
 	}
 
-	public static ScoreSort of(Function<Builder, ObjectBuilder<ScoreSort>> fn) {
+	public static DestinationAlias of(Function<Builder, ObjectBuilder<DestinationAlias>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
-	@Nullable
-	private SortOptions.Kind _sortOptionsKind;
-
 	/**
-	 * SortOptions variant kind.
+	 * Required - The name of the alias.
+	 * <p>
+	 * API name: {@code alias}
 	 */
-	@Override
-	public SortOptions.Kind _sortOptionsKind() {
-		return _sortOptionsKind == null ? SortOptions.Kind.Doc : _sortOptionsKind;
+	public final String alias() {
+		return this.alias;
 	}
 
 	/**
-	 * API name: {@code order}
+	 * Whether the destination index should be the only index in this alias. If
+	 * <code>true</code>, all the other indices will be removed from this alias
+	 * before adding the destination index to this alias. This does not delete the
+	 * removed indices; it only removes them from the alias.
+	 * <p>
+	 * API name: {@code move_on_creation}
 	 */
 	@Nullable
-	public final SortOrder order() {
-		return this.order;
+	public final Boolean moveOnCreation() {
+		return this.moveOnCreation;
 	}
 
 	/**
@@ -104,9 +112,13 @@ public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.order != null) {
-			generator.writeKey("order");
-			this.order.serialize(generator, mapper);
+		generator.writeKey("alias");
+		generator.write(this.alias);
+
+		if (this.moveOnCreation != null) {
+			generator.writeKey("move_on_creation");
+			generator.write(this.moveOnCreation);
+
 		}
 
 	}
@@ -119,32 +131,42 @@ public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ScoreSort}.
+	 * Builder for {@link DestinationAlias}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ScoreSort> {
-		@Nullable
-		private SortOrder order;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DestinationAlias> {
+		private String alias;
 
 		@Nullable
-		private SortOptions.Kind _sortOptionsKind;
-
-		Builder _sortOptionsKind(@Nullable SortOptions.Kind value) {
-			this._sortOptionsKind = value;
-			return this;
-		}
+		private Boolean moveOnCreation;
 
 		public Builder() {
 		}
-		private Builder(ScoreSort instance) {
-			this.order = instance.order;
+		private Builder(DestinationAlias instance) {
+			this.alias = instance.alias;
+			this.moveOnCreation = instance.moveOnCreation;
 
 		}
 		/**
-		 * API name: {@code order}
+		 * Required - The name of the alias.
+		 * <p>
+		 * API name: {@code alias}
 		 */
-		public final Builder order(@Nullable SortOrder value) {
-			this.order = value;
+		public final Builder alias(String value) {
+			this.alias = value;
+			return this;
+		}
+
+		/**
+		 * Whether the destination index should be the only index in this alias. If
+		 * <code>true</code>, all the other indices will be removed from this alias
+		 * before adding the destination index to this alias. This does not delete the
+		 * removed indices; it only removes them from the alias.
+		 * <p>
+		 * API name: {@code move_on_creation}
+		 */
+		public final Builder moveOnCreation(@Nullable Boolean value) {
+			this.moveOnCreation = value;
 			return this;
 		}
 
@@ -154,15 +176,15 @@ public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link ScoreSort}.
+		 * Builds a {@link DestinationAlias}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ScoreSort build() {
+		public DestinationAlias build() {
 			_checkSingleUse();
 
-			return new ScoreSort(this);
+			return new DestinationAlias(this);
 		}
 	}
 
@@ -175,14 +197,15 @@ public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link ScoreSort}
+	 * Json deserializer for {@link DestinationAlias}
 	 */
-	public static final JsonpDeserializer<ScoreSort> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ScoreSort::setupScoreSortDeserializer);
+	public static final JsonpDeserializer<DestinationAlias> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DestinationAlias::setupDestinationAliasDeserializer);
 
-	protected static void setupScoreSortDeserializer(ObjectDeserializer<ScoreSort.Builder> op) {
+	protected static void setupDestinationAliasDeserializer(ObjectDeserializer<DestinationAlias.Builder> op) {
 
-		op.add(Builder::order, SortOrder._DESERIALIZER, "order");
+		op.add(Builder::alias, JsonpDeserializer.stringDeserializer(), "alias");
+		op.add(Builder::moveOnCreation, JsonpDeserializer.booleanDeserializer(), "move_on_creation");
 
 	}
 
