@@ -81,6 +81,8 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 		this.timingStats = ApiTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
 		this.validationLoss = ApiTypeHelper.requireNonNull(builder.validationLoss, this, "validationLoss");
 
+		this._dataframeAnalyticsStatsKind = builder._dataframeAnalyticsStatsKind;
+
 	}
 
 	public static DataframeAnalyticsStatsHyperparameters of(
@@ -88,12 +90,17 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 		return fn.apply(new Builder()).build();
 	}
 
+	@Nullable
+	private DataframeAnalyticsStats.Kind _dataframeAnalyticsStatsKind;
+
 	/**
 	 * DataframeAnalyticsStats variant kind.
 	 */
 	@Override
 	public DataframeAnalyticsStats.Kind _dataframeAnalyticsStatsKind() {
-		return DataframeAnalyticsStats.Kind.RegressionStats;
+		return _dataframeAnalyticsStatsKind == null
+				? DataframeAnalyticsStats.Kind.RegressionStats
+				: _dataframeAnalyticsStatsKind;
 	}
 
 	/**
@@ -195,6 +202,14 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 		private TimingStats timingStats;
 
 		private ValidationLoss validationLoss;
+
+		@Nullable
+		private DataframeAnalyticsStats.Kind _dataframeAnalyticsStatsKind;
+
+		Builder _dataframeAnalyticsStatsKind(@Nullable DataframeAnalyticsStats.Kind value) {
+			this._dataframeAnalyticsStatsKind = value;
+			return this;
+		}
 
 		public Builder() {
 		}

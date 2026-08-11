@@ -27,6 +27,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 //----------------------------------------------------------------
 //       THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
@@ -59,18 +60,23 @@ public class NlpBertTokenizationConfig extends CommonTokenizationConfig implemen
 	private NlpBertTokenizationConfig(Builder builder) {
 		super(builder);
 
+		this._tokenizationConfigKind = builder._tokenizationConfigKind;
+
 	}
 
 	public static NlpBertTokenizationConfig of(Function<Builder, ObjectBuilder<NlpBertTokenizationConfig>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
+	@Nullable
+	private TokenizationConfig.Kind _tokenizationConfigKind;
+
 	/**
 	 * TokenizationConfig variant kind.
 	 */
 	@Override
 	public TokenizationConfig.Kind _tokenizationConfigKind() {
-		return TokenizationConfig.Kind.Mpnet;
+		return _tokenizationConfigKind == null ? TokenizationConfig.Kind.Mpnet : _tokenizationConfigKind;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -82,6 +88,14 @@ public class NlpBertTokenizationConfig extends CommonTokenizationConfig implemen
 	public static class Builder extends CommonTokenizationConfig.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<NlpBertTokenizationConfig> {
+		@Nullable
+		private TokenizationConfig.Kind _tokenizationConfigKind;
+
+		Builder _tokenizationConfigKind(@Nullable TokenizationConfig.Kind value) {
+			this._tokenizationConfigKind = value;
+			return this;
+		}
+
 		public Builder() {
 		}
 		private Builder(NlpBertTokenizationConfig instance) {
