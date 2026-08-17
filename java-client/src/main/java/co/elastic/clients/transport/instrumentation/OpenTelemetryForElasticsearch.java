@@ -19,6 +19,7 @@
 
 package co.elastic.clients.transport.instrumentation;
 
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.Version;
@@ -41,12 +42,15 @@ import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.ServiceLoader;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -96,8 +100,19 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
 
     private static final Log logger = LogFactory.getLog(OpenTelemetryForElasticsearch.class);
 
+    /**
+     * Header stamped by the Elastic Cloud proxy on every response, carrying the cluster name. It is read
+     * automatically (no configuration), the same way the .NET Elasticsearch client populates
+     * {@code db.elasticsearch.cluster.name}. Self-managed clusters do not send it; see {@link ClusterInfoProvider} for
+     * the opt-in {@code GET /} fallback.
+     */
+    private static final String CLOUD_CLUSTER_HEADER = "X-Found-Handling-Cluster";
+    private static final AttributeKey<String> DB_ES_CLUSTER_NAME =
+        AttributeKey.stringKey("db.elasticsearch.cluster.name");
+
     private final Tracer tracer;
     private final boolean captureSearchBody;
+    private final List<SpanAttributeProvider> providers;
 
     /**
      * Creates an OpenTelemetry instrumentation based on systems settings:
@@ -111,6 +126,9 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
      *     of search requests will be captured. Defaults to {@code false}.
      *     </li>
      * </ul>
+     * Any {@link SpanAttributeProvider} implementations declared on the classpath through {@link ServiceLoader}
+     * (a {@code META-INF/services} entry) are also registered, so additional span attributes are contributed by adding
+     * a provider rather than a config flag.
      *
      * @return an instrumentation, or {@code null} if instrumentation is disabled or no OTel agent has been configured.
      */
@@ -135,7 +153,20 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
             ConfigUtil.getConfigOption("otel.instrumentation.elasticsearch.capture-search-query", "false")
         );
 
-        return new OpenTelemetryForElasticsearch(openTelemetry, captureSearchBody);
+        // Extra span-attribute providers are discovered on the classpath via ServiceLoader (SPI), mirroring how the
+        // OpenTelemetry SDK autoconfigure module discovers its ResourceProviders, exporters and propagators: a new
+        // attribute source is added by putting a provider on the classpath, never by adding a config flag per
+        // attribute. Nothing is enabled here by default; ClusterInfoProvider (the opt-in GET / cluster-name discovery)
+        // is only picked up when a user registers it through a META-INF/services entry, or programmatically via
+        // builder(openTelemetry).addProvider(...). The Elastic Cloud cluster-name header is always captured in the core
+        // instrumentation below and needs no provider.
+        List<SpanAttributeProvider> providers = new ArrayList<>();
+        for (SpanAttributeProvider provider : ServiceLoader.load(
+                SpanAttributeProvider.class, OpenTelemetryForElasticsearch.class.getClassLoader())) {
+            providers.add(provider);
+        }
+
+        return new OpenTelemetryForElasticsearch(openTelemetry, captureSearchBody, providers);
     }
 
     /**
@@ -145,6 +176,19 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
      * @param captureSearchBody should search requests bodies be captured?
      */
     public OpenTelemetryForElasticsearch(OpenTelemetry openTelemetry, boolean captureSearchBody) {
+        this(openTelemetry, captureSearchBody, Collections.emptyList());
+    }
+
+    /**
+     * Creates an OpenTelemetry instrumentation with a set of {@link SpanAttributeProvider}s that contribute additional
+     * span attributes (for example {@link ClusterInfoProvider} for cluster identity).
+     *
+     * @param openTelemetry the OpenTelemetry implementation
+     * @param captureSearchBody should search requests bodies be captured?
+     * @param providers providers invoked once the response is received to contribute extra attributes
+     */
+    public OpenTelemetryForElasticsearch(OpenTelemetry openTelemetry, boolean captureSearchBody,
+                                         List<SpanAttributeProvider> providers) {
         Version version = Version.VERSION;
 
         this.tracer = openTelemetry.tracerBuilder("elasticsearch-api")
@@ -153,6 +197,29 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
             .build();
 
         this.captureSearchBody = captureSearchBody;
+        this.providers = (providers == null || providers.isEmpty())
+            ? Collections.emptyList()
+            : new ArrayList<>(providers);
+    }
+
+    /**
+     * Returns a builder for {@link OpenTelemetryForElasticsearch}, allowing {@link SpanAttributeProvider}s to be
+     * registered programmatically (as an alternative to the {@code otel.instrumentation.elasticsearch.*} settings).
+     */
+    public static Builder builder(OpenTelemetry openTelemetry) {
+        return new Builder(openTelemetry);
+    }
+
+    /**
+     * Injects the transport and JSON mapper into any provider that needs them for active discovery (currently
+     * {@link ClusterInfoProvider}'s {@code GET /} fallback). Called by the transport once the client is built.
+     */
+    public void setTransport(TransportHttpClient httpClient, TransportOptions options, JsonpMapper mapper) {
+        for (SpanAttributeProvider provider : providers) {
+            if (provider instanceof ClusterInfoProvider) {
+                ((ClusterInfoProvider) provider).setTransport(httpClient, options, mapper);
+            }
+        }
     }
 
     @Override
@@ -241,6 +308,38 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
                     span.setAttribute(SERVER_PORT, uri.getPort());
                     span.setAttribute(SERVER_ADDRESS, uri.getHost());
                     span.setAttribute(HTTP_RESPONSE_STATUS_CODE, httpResponse.statusCode());
+
+                    // Elastic Cloud stamps the cluster name on every response header; capture it automatically, with
+                    // no configuration, matching the .NET client. Self-managed clusters don't send it — ClusterInfoProvider
+                    // is the opt-in GET / fallback for those.
+                    String cloudClusterName = httpResponse.header(CLOUD_CLUSTER_HEADER);
+                    if (cloudClusterName != null && !cloudClusterName.isEmpty()) {
+                        span.setAttribute(DB_ES_CLUSTER_NAME, cloudClusterName);
+                    }
+
+                    if (!providers.isEmpty()) {
+                        SpanAttributeContext attrContext = new SpanAttributeContext() {
+                            @Override
+                            public String responseHeader(String name) {
+                                return httpResponse.header(name);
+                            }
+
+                            @Override
+                            public void setAttribute(String key, String value) {
+                                if (value != null) {
+                                    span.setAttribute(key, value);
+                                }
+                            }
+                        };
+                        for (SpanAttributeProvider provider : providers) {
+                            try {
+                                provider.contribute(attrContext);
+                            } catch (RuntimeException ex) {
+                                // a misbehaving provider must never affect the span or the request
+                                logger.debug("A span attribute provider threw an exception.", ex);
+                            }
+                        }
+                    }
                 }
             } catch (RuntimeException e) {
                 logger.debug("Failed capturing response information for the OpenTelemetry span.", e);
@@ -326,6 +425,50 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
         }
         return sb.toString();
     }
+
+    //---------------------------------------------------------------------------------------------
+
+    /**
+     * Builder for {@link OpenTelemetryForElasticsearch}. Lets callers register {@link SpanAttributeProvider}s
+     * programmatically, for example:
+     * <pre>{@code
+     * OpenTelemetryForElasticsearch.builder(openTelemetry)
+     *     .addProvider(ClusterInfoProvider.create())
+     *     .build();
+     * }</pre>
+     */
+    public static class Builder {
+        private final OpenTelemetry openTelemetry;
+        private boolean captureSearchBody = false;
+        private final List<SpanAttributeProvider> providers = new ArrayList<>();
+
+        Builder(OpenTelemetry openTelemetry) {
+            this.openTelemetry = openTelemetry;
+        }
+
+        /**
+         * Whether search request bodies should be captured as {@code db.query.text}. Defaults to {@code false}.
+         */
+        public Builder captureSearchBody(boolean captureSearchBody) {
+            this.captureSearchBody = captureSearchBody;
+            return this;
+        }
+
+        /**
+         * Registers a provider that contributes additional span attributes. Providers are invoked in registration
+         * order once the response is received.
+         */
+        public Builder addProvider(SpanAttributeProvider provider) {
+            this.providers.add(provider);
+            return this;
+        }
+
+        public OpenTelemetryForElasticsearch build() {
+            return new OpenTelemetryForElasticsearch(openTelemetry, captureSearchBody, providers);
+        }
+    }
+
+    //---------------------------------------------------------------------------------------------
 
     /**
      * Borrowed from io.opentelemetry.api.internal.ConfigUtil
