@@ -89,6 +89,41 @@ Per default, the built-in OpenTelemetry instrumentation does not capture request
 | Environment Variable | `OTEL_INSTRUMENTATION_ELASTICSEARCH_CAPTURE_SEARCH_QUERY` |
 
 
+### Capture the {{es}} cluster name [opentelemetry-config-cluster-name]
+
+The `db.elasticsearch.cluster.name` attribute adds the {{es}} cluster name to the client's spans, so they can be correlated with cluster-level metrics tagged with the same name.
+
+This applies to self-managed clusters. To enable it, register the `ClusterInfoProvider`: it resolves the cluster name through the client's own transport, caches it, and stamps it on every span. Register it programmatically, when using a custom OpenTelemetry instance:
+
+```java
+OpenTelemetry customOtel = OpenTelemetrySdk.builder().build();
+
+OpenTelemetryForElasticsearch esOtelInstrumentation =
+    OpenTelemetryForElasticsearch.builder(customOtel)
+        .addProvider(ClusterInfoProvider.builder()
+            .refreshInterval(Duration.ofMinutes(30)) // optional, this is the default
+            .captureClusterUuid(true)                 // optional, also capture db.elasticsearch.cluster.uuid
+            .build())
+        .build();
+
+ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
+    .host(serverUrl)
+    .apiKey(apiKey)
+    .instrumentation(esOtelInstrumentation)
+);
+```
+
+Or, when the client is used through the OpenTelemetry Java agent or the global SDK, register it on the classpath by adding a `META-INF/services/co.elastic.clients.transport.instrumentation.SpanAttributeProvider` file containing:
+
+```
+co.elastic.clients.transport.instrumentation.ClusterInfoProvider
+```
+
+::::{note}
+This classpath (`ServiceLoader`) registration only applies when the client resolves its instrumentation itself. When running under the [OpenTelemetry Java agent](https://opentelemetry.io/docs/zero-code/java/agent/), the agent wires up the instrumentation and this discovery step is skipped, so the provider is not picked up. To use the provider under the agent, disable the agent's own Elasticsearch instrumentation with `OTEL_INSTRUMENTATION_ELASTICSEARCH_API_CLIENT_ENABLED=false` (or `-Dotel.instrumentation.elasticsearch-api-client.enabled=false`). Registering the provider programmatically (above) needs no such change — it works whether or not the agent is present.
+::::
+
+
 ## Overhead [_overhead]
 
 The OpenTelemetry instrumentation (as any other monitoring approach) may come with a little overhead on CPU, memory and/or latency. The overhead may only occur when the instrumentation is enabled (default) and an OpenTelemetry SDK (or an OpenTelemetry Agent) is active in the target application. In case that either the instrumentation is disabled or no OpenTelemetry SDK (or OpenTelemetry Agent) is active with the target application, there is no monitoring overhead expected when using the client.
