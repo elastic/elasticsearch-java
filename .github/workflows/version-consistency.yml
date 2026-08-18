@@ -1,0 +1,62 @@
+name: Version consistency
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-versions:
+    name: Check that all versions match config/version.txt
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check versions
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          expected="$(tr -d '[:space:]' < config/version.txt)"
+          echo "Expected version (config/version.txt): $expected"
+
+          status=0
+
+          check() {
+            local label="$1" file="$2" actual="$3"
+            if [[ -z "$actual" ]]; then
+              echo "::error file=$file::Could not extract version from $file"
+              status=1
+            elif [[ "$actual" != "$expected" ]]; then
+              echo "::error file=$file::$label version ($actual) does not match config/version.txt ($expected)"
+              status=1
+            else
+              echo "OK: $label ($file) = $actual"
+            fi
+          }
+
+          version_info="$(sed -n 's/.*static final String VERSION = "\(.*\)".*/\1/p' \
+            java-client/src/main-flavored/java/co/elastic/clients/transport/VersionInfo.java)"
+          check "VersionInfo.VERSION" \
+            "java-client/src/main-flavored/java/co/elastic/clients/transport/VersionInfo.java" \
+            "$version_info"
+
+          docset="$(sed -n 's/^[[:space:]]*version:[[:space:]]*"\(.*\)".*/\1/p' docs/docset.yml)"
+          check "docset.yml version sub" "docs/docset.yml" "$docset"
+
+          es_version="$(sed -n 's/.*val elasticsearchVersion = "\(.*\)".*/\1/p' \
+            java-client/build.gradle.kts)"
+          check "build.gradle.kts elasticsearchVersion" "java-client/build.gradle.kts" "$es_version"
+
+          if [[ "$status" -ne 0 ]]; then
+            echo ""
+            echo "Version mismatch detected. Update the files above to match config/version.txt."
+            exit 1
+          fi
+
+          echo ""
+          echo "All versions match ($expected)."
