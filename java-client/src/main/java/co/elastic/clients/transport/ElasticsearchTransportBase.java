@@ -112,6 +112,13 @@ public abstract class ElasticsearchTransportBase implements ElasticsearchTranspo
             instrumentation = NoopInstrumentation.INSTANCE;
         }
         this.instrumentation = instrumentation;
+
+        // Give the instrumentation access to the transport so attribute providers that need active discovery
+        // (e.g. ClusterInfoProvider's GET / fallback) reuse the configured auth, TLS and node selection.
+        if (this.instrumentation instanceof OpenTelemetryForElasticsearch) {
+            ((OpenTelemetryForElasticsearch) this.instrumentation)
+                .setTransport(this.httpClient, this.transportOptions, this.mapper);
+        }
     }
 
     /** INTERNAL, used only for tests. */
