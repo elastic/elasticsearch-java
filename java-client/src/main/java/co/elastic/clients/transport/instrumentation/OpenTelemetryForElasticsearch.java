@@ -83,7 +83,7 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
     // Caching attributes keys to avoid unnecessary memory allocation
     private static final Map<String, AttributeKey<String>> attributesKeyCache = new ConcurrentHashMap<>();
 
-    AttributeKeyTemplate<String> PATH_PART_PREFIX = AttributeKeyTemplate.stringKeyTemplate("db.elasticsearch.path_parts");
+    AttributeKeyTemplate<String> PATH_PART_PREFIX = AttributeKeyTemplate.stringKeyTemplate("db.operation.parameter");
 
     // these reflect the config options in the OTel Java agent
     private static final boolean INSTRUMENTATION_ENABLED = Boolean.parseBoolean(
