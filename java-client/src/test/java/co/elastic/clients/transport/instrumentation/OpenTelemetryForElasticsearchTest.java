@@ -197,7 +197,7 @@ public class OpenTelemetryForElasticsearchTest {
         Assertions.assertEquals(httpServer.getAddress().getPort(), span.getAttributes().get(ServerAttributes.SERVER_PORT));
 
         // Path parts
-        Assertions.assertEquals(DOC_ID, span.getAttributes().get(AttributeKey.stringKey("db.elasticsearch.path_parts.id")));
+        Assertions.assertEquals(DOC_ID, span.getAttributes().get(AttributeKey.stringKey("db.operation.parameter.id")));
     }
 
     @Test
