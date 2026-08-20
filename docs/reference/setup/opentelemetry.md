@@ -89,27 +89,6 @@ Per default, the built-in OpenTelemetry instrumentation does not capture request
 | Environment Variable | `OTEL_INSTRUMENTATION_ELASTICSEARCH_CAPTURE_SEARCH_QUERY` |
 
 
-
-### Database semantic conventions stability opt-in [_database_semconv_opt_in]
-
-The [OpenTelemetry Semantic Conventions for {{es}}](https://opentelemetry.io/docs/specs/semconv/database/elasticsearch/) renamed the request path parameter attributes from `db.elasticsearch.path_parts.<key>` to `db.operation.parameter.<key>`. To avoid breaking existing dashboards and alerts, the client keeps emitting the deprecated `db.elasticsearch.path_parts.<key>` attributes by default. Following the OpenTelemetry `otel.semconv-stability.opt-in` mechanism, you can opt in to the new attributes:
-
-* `database`: emit the new `db.operation.parameter.<key>` attributes.
-* `database/dup`: emit both the new `db.operation.parameter.<key>` and the deprecated `db.elasticsearch.path_parts.<key>` attributes.
-
-**Default:** neither (only the deprecated `db.elasticsearch.path_parts.<key>` attributes are emitted)
-
-Note that in this client the `otel.semconv-stability.opt-in` flag only affects the path parameter attributes. The other database attributes emitted by the client (`db.system.name`, `db.operation.name`, and `db.query.text`) already follow the stable Semantic Conventions since version 9.2 and are emitted regardless of this setting.
-
-::::{warning}
-The `db.elasticsearch.path_parts.<key>` attribute name is deprecated. It remains the default in the 9.4 and 9.5 releases for backwards compatibility, and will be dropped in 9.6, after which the client will always emit `db.operation.parameter.<key>`.
-::::
-
-|     |     |
-| --- | --- |
-| Java System Property | `otel.semconv-stability.opt-in` |
-| Environment Variable | `OTEL_SEMCONV_STABILITY_OPT_IN` |
-
 ## Overhead [_overhead]
 
 The OpenTelemetry instrumentation (as any other monitoring approach) may come with a little overhead on CPU, memory and/or latency. The overhead may only occur when the instrumentation is enabled (default) and an OpenTelemetry SDK (or an OpenTelemetry Agent) is active in the target application. In case that either the instrumentation is disabled or no OpenTelemetry SDK (or OpenTelemetry Agent) is active with the target application, there is no monitoring overhead expected when using the client.
