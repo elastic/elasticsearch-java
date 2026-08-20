@@ -196,8 +196,10 @@ public class OpenTelemetryForElasticsearchTest {
         Assertions.assertEquals(httpServer.getAddress().getHostString(), span.getAttributes().get(ServerAttributes.SERVER_ADDRESS));
         Assertions.assertEquals(httpServer.getAddress().getPort(), span.getAttributes().get(ServerAttributes.SERVER_PORT));
 
-        // Path parts
+        // Path parts: by default (no otel.semconv-stability.opt-in) the deprecated prefix is emitted and the
+        // stable "db.operation.parameter.*" prefix is not, preserving backwards compatibility.
         Assertions.assertEquals(DOC_ID, span.getAttributes().get(AttributeKey.stringKey("db.elasticsearch.path_parts.id")));
+        Assertions.assertNull(span.getAttributes().get(AttributeKey.stringKey("db.operation.parameter.id")));
     }
 
     @Test
