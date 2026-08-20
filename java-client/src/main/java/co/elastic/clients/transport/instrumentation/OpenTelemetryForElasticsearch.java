@@ -83,12 +83,7 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
     // Caching attributes keys to avoid unnecessary memory allocation
     private static final Map<String, AttributeKey<String>> attributesKeyCache = new ConcurrentHashMap<>();
 
-    // The Elasticsearch semantic conventions renamed the "db.elasticsearch.path_parts.<key>" path parameter
-    // attributes to "db.operation.parameter.<key>". Following the OpenTelemetry "otel.semconv-stability.opt-in"
-    // migration mechanism, the old prefix is emitted by default, the new one when "database" is opted in, and both
-    // when "database/dup" is opted in.
-    AttributeKeyTemplate<String> OLD_PATH_PART_PREFIX = AttributeKeyTemplate.stringKeyTemplate("db.elasticsearch.path_parts");
-    AttributeKeyTemplate<String> NEW_PATH_PART_PREFIX = AttributeKeyTemplate.stringKeyTemplate("db.operation.parameter");
+    AttributeKeyTemplate<String> PATH_PART_PREFIX = AttributeKeyTemplate.stringKeyTemplate("db.elasticsearch.path_parts");
 
     // these reflect the config options in the OTel Java agent
     private static final boolean INSTRUMENTATION_ENABLED = Boolean.parseBoolean(
@@ -98,24 +93,6 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
     private static final boolean CAPTURE_SEARCH_BODY = Boolean.parseBoolean(
         ConfigUtil.getConfigOption("otel.instrumentation.elasticsearch.capture-search-query", "false")
     );
-
-    private static final String SEMCONV_STABILITY_OPT_IN =
-        ConfigUtil.getConfigOption("otel.semconv-stability.opt-in", "");
-
-    private static final boolean EMIT_STABLE_DATABASE_ATTRIBUTES =
-        hasOptIn("database") || hasOptIn("database/dup");
-
-    private static final boolean EMIT_OLD_DATABASE_ATTRIBUTES =
-        !EMIT_STABLE_DATABASE_ATTRIBUTES || hasOptIn("database/dup");
-
-    private static boolean hasOptIn(String value) {
-        for (String token : SEMCONV_STABILITY_OPT_IN.split(",")) {
-            if (token.trim().equals(value)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     private static final Log logger = LogFactory.getLog(OpenTelemetryForElasticsearch.class);
 
@@ -132,11 +109,6 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
      *     <li>{@code otel.instrumentation.elasticsearch.capture-search-query} system property or
      *     {@code OTEL_INSTRUMENTATION_ELASTICSEARCH_CAPTURE_SEARCH_QUERY} environment variable: if {@code true} the request body
      *     of search requests will be captured. Defaults to {@code false}.
-     *     </li>
-     *     <li>{@code otel.semconv-stability.opt-in} system property or {@code OTEL_SEMCONV_STABILITY_OPT_IN}
-     *     environment variable: controls the migration to the stable database semantic conventions.
-     *     This flag only affects the path parameter attributes; the other database attributes emitted by this client
-     *     already follow the stable conventions.
      *     </li>
      * </ul>
      *
@@ -222,14 +194,8 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
                     span.setAttribute(HTTP_REQUEST_METHOD, endpoint.method(request));
 
                     for (Map.Entry<String, String> pathParamEntry : endpoint.pathParameters(request).entrySet()) {
-                        if (EMIT_OLD_DATABASE_ATTRIBUTES) {
-                            span.setAttribute(OLD_PATH_PART_PREFIX.getAttributeKey(pathParamEntry.getKey()),
-                                pathParamEntry.getValue());
-                        }
-                        if (EMIT_STABLE_DATABASE_ATTRIBUTES) {
-                            span.setAttribute(NEW_PATH_PART_PREFIX.getAttributeKey(pathParamEntry.getKey()),
-                                pathParamEntry.getValue());
-                        }
+                        AttributeKey<String> attributeKey = PATH_PART_PREFIX.getAttributeKey(pathParamEntry.getKey());
+                        span.setAttribute(attributeKey, pathParamEntry.getValue());
                     }
                 }
             } catch (RuntimeException e) {
