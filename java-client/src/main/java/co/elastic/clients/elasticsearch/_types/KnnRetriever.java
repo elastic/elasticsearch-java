@@ -68,7 +68,8 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 
 	private final int k;
 
-	private final int numCandidates;
+	@Nullable
+	private final Integer numCandidates;
 
 	@Nullable
 	private final Float similarity;
@@ -85,7 +86,7 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 		this.queryVector = ApiTypeHelper.unmodifiable(builder.queryVector);
 		this.queryVectorBuilder = builder.queryVectorBuilder;
 		this.k = ApiTypeHelper.requireNonNull(builder.k, this, "k", 0);
-		this.numCandidates = ApiTypeHelper.requireNonNull(builder.numCandidates, this, "numCandidates", 0);
+		this.numCandidates = builder.numCandidates;
 		this.similarity = builder.similarity;
 		this.rescoreVector = builder.rescoreVector;
 
@@ -143,11 +144,12 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 	}
 
 	/**
-	 * Required - Number of nearest neighbor candidates to consider per shard.
+	 * Number of nearest neighbor candidates to consider per shard.
 	 * <p>
 	 * API name: {@code num_candidates}
 	 */
-	public final int numCandidates() {
+	@Nullable
+	public final Integer numCandidates() {
 		return this.numCandidates;
 	}
 
@@ -195,9 +197,11 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 		generator.writeKey("k");
 		generator.write(this.k);
 
-		generator.writeKey("num_candidates");
-		generator.write(this.numCandidates);
+		if (this.numCandidates != null) {
+			generator.writeKey("num_candidates");
+			generator.write(this.numCandidates);
 
+		}
 		if (this.similarity != null) {
 			generator.writeKey("similarity");
 			generator.write(this.similarity);
@@ -228,6 +232,7 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 
 		private Integer k;
 
+		@Nullable
 		private Integer numCandidates;
 
 		@Nullable
@@ -327,11 +332,11 @@ public class KnnRetriever extends RetrieverBase implements RetrieverVariant {
 		}
 
 		/**
-		 * Required - Number of nearest neighbor candidates to consider per shard.
+		 * Number of nearest neighbor candidates to consider per shard.
 		 * <p>
 		 * API name: {@code num_candidates}
 		 */
-		public final Builder numCandidates(int value) {
+		public final Builder numCandidates(@Nullable Integer value) {
 			this.numCandidates = value;
 			return this;
 		}
