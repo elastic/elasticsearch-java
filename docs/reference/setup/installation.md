@@ -45,7 +45,7 @@ In the `pom.xml` of your project, add the following repository definition and de
 
 It may happen that after setting up the dependencies, your application fails with `ClassNotFoundException: jakarta.json.spi.JsonProvider`.
 
-If this happens, you have to explicitly add the `jakarta.json:jakarta.json-api:2.0.1` dependency.
+If this happens, you have to explicitly add the `jakarta.json:jakarta.json-api:2.1.3` dependency.
 
 ```groovy
 dependencies {
