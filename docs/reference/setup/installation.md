@@ -41,6 +41,42 @@ In the `pom.xml` of your project, add the following repository definition and de
 ```
 
 
+## HTTP client dependencies [http-client-dependencies]
+
+The Java API Client communicates with {{es}} through an HTTP client, and two implementations are available:
+
+* [Rest5Client](/reference/transport/rest5-client/index.md), the default and recommended implementation, based on the Apache HttpClient 5 library. It is included in the `elasticsearch-java` dependency, so no additional dependency is needed to use it.
+* [RestClient](/reference/transport/rest-client/index.md), the legacy implementation, based on the deprecated Apache HttpClient 4 library. Since version 9.0 it is an optional dependency, meaning that it has to be added explicitly to the project.
+
+Refer to [the transport layer documentation](/reference/transport/index.md) for guidance on which implementation to choose.
+
+To use the legacy RestClient, add the following dependency, using the same version as `elasticsearch-java`:
+
+```groovy subs=true
+dependencies {
+    implementation 'org.elasticsearch.client:elasticsearch-rest-client:{{version}}'
+}
+```
+
+```xml subs=true
+<project>
+  <dependencies>
+
+    <dependency>
+      <groupId>org.elasticsearch.client</groupId>
+      <artifactId>elasticsearch-rest-client</artifactId>
+      <version>{{version}}</version>
+    </dependency>
+
+  </dependencies>
+</project>
+```
+
+:::{note}
+This is especially relevant when upgrading an application from version 8.x, where the legacy RestClient was the only available HTTP client and was included by default. Applications upgrading to 9.x that keep using the legacy RestClient must add this dependency to keep compiling. Refer to the [9.0.0 release notes](/release-notes/9-0-0.md) for the full list of breaking changes.
+:::
+
+
 ## If you get ClassNotFoundException: jakarta.json.spi.JsonProvider [class-not-found-jsonprovider]
 
 It may happen that after setting up the dependencies, your application fails with `ClassNotFoundException: jakarta.json.spi.JsonProvider`.
