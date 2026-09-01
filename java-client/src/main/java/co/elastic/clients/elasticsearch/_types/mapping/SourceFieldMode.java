@@ -50,6 +50,8 @@ public enum SourceFieldMode implements JsonEnum {
 
 	Stored("stored"),
 
+	ColumnarStored("columnar_stored"),
+
 	/**
 	 * Instead of storing source documents on disk exactly as you send them,
 	 * Elasticsearch can reconstruct source content on the fly upon retrieval.

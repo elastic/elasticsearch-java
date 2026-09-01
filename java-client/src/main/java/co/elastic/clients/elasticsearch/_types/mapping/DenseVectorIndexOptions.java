@@ -82,6 +82,21 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	@Nullable
 	private final Integer flatIndexThreshold;
 
+	@Nullable
+	private final Integer clusterSize;
+
+	@Nullable
+	private final Float defaultVisitPercentage;
+
+	@Nullable
+	private final Integer bits;
+
+	@Nullable
+	private final Boolean precondition;
+
+	@Nullable
+	private final Boolean autoCalibrate;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DenseVectorIndexOptions(Builder builder) {
@@ -93,6 +108,11 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		this.rescoreVector = builder.rescoreVector;
 		this.onDiskRescore = builder.onDiskRescore;
 		this.flatIndexThreshold = builder.flatIndexThreshold;
+		this.clusterSize = builder.clusterSize;
+		this.defaultVisitPercentage = builder.defaultVisitPercentage;
+		this.bits = builder.bits;
+		this.precondition = builder.precondition;
+		this.autoCalibrate = builder.autoCalibrate;
 
 	}
 
@@ -119,7 +139,10 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	 * <code>int8_flat</code>, and <code>int4_flat</code> index types.
 	 * <p>
 	 * API name: {@code confidence_interval}
+	 * 
+	 * @deprecated 9.5.0
 	 */
+	@Deprecated
 	@Nullable
 	public final Float confidenceInterval() {
 		return this.confidenceInterval;
@@ -196,13 +219,78 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	 * value overrides the format default.
 	 * <p>
 	 * Only applicable to <code>hnsw</code>, <code>int8_hnsw</code>,
-	 * <code>int4_hnsw</code>, and <code>bbq_hnsw</code> index types.
+	 * <code>int4_hnsw</code>, <code>bbq_hnsw</code>, and <code>bbq_disk</code>
+	 * index types.
 	 * <p>
 	 * API name: {@code flat_index_threshold}
 	 */
 	@Nullable
 	public final Integer flatIndexThreshold() {
 		return this.flatIndexThreshold;
+	}
+
+	/**
+	 * Only applicable to <code>bbq_disk</code>. The number of vectors per cluster.
+	 * Must be between 64 and 65536.
+	 * <p>
+	 * API name: {@code cluster_size}
+	 */
+	@Nullable
+	public final Integer clusterSize() {
+		return this.clusterSize;
+	}
+
+	/**
+	 * Only applicable to <code>bbq_disk</code>. The percentage of clusters to visit
+	 * during search. Must be between 0 and 100. A value of 0 defaults to using
+	 * <code>num_candidates</code> for calculating the visit percentage.
+	 * <p>
+	 * API name: {@code default_visit_percentage}
+	 */
+	@Nullable
+	public final Float defaultVisitPercentage() {
+		return this.defaultVisitPercentage;
+	}
+
+	/**
+	 * Only applicable to <code>bbq_disk</code>. The number of bits per dimension
+	 * for quantization encoding. Valid values are <code>1</code>, <code>2</code>,
+	 * <code>4</code>, or <code>7</code>. When no <code>rescore_vector</code> is
+	 * explicitly set, the default oversampling is automatically adjusted based on
+	 * the bits value. This setting can be changed without reindexing.
+	 * <p>
+	 * API name: {@code bits}
+	 */
+	@Nullable
+	public final Integer bits() {
+		return this.bits;
+	}
+
+	/**
+	 * Only applicable to <code>bbq_disk</code>. When <code>true</code>, transforms
+	 * indexed vectors using a random orthogonal projection before quantization,
+	 * which can improve accuracy when vector components are not normally
+	 * distributed. Cannot be changed after the field is created.
+	 * <p>
+	 * API name: {@code precondition}
+	 */
+	@Nullable
+	public final Boolean precondition() {
+		return this.precondition;
+	}
+
+	/**
+	 * Only applicable to <code>bbq_disk</code>. When <code>true</code>,
+	 * Elasticsearch automatically selects the optimal quantization encoding,
+	 * oversampling factor, and preconditioning for each merged segment based on
+	 * estimated recall characteristics. Cannot be changed after the field is
+	 * created.
+	 * <p>
+	 * API name: {@code auto_calibrate}
+	 */
+	@Nullable
+	public final Boolean autoCalibrate() {
+		return this.autoCalibrate;
 	}
 
 	/**
@@ -248,6 +336,31 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 			generator.write(this.flatIndexThreshold);
 
 		}
+		if (this.clusterSize != null) {
+			generator.writeKey("cluster_size");
+			generator.write(this.clusterSize);
+
+		}
+		if (this.defaultVisitPercentage != null) {
+			generator.writeKey("default_visit_percentage");
+			generator.write(this.defaultVisitPercentage);
+
+		}
+		if (this.bits != null) {
+			generator.writeKey("bits");
+			generator.write(this.bits);
+
+		}
+		if (this.precondition != null) {
+			generator.writeKey("precondition");
+			generator.write(this.precondition);
+
+		}
+		if (this.autoCalibrate != null) {
+			generator.writeKey("auto_calibrate");
+			generator.write(this.autoCalibrate);
+
+		}
 
 	}
 
@@ -285,6 +398,21 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		@Nullable
 		private Integer flatIndexThreshold;
 
+		@Nullable
+		private Integer clusterSize;
+
+		@Nullable
+		private Float defaultVisitPercentage;
+
+		@Nullable
+		private Integer bits;
+
+		@Nullable
+		private Boolean precondition;
+
+		@Nullable
+		private Boolean autoCalibrate;
+
 		public Builder() {
 		}
 		private Builder(DenseVectorIndexOptions instance) {
@@ -295,6 +423,11 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 			this.rescoreVector = instance.rescoreVector;
 			this.onDiskRescore = instance.onDiskRescore;
 			this.flatIndexThreshold = instance.flatIndexThreshold;
+			this.clusterSize = instance.clusterSize;
+			this.defaultVisitPercentage = instance.defaultVisitPercentage;
+			this.bits = instance.bits;
+			this.precondition = instance.precondition;
+			this.autoCalibrate = instance.autoCalibrate;
 
 		}
 		/**
@@ -316,7 +449,10 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		 * <code>int8_flat</code>, and <code>int4_flat</code> index types.
 		 * <p>
 		 * API name: {@code confidence_interval}
+		 * 
+		 * @deprecated 9.5.0
 		 */
+		@Deprecated
 		public final Builder confidenceInterval(@Nullable Float value) {
 			this.confidenceInterval = value;
 			return this;
@@ -407,12 +543,77 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		 * value overrides the format default.
 		 * <p>
 		 * Only applicable to <code>hnsw</code>, <code>int8_hnsw</code>,
-		 * <code>int4_hnsw</code>, and <code>bbq_hnsw</code> index types.
+		 * <code>int4_hnsw</code>, <code>bbq_hnsw</code>, and <code>bbq_disk</code>
+		 * index types.
 		 * <p>
 		 * API name: {@code flat_index_threshold}
 		 */
 		public final Builder flatIndexThreshold(@Nullable Integer value) {
 			this.flatIndexThreshold = value;
+			return this;
+		}
+
+		/**
+		 * Only applicable to <code>bbq_disk</code>. The number of vectors per cluster.
+		 * Must be between 64 and 65536.
+		 * <p>
+		 * API name: {@code cluster_size}
+		 */
+		public final Builder clusterSize(@Nullable Integer value) {
+			this.clusterSize = value;
+			return this;
+		}
+
+		/**
+		 * Only applicable to <code>bbq_disk</code>. The percentage of clusters to visit
+		 * during search. Must be between 0 and 100. A value of 0 defaults to using
+		 * <code>num_candidates</code> for calculating the visit percentage.
+		 * <p>
+		 * API name: {@code default_visit_percentage}
+		 */
+		public final Builder defaultVisitPercentage(@Nullable Float value) {
+			this.defaultVisitPercentage = value;
+			return this;
+		}
+
+		/**
+		 * Only applicable to <code>bbq_disk</code>. The number of bits per dimension
+		 * for quantization encoding. Valid values are <code>1</code>, <code>2</code>,
+		 * <code>4</code>, or <code>7</code>. When no <code>rescore_vector</code> is
+		 * explicitly set, the default oversampling is automatically adjusted based on
+		 * the bits value. This setting can be changed without reindexing.
+		 * <p>
+		 * API name: {@code bits}
+		 */
+		public final Builder bits(@Nullable Integer value) {
+			this.bits = value;
+			return this;
+		}
+
+		/**
+		 * Only applicable to <code>bbq_disk</code>. When <code>true</code>, transforms
+		 * indexed vectors using a random orthogonal projection before quantization,
+		 * which can improve accuracy when vector components are not normally
+		 * distributed. Cannot be changed after the field is created.
+		 * <p>
+		 * API name: {@code precondition}
+		 */
+		public final Builder precondition(@Nullable Boolean value) {
+			this.precondition = value;
+			return this;
+		}
+
+		/**
+		 * Only applicable to <code>bbq_disk</code>. When <code>true</code>,
+		 * Elasticsearch automatically selects the optimal quantization encoding,
+		 * oversampling factor, and preconditioning for each merged segment based on
+		 * estimated recall characteristics. Cannot be changed after the field is
+		 * created.
+		 * <p>
+		 * API name: {@code auto_calibrate}
+		 */
+		public final Builder autoCalibrate(@Nullable Boolean value) {
+			this.autoCalibrate = value;
 			return this;
 		}
 
@@ -458,6 +659,11 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		op.add(Builder::rescoreVector, DenseVectorIndexOptionsRescoreVector._DESERIALIZER, "rescore_vector");
 		op.add(Builder::onDiskRescore, JsonpDeserializer.booleanDeserializer(), "on_disk_rescore");
 		op.add(Builder::flatIndexThreshold, JsonpDeserializer.integerDeserializer(), "flat_index_threshold");
+		op.add(Builder::clusterSize, JsonpDeserializer.integerDeserializer(), "cluster_size");
+		op.add(Builder::defaultVisitPercentage, JsonpDeserializer.floatDeserializer(), "default_visit_percentage");
+		op.add(Builder::bits, JsonpDeserializer.integerDeserializer(), "bits");
+		op.add(Builder::precondition, JsonpDeserializer.booleanDeserializer(), "precondition");
+		op.add(Builder::autoCalibrate, JsonpDeserializer.booleanDeserializer(), "auto_calibrate");
 
 	}
 
