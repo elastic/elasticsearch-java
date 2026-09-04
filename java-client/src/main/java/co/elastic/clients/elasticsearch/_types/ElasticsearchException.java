@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch._types;
 import co.elastic.clients.transport.http.TransportHttpClient;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 
 /**
  * Exception thrown by API client methods when Elasticsearch could not accept or
@@ -40,10 +41,35 @@ public class ElasticsearchException extends RuntimeException {
 
 	public ElasticsearchException(String endpointId, ErrorResponse response,
 			@Nullable TransportHttpClient.Response httpResponse) {
-		super("[" + endpointId + "] failed: [" + response.error().type() + "] " + response.error().reason());
+		super(buildCompleteErrorMessage(endpointId, response));
 		this.response = response;
 		this.endpointId = endpointId;
 		this.httpResponse = httpResponse;
+	}
+
+	private static String buildCompleteErrorMessage(String endpointId, ErrorResponse response) {
+		ErrorCause error = response.error();
+		StringBuilder message = new StringBuilder();
+		message.append("[").append(endpointId).append("] failed: [").append(error.type()).append("] ")
+				.append(error.reason());
+
+		// Nested errors
+		for (ErrorCause cause = error.causedBy(); cause != null; cause = cause.causedBy()) {
+			message.append("; caused by: [").append(cause.type()).append("] ").append(cause.reason());
+		}
+
+		// Root causes carry the actual error for generic errors such "all shards failed"
+		for (ErrorCause rootCause : error.rootCause()) {
+			// Avoid repeating same message
+			if (Objects.equals(rootCause.type(), error.type()) && Objects.equals(rootCause.reason(), error.reason())) {
+				continue;
+			}
+			message.append("; root cause: [").append(rootCause.type()).append("] ").append(rootCause.reason());
+			for (ErrorCause cause = rootCause.causedBy(); cause != null; cause = cause.causedBy()) {
+				message.append("; caused by: [").append(cause.type()).append("] ").append(cause.reason());
+			}
+		}
+		return message.toString();
 	}
 
 	public ElasticsearchException(String endpointId, ErrorResponse response) {
