@@ -20,8 +20,8 @@
 package co.elastic.clients.elasticsearch.transform.get_transform;
 
 import co.elastic.clients.elasticsearch._types.Time;
-import co.elastic.clients.elasticsearch.core.reindex.Destination;
 import co.elastic.clients.elasticsearch.ml.TransformAuthorization;
+import co.elastic.clients.elasticsearch.transform.Destination;
 import co.elastic.clients.elasticsearch.transform.Latest;
 import co.elastic.clients.elasticsearch.transform.Pivot;
 import co.elastic.clients.elasticsearch.transform.RetentionPolicy;

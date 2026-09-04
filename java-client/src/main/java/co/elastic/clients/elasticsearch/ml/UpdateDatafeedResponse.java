@@ -105,6 +105,9 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 
 	private final int scrollSize;
 
+	@Nullable
+	private final String projectRouting;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private UpdateDatafeedResponse(Builder builder) {
@@ -124,6 +127,7 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
 		this.scrollSize = ApiTypeHelper.requireNonNull(builder.scrollSize, this, "scrollSize", 0);
+		this.projectRouting = builder.projectRouting;
 
 	}
 
@@ -251,6 +255,20 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * A Lucene-style expression that limits which linked projects the datafeed
+	 * searches when cross-project search is enabled. Examples:
+	 * <code>_alias:_origin</code>, <code>_alias:prod-*</code>. If omitted, searches
+	 * all linked projects within the cross-project search scope. Rejected when CPS
+	 * is not enabled for datafeeds.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -347,6 +365,12 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 		generator.writeKey("scroll_size");
 		generator.write(this.scrollSize);
 
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
+
 	}
 
 	@Override
@@ -400,6 +424,9 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 		private Map<String, ScriptField> scriptFields;
 
 		private Integer scrollSize;
+
+		@Nullable
+		private String projectRouting;
 
 		/**
 		 * API name: {@code authorization}
@@ -684,6 +711,20 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * A Lucene-style expression that limits which linked projects the datafeed
+		 * searches when cross-project search is enabled. Examples:
+		 * <code>_alias:_origin</code>, <code>_alias:prod-*</code>. If omitted, searches
+		 * all linked projects within the cross-project search scope. Rejected when CPS
+		 * is not enabled for datafeeds.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -732,6 +773,7 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
 				"script_fields");
 		op.add(Builder::scrollSize, JsonpDeserializer.integerDeserializer(), "scroll_size");
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 
 	}
 

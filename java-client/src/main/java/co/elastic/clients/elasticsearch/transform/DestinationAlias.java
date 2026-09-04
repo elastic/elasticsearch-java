@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch.esql;
+package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -30,6 +30,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -50,63 +51,54 @@ import javax.annotation.Nullable;
 //
 //----------------------------------------------------------------
 
-// typedef: esql._types.ESQLView
+// typedef: transform._types.DestinationAlias
 
 /**
- * A non-materialized ES|QL view.
- * 
- * @see <a href="../doc-files/api-spec.html#esql._types.ESQLView">API
+ *
+ * @see <a href=
+ *      "../doc-files/api-spec.html#transform._types.DestinationAlias">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ESQLView implements JsonpSerializable {
-	private final String name;
-
-	private final String query;
+public class DestinationAlias implements JsonpSerializable {
+	private final String alias;
 
 	@Nullable
-	private final String description;
+	private final Boolean moveOnCreation;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private ESQLView(Builder builder) {
+	private DestinationAlias(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
-		this.description = builder.description;
+		this.alias = ApiTypeHelper.requireNonNull(builder.alias, this, "alias");
+		this.moveOnCreation = builder.moveOnCreation;
 
 	}
 
-	public static ESQLView of(Function<Builder, ObjectBuilder<ESQLView>> fn) {
+	public static DestinationAlias of(Function<Builder, ObjectBuilder<DestinationAlias>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The name of the ES|QL view
+	 * Required - The name of the alias.
 	 * <p>
-	 * API name: {@code name}
+	 * API name: {@code alias}
 	 */
-	public final String name() {
-		return this.name;
+	public final String alias() {
+		return this.alias;
 	}
 
 	/**
-	 * Required - The ES|QL query
+	 * Whether the destination index should be the only index in this alias. If
+	 * <code>true</code>, all the other indices will be removed from this alias
+	 * before adding the destination index to this alias. This does not delete the
+	 * removed indices; it only removes them from the alias.
 	 * <p>
-	 * API name: {@code query}
-	 */
-	public final String query() {
-		return this.query;
-	}
-
-	/**
-	 * A free-text description of the view.
-	 * <p>
-	 * API name: {@code description}
+	 * API name: {@code move_on_creation}
 	 */
 	@Nullable
-	public final String description() {
-		return this.description;
+	public final Boolean moveOnCreation() {
+		return this.moveOnCreation;
 	}
 
 	/**
@@ -120,15 +112,12 @@ public class ESQLView implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
+		generator.writeKey("alias");
+		generator.write(this.alias);
 
-		generator.writeKey("query");
-		generator.write(this.query);
-
-		if (this.description != null) {
-			generator.writeKey("description");
-			generator.write(this.description);
+		if (this.moveOnCreation != null) {
+			generator.writeKey("move_on_creation");
+			generator.write(this.moveOnCreation);
 
 		}
 
@@ -142,52 +131,42 @@ public class ESQLView implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ESQLView}.
+	 * Builder for {@link DestinationAlias}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ESQLView> {
-		private String name;
-
-		private String query;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DestinationAlias> {
+		private String alias;
 
 		@Nullable
-		private String description;
+		private Boolean moveOnCreation;
 
 		public Builder() {
 		}
-		private Builder(ESQLView instance) {
-			this.name = instance.name;
-			this.query = instance.query;
-			this.description = instance.description;
+		private Builder(DestinationAlias instance) {
+			this.alias = instance.alias;
+			this.moveOnCreation = instance.moveOnCreation;
 
 		}
 		/**
-		 * Required - The name of the ES|QL view
+		 * Required - The name of the alias.
 		 * <p>
-		 * API name: {@code name}
+		 * API name: {@code alias}
 		 */
-		public final Builder name(String value) {
-			this.name = value;
+		public final Builder alias(String value) {
+			this.alias = value;
 			return this;
 		}
 
 		/**
-		 * Required - The ES|QL query
+		 * Whether the destination index should be the only index in this alias. If
+		 * <code>true</code>, all the other indices will be removed from this alias
+		 * before adding the destination index to this alias. This does not delete the
+		 * removed indices; it only removes them from the alias.
 		 * <p>
-		 * API name: {@code query}
+		 * API name: {@code move_on_creation}
 		 */
-		public final Builder query(String value) {
-			this.query = value;
-			return this;
-		}
-
-		/**
-		 * A free-text description of the view.
-		 * <p>
-		 * API name: {@code description}
-		 */
-		public final Builder description(@Nullable String value) {
-			this.description = value;
+		public final Builder moveOnCreation(@Nullable Boolean value) {
+			this.moveOnCreation = value;
 			return this;
 		}
 
@@ -197,15 +176,15 @@ public class ESQLView implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link ESQLView}.
+		 * Builds a {@link DestinationAlias}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ESQLView build() {
+		public DestinationAlias build() {
 			_checkSingleUse();
 
-			return new ESQLView(this);
+			return new DestinationAlias(this);
 		}
 	}
 
@@ -218,16 +197,15 @@ public class ESQLView implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link ESQLView}
+	 * Json deserializer for {@link DestinationAlias}
 	 */
-	public static final JsonpDeserializer<ESQLView> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ESQLView::setupESQLViewDeserializer);
+	public static final JsonpDeserializer<DestinationAlias> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			DestinationAlias::setupDestinationAliasDeserializer);
 
-	protected static void setupESQLViewDeserializer(ObjectDeserializer<ESQLView.Builder> op) {
+	protected static void setupDestinationAliasDeserializer(ObjectDeserializer<DestinationAlias.Builder> op) {
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
-		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::alias, JsonpDeserializer.stringDeserializer(), "alias");
+		op.add(Builder::moveOnCreation, JsonpDeserializer.booleanDeserializer(), "move_on_creation");
 
 	}
 

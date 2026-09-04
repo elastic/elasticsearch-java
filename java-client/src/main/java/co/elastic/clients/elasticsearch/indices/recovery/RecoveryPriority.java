@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.elasticsearch._types.mapping;
+package co.elastic.clients.elasticsearch.indices.recovery;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -41,28 +41,56 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.mapping.SourceFieldMode">API
+ *      "../../doc-files/api-spec.html#indices.recovery.RecoveryPriority">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum SourceFieldMode implements JsonEnum {
-	Disabled("disabled"),
-
-	Stored("stored"),
-
-	ColumnarStored("columnar_stored"),
+public enum RecoveryPriority implements JsonEnum {
+	/**
+	 * A primary shard which is unassigned because it is newly created.
+	 */
+	UnassignedNewPrimary("UNASSIGNED_NEW_PRIMARY"),
 
 	/**
-	 * Instead of storing source documents on disk exactly as you send them,
-	 * Elasticsearch can reconstruct source content on the fly upon retrieval.
+	 * A shard which is unassigned because of an unexpected condition, i.e. some
+	 * kind of failure.
 	 */
-	Synthetic("synthetic"),
+	UnassignedUnexpected("UNASSIGNED_UNEXPECTED"),
+
+	/**
+	 * A shard which is unassigned for an expected condition, i.e. because of a user
+	 * operation such as opening or restoring an index, but which is not an
+	 * UNASSIGNED_NEW_PRIMARY.
+	 */
+	UnassignedExpected("UNASSIGNED_EXPECTED"),
+
+	/**
+	 * A shard which is assigned, and is being relocated because it cannot remain on
+	 * its current node according to the allocation deciders.
+	 */
+	RelocationCanRemainNo("RELOCATION_CAN_REMAIN_NO"),
+
+	/**
+	 * A shard which is assigned, and is being relocated because it is not preferred
+	 * for it to remain on its current node according to the allocation deciders.
+	 */
+	RelocationCanRemainNotPreferred("RELOCATION_CAN_REMAIN_NOT_PREFERRED"),
+
+	/**
+	 * A shard which is assigned, and is being relocated for rebalancing.
+	 */
+	RelocateRebalancing("RELOCATE_REBALANCING"),
+
+	/**
+	 * Placeholder value for unknown priorities.
+	 */
+	Unknown("UNKNOWN"),
 
 	;
 
 	private final String jsonValue;
 
-	SourceFieldMode(String jsonValue) {
+	RecoveryPriority(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -70,6 +98,6 @@ public enum SourceFieldMode implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<SourceFieldMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			SourceFieldMode.values());
+	public static final JsonEnum.Deserializer<RecoveryPriority> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			RecoveryPriority.values());
 }

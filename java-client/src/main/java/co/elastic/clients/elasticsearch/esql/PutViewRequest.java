@@ -65,6 +65,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class PutViewRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final String description;
+
 	private final String name;
 
 	private final String query;
@@ -73,6 +76,7 @@ public class PutViewRequest extends RequestBase implements JsonpSerializable {
 
 	private PutViewRequest(Builder builder) {
 
+		this.description = builder.description;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 
@@ -80,6 +84,16 @@ public class PutViewRequest extends RequestBase implements JsonpSerializable {
 
 	public static PutViewRequest of(Function<Builder, ObjectBuilder<PutViewRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * A free-text description of the view.
+	 * <p>
+	 * API name: {@code description}
+	 */
+	@Nullable
+	public final String description() {
+		return this.description;
 	}
 
 	/**
@@ -111,6 +125,11 @@ public class PutViewRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.description != null) {
+			generator.writeKey("description");
+			generator.write(this.description);
+
+		}
 		generator.writeKey("query");
 		generator.write(this.query);
 
@@ -123,6 +142,9 @@ public class PutViewRequest extends RequestBase implements JsonpSerializable {
 	 */
 
 	public static class Builder extends RequestBase.AbstractBuilder<Builder> implements ObjectBuilder<PutViewRequest> {
+		@Nullable
+		private String description;
+
 		private String name;
 
 		private String query;
@@ -130,10 +152,21 @@ public class PutViewRequest extends RequestBase implements JsonpSerializable {
 		public Builder() {
 		}
 		private Builder(PutViewRequest instance) {
+			this.description = instance.description;
 			this.name = instance.name;
 			this.query = instance.query;
 
 		}
+		/**
+		 * A free-text description of the view.
+		 * <p>
+		 * API name: {@code description}
+		 */
+		public final Builder description(@Nullable String value) {
+			this.description = value;
+			return this;
+		}
+
 		/**
 		 * Required - The view name to create or update.
 		 * <p>
@@ -188,6 +221,7 @@ public class PutViewRequest extends RequestBase implements JsonpSerializable {
 
 	protected static void setupPutViewRequestDeserializer(ObjectDeserializer<PutViewRequest.Builder> op) {
 
+		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 
 	}

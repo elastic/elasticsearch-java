@@ -91,6 +91,17 @@ public enum CatRecoveryColumn implements JsonEnum {
 	Stage("stage", "st"),
 
 	/**
+	 * The number of times this recovery has failed in a way which is retried
+	 * locally (i.e. on the data node).
+	 */
+	LocalRetries("local_retries", "lr"),
+
+	/**
+	 * The recovery priority.
+	 */
+	Priority("priority", "pr"),
+
+	/**
 	 * The source host.
 	 */
 	SourceHost("source_host", "shost"),

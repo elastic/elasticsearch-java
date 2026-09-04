@@ -135,7 +135,8 @@ public class RecoveryRequest extends RequestBase {
 	}
 
 	/**
-	 * If <code>true</code>, the response only includes ongoing shard recoveries.
+	 * If <code>true</code>, the response only includes shard recoveries that have
+	 * not yet completed (excludes <code>DONE</code> stage).
 	 * <p>
 	 * API name: {@code active_only}
 	 */
@@ -244,7 +245,8 @@ public class RecoveryRequest extends RequestBase {
 
 		}
 		/**
-		 * If <code>true</code>, the response only includes ongoing shard recoveries.
+		 * If <code>true</code>, the response only includes shard recoveries that have
+		 * not yet completed (excludes <code>DONE</code> stage).
 		 * <p>
 		 * API name: {@code active_only}
 		 */

@@ -131,6 +131,9 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 	private final Integer maxEmptySearches;
 
 	@Nullable
+	private final String projectRouting;
+
+	@Nullable
 	private final Query query;
 
 	@Nullable
@@ -161,6 +164,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		this.indicesOptions = builder.indicesOptions;
 		this.jobId = builder.jobId;
 		this.maxEmptySearches = builder.maxEmptySearches;
+		this.projectRouting = builder.projectRouting;
 		this.query = builder.query;
 		this.queryDelay = builder.queryDelay;
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
@@ -349,6 +353,20 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 	}
 
 	/**
+	 * A Lucene-style expression that limits which linked projects the datafeed
+	 * searches when cross-project search is enabled. Examples:
+	 * <code>_alias:_origin</code>, <code>_alias:prod-*</code>. If omitted, searches
+	 * all linked projects within the cross-project search scope. Rejected when CPS
+	 * is not enabled for datafeeds.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
+	}
+
+	/**
 	 * The Elasticsearch query domain-specific language (DSL). This value
 	 * corresponds to the query object in an Elasticsearch search POST body. All the
 	 * options that are supported by Elasticsearch can be used, as this object is
@@ -488,6 +506,11 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 			generator.write(this.maxEmptySearches);
 
 		}
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
 		if (this.query != null) {
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
@@ -579,6 +602,9 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		private Integer maxEmptySearches;
 
 		@Nullable
+		private String projectRouting;
+
+		@Nullable
 		private Query query;
 
 		@Nullable
@@ -610,6 +636,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 			this.indicesOptions = instance.indicesOptions;
 			this.jobId = instance.jobId;
 			this.maxEmptySearches = instance.maxEmptySearches;
+			this.projectRouting = instance.projectRouting;
 			this.query = instance.query;
 			this.queryDelay = instance.queryDelay;
 			this.runtimeMappings = instance.runtimeMappings;
@@ -935,6 +962,20 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		}
 
 		/**
+		 * A Lucene-style expression that limits which linked projects the datafeed
+		 * searches when cross-project search is enabled. Examples:
+		 * <code>_alias:_origin</code>, <code>_alias:prod-*</code>. If omitted, searches
+		 * all linked projects within the cross-project search scope. Rejected when CPS
+		 * is not enabled for datafeeds.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
+			return this;
+		}
+
+		/**
 		 * The Elasticsearch query domain-specific language (DSL). This value
 		 * corresponds to the query object in an Elasticsearch search POST body. All the
 		 * options that are supported by Elasticsearch can be used, as this object is
@@ -1136,6 +1177,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		op.add(Builder::indicesOptions, IndicesOptions._DESERIALIZER, "indices_options");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::maxEmptySearches, JsonpDeserializer.integerDeserializer(), "max_empty_searches");
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::queryDelay, Time._DESERIALIZER, "query_delay");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
