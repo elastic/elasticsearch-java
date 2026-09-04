@@ -47,7 +47,13 @@ import co.elastic.clients.json.JsonpDeserializer;
 @JsonpDeserializable
 public enum RecoveryStage implements JsonEnum {
 	/**
-	 * Recovery has not started.
+	 * The shard's recovery state has been created, but the recovery has not started
+	 * yet (it may be queued behind other ongoing recoveries).
+	 */
+	Created("CREATED"),
+
+	/**
+	 * Recovery has started and is initializing.
 	 */
 	Init("INIT"),
 

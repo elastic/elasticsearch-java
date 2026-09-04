@@ -113,7 +113,8 @@ public class RecoveryRequest extends CatRequestBase {
 	}
 
 	/**
-	 * If <code>true</code>, the response only includes ongoing shard recoveries.
+	 * If <code>true</code>, the response only includes shard recoveries that have
+	 * not yet completed (excludes <code>done</code> stage).
 	 * <p>
 	 * API name: {@code active_only}
 	 */
@@ -242,7 +243,8 @@ public class RecoveryRequest extends CatRequestBase {
 
 		}
 		/**
-		 * If <code>true</code>, the response only includes ongoing shard recoveries.
+		 * If <code>true</code>, the response only includes shard recoveries that have
+		 * not yet completed (excludes <code>done</code> stage).
 		 * <p>
 		 * API name: {@code active_only}
 		 */

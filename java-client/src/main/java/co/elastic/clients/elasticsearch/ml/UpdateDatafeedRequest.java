@@ -83,6 +83,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final Boolean forceRekeying;
+
 	private final Map<String, Aggregation> aggregations;
 
 	@Nullable
@@ -119,6 +122,9 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 	private final Integer maxEmptySearches;
 
 	@Nullable
+	private final String projectRouting;
+
+	@Nullable
 	private final Query query;
 
 	@Nullable
@@ -135,6 +141,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 
 	private UpdateDatafeedRequest(Builder builder) {
 
+		this.forceRekeying = builder.forceRekeying;
 		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.chunkingConfig = builder.chunkingConfig;
@@ -148,6 +155,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		this.indicesOptions = builder.indicesOptions;
 		this.jobId = builder.jobId;
 		this.maxEmptySearches = builder.maxEmptySearches;
+		this.projectRouting = builder.projectRouting;
 		this.query = builder.query;
 		this.queryDelay = builder.queryDelay;
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
@@ -158,6 +166,20 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 
 	public static UpdateDatafeedRequest of(Function<Builder, ObjectBuilder<UpdateDatafeedRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * When true, force reminting of the datafeed's internal cloud API key from the
+	 * caller's cloud credential without requiring other configuration changes.
+	 * Requires a cloud-authenticated caller and an environment that supports
+	 * cross-project calls. Rejected with 400 otherwise. The datafeed must be
+	 * stopped.
+	 * <p>
+	 * API name: {@code _force_rekeying}
+	 */
+	@Nullable
+	public final Boolean forceRekeying() {
+		return this.forceRekeying;
 	}
 
 	/**
@@ -327,6 +349,20 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 	}
 
 	/**
+	 * A Lucene-style expression that limits which linked projects the datafeed
+	 * searches when cross-project search is enabled. Examples:
+	 * <code>_alias:_origin</code>, <code>_alias:prod-*</code>. If omitted, searches
+	 * all linked projects within the cross-project search scope. Rejected when CPS
+	 * is not enabled for datafeeds.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
+	}
+
+	/**
 	 * The Elasticsearch query domain-specific language (DSL). This value
 	 * corresponds to the query object in an Elasticsearch search POST body. All the
 	 * options that are supported by Elasticsearch can be used, as this object is
@@ -402,6 +438,11 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.forceRekeying != null) {
+			generator.writeKey("_force_rekeying");
+			generator.write(this.forceRekeying);
+
+		}
 		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
@@ -451,6 +492,11 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		if (this.maxEmptySearches != null) {
 			generator.writeKey("max_empty_searches");
 			generator.write(this.maxEmptySearches);
+
+		}
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
 
 		}
 		if (this.query != null) {
@@ -503,6 +549,9 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 			implements
 				ObjectBuilder<UpdateDatafeedRequest> {
 		@Nullable
+		private Boolean forceRekeying;
+
+		@Nullable
 		private Map<String, Aggregation> aggregations;
 
 		@Nullable
@@ -541,6 +590,9 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		private Integer maxEmptySearches;
 
 		@Nullable
+		private String projectRouting;
+
+		@Nullable
 		private Query query;
 
 		@Nullable
@@ -558,6 +610,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		public Builder() {
 		}
 		private Builder(UpdateDatafeedRequest instance) {
+			this.forceRekeying = instance.forceRekeying;
 			this.aggregations = instance.aggregations;
 			this.allowNoIndices = instance.allowNoIndices;
 			this.chunkingConfig = instance.chunkingConfig;
@@ -571,6 +624,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 			this.indicesOptions = instance.indicesOptions;
 			this.jobId = instance.jobId;
 			this.maxEmptySearches = instance.maxEmptySearches;
+			this.projectRouting = instance.projectRouting;
 			this.query = instance.query;
 			this.queryDelay = instance.queryDelay;
 			this.runtimeMappings = instance.runtimeMappings;
@@ -578,6 +632,20 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 			this.scrollSize = instance.scrollSize;
 
 		}
+		/**
+		 * When true, force reminting of the datafeed's internal cloud API key from the
+		 * caller's cloud credential without requiring other configuration changes.
+		 * Requires a cloud-authenticated caller and an environment that supports
+		 * cross-project calls. Rejected with 400 otherwise. The datafeed must be
+		 * stopped.
+		 * <p>
+		 * API name: {@code _force_rekeying}
+		 */
+		public final Builder forceRekeying(@Nullable Boolean value) {
+			this.forceRekeying = value;
+			return this;
+		}
+
 		/**
 		 * If set, the datafeed performs aggregation searches. Support for aggregations
 		 * is limited and should be used only with low cardinality data.
@@ -873,6 +941,20 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		}
 
 		/**
+		 * A Lucene-style expression that limits which linked projects the datafeed
+		 * searches when cross-project search is enabled. Examples:
+		 * <code>_alias:_origin</code>, <code>_alias:prod-*</code>. If omitted, searches
+		 * all linked projects within the cross-project search scope. Rejected when CPS
+		 * is not enabled for datafeeds.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
+			return this;
+		}
+
+		/**
 		 * The Elasticsearch query domain-specific language (DSL). This value
 		 * corresponds to the query object in an Elasticsearch search POST body. All the
 		 * options that are supported by Elasticsearch can be used, as this object is
@@ -1077,6 +1159,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 
 	protected static void setupUpdateDatafeedRequestDeserializer(ObjectDeserializer<UpdateDatafeedRequest.Builder> op) {
 
+		op.add(Builder::forceRekeying, JsonpDeserializer.booleanDeserializer(), "_force_rekeying");
 		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
 				"aggregations");
 		op.add(Builder::chunkingConfig, ChunkingConfig._DESERIALIZER, "chunking_config");
@@ -1087,6 +1170,7 @@ public class UpdateDatafeedRequest extends RequestBase implements JsonpSerializa
 		op.add(Builder::indicesOptions, IndicesOptions._DESERIALIZER, "indices_options");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::maxEmptySearches, JsonpDeserializer.integerDeserializer(), "max_empty_searches");
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::queryDelay, Time._DESERIALIZER, "query_delay");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),

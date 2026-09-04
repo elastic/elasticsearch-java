@@ -109,6 +109,9 @@ public class Datafeed implements JsonpSerializable {
 	@Nullable
 	private final IndicesOptions indicesOptions;
 
+	@Nullable
+	private final String projectRouting;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private Datafeed(Builder builder) {
@@ -130,6 +133,7 @@ public class Datafeed implements JsonpSerializable {
 				"delayedDataCheckConfig");
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.indicesOptions = builder.indicesOptions;
+		this.projectRouting = builder.projectRouting;
 
 	}
 
@@ -270,6 +274,20 @@ public class Datafeed implements JsonpSerializable {
 	}
 
 	/**
+	 * A Lucene-style expression that limits which linked projects the datafeed
+	 * searches when cross-project search is enabled. Examples:
+	 * <code>_alias:_origin</code>, <code>_alias:prod-*</code>. If omitted, searches
+	 * all linked projects within the cross-project search scope. Rejected when CPS
+	 * is not enabled for datafeeds.
+	 * <p>
+	 * API name: {@code project_routing}
+	 */
+	@Nullable
+	public final String projectRouting() {
+		return this.projectRouting;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -380,6 +398,11 @@ public class Datafeed implements JsonpSerializable {
 			this.indicesOptions.serialize(generator, mapper);
 
 		}
+		if (this.projectRouting != null) {
+			generator.writeKey("project_routing");
+			generator.write(this.projectRouting);
+
+		}
 
 	}
 
@@ -438,6 +461,9 @@ public class Datafeed implements JsonpSerializable {
 		@Nullable
 		private IndicesOptions indicesOptions;
 
+		@Nullable
+		private String projectRouting;
+
 		public Builder() {
 		}
 		private Builder(Datafeed instance) {
@@ -457,6 +483,7 @@ public class Datafeed implements JsonpSerializable {
 			this.delayedDataCheckConfig = instance.delayedDataCheckConfig;
 			this.runtimeMappings = instance.runtimeMappings;
 			this.indicesOptions = instance.indicesOptions;
+			this.projectRouting = instance.projectRouting;
 
 		}
 		/**
@@ -770,6 +797,20 @@ public class Datafeed implements JsonpSerializable {
 			return this.indicesOptions(fn.apply(new IndicesOptions.Builder()).build());
 		}
 
+		/**
+		 * A Lucene-style expression that limits which linked projects the datafeed
+		 * searches when cross-project search is enabled. Examples:
+		 * <code>_alias:_origin</code>, <code>_alias:prod-*</code>. If omitted, searches
+		 * all linked projects within the cross-project search scope. Rejected when CPS
+		 * is not enabled for datafeeds.
+		 * <p>
+		 * API name: {@code project_routing}
+		 */
+		public final Builder projectRouting(@Nullable String value) {
+			this.projectRouting = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -825,6 +866,7 @@ public class Datafeed implements JsonpSerializable {
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
 		op.add(Builder::indicesOptions, IndicesOptions._DESERIALIZER, "indices_options");
+		op.add(Builder::projectRouting, JsonpDeserializer.stringDeserializer(), "project_routing");
 
 	}
 

@@ -79,6 +79,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class UpdateTransformRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final Boolean forceRekeying;
+
 	private final Map<String, JsonData> meta;
 
 	@Nullable
@@ -114,6 +117,7 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 
 	private UpdateTransformRequest(Builder builder) {
 
+		this.forceRekeying = builder.forceRekeying;
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.deferValidation = builder.deferValidation;
 		this.description = builder.description;
@@ -130,6 +134,19 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 
 	public static UpdateTransformRequest of(Function<Builder, ObjectBuilder<UpdateTransformRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * When true, force reminting of the transform's internal cloud API key from the
+	 * caller's cloud credential without requiring other configuration changes.
+	 * Requires a cloud-authenticated caller and an environment that supports
+	 * cross-project calls. Rejected with 400 otherwise.
+	 * <p>
+	 * API name: {@code _force_rekeying}
+	 */
+	@Nullable
+	public final Boolean forceRekeying() {
+		return this.forceRekeying;
 	}
 
 	/**
@@ -257,6 +274,11 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.forceRekeying != null) {
+			generator.writeKey("_force_rekeying");
+			generator.write(this.forceRekeying);
+
+		}
 		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
@@ -316,6 +338,9 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 			implements
 				ObjectBuilder<UpdateTransformRequest> {
 		@Nullable
+		private Boolean forceRekeying;
+
+		@Nullable
 		private Map<String, JsonData> meta;
 
 		@Nullable
@@ -350,6 +375,7 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		public Builder() {
 		}
 		private Builder(UpdateTransformRequest instance) {
+			this.forceRekeying = instance.forceRekeying;
 			this.meta = instance.meta;
 			this.deferValidation = instance.deferValidation;
 			this.description = instance.description;
@@ -363,6 +389,19 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 			this.transformId = instance.transformId;
 
 		}
+		/**
+		 * When true, force reminting of the transform's internal cloud API key from the
+		 * caller's cloud credential without requiring other configuration changes.
+		 * Requires a cloud-authenticated caller and an environment that supports
+		 * cross-project calls. Rejected with 400 otherwise.
+		 * <p>
+		 * API name: {@code _force_rekeying}
+		 */
+		public final Builder forceRekeying(@Nullable Boolean value) {
+			this.forceRekeying = value;
+			return this;
+		}
+
 		/**
 		 * Defines optional transform metadata.
 		 * <p>
@@ -617,6 +656,7 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 	protected static void setupUpdateTransformRequestDeserializer(
 			ObjectDeserializer<UpdateTransformRequest.Builder> op) {
 
+		op.add(Builder::forceRekeying, JsonpDeserializer.booleanDeserializer(), "_force_rekeying");
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::dest, Destination._DESERIALIZER, "dest");

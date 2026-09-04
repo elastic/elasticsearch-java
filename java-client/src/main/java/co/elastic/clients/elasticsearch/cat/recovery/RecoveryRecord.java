@@ -31,6 +31,7 @@ import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
@@ -87,6 +88,12 @@ public class RecoveryRecord implements JsonpSerializable {
 
 	@Nullable
 	private final String stage;
+
+	@Nullable
+	private final Integer localRetries;
+
+	@Nullable
+	private final String priority;
 
 	@Nullable
 	private final String sourceHost;
@@ -152,6 +159,8 @@ public class RecoveryRecord implements JsonpSerializable {
 		this.time = builder.time;
 		this.type = builder.type;
 		this.stage = builder.stage;
+		this.localRetries = builder.localRetries;
+		this.priority = builder.priority;
 		this.sourceHost = builder.sourceHost;
 		this.sourceNode = builder.sourceNode;
 		this.targetHost = builder.targetHost;
@@ -197,7 +206,8 @@ public class RecoveryRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * The recovery start time.
+	 * The recovery start time. For recoveries in the <code>created</code> stage
+	 * (not yet started), this value is the Unix epoch (1970-01-01T00:00:00.000Z).
 	 * <p>
 	 * API name: {@code start_time}
 	 */
@@ -207,7 +217,8 @@ public class RecoveryRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * The recovery start time in epoch milliseconds.
+	 * The recovery start time in epoch milliseconds. For recoveries in the
+	 * <code>created</code> stage (not yet started), this value is 0.
 	 * <p>
 	 * API name: {@code start_time_millis}
 	 */
@@ -217,7 +228,8 @@ public class RecoveryRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * The recovery stop time.
+	 * The recovery stop time. For recoveries that have not yet completed, this
+	 * value is the Unix epoch (1970-01-01T00:00:00.000Z).
 	 * <p>
 	 * API name: {@code stop_time}
 	 */
@@ -227,7 +239,8 @@ public class RecoveryRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * The recovery stop time in epoch milliseconds.
+	 * The recovery stop time in epoch milliseconds. For recoveries that have not
+	 * yet completed, this value is 0.
 	 * <p>
 	 * API name: {@code stop_time_millis}
 	 */
@@ -237,7 +250,8 @@ public class RecoveryRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * The recovery time.
+	 * The recovery time. For recoveries in the <code>created</code> stage (not yet
+	 * started), this value is 0.
 	 * <p>
 	 * API name: {@code time}
 	 */
@@ -264,6 +278,27 @@ public class RecoveryRecord implements JsonpSerializable {
 	@Nullable
 	public final String stage() {
 		return this.stage;
+	}
+
+	/**
+	 * The number of times this recovery has failed in a way which is retried
+	 * locally (i.e. on the data node).
+	 * <p>
+	 * API name: {@code local_retries}
+	 */
+	@Nullable
+	public final Integer localRetries() {
+		return this.localRetries;
+	}
+
+	/**
+	 * The recovery priority.
+	 * <p>
+	 * API name: {@code priority}
+	 */
+	@Nullable
+	public final String priority() {
+		return this.priority;
 	}
 
 	/**
@@ -490,6 +525,16 @@ public class RecoveryRecord implements JsonpSerializable {
 			generator.write(this.stage);
 
 		}
+		if (this.localRetries != null) {
+			generator.writeKey("local_retries");
+			generator.write(this.localRetries);
+
+		}
+		if (this.priority != null) {
+			generator.writeKey("priority");
+			generator.write(this.priority);
+
+		}
 		if (this.sourceHost != null) {
 			generator.writeKey("source_host");
 			generator.write(this.sourceHost);
@@ -618,6 +663,12 @@ public class RecoveryRecord implements JsonpSerializable {
 		private String stage;
 
 		@Nullable
+		private Integer localRetries;
+
+		@Nullable
+		private String priority;
+
+		@Nullable
 		private String sourceHost;
 
 		@Nullable
@@ -680,6 +731,8 @@ public class RecoveryRecord implements JsonpSerializable {
 			this.time = instance.time;
 			this.type = instance.type;
 			this.stage = instance.stage;
+			this.localRetries = instance.localRetries;
+			this.priority = instance.priority;
 			this.sourceHost = instance.sourceHost;
 			this.sourceNode = instance.sourceNode;
 			this.targetHost = instance.targetHost;
@@ -720,7 +773,8 @@ public class RecoveryRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The recovery start time.
+		 * The recovery start time. For recoveries in the <code>created</code> stage
+		 * (not yet started), this value is the Unix epoch (1970-01-01T00:00:00.000Z).
 		 * <p>
 		 * API name: {@code start_time}
 		 */
@@ -730,7 +784,8 @@ public class RecoveryRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The recovery start time in epoch milliseconds.
+		 * The recovery start time in epoch milliseconds. For recoveries in the
+		 * <code>created</code> stage (not yet started), this value is 0.
 		 * <p>
 		 * API name: {@code start_time_millis}
 		 */
@@ -740,7 +795,8 @@ public class RecoveryRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The recovery stop time.
+		 * The recovery stop time. For recoveries that have not yet completed, this
+		 * value is the Unix epoch (1970-01-01T00:00:00.000Z).
 		 * <p>
 		 * API name: {@code stop_time}
 		 */
@@ -750,7 +806,8 @@ public class RecoveryRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The recovery stop time in epoch milliseconds.
+		 * The recovery stop time in epoch milliseconds. For recoveries that have not
+		 * yet completed, this value is 0.
 		 * <p>
 		 * API name: {@code stop_time_millis}
 		 */
@@ -760,7 +817,8 @@ public class RecoveryRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The recovery time.
+		 * The recovery time. For recoveries in the <code>created</code> stage (not yet
+		 * started), this value is 0.
 		 * <p>
 		 * API name: {@code time}
 		 */
@@ -770,7 +828,8 @@ public class RecoveryRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * The recovery time.
+		 * The recovery time. For recoveries in the <code>created</code> stage (not yet
+		 * started), this value is 0.
 		 * <p>
 		 * API name: {@code time}
 		 */
@@ -795,6 +854,27 @@ public class RecoveryRecord implements JsonpSerializable {
 		 */
 		public final Builder stage(@Nullable String value) {
 			this.stage = value;
+			return this;
+		}
+
+		/**
+		 * The number of times this recovery has failed in a way which is retried
+		 * locally (i.e. on the data node).
+		 * <p>
+		 * API name: {@code local_retries}
+		 */
+		public final Builder localRetries(@Nullable Integer value) {
+			this.localRetries = value;
+			return this;
+		}
+
+		/**
+		 * The recovery priority.
+		 * <p>
+		 * API name: {@code priority}
+		 */
+		public final Builder priority(@Nullable String value) {
+			this.priority = value;
 			return this;
 		}
 
@@ -1011,6 +1091,8 @@ public class RecoveryRecord implements JsonpSerializable {
 		op.add(Builder::time, Time._DESERIALIZER, "time", "t", "ti");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type", "ty");
 		op.add(Builder::stage, JsonpDeserializer.stringDeserializer(), "stage", "st");
+		op.add(Builder::localRetries, JsonpDeserializer.integerDeserializer(), "local_retries", "lr");
+		op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority", "pr");
 		op.add(Builder::sourceHost, JsonpDeserializer.stringDeserializer(), "source_host", "shost");
 		op.add(Builder::sourceNode, JsonpDeserializer.stringDeserializer(), "source_node", "snode");
 		op.add(Builder::targetHost, JsonpDeserializer.stringDeserializer(), "target_host", "thost");

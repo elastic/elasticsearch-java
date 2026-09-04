@@ -33,6 +33,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
@@ -74,6 +75,12 @@ public class ShardRecovery implements JsonpSerializable {
 	private final RecoveryStage stage;
 
 	@Nullable
+	private final Integer localRetries;
+
+	@Nullable
+	private final RecoveryPriority priority;
+
+	@Nullable
 	private final RecoveryStartStatus start;
 
 	@Nullable
@@ -109,6 +116,8 @@ public class ShardRecovery implements JsonpSerializable {
 		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary", false);
 		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.stage = ApiTypeHelper.requireNonNull(builder.stage, this, "stage");
+		this.localRetries = builder.localRetries;
+		this.priority = builder.priority;
 		this.start = builder.start;
 		this.startTime = builder.startTime;
 		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis", 0);
@@ -165,6 +174,27 @@ public class ShardRecovery implements JsonpSerializable {
 	}
 
 	/**
+	 * The number of times this recovery has failed in a way which is retried
+	 * locally (i.e. on the data node).
+	 * <p>
+	 * API name: {@code local_retries}
+	 */
+	@Nullable
+	public final Integer localRetries() {
+		return this.localRetries;
+	}
+
+	/**
+	 * The recovery priority.
+	 * <p>
+	 * API name: {@code priority}
+	 */
+	@Nullable
+	public final RecoveryPriority priority() {
+		return this.priority;
+	}
+
+	/**
 	 * API name: {@code start}
 	 */
 	@Nullable
@@ -173,6 +203,10 @@ public class ShardRecovery implements JsonpSerializable {
 	}
 
 	/**
+	 * The time the recovery started. For recoveries in the <code>CREATED</code>
+	 * stage (not yet started), this value is the Unix epoch
+	 * (1970-01-01T00:00:00.000Z).
+	 * <p>
 	 * API name: {@code start_time}
 	 */
 	@Nullable
@@ -181,13 +215,20 @@ public class ShardRecovery implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code start_time_in_millis}
+	 * Required - The time the recovery started, in milliseconds since the Unix
+	 * epoch. For recoveries in the <code>CREATED</code> stage (not yet started),
+	 * this value is 0.
+	 * <p>
+	 * API name: {@code start_time_in_millis}
 	 */
 	public final long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
 	/**
+	 * The time the recovery completed. Only present for completed recoveries
+	 * (<code>DONE</code> stage).
+	 * <p>
 	 * API name: {@code stop_time}
 	 */
 	@Nullable
@@ -196,6 +237,9 @@ public class ShardRecovery implements JsonpSerializable {
 	}
 
 	/**
+	 * The time the recovery completed, in milliseconds since the Unix epoch. Only
+	 * present for completed recoveries (<code>DONE</code> stage).
+	 * <p>
 	 * API name: {@code stop_time_in_millis}
 	 */
 	@Nullable
@@ -219,7 +263,10 @@ public class ShardRecovery implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code total_time_in_millis}
+	 * Required - The total elapsed recovery time in milliseconds. For recoveries in
+	 * the <code>CREATED</code> stage (not yet started), this value is 0.
+	 * <p>
+	 * API name: {@code total_time_in_millis}
 	 */
 	public final long totalTimeInMillis() {
 		return this.totalTimeInMillis;
@@ -273,6 +320,15 @@ public class ShardRecovery implements JsonpSerializable {
 
 		generator.writeKey("stage");
 		this.stage.serialize(generator, mapper);
+		if (this.localRetries != null) {
+			generator.writeKey("local_retries");
+			generator.write(this.localRetries);
+
+		}
+		if (this.priority != null) {
+			generator.writeKey("priority");
+			this.priority.serialize(generator, mapper);
+		}
 		if (this.start != null) {
 			generator.writeKey("start");
 			this.start.serialize(generator, mapper);
@@ -338,6 +394,12 @@ public class ShardRecovery implements JsonpSerializable {
 		private RecoveryStage stage;
 
 		@Nullable
+		private Integer localRetries;
+
+		@Nullable
+		private RecoveryPriority priority;
+
+		@Nullable
 		private RecoveryStartStatus start;
 
 		@Nullable
@@ -372,6 +434,8 @@ public class ShardRecovery implements JsonpSerializable {
 			this.primary = instance.primary;
 			this.source = instance.source;
 			this.stage = instance.stage;
+			this.localRetries = instance.localRetries;
+			this.priority = instance.priority;
 			this.start = instance.start;
 			this.startTime = instance.startTime;
 			this.startTimeInMillis = instance.startTimeInMillis;
@@ -442,6 +506,27 @@ public class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
+		 * The number of times this recovery has failed in a way which is retried
+		 * locally (i.e. on the data node).
+		 * <p>
+		 * API name: {@code local_retries}
+		 */
+		public final Builder localRetries(@Nullable Integer value) {
+			this.localRetries = value;
+			return this;
+		}
+
+		/**
+		 * The recovery priority.
+		 * <p>
+		 * API name: {@code priority}
+		 */
+		public final Builder priority(@Nullable RecoveryPriority value) {
+			this.priority = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code start}
 		 */
 		public final Builder start(@Nullable RecoveryStartStatus value) {
@@ -457,6 +542,10 @@ public class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
+		 * The time the recovery started. For recoveries in the <code>CREATED</code>
+		 * stage (not yet started), this value is the Unix epoch
+		 * (1970-01-01T00:00:00.000Z).
+		 * <p>
 		 * API name: {@code start_time}
 		 */
 		public final Builder startTime(@Nullable DateTime value) {
@@ -465,7 +554,11 @@ public class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code start_time_in_millis}
+		 * Required - The time the recovery started, in milliseconds since the Unix
+		 * epoch. For recoveries in the <code>CREATED</code> stage (not yet started),
+		 * this value is 0.
+		 * <p>
+		 * API name: {@code start_time_in_millis}
 		 */
 		public final Builder startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
@@ -473,6 +566,9 @@ public class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
+		 * The time the recovery completed. Only present for completed recoveries
+		 * (<code>DONE</code> stage).
+		 * <p>
 		 * API name: {@code stop_time}
 		 */
 		public final Builder stopTime(@Nullable DateTime value) {
@@ -481,6 +577,9 @@ public class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
+		 * The time the recovery completed, in milliseconds since the Unix epoch. Only
+		 * present for completed recoveries (<code>DONE</code> stage).
+		 * <p>
 		 * API name: {@code stop_time_in_millis}
 		 */
 		public final Builder stopTimeInMillis(@Nullable Long value) {
@@ -519,7 +618,10 @@ public class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code total_time_in_millis}
+		 * Required - The total elapsed recovery time in milliseconds. For recoveries in
+		 * the <code>CREATED</code> stage (not yet started), this value is 0.
+		 * <p>
+		 * API name: {@code total_time_in_millis}
 		 */
 		public final Builder totalTimeInMillis(long value) {
 			this.totalTimeInMillis = value;
@@ -605,6 +707,8 @@ public class ShardRecovery implements JsonpSerializable {
 		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
 		op.add(Builder::source, RecoveryOrigin._DESERIALIZER, "source");
 		op.add(Builder::stage, RecoveryStage._DESERIALIZER, "stage");
+		op.add(Builder::localRetries, JsonpDeserializer.integerDeserializer(), "local_retries");
+		op.add(Builder::priority, RecoveryPriority._DESERIALIZER, "priority");
 		op.add(Builder::start, RecoveryStartStatus._DESERIALIZER, "start");
 		op.add(Builder::startTime, DateTime._DESERIALIZER, "start_time");
 		op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
