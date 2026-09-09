@@ -96,6 +96,21 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
 
     private static final Log logger = LogFactory.getLog(OpenTelemetryForElasticsearch.class);
 
+    /**
+     * Cluster-name header added by the Elastic Cloud proxy; carries the cluster's canonical,
+     * globally-unique id.
+     */
+    private static final String CLOUD_CLUSTER_HEADER = "X-Found-Handling-Cluster";
+
+    /**
+     * Cluster-name header emitted by self-managed Elasticsearch (9.6+) when
+     * {@code http.headers.cluster_name.enabled} is set; carries the configured {@code cluster.name}.
+     */
+    private static final String ONPREM_CLUSTER_HEADER = "Elastic-Cluster-Name";
+
+    private static final AttributeKey<String> DB_ES_CLUSTER_NAME =
+        AttributeKey.stringKey("db.elasticsearch.cluster.name");
+
     private final Tracer tracer;
     private final boolean captureSearchBody;
 
@@ -241,6 +256,19 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
                     span.setAttribute(SERVER_PORT, uri.getPort());
                     span.setAttribute(SERVER_ADDRESS, uri.getHost());
                     span.setAttribute(HTTP_RESPONSE_STATUS_CODE, httpResponse.statusCode());
+
+                    // Record the cluster identity as db.elasticsearch.cluster.name from the response headers —
+                    // address-independent, so it survives load balancers, proxies and node lists. A deployment
+                    // normally sends only one of these headers (Elastic Cloud sends X-Found-Handling-Cluster;
+                    // self-managed sends Elastic-Cluster-Name when enabled). If both are present, the Cloud
+                    // header takes precedence because it carries the canonical, globally-unique cluster id.
+                    String clusterName = httpResponse.header(CLOUD_CLUSTER_HEADER);
+                    if (clusterName == null || clusterName.isEmpty()) {
+                        clusterName = httpResponse.header(ONPREM_CLUSTER_HEADER);
+                    }
+                    if (clusterName != null && !clusterName.isEmpty()) {
+                        span.setAttribute(DB_ES_CLUSTER_NAME, clusterName);
+                    }
                 }
             } catch (RuntimeException e) {
                 logger.debug("Failed capturing response information for the OpenTelemetry span.", e);

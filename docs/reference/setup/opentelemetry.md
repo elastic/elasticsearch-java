@@ -60,6 +60,16 @@ ElasticsearchClient esClient = ElasticsearchClient.of(b -> b
 esClient.close();
 ```
 
+## Capturing the {{es}} cluster name [opentelemetry-cluster-name]
+
+The built-in instrumentation automatically captures the `db.elasticsearch.cluster.name` span attribute whenever {{es}} includes the cluster name in its response headers. No client-side configuration is required.
+
+The source of the cluster name depends on your deployment:
+
+* **Elastic Cloud**: Automatically populates the cluster's canonical, globally unique ID (extracted from the `X-Found-Handling-Cluster` proxy header).
+* **Self-managed {{es}} (v9.6+)**: Populates the configured `cluster.name` (extracted from the `Elastic-Cluster-Name` header). To enable this header, set `http.headers.cluster_name.enabled: true` in your cluster settings.
+
+
 ## Configuring the OpenTelemetry instrumentation [_configuring_the_opentelemetry_instrumentation]
 
 You can configure the OpenTelemetry instrumentation either through Java System properties or Environment Variables. The following configuration options are available.

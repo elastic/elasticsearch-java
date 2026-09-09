@@ -64,6 +64,10 @@ import static io.opentelemetry.semconv.ServiceAttributes.SERVICE_NAME;
 public class OpenTelemetryForElasticsearchTest {
     private static final String INDEX = "test-index";
     private static final String DOC_ID = "1234567";
+    private static final AttributeKey<String> DB_ES_CLUSTER_NAME =
+            AttributeKey.stringKey("db.elasticsearch.cluster.name");
+    private static final String CLOUD_CLUSTER_HEADER = "X-Found-Handling-Cluster";
+    private static final String ONPREM_CLUSTER_HEADER = "Elastic-Cluster-Name";
     private static final String DOC_RESPONSE = "{\n" +
             "  \"_index\": \"" + INDEX + "\",\n" +
             "  \"_id\": \"" + DOC_ID + "\",\n" +
@@ -155,7 +159,34 @@ public class OpenTelemetryForElasticsearchTest {
             exchange.close();
         });
 
+        // handlers for the cluster-name capture scenarios: each index returns a specific
+        // combination of the cloud and on-prem cluster-name headers.
+        addDocHandler("cluster-cloud", "cloud-cluster-01", null);
+        addDocHandler("cluster-onprem", null, "onprem-cluster-01");
+        addDocHandler("cluster-both", "cloud-cluster-01", "onprem-cluster-01");
+        addDocHandler("cluster-none", null, null);
+        addDocHandler("cluster-empty-cloud", "", "onprem-cluster-01");
+        addDocHandler("cluster-empty-both", "", "");
+
         httpServer.start();
+    }
+
+    // Registers a GET-document handler for the given index that stamps the given cluster-name headers on the
+    // response. A null value omits the header; an empty string sends the header with an empty value.
+    private static void addDocHandler(String index, String cloudHeaderValue, String onPremHeaderValue) {
+        httpServer.createContext("/" + index + "/_doc/" + DOC_ID, exchange -> {
+            exchange.getResponseHeaders().set("X-Elastic-Product", "Elasticsearch");
+            exchange.getResponseHeaders().set("Content-Type", "application/json");
+            if (cloudHeaderValue != null) {
+                exchange.getResponseHeaders().set(CLOUD_CLUSTER_HEADER, cloudHeaderValue);
+            }
+            if (onPremHeaderValue != null) {
+                exchange.getResponseHeaders().set(ONPREM_CLUSTER_HEADER, onPremHeaderValue);
+            }
+            exchange.sendResponseHeaders(200, 0);
+            exchange.getResponseBody().write(DOC_RESPONSE.getBytes());
+            exchange.close();
+        });
     }
 
     private static void setupOTel() {
@@ -228,6 +259,54 @@ public class OpenTelemetryForElasticsearchTest {
 
         // We're not capturing bodies by default
         Assertions.assertNull(span.getAttributes().get(DbAttributes.DB_QUERY_TEXT));
+    }
+
+    @Test
+    public void testClusterNameFromCloudHeader() throws IOException {
+        // Elastic Cloud proxy header present -> captured directly.
+        client.get(r -> r.index("cluster-cloud").id(DOC_ID), Object.class);
+        SpanData span = spanExporter.getSpans().get(0);
+        Assertions.assertEquals("cloud-cluster-01", span.getAttributes().get(DB_ES_CLUSTER_NAME));
+    }
+
+    @Test
+    public void testClusterNameFromOnPremHeader() throws IOException {
+        // Self-managed header present (no cloud header) -> captured as fallback.
+        client.get(r -> r.index("cluster-onprem").id(DOC_ID), Object.class);
+        SpanData span = spanExporter.getSpans().get(0);
+        Assertions.assertEquals("onprem-cluster-01", span.getAttributes().get(DB_ES_CLUSTER_NAME));
+    }
+
+    @Test
+    public void testClusterNamePrefersCloudHeaderWhenBothPresent() throws IOException {
+        // Both headers present -> the cloud header wins (canonical, globally-unique id).
+        client.get(r -> r.index("cluster-both").id(DOC_ID), Object.class);
+        SpanData span = spanExporter.getSpans().get(0);
+        Assertions.assertEquals("cloud-cluster-01", span.getAttributes().get(DB_ES_CLUSTER_NAME));
+    }
+
+    @Test
+    public void testClusterNameAbsentWhenNoHeader() throws IOException {
+        // Neither header present -> the attribute is not stamped.
+        client.get(r -> r.index("cluster-none").id(DOC_ID), Object.class);
+        SpanData span = spanExporter.getSpans().get(0);
+        Assertions.assertNull(span.getAttributes().get(DB_ES_CLUSTER_NAME));
+    }
+
+    @Test
+    public void testClusterNameFallsBackToOnPremWhenCloudHeaderEmpty() throws IOException {
+        // Empty cloud header is treated as absent -> fall back to the on-prem header.
+        client.get(r -> r.index("cluster-empty-cloud").id(DOC_ID), Object.class);
+        SpanData span = spanExporter.getSpans().get(0);
+        Assertions.assertEquals("onprem-cluster-01", span.getAttributes().get(DB_ES_CLUSTER_NAME));
+    }
+
+    @Test
+    public void testClusterNameAbsentWhenHeadersEmpty() throws IOException {
+        // Both headers present but empty -> the attribute is not stamped.
+        client.get(r -> r.index("cluster-empty-both").id(DOC_ID), Object.class);
+        SpanData span = spanExporter.getSpans().get(0);
+        Assertions.assertNull(span.getAttributes().get(DB_ES_CLUSTER_NAME));
     }
 
     private static class MockSpanExporter implements SpanExporter {
