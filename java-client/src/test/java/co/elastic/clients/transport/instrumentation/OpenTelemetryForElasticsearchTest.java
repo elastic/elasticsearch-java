@@ -59,13 +59,12 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import static io.opentelemetry.semconv.DbAttributes.DB_NAMESPACE;
 import static io.opentelemetry.semconv.ServiceAttributes.SERVICE_NAME;
 
 public class OpenTelemetryForElasticsearchTest {
     private static final String INDEX = "test-index";
     private static final String DOC_ID = "1234567";
-    private static final AttributeKey<String> DB_ES_CLUSTER_NAME =
-            AttributeKey.stringKey("db.elasticsearch.cluster.name");
     private static final String CLOUD_CLUSTER_HEADER = "X-Found-Handling-Cluster";
     private static final String ONPREM_CLUSTER_HEADER = "Elastic-Cluster-Name";
     private static final String DOC_RESPONSE = "{\n" +
@@ -266,7 +265,7 @@ public class OpenTelemetryForElasticsearchTest {
         // Elastic Cloud proxy header present -> captured directly.
         client.get(r -> r.index("cluster-cloud").id(DOC_ID), Object.class);
         SpanData span = spanExporter.getSpans().get(0);
-        Assertions.assertEquals("cloud-cluster-01", span.getAttributes().get(DB_ES_CLUSTER_NAME));
+        Assertions.assertEquals("cloud-cluster-01", span.getAttributes().get(DB_NAMESPACE));
     }
 
     @Test
@@ -274,7 +273,7 @@ public class OpenTelemetryForElasticsearchTest {
         // Self-managed header present (no cloud header) -> captured as fallback.
         client.get(r -> r.index("cluster-onprem").id(DOC_ID), Object.class);
         SpanData span = spanExporter.getSpans().get(0);
-        Assertions.assertEquals("onprem-cluster-01", span.getAttributes().get(DB_ES_CLUSTER_NAME));
+        Assertions.assertEquals("onprem-cluster-01", span.getAttributes().get(DB_NAMESPACE));
     }
 
     @Test
@@ -282,7 +281,7 @@ public class OpenTelemetryForElasticsearchTest {
         // Both headers present -> the cloud header wins (canonical, globally-unique id).
         client.get(r -> r.index("cluster-both").id(DOC_ID), Object.class);
         SpanData span = spanExporter.getSpans().get(0);
-        Assertions.assertEquals("cloud-cluster-01", span.getAttributes().get(DB_ES_CLUSTER_NAME));
+        Assertions.assertEquals("cloud-cluster-01", span.getAttributes().get(DB_NAMESPACE));
     }
 
     @Test
@@ -290,7 +289,7 @@ public class OpenTelemetryForElasticsearchTest {
         // Neither header present -> the attribute is not stamped.
         client.get(r -> r.index("cluster-none").id(DOC_ID), Object.class);
         SpanData span = spanExporter.getSpans().get(0);
-        Assertions.assertNull(span.getAttributes().get(DB_ES_CLUSTER_NAME));
+        Assertions.assertNull(span.getAttributes().get(DB_NAMESPACE));
     }
 
     @Test
@@ -298,7 +297,7 @@ public class OpenTelemetryForElasticsearchTest {
         // Empty cloud header is treated as absent -> fall back to the on-prem header.
         client.get(r -> r.index("cluster-empty-cloud").id(DOC_ID), Object.class);
         SpanData span = spanExporter.getSpans().get(0);
-        Assertions.assertEquals("onprem-cluster-01", span.getAttributes().get(DB_ES_CLUSTER_NAME));
+        Assertions.assertEquals("onprem-cluster-01", span.getAttributes().get(DB_NAMESPACE));
     }
 
     @Test
@@ -306,7 +305,7 @@ public class OpenTelemetryForElasticsearchTest {
         // Both headers present but empty -> the attribute is not stamped.
         client.get(r -> r.index("cluster-empty-both").id(DOC_ID), Object.class);
         SpanData span = spanExporter.getSpans().get(0);
-        Assertions.assertNull(span.getAttributes().get(DB_ES_CLUSTER_NAME));
+        Assertions.assertNull(span.getAttributes().get(DB_NAMESPACE));
     }
 
     private static class MockSpanExporter implements SpanExporter {
