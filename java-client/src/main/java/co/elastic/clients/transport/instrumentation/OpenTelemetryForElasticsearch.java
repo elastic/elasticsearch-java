@@ -52,6 +52,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import static io.opentelemetry.semconv.DbAttributes.DB_OPERATION_NAME;
 import static io.opentelemetry.semconv.DbAttributes.DB_QUERY_TEXT;
+import static io.opentelemetry.semconv.DbAttributes.DB_NAMESPACE;
 import static io.opentelemetry.semconv.DbAttributes.DB_SYSTEM_NAME;
 import static io.opentelemetry.semconv.HttpAttributes.HTTP_REQUEST_METHOD;
 import static io.opentelemetry.semconv.HttpAttributes.HTTP_RESPONSE_STATUS_CODE;
@@ -107,10 +108,6 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
      * {@code http.headers.cluster_name.enabled} is set; carries the configured {@code cluster.name}.
      */
     private static final String ONPREM_CLUSTER_HEADER = "Elastic-Cluster-Name";
-
-    private static final AttributeKey<String> DB_ES_CLUSTER_NAME =
-        AttributeKey.stringKey("db.elasticsearch.cluster.name");
-
     private final Tracer tracer;
     private final boolean captureSearchBody;
 
@@ -257,7 +254,7 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
                     span.setAttribute(SERVER_ADDRESS, uri.getHost());
                     span.setAttribute(HTTP_RESPONSE_STATUS_CODE, httpResponse.statusCode());
 
-                    // Record the cluster identity as db.elasticsearch.cluster.name from the response headers —
+                    // Record the cluster identity as db.namespace from the response headers —
                     // address-independent, so it survives load balancers, proxies and node lists. A deployment
                     // normally sends only one of these headers (Elastic Cloud sends X-Found-Handling-Cluster;
                     // self-managed sends Elastic-Cluster-Name when enabled). If both are present, the Cloud
@@ -267,7 +264,7 @@ public class OpenTelemetryForElasticsearch implements Instrumentation {
                         clusterName = httpResponse.header(ONPREM_CLUSTER_HEADER);
                     }
                     if (clusterName != null && !clusterName.isEmpty()) {
-                        span.setAttribute(DB_ES_CLUSTER_NAME, clusterName);
+                        span.setAttribute(DB_NAMESPACE, clusterName);
                     }
                 }
             } catch (RuntimeException e) {

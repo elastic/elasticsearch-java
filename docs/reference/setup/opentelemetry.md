@@ -62,7 +62,7 @@ esClient.close();
 
 ## Capturing the {{es}} cluster name [opentelemetry-cluster-name]
 
-The built-in instrumentation automatically captures the `db.elasticsearch.cluster.name` span attribute whenever {{es}} includes the cluster name in its response headers. No client-side configuration is required.
+The built-in instrumentation automatically captures the `db.namespace` span attribute whenever {{es}} includes the cluster name in its response headers. No client-side configuration is required.
 
 The source of the cluster name depends on your deployment:
 
