@@ -50,6 +50,8 @@ public enum ClusterPrivilege implements JsonEnum {
 
 	CancelTask("cancel_task"),
 
+	CloneApiKey("clone_api_key"),
+
 	CreateSnapshot("create_snapshot"),
 
 	CrossClusterReplication("cross_cluster_replication"),
