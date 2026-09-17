@@ -39,10 +39,23 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 class MultiBufferEntity extends AbstractHttpEntity implements AsyncEntityProducer {
 
+    /**
+     * Size of the buffer small input buffers are coalesced into before being handed to the channel.
+     * <p>
+     * Each {@link DataStreamChannel#write} becomes at most one HTTP/2 DATA frame, and httpcore5's
+     * multiplexer emits a single frame per output event, so the frame payload size (16 KiB by default,
+     * RFC 9113 §4.2) is the largest write that can be fully used. Over HTTP/1.1 it also amortizes the
+     * per-write chunk header and session buffer maintenance.
+     */
+    static final int STAGING_BUFFER_SIZE = 16 * 1024;
+
     private final Iterable<ByteBuffer> buffers;
 
     private Iterator<ByteBuffer> iterator;
+    /** Input buffer currently being consumed, {@code null} once the input is exhausted. Never empty. */
     private volatile ByteBuffer currentBuffer;
+    /** Coalesced bytes not yet accepted by the channel, always in read mode. Allocated on first use. */
+    private volatile ByteBuffer staging;
 
     private final AtomicReference<Exception> exceptionRef;
 
@@ -61,11 +74,24 @@ class MultiBufferEntity extends AbstractHttpEntity implements AsyncEntityProduce
 
     private void init() {
         this.iterator = buffers.iterator();
-        if (this.iterator.hasNext()) {
-            this.currentBuffer = this.iterator.next().duplicate();
-        } else {
-            this.currentBuffer = null;
+        this.currentBuffer = null;
+        advance();
+        ByteBuffer staging = this.staging;
+        if (staging != null) {
+            staging.position(0).limit(0);
         }
+    }
+
+    /** Moves {@link #currentBuffer} to the next non-empty input buffer, or {@code null} if there is none. */
+    private void advance() {
+        while (iterator.hasNext()) {
+            ByteBuffer next = iterator.next();
+            if (next.hasRemaining()) {
+                currentBuffer = next.duplicate();
+                return;
+            }
+        }
+        currentBuffer = null;
     }
 
     @Override
@@ -108,37 +134,67 @@ class MultiBufferEntity extends AbstractHttpEntity implements AsyncEntityProduce
 
     @Override
     public int available() {
-        ByteBuffer buffer = currentBuffer;
-        return buffer == null ? 0 : buffer.remaining();
+        ByteBuffer staging = this.staging;
+        ByteBuffer current = this.currentBuffer;
+        return (staging == null ? 0 : staging.remaining()) + (current == null ? 0 : current.remaining());
     }
 
     @Override
     public void produce(DataStreamChannel channel) throws IOException {
-        if (currentBuffer == null) {
-            channel.endStream();
-            return;
-        }
+        // The input is typically many small buffers (e.g. one per NDJSON line of a bulk request). Each
+        // write() below is at most one HTTP/2 DATA frame and, over HTTP/1.1, one chunk, so writing
+        // them one by one is very expensive (issue #1339). Coalesce them into a staging buffer and
+        // write that instead; input buffers that are already large are written directly.
+        //
+        // Keep going as long as the channel accepts everything: over HTTP/1.1 the encoder buffers up
+        // to the socket send buffer, over HTTP/2 the multiplexer takes exactly one frame per output
+        // event. Once a write is refused or partial (socket buffer full, frame or flow-control window
+        // exhausted), return and wait for the next output event.
+        while (true) {
+            ByteBuffer out;
+            if (staging != null && staging.hasRemaining()) {
+                out = staging;
+            } else if (currentBuffer == null) {
+                channel.endStream();
+                return;
+            } else if (currentBuffer.remaining() >= STAGING_BUFFER_SIZE) {
+                out = currentBuffer;
+            } else {
+                out = fillStaging();
+            }
 
-        // Keep feeding buffers to the channel as long as it accepts them, so a single output event
-        // ships many small buffers (e.g. NDJSON bulk lines) instead of one buffer per event. Over
-        // HTTP/1.1 the chunk encoder accumulates them into its session buffer and flushes it when
-        // full. A zero return with bytes still pending means the channel cannot take more right now
-        // (socket buffer full, or HTTP/2 frame/flow-control window exhausted): stop and wait for
-        // the next output event.
-        while (currentBuffer != null) {
-            int written = channel.write(currentBuffer);
+            channel.write(out);
 
-            if (!currentBuffer.hasRemaining()) {
-                if (iterator.hasNext()) {
-                    currentBuffer = iterator.next().duplicate();
-                } else {
-                    currentBuffer = null;
-                    channel.endStream();
-                }
-            } else if (written == 0) {
-                break;
+            if (out == currentBuffer && !out.hasRemaining()) {
+                advance();
+            }
+            if (out.hasRemaining()) {
+                return;
             }
         }
+    }
+
+    /** Copies as much input as fits into the (empty) staging buffer and returns it, ready to be read. */
+    private ByteBuffer fillStaging() {
+        ByteBuffer staging = this.staging;
+        if (staging == null) {
+            staging = ByteBuffer.allocate(STAGING_BUFFER_SIZE);
+            this.staging = staging;
+        }
+        staging.clear();
+        while (currentBuffer != null && staging.hasRemaining()) {
+            ByteBuffer src = currentBuffer;
+            int n = Math.min(src.remaining(), staging.remaining());
+            int srcLimit = src.limit();
+            src.limit(src.position() + n);
+            staging.put(src);
+            src.limit(srcLimit);
+            if (!src.hasRemaining()) {
+                advance();
+            }
+        }
+        staging.flip();
+        return staging;
     }
 
     @Override
