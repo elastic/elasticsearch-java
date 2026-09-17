@@ -108,7 +108,8 @@ class MultiBufferEntity extends AbstractHttpEntity implements AsyncEntityProduce
 
     @Override
     public int available() {
-        return currentBuffer.remaining();
+        ByteBuffer buffer = currentBuffer;
+        return buffer == null ? 0 : buffer.remaining();
     }
 
     @Override
@@ -118,14 +119,24 @@ class MultiBufferEntity extends AbstractHttpEntity implements AsyncEntityProduce
             return;
         }
 
-        channel.write(currentBuffer);
+        // Keep feeding buffers to the channel as long as it accepts them, so a single output event
+        // ships many small buffers (e.g. NDJSON bulk lines) instead of one buffer per event. Over
+        // HTTP/1.1 the chunk encoder accumulates them into its session buffer and flushes it when
+        // full. A zero return with bytes still pending means the channel cannot take more right now
+        // (socket buffer full, or HTTP/2 frame/flow-control window exhausted): stop and wait for
+        // the next output event.
+        while (currentBuffer != null) {
+            int written = channel.write(currentBuffer);
 
-        if (!currentBuffer.hasRemaining()) {
-            if (iterator.hasNext()) {
-                currentBuffer = iterator.next().duplicate();
-            } else {
-                currentBuffer = null;
-                channel.endStream();
+            if (!currentBuffer.hasRemaining()) {
+                if (iterator.hasNext()) {
+                    currentBuffer = iterator.next().duplicate();
+                } else {
+                    currentBuffer = null;
+                    channel.endStream();
+                }
+            } else if (written == 0) {
+                break;
             }
         }
     }

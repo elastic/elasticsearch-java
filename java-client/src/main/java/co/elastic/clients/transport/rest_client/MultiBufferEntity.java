@@ -107,14 +107,19 @@ class MultiBufferEntity extends AbstractHttpEntity implements HttpAsyncContentPr
             return;
         }
 
-        encoder.write(currentBuffer);
+        // Keep feeding buffers to the encoder as long as it accepts them.
+        while (currentBuffer != null) {
+            int written = encoder.write(currentBuffer);
 
-        if (!currentBuffer.hasRemaining()) {
-            if (iterator.hasNext()) {
-                currentBuffer = iterator.next().duplicate();
-            } else {
-                currentBuffer = null;
-                encoder.complete();
+            if (!currentBuffer.hasRemaining()) {
+                if (iterator.hasNext()) {
+                    currentBuffer = iterator.next().duplicate();
+                } else {
+                    currentBuffer = null;
+                    encoder.complete();
+                }
+            } else if (written == 0) {
+                break;
             }
         }
     }
