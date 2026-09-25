@@ -96,6 +96,9 @@ public class DatafeedConfig implements JsonpSerializable {
 	private final Integer maxEmptySearches;
 
 	@Nullable
+	private final Integer maxConsecutiveExtractionFailures;
+
+	@Nullable
 	private final Query query;
 
 	@Nullable
@@ -121,6 +124,7 @@ public class DatafeedConfig implements JsonpSerializable {
 		this.indicesOptions = builder.indicesOptions;
 		this.jobId = builder.jobId;
 		this.maxEmptySearches = builder.maxEmptySearches;
+		this.maxConsecutiveExtractionFailures = builder.maxConsecutiveExtractionFailures;
 		this.query = builder.query;
 		this.queryDelay = builder.queryDelay;
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
@@ -246,6 +250,23 @@ public class DatafeedConfig implements JsonpSerializable {
 	@Nullable
 	public final Integer maxEmptySearches() {
 		return this.maxEmptySearches;
+	}
+
+	/**
+	 * The maximum number of consecutive real-time data extraction failures the
+	 * datafeed tolerates before it automatically stops itself, leaving the
+	 * associated job open. The consecutive-failure counter resets on any cycle that
+	 * extracts successfully, including empty-data cycles. If not set, the threshold
+	 * defaults to roughly one day's worth of searches based on the datafeed
+	 * <code>frequency</code> (floored at 1). Set to <code>-1</code> to disable
+	 * auto-stop and retry indefinitely. Values of <code>0</code> or less than
+	 * <code>-1</code> are rejected.
+	 * <p>
+	 * API name: {@code max_consecutive_extraction_failures}
+	 */
+	@Nullable
+	public final Integer maxConsecutiveExtractionFailures() {
+		return this.maxConsecutiveExtractionFailures;
 	}
 
 	/**
@@ -375,6 +396,11 @@ public class DatafeedConfig implements JsonpSerializable {
 			generator.write(this.maxEmptySearches);
 
 		}
+		if (this.maxConsecutiveExtractionFailures != null) {
+			generator.writeKey("max_consecutive_extraction_failures");
+			generator.write(this.maxConsecutiveExtractionFailures);
+
+		}
 		if (this.query != null) {
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
@@ -455,6 +481,9 @@ public class DatafeedConfig implements JsonpSerializable {
 		private Integer maxEmptySearches;
 
 		@Nullable
+		private Integer maxConsecutiveExtractionFailures;
+
+		@Nullable
 		private Query query;
 
 		@Nullable
@@ -481,6 +510,7 @@ public class DatafeedConfig implements JsonpSerializable {
 			this.indicesOptions = instance.indicesOptions;
 			this.jobId = instance.jobId;
 			this.maxEmptySearches = instance.maxEmptySearches;
+			this.maxConsecutiveExtractionFailures = instance.maxConsecutiveExtractionFailures;
 			this.query = instance.query;
 			this.queryDelay = instance.queryDelay;
 			this.runtimeMappings = instance.runtimeMappings;
@@ -716,6 +746,23 @@ public class DatafeedConfig implements JsonpSerializable {
 		}
 
 		/**
+		 * The maximum number of consecutive real-time data extraction failures the
+		 * datafeed tolerates before it automatically stops itself, leaving the
+		 * associated job open. The consecutive-failure counter resets on any cycle that
+		 * extracts successfully, including empty-data cycles. If not set, the threshold
+		 * defaults to roughly one day's worth of searches based on the datafeed
+		 * <code>frequency</code> (floored at 1). Set to <code>-1</code> to disable
+		 * auto-stop and retry indefinitely. Values of <code>0</code> or less than
+		 * <code>-1</code> are rejected.
+		 * <p>
+		 * API name: {@code max_consecutive_extraction_failures}
+		 */
+		public final Builder maxConsecutiveExtractionFailures(@Nullable Integer value) {
+			this.maxConsecutiveExtractionFailures = value;
+			return this;
+		}
+
+		/**
 		 * The Elasticsearch query domain-specific language (DSL). This value
 		 * corresponds to the query object in an Elasticsearch search POST body. All the
 		 * options that are supported by Elasticsearch can be used, as this object is
@@ -916,6 +963,8 @@ public class DatafeedConfig implements JsonpSerializable {
 		op.add(Builder::indicesOptions, IndicesOptions._DESERIALIZER, "indices_options");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::maxEmptySearches, JsonpDeserializer.integerDeserializer(), "max_empty_searches");
+		op.add(Builder::maxConsecutiveExtractionFailures, JsonpDeserializer.integerDeserializer(),
+				"max_consecutive_extraction_failures");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::queryDelay, Time._DESERIALIZER, "query_delay");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),

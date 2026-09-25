@@ -61,8 +61,10 @@ import javax.annotation.Nullable;
 public class InnerRetriever implements JsonpSerializable {
 	private final Retriever retriever;
 
-	private final float weight;
+	@Nullable
+	private final Float weight;
 
+	@Nullable
 	private final ScoreNormalizer normalizer;
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,8 +72,8 @@ public class InnerRetriever implements JsonpSerializable {
 	private InnerRetriever(Builder builder) {
 
 		this.retriever = ApiTypeHelper.requireNonNull(builder.retriever, this, "retriever");
-		this.weight = ApiTypeHelper.requireNonNull(builder.weight, this, "weight", 0);
-		this.normalizer = ApiTypeHelper.requireNonNull(builder.normalizer, this, "normalizer");
+		this.weight = builder.weight;
+		this.normalizer = builder.normalizer;
 
 	}
 
@@ -80,22 +82,33 @@ public class InnerRetriever implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code retriever}
+	 * Required - The nested retriever configuration.
+	 * <p>
+	 * API name: {@code retriever}
 	 */
 	public final Retriever retriever() {
 		return this.retriever;
 	}
 
 	/**
-	 * Required - API name: {@code weight}
+	 * Weight multiplier for this retriever's contribution to the linear
+	 * combination. Must be non-negative.
+	 * <p>
+	 * API name: {@code weight}
 	 */
-	public final float weight() {
+	@Nullable
+	public final Float weight() {
 		return this.weight;
 	}
 
 	/**
-	 * Required - API name: {@code normalizer}
+	 * Score normalizer to apply to this retriever's results before weighting. Falls
+	 * back to the top-level <code>normalizer</code> on the linear retriever if
+	 * unset, then to <code>none</code> (identity) if neither is set.
+	 * <p>
+	 * API name: {@code normalizer}
 	 */
+	@Nullable
 	public final ScoreNormalizer normalizer() {
 		return this.normalizer;
 	}
@@ -114,11 +127,15 @@ public class InnerRetriever implements JsonpSerializable {
 		generator.writeKey("retriever");
 		this.retriever.serialize(generator, mapper);
 
-		generator.writeKey("weight");
-		generator.write(this.weight);
+		if (this.weight != null) {
+			generator.writeKey("weight");
+			generator.write(this.weight);
 
-		generator.writeKey("normalizer");
-		this.normalizer.serialize(generator, mapper);
+		}
+		if (this.normalizer != null) {
+			generator.writeKey("normalizer");
+			this.normalizer.serialize(generator, mapper);
+		}
 
 	}
 
@@ -136,8 +153,10 @@ public class InnerRetriever implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<InnerRetriever> {
 		private Retriever retriever;
 
+		@Nullable
 		private Float weight;
 
+		@Nullable
 		private ScoreNormalizer normalizer;
 
 		public Builder() {
@@ -149,7 +168,9 @@ public class InnerRetriever implements JsonpSerializable {
 
 		}
 		/**
-		 * Required - API name: {@code retriever}
+		 * Required - The nested retriever configuration.
+		 * <p>
+		 * API name: {@code retriever}
 		 */
 		public final Builder retriever(Retriever value) {
 			this.retriever = value;
@@ -157,14 +178,18 @@ public class InnerRetriever implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code retriever}
+		 * Required - The nested retriever configuration.
+		 * <p>
+		 * API name: {@code retriever}
 		 */
 		public final Builder retriever(Function<Retriever.Builder, ObjectBuilder<Retriever>> fn) {
 			return this.retriever(fn.apply(new Retriever.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code retriever}
+		 * Required - The nested retriever configuration.
+		 * <p>
+		 * API name: {@code retriever}
 		 */
 		public final Builder retriever(RetrieverVariant value) {
 			this.retriever = value._toRetriever();
@@ -172,17 +197,24 @@ public class InnerRetriever implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code weight}
+		 * Weight multiplier for this retriever's contribution to the linear
+		 * combination. Must be non-negative.
+		 * <p>
+		 * API name: {@code weight}
 		 */
-		public final Builder weight(float value) {
+		public final Builder weight(@Nullable Float value) {
 			this.weight = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code normalizer}
+		 * Score normalizer to apply to this retriever's results before weighting. Falls
+		 * back to the top-level <code>normalizer</code> on the linear retriever if
+		 * unset, then to <code>none</code> (identity) if neither is set.
+		 * <p>
+		 * API name: {@code normalizer}
 		 */
-		public final Builder normalizer(ScoreNormalizer value) {
+		public final Builder normalizer(@Nullable ScoreNormalizer value) {
 			this.normalizer = value;
 			return this;
 		}

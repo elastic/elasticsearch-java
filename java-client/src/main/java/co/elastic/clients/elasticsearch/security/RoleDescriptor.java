@@ -71,7 +71,8 @@ public class RoleDescriptor implements JsonpSerializable {
 
 	private final List<RemoteClusterPrivileges> remoteCluster;
 
-	private final List<GlobalPrivilege> global;
+	@Nullable
+	private final GlobalPrivilege global;
 
 	private final List<ApplicationPrivileges> applications;
 
@@ -95,7 +96,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.remoteIndices = ApiTypeHelper.unmodifiable(builder.remoteIndices);
 		this.remoteCluster = ApiTypeHelper.unmodifiable(builder.remoteCluster);
-		this.global = ApiTypeHelper.unmodifiable(builder.global);
+		this.global = builder.global;
 		this.applications = ApiTypeHelper.unmodifiable(builder.applications);
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.runAs = ApiTypeHelper.unmodifiable(builder.runAs);
@@ -154,7 +155,8 @@ public class RoleDescriptor implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code global}
 	 */
-	public final List<GlobalPrivilege> global() {
+	@Nullable
+	public final GlobalPrivilege global() {
 		return this.global;
 	}
 
@@ -267,14 +269,9 @@ public class RoleDescriptor implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ApiTypeHelper.isDefined(this.global)) {
+		if (this.global != null) {
 			generator.writeKey("global");
-			generator.writeStartArray();
-			for (GlobalPrivilege item0 : this.global) {
-				item0.serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
+			this.global.serialize(generator, mapper);
 
 		}
 		if (ApiTypeHelper.isDefined(this.applications)) {
@@ -380,7 +377,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		private List<RemoteClusterPrivileges> remoteCluster;
 
 		@Nullable
-		private List<GlobalPrivilege> global;
+		private GlobalPrivilege global;
 
 		@Nullable
 		private List<ApplicationPrivileges> applications;
@@ -556,11 +553,9 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * limited to the management of application privileges.
 		 * <p>
 		 * API name: {@code global}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>global</code>.
 		 */
-		public final BuilderT global(List<GlobalPrivilege> list) {
-			this.global = _listAddAll(this.global, list);
+		public final BuilderT global(@Nullable GlobalPrivilege value) {
+			this.global = value;
 			return self();
 		}
 
@@ -570,25 +565,9 @@ public class RoleDescriptor implements JsonpSerializable {
 		 * limited to the management of application privileges.
 		 * <p>
 		 * API name: {@code global}
-		 * <p>
-		 * Adds one or more values to <code>global</code>.
-		 */
-		public final BuilderT global(GlobalPrivilege value, GlobalPrivilege... values) {
-			this.global = _listAdd(this.global, value, values);
-			return self();
-		}
-
-		/**
-		 * An object defining global privileges. A global privilege is a form of cluster
-		 * privilege that is request-aware. Support for global privileges is currently
-		 * limited to the management of application privileges.
-		 * <p>
-		 * API name: {@code global}
-		 * <p>
-		 * Adds a value to <code>global</code> using a builder lambda.
 		 */
 		public final BuilderT global(Function<GlobalPrivilege.Builder, ObjectBuilder<GlobalPrivilege>> fn) {
-			return global(fn.apply(new GlobalPrivilege.Builder()).build());
+			return this.global(fn.apply(new GlobalPrivilege.Builder()).build());
 		}
 
 		/**
@@ -755,7 +734,7 @@ public class RoleDescriptor implements JsonpSerializable {
 				JsonpDeserializer.arrayDeserializer(RemoteIndicesPrivileges._DESERIALIZER), "remote_indices");
 		op.add(AbstractBuilder::remoteCluster,
 				JsonpDeserializer.arrayDeserializer(RemoteClusterPrivileges._DESERIALIZER), "remote_cluster");
-		op.add(AbstractBuilder::global, JsonpDeserializer.arrayDeserializer(GlobalPrivilege._DESERIALIZER), "global");
+		op.add(AbstractBuilder::global, GlobalPrivilege._DESERIALIZER, "global");
 		op.add(AbstractBuilder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges._DESERIALIZER),
 				"applications");
 		op.add(AbstractBuilder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
